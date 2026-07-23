@@ -245,7 +245,7 @@ env GOOGLE_CLOUD_PROJECT=${P_ID} GOOGLE_CLOUD_SWIFT_TEST_SERVICE_ACCOUNT=swift-s
 To preview the user guide use:
 
 ```bash
-swift package --package-path guide --disable-sandbox preview-documentation --target UserGuide
+swift package --disable-sandbox preview-documentation --target UserGuide
 ```
 
 To preview one of the hand-crated packages use:

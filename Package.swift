@@ -35,6 +35,7 @@ let package = Package(
     .package(path: "./packages/test-helpers"),
     .package(path: "./packages/wkt"),
     .package(path: "./packages/storage"),
+    .package(path: "./guide"),
     .package(
       path: "./generated/google-cloud-compute-v1",
       traits: ["Instances", "Images", "ZoneOperations"]),
@@ -54,6 +55,9 @@ let package = Package(
       dependencies: [
         .product(name: "GoogleCloudAuth", package: "auth")
       ]),
+    // .testTarget(
+    //   name: "AllModules",
+    //   dependencies: [.product(name: "UserGuide", package: "guide")]),
     .testTarget(
       name: "Discovery",
       dependencies: [
