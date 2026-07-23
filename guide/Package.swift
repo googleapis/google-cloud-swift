@@ -26,10 +26,10 @@ let package = Package(
   ],
   dependencies: [
     .package(path: "../packages/gax"),
-    .package(path: "../packages/wkt"),
     .package(path: "../packages/auth"),
     .package(path: "../generated/google-cloud-secretmanager-v1"),
     .package(url: "https://github.com/apple/swift-log", from: "1.12.0"),
+    .package(url: "https://github.com/apple/swift-docc-plugin", from: "1.0.0"),
   ],
   targets: [
     .target(

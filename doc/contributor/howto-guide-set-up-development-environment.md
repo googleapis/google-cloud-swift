@@ -240,6 +240,29 @@ P_ID="$(gcloud config get project)"
 env GOOGLE_CLOUD_PROJECT=${P_ID} GOOGLE_CLOUD_SWIFT_TEST_SERVICE_ACCOUNT=swift-sdk-test@${P_ID}.iam.gserviceaccount.com swift test --traits IntegrationTests
 ```
 
+## Preview Documentation
+
+To preview the user guide use:
+
+```bash
+swift package --package-path guide --disable-sandbox preview-documentation --target UserGuide
+```
+
+To preview one of the hand-crated packages use:
+
+```bash
+swift package --disable-sandbox preview-documentation --target GoogleCloudAuth
+swift package --disable-sandbox preview-documentation --target GoogleCloudWkt
+swift package --disable-sandbox preview-documentation --target GoogleCloudGax
+```
+
+You can also preview the GAPICs used by the top-level tests, for example:
+
+```bash
+swift package --disable-sandbox preview-documentation --target GoogleCloudSecretmanagerV1
+swift package --disable-sandbox preview-documentation --target GoogleCloudComputeV1
+```
+
 ## Miscellaneous Tools
 
 We use a number of tools to format non-Swift code. The CI builds enforce

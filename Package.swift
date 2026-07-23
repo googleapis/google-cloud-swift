@@ -35,7 +35,6 @@ let package = Package(
     .package(path: "./packages/test-helpers"),
     .package(path: "./packages/wkt"),
     .package(path: "./packages/storage"),
-    .package(path: "./guide"),
     .package(
       path: "./generated/google-cloud-compute-v1",
       traits: ["Instances", "Images", "ZoneOperations"]),
@@ -50,7 +49,6 @@ let package = Package(
     .package(url: "https://github.com/apple/swift-log", from: "1.12.0"),
   ],
   targets: [
-    .target(name: "UserGuide", dependencies: [.product(name: "UserGuide", package: "guide")]),
     .testTarget(
       name: "IntegrationTests",
       dependencies: [
