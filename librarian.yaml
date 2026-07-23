@@ -101,121 +101,77 @@ default:
         required_by_services: true
     default_version: 0.0.0-preview
 libraries:
-  - name: GoogleApi
+  - name: google-api
     version: 0.0.0-preview
-    apis:
-      - path: google/api
     copyright_year: "2026"
-  - name: GoogleApiApikeysV2
+  - name: google-api-apikeys-v2
     version: 0.0.0-preview
-    apis:
-      - path: google/api/apikeys/v2
     copyright_year: "2026"
-  - name: GoogleApiCloudquotasV1
+  - name: google-api-cloudquotas-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/api/cloudquotas/v1
     copyright_year: "2026"
-  - name: GoogleApiServicecontrolV1
+  - name: google-api-servicecontrol-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/api/servicecontrol/v1
     copyright_year: "2026"
-  - name: GoogleApiServicecontrolV2
+  - name: google-api-servicecontrol-v2
     version: 0.0.0-preview
-    apis:
-      - path: google/api/servicecontrol/v2
     copyright_year: "2026"
-  - name: GoogleApiServicemanagementV1
+  - name: google-api-servicemanagement-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/api/servicemanagement/v1
     copyright_year: "2026"
-  - name: GoogleApiServiceusageV1
+  - name: google-api-serviceusage-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/api/serviceusage/v1
     copyright_year: "2026"
-  - name: GoogleAppengineV1
+  - name: google-appengine-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/appengine/v1
     copyright_year: "2026"
-  - name: GoogleBigtableAdminV2
+  - name: google-bigtable-admin-v2
     version: 0.0.0-preview
-    apis:
-      - path: google/bigtable/admin/v2
     copyright_year: "2026"
-  - name: GoogleCloudAbuseeventLoggingV1
+  - name: google-cloud-abuseevent-logging-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/abuseevent/logging/v1
     copyright_year: "2026"
-  - name: GoogleCloudAccessapprovalV1
+  - name: google-cloud-accessapproval-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/accessapproval/v1
     copyright_year: "2026"
-  - name: GoogleCloudAdvisorynotificationsV1
+  - name: google-cloud-advisorynotifications-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/advisorynotifications/v1
     copyright_year: "2026"
-  - name: GoogleCloudAiplatformV1
+  - name: google-cloud-aiplatform-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/aiplatform/v1
     copyright_year: "2026"
     swift:
       per_service_traits: true
       default_traits:
         - PredictionService
-  - name: GoogleCloudAlloydbConnectorsV1
+  - name: google-cloud-alloydb-connectors-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/alloydb/connectors/v1
     copyright_year: "2026"
-  - name: GoogleCloudAlloydbV1
+  - name: google-cloud-alloydb-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/alloydb/v1
     copyright_year: "2026"
-  - name: GoogleCloudApigatewayV1
+  - name: google-cloud-apigateway-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/apigateway/v1
     copyright_year: "2026"
-  - name: GoogleCloudApihubV1
+  - name: google-cloud-apihub-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/apihub/v1
     copyright_year: "2026"
-  - name: GoogleCloudApiregistryV1
+  - name: google-cloud-apiregistry-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/apiregistry/v1
     copyright_year: "2026"
-  - name: GoogleCloudApphubV1
+  - name: google-cloud-apphub-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/apphub/v1
     copyright_year: "2026"
-  - name: GoogleCloudAssetV1
+  - name: google-cloud-asset-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/asset/v1
     copyright_year: "2026"
-  - name: GoogleCloudAssuredworkloadsV1
+  - name: google-cloud-assuredworkloads-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/assuredworkloads/v1
     copyright_year: "2026"
-  - name: GoogleCloudAuditmanagerV1
+  - name: google-cloud-auditmanager-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/auditmanager/v1
     copyright_year: "2026"
-  - name: GoogleCloudAuth
+  - name: google-cloud-auth
     version: 0.0.0-preview
     copyright_year: "2026"
     output: packages/auth/Sources/GoogleCloudAuth/generated
@@ -224,107 +180,67 @@ libraries:
         - output: packages/auth/Sources/GoogleCloudAuth/generated
           api_path: ""
           module_type: package-version
-  - name: GoogleCloudBaremetalsolutionV2
+  - name: google-cloud-baremetalsolution-v2
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/baremetalsolution/v2
     copyright_year: "2026"
-  - name: GoogleCloudBatchV1
+  - name: google-cloud-batch-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/batch/v1
     copyright_year: "2026"
-  - name: GoogleCloudBeyondcorpAppconnectionsV1
+  - name: google-cloud-beyondcorp-appconnections-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/beyondcorp/appconnections/v1
     copyright_year: "2026"
-  - name: GoogleCloudBeyondcorpAppconnectorsV1
+  - name: google-cloud-beyondcorp-appconnectors-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/beyondcorp/appconnectors/v1
     copyright_year: "2026"
-  - name: GoogleCloudBeyondcorpAppgatewaysV1
+  - name: google-cloud-beyondcorp-appgateways-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/beyondcorp/appgateways/v1
     copyright_year: "2026"
-  - name: GoogleCloudBeyondcorpClientconnectorservicesV1
+  - name: google-cloud-beyondcorp-clientconnectorservices-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/beyondcorp/clientconnectorservices/v1
     copyright_year: "2026"
-  - name: GoogleCloudBeyondcorpClientgatewaysV1
+  - name: google-cloud-beyondcorp-clientgateways-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/beyondcorp/clientgateways/v1
     copyright_year: "2026"
-  - name: GoogleCloudBiglakeV1
+  - name: google-cloud-biglake-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/biglake/v1
     copyright_year: "2026"
-  - name: GoogleCloudBigqueryAnalyticshubV1
+  - name: google-cloud-bigquery-analyticshub-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/bigquery/analyticshub/v1
     copyright_year: "2026"
-  - name: GoogleCloudBigqueryConnectionV1
+  - name: google-cloud-bigquery-connection-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/bigquery/connection/v1
     copyright_year: "2026"
-  - name: GoogleCloudBigqueryDatapoliciesV1
+  - name: google-cloud-bigquery-datapolicies-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/bigquery/datapolicies/v1
     copyright_year: "2026"
-  - name: GoogleCloudBigqueryDatapoliciesV2
+  - name: google-cloud-bigquery-datapolicies-v2
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/bigquery/datapolicies/v2
     copyright_year: "2026"
-  - name: GoogleCloudBigqueryDatatransferV1
+  - name: google-cloud-bigquery-datatransfer-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/bigquery/datatransfer/v1
     copyright_year: "2026"
-  - name: GoogleCloudBillingBudgetsV1
+  - name: google-cloud-billing-budgets-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/billing/budgets/v1
     copyright_year: "2026"
-  - name: GoogleCloudBillingV1
+  - name: google-cloud-billing-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/billing/v1
     copyright_year: "2026"
-  - name: GoogleCloudBinaryauthorizationV1
+  - name: google-cloud-binaryauthorization-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/binaryauthorization/v1
     copyright_year: "2026"
-  - name: GoogleCloudBlockchainnodeengineV1
+  - name: google-cloud-blockchainnodeengine-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/blockchainnodeengine/v1
     copyright_year: "2026"
-  - name: GoogleCloudCertificatemanagerV1
+  - name: google-cloud-certificatemanager-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/certificatemanager/v1
     copyright_year: "2026"
-  - name: GoogleCloudCesV1
+  - name: google-cloud-ces-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/ces/v1
     copyright_year: "2026"
-  - name: GoogleCloudCommon
+  - name: google-cloud-common
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/common
     copyright_year: "2026"
-  - name: GoogleCloudComputeV1
+  - name: google-cloud-compute-v1
     version: 0.0.0-preview
     apis:
       - path: discoveries/compute.v1.json
@@ -351,110 +267,74 @@ libraries:
             method_id: .google.cloud.compute.v1.globalOperations.get
           - prefix: compute/v1/
             method_id: .google.cloud.compute.v1.globalOrganizationOperations.get
-  - name: GoogleCloudConfidentialcomputingV1
+  - name: google-cloud-confidentialcomputing-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/confidentialcomputing/v1
     copyright_year: "2026"
-  - name: GoogleCloudConfigV1
+  - name: google-cloud-config-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/config/v1
     copyright_year: "2026"
-  - name: GoogleCloudConfigdeliveryV1
+  - name: google-cloud-configdelivery-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/configdelivery/v1
     copyright_year: "2026"
-  - name: GoogleCloudConnectorsV1
+  - name: google-cloud-connectors-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/connectors/v1
     copyright_year: "2026"
-  - name: GoogleCloudDatacatalogV1
+  - name: google-cloud-datacatalog-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/datacatalog/v1
     copyright_year: "2026"
-  - name: GoogleCloudDataformV1
+  - name: google-cloud-dataform-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/dataform/v1
     copyright_year: "2026"
-  - name: GoogleCloudDatafusionV1
+  - name: google-cloud-datafusion-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/datafusion/v1
     copyright_year: "2026"
-  - name: GoogleCloudDataplexV1
+  - name: google-cloud-dataplex-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/dataplex/v1
     copyright_year: "2026"
-  - name: GoogleCloudDeployV1
+  - name: google-cloud-deploy-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/deploy/v1
     copyright_year: "2026"
-  - name: GoogleCloudDialogflowCxV3
+  - name: google-cloud-dialogflow-cx-v3
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/dialogflow/cx/v3
     copyright_year: "2026"
     swift:
       per_service_traits: true
       default_traits:
         - Agents
-  - name: GoogleCloudDialogflowV2
+  - name: google-cloud-dialogflow-v2
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/dialogflow/v2
     copyright_year: "2026"
     swift:
       per_service_traits: true
       default_traits:
         - Agents
-  - name: GoogleCloudDiscoveryengineV1
+  - name: google-cloud-discoveryengine-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/discoveryengine/v1
     copyright_year: "2026"
     swift:
       per_service_traits: true
       default_traits:
         - SearchService
         - RecommendationService
-  - name: GoogleCloudDomainsV1
+  - name: google-cloud-domains-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/domains/v1
     copyright_year: "2026"
-  - name: GoogleCloudEdgecontainerV1
+  - name: google-cloud-edgecontainer-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/edgecontainer/v1
     copyright_year: "2026"
-  - name: GoogleCloudEdgenetworkV1
+  - name: google-cloud-edgenetwork-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/edgenetwork/v1
     copyright_year: "2026"
-  - name: GoogleCloudEventarcV1
+  - name: google-cloud-eventarc-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/eventarc/v1
     copyright_year: "2026"
-  - name: GoogleCloudFilestoreV1
+  - name: google-cloud-filestore-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/filestore/v1
     copyright_year: "2026"
-  - name: GoogleCloudFunctionsV2
+  - name: google-cloud-functions-v2
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/functions/v2
     copyright_year: "2026"
-  - name: GoogleCloudGax
+  - name: google-cloud-gax
     version: 0.0.0-preview
     copyright_year: "2026"
     output: packages/gax/Sources/GoogleCloudGax/generated
@@ -463,147 +343,93 @@ libraries:
         - output: packages/gax/Sources/GoogleCloudGax/generated
           api_path: ""
           module_type: package-version
-  - name: GoogleCloudGkebackupLoggingV1
+  - name: google-cloud-gkebackup-logging-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/gkebackup/logging/v1
     copyright_year: "2026"
-  - name: GoogleCloudGkehubConfigmanagementV1
+  - name: google-cloud-gkehub-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/gkehub/v1/configmanagement
+    copyright_year: "2026"
+  - name: google-cloud-gkehub-v1-configmanagement
+    version: 0.0.0-preview
     copyright_year: "2026"
     output: generated/google-cloud-gkehub-configmanagement-v1
-  - name: GoogleCloudGkehubMulticlusteringressV1
+  - name: google-cloud-gkehub-v1-multiclusteringress
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/gkehub/v1/multiclusteringress
     copyright_year: "2026"
     output: generated/google-cloud-gkehub-multiclusteringress-v1
-  - name: GoogleCloudGkehubRbacrolebindingactuationV1
+  - name: google-cloud-gkehub-v1-rbacrolebindingactuation
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/gkehub/v1/rbacrolebindingactuation
     copyright_year: "2026"
     output: generated/google-cloud-gkehub-rbacrolebindingactuation-v1
-  - name: GoogleCloudGkehubV1
+  - name: google-cloud-gkemulticloud-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/gkehub/v1
     copyright_year: "2026"
-  - name: GoogleCloudGkemulticloudV1
+  - name: google-cloud-kms-inventory-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/gkemulticloud/v1
     copyright_year: "2026"
-  - name: GoogleCloudKmsInventoryV1
+  - name: google-cloud-kms-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/kms/inventory/v1
     copyright_year: "2026"
-  - name: GoogleCloudKmsV1
+  - name: google-cloud-language-v2
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/kms/v1
     copyright_year: "2026"
-  - name: GoogleCloudLanguageV2
+  - name: google-cloud-licensemanager-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/language/v2
     copyright_year: "2026"
-  - name: GoogleCloudLicensemanagerV1
+  - name: google-cloud-location
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/licensemanager/v1
     copyright_year: "2026"
-  - name: GoogleCloudLocation
+  - name: google-cloud-locationfinder-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/location
     copyright_year: "2026"
-  - name: GoogleCloudLocationfinderV1
+  - name: google-cloud-memorystore-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/locationfinder/v1
     copyright_year: "2026"
-  - name: GoogleCloudMemorystoreV1
+  - name: google-cloud-networkconnectivity-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/memorystore/v1
     copyright_year: "2026"
-  - name: GoogleCloudNetworkconnectivityV1
+  - name: google-cloud-notebooks-v2
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/networkconnectivity/v1
     copyright_year: "2026"
-  - name: GoogleCloudNotebooksV2
+  - name: google-cloud-orgpolicy-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/notebooks/v2
     copyright_year: "2026"
-  - name: GoogleCloudOrgpolicyV1
+  - name: google-cloud-osconfig-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/orgpolicy/v1
     copyright_year: "2026"
-  - name: GoogleCloudOsconfigV1
+  - name: google-cloud-parallelstore-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/osconfig/v1
     copyright_year: "2026"
-  - name: GoogleCloudParallelstoreV1
+  - name: google-cloud-resourcemanager-v3
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/parallelstore/v1
     copyright_year: "2026"
-  - name: GoogleCloudResourcemanagerV3
+  - name: google-cloud-retail-v2
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/resourcemanager/v3
     copyright_year: "2026"
-  - name: GoogleCloudRetailV2
+  - name: google-cloud-run-v2
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/retail/v2
     copyright_year: "2026"
-  - name: GoogleCloudRunV2
+  - name: google-cloud-scheduler-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/run/v2
     copyright_year: "2026"
-  - name: GoogleCloudSchedulerV1
+  - name: google-cloud-secretmanager-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/scheduler/v1
     copyright_year: "2026"
-  - name: GoogleCloudSecretmanagerV1
+  - name: google-cloud-security-privateca-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/secretmanager/v1
     copyright_year: "2026"
-  - name: GoogleCloudSecurityPrivatecaV1
+  - name: google-cloud-security-publicca-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/security/privateca/v1
     copyright_year: "2026"
-  - name: GoogleCloudSecurityPubliccaV1
+  - name: google-cloud-speech-v2
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/security/publicca/v1
     copyright_year: "2026"
-  - name: GoogleCloudSpeechV2
+  - name: google-cloud-sql-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/speech/v2
-    copyright_year: "2026"
-  - name: GoogleCloudSqlV1
-    version: 0.0.0-preview
-    apis:
-      - path: google/cloud/sql/v1
     copyright_year: "2026"
     swift:
       per_service_traits: true
-  - name: GoogleCloudStorage
+  - name: google-cloud-storage
     version: 0.0.0-preview
     copyright_year: "2026"
     output: packages/storage/Sources/generated/StorageControlProtos
@@ -625,42 +451,28 @@ libraries:
           api_path: google/storage/control/v2
           module_type: convert-swift
           module_path: StorageControlProtos
-  - name: GoogleCloudStorageinsightsV1
+  - name: google-cloud-storageinsights-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/storageinsights/v1
     copyright_year: "2026"
-  - name: GoogleCloudTalentV4
+  - name: google-cloud-talent-v4
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/talent/v4
     copyright_year: "2026"
-  - name: GoogleCloudTelcoautomationV1
+  - name: google-cloud-telcoautomation-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/telcoautomation/v1
     copyright_year: "2026"
-  - name: GoogleCloudTexttospeechV1
+  - name: google-cloud-texttospeech-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/texttospeech/v1
     copyright_year: "2026"
-  - name: GoogleCloudTpuV2
+  - name: google-cloud-tpu-v2
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/tpu/v2
     copyright_year: "2026"
-  - name: GoogleCloudTranslateV3
+  - name: google-cloud-translate-v3
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/translate/v3
     copyright_year: "2026"
-  - name: GoogleCloudVisionV1
+  - name: google-cloud-vision-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/vision/v1
     copyright_year: "2026"
-  - name: GoogleCloudWkt
+  - name: google-cloud-wkt
     version: 0.0.0-preview
     copyright_year: "2026"
     output: packages/wkt/Sources/GoogleCloudWkt/generated
@@ -678,131 +490,81 @@ libraries:
         - output: packages/wkt/Sources/GoogleCloudWkt/generated/version
           api_path: google/protobuf
           module_type: package-version
-  - name: GoogleCloudWorkflowsExecutionsV1
+  - name: google-cloud-workflows-executions-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/workflows/executions/v1
     copyright_year: "2026"
-  - name: GoogleCloudWorkflowsV1
+  - name: google-cloud-workflows-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/workflows/v1
     copyright_year: "2026"
-  - name: GoogleCloudWorkloadmanagerV1
+  - name: google-cloud-workloadmanager-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/cloud/workloadmanager/v1
     copyright_year: "2026"
-  - name: GoogleContainerV1
-    apis:
-      - path: google/container/v1
+  - name: google-container-v1
     copyright_year: "2026"
-  - name: GoogleDatastoreAdminV1
+  - name: google-datastore-admin-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/datastore/admin/v1
     copyright_year: "2026"
-  - name: GoogleDevtoolsArtifactregistryV1
+  - name: google-devtools-artifactregistry-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/devtools/artifactregistry/v1
     copyright_year: "2026"
-  - name: GoogleDevtoolsCloudtraceV2
+  - name: google-devtools-cloudtrace-v2
     version: 0.0.0-preview
-    apis:
-      - path: google/devtools/cloudtrace/v2
     copyright_year: "2026"
-  - name: GoogleGrafeasV1
+  - name: google-iam-admin-v1
     version: 0.0.0-preview
-    apis:
-      - path: grafeas/v1
     copyright_year: "2026"
-  - name: GoogleIamAdminV1
+  - name: google-iam-credentials-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/iam/admin/v1
     copyright_year: "2026"
-  - name: GoogleIamCredentialsV1
+  - name: google-iam-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/iam/credentials/v1
     copyright_year: "2026"
-  - name: GoogleIamV1
+  - name: google-iam-v2
     version: 0.0.0-preview
-    apis:
-      - path: google/iam/v1
     copyright_year: "2026"
-  - name: GoogleIamV2
+  - name: google-iam-v3
     version: 0.0.0-preview
-    apis:
-      - path: google/iam/v2
     copyright_year: "2026"
-  - name: GoogleIamV3
+  - name: google-identity-accesscontextmanager-type
     version: 0.0.0-preview
-    apis:
-      - path: google/iam/v3
     copyright_year: "2026"
-  - name: GoogleIdentityAccesscontextmanagerType
+  - name: google-identity-accesscontextmanager-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/identity/accesscontextmanager/type
     copyright_year: "2026"
-  - name: GoogleIdentityAccesscontextmanagerV1
+  - name: google-logging-type
     version: 0.0.0-preview
-    apis:
-      - path: google/identity/accesscontextmanager/v1
     copyright_year: "2026"
-  - name: GoogleLoggingType
+  - name: google-logging-v2
     version: 0.0.0-preview
-    apis:
-      - path: google/logging/type
     copyright_year: "2026"
-  - name: GoogleLoggingV2
+  - name: google-longrunning
     version: 0.0.0-preview
-    apis:
-      - path: google/logging/v2
     copyright_year: "2026"
-  - name: GoogleLongrunning
+  - name: google-monitoring-dashboard-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/longrunning
     copyright_year: "2026"
-  - name: GoogleMonitoringDashboardV1
+  - name: google-monitoring-v3
     version: 0.0.0-preview
-    apis:
-      - path: google/monitoring/dashboard/v1
     copyright_year: "2026"
-  - name: GoogleMonitoringV3
+  - name: google-privacy-dlp-v2
     version: 0.0.0-preview
-    apis:
-      - path: google/monitoring/v3
     copyright_year: "2026"
-  - name: GooglePrivacyDlpV2
+  - name: google-rpc
     version: 0.0.0-preview
-    apis:
-      - path: google/privacy/dlp/v2
     copyright_year: "2026"
-  - name: GoogleRpc
+  - name: google-rpc-context
     version: 0.0.0-preview
-    apis:
-      - path: google/rpc
     copyright_year: "2026"
-  - name: GoogleRpcContext
+  - name: google-storagetransfer-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/rpc/context
     copyright_year: "2026"
-  - name: GoogleStoragetransferV1
+  - name: google-type
     version: 0.0.0-preview
-    apis:
-      - path: google/storagetransfer/v1
     copyright_year: "2026"
-  - name: GoogleType
+  - name: grafeas-v1
     version: 0.0.0-preview
-    apis:
-      - path: google/type
     copyright_year: "2026"
-  - name: TestsDiscovery
+  - name: tests-discovery
     copyright_year: "2026"
     output: Tests/Discovery/generated
     roots:
@@ -813,7 +575,7 @@ libraries:
       modules:
         - output: Tests/Discovery/generated
           api_path: Tests/Discovery/disco/discovery-bytes.json
-  - name: TestsProtoJSON
+  - name: tests-protojson
     copyright_year: "2026"
     output: Tests/ProtoJSON/generated
     roots:
