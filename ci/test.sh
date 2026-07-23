@@ -46,27 +46,28 @@ for dir in "${packages[@]}"; do
 
     echo "::group::--- Building ${dir} ---"
     if swift build --build-tests "${flags[@]}" --package-path "${dir}"; then
-        echo "✓ ${dir} built"
+        echo "::info:: ✓ ${dir} built"
     else
-        echo "✗ ${dir} failed to build" >&2
         echo "::endgroup::"
+        echo "::error:: ✗ ${dir} failed to build" >&2
         errors=$((errors + 1))
         continue
     fi
 
     [[ -d "${dir}/Tests" ]] || continue
-    echo "--- Testing ${dir} ---"
+    echo "::info:: --- Testing ${dir} ---"
     if swift test "${flags[@]}" --quiet --package-path "${dir}"; then
-        echo "✓ ${dir} passed"
+        echo "::info:: ✓ ${dir} passed"
+        echo "::endgroup::"
     else
-        echo "✗ ${dir} failed" >&2
+        echo "::endgroup::"
+        echo "::error:: ✗ ${dir} failed" >&2
         errors=$((errors + 1))
     fi
-    echo "::endgroup::"
 done
 
 echo ""
-echo "${count} local package(s) tested, ${errors} failure(s)."
+echo "::info:: ${count} local package(s) tested, ${errors} failure(s)."
 
 if [[ ${errors} -gt 0 ]]; then
     exit 1

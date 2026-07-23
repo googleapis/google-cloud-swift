@@ -61,15 +61,15 @@ for dir in "${packages[@]}"; do
     count=$((count + 1))
 
     if swift-format format -i -r "${dir}/Sources" "${dir}/Tests"; then
-        echo "✓ ${dir} passed"
+        echo "::info:: ✓ ${dir} passed"
     else
-        echo "✗ ${dir} failed" >&2
+        echo "::error:: ✗ ${dir} failed" >&2
         errors=$((errors + 1))
     fi
 done
 
 echo ""
-echo "${count} package(s) formatted, ${errors} failure(s)."
+echo "::info:: ${count} package(s) formatted, ${errors} failure(s)."
 
 if [[ ${errors} -gt 0 ]]; then
     exit 1

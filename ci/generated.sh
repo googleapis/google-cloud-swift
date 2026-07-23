@@ -41,11 +41,13 @@ for dir in "${generated[@]}"; do
     [[ -f "${dir}/Package.swift" ]] || continue
     count=$((count + 1))
 
-    echo "--- Building ${dir} ---"
+    echo "::group:: --- Building ${dir} ---"
     if swift build --build-tests "${flags[@]}" --package-path "${dir}"; then
-        echo "✓ ${dir} built"
+        echo "::info:: ✓ ${dir} built"
+        echo "::endgroup::"
     else
-        echo "✗ ${dir} failed to build" >&2
+        echo "::endgroup::"
+        echo "::error:: ✗ ${dir} failed to build" >&2
         errors=$((errors + 1))
     fi
 done

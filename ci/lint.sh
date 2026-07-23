@@ -60,20 +60,22 @@ for dir in "${packages[@]}"; do
     [[ -f "${dir}/Package.swift" ]] || continue
     count=$((count + 1))
 
-    echo "--- Linting ${dir} ---"
+    echo "::group:: --- Linting ${dir} ---"
 
     # For local packages, we run swift-format directly on the Sources and Tests directories
     # to avoid the SPM plugin forcefully feeding the generated Rust bridge files.
     if swift-format lint -r "${dir}/Sources" "${dir}/Tests"; then
-        echo "✓ ${dir} passed"
+        echo "::info:: ✓ ${dir} passed"
+        echo "::endgroup::"
     else
-        echo "✗ ${dir} failed" >&2
+        echo "::endgroup::"
+        echo "::error:: ✗ ${dir} failed" >&2
         errors=$((errors + 1))
     fi
 done
 
 echo ""
-echo "${count} local package(s) linted, ${errors} failure(s)."
+echo "::info:: ${count} local package(s) linted, ${errors} failure(s)."
 
 if [[ ${errors} -gt 0 ]]; then
     exit 1
