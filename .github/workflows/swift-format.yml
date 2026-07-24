@@ -28,9 +28,7 @@ jobs:
       - name: Install Swift
         uses: ./.github/actions/install-swift
       - name: Format Swift Code
-        env:
-          GITHUB_EVENT: ${{ github.event }}
-        run: ./ci/format.sh "${GITHUB_EVENT}"
+        run: ./ci/format.sh "${{ github.event }}"
       - name: Detect drift
         run: git diff --exit-code
   typos:

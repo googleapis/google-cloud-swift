@@ -28,6 +28,4 @@ jobs:
       - name: Install Swift
         uses: ./.github/actions/install-swift
       - name: Lint Swift Code
-        env:
-          GITHUB_EVENT: ${{ github.event }}
-        run: ./ci/lint.sh "${GITHUB_EVENT}"
+        run: ./ci/lint.sh "${{ github.event }}"
