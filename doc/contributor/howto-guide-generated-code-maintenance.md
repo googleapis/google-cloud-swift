@@ -170,7 +170,7 @@ Then finish your PR in `google-cloud-swift`.
 
     ```bash
     V=$(GOPROXY=direct go list -m -f '{{.Version}}' github.com/googleapis/librarian@main)
-    go run github.com/googleapis/librarian/cmd/librarian@${V} config set ${V}
+    go run github.com/googleapis/librarian/cmd/librarian@${V} config set version ${V}
     ```
 
 1.  Update the generated code:
