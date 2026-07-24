@@ -40,6 +40,8 @@ flags=(
 )
 for dir in "${packages[@]}"; do
     [[ -f "${dir}/Package.swift" ]] || continue
+    # TODO(https://github.com/googleapis/google-cloud-swift/issues/3) - restore these builds.
+    [[ "${dir}" != "packages/storage" ]] || continue
     count=$((count + 1))
 
     echo "::group::--- Building ${dir} ---"
