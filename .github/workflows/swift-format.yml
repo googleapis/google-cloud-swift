@@ -20,7 +20,7 @@ on:
 jobs:
   format:
     name: Verify Swift Formatting
-    runs-on: self-hosted
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout Repository
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # ratchet:actions/checkout@v6
@@ -31,7 +31,7 @@ jobs:
       - name: Detect drift
         run: git diff --exit-code
   typos:
-    runs-on: self-hosted
+    runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
       - name: Checkout Repository
