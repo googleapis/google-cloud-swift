@@ -17,4 +17,5 @@
 # is the same as .gitignore.
 
 # The owners for all files in the repo.
-* @alexghi @coryan @chingor @neastin @westarle
+*               @googleapis/cloud-sdk-swift-team
+/librarian.yaml @googleapis/cloud-sdk-swift-team @googleapis/cloud-sdk-librarian-team
