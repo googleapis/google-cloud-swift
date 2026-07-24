@@ -55,9 +55,9 @@ let package = Package(
       dependencies: [
         .product(name: "GoogleCloudAuth", package: "auth")
       ]),
-    // .testTarget(
-    //   name: "AllModules",
-    //   dependencies: [.product(name: "UserGuide", package: "guide")]),
+    .testTarget(
+      name: "AllModules",
+      dependencies: [.product(name: "UserGuide", package: "guide")]),
     .testTarget(
       name: "Discovery",
       dependencies: [
