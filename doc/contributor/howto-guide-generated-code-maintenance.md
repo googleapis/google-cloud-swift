@@ -43,7 +43,7 @@ V=$(go run github.com/googleapis/librarian/cmd/librarian@latest config get versi
 # add library to librarian.yaml
 go run github.com/googleapis/librarian/cmd/librarian@${V} add google/cloud/kms/v1
 # generate library
-go run github.com/googleapis/librarian/cmd/librarian@${V} generate GoogleCloudKmsV1
+go run github.com/googleapis/librarian/cmd/librarian@${V} generate google-cloud-kms-v1
 ```
 
 Commit all these changes and send a PR to merge them:
@@ -170,7 +170,7 @@ Then finish your PR in `google-cloud-swift`.
 
     ```bash
     V=$(GOPROXY=direct go list -m -f '{{.Version}}' github.com/googleapis/librarian@main)
-    sed -i.bak "s;^version: .*;version: ${V};" librarian.yaml && rm librarian.yaml.bak
+    go run github.com/googleapis/librarian/cmd/librarian@${V} config set ${V}
     ```
 
 1.  Update the generated code:
