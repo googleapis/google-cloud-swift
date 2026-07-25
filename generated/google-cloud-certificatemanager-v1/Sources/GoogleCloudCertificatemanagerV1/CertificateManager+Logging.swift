@@ -32,7 +32,7 @@ extension Clients {
 
     public init(_ inner: any CertificateManagerStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleCloudCertificatemanagerV1"
+      logger[metadataKey: "gcp.artifact.id"] = "google-cloud-certificatemanager-v1"
       logger[metadataKey: "gcp.client.service"] = "certificatemanager"
       logger[metadataKey: "gcp.experimental.swift.client"] = "CertificateManager"
       self.inner = inner

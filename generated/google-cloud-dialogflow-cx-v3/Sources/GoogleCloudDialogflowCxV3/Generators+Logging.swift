@@ -32,7 +32,7 @@
 
       public init(_ inner: any GeneratorsStub, logger: Logger) {
         var logger = logger
-        logger[metadataKey: "gcp.artifact.id"] = "GoogleCloudDialogflowCxV3"
+        logger[metadataKey: "gcp.artifact.id"] = "google-cloud-dialogflow-cx-v3"
         logger[metadataKey: "gcp.client.service"] = "dialogflow"
         logger[metadataKey: "gcp.experimental.swift.client"] = "Generators"
         self.inner = inner

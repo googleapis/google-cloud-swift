@@ -29,7 +29,7 @@ extension Clients {
 
     public init(_ inner: any TraceServiceStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleDevtoolsCloudtraceV2"
+      logger[metadataKey: "gcp.artifact.id"] = "google-devtools-cloudtrace-v2"
       logger[metadataKey: "gcp.client.service"] = "cloudtrace"
       logger[metadataKey: "gcp.experimental.swift.client"] = "TraceService"
       self.inner = inner

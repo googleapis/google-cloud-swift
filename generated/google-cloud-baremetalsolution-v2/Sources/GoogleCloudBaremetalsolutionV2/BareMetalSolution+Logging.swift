@@ -32,7 +32,7 @@ extension Clients {
 
     public init(_ inner: any BareMetalSolutionStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleCloudBaremetalsolutionV2"
+      logger[metadataKey: "gcp.artifact.id"] = "google-cloud-baremetalsolution-v2"
       logger[metadataKey: "gcp.client.service"] = "baremetalsolution"
       logger[metadataKey: "gcp.experimental.swift.client"] = "BareMetalSolution"
       self.inner = inner

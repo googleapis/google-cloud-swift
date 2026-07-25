@@ -31,7 +31,7 @@ extension Clients {
 
     public init(_ inner: any ApiKeysStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleApiApikeysV2"
+      logger[metadataKey: "gcp.artifact.id"] = "google-api-apikeys-v2"
       logger[metadataKey: "gcp.client.service"] = "apikeys"
       logger[metadataKey: "gcp.experimental.swift.client"] = "ApiKeys"
       self.inner = inner

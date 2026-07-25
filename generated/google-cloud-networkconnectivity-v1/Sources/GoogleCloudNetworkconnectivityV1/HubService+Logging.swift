@@ -33,7 +33,7 @@ extension Clients {
 
     public init(_ inner: any HubServiceStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleCloudNetworkconnectivityV1"
+      logger[metadataKey: "gcp.artifact.id"] = "google-cloud-networkconnectivity-v1"
       logger[metadataKey: "gcp.client.service"] = "networkconnectivity"
       logger[metadataKey: "gcp.experimental.swift.client"] = "HubService"
       self.inner = inner

@@ -30,7 +30,7 @@ extension Clients {
 
     public init(_ inner: any ConnectionServiceStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleCloudBigqueryConnectionV1"
+      logger[metadataKey: "gcp.artifact.id"] = "google-cloud-bigquery-connection-v1"
       logger[metadataKey: "gcp.client.service"] = "bigqueryconnection"
       logger[metadataKey: "gcp.experimental.swift.client"] = "ConnectionService"
       self.inner = inner

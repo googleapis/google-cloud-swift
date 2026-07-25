@@ -30,7 +30,7 @@ extension Clients {
 
     public init(_ inner: any AuthorizedDomainsStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleAppengineV1"
+      logger[metadataKey: "gcp.artifact.id"] = "google-appengine-v1"
       logger[metadataKey: "gcp.client.service"] = "appengine"
       logger[metadataKey: "gcp.experimental.swift.client"] = "AuthorizedDomains"
       self.inner = inner

@@ -31,7 +31,7 @@ extension Clients {
 
     public init(_ inner: any SecretManagerServiceStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleCloudSecretmanagerV1"
+      logger[metadataKey: "gcp.artifact.id"] = "google-cloud-secretmanager-v1"
       logger[metadataKey: "gcp.client.service"] = "secretmanager"
       logger[metadataKey: "gcp.experimental.swift.client"] = "SecretManagerService"
       self.inner = inner

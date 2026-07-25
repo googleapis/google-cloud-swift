@@ -29,7 +29,7 @@ extension Clients {
 
     public init(_ inner: any ServiceControllerStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleApiServicecontrolV1"
+      logger[metadataKey: "gcp.artifact.id"] = "google-api-servicecontrol-v1"
       logger[metadataKey: "gcp.client.service"] = "servicecontrol"
       logger[metadataKey: "gcp.experimental.swift.client"] = "ServiceController"
       self.inner = inner

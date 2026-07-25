@@ -33,7 +33,7 @@ extension Clients {
 
     public init(_ inner: any ServiceManagerStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleApiServicemanagementV1"
+      logger[metadataKey: "gcp.artifact.id"] = "google-api-servicemanagement-v1"
       logger[metadataKey: "gcp.client.service"] = "servicemanagement"
       logger[metadataKey: "gcp.experimental.swift.client"] = "ServiceManager"
       self.inner = inner

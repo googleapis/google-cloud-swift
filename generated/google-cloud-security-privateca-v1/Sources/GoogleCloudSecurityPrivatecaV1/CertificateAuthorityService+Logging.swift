@@ -33,7 +33,7 @@ extension Clients {
 
     public init(_ inner: any CertificateAuthorityServiceStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleCloudSecurityPrivatecaV1"
+      logger[metadataKey: "gcp.artifact.id"] = "google-cloud-security-privateca-v1"
       logger[metadataKey: "gcp.client.service"] = "privateca"
       logger[metadataKey: "gcp.experimental.swift.client"] = "CertificateAuthorityService"
       self.inner = inner

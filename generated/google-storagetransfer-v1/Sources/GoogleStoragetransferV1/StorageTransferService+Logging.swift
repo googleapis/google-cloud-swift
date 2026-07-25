@@ -31,7 +31,7 @@ extension Clients {
 
     public init(_ inner: any StorageTransferServiceStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleStoragetransferV1"
+      logger[metadataKey: "gcp.artifact.id"] = "google-storagetransfer-v1"
       logger[metadataKey: "gcp.client.service"] = "storagetransfer"
       logger[metadataKey: "gcp.experimental.swift.client"] = "StorageTransferService"
       self.inner = inner

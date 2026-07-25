@@ -32,7 +32,7 @@ extension Clients {
 
     public init(_ inner: any EdgeNetworkStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleCloudEdgenetworkV1"
+      logger[metadataKey: "gcp.artifact.id"] = "google-cloud-edgenetwork-v1"
       logger[metadataKey: "gcp.client.service"] = "edgenetwork"
       logger[metadataKey: "gcp.experimental.swift.client"] = "EdgeNetwork"
       self.inner = inner

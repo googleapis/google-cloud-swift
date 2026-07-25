@@ -30,7 +30,7 @@
 
       public init(_ inner: any SqlConnectServiceStub, logger: Logger) {
         var logger = logger
-        logger[metadataKey: "gcp.artifact.id"] = "GoogleCloudSqlV1"
+        logger[metadataKey: "gcp.artifact.id"] = "google-cloud-sql-v1"
         logger[metadataKey: "gcp.client.service"] = "sqladmin"
         logger[metadataKey: "gcp.experimental.swift.client"] = "SqlConnectService"
         self.inner = inner

@@ -31,7 +31,7 @@
 
       public init(_ inner: any RecommendationServiceStub, logger: Logger) {
         var logger = logger
-        logger[metadataKey: "gcp.artifact.id"] = "GoogleCloudDiscoveryengineV1"
+        logger[metadataKey: "gcp.artifact.id"] = "google-cloud-discoveryengine-v1"
         logger[metadataKey: "gcp.client.service"] = "discoveryengine"
         logger[metadataKey: "gcp.experimental.swift.client"] = "RecommendationService"
         self.inner = inner

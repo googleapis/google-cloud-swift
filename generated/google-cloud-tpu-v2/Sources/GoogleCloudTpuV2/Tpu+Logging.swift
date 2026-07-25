@@ -32,7 +32,7 @@ extension Clients {
 
     public init(_ inner: any TpuStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleCloudTpuV2"
+      logger[metadataKey: "gcp.artifact.id"] = "google-cloud-tpu-v2"
       logger[metadataKey: "gcp.client.service"] = "tpu"
       logger[metadataKey: "gcp.experimental.swift.client"] = "Tpu"
       self.inner = inner

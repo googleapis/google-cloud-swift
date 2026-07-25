@@ -29,7 +29,7 @@ extension Clients {
 
     public init(_ inner: any AccessApprovalStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleCloudAccessapprovalV1"
+      logger[metadataKey: "gcp.artifact.id"] = "google-cloud-accessapproval-v1"
       logger[metadataKey: "gcp.client.service"] = "accessapproval"
       logger[metadataKey: "gcp.experimental.swift.client"] = "AccessApproval"
       self.inner = inner

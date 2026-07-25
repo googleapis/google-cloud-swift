@@ -32,7 +32,7 @@ extension Clients {
 
     public init(_ inner: any StorageInsightsStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleCloudStorageinsightsV1"
+      logger[metadataKey: "gcp.artifact.id"] = "google-cloud-storageinsights-v1"
       logger[metadataKey: "gcp.client.service"] = "storageinsights"
       logger[metadataKey: "gcp.experimental.swift.client"] = "StorageInsights"
       self.inner = inner

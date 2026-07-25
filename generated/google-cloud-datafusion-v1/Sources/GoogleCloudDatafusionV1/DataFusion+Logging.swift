@@ -31,7 +31,7 @@ extension Clients {
 
     public init(_ inner: any DataFusionStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleCloudDatafusionV1"
+      logger[metadataKey: "gcp.artifact.id"] = "google-cloud-datafusion-v1"
       logger[metadataKey: "gcp.client.service"] = "datafusion"
       logger[metadataKey: "gcp.experimental.swift.client"] = "DataFusion"
       self.inner = inner

@@ -31,7 +31,7 @@ extension Clients {
 
     public init(_ inner: any TextToSpeechLongAudioSynthesizeStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleCloudTexttospeechV1"
+      logger[metadataKey: "gcp.artifact.id"] = "google-cloud-texttospeech-v1"
       logger[metadataKey: "gcp.client.service"] = "texttospeech"
       logger[metadataKey: "gcp.experimental.swift.client"] = "TextToSpeechLongAudioSynthesize"
       self.inner = inner

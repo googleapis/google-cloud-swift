@@ -31,7 +31,7 @@ extension Clients {
 
     public init(_ inner: any AssetServiceStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleCloudAssetV1"
+      logger[metadataKey: "gcp.artifact.id"] = "google-cloud-asset-v1"
       logger[metadataKey: "gcp.client.service"] = "cloudasset"
       logger[metadataKey: "gcp.experimental.swift.client"] = "AssetService"
       self.inner = inner

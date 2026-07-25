@@ -32,7 +32,7 @@ extension Clients {
 
     public init(_ inner: any TranslationServiceStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleCloudTranslationV3"
+      logger[metadataKey: "gcp.artifact.id"] = "google-cloud-translation-v3"
       logger[metadataKey: "gcp.client.service"] = "translate"
       logger[metadataKey: "gcp.experimental.swift.client"] = "TranslationService"
       self.inner = inner

@@ -30,7 +30,7 @@ extension Clients {
 
     public init(_ inner: any BinauthzManagementServiceV1Stub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleCloudBinaryauthorizationV1"
+      logger[metadataKey: "gcp.artifact.id"] = "google-cloud-binaryauthorization-v1"
       logger[metadataKey: "gcp.client.service"] = "binaryauthorization"
       logger[metadataKey: "gcp.experimental.swift.client"] = "BinauthzManagementServiceV1"
       self.inner = inner

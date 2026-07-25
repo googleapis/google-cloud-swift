@@ -31,7 +31,7 @@ extension Clients {
 
     public init(_ inner: any PolicyBindingsStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleIamV3"
+      logger[metadataKey: "gcp.artifact.id"] = "google-iam-v3"
       logger[metadataKey: "gcp.client.service"] = "iam"
       logger[metadataKey: "gcp.experimental.swift.client"] = "PolicyBindings"
       self.inner = inner

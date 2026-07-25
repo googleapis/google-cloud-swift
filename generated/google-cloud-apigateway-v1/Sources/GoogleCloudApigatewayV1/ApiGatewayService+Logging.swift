@@ -31,7 +31,7 @@ extension Clients {
 
     public init(_ inner: any ApiGatewayServiceStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleCloudApigatewayV1"
+      logger[metadataKey: "gcp.artifact.id"] = "google-cloud-apigateway-v1"
       logger[metadataKey: "gcp.client.service"] = "apigateway"
       logger[metadataKey: "gcp.experimental.swift.client"] = "ApiGatewayService"
       self.inner = inner

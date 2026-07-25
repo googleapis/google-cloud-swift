@@ -31,7 +31,7 @@ extension Clients {
 
     public init(_ inner: any AzureClustersStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleCloudGkemulticloudV1"
+      logger[metadataKey: "gcp.artifact.id"] = "google-cloud-gkemulticloud-v1"
       logger[metadataKey: "gcp.client.service"] = "gkemulticloud"
       logger[metadataKey: "gcp.experimental.swift.client"] = "AzureClusters"
       self.inner = inner

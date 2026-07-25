@@ -33,7 +33,7 @@ extension Clients {
 
     public init(_ inner: any CloudDeployStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleCloudDeployV1"
+      logger[metadataKey: "gcp.artifact.id"] = "google-cloud-deploy-v1"
       logger[metadataKey: "gcp.client.service"] = "clouddeploy"
       logger[metadataKey: "gcp.experimental.swift.client"] = "CloudDeploy"
       self.inner = inner

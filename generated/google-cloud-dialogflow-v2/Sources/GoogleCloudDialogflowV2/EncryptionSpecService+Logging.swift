@@ -33,7 +33,7 @@
 
       public init(_ inner: any EncryptionSpecServiceStub, logger: Logger) {
         var logger = logger
-        logger[metadataKey: "gcp.artifact.id"] = "GoogleCloudDialogflowV2"
+        logger[metadataKey: "gcp.artifact.id"] = "google-cloud-dialogflow-v2"
         logger[metadataKey: "gcp.client.service"] = "dialogflow"
         logger[metadataKey: "gcp.experimental.swift.client"] = "EncryptionSpecService"
         self.inner = inner

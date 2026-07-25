@@ -32,7 +32,7 @@ extension Clients {
 
     public init(_ inner: any TelcoAutomationStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleCloudTelcoautomationV1"
+      logger[metadataKey: "gcp.artifact.id"] = "google-cloud-telcoautomation-v1"
       logger[metadataKey: "gcp.client.service"] = "telcoautomation"
       logger[metadataKey: "gcp.experimental.swift.client"] = "TelcoAutomation"
       self.inner = inner

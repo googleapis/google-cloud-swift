@@ -32,7 +32,7 @@ extension Clients {
 
     public init(_ inner: any WorkflowsStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleCloudWorkflowsV1"
+      logger[metadataKey: "gcp.artifact.id"] = "google-cloud-workflows-v1"
       logger[metadataKey: "gcp.client.service"] = "workflows"
       logger[metadataKey: "gcp.experimental.swift.client"] = "Workflows"
       self.inner = inner

@@ -33,7 +33,7 @@ extension Clients {
 
     public init(_ inner: any FunctionServiceStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleCloudFunctionsV2"
+      logger[metadataKey: "gcp.artifact.id"] = "google-cloud-functions-v2"
       logger[metadataKey: "gcp.client.service"] = "cloudfunctions"
       logger[metadataKey: "gcp.experimental.swift.client"] = "FunctionService"
       self.inner = inner

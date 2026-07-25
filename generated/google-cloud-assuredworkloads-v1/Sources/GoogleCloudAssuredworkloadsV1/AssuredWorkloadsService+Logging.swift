@@ -31,7 +31,7 @@ extension Clients {
 
     public init(_ inner: any AssuredWorkloadsServiceStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleCloudAssuredworkloadsV1"
+      logger[metadataKey: "gcp.artifact.id"] = "google-cloud-assuredworkloads-v1"
       logger[metadataKey: "gcp.client.service"] = "assuredworkloads"
       logger[metadataKey: "gcp.experimental.swift.client"] = "AssuredWorkloadsService"
       self.inner = inner

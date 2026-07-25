@@ -32,7 +32,7 @@ extension Clients {
 
     public init(_ inner: any AuditManagerStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleCloudAuditmanagerV1"
+      logger[metadataKey: "gcp.artifact.id"] = "google-cloud-auditmanager-v1"
       logger[metadataKey: "gcp.client.service"] = "auditmanager"
       logger[metadataKey: "gcp.experimental.swift.client"] = "AuditManager"
       self.inner = inner

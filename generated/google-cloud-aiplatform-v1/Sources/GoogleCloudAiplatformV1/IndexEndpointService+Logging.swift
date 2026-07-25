@@ -34,7 +34,7 @@
 
       public init(_ inner: any IndexEndpointServiceStub, logger: Logger) {
         var logger = logger
-        logger[metadataKey: "gcp.artifact.id"] = "GoogleCloudAiplatformV1"
+        logger[metadataKey: "gcp.artifact.id"] = "google-cloud-aiplatform-v1"
         logger[metadataKey: "gcp.client.service"] = "aiplatform"
         logger[metadataKey: "gcp.experimental.swift.client"] = "IndexEndpointService"
         self.inner = inner

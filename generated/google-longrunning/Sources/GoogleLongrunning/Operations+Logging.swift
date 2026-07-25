@@ -29,7 +29,7 @@ extension Clients {
 
     public init(_ inner: any OperationsStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleLongrunning"
+      logger[metadataKey: "gcp.artifact.id"] = "google-longrunning"
       logger[metadataKey: "gcp.client.service"] = "longrunning"
       logger[metadataKey: "gcp.experimental.swift.client"] = "Operations"
       self.inner = inner

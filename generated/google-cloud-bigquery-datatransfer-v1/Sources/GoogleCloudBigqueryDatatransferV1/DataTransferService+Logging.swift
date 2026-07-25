@@ -30,7 +30,7 @@ extension Clients {
 
     public init(_ inner: any DataTransferServiceStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleCloudBigqueryDatatransferV1"
+      logger[metadataKey: "gcp.artifact.id"] = "google-cloud-bigquery-datatransfer-v1"
       logger[metadataKey: "gcp.client.service"] = "bigquerydatatransfer"
       logger[metadataKey: "gcp.experimental.swift.client"] = "DataTransferService"
       self.inner = inner

@@ -32,7 +32,7 @@ extension Clients {
 
     public init(_ inner: any DataCatalogStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleCloudDatacatalogV1"
+      logger[metadataKey: "gcp.artifact.id"] = "google-cloud-datacatalog-v1"
       logger[metadataKey: "gcp.client.service"] = "datacatalog"
       logger[metadataKey: "gcp.experimental.swift.client"] = "DataCatalog"
       self.inner = inner

@@ -31,7 +31,7 @@ extension Clients {
 
     public init(_ inner: any ProductSearchStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleCloudVisionV1"
+      logger[metadataKey: "gcp.artifact.id"] = "google-cloud-vision-v1"
       logger[metadataKey: "gcp.client.service"] = "vision"
       logger[metadataKey: "gcp.experimental.swift.client"] = "ProductSearch"
       self.inner = inner

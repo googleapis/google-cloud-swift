@@ -30,7 +30,7 @@ extension Clients {
 
     public init(_ inner: any CloudApiRegistryStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleCloudApiregistryV1"
+      logger[metadataKey: "gcp.artifact.id"] = "google-cloud-apiregistry-v1"
       logger[metadataKey: "gcp.client.service"] = "cloudapiregistry"
       logger[metadataKey: "gcp.experimental.swift.client"] = "CloudApiRegistry"
       self.inner = inner

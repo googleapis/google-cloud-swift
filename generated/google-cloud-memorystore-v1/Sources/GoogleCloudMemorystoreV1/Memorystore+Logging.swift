@@ -32,7 +32,7 @@ extension Clients {
 
     public init(_ inner: any MemorystoreStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleCloudMemorystoreV1"
+      logger[metadataKey: "gcp.artifact.id"] = "google-cloud-memorystore-v1"
       logger[metadataKey: "gcp.client.service"] = "memorystore"
       logger[metadataKey: "gcp.experimental.swift.client"] = "Memorystore"
       self.inner = inner

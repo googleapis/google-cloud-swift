@@ -32,7 +32,7 @@ extension Clients {
 
     public init(_ inner: any BatchServiceStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleCloudBatchV1"
+      logger[metadataKey: "gcp.artifact.id"] = "google-cloud-batch-v1"
       logger[metadataKey: "gcp.client.service"] = "batch"
       logger[metadataKey: "gcp.experimental.swift.client"] = "BatchService"
       self.inner = inner

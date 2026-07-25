@@ -31,7 +31,7 @@ extension Clients {
 
     public init(_ inner: any OrganizationsStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleCloudResourcemanagerV3"
+      logger[metadataKey: "gcp.artifact.id"] = "google-cloud-resourcemanager-v3"
       logger[metadataKey: "gcp.client.service"] = "cloudresourcemanager"
       logger[metadataKey: "gcp.experimental.swift.client"] = "Organizations"
       self.inner = inner

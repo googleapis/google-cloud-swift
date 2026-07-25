@@ -32,7 +32,7 @@ extension Clients {
 
     public init(_ inner: any DomainsStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleCloudDomainsV1"
+      logger[metadataKey: "gcp.artifact.id"] = "google-cloud-domains-v1"
       logger[metadataKey: "gcp.client.service"] = "domains"
       logger[metadataKey: "gcp.experimental.swift.client"] = "Domains"
       self.inner = inner
