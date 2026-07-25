@@ -30,7 +30,7 @@ extension Clients {
 
     public init(_ inner: any CloudLocationFinderStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleCloudLocationfinderV1"
+      logger[metadataKey: "gcp.artifact.id"] = "google-cloud-locationfinder-v1"
       logger[metadataKey: "gcp.client.service"] = "cloudlocationfinder"
       logger[metadataKey: "gcp.experimental.swift.client"] = "CloudLocationFinder"
       self.inner = inner

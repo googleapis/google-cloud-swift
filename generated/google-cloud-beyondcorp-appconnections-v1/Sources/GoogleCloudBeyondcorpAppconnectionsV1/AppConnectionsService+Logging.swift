@@ -33,7 +33,7 @@ extension Clients {
 
     public init(_ inner: any AppConnectionsServiceStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleCloudBeyondcorpAppconnectionsV1"
+      logger[metadataKey: "gcp.artifact.id"] = "google-cloud-beyondcorp-appconnections-v1"
       logger[metadataKey: "gcp.client.service"] = "beyondcorp"
       logger[metadataKey: "gcp.experimental.swift.client"] = "AppConnectionsService"
       self.inner = inner

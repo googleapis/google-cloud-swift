@@ -31,7 +31,7 @@ extension Clients {
 
     public init(_ inner: any ServiceUsageStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleApiServiceusageV1"
+      logger[metadataKey: "gcp.artifact.id"] = "google-api-serviceusage-v1"
       logger[metadataKey: "gcp.client.service"] = "serviceusage"
       logger[metadataKey: "gcp.experimental.swift.client"] = "ServiceUsage"
       self.inner = inner

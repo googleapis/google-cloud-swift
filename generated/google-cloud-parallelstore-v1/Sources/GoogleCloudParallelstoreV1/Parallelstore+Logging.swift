@@ -32,7 +32,7 @@ extension Clients {
 
     public init(_ inner: any ParallelstoreStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleCloudParallelstoreV1"
+      logger[metadataKey: "gcp.artifact.id"] = "google-cloud-parallelstore-v1"
       logger[metadataKey: "gcp.client.service"] = "parallelstore"
       logger[metadataKey: "gcp.experimental.swift.client"] = "Parallelstore"
       self.inner = inner

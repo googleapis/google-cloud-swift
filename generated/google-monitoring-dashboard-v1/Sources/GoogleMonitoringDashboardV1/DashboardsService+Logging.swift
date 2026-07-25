@@ -29,7 +29,7 @@ extension Clients {
 
     public init(_ inner: any DashboardsServiceStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleMonitoringDashboardV1"
+      logger[metadataKey: "gcp.artifact.id"] = "google-monitoring-dashboard-v1"
       logger[metadataKey: "gcp.client.service"] = "monitoring"
       logger[metadataKey: "gcp.experimental.swift.client"] = "DashboardsService"
       self.inner = inner

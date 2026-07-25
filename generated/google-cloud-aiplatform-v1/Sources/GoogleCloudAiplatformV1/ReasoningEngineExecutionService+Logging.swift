@@ -35,7 +35,7 @@
 
       public init(_ inner: any ReasoningEngineExecutionServiceStub, logger: Logger) {
         var logger = logger
-        logger[metadataKey: "gcp.artifact.id"] = "GoogleCloudAiplatformV1"
+        logger[metadataKey: "gcp.artifact.id"] = "google-cloud-aiplatform-v1"
         logger[metadataKey: "gcp.client.service"] = "aiplatform"
         logger[metadataKey: "gcp.experimental.swift.client"] = "ReasoningEngineExecutionService"
         self.inner = inner

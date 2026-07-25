@@ -32,7 +32,7 @@ extension Clients {
 
     public init(_ inner: any BigtableInstanceAdminStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleBigtableAdminV2"
+      logger[metadataKey: "gcp.artifact.id"] = "google-bigtable-admin-v2"
       logger[metadataKey: "gcp.client.service"] = "bigtableadmin"
       logger[metadataKey: "gcp.experimental.swift.client"] = "BigtableInstanceAdmin"
       self.inner = inner

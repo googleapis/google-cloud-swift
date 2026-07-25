@@ -29,7 +29,7 @@ extension Clients {
 
     public init(_ inner: any ClusterManagerStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleContainerV1"
+      logger[metadataKey: "gcp.artifact.id"] = "google-container-v1"
       logger[metadataKey: "gcp.client.service"] = "container"
       logger[metadataKey: "gcp.experimental.swift.client"] = "ClusterManager"
       self.inner = inner

@@ -29,7 +29,7 @@ extension Clients {
 
     public init(_ inner: any IAMPolicyStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleIamV1"
+      logger[metadataKey: "gcp.artifact.id"] = "google-iam-v1"
       logger[metadataKey: "gcp.client.service"] = "iam-meta-api"
       logger[metadataKey: "gcp.experimental.swift.client"] = "IAMPolicy"
       self.inner = inner

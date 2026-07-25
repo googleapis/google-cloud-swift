@@ -32,7 +32,7 @@ extension Clients {
 
     public init(_ inner: any SpeechStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleCloudSpeechV2"
+      logger[metadataKey: "gcp.artifact.id"] = "google-cloud-speech-v2"
       logger[metadataKey: "gcp.client.service"] = "speech"
       logger[metadataKey: "gcp.experimental.swift.client"] = "Speech"
       self.inner = inner

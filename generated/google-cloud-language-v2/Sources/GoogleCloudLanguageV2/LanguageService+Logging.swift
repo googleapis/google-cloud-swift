@@ -29,7 +29,7 @@ extension Clients {
 
     public init(_ inner: any LanguageServiceStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleCloudLanguageV2"
+      logger[metadataKey: "gcp.artifact.id"] = "google-cloud-language-v2"
       logger[metadataKey: "gcp.client.service"] = "language"
       logger[metadataKey: "gcp.experimental.swift.client"] = "LanguageService"
       self.inner = inner

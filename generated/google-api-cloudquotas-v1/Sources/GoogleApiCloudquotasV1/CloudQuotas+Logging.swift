@@ -29,7 +29,7 @@ extension Clients {
 
     public init(_ inner: any CloudQuotasStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleApiCloudquotasV1"
+      logger[metadataKey: "gcp.artifact.id"] = "google-api-cloudquotas-v1"
       logger[metadataKey: "gcp.client.service"] = "cloudquotas"
       logger[metadataKey: "gcp.experimental.swift.client"] = "CloudQuotas"
       self.inner = inner

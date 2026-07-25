@@ -32,7 +32,7 @@ extension Clients {
 
     public init(_ inner: any BlockchainNodeEngineStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleCloudBlockchainnodeengineV1"
+      logger[metadataKey: "gcp.artifact.id"] = "google-cloud-blockchainnodeengine-v1"
       logger[metadataKey: "gcp.client.service"] = "blockchainnodeengine"
       logger[metadataKey: "gcp.experimental.swift.client"] = "BlockchainNodeEngine"
       self.inner = inner

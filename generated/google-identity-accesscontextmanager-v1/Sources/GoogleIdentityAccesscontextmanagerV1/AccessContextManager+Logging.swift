@@ -32,7 +32,7 @@ extension Clients {
 
     public init(_ inner: any AccessContextManagerStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleIdentityAccesscontextmanagerV1"
+      logger[metadataKey: "gcp.artifact.id"] = "google-identity-accesscontextmanager-v1"
       logger[metadataKey: "gcp.client.service"] = "accesscontextmanager"
       logger[metadataKey: "gcp.experimental.swift.client"] = "AccessContextManager"
       self.inner = inner

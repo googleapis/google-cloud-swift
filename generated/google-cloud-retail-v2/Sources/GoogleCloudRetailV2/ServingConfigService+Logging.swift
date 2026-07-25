@@ -30,7 +30,7 @@ extension Clients {
 
     public init(_ inner: any ServingConfigServiceStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleCloudRetailV2"
+      logger[metadataKey: "gcp.artifact.id"] = "google-cloud-retail-v2"
       logger[metadataKey: "gcp.client.service"] = "retail"
       logger[metadataKey: "gcp.experimental.swift.client"] = "ServingConfigService"
       self.inner = inner

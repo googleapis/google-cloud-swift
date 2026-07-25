@@ -31,7 +31,7 @@ extension Clients {
 
     public init(_ inner: any DatastoreAdminStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleDatastoreAdminV1"
+      logger[metadataKey: "gcp.artifact.id"] = "google-datastore-admin-v1"
       logger[metadataKey: "gcp.client.service"] = "datastore"
       logger[metadataKey: "gcp.experimental.swift.client"] = "DatastoreAdmin"
       self.inner = inner

@@ -30,7 +30,7 @@ extension Clients {
 
     public init(_ inner: any KeyDashboardServiceStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleCloudKmsInventoryV1"
+      logger[metadataKey: "gcp.artifact.id"] = "google-cloud-kms-inventory-v1"
       logger[metadataKey: "gcp.client.service"] = "kmsinventory"
       logger[metadataKey: "gcp.experimental.swift.client"] = "KeyDashboardService"
       self.inner = inner

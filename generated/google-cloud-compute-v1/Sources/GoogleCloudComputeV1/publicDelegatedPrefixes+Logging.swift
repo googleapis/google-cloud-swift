@@ -30,7 +30,7 @@
 
       public init(_ inner: any PublicDelegatedPrefixesStub, logger: Logger) {
         var logger = logger
-        logger[metadataKey: "gcp.artifact.id"] = "GoogleCloudComputeV1"
+        logger[metadataKey: "gcp.artifact.id"] = "google-cloud-compute-v1"
         logger[metadataKey: "gcp.client.service"] = "compute"
         logger[metadataKey: "gcp.experimental.swift.client"] = "PublicDelegatedPrefixes"
         self.inner = inner

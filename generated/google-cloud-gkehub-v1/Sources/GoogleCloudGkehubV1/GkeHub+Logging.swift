@@ -31,7 +31,7 @@ extension Clients {
 
     public init(_ inner: any GkeHubStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleCloudGkehubV1"
+      logger[metadataKey: "gcp.artifact.id"] = "google-cloud-gkehub-v1"
       logger[metadataKey: "gcp.client.service"] = "gkehub"
       logger[metadataKey: "gcp.experimental.swift.client"] = "GkeHub"
       self.inner = inner

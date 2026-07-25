@@ -30,7 +30,7 @@ extension Clients {
 
     public init(_ inner: any IcebergCatalogServiceStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleCloudBiglakeV1"
+      logger[metadataKey: "gcp.artifact.id"] = "google-cloud-biglake-v1"
       logger[metadataKey: "gcp.client.service"] = "biglake"
       logger[metadataKey: "gcp.experimental.swift.client"] = "IcebergCatalogService"
       self.inner = inner

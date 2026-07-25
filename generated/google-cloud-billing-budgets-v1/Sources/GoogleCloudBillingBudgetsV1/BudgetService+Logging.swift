@@ -29,7 +29,7 @@ extension Clients {
 
     public init(_ inner: any BudgetServiceStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleCloudBillingBudgetsV1"
+      logger[metadataKey: "gcp.artifact.id"] = "google-cloud-billing-budgets-v1"
       logger[metadataKey: "gcp.client.service"] = "billingbudgets"
       logger[metadataKey: "gcp.experimental.swift.client"] = "BudgetService"
       self.inner = inner

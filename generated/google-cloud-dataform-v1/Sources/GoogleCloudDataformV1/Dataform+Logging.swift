@@ -33,7 +33,7 @@ extension Clients {
 
     public init(_ inner: any DataformStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleCloudDataformV1"
+      logger[metadataKey: "gcp.artifact.id"] = "google-cloud-dataform-v1"
       logger[metadataKey: "gcp.client.service"] = "dataform"
       logger[metadataKey: "gcp.experimental.swift.client"] = "Dataform"
       self.inner = inner

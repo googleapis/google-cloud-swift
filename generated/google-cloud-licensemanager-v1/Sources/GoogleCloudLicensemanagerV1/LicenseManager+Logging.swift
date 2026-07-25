@@ -32,7 +32,7 @@ extension Clients {
 
     public init(_ inner: any LicenseManagerStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleCloudLicensemanagerV1"
+      logger[metadataKey: "gcp.artifact.id"] = "google-cloud-licensemanager-v1"
       logger[metadataKey: "gcp.client.service"] = "licensemanager"
       logger[metadataKey: "gcp.experimental.swift.client"] = "LicenseManager"
       self.inner = inner

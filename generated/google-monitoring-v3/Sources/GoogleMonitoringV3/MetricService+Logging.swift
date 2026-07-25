@@ -30,7 +30,7 @@ extension Clients {
 
     public init(_ inner: any MetricServiceStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleMonitoringV3"
+      logger[metadataKey: "gcp.artifact.id"] = "google-monitoring-v3"
       logger[metadataKey: "gcp.client.service"] = "monitoring"
       logger[metadataKey: "gcp.experimental.swift.client"] = "MetricService"
       self.inner = inner

@@ -32,7 +32,7 @@ extension Clients {
 
     public init(_ inner: any AlloyDBAdminStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleCloudAlloydbV1"
+      logger[metadataKey: "gcp.artifact.id"] = "google-cloud-alloydb-v1"
       logger[metadataKey: "gcp.client.service"] = "alloydb"
       logger[metadataKey: "gcp.experimental.swift.client"] = "AlloyDBAdmin"
       self.inner = inner

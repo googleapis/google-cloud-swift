@@ -32,7 +32,7 @@ extension Clients {
 
     public init(_ inner: any JobsStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleCloudRunV2"
+      logger[metadataKey: "gcp.artifact.id"] = "google-cloud-run-v2"
       logger[metadataKey: "gcp.client.service"] = "run"
       logger[metadataKey: "gcp.experimental.swift.client"] = "Jobs"
       self.inner = inner

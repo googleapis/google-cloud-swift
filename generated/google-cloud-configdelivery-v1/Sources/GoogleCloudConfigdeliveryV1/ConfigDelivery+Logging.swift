@@ -32,7 +32,7 @@ extension Clients {
 
     public init(_ inner: any ConfigDeliveryStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleCloudConfigdeliveryV1"
+      logger[metadataKey: "gcp.artifact.id"] = "google-cloud-configdelivery-v1"
       logger[metadataKey: "gcp.client.service"] = "configdelivery"
       logger[metadataKey: "gcp.experimental.swift.client"] = "ConfigDelivery"
       self.inner = inner

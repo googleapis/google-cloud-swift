@@ -32,7 +32,7 @@ extension Clients {
 
     public init(_ inner: any AnalyticsHubServiceStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleCloudBigqueryAnalyticshubV1"
+      logger[metadataKey: "gcp.artifact.id"] = "google-cloud-bigquery-analyticshub-v1"
       logger[metadataKey: "gcp.client.service"] = "analyticshub"
       logger[metadataKey: "gcp.experimental.swift.client"] = "AnalyticsHubService"
       self.inner = inner

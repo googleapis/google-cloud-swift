@@ -29,7 +29,7 @@ extension Clients {
 
     public init(_ inner: any DlpServiceStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GooglePrivacyDlpV2"
+      logger[metadataKey: "gcp.artifact.id"] = "google-privacy-dlp-v2"
       logger[metadataKey: "gcp.client.service"] = "dlp"
       logger[metadataKey: "gcp.experimental.swift.client"] = "DlpService"
       self.inner = inner

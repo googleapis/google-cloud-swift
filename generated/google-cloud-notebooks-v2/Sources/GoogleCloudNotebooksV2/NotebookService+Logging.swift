@@ -33,7 +33,7 @@ extension Clients {
 
     public init(_ inner: any NotebookServiceStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleCloudNotebooksV2"
+      logger[metadataKey: "gcp.artifact.id"] = "google-cloud-notebooks-v2"
       logger[metadataKey: "gcp.client.service"] = "notebooks"
       logger[metadataKey: "gcp.experimental.swift.client"] = "NotebookService"
       self.inner = inner

@@ -30,7 +30,7 @@ extension Clients {
 
     public init(_ inner: any DataPolicyServiceStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleCloudBigqueryDatapoliciesV1"
+      logger[metadataKey: "gcp.artifact.id"] = "google-cloud-bigquery-datapolicies-v1"
       logger[metadataKey: "gcp.client.service"] = "bigquerydatapolicy"
       logger[metadataKey: "gcp.experimental.swift.client"] = "DataPolicyService"
       self.inner = inner

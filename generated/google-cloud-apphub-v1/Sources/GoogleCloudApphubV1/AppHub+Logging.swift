@@ -33,7 +33,7 @@ extension Clients {
 
     public init(_ inner: any AppHubStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleCloudApphubV1"
+      logger[metadataKey: "gcp.artifact.id"] = "google-cloud-apphub-v1"
       logger[metadataKey: "gcp.client.service"] = "apphub"
       logger[metadataKey: "gcp.experimental.swift.client"] = "AppHub"
       self.inner = inner

@@ -31,7 +31,7 @@ extension Clients {
 
     public init(_ inner: any OsConfigZonalServiceStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleCloudOsconfigV1"
+      logger[metadataKey: "gcp.artifact.id"] = "google-cloud-osconfig-v1"
       logger[metadataKey: "gcp.client.service"] = "osconfig"
       logger[metadataKey: "gcp.experimental.swift.client"] = "OsConfigZonalService"
       self.inner = inner

@@ -30,7 +30,7 @@ extension Clients {
 
     public init(_ inner: any CloudSchedulerStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleCloudSchedulerV1"
+      logger[metadataKey: "gcp.artifact.id"] = "google-cloud-scheduler-v1"
       logger[metadataKey: "gcp.client.service"] = "cloudscheduler"
       logger[metadataKey: "gcp.experimental.swift.client"] = "CloudScheduler"
       self.inner = inner

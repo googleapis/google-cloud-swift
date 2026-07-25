@@ -33,7 +33,7 @@ extension Clients {
 
     public init(_ inner: any CloudFilestoreManagerStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleCloudFilestoreV1"
+      logger[metadataKey: "gcp.artifact.id"] = "google-cloud-filestore-v1"
       logger[metadataKey: "gcp.client.service"] = "file"
       logger[metadataKey: "gcp.experimental.swift.client"] = "CloudFilestoreManager"
       self.inner = inner

@@ -29,7 +29,7 @@ extension Clients {
 
     public init(_ inner: any GrafeasStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleGrafeasV1"
+      logger[metadataKey: "gcp.artifact.id"] = "grafeas-v1"
       logger[metadataKey: "gcp.client.service"] = "containeranalysis"
       logger[metadataKey: "gcp.experimental.swift.client"] = "Grafeas"
       self.inner = inner

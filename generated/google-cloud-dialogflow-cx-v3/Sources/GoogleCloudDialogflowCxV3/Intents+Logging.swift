@@ -33,7 +33,7 @@
 
       public init(_ inner: any IntentsStub, logger: Logger) {
         var logger = logger
-        logger[metadataKey: "gcp.artifact.id"] = "GoogleCloudDialogflowCxV3"
+        logger[metadataKey: "gcp.artifact.id"] = "google-cloud-dialogflow-cx-v3"
         logger[metadataKey: "gcp.client.service"] = "dialogflow"
         logger[metadataKey: "gcp.experimental.swift.client"] = "Intents"
         self.inner = inner

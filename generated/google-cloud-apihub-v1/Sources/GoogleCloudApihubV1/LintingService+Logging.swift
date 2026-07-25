@@ -31,7 +31,7 @@ extension Clients {
 
     public init(_ inner: any LintingServiceStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleCloudApihubV1"
+      logger[metadataKey: "gcp.artifact.id"] = "google-cloud-apihub-v1"
       logger[metadataKey: "gcp.client.service"] = "apihub"
       logger[metadataKey: "gcp.experimental.swift.client"] = "LintingService"
       self.inner = inner

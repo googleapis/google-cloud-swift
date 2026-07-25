@@ -33,7 +33,7 @@ extension Clients {
 
     public init(_ inner: any CmekServiceStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleCloudDataplexV1"
+      logger[metadataKey: "gcp.artifact.id"] = "google-cloud-dataplex-v1"
       logger[metadataKey: "gcp.client.service"] = "dataplex"
       logger[metadataKey: "gcp.experimental.swift.client"] = "CmekService"
       self.inner = inner

@@ -30,7 +30,7 @@
 
       public init(_ inner: any NetworkAttachmentsStub, logger: Logger) {
         var logger = logger
-        logger[metadataKey: "gcp.artifact.id"] = "GoogleCloudComputeV1"
+        logger[metadataKey: "gcp.artifact.id"] = "google-cloud-compute-v1"
         logger[metadataKey: "gcp.client.service"] = "compute"
         logger[metadataKey: "gcp.experimental.swift.client"] = "NetworkAttachments"
         self.inner = inner

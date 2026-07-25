@@ -30,7 +30,7 @@ extension Clients {
 
     public init(_ inner: any ConfidentialComputingStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleCloudConfidentialcomputingV1"
+      logger[metadataKey: "gcp.artifact.id"] = "google-cloud-confidentialcomputing-v1"
       logger[metadataKey: "gcp.client.service"] = "confidentialcomputing"
       logger[metadataKey: "gcp.experimental.swift.client"] = "ConfidentialComputing"
       self.inner = inner

@@ -29,7 +29,7 @@ extension Clients {
 
     public init(_ inner: any LocationsStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleCloudLocation"
+      logger[metadataKey: "gcp.artifact.id"] = "google-cloud-location"
       logger[metadataKey: "gcp.client.service"] = "cloud"
       logger[metadataKey: "gcp.experimental.swift.client"] = "Locations"
       self.inner = inner

@@ -32,7 +32,7 @@ extension Clients {
 
     public init(_ inner: any WorkloadManagerStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleCloudWorkloadmanagerV1"
+      logger[metadataKey: "gcp.artifact.id"] = "google-cloud-workloadmanager-v1"
       logger[metadataKey: "gcp.client.service"] = "workloadmanager"
       logger[metadataKey: "gcp.experimental.swift.client"] = "WorkloadManager"
       self.inner = inner

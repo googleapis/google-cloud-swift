@@ -32,7 +32,7 @@ extension Clients {
 
     public init(_ inner: any AutokeyAdminStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleCloudKmsV1"
+      logger[metadataKey: "gcp.artifact.id"] = "google-cloud-kms-v1"
       logger[metadataKey: "gcp.client.service"] = "cloudkms"
       logger[metadataKey: "gcp.experimental.swift.client"] = "AutokeyAdmin"
       self.inner = inner

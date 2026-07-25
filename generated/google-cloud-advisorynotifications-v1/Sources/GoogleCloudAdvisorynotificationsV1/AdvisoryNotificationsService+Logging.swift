@@ -29,7 +29,7 @@ extension Clients {
 
     public init(_ inner: any AdvisoryNotificationsServiceStub, logger: Logger) {
       var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "GoogleCloudAdvisorynotificationsV1"
+      logger[metadataKey: "gcp.artifact.id"] = "google-cloud-advisorynotifications-v1"
       logger[metadataKey: "gcp.client.service"] = "advisorynotifications"
       logger[metadataKey: "gcp.experimental.swift.client"] = "AdvisoryNotificationsService"
       self.inner = inner
