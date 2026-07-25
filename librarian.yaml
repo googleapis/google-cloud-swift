@@ -567,7 +567,6 @@ libraries:
   - name: tests-discovery
     copyright_year: "2026"
     output: Tests/Discovery/generated
-    skip_generate: true
     roots:
       - Tests/Discovery/disco
     skip_release: true
