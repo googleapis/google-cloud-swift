@@ -42,7 +42,7 @@ public enum Value: Codable, Equatable, Sendable {
   /// Represents a JSON array.
   case array(ListValue)
 
-  /// Initialize a value to the default: [null](doc:Value/null(_:)).
+  /// Initialize a value to the default: [`null`](doc:Value/null(_:)).
   public init() {
     self = .null(NullValue())
   }
