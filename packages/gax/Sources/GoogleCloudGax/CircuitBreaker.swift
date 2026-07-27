@@ -62,7 +62,7 @@ public final class CircuitBreaker: RetryThrottler, Sendable {
   ///   - tokens: The initial number of tokens.
   ///   - minTokens: Stops accepting retry attempts when the number of tokens is at or below this value.
   ///   - errorCost: Decrease the token count by this value on failed request attempts.
-  /// - Throws: ``RetryThrottlerError/tooFewMinTokens`` if `minTokens` > `tokens`.
+  /// - Throws: ``RetryThrottlerError/tooFewMinTokens(min:initial:)`` if `minTokens` > `tokens`.
   public init(tokens: UInt64, minTokens: UInt64, errorCost: UInt64) throws {
     if minTokens > tokens {
       throw RetryThrottlerError.tooFewMinTokens(min: minTokens, initial: tokens)

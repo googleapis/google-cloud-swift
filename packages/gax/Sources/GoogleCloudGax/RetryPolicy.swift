@@ -23,9 +23,9 @@ import Foundation
 /// The retry policy determines what errors are transient, and may limit the number of retry attempts.
 ///
 /// The client libraries offer a number of retry policy implementations, including ``AlwaysRetry``,
-/// ``Aip194Strict``, and ``NeverRetry``. In addition, the client libraries offer decorators, such
-/// as ``LimitedErrorCount`` and ``LimitedElapsedTime`` to constraint the number of retry attempts
-/// or the duration of the retry loop.
+/// ``Aip194``, and ``NeverRetry``. In addition, the client libraries offer decorators, such as
+/// ``LimitedAttemptCount`` and ``LimitedElapsedTime`` to constraint the number of retry attempts or
+/// the duration of the retry loop.
 ///
 /// Application developers may define their own policies if needed.
 ///

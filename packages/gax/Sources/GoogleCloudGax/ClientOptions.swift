@@ -55,7 +55,7 @@ public struct ClientOptions: Sendable {
 
   /// Overrides the default credentials for the client.
   ///
-  /// ``Credentials`` defines how the client authenticates to Google Cloud APIs. Without an override, the client uses
+  /// `Credentials` defines how the client authenticates to Google Cloud APIs. Without an override, the client uses
   /// [Application Default Credentials]. This works well in most deployment and development environments, use this
   /// override if your application cannot use the default.
   ///

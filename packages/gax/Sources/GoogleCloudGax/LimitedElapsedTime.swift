@@ -17,8 +17,8 @@ import Foundation
 /// A retry policy decorator that limits the total time in the retry loop.
 ///
 /// If the time elapsed in the retry loop, including any backoff, is larger than the prescribed
-/// duration then the policy returns ``RetryResult/exhausted``. Otherwise, the policy returns the
-/// result from the inner policy.
+/// duration then the policy returns ``RetryResult/exhausted(_:)``. Otherwise, the policy returns
+/// the result from the inner policy.
 ///
 /// The `remainingTime()` method returns the remaining time. This is always zero after the
 /// policy's deadline is reached.
