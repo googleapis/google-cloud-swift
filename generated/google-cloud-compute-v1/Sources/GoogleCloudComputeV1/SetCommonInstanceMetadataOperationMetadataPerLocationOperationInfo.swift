@@ -113,7 +113,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:State/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "ABANDONED": self = .abandoned
@@ -128,7 +128,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:State/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .abandoned

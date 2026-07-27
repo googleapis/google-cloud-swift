@@ -158,7 +158,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:CloudArmorTier/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "CA_ENTERPRISE_ANNUAL": self = .caEnterpriseAnnual
@@ -170,7 +170,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:CloudArmorTier/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .caEnterpriseAnnual
@@ -272,7 +272,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:DefaultNetworkTier/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "FIXED_STANDARD": self = .fixedStandard
@@ -285,7 +285,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:DefaultNetworkTier/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .fixedStandard
@@ -382,7 +382,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:VmDnsSetting/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "GLOBAL_DEFAULT": self = .globalDefault
@@ -395,7 +395,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:VmDnsSetting/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .globalDefault
@@ -486,7 +486,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:XpnProjectStatus/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "HOST": self = .host
@@ -497,7 +497,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:XpnProjectStatus/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .host

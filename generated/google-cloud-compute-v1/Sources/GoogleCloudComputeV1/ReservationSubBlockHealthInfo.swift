@@ -110,7 +110,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:HealthStatus/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "DEGRADED": self = .degraded
@@ -122,7 +122,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:HealthStatus/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .degraded

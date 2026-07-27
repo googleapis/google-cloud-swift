@@ -162,7 +162,7 @@ public struct AmbientSoundConfig: Codable, Equatable, GoogleCloudWkt._AnyPackabl
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:PrebuiltAmbientNoise/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "PREBUILT_AMBIENT_NOISE_UNSPECIFIED": self = .unspecified
@@ -175,7 +175,7 @@ public struct AmbientSoundConfig: Codable, Equatable, GoogleCloudWkt._AnyPackabl
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:PrebuiltAmbientNoise/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified

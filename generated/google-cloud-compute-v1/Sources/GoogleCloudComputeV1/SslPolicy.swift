@@ -447,7 +447,7 @@
 
         /// Initialize from a string value.
         ///
-        /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+        /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Code/unknownStringValue(_:)).
         public init(stringValue: Swift.String) {
           switch stringValue {
           case "CLEANUP_FAILED": self = .cleanupFailed
@@ -487,7 +487,7 @@
 
         /// Initialize from an integer value.
         ///
-        /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+        /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Code/unknownIntValue(_:)).
         public init(intValue: Int) {
           switch intValue {
           case 0: self = .cleanupFailed
@@ -649,7 +649,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:MinTlsVersion/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "TLS_1_0": self = .tls10
@@ -662,7 +662,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:MinTlsVersion/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .tls10
@@ -759,7 +759,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:PostQuantumKeyExchange/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "DEFAULT": self = .`default`
@@ -771,7 +771,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:PostQuantumKeyExchange/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .`default`
@@ -880,7 +880,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Profile/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "COMPATIBLE": self = .compatible
@@ -894,7 +894,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Profile/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .compatible

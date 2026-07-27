@@ -326,7 +326,7 @@
 
         /// Initialize from a string value.
         ///
-        /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+        /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Type_/unknownStringValue(_:)).
         public init(stringValue: Swift.String) {
           switch stringValue {
           case "TYPE_UNSPECIFIED": self = .unspecified
@@ -338,7 +338,7 @@
 
         /// Initialize from an integer value.
         ///
-        /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+        /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Type_/unknownIntValue(_:)).
         public init(intValue: Int) {
           switch intValue {
           case 0: self = .unspecified
@@ -1501,7 +1501,7 @@
 
           /// Initialize from a string value.
           ///
-          /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+          /// If the value is unknown, this initializes to [`unknownStringValue`](doc:ResponseMediaType/unknownStringValue(_:)).
           public init(stringValue: Swift.String) {
             switch stringValue {
             case "RESPONSE_MEDIA_TYPE_UNSPECIFIED": self = .unspecified
@@ -1512,7 +1512,7 @@
 
           /// Initialize from an integer value.
           ///
-          /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+          /// If the value is unknown, this initializes to [`unknownIntValue`](doc:ResponseMediaType/unknownIntValue(_:)).
           public init(intValue: Int) {
             switch intValue {
             case 0: self = .unspecified
@@ -1714,7 +1714,7 @@
 
               /// Initialize from a string value.
               ///
-              /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+              /// If the value is unknown, this initializes to [`unknownStringValue`](doc:UrlTypeHint/unknownStringValue(_:)).
               public init(stringValue: Swift.String) {
                 switch stringValue {
                 case "URL_TYPE_HINT_UNSPECIFIED": self = .unspecified
@@ -1726,7 +1726,7 @@
 
               /// Initialize from an integer value.
               ///
-              /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+              /// If the value is unknown, this initializes to [`unknownIntValue`](doc:UrlTypeHint/unknownIntValue(_:)).
               public init(intValue: Int) {
                 switch intValue {
                 case 0: self = .unspecified
@@ -1863,7 +1863,7 @@
 
           /// Initialize from a string value.
           ///
-          /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+          /// If the value is unknown, this initializes to [`unknownStringValue`](doc:ImageDisplayOptions/unknownStringValue(_:)).
           public init(stringValue: Swift.String) {
             switch stringValue {
             case "IMAGE_DISPLAY_OPTIONS_UNSPECIFIED": self = .unspecified
@@ -1877,7 +1877,7 @@
 
           /// Initialize from an integer value.
           ///
-          /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+          /// If the value is unknown, this initializes to [`unknownIntValue`](doc:ImageDisplayOptions/unknownIntValue(_:)).
           public init(intValue: Int) {
             switch intValue {
             case 0: self = .unspecified
@@ -2068,7 +2068,7 @@
 
           /// Initialize from a string value.
           ///
-          /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+          /// If the value is unknown, this initializes to [`unknownStringValue`](doc:HorizontalAlignment/unknownStringValue(_:)).
           public init(stringValue: Swift.String) {
             switch stringValue {
             case "HORIZONTAL_ALIGNMENT_UNSPECIFIED": self = .unspecified
@@ -2081,7 +2081,7 @@
 
           /// Initialize from an integer value.
           ///
-          /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+          /// If the value is unknown, this initializes to [`unknownIntValue`](doc:HorizontalAlignment/unknownIntValue(_:)).
           public init(intValue: Int) {
             switch intValue {
             case 0: self = .unspecified
@@ -2294,7 +2294,7 @@
 
         /// Initialize from a string value.
         ///
-        /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+        /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Platform/unknownStringValue(_:)).
         public init(stringValue: Swift.String) {
           switch stringValue {
           case "PLATFORM_UNSPECIFIED": self = .unspecified
@@ -2313,7 +2313,7 @@
 
         /// Initialize from an integer value.
         ///
-        /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+        /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Platform/unknownIntValue(_:)).
         public init(intValue: Int) {
           switch intValue {
           case 0: self = .unspecified
@@ -2503,7 +2503,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:WebhookState/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "WEBHOOK_STATE_UNSPECIFIED": self = .unspecified
@@ -2515,7 +2515,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:WebhookState/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified

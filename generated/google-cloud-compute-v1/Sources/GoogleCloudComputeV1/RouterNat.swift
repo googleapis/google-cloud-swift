@@ -257,7 +257,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:AutoNetworkTier/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "FIXED_STANDARD": self = .fixedStandard
@@ -270,7 +270,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:AutoNetworkTier/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .fixedStandard
@@ -369,7 +369,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:EndpointTypes/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "ENDPOINT_TYPE_MANAGED_PROXY_LB": self = .endpointTypeManagedProxyLb
@@ -381,7 +381,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:EndpointTypes/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .endpointTypeManagedProxyLb
@@ -473,7 +473,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:NatIpAllocateOption/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "AUTO_ONLY": self = .autoOnly
@@ -484,7 +484,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:NatIpAllocateOption/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .autoOnly
@@ -578,7 +578,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:SourceSubnetworkIpRangesToNat/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "ALL_SUBNETWORKS_ALL_IP_RANGES": self = .allSubnetworksAllIpRanges
@@ -590,7 +590,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:SourceSubnetworkIpRangesToNat/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .allSubnetworksAllIpRanges
@@ -684,7 +684,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:SourceSubnetworkIpRangesToNat64/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "ALL_IPV6_SUBNETWORKS": self = .allIpv6Subnetworks
@@ -695,7 +695,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:SourceSubnetworkIpRangesToNat64/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .allIpv6Subnetworks
@@ -785,7 +785,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Type_/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "PRIVATE": self = .`private`
@@ -796,7 +796,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Type_/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .`private`

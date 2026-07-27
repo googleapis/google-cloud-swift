@@ -265,7 +265,7 @@
 
         /// Initialize from a string value.
         ///
-        /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+        /// If the value is unknown, this initializes to [`unknownStringValue`](doc:GoalType/unknownStringValue(_:)).
         public init(stringValue: Swift.String) {
           switch stringValue {
           case "GOAL_TYPE_UNSPECIFIED": self = .unspecified
@@ -277,7 +277,7 @@
 
         /// Initialize from an integer value.
         ///
-        /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+        /// If the value is unknown, this initializes to [`unknownIntValue`](doc:GoalType/unknownIntValue(_:)).
         public init(intValue: Int) {
           switch intValue {
           case 0: self = .unspecified
@@ -906,7 +906,7 @@
 
         /// Initialize from a string value.
         ///
-        /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+        /// If the value is unknown, this initializes to [`unknownStringValue`](doc:ScaleType/unknownStringValue(_:)).
         public init(stringValue: Swift.String) {
           switch stringValue {
           case "SCALE_TYPE_UNSPECIFIED": self = .unspecified
@@ -919,7 +919,7 @@
 
         /// Initialize from an integer value.
         ///
-        /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+        /// If the value is unknown, this initializes to [`unknownIntValue`](doc:ScaleType/unknownIntValue(_:)).
         public init(intValue: Int) {
           switch intValue {
           case 0: self = .unspecified
@@ -1300,7 +1300,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Algorithm/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "ALGORITHM_UNSPECIFIED": self = .unspecified
@@ -1312,7 +1312,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Algorithm/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified
@@ -1411,7 +1411,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:ObservationNoise/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "OBSERVATION_NOISE_UNSPECIFIED": self = .unspecified
@@ -1423,7 +1423,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:ObservationNoise/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified
@@ -1528,7 +1528,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:MeasurementSelectionType/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "MEASUREMENT_SELECTION_TYPE_UNSPECIFIED": self = .unspecified
@@ -1540,7 +1540,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:MeasurementSelectionType/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified

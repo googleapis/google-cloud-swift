@@ -348,7 +348,7 @@ public struct InfoTypeCategory: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:LocationCategory/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "LOCATION_UNSPECIFIED": self = .locationUnspecified
@@ -410,7 +410,7 @@ public struct InfoTypeCategory: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:LocationCategory/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .locationUnspecified
@@ -608,7 +608,7 @@ public struct InfoTypeCategory: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:IndustryCategory/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "INDUSTRY_UNSPECIFIED": self = .industryUnspecified
@@ -621,7 +621,7 @@ public struct InfoTypeCategory: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:IndustryCategory/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .industryUnspecified
@@ -745,7 +745,7 @@ public struct InfoTypeCategory: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:TypeCategory/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "TYPE_UNSPECIFIED": self = .typeUnspecified
@@ -763,7 +763,7 @@ public struct InfoTypeCategory: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:TypeCategory/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .typeUnspecified

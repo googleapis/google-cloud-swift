@@ -320,7 +320,7 @@ public struct Volume: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:StorageType/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "STORAGE_TYPE_UNSPECIFIED": self = .unspecified
@@ -332,7 +332,7 @@ public struct Volume: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:StorageType/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified
@@ -438,7 +438,7 @@ public struct Volume: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:State/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "STATE_UNSPECIFIED": self = .unspecified
@@ -453,7 +453,7 @@ public struct Volume: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:State/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified
@@ -558,7 +558,7 @@ public struct Volume: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:SnapshotAutoDeleteBehavior/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "SNAPSHOT_AUTO_DELETE_BEHAVIOR_UNSPECIFIED": self = .unspecified
@@ -571,7 +571,7 @@ public struct Volume: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:SnapshotAutoDeleteBehavior/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified
@@ -667,7 +667,7 @@ public struct Volume: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Protocol_/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "PROTOCOL_UNSPECIFIED": self = .unspecified
@@ -679,7 +679,7 @@ public struct Volume: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Protocol_/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified
@@ -772,7 +772,7 @@ public struct Volume: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:WorkloadProfile/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "WORKLOAD_PROFILE_UNSPECIFIED": self = .unspecified
@@ -784,7 +784,7 @@ public struct Volume: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:WorkloadProfile/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified

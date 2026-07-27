@@ -185,7 +185,7 @@ public struct Field: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Kind/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "TYPE_UNKNOWN": self = .typeUnknown
@@ -213,7 +213,7 @@ public struct Field: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Kind/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .typeUnknown
@@ -342,7 +342,7 @@ public struct Field: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Cardinality/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "CARDINALITY_UNKNOWN": self = .unknown
@@ -355,7 +355,7 @@ public struct Field: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Cardinality/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unknown

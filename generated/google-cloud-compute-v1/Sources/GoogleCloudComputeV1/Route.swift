@@ -456,7 +456,7 @@
 
         /// Initialize from a string value.
         ///
-        /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+        /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Code/unknownStringValue(_:)).
         public init(stringValue: Swift.String) {
           switch stringValue {
           case "CLEANUP_FAILED": self = .cleanupFailed
@@ -496,7 +496,7 @@
 
         /// Initialize from an integer value.
         ///
-        /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+        /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Code/unknownIntValue(_:)).
         public init(intValue: Int) {
           switch intValue {
           case 0: self = .cleanupFailed
@@ -651,7 +651,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:NextHopOrigin/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "EGP": self = .egp
@@ -663,7 +663,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:NextHopOrigin/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .egp
@@ -766,7 +766,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:RouteStatus/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "ACTIVE": self = .active
@@ -779,7 +779,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:RouteStatus/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .active
@@ -876,7 +876,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:RouteType/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "BGP": self = .bgp
@@ -889,7 +889,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:RouteType/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .bgp

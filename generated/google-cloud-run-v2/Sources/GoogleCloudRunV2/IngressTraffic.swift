@@ -77,7 +77,7 @@ public enum IngressTraffic: Codable, Equatable, Sendable {
 
   /// Initialize from a string value.
   ///
-  /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+  /// If the value is unknown, this initializes to [`unknownStringValue`](doc:IngressTraffic/unknownStringValue(_:)).
   public init(stringValue: Swift.String) {
     switch stringValue {
     case "INGRESS_TRAFFIC_UNSPECIFIED": self = .unspecified
@@ -91,7 +91,7 @@ public enum IngressTraffic: Codable, Equatable, Sendable {
 
   /// Initialize from an integer value.
   ///
-  /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+  /// If the value is unknown, this initializes to [`unknownIntValue`](doc:IngressTraffic/unknownIntValue(_:)).
   public init(intValue: Int) {
     switch intValue {
     case 0: self = .unspecified

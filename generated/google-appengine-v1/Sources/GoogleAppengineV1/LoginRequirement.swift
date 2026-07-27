@@ -78,7 +78,7 @@ public enum LoginRequirement: Codable, Equatable, Sendable {
 
   /// Initialize from a string value.
   ///
-  /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+  /// If the value is unknown, this initializes to [`unknownStringValue`](doc:LoginRequirement/unknownStringValue(_:)).
   public init(stringValue: Swift.String) {
     switch stringValue {
     case "LOGIN_UNSPECIFIED": self = .loginUnspecified
@@ -91,7 +91,7 @@ public enum LoginRequirement: Codable, Equatable, Sendable {
 
   /// Initialize from an integer value.
   ///
-  /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+  /// If the value is unknown, this initializes to [`unknownIntValue`](doc:LoginRequirement/unknownIntValue(_:)).
   public init(intValue: Int) {
     switch intValue {
     case 0: self = .loginUnspecified

@@ -179,7 +179,7 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleCloudWkt._A
 
         /// Initialize from a string value.
         ///
-        /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+        /// If the value is unknown, this initializes to [`unknownStringValue`](doc:SemanticSimilarityChannel/unknownStringValue(_:)).
         public init(stringValue: Swift.String) {
           switch stringValue {
           case "SEMANTIC_SIMILARITY_CHANNEL_UNSPECIFIED": self = .unspecified
@@ -191,7 +191,7 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleCloudWkt._A
 
         /// Initialize from an integer value.
         ///
-        /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+        /// If the value is unknown, this initializes to [`unknownIntValue`](doc:SemanticSimilarityChannel/unknownIntValue(_:)).
         public init(intValue: Int) {
           switch intValue {
           case 0: self = .unspecified
@@ -373,7 +373,7 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleCloudWkt._A
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:ExtraToolCallBehavior/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "EXTRA_TOOL_CALL_BEHAVIOR_UNSPECIFIED": self = .unspecified
@@ -385,7 +385,7 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleCloudWkt._A
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:ExtraToolCallBehavior/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified
@@ -492,7 +492,7 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleCloudWkt._A
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:HallucinationMetricBehavior/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "HALLUCINATION_METRIC_BEHAVIOR_UNSPECIFIED": self = .unspecified
@@ -504,7 +504,7 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleCloudWkt._A
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:HallucinationMetricBehavior/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified

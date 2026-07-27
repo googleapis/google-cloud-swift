@@ -421,7 +421,7 @@ public struct BlockchainNode: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
         /// Initialize from a string value.
         ///
-        /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+        /// If the value is unknown, this initializes to [`unknownStringValue`](doc:GarbageCollectionMode/unknownStringValue(_:)).
         public init(stringValue: Swift.String) {
           switch stringValue {
           case "GARBAGE_COLLECTION_MODE_UNSPECIFIED": self = .unspecified
@@ -433,7 +433,7 @@ public struct BlockchainNode: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
         /// Initialize from an integer value.
         ///
-        /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+        /// If the value is unknown, this initializes to [`unknownIntValue`](doc:GarbageCollectionMode/unknownIntValue(_:)).
         public init(intValue: Int) {
           switch intValue {
           case 0: self = .unspecified
@@ -652,7 +652,7 @@ public struct BlockchainNode: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Network/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "NETWORK_UNSPECIFIED": self = .unspecified
@@ -666,7 +666,7 @@ public struct BlockchainNode: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Network/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified
@@ -774,7 +774,7 @@ public struct BlockchainNode: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:NodeType/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "NODE_TYPE_UNSPECIFIED": self = .unspecified
@@ -787,7 +787,7 @@ public struct BlockchainNode: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:NodeType/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified
@@ -892,7 +892,7 @@ public struct BlockchainNode: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:ExecutionClient/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "EXECUTION_CLIENT_UNSPECIFIED": self = .unspecified
@@ -904,7 +904,7 @@ public struct BlockchainNode: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:ExecutionClient/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified
@@ -1003,7 +1003,7 @@ public struct BlockchainNode: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:ConsensusClient/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "CONSENSUS_CLIENT_UNSPECIFIED": self = .unspecified
@@ -1014,7 +1014,7 @@ public struct BlockchainNode: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:ConsensusClient/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified
@@ -1119,7 +1119,7 @@ public struct BlockchainNode: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:BlockchainType/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "BLOCKCHAIN_TYPE_UNSPECIFIED": self = .unspecified
@@ -1130,7 +1130,7 @@ public struct BlockchainNode: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:BlockchainType/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified
@@ -1246,7 +1246,7 @@ public struct BlockchainNode: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:State/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "STATE_UNSPECIFIED": self = .unspecified
@@ -1264,7 +1264,7 @@ public struct BlockchainNode: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:State/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified

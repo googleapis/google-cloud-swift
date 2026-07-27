@@ -225,7 +225,7 @@ public struct CaPool: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:EncodingFormat/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "ENCODING_FORMAT_UNSPECIFIED": self = .unspecified
@@ -237,7 +237,7 @@ public struct CaPool: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:EncodingFormat/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified
@@ -643,7 +643,7 @@ public struct CaPool: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
           /// Initialize from a string value.
           ///
-          /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+          /// If the value is unknown, this initializes to [`unknownStringValue`](doc:EcSignatureAlgorithm/unknownStringValue(_:)).
           public init(stringValue: Swift.String) {
             switch stringValue {
             case "EC_SIGNATURE_ALGORITHM_UNSPECIFIED": self = .unspecified
@@ -656,7 +656,7 @@ public struct CaPool: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
           /// Initialize from an integer value.
           ///
-          /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+          /// If the value is unknown, this initializes to [`unknownIntValue`](doc:EcSignatureAlgorithm/unknownIntValue(_:)).
           public init(intValue: Int) {
             switch intValue {
             case 0: self = .unspecified
@@ -851,7 +851,7 @@ public struct CaPool: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Tier/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "TIER_UNSPECIFIED": self = .unspecified
@@ -863,7 +863,7 @@ public struct CaPool: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Tier/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified

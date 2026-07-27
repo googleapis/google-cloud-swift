@@ -135,7 +135,7 @@ public struct DiscoveryCloudStorageConditions: Codable, Equatable, GoogleCloudWk
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:CloudStorageObjectAttribute/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "CLOUD_STORAGE_OBJECT_ATTRIBUTE_UNSPECIFIED": self = .unspecified
@@ -153,7 +153,7 @@ public struct DiscoveryCloudStorageConditions: Codable, Equatable, GoogleCloudWk
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:CloudStorageObjectAttribute/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified
@@ -267,7 +267,7 @@ public struct DiscoveryCloudStorageConditions: Codable, Equatable, GoogleCloudWk
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:CloudStorageBucketAttribute/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "CLOUD_STORAGE_BUCKET_ATTRIBUTE_UNSPECIFIED": self = .unspecified
@@ -280,7 +280,7 @@ public struct DiscoveryCloudStorageConditions: Codable, Equatable, GoogleCloudWk
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:CloudStorageBucketAttribute/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified

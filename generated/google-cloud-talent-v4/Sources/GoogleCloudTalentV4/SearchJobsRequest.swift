@@ -521,7 +521,7 @@ public struct SearchJobsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:ImportanceLevel/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "IMPORTANCE_LEVEL_UNSPECIFIED": self = .unspecified
@@ -537,7 +537,7 @@ public struct SearchJobsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:ImportanceLevel/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified
@@ -656,7 +656,7 @@ public struct SearchJobsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:SearchMode/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "SEARCH_MODE_UNSPECIFIED": self = .unspecified
@@ -668,7 +668,7 @@ public struct SearchJobsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:SearchMode/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified
@@ -799,7 +799,7 @@ public struct SearchJobsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:DiversificationLevel/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "DIVERSIFICATION_LEVEL_UNSPECIFIED": self = .unspecified
@@ -815,7 +815,7 @@ public struct SearchJobsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:DiversificationLevel/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified
@@ -960,7 +960,7 @@ public struct SearchJobsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:KeywordMatchMode/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "KEYWORD_MATCH_MODE_UNSPECIFIED": self = .unspecified
@@ -973,7 +973,7 @@ public struct SearchJobsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:KeywordMatchMode/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified
@@ -1079,7 +1079,7 @@ public struct SearchJobsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:RelevanceThreshold/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "RELEVANCE_THRESHOLD_UNSPECIFIED": self = .unspecified
@@ -1093,7 +1093,7 @@ public struct SearchJobsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:RelevanceThreshold/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified

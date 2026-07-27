@@ -414,7 +414,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:AddressPurposes/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "DNS_RESOLVER": self = .dnsResolver
@@ -431,7 +431,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:AddressPurposes/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .dnsResolver
@@ -530,7 +530,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:AllowAddressCreation/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "ADDRESS_CREATION_ALLOWED": self = .addressCreationAllowed
@@ -541,7 +541,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:AllowAddressCreation/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .addressCreationAllowed
@@ -628,7 +628,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:AllowAliasIpRanges/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "ALIAS_IP_RANGES_ALLOWED": self = .aliasIpRangesAllowed
@@ -639,7 +639,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:AllowAliasIpRanges/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .aliasIpRangesAllowed
@@ -726,7 +726,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:AllowAutoModeSubnet/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "AUTO_MODE_SUBNET_ALLOWED": self = .autoModeSubnetAllowed
@@ -737,7 +737,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:AllowAutoModeSubnet/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .autoModeSubnetAllowed
@@ -824,7 +824,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:AllowClassDfirewalls/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "CLASS_D_FIREWALLS_ALLOWED": self = .classDFirewallsAllowed
@@ -835,7 +835,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:AllowClassDfirewalls/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .classDFirewallsAllowed
@@ -922,7 +922,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:AllowCloudNat/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "CLOUD_NAT_ALLOWED": self = .cloudNatAllowed
@@ -933,7 +933,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:AllowCloudNat/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .cloudNatAllowed
@@ -1020,7 +1020,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:AllowCloudRouter/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "CLOUD_ROUTER_ALLOWED": self = .cloudRouterAllowed
@@ -1031,7 +1031,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:AllowCloudRouter/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .cloudRouterAllowed
@@ -1118,7 +1118,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:AllowDefaultNicAttachment/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "DEFAULT_NIC_ATTACHMENT_ALLOWED": self = .defaultNicAttachmentAllowed
@@ -1129,7 +1129,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:AllowDefaultNicAttachment/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .defaultNicAttachmentAllowed
@@ -1216,7 +1216,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:AllowExternalIpAccess/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "EXTERNAL_IP_ACCESS_ALLOWED": self = .externalIpAccessAllowed
@@ -1227,7 +1227,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:AllowExternalIpAccess/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .externalIpAccessAllowed
@@ -1314,7 +1314,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:AllowFirewallPolicy/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "FIREWALL_POLICY_ALLOWED": self = .firewallPolicyAllowed
@@ -1325,7 +1325,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:AllowFirewallPolicy/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .firewallPolicyAllowed
@@ -1412,7 +1412,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:AllowInterconnect/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "INTERCONNECT_ALLOWED": self = .interconnectAllowed
@@ -1423,7 +1423,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:AllowInterconnect/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .interconnectAllowed
@@ -1510,7 +1510,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:AllowIpForwarding/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "IP_FORWARDING_ALLOWED": self = .ipForwardingAllowed
@@ -1521,7 +1521,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:AllowIpForwarding/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .ipForwardingAllowed
@@ -1608,7 +1608,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:AllowLoadBalancing/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "LOAD_BALANCING_ALLOWED": self = .loadBalancingAllowed
@@ -1619,7 +1619,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:AllowLoadBalancing/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .loadBalancingAllowed
@@ -1706,7 +1706,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:AllowMultiNicInSameNetwork/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "MULTI_NIC_IN_SAME_NETWORK_ALLOWED": self = .multiNicInSameNetworkAllowed
@@ -1717,7 +1717,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:AllowMultiNicInSameNetwork/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .multiNicInSameNetworkAllowed
@@ -1804,7 +1804,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:AllowMultiNicInSameSubnetwork/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "MULTI_NIC_IN_SAME_SUBNETWORK_ALLOWED": self = .multiNicInSameSubnetworkAllowed
@@ -1815,7 +1815,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:AllowMultiNicInSameSubnetwork/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .multiNicInSameSubnetworkAllowed
@@ -1902,7 +1902,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:AllowMulticast/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "MULTICAST_ALLOWED": self = .multicastAllowed
@@ -1913,7 +1913,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:AllowMulticast/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .multicastAllowed
@@ -2000,7 +2000,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:AllowNcc/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "NCC_ALLOWED": self = .nccAllowed
@@ -2011,7 +2011,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:AllowNcc/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .nccAllowed
@@ -2098,7 +2098,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:AllowNetworkMigration/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "NETWORK_MIGRATION_ALLOWED": self = .networkMigrationAllowed
@@ -2109,7 +2109,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:AllowNetworkMigration/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .networkMigrationAllowed
@@ -2196,7 +2196,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:AllowPacketMirroring/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "PACKET_MIRRORING_ALLOWED": self = .packetMirroringAllowed
@@ -2207,7 +2207,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:AllowPacketMirroring/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .packetMirroringAllowed
@@ -2294,7 +2294,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:AllowPrivateGoogleAccess/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "PRIVATE_GOOGLE_ACCESS_ALLOWED": self = .privateGoogleAccessAllowed
@@ -2305,7 +2305,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:AllowPrivateGoogleAccess/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .privateGoogleAccessAllowed
@@ -2392,7 +2392,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:AllowPsc/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "PSC_ALLOWED": self = .pscAllowed
@@ -2403,7 +2403,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:AllowPsc/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .pscAllowed
@@ -2490,7 +2490,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:AllowSameNetworkUnicast/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "SAME_NETWORK_UNICAST_ALLOWED": self = .sameNetworkUnicastAllowed
@@ -2501,7 +2501,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:AllowSameNetworkUnicast/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .sameNetworkUnicastAllowed
@@ -2588,7 +2588,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:AllowStaticRoutes/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "STATIC_ROUTES_ALLOWED": self = .staticRoutesAllowed
@@ -2599,7 +2599,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:AllowStaticRoutes/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .staticRoutesAllowed
@@ -2686,7 +2686,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:AllowSubInterfaces/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "SUBINTERFACES_ALLOWED": self = .subinterfacesAllowed
@@ -2697,7 +2697,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:AllowSubInterfaces/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .subinterfacesAllowed
@@ -2784,7 +2784,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:AllowSubnetworkCreation/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "SUBNETWORK_CREATION_ALLOWED": self = .subnetworkCreationAllowed
@@ -2795,7 +2795,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:AllowSubnetworkCreation/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .subnetworkCreationAllowed
@@ -2882,7 +2882,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:AllowVpcFirewallRules/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "VPC_FIREWALL_RULES_ALLOWED": self = .vpcFirewallRulesAllowed
@@ -2893,7 +2893,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:AllowVpcFirewallRules/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .vpcFirewallRulesAllowed
@@ -2980,7 +2980,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:AllowVpcPeering/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "VPC_PEERING_ALLOWED": self = .vpcPeeringAllowed
@@ -2991,7 +2991,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:AllowVpcPeering/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .vpcPeeringAllowed
@@ -3078,7 +3078,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:AllowVpn/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "VPN_ALLOWED": self = .vpnAllowed
@@ -3089,7 +3089,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:AllowVpn/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .vpnAllowed
@@ -3179,7 +3179,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:FirewallPolicyTypes/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "RDMA_ROCE_POLICY": self = .rdmaRocePolicy
@@ -3191,7 +3191,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:FirewallPolicyTypes/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .rdmaRocePolicy
@@ -3298,7 +3298,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:InterfaceTypes/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "GVNIC": self = .gvnic
@@ -3313,7 +3313,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:InterfaceTypes/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .gvnic
@@ -3408,7 +3408,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Multicast/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "MULTICAST_SDN": self = .sdn
@@ -3419,7 +3419,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Multicast/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .sdn
@@ -3506,7 +3506,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:SubnetPurposes/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "SUBNET_PURPOSE_CUSTOM_HARDWARE": self = .subnetPurposeCustomHardware
@@ -3517,7 +3517,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:SubnetPurposes/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .subnetPurposeCustomHardware
@@ -3607,7 +3607,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:SubnetStackTypes/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "SUBNET_STACK_TYPE_IPV4_IPV6": self = .subnetStackTypeIpv4Ipv6
@@ -3619,7 +3619,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:SubnetStackTypes/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .subnetStackTypeIpv4Ipv6
@@ -3737,7 +3737,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:SubnetworkPurposes/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "GLOBAL_MANAGED_PROXY": self = .globalManagedProxy
@@ -3754,7 +3754,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:SubnetworkPurposes/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .globalManagedProxy
@@ -3859,7 +3859,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:SubnetworkStackTypes/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "IPV4_IPV6": self = .ipv4Ipv6
@@ -3871,7 +3871,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:SubnetworkStackTypes/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .ipv4Ipv6
@@ -3960,7 +3960,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Unicast/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "UNICAST_SDN": self = .sdn
@@ -3971,7 +3971,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Unicast/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .sdn

@@ -460,7 +460,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:AvailableFeatures/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "IF_CROSS_SITE_NETWORK": self = .ifCrossSiteNetwork
@@ -472,7 +472,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:AvailableFeatures/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .ifCrossSiteNetwork
@@ -567,7 +567,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:InterconnectType/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "DEDICATED": self = .dedicated
@@ -579,7 +579,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:InterconnectType/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .dedicated
@@ -675,7 +675,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:LinkType/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "LINK_TYPE_ETHERNET_100G_LR": self = .ethernet100GLr
@@ -687,7 +687,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:LinkType/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .ethernet100GLr
@@ -780,7 +780,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:OperationalStatus/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "OS_ACTIVE": self = .osActive
@@ -791,7 +791,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:OperationalStatus/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .osActive
@@ -884,7 +884,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:RequestedFeatures/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "IF_CROSS_SITE_NETWORK": self = .ifCrossSiteNetwork
@@ -896,7 +896,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:RequestedFeatures/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .ifCrossSiteNetwork
@@ -989,7 +989,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:State/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "ACTIVE": self = .active
@@ -1000,7 +1000,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:State/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .active
@@ -1089,7 +1089,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Subzone/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "SUBZONE_A": self = .a
@@ -1100,7 +1100,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Subzone/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .a

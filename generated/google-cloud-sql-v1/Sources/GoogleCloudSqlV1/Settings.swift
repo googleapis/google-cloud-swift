@@ -297,7 +297,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:SqlActivationPolicy/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "SQL_ACTIVATION_POLICY_UNSPECIFIED": self = .unspecified
@@ -310,7 +310,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:SqlActivationPolicy/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified
@@ -409,7 +409,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Edition/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "EDITION_UNSPECIFIED": self = .unspecified
@@ -422,7 +422,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Edition/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified
@@ -519,7 +519,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:ConnectorEnforcement/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "CONNECTOR_ENFORCEMENT_UNSPECIFIED": self = .unspecified
@@ -531,7 +531,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:ConnectorEnforcement/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified
@@ -626,7 +626,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:DataApiAccess/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "DATA_API_ACCESS_UNSPECIFIED": self = .unspecified
@@ -638,7 +638,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:DataApiAccess/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified

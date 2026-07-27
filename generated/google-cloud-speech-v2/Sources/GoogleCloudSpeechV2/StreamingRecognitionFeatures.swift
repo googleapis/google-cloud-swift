@@ -161,7 +161,7 @@ public struct StreamingRecognitionFeatures: Codable, Equatable, GoogleCloudWkt._
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:EndpointingSensitivity/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "ENDPOINTING_SENSITIVITY_UNSPECIFIED": self = .unspecified
@@ -174,7 +174,7 @@ public struct StreamingRecognitionFeatures: Codable, Equatable, GoogleCloudWkt._
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:EndpointingSensitivity/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified

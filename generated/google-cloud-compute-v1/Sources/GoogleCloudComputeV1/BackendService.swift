@@ -814,7 +814,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:CompressionMode/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "AUTOMATIC": self = .automatic
@@ -825,7 +825,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:CompressionMode/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .automatic
@@ -915,7 +915,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:ExternalManagedMigrationState/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "PREPARE": self = .prepare
@@ -927,7 +927,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:ExternalManagedMigrationState/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .prepare
@@ -1034,7 +1034,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:IpAddressSelectionPolicy/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "IPV4_ONLY": self = .ipv4Only
@@ -1047,7 +1047,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:IpAddressSelectionPolicy/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .ipv4Only
@@ -1160,7 +1160,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:LoadBalancingScheme/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "EXTERNAL": self = .external
@@ -1175,7 +1175,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:LoadBalancingScheme/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .external
@@ -1332,7 +1332,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:LocalityLbPolicy/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "INVALID_LB_POLICY": self = .invalidLbPolicy
@@ -1351,7 +1351,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:LocalityLbPolicy/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .invalidLbPolicy
@@ -1483,7 +1483,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Protocol_/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "GRPC": self = .grpc
@@ -1501,7 +1501,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Protocol_/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .grpc
@@ -1649,7 +1649,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:SessionAffinity/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "CLIENT_IP": self = .clientIp
@@ -1667,7 +1667,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:SessionAffinity/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .clientIp

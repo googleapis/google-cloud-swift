@@ -164,7 +164,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:StackType/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "IPV4_IPV6": self = .ipv4Ipv6
@@ -175,7 +175,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:StackType/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .ipv4Ipv6
@@ -265,7 +265,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:State/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "ACTIVE": self = .active
@@ -276,7 +276,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:State/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .active
@@ -377,7 +377,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:UpdateStrategy/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "CONSENSUS": self = .consensus
@@ -389,7 +389,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:UpdateStrategy/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .consensus

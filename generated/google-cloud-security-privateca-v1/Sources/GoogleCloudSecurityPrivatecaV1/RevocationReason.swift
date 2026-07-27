@@ -131,7 +131,7 @@ public enum RevocationReason: Codable, Equatable, Sendable {
 
   /// Initialize from a string value.
   ///
-  /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+  /// If the value is unknown, this initializes to [`unknownStringValue`](doc:RevocationReason/unknownStringValue(_:)).
   public init(stringValue: Swift.String) {
     switch stringValue {
     case "REVOCATION_REASON_UNSPECIFIED": self = .unspecified
@@ -149,7 +149,7 @@ public enum RevocationReason: Codable, Equatable, Sendable {
 
   /// Initialize from an integer value.
   ///
-  /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+  /// If the value is unknown, this initializes to [`unknownIntValue`](doc:RevocationReason/unknownIntValue(_:)).
   public init(intValue: Int) {
     switch intValue {
     case 0: self = .unspecified

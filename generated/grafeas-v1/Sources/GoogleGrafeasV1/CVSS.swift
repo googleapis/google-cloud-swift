@@ -123,7 +123,7 @@ public struct CVSS: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:AttackVector/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "ATTACK_VECTOR_UNSPECIFIED": self = .unspecified
@@ -137,7 +137,7 @@ public struct CVSS: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:AttackVector/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified
@@ -233,7 +233,7 @@ public struct CVSS: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:AttackComplexity/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "ATTACK_COMPLEXITY_UNSPECIFIED": self = .unspecified
@@ -246,7 +246,7 @@ public struct CVSS: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:AttackComplexity/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified
@@ -340,7 +340,7 @@ public struct CVSS: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Authentication/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "AUTHENTICATION_UNSPECIFIED": self = .unspecified
@@ -353,7 +353,7 @@ public struct CVSS: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Authentication/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified
@@ -447,7 +447,7 @@ public struct CVSS: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:PrivilegesRequired/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "PRIVILEGES_REQUIRED_UNSPECIFIED": self = .unspecified
@@ -460,7 +460,7 @@ public struct CVSS: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:PrivilegesRequired/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified
@@ -551,7 +551,7 @@ public struct CVSS: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:UserInteraction/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "USER_INTERACTION_UNSPECIFIED": self = .unspecified
@@ -563,7 +563,7 @@ public struct CVSS: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:UserInteraction/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified
@@ -652,7 +652,7 @@ public struct CVSS: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Scope/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "SCOPE_UNSPECIFIED": self = .unspecified
@@ -664,7 +664,7 @@ public struct CVSS: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Scope/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified
@@ -762,7 +762,7 @@ public struct CVSS: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Impact/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "IMPACT_UNSPECIFIED": self = .unspecified
@@ -777,7 +777,7 @@ public struct CVSS: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Impact/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified

@@ -134,7 +134,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:DefaultActionOnFailure/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "DO_NOTHING": self = .doNothing
@@ -145,7 +145,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:DefaultActionOnFailure/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .doNothing
@@ -232,7 +232,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:ForceUpdateOnRepair/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "NO": self = .no
@@ -243,7 +243,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:ForceUpdateOnRepair/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .no
@@ -337,7 +337,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:OnFailedHealthCheck/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "DEFAULT_ACTION": self = .defaultAction
@@ -349,7 +349,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:OnFailedHealthCheck/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .defaultAction

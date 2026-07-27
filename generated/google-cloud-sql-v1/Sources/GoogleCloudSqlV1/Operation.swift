@@ -406,7 +406,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:SqlOperationType/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "SQL_OPERATION_TYPE_UNSPECIFIED": self = .unspecified
@@ -469,7 +469,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:SqlOperationType/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified
@@ -668,7 +668,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:SqlOperationStatus/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "SQL_OPERATION_STATUS_UNSPECIFIED": self = .unspecified
@@ -681,7 +681,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:SqlOperationStatus/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified

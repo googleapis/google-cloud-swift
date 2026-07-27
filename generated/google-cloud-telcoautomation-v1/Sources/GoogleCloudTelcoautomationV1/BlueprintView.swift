@@ -69,7 +69,7 @@ public enum BlueprintView: Codable, Equatable, Sendable {
 
   /// Initialize from a string value.
   ///
-  /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+  /// If the value is unknown, this initializes to [`unknownStringValue`](doc:BlueprintView/unknownStringValue(_:)).
   public init(stringValue: Swift.String) {
     switch stringValue {
     case "BLUEPRINT_VIEW_UNSPECIFIED": self = .unspecified
@@ -81,7 +81,7 @@ public enum BlueprintView: Codable, Equatable, Sendable {
 
   /// Initialize from an integer value.
   ///
-  /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+  /// If the value is unknown, this initializes to [`unknownIntValue`](doc:BlueprintView/unknownIntValue(_:)).
   public init(intValue: Int) {
     switch intValue {
     case 0: self = .unspecified

@@ -1039,7 +1039,7 @@
 
             /// Initialize from a string value.
             ///
-            /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+            /// If the value is unknown, this initializes to [`unknownStringValue`](doc:AttributeType/unknownStringValue(_:)).
             public init(stringValue: Swift.String) {
               switch stringValue {
               case "ATTRIBUTE_TYPE_UNSPECIFIED": self = .unspecified
@@ -1051,7 +1051,7 @@
 
             /// Initialize from an integer value.
             ///
-            /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+            /// If the value is unknown, this initializes to [`unknownIntValue`](doc:AttributeType/unknownIntValue(_:)).
             public init(intValue: Int) {
               switch intValue {
               case 0: self = .unspecified
@@ -1142,7 +1142,7 @@
 
             /// Initialize from a string value.
             ///
-            /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+            /// If the value is unknown, this initializes to [`unknownStringValue`](doc:InterpolationType/unknownStringValue(_:)).
             public init(stringValue: Swift.String) {
               switch stringValue {
               case "INTERPOLATION_TYPE_UNSPECIFIED": self = .unspecified
@@ -1153,7 +1153,7 @@
 
             /// Initialize from an integer value.
             ///
-            /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+            /// If the value is unknown, this initializes to [`unknownIntValue`](doc:InterpolationType/unknownIntValue(_:)).
             public init(intValue: Int) {
               switch intValue {
               case 0: self = .unspecified
@@ -1320,7 +1320,7 @@
 
         /// Initialize from a string value.
         ///
-        /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+        /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Condition/unknownStringValue(_:)).
         public init(stringValue: Swift.String) {
           switch stringValue {
           case "CONDITION_UNSPECIFIED": self = .unspecified
@@ -1332,7 +1332,7 @@
 
         /// Initialize from an integer value.
         ///
-        /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+        /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Condition/unknownIntValue(_:)).
         public init(intValue: Int) {
           switch intValue {
           case 0: self = .unspecified
@@ -1475,7 +1475,7 @@
 
         /// Initialize from a string value.
         ///
-        /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+        /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Mode/unknownStringValue(_:)).
         public init(stringValue: Swift.String) {
           switch stringValue {
           case "MODE_UNSPECIFIED": self = .unspecified
@@ -1487,7 +1487,7 @@
 
         /// Initialize from an integer value.
         ///
-        /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+        /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Mode/unknownIntValue(_:)).
         public init(intValue: Int) {
           switch intValue {
           case 0: self = .unspecified
@@ -2047,7 +2047,7 @@
 
         /// Initialize from a string value.
         ///
-        /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+        /// If the value is unknown, this initializes to [`unknownStringValue`](doc:SearchResultMode/unknownStringValue(_:)).
         public init(stringValue: Swift.String) {
           switch stringValue {
           case "SEARCH_RESULT_MODE_UNSPECIFIED": self = .unspecified
@@ -2059,7 +2059,7 @@
 
         /// Initialize from an integer value.
         ///
-        /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+        /// If the value is unknown, this initializes to [`unknownIntValue`](doc:SearchResultMode/unknownIntValue(_:)).
         public init(intValue: Int) {
           switch intValue {
           case 0: self = .unspecified
@@ -2226,7 +2226,7 @@
 
         /// Initialize from a string value.
         ///
-        /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+        /// If the value is unknown, this initializes to [`unknownStringValue`](doc:FilterExtractionCondition/unknownStringValue(_:)).
         public init(stringValue: Swift.String) {
           switch stringValue {
           case "CONDITION_UNSPECIFIED": self = .conditionUnspecified
@@ -2238,7 +2238,7 @@
 
         /// Initialize from an integer value.
         ///
-        /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+        /// If the value is unknown, this initializes to [`unknownIntValue`](doc:FilterExtractionCondition/unknownIntValue(_:)).
         public init(intValue: Int) {
           switch intValue {
           case 0: self = .conditionUnspecified
@@ -2337,7 +2337,7 @@
 
         /// Initialize from a string value.
         ///
-        /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+        /// If the value is unknown, this initializes to [`unknownStringValue`](doc:ExtractedFilterBehavior/unknownStringValue(_:)).
         public init(stringValue: Swift.String) {
           switch stringValue {
           case "EXTRACTED_FILTER_BEHAVIOR_UNSPECIFIED": self = .unspecified
@@ -2349,7 +2349,7 @@
 
         /// Initialize from an integer value.
         ///
-        /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+        /// If the value is unknown, this initializes to [`unknownIntValue`](doc:ExtractedFilterBehavior/unknownIntValue(_:)).
         public init(intValue: Int) {
           switch intValue {
           case 0: self = .unspecified
@@ -2490,7 +2490,7 @@
 
         /// Initialize from a string value.
         ///
-        /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+        /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Condition/unknownStringValue(_:)).
         public init(stringValue: Swift.String) {
           switch stringValue {
           case "CONDITION_UNSPECIFIED": self = .unspecified
@@ -2503,7 +2503,7 @@
 
         /// Initialize from an integer value.
         ///
-        /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+        /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Condition/unknownIntValue(_:)).
         public init(intValue: Int) {
           switch intValue {
           case 0: self = .unspecified
@@ -2634,7 +2634,7 @@
 
         /// Initialize from a string value.
         ///
-        /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+        /// If the value is unknown, this initializes to [`unknownStringValue`](doc:MatchHighlightingCondition/unknownStringValue(_:)).
         public init(stringValue: Swift.String) {
           switch stringValue {
           case "MATCH_HIGHLIGHTING_CONDITION_UNSPECIFIED": self = .unspecified
@@ -2646,7 +2646,7 @@
 
         /// Initialize from an integer value.
         ///
-        /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+        /// If the value is unknown, this initializes to [`unknownIntValue`](doc:MatchHighlightingCondition/unknownIntValue(_:)).
         public init(intValue: Int) {
           switch intValue {
           case 0: self = .unspecified
@@ -2795,7 +2795,7 @@
 
         /// Initialize from a string value.
         ///
-        /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+        /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Mode/unknownStringValue(_:)).
         public init(stringValue: Swift.String) {
           switch stringValue {
           case "MODE_UNSPECIFIED": self = .unspecified
@@ -2807,7 +2807,7 @@
 
         /// Initialize from an integer value.
         ///
-        /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+        /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Mode/unknownIntValue(_:)).
         public init(intValue: Int) {
           switch intValue {
           case 0: self = .unspecified
@@ -3166,7 +3166,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:RankingExpressionBackend/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "RANKING_EXPRESSION_BACKEND_UNSPECIFIED": self = .unspecified
@@ -3180,7 +3180,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:RankingExpressionBackend/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified
@@ -3288,7 +3288,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:RelevanceThreshold/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "RELEVANCE_THRESHOLD_UNSPECIFIED": self = .unspecified
@@ -3302,7 +3302,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:RelevanceThreshold/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified

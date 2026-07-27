@@ -69,7 +69,7 @@ public enum ServiceAccountKeyAlgorithm: Codable, Equatable, Sendable {
 
   /// Initialize from a string value.
   ///
-  /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+  /// If the value is unknown, this initializes to [`unknownStringValue`](doc:ServiceAccountKeyAlgorithm/unknownStringValue(_:)).
   public init(stringValue: Swift.String) {
     switch stringValue {
     case "KEY_ALG_UNSPECIFIED": self = .keyAlgUnspecified
@@ -81,7 +81,7 @@ public enum ServiceAccountKeyAlgorithm: Codable, Equatable, Sendable {
 
   /// Initialize from an integer value.
   ///
-  /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+  /// If the value is unknown, this initializes to [`unknownIntValue`](doc:ServiceAccountKeyAlgorithm/unknownIntValue(_:)).
   public init(intValue: Int) {
     switch intValue {
     case 0: self = .keyAlgUnspecified

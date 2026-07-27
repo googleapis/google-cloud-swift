@@ -89,7 +89,7 @@ public enum DayOfWeek: Codable, Equatable, Sendable {
 
   /// Initialize from a string value.
   ///
-  /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+  /// If the value is unknown, this initializes to [`unknownStringValue`](doc:DayOfWeek/unknownStringValue(_:)).
   public init(stringValue: Swift.String) {
     switch stringValue {
     case "DAY_OF_WEEK_UNSPECIFIED": self = .unspecified
@@ -106,7 +106,7 @@ public enum DayOfWeek: Codable, Equatable, Sendable {
 
   /// Initialize from an integer value.
   ///
-  /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+  /// If the value is unknown, this initializes to [`unknownIntValue`](doc:DayOfWeek/unknownIntValue(_:)).
   public init(intValue: Int) {
     switch intValue {
     case 0: self = .unspecified

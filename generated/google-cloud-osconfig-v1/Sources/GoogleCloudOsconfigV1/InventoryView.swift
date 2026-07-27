@@ -70,7 +70,7 @@ public enum InventoryView: Codable, Equatable, Sendable {
 
   /// Initialize from a string value.
   ///
-  /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+  /// If the value is unknown, this initializes to [`unknownStringValue`](doc:InventoryView/unknownStringValue(_:)).
   public init(stringValue: Swift.String) {
     switch stringValue {
     case "INVENTORY_VIEW_UNSPECIFIED": self = .unspecified
@@ -82,7 +82,7 @@ public enum InventoryView: Codable, Equatable, Sendable {
 
   /// Initialize from an integer value.
   ///
-  /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+  /// If the value is unknown, this initializes to [`unknownIntValue`](doc:InventoryView/unknownIntValue(_:)).
   public init(intValue: Int) {
     switch intValue {
     case 0: self = .unspecified

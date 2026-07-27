@@ -96,7 +96,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:TopologyCapability/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "NO_SLA": self = .noSla
@@ -109,7 +109,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:TopologyCapability/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .noSla

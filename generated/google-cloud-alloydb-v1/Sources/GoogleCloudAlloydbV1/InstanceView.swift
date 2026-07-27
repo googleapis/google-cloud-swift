@@ -73,7 +73,7 @@ public enum InstanceView: Codable, Equatable, Sendable {
 
   /// Initialize from a string value.
   ///
-  /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+  /// If the value is unknown, this initializes to [`unknownStringValue`](doc:InstanceView/unknownStringValue(_:)).
   public init(stringValue: Swift.String) {
     switch stringValue {
     case "INSTANCE_VIEW_UNSPECIFIED": self = .unspecified
@@ -85,7 +85,7 @@ public enum InstanceView: Codable, Equatable, Sendable {
 
   /// Initialize from an integer value.
   ///
-  /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+  /// If the value is unknown, this initializes to [`unknownIntValue`](doc:InstanceView/unknownIntValue(_:)).
   public init(intValue: Int) {
     switch intValue {
     case 0: self = .unspecified

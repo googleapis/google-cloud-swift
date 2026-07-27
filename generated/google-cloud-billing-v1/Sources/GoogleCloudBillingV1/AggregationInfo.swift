@@ -99,7 +99,7 @@ public struct AggregationInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:AggregationLevel/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "AGGREGATION_LEVEL_UNSPECIFIED": self = .unspecified
@@ -111,7 +111,7 @@ public struct AggregationInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:AggregationLevel/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified
@@ -203,7 +203,7 @@ public struct AggregationInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:AggregationInterval/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "AGGREGATION_INTERVAL_UNSPECIFIED": self = .unspecified
@@ -215,7 +215,7 @@ public struct AggregationInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:AggregationInterval/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified

@@ -298,7 +298,7 @@ public struct MetricDescriptor: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:TimeSeriesResourceHierarchyLevel/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "TIME_SERIES_RESOURCE_HIERARCHY_LEVEL_UNSPECIFIED": self = .unspecified
@@ -311,7 +311,7 @@ public struct MetricDescriptor: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:TimeSeriesResourceHierarchyLevel/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified
@@ -427,7 +427,7 @@ public struct MetricDescriptor: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:MetricKind/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "METRIC_KIND_UNSPECIFIED": self = .unspecified
@@ -440,7 +440,7 @@ public struct MetricDescriptor: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:MetricKind/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified
@@ -555,7 +555,7 @@ public struct MetricDescriptor: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:ValueType/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "VALUE_TYPE_UNSPECIFIED": self = .unspecified
@@ -571,7 +571,7 @@ public struct MetricDescriptor: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:ValueType/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified

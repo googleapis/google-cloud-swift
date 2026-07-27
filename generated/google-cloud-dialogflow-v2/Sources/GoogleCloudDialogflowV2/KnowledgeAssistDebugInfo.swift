@@ -291,7 +291,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:QueryGenerationFailureReason/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "QUERY_GENERATION_FAILURE_REASON_UNSPECIFIED": self = .unspecified
@@ -313,7 +313,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:QueryGenerationFailureReason/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified
@@ -426,7 +426,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:QueryCategorizationFailureReason/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "QUERY_CATEGORIZATION_FAILURE_REASON_UNSPECIFIED": self = .unspecified
@@ -439,7 +439,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:QueryCategorizationFailureReason/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified

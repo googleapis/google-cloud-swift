@@ -148,7 +148,7 @@ public struct EncryptionConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:ErrorCode/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "UNKNOWN": self = .unknown
@@ -160,7 +160,7 @@ public struct EncryptionConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:ErrorCode/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unknown
@@ -273,7 +273,7 @@ public struct EncryptionConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:EncryptionState/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "ENCRYPTION_STATE_UNSPECIFIED": self = .unspecified
@@ -286,7 +286,7 @@ public struct EncryptionConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:EncryptionState/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified

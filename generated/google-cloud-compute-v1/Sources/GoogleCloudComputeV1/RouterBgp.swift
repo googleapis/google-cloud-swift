@@ -137,7 +137,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:AdvertiseMode/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "CUSTOM": self = .custom
@@ -148,7 +148,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:AdvertiseMode/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .custom
@@ -233,7 +233,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:AdvertisedGroups/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "ALL_SUBNETS": self = .allSubnets
@@ -243,7 +243,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:AdvertisedGroups/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .allSubnets

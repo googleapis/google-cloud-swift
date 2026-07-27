@@ -118,7 +118,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:BgpBestPathSelectionMode/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "LEGACY": self = .legacy
@@ -129,7 +129,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:BgpBestPathSelectionMode/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .legacy
@@ -216,7 +216,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:BgpInterRegionCost/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "ADD_COST_TO_MED": self = .addCostToMed
@@ -227,7 +227,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:BgpInterRegionCost/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .addCostToMed
@@ -314,7 +314,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:EffectiveBgpInterRegionCost/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "ADD_COST_TO_MED": self = .addCostToMed
@@ -325,7 +325,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:EffectiveBgpInterRegionCost/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .addCostToMed
@@ -412,7 +412,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:RoutingMode/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "GLOBAL": self = .global
@@ -423,7 +423,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:RoutingMode/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .global

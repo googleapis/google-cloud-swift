@@ -108,7 +108,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:ConnectionType/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "CONNECTION_TYPE_UNSPECIFIED": self = .unspecified
@@ -121,7 +121,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:ConnectionType/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified
@@ -216,7 +216,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:DnsScope/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "DNS_SCOPE_UNSPECIFIED": self = .unspecified
@@ -228,7 +228,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:DnsScope/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified
@@ -324,7 +324,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:RecordManager/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "RECORD_MANAGER_UNSPECIFIED": self = .unspecified
@@ -336,7 +336,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:RecordManager/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified

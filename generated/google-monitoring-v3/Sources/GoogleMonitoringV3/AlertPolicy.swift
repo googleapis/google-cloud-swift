@@ -1394,7 +1394,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:EvaluationMissingData/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "EVALUATION_MISSING_DATA_UNSPECIFIED": self = .unspecified
@@ -1407,7 +1407,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:EvaluationMissingData/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified
@@ -1657,7 +1657,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:NotificationPrompt/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "NOTIFICATION_PROMPT_UNSPECIFIED": self = .unspecified
@@ -1669,7 +1669,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:NotificationPrompt/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified
@@ -1783,7 +1783,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:ConditionCombinerType/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "COMBINE_UNSPECIFIED": self = .combineUnspecified
@@ -1796,7 +1796,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:ConditionCombinerType/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .combineUnspecified
@@ -1899,7 +1899,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Severity/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "SEVERITY_UNSPECIFIED": self = .unspecified
@@ -1912,7 +1912,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Severity/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified

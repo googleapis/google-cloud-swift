@@ -734,7 +734,7 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Policy/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "POLICY_UNSPECIFIED": self = .unspecified
@@ -746,7 +746,7 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Policy/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified
@@ -888,7 +888,7 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:CgroupMode/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "CGROUP_MODE_UNSPECIFIED": self = .unspecified
@@ -900,7 +900,7 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:CgroupMode/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified
@@ -998,7 +998,7 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:TransparentHugepageEnabled/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "TRANSPARENT_HUGEPAGE_ENABLED_UNSPECIFIED": self = .unspecified
@@ -1011,7 +1011,7 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:TransparentHugepageEnabled/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified
@@ -1130,7 +1130,7 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:TransparentHugepageDefrag/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "TRANSPARENT_HUGEPAGE_DEFRAG_UNSPECIFIED": self = .unspecified
@@ -1145,7 +1145,7 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:TransparentHugepageDefrag/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified

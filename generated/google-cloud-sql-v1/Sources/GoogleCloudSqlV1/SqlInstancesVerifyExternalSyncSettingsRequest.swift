@@ -191,7 +191,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:ExternalSyncMode/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "EXTERNAL_SYNC_MODE_UNSPECIFIED": self = .unspecified
@@ -203,7 +203,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:ExternalSyncMode/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified
@@ -297,7 +297,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:MigrationType/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "MIGRATION_TYPE_UNSPECIFIED": self = .unspecified
@@ -309,7 +309,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:MigrationType/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified

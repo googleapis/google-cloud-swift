@@ -117,7 +117,7 @@ public struct LoggingComponentConfig: Codable, Equatable, GoogleCloudWkt._AnyPac
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Component/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "COMPONENT_UNSPECIFIED": self = .unspecified
@@ -135,7 +135,7 @@ public struct LoggingComponentConfig: Codable, Equatable, GoogleCloudWkt._AnyPac
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Component/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified

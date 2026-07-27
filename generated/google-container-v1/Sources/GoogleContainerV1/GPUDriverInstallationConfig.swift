@@ -98,7 +98,7 @@ public struct GPUDriverInstallationConfig: Codable, Equatable, GoogleCloudWkt._A
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:GPUDriverVersion/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "GPU_DRIVER_VERSION_UNSPECIFIED": self = .unspecified
@@ -111,7 +111,7 @@ public struct GPUDriverInstallationConfig: Codable, Equatable, GoogleCloudWkt._A
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:GPUDriverVersion/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified

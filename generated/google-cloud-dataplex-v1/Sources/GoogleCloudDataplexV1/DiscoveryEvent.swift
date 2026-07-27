@@ -434,7 +434,7 @@ public struct DiscoveryEvent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:EventType/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "EVENT_TYPE_UNSPECIFIED": self = .unspecified
@@ -455,7 +455,7 @@ public struct DiscoveryEvent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:EventType/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified
@@ -566,7 +566,7 @@ public struct DiscoveryEvent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:EntityType/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "ENTITY_TYPE_UNSPECIFIED": self = .unspecified
@@ -578,7 +578,7 @@ public struct DiscoveryEvent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:EntityType/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified
@@ -675,7 +675,7 @@ public struct DiscoveryEvent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:TableType/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "TABLE_TYPE_UNSPECIFIED": self = .unspecified
@@ -688,7 +688,7 @@ public struct DiscoveryEvent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:TableType/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified

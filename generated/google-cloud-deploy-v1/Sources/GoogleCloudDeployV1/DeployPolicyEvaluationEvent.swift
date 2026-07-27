@@ -140,7 +140,7 @@ public struct DeployPolicyEvaluationEvent: Codable, Equatable, GoogleCloudWkt._A
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:PolicyVerdict/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "POLICY_VERDICT_UNSPECIFIED": self = .unspecified
@@ -152,7 +152,7 @@ public struct DeployPolicyEvaluationEvent: Codable, Equatable, GoogleCloudWkt._A
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:PolicyVerdict/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified
@@ -246,7 +246,7 @@ public struct DeployPolicyEvaluationEvent: Codable, Equatable, GoogleCloudWkt._A
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:PolicyVerdictOverride/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "POLICY_VERDICT_OVERRIDE_UNSPECIFIED": self = .unspecified
@@ -258,7 +258,7 @@ public struct DeployPolicyEvaluationEvent: Codable, Equatable, GoogleCloudWkt._A
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:PolicyVerdictOverride/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified

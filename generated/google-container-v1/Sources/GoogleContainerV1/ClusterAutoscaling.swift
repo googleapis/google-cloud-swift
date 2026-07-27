@@ -121,7 +121,7 @@ public struct ClusterAutoscaling: Codable, Equatable, GoogleCloudWkt._AnyPackabl
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:AutoscalingProfile/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "PROFILE_UNSPECIFIED": self = .profileUnspecified
@@ -133,7 +133,7 @@ public struct ClusterAutoscaling: Codable, Equatable, GoogleCloudWkt._AnyPackabl
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:AutoscalingProfile/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .profileUnspecified
@@ -226,7 +226,7 @@ public struct ClusterAutoscaling: Codable, Equatable, GoogleCloudWkt._AnyPackabl
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:AutopilotGeneralProfile/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "AUTOPILOT_GENERAL_PROFILE_UNSPECIFIED": self = .unspecified
@@ -238,7 +238,7 @@ public struct ClusterAutoscaling: Codable, Equatable, GoogleCloudWkt._AnyPackabl
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:AutopilotGeneralProfile/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified

@@ -195,7 +195,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:AvailableFeatures/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "IF_CROSS_SITE_NETWORK": self = .ifCrossSiteNetwork
@@ -207,7 +207,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:AvailableFeatures/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .ifCrossSiteNetwork
@@ -303,7 +303,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:AvailableLinkTypes/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "LINK_TYPE_ETHERNET_100G_LR": self = .linkTypeEthernet100GLr
@@ -315,7 +315,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:AvailableLinkTypes/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .linkTypeEthernet100GLr
@@ -428,7 +428,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Continent/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "AFRICA": self = .africa
@@ -447,7 +447,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Continent/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .africa
@@ -552,7 +552,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Status/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "AVAILABLE": self = .available
@@ -563,7 +563,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Status/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .available

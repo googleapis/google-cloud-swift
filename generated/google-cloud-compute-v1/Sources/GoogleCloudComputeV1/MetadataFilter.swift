@@ -126,7 +126,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:FilterMatchCriteria/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "MATCH_ALL": self = .matchAll
@@ -138,7 +138,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:FilterMatchCriteria/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .matchAll

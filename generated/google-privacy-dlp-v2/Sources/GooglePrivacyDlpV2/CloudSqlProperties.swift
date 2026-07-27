@@ -168,7 +168,7 @@ public struct CloudSqlProperties: Codable, Equatable, GoogleCloudWkt._AnyPackabl
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:DatabaseEngine/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "DATABASE_ENGINE_UNKNOWN": self = .unknown
@@ -180,7 +180,7 @@ public struct CloudSqlProperties: Codable, Equatable, GoogleCloudWkt._AnyPackabl
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:DatabaseEngine/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unknown

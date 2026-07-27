@@ -118,7 +118,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:HarmProbability/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "HARM_PROBABILITY_UNSPECIFIED": self = .unspecified
@@ -132,7 +132,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:HarmProbability/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified
@@ -237,7 +237,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:HarmSeverity/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "HARM_SEVERITY_UNSPECIFIED": self = .unspecified
@@ -251,7 +251,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:HarmSeverity/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified

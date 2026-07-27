@@ -684,7 +684,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:IPProtocol/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "AH": self = .ah
@@ -700,7 +700,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:IPProtocol/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .ah
@@ -800,7 +800,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:ExternalManagedBackendBucketMigrationState/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "PREPARE": self = .prepare
@@ -812,7 +812,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:ExternalManagedBackendBucketMigrationState/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .prepare
@@ -904,7 +904,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:IpVersion/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "IPV4": self = .ipv4
@@ -916,7 +916,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:IpVersion/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .ipv4
@@ -1017,7 +1017,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:LoadBalancingScheme/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "EXTERNAL": self = .external
@@ -1032,7 +1032,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:LoadBalancingScheme/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .external
@@ -1140,7 +1140,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:NetworkTier/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "FIXED_STANDARD": self = .fixedStandard
@@ -1153,7 +1153,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:NetworkTier/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .fixedStandard
@@ -1263,7 +1263,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:PscConnectionStatus/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "ACCEPTED": self = .accepted
@@ -1278,7 +1278,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:PscConnectionStatus/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .accepted

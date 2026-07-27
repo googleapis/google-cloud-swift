@@ -415,7 +415,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWkt._AnyPac
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:PublicRepository/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "PUBLIC_REPOSITORY_UNSPECIFIED": self = .unspecified
@@ -426,7 +426,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWkt._AnyPac
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:PublicRepository/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified
@@ -638,7 +638,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWkt._AnyPac
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:PublicRepository/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "PUBLIC_REPOSITORY_UNSPECIFIED": self = .unspecified
@@ -649,7 +649,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWkt._AnyPac
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:PublicRepository/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified
@@ -860,7 +860,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWkt._AnyPac
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:PublicRepository/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "PUBLIC_REPOSITORY_UNSPECIFIED": self = .unspecified
@@ -871,7 +871,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWkt._AnyPac
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:PublicRepository/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified
@@ -1082,7 +1082,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWkt._AnyPac
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:PublicRepository/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "PUBLIC_REPOSITORY_UNSPECIFIED": self = .unspecified
@@ -1093,7 +1093,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWkt._AnyPac
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:PublicRepository/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified
@@ -1305,7 +1305,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWkt._AnyPac
 
         /// Initialize from a string value.
         ///
-        /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+        /// If the value is unknown, this initializes to [`unknownStringValue`](doc:RepositoryBase/unknownStringValue(_:)).
         public init(stringValue: Swift.String) {
           switch stringValue {
           case "REPOSITORY_BASE_UNSPECIFIED": self = .unspecified
@@ -1318,7 +1318,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWkt._AnyPac
 
         /// Initialize from an integer value.
         ///
-        /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+        /// If the value is unknown, this initializes to [`unknownIntValue`](doc:RepositoryBase/unknownIntValue(_:)).
         public init(intValue: Int) {
           switch intValue {
           case 0: self = .unspecified
@@ -1594,7 +1594,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWkt._AnyPac
 
         /// Initialize from a string value.
         ///
-        /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+        /// If the value is unknown, this initializes to [`unknownStringValue`](doc:RepositoryBase/unknownStringValue(_:)).
         public init(stringValue: Swift.String) {
           switch stringValue {
           case "REPOSITORY_BASE_UNSPECIFIED": self = .unspecified
@@ -1610,7 +1610,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWkt._AnyPac
 
         /// Initialize from an integer value.
         ///
-        /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+        /// If the value is unknown, this initializes to [`unknownIntValue`](doc:RepositoryBase/unknownIntValue(_:)).
         public init(intValue: Int) {
           switch intValue {
           case 0: self = .unspecified

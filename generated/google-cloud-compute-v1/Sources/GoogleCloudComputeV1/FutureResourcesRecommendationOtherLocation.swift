@@ -118,7 +118,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Status/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "CONDITIONS_NOT_MET": self = .conditionsNotMet
@@ -132,7 +132,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Status/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .conditionsNotMet

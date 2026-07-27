@@ -473,7 +473,7 @@ public struct RestoreConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Op/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "OP_UNSPECIFIED": self = .unspecified
@@ -489,7 +489,7 @@ public struct RestoreConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Op/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified
@@ -716,7 +716,7 @@ public struct RestoreConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:VolumeDataRestorePolicy/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "VOLUME_DATA_RESTORE_POLICY_UNSPECIFIED": self = .unspecified
@@ -729,7 +729,7 @@ public struct RestoreConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:VolumeDataRestorePolicy/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified
@@ -829,7 +829,7 @@ public struct RestoreConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:ClusterResourceConflictPolicy/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "CLUSTER_RESOURCE_CONFLICT_POLICY_UNSPECIFIED": self = .unspecified
@@ -841,7 +841,7 @@ public struct RestoreConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:ClusterResourceConflictPolicy/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified
@@ -981,7 +981,7 @@ public struct RestoreConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:NamespacedResourceRestoreMode/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "NAMESPACED_RESOURCE_RESTORE_MODE_UNSPECIFIED": self = .unspecified
@@ -996,7 +996,7 @@ public struct RestoreConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:NamespacedResourceRestoreMode/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified

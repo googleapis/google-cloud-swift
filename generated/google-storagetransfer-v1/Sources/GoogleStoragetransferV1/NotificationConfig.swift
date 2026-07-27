@@ -151,7 +151,7 @@ public struct NotificationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackabl
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:EventType/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "EVENT_TYPE_UNSPECIFIED": self = .unspecified
@@ -164,7 +164,7 @@ public struct NotificationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackabl
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:EventType/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified
@@ -261,7 +261,7 @@ public struct NotificationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackabl
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:PayloadFormat/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "PAYLOAD_FORMAT_UNSPECIFIED": self = .unspecified
@@ -273,7 +273,7 @@ public struct NotificationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackabl
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:PayloadFormat/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified

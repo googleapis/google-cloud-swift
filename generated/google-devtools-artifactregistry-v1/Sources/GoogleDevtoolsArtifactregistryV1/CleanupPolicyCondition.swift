@@ -114,7 +114,7 @@ public struct CleanupPolicyCondition: Codable, Equatable, GoogleCloudWkt._AnyPac
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:TagState/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "TAG_STATE_UNSPECIFIED": self = .unspecified
@@ -127,7 +127,7 @@ public struct CleanupPolicyCondition: Codable, Equatable, GoogleCloudWkt._AnyPac
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:TagState/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified

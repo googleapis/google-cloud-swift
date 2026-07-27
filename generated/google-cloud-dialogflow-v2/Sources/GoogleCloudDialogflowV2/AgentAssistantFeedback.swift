@@ -284,7 +284,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:AnswerRelevance/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "ANSWER_RELEVANCE_UNSPECIFIED": self = .unspecified
@@ -296,7 +296,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:AnswerRelevance/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified
@@ -389,7 +389,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:DocumentCorrectness/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "DOCUMENT_CORRECTNESS_UNSPECIFIED": self = .unspecified
@@ -401,7 +401,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:DocumentCorrectness/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified
@@ -494,7 +494,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:DocumentEfficiency/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "DOCUMENT_EFFICIENCY_UNSPECIFIED": self = .unspecified
@@ -506,7 +506,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:DocumentEfficiency/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified

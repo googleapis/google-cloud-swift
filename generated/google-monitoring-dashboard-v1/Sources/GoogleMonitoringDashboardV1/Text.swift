@@ -147,7 +147,7 @@ public struct Text: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:HorizontalAlignment/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "HORIZONTAL_ALIGNMENT_UNSPECIFIED": self = .unspecified
@@ -160,7 +160,7 @@ public struct Text: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:HorizontalAlignment/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified
@@ -259,7 +259,7 @@ public struct Text: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:VerticalAlignment/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "VERTICAL_ALIGNMENT_UNSPECIFIED": self = .unspecified
@@ -272,7 +272,7 @@ public struct Text: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:VerticalAlignment/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified
@@ -379,7 +379,7 @@ public struct Text: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:PaddingSize/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "PADDING_SIZE_UNSPECIFIED": self = .unspecified
@@ -394,7 +394,7 @@ public struct Text: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:PaddingSize/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified
@@ -505,7 +505,7 @@ public struct Text: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:FontSize/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "FONT_SIZE_UNSPECIFIED": self = .unspecified
@@ -520,7 +520,7 @@ public struct Text: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:FontSize/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified
@@ -660,7 +660,7 @@ public struct Text: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:PointerLocation/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "POINTER_LOCATION_UNSPECIFIED": self = .unspecified
@@ -682,7 +682,7 @@ public struct Text: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:PointerLocation/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified
@@ -806,7 +806,7 @@ public struct Text: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Format/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "FORMAT_UNSPECIFIED": self = .unspecified
@@ -818,7 +818,7 @@ public struct Text: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Format/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified

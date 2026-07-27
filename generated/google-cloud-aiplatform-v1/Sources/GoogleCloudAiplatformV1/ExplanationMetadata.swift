@@ -393,7 +393,7 @@
 
           /// Initialize from a string value.
           ///
-          /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+          /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Type_/unknownStringValue(_:)).
           public init(stringValue: Swift.String) {
             switch stringValue {
             case "TYPE_UNSPECIFIED": self = .unspecified
@@ -405,7 +405,7 @@
 
           /// Initialize from an integer value.
           ///
-          /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+          /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Type_/unknownIntValue(_:)).
           public init(intValue: Int) {
             switch intValue {
             case 0: self = .unspecified
@@ -505,7 +505,7 @@
 
           /// Initialize from a string value.
           ///
-          /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+          /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Polarity/unknownStringValue(_:)).
           public init(stringValue: Swift.String) {
             switch stringValue {
             case "POLARITY_UNSPECIFIED": self = .unspecified
@@ -518,7 +518,7 @@
 
           /// Initialize from an integer value.
           ///
-          /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+          /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Polarity/unknownIntValue(_:)).
           public init(intValue: Int) {
             switch intValue {
             case 0: self = .unspecified
@@ -631,7 +631,7 @@
 
           /// Initialize from a string value.
           ///
-          /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+          /// If the value is unknown, this initializes to [`unknownStringValue`](doc:ColorMap/unknownStringValue(_:)).
           public init(stringValue: Swift.String) {
             switch stringValue {
             case "COLOR_MAP_UNSPECIFIED": self = .unspecified
@@ -647,7 +647,7 @@
 
           /// Initialize from an integer value.
           ///
-          /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+          /// If the value is unknown, this initializes to [`unknownIntValue`](doc:ColorMap/unknownIntValue(_:)).
           public init(intValue: Int) {
             switch intValue {
             case 0: self = .unspecified
@@ -758,7 +758,7 @@
 
           /// Initialize from a string value.
           ///
-          /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+          /// If the value is unknown, this initializes to [`unknownStringValue`](doc:OverlayType/unknownStringValue(_:)).
           public init(stringValue: Swift.String) {
             switch stringValue {
             case "OVERLAY_TYPE_UNSPECIFIED": self = .unspecified
@@ -772,7 +772,7 @@
 
           /// Initialize from an integer value.
           ///
-          /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+          /// If the value is unknown, this initializes to [`unknownIntValue`](doc:OverlayType/unknownIntValue(_:)).
           public init(intValue: Int) {
             switch intValue {
             case 0: self = .unspecified
@@ -948,7 +948,7 @@
 
         /// Initialize from a string value.
         ///
-        /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+        /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Encoding/unknownStringValue(_:)).
         public init(stringValue: Swift.String) {
           switch stringValue {
           case "ENCODING_UNSPECIFIED": self = .unspecified
@@ -964,7 +964,7 @@
 
         /// Initialize from an integer value.
         ///
-        /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+        /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Encoding/unknownIntValue(_:)).
         public init(intValue: Int) {
           switch intValue {
           case 0: self = .unspecified

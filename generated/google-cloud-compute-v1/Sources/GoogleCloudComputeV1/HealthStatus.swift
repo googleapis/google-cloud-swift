@@ -120,7 +120,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:HealthState/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "HEALTHY": self = .healthy
@@ -131,7 +131,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:HealthState/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .healthy
@@ -218,7 +218,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Ipv6HealthState/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "HEALTHY": self = .healthy
@@ -229,7 +229,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Ipv6HealthState/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .healthy
@@ -338,7 +338,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:WeightError/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "INVALID_WEIGHT": self = .invalidWeight
@@ -351,7 +351,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:WeightError/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .invalidWeight

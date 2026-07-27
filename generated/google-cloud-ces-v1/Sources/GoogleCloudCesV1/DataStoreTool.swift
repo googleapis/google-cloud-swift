@@ -594,7 +594,7 @@ public struct DataStoreTool: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
           /// Initialize from a string value.
           ///
-          /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+          /// If the value is unknown, this initializes to [`unknownStringValue`](doc:AttributeType/unknownStringValue(_:)).
           public init(stringValue: Swift.String) {
             switch stringValue {
             case "ATTRIBUTE_TYPE_UNSPECIFIED": self = .unspecified
@@ -606,7 +606,7 @@ public struct DataStoreTool: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
           /// Initialize from an integer value.
           ///
-          /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+          /// If the value is unknown, this initializes to [`unknownIntValue`](doc:AttributeType/unknownIntValue(_:)).
           public init(intValue: Int) {
             switch intValue {
             case 0: self = .unspecified
@@ -697,7 +697,7 @@ public struct DataStoreTool: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
           /// Initialize from a string value.
           ///
-          /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+          /// If the value is unknown, this initializes to [`unknownStringValue`](doc:InterpolationType/unknownStringValue(_:)).
           public init(stringValue: Swift.String) {
             switch stringValue {
             case "INTERPOLATION_TYPE_UNSPECIFIED": self = .unspecified
@@ -708,7 +708,7 @@ public struct DataStoreTool: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
           /// Initialize from an integer value.
           ///
-          /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+          /// If the value is unknown, this initializes to [`unknownIntValue`](doc:InterpolationType/unknownIntValue(_:)).
           public init(intValue: Int) {
             switch intValue {
             case 0: self = .unspecified
@@ -867,7 +867,7 @@ public struct DataStoreTool: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:ModalityType/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "MODALITY_TYPE_UNSPECIFIED": self = .unspecified
@@ -879,7 +879,7 @@ public struct DataStoreTool: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:ModalityType/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified
@@ -987,7 +987,7 @@ public struct DataStoreTool: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:FilterParameterBehavior/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "FILTER_PARAMETER_BEHAVIOR_UNSPECIFIED": self = .unspecified
@@ -999,7 +999,7 @@ public struct DataStoreTool: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:FilterParameterBehavior/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified

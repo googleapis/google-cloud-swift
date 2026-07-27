@@ -135,7 +135,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:AggregationInterval/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "INTERVAL_10_MIN": self = .interval10Min
@@ -150,7 +150,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:AggregationInterval/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .interval10Min
@@ -248,7 +248,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Metadata/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "CUSTOM_METADATA": self = .customMetadata
@@ -260,7 +260,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Metadata/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .customMetadata

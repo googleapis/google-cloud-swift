@@ -272,7 +272,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:ByoipApiVersion/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "V1": self = .v1
@@ -283,7 +283,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:ByoipApiVersion/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .v1
@@ -376,7 +376,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Ipv6AccessType/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "EXTERNAL": self = .external
@@ -387,7 +387,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Ipv6AccessType/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .external
@@ -492,7 +492,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Mode/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "DELEGATION": self = .delegation
@@ -505,7 +505,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Mode/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .delegation
@@ -620,7 +620,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Status/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "ACTIVE": self = .active
@@ -636,7 +636,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Status/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .active

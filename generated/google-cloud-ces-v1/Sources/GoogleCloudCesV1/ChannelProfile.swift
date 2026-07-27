@@ -146,7 +146,7 @@ public struct ChannelProfile: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Persona/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "UNKNOWN": self = .unknown
@@ -158,7 +158,7 @@ public struct ChannelProfile: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Persona/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unknown
@@ -357,7 +357,7 @@ public struct ChannelProfile: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Modality/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "MODALITY_UNSPECIFIED": self = .unspecified
@@ -371,7 +371,7 @@ public struct ChannelProfile: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Modality/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified
@@ -468,7 +468,7 @@ public struct ChannelProfile: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Theme/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "THEME_UNSPECIFIED": self = .unspecified
@@ -480,7 +480,7 @@ public struct ChannelProfile: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Theme/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified
@@ -708,7 +708,7 @@ public struct ChannelProfile: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:ChannelType/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "UNKNOWN": self = .unknown
@@ -728,7 +728,7 @@ public struct ChannelProfile: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:ChannelType/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unknown

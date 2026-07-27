@@ -129,7 +129,7 @@ public struct RolloutRestriction: Codable, Equatable, GoogleCloudWkt._AnyPackabl
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:RolloutActions/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "ROLLOUT_ACTIONS_UNSPECIFIED": self = .unspecified
@@ -147,7 +147,7 @@ public struct RolloutRestriction: Codable, Equatable, GoogleCloudWkt._AnyPackabl
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:RolloutActions/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified

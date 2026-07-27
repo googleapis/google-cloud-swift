@@ -71,7 +71,7 @@ public enum ExecutionView: Codable, Equatable, Sendable {
 
   /// Initialize from a string value.
   ///
-  /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+  /// If the value is unknown, this initializes to [`unknownStringValue`](doc:ExecutionView/unknownStringValue(_:)).
   public init(stringValue: Swift.String) {
     switch stringValue {
     case "EXECUTION_VIEW_UNSPECIFIED": self = .unspecified
@@ -83,7 +83,7 @@ public enum ExecutionView: Codable, Equatable, Sendable {
 
   /// Initialize from an integer value.
   ///
-  /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+  /// If the value is unknown, this initializes to [`unknownIntValue`](doc:ExecutionView/unknownIntValue(_:)).
   public init(intValue: Int) {
     switch intValue {
     case 0: self = .unspecified

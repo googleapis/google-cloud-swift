@@ -136,7 +136,7 @@ public struct S3CompatibleMetadata: Codable, Equatable, GoogleCloudWkt._AnyPacka
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:AuthMethod/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "AUTH_METHOD_UNSPECIFIED": self = .unspecified
@@ -148,7 +148,7 @@ public struct S3CompatibleMetadata: Codable, Equatable, GoogleCloudWkt._AnyPacka
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:AuthMethod/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified
@@ -243,7 +243,7 @@ public struct S3CompatibleMetadata: Codable, Equatable, GoogleCloudWkt._AnyPacka
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:RequestModel/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "REQUEST_MODEL_UNSPECIFIED": self = .unspecified
@@ -255,7 +255,7 @@ public struct S3CompatibleMetadata: Codable, Equatable, GoogleCloudWkt._AnyPacka
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:RequestModel/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified
@@ -350,7 +350,7 @@ public struct S3CompatibleMetadata: Codable, Equatable, GoogleCloudWkt._AnyPacka
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:NetworkProtocol/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "NETWORK_PROTOCOL_UNSPECIFIED": self = .unspecified
@@ -362,7 +362,7 @@ public struct S3CompatibleMetadata: Codable, Equatable, GoogleCloudWkt._AnyPacka
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:NetworkProtocol/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified
@@ -455,7 +455,7 @@ public struct S3CompatibleMetadata: Codable, Equatable, GoogleCloudWkt._AnyPacka
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:ListApi/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "LIST_API_UNSPECIFIED": self = .unspecified
@@ -467,7 +467,7 @@ public struct S3CompatibleMetadata: Codable, Equatable, GoogleCloudWkt._AnyPacka
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:ListApi/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified

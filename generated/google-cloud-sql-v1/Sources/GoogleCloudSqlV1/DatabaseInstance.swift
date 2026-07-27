@@ -428,7 +428,7 @@
 
         /// Initialize from a string value.
         ///
-        /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+        /// If the value is unknown, this initializes to [`unknownStringValue`](doc:SqlOutOfDiskState/unknownStringValue(_:)).
         public init(stringValue: Swift.String) {
           switch stringValue {
           case "SQL_OUT_OF_DISK_STATE_UNSPECIFIED": self = .unspecified
@@ -440,7 +440,7 @@
 
         /// Initialize from an integer value.
         ///
-        /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+        /// If the value is unknown, this initializes to [`unknownIntValue`](doc:SqlOutOfDiskState/unknownIntValue(_:)).
         public init(intValue: Int) {
           switch intValue {
           case 0: self = .unspecified
@@ -631,7 +631,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:SqlInstanceState/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "SQL_INSTANCE_STATE_UNSPECIFIED": self = .unspecified
@@ -649,7 +649,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:SqlInstanceState/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified
@@ -753,7 +753,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:SqlNetworkArchitecture/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "SQL_NETWORK_ARCHITECTURE_UNSPECIFIED": self = .unspecified
@@ -765,7 +765,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:SqlNetworkArchitecture/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified

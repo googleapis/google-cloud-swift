@@ -105,7 +105,7 @@ public struct RestrictAllowedResourcesRequest: Codable, Equatable, GoogleCloudWk
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:RestrictionType/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "RESTRICTION_TYPE_UNSPECIFIED": self = .unspecified
@@ -117,7 +117,7 @@ public struct RestrictAllowedResourcesRequest: Codable, Equatable, GoogleCloudWk
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:RestrictionType/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified

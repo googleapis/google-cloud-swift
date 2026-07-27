@@ -347,7 +347,7 @@
 
           /// Initialize from a string value.
           ///
-          /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+          /// If the value is unknown, this initializes to [`unknownStringValue`](doc:ContentFormat/unknownStringValue(_:)).
           public init(stringValue: Swift.String) {
             switch stringValue {
             case "CONTENT_FORMAT_UNSPECIFIED": self = .unspecified
@@ -359,7 +359,7 @@
 
           /// Initialize from an integer value.
           ///
-          /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+          /// If the value is unknown, this initializes to [`unknownIntValue`](doc:ContentFormat/unknownIntValue(_:)).
           public init(intValue: Int) {
             switch intValue {
             case 0: self = .unspecified
@@ -464,7 +464,7 @@
 
         /// Initialize from a string value.
         ///
-        /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+        /// If the value is unknown, this initializes to [`unknownStringValue`](doc:UpdateMode/unknownStringValue(_:)).
         public init(stringValue: Swift.String) {
           switch stringValue {
           case "UPDATE_MODE_UNSPECIFIED": self = .unspecified
@@ -476,7 +476,7 @@
 
         /// Initialize from an integer value.
         ///
-        /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+        /// If the value is unknown, this initializes to [`unknownIntValue`](doc:UpdateMode/unknownIntValue(_:)).
         public init(intValue: Int) {
           switch intValue {
           case 0: self = .unspecified
@@ -620,7 +620,7 @@
 
         /// Initialize from a string value.
         ///
-        /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+        /// If the value is unknown, this initializes to [`unknownStringValue`](doc:GeneratorType/unknownStringValue(_:)).
         public init(stringValue: Swift.String) {
           switch stringValue {
           case "GENERATOR_TYPE_UNSPECIFIED": self = .unspecified
@@ -636,7 +636,7 @@
 
         /// Initialize from an integer value.
         ///
-        /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+        /// If the value is unknown, this initializes to [`unknownIntValue`](doc:GeneratorType/unknownIntValue(_:)).
         public init(intValue: Int) {
           switch intValue {
           case 0: self = .unspecified
@@ -748,7 +748,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:LifecycleState/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "LIFECYCLE_STATE_UNSPECIFIED": self = .unspecified
@@ -760,7 +760,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:LifecycleState/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified
@@ -858,7 +858,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:ConversationStage/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "CONVERSATION_STAGE_UNSPECIFIED": self = .unspecified
@@ -870,7 +870,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:ConversationStage/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified

@@ -168,7 +168,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:InstanceTerminationAction/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "DELETE": self = .delete
@@ -180,7 +180,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:InstanceTerminationAction/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .delete
@@ -276,7 +276,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:OnHostMaintenance/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "MIGRATE": self = .migrate
@@ -287,7 +287,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:OnHostMaintenance/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .migrate
@@ -385,7 +385,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:ProvisioningModel/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "FLEX_START": self = .flexStart
@@ -398,7 +398,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:ProvisioningModel/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .flexStart

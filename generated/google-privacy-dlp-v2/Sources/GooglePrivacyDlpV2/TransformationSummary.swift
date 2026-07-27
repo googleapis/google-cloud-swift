@@ -158,7 +158,7 @@ public struct TransformationSummary: Codable, Equatable, GoogleCloudWkt._AnyPack
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:TransformationResultCode/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "TRANSFORMATION_RESULT_CODE_UNSPECIFIED": self = .unspecified
@@ -170,7 +170,7 @@ public struct TransformationSummary: Codable, Equatable, GoogleCloudWkt._AnyPack
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:TransformationResultCode/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified

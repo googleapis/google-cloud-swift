@@ -490,7 +490,7 @@
 
         /// Initialize from a string value.
         ///
-        /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+        /// If the value is unknown, this initializes to [`unknownStringValue`](doc:ContainerType/unknownStringValue(_:)).
         public init(stringValue: Swift.String) {
           switch stringValue {
           case "TAR": self = .tar
@@ -500,7 +500,7 @@
 
         /// Initialize from an integer value.
         ///
-        /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+        /// If the value is unknown, this initializes to [`unknownIntValue`](doc:ContainerType/unknownIntValue(_:)).
         public init(intValue: Int) {
           switch intValue {
           case 0: self = .tar
@@ -602,7 +602,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Architecture/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "ARCHITECTURE_UNSPECIFIED": self = .unspecified
@@ -614,7 +614,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Architecture/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified
@@ -700,7 +700,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:SourceType/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "RAW": self = .raw
@@ -710,7 +710,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:SourceType/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .raw
@@ -805,7 +805,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Status/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "DELETING": self = .deleting
@@ -818,7 +818,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Status/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .deleting

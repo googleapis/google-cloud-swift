@@ -198,7 +198,7 @@ public struct ServiceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:VpcConnectorEgressSettings/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "VPC_CONNECTOR_EGRESS_SETTINGS_UNSPECIFIED": self = .unspecified
@@ -210,7 +210,7 @@ public struct ServiceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:VpcConnectorEgressSettings/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified
@@ -311,7 +311,7 @@ public struct ServiceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:IngressSettings/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "INGRESS_SETTINGS_UNSPECIFIED": self = .unspecified
@@ -324,7 +324,7 @@ public struct ServiceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:IngressSettings/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified
@@ -428,7 +428,7 @@ public struct ServiceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:SecurityLevel/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "SECURITY_LEVEL_UNSPECIFIED": self = .unspecified
@@ -440,7 +440,7 @@ public struct ServiceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:SecurityLevel/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified

@@ -123,7 +123,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:SubType/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "MAINTENANCE_SUBTYPE_UNSPECIFIED": self = .maintenanceSubtypeUnspecified
@@ -137,7 +137,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:SubType/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .maintenanceSubtypeUnspecified
@@ -232,7 +232,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Type_/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "MAINTENANCE_TYPE_UNSPECIFIED": self = .maintenanceTypeUnspecified
@@ -243,7 +243,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Type_/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .maintenanceTypeUnspecified

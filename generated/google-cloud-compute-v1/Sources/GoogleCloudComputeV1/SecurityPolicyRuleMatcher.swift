@@ -114,7 +114,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:VersionedExpr/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "SRC_IPS_V1": self = .srcIpsV1
@@ -124,7 +124,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:VersionedExpr/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .srcIpsV1

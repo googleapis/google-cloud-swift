@@ -282,7 +282,7 @@ public struct InternalRange: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Usage/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "USAGE_UNSPECIFIED": self = .unspecified
@@ -295,7 +295,7 @@ public struct InternalRange: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Usage/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified
@@ -409,7 +409,7 @@ public struct InternalRange: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Peering/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "PEERING_UNSPECIFIED": self = .unspecified
@@ -422,7 +422,7 @@ public struct InternalRange: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Peering/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified
@@ -518,7 +518,7 @@ public struct InternalRange: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Overlap/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "OVERLAP_UNSPECIFIED": self = .unspecified
@@ -530,7 +530,7 @@ public struct InternalRange: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Overlap/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified
@@ -642,7 +642,7 @@ public struct InternalRange: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:AllocationStrategy/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "ALLOCATION_STRATEGY_UNSPECIFIED": self = .unspecified
@@ -656,7 +656,7 @@ public struct InternalRange: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:AllocationStrategy/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified

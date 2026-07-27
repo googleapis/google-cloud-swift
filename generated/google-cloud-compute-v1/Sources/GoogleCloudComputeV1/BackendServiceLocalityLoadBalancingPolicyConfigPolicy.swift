@@ -158,7 +158,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Name/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "INVALID_LB_POLICY": self = .invalidLbPolicy
@@ -177,7 +177,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Name/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .invalidLbPolicy

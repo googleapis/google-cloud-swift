@@ -162,7 +162,7 @@ public struct RolloutUpdateEvent: Codable, Equatable, GoogleCloudWkt._AnyPackabl
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:RolloutUpdateType/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "ROLLOUT_UPDATE_TYPE_UNSPECIFIED": self = .unspecified
@@ -185,7 +185,7 @@ public struct RolloutUpdateEvent: Codable, Equatable, GoogleCloudWkt._AnyPackabl
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:RolloutUpdateType/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified

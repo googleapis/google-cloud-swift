@@ -179,7 +179,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:MaintenanceReasons/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "FAILURE_DISK": self = .failureDisk
@@ -207,7 +207,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:MaintenanceReasons/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .failureDisk
@@ -330,7 +330,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:MaintenanceStatus/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "ONGOING": self = .ongoing
@@ -342,7 +342,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:MaintenanceStatus/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .ongoing
@@ -444,7 +444,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Type_/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "MULTIPLE": self = .multiple
@@ -457,7 +457,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Type_/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .multiple

@@ -77,7 +77,7 @@ public enum RouteType: Codable, Equatable, Sendable {
 
   /// Initialize from a string value.
   ///
-  /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+  /// If the value is unknown, this initializes to [`unknownStringValue`](doc:RouteType/unknownStringValue(_:)).
   public init(stringValue: Swift.String) {
     switch stringValue {
     case "ROUTE_TYPE_UNSPECIFIED": self = .unspecified
@@ -90,7 +90,7 @@ public enum RouteType: Codable, Equatable, Sendable {
 
   /// Initialize from an integer value.
   ///
-  /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+  /// If the value is unknown, this initializes to [`unknownIntValue`](doc:RouteType/unknownIntValue(_:)).
   public init(intValue: Int) {
     switch intValue {
     case 0: self = .unspecified

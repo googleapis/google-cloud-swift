@@ -135,7 +135,7 @@ public struct DiscoveryCloudSqlGenerationCadence: Codable, Equatable, GoogleClou
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:CloudSqlSchemaModification/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "SQL_SCHEMA_MODIFICATION_UNSPECIFIED": self = .sqlSchemaModificationUnspecified
@@ -147,7 +147,7 @@ public struct DiscoveryCloudSqlGenerationCadence: Codable, Equatable, GoogleClou
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:CloudSqlSchemaModification/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .sqlSchemaModificationUnspecified

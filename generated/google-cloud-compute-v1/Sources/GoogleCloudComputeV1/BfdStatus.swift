@@ -128,7 +128,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:BfdSessionInitializationMode/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "ACTIVE": self = .active
@@ -140,7 +140,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:BfdSessionInitializationMode/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .active
@@ -253,7 +253,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:LocalDiagnostic/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "ADMINISTRATIVELY_DOWN": self = .administrativelyDown
@@ -272,7 +272,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:LocalDiagnostic/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .administrativelyDown
@@ -384,7 +384,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:LocalState/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "ADMIN_DOWN": self = .adminDown
@@ -398,7 +398,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:LocalState/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .adminDown

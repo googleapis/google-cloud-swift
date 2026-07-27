@@ -353,7 +353,7 @@ public struct CompilationResultAction: Codable, Equatable, GoogleCloudWkt._AnyPa
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:RelationType/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "RELATION_TYPE_UNSPECIFIED": self = .unspecified
@@ -367,7 +367,7 @@ public struct CompilationResultAction: Codable, Equatable, GoogleCloudWkt._AnyPa
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:RelationType/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified
@@ -460,7 +460,7 @@ public struct CompilationResultAction: Codable, Equatable, GoogleCloudWkt._AnyPa
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:TableFormat/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "TABLE_FORMAT_UNSPECIFIED": self = .unspecified
@@ -471,7 +471,7 @@ public struct CompilationResultAction: Codable, Equatable, GoogleCloudWkt._AnyPa
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:TableFormat/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified
@@ -558,7 +558,7 @@ public struct CompilationResultAction: Codable, Equatable, GoogleCloudWkt._AnyPa
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:FileFormat/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "FILE_FORMAT_UNSPECIFIED": self = .unspecified
@@ -569,7 +569,7 @@ public struct CompilationResultAction: Codable, Equatable, GoogleCloudWkt._AnyPa
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:FileFormat/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified

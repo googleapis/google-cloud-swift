@@ -69,7 +69,7 @@ public enum Syntax: Codable, Equatable, Sendable {
 
   /// Initialize from a string value.
   ///
-  /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+  /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Syntax/unknownStringValue(_:)).
   public init(stringValue: Swift.String) {
     switch stringValue {
     case "SYNTAX_PROTO2": self = .proto2
@@ -81,7 +81,7 @@ public enum Syntax: Codable, Equatable, Sendable {
 
   /// Initialize from an integer value.
   ///
-  /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+  /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Syntax/unknownIntValue(_:)).
   public init(intValue: Int) {
     switch intValue {
     case 0: self = .proto2

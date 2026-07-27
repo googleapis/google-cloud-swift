@@ -104,7 +104,7 @@ public struct GenerateAuditScopeReportRequest: Codable, Equatable, GoogleCloudWk
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:AuditScopeReportFormat/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "AUDIT_SCOPE_REPORT_FORMAT_UNSPECIFIED": self = .unspecified
@@ -115,7 +115,7 @@ public struct GenerateAuditScopeReportRequest: Codable, Equatable, GoogleCloudWk
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:AuditScopeReportFormat/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified

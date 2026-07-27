@@ -108,7 +108,7 @@ public struct ListTransferRunsRequest: Codable, Equatable, GoogleCloudWkt._AnyPa
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:RunAttempt/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "RUN_ATTEMPT_UNSPECIFIED": self = .unspecified
@@ -119,7 +119,7 @@ public struct ListTransferRunsRequest: Codable, Equatable, GoogleCloudWkt._AnyPa
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:RunAttempt/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified

@@ -70,7 +70,7 @@
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:NotebookExecutionJobView/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "NOTEBOOK_EXECUTION_JOB_VIEW_UNSPECIFIED": self = .unspecified
@@ -82,7 +82,7 @@
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:NotebookExecutionJobView/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified

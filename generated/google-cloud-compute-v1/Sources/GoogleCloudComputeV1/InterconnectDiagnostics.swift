@@ -110,7 +110,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:BundleAggregationType/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "BUNDLE_AGGREGATION_TYPE_LACP": self = .lacp
@@ -121,7 +121,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:BundleAggregationType/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .lacp
@@ -216,7 +216,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:BundleOperationalStatus/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "BUNDLE_OPERATIONAL_STATUS_DOWN": self = .down
@@ -227,7 +227,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:BundleOperationalStatus/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .down

@@ -310,7 +310,7 @@
 
           /// Initialize from a string value.
           ///
-          /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+          /// If the value is unknown, this initializes to [`unknownStringValue`](doc:ModelRoutingPreference/unknownStringValue(_:)).
           public init(stringValue: Swift.String) {
             switch stringValue {
             case "UNKNOWN": self = .unknown
@@ -323,7 +323,7 @@
 
           /// Initialize from an integer value.
           ///
-          /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+          /// If the value is unknown, this initializes to [`unknownIntValue`](doc:ModelRoutingPreference/unknownIntValue(_:)).
           public init(intValue: Int) {
             switch intValue {
             case 0: self = .unknown
@@ -524,7 +524,7 @@
 
         /// Initialize from a string value.
         ///
-        /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+        /// If the value is unknown, this initializes to [`unknownStringValue`](doc:ThinkingLevel/unknownStringValue(_:)).
         public init(stringValue: Swift.String) {
           switch stringValue {
           case "THINKING_LEVEL_UNSPECIFIED": self = .unspecified
@@ -538,7 +538,7 @@
 
         /// Initialize from an integer value.
         ///
-        /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+        /// If the value is unknown, this initializes to [`unknownIntValue`](doc:ThinkingLevel/unknownIntValue(_:)).
         public init(intValue: Int) {
           switch intValue {
           case 0: self = .unspecified
@@ -650,7 +650,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Modality/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "MODALITY_UNSPECIFIED": self = .unspecified
@@ -663,7 +663,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Modality/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified
@@ -762,7 +762,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:MediaResolution/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "MEDIA_RESOLUTION_UNSPECIFIED": self = .unspecified
@@ -775,7 +775,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:MediaResolution/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified

@@ -676,7 +676,7 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable
 
         /// Initialize from a string value.
         ///
-        /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+        /// If the value is unknown, this initializes to [`unknownStringValue`](doc:StatusClass/unknownStringValue(_:)).
         public init(stringValue: Swift.String) {
           switch stringValue {
           case "STATUS_CLASS_UNSPECIFIED": self = .unspecified
@@ -692,7 +692,7 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable
 
         /// Initialize from an integer value.
         ///
-        /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+        /// If the value is unknown, this initializes to [`unknownIntValue`](doc:StatusClass/unknownIntValue(_:)).
         public init(intValue: Int) {
           switch intValue {
           case 0: self = .unspecified
@@ -839,7 +839,7 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable
 
         /// Initialize from a string value.
         ///
-        /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+        /// If the value is unknown, this initializes to [`unknownStringValue`](doc:ServiceAgentAuthenticationType/unknownStringValue(_:)).
         public init(stringValue: Swift.String) {
           switch stringValue {
           case "SERVICE_AGENT_AUTHENTICATION_TYPE_UNSPECIFIED": self = .unspecified
@@ -850,7 +850,7 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable
 
         /// Initialize from an integer value.
         ///
-        /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+        /// If the value is unknown, this initializes to [`unknownIntValue`](doc:ServiceAgentAuthenticationType/unknownIntValue(_:)).
         public init(intValue: Int) {
           switch intValue {
           case 0: self = .unspecified
@@ -953,7 +953,7 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:RequestMethod/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "METHOD_UNSPECIFIED": self = .methodUnspecified
@@ -965,7 +965,7 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:RequestMethod/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .methodUnspecified
@@ -1061,7 +1061,7 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:ContentType/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "TYPE_UNSPECIFIED": self = .typeUnspecified
@@ -1073,7 +1073,7 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:ContentType/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .typeUnspecified
@@ -1344,7 +1344,7 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable
 
         /// Initialize from a string value.
         ///
-        /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+        /// If the value is unknown, this initializes to [`unknownStringValue`](doc:JsonPathMatcherOption/unknownStringValue(_:)).
         public init(stringValue: Swift.String) {
           switch stringValue {
           case "JSON_PATH_MATCHER_OPTION_UNSPECIFIED": self = .unspecified
@@ -1356,7 +1356,7 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable
 
         /// Initialize from an integer value.
         ///
-        /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+        /// If the value is unknown, this initializes to [`unknownIntValue`](doc:JsonPathMatcherOption/unknownIntValue(_:)).
         public init(intValue: Int) {
           switch intValue {
           case 0: self = .unspecified
@@ -1492,7 +1492,7 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:ContentMatcherOption/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "CONTENT_MATCHER_OPTION_UNSPECIFIED": self = .unspecified
@@ -1508,7 +1508,7 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:ContentMatcherOption/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified
@@ -1633,7 +1633,7 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:CheckerType/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "CHECKER_TYPE_UNSPECIFIED": self = .unspecified
@@ -1645,7 +1645,7 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:CheckerType/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified

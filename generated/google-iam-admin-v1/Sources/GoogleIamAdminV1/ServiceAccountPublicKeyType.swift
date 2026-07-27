@@ -69,7 +69,7 @@ public enum ServiceAccountPublicKeyType: Codable, Equatable, Sendable {
 
   /// Initialize from a string value.
   ///
-  /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+  /// If the value is unknown, this initializes to [`unknownStringValue`](doc:ServiceAccountPublicKeyType/unknownStringValue(_:)).
   public init(stringValue: Swift.String) {
     switch stringValue {
     case "TYPE_NONE": self = .typeNone
@@ -81,7 +81,7 @@ public enum ServiceAccountPublicKeyType: Codable, Equatable, Sendable {
 
   /// Initialize from an integer value.
   ///
-  /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+  /// If the value is unknown, this initializes to [`unknownIntValue`](doc:ServiceAccountPublicKeyType/unknownIntValue(_:)).
   public init(intValue: Int) {
     switch intValue {
     case 0: self = .typeNone

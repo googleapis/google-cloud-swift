@@ -288,7 +288,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:SqlBackupType/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "SQL_BACKUP_TYPE_UNSPECIFIED": self = .unspecified
@@ -301,7 +301,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:SqlBackupType/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified
@@ -412,7 +412,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:SqlBackupState/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "SQL_BACKUP_STATE_UNSPECIFIED": self = .unspecified
@@ -428,7 +428,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:SqlBackupState/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified

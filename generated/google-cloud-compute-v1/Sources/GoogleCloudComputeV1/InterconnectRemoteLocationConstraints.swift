@@ -128,7 +128,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:PortPairRemoteLocation/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "PORT_PAIR_MATCHING_REMOTE_LOCATION": self = .portPairMatchingRemoteLocation
@@ -139,7 +139,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:PortPairRemoteLocation/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .portPairMatchingRemoteLocation
@@ -233,7 +233,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:PortPairVlan/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "PORT_PAIR_MATCHING_VLAN": self = .portPairMatchingVlan
@@ -244,7 +244,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:PortPairVlan/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .portPairMatchingVlan

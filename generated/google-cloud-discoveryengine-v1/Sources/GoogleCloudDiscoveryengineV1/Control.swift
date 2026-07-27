@@ -421,7 +421,7 @@
 
           /// Initialize from a string value.
           ///
-          /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+          /// If the value is unknown, this initializes to [`unknownStringValue`](doc:AttributeType/unknownStringValue(_:)).
           public init(stringValue: Swift.String) {
             switch stringValue {
             case "ATTRIBUTE_TYPE_UNSPECIFIED": self = .unspecified
@@ -433,7 +433,7 @@
 
           /// Initialize from an integer value.
           ///
-          /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+          /// If the value is unknown, this initializes to [`unknownIntValue`](doc:AttributeType/unknownIntValue(_:)).
           public init(intValue: Int) {
             switch intValue {
             case 0: self = .unspecified
@@ -524,7 +524,7 @@
 
           /// Initialize from a string value.
           ///
-          /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+          /// If the value is unknown, this initializes to [`unknownStringValue`](doc:InterpolationType/unknownStringValue(_:)).
           public init(stringValue: Swift.String) {
             switch stringValue {
             case "INTERPOLATION_TYPE_UNSPECIFIED": self = .unspecified
@@ -535,7 +535,7 @@
 
           /// Initialize from an integer value.
           ///
-          /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+          /// If the value is unknown, this initializes to [`unknownIntValue`](doc:InterpolationType/unknownIntValue(_:)).
           public init(intValue: Int) {
             switch intValue {
             case 0: self = .unspecified

@@ -134,7 +134,7 @@ public struct CompleteQueryRequest: Codable, Equatable, GoogleCloudWkt._AnyPacka
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:CompletionScope/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "COMPLETION_SCOPE_UNSPECIFIED": self = .unspecified
@@ -146,7 +146,7 @@ public struct CompleteQueryRequest: Codable, Equatable, GoogleCloudWkt._AnyPacka
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:CompletionScope/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified
@@ -272,7 +272,7 @@ public struct CompleteQueryRequest: Codable, Equatable, GoogleCloudWkt._AnyPacka
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:CompletionType/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "COMPLETION_TYPE_UNSPECIFIED": self = .unspecified
@@ -285,7 +285,7 @@ public struct CompleteQueryRequest: Codable, Equatable, GoogleCloudWkt._AnyPacka
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:CompletionType/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified

@@ -211,7 +211,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Architecture/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "ARCHITECTURE_UNSPECIFIED": self = .unspecified
@@ -223,7 +223,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Architecture/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified
@@ -312,7 +312,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Interface/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "NVME": self = .nvme
@@ -323,7 +323,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Interface/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .nvme
@@ -414,7 +414,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Mode/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "READ_ONLY": self = .readOnly
@@ -425,7 +425,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Mode/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .readOnly
@@ -514,7 +514,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:SavedState/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "DISK_SAVED_STATE_UNSPECIFIED": self = .diskSavedStateUnspecified
@@ -525,7 +525,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:SavedState/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .diskSavedStateUnspecified
@@ -612,7 +612,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Type_/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "PERSISTENT": self = .persistent
@@ -623,7 +623,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Type_/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .persistent

@@ -368,7 +368,7 @@ public struct ImportJob: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:ImportMethod/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "IMPORT_METHOD_UNSPECIFIED": self = .unspecified
@@ -388,7 +388,7 @@ public struct ImportJob: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:ImportMethod/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified
@@ -514,7 +514,7 @@ public struct ImportJob: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:ImportJobState/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "IMPORT_JOB_STATE_UNSPECIFIED": self = .unspecified
@@ -527,7 +527,7 @@ public struct ImportJob: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:ImportJobState/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified

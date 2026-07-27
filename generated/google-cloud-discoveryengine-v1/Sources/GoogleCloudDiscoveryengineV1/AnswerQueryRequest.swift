@@ -255,7 +255,7 @@
 
           /// Initialize from a string value.
           ///
-          /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+          /// If the value is unknown, this initializes to [`unknownStringValue`](doc:HarmBlockThreshold/unknownStringValue(_:)).
           public init(stringValue: Swift.String) {
             switch stringValue {
             case "HARM_BLOCK_THRESHOLD_UNSPECIFIED": self = .unspecified
@@ -270,7 +270,7 @@
 
           /// Initialize from an integer value.
           ///
-          /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+          /// If the value is unknown, this initializes to [`unknownIntValue`](doc:HarmBlockThreshold/unknownIntValue(_:)).
           public init(intValue: Int) {
             switch intValue {
             case 0: self = .unspecified
@@ -459,7 +459,7 @@
 
         /// Initialize from a string value.
         ///
-        /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+        /// If the value is unknown, this initializes to [`unknownStringValue`](doc:FilteringLevel/unknownStringValue(_:)).
         public init(stringValue: Swift.String) {
           switch stringValue {
           case "FILTERING_LEVEL_UNSPECIFIED": self = .unspecified
@@ -471,7 +471,7 @@
 
         /// Initialize from an integer value.
         ///
-        /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+        /// If the value is unknown, this initializes to [`unknownIntValue`](doc:FilteringLevel/unknownIntValue(_:)).
         public init(intValue: Int) {
           switch intValue {
           case 0: self = .unspecified
@@ -1364,7 +1364,7 @@
 
           /// Initialize from a string value.
           ///
-          /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+          /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Type_/unknownStringValue(_:)).
           public init(stringValue: Swift.String) {
             switch stringValue {
             case "TYPE_UNSPECIFIED": self = .unspecified
@@ -1379,7 +1379,7 @@
 
           /// Initialize from an integer value.
           ///
-          /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+          /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Type_/unknownIntValue(_:)).
           public init(intValue: Int) {
             switch intValue {
             case 0: self = .unspecified
@@ -1550,7 +1550,7 @@
 
             /// Initialize from a string value.
             ///
-            /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+            /// If the value is unknown, this initializes to [`unknownStringValue`](doc:ModelType/unknownStringValue(_:)).
             public init(stringValue: Swift.String) {
               switch stringValue {
               case "MODEL_TYPE_UNSPECIFIED": self = .unspecified
@@ -1562,7 +1562,7 @@
 
             /// Initialize from an integer value.
             ///
-            /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+            /// If the value is unknown, this initializes to [`unknownIntValue`](doc:ModelType/unknownIntValue(_:)).
             public init(intValue: Int) {
               switch intValue {
               case 0: self = .unspecified

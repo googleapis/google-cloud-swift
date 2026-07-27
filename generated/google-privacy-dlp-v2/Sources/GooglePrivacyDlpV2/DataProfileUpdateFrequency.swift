@@ -74,7 +74,7 @@ public enum DataProfileUpdateFrequency: Codable, Equatable, Sendable {
 
   /// Initialize from a string value.
   ///
-  /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+  /// If the value is unknown, this initializes to [`unknownStringValue`](doc:DataProfileUpdateFrequency/unknownStringValue(_:)).
   public init(stringValue: Swift.String) {
     switch stringValue {
     case "UPDATE_FREQUENCY_UNSPECIFIED": self = .updateFrequencyUnspecified
@@ -87,7 +87,7 @@ public enum DataProfileUpdateFrequency: Codable, Equatable, Sendable {
 
   /// Initialize from an integer value.
   ///
-  /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+  /// If the value is unknown, this initializes to [`unknownIntValue`](doc:DataProfileUpdateFrequency/unknownIntValue(_:)).
   public init(intValue: Int) {
     switch intValue {
     case 0: self = .updateFrequencyUnspecified

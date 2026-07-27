@@ -367,7 +367,7 @@ public struct IntelligenceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackabl
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:EffectiveEdition/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "EFFECTIVE_EDITION_UNSPECIFIED": self = .unspecified
@@ -379,7 +379,7 @@ public struct IntelligenceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackabl
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:EffectiveEdition/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified
@@ -536,7 +536,7 @@ public struct IntelligenceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackabl
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:EditionConfig/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "EDITION_CONFIG_UNSPECIFIED": self = .unspecified
@@ -550,7 +550,7 @@ public struct IntelligenceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackabl
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:EditionConfig/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified

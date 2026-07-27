@@ -106,7 +106,7 @@ public struct ApiKeyConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:RequestLocation/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "REQUEST_LOCATION_UNSPECIFIED": self = .unspecified
@@ -118,7 +118,7 @@ public struct ApiKeyConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:RequestLocation/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified

@@ -193,7 +193,7 @@ public struct DiscoveryOccurrence: Codable, Equatable, GoogleCloudWkt._AnyPackab
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:SBOMState/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "SBOM_STATE_UNSPECIFIED": self = .unspecified
@@ -205,7 +205,7 @@ public struct DiscoveryOccurrence: Codable, Equatable, GoogleCloudWkt._AnyPackab
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:SBOMState/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified
@@ -339,7 +339,7 @@ public struct DiscoveryOccurrence: Codable, Equatable, GoogleCloudWkt._AnyPackab
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:VulnerabilityAttestationState/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "VULNERABILITY_ATTESTATION_STATE_UNSPECIFIED": self = .unspecified
@@ -351,7 +351,7 @@ public struct DiscoveryOccurrence: Codable, Equatable, GoogleCloudWkt._AnyPackab
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:VulnerabilityAttestationState/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified
@@ -489,7 +489,7 @@ public struct DiscoveryOccurrence: Codable, Equatable, GoogleCloudWkt._AnyPackab
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:ContinuousAnalysis/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "CONTINUOUS_ANALYSIS_UNSPECIFIED": self = .unspecified
@@ -501,7 +501,7 @@ public struct DiscoveryOccurrence: Codable, Equatable, GoogleCloudWkt._AnyPackab
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:ContinuousAnalysis/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified
@@ -608,7 +608,7 @@ public struct DiscoveryOccurrence: Codable, Equatable, GoogleCloudWkt._AnyPackab
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:AnalysisStatus/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "ANALYSIS_STATUS_UNSPECIFIED": self = .unspecified
@@ -624,7 +624,7 @@ public struct DiscoveryOccurrence: Codable, Equatable, GoogleCloudWkt._AnyPackab
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:AnalysisStatus/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified

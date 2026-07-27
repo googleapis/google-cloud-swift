@@ -136,7 +136,7 @@ public struct PersistenceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:SnapshotPeriod/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "SNAPSHOT_PERIOD_UNSPECIFIED": self = .unspecified
@@ -150,7 +150,7 @@ public struct PersistenceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:SnapshotPeriod/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified
@@ -289,7 +289,7 @@ public struct PersistenceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:AppendFsync/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "APPEND_FSYNC_UNSPECIFIED": self = .unspecified
@@ -302,7 +302,7 @@ public struct PersistenceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:AppendFsync/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified
@@ -412,7 +412,7 @@ public struct PersistenceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:PersistenceMode/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "PERSISTENCE_MODE_UNSPECIFIED": self = .unspecified
@@ -425,7 +425,7 @@ public struct PersistenceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:PersistenceMode/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified

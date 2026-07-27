@@ -143,7 +143,7 @@ public struct DiscoveredApiObservation: Codable, Equatable, GoogleCloudWkt._AnyP
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Style/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "STYLE_UNSPECIFIED": self = .unspecified
@@ -156,7 +156,7 @@ public struct DiscoveredApiObservation: Codable, Equatable, GoogleCloudWkt._AnyP
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Style/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified
@@ -251,7 +251,7 @@ public struct DiscoveredApiObservation: Codable, Equatable, GoogleCloudWkt._AnyP
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:SourceType/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "SOURCE_TYPE_UNSPECIFIED": self = .unspecified
@@ -263,7 +263,7 @@ public struct DiscoveredApiObservation: Codable, Equatable, GoogleCloudWkt._AnyP
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:SourceType/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified

@@ -100,7 +100,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:NetworkType/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "RDMA": self = .rdma
@@ -112,7 +112,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:NetworkType/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .rdma
@@ -207,7 +207,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:RdmaSubtype/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "FALCON": self = .falcon
@@ -219,7 +219,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:RdmaSubtype/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .falcon
@@ -310,7 +310,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:UllSubtype/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "OPERATOR": self = .`operator`
@@ -321,7 +321,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:UllSubtype/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .`operator`
@@ -406,7 +406,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:VpcSubtype/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "REGIONAL": self = .regional
@@ -416,7 +416,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:VpcSubtype/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .regional

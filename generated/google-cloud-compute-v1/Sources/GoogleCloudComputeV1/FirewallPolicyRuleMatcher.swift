@@ -192,7 +192,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:DestNetworkContext/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "INTERNET": self = .internet
@@ -206,7 +206,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:DestNetworkContext/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .internet
@@ -308,7 +308,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:DestNetworkType/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "INTERNET": self = .internet
@@ -322,7 +322,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:DestNetworkType/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .internet
@@ -424,7 +424,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:SrcNetworkContext/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "INTERNET": self = .internet
@@ -438,7 +438,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:SrcNetworkContext/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .internet
@@ -540,7 +540,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:SrcNetworkType/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "INTERNET": self = .internet
@@ -554,7 +554,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:SrcNetworkType/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .internet

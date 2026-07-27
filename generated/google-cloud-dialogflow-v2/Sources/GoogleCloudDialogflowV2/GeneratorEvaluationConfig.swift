@@ -349,7 +349,7 @@
 
         /// Initialize from a string value.
         ///
-        /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+        /// If the value is unknown, this initializes to [`unknownStringValue`](doc:SummaryGenerationOption/unknownStringValue(_:)).
         public init(stringValue: Swift.String) {
           switch stringValue {
           case "SUMMARY_GENERATION_OPTION_UNSPECIFIED": self = .unspecified
@@ -362,7 +362,7 @@
 
         /// Initialize from an integer value.
         ///
-        /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+        /// If the value is unknown, this initializes to [`unknownIntValue`](doc:SummaryGenerationOption/unknownIntValue(_:)).
         public init(intValue: Int) {
           switch intValue {
           case 0: self = .unspecified
@@ -536,7 +536,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:InputDataSourceType/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "INPUT_DATA_SOURCE_TYPE_UNSPECIFIED": self = .unspecified
@@ -548,7 +548,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:InputDataSourceType/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified

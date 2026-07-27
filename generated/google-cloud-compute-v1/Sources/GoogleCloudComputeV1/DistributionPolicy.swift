@@ -122,7 +122,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:TargetShape/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "ANY": self = .any
@@ -135,7 +135,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:TargetShape/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .any

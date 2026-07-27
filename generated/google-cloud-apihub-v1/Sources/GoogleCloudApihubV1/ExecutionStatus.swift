@@ -130,7 +130,7 @@ public struct ExecutionStatus: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Result/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "RESULT_UNSPECIFIED": self = .unspecified
@@ -142,7 +142,7 @@ public struct ExecutionStatus: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Result/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified
@@ -246,7 +246,7 @@ public struct ExecutionStatus: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:CurrentExecutionState/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "CURRENT_EXECUTION_STATE_UNSPECIFIED": self = .unspecified
@@ -258,7 +258,7 @@ public struct ExecutionStatus: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:CurrentExecutionState/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified

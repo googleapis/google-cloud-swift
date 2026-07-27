@@ -113,7 +113,7 @@ public enum NoteKind: Codable, Equatable, Sendable {
 
   /// Initialize from a string value.
   ///
-  /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+  /// If the value is unknown, this initializes to [`unknownStringValue`](doc:NoteKind/unknownStringValue(_:)).
   public init(stringValue: Swift.String) {
     switch stringValue {
     case "NOTE_KIND_UNSPECIFIED": self = .unspecified
@@ -136,7 +136,7 @@ public enum NoteKind: Codable, Equatable, Sendable {
 
   /// Initialize from an integer value.
   ///
-  /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+  /// If the value is unknown, this initializes to [`unknownIntValue`](doc:NoteKind/unknownIntValue(_:)).
   public init(intValue: Int) {
     switch intValue {
     case 0: self = .unspecified

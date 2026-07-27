@@ -116,7 +116,7 @@ public struct NodePoolUpgradeInfo: Codable, Equatable, GoogleCloudWkt._AnyPackab
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:AutoUpgradeStatus/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "UNKNOWN": self = .unknown
@@ -129,7 +129,7 @@ public struct NodePoolUpgradeInfo: Codable, Equatable, GoogleCloudWkt._AnyPackab
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:AutoUpgradeStatus/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unknown
@@ -236,7 +236,7 @@ public struct NodePoolUpgradeInfo: Codable, Equatable, GoogleCloudWkt._AnyPackab
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:AutoUpgradePausedReason/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "AUTO_UPGRADE_PAUSED_REASON_UNSPECIFIED": self = .unspecified
@@ -250,7 +250,7 @@ public struct NodePoolUpgradeInfo: Codable, Equatable, GoogleCloudWkt._AnyPackab
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:AutoUpgradePausedReason/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified

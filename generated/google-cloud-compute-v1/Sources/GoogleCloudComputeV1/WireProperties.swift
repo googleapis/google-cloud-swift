@@ -117,7 +117,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:BandwidthAllocation/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "ALLOCATE_PER_WIRE": self = .allocatePerWire
@@ -128,7 +128,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:BandwidthAllocation/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .allocatePerWire
@@ -218,7 +218,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:FaultResponse/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "DISABLE_PORT": self = .disablePort
@@ -229,7 +229,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:FaultResponse/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .disablePort

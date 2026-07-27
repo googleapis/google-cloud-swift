@@ -78,7 +78,7 @@ public enum SearchSolutionUseCase: Codable, Equatable, Sendable {
 
   /// Initialize from a string value.
   ///
-  /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+  /// If the value is unknown, this initializes to [`unknownStringValue`](doc:SearchSolutionUseCase/unknownStringValue(_:)).
   public init(stringValue: Swift.String) {
     switch stringValue {
     case "SEARCH_SOLUTION_USE_CASE_UNSPECIFIED": self = .unspecified
@@ -90,7 +90,7 @@ public enum SearchSolutionUseCase: Codable, Equatable, Sendable {
 
   /// Initialize from an integer value.
   ///
-  /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+  /// If the value is unknown, this initializes to [`unknownIntValue`](doc:SearchSolutionUseCase/unknownIntValue(_:)).
   public init(intValue: Int) {
     switch intValue {
     case 0: self = .unspecified

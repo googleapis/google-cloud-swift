@@ -199,7 +199,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Continent/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "AFRICA": self = .africa
@@ -213,7 +213,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Continent/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .africa
@@ -311,7 +311,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Lacp/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "LACP_SUPPORTED": self = .supported
@@ -322,7 +322,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Lacp/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .supported
@@ -413,7 +413,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Status/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "AVAILABLE": self = .available
@@ -424,7 +424,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Status/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .available

@@ -107,7 +107,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:State/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "CONNECTION_REDUNDANCY_MET": self = .connectionRedundancyMet
@@ -118,7 +118,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:State/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .connectionRedundancyMet
@@ -202,7 +202,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:UnsatisfiedReason/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "INCOMPLETE_TUNNELS_COVERAGE": self = .incompleteTunnelsCoverage
@@ -212,7 +212,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:UnsatisfiedReason/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .incompleteTunnelsCoverage

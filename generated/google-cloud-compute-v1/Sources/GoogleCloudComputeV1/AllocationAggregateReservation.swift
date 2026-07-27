@@ -120,7 +120,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:VmFamily/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "VM_FAMILY_CLOUD_TPU_DEVICE_CT3": self = .cloudTpuDeviceCt3
@@ -137,7 +137,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:VmFamily/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .cloudTpuDeviceCt3
@@ -243,7 +243,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:WorkloadType/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "BATCH": self = .batch
@@ -255,7 +255,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:WorkloadType/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .batch

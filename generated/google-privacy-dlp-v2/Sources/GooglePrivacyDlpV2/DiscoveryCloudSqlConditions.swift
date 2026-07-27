@@ -104,7 +104,7 @@ public struct DiscoveryCloudSqlConditions: Codable, Equatable, GoogleCloudWkt._A
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:DatabaseEngine/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "DATABASE_ENGINE_UNSPECIFIED": self = .unspecified
@@ -117,7 +117,7 @@ public struct DiscoveryCloudSqlConditions: Codable, Equatable, GoogleCloudWkt._A
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:DatabaseEngine/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified
@@ -212,7 +212,7 @@ public struct DiscoveryCloudSqlConditions: Codable, Equatable, GoogleCloudWkt._A
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:DatabaseResourceType/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "DATABASE_RESOURCE_TYPE_UNSPECIFIED": self = .unspecified
@@ -224,7 +224,7 @@ public struct DiscoveryCloudSqlConditions: Codable, Equatable, GoogleCloudWkt._A
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:DatabaseResourceType/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified

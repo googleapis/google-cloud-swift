@@ -433,7 +433,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Ipv6AccessType/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "EXTERNAL": self = .external
@@ -444,7 +444,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Ipv6AccessType/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .external
@@ -531,7 +531,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Ipv6GceEndpoint/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "VM_AND_FR": self = .vmAndFr
@@ -542,7 +542,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Ipv6GceEndpoint/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .vmAndFr
@@ -635,7 +635,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:PrivateIpv6GoogleAccess/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "DISABLE_GOOGLE_ACCESS": self = .disableGoogleAccess
@@ -647,7 +647,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:PrivateIpv6GoogleAccess/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .disableGoogleAccess
@@ -765,7 +765,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Purpose/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "GLOBAL_MANAGED_PROXY": self = .globalManagedProxy
@@ -782,7 +782,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Purpose/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .globalManagedProxy
@@ -883,7 +883,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:ResolveSubnetMask/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "ARP_ALL_RANGES": self = .arpAllRanges
@@ -894,7 +894,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:ResolveSubnetMask/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .arpAllRanges
@@ -983,7 +983,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Role/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "ACTIVE": self = .active
@@ -994,7 +994,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Role/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .active
@@ -1087,7 +1087,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:StackType/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "IPV4_IPV6": self = .ipv4Ipv6
@@ -1099,7 +1099,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:StackType/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .ipv4Ipv6
@@ -1190,7 +1190,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:State/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "DRAINING": self = .draining
@@ -1201,7 +1201,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:State/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .draining

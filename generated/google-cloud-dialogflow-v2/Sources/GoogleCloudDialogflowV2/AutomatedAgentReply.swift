@@ -114,7 +114,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:AutomatedAgentReplyType/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "AUTOMATED_AGENT_REPLY_TYPE_UNSPECIFIED": self = .unspecified
@@ -126,7 +126,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:AutomatedAgentReplyType/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified

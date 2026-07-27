@@ -135,7 +135,7 @@ public struct PreviewOperationMetadata: Codable, Equatable, GoogleCloudWkt._AnyP
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:PreviewStep/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "PREVIEW_STEP_UNSPECIFIED": self = .unspecified
@@ -155,7 +155,7 @@ public struct PreviewOperationMetadata: Codable, Equatable, GoogleCloudWkt._AnyP
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:PreviewStep/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified

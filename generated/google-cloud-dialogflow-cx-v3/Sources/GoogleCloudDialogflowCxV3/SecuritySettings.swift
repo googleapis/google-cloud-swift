@@ -326,7 +326,7 @@
 
         /// Initialize from a string value.
         ///
-        /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+        /// If the value is unknown, this initializes to [`unknownStringValue`](doc:AudioFormat/unknownStringValue(_:)).
         public init(stringValue: Swift.String) {
           switch stringValue {
           case "AUDIO_FORMAT_UNSPECIFIED": self = .unspecified
@@ -339,7 +339,7 @@
 
         /// Initialize from an integer value.
         ///
-        /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+        /// If the value is unknown, this initializes to [`unknownIntValue`](doc:AudioFormat/unknownIntValue(_:)).
         public init(intValue: Int) {
           switch intValue {
           case 0: self = .unspecified
@@ -479,7 +479,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:RedactionStrategy/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "REDACTION_STRATEGY_UNSPECIFIED": self = .unspecified
@@ -490,7 +490,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:RedactionStrategy/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified
@@ -579,7 +579,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:RedactionScope/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "REDACTION_SCOPE_UNSPECIFIED": self = .unspecified
@@ -590,7 +590,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:RedactionScope/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified
@@ -679,7 +679,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:RetentionStrategy/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "RETENTION_STRATEGY_UNSPECIFIED": self = .unspecified
@@ -690,7 +690,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:RetentionStrategy/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified
@@ -778,7 +778,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:PurgeDataType/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "PURGE_DATA_TYPE_UNSPECIFIED": self = .unspecified
@@ -789,7 +789,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:PurgeDataType/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified

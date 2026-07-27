@@ -88,7 +88,7 @@
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:HarmCategory/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "HARM_CATEGORY_UNSPECIFIED": self = .unspecified
@@ -104,7 +104,7 @@
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:HarmCategory/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified

@@ -99,7 +99,7 @@ public struct AmazonS3BucketConditions: Codable, Equatable, GoogleCloudWkt._AnyP
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:BucketType/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "TYPE_UNSPECIFIED": self = .typeUnspecified
@@ -111,7 +111,7 @@ public struct AmazonS3BucketConditions: Codable, Equatable, GoogleCloudWkt._AnyP
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:BucketType/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .typeUnspecified
@@ -217,7 +217,7 @@ public struct AmazonS3BucketConditions: Codable, Equatable, GoogleCloudWkt._AnyP
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:ObjectStorageClass/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "UNSPECIFIED": self = .unspecified
@@ -232,7 +232,7 @@ public struct AmazonS3BucketConditions: Codable, Equatable, GoogleCloudWkt._AnyP
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:ObjectStorageClass/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified

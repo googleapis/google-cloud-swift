@@ -601,7 +601,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Metric/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "A2_CPUS": self = .a2Cpus
@@ -787,7 +787,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Metric/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .a2Cpus

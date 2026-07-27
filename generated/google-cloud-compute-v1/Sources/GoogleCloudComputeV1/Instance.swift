@@ -531,7 +531,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:KeyRevocationActionType/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "KEY_REVOCATION_ACTION_TYPE_UNSPECIFIED": self = .unspecified
@@ -543,7 +543,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:KeyRevocationActionType/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified
@@ -645,7 +645,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:LocalSsdEncryptionMode/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "EPHEMERAL_KEY_ENCRYPTION": self = .ephemeralKeyEncryption
@@ -657,7 +657,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:LocalSsdEncryptionMode/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .ephemeralKeyEncryption
@@ -759,7 +759,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:PrivateIpv6GoogleAccess/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "ENABLE_BIDIRECTIONAL_ACCESS_TO_GOOGLE": self = .enableBidirectionalAccessToGoogle
@@ -771,7 +771,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:PrivateIpv6GoogleAccess/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .enableBidirectionalAccessToGoogle
@@ -902,7 +902,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Status/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "DEPROVISIONING": self = .deprovisioning
@@ -922,7 +922,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Status/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .deprovisioning

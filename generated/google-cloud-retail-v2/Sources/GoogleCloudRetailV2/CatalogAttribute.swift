@@ -489,7 +489,7 @@ public struct CatalogAttribute: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:AttributeType/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "UNKNOWN": self = .unknown
@@ -501,7 +501,7 @@ public struct CatalogAttribute: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:AttributeType/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unknown
@@ -594,7 +594,7 @@ public struct CatalogAttribute: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:IndexableOption/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "INDEXABLE_OPTION_UNSPECIFIED": self = .unspecified
@@ -606,7 +606,7 @@ public struct CatalogAttribute: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:IndexableOption/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified
@@ -699,7 +699,7 @@ public struct CatalogAttribute: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:DynamicFacetableOption/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "DYNAMIC_FACETABLE_OPTION_UNSPECIFIED": self = .unspecified
@@ -711,7 +711,7 @@ public struct CatalogAttribute: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:DynamicFacetableOption/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified
@@ -804,7 +804,7 @@ public struct CatalogAttribute: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:SearchableOption/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "SEARCHABLE_OPTION_UNSPECIFIED": self = .unspecified
@@ -816,7 +816,7 @@ public struct CatalogAttribute: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:SearchableOption/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified
@@ -909,7 +909,7 @@ public struct CatalogAttribute: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:ExactSearchableOption/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "EXACT_SEARCHABLE_OPTION_UNSPECIFIED": self = .unspecified
@@ -921,7 +921,7 @@ public struct CatalogAttribute: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:ExactSearchableOption/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified
@@ -1014,7 +1014,7 @@ public struct CatalogAttribute: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:RetrievableOption/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "RETRIEVABLE_OPTION_UNSPECIFIED": self = .unspecified
@@ -1026,7 +1026,7 @@ public struct CatalogAttribute: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:RetrievableOption/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified

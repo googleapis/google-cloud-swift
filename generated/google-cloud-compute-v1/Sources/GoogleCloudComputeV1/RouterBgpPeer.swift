@@ -211,7 +211,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:AdvertiseMode/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "CUSTOM": self = .custom
@@ -222,7 +222,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:AdvertiseMode/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .custom
@@ -307,7 +307,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:AdvertisedGroups/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "ALL_SUBNETS": self = .allSubnets
@@ -317,7 +317,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:AdvertisedGroups/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .allSubnets
@@ -402,7 +402,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Enable/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "FALSE": self = .`false`
@@ -413,7 +413,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Enable/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .`false`
@@ -508,7 +508,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:ManagementType/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "MANAGED_BY_ATTACHMENT": self = .managedByAttachment
@@ -519,7 +519,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:ManagementType/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .managedByAttachment

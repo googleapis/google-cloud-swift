@@ -882,7 +882,7 @@ public enum ErrorReason: Codable, Equatable, Sendable {
 
   /// Initialize from a string value.
   ///
-  /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+  /// If the value is unknown, this initializes to [`unknownStringValue`](doc:ErrorReason/unknownStringValue(_:)).
   public init(stringValue: Swift.String) {
     switch stringValue {
     case "ERROR_REASON_UNSPECIFIED": self = .unspecified
@@ -935,7 +935,7 @@ public enum ErrorReason: Codable, Equatable, Sendable {
 
   /// Initialize from an integer value.
   ///
-  /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+  /// If the value is unknown, this initializes to [`unknownIntValue`](doc:ErrorReason/unknownIntValue(_:)).
   public init(intValue: Int) {
     switch intValue {
     case 0: self = .unspecified

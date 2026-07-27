@@ -109,7 +109,7 @@ public struct PrincipalAccessBoundaryPolicyRule: Codable, Equatable, GoogleCloud
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Effect/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "EFFECT_UNSPECIFIED": self = .unspecified
@@ -120,7 +120,7 @@ public struct PrincipalAccessBoundaryPolicyRule: Codable, Equatable, GoogleCloud
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Effect/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified

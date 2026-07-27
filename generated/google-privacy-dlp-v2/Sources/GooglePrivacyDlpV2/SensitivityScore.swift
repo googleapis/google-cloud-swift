@@ -110,7 +110,7 @@ public struct SensitivityScore: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:SensitivityScoreLevel/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "SENSITIVITY_SCORE_UNSPECIFIED": self = .sensitivityScoreUnspecified
@@ -124,7 +124,7 @@ public struct SensitivityScore: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:SensitivityScoreLevel/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .sensitivityScoreUnspecified

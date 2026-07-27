@@ -206,7 +206,7 @@ public struct DataProfilePubSubCondition: Codable, Equatable, GoogleCloudWkt._An
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:PubSubLogicalOperator/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "LOGICAL_OPERATOR_UNSPECIFIED": self = .logicalOperatorUnspecified
@@ -218,7 +218,7 @@ public struct DataProfilePubSubCondition: Codable, Equatable, GoogleCloudWkt._An
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:PubSubLogicalOperator/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .logicalOperatorUnspecified
@@ -323,7 +323,7 @@ public struct DataProfilePubSubCondition: Codable, Equatable, GoogleCloudWkt._An
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:ProfileScoreBucket/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "PROFILE_SCORE_BUCKET_UNSPECIFIED": self = .unspecified
@@ -335,7 +335,7 @@ public struct DataProfilePubSubCondition: Codable, Equatable, GoogleCloudWkt._An
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:ProfileScoreBucket/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified

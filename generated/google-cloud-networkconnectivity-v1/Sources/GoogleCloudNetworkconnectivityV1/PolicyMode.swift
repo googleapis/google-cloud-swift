@@ -66,7 +66,7 @@ public enum PolicyMode: Codable, Equatable, Sendable {
 
   /// Initialize from a string value.
   ///
-  /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+  /// If the value is unknown, this initializes to [`unknownStringValue`](doc:PolicyMode/unknownStringValue(_:)).
   public init(stringValue: Swift.String) {
     switch stringValue {
     case "POLICY_MODE_UNSPECIFIED": self = .unspecified
@@ -77,7 +77,7 @@ public enum PolicyMode: Codable, Equatable, Sendable {
 
   /// Initialize from an integer value.
   ///
-  /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+  /// If the value is unknown, this initializes to [`unknownIntValue`](doc:PolicyMode/unknownIntValue(_:)).
   public init(intValue: Int) {
     switch intValue {
     case 0: self = .unspecified

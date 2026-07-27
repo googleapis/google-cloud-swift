@@ -225,7 +225,7 @@ public struct MigrationProgressEvent: Codable, Equatable, GoogleCloudWkt._AnyPac
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:ConcurrencyMode/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "CONCURRENCY_MODE_UNSPECIFIED": self = .unspecified
@@ -238,7 +238,7 @@ public struct MigrationProgressEvent: Codable, Equatable, GoogleCloudWkt._AnyPac
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:ConcurrencyMode/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified

@@ -212,7 +212,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:ConfidentialComputeType/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "CONFIDENTIAL_COMPUTE_TYPE_TDX": self = .tdx
@@ -223,7 +223,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:ConfidentialComputeType/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .tdx
@@ -311,7 +311,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:DeploymentType/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "DENSE": self = .dense
@@ -322,7 +322,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:DeploymentType/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .dense
@@ -415,7 +415,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:EarlyAccessMaintenance/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "NO_EARLY_ACCESS": self = .noEarlyAccess
@@ -427,7 +427,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:EarlyAccessMaintenance/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .noEarlyAccess
@@ -530,7 +530,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:ProtectionTier/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "CAPACITY_OPTIMIZED": self = .capacityOptimized
@@ -542,7 +542,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:ProtectionTier/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .capacityOptimized
@@ -638,7 +638,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:SchedulingType/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "GROUPED": self = .grouped
@@ -650,7 +650,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:SchedulingType/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .grouped
@@ -753,7 +753,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Status/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "CREATING": self = .creating
@@ -767,7 +767,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Status/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .creating

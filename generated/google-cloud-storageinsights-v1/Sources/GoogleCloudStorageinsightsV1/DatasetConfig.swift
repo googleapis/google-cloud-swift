@@ -857,7 +857,7 @@ public struct DatasetConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:ConfigState/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "CONFIG_STATE_UNSPECIFIED": self = .unspecified
@@ -871,7 +871,7 @@ public struct DatasetConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:ConfigState/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified

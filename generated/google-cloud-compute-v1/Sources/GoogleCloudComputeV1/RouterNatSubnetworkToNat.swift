@@ -109,7 +109,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:SourceIpRangesToNat/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "ALL_IP_RANGES": self = .allIpRanges
@@ -121,7 +121,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:SourceIpRangesToNat/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .allIpRanges

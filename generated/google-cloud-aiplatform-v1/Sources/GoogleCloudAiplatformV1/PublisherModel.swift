@@ -750,7 +750,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:OpenSourceCategory/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "OPEN_SOURCE_CATEGORY_UNSPECIFIED": self = .unspecified
@@ -766,7 +766,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:OpenSourceCategory/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified
@@ -880,7 +880,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:LaunchStage/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "LAUNCH_STAGE_UNSPECIFIED": self = .unspecified
@@ -894,7 +894,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:LaunchStage/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified
@@ -991,7 +991,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:VersionState/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "VERSION_STATE_UNSPECIFIED": self = .unspecified
@@ -1003,7 +1003,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:VersionState/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified

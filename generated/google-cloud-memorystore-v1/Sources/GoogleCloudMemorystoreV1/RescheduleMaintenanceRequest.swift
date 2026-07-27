@@ -103,7 +103,7 @@ public struct RescheduleMaintenanceRequest: Codable, Equatable, GoogleCloudWkt._
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:RescheduleType/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "RESCHEDULE_TYPE_UNSPECIFIED": self = .unspecified
@@ -115,7 +115,7 @@ public struct RescheduleMaintenanceRequest: Codable, Equatable, GoogleCloudWkt._
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:RescheduleType/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified

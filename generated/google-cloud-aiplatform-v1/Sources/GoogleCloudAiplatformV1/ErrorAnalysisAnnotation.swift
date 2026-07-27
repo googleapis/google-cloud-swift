@@ -149,7 +149,7 @@
 
       /// Initialize from a string value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:QueryType/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "QUERY_TYPE_UNSPECIFIED": self = .unspecified
@@ -162,7 +162,7 @@
 
       /// Initialize from an integer value.
       ///
-      /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:QueryType/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .unspecified

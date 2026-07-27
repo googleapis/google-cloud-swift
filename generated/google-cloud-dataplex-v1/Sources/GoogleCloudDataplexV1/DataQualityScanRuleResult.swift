@@ -196,7 +196,7 @@ public struct DataQualityScanRuleResult: Codable, Equatable, GoogleCloudWkt._Any
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:RuleType/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "RULE_TYPE_UNSPECIFIED": self = .unspecified
@@ -216,7 +216,7 @@ public struct DataQualityScanRuleResult: Codable, Equatable, GoogleCloudWkt._Any
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:RuleType/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified
@@ -325,7 +325,7 @@ public struct DataQualityScanRuleResult: Codable, Equatable, GoogleCloudWkt._Any
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:EvaluationType/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "EVALUATION_TYPE_UNSPECIFIED": self = .unspecified
@@ -337,7 +337,7 @@ public struct DataQualityScanRuleResult: Codable, Equatable, GoogleCloudWkt._Any
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:EvaluationType/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified
@@ -430,7 +430,7 @@ public struct DataQualityScanRuleResult: Codable, Equatable, GoogleCloudWkt._Any
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownStringValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Result/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "RESULT_UNSPECIFIED": self = .unspecified
@@ -442,7 +442,7 @@ public struct DataQualityScanRuleResult: Codable, Equatable, GoogleCloudWkt._Any
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to ``.unknownIntValue(_:)``.
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Result/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified
