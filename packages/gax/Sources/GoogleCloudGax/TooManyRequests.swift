@@ -20,52 +20,18 @@ import GoogleRpc
 /// This policy returns [retry][RetryResult.retry] when the error is a `ResourceExhausted` (or
 /// `TOO_MANY_REQUESTS` if received from the HTTP layer). Otherwise it returns the result from the
 /// inner retry policy.
-public struct TooManyRequests<P: RetryPolicy>: RetryPolicy {
+public struct TooManyRequests<P: Sendable>: Sendable {
   let inner: P
 
   public init(inner: P) {
     self.inner = inner
   }
 
-  public func onError(state: RetryState, error: RequestError) -> RetryResult {
-    if error.isResourceExhausted || error.isTooManyRequests {
-      return .retry(error)
-    }
-    return inner.onError(state: state, error: error)
-  }
-
-  public func onThrottle(state: RetryState, error: RequestError) -> ThrottleResult {
-    inner.onThrottle(state: state, error: error)
-  }
-
-  public func remainingTime(state: RetryState) -> Duration? {
-    inner.remainingTime(state: state)
-  }
-}
-
-extension RetryPolicy {
-  /// Decorate a `RetryPolicy` to continue on certain status codes.
-  ///
-  /// This policy decorates an inner policy and retries any errors with HTTP status code
-  /// "429 - TOO_MANY_REQUESTS" **or** where the service returns an error with code
-  /// `ResourceExhausted`.
-  ///
-  /// For other errors it returns the same value as the inner policy.
-  public func retryOnTooManyRequests() -> TooManyRequests<Self> {
-    TooManyRequests(inner: self)
-  }
-}
-
-extension RequestError {
-  fileprivate var isResourceExhausted: Bool {
-    if case .service(let details) = self {
+  func isTooManyRequests(_ error: RequestError) -> Bool {
+    if case .service(let details) = error {
       return details.code == GoogleRpc.Code.resourceExhausted
     }
-    return false
-  }
-
-  fileprivate var isTooManyRequests: Bool {
-    if case .http(let details) = self {
+    if case .http(let details) = error {
       return details.http_status_code == 429
     }
     return false

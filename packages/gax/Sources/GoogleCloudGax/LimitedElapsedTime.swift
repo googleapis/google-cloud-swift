@@ -22,59 +22,12 @@ import Foundation
 ///
 /// The `remainingTime()` method returns the remaining time. This is always zero after the
 /// policy's deadline is reached.
-final public class LimitedElapsedTime<P: RetryPolicy>: RetryPolicy {
+final public class LimitedElapsedTime<P: Sendable>: Sendable {
   let inner: P
   let maximumDuration: Duration
 
   public init(inner: P, maximumDuration: Duration) {
     self.inner = inner
     self.maximumDuration = maximumDuration
-  }
-
-  public func onError(state: RetryState, error: RequestError) -> RetryResult {
-    switch inner.onError(state: state, error: error) {
-    case .permanent(let e):
-      return .permanent(e)
-    case .exhausted(let e):
-      return .exhausted(e)
-    case .retry(let e):
-      if ContinuousClock.now >= state.start + maximumDuration {
-        return .exhausted(e)
-      }
-      return .retry(e)
-    }
-  }
-
-  public func onThrottle(state: RetryState, error: RequestError) -> ThrottleResult {
-    switch inner.onThrottle(state: state, error: error) {
-    case .exhausted(let e):
-      return .exhausted(e)
-    case .retry(let e):
-      if ContinuousClock.now >= state.start + maximumDuration {
-        return .exhausted(
-          .exhausted(LimitedElapsedTimeError(maximumDuration: maximumDuration, source: e)))
-      }
-      return .retry(e)
-    }
-  }
-
-  public func remainingTime(state: RetryState) -> Duration? {
-    let deadline = state.start + maximumDuration
-    let now = ContinuousClock.now
-    let remaining = now < deadline ? (deadline - now) : .zero
-    if let innerRemaining = inner.remainingTime(state: state) {
-      return min(remaining, innerRemaining)
-    }
-    return remaining
-  }
-}
-
-extension RetryPolicy {
-  /// Decorate a `RetryPolicy` to limit the total elapsed time in the retry loop.
-  ///
-  /// - Parameter maximumDuration: The maximum duration allowed by the policy.
-  /// - Returns: A decorated retry policy.
-  public func withTimeLimit(_ maximumDuration: Duration) -> LimitedElapsedTime<Self> {
-    LimitedElapsedTime(inner: self, maximumDuration: maximumDuration)
   }
 }

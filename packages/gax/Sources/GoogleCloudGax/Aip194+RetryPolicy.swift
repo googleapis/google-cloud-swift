@@ -14,14 +14,12 @@
 
 import Foundation
 
-/// A retry policy decorator that continues on I/O errors.
-///
-/// This policy returns [.retry](``RetryResult.retry(_:)``) on [.io](``RequestError/io(_:)``)
-/// errors. Otherwise it returns the result from the inner retry policy.
-final public class RetryIO<P: Sendable>: Sendable {
-  let inner: P
+extension Aip194: RetryPolicy {
+  public func onError(state: RetryState, error: RequestError) -> RetryResult {
+    if isRetryable(error) {
+      return .retry(error)
+    }
 
-  public init(inner: P) {
-    self.inner = inner
+    return .permanent(error)
   }
 }

@@ -24,22 +24,21 @@ import GoogleRpc
 /// only on the status code, and the only retryable status code is `UNAVAILABLE`.
 ///
 /// [AIP-194]: https://google.aip.dev/194
-final public class Aip194: RetryPolicy {
+final public class Aip194: Sendable {
   public init() {}
 
-  public func onError(state: RetryState, error: RequestError) -> RetryResult {
+  func isRetryable(_ error: RequestError) -> Bool {
     if let code = error.serviceCode, code == GoogleRpc.Code.unavailable {
-      return .retry(error)
+      return true
     }
 
     // Some services return a status of "Unknown" and a http status code of
     // 503 (`SERVICE_UNAVAILABLE`). That is not how gRPC status codes are supposed to work, but the
     // intent is clear: we need to retry.
     if let httpStatus = error.httpStatusCode, httpStatus == 503 {
-      return .retry(error)
+      return true
     }
-
-    return .permanent(error)
+    return false
   }
 }
 

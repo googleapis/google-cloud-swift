@@ -14,7 +14,7 @@
 
 import Foundation
 
-/// A retry policy decorator that limits the number of attempts.
+/// A policy decorator that limits the number of attempts.
 ///
 /// This policy decorates an inner policy and limits the total number of attempts. Note that
 /// `onError()` is not called before the initial (non-retry) attempt. Therefore, setting the maximum
@@ -25,45 +25,12 @@ import Foundation
 ///
 /// Once the maximum number of attempts is reached, the policy replaces any
 /// [.retry](``RetryResult/retry(_:)``) result with [.exhausted](``RetryResult/exhausted(_:)``).
-public struct LimitedAttemptCount<P: RetryPolicy>: RetryPolicy {
+public struct LimitedAttemptCount<P: Sendable>: Sendable {
   let inner: P
   let maximumAttempts: UInt32
 
   public init(inner: P, maximumAttempts: UInt32) {
     self.inner = inner
     self.maximumAttempts = maximumAttempts
-  }
-
-  public func onError(state: RetryState, error: RequestError) -> RetryResult {
-    switch inner.onError(state: state, error: error) {
-    case .permanent(let e):
-      return .permanent(e)
-    case .exhausted(let e):
-      return .exhausted(e)
-    case .retry(let e):
-      if state.attemptCount >= maximumAttempts {
-        return .exhausted(e)
-      }
-      return .retry(e)
-    }
-  }
-
-  public func onThrottle(state: RetryState, error: RequestError) -> ThrottleResult {
-    // The retry loop only calls `onThrottle()` if the policy has not been exhausted.
-    inner.onThrottle(state: state, error: error)
-  }
-
-  public func remainingTime(state: RetryState) -> Duration? {
-    inner.remainingTime(state: state)
-  }
-}
-
-extension RetryPolicy {
-  /// Decorate a `RetryPolicy` to limit the number of retry attempts.
-  ///
-  /// - Parameter maximumAttempts: The maximum number of attempts allowed by the policy.
-  /// - Returns: A decorated retry policy.
-  public func withAttemptLimit(_ maximumAttempts: UInt32) -> LimitedAttemptCount<Self> {
-    LimitedAttemptCount(inner: self, maximumAttempts: maximumAttempts)
   }
 }
