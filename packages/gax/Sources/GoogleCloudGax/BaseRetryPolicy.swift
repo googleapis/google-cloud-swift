@@ -24,7 +24,7 @@ import GoogleRpc
 ///
 /// [AIP-194]: https://google.aip.dev/194
 final public class BaseRetryPolicy: RetryPolicy {
-  let inner: StrictIdempotency<RetryIO<Aip194>>
+  let inner: StrictIdempotency<ContinueOnIO<Aip194>>
 
   public init() {
     self.inner = Aip194().retryOnIO().strictIdempotency()

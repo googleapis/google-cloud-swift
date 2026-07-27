@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-extension RetryIO: RetryPolicy where P: RetryPolicy & Sendable {
+extension ContinueOnIO: RetryPolicy where P: RetryPolicy & Sendable {
   public func onError(state: RetryState, error: RequestError) -> RetryResult {
     if case .io = error {
       return .retry(error)
@@ -36,7 +36,7 @@ extension RetryPolicy {
   /// **if** the request is idempotent.
   ///
   /// For other errors it returns the same value as the inner policy.
-  public func retryOnIO() -> RetryIO<Self> {
-    RetryIO(inner: self)
+  public func retryOnIO() -> ContinueOnIO<Self> {
+    ContinueOnIO(inner: self)
   }
 }

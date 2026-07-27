@@ -16,7 +16,7 @@ import Foundation
 import GoogleCloudGax
 import Testing
 
-@Suite struct RetryIOTests {
+@Suite struct ContinueIOTests {
   @Test func retryIO() {
     let p = NeverRetry().retryOnIO()
 

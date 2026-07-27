@@ -18,7 +18,7 @@ import Foundation
 ///
 /// This policy returns [.retry](``RetryResult.retry(_:)``) on [.io](``RequestError/io(_:)``)
 /// errors. Otherwise it returns the result from the inner retry policy.
-final public class RetryIO<P: Sendable>: Sendable {
+final public class ContinueOnIO<P: Sendable>: Sendable {
   let inner: P
 
   public init(inner: P) {
