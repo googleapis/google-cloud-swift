@@ -92,7 +92,7 @@ let package = Package(
         .product(name: "GoogleCloudSecretManagerV1", package: "google-cloud-secretmanager-v1"),
         .product(name: "GoogleCloudWorkflowsV1", package: "google-cloud-workflows-v1"),
         .product(name: "GoogleCloudLocation", package: "google-cloud-location"),
-        .product(name: "GoogleIamV1", package: "google-iam-v1"),
+        .product(name: "GoogleIAMV1", package: "google-iam-v1"),
         .product(name: "GoogleCloudWkt", package: "wkt"),
         .product(name: "GoogleCloudStorage", package: "storage"),
         .product(name: "GoogleCloudTestHelpers", package: "test-helpers"),
