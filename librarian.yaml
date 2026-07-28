@@ -41,18 +41,18 @@ default:
       - name: GoogleCloudCommon
         path: generated/google-cloud-common
         api_package: google.cloud.common
+      - name: GoogleCloudGKEHubConfigManagementV1
+        path: generated/google-cloud-gkehub-configmanagement-v1
+        api_package: google.cloud.gkehub.configmanagement.v1
+      - name: GoogleCloudGKEHubMultiClusterIngressV1
+        path: generated/google-cloud-gkehub-multiclusteringress-v1
+        api_package: google.cloud.gkehub.multiclusteringress.v1
+      - name: GoogleCloudGKEHubRBACRoleBindingActuationV1
+        path: generated/google-cloud-gkehub-rbacrolebindingactuation-v1
+        api_package: google.cloud.gkehub.rbacrolebindingactuation.v1
       - name: GoogleCloudGax
         path: packages/gax
         required_by_services: true
-      - name: GoogleCloudGkeHubConfigManagementV1
-        path: generated/google-cloud-gkehub-configmanagement-v1
-        api_package: google.cloud.gkehub.configmanagement.v1
-      - name: GoogleCloudGkeHubMultiClusterIngressV1
-        path: generated/google-cloud-gkehub-multiclusteringress-v1
-        api_package: google.cloud.gkehub.multiclusteringress.v1
-      - name: GoogleCloudGkeHubRBACRoleBindingActuationV1
-        path: generated/google-cloud-gkehub-rbacrolebindingactuation-v1
-        api_package: google.cloud.gkehub.rbacrolebindingactuation.v1
       - name: GoogleCloudKMSV1
         path: generated/google-cloud-kms-v1
         api_package: google.cloud.kms.v1
@@ -354,19 +354,19 @@ libraries:
     copyright_year: "2026"
     output: generated/google-cloud-gkehub-configmanagement-v1
     swift:
-      library_name_override: GoogleCloudGkeHubConfigManagementV1
+      library_name_override: GoogleCloudGKEHubConfigManagementV1
   - name: google-cloud-gkehub-v1-multiclusteringress
     version: 0.0.0-preview
     copyright_year: "2026"
     output: generated/google-cloud-gkehub-multiclusteringress-v1
     swift:
-      library_name_override: GoogleCloudGkeHubMultiClusterIngressV1
+      library_name_override: GoogleCloudGKEHubMultiClusterIngressV1
   - name: google-cloud-gkehub-v1-rbacrolebindingactuation
     version: 0.0.0-preview
     copyright_year: "2026"
     output: generated/google-cloud-gkehub-rbacrolebindingactuation-v1
     swift:
-      library_name_override: GoogleCloudGkeHubRBACRoleBindingActuationV1
+      library_name_override: GoogleCloudGKEHubRBACRoleBindingActuationV1
   - name: google-cloud-gkemulticloud-v1
     version: 0.0.0-preview
     copyright_year: "2026"

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudGkeHubConfigManagementV1
+import GoogleCloudGKEHubConfigManagementV1
 import GoogleCloudWkt
 
 /// MembershipFeatureState contains Feature status information for a single
@@ -64,7 +64,7 @@ public struct MembershipFeatureState: Codable, Equatable, GoogleCloudWkt._AnyPac
       featureState = $0
     }
     if let configmanagement = try container.decodeIfPresent(
-      GoogleCloudGkeHubConfigManagementV1.MembershipState?.self, forKey: .configmanagement)
+      GoogleCloudGKEHubConfigManagementV1.MembershipState?.self, forKey: .configmanagement)
     {
       try featureStateCheckAndSet(.configmanagement(configmanagement))
     }
@@ -85,7 +85,7 @@ public struct MembershipFeatureState: Codable, Equatable, GoogleCloudWkt._AnyPac
 
   public enum OneOf_FeatureState: Codable, Equatable, Sendable {
     /// Config Management-specific state.
-    indirect case configmanagement(GoogleCloudGkeHubConfigManagementV1.MembershipState?)
+    indirect case configmanagement(GoogleCloudGKEHubConfigManagementV1.MembershipState?)
   }
 
   public static var _anyTypeUrl: Swift.String {

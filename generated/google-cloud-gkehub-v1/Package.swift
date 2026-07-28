@@ -25,10 +25,10 @@ let package = Package(
   ],
   dependencies: [
     .package(path: "../../packages/auth"),
-    .package(path: "../../packages/gax"),
     .package(path: "../../generated/google-cloud-gkehub-configmanagement-v1"),
     .package(path: "../../generated/google-cloud-gkehub-multiclusteringress-v1"),
     .package(path: "../../generated/google-cloud-gkehub-rbacrolebindingactuation-v1"),
+    .package(path: "../../packages/gax"),
     .package(path: "../../packages/wkt"),
     .package(path: "../../generated/google-longrunning"),
     .package(path: "../../generated/google-rpc"),
@@ -39,16 +39,16 @@ let package = Package(
       name: "GoogleCloudGkehubV1",
       dependencies: [
         .product(name: "GoogleCloudAuth", package: "auth"),
-        .product(name: "GoogleCloudGax", package: "gax"),
         .product(
-          name: "GoogleCloudGkeHubConfigManagementV1",
+          name: "GoogleCloudGKEHubConfigManagementV1",
           package: "google-cloud-gkehub-configmanagement-v1"),
         .product(
-          name: "GoogleCloudGkeHubMultiClusterIngressV1",
+          name: "GoogleCloudGKEHubMultiClusterIngressV1",
           package: "google-cloud-gkehub-multiclusteringress-v1"),
         .product(
-          name: "GoogleCloudGkeHubRBACRoleBindingActuationV1",
+          name: "GoogleCloudGKEHubRBACRoleBindingActuationV1",
           package: "google-cloud-gkehub-rbacrolebindingactuation-v1"),
+        .product(name: "GoogleCloudGax", package: "gax"),
         .product(name: "GoogleCloudWkt", package: "wkt"),
         .product(name: "GoogleLongrunning", package: "google-longrunning"),
         .product(name: "GoogleRpc", package: "google-rpc"),

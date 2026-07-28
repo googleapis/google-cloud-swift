@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudGkeHubMultiClusterIngressV1
+import GoogleCloudGKEHubMultiClusterIngressV1
 import GoogleCloudWkt
 
 /// CommonFeatureSpec contains Hub-wide configuration information
@@ -58,7 +58,7 @@ public struct CommonFeatureSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable
       featureSpec = $0
     }
     if let multiclusteringress = try container.decodeIfPresent(
-      GoogleCloudGkeHubMultiClusterIngressV1.FeatureSpec?.self, forKey: .multiclusteringress)
+      GoogleCloudGKEHubMultiClusterIngressV1.FeatureSpec?.self, forKey: .multiclusteringress)
     {
       try featureSpecCheckAndSet(.multiclusteringress(multiclusteringress))
     }
@@ -78,7 +78,7 @@ public struct CommonFeatureSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable
 
   public enum OneOf_FeatureSpec: Codable, Equatable, Sendable {
     /// Multicluster Ingress-specific spec.
-    indirect case multiclusteringress(GoogleCloudGkeHubMultiClusterIngressV1.FeatureSpec?)
+    indirect case multiclusteringress(GoogleCloudGKEHubMultiClusterIngressV1.FeatureSpec?)
   }
 
   public static var _anyTypeUrl: Swift.String {
