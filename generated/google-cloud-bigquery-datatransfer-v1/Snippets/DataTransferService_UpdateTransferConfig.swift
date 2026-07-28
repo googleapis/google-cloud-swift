@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudBigqueryDatatransferV1
+import GoogleCloudBigqueryDataTransferV1
 import GoogleCloudLocation
 import GoogleCloudWkt
 
@@ -41,7 +41,7 @@ func sample(client: DataTransferServiceClient, projectId: String, transferConfig
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleCloudBigqueryDatatransferV1.DataTransferServiceClient()
+      let client = try GoogleCloudBigqueryDataTransferV1.DataTransferServiceClient()
       try await sample(
         client: client, projectId: "[placeholder]", transferConfigId: "[placeholder]")
     } catch {

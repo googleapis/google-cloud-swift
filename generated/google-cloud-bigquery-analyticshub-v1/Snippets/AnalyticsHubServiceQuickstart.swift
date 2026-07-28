@@ -17,14 +17,14 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudBigqueryAnalyticshubV1
+import GoogleCloudBigqueryAnalyticsHubV1
 import GoogleCloudWkt
 import GoogleIAMV1
 import GoogleLongrunning
 import GoogleRpc
 
 func sample(projectId: String, locationId: String, ) async throws {
-  let client = try GoogleCloudBigqueryAnalyticshubV1.AnalyticsHubServiceClient()
+  let client = try GoogleCloudBigqueryAnalyticsHubV1.AnalyticsHubServiceClient()
   let items = try client.listDataExchanges(
     byItem: ListDataExchangesRequest()
       .with {

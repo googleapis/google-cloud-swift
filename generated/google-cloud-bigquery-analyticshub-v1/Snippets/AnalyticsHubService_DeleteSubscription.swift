@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudBigqueryAnalyticshubV1
+import GoogleCloudBigqueryAnalyticsHubV1
 import GoogleCloudWkt
 import GoogleIAMV1
 import GoogleLongrunning
@@ -41,7 +41,7 @@ func sample(
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleCloudBigqueryAnalyticshubV1.AnalyticsHubServiceClient()
+      let client = try GoogleCloudBigqueryAnalyticsHubV1.AnalyticsHubServiceClient()
       try await sample(
         client: client, projectId: "[placeholder]", locationId: "[placeholder]",
         subscriptionId: "[placeholder]")

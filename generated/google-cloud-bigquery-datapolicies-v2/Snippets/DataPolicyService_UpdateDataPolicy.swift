@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudBigqueryDatapoliciesV2
+import GoogleCloudBigqueryDataPoliciesV2
 import GoogleCloudWkt
 import GoogleIAMV1
 
@@ -41,7 +41,7 @@ func sample(
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleCloudBigqueryDatapoliciesV2.DataPolicyServiceClient()
+      let client = try GoogleCloudBigqueryDataPoliciesV2.DataPolicyServiceClient()
       try await sample(
         client: client, projectId: "[placeholder]", locationId: "[placeholder]",
         dataPolicyId: "[placeholder]")

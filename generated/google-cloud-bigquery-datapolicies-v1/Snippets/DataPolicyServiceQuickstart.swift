@@ -17,12 +17,12 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudBigqueryDatapoliciesV1
+import GoogleCloudBigqueryDataPoliciesV1
 import GoogleCloudWkt
 import GoogleIAMV1
 
 func sample(projectId: String, locationId: String, ) async throws {
-  let client = try GoogleCloudBigqueryDatapoliciesV1.DataPolicyServiceClient()
+  let client = try GoogleCloudBigqueryDataPoliciesV1.DataPolicyServiceClient()
   let items = try client.listDataPolicies(
     byItem: ListDataPoliciesRequest()
       .with {

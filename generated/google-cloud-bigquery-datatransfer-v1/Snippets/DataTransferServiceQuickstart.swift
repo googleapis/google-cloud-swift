@@ -17,12 +17,12 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudBigqueryDatatransferV1
+import GoogleCloudBigqueryDataTransferV1
 import GoogleCloudLocation
 import GoogleCloudWkt
 
 func sample(projectId: String, ) async throws {
-  let client = try GoogleCloudBigqueryDatatransferV1.DataTransferServiceClient()
+  let client = try GoogleCloudBigqueryDataTransferV1.DataTransferServiceClient()
   let items = try client.listDataSources(
     byItem: ListDataSourcesRequest()
       .with {
