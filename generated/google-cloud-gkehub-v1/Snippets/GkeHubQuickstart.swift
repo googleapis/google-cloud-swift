@@ -17,13 +17,13 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudGkehubV1
+import GoogleCloudGKEHubV1
 import GoogleCloudWkt
 import GoogleLongrunning
 import GoogleRpc
 
 func sample(projectId: String, locationId: String, ) async throws {
-  let client = try GoogleCloudGkehubV1.GkeHubClient()
+  let client = try GoogleCloudGKEHubV1.GkeHubClient()
   let items = try client.listMemberships(
     byItem: ListMembershipsRequest()
       .with {

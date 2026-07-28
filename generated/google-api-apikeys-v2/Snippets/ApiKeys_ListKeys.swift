@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleApiApikeysV2
+import GoogleApiApiKeysV1
 import GoogleCloudWkt
 import GoogleLongrunning
 import GoogleRpc
@@ -39,7 +39,7 @@ func sample(client: ApiKeysClient, projectId: String, locationId: String) async 
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleApiApikeysV2.ApiKeysClient()
+      let client = try GoogleApiApiKeysV1.ApiKeysClient()
       try await sample(client: client, projectId: "[placeholder]", locationId: "[placeholder]")
     } catch {
       print("Error: \(error)")

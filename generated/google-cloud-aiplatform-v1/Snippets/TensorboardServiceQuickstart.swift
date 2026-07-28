@@ -18,7 +18,7 @@
 #if TensorboardService
   // snippet.show
   import Foundation
-  import GoogleCloudAiplatformV1
+  import GoogleCloudAIPlatformV1
   import GoogleCloudLocation
   import GoogleCloudWkt
   import GoogleIAMV1
@@ -26,7 +26,7 @@
   import GoogleRpc
 
   func sample(projectId: String, locationId: String, ) async throws {
-    let client = try GoogleCloudAiplatformV1.TensorboardServiceClient()
+    let client = try GoogleCloudAIPlatformV1.TensorboardServiceClient()
     let items = try client.listTensorboards(
       byItem: ListTensorboardsRequest()
         .with {

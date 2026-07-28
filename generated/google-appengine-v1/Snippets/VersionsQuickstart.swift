@@ -17,13 +17,13 @@
 
 // snippet.show
 import Foundation
-import GoogleAppengineV1
+import GoogleAppEngineV1
 import GoogleCloudWkt
 import GoogleLongrunning
 import GoogleRpc
 
 func sample() async throws {
-  let client = try GoogleAppengineV1.VersionsClient()
+  let client = try GoogleAppEngineV1.VersionsClient()
   let items = try client.listVersions(
     byItem: ListVersionsRequest()
       /* set fields using .with { $0... } */

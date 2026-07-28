@@ -17,14 +17,14 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudEdgenetworkV1
+import GoogleCloudEdgeNetworkV1
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleLongrunning
 import GoogleRpc
 
 func sample(projectId: String, locationId: String, zoneId: String, ) async throws {
-  let client = try GoogleCloudEdgenetworkV1.EdgeNetworkClient()
+  let client = try GoogleCloudEdgeNetworkV1.EdgeNetworkClient()
   let items = try client.listNetworks(
     byItem: ListNetworksRequest()
       .with {

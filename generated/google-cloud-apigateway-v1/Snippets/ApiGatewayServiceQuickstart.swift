@@ -17,13 +17,13 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudApigatewayV1
+import GoogleCloudApiGatewayV1
 import GoogleCloudWkt
 import GoogleLongrunning
 import GoogleRpc
 
 func sample(parent: String, ) async throws {
-  let client = try GoogleCloudApigatewayV1.ApiGatewayServiceClient()
+  let client = try GoogleCloudApiGatewayV1.ApiGatewayServiceClient()
   let items = try client.listGateways(
     byItem: ListGatewaysRequest()
       .with {

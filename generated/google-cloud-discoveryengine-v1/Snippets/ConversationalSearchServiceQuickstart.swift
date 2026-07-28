@@ -18,12 +18,12 @@
 #if ConversationalSearchService
   // snippet.show
   import Foundation
-  import GoogleCloudDiscoveryengineV1
+  import GoogleCloudDiscoveryEngineV1
   import GoogleCloudWkt
   import GoogleLongrunning
 
   func sample(projectId: String, locationId: String, dataStoreId: String, ) async throws {
-    let client = try GoogleCloudDiscoveryengineV1.ConversationalSearchServiceClient()
+    let client = try GoogleCloudDiscoveryEngineV1.ConversationalSearchServiceClient()
     let items = try client.listConversations(
       byItem: ListConversationsRequest()
         .with {

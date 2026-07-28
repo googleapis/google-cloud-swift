@@ -17,13 +17,13 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudDatacatalogV1
+import GoogleCloudDataCatalogV1
 import GoogleCloudWkt
 import GoogleIAMV1
 import GoogleLongrunning
 
 func sample(projectId: String, locationId: String, ) async throws {
-  let client = try GoogleCloudDatacatalogV1.PolicyTagManagerClient()
+  let client = try GoogleCloudDataCatalogV1.PolicyTagManagerClient()
   let items = try client.listTaxonomies(
     byItem: ListTaxonomiesRequest()
       .with {

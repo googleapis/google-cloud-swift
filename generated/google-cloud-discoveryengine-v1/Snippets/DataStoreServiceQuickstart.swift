@@ -18,13 +18,13 @@
 #if DataStoreService
   // snippet.show
   import Foundation
-  import GoogleCloudDiscoveryengineV1
+  import GoogleCloudDiscoveryEngineV1
   import GoogleCloudWkt
   import GoogleLongrunning
   import GoogleRpc
 
   func sample(parent: String, ) async throws {
-    let client = try GoogleCloudDiscoveryengineV1.DataStoreServiceClient()
+    let client = try GoogleCloudDiscoveryEngineV1.DataStoreServiceClient()
     let items = try client.listDataStores(
       byItem: ListDataStoresRequest()
         .with {

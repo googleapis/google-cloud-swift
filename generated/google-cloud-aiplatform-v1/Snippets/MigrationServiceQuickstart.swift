@@ -18,7 +18,7 @@
 #if MigrationService
   // snippet.show
   import Foundation
-  import GoogleCloudAiplatformV1
+  import GoogleCloudAIPlatformV1
   import GoogleCloudLocation
   import GoogleCloudWkt
   import GoogleIAMV1
@@ -26,7 +26,7 @@
   import GoogleRpc
 
   func sample() async throws {
-    let client = try GoogleCloudAiplatformV1.MigrationServiceClient()
+    let client = try GoogleCloudAIPlatformV1.MigrationServiceClient()
     let items = try client.searchMigratableResources(
       byItem: SearchMigratableResourcesRequest()
         /* set fields using .with { $0... } */

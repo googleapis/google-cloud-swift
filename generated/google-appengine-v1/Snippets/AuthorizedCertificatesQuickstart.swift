@@ -17,12 +17,12 @@
 
 // snippet.show
 import Foundation
-import GoogleAppengineV1
+import GoogleAppEngineV1
 import GoogleCloudWkt
 import GoogleLongrunning
 
 func sample() async throws {
-  let client = try GoogleAppengineV1.AuthorizedCertificatesClient()
+  let client = try GoogleAppEngineV1.AuthorizedCertificatesClient()
   let items = try client.listAuthorizedCertificates(
     byItem: ListAuthorizedCertificatesRequest()
       /* set fields using .with { $0... } */

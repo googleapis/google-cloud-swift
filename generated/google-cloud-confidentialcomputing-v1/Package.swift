@@ -18,11 +18,11 @@
 import PackageDescription
 
 let package = Package(
-  name: "GoogleCloudConfidentialcomputingV1",
+  name: "GoogleCloudConfidentialComputingV1",
   platforms: [.macOS(.v15)],
   products: [
     .library(
-      name: "GoogleCloudConfidentialcomputingV1", targets: ["GoogleCloudConfidentialcomputingV1"])
+      name: "GoogleCloudConfidentialComputingV1", targets: ["GoogleCloudConfidentialComputingV1"])
   ],
   dependencies: [
     .package(path: "../../packages/auth"),
@@ -34,7 +34,7 @@ let package = Package(
   ],
   targets: [
     .target(
-      name: "GoogleCloudConfidentialcomputingV1",
+      name: "GoogleCloudConfidentialComputingV1",
       dependencies: [
         .product(name: "GoogleCloudAuth", package: "auth"),
         .product(name: "GoogleCloudGax", package: "gax"),

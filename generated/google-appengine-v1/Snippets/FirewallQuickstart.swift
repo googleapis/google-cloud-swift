@@ -17,12 +17,12 @@
 
 // snippet.show
 import Foundation
-import GoogleAppengineV1
+import GoogleAppEngineV1
 import GoogleCloudWkt
 import GoogleLongrunning
 
 func sample() async throws {
-  let client = try GoogleAppengineV1.FirewallClient()
+  let client = try GoogleAppEngineV1.FirewallClient()
   let items = try client.listIngressRules(
     byItem: ListIngressRulesRequest()
       /* set fields using .with { $0... } */

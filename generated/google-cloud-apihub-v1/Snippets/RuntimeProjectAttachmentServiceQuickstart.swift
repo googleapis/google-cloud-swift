@@ -17,13 +17,13 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudApihubV1
+import GoogleCloudApiHubV1
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleLongrunning
 
 func sample(projectId: String, locationId: String, ) async throws {
-  let client = try GoogleCloudApihubV1.RuntimeProjectAttachmentServiceClient()
+  let client = try GoogleCloudApiHubV1.RuntimeProjectAttachmentServiceClient()
   let items = try client.listRuntimeProjectAttachments(
     byItem: ListRuntimeProjectAttachmentsRequest()
       .with {

@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudApihubV1
+import GoogleCloudApiHubV1
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleLongrunning
@@ -35,7 +35,7 @@ func sample(client: HostProjectRegistrationServiceClient) async throws {
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleCloudApihubV1.HostProjectRegistrationServiceClient()
+      let client = try GoogleCloudApiHubV1.HostProjectRegistrationServiceClient()
       try await sample(client: client)
     } catch {
       print("Error: \(error)")

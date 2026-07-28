@@ -18,12 +18,12 @@
 #if SearchService
   // snippet.show
   import Foundation
-  import GoogleCloudDiscoveryengineV1
+  import GoogleCloudDiscoveryEngineV1
   import GoogleCloudWkt
   import GoogleLongrunning
 
   func sample() async throws {
-    let client = try GoogleCloudDiscoveryengineV1.SearchServiceClient()
+    let client = try GoogleCloudDiscoveryEngineV1.SearchServiceClient()
     let items = try client.search(
       byItem: SearchRequest()
         /* set fields using .with { $0... } */

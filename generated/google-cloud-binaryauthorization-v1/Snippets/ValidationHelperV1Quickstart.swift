@@ -17,12 +17,12 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudBinaryauthorizationV1
+import GoogleCloudBinaryAuthorizationV1
 import GoogleCloudWkt
 import GoogleIAMV1
 
 func sample() async throws {
-  let client = try GoogleCloudBinaryauthorizationV1.ValidationHelperV1Client()
+  let client = try GoogleCloudBinaryAuthorizationV1.ValidationHelperV1Client()
   let response = try await client.validateAttestationOccurrence(
     request: ValidateAttestationOccurrenceRequest()
       /* set fields using .with { $0... } */

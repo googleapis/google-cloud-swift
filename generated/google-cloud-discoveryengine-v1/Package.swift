@@ -18,10 +18,10 @@
 import PackageDescription
 
 let package = Package(
-  name: "GoogleCloudDiscoveryengineV1",
+  name: "GoogleCloudDiscoveryEngineV1",
   platforms: [.macOS(.v15)],
   products: [
-    .library(name: "GoogleCloudDiscoveryengineV1", targets: ["GoogleCloudDiscoveryengineV1"])
+    .library(name: "GoogleCloudDiscoveryEngineV1", targets: ["GoogleCloudDiscoveryEngineV1"])
   ],
   traits: [
     .trait(
@@ -104,7 +104,7 @@ let package = Package(
   ],
   targets: [
     .target(
-      name: "GoogleCloudDiscoveryengineV1",
+      name: "GoogleCloudDiscoveryEngineV1",
       dependencies: [
         .product(name: "GoogleApi", package: "google-api"),
         .product(name: "GoogleCloudAuth", package: "auth"),

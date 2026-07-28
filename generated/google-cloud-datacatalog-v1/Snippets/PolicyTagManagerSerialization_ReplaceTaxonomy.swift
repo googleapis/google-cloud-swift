@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudDatacatalogV1
+import GoogleCloudDataCatalogV1
 import GoogleCloudWkt
 import GoogleLongrunning
 
@@ -34,7 +34,7 @@ func sample(client: PolicyTagManagerSerializationClient) async throws {
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleCloudDatacatalogV1.PolicyTagManagerSerializationClient()
+      let client = try GoogleCloudDataCatalogV1.PolicyTagManagerSerializationClient()
       try await sample(client: client)
     } catch {
       print("Error: \(error)")

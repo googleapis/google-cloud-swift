@@ -18,11 +18,11 @@
 import PackageDescription
 
 let package = Package(
-  name: "GoogleCloudBinaryauthorizationV1",
+  name: "GoogleCloudBinaryAuthorizationV1",
   platforms: [.macOS(.v15)],
   products: [
     .library(
-      name: "GoogleCloudBinaryauthorizationV1", targets: ["GoogleCloudBinaryauthorizationV1"])
+      name: "GoogleCloudBinaryAuthorizationV1", targets: ["GoogleCloudBinaryAuthorizationV1"])
   ],
   dependencies: [
     .package(path: "../../packages/auth"),
@@ -34,7 +34,7 @@ let package = Package(
   ],
   targets: [
     .target(
-      name: "GoogleCloudBinaryauthorizationV1",
+      name: "GoogleCloudBinaryAuthorizationV1",
       dependencies: [
         .product(name: "GoogleCloudAuth", package: "auth"),
         .product(name: "GoogleCloudGax", package: "gax"),

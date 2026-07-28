@@ -17,14 +17,14 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudParallelstoreV1
+import GoogleCloudParallelStoreV1
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleLongrunning
 import GoogleRpc
 
 func sample(projectId: String, locationId: String, ) async throws {
-  let client = try GoogleCloudParallelstoreV1.ParallelstoreClient()
+  let client = try GoogleCloudParallelStoreV1.ParallelstoreClient()
   let items = try client.listInstances(
     byItem: ListInstancesRequest()
       .with {

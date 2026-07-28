@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudNetworkconnectivityV1
+import GoogleCloudNetworkConnectivityV1
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleIAMV1
@@ -25,7 +25,7 @@ import GoogleLongrunning
 import GoogleRpc
 
 func sample(parent: String, ) async throws {
-  let client = try GoogleCloudNetworkconnectivityV1.InternalRangeServiceClient()
+  let client = try GoogleCloudNetworkConnectivityV1.InternalRangeServiceClient()
   let items = try client.listInternalRanges(
     byItem: ListInternalRangesRequest()
       .with {

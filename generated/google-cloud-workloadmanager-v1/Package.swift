@@ -18,10 +18,10 @@
 import PackageDescription
 
 let package = Package(
-  name: "GoogleCloudWorkloadmanagerV1",
+  name: "GoogleCloudWorkloadManagerV1",
   platforms: [.macOS(.v15)],
   products: [
-    .library(name: "GoogleCloudWorkloadmanagerV1", targets: ["GoogleCloudWorkloadmanagerV1"])
+    .library(name: "GoogleCloudWorkloadManagerV1", targets: ["GoogleCloudWorkloadManagerV1"])
   ],
   dependencies: [
     .package(path: "../../packages/auth"),
@@ -34,7 +34,7 @@ let package = Package(
   ],
   targets: [
     .target(
-      name: "GoogleCloudWorkloadmanagerV1",
+      name: "GoogleCloudWorkloadManagerV1",
       dependencies: [
         .product(name: "GoogleCloudAuth", package: "auth"),
         .product(name: "GoogleCloudGax", package: "gax"),

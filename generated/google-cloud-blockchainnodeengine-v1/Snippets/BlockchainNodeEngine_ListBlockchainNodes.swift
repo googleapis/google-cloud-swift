@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudBlockchainnodeengineV1
+import GoogleCloudBlockChainNodeEngineV1
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleLongrunning
@@ -41,7 +41,7 @@ func sample(client: BlockchainNodeEngineClient, projectId: String, locationId: S
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleCloudBlockchainnodeengineV1.BlockchainNodeEngineClient()
+      let client = try GoogleCloudBlockChainNodeEngineV1.BlockchainNodeEngineClient()
       try await sample(client: client, projectId: "[placeholder]", locationId: "[placeholder]")
     } catch {
       print("Error: \(error)")

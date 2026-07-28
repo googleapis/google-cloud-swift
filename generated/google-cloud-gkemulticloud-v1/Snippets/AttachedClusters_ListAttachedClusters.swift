@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudGkemulticloudV1
+import GoogleCloudGKEMultiCloudV1
 import GoogleCloudWkt
 import GoogleLongrunning
 import GoogleRpc
@@ -39,7 +39,7 @@ func sample(client: AttachedClustersClient, projectId: String, locationId: Strin
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleCloudGkemulticloudV1.AttachedClustersClient()
+      let client = try GoogleCloudGKEMultiCloudV1.AttachedClustersClient()
       try await sample(client: client, projectId: "[placeholder]", locationId: "[placeholder]")
     } catch {
       print("Error: \(error)")

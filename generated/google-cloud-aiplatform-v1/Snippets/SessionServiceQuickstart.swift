@@ -18,7 +18,7 @@
 #if SessionService
   // snippet.show
   import Foundation
-  import GoogleCloudAiplatformV1
+  import GoogleCloudAIPlatformV1
   import GoogleCloudLocation
   import GoogleCloudWkt
   import GoogleIAMV1
@@ -26,7 +26,7 @@
   import GoogleRpc
 
   func sample(projectId: String, locationId: String, reasoningEngineId: String, ) async throws {
-    let client = try GoogleCloudAiplatformV1.SessionServiceClient()
+    let client = try GoogleCloudAIPlatformV1.SessionServiceClient()
     let items = try client.listSessions(
       byItem: ListSessionsRequest()
         .with {

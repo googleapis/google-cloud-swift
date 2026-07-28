@@ -17,13 +17,13 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudResourcemanagerV3
+import GoogleCloudResourceManagerV3
 import GoogleCloudWkt
 import GoogleIAMV1
 import GoogleLongrunning
 
 func sample(organizationId: String, ) async throws {
-  let client = try GoogleCloudResourcemanagerV3.OrganizationsClient()
+  let client = try GoogleCloudResourceManagerV3.OrganizationsClient()
   let response = try await client.getOrganization(
     request: GetOrganizationRequest()
       .with {

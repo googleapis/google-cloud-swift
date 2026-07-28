@@ -17,14 +17,14 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudTelcoautomationV1
+import GoogleCloudTelcoAutomationV1
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleLongrunning
 import GoogleRpc
 
 func sample(projectId: String, locationId: String, ) async throws {
-  let client = try GoogleCloudTelcoautomationV1.TelcoAutomationClient()
+  let client = try GoogleCloudTelcoAutomationV1.TelcoAutomationClient()
   let items = try client.listOrchestrationClusters(
     byItem: ListOrchestrationClustersRequest()
       .with {

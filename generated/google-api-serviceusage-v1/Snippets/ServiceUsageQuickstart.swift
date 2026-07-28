@@ -17,13 +17,13 @@
 
 // snippet.show
 import Foundation
-import GoogleApiServiceusageV1
+import GoogleApiServiceUsageV1
 import GoogleCloudWkt
 import GoogleLongrunning
 import GoogleRpc
 
 func sample(parent: String, ) async throws {
-  let client = try GoogleApiServiceusageV1.ServiceUsageClient()
+  let client = try GoogleApiServiceUsageV1.ServiceUsageClient()
   let items = try client.listServices(
     byItem: ListServicesRequest()
       .with {

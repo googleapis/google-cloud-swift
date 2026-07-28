@@ -18,7 +18,7 @@
 #if FeaturestoreService
   // snippet.show
   import Foundation
-  import GoogleCloudAiplatformV1
+  import GoogleCloudAIPlatformV1
   import GoogleCloudLocation
   import GoogleCloudWkt
   import GoogleIAMV1
@@ -26,7 +26,7 @@
   import GoogleRpc
 
   func sample(projectId: String, locationId: String, ) async throws {
-    let client = try GoogleCloudAiplatformV1.FeaturestoreServiceClient()
+    let client = try GoogleCloudAIPlatformV1.FeaturestoreServiceClient()
     let items = try client.listFeaturestores(
       byItem: ListFeaturestoresRequest()
         .with {

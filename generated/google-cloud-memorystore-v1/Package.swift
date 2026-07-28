@@ -18,10 +18,10 @@
 import PackageDescription
 
 let package = Package(
-  name: "GoogleCloudMemorystoreV1",
+  name: "GoogleCloudMemoryStoreV1",
   platforms: [.macOS(.v15)],
   products: [
-    .library(name: "GoogleCloudMemorystoreV1", targets: ["GoogleCloudMemorystoreV1"])
+    .library(name: "GoogleCloudMemoryStoreV1", targets: ["GoogleCloudMemoryStoreV1"])
   ],
   dependencies: [
     .package(path: "../../packages/auth"),
@@ -35,7 +35,7 @@ let package = Package(
   ],
   targets: [
     .target(
-      name: "GoogleCloudMemorystoreV1",
+      name: "GoogleCloudMemoryStoreV1",
       dependencies: [
         .product(name: "GoogleCloudAuth", package: "auth"),
         .product(name: "GoogleCloudGax", package: "gax"),

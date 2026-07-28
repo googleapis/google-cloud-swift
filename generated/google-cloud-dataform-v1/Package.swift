@@ -18,10 +18,10 @@
 import PackageDescription
 
 let package = Package(
-  name: "GoogleCloudDataformV1",
+  name: "GoogleCloudDataFormV1",
   platforms: [.macOS(.v15)],
   products: [
-    .library(name: "GoogleCloudDataformV1", targets: ["GoogleCloudDataformV1"])
+    .library(name: "GoogleCloudDataFormV1", targets: ["GoogleCloudDataFormV1"])
   ],
   dependencies: [
     .package(path: "../../packages/auth"),
@@ -36,7 +36,7 @@ let package = Package(
   ],
   targets: [
     .target(
-      name: "GoogleCloudDataformV1",
+      name: "GoogleCloudDataFormV1",
       dependencies: [
         .product(name: "GoogleCloudAuth", package: "auth"),
         .product(name: "GoogleCloudGax", package: "gax"),

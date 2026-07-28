@@ -17,13 +17,13 @@
 
 // snippet.show
 import Foundation
-import GoogleApiApikeysV2
+import GoogleApiApiKeysV1
 import GoogleCloudWkt
 import GoogleLongrunning
 import GoogleRpc
 
 func sample(projectId: String, locationId: String, ) async throws {
-  let client = try GoogleApiApikeysV2.ApiKeysClient()
+  let client = try GoogleApiApiKeysV1.ApiKeysClient()
   let items = try client.listKeys(
     byItem: ListKeysRequest()
       .with {

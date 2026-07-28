@@ -18,10 +18,10 @@
 import PackageDescription
 
 let package = Package(
-  name: "GoogleCloudTelcoautomationV1",
+  name: "GoogleCloudTelcoAutomationV1",
   platforms: [.macOS(.v15)],
   products: [
-    .library(name: "GoogleCloudTelcoautomationV1", targets: ["GoogleCloudTelcoautomationV1"])
+    .library(name: "GoogleCloudTelcoAutomationV1", targets: ["GoogleCloudTelcoAutomationV1"])
   ],
   dependencies: [
     .package(path: "../../packages/auth"),
@@ -34,7 +34,7 @@ let package = Package(
   ],
   targets: [
     .target(
-      name: "GoogleCloudTelcoautomationV1",
+      name: "GoogleCloudTelcoAutomationV1",
       dependencies: [
         .product(name: "GoogleCloudAuth", package: "auth"),
         .product(name: "GoogleCloudGax", package: "gax"),

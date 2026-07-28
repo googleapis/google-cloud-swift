@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudNetworkconnectivityV1
+import GoogleCloudNetworkConnectivityV1
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleIAMV1
@@ -39,7 +39,7 @@ func sample(client: InternalRangeServiceClient) async throws {
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleCloudNetworkconnectivityV1.InternalRangeServiceClient()
+      let client = try GoogleCloudNetworkConnectivityV1.InternalRangeServiceClient()
       try await sample(client: client)
     } catch {
       print("Error: \(error)")

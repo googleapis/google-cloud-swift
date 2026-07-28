@@ -18,10 +18,10 @@
 import PackageDescription
 
 let package = Package(
-  name: "GoogleCloudStorageinsightsV1",
+  name: "GoogleCloudStorageInsightsV1",
   platforms: [.macOS(.v15)],
   products: [
-    .library(name: "GoogleCloudStorageinsightsV1", targets: ["GoogleCloudStorageinsightsV1"])
+    .library(name: "GoogleCloudStorageInsightsV1", targets: ["GoogleCloudStorageInsightsV1"])
   ],
   dependencies: [
     .package(path: "../../packages/auth"),
@@ -35,7 +35,7 @@ let package = Package(
   ],
   targets: [
     .target(
-      name: "GoogleCloudStorageinsightsV1",
+      name: "GoogleCloudStorageInsightsV1",
       dependencies: [
         .product(name: "GoogleCloudAuth", package: "auth"),
         .product(name: "GoogleCloudGax", package: "gax"),

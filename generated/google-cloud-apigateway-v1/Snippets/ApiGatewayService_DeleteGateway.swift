@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudApigatewayV1
+import GoogleCloudApiGatewayV1
 import GoogleCloudWkt
 import GoogleLongrunning
 import GoogleRpc
@@ -40,7 +40,7 @@ func sample(
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleCloudApigatewayV1.ApiGatewayServiceClient()
+      let client = try GoogleCloudApiGatewayV1.ApiGatewayServiceClient()
       try await sample(
         client: client, projectId: "[placeholder]", locationId: "[placeholder]",
         gatewayId: "[placeholder]")

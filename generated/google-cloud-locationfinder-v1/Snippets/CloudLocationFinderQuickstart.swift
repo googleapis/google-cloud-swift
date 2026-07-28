@@ -17,12 +17,12 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudLocationfinderV1
+import GoogleCloudLocationFinderV1
 import GoogleCloudLocation
 import GoogleCloudWkt
 
 func sample(projectId: String, locationId: String, ) async throws {
-  let client = try GoogleCloudLocationfinderV1.CloudLocationFinderClient()
+  let client = try GoogleCloudLocationFinderV1.CloudLocationFinderClient()
   let items = try client.listCloudLocations(
     byItem: ListCloudLocationsRequest()
       .with {

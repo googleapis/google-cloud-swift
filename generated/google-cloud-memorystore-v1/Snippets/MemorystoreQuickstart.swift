@@ -17,14 +17,14 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudMemorystoreV1
+import GoogleCloudMemoryStoreV1
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleLongrunning
 import GoogleRpc
 
 func sample(projectId: String, locationId: String, ) async throws {
-  let client = try GoogleCloudMemorystoreV1.MemorystoreClient()
+  let client = try GoogleCloudMemoryStoreV1.MemorystoreClient()
   let items = try client.listInstances(
     byItem: ListInstancesRequest()
       .with {

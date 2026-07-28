@@ -17,14 +17,14 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudAuditmanagerV1
+import GoogleCloudAuditManagerV1
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleLongrunning
 import GoogleRpc
 
 func sample(projectId: String, locationId: String, ) async throws {
-  let client = try GoogleCloudAuditmanagerV1.AuditManagerClient()
+  let client = try GoogleCloudAuditManagerV1.AuditManagerClient()
   let items = try client.listAuditReports(
     byItem: ListAuditReportsRequest()
       .with {

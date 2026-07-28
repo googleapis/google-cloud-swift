@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudCesV1
+import GoogleCloudCESV1
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleLongrunning
@@ -45,7 +45,7 @@ func sample(
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleCloudCesV1.AgentServiceClient()
+      let client = try GoogleCloudCESV1.AgentServiceClient()
       try await sample(
         client: client, projectId: "[placeholder]", locationId: "[placeholder]",
         appId: "[placeholder]", toolsetId: "[placeholder]")

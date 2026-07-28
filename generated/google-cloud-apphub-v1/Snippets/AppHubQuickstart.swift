@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudApphubV1
+import GoogleCloudAppHubV1
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleIAMV1
@@ -25,7 +25,7 @@ import GoogleLongrunning
 import GoogleRpc
 
 func sample(projectId: String, locationId: String, ) async throws {
-  let client = try GoogleCloudApphubV1.AppHubClient()
+  let client = try GoogleCloudAppHubV1.AppHubClient()
   let items = try client.listServiceProjectAttachments(
     byItem: ListServiceProjectAttachmentsRequest()
       .with {

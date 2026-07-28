@@ -18,7 +18,7 @@
 #if CompletionService
   // snippet.show
   import Foundation
-  import GoogleCloudDiscoveryengineV1
+  import GoogleCloudDiscoveryEngineV1
   import GoogleCloudWkt
   import GoogleLongrunning
   import GoogleRpc
@@ -37,7 +37,7 @@
   struct SnippetRunner {
     static func main() async throws {
       do {
-        let client = try GoogleCloudDiscoveryengineV1.CompletionServiceClient()
+        let client = try GoogleCloudDiscoveryEngineV1.CompletionServiceClient()
         try await sample(client: client)
       } catch {
         print("Error: \(error)")

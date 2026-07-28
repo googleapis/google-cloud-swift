@@ -18,7 +18,7 @@
 #if IndexEndpointService
   // snippet.show
   import Foundation
-  import GoogleCloudAiplatformV1
+  import GoogleCloudAIPlatformV1
   import GoogleCloudLocation
   import GoogleCloudWkt
   import GoogleIAMV1
@@ -26,7 +26,7 @@
   import GoogleRpc
 
   func sample(parent: String, ) async throws {
-    let client = try GoogleCloudAiplatformV1.IndexEndpointServiceClient()
+    let client = try GoogleCloudAIPlatformV1.IndexEndpointServiceClient()
     let items = try client.listIndexEndpoints(
       byItem: ListIndexEndpointsRequest()
         .with {

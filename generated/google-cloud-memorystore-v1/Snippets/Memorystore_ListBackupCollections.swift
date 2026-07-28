@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudMemorystoreV1
+import GoogleCloudMemoryStoreV1
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleLongrunning
@@ -40,7 +40,7 @@ func sample(client: MemorystoreClient, projectId: String, locationId: String) as
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleCloudMemorystoreV1.MemorystoreClient()
+      let client = try GoogleCloudMemoryStoreV1.MemorystoreClient()
       try await sample(client: client, projectId: "[placeholder]", locationId: "[placeholder]")
     } catch {
       print("Error: \(error)")

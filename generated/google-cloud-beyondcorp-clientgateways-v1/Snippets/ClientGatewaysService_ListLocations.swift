@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudBeyondcorpClientgatewaysV1
+import GoogleCloudBeyondCorpClientGatewaysV1
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleIAMV1
@@ -39,7 +39,7 @@ func sample(client: ClientGatewaysServiceClient) async throws {
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleCloudBeyondcorpClientgatewaysV1.ClientGatewaysServiceClient()
+      let client = try GoogleCloudBeyondCorpClientGatewaysV1.ClientGatewaysServiceClient()
       try await sample(client: client)
     } catch {
       print("Error: \(error)")

@@ -17,14 +17,14 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudStorageinsightsV1
+import GoogleCloudStorageInsightsV1
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleLongrunning
 import GoogleRpc
 
 func sample(projectId: String, locationId: String, ) async throws {
-  let client = try GoogleCloudStorageinsightsV1.StorageInsightsClient()
+  let client = try GoogleCloudStorageInsightsV1.StorageInsightsClient()
   let items = try client.listReportConfigs(
     byItem: ListReportConfigsRequest()
       .with {

@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudResourcemanagerV3
+import GoogleCloudResourceManagerV3
 import GoogleCloudWkt
 import GoogleLongrunning
 import GoogleRpc
@@ -38,7 +38,7 @@ func sample(client: TagHoldsClient, tagValueId: String, tagHoldId: String) async
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleCloudResourcemanagerV3.TagHoldsClient()
+      let client = try GoogleCloudResourceManagerV3.TagHoldsClient()
       try await sample(client: client, tagValueId: "[placeholder]", tagHoldId: "[placeholder]")
     } catch {
       print("Error: \(error)")

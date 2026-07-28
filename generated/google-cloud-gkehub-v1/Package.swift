@@ -18,10 +18,10 @@
 import PackageDescription
 
 let package = Package(
-  name: "GoogleCloudGkehubV1",
+  name: "GoogleCloudGKEHubV1",
   platforms: [.macOS(.v15)],
   products: [
-    .library(name: "GoogleCloudGkehubV1", targets: ["GoogleCloudGkehubV1"])
+    .library(name: "GoogleCloudGKEHubV1", targets: ["GoogleCloudGKEHubV1"])
   ],
   dependencies: [
     .package(path: "../../packages/auth"),
@@ -36,7 +36,7 @@ let package = Package(
   ],
   targets: [
     .target(
-      name: "GoogleCloudGkehubV1",
+      name: "GoogleCloudGKEHubV1",
       dependencies: [
         .product(name: "GoogleCloudAuth", package: "auth"),
         .product(

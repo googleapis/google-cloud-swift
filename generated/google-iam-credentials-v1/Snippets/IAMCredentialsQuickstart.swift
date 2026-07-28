@@ -17,11 +17,11 @@
 
 // snippet.show
 import Foundation
-import GoogleIamCredentialsV1
+import GoogleIAMCredentialsV1
 import GoogleCloudWkt
 
 func sample() async throws {
-  let client = try GoogleIamCredentialsV1.IAMCredentialsClient()
+  let client = try GoogleIAMCredentialsV1.IAMCredentialsClient()
   let response = try await client.generateAccessToken(
     request: GenerateAccessTokenRequest()
       /* set fields using .with { $0... } */

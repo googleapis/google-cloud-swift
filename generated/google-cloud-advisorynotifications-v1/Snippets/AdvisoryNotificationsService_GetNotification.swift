@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudAdvisorynotificationsV1
+import GoogleCloudAdvisoryNotificationsV1
 import GoogleCloudWkt
 
 func sample(
@@ -39,7 +39,7 @@ func sample(
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleCloudAdvisorynotificationsV1.AdvisoryNotificationsServiceClient()
+      let client = try GoogleCloudAdvisoryNotificationsV1.AdvisoryNotificationsServiceClient()
       try await sample(
         client: client, organizationId: "[placeholder]", locationId: "[placeholder]",
         notificationId: "[placeholder]")

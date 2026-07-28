@@ -17,14 +17,14 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudEdgecontainerV1
+import GoogleCloudEdgeContainerV1
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleLongrunning
 import GoogleRpc
 
 func sample(projectId: String, locationId: String, ) async throws {
-  let client = try GoogleCloudEdgecontainerV1.EdgeContainerClient()
+  let client = try GoogleCloudEdgeContainerV1.EdgeContainerClient()
   let items = try client.listClusters(
     byItem: ListClustersRequest()
       .with {

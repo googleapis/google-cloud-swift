@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleApiCloudquotasV1
+import GoogleApiCloudQuotasV1
 import GoogleCloudWkt
 
 func sample(client: CloudQuotasClient, projectId: String, locationId: String, serviceId: String)
@@ -39,7 +39,7 @@ func sample(client: CloudQuotasClient, projectId: String, locationId: String, se
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleApiCloudquotasV1.CloudQuotasClient()
+      let client = try GoogleApiCloudQuotasV1.CloudQuotasClient()
       try await sample(
         client: client, projectId: "[placeholder]", locationId: "[placeholder]",
         serviceId: "[placeholder]")

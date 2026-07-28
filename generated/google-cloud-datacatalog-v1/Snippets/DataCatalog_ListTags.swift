@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudDatacatalogV1
+import GoogleCloudDataCatalogV1
 import GoogleCloudWkt
 import GoogleIAMV1
 import GoogleLongrunning
@@ -44,7 +44,7 @@ func sample(
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleCloudDatacatalogV1.DataCatalogClient()
+      let client = try GoogleCloudDataCatalogV1.DataCatalogClient()
       try await sample(
         client: client, projectId: "[placeholder]", locationId: "[placeholder]",
         entryGroupId: "[placeholder]", entryId: "[placeholder]")

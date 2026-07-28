@@ -18,13 +18,13 @@
 #if DocumentService
   // snippet.show
   import Foundation
-  import GoogleCloudDiscoveryengineV1
+  import GoogleCloudDiscoveryEngineV1
   import GoogleCloudWkt
   import GoogleLongrunning
   import GoogleRpc
 
   func sample(parent: String, ) async throws {
-    let client = try GoogleCloudDiscoveryengineV1.DocumentServiceClient()
+    let client = try GoogleCloudDiscoveryEngineV1.DocumentServiceClient()
     let items = try client.listDocuments(
       byItem: ListDocumentsRequest()
         .with {

@@ -18,10 +18,10 @@
 import PackageDescription
 
 let package = Package(
-  name: "GoogleAppengineV1",
+  name: "GoogleAppEngineV1",
   platforms: [.macOS(.v15)],
   products: [
-    .library(name: "GoogleAppengineV1", targets: ["GoogleAppengineV1"])
+    .library(name: "GoogleAppEngineV1", targets: ["GoogleAppEngineV1"])
   ],
   dependencies: [
     .package(path: "../../packages/auth"),
@@ -33,7 +33,7 @@ let package = Package(
   ],
   targets: [
     .target(
-      name: "GoogleAppengineV1",
+      name: "GoogleAppEngineV1",
       dependencies: [
         .product(name: "GoogleCloudAuth", package: "auth"),
         .product(name: "GoogleCloudGax", package: "gax"),

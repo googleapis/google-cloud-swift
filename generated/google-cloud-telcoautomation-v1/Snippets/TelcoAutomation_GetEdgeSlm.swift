@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudTelcoautomationV1
+import GoogleCloudTelcoAutomationV1
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleLongrunning
@@ -40,7 +40,7 @@ func sample(client: TelcoAutomationClient, projectId: String, locationId: String
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleCloudTelcoautomationV1.TelcoAutomationClient()
+      let client = try GoogleCloudTelcoAutomationV1.TelcoAutomationClient()
       try await sample(
         client: client, projectId: "[placeholder]", locationId: "[placeholder]",
         edgeSlmId: "[placeholder]")

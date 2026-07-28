@@ -18,13 +18,13 @@
 #if EngineService
   // snippet.show
   import Foundation
-  import GoogleCloudDiscoveryengineV1
+  import GoogleCloudDiscoveryEngineV1
   import GoogleCloudWkt
   import GoogleLongrunning
   import GoogleRpc
 
   func sample(parent: String, ) async throws {
-    let client = try GoogleCloudDiscoveryengineV1.EngineServiceClient()
+    let client = try GoogleCloudDiscoveryEngineV1.EngineServiceClient()
     let items = try client.listEngines(
       byItem: ListEnginesRequest()
         .with {

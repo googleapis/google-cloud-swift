@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleAppengineV1
+import GoogleAppEngineV1
 import GoogleCloudWkt
 import GoogleLongrunning
 
@@ -36,7 +36,7 @@ func sample(client: FirewallClient) async throws {
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleAppengineV1.FirewallClient()
+      let client = try GoogleAppEngineV1.FirewallClient()
       try await sample(client: client)
     } catch {
       print("Error: \(error)")

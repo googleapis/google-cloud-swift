@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudLocationfinderV1
+import GoogleCloudLocationFinderV1
 import GoogleCloudLocation
 import GoogleCloudWkt
 
@@ -38,7 +38,7 @@ func sample(
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleCloudLocationfinderV1.CloudLocationFinderClient()
+      let client = try GoogleCloudLocationFinderV1.CloudLocationFinderClient()
       try await sample(
         client: client, projectId: "[placeholder]", locationId: "[placeholder]",
         cloudLocationId: "[placeholder]")

@@ -17,14 +17,14 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudApihubV1
+import GoogleCloudApiHubV1
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleLongrunning
 import GoogleRpc
 
 func sample() async throws {
-  let client = try GoogleCloudApihubV1.ApiHubCollectClient()
+  let client = try GoogleCloudApiHubV1.ApiHubCollectClient()
   let poller = try await client.collectApiData(
     withPolling: CollectApiDataRequest()
       /* set fields using .with { $0... } */

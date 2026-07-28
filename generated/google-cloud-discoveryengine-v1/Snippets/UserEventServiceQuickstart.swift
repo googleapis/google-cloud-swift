@@ -18,14 +18,14 @@
 #if UserEventService
   // snippet.show
   import Foundation
-  import GoogleCloudDiscoveryengineV1
+  import GoogleCloudDiscoveryEngineV1
   import GoogleApi
   import GoogleCloudWkt
   import GoogleLongrunning
   import GoogleRpc
 
   func sample() async throws {
-    let client = try GoogleCloudDiscoveryengineV1.UserEventServiceClient()
+    let client = try GoogleCloudDiscoveryEngineV1.UserEventServiceClient()
     let response = try await client.writeUserEvent(
       request: WriteUserEventRequest()
         /* set fields using .with { $0... } */

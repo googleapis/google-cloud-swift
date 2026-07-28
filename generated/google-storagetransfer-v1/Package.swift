@@ -18,10 +18,10 @@
 import PackageDescription
 
 let package = Package(
-  name: "GoogleStoragetransferV1",
+  name: "GoogleStorageTransferV1",
   platforms: [.macOS(.v15)],
   products: [
-    .library(name: "GoogleStoragetransferV1", targets: ["GoogleStoragetransferV1"])
+    .library(name: "GoogleStorageTransferV1", targets: ["GoogleStorageTransferV1"])
   ],
   dependencies: [
     .package(path: "../../packages/auth"),
@@ -34,7 +34,7 @@ let package = Package(
   ],
   targets: [
     .target(
-      name: "GoogleStoragetransferV1",
+      name: "GoogleStorageTransferV1",
       dependencies: [
         .product(name: "GoogleCloudAuth", package: "auth"),
         .product(name: "GoogleCloudGax", package: "gax"),

@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudTexttospeechV1
+import GoogleCloudTextToSpeechV1
 import GoogleCloudWkt
 import GoogleLongrunning
 
@@ -36,7 +36,7 @@ func sample(client: TextToSpeechClient) async throws {
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleCloudTexttospeechV1.TextToSpeechClient()
+      let client = try GoogleCloudTextToSpeechV1.TextToSpeechClient()
       try await sample(client: client)
     } catch {
       print("Error: \(error)")

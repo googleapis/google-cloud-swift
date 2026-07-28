@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudAlloydbV1
+import GoogleCloudAlloyDBV1
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleLongrunning
@@ -36,7 +36,7 @@ func sample(client: AlloyDBCSQLAdminClient) async throws {
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleCloudAlloydbV1.AlloyDBCSQLAdminClient()
+      let client = try GoogleCloudAlloyDBV1.AlloyDBCSQLAdminClient()
       try await sample(client: client)
     } catch {
       print("Error: \(error)")

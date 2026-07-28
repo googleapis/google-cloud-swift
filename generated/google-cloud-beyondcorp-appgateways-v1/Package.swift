@@ -18,11 +18,11 @@
 import PackageDescription
 
 let package = Package(
-  name: "GoogleCloudBeyondcorpAppgatewaysV1",
+  name: "GoogleCloudBeyondCorpAppGatewaysV1",
   platforms: [.macOS(.v15)],
   products: [
     .library(
-      name: "GoogleCloudBeyondcorpAppgatewaysV1", targets: ["GoogleCloudBeyondcorpAppgatewaysV1"])
+      name: "GoogleCloudBeyondCorpAppGatewaysV1", targets: ["GoogleCloudBeyondCorpAppGatewaysV1"])
   ],
   dependencies: [
     .package(path: "../../packages/auth"),
@@ -36,7 +36,7 @@ let package = Package(
   ],
   targets: [
     .target(
-      name: "GoogleCloudBeyondcorpAppgatewaysV1",
+      name: "GoogleCloudBeyondCorpAppGatewaysV1",
       dependencies: [
         .product(name: "GoogleCloudAuth", package: "auth"),
         .product(name: "GoogleCloudGax", package: "gax"),

@@ -18,11 +18,11 @@
 import PackageDescription
 
 let package = Package(
-  name: "GoogleCloudAdvisorynotificationsV1",
+  name: "GoogleCloudAdvisoryNotificationsV1",
   platforms: [.macOS(.v15)],
   products: [
     .library(
-      name: "GoogleCloudAdvisorynotificationsV1", targets: ["GoogleCloudAdvisorynotificationsV1"])
+      name: "GoogleCloudAdvisoryNotificationsV1", targets: ["GoogleCloudAdvisoryNotificationsV1"])
   ],
   dependencies: [
     .package(path: "../../packages/auth"),
@@ -32,7 +32,7 @@ let package = Package(
   ],
   targets: [
     .target(
-      name: "GoogleCloudAdvisorynotificationsV1",
+      name: "GoogleCloudAdvisoryNotificationsV1",
       dependencies: [
         .product(name: "GoogleCloudAuth", package: "auth"),
         .product(name: "GoogleCloudGax", package: "gax"),

@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudWorkloadmanagerV1
+import GoogleCloudWorkloadManagerV1
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleLongrunning
@@ -36,7 +36,7 @@ func sample(client: WorkloadManagerClient) async throws {
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleCloudWorkloadmanagerV1.WorkloadManagerClient()
+      let client = try GoogleCloudWorkloadManagerV1.WorkloadManagerClient()
       try await sample(client: client)
     } catch {
       print("Error: \(error)")

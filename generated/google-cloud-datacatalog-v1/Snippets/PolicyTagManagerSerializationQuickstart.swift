@@ -17,12 +17,12 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudDatacatalogV1
+import GoogleCloudDataCatalogV1
 import GoogleCloudWkt
 import GoogleLongrunning
 
 func sample() async throws {
-  let client = try GoogleCloudDatacatalogV1.PolicyTagManagerSerializationClient()
+  let client = try GoogleCloudDataCatalogV1.PolicyTagManagerSerializationClient()
   let response = try await client.replaceTaxonomy(
     request: ReplaceTaxonomyRequest()
       /* set fields using .with { $0... } */

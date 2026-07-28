@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudResourcemanagerV3
+import GoogleCloudResourceManagerV3
 import GoogleCloudWkt
 import GoogleIAMV1
 import GoogleLongrunning
@@ -36,7 +36,7 @@ func sample(client: ProjectsClient) async throws {
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleCloudResourcemanagerV3.ProjectsClient()
+      let client = try GoogleCloudResourceManagerV3.ProjectsClient()
       try await sample(client: client)
     } catch {
       print("Error: \(error)")

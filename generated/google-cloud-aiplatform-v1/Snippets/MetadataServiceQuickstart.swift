@@ -18,7 +18,7 @@
 #if MetadataService
   // snippet.show
   import Foundation
-  import GoogleCloudAiplatformV1
+  import GoogleCloudAIPlatformV1
   import GoogleCloudLocation
   import GoogleCloudWkt
   import GoogleIAMV1
@@ -26,7 +26,7 @@
   import GoogleRpc
 
   func sample(parent: String, ) async throws {
-    let client = try GoogleCloudAiplatformV1.MetadataServiceClient()
+    let client = try GoogleCloudAIPlatformV1.MetadataServiceClient()
     let items = try client.listMetadataStores(
       byItem: ListMetadataStoresRequest()
         .with {

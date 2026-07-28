@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudApiregistryV1
+import GoogleCloudApiRegistryV1
 import GoogleCloudLocation
 import GoogleCloudWkt
 
@@ -40,7 +40,7 @@ func sample(
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleCloudApiregistryV1.CloudApiRegistryClient()
+      let client = try GoogleCloudApiRegistryV1.CloudApiRegistryClient()
       try await sample(
         client: client, projectId: "[placeholder]", locationId: "[placeholder]",
         apiNamespaceId: "[placeholder]", mcpServerId: "[placeholder]")

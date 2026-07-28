@@ -18,17 +18,17 @@
 import PackageDescription
 
 let package = Package(
-  name: "GoogleCloudAlloydbConnectorsV1",
+  name: "GoogleCloudAlloyDBConnectorsV1",
   platforms: [.macOS(.v15)],
   products: [
-    .library(name: "GoogleCloudAlloydbConnectorsV1", targets: ["GoogleCloudAlloydbConnectorsV1"])
+    .library(name: "GoogleCloudAlloyDBConnectorsV1", targets: ["GoogleCloudAlloyDBConnectorsV1"])
   ],
   dependencies: [
     .package(path: "../../packages/wkt")
   ],
   targets: [
     .target(
-      name: "GoogleCloudAlloydbConnectorsV1",
+      name: "GoogleCloudAlloyDBConnectorsV1",
       dependencies: [
         .product(name: "GoogleCloudWkt", package: "wkt")
       ],

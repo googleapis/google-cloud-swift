@@ -18,7 +18,7 @@
 #if EndpointService
   // snippet.show
   import Foundation
-  import GoogleCloudAiplatformV1
+  import GoogleCloudAIPlatformV1
   import GoogleCloudLocation
   import GoogleCloudWkt
   import GoogleIAMV1
@@ -42,7 +42,7 @@
   struct SnippetRunner {
     static func main() async throws {
       do {
-        let client = try GoogleCloudAiplatformV1.EndpointServiceClient()
+        let client = try GoogleCloudAIPlatformV1.EndpointServiceClient()
         try await sample(
           client: client, projectId: "[placeholder]", locationId: "[placeholder]",
           endpointId: "[placeholder]")

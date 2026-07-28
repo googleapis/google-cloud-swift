@@ -17,13 +17,13 @@
 
 // snippet.show
 import Foundation
-import GoogleAppengineV1
+import GoogleAppEngineV1
 import GoogleCloudWkt
 import GoogleLongrunning
 import GoogleRpc
 
 func sample() async throws {
-  let client = try GoogleAppengineV1.ApplicationsClient()
+  let client = try GoogleAppEngineV1.ApplicationsClient()
   let response = try await client.getApplication(
     request: GetApplicationRequest()
       /* set fields using .with { $0... } */

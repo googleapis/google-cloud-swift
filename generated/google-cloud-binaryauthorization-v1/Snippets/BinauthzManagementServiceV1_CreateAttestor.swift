@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudBinaryauthorizationV1
+import GoogleCloudBinaryAuthorizationV1
 import GoogleCloudWkt
 import GoogleIAMV1
 
@@ -38,7 +38,7 @@ func sample(client: BinauthzManagementServiceV1Client, parent: String) async thr
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleCloudBinaryauthorizationV1.BinauthzManagementServiceV1Client()
+      let client = try GoogleCloudBinaryAuthorizationV1.BinauthzManagementServiceV1Client()
       try await sample(client: client, parent: "[placeholder]")
     } catch {
       print("Error: \(error)")

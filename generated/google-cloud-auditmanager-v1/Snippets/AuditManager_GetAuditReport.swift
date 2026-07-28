@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudAuditmanagerV1
+import GoogleCloudAuditManagerV1
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleLongrunning
@@ -40,7 +40,7 @@ func sample(
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleCloudAuditmanagerV1.AuditManagerClient()
+      let client = try GoogleCloudAuditManagerV1.AuditManagerClient()
       try await sample(
         client: client, projectId: "[placeholder]", locationId: "[placeholder]",
         auditReportId: "[placeholder]")

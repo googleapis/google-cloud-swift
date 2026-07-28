@@ -18,10 +18,10 @@
 import PackageDescription
 
 let package = Package(
-  name: "GoogleCloudBaremetalsolutionV2",
+  name: "GoogleCloudBareMetalSolutionV2",
   platforms: [.macOS(.v15)],
   products: [
-    .library(name: "GoogleCloudBaremetalsolutionV2", targets: ["GoogleCloudBaremetalsolutionV2"])
+    .library(name: "GoogleCloudBareMetalSolutionV2", targets: ["GoogleCloudBareMetalSolutionV2"])
   ],
   dependencies: [
     .package(path: "../../packages/auth"),
@@ -34,7 +34,7 @@ let package = Package(
   ],
   targets: [
     .target(
-      name: "GoogleCloudBaremetalsolutionV2",
+      name: "GoogleCloudBareMetalSolutionV2",
       dependencies: [
         .product(name: "GoogleCloudAuth", package: "auth"),
         .product(name: "GoogleCloudGax", package: "gax"),

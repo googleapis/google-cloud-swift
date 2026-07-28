@@ -18,13 +18,13 @@
 #if CmekConfigService
   // snippet.show
   import Foundation
-  import GoogleCloudDiscoveryengineV1
+  import GoogleCloudDiscoveryEngineV1
   import GoogleCloudWkt
   import GoogleLongrunning
   import GoogleRpc
 
   func sample(projectId: String, locationId: String, ) async throws {
-    let client = try GoogleCloudDiscoveryengineV1.CmekConfigServiceClient()
+    let client = try GoogleCloudDiscoveryEngineV1.CmekConfigServiceClient()
     let response = try await client.getCmekConfig(
       request: GetCmekConfigRequest()
         .with {

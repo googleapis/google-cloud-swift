@@ -18,10 +18,10 @@
 import PackageDescription
 
 let package = Package(
-  name: "GoogleCloudAiplatformV1",
+  name: "GoogleCloudAIPlatformV1",
   platforms: [.macOS(.v15)],
   products: [
-    .library(name: "GoogleCloudAiplatformV1", targets: ["GoogleCloudAiplatformV1"])
+    .library(name: "GoogleCloudAIPlatformV1", targets: ["GoogleCloudAIPlatformV1"])
   ],
   traits: [
     .trait(
@@ -144,7 +144,7 @@ let package = Package(
   ],
   targets: [
     .target(
-      name: "GoogleCloudAiplatformV1",
+      name: "GoogleCloudAIPlatformV1",
       dependencies: [
         .product(name: "GoogleApi", package: "google-api"),
         .product(name: "GoogleCloudAuth", package: "auth"),

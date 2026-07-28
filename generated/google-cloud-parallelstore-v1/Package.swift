@@ -18,10 +18,10 @@
 import PackageDescription
 
 let package = Package(
-  name: "GoogleCloudParallelstoreV1",
+  name: "GoogleCloudParallelStoreV1",
   platforms: [.macOS(.v15)],
   products: [
-    .library(name: "GoogleCloudParallelstoreV1", targets: ["GoogleCloudParallelstoreV1"])
+    .library(name: "GoogleCloudParallelStoreV1", targets: ["GoogleCloudParallelStoreV1"])
   ],
   dependencies: [
     .package(path: "../../packages/auth"),
@@ -34,7 +34,7 @@ let package = Package(
   ],
   targets: [
     .target(
-      name: "GoogleCloudParallelstoreV1",
+      name: "GoogleCloudParallelStoreV1",
       dependencies: [
         .product(name: "GoogleCloudAuth", package: "auth"),
         .product(name: "GoogleCloudGax", package: "gax"),

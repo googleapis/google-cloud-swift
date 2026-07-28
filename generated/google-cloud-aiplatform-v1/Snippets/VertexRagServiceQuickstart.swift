@@ -18,7 +18,7 @@
 #if VertexRagService
   // snippet.show
   import Foundation
-  import GoogleCloudAiplatformV1
+  import GoogleCloudAIPlatformV1
   import GoogleCloudLocation
   import GoogleCloudWkt
   import GoogleIAMV1
@@ -26,7 +26,7 @@
   import GoogleRpc
 
   func sample() async throws {
-    let client = try GoogleCloudAiplatformV1.VertexRagServiceClient()
+    let client = try GoogleCloudAIPlatformV1.VertexRagServiceClient()
     let response = try await client.retrieveContexts(
       request: RetrieveContextsRequest()
         /* set fields using .with { $0... } */

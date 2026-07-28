@@ -18,7 +18,7 @@
 #if NotebookService
   // snippet.show
   import Foundation
-  import GoogleCloudAiplatformV1
+  import GoogleCloudAIPlatformV1
   import GoogleCloudLocation
   import GoogleCloudWkt
   import GoogleIAMV1
@@ -26,7 +26,7 @@
   import GoogleRpc
 
   func sample(parent: String, ) async throws {
-    let client = try GoogleCloudAiplatformV1.NotebookServiceClient()
+    let client = try GoogleCloudAIPlatformV1.NotebookServiceClient()
     let items = try client.listNotebookRuntimeTemplates(
       byItem: ListNotebookRuntimeTemplatesRequest()
         .with {

@@ -17,13 +17,13 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudTexttospeechV1
+import GoogleCloudTextToSpeechV1
 import GoogleCloudWkt
 import GoogleLongrunning
 import GoogleRpc
 
 func sample() async throws {
-  let client = try GoogleCloudTexttospeechV1.TextToSpeechLongAudioSynthesizeClient()
+  let client = try GoogleCloudTextToSpeechV1.TextToSpeechLongAudioSynthesizeClient()
   let poller = try await client.synthesizeLongAudio(
     withPolling: SynthesizeLongAudioRequest()
       /* set fields using .with { $0... } */

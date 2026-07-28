@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudParallelstoreV1
+import GoogleCloudParallelStoreV1
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleLongrunning
@@ -38,7 +38,7 @@ func sample(client: ParallelstoreClient) async throws {
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleCloudParallelstoreV1.ParallelstoreClient()
+      let client = try GoogleCloudParallelStoreV1.ParallelstoreClient()
       try await sample(client: client)
     } catch {
       print("Error: \(error)")

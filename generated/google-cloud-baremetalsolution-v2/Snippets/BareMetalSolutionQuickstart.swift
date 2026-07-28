@@ -17,14 +17,14 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudBaremetalsolutionV2
+import GoogleCloudBareMetalSolutionV2
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleLongrunning
 import GoogleRpc
 
 func sample(parent: String, ) async throws {
-  let client = try GoogleCloudBaremetalsolutionV2.BareMetalSolutionClient()
+  let client = try GoogleCloudBareMetalSolutionV2.BareMetalSolutionClient()
   let items = try client.listInstances(
     byItem: ListInstancesRequest()
       .with {

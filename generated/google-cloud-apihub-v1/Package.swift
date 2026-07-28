@@ -18,10 +18,10 @@
 import PackageDescription
 
 let package = Package(
-  name: "GoogleCloudApihubV1",
+  name: "GoogleCloudApiHubV1",
   platforms: [.macOS(.v15)],
   products: [
-    .library(name: "GoogleCloudApihubV1", targets: ["GoogleCloudApihubV1"])
+    .library(name: "GoogleCloudApiHubV1", targets: ["GoogleCloudApiHubV1"])
   ],
   dependencies: [
     .package(path: "../../packages/auth"),
@@ -34,7 +34,7 @@ let package = Package(
   ],
   targets: [
     .target(
-      name: "GoogleCloudApihubV1",
+      name: "GoogleCloudApiHubV1",
       dependencies: [
         .product(name: "GoogleCloudAuth", package: "auth"),
         .product(name: "GoogleCloudGax", package: "gax"),

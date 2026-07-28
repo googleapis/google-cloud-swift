@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudDatafusionV1
+import GoogleCloudDataFusionV1
 import GoogleCloudWkt
 import GoogleLongrunning
 import GoogleRpc
@@ -40,7 +40,7 @@ func sample(client: DataFusionClient, projectId: String, locationId: String, ins
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleCloudDatafusionV1.DataFusionClient()
+      let client = try GoogleCloudDataFusionV1.DataFusionClient()
       try await sample(
         client: client, projectId: "[placeholder]", locationId: "[placeholder]",
         instanceId: "[placeholder]")

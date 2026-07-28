@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudDataformV1
+import GoogleCloudDataFormV1
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleIAMV1
@@ -37,7 +37,7 @@ func sample(client: DataformClient) async throws {
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleCloudDataformV1.DataformClient()
+      let client = try GoogleCloudDataFormV1.DataformClient()
       try await sample(client: client)
     } catch {
       print("Error: \(error)")

@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudResourcemanagerV3
+import GoogleCloudResourceManagerV3
 import GoogleCloudWkt
 import GoogleIAMV1
 import GoogleLongrunning
@@ -40,7 +40,7 @@ func sample(client: FoldersClient, parent: String) async throws {
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleCloudResourcemanagerV3.FoldersClient()
+      let client = try GoogleCloudResourceManagerV3.FoldersClient()
       try await sample(client: client, parent: "[placeholder]")
     } catch {
       print("Error: \(error)")

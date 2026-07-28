@@ -18,10 +18,10 @@
 import PackageDescription
 
 let package = Package(
-  name: "GoogleCloudLicensemanagerV1",
+  name: "GoogleCloudLicenseManagerV1",
   platforms: [.macOS(.v15)],
   products: [
-    .library(name: "GoogleCloudLicensemanagerV1", targets: ["GoogleCloudLicensemanagerV1"])
+    .library(name: "GoogleCloudLicenseManagerV1", targets: ["GoogleCloudLicenseManagerV1"])
   ],
   dependencies: [
     .package(path: "../../packages/auth"),
@@ -34,7 +34,7 @@ let package = Package(
   ],
   targets: [
     .target(
-      name: "GoogleCloudLicensemanagerV1",
+      name: "GoogleCloudLicenseManagerV1",
       dependencies: [
         .product(name: "GoogleCloudAuth", package: "auth"),
         .product(name: "GoogleCloudGax", package: "gax"),

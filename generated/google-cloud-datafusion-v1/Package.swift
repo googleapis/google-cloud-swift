@@ -18,10 +18,10 @@
 import PackageDescription
 
 let package = Package(
-  name: "GoogleCloudDatafusionV1",
+  name: "GoogleCloudDataFusionV1",
   platforms: [.macOS(.v15)],
   products: [
-    .library(name: "GoogleCloudDatafusionV1", targets: ["GoogleCloudDatafusionV1"])
+    .library(name: "GoogleCloudDataFusionV1", targets: ["GoogleCloudDataFusionV1"])
   ],
   dependencies: [
     .package(path: "../../packages/auth"),
@@ -33,7 +33,7 @@ let package = Package(
   ],
   targets: [
     .target(
-      name: "GoogleCloudDatafusionV1",
+      name: "GoogleCloudDataFusionV1",
       dependencies: [
         .product(name: "GoogleCloudAuth", package: "auth"),
         .product(name: "GoogleCloudGax", package: "gax"),

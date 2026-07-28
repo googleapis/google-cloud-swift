@@ -18,10 +18,10 @@
 import PackageDescription
 
 let package = Package(
-  name: "GoogleCloudResourcemanagerV3",
+  name: "GoogleCloudResourceManagerV3",
   platforms: [.macOS(.v15)],
   products: [
-    .library(name: "GoogleCloudResourcemanagerV3", targets: ["GoogleCloudResourcemanagerV3"])
+    .library(name: "GoogleCloudResourceManagerV3", targets: ["GoogleCloudResourceManagerV3"])
   ],
   dependencies: [
     .package(path: "../../packages/auth"),
@@ -34,7 +34,7 @@ let package = Package(
   ],
   targets: [
     .target(
-      name: "GoogleCloudResourcemanagerV3",
+      name: "GoogleCloudResourceManagerV3",
       dependencies: [
         .product(name: "GoogleCloudAuth", package: "auth"),
         .product(name: "GoogleCloudGax", package: "gax"),

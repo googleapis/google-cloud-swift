@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleApiServicemanagementV1
+import GoogleApiServiceManagementV1
 import GoogleApi
 import GoogleCloudWkt
 import GoogleIAMV1
@@ -25,7 +25,7 @@ import GoogleLongrunning
 import GoogleRpc
 
 func sample() async throws {
-  let client = try GoogleApiServicemanagementV1.ServiceManagerClient()
+  let client = try GoogleApiServiceManagementV1.ServiceManagerClient()
   let items = try client.listServices(
     byItem: ListServicesRequest()
       /* set fields using .with { $0... } */

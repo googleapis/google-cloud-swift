@@ -17,14 +17,14 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudResourcemanagerV3
+import GoogleCloudResourceManagerV3
 import GoogleCloudWkt
 import GoogleIAMV1
 import GoogleLongrunning
 import GoogleRpc
 
 func sample(parent: String, ) async throws {
-  let client = try GoogleCloudResourcemanagerV3.TagValuesClient()
+  let client = try GoogleCloudResourceManagerV3.TagValuesClient()
   let items = try client.listTagValues(
     byItem: ListTagValuesRequest()
       .with {

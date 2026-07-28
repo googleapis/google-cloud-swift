@@ -18,10 +18,10 @@
 import PackageDescription
 
 let package = Package(
-  name: "GoogleApiCloudquotasV1",
+  name: "GoogleApiCloudQuotasV1",
   platforms: [.macOS(.v15)],
   products: [
-    .library(name: "GoogleApiCloudquotasV1", targets: ["GoogleApiCloudquotasV1"])
+    .library(name: "GoogleApiCloudQuotasV1", targets: ["GoogleApiCloudQuotasV1"])
   ],
   dependencies: [
     .package(path: "../../packages/auth"),
@@ -31,7 +31,7 @@ let package = Package(
   ],
   targets: [
     .target(
-      name: "GoogleApiCloudquotasV1",
+      name: "GoogleApiCloudQuotasV1",
       dependencies: [
         .product(name: "GoogleCloudAuth", package: "auth"),
         .product(name: "GoogleCloudGax", package: "gax"),

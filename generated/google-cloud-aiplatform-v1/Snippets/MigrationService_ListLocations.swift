@@ -18,7 +18,7 @@
 #if MigrationService
   // snippet.show
   import Foundation
-  import GoogleCloudAiplatformV1
+  import GoogleCloudAIPlatformV1
   import GoogleCloudLocation
   import GoogleCloudWkt
   import GoogleIAMV1
@@ -40,7 +40,7 @@
   struct SnippetRunner {
     static func main() async throws {
       do {
-        let client = try GoogleCloudAiplatformV1.MigrationServiceClient()
+        let client = try GoogleCloudAIPlatformV1.MigrationServiceClient()
         try await sample(client: client)
       } catch {
         print("Error: \(error)")

@@ -17,12 +17,12 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudApiregistryV1
+import GoogleCloudApiRegistryV1
 import GoogleCloudLocation
 import GoogleCloudWkt
 
 func sample(parent: String, ) async throws {
-  let client = try GoogleCloudApiregistryV1.CloudApiRegistryClient()
+  let client = try GoogleCloudApiRegistryV1.CloudApiRegistryClient()
   let items = try client.listMcpServers(
     byItem: ListMcpServersRequest()
       .with {

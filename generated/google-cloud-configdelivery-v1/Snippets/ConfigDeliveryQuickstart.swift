@@ -17,14 +17,14 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudConfigdeliveryV1
+import GoogleCloudConfigDeliveryV1
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleLongrunning
 import GoogleRpc
 
 func sample(projectId: String, locationId: String, ) async throws {
-  let client = try GoogleCloudConfigdeliveryV1.ConfigDeliveryClient()
+  let client = try GoogleCloudConfigDeliveryV1.ConfigDeliveryClient()
   let items = try client.listResourceBundles(
     byItem: ListResourceBundlesRequest()
       .with {

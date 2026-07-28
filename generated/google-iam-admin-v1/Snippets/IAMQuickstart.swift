@@ -17,12 +17,12 @@
 
 // snippet.show
 import Foundation
-import GoogleIamAdminV1
+import GoogleIAMAdminV1
 import GoogleCloudWkt
 import GoogleIAMV1
 
 func sample(projectId: String, serviceAccountId: String, ) async throws {
-  let client = try GoogleIamAdminV1.IAMClient()
+  let client = try GoogleIAMAdminV1.IAMClient()
   let response = try await client.getServiceAccount(
     request: GetServiceAccountRequest()
       .with {

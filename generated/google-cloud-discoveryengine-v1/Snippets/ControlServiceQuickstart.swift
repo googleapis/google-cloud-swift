@@ -18,12 +18,12 @@
 #if ControlService
   // snippet.show
   import Foundation
-  import GoogleCloudDiscoveryengineV1
+  import GoogleCloudDiscoveryEngineV1
   import GoogleCloudWkt
   import GoogleLongrunning
 
   func sample(projectId: String, locationId: String, dataStoreId: String, ) async throws {
-    let client = try GoogleCloudDiscoveryengineV1.ControlServiceClient()
+    let client = try GoogleCloudDiscoveryEngineV1.ControlServiceClient()
     let items = try client.listControls(
       byItem: ListControlsRequest()
         .with {

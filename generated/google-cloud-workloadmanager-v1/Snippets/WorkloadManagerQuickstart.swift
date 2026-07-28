@@ -17,14 +17,14 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudWorkloadmanagerV1
+import GoogleCloudWorkloadManagerV1
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleLongrunning
 import GoogleRpc
 
 func sample(projectId: String, locationId: String, ) async throws {
-  let client = try GoogleCloudWorkloadmanagerV1.WorkloadManagerClient()
+  let client = try GoogleCloudWorkloadManagerV1.WorkloadManagerClient()
   let items = try client.listEvaluations(
     byItem: ListEvaluationsRequest()
       .with {

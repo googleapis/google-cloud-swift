@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudConfidentialcomputingV1
+import GoogleCloudConfidentialComputingV1
 import GoogleCloudLocation
 import GoogleCloudWkt
 
@@ -37,7 +37,7 @@ func sample(client: ConfidentialComputingClient, parent: String) async throws {
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleCloudConfidentialcomputingV1.ConfidentialComputingClient()
+      let client = try GoogleCloudConfidentialComputingV1.ConfidentialComputingClient()
       try await sample(client: client, parent: "[placeholder]")
     } catch {
       print("Error: \(error)")

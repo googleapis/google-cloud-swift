@@ -17,14 +17,14 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudAlloydbV1
+import GoogleCloudAlloyDBV1
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleLongrunning
 import GoogleRpc
 
 func sample(projectId: String, locationId: String, ) async throws {
-  let client = try GoogleCloudAlloydbV1.AlloyDBAdminClient()
+  let client = try GoogleCloudAlloyDBV1.AlloyDBAdminClient()
   let items = try client.listClusters(
     byItem: ListClustersRequest()
       .with {

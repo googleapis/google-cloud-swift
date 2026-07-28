@@ -17,11 +17,11 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudAccessapprovalV1
+import GoogleCloudAccessApprovalV1
 import GoogleCloudWkt
 
 func sample() async throws {
-  let client = try GoogleCloudAccessapprovalV1.AccessApprovalClient()
+  let client = try GoogleCloudAccessApprovalV1.AccessApprovalClient()
   let response = try await client.getAccessApprovalSettings(
     request: GetAccessApprovalSettingsMessage()
       /* set fields using .with { $0... } */

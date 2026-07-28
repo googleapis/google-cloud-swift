@@ -18,10 +18,10 @@
 import PackageDescription
 
 let package = Package(
-  name: "GoogleCloudLocationfinderV1",
+  name: "GoogleCloudLocationFinderV1",
   platforms: [.macOS(.v15)],
   products: [
-    .library(name: "GoogleCloudLocationfinderV1", targets: ["GoogleCloudLocationfinderV1"])
+    .library(name: "GoogleCloudLocationFinderV1", targets: ["GoogleCloudLocationFinderV1"])
   ],
   dependencies: [
     .package(path: "../../packages/auth"),
@@ -32,7 +32,7 @@ let package = Package(
   ],
   targets: [
     .target(
-      name: "GoogleCloudLocationfinderV1",
+      name: "GoogleCloudLocationFinderV1",
       dependencies: [
         .product(name: "GoogleCloudAuth", package: "auth"),
         .product(name: "GoogleCloudGax", package: "gax"),

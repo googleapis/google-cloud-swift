@@ -18,10 +18,10 @@
 import PackageDescription
 
 let package = Package(
-  name: "GoogleCloudTexttospeechV1",
+  name: "GoogleCloudTextToSpeechV1",
   platforms: [.macOS(.v15)],
   products: [
-    .library(name: "GoogleCloudTexttospeechV1", targets: ["GoogleCloudTexttospeechV1"])
+    .library(name: "GoogleCloudTextToSpeechV1", targets: ["GoogleCloudTextToSpeechV1"])
   ],
   dependencies: [
     .package(path: "../../packages/auth"),
@@ -33,7 +33,7 @@ let package = Package(
   ],
   targets: [
     .target(
-      name: "GoogleCloudTexttospeechV1",
+      name: "GoogleCloudTextToSpeechV1",
       dependencies: [
         .product(name: "GoogleCloudAuth", package: "auth"),
         .product(name: "GoogleCloudGax", package: "gax"),

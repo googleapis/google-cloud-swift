@@ -18,12 +18,12 @@
 #if GroundedGenerationService
   // snippet.show
   import Foundation
-  import GoogleCloudDiscoveryengineV1
+  import GoogleCloudDiscoveryEngineV1
   import GoogleCloudWkt
   import GoogleLongrunning
 
   func sample() async throws {
-    let client = try GoogleCloudDiscoveryengineV1.GroundedGenerationServiceClient()
+    let client = try GoogleCloudDiscoveryEngineV1.GroundedGenerationServiceClient()
     let response = try await client.generateGroundedContent(
       request: GenerateGroundedContentRequest()
         /* set fields using .with { $0... } */

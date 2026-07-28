@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleApiServiceusageV1
+import GoogleApiServiceUsageV1
 import GoogleCloudWkt
 import GoogleLongrunning
 import GoogleRpc
@@ -36,7 +36,7 @@ func sample(client: ServiceUsageClient) async throws {
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleApiServiceusageV1.ServiceUsageClient()
+      let client = try GoogleApiServiceUsageV1.ServiceUsageClient()
       try await sample(client: client)
     } catch {
       print("Error: \(error)")

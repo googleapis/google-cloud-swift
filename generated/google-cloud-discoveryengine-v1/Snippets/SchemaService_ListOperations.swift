@@ -18,7 +18,7 @@
 #if SchemaService
   // snippet.show
   import Foundation
-  import GoogleCloudDiscoveryengineV1
+  import GoogleCloudDiscoveryEngineV1
   import GoogleCloudWkt
   import GoogleLongrunning
   import GoogleRpc
@@ -38,7 +38,7 @@
   struct SnippetRunner {
     static func main() async throws {
       do {
-        let client = try GoogleCloudDiscoveryengineV1.SchemaServiceClient()
+        let client = try GoogleCloudDiscoveryEngineV1.SchemaServiceClient()
         try await sample(client: client)
       } catch {
         print("Error: \(error)")

@@ -17,11 +17,11 @@
 
 // snippet.show
 import Foundation
-import GoogleApiServicecontrolV2
+import GoogleApiServiceControlV2
 import GoogleCloudWkt
 
 func sample() async throws {
-  let client = try GoogleApiServicecontrolV2.ServiceControllerClient()
+  let client = try GoogleApiServiceControlV2.ServiceControllerClient()
   let response = try await client.check(
     request: CheckRequest()
       /* set fields using .with { $0... } */

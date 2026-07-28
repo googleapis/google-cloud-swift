@@ -17,13 +17,13 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudApihubV1
+import GoogleCloudApiHubV1
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleLongrunning
 
 func sample(projectId: String, locationId: String, ) async throws {
-  let client = try GoogleCloudApihubV1.ApiHubCurateClient()
+  let client = try GoogleCloudApiHubV1.ApiHubCurateClient()
   let items = try client.listCurations(
     byItem: ListCurationsRequest()
       .with {

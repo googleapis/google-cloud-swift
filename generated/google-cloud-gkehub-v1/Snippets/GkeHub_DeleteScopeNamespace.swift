@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudGkehubV1
+import GoogleCloudGKEHubV1
 import GoogleCloudWkt
 import GoogleLongrunning
 import GoogleRpc
@@ -41,7 +41,7 @@ func sample(
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleCloudGkehubV1.GkeHubClient()
+      let client = try GoogleCloudGKEHubV1.GkeHubClient()
       try await sample(
         client: client, projectId: "[placeholder]", locationId: "[placeholder]",
         scopeId: "[placeholder]", namespaceId: "[placeholder]")

@@ -18,14 +18,14 @@
 #if LlmUtilityService
   // snippet.show
   import Foundation
-  import GoogleCloudAiplatformV1
+  import GoogleCloudAIPlatformV1
   import GoogleCloudLocation
   import GoogleCloudWkt
   import GoogleIAMV1
   import GoogleLongrunning
 
   func sample() async throws {
-    let client = try GoogleCloudAiplatformV1.LlmUtilityServiceClient()
+    let client = try GoogleCloudAIPlatformV1.LlmUtilityServiceClient()
     let response = try await client.countTokens(
       request: CountTokensRequest()
         /* set fields using .with { $0... } */

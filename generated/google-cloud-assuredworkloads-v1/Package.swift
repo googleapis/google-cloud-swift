@@ -18,10 +18,10 @@
 import PackageDescription
 
 let package = Package(
-  name: "GoogleCloudAssuredworkloadsV1",
+  name: "GoogleCloudAssuredWorkloadsV1",
   platforms: [.macOS(.v15)],
   products: [
-    .library(name: "GoogleCloudAssuredworkloadsV1", targets: ["GoogleCloudAssuredworkloadsV1"])
+    .library(name: "GoogleCloudAssuredWorkloadsV1", targets: ["GoogleCloudAssuredWorkloadsV1"])
   ],
   dependencies: [
     .package(path: "../../packages/auth"),
@@ -33,7 +33,7 @@ let package = Package(
   ],
   targets: [
     .target(
-      name: "GoogleCloudAssuredworkloadsV1",
+      name: "GoogleCloudAssuredWorkloadsV1",
       dependencies: [
         .product(name: "GoogleCloudAuth", package: "auth"),
         .product(name: "GoogleCloudGax", package: "gax"),

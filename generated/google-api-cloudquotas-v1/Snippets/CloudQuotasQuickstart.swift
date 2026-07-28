@@ -17,11 +17,11 @@
 
 // snippet.show
 import Foundation
-import GoogleApiCloudquotasV1
+import GoogleApiCloudQuotasV1
 import GoogleCloudWkt
 
 func sample(projectId: String, locationId: String, serviceId: String, ) async throws {
-  let client = try GoogleApiCloudquotasV1.CloudQuotasClient()
+  let client = try GoogleApiCloudQuotasV1.CloudQuotasClient()
   let items = try client.listQuotaInfos(
     byItem: ListQuotaInfosRequest()
       .with {

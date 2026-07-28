@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudStorageinsightsV1
+import GoogleCloudStorageInsightsV1
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleLongrunning
@@ -43,7 +43,7 @@ func sample(
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleCloudStorageinsightsV1.StorageInsightsClient()
+      let client = try GoogleCloudStorageInsightsV1.StorageInsightsClient()
       try await sample(
         client: client, projectId: "[placeholder]", locationId: "[placeholder]",
         reportConfigId: "[placeholder]")

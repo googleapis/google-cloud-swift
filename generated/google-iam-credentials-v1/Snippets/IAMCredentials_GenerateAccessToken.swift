@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleIamCredentialsV1
+import GoogleIAMCredentialsV1
 import GoogleCloudWkt
 
 func sample(client: IAMCredentialsClient) async throws {
@@ -33,7 +33,7 @@ func sample(client: IAMCredentialsClient) async throws {
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleIamCredentialsV1.IAMCredentialsClient()
+      let client = try GoogleIAMCredentialsV1.IAMCredentialsClient()
       try await sample(client: client)
     } catch {
       print("Error: \(error)")

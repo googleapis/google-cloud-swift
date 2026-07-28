@@ -17,14 +17,14 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudApihubV1
+import GoogleCloudApiHubV1
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleLongrunning
 import GoogleRpc
 
 func sample(projectId: String, locationId: String, apiHubInstanceId: String, ) async throws {
-  let client = try GoogleCloudApihubV1.ProvisioningClient()
+  let client = try GoogleCloudApiHubV1.ProvisioningClient()
   let response = try await client.getApiHubInstance(
     request: GetApiHubInstanceRequest()
       .with {

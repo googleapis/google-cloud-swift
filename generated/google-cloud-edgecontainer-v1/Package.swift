@@ -18,10 +18,10 @@
 import PackageDescription
 
 let package = Package(
-  name: "GoogleCloudEdgecontainerV1",
+  name: "GoogleCloudEdgeContainerV1",
   platforms: [.macOS(.v15)],
   products: [
-    .library(name: "GoogleCloudEdgecontainerV1", targets: ["GoogleCloudEdgecontainerV1"])
+    .library(name: "GoogleCloudEdgeContainerV1", targets: ["GoogleCloudEdgeContainerV1"])
   ],
   dependencies: [
     .package(path: "../../packages/auth"),
@@ -34,7 +34,7 @@ let package = Package(
   ],
   targets: [
     .target(
-      name: "GoogleCloudEdgecontainerV1",
+      name: "GoogleCloudEdgeContainerV1",
       dependencies: [
         .product(name: "GoogleCloudAuth", package: "auth"),
         .product(name: "GoogleCloudGax", package: "gax"),

@@ -18,14 +18,14 @@
 #if FeaturestoreOnlineServingService
   // snippet.show
   import Foundation
-  import GoogleCloudAiplatformV1
+  import GoogleCloudAIPlatformV1
   import GoogleCloudLocation
   import GoogleCloudWkt
   import GoogleIAMV1
   import GoogleLongrunning
 
   func sample() async throws {
-    let client = try GoogleCloudAiplatformV1.FeaturestoreOnlineServingServiceClient()
+    let client = try GoogleCloudAIPlatformV1.FeaturestoreOnlineServingServiceClient()
     let response = try await client.readFeatureValues(
       request: ReadFeatureValuesRequest()
         /* set fields using .with { $0... } */

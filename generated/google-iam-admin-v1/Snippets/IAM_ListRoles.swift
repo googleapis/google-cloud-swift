@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleIamAdminV1
+import GoogleIAMAdminV1
 import GoogleCloudWkt
 import GoogleIAMV1
 
@@ -36,7 +36,7 @@ func sample(client: IAMClient) async throws {
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleIamAdminV1.IAMClient()
+      let client = try GoogleIAMAdminV1.IAMClient()
       try await sample(client: client)
     } catch {
       print("Error: \(error)")

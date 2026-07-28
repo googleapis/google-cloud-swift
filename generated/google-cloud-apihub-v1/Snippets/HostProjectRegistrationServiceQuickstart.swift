@@ -17,13 +17,13 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudApihubV1
+import GoogleCloudApiHubV1
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleLongrunning
 
 func sample(projectId: String, locationId: String, ) async throws {
-  let client = try GoogleCloudApihubV1.HostProjectRegistrationServiceClient()
+  let client = try GoogleCloudApiHubV1.HostProjectRegistrationServiceClient()
   let items = try client.listHostProjectRegistrations(
     byItem: ListHostProjectRegistrationsRequest()
       .with {

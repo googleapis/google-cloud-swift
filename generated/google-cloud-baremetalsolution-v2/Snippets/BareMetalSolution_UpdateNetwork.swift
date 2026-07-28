@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudBaremetalsolutionV2
+import GoogleCloudBareMetalSolutionV2
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleLongrunning
@@ -44,7 +44,7 @@ func sample(
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleCloudBaremetalsolutionV2.BareMetalSolutionClient()
+      let client = try GoogleCloudBareMetalSolutionV2.BareMetalSolutionClient()
       try await sample(
         client: client, projectId: "[placeholder]", locationId: "[placeholder]",
         networkId: "[placeholder]")

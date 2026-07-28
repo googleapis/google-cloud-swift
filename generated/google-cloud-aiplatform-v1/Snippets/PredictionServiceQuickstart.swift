@@ -18,7 +18,7 @@
 #if PredictionService
   // snippet.show
   import Foundation
-  import GoogleCloudAiplatformV1
+  import GoogleCloudAIPlatformV1
   import GoogleApi
   import GoogleCloudLocation
   import GoogleCloudWkt
@@ -26,7 +26,7 @@
   import GoogleLongrunning
 
   func sample() async throws {
-    let client = try GoogleCloudAiplatformV1.PredictionServiceClient()
+    let client = try GoogleCloudAIPlatformV1.PredictionServiceClient()
     let response = try await client.predict(
       request: PredictRequest()
         /* set fields using .with { $0... } */

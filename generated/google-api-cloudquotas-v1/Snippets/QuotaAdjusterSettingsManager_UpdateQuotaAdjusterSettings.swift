@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleApiCloudquotasV1
+import GoogleApiCloudQuotasV1
 import GoogleCloudWkt
 
 func sample(client: QuotaAdjusterSettingsManagerClient, projectId: String, locationId: String)
@@ -40,7 +40,7 @@ func sample(client: QuotaAdjusterSettingsManagerClient, projectId: String, locat
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleApiCloudquotasV1.QuotaAdjusterSettingsManagerClient()
+      let client = try GoogleApiCloudQuotasV1.QuotaAdjusterSettingsManagerClient()
       try await sample(client: client, projectId: "[placeholder]", locationId: "[placeholder]")
     } catch {
       print("Error: \(error)")

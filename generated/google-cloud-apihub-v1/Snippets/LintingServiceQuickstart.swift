@@ -17,13 +17,13 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudApihubV1
+import GoogleCloudApiHubV1
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleLongrunning
 
 func sample(projectId: String, locationId: String, pluginId: String, ) async throws {
-  let client = try GoogleCloudApihubV1.LintingServiceClient()
+  let client = try GoogleCloudApiHubV1.LintingServiceClient()
   let response = try await client.getStyleGuide(
     request: GetStyleGuideRequest()
       .with {

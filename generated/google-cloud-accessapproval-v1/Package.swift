@@ -18,10 +18,10 @@
 import PackageDescription
 
 let package = Package(
-  name: "GoogleCloudAccessapprovalV1",
+  name: "GoogleCloudAccessApprovalV1",
   platforms: [.macOS(.v15)],
   products: [
-    .library(name: "GoogleCloudAccessapprovalV1", targets: ["GoogleCloudAccessapprovalV1"])
+    .library(name: "GoogleCloudAccessApprovalV1", targets: ["GoogleCloudAccessApprovalV1"])
   ],
   dependencies: [
     .package(path: "../../packages/auth"),
@@ -31,7 +31,7 @@ let package = Package(
   ],
   targets: [
     .target(
-      name: "GoogleCloudAccessapprovalV1",
+      name: "GoogleCloudAccessApprovalV1",
       dependencies: [
         .product(name: "GoogleCloudAuth", package: "auth"),
         .product(name: "GoogleCloudGax", package: "gax"),

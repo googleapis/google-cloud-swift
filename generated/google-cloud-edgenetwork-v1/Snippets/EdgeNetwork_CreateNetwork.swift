@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudEdgenetworkV1
+import GoogleCloudEdgeNetworkV1
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleLongrunning
@@ -43,7 +43,7 @@ func sample(client: EdgeNetworkClient, projectId: String, locationId: String, zo
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleCloudEdgenetworkV1.EdgeNetworkClient()
+      let client = try GoogleCloudEdgeNetworkV1.EdgeNetworkClient()
       try await sample(
         client: client, projectId: "[placeholder]", locationId: "[placeholder]",
         zoneId: "[placeholder]")

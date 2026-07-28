@@ -17,14 +17,14 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudBlockchainnodeengineV1
+import GoogleCloudBlockChainNodeEngineV1
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleLongrunning
 import GoogleRpc
 
 func sample(projectId: String, locationId: String, ) async throws {
-  let client = try GoogleCloudBlockchainnodeengineV1.BlockchainNodeEngineClient()
+  let client = try GoogleCloudBlockChainNodeEngineV1.BlockchainNodeEngineClient()
   let items = try client.listBlockchainNodes(
     byItem: ListBlockchainNodesRequest()
       .with {

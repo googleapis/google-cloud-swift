@@ -18,10 +18,10 @@
 import PackageDescription
 
 let package = Package(
-  name: "GoogleApiServiceusageV1",
+  name: "GoogleApiServiceUsageV1",
   platforms: [.macOS(.v15)],
   products: [
-    .library(name: "GoogleApiServiceusageV1", targets: ["GoogleApiServiceusageV1"])
+    .library(name: "GoogleApiServiceUsageV1", targets: ["GoogleApiServiceUsageV1"])
   ],
   dependencies: [
     .package(path: "../../generated/google-api"),
@@ -34,7 +34,7 @@ let package = Package(
   ],
   targets: [
     .target(
-      name: "GoogleApiServiceusageV1",
+      name: "GoogleApiServiceUsageV1",
       dependencies: [
         .product(name: "GoogleApi", package: "google-api"),
         .product(name: "GoogleCloudAuth", package: "auth"),

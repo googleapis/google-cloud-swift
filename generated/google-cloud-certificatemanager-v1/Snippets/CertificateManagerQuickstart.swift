@@ -17,14 +17,14 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudCertificatemanagerV1
+import GoogleCloudCertificateManagerV1
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleLongrunning
 import GoogleRpc
 
 func sample(parent: String, ) async throws {
-  let client = try GoogleCloudCertificatemanagerV1.CertificateManagerClient()
+  let client = try GoogleCloudCertificateManagerV1.CertificateManagerClient()
   let items = try client.listCertificates(
     byItem: ListCertificatesRequest()
       .with {

@@ -18,7 +18,7 @@
 #if IdentityMappingStoreService
   // snippet.show
   import Foundation
-  import GoogleCloudDiscoveryengineV1
+  import GoogleCloudDiscoveryEngineV1
   import GoogleCloudWkt
   import GoogleLongrunning
   import GoogleRpc
@@ -38,7 +38,7 @@
   struct SnippetRunner {
     static func main() async throws {
       do {
-        let client = try GoogleCloudDiscoveryengineV1.IdentityMappingStoreServiceClient()
+        let client = try GoogleCloudDiscoveryEngineV1.IdentityMappingStoreServiceClient()
         try await sample(client: client)
       } catch {
         print("Error: \(error)")

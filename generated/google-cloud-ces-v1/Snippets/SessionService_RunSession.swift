@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudCesV1
+import GoogleCloudCESV1
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleLongrunning
@@ -35,7 +35,7 @@ func sample(client: SessionServiceClient) async throws {
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleCloudCesV1.SessionServiceClient()
+      let client = try GoogleCloudCESV1.SessionServiceClient()
       try await sample(client: client)
     } catch {
       print("Error: \(error)")

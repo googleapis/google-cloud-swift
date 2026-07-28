@@ -17,12 +17,12 @@
 
 // snippet.show
 import Foundation
-import GoogleAppengineV1
+import GoogleAppEngineV1
 import GoogleCloudWkt
 import GoogleLongrunning
 
 func sample() async throws {
-  let client = try GoogleAppengineV1.AuthorizedDomainsClient()
+  let client = try GoogleAppEngineV1.AuthorizedDomainsClient()
   let items = try client.listAuthorizedDomains(
     byItem: ListAuthorizedDomainsRequest()
       /* set fields using .with { $0... } */

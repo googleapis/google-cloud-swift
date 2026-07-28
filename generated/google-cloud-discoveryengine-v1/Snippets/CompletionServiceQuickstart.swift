@@ -18,13 +18,13 @@
 #if CompletionService
   // snippet.show
   import Foundation
-  import GoogleCloudDiscoveryengineV1
+  import GoogleCloudDiscoveryEngineV1
   import GoogleCloudWkt
   import GoogleLongrunning
   import GoogleRpc
 
   func sample() async throws {
-    let client = try GoogleCloudDiscoveryengineV1.CompletionServiceClient()
+    let client = try GoogleCloudDiscoveryEngineV1.CompletionServiceClient()
     let poller = try await client.importCompletionSuggestions(
       withPolling: ImportCompletionSuggestionsRequest()
         /* set fields using .with { $0... } */

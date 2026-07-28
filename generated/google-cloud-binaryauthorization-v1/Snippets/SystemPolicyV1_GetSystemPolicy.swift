@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudBinaryauthorizationV1
+import GoogleCloudBinaryAuthorizationV1
 import GoogleCloudWkt
 import GoogleIAMV1
 
@@ -36,7 +36,7 @@ func sample(client: SystemPolicyV1Client, projectId: String) async throws {
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleCloudBinaryauthorizationV1.SystemPolicyV1Client()
+      let client = try GoogleCloudBinaryAuthorizationV1.SystemPolicyV1Client()
       try await sample(client: client, projectId: "[placeholder]")
     } catch {
       print("Error: \(error)")

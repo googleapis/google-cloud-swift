@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudBeyondcorpClientgatewaysV1
+import GoogleCloudBeyondCorpClientGatewaysV1
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleIAMV1
@@ -25,7 +25,7 @@ import GoogleLongrunning
 import GoogleRpc
 
 func sample(projectId: String, locationId: String, ) async throws {
-  let client = try GoogleCloudBeyondcorpClientgatewaysV1.ClientGatewaysServiceClient()
+  let client = try GoogleCloudBeyondCorpClientGatewaysV1.ClientGatewaysServiceClient()
   let items = try client.listClientGateways(
     byItem: ListClientGatewaysRequest()
       .with {

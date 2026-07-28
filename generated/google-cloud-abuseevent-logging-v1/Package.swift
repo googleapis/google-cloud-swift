@@ -18,17 +18,17 @@
 import PackageDescription
 
 let package = Package(
-  name: "GoogleCloudAbuseeventLoggingV1",
+  name: "GoogleCloudAbuseEventLoggingV1",
   platforms: [.macOS(.v15)],
   products: [
-    .library(name: "GoogleCloudAbuseeventLoggingV1", targets: ["GoogleCloudAbuseeventLoggingV1"])
+    .library(name: "GoogleCloudAbuseEventLoggingV1", targets: ["GoogleCloudAbuseEventLoggingV1"])
   ],
   dependencies: [
     .package(path: "../../packages/wkt")
   ],
   targets: [
     .target(
-      name: "GoogleCloudAbuseeventLoggingV1",
+      name: "GoogleCloudAbuseEventLoggingV1",
       dependencies: [
         .product(name: "GoogleCloudWkt", package: "wkt")
       ],

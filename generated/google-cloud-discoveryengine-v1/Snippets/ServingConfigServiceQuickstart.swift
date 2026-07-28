@@ -18,14 +18,14 @@
 #if ServingConfigService
   // snippet.show
   import Foundation
-  import GoogleCloudDiscoveryengineV1
+  import GoogleCloudDiscoveryEngineV1
   import GoogleCloudWkt
   import GoogleLongrunning
 
   func sample(projectId: String, locationId: String, dataStoreId: String, servingConfigId: String, )
     async throws
   {
-    let client = try GoogleCloudDiscoveryengineV1.ServingConfigServiceClient()
+    let client = try GoogleCloudDiscoveryEngineV1.ServingConfigServiceClient()
     let response = try await client.updateServingConfig(
       request: UpdateServingConfigRequest()
         .with {

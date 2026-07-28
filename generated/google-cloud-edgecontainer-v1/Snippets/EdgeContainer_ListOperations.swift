@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudEdgecontainerV1
+import GoogleCloudEdgeContainerV1
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleLongrunning
@@ -38,7 +38,7 @@ func sample(client: EdgeContainerClient) async throws {
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleCloudEdgecontainerV1.EdgeContainerClient()
+      let client = try GoogleCloudEdgeContainerV1.EdgeContainerClient()
       try await sample(client: client)
     } catch {
       print("Error: \(error)")

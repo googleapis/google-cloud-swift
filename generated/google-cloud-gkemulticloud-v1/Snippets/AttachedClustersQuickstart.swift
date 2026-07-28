@@ -17,13 +17,13 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudGkemulticloudV1
+import GoogleCloudGKEMultiCloudV1
 import GoogleCloudWkt
 import GoogleLongrunning
 import GoogleRpc
 
 func sample(projectId: String, locationId: String, ) async throws {
-  let client = try GoogleCloudGkemulticloudV1.AttachedClustersClient()
+  let client = try GoogleCloudGKEMultiCloudV1.AttachedClustersClient()
   let items = try client.listAttachedClusters(
     byItem: ListAttachedClustersRequest()
       .with {

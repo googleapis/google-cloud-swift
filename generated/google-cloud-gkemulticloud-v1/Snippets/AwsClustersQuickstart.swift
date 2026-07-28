@@ -17,13 +17,13 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudGkemulticloudV1
+import GoogleCloudGKEMultiCloudV1
 import GoogleCloudWkt
 import GoogleLongrunning
 import GoogleRpc
 
 func sample(projectId: String, locationId: String, ) async throws {
-  let client = try GoogleCloudGkemulticloudV1.AwsClustersClient()
+  let client = try GoogleCloudGKEMultiCloudV1.AwsClustersClient()
   let items = try client.listAwsClusters(
     byItem: ListAwsClustersRequest()
       .with {

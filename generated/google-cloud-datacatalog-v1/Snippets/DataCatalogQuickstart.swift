@@ -17,14 +17,14 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudDatacatalogV1
+import GoogleCloudDataCatalogV1
 import GoogleCloudWkt
 import GoogleIAMV1
 import GoogleLongrunning
 import GoogleRpc
 
 func sample(projectId: String, locationId: String, ) async throws {
-  let client = try GoogleCloudDatacatalogV1.DataCatalogClient()
+  let client = try GoogleCloudDataCatalogV1.DataCatalogClient()
   let items = try client.listEntryGroups(
     byItem: ListEntryGroupsRequest()
       .with {

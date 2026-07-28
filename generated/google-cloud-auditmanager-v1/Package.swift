@@ -18,10 +18,10 @@
 import PackageDescription
 
 let package = Package(
-  name: "GoogleCloudAuditmanagerV1",
+  name: "GoogleCloudAuditManagerV1",
   platforms: [.macOS(.v15)],
   products: [
-    .library(name: "GoogleCloudAuditmanagerV1", targets: ["GoogleCloudAuditmanagerV1"])
+    .library(name: "GoogleCloudAuditManagerV1", targets: ["GoogleCloudAuditManagerV1"])
   ],
   dependencies: [
     .package(path: "../../packages/auth"),
@@ -34,7 +34,7 @@ let package = Package(
   ],
   targets: [
     .target(
-      name: "GoogleCloudAuditmanagerV1",
+      name: "GoogleCloudAuditManagerV1",
       dependencies: [
         .product(name: "GoogleCloudAuth", package: "auth"),
         .product(name: "GoogleCloudGax", package: "gax"),

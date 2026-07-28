@@ -17,14 +17,14 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudLicensemanagerV1
+import GoogleCloudLicenseManagerV1
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleLongrunning
 import GoogleRpc
 
 func sample(projectId: String, locationId: String, ) async throws {
-  let client = try GoogleCloudLicensemanagerV1.LicenseManagerClient()
+  let client = try GoogleCloudLicenseManagerV1.LicenseManagerClient()
   let items = try client.listConfigurations(
     byItem: ListConfigurationsRequest()
       .with {

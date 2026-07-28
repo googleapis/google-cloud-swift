@@ -18,7 +18,7 @@
 #if DataStoreService
   // snippet.show
   import Foundation
-  import GoogleCloudDiscoveryengineV1
+  import GoogleCloudDiscoveryEngineV1
   import GoogleCloudWkt
   import GoogleLongrunning
   import GoogleRpc
@@ -41,7 +41,7 @@
   struct SnippetRunner {
     static func main() async throws {
       do {
-        let client = try GoogleCloudDiscoveryengineV1.DataStoreServiceClient()
+        let client = try GoogleCloudDiscoveryEngineV1.DataStoreServiceClient()
         try await sample(
           client: client, projectId: "[placeholder]", locationId: "[placeholder]",
           dataStoreId: "[placeholder]")

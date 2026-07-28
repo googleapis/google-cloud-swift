@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudAssuredworkloadsV1
+import GoogleCloudAssuredWorkloadsV1
 import GoogleCloudWkt
 import GoogleLongrunning
 import GoogleRpc
@@ -40,7 +40,7 @@ func sample(
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleCloudAssuredworkloadsV1.AssuredWorkloadsServiceClient()
+      let client = try GoogleCloudAssuredWorkloadsV1.AssuredWorkloadsServiceClient()
       try await sample(
         client: client, organizationId: "[placeholder]", locationId: "[placeholder]",
         workloadId: "[placeholder]")

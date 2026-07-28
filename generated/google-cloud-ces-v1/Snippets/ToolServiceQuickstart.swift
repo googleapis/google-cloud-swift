@@ -17,13 +17,13 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudCesV1
+import GoogleCloudCESV1
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleLongrunning
 
 func sample() async throws {
-  let client = try GoogleCloudCesV1.ToolServiceClient()
+  let client = try GoogleCloudCESV1.ToolServiceClient()
   let response = try await client.executeTool(
     request: ExecuteToolRequest()
       /* set fields using .with { $0... } */

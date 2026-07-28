@@ -18,10 +18,10 @@
 import PackageDescription
 
 let package = Package(
-  name: "GoogleCloudAlloydbV1",
+  name: "GoogleCloudAlloyDBV1",
   platforms: [.macOS(.v15)],
   products: [
-    .library(name: "GoogleCloudAlloydbV1", targets: ["GoogleCloudAlloydbV1"])
+    .library(name: "GoogleCloudAlloyDBV1", targets: ["GoogleCloudAlloyDBV1"])
   ],
   dependencies: [
     .package(path: "../../packages/auth"),
@@ -35,7 +35,7 @@ let package = Package(
   ],
   targets: [
     .target(
-      name: "GoogleCloudAlloydbV1",
+      name: "GoogleCloudAlloyDBV1",
       dependencies: [
         .product(name: "GoogleCloudAuth", package: "auth"),
         .product(name: "GoogleCloudGax", package: "gax"),

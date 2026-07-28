@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudLicensemanagerV1
+import GoogleCloudLicenseManagerV1
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleLongrunning
@@ -40,7 +40,7 @@ func sample(client: LicenseManagerClient, projectId: String, locationId: String,
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleCloudLicensemanagerV1.LicenseManagerClient()
+      let client = try GoogleCloudLicenseManagerV1.LicenseManagerClient()
       try await sample(
         client: client, projectId: "[placeholder]", locationId: "[placeholder]",
         productId: "[placeholder]")

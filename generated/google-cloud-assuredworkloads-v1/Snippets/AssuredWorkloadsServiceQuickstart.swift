@@ -17,13 +17,13 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudAssuredworkloadsV1
+import GoogleCloudAssuredWorkloadsV1
 import GoogleCloudWkt
 import GoogleLongrunning
 import GoogleRpc
 
 func sample(organizationId: String, locationId: String, ) async throws {
-  let client = try GoogleCloudAssuredworkloadsV1.AssuredWorkloadsServiceClient()
+  let client = try GoogleCloudAssuredWorkloadsV1.AssuredWorkloadsServiceClient()
   let items = try client.listWorkloads(
     byItem: ListWorkloadsRequest()
       .with {

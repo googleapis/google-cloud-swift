@@ -18,10 +18,10 @@
 import PackageDescription
 
 let package = Package(
-  name: "GoogleCloudGkebackupLoggingV1",
+  name: "GoogleCloudGKEBackupLoggingV1",
   platforms: [.macOS(.v15)],
   products: [
-    .library(name: "GoogleCloudGkebackupLoggingV1", targets: ["GoogleCloudGkebackupLoggingV1"])
+    .library(name: "GoogleCloudGKEBackupLoggingV1", targets: ["GoogleCloudGKEBackupLoggingV1"])
   ],
   dependencies: [
     .package(path: "../../packages/wkt"),
@@ -29,7 +29,7 @@ let package = Package(
   ],
   targets: [
     .target(
-      name: "GoogleCloudGkebackupLoggingV1",
+      name: "GoogleCloudGKEBackupLoggingV1",
       dependencies: [
         .product(name: "GoogleCloudWkt", package: "wkt"),
         .product(name: "GoogleRpc", package: "google-rpc"),

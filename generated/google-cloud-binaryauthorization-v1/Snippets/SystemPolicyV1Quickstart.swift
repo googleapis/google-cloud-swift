@@ -17,12 +17,12 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudBinaryauthorizationV1
+import GoogleCloudBinaryAuthorizationV1
 import GoogleCloudWkt
 import GoogleIAMV1
 
 func sample(projectId: String, ) async throws {
-  let client = try GoogleCloudBinaryauthorizationV1.SystemPolicyV1Client()
+  let client = try GoogleCloudBinaryAuthorizationV1.SystemPolicyV1Client()
   let response = try await client.getSystemPolicy(
     request: GetSystemPolicyRequest()
       .with {

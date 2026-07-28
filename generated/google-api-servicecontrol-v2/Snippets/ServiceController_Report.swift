@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleApiServicecontrolV2
+import GoogleApiServiceControlV2
 import GoogleCloudWkt
 
 func sample(client: ServiceControllerClient) async throws {
@@ -33,7 +33,7 @@ func sample(client: ServiceControllerClient) async throws {
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleApiServicecontrolV2.ServiceControllerClient()
+      let client = try GoogleApiServiceControlV2.ServiceControllerClient()
       try await sample(client: client)
     } catch {
       print("Error: \(error)")

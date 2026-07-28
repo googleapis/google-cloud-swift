@@ -17,13 +17,13 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudDatafusionV1
+import GoogleCloudDataFusionV1
 import GoogleCloudWkt
 import GoogleLongrunning
 import GoogleRpc
 
 func sample(parent: String, ) async throws {
-  let client = try GoogleCloudDatafusionV1.DataFusionClient()
+  let client = try GoogleCloudDataFusionV1.DataFusionClient()
   let items = try client.listInstances(
     byItem: ListInstancesRequest()
       .with {

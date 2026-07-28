@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudGkemulticloudV1
+import GoogleCloudGKEMultiCloudV1
 import GoogleCloudWkt
 import GoogleLongrunning
 import GoogleRpc
@@ -37,7 +37,7 @@ func sample(client: AzureClustersClient) async throws {
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleCloudGkemulticloudV1.AzureClustersClient()
+      let client = try GoogleCloudGKEMultiCloudV1.AzureClustersClient()
       try await sample(client: client)
     } catch {
       print("Error: \(error)")

@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudCertificatemanagerV1
+import GoogleCloudCertificateManagerV1
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleLongrunning
@@ -41,7 +41,7 @@ func sample(
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleCloudCertificatemanagerV1.CertificateManagerClient()
+      let client = try GoogleCloudCertificateManagerV1.CertificateManagerClient()
       try await sample(
         client: client, projectId: "[placeholder]", locationId: "[placeholder]",
         certificateId: "[placeholder]")

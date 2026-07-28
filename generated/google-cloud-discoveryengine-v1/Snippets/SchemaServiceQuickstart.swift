@@ -18,13 +18,13 @@
 #if SchemaService
   // snippet.show
   import Foundation
-  import GoogleCloudDiscoveryengineV1
+  import GoogleCloudDiscoveryEngineV1
   import GoogleCloudWkt
   import GoogleLongrunning
   import GoogleRpc
 
   func sample(projectId: String, locationId: String, dataStoreId: String, ) async throws {
-    let client = try GoogleCloudDiscoveryengineV1.SchemaServiceClient()
+    let client = try GoogleCloudDiscoveryEngineV1.SchemaServiceClient()
     let items = try client.listSchemas(
       byItem: ListSchemasRequest()
         .with {

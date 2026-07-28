@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleApiServicemanagementV1
+import GoogleApiServiceManagementV1
 import GoogleApi
 import GoogleCloudWkt
 import GoogleIAMV1
@@ -38,7 +38,7 @@ func sample(client: ServiceManagerClient) async throws {
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleApiServicemanagementV1.ServiceManagerClient()
+      let client = try GoogleApiServiceManagementV1.ServiceManagerClient()
       try await sample(client: client)
     } catch {
       print("Error: \(error)")

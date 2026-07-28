@@ -18,10 +18,10 @@
 import PackageDescription
 
 let package = Package(
-  name: "GoogleCloudCertificatemanagerV1",
+  name: "GoogleCloudCertificateManagerV1",
   platforms: [.macOS(.v15)],
   products: [
-    .library(name: "GoogleCloudCertificatemanagerV1", targets: ["GoogleCloudCertificatemanagerV1"])
+    .library(name: "GoogleCloudCertificateManagerV1", targets: ["GoogleCloudCertificateManagerV1"])
   ],
   dependencies: [
     .package(path: "../../packages/auth"),
@@ -34,7 +34,7 @@ let package = Package(
   ],
   targets: [
     .target(
-      name: "GoogleCloudCertificatemanagerV1",
+      name: "GoogleCloudCertificateManagerV1",
       dependencies: [
         .product(name: "GoogleCloudAuth", package: "auth"),
         .product(name: "GoogleCloudGax", package: "gax"),

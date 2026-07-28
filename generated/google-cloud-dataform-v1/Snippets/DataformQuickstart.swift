@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudDataformV1
+import GoogleCloudDataFormV1
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleIAMV1
@@ -25,7 +25,7 @@ import GoogleLongrunning
 import GoogleRpc
 
 func sample(parent: String, ) async throws {
-  let client = try GoogleCloudDataformV1.DataformClient()
+  let client = try GoogleCloudDataFormV1.DataformClient()
   let items = try client.listRepositories(
     byItem: ListRepositoriesRequest()
       .with {

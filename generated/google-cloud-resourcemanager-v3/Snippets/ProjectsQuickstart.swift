@@ -17,14 +17,14 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudResourcemanagerV3
+import GoogleCloudResourceManagerV3
 import GoogleCloudWkt
 import GoogleIAMV1
 import GoogleLongrunning
 import GoogleRpc
 
 func sample(parent: String, ) async throws {
-  let client = try GoogleCloudResourcemanagerV3.ProjectsClient()
+  let client = try GoogleCloudResourceManagerV3.ProjectsClient()
   let items = try client.listProjects(
     byItem: ListProjectsRequest()
       .with {

@@ -18,14 +18,14 @@
 #if GenAiCacheService
   // snippet.show
   import Foundation
-  import GoogleCloudAiplatformV1
+  import GoogleCloudAIPlatformV1
   import GoogleCloudLocation
   import GoogleCloudWkt
   import GoogleIAMV1
   import GoogleLongrunning
 
   func sample(projectId: String, locationId: String, ) async throws {
-    let client = try GoogleCloudAiplatformV1.GenAiCacheServiceClient()
+    let client = try GoogleCloudAIPlatformV1.GenAiCacheServiceClient()
     let items = try client.listCachedContents(
       byItem: ListCachedContentsRequest()
         .with {

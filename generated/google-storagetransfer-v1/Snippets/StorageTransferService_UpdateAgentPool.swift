@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleStoragetransferV1
+import GoogleStorageTransferV1
 import GoogleCloudWkt
 import GoogleLongrunning
 import GoogleRpc
@@ -42,7 +42,7 @@ func sample(client: StorageTransferServiceClient, projectId: String, agentPoolId
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleStoragetransferV1.StorageTransferServiceClient()
+      let client = try GoogleStorageTransferV1.StorageTransferServiceClient()
       try await sample(client: client, projectId: "[placeholder]", agentPoolId: "[placeholder]")
     } catch {
       print("Error: \(error)")

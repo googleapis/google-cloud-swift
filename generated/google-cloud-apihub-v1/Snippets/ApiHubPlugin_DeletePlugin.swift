@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudApihubV1
+import GoogleCloudApiHubV1
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleLongrunning
@@ -41,7 +41,7 @@ func sample(client: ApiHubPluginClient, projectId: String, locationId: String, p
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleCloudApihubV1.ApiHubPluginClient()
+      let client = try GoogleCloudApiHubV1.ApiHubPluginClient()
       try await sample(
         client: client, projectId: "[placeholder]", locationId: "[placeholder]",
         pluginId: "[placeholder]")

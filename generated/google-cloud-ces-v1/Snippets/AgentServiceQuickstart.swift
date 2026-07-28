@@ -17,14 +17,14 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudCesV1
+import GoogleCloudCESV1
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleLongrunning
 import GoogleRpc
 
 func sample(projectId: String, locationId: String, appId: String, ) async throws {
-  let client = try GoogleCloudCesV1.AgentServiceClient()
+  let client = try GoogleCloudCESV1.AgentServiceClient()
   let items = try client.listAgents(
     byItem: ListAgentsRequest()
       .with {

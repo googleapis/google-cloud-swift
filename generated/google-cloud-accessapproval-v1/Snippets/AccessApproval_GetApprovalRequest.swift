@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudAccessapprovalV1
+import GoogleCloudAccessApprovalV1
 import GoogleCloudWkt
 
 func sample(client: AccessApprovalClient) async throws {
@@ -33,7 +33,7 @@ func sample(client: AccessApprovalClient) async throws {
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleCloudAccessapprovalV1.AccessApprovalClient()
+      let client = try GoogleCloudAccessApprovalV1.AccessApprovalClient()
       try await sample(client: client)
     } catch {
       print("Error: \(error)")

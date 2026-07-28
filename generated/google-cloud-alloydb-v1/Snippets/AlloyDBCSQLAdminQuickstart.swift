@@ -17,14 +17,14 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudAlloydbV1
+import GoogleCloudAlloyDBV1
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleLongrunning
 import GoogleRpc
 
 func sample() async throws {
-  let client = try GoogleCloudAlloydbV1.AlloyDBCSQLAdminClient()
+  let client = try GoogleCloudAlloyDBV1.AlloyDBCSQLAdminClient()
   let poller = try await client.restoreFromCloudSql(
     withPolling: RestoreFromCloudSQLRequest()
       /* set fields using .with { $0... } */

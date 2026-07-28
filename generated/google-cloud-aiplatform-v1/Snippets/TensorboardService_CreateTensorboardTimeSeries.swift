@@ -18,7 +18,7 @@
 #if TensorboardService
   // snippet.show
   import Foundation
-  import GoogleCloudAiplatformV1
+  import GoogleCloudAIPlatformV1
   import GoogleCloudLocation
   import GoogleCloudWkt
   import GoogleIAMV1
@@ -45,7 +45,7 @@
   struct SnippetRunner {
     static func main() async throws {
       do {
-        let client = try GoogleCloudAiplatformV1.TensorboardServiceClient()
+        let client = try GoogleCloudAIPlatformV1.TensorboardServiceClient()
         try await sample(
           client: client, projectId: "[placeholder]", locationId: "[placeholder]",
           tensorboardId: "[placeholder]", experimentId: "[placeholder]", runId: "[placeholder]",

@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudNetworkconnectivityV1
+import GoogleCloudNetworkConnectivityV1
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleIAMV1
@@ -47,7 +47,7 @@ func sample(
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleCloudNetworkconnectivityV1.CrossNetworkAutomationServiceClient()
+      let client = try GoogleCloudNetworkConnectivityV1.CrossNetworkAutomationServiceClient()
       try await sample(
         client: client, projectId: "[placeholder]", locationId: "[placeholder]",
         serviceConnectionPolicyId: "[placeholder]")
