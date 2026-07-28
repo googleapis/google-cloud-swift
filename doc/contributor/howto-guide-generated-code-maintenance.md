@@ -187,7 +187,7 @@ Sometimes it may be useful to re-generate an existing library, to test the
 generation step, practice before generating a new library, or to test the
 documentation.
 
-We will use `GoogleCloudSecretmanagerV1` as an example. Start by removing the
+We will use `google-cloud-secretmanager-v1` as an example. Start by removing the
 existing library:
 
 ```shell
@@ -200,7 +200,7 @@ Now add the library back (get the library name from librarian yaml):
 ```shell
 V=$(go run github.com/googleapis/librarian/cmd/librarian@latest config get version)
 go run github.com/googleapis/librarian/cmd/librarian@${V} add google/cloud/secretmanager/v1
-go run github.com/googleapis/librarian/cmd/librarian@${V} generate GoogleCloudSecretmanagerV1
+go run github.com/googleapis/librarian/cmd/librarian@${V} generate google-cloud-secretmanager-v1
 ```
 
 [add new dependency]: #add-new-dependency

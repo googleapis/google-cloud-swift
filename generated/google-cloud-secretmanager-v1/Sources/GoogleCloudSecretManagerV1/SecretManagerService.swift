@@ -56,7 +56,7 @@ public class SecretManagerServiceClient: Clients.SecretManagerServiceProtocol {
   /// @Snippet(path: "SecretManagerService_ListSecrets")
   public func listSecrets(
     request: ListSecretsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudSecretmanagerV1.ListSecretsResponse {
+  ) async throws -> GoogleCloudSecretManagerV1.ListSecretsResponse {
     try await self.inner.listSecrets(request: request, options: options)
   }
 
@@ -69,7 +69,7 @@ public class SecretManagerServiceClient: Clients.SecretManagerServiceProtocol {
     byItem: ListSecretsRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<Secret, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudSecretmanagerV1.ListSecretsResponse in
+      (token: Swift.String) async throws -> GoogleCloudSecretManagerV1.ListSecretsResponse in
       var request = byItem
       request.pageToken = token
       return try await self.listSecrets(request: request, options: options)
@@ -86,7 +86,7 @@ public class SecretManagerServiceClient: Clients.SecretManagerServiceProtocol {
   /// @Snippet(path: "SecretManagerService_CreateSecret")
   public func createSecret(
     request: CreateSecretRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudSecretmanagerV1.Secret {
+  ) async throws -> GoogleCloudSecretManagerV1.Secret {
     try await self.inner.createSecret(request: request, options: options)
   }
 
@@ -100,7 +100,7 @@ public class SecretManagerServiceClient: Clients.SecretManagerServiceProtocol {
   /// @Snippet(path: "SecretManagerService_AddSecretVersion")
   public func addSecretVersion(
     request: AddSecretVersionRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudSecretmanagerV1.SecretVersion {
+  ) async throws -> GoogleCloudSecretManagerV1.SecretVersion {
     try await self.inner.addSecretVersion(request: request, options: options)
   }
 
@@ -111,7 +111,7 @@ public class SecretManagerServiceClient: Clients.SecretManagerServiceProtocol {
   /// @Snippet(path: "SecretManagerService_GetSecret")
   public func getSecret(
     request: GetSecretRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudSecretmanagerV1.Secret {
+  ) async throws -> GoogleCloudSecretManagerV1.Secret {
     try await self.inner.getSecret(request: request, options: options)
   }
 
@@ -123,7 +123,7 @@ public class SecretManagerServiceClient: Clients.SecretManagerServiceProtocol {
   /// @Snippet(path: "SecretManagerService_UpdateSecret")
   public func updateSecret(
     request: UpdateSecretRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudSecretmanagerV1.Secret {
+  ) async throws -> GoogleCloudSecretManagerV1.Secret {
     try await self.inner.updateSecret(request: request, options: options)
   }
 
@@ -146,7 +146,7 @@ public class SecretManagerServiceClient: Clients.SecretManagerServiceProtocol {
   /// @Snippet(path: "SecretManagerService_ListSecretVersions")
   public func listSecretVersions(
     request: ListSecretVersionsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudSecretmanagerV1.ListSecretVersionsResponse {
+  ) async throws -> GoogleCloudSecretManagerV1.ListSecretVersionsResponse {
     try await self.inner.listSecretVersions(request: request, options: options)
   }
 
@@ -160,7 +160,7 @@ public class SecretManagerServiceClient: Clients.SecretManagerServiceProtocol {
     byItem: ListSecretVersionsRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<SecretVersion, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudSecretmanagerV1.ListSecretVersionsResponse in
+      (token: Swift.String) async throws -> GoogleCloudSecretManagerV1.ListSecretVersionsResponse in
       var request = byItem
       request.pageToken = token
       return try await self.listSecretVersions(request: request, options: options)
@@ -179,7 +179,7 @@ public class SecretManagerServiceClient: Clients.SecretManagerServiceProtocol {
   /// @Snippet(path: "SecretManagerService_GetSecretVersion")
   public func getSecretVersion(
     request: GetSecretVersionRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudSecretmanagerV1.SecretVersion {
+  ) async throws -> GoogleCloudSecretManagerV1.SecretVersion {
     try await self.inner.getSecretVersion(request: request, options: options)
   }
 
@@ -194,7 +194,7 @@ public class SecretManagerServiceClient: Clients.SecretManagerServiceProtocol {
   /// @Snippet(path: "SecretManagerService_AccessSecretVersion")
   public func accessSecretVersion(
     request: AccessSecretVersionRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudSecretmanagerV1.AccessSecretVersionResponse {
+  ) async throws -> GoogleCloudSecretManagerV1.AccessSecretVersionResponse {
     try await self.inner.accessSecretVersion(request: request, options: options)
   }
 
@@ -211,7 +211,7 @@ public class SecretManagerServiceClient: Clients.SecretManagerServiceProtocol {
   /// @Snippet(path: "SecretManagerService_DisableSecretVersion")
   public func disableSecretVersion(
     request: DisableSecretVersionRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudSecretmanagerV1.SecretVersion {
+  ) async throws -> GoogleCloudSecretManagerV1.SecretVersion {
     try await self.inner.disableSecretVersion(request: request, options: options)
   }
 
@@ -228,7 +228,7 @@ public class SecretManagerServiceClient: Clients.SecretManagerServiceProtocol {
   /// @Snippet(path: "SecretManagerService_EnableSecretVersion")
   public func enableSecretVersion(
     request: EnableSecretVersionRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudSecretmanagerV1.SecretVersion {
+  ) async throws -> GoogleCloudSecretManagerV1.SecretVersion {
     try await self.inner.enableSecretVersion(request: request, options: options)
   }
 
@@ -246,7 +246,7 @@ public class SecretManagerServiceClient: Clients.SecretManagerServiceProtocol {
   /// @Snippet(path: "SecretManagerService_DestroySecretVersion")
   public func destroySecretVersion(
     request: DestroySecretVersionRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudSecretmanagerV1.SecretVersion {
+  ) async throws -> GoogleCloudSecretManagerV1.SecretVersion {
     try await self.inner.destroySecretVersion(request: request, options: options)
   }
 
@@ -304,7 +304,7 @@ public class SecretManagerServiceClient: Clients.SecretManagerServiceProtocol {
   /// @Snippet(path: "SecretManagerService_EnableManagedRotation")
   public func enableManagedRotation(
     request: EnableManagedRotationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudSecretmanagerV1.SecretVersion {
+  ) async throws -> GoogleCloudSecretManagerV1.SecretVersion {
     try await self.inner.enableManagedRotation(request: request, options: options)
   }
 
@@ -317,7 +317,7 @@ public class SecretManagerServiceClient: Clients.SecretManagerServiceProtocol {
   /// @Snippet(path: "SecretManagerService_RotateSecret")
   public func rotateSecret(
     request: RotateSecretRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudSecretmanagerV1.SecretVersion {
+  ) async throws -> GoogleCloudSecretManagerV1.SecretVersion {
     try await self.inner.rotateSecret(request: request, options: options)
   }
 
@@ -364,7 +364,7 @@ extension Clients {
   public protocol SecretManagerServiceProtocol {
     /// See `SecretManagerServiceClient.listSecrets`.
     func listSecrets(request: ListSecretsRequest) async throws
-      -> GoogleCloudSecretmanagerV1.ListSecretsResponse
+      -> GoogleCloudSecretManagerV1.ListSecretsResponse
 
     /// See `SecretManagerServiceClient.listSecrets`.
     func listSecrets(
@@ -378,42 +378,42 @@ extension Clients {
 
     /// See `SecretManagerServiceClient.createSecret`.
     func createSecret(request: CreateSecretRequest) async throws
-      -> GoogleCloudSecretmanagerV1.Secret
+      -> GoogleCloudSecretManagerV1.Secret
 
     /// See `SecretManagerServiceClient.createSecret`.
     func createSecret(
       parent: Swift.String,
       secretId: Swift.String,
       secret: Secret?,
-    ) async throws -> GoogleCloudSecretmanagerV1.Secret
+    ) async throws -> GoogleCloudSecretManagerV1.Secret
 
     /// See `SecretManagerServiceClient.addSecretVersion`.
     func addSecretVersion(request: AddSecretVersionRequest) async throws
-      -> GoogleCloudSecretmanagerV1.SecretVersion
+      -> GoogleCloudSecretManagerV1.SecretVersion
 
     /// See `SecretManagerServiceClient.addSecretVersion`.
     func addSecretVersion(
       parent: Swift.String,
       payload: SecretPayload?,
-    ) async throws -> GoogleCloudSecretmanagerV1.SecretVersion
+    ) async throws -> GoogleCloudSecretManagerV1.SecretVersion
 
     /// See `SecretManagerServiceClient.getSecret`.
-    func getSecret(request: GetSecretRequest) async throws -> GoogleCloudSecretmanagerV1.Secret
+    func getSecret(request: GetSecretRequest) async throws -> GoogleCloudSecretManagerV1.Secret
 
     /// See `SecretManagerServiceClient.getSecret`.
     func getSecret(
       name: Swift.String,
-    ) async throws -> GoogleCloudSecretmanagerV1.Secret
+    ) async throws -> GoogleCloudSecretManagerV1.Secret
 
     /// See `SecretManagerServiceClient.updateSecret`.
     func updateSecret(request: UpdateSecretRequest) async throws
-      -> GoogleCloudSecretmanagerV1.Secret
+      -> GoogleCloudSecretManagerV1.Secret
 
     /// See `SecretManagerServiceClient.updateSecret`.
     func updateSecret(
       secret: Secret?,
       updateMask: GoogleCloudWkt.FieldMask?,
-    ) async throws -> GoogleCloudSecretmanagerV1.Secret
+    ) async throws -> GoogleCloudSecretManagerV1.Secret
 
     /// See `SecretManagerServiceClient.deleteSecret`.
     func deleteSecret(request: DeleteSecretRequest) async throws
@@ -425,7 +425,7 @@ extension Clients {
 
     /// See `SecretManagerServiceClient.listSecretVersions`.
     func listSecretVersions(request: ListSecretVersionsRequest) async throws
-      -> GoogleCloudSecretmanagerV1.ListSecretVersionsResponse
+      -> GoogleCloudSecretManagerV1.ListSecretVersionsResponse
 
     /// See `SecretManagerServiceClient.listSecretVersions`.
     func listSecretVersions(
@@ -439,48 +439,48 @@ extension Clients {
 
     /// See `SecretManagerServiceClient.getSecretVersion`.
     func getSecretVersion(request: GetSecretVersionRequest) async throws
-      -> GoogleCloudSecretmanagerV1.SecretVersion
+      -> GoogleCloudSecretManagerV1.SecretVersion
 
     /// See `SecretManagerServiceClient.getSecretVersion`.
     func getSecretVersion(
       name: Swift.String,
-    ) async throws -> GoogleCloudSecretmanagerV1.SecretVersion
+    ) async throws -> GoogleCloudSecretManagerV1.SecretVersion
 
     /// See `SecretManagerServiceClient.accessSecretVersion`.
     func accessSecretVersion(request: AccessSecretVersionRequest) async throws
-      -> GoogleCloudSecretmanagerV1.AccessSecretVersionResponse
+      -> GoogleCloudSecretManagerV1.AccessSecretVersionResponse
 
     /// See `SecretManagerServiceClient.accessSecretVersion`.
     func accessSecretVersion(
       name: Swift.String,
-    ) async throws -> GoogleCloudSecretmanagerV1.AccessSecretVersionResponse
+    ) async throws -> GoogleCloudSecretManagerV1.AccessSecretVersionResponse
 
     /// See `SecretManagerServiceClient.disableSecretVersion`.
     func disableSecretVersion(request: DisableSecretVersionRequest) async throws
-      -> GoogleCloudSecretmanagerV1.SecretVersion
+      -> GoogleCloudSecretManagerV1.SecretVersion
 
     /// See `SecretManagerServiceClient.disableSecretVersion`.
     func disableSecretVersion(
       name: Swift.String,
-    ) async throws -> GoogleCloudSecretmanagerV1.SecretVersion
+    ) async throws -> GoogleCloudSecretManagerV1.SecretVersion
 
     /// See `SecretManagerServiceClient.enableSecretVersion`.
     func enableSecretVersion(request: EnableSecretVersionRequest) async throws
-      -> GoogleCloudSecretmanagerV1.SecretVersion
+      -> GoogleCloudSecretManagerV1.SecretVersion
 
     /// See `SecretManagerServiceClient.enableSecretVersion`.
     func enableSecretVersion(
       name: Swift.String,
-    ) async throws -> GoogleCloudSecretmanagerV1.SecretVersion
+    ) async throws -> GoogleCloudSecretManagerV1.SecretVersion
 
     /// See `SecretManagerServiceClient.destroySecretVersion`.
     func destroySecretVersion(request: DestroySecretVersionRequest) async throws
-      -> GoogleCloudSecretmanagerV1.SecretVersion
+      -> GoogleCloudSecretManagerV1.SecretVersion
 
     /// See `SecretManagerServiceClient.destroySecretVersion`.
     func destroySecretVersion(
       name: Swift.String,
-    ) async throws -> GoogleCloudSecretmanagerV1.SecretVersion
+    ) async throws -> GoogleCloudSecretManagerV1.SecretVersion
 
     /// See `SecretManagerServiceClient.setIamPolicy`.
     func setIamPolicy(request: GoogleIamV1.SetIamPolicyRequest) async throws -> GoogleIamV1.Policy
@@ -494,22 +494,22 @@ extension Clients {
 
     /// See `SecretManagerServiceClient.enableManagedRotation`.
     func enableManagedRotation(request: EnableManagedRotationRequest) async throws
-      -> GoogleCloudSecretmanagerV1.SecretVersion
+      -> GoogleCloudSecretManagerV1.SecretVersion
 
     /// See `SecretManagerServiceClient.enableManagedRotation`.
     func enableManagedRotation(
       parent: Swift.String,
       cloudSqlSingleUserCredentials: EnableManagedRotationRequest.CloudSQLSingleUserCredentials?,
-    ) async throws -> GoogleCloudSecretmanagerV1.SecretVersion
+    ) async throws -> GoogleCloudSecretManagerV1.SecretVersion
 
     /// See `SecretManagerServiceClient.rotateSecret`.
     func rotateSecret(request: RotateSecretRequest) async throws
-      -> GoogleCloudSecretmanagerV1.SecretVersion
+      -> GoogleCloudSecretManagerV1.SecretVersion
 
     /// See `SecretManagerServiceClient.rotateSecret`.
     func rotateSecret(
       parent: Swift.String,
-    ) async throws -> GoogleCloudSecretmanagerV1.SecretVersion
+    ) async throws -> GoogleCloudSecretManagerV1.SecretVersion
 
     /// See `SecretManagerServiceClient.listLocations`.
     func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
@@ -527,7 +527,7 @@ extension Clients {
     /// See `SecretManagerServiceClient.listSecrets`.
     func listSecrets(
       request: ListSecretsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecretmanagerV1.ListSecretsResponse
+    ) async throws -> GoogleCloudSecretManagerV1.ListSecretsResponse
 
     /// See `SecretManagerServiceClient.listSecrets`.
     func listSecrets(
@@ -537,22 +537,22 @@ extension Clients {
     /// See `SecretManagerServiceClient.createSecret`.
     func createSecret(
       request: CreateSecretRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecretmanagerV1.Secret
+    ) async throws -> GoogleCloudSecretManagerV1.Secret
 
     /// See `SecretManagerServiceClient.addSecretVersion`.
     func addSecretVersion(
       request: AddSecretVersionRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecretmanagerV1.SecretVersion
+    ) async throws -> GoogleCloudSecretManagerV1.SecretVersion
 
     /// See `SecretManagerServiceClient.getSecret`.
     func getSecret(
       request: GetSecretRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecretmanagerV1.Secret
+    ) async throws -> GoogleCloudSecretManagerV1.Secret
 
     /// See `SecretManagerServiceClient.updateSecret`.
     func updateSecret(
       request: UpdateSecretRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecretmanagerV1.Secret
+    ) async throws -> GoogleCloudSecretManagerV1.Secret
 
     /// See `SecretManagerServiceClient.deleteSecret`.
     func deleteSecret(
@@ -562,7 +562,7 @@ extension Clients {
     /// See `SecretManagerServiceClient.listSecretVersions`.
     func listSecretVersions(
       request: ListSecretVersionsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecretmanagerV1.ListSecretVersionsResponse
+    ) async throws -> GoogleCloudSecretManagerV1.ListSecretVersionsResponse
 
     /// See `SecretManagerServiceClient.listSecretVersions`.
     func listSecretVersions(
@@ -572,27 +572,27 @@ extension Clients {
     /// See `SecretManagerServiceClient.getSecretVersion`.
     func getSecretVersion(
       request: GetSecretVersionRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecretmanagerV1.SecretVersion
+    ) async throws -> GoogleCloudSecretManagerV1.SecretVersion
 
     /// See `SecretManagerServiceClient.accessSecretVersion`.
     func accessSecretVersion(
       request: AccessSecretVersionRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecretmanagerV1.AccessSecretVersionResponse
+    ) async throws -> GoogleCloudSecretManagerV1.AccessSecretVersionResponse
 
     /// See `SecretManagerServiceClient.disableSecretVersion`.
     func disableSecretVersion(
       request: DisableSecretVersionRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecretmanagerV1.SecretVersion
+    ) async throws -> GoogleCloudSecretManagerV1.SecretVersion
 
     /// See `SecretManagerServiceClient.enableSecretVersion`.
     func enableSecretVersion(
       request: EnableSecretVersionRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecretmanagerV1.SecretVersion
+    ) async throws -> GoogleCloudSecretManagerV1.SecretVersion
 
     /// See `SecretManagerServiceClient.destroySecretVersion`.
     func destroySecretVersion(
       request: DestroySecretVersionRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecretmanagerV1.SecretVersion
+    ) async throws -> GoogleCloudSecretManagerV1.SecretVersion
 
     /// See `SecretManagerServiceClient.setIamPolicy`.
     func setIamPolicy(
@@ -612,12 +612,12 @@ extension Clients {
     /// See `SecretManagerServiceClient.enableManagedRotation`.
     func enableManagedRotation(
       request: EnableManagedRotationRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecretmanagerV1.SecretVersion
+    ) async throws -> GoogleCloudSecretManagerV1.SecretVersion
 
     /// See `SecretManagerServiceClient.rotateSecret`.
     func rotateSecret(
       request: RotateSecretRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecretmanagerV1.SecretVersion
+    ) async throws -> GoogleCloudSecretManagerV1.SecretVersion
 
     /// See `SecretManagerServiceClient.listLocations`.
     func listLocations(
@@ -639,14 +639,14 @@ extension Clients {
 // Default implementations
 extension Clients.SecretManagerServiceProtocol {
   public func listSecrets(request: ListSecretsRequest) async throws
-    -> GoogleCloudSecretmanagerV1.ListSecretsResponse
+    -> GoogleCloudSecretManagerV1.ListSecretsResponse
   {
     try await self.listSecrets(request: request, options: .init())
   }
 
   public func listSecrets(
     request: ListSecretsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudSecretmanagerV1.ListSecretsResponse {
+  ) async throws -> GoogleCloudSecretManagerV1.ListSecretsResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -660,7 +660,7 @@ extension Clients.SecretManagerServiceProtocol {
     byItem: ListSecretsRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<Secret, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudSecretmanagerV1.ListSecretsResponse in
+      (token: Swift.String) async throws -> GoogleCloudSecretManagerV1.ListSecretsResponse in
       throw GoogleCloudGax.RequestError.unimplemented
     }
     return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
@@ -676,14 +676,14 @@ extension Clients.SecretManagerServiceProtocol {
   }
 
   public func createSecret(request: CreateSecretRequest) async throws
-    -> GoogleCloudSecretmanagerV1.Secret
+    -> GoogleCloudSecretManagerV1.Secret
   {
     try await self.createSecret(request: request, options: .init())
   }
 
   public func createSecret(
     request: CreateSecretRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudSecretmanagerV1.Secret {
+  ) async throws -> GoogleCloudSecretManagerV1.Secret {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -691,7 +691,7 @@ extension Clients.SecretManagerServiceProtocol {
     parent: Swift.String,
     secretId: Swift.String,
     secret: Secret?,
-  ) async throws -> GoogleCloudSecretmanagerV1.Secret {
+  ) async throws -> GoogleCloudSecretManagerV1.Secret {
     let request = CreateSecretRequest().with {
       $0.parent = parent
       $0.secretId = secretId
@@ -701,21 +701,21 @@ extension Clients.SecretManagerServiceProtocol {
   }
 
   public func addSecretVersion(request: AddSecretVersionRequest) async throws
-    -> GoogleCloudSecretmanagerV1.SecretVersion
+    -> GoogleCloudSecretManagerV1.SecretVersion
   {
     try await self.addSecretVersion(request: request, options: .init())
   }
 
   public func addSecretVersion(
     request: AddSecretVersionRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudSecretmanagerV1.SecretVersion {
+  ) async throws -> GoogleCloudSecretManagerV1.SecretVersion {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func addSecretVersion(
     parent: Swift.String,
     payload: SecretPayload?,
-  ) async throws -> GoogleCloudSecretmanagerV1.SecretVersion {
+  ) async throws -> GoogleCloudSecretManagerV1.SecretVersion {
     let request = AddSecretVersionRequest().with {
       $0.parent = parent
       $0.payload = payload
@@ -723,20 +723,20 @@ extension Clients.SecretManagerServiceProtocol {
     return try await self.addSecretVersion(request: request)
   }
 
-  public func getSecret(request: GetSecretRequest) async throws -> GoogleCloudSecretmanagerV1.Secret
+  public func getSecret(request: GetSecretRequest) async throws -> GoogleCloudSecretManagerV1.Secret
   {
     try await self.getSecret(request: request, options: .init())
   }
 
   public func getSecret(
     request: GetSecretRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudSecretmanagerV1.Secret {
+  ) async throws -> GoogleCloudSecretManagerV1.Secret {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func getSecret(
     name: Swift.String,
-  ) async throws -> GoogleCloudSecretmanagerV1.Secret {
+  ) async throws -> GoogleCloudSecretManagerV1.Secret {
     let request = GetSecretRequest().with {
       $0.name = name
     }
@@ -744,21 +744,21 @@ extension Clients.SecretManagerServiceProtocol {
   }
 
   public func updateSecret(request: UpdateSecretRequest) async throws
-    -> GoogleCloudSecretmanagerV1.Secret
+    -> GoogleCloudSecretManagerV1.Secret
   {
     try await self.updateSecret(request: request, options: .init())
   }
 
   public func updateSecret(
     request: UpdateSecretRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudSecretmanagerV1.Secret {
+  ) async throws -> GoogleCloudSecretManagerV1.Secret {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func updateSecret(
     secret: Secret?,
     updateMask: GoogleCloudWkt.FieldMask?,
-  ) async throws -> GoogleCloudSecretmanagerV1.Secret {
+  ) async throws -> GoogleCloudSecretManagerV1.Secret {
     let request = UpdateSecretRequest().with {
       $0.secret = secret
       $0.updateMask = updateMask
@@ -786,14 +786,14 @@ extension Clients.SecretManagerServiceProtocol {
   }
 
   public func listSecretVersions(request: ListSecretVersionsRequest) async throws
-    -> GoogleCloudSecretmanagerV1.ListSecretVersionsResponse
+    -> GoogleCloudSecretManagerV1.ListSecretVersionsResponse
   {
     try await self.listSecretVersions(request: request, options: .init())
   }
 
   public func listSecretVersions(
     request: ListSecretVersionsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudSecretmanagerV1.ListSecretVersionsResponse {
+  ) async throws -> GoogleCloudSecretManagerV1.ListSecretVersionsResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -807,7 +807,7 @@ extension Clients.SecretManagerServiceProtocol {
     byItem: ListSecretVersionsRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<SecretVersion, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudSecretmanagerV1.ListSecretVersionsResponse in
+      (token: Swift.String) async throws -> GoogleCloudSecretManagerV1.ListSecretVersionsResponse in
       throw GoogleCloudGax.RequestError.unimplemented
     }
     return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
@@ -823,20 +823,20 @@ extension Clients.SecretManagerServiceProtocol {
   }
 
   public func getSecretVersion(request: GetSecretVersionRequest) async throws
-    -> GoogleCloudSecretmanagerV1.SecretVersion
+    -> GoogleCloudSecretManagerV1.SecretVersion
   {
     try await self.getSecretVersion(request: request, options: .init())
   }
 
   public func getSecretVersion(
     request: GetSecretVersionRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudSecretmanagerV1.SecretVersion {
+  ) async throws -> GoogleCloudSecretManagerV1.SecretVersion {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func getSecretVersion(
     name: Swift.String,
-  ) async throws -> GoogleCloudSecretmanagerV1.SecretVersion {
+  ) async throws -> GoogleCloudSecretManagerV1.SecretVersion {
     let request = GetSecretVersionRequest().with {
       $0.name = name
     }
@@ -844,20 +844,20 @@ extension Clients.SecretManagerServiceProtocol {
   }
 
   public func accessSecretVersion(request: AccessSecretVersionRequest) async throws
-    -> GoogleCloudSecretmanagerV1.AccessSecretVersionResponse
+    -> GoogleCloudSecretManagerV1.AccessSecretVersionResponse
   {
     try await self.accessSecretVersion(request: request, options: .init())
   }
 
   public func accessSecretVersion(
     request: AccessSecretVersionRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudSecretmanagerV1.AccessSecretVersionResponse {
+  ) async throws -> GoogleCloudSecretManagerV1.AccessSecretVersionResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func accessSecretVersion(
     name: Swift.String,
-  ) async throws -> GoogleCloudSecretmanagerV1.AccessSecretVersionResponse {
+  ) async throws -> GoogleCloudSecretManagerV1.AccessSecretVersionResponse {
     let request = AccessSecretVersionRequest().with {
       $0.name = name
     }
@@ -865,20 +865,20 @@ extension Clients.SecretManagerServiceProtocol {
   }
 
   public func disableSecretVersion(request: DisableSecretVersionRequest) async throws
-    -> GoogleCloudSecretmanagerV1.SecretVersion
+    -> GoogleCloudSecretManagerV1.SecretVersion
   {
     try await self.disableSecretVersion(request: request, options: .init())
   }
 
   public func disableSecretVersion(
     request: DisableSecretVersionRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudSecretmanagerV1.SecretVersion {
+  ) async throws -> GoogleCloudSecretManagerV1.SecretVersion {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func disableSecretVersion(
     name: Swift.String,
-  ) async throws -> GoogleCloudSecretmanagerV1.SecretVersion {
+  ) async throws -> GoogleCloudSecretManagerV1.SecretVersion {
     let request = DisableSecretVersionRequest().with {
       $0.name = name
     }
@@ -886,20 +886,20 @@ extension Clients.SecretManagerServiceProtocol {
   }
 
   public func enableSecretVersion(request: EnableSecretVersionRequest) async throws
-    -> GoogleCloudSecretmanagerV1.SecretVersion
+    -> GoogleCloudSecretManagerV1.SecretVersion
   {
     try await self.enableSecretVersion(request: request, options: .init())
   }
 
   public func enableSecretVersion(
     request: EnableSecretVersionRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudSecretmanagerV1.SecretVersion {
+  ) async throws -> GoogleCloudSecretManagerV1.SecretVersion {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func enableSecretVersion(
     name: Swift.String,
-  ) async throws -> GoogleCloudSecretmanagerV1.SecretVersion {
+  ) async throws -> GoogleCloudSecretManagerV1.SecretVersion {
     let request = EnableSecretVersionRequest().with {
       $0.name = name
     }
@@ -907,20 +907,20 @@ extension Clients.SecretManagerServiceProtocol {
   }
 
   public func destroySecretVersion(request: DestroySecretVersionRequest) async throws
-    -> GoogleCloudSecretmanagerV1.SecretVersion
+    -> GoogleCloudSecretManagerV1.SecretVersion
   {
     try await self.destroySecretVersion(request: request, options: .init())
   }
 
   public func destroySecretVersion(
     request: DestroySecretVersionRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudSecretmanagerV1.SecretVersion {
+  ) async throws -> GoogleCloudSecretManagerV1.SecretVersion {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func destroySecretVersion(
     name: Swift.String,
-  ) async throws -> GoogleCloudSecretmanagerV1.SecretVersion {
+  ) async throws -> GoogleCloudSecretManagerV1.SecretVersion {
     let request = DestroySecretVersionRequest().with {
       $0.name = name
     }
@@ -964,21 +964,21 @@ extension Clients.SecretManagerServiceProtocol {
   }
 
   public func enableManagedRotation(request: EnableManagedRotationRequest) async throws
-    -> GoogleCloudSecretmanagerV1.SecretVersion
+    -> GoogleCloudSecretManagerV1.SecretVersion
   {
     try await self.enableManagedRotation(request: request, options: .init())
   }
 
   public func enableManagedRotation(
     request: EnableManagedRotationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudSecretmanagerV1.SecretVersion {
+  ) async throws -> GoogleCloudSecretManagerV1.SecretVersion {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func enableManagedRotation(
     parent: Swift.String,
     cloudSqlSingleUserCredentials: EnableManagedRotationRequest.CloudSQLSingleUserCredentials?,
-  ) async throws -> GoogleCloudSecretmanagerV1.SecretVersion {
+  ) async throws -> GoogleCloudSecretManagerV1.SecretVersion {
     let request = EnableManagedRotationRequest().with {
       $0.parent = parent
       $0.credentials = cloudSqlSingleUserCredentials.map { .cloudSqlSingleUserCredentials($0) }
@@ -987,20 +987,20 @@ extension Clients.SecretManagerServiceProtocol {
   }
 
   public func rotateSecret(request: RotateSecretRequest) async throws
-    -> GoogleCloudSecretmanagerV1.SecretVersion
+    -> GoogleCloudSecretManagerV1.SecretVersion
   {
     try await self.rotateSecret(request: request, options: .init())
   }
 
   public func rotateSecret(
     request: RotateSecretRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudSecretmanagerV1.SecretVersion {
+  ) async throws -> GoogleCloudSecretManagerV1.SecretVersion {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func rotateSecret(
     parent: Swift.String,
-  ) async throws -> GoogleCloudSecretmanagerV1.SecretVersion {
+  ) async throws -> GoogleCloudSecretManagerV1.SecretVersion {
     let request = RotateSecretRequest().with {
       $0.parent = parent
     }

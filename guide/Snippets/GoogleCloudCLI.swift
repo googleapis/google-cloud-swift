@@ -16,7 +16,7 @@
 // snippet.show
 // snippet.imports
 import Foundation
-import GoogleCloudSecretmanagerV1
+import GoogleCloudSecretManagerV1
 // snippet.end
 
 // snippet.main

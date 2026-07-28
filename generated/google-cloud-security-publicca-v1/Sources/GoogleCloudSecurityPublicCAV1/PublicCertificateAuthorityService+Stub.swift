@@ -25,7 +25,7 @@ extension Clients {
   protocol PublicCertificateAuthorityServiceStub {
     func createExternalAccountKey(
       request: CreateExternalAccountKeyRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecurityPubliccaV1.ExternalAccountKey
+    ) async throws -> GoogleCloudSecurityPublicCAV1.ExternalAccountKey
   }
 
   class PublicCertificateAuthorityServiceTransport: PublicCertificateAuthorityServiceStub {
@@ -38,7 +38,7 @@ extension Clients {
 
     public func createExternalAccountKey(
       request: CreateExternalAccountKeyRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecurityPubliccaV1.ExternalAccountKey {
+    ) async throws -> GoogleCloudSecurityPublicCAV1.ExternalAccountKey {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.parent' is not set or is empty")
@@ -57,7 +57,7 @@ extension Clients {
       }
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudSecurityPubliccaV1.ExternalAccountKey.self, from: data)
+        GoogleCloudSecurityPublicCAV1.ExternalAccountKey.self, from: data)
     }
   }
 }

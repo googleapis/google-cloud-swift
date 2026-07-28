@@ -39,7 +39,7 @@ git clone [REPO SOURCE] google-cloud-swift
 
 ## Add the client library as a dependency
 
-Edit your `Package.swift` to add `GoogleCloudSecretmanagerV1` as a dependency.
+Edit your `Package.swift` to add `GoogleCloudSecretManagerV1` as a dependency.
 It should read:
 
 ```swift
@@ -56,7 +56,7 @@ let package = Package(
     .executableTarget(
       name: "GoogleCloudCLI",
       dependencies: [
-        .product(name: "GoogleCloudSecretmanagerV1", package: "google-cloud-secretmanager-v1")
+        .product(name: "GoogleCloudSecretManagerV1", package: "google-cloud-secretmanager-v1")
       ],
     )
   ],

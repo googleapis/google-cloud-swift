@@ -14,13 +14,13 @@
 
 import Foundation
 import GoogleCloudWkt
-import GoogleCloudSecretmanagerV1
+import GoogleCloudSecretManagerV1
 import Testing
 
 // Verify `Any` can be used with a struct defined outside the `GoogleCloudWkt`  package.
 //
 // We use an integration test to avoid a cyclic dependency between the `GoogleCloudWkt` package and the generated library.
-// `GoogleCloudSecretmanagerV1` was chosen since it has a simple structure, so it's easy to construct test data for it.
+// `GoogleCloudSecretManagerV1` was chosen since it has a simple structure, so it's easy to construct test data for it.
 
 struct WrappedAny: Codable {
   let value: GoogleCloudWkt.`Any`

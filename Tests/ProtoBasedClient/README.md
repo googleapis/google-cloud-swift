@@ -3,7 +3,7 @@
 This directory contains integration tests for a Protobuf-based client. The tests
 uses two libraries:
 
-- `GoogleCloudSecretmanagerV1`, because it is easy to enable this API, the
+- `GoogleCloudSecretManagerV1`, because it is easy to enable this API, the
   quota limits rarely affect integration tests, and because it covers a number
   of features including:
   - Multiple data types, including maps, bytes, timestamps, and field masks.

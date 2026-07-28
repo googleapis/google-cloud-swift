@@ -89,7 +89,7 @@ let package = Package(
     .testTarget(
       name: "ProtoBasedClient",
       dependencies: [
-        .product(name: "GoogleCloudSecretmanagerV1", package: "google-cloud-secretmanager-v1"),
+        .product(name: "GoogleCloudSecretManagerV1", package: "google-cloud-secretmanager-v1"),
         .product(name: "GoogleCloudWorkflowsV1", package: "google-cloud-workflows-v1"),
         .product(name: "GoogleCloudLocation", package: "google-cloud-location"),
         .product(name: "GoogleIamV1", package: "google-iam-v1"),
@@ -105,7 +105,7 @@ let package = Package(
       name: "Any",
       dependencies: [
         .product(name: "GoogleCloudWkt", package: "wkt"),
-        .product(name: "GoogleCloudSecretmanagerV1", package: "google-cloud-secretmanager-v1"),
+        .product(name: "GoogleCloudSecretManagerV1", package: "google-cloud-secretmanager-v1"),
       ],
     ),
     .testTarget(
@@ -114,7 +114,7 @@ let package = Package(
         .product(name: "GoogleCloudGax", package: "gax"),
         .product(name: "GoogleCloudWkt", package: "wkt"),
         .product(
-          name: "GoogleCloudSecurityPubliccaV1", package: "google-cloud-security-publicca-v1"),
+          name: "GoogleCloudSecurityPublicCAV1", package: "google-cloud-security-publicca-v1"),
       ],
     ),
   ]

@@ -16,7 +16,7 @@ import Foundation
 import Testing
 import GoogleCloudGax
 import GoogleCloudWkt
-import GoogleCloudSecurityPubliccaV1
+import GoogleCloudSecurityPublicCAV1
 
 struct WellKnown: Encodable {
   let duration: GoogleCloudWkt.Duration?

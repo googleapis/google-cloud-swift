@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 language: swift
-version: v0.30.2-0.20260727175912-746740de6003
+version: v0.31.2-0.20260728174147-6d46535c1c11
 repo: googleapis/google-cloud-swift
 sources:
   conformance:
@@ -415,12 +415,18 @@ libraries:
   - name: google-cloud-secretmanager-v1
     version: 0.0.0-preview
     copyright_year: "2026"
+    swift:
+      library_name_override: GoogleCloudSecretManagerV1
   - name: google-cloud-security-privateca-v1
     version: 0.0.0-preview
     copyright_year: "2026"
+    swift:
+      library_name_override: GoogleCloudSecurityPrivateCAV1
   - name: google-cloud-security-publicca-v1
     version: 0.0.0-preview
     copyright_year: "2026"
+    swift:
+      library_name_override: GoogleCloudSecurityPublicCAV1
   - name: google-cloud-speech-v2
     version: 0.0.0-preview
     copyright_year: "2026"
@@ -564,6 +570,8 @@ libraries:
   - name: grafeas-v1
     version: 0.0.0-preview
     copyright_year: "2026"
+    swift:
+      library_name_override: GoogleGrafeasV1
   - name: tests-discovery
     copyright_year: "2026"
     output: Tests/Discovery/generated

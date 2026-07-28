@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudSecretmanagerV1
+import GoogleCloudSecretManagerV1
 import GoogleCloudWorkflowsV1
 import GoogleCloudTestHelpers
 

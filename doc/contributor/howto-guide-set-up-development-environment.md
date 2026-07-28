@@ -259,7 +259,7 @@ swift package --disable-sandbox preview-documentation --target GoogleCloudGax
 You can also preview the GAPICs used by the top-level tests, for example:
 
 ```bash
-swift package --disable-sandbox preview-documentation --target GoogleCloudSecretmanagerV1
+swift package --disable-sandbox preview-documentation --target GoogleCloudSecretManagerV1
 swift package --disable-sandbox preview-documentation --target GoogleCloudComputeV1
 ```
 

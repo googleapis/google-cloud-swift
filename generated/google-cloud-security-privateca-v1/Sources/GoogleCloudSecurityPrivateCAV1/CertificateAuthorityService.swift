@@ -56,7 +56,7 @@ public class CertificateAuthorityServiceClient: Clients.CertificateAuthorityServ
   /// @Snippet(path: "CertificateAuthorityService_CreateCertificate")
   public func createCertificate(
     request: CreateCertificateRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudSecurityPrivatecaV1.Certificate {
+  ) async throws -> GoogleCloudSecurityPrivateCAV1.Certificate {
     try await self.inner.createCertificate(request: request, options: options)
   }
 
@@ -67,7 +67,7 @@ public class CertificateAuthorityServiceClient: Clients.CertificateAuthorityServ
   /// @Snippet(path: "CertificateAuthorityService_GetCertificate")
   public func getCertificate(
     request: GetCertificateRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudSecurityPrivatecaV1.Certificate {
+  ) async throws -> GoogleCloudSecurityPrivateCAV1.Certificate {
     try await self.inner.getCertificate(request: request, options: options)
   }
 
@@ -78,7 +78,7 @@ public class CertificateAuthorityServiceClient: Clients.CertificateAuthorityServ
   /// @Snippet(path: "CertificateAuthorityService_ListCertificates")
   public func listCertificates(
     request: ListCertificatesRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudSecurityPrivatecaV1.ListCertificatesResponse {
+  ) async throws -> GoogleCloudSecurityPrivateCAV1.ListCertificatesResponse {
     try await self.inner.listCertificates(request: request, options: options)
   }
 
@@ -91,7 +91,7 @@ public class CertificateAuthorityServiceClient: Clients.CertificateAuthorityServ
     byItem: ListCertificatesRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<Certificate, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudSecurityPrivatecaV1.ListCertificatesResponse
+      (token: Swift.String) async throws -> GoogleCloudSecurityPrivateCAV1.ListCertificatesResponse
       in
       var request = byItem
       request.pageToken = token
@@ -107,7 +107,7 @@ public class CertificateAuthorityServiceClient: Clients.CertificateAuthorityServ
   /// @Snippet(path: "CertificateAuthorityService_RevokeCertificate")
   public func revokeCertificate(
     request: RevokeCertificateRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudSecurityPrivatecaV1.Certificate {
+  ) async throws -> GoogleCloudSecurityPrivateCAV1.Certificate {
     try await self.inner.revokeCertificate(request: request, options: options)
   }
 
@@ -121,7 +121,7 @@ public class CertificateAuthorityServiceClient: Clients.CertificateAuthorityServ
   /// @Snippet(path: "CertificateAuthorityService_UpdateCertificate")
   public func updateCertificate(
     request: UpdateCertificateRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudSecurityPrivatecaV1.Certificate {
+  ) async throws -> GoogleCloudSecurityPrivateCAV1.Certificate {
     try await self.inner.updateCertificate(request: request, options: options)
   }
 
@@ -449,7 +449,7 @@ public class CertificateAuthorityServiceClient: Clients.CertificateAuthorityServ
   /// @Snippet(path: "CertificateAuthorityService_FetchCertificateAuthorityCsr")
   public func fetchCertificateAuthorityCsr(
     request: FetchCertificateAuthorityCsrRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudSecurityPrivatecaV1.FetchCertificateAuthorityCsrResponse {
+  ) async throws -> GoogleCloudSecurityPrivateCAV1.FetchCertificateAuthorityCsrResponse {
     try await self.inner.fetchCertificateAuthorityCsr(request: request, options: options)
   }
 
@@ -461,7 +461,7 @@ public class CertificateAuthorityServiceClient: Clients.CertificateAuthorityServ
   /// @Snippet(path: "CertificateAuthorityService_GetCertificateAuthority")
   public func getCertificateAuthority(
     request: GetCertificateAuthorityRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudSecurityPrivatecaV1.CertificateAuthority {
+  ) async throws -> GoogleCloudSecurityPrivateCAV1.CertificateAuthority {
     try await self.inner.getCertificateAuthority(request: request, options: options)
   }
 
@@ -473,7 +473,7 @@ public class CertificateAuthorityServiceClient: Clients.CertificateAuthorityServ
   /// @Snippet(path: "CertificateAuthorityService_ListCertificateAuthorities")
   public func listCertificateAuthorities(
     request: ListCertificateAuthoritiesRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudSecurityPrivatecaV1.ListCertificateAuthoritiesResponse {
+  ) async throws -> GoogleCloudSecurityPrivateCAV1.ListCertificateAuthoritiesResponse {
     try await self.inner.listCertificateAuthorities(request: request, options: options)
   }
 
@@ -488,7 +488,7 @@ public class CertificateAuthorityServiceClient: Clients.CertificateAuthorityServ
   ) throws -> any AsyncSequence<CertificateAuthority, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
-        -> GoogleCloudSecurityPrivatecaV1.ListCertificateAuthoritiesResponse in
+        -> GoogleCloudSecurityPrivateCAV1.ListCertificateAuthoritiesResponse in
       var request = byItem
       request.pageToken = token
       return try await self.listCertificateAuthorities(request: request, options: options)
@@ -849,7 +849,7 @@ public class CertificateAuthorityServiceClient: Clients.CertificateAuthorityServ
   /// @Snippet(path: "CertificateAuthorityService_GetCaPool")
   public func getCaPool(
     request: GetCaPoolRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudSecurityPrivatecaV1.CaPool {
+  ) async throws -> GoogleCloudSecurityPrivateCAV1.CaPool {
     try await self.inner.getCaPool(request: request, options: options)
   }
 
@@ -860,7 +860,7 @@ public class CertificateAuthorityServiceClient: Clients.CertificateAuthorityServ
   /// @Snippet(path: "CertificateAuthorityService_ListCaPools")
   public func listCaPools(
     request: ListCaPoolsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudSecurityPrivatecaV1.ListCaPoolsResponse {
+  ) async throws -> GoogleCloudSecurityPrivateCAV1.ListCaPoolsResponse {
     try await self.inner.listCaPools(request: request, options: options)
   }
 
@@ -873,7 +873,7 @@ public class CertificateAuthorityServiceClient: Clients.CertificateAuthorityServ
     byItem: ListCaPoolsRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<CaPool, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudSecurityPrivatecaV1.ListCaPoolsResponse in
+      (token: Swift.String) async throws -> GoogleCloudSecurityPrivateCAV1.ListCaPoolsResponse in
       var request = byItem
       request.pageToken = token
       return try await self.listCaPools(request: request, options: options)
@@ -950,7 +950,7 @@ public class CertificateAuthorityServiceClient: Clients.CertificateAuthorityServ
   /// @Snippet(path: "CertificateAuthorityService_FetchCaCerts")
   public func fetchCaCerts(
     request: FetchCaCertsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudSecurityPrivatecaV1.FetchCaCertsResponse {
+  ) async throws -> GoogleCloudSecurityPrivateCAV1.FetchCaCertsResponse {
     try await self.inner.fetchCaCerts(request: request, options: options)
   }
 
@@ -962,7 +962,7 @@ public class CertificateAuthorityServiceClient: Clients.CertificateAuthorityServ
   /// @Snippet(path: "CertificateAuthorityService_GetCertificateRevocationList")
   public func getCertificateRevocationList(
     request: GetCertificateRevocationListRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudSecurityPrivatecaV1.CertificateRevocationList {
+  ) async throws -> GoogleCloudSecurityPrivateCAV1.CertificateRevocationList {
     try await self.inner.getCertificateRevocationList(request: request, options: options)
   }
 
@@ -974,7 +974,7 @@ public class CertificateAuthorityServiceClient: Clients.CertificateAuthorityServ
   /// @Snippet(path: "CertificateAuthorityService_ListCertificateRevocationLists")
   public func listCertificateRevocationLists(
     request: ListCertificateRevocationListsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudSecurityPrivatecaV1.ListCertificateRevocationListsResponse {
+  ) async throws -> GoogleCloudSecurityPrivateCAV1.ListCertificateRevocationListsResponse {
     try await self.inner.listCertificateRevocationLists(request: request, options: options)
   }
 
@@ -989,7 +989,7 @@ public class CertificateAuthorityServiceClient: Clients.CertificateAuthorityServ
   ) throws -> any AsyncSequence<CertificateRevocationList, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
-        -> GoogleCloudSecurityPrivatecaV1.ListCertificateRevocationListsResponse in
+        -> GoogleCloudSecurityPrivateCAV1.ListCertificateRevocationListsResponse in
       var request = byItem
       request.pageToken = token
       return try await self.listCertificateRevocationLists(request: request, options: options)
@@ -1209,7 +1209,7 @@ public class CertificateAuthorityServiceClient: Clients.CertificateAuthorityServ
   /// @Snippet(path: "CertificateAuthorityService_GetCertificateTemplate")
   public func getCertificateTemplate(
     request: GetCertificateTemplateRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudSecurityPrivatecaV1.CertificateTemplate {
+  ) async throws -> GoogleCloudSecurityPrivateCAV1.CertificateTemplate {
     try await self.inner.getCertificateTemplate(request: request, options: options)
   }
 
@@ -1221,7 +1221,7 @@ public class CertificateAuthorityServiceClient: Clients.CertificateAuthorityServ
   /// @Snippet(path: "CertificateAuthorityService_ListCertificateTemplates")
   public func listCertificateTemplates(
     request: ListCertificateTemplatesRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudSecurityPrivatecaV1.ListCertificateTemplatesResponse {
+  ) async throws -> GoogleCloudSecurityPrivateCAV1.ListCertificateTemplatesResponse {
     try await self.inner.listCertificateTemplates(request: request, options: options)
   }
 
@@ -1236,7 +1236,7 @@ public class CertificateAuthorityServiceClient: Clients.CertificateAuthorityServ
   ) throws -> any AsyncSequence<CertificateTemplate, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
-        -> GoogleCloudSecurityPrivatecaV1.ListCertificateTemplatesResponse in
+        -> GoogleCloudSecurityPrivateCAV1.ListCertificateTemplatesResponse in
       var request = byItem
       request.pageToken = token
       return try await self.listCertificateTemplates(request: request, options: options)
@@ -1490,27 +1490,27 @@ extension Clients {
   public protocol CertificateAuthorityServiceProtocol {
     /// See `CertificateAuthorityServiceClient.createCertificate`.
     func createCertificate(request: CreateCertificateRequest) async throws
-      -> GoogleCloudSecurityPrivatecaV1.Certificate
+      -> GoogleCloudSecurityPrivateCAV1.Certificate
 
     /// See `CertificateAuthorityServiceClient.createCertificate`.
     func createCertificate(
       parent: Swift.String,
       certificate: Certificate?,
       certificateId: Swift.String,
-    ) async throws -> GoogleCloudSecurityPrivatecaV1.Certificate
+    ) async throws -> GoogleCloudSecurityPrivateCAV1.Certificate
 
     /// See `CertificateAuthorityServiceClient.getCertificate`.
     func getCertificate(request: GetCertificateRequest) async throws
-      -> GoogleCloudSecurityPrivatecaV1.Certificate
+      -> GoogleCloudSecurityPrivateCAV1.Certificate
 
     /// See `CertificateAuthorityServiceClient.getCertificate`.
     func getCertificate(
       name: Swift.String,
-    ) async throws -> GoogleCloudSecurityPrivatecaV1.Certificate
+    ) async throws -> GoogleCloudSecurityPrivateCAV1.Certificate
 
     /// See `CertificateAuthorityServiceClient.listCertificates`.
     func listCertificates(request: ListCertificatesRequest) async throws
-      -> GoogleCloudSecurityPrivatecaV1.ListCertificatesResponse
+      -> GoogleCloudSecurityPrivateCAV1.ListCertificatesResponse
 
     /// See `CertificateAuthorityServiceClient.listCertificates`.
     func listCertificates(
@@ -1524,22 +1524,22 @@ extension Clients {
 
     /// See `CertificateAuthorityServiceClient.revokeCertificate`.
     func revokeCertificate(request: RevokeCertificateRequest) async throws
-      -> GoogleCloudSecurityPrivatecaV1.Certificate
+      -> GoogleCloudSecurityPrivateCAV1.Certificate
 
     /// See `CertificateAuthorityServiceClient.revokeCertificate`.
     func revokeCertificate(
       name: Swift.String,
-    ) async throws -> GoogleCloudSecurityPrivatecaV1.Certificate
+    ) async throws -> GoogleCloudSecurityPrivateCAV1.Certificate
 
     /// See `CertificateAuthorityServiceClient.updateCertificate`.
     func updateCertificate(request: UpdateCertificateRequest) async throws
-      -> GoogleCloudSecurityPrivatecaV1.Certificate
+      -> GoogleCloudSecurityPrivateCAV1.Certificate
 
     /// See `CertificateAuthorityServiceClient.updateCertificate`.
     func updateCertificate(
       certificate: Certificate?,
       updateMask: GoogleCloudWkt.FieldMask?,
-    ) async throws -> GoogleCloudSecurityPrivatecaV1.Certificate
+    ) async throws -> GoogleCloudSecurityPrivateCAV1.Certificate
 
     /// See `CertificateAuthorityServiceClient.activateCertificateAuthority`.
     func activateCertificateAuthority(request: ActivateCertificateAuthorityRequest) async throws
@@ -1597,25 +1597,25 @@ extension Clients {
 
     /// See `CertificateAuthorityServiceClient.fetchCertificateAuthorityCsr`.
     func fetchCertificateAuthorityCsr(request: FetchCertificateAuthorityCsrRequest) async throws
-      -> GoogleCloudSecurityPrivatecaV1.FetchCertificateAuthorityCsrResponse
+      -> GoogleCloudSecurityPrivateCAV1.FetchCertificateAuthorityCsrResponse
 
     /// See `CertificateAuthorityServiceClient.fetchCertificateAuthorityCsr`.
     func fetchCertificateAuthorityCsr(
       name: Swift.String,
-    ) async throws -> GoogleCloudSecurityPrivatecaV1.FetchCertificateAuthorityCsrResponse
+    ) async throws -> GoogleCloudSecurityPrivateCAV1.FetchCertificateAuthorityCsrResponse
 
     /// See `CertificateAuthorityServiceClient.getCertificateAuthority`.
     func getCertificateAuthority(request: GetCertificateAuthorityRequest) async throws
-      -> GoogleCloudSecurityPrivatecaV1.CertificateAuthority
+      -> GoogleCloudSecurityPrivateCAV1.CertificateAuthority
 
     /// See `CertificateAuthorityServiceClient.getCertificateAuthority`.
     func getCertificateAuthority(
       name: Swift.String,
-    ) async throws -> GoogleCloudSecurityPrivatecaV1.CertificateAuthority
+    ) async throws -> GoogleCloudSecurityPrivateCAV1.CertificateAuthority
 
     /// See `CertificateAuthorityServiceClient.listCertificateAuthorities`.
     func listCertificateAuthorities(request: ListCertificateAuthoritiesRequest) async throws
-      -> GoogleCloudSecurityPrivatecaV1.ListCertificateAuthoritiesResponse
+      -> GoogleCloudSecurityPrivateCAV1.ListCertificateAuthoritiesResponse
 
     /// See `CertificateAuthorityServiceClient.listCertificateAuthorities`.
     func listCertificateAuthorities(
@@ -1695,16 +1695,16 @@ extension Clients {
     ) async throws -> any GoogleCloudGax.PollableOperation<CaPool>
 
     /// See `CertificateAuthorityServiceClient.getCaPool`.
-    func getCaPool(request: GetCaPoolRequest) async throws -> GoogleCloudSecurityPrivatecaV1.CaPool
+    func getCaPool(request: GetCaPoolRequest) async throws -> GoogleCloudSecurityPrivateCAV1.CaPool
 
     /// See `CertificateAuthorityServiceClient.getCaPool`.
     func getCaPool(
       name: Swift.String,
-    ) async throws -> GoogleCloudSecurityPrivatecaV1.CaPool
+    ) async throws -> GoogleCloudSecurityPrivateCAV1.CaPool
 
     /// See `CertificateAuthorityServiceClient.listCaPools`.
     func listCaPools(request: ListCaPoolsRequest) async throws
-      -> GoogleCloudSecurityPrivatecaV1.ListCaPoolsResponse
+      -> GoogleCloudSecurityPrivateCAV1.ListCaPoolsResponse
 
     /// See `CertificateAuthorityServiceClient.listCaPools`.
     func listCaPools(
@@ -1730,25 +1730,25 @@ extension Clients {
 
     /// See `CertificateAuthorityServiceClient.fetchCaCerts`.
     func fetchCaCerts(request: FetchCaCertsRequest) async throws
-      -> GoogleCloudSecurityPrivatecaV1.FetchCaCertsResponse
+      -> GoogleCloudSecurityPrivateCAV1.FetchCaCertsResponse
 
     /// See `CertificateAuthorityServiceClient.fetchCaCerts`.
     func fetchCaCerts(
       caPool: Swift.String,
-    ) async throws -> GoogleCloudSecurityPrivatecaV1.FetchCaCertsResponse
+    ) async throws -> GoogleCloudSecurityPrivateCAV1.FetchCaCertsResponse
 
     /// See `CertificateAuthorityServiceClient.getCertificateRevocationList`.
     func getCertificateRevocationList(request: GetCertificateRevocationListRequest) async throws
-      -> GoogleCloudSecurityPrivatecaV1.CertificateRevocationList
+      -> GoogleCloudSecurityPrivateCAV1.CertificateRevocationList
 
     /// See `CertificateAuthorityServiceClient.getCertificateRevocationList`.
     func getCertificateRevocationList(
       name: Swift.String,
-    ) async throws -> GoogleCloudSecurityPrivatecaV1.CertificateRevocationList
+    ) async throws -> GoogleCloudSecurityPrivateCAV1.CertificateRevocationList
 
     /// See `CertificateAuthorityServiceClient.listCertificateRevocationLists`.
     func listCertificateRevocationLists(request: ListCertificateRevocationListsRequest) async throws
-      -> GoogleCloudSecurityPrivatecaV1.ListCertificateRevocationListsResponse
+      -> GoogleCloudSecurityPrivateCAV1.ListCertificateRevocationListsResponse
 
     /// See `CertificateAuthorityServiceClient.listCertificateRevocationLists`.
     func listCertificateRevocationLists(
@@ -1804,16 +1804,16 @@ extension Clients {
 
     /// See `CertificateAuthorityServiceClient.getCertificateTemplate`.
     func getCertificateTemplate(request: GetCertificateTemplateRequest) async throws
-      -> GoogleCloudSecurityPrivatecaV1.CertificateTemplate
+      -> GoogleCloudSecurityPrivateCAV1.CertificateTemplate
 
     /// See `CertificateAuthorityServiceClient.getCertificateTemplate`.
     func getCertificateTemplate(
       name: Swift.String,
-    ) async throws -> GoogleCloudSecurityPrivatecaV1.CertificateTemplate
+    ) async throws -> GoogleCloudSecurityPrivateCAV1.CertificateTemplate
 
     /// See `CertificateAuthorityServiceClient.listCertificateTemplates`.
     func listCertificateTemplates(request: ListCertificateTemplatesRequest) async throws
-      -> GoogleCloudSecurityPrivatecaV1.ListCertificateTemplatesResponse
+      -> GoogleCloudSecurityPrivateCAV1.ListCertificateTemplatesResponse
 
     /// See `CertificateAuthorityServiceClient.listCertificateTemplates`.
     func listCertificateTemplates(
@@ -1896,17 +1896,17 @@ extension Clients {
     /// See `CertificateAuthorityServiceClient.createCertificate`.
     func createCertificate(
       request: CreateCertificateRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecurityPrivatecaV1.Certificate
+    ) async throws -> GoogleCloudSecurityPrivateCAV1.Certificate
 
     /// See `CertificateAuthorityServiceClient.getCertificate`.
     func getCertificate(
       request: GetCertificateRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecurityPrivatecaV1.Certificate
+    ) async throws -> GoogleCloudSecurityPrivateCAV1.Certificate
 
     /// See `CertificateAuthorityServiceClient.listCertificates`.
     func listCertificates(
       request: ListCertificatesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecurityPrivatecaV1.ListCertificatesResponse
+    ) async throws -> GoogleCloudSecurityPrivateCAV1.ListCertificatesResponse
 
     /// See `CertificateAuthorityServiceClient.listCertificates`.
     func listCertificates(
@@ -1916,12 +1916,12 @@ extension Clients {
     /// See `CertificateAuthorityServiceClient.revokeCertificate`.
     func revokeCertificate(
       request: RevokeCertificateRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecurityPrivatecaV1.Certificate
+    ) async throws -> GoogleCloudSecurityPrivateCAV1.Certificate
 
     /// See `CertificateAuthorityServiceClient.updateCertificate`.
     func updateCertificate(
       request: UpdateCertificateRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecurityPrivatecaV1.Certificate
+    ) async throws -> GoogleCloudSecurityPrivateCAV1.Certificate
 
     /// See `CertificateAuthorityServiceClient.activateCertificateAuthority`.
     func activateCertificateAuthority(
@@ -1966,17 +1966,17 @@ extension Clients {
     /// See `CertificateAuthorityServiceClient.fetchCertificateAuthorityCsr`.
     func fetchCertificateAuthorityCsr(
       request: FetchCertificateAuthorityCsrRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecurityPrivatecaV1.FetchCertificateAuthorityCsrResponse
+    ) async throws -> GoogleCloudSecurityPrivateCAV1.FetchCertificateAuthorityCsrResponse
 
     /// See `CertificateAuthorityServiceClient.getCertificateAuthority`.
     func getCertificateAuthority(
       request: GetCertificateAuthorityRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecurityPrivatecaV1.CertificateAuthority
+    ) async throws -> GoogleCloudSecurityPrivateCAV1.CertificateAuthority
 
     /// See `CertificateAuthorityServiceClient.listCertificateAuthorities`.
     func listCertificateAuthorities(
       request: ListCertificateAuthoritiesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecurityPrivatecaV1.ListCertificateAuthoritiesResponse
+    ) async throws -> GoogleCloudSecurityPrivateCAV1.ListCertificateAuthoritiesResponse
 
     /// See `CertificateAuthorityServiceClient.listCertificateAuthorities`.
     func listCertificateAuthorities(
@@ -2036,12 +2036,12 @@ extension Clients {
     /// See `CertificateAuthorityServiceClient.getCaPool`.
     func getCaPool(
       request: GetCaPoolRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecurityPrivatecaV1.CaPool
+    ) async throws -> GoogleCloudSecurityPrivateCAV1.CaPool
 
     /// See `CertificateAuthorityServiceClient.listCaPools`.
     func listCaPools(
       request: ListCaPoolsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecurityPrivatecaV1.ListCaPoolsResponse
+    ) async throws -> GoogleCloudSecurityPrivateCAV1.ListCaPoolsResponse
 
     /// See `CertificateAuthorityServiceClient.listCaPools`.
     func listCaPools(
@@ -2061,17 +2061,17 @@ extension Clients {
     /// See `CertificateAuthorityServiceClient.fetchCaCerts`.
     func fetchCaCerts(
       request: FetchCaCertsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecurityPrivatecaV1.FetchCaCertsResponse
+    ) async throws -> GoogleCloudSecurityPrivateCAV1.FetchCaCertsResponse
 
     /// See `CertificateAuthorityServiceClient.getCertificateRevocationList`.
     func getCertificateRevocationList(
       request: GetCertificateRevocationListRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecurityPrivatecaV1.CertificateRevocationList
+    ) async throws -> GoogleCloudSecurityPrivateCAV1.CertificateRevocationList
 
     /// See `CertificateAuthorityServiceClient.listCertificateRevocationLists`.
     func listCertificateRevocationLists(
       request: ListCertificateRevocationListsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecurityPrivatecaV1.ListCertificateRevocationListsResponse
+    ) async throws -> GoogleCloudSecurityPrivateCAV1.ListCertificateRevocationListsResponse
 
     /// See `CertificateAuthorityServiceClient.listCertificateRevocationLists`.
     func listCertificateRevocationLists(
@@ -2111,12 +2111,12 @@ extension Clients {
     /// See `CertificateAuthorityServiceClient.getCertificateTemplate`.
     func getCertificateTemplate(
       request: GetCertificateTemplateRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecurityPrivatecaV1.CertificateTemplate
+    ) async throws -> GoogleCloudSecurityPrivateCAV1.CertificateTemplate
 
     /// See `CertificateAuthorityServiceClient.listCertificateTemplates`.
     func listCertificateTemplates(
       request: ListCertificateTemplatesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecurityPrivatecaV1.ListCertificateTemplatesResponse
+    ) async throws -> GoogleCloudSecurityPrivateCAV1.ListCertificateTemplatesResponse
 
     /// See `CertificateAuthorityServiceClient.listCertificateTemplates`.
     func listCertificateTemplates(
@@ -2188,14 +2188,14 @@ extension Clients {
 // Default implementations
 extension Clients.CertificateAuthorityServiceProtocol {
   public func createCertificate(request: CreateCertificateRequest) async throws
-    -> GoogleCloudSecurityPrivatecaV1.Certificate
+    -> GoogleCloudSecurityPrivateCAV1.Certificate
   {
     try await self.createCertificate(request: request, options: .init())
   }
 
   public func createCertificate(
     request: CreateCertificateRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudSecurityPrivatecaV1.Certificate {
+  ) async throws -> GoogleCloudSecurityPrivateCAV1.Certificate {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -2203,7 +2203,7 @@ extension Clients.CertificateAuthorityServiceProtocol {
     parent: Swift.String,
     certificate: Certificate?,
     certificateId: Swift.String,
-  ) async throws -> GoogleCloudSecurityPrivatecaV1.Certificate {
+  ) async throws -> GoogleCloudSecurityPrivateCAV1.Certificate {
     let request = CreateCertificateRequest().with {
       $0.parent = parent
       $0.certificate = certificate
@@ -2213,20 +2213,20 @@ extension Clients.CertificateAuthorityServiceProtocol {
   }
 
   public func getCertificate(request: GetCertificateRequest) async throws
-    -> GoogleCloudSecurityPrivatecaV1.Certificate
+    -> GoogleCloudSecurityPrivateCAV1.Certificate
   {
     try await self.getCertificate(request: request, options: .init())
   }
 
   public func getCertificate(
     request: GetCertificateRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudSecurityPrivatecaV1.Certificate {
+  ) async throws -> GoogleCloudSecurityPrivateCAV1.Certificate {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func getCertificate(
     name: Swift.String,
-  ) async throws -> GoogleCloudSecurityPrivatecaV1.Certificate {
+  ) async throws -> GoogleCloudSecurityPrivateCAV1.Certificate {
     let request = GetCertificateRequest().with {
       $0.name = name
     }
@@ -2234,14 +2234,14 @@ extension Clients.CertificateAuthorityServiceProtocol {
   }
 
   public func listCertificates(request: ListCertificatesRequest) async throws
-    -> GoogleCloudSecurityPrivatecaV1.ListCertificatesResponse
+    -> GoogleCloudSecurityPrivateCAV1.ListCertificatesResponse
   {
     try await self.listCertificates(request: request, options: .init())
   }
 
   public func listCertificates(
     request: ListCertificatesRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudSecurityPrivatecaV1.ListCertificatesResponse {
+  ) async throws -> GoogleCloudSecurityPrivateCAV1.ListCertificatesResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -2255,7 +2255,7 @@ extension Clients.CertificateAuthorityServiceProtocol {
     byItem: ListCertificatesRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<Certificate, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudSecurityPrivatecaV1.ListCertificatesResponse
+      (token: Swift.String) async throws -> GoogleCloudSecurityPrivateCAV1.ListCertificatesResponse
       in
       throw GoogleCloudGax.RequestError.unimplemented
     }
@@ -2272,20 +2272,20 @@ extension Clients.CertificateAuthorityServiceProtocol {
   }
 
   public func revokeCertificate(request: RevokeCertificateRequest) async throws
-    -> GoogleCloudSecurityPrivatecaV1.Certificate
+    -> GoogleCloudSecurityPrivateCAV1.Certificate
   {
     try await self.revokeCertificate(request: request, options: .init())
   }
 
   public func revokeCertificate(
     request: RevokeCertificateRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudSecurityPrivatecaV1.Certificate {
+  ) async throws -> GoogleCloudSecurityPrivateCAV1.Certificate {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func revokeCertificate(
     name: Swift.String,
-  ) async throws -> GoogleCloudSecurityPrivatecaV1.Certificate {
+  ) async throws -> GoogleCloudSecurityPrivateCAV1.Certificate {
     let request = RevokeCertificateRequest().with {
       $0.name = name
     }
@@ -2293,21 +2293,21 @@ extension Clients.CertificateAuthorityServiceProtocol {
   }
 
   public func updateCertificate(request: UpdateCertificateRequest) async throws
-    -> GoogleCloudSecurityPrivatecaV1.Certificate
+    -> GoogleCloudSecurityPrivateCAV1.Certificate
   {
     try await self.updateCertificate(request: request, options: .init())
   }
 
   public func updateCertificate(
     request: UpdateCertificateRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudSecurityPrivatecaV1.Certificate {
+  ) async throws -> GoogleCloudSecurityPrivateCAV1.Certificate {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func updateCertificate(
     certificate: Certificate?,
     updateMask: GoogleCloudWkt.FieldMask?,
-  ) async throws -> GoogleCloudSecurityPrivatecaV1.Certificate {
+  ) async throws -> GoogleCloudSecurityPrivateCAV1.Certificate {
     let request = UpdateCertificateRequest().with {
       $0.certificate = certificate
       $0.updateMask = updateMask
@@ -2472,20 +2472,20 @@ extension Clients.CertificateAuthorityServiceProtocol {
   }
 
   public func fetchCertificateAuthorityCsr(request: FetchCertificateAuthorityCsrRequest)
-    async throws -> GoogleCloudSecurityPrivatecaV1.FetchCertificateAuthorityCsrResponse
+    async throws -> GoogleCloudSecurityPrivateCAV1.FetchCertificateAuthorityCsrResponse
   {
     try await self.fetchCertificateAuthorityCsr(request: request, options: .init())
   }
 
   public func fetchCertificateAuthorityCsr(
     request: FetchCertificateAuthorityCsrRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudSecurityPrivatecaV1.FetchCertificateAuthorityCsrResponse {
+  ) async throws -> GoogleCloudSecurityPrivateCAV1.FetchCertificateAuthorityCsrResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func fetchCertificateAuthorityCsr(
     name: Swift.String,
-  ) async throws -> GoogleCloudSecurityPrivatecaV1.FetchCertificateAuthorityCsrResponse {
+  ) async throws -> GoogleCloudSecurityPrivateCAV1.FetchCertificateAuthorityCsrResponse {
     let request = FetchCertificateAuthorityCsrRequest().with {
       $0.name = name
     }
@@ -2493,20 +2493,20 @@ extension Clients.CertificateAuthorityServiceProtocol {
   }
 
   public func getCertificateAuthority(request: GetCertificateAuthorityRequest) async throws
-    -> GoogleCloudSecurityPrivatecaV1.CertificateAuthority
+    -> GoogleCloudSecurityPrivateCAV1.CertificateAuthority
   {
     try await self.getCertificateAuthority(request: request, options: .init())
   }
 
   public func getCertificateAuthority(
     request: GetCertificateAuthorityRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudSecurityPrivatecaV1.CertificateAuthority {
+  ) async throws -> GoogleCloudSecurityPrivateCAV1.CertificateAuthority {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func getCertificateAuthority(
     name: Swift.String,
-  ) async throws -> GoogleCloudSecurityPrivatecaV1.CertificateAuthority {
+  ) async throws -> GoogleCloudSecurityPrivateCAV1.CertificateAuthority {
     let request = GetCertificateAuthorityRequest().with {
       $0.name = name
     }
@@ -2514,14 +2514,14 @@ extension Clients.CertificateAuthorityServiceProtocol {
   }
 
   public func listCertificateAuthorities(request: ListCertificateAuthoritiesRequest) async throws
-    -> GoogleCloudSecurityPrivatecaV1.ListCertificateAuthoritiesResponse
+    -> GoogleCloudSecurityPrivateCAV1.ListCertificateAuthoritiesResponse
   {
     try await self.listCertificateAuthorities(request: request, options: .init())
   }
 
   public func listCertificateAuthorities(
     request: ListCertificateAuthoritiesRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudSecurityPrivatecaV1.ListCertificateAuthoritiesResponse {
+  ) async throws -> GoogleCloudSecurityPrivateCAV1.ListCertificateAuthoritiesResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -2536,7 +2536,7 @@ extension Clients.CertificateAuthorityServiceProtocol {
   ) throws -> any AsyncSequence<CertificateAuthority, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
-        -> GoogleCloudSecurityPrivatecaV1.ListCertificateAuthoritiesResponse in
+        -> GoogleCloudSecurityPrivateCAV1.ListCertificateAuthoritiesResponse in
       throw GoogleCloudGax.RequestError.unimplemented
     }
     return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
@@ -2746,20 +2746,20 @@ extension Clients.CertificateAuthorityServiceProtocol {
   }
 
   public func getCaPool(request: GetCaPoolRequest) async throws
-    -> GoogleCloudSecurityPrivatecaV1.CaPool
+    -> GoogleCloudSecurityPrivateCAV1.CaPool
   {
     try await self.getCaPool(request: request, options: .init())
   }
 
   public func getCaPool(
     request: GetCaPoolRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudSecurityPrivatecaV1.CaPool {
+  ) async throws -> GoogleCloudSecurityPrivateCAV1.CaPool {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func getCaPool(
     name: Swift.String,
-  ) async throws -> GoogleCloudSecurityPrivatecaV1.CaPool {
+  ) async throws -> GoogleCloudSecurityPrivateCAV1.CaPool {
     let request = GetCaPoolRequest().with {
       $0.name = name
     }
@@ -2767,14 +2767,14 @@ extension Clients.CertificateAuthorityServiceProtocol {
   }
 
   public func listCaPools(request: ListCaPoolsRequest) async throws
-    -> GoogleCloudSecurityPrivatecaV1.ListCaPoolsResponse
+    -> GoogleCloudSecurityPrivateCAV1.ListCaPoolsResponse
   {
     try await self.listCaPools(request: request, options: .init())
   }
 
   public func listCaPools(
     request: ListCaPoolsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudSecurityPrivatecaV1.ListCaPoolsResponse {
+  ) async throws -> GoogleCloudSecurityPrivateCAV1.ListCaPoolsResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -2788,7 +2788,7 @@ extension Clients.CertificateAuthorityServiceProtocol {
     byItem: ListCaPoolsRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<CaPool, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudSecurityPrivatecaV1.ListCaPoolsResponse in
+      (token: Swift.String) async throws -> GoogleCloudSecurityPrivateCAV1.ListCaPoolsResponse in
       throw GoogleCloudGax.RequestError.unimplemented
     }
     return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
@@ -2840,20 +2840,20 @@ extension Clients.CertificateAuthorityServiceProtocol {
   }
 
   public func fetchCaCerts(request: FetchCaCertsRequest) async throws
-    -> GoogleCloudSecurityPrivatecaV1.FetchCaCertsResponse
+    -> GoogleCloudSecurityPrivateCAV1.FetchCaCertsResponse
   {
     try await self.fetchCaCerts(request: request, options: .init())
   }
 
   public func fetchCaCerts(
     request: FetchCaCertsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudSecurityPrivatecaV1.FetchCaCertsResponse {
+  ) async throws -> GoogleCloudSecurityPrivateCAV1.FetchCaCertsResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func fetchCaCerts(
     caPool: Swift.String,
-  ) async throws -> GoogleCloudSecurityPrivatecaV1.FetchCaCertsResponse {
+  ) async throws -> GoogleCloudSecurityPrivateCAV1.FetchCaCertsResponse {
     let request = FetchCaCertsRequest().with {
       $0.caPool = caPool
     }
@@ -2861,20 +2861,20 @@ extension Clients.CertificateAuthorityServiceProtocol {
   }
 
   public func getCertificateRevocationList(request: GetCertificateRevocationListRequest)
-    async throws -> GoogleCloudSecurityPrivatecaV1.CertificateRevocationList
+    async throws -> GoogleCloudSecurityPrivateCAV1.CertificateRevocationList
   {
     try await self.getCertificateRevocationList(request: request, options: .init())
   }
 
   public func getCertificateRevocationList(
     request: GetCertificateRevocationListRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudSecurityPrivatecaV1.CertificateRevocationList {
+  ) async throws -> GoogleCloudSecurityPrivateCAV1.CertificateRevocationList {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func getCertificateRevocationList(
     name: Swift.String,
-  ) async throws -> GoogleCloudSecurityPrivatecaV1.CertificateRevocationList {
+  ) async throws -> GoogleCloudSecurityPrivateCAV1.CertificateRevocationList {
     let request = GetCertificateRevocationListRequest().with {
       $0.name = name
     }
@@ -2882,14 +2882,14 @@ extension Clients.CertificateAuthorityServiceProtocol {
   }
 
   public func listCertificateRevocationLists(request: ListCertificateRevocationListsRequest)
-    async throws -> GoogleCloudSecurityPrivatecaV1.ListCertificateRevocationListsResponse
+    async throws -> GoogleCloudSecurityPrivateCAV1.ListCertificateRevocationListsResponse
   {
     try await self.listCertificateRevocationLists(request: request, options: .init())
   }
 
   public func listCertificateRevocationLists(
     request: ListCertificateRevocationListsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudSecurityPrivatecaV1.ListCertificateRevocationListsResponse {
+  ) async throws -> GoogleCloudSecurityPrivateCAV1.ListCertificateRevocationListsResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -2904,7 +2904,7 @@ extension Clients.CertificateAuthorityServiceProtocol {
   ) throws -> any AsyncSequence<CertificateRevocationList, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
-        -> GoogleCloudSecurityPrivatecaV1.ListCertificateRevocationListsResponse in
+        -> GoogleCloudSecurityPrivateCAV1.ListCertificateRevocationListsResponse in
       throw GoogleCloudGax.RequestError.unimplemented
     }
     return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
@@ -3039,20 +3039,20 @@ extension Clients.CertificateAuthorityServiceProtocol {
   }
 
   public func getCertificateTemplate(request: GetCertificateTemplateRequest) async throws
-    -> GoogleCloudSecurityPrivatecaV1.CertificateTemplate
+    -> GoogleCloudSecurityPrivateCAV1.CertificateTemplate
   {
     try await self.getCertificateTemplate(request: request, options: .init())
   }
 
   public func getCertificateTemplate(
     request: GetCertificateTemplateRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudSecurityPrivatecaV1.CertificateTemplate {
+  ) async throws -> GoogleCloudSecurityPrivateCAV1.CertificateTemplate {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func getCertificateTemplate(
     name: Swift.String,
-  ) async throws -> GoogleCloudSecurityPrivatecaV1.CertificateTemplate {
+  ) async throws -> GoogleCloudSecurityPrivateCAV1.CertificateTemplate {
     let request = GetCertificateTemplateRequest().with {
       $0.name = name
     }
@@ -3060,14 +3060,14 @@ extension Clients.CertificateAuthorityServiceProtocol {
   }
 
   public func listCertificateTemplates(request: ListCertificateTemplatesRequest) async throws
-    -> GoogleCloudSecurityPrivatecaV1.ListCertificateTemplatesResponse
+    -> GoogleCloudSecurityPrivateCAV1.ListCertificateTemplatesResponse
   {
     try await self.listCertificateTemplates(request: request, options: .init())
   }
 
   public func listCertificateTemplates(
     request: ListCertificateTemplatesRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudSecurityPrivatecaV1.ListCertificateTemplatesResponse {
+  ) async throws -> GoogleCloudSecurityPrivateCAV1.ListCertificateTemplatesResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -3082,7 +3082,7 @@ extension Clients.CertificateAuthorityServiceProtocol {
   ) throws -> any AsyncSequence<CertificateTemplate, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
-        -> GoogleCloudSecurityPrivatecaV1.ListCertificateTemplatesResponse in
+        -> GoogleCloudSecurityPrivateCAV1.ListCertificateTemplatesResponse in
       throw GoogleCloudGax.RequestError.unimplemented
     }
     return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)

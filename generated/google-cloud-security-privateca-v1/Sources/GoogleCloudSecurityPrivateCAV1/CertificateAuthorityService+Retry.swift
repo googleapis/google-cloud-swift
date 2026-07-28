@@ -24,52 +24,45 @@ import GoogleIamV1
 import GoogleLongrunning
 import GoogleRpc
 import GoogleCloudGax
-import struct Logging.Logger
 
 extension Clients {
-  final class CertificateAuthorityServiceLogging: CertificateAuthorityServiceStub {
+  final class CertificateAuthorityServiceRetry: CertificateAuthorityServiceStub {
     let inner: any CertificateAuthorityServiceStub
-    let logger: Logger
+    let options: GoogleCloudGax.ClientOptions
 
-    public init(_ inner: any CertificateAuthorityServiceStub, logger: Logger) {
-      var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "google-cloud-security-privateca-v1"
-      logger[metadataKey: "gcp.client.service"] = "privateca"
-      logger[metadataKey: "gcp.experimental.swift.client"] = "CertificateAuthorityService"
+    public init(_ inner: any CertificateAuthorityServiceStub, options: GoogleCloudGax.ClientOptions)
+    {
       self.inner = inner
-      self.logger = logger
+      self.options = options
     }
 
     func _intercept<Input, Output>(
       request: Input,
       options: GoogleCloudGax.RequestOptions,
-      name: Swift.String,
+      idempotent: Swift.Bool,
       action: (Input, GoogleCloudGax.RequestOptions) async throws -> Output,
     ) async throws -> Output {
-      var logger = logger
-      logger[metadataKey: "gcp.experimental.swift.request.id"] = "\(UUID())"
-      logger[metadataKey: "gcp.experimental.swift.method"] = .string(name)
-      logger.debug("enter  : \(request) \(options)")
-      do {
-        let output = try await action(request, options)
-        logger.debug("success: \(request) \(options) \(output)")
-        return output
-      } catch let error {
-        logger.debug("error  : \(request) \(options) \(error)")
-        throw error
+      let loop = GoogleCloudGax._RetryLoop(
+        options: options, withDefault: self.options, idempotent: idempotent,
+      )
+      let attempt = { (attemptTimeout: Swift.Duration?) async throws -> Output in
+        var attemptOptions = options
+        attemptOptions.attemptTimeout = attemptTimeout
+        return try await action(request, attemptOptions)
       }
+      return try await loop.run(attempt: attempt)
     }
 
     public func createCertificate(
       request: CreateCertificateRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecurityPrivatecaV1.Certificate {
+    ) async throws -> GoogleCloudSecurityPrivateCAV1.Certificate {
       try await self._intercept(
         request: request,
         options: options,
-        name: "createCertificate",
+        idempotent: false,
         action: {
           (r: CreateCertificateRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleCloudSecurityPrivatecaV1.Certificate
+            -> GoogleCloudSecurityPrivateCAV1.Certificate
           in
           return try await self.inner.createCertificate(request: r, options: o)
         })
@@ -77,14 +70,14 @@ extension Clients {
 
     public func getCertificate(
       request: GetCertificateRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecurityPrivatecaV1.Certificate {
+    ) async throws -> GoogleCloudSecurityPrivateCAV1.Certificate {
       try await self._intercept(
         request: request,
         options: options,
-        name: "getCertificate",
+        idempotent: true,
         action: {
           (r: GetCertificateRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleCloudSecurityPrivatecaV1.Certificate
+            -> GoogleCloudSecurityPrivateCAV1.Certificate
           in
           return try await self.inner.getCertificate(request: r, options: o)
         })
@@ -92,14 +85,14 @@ extension Clients {
 
     public func listCertificates(
       request: ListCertificatesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecurityPrivatecaV1.ListCertificatesResponse {
+    ) async throws -> GoogleCloudSecurityPrivateCAV1.ListCertificatesResponse {
       try await self._intercept(
         request: request,
         options: options,
-        name: "listCertificates",
+        idempotent: true,
         action: {
           (r: ListCertificatesRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleCloudSecurityPrivatecaV1.ListCertificatesResponse
+            -> GoogleCloudSecurityPrivateCAV1.ListCertificatesResponse
           in
           return try await self.inner.listCertificates(request: r, options: o)
         })
@@ -107,14 +100,14 @@ extension Clients {
 
     public func revokeCertificate(
       request: RevokeCertificateRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecurityPrivatecaV1.Certificate {
+    ) async throws -> GoogleCloudSecurityPrivateCAV1.Certificate {
       try await self._intercept(
         request: request,
         options: options,
-        name: "revokeCertificate",
+        idempotent: false,
         action: {
           (r: RevokeCertificateRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleCloudSecurityPrivatecaV1.Certificate
+            -> GoogleCloudSecurityPrivateCAV1.Certificate
           in
           return try await self.inner.revokeCertificate(request: r, options: o)
         })
@@ -122,14 +115,14 @@ extension Clients {
 
     public func updateCertificate(
       request: UpdateCertificateRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecurityPrivatecaV1.Certificate {
+    ) async throws -> GoogleCloudSecurityPrivateCAV1.Certificate {
       try await self._intercept(
         request: request,
         options: options,
-        name: "updateCertificate",
+        idempotent: false,
         action: {
           (r: UpdateCertificateRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleCloudSecurityPrivatecaV1.Certificate
+            -> GoogleCloudSecurityPrivateCAV1.Certificate
           in
           return try await self.inner.updateCertificate(request: r, options: o)
         })
@@ -141,7 +134,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        name: "activateCertificateAuthority",
+        idempotent: false,
         action: {
           (r: ActivateCertificateAuthorityRequest, o: GoogleCloudGax.RequestOptions) async throws
             -> GoogleLongrunning.Operation
@@ -156,7 +149,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        name: "createCertificateAuthority",
+        idempotent: false,
         action: {
           (r: CreateCertificateAuthorityRequest, o: GoogleCloudGax.RequestOptions) async throws
             -> GoogleLongrunning.Operation
@@ -171,7 +164,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        name: "disableCertificateAuthority",
+        idempotent: false,
         action: {
           (r: DisableCertificateAuthorityRequest, o: GoogleCloudGax.RequestOptions) async throws
             -> GoogleLongrunning.Operation
@@ -186,7 +179,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        name: "enableCertificateAuthority",
+        idempotent: false,
         action: {
           (r: EnableCertificateAuthorityRequest, o: GoogleCloudGax.RequestOptions) async throws
             -> GoogleLongrunning.Operation
@@ -197,14 +190,14 @@ extension Clients {
 
     public func fetchCertificateAuthorityCsr(
       request: FetchCertificateAuthorityCsrRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecurityPrivatecaV1.FetchCertificateAuthorityCsrResponse {
+    ) async throws -> GoogleCloudSecurityPrivateCAV1.FetchCertificateAuthorityCsrResponse {
       try await self._intercept(
         request: request,
         options: options,
-        name: "fetchCertificateAuthorityCsr",
+        idempotent: true,
         action: {
           (r: FetchCertificateAuthorityCsrRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleCloudSecurityPrivatecaV1.FetchCertificateAuthorityCsrResponse
+            -> GoogleCloudSecurityPrivateCAV1.FetchCertificateAuthorityCsrResponse
           in
           return try await self.inner.fetchCertificateAuthorityCsr(request: r, options: o)
         })
@@ -212,14 +205,14 @@ extension Clients {
 
     public func getCertificateAuthority(
       request: GetCertificateAuthorityRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecurityPrivatecaV1.CertificateAuthority {
+    ) async throws -> GoogleCloudSecurityPrivateCAV1.CertificateAuthority {
       try await self._intercept(
         request: request,
         options: options,
-        name: "getCertificateAuthority",
+        idempotent: true,
         action: {
           (r: GetCertificateAuthorityRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleCloudSecurityPrivatecaV1.CertificateAuthority
+            -> GoogleCloudSecurityPrivateCAV1.CertificateAuthority
           in
           return try await self.inner.getCertificateAuthority(request: r, options: o)
         })
@@ -227,14 +220,14 @@ extension Clients {
 
     public func listCertificateAuthorities(
       request: ListCertificateAuthoritiesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecurityPrivatecaV1.ListCertificateAuthoritiesResponse {
+    ) async throws -> GoogleCloudSecurityPrivateCAV1.ListCertificateAuthoritiesResponse {
       try await self._intercept(
         request: request,
         options: options,
-        name: "listCertificateAuthorities",
+        idempotent: true,
         action: {
           (r: ListCertificateAuthoritiesRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleCloudSecurityPrivatecaV1.ListCertificateAuthoritiesResponse
+            -> GoogleCloudSecurityPrivateCAV1.ListCertificateAuthoritiesResponse
           in
           return try await self.inner.listCertificateAuthorities(request: r, options: o)
         })
@@ -246,7 +239,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        name: "undeleteCertificateAuthority",
+        idempotent: false,
         action: {
           (r: UndeleteCertificateAuthorityRequest, o: GoogleCloudGax.RequestOptions) async throws
             -> GoogleLongrunning.Operation
@@ -261,7 +254,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        name: "deleteCertificateAuthority",
+        idempotent: false,
         action: {
           (r: DeleteCertificateAuthorityRequest, o: GoogleCloudGax.RequestOptions) async throws
             -> GoogleLongrunning.Operation
@@ -276,7 +269,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        name: "updateCertificateAuthority",
+        idempotent: false,
         action: {
           (r: UpdateCertificateAuthorityRequest, o: GoogleCloudGax.RequestOptions) async throws
             -> GoogleLongrunning.Operation
@@ -291,7 +284,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        name: "createCaPool",
+        idempotent: false,
         action: {
           (r: CreateCaPoolRequest, o: GoogleCloudGax.RequestOptions) async throws
             -> GoogleLongrunning.Operation
@@ -306,7 +299,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        name: "updateCaPool",
+        idempotent: false,
         action: {
           (r: UpdateCaPoolRequest, o: GoogleCloudGax.RequestOptions) async throws
             -> GoogleLongrunning.Operation
@@ -317,14 +310,14 @@ extension Clients {
 
     public func getCaPool(
       request: GetCaPoolRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecurityPrivatecaV1.CaPool {
+    ) async throws -> GoogleCloudSecurityPrivateCAV1.CaPool {
       try await self._intercept(
         request: request,
         options: options,
-        name: "getCaPool",
+        idempotent: true,
         action: {
           (r: GetCaPoolRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleCloudSecurityPrivatecaV1.CaPool
+            -> GoogleCloudSecurityPrivateCAV1.CaPool
           in
           return try await self.inner.getCaPool(request: r, options: o)
         })
@@ -332,14 +325,14 @@ extension Clients {
 
     public func listCaPools(
       request: ListCaPoolsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecurityPrivatecaV1.ListCaPoolsResponse {
+    ) async throws -> GoogleCloudSecurityPrivateCAV1.ListCaPoolsResponse {
       try await self._intercept(
         request: request,
         options: options,
-        name: "listCaPools",
+        idempotent: true,
         action: {
           (r: ListCaPoolsRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleCloudSecurityPrivatecaV1.ListCaPoolsResponse
+            -> GoogleCloudSecurityPrivateCAV1.ListCaPoolsResponse
           in
           return try await self.inner.listCaPools(request: r, options: o)
         })
@@ -351,7 +344,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        name: "deleteCaPool",
+        idempotent: false,
         action: {
           (r: DeleteCaPoolRequest, o: GoogleCloudGax.RequestOptions) async throws
             -> GoogleLongrunning.Operation
@@ -362,14 +355,14 @@ extension Clients {
 
     public func fetchCaCerts(
       request: FetchCaCertsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecurityPrivatecaV1.FetchCaCertsResponse {
+    ) async throws -> GoogleCloudSecurityPrivateCAV1.FetchCaCertsResponse {
       try await self._intercept(
         request: request,
         options: options,
-        name: "fetchCaCerts",
+        idempotent: false,
         action: {
           (r: FetchCaCertsRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleCloudSecurityPrivatecaV1.FetchCaCertsResponse
+            -> GoogleCloudSecurityPrivateCAV1.FetchCaCertsResponse
           in
           return try await self.inner.fetchCaCerts(request: r, options: o)
         })
@@ -377,14 +370,14 @@ extension Clients {
 
     public func getCertificateRevocationList(
       request: GetCertificateRevocationListRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecurityPrivatecaV1.CertificateRevocationList {
+    ) async throws -> GoogleCloudSecurityPrivateCAV1.CertificateRevocationList {
       try await self._intercept(
         request: request,
         options: options,
-        name: "getCertificateRevocationList",
+        idempotent: true,
         action: {
           (r: GetCertificateRevocationListRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleCloudSecurityPrivatecaV1.CertificateRevocationList
+            -> GoogleCloudSecurityPrivateCAV1.CertificateRevocationList
           in
           return try await self.inner.getCertificateRevocationList(request: r, options: o)
         })
@@ -392,14 +385,14 @@ extension Clients {
 
     public func listCertificateRevocationLists(
       request: ListCertificateRevocationListsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecurityPrivatecaV1.ListCertificateRevocationListsResponse {
+    ) async throws -> GoogleCloudSecurityPrivateCAV1.ListCertificateRevocationListsResponse {
       try await self._intercept(
         request: request,
         options: options,
-        name: "listCertificateRevocationLists",
+        idempotent: true,
         action: {
           (r: ListCertificateRevocationListsRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleCloudSecurityPrivatecaV1.ListCertificateRevocationListsResponse
+            -> GoogleCloudSecurityPrivateCAV1.ListCertificateRevocationListsResponse
           in
           return try await self.inner.listCertificateRevocationLists(request: r, options: o)
         })
@@ -411,7 +404,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        name: "updateCertificateRevocationList",
+        idempotent: false,
         action: {
           (r: UpdateCertificateRevocationListRequest, o: GoogleCloudGax.RequestOptions) async throws
             -> GoogleLongrunning.Operation
@@ -426,7 +419,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        name: "createCertificateTemplate",
+        idempotent: false,
         action: {
           (r: CreateCertificateTemplateRequest, o: GoogleCloudGax.RequestOptions) async throws
             -> GoogleLongrunning.Operation
@@ -441,7 +434,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        name: "deleteCertificateTemplate",
+        idempotent: false,
         action: {
           (r: DeleteCertificateTemplateRequest, o: GoogleCloudGax.RequestOptions) async throws
             -> GoogleLongrunning.Operation
@@ -452,14 +445,14 @@ extension Clients {
 
     public func getCertificateTemplate(
       request: GetCertificateTemplateRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecurityPrivatecaV1.CertificateTemplate {
+    ) async throws -> GoogleCloudSecurityPrivateCAV1.CertificateTemplate {
       try await self._intercept(
         request: request,
         options: options,
-        name: "getCertificateTemplate",
+        idempotent: true,
         action: {
           (r: GetCertificateTemplateRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleCloudSecurityPrivatecaV1.CertificateTemplate
+            -> GoogleCloudSecurityPrivateCAV1.CertificateTemplate
           in
           return try await self.inner.getCertificateTemplate(request: r, options: o)
         })
@@ -467,14 +460,14 @@ extension Clients {
 
     public func listCertificateTemplates(
       request: ListCertificateTemplatesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecurityPrivatecaV1.ListCertificateTemplatesResponse {
+    ) async throws -> GoogleCloudSecurityPrivateCAV1.ListCertificateTemplatesResponse {
       try await self._intercept(
         request: request,
         options: options,
-        name: "listCertificateTemplates",
+        idempotent: true,
         action: {
           (r: ListCertificateTemplatesRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleCloudSecurityPrivatecaV1.ListCertificateTemplatesResponse
+            -> GoogleCloudSecurityPrivateCAV1.ListCertificateTemplatesResponse
           in
           return try await self.inner.listCertificateTemplates(request: r, options: o)
         })
@@ -486,7 +479,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        name: "updateCertificateTemplate",
+        idempotent: false,
         action: {
           (r: UpdateCertificateTemplateRequest, o: GoogleCloudGax.RequestOptions) async throws
             -> GoogleLongrunning.Operation
@@ -501,7 +494,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        name: "listLocations",
+        idempotent: true,
         action: {
           (r: GoogleCloudLocation.ListLocationsRequest, o: GoogleCloudGax.RequestOptions)
             async throws -> GoogleCloudLocation.ListLocationsResponse
@@ -516,7 +509,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        name: "getLocation",
+        idempotent: true,
         action: {
           (r: GoogleCloudLocation.GetLocationRequest, o: GoogleCloudGax.RequestOptions) async throws
             -> GoogleCloudLocation.Location
@@ -531,7 +524,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        name: "setIamPolicy",
+        idempotent: false,
         action: {
           (r: GoogleIamV1.SetIamPolicyRequest, o: GoogleCloudGax.RequestOptions) async throws
             -> GoogleIamV1.Policy
@@ -546,7 +539,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        name: "getIamPolicy",
+        idempotent: true,
         action: {
           (r: GoogleIamV1.GetIamPolicyRequest, o: GoogleCloudGax.RequestOptions) async throws
             -> GoogleIamV1.Policy
@@ -561,7 +554,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        name: "testIamPermissions",
+        idempotent: false,
         action: {
           (r: GoogleIamV1.TestIamPermissionsRequest, o: GoogleCloudGax.RequestOptions) async throws
             -> GoogleIamV1.TestIamPermissionsResponse
@@ -576,7 +569,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        name: "listOperations",
+        idempotent: true,
         action: {
           (r: GoogleLongrunning.ListOperationsRequest, o: GoogleCloudGax.RequestOptions)
             async throws -> GoogleLongrunning.ListOperationsResponse
@@ -591,7 +584,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        name: "getOperation",
+        idempotent: true,
         action: {
           (r: GoogleLongrunning.GetOperationRequest, o: GoogleCloudGax.RequestOptions) async throws
             -> GoogleLongrunning.Operation
@@ -606,7 +599,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        name: "deleteOperation",
+        idempotent: false,
         action: {
           (r: GoogleLongrunning.DeleteOperationRequest, o: GoogleCloudGax.RequestOptions)
             async throws -> Void in
@@ -620,7 +613,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        name: "cancelOperation",
+        idempotent: false,
         action: {
           (r: GoogleLongrunning.CancelOperationRequest, o: GoogleCloudGax.RequestOptions)
             async throws -> Void in

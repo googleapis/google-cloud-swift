@@ -29,23 +29,23 @@ extension Clients {
   protocol CertificateAuthorityServiceStub {
     func createCertificate(
       request: CreateCertificateRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecurityPrivatecaV1.Certificate
+    ) async throws -> GoogleCloudSecurityPrivateCAV1.Certificate
 
     func getCertificate(
       request: GetCertificateRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecurityPrivatecaV1.Certificate
+    ) async throws -> GoogleCloudSecurityPrivateCAV1.Certificate
 
     func listCertificates(
       request: ListCertificatesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecurityPrivatecaV1.ListCertificatesResponse
+    ) async throws -> GoogleCloudSecurityPrivateCAV1.ListCertificatesResponse
 
     func revokeCertificate(
       request: RevokeCertificateRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecurityPrivatecaV1.Certificate
+    ) async throws -> GoogleCloudSecurityPrivateCAV1.Certificate
 
     func updateCertificate(
       request: UpdateCertificateRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecurityPrivatecaV1.Certificate
+    ) async throws -> GoogleCloudSecurityPrivateCAV1.Certificate
 
     func activateCertificateAuthority(
       request: ActivateCertificateAuthorityRequest, options: GoogleCloudGax.RequestOptions
@@ -65,15 +65,15 @@ extension Clients {
 
     func fetchCertificateAuthorityCsr(
       request: FetchCertificateAuthorityCsrRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecurityPrivatecaV1.FetchCertificateAuthorityCsrResponse
+    ) async throws -> GoogleCloudSecurityPrivateCAV1.FetchCertificateAuthorityCsrResponse
 
     func getCertificateAuthority(
       request: GetCertificateAuthorityRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecurityPrivatecaV1.CertificateAuthority
+    ) async throws -> GoogleCloudSecurityPrivateCAV1.CertificateAuthority
 
     func listCertificateAuthorities(
       request: ListCertificateAuthoritiesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecurityPrivatecaV1.ListCertificateAuthoritiesResponse
+    ) async throws -> GoogleCloudSecurityPrivateCAV1.ListCertificateAuthoritiesResponse
 
     func undeleteCertificateAuthority(
       request: UndeleteCertificateAuthorityRequest, options: GoogleCloudGax.RequestOptions
@@ -97,11 +97,11 @@ extension Clients {
 
     func getCaPool(
       request: GetCaPoolRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecurityPrivatecaV1.CaPool
+    ) async throws -> GoogleCloudSecurityPrivateCAV1.CaPool
 
     func listCaPools(
       request: ListCaPoolsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecurityPrivatecaV1.ListCaPoolsResponse
+    ) async throws -> GoogleCloudSecurityPrivateCAV1.ListCaPoolsResponse
 
     func deleteCaPool(
       request: DeleteCaPoolRequest, options: GoogleCloudGax.RequestOptions
@@ -109,15 +109,15 @@ extension Clients {
 
     func fetchCaCerts(
       request: FetchCaCertsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecurityPrivatecaV1.FetchCaCertsResponse
+    ) async throws -> GoogleCloudSecurityPrivateCAV1.FetchCaCertsResponse
 
     func getCertificateRevocationList(
       request: GetCertificateRevocationListRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecurityPrivatecaV1.CertificateRevocationList
+    ) async throws -> GoogleCloudSecurityPrivateCAV1.CertificateRevocationList
 
     func listCertificateRevocationLists(
       request: ListCertificateRevocationListsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecurityPrivatecaV1.ListCertificateRevocationListsResponse
+    ) async throws -> GoogleCloudSecurityPrivateCAV1.ListCertificateRevocationListsResponse
 
     func updateCertificateRevocationList(
       request: UpdateCertificateRevocationListRequest, options: GoogleCloudGax.RequestOptions
@@ -133,11 +133,11 @@ extension Clients {
 
     func getCertificateTemplate(
       request: GetCertificateTemplateRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecurityPrivatecaV1.CertificateTemplate
+    ) async throws -> GoogleCloudSecurityPrivateCAV1.CertificateTemplate
 
     func listCertificateTemplates(
       request: ListCertificateTemplatesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecurityPrivatecaV1.ListCertificateTemplatesResponse
+    ) async throws -> GoogleCloudSecurityPrivateCAV1.ListCertificateTemplatesResponse
 
     func updateCertificateTemplate(
       request: UpdateCertificateTemplateRequest, options: GoogleCloudGax.RequestOptions
@@ -190,7 +190,7 @@ extension Clients {
 
     public func createCertificate(
       request: CreateCertificateRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecurityPrivatecaV1.Certificate {
+    ) async throws -> GoogleCloudSecurityPrivateCAV1.Certificate {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.parent' is not set or is empty")
@@ -216,12 +216,12 @@ extension Clients {
       }
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudSecurityPrivatecaV1.Certificate.self, from: data)
+        GoogleCloudSecurityPrivateCAV1.Certificate.self, from: data)
     }
 
     public func getCertificate(
       request: GetCertificateRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecurityPrivatecaV1.Certificate {
+    ) async throws -> GoogleCloudSecurityPrivateCAV1.Certificate {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -236,12 +236,12 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudSecurityPrivatecaV1.Certificate.self, from: data)
+        GoogleCloudSecurityPrivateCAV1.Certificate.self, from: data)
     }
 
     public func listCertificates(
       request: ListCertificatesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecurityPrivatecaV1.ListCertificatesResponse {
+    ) async throws -> GoogleCloudSecurityPrivateCAV1.ListCertificatesResponse {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.parent' is not set or is empty")
@@ -261,12 +261,12 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudSecurityPrivatecaV1.ListCertificatesResponse.self, from: data)
+        GoogleCloudSecurityPrivateCAV1.ListCertificatesResponse.self, from: data)
     }
 
     public func revokeCertificate(
       request: RevokeCertificateRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecurityPrivatecaV1.Certificate {
+    ) async throws -> GoogleCloudSecurityPrivateCAV1.Certificate {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -283,12 +283,12 @@ extension Clients {
       req.httpBody = try JSONEncoder().encode(request)
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudSecurityPrivatecaV1.Certificate.self, from: data)
+        GoogleCloudSecurityPrivateCAV1.Certificate.self, from: data)
     }
 
     public func updateCertificate(
       request: UpdateCertificateRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecurityPrivatecaV1.Certificate {
+    ) async throws -> GoogleCloudSecurityPrivateCAV1.Certificate {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.certificate.map({ $0.name }), !pathVariable0.isEmpty
         else {
@@ -312,7 +312,7 @@ extension Clients {
       }
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudSecurityPrivatecaV1.Certificate.self, from: data)
+        GoogleCloudSecurityPrivateCAV1.Certificate.self, from: data)
     }
 
     public func activateCertificateAuthority(
@@ -412,7 +412,7 @@ extension Clients {
 
     public func fetchCertificateAuthorityCsr(
       request: FetchCertificateAuthorityCsrRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecurityPrivatecaV1.FetchCertificateAuthorityCsrResponse {
+    ) async throws -> GoogleCloudSecurityPrivateCAV1.FetchCertificateAuthorityCsrResponse {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -427,12 +427,12 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudSecurityPrivatecaV1.FetchCertificateAuthorityCsrResponse.self, from: data)
+        GoogleCloudSecurityPrivateCAV1.FetchCertificateAuthorityCsrResponse.self, from: data)
     }
 
     public func getCertificateAuthority(
       request: GetCertificateAuthorityRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecurityPrivatecaV1.CertificateAuthority {
+    ) async throws -> GoogleCloudSecurityPrivateCAV1.CertificateAuthority {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -447,12 +447,12 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudSecurityPrivatecaV1.CertificateAuthority.self, from: data)
+        GoogleCloudSecurityPrivateCAV1.CertificateAuthority.self, from: data)
     }
 
     public func listCertificateAuthorities(
       request: ListCertificateAuthoritiesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecurityPrivatecaV1.ListCertificateAuthoritiesResponse {
+    ) async throws -> GoogleCloudSecurityPrivateCAV1.ListCertificateAuthoritiesResponse {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.parent' is not set or is empty")
@@ -472,7 +472,7 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudSecurityPrivatecaV1.ListCertificateAuthoritiesResponse.self, from: data)
+        GoogleCloudSecurityPrivateCAV1.ListCertificateAuthoritiesResponse.self, from: data)
     }
 
     public func undeleteCertificateAuthority(
@@ -613,7 +613,7 @@ extension Clients {
 
     public func getCaPool(
       request: GetCaPoolRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecurityPrivatecaV1.CaPool {
+    ) async throws -> GoogleCloudSecurityPrivateCAV1.CaPool {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -628,12 +628,12 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudSecurityPrivatecaV1.CaPool.self, from: data)
+        GoogleCloudSecurityPrivateCAV1.CaPool.self, from: data)
     }
 
     public func listCaPools(
       request: ListCaPoolsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecurityPrivatecaV1.ListCaPoolsResponse {
+    ) async throws -> GoogleCloudSecurityPrivateCAV1.ListCaPoolsResponse {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.parent' is not set or is empty")
@@ -653,7 +653,7 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudSecurityPrivatecaV1.ListCaPoolsResponse.self, from: data)
+        GoogleCloudSecurityPrivateCAV1.ListCaPoolsResponse.self, from: data)
     }
 
     public func deleteCaPool(
@@ -683,7 +683,7 @@ extension Clients {
 
     public func fetchCaCerts(
       request: FetchCaCertsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecurityPrivatecaV1.FetchCaCertsResponse {
+    ) async throws -> GoogleCloudSecurityPrivateCAV1.FetchCaCertsResponse {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.caPool as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.ca_pool' is not set or is empty")
@@ -700,12 +700,12 @@ extension Clients {
       req.httpBody = try JSONEncoder().encode(request)
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudSecurityPrivatecaV1.FetchCaCertsResponse.self, from: data)
+        GoogleCloudSecurityPrivateCAV1.FetchCaCertsResponse.self, from: data)
     }
 
     public func getCertificateRevocationList(
       request: GetCertificateRevocationListRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecurityPrivatecaV1.CertificateRevocationList {
+    ) async throws -> GoogleCloudSecurityPrivateCAV1.CertificateRevocationList {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -720,12 +720,12 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudSecurityPrivatecaV1.CertificateRevocationList.self, from: data)
+        GoogleCloudSecurityPrivateCAV1.CertificateRevocationList.self, from: data)
     }
 
     public func listCertificateRevocationLists(
       request: ListCertificateRevocationListsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecurityPrivatecaV1.ListCertificateRevocationListsResponse {
+    ) async throws -> GoogleCloudSecurityPrivateCAV1.ListCertificateRevocationListsResponse {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.parent' is not set or is empty")
@@ -745,7 +745,7 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudSecurityPrivatecaV1.ListCertificateRevocationListsResponse.self, from: data)
+        GoogleCloudSecurityPrivateCAV1.ListCertificateRevocationListsResponse.self, from: data)
     }
 
     public func updateCertificateRevocationList(
@@ -831,7 +831,7 @@ extension Clients {
 
     public func getCertificateTemplate(
       request: GetCertificateTemplateRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecurityPrivatecaV1.CertificateTemplate {
+    ) async throws -> GoogleCloudSecurityPrivateCAV1.CertificateTemplate {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -846,12 +846,12 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudSecurityPrivatecaV1.CertificateTemplate.self, from: data)
+        GoogleCloudSecurityPrivateCAV1.CertificateTemplate.self, from: data)
     }
 
     public func listCertificateTemplates(
       request: ListCertificateTemplatesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecurityPrivatecaV1.ListCertificateTemplatesResponse {
+    ) async throws -> GoogleCloudSecurityPrivateCAV1.ListCertificateTemplatesResponse {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.parent' is not set or is empty")
@@ -871,7 +871,7 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudSecurityPrivatecaV1.ListCertificateTemplatesResponse.self, from: data)
+        GoogleCloudSecurityPrivateCAV1.ListCertificateTemplatesResponse.self, from: data)
     }
 
     public func updateCertificateTemplate(

@@ -22,44 +22,52 @@ import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleIamV1
 import GoogleCloudGax
+import struct Logging.Logger
 
 extension Clients {
-  final class SecretManagerServiceRetry: SecretManagerServiceStub {
+  final class SecretManagerServiceLogging: SecretManagerServiceStub {
     let inner: any SecretManagerServiceStub
-    let options: GoogleCloudGax.ClientOptions
+    let logger: Logger
 
-    public init(_ inner: any SecretManagerServiceStub, options: GoogleCloudGax.ClientOptions) {
+    public init(_ inner: any SecretManagerServiceStub, logger: Logger) {
+      var logger = logger
+      logger[metadataKey: "gcp.artifact.id"] = "google-cloud-secretmanager-v1"
+      logger[metadataKey: "gcp.client.service"] = "secretmanager"
+      logger[metadataKey: "gcp.experimental.swift.client"] = "SecretManagerService"
       self.inner = inner
-      self.options = options
+      self.logger = logger
     }
 
     func _intercept<Input, Output>(
       request: Input,
       options: GoogleCloudGax.RequestOptions,
-      idempotent: Swift.Bool,
+      name: Swift.String,
       action: (Input, GoogleCloudGax.RequestOptions) async throws -> Output,
     ) async throws -> Output {
-      let loop = GoogleCloudGax._RetryLoop(
-        options: options, withDefault: self.options, idempotent: idempotent,
-      )
-      let attempt = { (attemptTimeout: Swift.Duration?) async throws -> Output in
-        var attemptOptions = options
-        attemptOptions.attemptTimeout = attemptTimeout
-        return try await action(request, attemptOptions)
+      var logger = logger
+      logger[metadataKey: "gcp.experimental.swift.request.id"] = "\(UUID())"
+      logger[metadataKey: "gcp.experimental.swift.method"] = .string(name)
+      logger.debug("enter  : \(request) \(options)")
+      do {
+        let output = try await action(request, options)
+        logger.debug("success: \(request) \(options) \(output)")
+        return output
+      } catch let error {
+        logger.debug("error  : \(request) \(options) \(error)")
+        throw error
       }
-      return try await loop.run(attempt: attempt)
     }
 
     public func listSecrets(
       request: ListSecretsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecretmanagerV1.ListSecretsResponse {
+    ) async throws -> GoogleCloudSecretManagerV1.ListSecretsResponse {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: true,
+        name: "listSecrets",
         action: {
           (r: ListSecretsRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleCloudSecretmanagerV1.ListSecretsResponse
+            -> GoogleCloudSecretManagerV1.ListSecretsResponse
           in
           return try await self.inner.listSecrets(request: r, options: o)
         })
@@ -67,14 +75,14 @@ extension Clients {
 
     public func createSecret(
       request: CreateSecretRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecretmanagerV1.Secret {
+    ) async throws -> GoogleCloudSecretManagerV1.Secret {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        name: "createSecret",
         action: {
           (r: CreateSecretRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleCloudSecretmanagerV1.Secret
+            -> GoogleCloudSecretManagerV1.Secret
           in
           return try await self.inner.createSecret(request: r, options: o)
         })
@@ -82,14 +90,14 @@ extension Clients {
 
     public func addSecretVersion(
       request: AddSecretVersionRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecretmanagerV1.SecretVersion {
+    ) async throws -> GoogleCloudSecretManagerV1.SecretVersion {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        name: "addSecretVersion",
         action: {
           (r: AddSecretVersionRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleCloudSecretmanagerV1.SecretVersion
+            -> GoogleCloudSecretManagerV1.SecretVersion
           in
           return try await self.inner.addSecretVersion(request: r, options: o)
         })
@@ -97,14 +105,14 @@ extension Clients {
 
     public func getSecret(
       request: GetSecretRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecretmanagerV1.Secret {
+    ) async throws -> GoogleCloudSecretManagerV1.Secret {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: true,
+        name: "getSecret",
         action: {
           (r: GetSecretRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleCloudSecretmanagerV1.Secret
+            -> GoogleCloudSecretManagerV1.Secret
           in
           return try await self.inner.getSecret(request: r, options: o)
         })
@@ -112,14 +120,14 @@ extension Clients {
 
     public func updateSecret(
       request: UpdateSecretRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecretmanagerV1.Secret {
+    ) async throws -> GoogleCloudSecretManagerV1.Secret {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        name: "updateSecret",
         action: {
           (r: UpdateSecretRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleCloudSecretmanagerV1.Secret
+            -> GoogleCloudSecretManagerV1.Secret
           in
           return try await self.inner.updateSecret(request: r, options: o)
         })
@@ -131,7 +139,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        name: "deleteSecret",
         action: { (r: DeleteSecretRequest, o: GoogleCloudGax.RequestOptions) async throws -> Void in
           return try await self.inner.deleteSecret(request: r, options: o)
         })
@@ -139,14 +147,14 @@ extension Clients {
 
     public func listSecretVersions(
       request: ListSecretVersionsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecretmanagerV1.ListSecretVersionsResponse {
+    ) async throws -> GoogleCloudSecretManagerV1.ListSecretVersionsResponse {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: true,
+        name: "listSecretVersions",
         action: {
           (r: ListSecretVersionsRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleCloudSecretmanagerV1.ListSecretVersionsResponse
+            -> GoogleCloudSecretManagerV1.ListSecretVersionsResponse
           in
           return try await self.inner.listSecretVersions(request: r, options: o)
         })
@@ -154,14 +162,14 @@ extension Clients {
 
     public func getSecretVersion(
       request: GetSecretVersionRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecretmanagerV1.SecretVersion {
+    ) async throws -> GoogleCloudSecretManagerV1.SecretVersion {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: true,
+        name: "getSecretVersion",
         action: {
           (r: GetSecretVersionRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleCloudSecretmanagerV1.SecretVersion
+            -> GoogleCloudSecretManagerV1.SecretVersion
           in
           return try await self.inner.getSecretVersion(request: r, options: o)
         })
@@ -169,14 +177,14 @@ extension Clients {
 
     public func accessSecretVersion(
       request: AccessSecretVersionRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecretmanagerV1.AccessSecretVersionResponse {
+    ) async throws -> GoogleCloudSecretManagerV1.AccessSecretVersionResponse {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: true,
+        name: "accessSecretVersion",
         action: {
           (r: AccessSecretVersionRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleCloudSecretmanagerV1.AccessSecretVersionResponse
+            -> GoogleCloudSecretManagerV1.AccessSecretVersionResponse
           in
           return try await self.inner.accessSecretVersion(request: r, options: o)
         })
@@ -184,14 +192,14 @@ extension Clients {
 
     public func disableSecretVersion(
       request: DisableSecretVersionRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecretmanagerV1.SecretVersion {
+    ) async throws -> GoogleCloudSecretManagerV1.SecretVersion {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        name: "disableSecretVersion",
         action: {
           (r: DisableSecretVersionRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleCloudSecretmanagerV1.SecretVersion
+            -> GoogleCloudSecretManagerV1.SecretVersion
           in
           return try await self.inner.disableSecretVersion(request: r, options: o)
         })
@@ -199,14 +207,14 @@ extension Clients {
 
     public func enableSecretVersion(
       request: EnableSecretVersionRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecretmanagerV1.SecretVersion {
+    ) async throws -> GoogleCloudSecretManagerV1.SecretVersion {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        name: "enableSecretVersion",
         action: {
           (r: EnableSecretVersionRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleCloudSecretmanagerV1.SecretVersion
+            -> GoogleCloudSecretManagerV1.SecretVersion
           in
           return try await self.inner.enableSecretVersion(request: r, options: o)
         })
@@ -214,14 +222,14 @@ extension Clients {
 
     public func destroySecretVersion(
       request: DestroySecretVersionRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecretmanagerV1.SecretVersion {
+    ) async throws -> GoogleCloudSecretManagerV1.SecretVersion {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        name: "destroySecretVersion",
         action: {
           (r: DestroySecretVersionRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleCloudSecretmanagerV1.SecretVersion
+            -> GoogleCloudSecretManagerV1.SecretVersion
           in
           return try await self.inner.destroySecretVersion(request: r, options: o)
         })
@@ -233,7 +241,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        name: "setIamPolicy",
         action: {
           (r: GoogleIamV1.SetIamPolicyRequest, o: GoogleCloudGax.RequestOptions) async throws
             -> GoogleIamV1.Policy
@@ -248,7 +256,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: true,
+        name: "getIamPolicy",
         action: {
           (r: GoogleIamV1.GetIamPolicyRequest, o: GoogleCloudGax.RequestOptions) async throws
             -> GoogleIamV1.Policy
@@ -263,7 +271,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        name: "testIamPermissions",
         action: {
           (r: GoogleIamV1.TestIamPermissionsRequest, o: GoogleCloudGax.RequestOptions) async throws
             -> GoogleIamV1.TestIamPermissionsResponse
@@ -274,14 +282,14 @@ extension Clients {
 
     public func enableManagedRotation(
       request: EnableManagedRotationRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecretmanagerV1.SecretVersion {
+    ) async throws -> GoogleCloudSecretManagerV1.SecretVersion {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        name: "enableManagedRotation",
         action: {
           (r: EnableManagedRotationRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleCloudSecretmanagerV1.SecretVersion
+            -> GoogleCloudSecretManagerV1.SecretVersion
           in
           return try await self.inner.enableManagedRotation(request: r, options: o)
         })
@@ -289,14 +297,14 @@ extension Clients {
 
     public func rotateSecret(
       request: RotateSecretRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecretmanagerV1.SecretVersion {
+    ) async throws -> GoogleCloudSecretManagerV1.SecretVersion {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        name: "rotateSecret",
         action: {
           (r: RotateSecretRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleCloudSecretmanagerV1.SecretVersion
+            -> GoogleCloudSecretManagerV1.SecretVersion
           in
           return try await self.inner.rotateSecret(request: r, options: o)
         })
@@ -308,7 +316,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: true,
+        name: "listLocations",
         action: {
           (r: GoogleCloudLocation.ListLocationsRequest, o: GoogleCloudGax.RequestOptions)
             async throws -> GoogleCloudLocation.ListLocationsResponse
@@ -323,7 +331,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: true,
+        name: "getLocation",
         action: {
           (r: GoogleCloudLocation.GetLocationRequest, o: GoogleCloudGax.RequestOptions) async throws
             -> GoogleCloudLocation.Location

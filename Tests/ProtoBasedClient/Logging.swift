@@ -14,7 +14,7 @@
 
 import GoogleCloudGax
 import GoogleCloudLocation
-import GoogleCloudSecretmanagerV1
+import GoogleCloudSecretManagerV1
 import GoogleCloudTestHelpers
 import CryptoSwift
 import Logging
@@ -59,7 +59,7 @@ public enum Logging {
   ) {
     #expect(
       event.metadata.contains { (key, value) in
-        key == "gcp.artifact.id" && value == .string("GoogleCloudSecretmanagerV1")
+        key == "gcp.artifact.id" && value == .string("google-cloud-secretmanager-v1")
       }, "\(event.metadata)", sourceLocation: sourceLocation)
     #expect(
       event.metadata.contains { (key, value) in

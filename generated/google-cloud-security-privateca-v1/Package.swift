@@ -18,10 +18,10 @@
 import PackageDescription
 
 let package = Package(
-  name: "GoogleCloudSecurityPrivatecaV1",
+  name: "GoogleCloudSecurityPrivateCAV1",
   platforms: [.macOS(.v15)],
   products: [
-    .library(name: "GoogleCloudSecurityPrivatecaV1", targets: ["GoogleCloudSecurityPrivatecaV1"])
+    .library(name: "GoogleCloudSecurityPrivateCAV1", targets: ["GoogleCloudSecurityPrivateCAV1"])
   ],
   dependencies: [
     .package(path: "../../packages/auth"),
@@ -36,7 +36,7 @@ let package = Package(
   ],
   targets: [
     .target(
-      name: "GoogleCloudSecurityPrivatecaV1",
+      name: "GoogleCloudSecurityPrivateCAV1",
       dependencies: [
         .product(name: "GoogleCloudAuth", package: "auth"),
         .product(name: "GoogleCloudGax", package: "gax"),

@@ -51,7 +51,7 @@ public class PublicCertificateAuthorityServiceClient: Clients
   /// @Snippet(path: "PublicCertificateAuthorityService_CreateExternalAccountKey")
   public func createExternalAccountKey(
     request: CreateExternalAccountKeyRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudSecurityPubliccaV1.ExternalAccountKey {
+  ) async throws -> GoogleCloudSecurityPublicCAV1.ExternalAccountKey {
     try await self.inner.createExternalAccountKey(request: request, options: options)
   }
 }
@@ -65,39 +65,39 @@ extension Clients {
   public protocol PublicCertificateAuthorityServiceProtocol {
     /// See `PublicCertificateAuthorityServiceClient.createExternalAccountKey`.
     func createExternalAccountKey(request: CreateExternalAccountKeyRequest) async throws
-      -> GoogleCloudSecurityPubliccaV1.ExternalAccountKey
+      -> GoogleCloudSecurityPublicCAV1.ExternalAccountKey
 
     /// See `PublicCertificateAuthorityServiceClient.createExternalAccountKey`.
     func createExternalAccountKey(
       parent: Swift.String,
       externalAccountKey: ExternalAccountKey?,
-    ) async throws -> GoogleCloudSecurityPubliccaV1.ExternalAccountKey
+    ) async throws -> GoogleCloudSecurityPublicCAV1.ExternalAccountKey
 
     /// See `PublicCertificateAuthorityServiceClient.createExternalAccountKey`.
     func createExternalAccountKey(
       request: CreateExternalAccountKeyRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecurityPubliccaV1.ExternalAccountKey
+    ) async throws -> GoogleCloudSecurityPublicCAV1.ExternalAccountKey
   }
 }
 
 // Default implementations
 extension Clients.PublicCertificateAuthorityServiceProtocol {
   public func createExternalAccountKey(request: CreateExternalAccountKeyRequest) async throws
-    -> GoogleCloudSecurityPubliccaV1.ExternalAccountKey
+    -> GoogleCloudSecurityPublicCAV1.ExternalAccountKey
   {
     try await self.createExternalAccountKey(request: request, options: .init())
   }
 
   public func createExternalAccountKey(
     request: CreateExternalAccountKeyRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudSecurityPubliccaV1.ExternalAccountKey {
+  ) async throws -> GoogleCloudSecurityPublicCAV1.ExternalAccountKey {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func createExternalAccountKey(
     parent: Swift.String,
     externalAccountKey: ExternalAccountKey?,
-  ) async throws -> GoogleCloudSecurityPubliccaV1.ExternalAccountKey {
+  ) async throws -> GoogleCloudSecurityPublicCAV1.ExternalAccountKey {
     let request = CreateExternalAccountKeyRequest().with {
       $0.parent = parent
       $0.externalAccountKey = externalAccountKey

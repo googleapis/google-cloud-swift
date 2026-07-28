@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudSecurityPrivatecaV1
+import GoogleCloudSecurityPrivateCAV1
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleIamV1
@@ -43,7 +43,7 @@ func sample(
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleCloudSecurityPrivatecaV1.CertificateAuthorityServiceClient()
+      let client = try GoogleCloudSecurityPrivateCAV1.CertificateAuthorityServiceClient()
       try await sample(
         client: client, projectId: "[placeholder]", locationId: "[placeholder]",
         certificateTemplateId: "[placeholder]")

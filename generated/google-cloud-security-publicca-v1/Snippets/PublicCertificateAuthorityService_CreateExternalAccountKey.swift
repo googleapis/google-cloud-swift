@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudSecurityPubliccaV1
+import GoogleCloudSecurityPublicCAV1
 import GoogleCloudWkt
 
 func sample(client: PublicCertificateAuthorityServiceClient, projectId: String, locationId: String)
@@ -38,7 +38,7 @@ func sample(client: PublicCertificateAuthorityServiceClient, projectId: String, 
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleCloudSecurityPubliccaV1.PublicCertificateAuthorityServiceClient()
+      let client = try GoogleCloudSecurityPublicCAV1.PublicCertificateAuthorityServiceClient()
       try await sample(client: client, projectId: "[placeholder]", locationId: "[placeholder]")
     } catch {
       print("Error: \(error)")

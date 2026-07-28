@@ -20,52 +20,46 @@ import Foundation
 #endif
 import GoogleCloudWkt
 import GoogleCloudGax
-import struct Logging.Logger
 
 extension Clients {
-  final class PublicCertificateAuthorityServiceLogging: PublicCertificateAuthorityServiceStub {
+  final class PublicCertificateAuthorityServiceRetry: PublicCertificateAuthorityServiceStub {
     let inner: any PublicCertificateAuthorityServiceStub
-    let logger: Logger
+    let options: GoogleCloudGax.ClientOptions
 
-    public init(_ inner: any PublicCertificateAuthorityServiceStub, logger: Logger) {
-      var logger = logger
-      logger[metadataKey: "gcp.artifact.id"] = "google-cloud-security-publicca-v1"
-      logger[metadataKey: "gcp.client.service"] = "publicca"
-      logger[metadataKey: "gcp.experimental.swift.client"] = "PublicCertificateAuthorityService"
+    public init(
+      _ inner: any PublicCertificateAuthorityServiceStub, options: GoogleCloudGax.ClientOptions
+    ) {
       self.inner = inner
-      self.logger = logger
+      self.options = options
     }
 
     func _intercept<Input, Output>(
       request: Input,
       options: GoogleCloudGax.RequestOptions,
-      name: Swift.String,
+      idempotent: Swift.Bool,
       action: (Input, GoogleCloudGax.RequestOptions) async throws -> Output,
     ) async throws -> Output {
-      var logger = logger
-      logger[metadataKey: "gcp.experimental.swift.request.id"] = "\(UUID())"
-      logger[metadataKey: "gcp.experimental.swift.method"] = .string(name)
-      logger.debug("enter  : \(request) \(options)")
-      do {
-        let output = try await action(request, options)
-        logger.debug("success: \(request) \(options) \(output)")
-        return output
-      } catch let error {
-        logger.debug("error  : \(request) \(options) \(error)")
-        throw error
+      let loop = GoogleCloudGax._RetryLoop(
+        options: options, withDefault: self.options, idempotent: idempotent,
+      )
+      let attempt = { (attemptTimeout: Swift.Duration?) async throws -> Output in
+        var attemptOptions = options
+        attemptOptions.attemptTimeout = attemptTimeout
+        return try await action(request, attemptOptions)
       }
+      return try await loop.run(attempt: attempt)
     }
 
     public func createExternalAccountKey(
       request: CreateExternalAccountKeyRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudSecurityPubliccaV1.ExternalAccountKey {
+    ) async throws -> GoogleCloudSecurityPublicCAV1.ExternalAccountKey {
       try await self._intercept(
         request: request,
         options: options,
-        name: "createExternalAccountKey",
+        idempotent: false,
         action: {
           (r: CreateExternalAccountKeyRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleCloudSecurityPubliccaV1.ExternalAccountKey
+            -> GoogleCloudSecurityPublicCAV1.ExternalAccountKey
           in
           return try await self.inner.createExternalAccountKey(request: r, options: o)
         })

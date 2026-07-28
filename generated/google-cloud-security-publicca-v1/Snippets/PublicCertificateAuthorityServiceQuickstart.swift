@@ -17,11 +17,11 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudSecurityPubliccaV1
+import GoogleCloudSecurityPublicCAV1
 import GoogleCloudWkt
 
 func sample(projectId: String, locationId: String, ) async throws {
-  let client = try GoogleCloudSecurityPubliccaV1.PublicCertificateAuthorityServiceClient()
+  let client = try GoogleCloudSecurityPublicCAV1.PublicCertificateAuthorityServiceClient()
   let response = try await client.createExternalAccountKey(
     request: CreateExternalAccountKeyRequest()
       .with {

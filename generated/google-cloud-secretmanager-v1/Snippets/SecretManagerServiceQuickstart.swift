@@ -17,13 +17,13 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudSecretmanagerV1
+import GoogleCloudSecretManagerV1
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleIamV1
 
 func sample(projectId: String, ) async throws {
-  let client = try GoogleCloudSecretmanagerV1.SecretManagerServiceClient()
+  let client = try GoogleCloudSecretManagerV1.SecretManagerServiceClient()
   let items = try client.listSecrets(
     byItem: ListSecretsRequest()
       .with {
