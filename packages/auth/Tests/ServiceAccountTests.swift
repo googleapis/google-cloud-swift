@@ -134,7 +134,8 @@ struct ServiceAccountTests {
       """
     let escapedPEM = pkcs1PEM.replacingOccurrences(of: "\n", with: "\\n")
 
-    let pkcs1KeyJSON = Data("""
+    let pkcs1KeyJSON = Data(
+      """
       {
         "type": "service_account",
         "project_id": "test-project-id",
@@ -232,7 +233,8 @@ struct ServiceAccountTests {
 
   @Test("Service Account JWS signing fails gracefully when given invalid private key PEM format")
   func invalidKeySigningFailure() async throws {
-    let badKeyJSON = Data("""
+    let badKeyJSON = Data(
+      """
       {
         "type": "service_account",
         "project_id": "test-project-id",

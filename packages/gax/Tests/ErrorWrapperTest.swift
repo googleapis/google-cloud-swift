@@ -22,7 +22,8 @@ import GoogleRpc
 
 @Suite struct ErrorWrapperTests {
   @Test func validStatus() throws {
-    let json = Data("""
+    let json = Data(
+      """
       {
         "error": {
           "code": 400,
@@ -47,7 +48,8 @@ import GoogleRpc
   }
 
   @Test func nilStatus() throws {
-    let json = Data("""
+    let json = Data(
+      """
       {
         "error": {
           "code": 500,
@@ -71,7 +73,8 @@ import GoogleRpc
   }
 
   @Test func unknownStatus() throws {
-    let json = Data("""
+    let json = Data(
+      """
       {
         "error": {
           "code": 500,
@@ -96,7 +99,8 @@ import GoogleRpc
   }
 
   @Test func missingDetails() throws {
-    let json = Data("""
+    let json = Data(
+      """
       {
         "error": {
           "code": 400,
@@ -121,7 +125,8 @@ import GoogleRpc
   }
 
   @Test func withHelpDetails() throws {
-    let json = Data("""
+    let json = Data(
+      """
       {
         "error": {
           "code": 400,
