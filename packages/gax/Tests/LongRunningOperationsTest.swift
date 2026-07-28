@@ -196,7 +196,7 @@ import GoogleRpc
       onErrorCount.add(1, ordering: .sequentiallyConsistent)
       return .retry(e)
     }
-    pollingPolicy.onInProgress = { _, _ in
+    pollingPolicy.onInProgress = { _ in
       inProgressCount.add(1, ordering: .sequentiallyConsistent)
     }
 
@@ -233,7 +233,7 @@ import GoogleRpc
       }
       return .retry(e)
     }
-    pollingPolicy.onInProgress = { _, _ in
+    pollingPolicy.onInProgress = { _ in
       inProgressCount.add(1, ordering: .sequentiallyConsistent)
     }
 

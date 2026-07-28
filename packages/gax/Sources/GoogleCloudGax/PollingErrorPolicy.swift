@@ -41,10 +41,10 @@ public protocol PollingErrorPolicy: Sendable {
   ///
   /// - Parameters
   /// - `state` - the current state of the polling loop.
-  func onInProgress(state: PollingState, name: String) throws
+  func onInProgress(state: PollingState) throws
 }
 
 extension PollingErrorPolicy {
   /// By default, this method is a no-op.
-  public func onInProgress(state: PollingState, name: String) throws {}
+  public func onInProgress(state: PollingState) throws {}
 }

@@ -20,8 +20,8 @@ extension TooManyRequests: PollingErrorPolicy where P: PollingErrorPolicy {
     return inner.onError(state: state, error: error)
   }
 
-  public func onInProgress(state: PollingState, name: String) throws {
-    try inner.onInProgress(state: state, name: name)
+  public func onInProgress(state: PollingState) throws {
+    try inner.onInProgress(state: state)
   }
 }
 

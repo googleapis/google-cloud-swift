@@ -17,13 +17,13 @@ import GoogleCloudGax
 
 struct MockPollingPolicy: PollingErrorPolicy {
   var onError: @Sendable (PollingState, RequestError) -> PollingResult = { _, e in .permanent(e) }
-  var onInProgress: @Sendable (PollingState, String) throws -> Void = { _, _ in }
+  var onInProgress: @Sendable (PollingState) throws -> Void = { _ in }
 
   func onError(state: PollingState, error: RequestError) -> PollingResult {
     onError(state, error)
   }
 
-  func onInProgress(state: PollingState, name: String) throws {
-    try onInProgress(state, name)
+  func onInProgress(state: PollingState) throws {
+    try onInProgress(state)
   }
 }

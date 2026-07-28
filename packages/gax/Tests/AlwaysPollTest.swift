@@ -32,7 +32,7 @@ import Testing
 
   @Test func alwaysPollOnInProgress() throws {
     let p = AlwaysPoll()
-    try p.onInProgress(state: PollingState(), name: "op-name")
+    try p.onInProgress(state: PollingState())
   }
 
   // Helper functions

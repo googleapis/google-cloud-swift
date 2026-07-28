@@ -31,12 +31,12 @@ import Testing
 
   @Test func continueIOOnInProgress() throws {
     let called = Mutex(false)
-    let mock = MockPollingPolicy(onInProgress: { _, _ in
+    let mock = MockPollingPolicy(onInProgress: { _ in
       called.withLock { $0 = true }
     })
     let policy = mock.continueOnIoErrors()
 
-    try policy.onInProgress(state: PollingState(), name: "op-name")
+    try policy.onInProgress(state: PollingState())
     #expect(called.withLock { $0 })
   }
 }

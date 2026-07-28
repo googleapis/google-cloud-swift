@@ -29,8 +29,8 @@ extension LimitedElapsedTime: PollingErrorPolicy where P: PollingErrorPolicy {
     }
   }
 
-  public func onInProgress(state: PollingState, name: String) throws {
-    try inner.onInProgress(state: state, name: name)
+  public func onInProgress(state: PollingState) throws {
+    try inner.onInProgress(state: state)
   }
 }
 

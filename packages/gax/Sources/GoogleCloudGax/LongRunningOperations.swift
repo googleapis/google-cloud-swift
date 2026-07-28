@@ -98,7 +98,7 @@ public final class _PollableOperationImpl<ResponseType>: PollableOperation {
   public func wait() async throws -> ResponseType {
     var pollingState = PollingState()
     while !state.done {
-      try pollingPolicy.onInProgress(state: pollingState, name: "")
+      try pollingPolicy.onInProgress(state: pollingState)
       let delay = backoffPolicy.backoffDelay(for: pollingState.asRetryState())
       try await sleep(delay)
       pollingState.attemptCount += 1

@@ -34,7 +34,7 @@ final public class BasePollingPolicy: PollingErrorPolicy {
     self.inner.onError(state: state, error: error)
   }
 
-  public func onInProgress(state: PollingState, name: String) throws {
-    try self.inner.onInProgress(state: state, name: name)
+  public func onInProgress(state: PollingState) throws {
+    try self.inner.onInProgress(state: state)
   }
 }

@@ -45,7 +45,7 @@ import Testing
   @Test("Verify Aip194 onInProgress is a no-op")
   func onInProgress() throws {
     let p: any PollingErrorPolicy = Aip194()
-    try p.onInProgress(state: PollingState(), name: "op-name")
+    try p.onInProgress(state: PollingState())
   }
 
   static func unavailable() -> RequestError {

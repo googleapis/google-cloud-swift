@@ -71,13 +71,13 @@ import Testing
 
   @Test func testLimitedTimeOnInProgress() throws {
     let called = Mutex(false)
-    let mock = MockPollingPolicy(onInProgress: { _, _ in
+    let mock = MockPollingPolicy(onInProgress: { _ in
       called.withLock { $0 = true }
     })
     let limit = Duration.seconds(60)
     let policy = mock.withTimeLimit(limit)
 
-    try policy.onInProgress(state: PollingState(), name: "op-name")
+    try policy.onInProgress(state: PollingState())
     #expect(called.withLock { $0 })
   }
 }

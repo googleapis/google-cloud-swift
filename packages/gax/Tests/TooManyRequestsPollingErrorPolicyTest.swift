@@ -33,12 +33,12 @@ import Testing
 
   @Test func testTooManyRequestsOnInProgress() throws {
     let called = Mutex(false)
-    let mock = MockPollingPolicy(onInProgress: { _, _ in
+    let mock = MockPollingPolicy(onInProgress: { _ in
       called.withLock { $0 = true }
     })
     let policy = mock.continueOnTooManyRequests()
 
-    try policy.onInProgress(state: PollingState(), name: "op-name")
+    try policy.onInProgress(state: PollingState())
     #expect(called.withLock { $0 })
   }
 
