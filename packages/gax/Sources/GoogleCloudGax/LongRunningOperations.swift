@@ -60,7 +60,8 @@ public final class _PollableOperationImpl<ResponseType>: PollableOperation {
   private var state: State
   private let pollOp: Poll
   private let sleep: Sleep
-  private let backoffPolicy: BackoffPolicy = LinearBackoffPolicy()
+  private var backoffPolicy: BackoffPolicy = LinearBackoffPolicy()
+  private var pollingPolicy: PollingErrorPolicy = BasePollingPolicy()
 
   /// Initializes a new pollable operation implementation.
   ///
@@ -78,6 +79,13 @@ public final class _PollableOperationImpl<ResponseType>: PollableOperation {
     self.sleep = sleep
   }
 
+  public func withPolicies(polling: PollingErrorPolicy, backoff: BackoffPolicy) -> Self {
+    let copy = self
+    copy.pollingPolicy = polling
+    copy.backoffPolicy = backoff
+    return copy
+  }
+
   /// Waits for the long-running operation to complete.
   ///
   /// This method uses a simple loop that polls for the operation state at intervals determined
@@ -88,11 +96,24 @@ public final class _PollableOperationImpl<ResponseType>: PollableOperation {
   ///   - The underlying operation error if the operation failed.
   ///   - `RequestError.malformedResponse` if the operation completed successfully but returned no result.
   public func wait() async throws -> ResponseType {
-    let retryState = RetryState.init()
+    var pollingState = PollingState()
     while !state.done {
-      let delay = backoffPolicy.backoffDelay(for: retryState)
+      try pollingPolicy.onInProgress(state: pollingState, name: "")
+      let delay = backoffPolicy.backoffDelay(for: pollingState.asRetryState())
       try await sleep(delay)
-      state = try await pollOp()
+      pollingState.attemptCount += 1
+      do {
+        state = try await pollOp()
+      } catch {
+        let requestError = (error as? RequestError) ?? .unimplemented
+        let flow = pollingPolicy.onError(state: pollingState, error: requestError)
+        switch flow {
+        case .permanent(let e), .exhausted(let e):
+          throw e
+        case .retry:
+          continue
+        }
+      }
     }
 
     switch state.result {
@@ -102,6 +123,15 @@ public final class _PollableOperationImpl<ResponseType>: PollableOperation {
       throw error
     case .none:
       throw RequestError.malformedResponse("Operation completed but result was missing")
+    }
+  }
+}
+
+extension PollingState {
+  func asRetryState() -> RetryState {
+    RetryState(idempotent: false).with {
+      $0.attemptCount = self.attemptCount
+      $0.start = self.start
     }
   }
 }
