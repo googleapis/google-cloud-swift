@@ -53,7 +53,7 @@ let package = Package(
     .testTarget(
       name: "GoogleCloudGaxIntegrationTests",
       dependencies: [
-        "GoogleCloudGax",
+        "GoogleCloudGax"
       ],
       path: "Tests/IntegrationTests"
     ),

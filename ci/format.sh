@@ -29,7 +29,7 @@ REPO_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
 # The PRs are too slow if we run them for all packages. We YOLO the PRs and just
 # run this build for the hand-crafted files and some select GAPICs. The post-PR
 # build will run for everything, we can afford those to be slower.
-if [[ "$1" == "push" ]]; then
+if [[ "${1:-missingevent}" == "push" ]]; then
     subset=(".")
 else
     subset=(
@@ -60,13 +60,20 @@ for dir in "${packages[@]}"; do
     [[ -f "${dir}/Package.swift" ]] || continue
     count=$((count + 1))
 
-    if swift-format format -i -r "${dir}/Sources" "${dir}/Tests"; then
+    if swift-format format -i -r "${dir}/Sources" "${dir}/Tests" "${dir}/Package.swift"; then
         echo "::info:: ✓ ${dir} passed"
     else
         echo "::error:: ✗ ${dir} failed" >&2
         errors=$((errors + 1))
     fi
 done
+
+if swift-format format -i -r "./Tests" "./Package.swift"; then
+    echo "::notice:: ✓ top-level passed"
+else
+    echo "::error:: ✗ top-level failed"
+    errors=$((errors + 1))
+fi
 
 echo ""
 echo "::info:: ${count} package(s) formatted, ${errors} failure(s)."
