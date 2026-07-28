@@ -25,7 +25,7 @@ import GoogleRpc
 /// service, which may resolve by the next attempt.
 ///
 /// Note that polling errors are distinct from errors in the operation itself. If the operation
-/// fails, polling suceeds, and the response indicates the details of the failure.
+/// fails, polling succeeds, and the response indicates the details of the failure.
 public protocol PollingErrorPolicy: Sendable {
   /// Query the polling policy after an error.
   ///
