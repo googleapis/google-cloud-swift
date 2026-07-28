@@ -54,7 +54,9 @@ import GoogleRpc
     .init(done: false, result: nil)
   }
 
-  static func successState(_ value: String = "polling success") -> _PollableOperationImpl<String>.State {
+  static func successState(_ value: String = "polling success")
+    -> _PollableOperationImpl<String>.State
+  {
     .init(done: true, result: .success(value))
   }
 
