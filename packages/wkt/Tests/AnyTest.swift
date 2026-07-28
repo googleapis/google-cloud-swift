@@ -26,7 +26,7 @@ import Testing
   func testDecodingAny() throws {
     let jsonString =
       #"{"content":{"@type":"type.googleapis.com/google.protobuf.Any","value":{"@type":"type.googleapis.com/google.protobuf.Duration","value":"123.450s"}}}"#
-    let data = jsonString.data(using: .utf8)!
+    let data = Data(jsonString.utf8)
     let decoder = JSONDecoder()
     let wrapped = try decoder.decode(WrappedAny.self, from: data)
     let any = wrapped.content
@@ -43,7 +43,7 @@ import Testing
   @Test func testDecodingAnyMismatchedUrl() throws {
     let jsonString =
       #"{"content":{"@type":"bad","value":{"@type":"type.googleapis.com/google.protobuf.Duration","value":"123.450s"}}}"#
-    let data = jsonString.data(using: .utf8)!
+    let data = Data(jsonString.utf8)
     let decoder = JSONDecoder()
     let wrapped = try decoder.decode(WrappedAny.self, from: data)
     let any = wrapped.content

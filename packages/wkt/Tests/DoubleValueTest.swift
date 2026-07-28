@@ -55,7 +55,7 @@ import Testing
       ("{\"value\":0}", 0),
     ])
   func decodeJSON(_ args: (String, Double)) throws {
-    let data = args.0.data(using: .utf8)!
+    let data = Data(args.0.utf8)
     let decoder = JSONDecoder()
     let wrapped = try decoder.decode(WrappedDoubleValueDecode.self, from: data)
     #expect(wrapped.value == args.1)
@@ -64,7 +64,7 @@ import Testing
   @Test(
     "DoubleValue JSON Decoding unset")
   func decodeJSONUnset() throws {
-    let data = "{}".data(using: .utf8)!
+    let data = Data("{}".utf8)
     let decoder = JSONDecoder()
     let wrapped = try decoder.decode(WrappedDoubleValueDecode.self, from: data)
     #expect(wrapped.value == nil)
@@ -78,7 +78,7 @@ import Testing
   func doubleValueAnyUnpack() throws {
     let jsonString =
       #"{"content":{"@type":"type.googleapis.com/google.protobuf.DoubleValue","value":123.45}}"#
-    let data = jsonString.data(using: .utf8)!
+    let data = Data(jsonString.utf8)
     let decoder = JSONDecoder()
     let wrapped = try decoder.decode(DoubleValueTests.WrappedAny.self, from: data)
     let any = wrapped.content
@@ -92,7 +92,7 @@ import Testing
   @Test func doubleValueAnyUnpackMismatchedUrl() throws {
     let jsonString =
       #"{"content":{"@type":"bad","value":123.45}}"#
-    let data = jsonString.data(using: .utf8)!
+    let data = Data(jsonString.utf8)
     let decoder = JSONDecoder()
     let wrapped = try decoder.decode(DoubleValueTests.WrappedAny.self, from: data)
     let any = wrapped.content

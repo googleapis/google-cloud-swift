@@ -32,7 +32,7 @@ import GoogleCloudWkt
     ])
   func deserialize(input: String, want: T) throws {
     let decoder = _ProtoJSONDecoder()
-    let got = try decoder.decode(T.self, from: input.data(using: .utf8)!)
+    let got = try decoder.decode(T.self, from: Data(input.utf8))
     #expect(got == want)
   }
 }

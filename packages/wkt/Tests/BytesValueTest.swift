@@ -55,7 +55,7 @@ import Testing
       ("{\"value\":\"\"}", ""),
     ])
   func decodeJSON(_ args: (String, String)) throws {
-    let data = args.0.data(using: .utf8)!
+    let data = Data(args.0.utf8)
     let decoder = JSONDecoder()
     let wrapped = try decoder.decode(WrappedBytesValueDecode.self, from: data)
     #expect(wrapped.value == Data(args.1.utf8))
@@ -63,7 +63,7 @@ import Testing
 
   @Test("BytesValue JSON Decoding unset")
   func decodeJSONUnset() throws {
-    let data = "{}".data(using: .utf8)!
+    let data = Data("{}".utf8)
     let decoder = JSONDecoder()
     let wrapped = try decoder.decode(WrappedBytesValueDecode.self, from: data)
     #expect(wrapped.value == nil)
@@ -77,7 +77,7 @@ import Testing
   func bytesValueAnyUnpack() throws {
     let jsonString =
       #"{"content":{"@type":"type.googleapis.com/google.protobuf.BytesValue","value":"aGVsbG8="}}"#
-    let data = jsonString.data(using: .utf8)!
+    let data = Data(jsonString.utf8)
     let decoder = JSONDecoder()
     let wrapped = try decoder.decode(BytesValueTests.WrappedAny.self, from: data)
     let any = wrapped.content
@@ -91,7 +91,7 @@ import Testing
   @Test func bytesValueAnyUnpackMismatchedUrl() throws {
     let jsonString =
       #"{"content":{"@type":"bad","value":"aGVsbG8="}}"#
-    let data = jsonString.data(using: .utf8)!
+    let data = Data(jsonString.utf8)
     let decoder = JSONDecoder()
     let wrapped = try decoder.decode(BytesValueTests.WrappedAny.self, from: data)
     let any = wrapped.content

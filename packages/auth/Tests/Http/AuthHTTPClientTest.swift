@@ -156,7 +156,7 @@ private final class MockURLProtocol: URLProtocol {
   @Test func clientPerformsGetAndReturnsPlainTextString() async throws {
     let targetURL = URL(string: "http://metadata.google.internal/email")!
     let mockEmail = "test-service-account@google.com"
-    let mockData = mockEmail.data(using: .utf8)!
+    let mockData = Data(mockEmail.utf8)
 
     MockURLProtocol.requestHandler = { (request: URLRequest) in
       #expect(request.url == targetURL)

@@ -315,18 +315,18 @@ extension HTTPClient {
     request.setValue("multipart/related; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
 
     var body = Data()
-    body.append("--\(boundary)\r\n".data(using: .utf8)!)
-    body.append("Content-Type: application/json; charset=UTF-8\r\n\r\n".data(using: .utf8)!)
+    body.append(Data("--\(boundary)\r\n".utf8))
+    body.append(Data("Content-Type: application/json; charset=UTF-8\r\n\r\n".utf8))
     let metadataJson = try JSONEncoder().encode(metadata ?? UploadMetadata())
     body.append(metadataJson)
-    body.append("\r\n".data(using: .utf8)!)
+    body.append(Data("\r\n".utf8))
 
-    body.append("--\(boundary)\r\n".data(using: .utf8)!)
-    body.append("Content-Type: application/octet-stream\r\n\r\n".data(using: .utf8)!)
+    body.append(Data("--\(boundary)\r\n".utf8))
+    body.append(Data("Content-Type: application/octet-stream\r\n\r\n".utf8))
     body.append(data)
-    body.append("\r\n".data(using: .utf8)!)
+    body.append(Data("\r\n".utf8))
 
-    body.append("--\(boundary)--\r\n".data(using: .utf8)!)
+    body.append(Data("--\(boundary)--\r\n".utf8))
 
     request.httpBody = body
     return request

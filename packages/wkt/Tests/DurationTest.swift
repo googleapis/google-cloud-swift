@@ -121,7 +121,7 @@ import Testing
       ("{\"value\":\"-315576000000.999999999s\"}", -315_576_000_000, -999_999_999),
     ])
   func decodeJSON(_ args: (String, Int64, Int64)) throws {
-    let data = args.0.data(using: .utf8)!
+    let data = Data(args.0.utf8)
     let decoder = JSONDecoder()
     let wrapped = try decoder.decode(WrappedDurationDecode.self, from: data)
     #expect(wrapped.value.seconds == args.1)
@@ -132,7 +132,7 @@ import Testing
   func durationAnyUnpack() throws {
     let jsonString =
       #"{"content":{"@type":"type.googleapis.com/google.protobuf.Duration","value":"123.45s"}}"#
-    let data = jsonString.data(using: .utf8)!
+    let data = Data(jsonString.utf8)
     let decoder = JSONDecoder()
     let wrapped = try decoder.decode(AnyTests.WrappedAny.self, from: data)
     let any = wrapped.content
@@ -146,7 +146,7 @@ import Testing
   @Test func durationAnyUnpackMismatchedUrl() throws {
     let jsonString =
       #"{"content":{"@type":"bad","value":"123.45s"}}"#
-    let data = jsonString.data(using: .utf8)!
+    let data = Data(jsonString.utf8)
     let decoder = JSONDecoder()
     let wrapped = try decoder.decode(AnyTests.WrappedAny.self, from: data)
     let any = wrapped.content

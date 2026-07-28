@@ -30,7 +30,7 @@ struct WrappedAny: Codable {
 func testDecodingGetSecretRequestMessage() throws {
   let jsonString =
     #"{"value":{"@type":"type.googleapis.com/google.cloud.secretmanager.v1.GetSecretRequest","name":"projects/test-project/secrets/my-secret"}}"#
-  let data = jsonString.data(using: .utf8)!
+  let data = Data(jsonString.utf8)
   let decoder = JSONDecoder()
   let wrapped = try decoder.decode(WrappedAny.self, from: data)
   let any = wrapped.value
@@ -59,7 +59,7 @@ func testEncodingGetSecretRequestMessage() throws {
 func testDecodingListSecretVersionsRequestMessage() throws {
   let jsonString =
     #"{"value":{"@type":"type.googleapis.com/google.cloud.secretmanager.v1.ListSecretVersionsRequest","filter":"state:ENABLED","pageSize":10,"pageToken":"token123","parent":"projects/test-project/secrets/my-secret"}}"#
-  let data = jsonString.data(using: .utf8)!
+  let data = Data(jsonString.utf8)
   let decoder = JSONDecoder()
   let wrapped = try decoder.decode(WrappedAny.self, from: data)
   let any = wrapped.value

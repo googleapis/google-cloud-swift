@@ -81,7 +81,7 @@ extension ProtoJSONDecoderTest {
     ])
   func decodeRepeated(input: String, want: RepeatedPrimitives) throws {
     let decoder = _ProtoJSONDecoder()
-    let got = try decoder.decode(RepeatedPrimitives.self, from: input.data(using: .utf8)!)
+    let got = try decoder.decode(RepeatedPrimitives.self, from: Data(input.utf8))
     #expect(got == want)
   }
 
@@ -102,7 +102,7 @@ extension ProtoJSONDecoderTest {
   func decodeRepeatedBad(input: String) throws {
     let decoder = _ProtoJSONDecoder()
     let error = #expect(throws: DecodingError.self) {
-      try decoder.decode(RepeatedPrimitives.self, from: input.data(using: .utf8)!)
+      try decoder.decode(RepeatedPrimitives.self, from: Data(input.utf8))
     }
     #expect({ if case .dataCorrupted = error { true } else { false } }())
   }
@@ -111,7 +111,7 @@ extension ProtoJSONDecoderTest {
     let input = #"{"fieldData":   [42] }"#
     let decoder = _ProtoJSONDecoder()
     let error = #expect(throws: DecodingError.self) {
-      try decoder.decode(RepeatedPrimitives.self, from: input.data(using: .utf8)!)
+      try decoder.decode(RepeatedPrimitives.self, from: Data(input.utf8))
     }
     #expect({ if case .typeMismatch = error { true } else { false } }())
   }

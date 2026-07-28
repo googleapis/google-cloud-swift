@@ -134,7 +134,7 @@ struct ServiceAccountTests {
       """
     let escapedPEM = pkcs1PEM.replacingOccurrences(of: "\n", with: "\\n")
 
-    let pkcs1KeyJSON = """
+    let pkcs1KeyJSON = Data("""
       {
         "type": "service_account",
         "project_id": "test-project-id",
@@ -143,7 +143,7 @@ struct ServiceAccountTests {
         "client_email": "test-client-email@gserviceaccount.com",
         "universe_domain": "test-universe-domain"
       }
-      """.data(using: .utf8)!
+      """.utf8)
 
     let credentials = try ServiceAccountCredentials(keyJSON: pkcs1KeyJSON)
     do {
@@ -232,7 +232,7 @@ struct ServiceAccountTests {
 
   @Test("Service Account JWS signing fails gracefully when given invalid private key PEM format")
   func invalidKeySigningFailure() async throws {
-    let badKeyJSON = """
+    let badKeyJSON = Data("""
       {
         "type": "service_account",
         "project_id": "test-project-id",
@@ -241,7 +241,7 @@ struct ServiceAccountTests {
         "client_email": "test-client-email@gserviceaccount.com",
         "universe_domain": "test-universe-domain"
       }
-      """.data(using: .utf8)!
+      """.utf8)
 
     let credentials = try ServiceAccountCredentials(keyJSON: badKeyJSON)
     do {
@@ -254,7 +254,7 @@ struct ServiceAccountTests {
 
   @Test("Service Account credentials initialization throws decoding error when given invalid JSON")
   func invalidJSONParsingFailure() async throws {
-    let invalidJSON = "{ \"invalid\": \"json\" }".data(using: .utf8)!
+    let invalidJSON = Data("{ \"invalid\": \"json\" }".utf8)
     let error = #expect(throws: CredentialsError.self) {
       _ = try ServiceAccountCredentials(keyJSON: invalidJSON)
     }

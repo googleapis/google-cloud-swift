@@ -39,7 +39,7 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
         httpVersion: nil as String?,
         headerFields: ["Content-Type": "application/json"]
       )!
-      return (response, "{}".data(using: .utf8)!)
+      return (response, Data("{}".utf8))
     }
 
     let mockData = UserAccountData(
@@ -257,7 +257,7 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
   @Test func tokenProviderMalformedResponseIsNonretryable() async throws {
     let targetURL = URL(string: "https://oauth2.googleapis.com/token")!
     let malformedPayload = "invalid-json"
-    let encodedData = malformedPayload.data(using: .utf8)!
+    let encodedData = Data(malformedPayload.utf8)
 
     MockURLProtocol.requestHandler = { (request: URLRequest) in
       let response = HTTPURLResponse(
@@ -297,7 +297,7 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
         "type": "authorized_user"
       }
       """
-    let dataData = malformedJSON.data(using: .utf8)!
+    let dataData = Data(malformedJSON.utf8)
     let decoder = JSONDecoder()
     decoder.keyDecodingStrategy = .convertFromSnakeCase
 
@@ -394,7 +394,7 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
         httpVersion: nil as String?,
         headerFields: nil as [String: String]?
       )!
-      let errorPayload = "{\"error\": \"invalid_grant\"}".data(using: .utf8)!
+      let errorPayload = Data("{\"error\": \"invalid_grant\"}".utf8)
       return (response, errorPayload)
     }
 

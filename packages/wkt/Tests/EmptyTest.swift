@@ -37,7 +37,7 @@ import Testing
   @Test("Empty JSON Decoding")
   func decodingJSON() throws {
     let jsonString = "{\"value\":{}}"
-    let data = jsonString.data(using: .utf8)!
+    let data = Data(jsonString.utf8)
     let decoder = JSONDecoder()
     let wrapped = try decoder.decode(WrappedEmptyDecode.self, from: data)
     #expect(wrapped.value == Empty())
@@ -47,7 +47,7 @@ import Testing
   func emptyAnyUnpack() throws {
     let jsonString =
       #"{"content":{"@type":"type.googleapis.com/google.protobuf.Empty","value":{}}}"#
-    let data = jsonString.data(using: .utf8)!
+    let data = Data(jsonString.utf8)
     let decoder = JSONDecoder()
     let wrapped = try decoder.decode(AnyTests.WrappedAny.self, from: data)
     let any = wrapped.content
@@ -61,7 +61,7 @@ import Testing
   func emptyAnyUnpackNoValue() throws {
     let jsonString =
       #"{"content":{"@type":"type.googleapis.com/google.protobuf.Empty"}}"#
-    let data = jsonString.data(using: .utf8)!
+    let data = Data(jsonString.utf8)
     let decoder = JSONDecoder()
     let wrapped = try decoder.decode(AnyTests.WrappedAny.self, from: data)
     let any = wrapped.content
@@ -74,7 +74,7 @@ import Testing
   @Test func emptyAnyUnpackMismatchedUrl() throws {
     let jsonString =
       #"{"content":{"@type":"bad","value":{}}}"#
-    let data = jsonString.data(using: .utf8)!
+    let data = Data(jsonString.utf8)
     let decoder = JSONDecoder()
     let wrapped = try decoder.decode(AnyTests.WrappedAny.self, from: data)
     let any = wrapped.content

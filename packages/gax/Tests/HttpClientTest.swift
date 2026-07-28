@@ -128,7 +128,7 @@ import GoogleRpc
 
       let response = HTTPURLResponse(
         url: request.url!, statusCode: 200, httpVersion: nil, headerFields: nil)!
-      let responseData = "{}".data(using: .utf8)!
+      let responseData = Data("{}".utf8)
       return (response, responseData)
     }
 
@@ -163,7 +163,7 @@ import GoogleRpc
       let response = HTTPURLResponse(
         url: request.url!, statusCode: 403, httpVersion: nil,
         headerFields: ["Content-Type": "application/json; charset=UTF-8"])!
-      let responseData = errorResponseWithDetails.data(using: .utf8)!
+      let responseData = Data(errorResponseWithDetails.utf8)
       return (response, responseData)
     }
 

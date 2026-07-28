@@ -82,7 +82,7 @@ struct WellKnown: Encodable {
     $0.externalAccountKey = ExternalAccountKey().with {
       $0.name = "my-key"
       $0.keyId = "my-key-id"
-      $0.b64MacKey = "abc".data(using: .utf8)!
+      $0.b64MacKey = Data("abc".utf8)
     }
   }
 

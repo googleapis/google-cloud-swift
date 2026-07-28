@@ -32,7 +32,7 @@ import Testing
       headerFields: ["X-Custom-Header": "CustomValue"]
     )!
     let bodyString = "Forbidden Access"
-    let data = bodyString.data(using: .utf8)!
+    let data = Data(bodyString.utf8)
 
     let error = AuthHTTPError.unsuccessfulResponse(response: response, data: data)
 
@@ -59,7 +59,7 @@ import Testing
       String.self,
       DecodingError.Context(codingPath: [], debugDescription: "Test")
     )
-    let testData = "Invalid JSON".data(using: .utf8)!
+    let testData = Data("Invalid JSON".utf8)
     let error = AuthHTTPError.decodingError(error: decodingError, data: testData)
 
     #expect(error.urlError == nil)

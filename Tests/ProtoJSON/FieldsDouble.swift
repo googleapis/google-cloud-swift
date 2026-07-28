@@ -42,7 +42,7 @@ import GoogleCloudWkt
     ])
   func deserialize(input: String, want: T) throws {
     let decoder = _ProtoJSONDecoder()
-    let got = try decoder.decode(T.self, from: input.data(using: .utf8)!)
+    let got = try decoder.decode(T.self, from: Data(input.utf8))
     #expect(got == want)
   }
 
@@ -69,7 +69,7 @@ import GoogleCloudWkt
     ]
   ) func deserializeNaN(input: String, value: @Sendable (T) -> Float64?) throws {
     let decoder = _ProtoJSONDecoder()
-    let got = try decoder.decode(T.self, from: input.data(using: .utf8)!)
+    let got = try decoder.decode(T.self, from: Data(input.utf8))
     #expect(value(got).map({ $0.isNaN }) ?? false, "got=\(got)")
   }
 }

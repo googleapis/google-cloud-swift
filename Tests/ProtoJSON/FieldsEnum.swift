@@ -44,7 +44,7 @@ import GoogleCloudWkt
     ])
   func deserialize(input: String, want: MessageWithEnum) throws {
     let decoder = _ProtoJSONDecoder()
-    let got = try decoder.decode(MessageWithEnum.self, from: input.data(using: .utf8)!)
+    let got = try decoder.decode(MessageWithEnum.self, from: Data(input.utf8))
     #expect(got == want)
   }
 
@@ -116,7 +116,7 @@ import GoogleCloudWkt
   @Test("Use enum with @unknown")
   func useEnum() throws {
     let decoder = _ProtoJSONDecoder()
-    let got = try decoder.decode(MessageWithEnum.self, from: "{}".data(using: .utf8)!)
+    let got = try decoder.decode(MessageWithEnum.self, from: Data("{}".utf8))
     #expect(got.singular == .unspecified)
     switch got.singular {
     case .unspecified:

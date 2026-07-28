@@ -133,7 +133,7 @@ import GoogleCloudWkt
   func useOneof() throws {
     let decoder = _ProtoJSONDecoder()
     let got = try decoder.decode(
-      MessageWithOneOf.self, from: #"{"stringContents":"test"}"#.data(using: .utf8)!)
+      MessageWithOneOf.self, from: Data(#"{"stringContents":"test"}"#.utf8))
     #expect(got.singleString == .stringContents("test"))
     switch got.singleString! {
     case .stringContents(let s):

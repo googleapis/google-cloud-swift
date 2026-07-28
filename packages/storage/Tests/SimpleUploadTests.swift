@@ -133,7 +133,7 @@ import Testing
 
     registry.register(
       response: .success(
-        statusCode: 500, data: "Internal Server Error".data(using: .utf8)!,
+        statusCode: 500, data: Data("Internal Server Error".utf8),
         headers: nil),
       for: simpleUploadUrl)
 
@@ -175,7 +175,7 @@ import Testing
 
     registry.register(
       response: .success(
-        statusCode: 200, data: "invalid json content".data(using: .utf8)!,
+        statusCode: 200, data: Data("invalid json content".utf8),
         headers: nil),
       for: simpleUploadUrl)
 

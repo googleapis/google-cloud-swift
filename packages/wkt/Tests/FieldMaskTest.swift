@@ -53,7 +53,7 @@ import Testing
       ("{\"value\":\"authorProfile.avatarUrl\"}", ["author_profile.avatar_url"]),
     ])
   func decodeJSON(_ json: String, _ expected: [String]) throws {
-    let data = json.data(using: .utf8)!
+    let data = Data(json.utf8)
     let decoder = JSONDecoder()
     let wrapped = try decoder.decode(WrappedFieldMaskDecode.self, from: data)
     #expect(wrapped.value.paths == expected)
@@ -63,7 +63,7 @@ import Testing
   func fieldMaskAnyUnpack() throws {
     let jsonString =
       #"{"content":{"@type":"type.googleapis.com/google.protobuf.FieldMask","value":"a,b,cD"}}"#
-    let data = jsonString.data(using: .utf8)!
+    let data = Data(jsonString.utf8)
     let decoder = JSONDecoder()
     let wrapped = try decoder.decode(AnyTests.WrappedAny.self, from: data)
     let any = wrapped.content
@@ -77,7 +77,7 @@ import Testing
   @Test func fieldMaskAnyUnpackMismatchedUrl() throws {
     let jsonString =
       #"{"content":{"@type":"bad","value":"a,b,cD"}}"#
-    let data = jsonString.data(using: .utf8)!
+    let data = Data(jsonString.utf8)
     let decoder = JSONDecoder()
     let wrapped = try decoder.decode(AnyTests.WrappedAny.self, from: data)
     let any = wrapped.content

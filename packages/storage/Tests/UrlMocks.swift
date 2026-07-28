@@ -78,7 +78,7 @@ public func makeObjectJSON(
       "storageClass": "STANDARD"
     }
     """
-  return json.data(using: .utf8)!
+  return Data(json.utf8)
 }
 
 /// Helper to assert that an async action throws an error of type `E` and returns the caught error.

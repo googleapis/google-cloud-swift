@@ -50,7 +50,7 @@ import Testing
         "type": "authorized_user"
       }
       """
-    let dataData = mockJSON.data(using: .utf8)!
+    let dataData = Data(mockJSON.utf8)
 
     let credentials = try Credentials(configuration: .user(keyJSON: dataData))
 

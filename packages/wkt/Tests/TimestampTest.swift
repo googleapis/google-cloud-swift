@@ -146,7 +146,7 @@ import Testing
   func timestampAnyUnpack() throws {
     let jsonString =
       #"{"content":{"@type":"type.googleapis.com/google.protobuf.Timestamp","value":"2026-04-21T12:34:56.789123456Z"}}"#
-    let data = jsonString.data(using: .utf8)!
+    let data = Data(jsonString.utf8)
     let decoder = JSONDecoder()
     let wrapped = try decoder.decode(AnyTests.WrappedAny.self, from: data)
     let any = wrapped.content
@@ -160,7 +160,7 @@ import Testing
   @Test func timestampAnyUnpackMismatchedUrl() throws {
     let jsonString =
       #"{"content":{"@type":"bad","value":"2026-04-21T12:34:56.789123456Z"}}"#
-    let data = jsonString.data(using: .utf8)!
+    let data = Data(jsonString.utf8)
     let decoder = JSONDecoder()
     let wrapped = try decoder.decode(AnyTests.WrappedAny.self, from: data)
     let any = wrapped.content
@@ -216,7 +216,7 @@ import Testing
     ]
   )
   func decodeJSON(_ args: (String, Int64, Int64)) throws {
-    let data = args.0.data(using: .utf8)!
+    let data = Data(args.0.utf8)
     let decoder = JSONDecoder()
     let wrapped = try decoder.decode(WrappedTimestampDecode.self, from: data)
     #expect(wrapped.value.seconds == args.1)

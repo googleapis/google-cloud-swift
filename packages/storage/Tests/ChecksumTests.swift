@@ -22,8 +22,8 @@ import Testing
 
 @Suite struct ChecksumTests {
   @Test func testChecksummedSourceCRC32C() async throws {
-    let data1 = "Hello, ".data(using: .utf8)!
-    let data2 = "World!".data(using: .utf8)!
+    let data1 = Data("Hello, ".utf8)
+    let data2 = Data("World!".utf8)
     let combinedData = data1 + data2
 
     let source = BytesSource(data: combinedData)
@@ -48,8 +48,8 @@ import Testing
   }
 
   @Test func testChecksummedSourceMD5() async throws {
-    let data1 = "Hello, ".data(using: .utf8)!
-    let data2 = "World!".data(using: .utf8)!
+    let data1 = Data("Hello, ".utf8)
+    let data2 = Data("World!".utf8)
     let combinedData = data1 + data2
 
     let source = BytesSource(data: combinedData)
@@ -93,7 +93,7 @@ import Testing
     let registry = MockRegistry.create()
     let bucket = "test-bucket"
     let objectName = "test-object"
-    let data = "Small payload".data(using: .utf8)!
+    let data = Data("Small payload".utf8)
     let source = BytesSource(data: data)
 
     let uploadUrl = registry.url(
@@ -103,7 +103,7 @@ import Testing
       "Provided CRC32C \"invalid_crc\" doesn't match calculated CRC32C \"valid_crc\""
     registry.register(
       response: .success(
-        statusCode: 400, data: errorMessage.data(using: .utf8)!,
+        statusCode: 400, data: Data(errorMessage.utf8),
         headers: nil),
       for: uploadUrl)
 
@@ -151,7 +151,7 @@ import Testing
       for: startUrl)
     registry.register(
       response: .success(
-        statusCode: 400, data: errorMessage.data(using: .utf8)!,
+        statusCode: 400, data: Data(errorMessage.utf8),
         headers: nil),
       for: chunkUrl)
 
@@ -180,8 +180,8 @@ import Testing
   }
 
   @Test func testChecksummedSourceMultipleAuto() async throws {
-    let data1 = "Hello, ".data(using: .utf8)!
-    let data2 = "World!".data(using: .utf8)!
+    let data1 = Data("Hello, ".utf8)
+    let data2 = Data("World!".utf8)
     let combinedData = data1 + data2
 
     let source = BytesSource(data: combinedData)
@@ -197,7 +197,7 @@ import Testing
   }
 
   @Test func testChecksummedSourceUserProvidedValues() async throws {
-    let source = BytesSource(data: "Some data".data(using: .utf8)!)
+    let source = BytesSource(data: Data("Some data".utf8))
     let checksums = ChecksumOptions(crc32c: "PRE_CRC", md5: "PRE_MD5")
     var checksummedSource = ChecksummedSource(source: source, options: checksums)
 
@@ -209,7 +209,7 @@ import Testing
   }
 
   @Test func testChecksummedSourceMixedAutoAndUserProvided() async throws {
-    let data = "Hello, World!".data(using: .utf8)!
+    let data = Data("Hello, World!".utf8)
     let source = BytesSource(data: data)
     let checksums = ChecksumOptions(crc32c: .auto, md5: "CUSTOM_MD5")
     var checksummedSource = ChecksummedSource(source: source, options: checksums)

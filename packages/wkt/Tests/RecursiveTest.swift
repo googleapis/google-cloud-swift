@@ -66,7 +66,7 @@ import Testing
   @Test("JSON Decoding")
   func testJSONDecoding() throws {
     let jsonString = #"{"name":"A"}"#
-    let data = jsonString.data(using: .utf8)!
+    let data = Data(jsonString.utf8)
 
     let decoder = JSONDecoder()
     let decoded = try decoder.decode(Recursive<DummyNode>.self, from: data)

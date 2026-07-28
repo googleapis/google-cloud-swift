@@ -52,7 +52,7 @@ import Testing
       for: startUrl)
     registry.register(
       response: .success(
-        statusCode: 200, data: objectJSON.data(using: .utf8)!,
+        statusCode: 200, data: Data(objectJSON.utf8),
         headers: nil),
       for: chunkUrl)
 
@@ -166,7 +166,7 @@ import Testing
       for: startUrl)
     registry.register(
       response: .success(
-        statusCode: 500, data: "Internal Server Error".data(using: .utf8)!,
+        statusCode: 500, data: Data("Internal Server Error".utf8),
         headers: nil),
       for: chunkUrl)
 
@@ -224,7 +224,7 @@ import Testing
       for: queryUrl)
     registry.register(
       response: .success(
-        statusCode: 200, data: objectJSON.data(using: .utf8)!,
+        statusCode: 200, data: Data(objectJSON.utf8),
         headers: nil),
       for: queryUrl)
 
@@ -434,7 +434,7 @@ import Testing
 
     registry.register(
       response: .success(
-        statusCode: 404, data: "Upload session expired".data(using: .utf8)!,
+        statusCode: 404, data: Data("Upload session expired".utf8),
         headers: nil),
       for: queryUrl)
 
@@ -516,7 +516,7 @@ import Testing
 
     registry.register(
       response: .success(
-        statusCode: 499, data: "Client Closed Request".data(using: .utf8)!,
+        statusCode: 499, data: Data("Client Closed Request".utf8),
         headers: nil),
       for: queryUrl)
 

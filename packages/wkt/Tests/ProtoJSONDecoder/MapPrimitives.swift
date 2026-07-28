@@ -81,7 +81,7 @@ extension ProtoJSONDecoderTest {
     ])
   func decodeRepeated(input: String, want: MapPrimitives) throws {
     let decoder = _ProtoJSONDecoder()
-    let got = try decoder.decode(MapPrimitives.self, from: input.data(using: .utf8)!)
+    let got = try decoder.decode(MapPrimitives.self, from: Data(input.utf8))
     #expect(got == want)
   }
 
@@ -102,7 +102,7 @@ extension ProtoJSONDecoderTest {
   func decodeMapBad(input: String) throws {
     let decoder = _ProtoJSONDecoder()
     let error = #expect(throws: DecodingError.self) {
-      try decoder.decode(MapPrimitives.self, from: input.data(using: .utf8)!)
+      try decoder.decode(MapPrimitives.self, from: Data(input.utf8))
     }
     #expect({ if case .dataCorrupted = error { true } else { false } }())
   }
@@ -111,7 +111,7 @@ extension ProtoJSONDecoderTest {
     let input = #"{"fieldData":   {"a": 42} }"#
     let decoder = _ProtoJSONDecoder()
     let error = #expect(throws: DecodingError.self) {
-      try decoder.decode(MapPrimitives.self, from: input.data(using: .utf8)!)
+      try decoder.decode(MapPrimitives.self, from: Data(input.utf8))
     }
     #expect({ if case .typeMismatch = error { true } else { false } }())
   }

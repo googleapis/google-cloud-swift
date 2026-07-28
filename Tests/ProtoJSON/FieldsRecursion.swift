@@ -99,7 +99,7 @@ import GoogleCloudWkt
     ])
   func deserialize(input: String, want: MessageWithRecursion) throws {
     let decoder = _ProtoJSONDecoder()
-    let got = try decoder.decode(MessageWithRecursion.self, from: input.data(using: .utf8)!)
+    let got = try decoder.decode(MessageWithRecursion.self, from: Data(input.utf8))
     #expect(got == want)
   }
 

@@ -24,7 +24,7 @@ import GoogleCloudWkt
       }
       """
     let decoder = _ProtoJSONDecoder()
-    let got = try decoder.decode(MessageWithRepeated.self, from: input.data(using: .utf8)!)
+    let got = try decoder.decode(MessageWithRepeated.self, from: Data(input.utf8))
     let want = MessageWithRepeated(
       repeatedMessage: [
         MapPrimitives(),

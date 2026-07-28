@@ -82,7 +82,7 @@ extension ProtoJSONDecoderTest {
     ])
   func decodeOptionals(input: String, want: OptionalPrimitives) throws {
     let decoder = _ProtoJSONDecoder()
-    let got = try decoder.decode(OptionalPrimitives.self, from: input.data(using: .utf8)!)
+    let got = try decoder.decode(OptionalPrimitives.self, from: Data(input.utf8))
     #expect(got == want)
   }
 
@@ -104,7 +104,7 @@ extension ProtoJSONDecoderTest {
   func decodeOptionalBad(input: String) throws {
     let decoder = _ProtoJSONDecoder()
     let error = #expect(throws: DecodingError.self) {
-      try decoder.decode(OptionalPrimitives.self, from: input.data(using: .utf8)!)
+      try decoder.decode(OptionalPrimitives.self, from: Data(input.utf8))
     }
     #expect({ if case .dataCorrupted = error { true } else { false } }(), "\(error)")
   }
@@ -113,7 +113,7 @@ extension ProtoJSONDecoderTest {
     let input = #"{"fieldString": 42 }"#
     let decoder = _ProtoJSONDecoder()
     let error = #expect(throws: DecodingError.self) {
-      try decoder.decode(OptionalPrimitives.self, from: input.data(using: .utf8)!)
+      try decoder.decode(OptionalPrimitives.self, from: Data(input.utf8))
     }
     #expect({ if case .typeMismatch = error { true } else { false } }())
   }
