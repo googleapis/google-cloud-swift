@@ -59,12 +59,12 @@ default:
       - name: GoogleCloudLocation
         path: generated/google-cloud-location
         api_package: google.cloud.location
-      - name: GoogleCloudOrgPolicyV1
-        path: generated/google-cloud-orgpolicy-v1
-        api_package: google.cloud.orgpolicy.v1
       - name: GoogleCloudOSConfigV1
         path: generated/google-cloud-osconfig-v1
         api_package: google.cloud.osconfig.v1
+      - name: GoogleCloudOrgPolicyV1
+        path: generated/google-cloud-orgpolicy-v1
+        api_package: google.cloud.orgpolicy.v1
       - name: GoogleCloudWkt
         path: packages/wkt
         api_package: google.protobuf
