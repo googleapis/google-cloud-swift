@@ -19,6 +19,7 @@ import GoogleCloudWkt
 import GoogleIamV1
 import CryptoSwift
 import Logging
+import Foundation
 
 /// Run tests for the global endpoint.
 public enum GlobalEndpoint {
