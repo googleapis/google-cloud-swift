@@ -19,7 +19,7 @@
 import Foundation
 import GoogleCloudDatacatalogV1
 import GoogleCloudWkt
-import GoogleIamV1
+import GoogleIAMV1
 import GoogleLongrunning
 
 func sample(client: PolicyTagManagerClient, projectId: String, locationId: String) async throws {

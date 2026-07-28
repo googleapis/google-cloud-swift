@@ -19,7 +19,7 @@
 import Foundation
 import GoogleCloudBigqueryDatapoliciesV1
 import GoogleCloudWkt
-import GoogleIamV1
+import GoogleIAMV1
 
 func sample(client: DataPolicyServiceClient, projectId: String, locationId: String) async throws {
   let items = try client.listDataPolicies(

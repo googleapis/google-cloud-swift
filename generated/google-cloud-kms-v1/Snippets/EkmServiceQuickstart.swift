@@ -17,14 +17,14 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudKmsV1
+import GoogleCloudKMSV1
 import GoogleCloudLocation
 import GoogleCloudWkt
-import GoogleIamV1
+import GoogleIAMV1
 import GoogleLongrunning
 
 func sample(parent: String, ) async throws {
-  let client = try GoogleCloudKmsV1.EkmServiceClient()
+  let client = try GoogleCloudKMSV1.EkmServiceClient()
   let items = try client.listEkmConnections(
     byItem: ListEkmConnectionsRequest()
       .with {

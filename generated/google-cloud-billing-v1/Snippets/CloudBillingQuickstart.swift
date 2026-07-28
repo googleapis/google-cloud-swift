@@ -19,7 +19,7 @@
 import Foundation
 import GoogleCloudBillingV1
 import GoogleCloudWkt
-import GoogleIamV1
+import GoogleIAMV1
 
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudBillingV1.CloudBillingClient()

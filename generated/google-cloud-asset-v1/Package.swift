@@ -26,8 +26,8 @@ let package = Package(
   dependencies: [
     .package(path: "../../packages/auth"),
     .package(path: "../../packages/gax"),
-    .package(path: "../../generated/google-cloud-orgpolicy-v1"),
     .package(path: "../../generated/google-cloud-osconfig-v1"),
+    .package(path: "../../generated/google-cloud-orgpolicy-v1"),
     .package(path: "../../packages/wkt"),
     .package(path: "../../generated/google-iam-v1"),
     .package(path: "../../generated/google-identity-accesscontextmanager-v1"),
@@ -42,12 +42,12 @@ let package = Package(
       dependencies: [
         .product(name: "GoogleCloudAuth", package: "auth"),
         .product(name: "GoogleCloudGax", package: "gax"),
-        .product(name: "GoogleCloudOrgpolicyV1", package: "google-cloud-orgpolicy-v1"),
-        .product(name: "GoogleCloudOsconfigV1", package: "google-cloud-osconfig-v1"),
+        .product(name: "GoogleCloudOSConfigV1", package: "google-cloud-osconfig-v1"),
+        .product(name: "GoogleCloudOrgPolicyV1", package: "google-cloud-orgpolicy-v1"),
         .product(name: "GoogleCloudWkt", package: "wkt"),
-        .product(name: "GoogleIamV1", package: "google-iam-v1"),
+        .product(name: "GoogleIAMV1", package: "google-iam-v1"),
         .product(
-          name: "GoogleIdentityAccesscontextmanagerV1",
+          name: "GoogleIdentityAccessContextManagerV1",
           package: "google-identity-accesscontextmanager-v1"),
         .product(name: "GoogleLongrunning", package: "google-longrunning"),
         .product(name: "GoogleRpc", package: "google-rpc"),

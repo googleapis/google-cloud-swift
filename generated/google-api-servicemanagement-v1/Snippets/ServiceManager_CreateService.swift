@@ -20,7 +20,7 @@ import Foundation
 import GoogleApiServicemanagementV1
 import GoogleApi
 import GoogleCloudWkt
-import GoogleIamV1
+import GoogleIAMV1
 import GoogleLongrunning
 import GoogleRpc
 

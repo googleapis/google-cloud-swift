@@ -17,14 +17,14 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudKmsV1
+import GoogleCloudKMSV1
 import GoogleCloudLocation
 import GoogleCloudWkt
-import GoogleIamV1
+import GoogleIAMV1
 import GoogleLongrunning
 
 func sample(folderId: String, ) async throws {
-  let client = try GoogleCloudKmsV1.AutokeyAdminClient()
+  let client = try GoogleCloudKMSV1.AutokeyAdminClient()
   let response = try await client.getAutokeyConfig(
     request: GetAutokeyConfigRequest()
       .with {

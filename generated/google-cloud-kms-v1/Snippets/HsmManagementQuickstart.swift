@@ -17,15 +17,15 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudKmsV1
+import GoogleCloudKMSV1
 import GoogleCloudLocation
 import GoogleCloudWkt
-import GoogleIamV1
+import GoogleIAMV1
 import GoogleLongrunning
 import GoogleRpc
 
 func sample(parent: String, ) async throws {
-  let client = try GoogleCloudKmsV1.HsmManagementClient()
+  let client = try GoogleCloudKMSV1.HsmManagementClient()
   let items = try client.listSingleTenantHsmInstances(
     byItem: ListSingleTenantHsmInstancesRequest()
       .with {

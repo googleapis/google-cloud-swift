@@ -41,13 +41,13 @@ let package = Package(
         .product(name: "GoogleCloudAuth", package: "auth"),
         .product(name: "GoogleCloudGax", package: "gax"),
         .product(
-          name: "GoogleCloudGkehubConfigmanagementV1",
+          name: "GoogleCloudGkeHubConfigManagementV1",
           package: "google-cloud-gkehub-configmanagement-v1"),
         .product(
-          name: "GoogleCloudGkehubMulticlusteringressV1",
+          name: "GoogleCloudGkeHubMultiClusterIngressV1",
           package: "google-cloud-gkehub-multiclusteringress-v1"),
         .product(
-          name: "GoogleCloudGkehubRbacrolebindingactuationV1",
+          name: "GoogleCloudGkeHubRBACRoleBindingActuationV1",
           package: "google-cloud-gkehub-rbacrolebindingactuation-v1"),
         .product(name: "GoogleCloudWkt", package: "wkt"),
         .product(name: "GoogleLongrunning", package: "google-longrunning"),

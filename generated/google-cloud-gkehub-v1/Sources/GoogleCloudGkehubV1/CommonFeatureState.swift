@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudGkehubRbacrolebindingactuationV1
+import GoogleCloudGkeHubRBACRoleBindingActuationV1
 import GoogleCloudWkt
 
 /// CommonFeatureState contains Fleet-wide Feature status information.
@@ -63,7 +63,7 @@ public struct CommonFeatureState: Codable, Equatable, GoogleCloudWkt._AnyPackabl
       featureState = $0
     }
     if let rbacrolebindingactuation = try container.decodeIfPresent(
-      GoogleCloudGkehubRbacrolebindingactuationV1.FeatureState?.self,
+      GoogleCloudGkeHubRBACRoleBindingActuationV1.FeatureState?.self,
       forKey: .rbacrolebindingactuation)
     {
       try featureStateCheckAndSet(.rbacrolebindingactuation(rbacrolebindingactuation))
@@ -86,7 +86,7 @@ public struct CommonFeatureState: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   public enum OneOf_FeatureState: Codable, Equatable, Sendable {
     /// RBAC Role Binding Actuation feature state
     indirect case rbacrolebindingactuation(
-      GoogleCloudGkehubRbacrolebindingactuationV1.FeatureState?)
+      GoogleCloudGkeHubRBACRoleBindingActuationV1.FeatureState?)
   }
 
   public static var _anyTypeUrl: Swift.String {

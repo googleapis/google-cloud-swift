@@ -19,12 +19,12 @@
 import Foundation
 import GoogleCloudResourcemanagerV3
 import GoogleCloudWkt
-import GoogleIamV1
+import GoogleIAMV1
 import GoogleLongrunning
 
 func sample(client: OrganizationsClient) async throws {
   let response = try await client.setIamPolicy(
-    request: GoogleIamV1.SetIamPolicyRequest()
+    request: GoogleIAMV1.SetIamPolicyRequest()
       /* set fields using .with { $0... } */
   )
   print("Success: \(response)")

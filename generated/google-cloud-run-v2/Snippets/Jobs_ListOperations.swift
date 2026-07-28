@@ -19,7 +19,7 @@
 import Foundation
 import GoogleCloudRunV2
 import GoogleCloudWkt
-import GoogleIamV1
+import GoogleIAMV1
 import GoogleLongrunning
 import GoogleRpc
 

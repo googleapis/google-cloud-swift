@@ -17,13 +17,13 @@
 
 // snippet.show
 import Foundation
-import GoogleIamV3
+import GoogleIAMV3
 import GoogleCloudWkt
 import GoogleLongrunning
 import GoogleRpc
 
 func sample(organizationId: String, locationId: String, ) async throws {
-  let client = try GoogleIamV3.PolicyBindingsClient()
+  let client = try GoogleIAMV3.PolicyBindingsClient()
   let items = try client.listPolicyBindings(
     byItem: ListPolicyBindingsRequest()
       .with {

@@ -18,16 +18,16 @@
 import PackageDescription
 
 let package = Package(
-  name: "GoogleIdentityAccesscontextmanagerType",
+  name: "GoogleIdentityAccessContextManagerType",
   platforms: [.macOS(.v15)],
   products: [
     .library(
-      name: "GoogleIdentityAccesscontextmanagerType",
-      targets: ["GoogleIdentityAccesscontextmanagerType"])
+      name: "GoogleIdentityAccessContextManagerType",
+      targets: ["GoogleIdentityAccessContextManagerType"])
   ],
   targets: [
     .target(
-      name: "GoogleIdentityAccesscontextmanagerType",
+      name: "GoogleIdentityAccessContextManagerType",
     )
   ]
 )

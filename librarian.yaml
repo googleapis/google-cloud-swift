@@ -44,25 +44,25 @@ default:
       - name: GoogleCloudGax
         path: packages/gax
         required_by_services: true
-      - name: GoogleCloudGkehubConfigmanagementV1
+      - name: GoogleCloudGkeHubConfigManagementV1
         path: generated/google-cloud-gkehub-configmanagement-v1
         api_package: google.cloud.gkehub.configmanagement.v1
-      - name: GoogleCloudGkehubMulticlusteringressV1
+      - name: GoogleCloudGkeHubMultiClusterIngressV1
         path: generated/google-cloud-gkehub-multiclusteringress-v1
         api_package: google.cloud.gkehub.multiclusteringress.v1
-      - name: GoogleCloudGkehubRbacrolebindingactuationV1
+      - name: GoogleCloudGkeHubRBACRoleBindingActuationV1
         path: generated/google-cloud-gkehub-rbacrolebindingactuation-v1
         api_package: google.cloud.gkehub.rbacrolebindingactuation.v1
-      - name: GoogleCloudKmsV1
+      - name: GoogleCloudKMSV1
         path: generated/google-cloud-kms-v1
         api_package: google.cloud.kms.v1
       - name: GoogleCloudLocation
         path: generated/google-cloud-location
         api_package: google.cloud.location
-      - name: GoogleCloudOrgpolicyV1
+      - name: GoogleCloudOrgPolicyV1
         path: generated/google-cloud-orgpolicy-v1
         api_package: google.cloud.orgpolicy.v1
-      - name: GoogleCloudOsconfigV1
+      - name: GoogleCloudOSConfigV1
         path: generated/google-cloud-osconfig-v1
         api_package: google.cloud.osconfig.v1
       - name: GoogleCloudWkt
@@ -71,13 +71,13 @@ default:
       - name: GoogleGrafeasV1
         path: generated/grafeas-v1
         api_package: grafeas.v1
-      - name: GoogleIamV1
+      - name: GoogleIAMV1
         path: generated/google-iam-v1
         api_package: google.iam.v1
-      - name: GoogleIdentityAccesscontextmanagerType
+      - name: GoogleIdentityAccessContextManagerType
         path: generated/google-identity-accesscontextmanager-type
         api_package: google.identity.accesscontextmanager.type
-      - name: GoogleIdentityAccesscontextmanagerV1
+      - name: GoogleIdentityAccessContextManagerV1
         path: generated/google-identity-accesscontextmanager-v1
         api_package: google.identity.accesscontextmanager.v1
       - name: GoogleLoggingType
@@ -353,23 +353,33 @@ libraries:
     version: 0.0.0-preview
     copyright_year: "2026"
     output: generated/google-cloud-gkehub-configmanagement-v1
+    swift:
+      library_name_override: GoogleCloudGkeHubConfigManagementV1
   - name: google-cloud-gkehub-v1-multiclusteringress
     version: 0.0.0-preview
     copyright_year: "2026"
     output: generated/google-cloud-gkehub-multiclusteringress-v1
+    swift:
+      library_name_override: GoogleCloudGkeHubMultiClusterIngressV1
   - name: google-cloud-gkehub-v1-rbacrolebindingactuation
     version: 0.0.0-preview
     copyright_year: "2026"
     output: generated/google-cloud-gkehub-rbacrolebindingactuation-v1
+    swift:
+      library_name_override: GoogleCloudGkeHubRBACRoleBindingActuationV1
   - name: google-cloud-gkemulticloud-v1
     version: 0.0.0-preview
     copyright_year: "2026"
   - name: google-cloud-kms-inventory-v1
     version: 0.0.0-preview
     copyright_year: "2026"
+    swift:
+      library_name_override: GoogleCloudKMSInventoryV1
   - name: google-cloud-kms-v1
     version: 0.0.0-preview
     copyright_year: "2026"
+    swift:
+      library_name_override: GoogleCloudKMSV1
   - name: google-cloud-language-v2
     version: 0.0.0-preview
     copyright_year: "2026"
@@ -394,9 +404,13 @@ libraries:
   - name: google-cloud-orgpolicy-v1
     version: 0.0.0-preview
     copyright_year: "2026"
+    swift:
+      library_name_override: GoogleCloudOrgPolicyV1
   - name: google-cloud-osconfig-v1
     version: 0.0.0-preview
     copyright_year: "2026"
+    swift:
+      library_name_override: GoogleCloudOSConfigV1
   - name: google-cloud-parallelstore-v1
     version: 0.0.0-preview
     copyright_year: "2026"
@@ -525,18 +539,28 @@ libraries:
   - name: google-iam-v1
     version: 0.0.0-preview
     copyright_year: "2026"
+    swift:
+      library_name_override: GoogleIAMV1
   - name: google-iam-v2
     version: 0.0.0-preview
     copyright_year: "2026"
+    swift:
+      library_name_override: GoogleIAMV2
   - name: google-iam-v3
     version: 0.0.0-preview
     copyright_year: "2026"
+    swift:
+      library_name_override: GoogleIAMV3
   - name: google-identity-accesscontextmanager-type
     version: 0.0.0-preview
     copyright_year: "2026"
+    swift:
+      library_name_override: GoogleIdentityAccessContextManagerType
   - name: google-identity-accesscontextmanager-v1
     version: 0.0.0-preview
     copyright_year: "2026"
+    swift:
+      library_name_override: GoogleIdentityAccessContextManagerV1
   - name: google-logging-type
     version: 0.0.0-preview
     copyright_year: "2026"

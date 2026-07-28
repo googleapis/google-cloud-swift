@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleIamV3
+import GoogleIAMV3
 import GoogleCloudWkt
 import GoogleLongrunning
 import GoogleRpc
@@ -37,7 +37,7 @@ func sample(client: PrincipalAccessBoundaryPoliciesClient) async throws {
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleIamV3.PrincipalAccessBoundaryPoliciesClient()
+      let client = try GoogleIAMV3.PrincipalAccessBoundaryPoliciesClient()
       try await sample(client: client)
     } catch {
       print("Error: \(error)")

@@ -17,10 +17,10 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudKmsV1
+import GoogleCloudKMSV1
 import GoogleCloudLocation
 import GoogleCloudWkt
-import GoogleIamV1
+import GoogleIAMV1
 import GoogleLongrunning
 
 func sample(client: EkmServiceClient) async throws {
@@ -36,7 +36,7 @@ func sample(client: EkmServiceClient) async throws {
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleCloudKmsV1.EkmServiceClient()
+      let client = try GoogleCloudKMSV1.EkmServiceClient()
       try await sample(client: client)
     } catch {
       print("Error: \(error)")

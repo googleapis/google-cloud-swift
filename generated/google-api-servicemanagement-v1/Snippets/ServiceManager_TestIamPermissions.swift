@@ -20,13 +20,13 @@ import Foundation
 import GoogleApiServicemanagementV1
 import GoogleApi
 import GoogleCloudWkt
-import GoogleIamV1
+import GoogleIAMV1
 import GoogleLongrunning
 import GoogleRpc
 
 func sample(client: ServiceManagerClient) async throws {
   let response = try await client.testIamPermissions(
-    request: GoogleIamV1.TestIamPermissionsRequest()
+    request: GoogleIAMV1.TestIamPermissionsRequest()
       /* set fields using .with { $0... } */
   )
   print("Success: \(response)")

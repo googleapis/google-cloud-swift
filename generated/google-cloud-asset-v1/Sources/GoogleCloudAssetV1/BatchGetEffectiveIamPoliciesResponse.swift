@@ -16,7 +16,7 @@
 
 import Foundation
 import GoogleCloudWkt
-import GoogleIamV1
+import GoogleIAMV1
 
 /// A response message for
 /// [AssetService.BatchGetEffectiveIamPolicies][google.cloud.asset.v1.AssetService.BatchGetEffectiveIamPolicies].
@@ -125,7 +125,7 @@ public struct BatchGetEffectiveIamPoliciesResponse: Codable, Equatable, GoogleCl
       /// [attached_resource][google.cloud.asset.v1.BatchGetEffectiveIamPoliciesResponse.EffectiveIamPolicy.PolicyInfo.attached_resource].
       ///
       /// [google.cloud.asset.v1.BatchGetEffectiveIamPoliciesResponse.EffectiveIamPolicy.PolicyInfo.attached_resource]: <doc:BatchGetEffectiveIamPoliciesResponse/EffectiveIamPolicy/PolicyInfo/attachedResource>
-      public var policy: GoogleIamV1.Policy? = nil
+      public var policy: GoogleIAMV1.Policy? = nil
 
       /// Initialize a new instance of `PolicyInfo`.
       public init() {}

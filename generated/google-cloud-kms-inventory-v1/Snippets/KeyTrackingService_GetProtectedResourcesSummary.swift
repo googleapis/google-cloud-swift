@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudKmsInventoryV1
+import GoogleCloudKMSInventoryV1
 import GoogleCloudWkt
 
 func sample(
@@ -39,7 +39,7 @@ func sample(
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleCloudKmsInventoryV1.KeyTrackingServiceClient()
+      let client = try GoogleCloudKMSInventoryV1.KeyTrackingServiceClient()
       try await sample(
         client: client, projectId: "[placeholder]", locationId: "[placeholder]",
         keyRingId: "[placeholder]", cryptoKeyId: "[placeholder]")

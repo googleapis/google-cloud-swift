@@ -18,12 +18,12 @@
 import PackageDescription
 
 let package = Package(
-  name: "GoogleIdentityAccesscontextmanagerV1",
+  name: "GoogleIdentityAccessContextManagerV1",
   platforms: [.macOS(.v15)],
   products: [
     .library(
-      name: "GoogleIdentityAccesscontextmanagerV1",
-      targets: ["GoogleIdentityAccesscontextmanagerV1"])
+      name: "GoogleIdentityAccessContextManagerV1",
+      targets: ["GoogleIdentityAccessContextManagerV1"])
   ],
   dependencies: [
     .package(path: "../../packages/auth"),
@@ -38,14 +38,14 @@ let package = Package(
   ],
   targets: [
     .target(
-      name: "GoogleIdentityAccesscontextmanagerV1",
+      name: "GoogleIdentityAccessContextManagerV1",
       dependencies: [
         .product(name: "GoogleCloudAuth", package: "auth"),
         .product(name: "GoogleCloudGax", package: "gax"),
         .product(name: "GoogleCloudWkt", package: "wkt"),
-        .product(name: "GoogleIamV1", package: "google-iam-v1"),
+        .product(name: "GoogleIAMV1", package: "google-iam-v1"),
         .product(
-          name: "GoogleIdentityAccesscontextmanagerType",
+          name: "GoogleIdentityAccessContextManagerType",
           package: "google-identity-accesscontextmanager-type"),
         .product(name: "GoogleLongrunning", package: "google-longrunning"),
         .product(name: "GoogleRpc", package: "google-rpc"),

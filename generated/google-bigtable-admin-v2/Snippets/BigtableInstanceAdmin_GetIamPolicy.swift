@@ -19,13 +19,13 @@
 import Foundation
 import GoogleBigtableAdminV2
 import GoogleCloudWkt
-import GoogleIamV1
+import GoogleIAMV1
 import GoogleLongrunning
 import GoogleRpc
 
 func sample(client: BigtableInstanceAdminClient) async throws {
   let response = try await client.getIamPolicy(
-    request: GoogleIamV1.GetIamPolicyRequest()
+    request: GoogleIAMV1.GetIamPolicyRequest()
       /* set fields using .with { $0... } */
   )
   print("Success: \(response)")

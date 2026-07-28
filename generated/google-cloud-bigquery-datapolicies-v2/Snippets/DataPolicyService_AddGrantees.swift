@@ -19,7 +19,7 @@
 import Foundation
 import GoogleCloudBigqueryDatapoliciesV2
 import GoogleCloudWkt
-import GoogleIamV1
+import GoogleIAMV1
 
 func sample(client: DataPolicyServiceClient) async throws {
   let response = try await client.addGrantees(

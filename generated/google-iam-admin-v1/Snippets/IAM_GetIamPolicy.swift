@@ -19,11 +19,11 @@
 import Foundation
 import GoogleIamAdminV1
 import GoogleCloudWkt
-import GoogleIamV1
+import GoogleIAMV1
 
 func sample(client: IAMClient) async throws {
   let response = try await client.getIamPolicy(
-    request: GoogleIamV1.GetIamPolicyRequest()
+    request: GoogleIAMV1.GetIamPolicyRequest()
       /* set fields using .with { $0... } */
   )
   print("Success: \(response)")

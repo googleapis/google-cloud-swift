@@ -16,7 +16,7 @@
 
 import Foundation
 import GoogleCloudWkt
-import GoogleIamV1
+import GoogleIAMV1
 
 /// IAM Policy analysis result, consisting of one IAM policy binding and derived
 /// access control lists.
@@ -33,7 +33,7 @@ public struct IamPolicyAnalysisResult: Codable, Equatable, GoogleCloudWkt._AnyPa
   public var attachedResourceFullName: Swift.String = Swift.String()
 
   /// The IAM policy binding under analysis.
-  public var iamBinding: GoogleIamV1.Binding? = nil
+  public var iamBinding: GoogleIAMV1.Binding? = nil
 
   /// The access control lists derived from the
   /// [iam_binding][google.cloud.asset.v1.IamPolicyAnalysisResult.iam_binding]

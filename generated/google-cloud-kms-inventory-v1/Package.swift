@@ -18,10 +18,10 @@
 import PackageDescription
 
 let package = Package(
-  name: "GoogleCloudKmsInventoryV1",
+  name: "GoogleCloudKMSInventoryV1",
   platforms: [.macOS(.v15)],
   products: [
-    .library(name: "GoogleCloudKmsInventoryV1", targets: ["GoogleCloudKmsInventoryV1"])
+    .library(name: "GoogleCloudKMSInventoryV1", targets: ["GoogleCloudKMSInventoryV1"])
   ],
   dependencies: [
     .package(path: "../../packages/auth"),
@@ -32,11 +32,11 @@ let package = Package(
   ],
   targets: [
     .target(
-      name: "GoogleCloudKmsInventoryV1",
+      name: "GoogleCloudKMSInventoryV1",
       dependencies: [
         .product(name: "GoogleCloudAuth", package: "auth"),
         .product(name: "GoogleCloudGax", package: "gax"),
-        .product(name: "GoogleCloudKmsV1", package: "google-cloud-kms-v1"),
+        .product(name: "GoogleCloudKMSV1", package: "google-cloud-kms-v1"),
         .product(name: "GoogleCloudWkt", package: "wkt"),
         .product(name: "Logging", package: "swift-log"),
       ],

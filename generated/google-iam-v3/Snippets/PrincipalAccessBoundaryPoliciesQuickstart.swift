@@ -17,13 +17,13 @@
 
 // snippet.show
 import Foundation
-import GoogleIamV3
+import GoogleIAMV3
 import GoogleCloudWkt
 import GoogleLongrunning
 import GoogleRpc
 
 func sample(organizationId: String, locationId: String, ) async throws {
-  let client = try GoogleIamV3.PrincipalAccessBoundaryPoliciesClient()
+  let client = try GoogleIAMV3.PrincipalAccessBoundaryPoliciesClient()
   let items = try client.listPrincipalAccessBoundaryPolicies(
     byItem: ListPrincipalAccessBoundaryPoliciesRequest()
       .with {

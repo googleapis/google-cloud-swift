@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudOsconfigV1
+import GoogleCloudOSConfigV1
 import GoogleCloudWkt
 import GoogleLongrunning
 import GoogleRpc
@@ -37,7 +37,7 @@ func sample(client: OsConfigZonalServiceClient) async throws {
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleCloudOsconfigV1.OsConfigZonalServiceClient()
+      let client = try GoogleCloudOSConfigV1.OsConfigZonalServiceClient()
       try await sample(client: client)
     } catch {
       print("Error: \(error)")

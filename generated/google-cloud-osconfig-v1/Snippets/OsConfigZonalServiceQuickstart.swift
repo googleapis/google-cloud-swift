@@ -17,13 +17,13 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudOsconfigV1
+import GoogleCloudOSConfigV1
 import GoogleCloudWkt
 import GoogleLongrunning
 import GoogleRpc
 
 func sample(parent: String, ) async throws {
-  let client = try GoogleCloudOsconfigV1.OsConfigZonalServiceClient()
+  let client = try GoogleCloudOSConfigV1.OsConfigZonalServiceClient()
   let items = try client.listOspolicyAssignments(
     byItem: ListOSPolicyAssignmentsRequest()
       .with {

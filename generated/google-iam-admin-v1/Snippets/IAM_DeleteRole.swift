@@ -19,7 +19,7 @@
 import Foundation
 import GoogleIamAdminV1
 import GoogleCloudWkt
-import GoogleIamV1
+import GoogleIAMV1
 
 func sample(client: IAMClient, name: String) async throws {
   let response = try await client.deleteRole(

@@ -21,7 +21,7 @@
   #endif
   import GoogleCloudLocation
   import GoogleCloudWkt
-  import GoogleIamV1
+  import GoogleIAMV1
   import GoogleLongrunning
   import GoogleRpc
   import GoogleCloudGax
@@ -165,45 +165,45 @@
       }
 
       public func setIamPolicy(
-        request: GoogleIamV1.SetIamPolicyRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleIamV1.Policy {
+        request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleCloudGax.RequestOptions
+      ) async throws -> GoogleIAMV1.Policy {
         try await self._intercept(
           request: request,
           options: options,
           name: "setIamPolicy",
           action: {
-            (r: GoogleIamV1.SetIamPolicyRequest, o: GoogleCloudGax.RequestOptions) async throws
-              -> GoogleIamV1.Policy
+            (r: GoogleIAMV1.SetIamPolicyRequest, o: GoogleCloudGax.RequestOptions) async throws
+              -> GoogleIAMV1.Policy
             in
             return try await self.inner.setIamPolicy(request: r, options: o)
           })
       }
 
       public func getIamPolicy(
-        request: GoogleIamV1.GetIamPolicyRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleIamV1.Policy {
+        request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleCloudGax.RequestOptions
+      ) async throws -> GoogleIAMV1.Policy {
         try await self._intercept(
           request: request,
           options: options,
           name: "getIamPolicy",
           action: {
-            (r: GoogleIamV1.GetIamPolicyRequest, o: GoogleCloudGax.RequestOptions) async throws
-              -> GoogleIamV1.Policy
+            (r: GoogleIAMV1.GetIamPolicyRequest, o: GoogleCloudGax.RequestOptions) async throws
+              -> GoogleIAMV1.Policy
             in
             return try await self.inner.getIamPolicy(request: r, options: o)
           })
       }
 
       public func testIamPermissions(
-        request: GoogleIamV1.TestIamPermissionsRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleIamV1.TestIamPermissionsResponse {
+        request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleCloudGax.RequestOptions
+      ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
         try await self._intercept(
           request: request,
           options: options,
           name: "testIamPermissions",
           action: {
-            (r: GoogleIamV1.TestIamPermissionsRequest, o: GoogleCloudGax.RequestOptions)
-              async throws -> GoogleIamV1.TestIamPermissionsResponse
+            (r: GoogleIAMV1.TestIamPermissionsRequest, o: GoogleCloudGax.RequestOptions)
+              async throws -> GoogleIAMV1.TestIamPermissionsResponse
             in
             return try await self.inner.testIamPermissions(request: r, options: o)
           })

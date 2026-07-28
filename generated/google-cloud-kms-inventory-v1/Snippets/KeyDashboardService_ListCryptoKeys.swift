@@ -17,8 +17,8 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudKmsInventoryV1
-import GoogleCloudKmsV1
+import GoogleCloudKMSInventoryV1
+import GoogleCloudKMSV1
 import GoogleCloudWkt
 
 func sample(client: KeyDashboardServiceClient, parent: String) async throws {
@@ -38,7 +38,7 @@ func sample(client: KeyDashboardServiceClient, parent: String) async throws {
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleCloudKmsInventoryV1.KeyDashboardServiceClient()
+      let client = try GoogleCloudKMSInventoryV1.KeyDashboardServiceClient()
       try await sample(client: client, parent: "[placeholder]")
     } catch {
       print("Error: \(error)")

@@ -20,7 +20,7 @@ import Foundation
 import GoogleCloudSecretManagerV1
 import GoogleCloudLocation
 import GoogleCloudWkt
-import GoogleIamV1
+import GoogleIAMV1
 
 func sample(client: SecretManagerServiceClient) async throws {
   let response = try await client.accessSecretVersion(

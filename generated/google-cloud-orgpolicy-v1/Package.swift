@@ -18,17 +18,17 @@
 import PackageDescription
 
 let package = Package(
-  name: "GoogleCloudOrgpolicyV1",
+  name: "GoogleCloudOrgPolicyV1",
   platforms: [.macOS(.v15)],
   products: [
-    .library(name: "GoogleCloudOrgpolicyV1", targets: ["GoogleCloudOrgpolicyV1"])
+    .library(name: "GoogleCloudOrgPolicyV1", targets: ["GoogleCloudOrgPolicyV1"])
   ],
   dependencies: [
     .package(path: "../../packages/wkt")
   ],
   targets: [
     .target(
-      name: "GoogleCloudOrgpolicyV1",
+      name: "GoogleCloudOrgPolicyV1",
       dependencies: [
         .product(name: "GoogleCloudWkt", package: "wkt")
       ],

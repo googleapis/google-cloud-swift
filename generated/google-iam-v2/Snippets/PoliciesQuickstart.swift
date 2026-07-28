@@ -17,13 +17,13 @@
 
 // snippet.show
 import Foundation
-import GoogleIamV2
+import GoogleIAMV2
 import GoogleCloudWkt
 import GoogleLongrunning
 import GoogleRpc
 
 func sample() async throws {
-  let client = try GoogleIamV2.PoliciesClient()
+  let client = try GoogleIAMV2.PoliciesClient()
   let items = try client.listPolicies(
     byItem: ListPoliciesRequest()
       /* set fields using .with { $0... } */

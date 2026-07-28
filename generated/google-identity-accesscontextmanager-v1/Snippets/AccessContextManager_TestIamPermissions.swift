@@ -17,15 +17,15 @@
 
 // snippet.show
 import Foundation
-import GoogleIdentityAccesscontextmanagerV1
+import GoogleIdentityAccessContextManagerV1
 import GoogleCloudWkt
-import GoogleIamV1
+import GoogleIAMV1
 import GoogleLongrunning
 import GoogleRpc
 
 func sample(client: AccessContextManagerClient) async throws {
   let response = try await client.testIamPermissions(
-    request: GoogleIamV1.TestIamPermissionsRequest()
+    request: GoogleIAMV1.TestIamPermissionsRequest()
       /* set fields using .with { $0... } */
   )
   print("Success: \(response)")
@@ -36,7 +36,7 @@ func sample(client: AccessContextManagerClient) async throws {
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleIdentityAccesscontextmanagerV1.AccessContextManagerClient()
+      let client = try GoogleIdentityAccessContextManagerV1.AccessContextManagerClient()
       try await sample(client: client)
     } catch {
       print("Error: \(error)")

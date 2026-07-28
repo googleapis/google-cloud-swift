@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudGkehubConfigmanagementV1
+import GoogleCloudGkeHubConfigManagementV1
 import GoogleCloudWkt
 
 /// MembershipFeatureSpec contains configuration information for a single
@@ -59,7 +59,7 @@ public struct MembershipFeatureSpec: Codable, Equatable, GoogleCloudWkt._AnyPack
       featureSpec = $0
     }
     if let configmanagement = try container.decodeIfPresent(
-      GoogleCloudGkehubConfigmanagementV1.MembershipSpec?.self, forKey: .configmanagement)
+      GoogleCloudGkeHubConfigManagementV1.MembershipSpec?.self, forKey: .configmanagement)
     {
       try featureSpecCheckAndSet(.configmanagement(configmanagement))
     }
@@ -79,7 +79,7 @@ public struct MembershipFeatureSpec: Codable, Equatable, GoogleCloudWkt._AnyPack
 
   public enum OneOf_FeatureSpec: Codable, Equatable, Sendable {
     /// Config Management-specific spec.
-    indirect case configmanagement(GoogleCloudGkehubConfigmanagementV1.MembershipSpec?)
+    indirect case configmanagement(GoogleCloudGkeHubConfigManagementV1.MembershipSpec?)
   }
 
   public static var _anyTypeUrl: Swift.String {

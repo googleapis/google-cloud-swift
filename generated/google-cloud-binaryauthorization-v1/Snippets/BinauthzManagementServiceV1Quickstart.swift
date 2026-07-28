@@ -19,7 +19,7 @@
 import Foundation
 import GoogleCloudBinaryauthorizationV1
 import GoogleCloudWkt
-import GoogleIamV1
+import GoogleIAMV1
 
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudBinaryauthorizationV1.BinauthzManagementServiceV1Client()

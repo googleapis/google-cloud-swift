@@ -17,12 +17,12 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudKmsInventoryV1
-import GoogleCloudKmsV1
+import GoogleCloudKMSInventoryV1
+import GoogleCloudKMSV1
 import GoogleCloudWkt
 
 func sample(parent: String, ) async throws {
-  let client = try GoogleCloudKmsInventoryV1.KeyDashboardServiceClient()
+  let client = try GoogleCloudKMSInventoryV1.KeyDashboardServiceClient()
   let items = try client.listCryptoKeys(
     byItem: ListCryptoKeysRequest()
       .with {

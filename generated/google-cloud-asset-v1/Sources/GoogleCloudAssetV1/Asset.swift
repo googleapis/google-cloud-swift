@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudOrgpolicyV1
-import GoogleCloudOsconfigV1
+import GoogleCloudOSConfigV1
+import GoogleCloudOrgPolicyV1
 import GoogleCloudWkt
-import GoogleIamV1
-import GoogleIdentityAccesscontextmanagerV1
+import GoogleIAMV1
+import GoogleIdentityAccessContextManagerV1
 
 /// An asset in Google Cloud. An asset can be any resource in the Google Cloud
 /// [resource
@@ -64,18 +64,18 @@ public struct Asset: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// the hierarchy. See
   /// [this topic](https://cloud.google.com/iam/help/allow-policies/inheritance)
   /// for more information.
-  public var iamPolicy: GoogleIamV1.Policy? = nil
+  public var iamPolicy: GoogleIAMV1.Policy? = nil
 
   /// A representation of an [organization
   /// policy](https://cloud.google.com/resource-manager/docs/organization-policy/overview#organization_policy).
   /// There can be more than one organization policy with different constraints
   /// set on a given resource.
-  public var orgPolicy: [GoogleCloudOrgpolicyV1.Policy] = []
+  public var orgPolicy: [GoogleCloudOrgPolicyV1.Policy] = []
 
   /// A representation of runtime OS Inventory information. See [this
   /// topic](https://cloud.google.com/compute/docs/instances/os-inventory-management)
   /// for more information.
-  public var osInventory: GoogleCloudOsconfigV1.Inventory? = nil
+  public var osInventory: GoogleCloudOSConfigV1.Inventory? = nil
 
   /// DEPRECATED. This field only presents for the purpose of
   /// backward-compatibility. The server will never generate responses with this
@@ -141,10 +141,10 @@ public struct Asset: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     self.name = try container.decode(Swift.String.self, forKey: .name)
     self.assetType = try container.decode(Swift.String.self, forKey: .assetType)
     self.resource = try container.decodeIfPresent(Resource.self, forKey: .resource)
-    self.iamPolicy = try container.decodeIfPresent(GoogleIamV1.Policy.self, forKey: .iamPolicy)
-    self.orgPolicy = try container.decode([GoogleCloudOrgpolicyV1.Policy].self, forKey: .orgPolicy)
+    self.iamPolicy = try container.decodeIfPresent(GoogleIAMV1.Policy.self, forKey: .iamPolicy)
+    self.orgPolicy = try container.decode([GoogleCloudOrgPolicyV1.Policy].self, forKey: .orgPolicy)
     self.osInventory = try container.decodeIfPresent(
-      GoogleCloudOsconfigV1.Inventory.self, forKey: .osInventory)
+      GoogleCloudOSConfigV1.Inventory.self, forKey: .osInventory)
     self.relatedAssets = try container.decodeIfPresent(RelatedAssets.self, forKey: .relatedAssets)
     self.relatedAsset = try container.decodeIfPresent(RelatedAsset.self, forKey: .relatedAsset)
     self.ancestors = try container.decode([Swift.String].self, forKey: .ancestors)
@@ -160,17 +160,17 @@ public struct Asset: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       accessContextPolicy = $0
     }
     if let accessPolicy = try container.decodeIfPresent(
-      GoogleIdentityAccesscontextmanagerV1.AccessPolicy?.self, forKey: .accessPolicy)
+      GoogleIdentityAccessContextManagerV1.AccessPolicy?.self, forKey: .accessPolicy)
     {
       try accessContextPolicyCheckAndSet(.accessPolicy(accessPolicy))
     }
     if let accessLevel = try container.decodeIfPresent(
-      GoogleIdentityAccesscontextmanagerV1.AccessLevel?.self, forKey: .accessLevel)
+      GoogleIdentityAccessContextManagerV1.AccessLevel?.self, forKey: .accessLevel)
     {
       try accessContextPolicyCheckAndSet(.accessLevel(accessLevel))
     }
     if let servicePerimeter = try container.decodeIfPresent(
-      GoogleIdentityAccesscontextmanagerV1.ServicePerimeter?.self, forKey: .servicePerimeter)
+      GoogleIdentityAccessContextManagerV1.ServicePerimeter?.self, forKey: .servicePerimeter)
     {
       try accessContextPolicyCheckAndSet(.servicePerimeter(servicePerimeter))
     }
@@ -207,13 +207,13 @@ public struct Asset: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public enum OneOf_AccessContextPolicy: Codable, Equatable, Sendable {
     /// Also refer to the [access policy user
     /// guide](https://cloud.google.com/access-context-manager/docs/overview#access-policies).
-    indirect case accessPolicy(GoogleIdentityAccesscontextmanagerV1.AccessPolicy?)
+    indirect case accessPolicy(GoogleIdentityAccessContextManagerV1.AccessPolicy?)
     /// Also refer to the [access level user
     /// guide](https://cloud.google.com/access-context-manager/docs/overview#access-levels).
-    indirect case accessLevel(GoogleIdentityAccesscontextmanagerV1.AccessLevel?)
+    indirect case accessLevel(GoogleIdentityAccessContextManagerV1.AccessLevel?)
     /// Also refer to the [service perimeter user
     /// guide](https://cloud.google.com/vpc-service-controls/docs/overview).
-    indirect case servicePerimeter(GoogleIdentityAccesscontextmanagerV1.ServicePerimeter?)
+    indirect case servicePerimeter(GoogleIdentityAccessContextManagerV1.ServicePerimeter?)
   }
 
   public static var _anyTypeUrl: Swift.String {

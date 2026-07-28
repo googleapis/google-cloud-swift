@@ -17,15 +17,15 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudKmsV1
+import GoogleCloudKMSV1
 import GoogleCloudLocation
 import GoogleCloudWkt
-import GoogleIamV1
+import GoogleIAMV1
 import GoogleLongrunning
 import GoogleRpc
 
 func sample(parent: String, ) async throws {
-  let client = try GoogleCloudKmsV1.AutokeyClient()
+  let client = try GoogleCloudKMSV1.AutokeyClient()
   let items = try client.listKeyHandles(
     byItem: ListKeyHandlesRequest()
       .with {

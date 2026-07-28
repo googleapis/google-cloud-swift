@@ -20,12 +20,12 @@ import Foundation
 import GoogleCloudDataplexV1
 import GoogleCloudLocation
 import GoogleCloudWkt
-import GoogleIamV1
+import GoogleIAMV1
 import GoogleLongrunning
 
 func sample(client: ContentServiceClient) async throws {
   let response = try await client.testIamPermissions(
-    request: GoogleIamV1.TestIamPermissionsRequest()
+    request: GoogleIAMV1.TestIamPermissionsRequest()
       /* set fields using .with { $0... } */
   )
   print("Success: \(response)")

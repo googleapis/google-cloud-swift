@@ -22,13 +22,13 @@
   import GoogleApi
   import GoogleCloudLocation
   import GoogleCloudWkt
-  import GoogleIamV1
+  import GoogleIAMV1
   import GoogleLongrunning
   import GoogleRpc
 
   func sample(client: ReasoningEngineExecutionServiceClient) async throws {
     let response = try await client.setIamPolicy(
-      request: GoogleIamV1.SetIamPolicyRequest()
+      request: GoogleIAMV1.SetIamPolicyRequest()
         /* set fields using .with { $0... } */
     )
     print("Success: \(response)")

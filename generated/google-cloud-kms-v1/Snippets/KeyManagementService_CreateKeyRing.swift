@@ -17,10 +17,10 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudKmsV1
+import GoogleCloudKMSV1
 import GoogleCloudLocation
 import GoogleCloudWkt
-import GoogleIamV1
+import GoogleIAMV1
 import GoogleLongrunning
 import GoogleRpc
 
@@ -40,7 +40,7 @@ func sample(client: KeyManagementServiceClient, parent: String) async throws {
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleCloudKmsV1.KeyManagementServiceClient()
+      let client = try GoogleCloudKMSV1.KeyManagementServiceClient()
       try await sample(client: client, parent: "[placeholder]")
     } catch {
       print("Error: \(error)")

@@ -22,7 +22,7 @@
   import GoogleApi
   import GoogleCloudLocation
   import GoogleCloudWkt
-  import GoogleIamV1
+  import GoogleIAMV1
   import GoogleLongrunning
   import GoogleCloudGax
 
@@ -77,16 +77,16 @@
       ) async throws -> GoogleCloudLocation.Location
 
       func setIamPolicy(
-        request: GoogleIamV1.SetIamPolicyRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleIamV1.Policy
+        request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleCloudGax.RequestOptions
+      ) async throws -> GoogleIAMV1.Policy
 
       func getIamPolicy(
-        request: GoogleIamV1.GetIamPolicyRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleIamV1.Policy
+        request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleCloudGax.RequestOptions
+      ) async throws -> GoogleIAMV1.Policy
 
       func testIamPermissions(
-        request: GoogleIamV1.TestIamPermissionsRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleIamV1.TestIamPermissionsResponse
+        request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleCloudGax.RequestOptions
+      ) async throws -> GoogleIAMV1.TestIamPermissionsResponse
 
       func listOperations(
         request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
@@ -382,8 +382,8 @@
       }
 
       public func setIamPolicy(
-        request: GoogleIamV1.SetIamPolicyRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleIamV1.Policy {
+        request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleCloudGax.RequestOptions
+      ) async throws -> GoogleIAMV1.Policy {
         let path = try { () throws -> Swift.String in
           guard let pathVariable0 = request.resource as Swift.String?, !pathVariable0.isEmpty else {
             throw GoogleCloudGax.RequestError.binding("'request.resource' is not set or is empty")
@@ -400,12 +400,12 @@
         req.httpBody = try JSONEncoder().encode(request)
         let (data, _) = try await self.inner.rpc(for: req).get()
         return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleIamV1.Policy.self, from: data)
+          GoogleIAMV1.Policy.self, from: data)
       }
 
       public func getIamPolicy(
-        request: GoogleIamV1.GetIamPolicyRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleIamV1.Policy {
+        request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleCloudGax.RequestOptions
+      ) async throws -> GoogleIAMV1.Policy {
         let path = try { () throws -> Swift.String in
           guard let pathVariable0 = request.resource as Swift.String?, !pathVariable0.isEmpty else {
             throw GoogleCloudGax.RequestError.binding("'request.resource' is not set or is empty")
@@ -422,12 +422,12 @@
         req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
         let (data, _) = try await self.inner.rpc(for: req).get()
         return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleIamV1.Policy.self, from: data)
+          GoogleIAMV1.Policy.self, from: data)
       }
 
       public func testIamPermissions(
-        request: GoogleIamV1.TestIamPermissionsRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleIamV1.TestIamPermissionsResponse {
+        request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleCloudGax.RequestOptions
+      ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
         let path = try { () throws -> Swift.String in
           guard let pathVariable0 = request.resource as Swift.String?, !pathVariable0.isEmpty else {
             throw GoogleCloudGax.RequestError.binding("'request.resource' is not set or is empty")
@@ -444,7 +444,7 @@
         req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
         let (data, _) = try await self.inner.rpc(for: req).get()
         return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleIamV1.TestIamPermissionsResponse.self, from: data)
+          GoogleIAMV1.TestIamPermissionsResponse.self, from: data)
       }
 
       public func listOperations(

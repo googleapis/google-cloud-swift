@@ -18,19 +18,19 @@
 import PackageDescription
 
 let package = Package(
-  name: "GoogleCloudGkehubMulticlusteringressV1",
+  name: "GoogleCloudGkeHubMultiClusterIngressV1",
   platforms: [.macOS(.v15)],
   products: [
     .library(
-      name: "GoogleCloudGkehubMulticlusteringressV1",
-      targets: ["GoogleCloudGkehubMulticlusteringressV1"])
+      name: "GoogleCloudGkeHubMultiClusterIngressV1",
+      targets: ["GoogleCloudGkeHubMultiClusterIngressV1"])
   ],
   dependencies: [
     .package(path: "../../packages/wkt")
   ],
   targets: [
     .target(
-      name: "GoogleCloudGkehubMulticlusteringressV1",
+      name: "GoogleCloudGkeHubMultiClusterIngressV1",
       dependencies: [
         .product(name: "GoogleCloudWkt", package: "wkt")
       ],

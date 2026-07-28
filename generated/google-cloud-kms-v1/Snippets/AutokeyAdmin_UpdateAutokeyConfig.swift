@@ -17,10 +17,10 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudKmsV1
+import GoogleCloudKMSV1
 import GoogleCloudLocation
 import GoogleCloudWkt
-import GoogleIamV1
+import GoogleIAMV1
 import GoogleLongrunning
 
 func sample(client: AutokeyAdminClient, folderId: String) async throws {
@@ -41,7 +41,7 @@ func sample(client: AutokeyAdminClient, folderId: String) async throws {
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleCloudKmsV1.AutokeyAdminClient()
+      let client = try GoogleCloudKMSV1.AutokeyAdminClient()
       try await sample(client: client, folderId: "[placeholder]")
     } catch {
       print("Error: \(error)")

@@ -19,7 +19,7 @@
 import Foundation
 import GoogleCloudBinaryauthorizationV1
 import GoogleCloudWkt
-import GoogleIamV1
+import GoogleIAMV1
 
 func sample(client: ValidationHelperV1Client) async throws {
   let response = try await client.validateAttestationOccurrence(

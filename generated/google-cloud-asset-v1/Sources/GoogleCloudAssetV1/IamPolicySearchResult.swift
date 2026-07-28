@@ -16,7 +16,7 @@
 
 import Foundation
 import GoogleCloudWkt
-import GoogleIamV1
+import GoogleIAMV1
 
 /// A result of IAM Policy search, containing information of an IAM policy.
 public struct IamPolicySearchResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
@@ -89,7 +89,7 @@ public struct IamPolicySearchResult: Codable, Equatable, GoogleCloudWkt._AnyPack
   ///       `policy:roles/compute.admin`
   ///     - query by the policy contained roles' included permissions. Example:
   ///       `policy.role.permissions:compute.instances.create`
-  public var policy: GoogleIamV1.Policy? = nil
+  public var policy: GoogleIAMV1.Policy? = nil
 
   /// Explanation about the IAM policy search result. It contains additional
   /// information to explain why the search result matches the query.

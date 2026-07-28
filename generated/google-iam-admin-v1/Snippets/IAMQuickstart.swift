@@ -19,7 +19,7 @@
 import Foundation
 import GoogleIamAdminV1
 import GoogleCloudWkt
-import GoogleIamV1
+import GoogleIAMV1
 
 func sample(projectId: String, serviceAccountId: String, ) async throws {
   let client = try GoogleIamAdminV1.IAMClient()

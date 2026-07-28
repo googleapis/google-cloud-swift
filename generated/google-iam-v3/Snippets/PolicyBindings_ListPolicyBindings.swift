@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleIamV3
+import GoogleIAMV3
 import GoogleCloudWkt
 import GoogleLongrunning
 import GoogleRpc
@@ -39,7 +39,7 @@ func sample(client: PolicyBindingsClient, organizationId: String, locationId: St
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleIamV3.PolicyBindingsClient()
+      let client = try GoogleIAMV3.PolicyBindingsClient()
       try await sample(client: client, organizationId: "[placeholder]", locationId: "[placeholder]")
     } catch {
       print("Error: \(error)")

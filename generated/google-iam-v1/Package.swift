@@ -18,10 +18,10 @@
 import PackageDescription
 
 let package = Package(
-  name: "GoogleIamV1",
+  name: "GoogleIAMV1",
   platforms: [.macOS(.v15)],
   products: [
-    .library(name: "GoogleIamV1", targets: ["GoogleIamV1"])
+    .library(name: "GoogleIAMV1", targets: ["GoogleIAMV1"])
   ],
   dependencies: [
     .package(path: "../../packages/auth"),
@@ -32,7 +32,7 @@ let package = Package(
   ],
   targets: [
     .target(
-      name: "GoogleIamV1",
+      name: "GoogleIAMV1",
       dependencies: [
         .product(name: "GoogleCloudAuth", package: "auth"),
         .product(name: "GoogleCloudGax", package: "gax"),

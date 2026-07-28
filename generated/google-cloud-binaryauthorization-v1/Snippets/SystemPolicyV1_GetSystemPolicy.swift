@@ -19,7 +19,7 @@
 import Foundation
 import GoogleCloudBinaryauthorizationV1
 import GoogleCloudWkt
-import GoogleIamV1
+import GoogleIAMV1
 
 func sample(client: SystemPolicyV1Client, projectId: String) async throws {
   let response = try await client.getSystemPolicy(

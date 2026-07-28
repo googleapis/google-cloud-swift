@@ -19,13 +19,13 @@
 import Foundation
 import GoogleCloudBigqueryAnalyticshubV1
 import GoogleCloudWkt
-import GoogleIamV1
+import GoogleIAMV1
 import GoogleLongrunning
 import GoogleRpc
 
 func sample(client: AnalyticsHubServiceClient) async throws {
   let response = try await client.testIamPermissions(
-    request: GoogleIamV1.TestIamPermissionsRequest()
+    request: GoogleIAMV1.TestIamPermissionsRequest()
       /* set fields using .with { $0... } */
   )
   print("Success: \(response)")

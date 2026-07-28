@@ -17,7 +17,7 @@
 import Foundation
 import GoogleCloudGax
 import GoogleCloudWkt
-import GoogleIamV1
+import GoogleIAMV1
 
 /// The response message for
 /// [AssetService.AnalyzeOrgPolicyGovernedAssets][google.cloud.asset.v1.AssetService.AnalyzeOrgPolicyGovernedAssets].
@@ -149,7 +149,7 @@ public struct AnalyzeOrgPolicyGovernedAssetsResponse: Codable, Equatable, Google
     public var attachedResource: Swift.String = Swift.String()
 
     /// The IAM policy directly set on the given resource.
-    public var policy: GoogleIamV1.Policy? = nil
+    public var policy: GoogleIAMV1.Policy? = nil
 
     /// The project that this IAM policy belongs to, in the format of
     /// projects/{PROJECT_NUMBER}. This field is available when the IAM policy

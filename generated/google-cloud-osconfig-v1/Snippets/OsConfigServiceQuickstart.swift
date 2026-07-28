@@ -17,12 +17,12 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudOsconfigV1
+import GoogleCloudOSConfigV1
 import GoogleCloudWkt
 import GoogleLongrunning
 
 func sample(parent: String, ) async throws {
-  let client = try GoogleCloudOsconfigV1.OsConfigServiceClient()
+  let client = try GoogleCloudOSConfigV1.OsConfigServiceClient()
   let items = try client.listPatchJobs(
     byItem: ListPatchJobsRequest()
       .with {

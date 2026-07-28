@@ -20,7 +20,7 @@ import Foundation
 import GoogleCloudDataplexV1
 import GoogleCloudLocation
 import GoogleCloudWkt
-import GoogleIamV1
+import GoogleIAMV1
 import GoogleLongrunning
 
 func sample() async throws {

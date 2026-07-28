@@ -20,13 +20,13 @@ import Foundation
 import GoogleCloudNetworkconnectivityV1
 import GoogleCloudLocation
 import GoogleCloudWkt
-import GoogleIamV1
+import GoogleIAMV1
 import GoogleLongrunning
 import GoogleRpc
 
 func sample(client: PolicyBasedRoutingServiceClient) async throws {
   let response = try await client.getIamPolicy(
-    request: GoogleIamV1.GetIamPolicyRequest()
+    request: GoogleIAMV1.GetIamPolicyRequest()
       /* set fields using .with { $0... } */
   )
   print("Success: \(response)")

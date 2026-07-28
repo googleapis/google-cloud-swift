@@ -40,7 +40,7 @@ let package = Package(
         .product(name: "GoogleCloudGax", package: "gax"),
         .product(name: "GoogleCloudLocation", package: "google-cloud-location"),
         .product(name: "GoogleCloudWkt", package: "wkt"),
-        .product(name: "GoogleIamV1", package: "google-iam-v1"),
+        .product(name: "GoogleIAMV1", package: "google-iam-v1"),
         .product(name: "GoogleRpc", package: "google-rpc"),
         .product(name: "Logging", package: "swift-log"),
       ],

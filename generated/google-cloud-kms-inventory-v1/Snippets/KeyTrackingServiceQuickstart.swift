@@ -17,13 +17,13 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudKmsInventoryV1
+import GoogleCloudKMSInventoryV1
 import GoogleCloudWkt
 
 func sample(projectId: String, locationId: String, keyRingId: String, cryptoKeyId: String, )
   async throws
 {
-  let client = try GoogleCloudKmsInventoryV1.KeyTrackingServiceClient()
+  let client = try GoogleCloudKMSInventoryV1.KeyTrackingServiceClient()
   let response = try await client.getProtectedResourcesSummary(
     request: GetProtectedResourcesSummaryRequest()
       .with {

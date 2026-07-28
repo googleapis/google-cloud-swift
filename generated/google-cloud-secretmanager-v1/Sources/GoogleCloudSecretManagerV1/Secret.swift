@@ -16,7 +16,7 @@
 
 import Foundation
 import GoogleCloudWkt
-import GoogleIamV1
+import GoogleIAMV1
 
 /// A [Secret][google.cloud.secretmanager.v1.Secret] is a logical secret whose
 /// value and versions can be accessed.
@@ -151,7 +151,7 @@ public struct Secret: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// Output only. Defines the policy member for the secret.
   /// This will be used to check if the caller has the permission to perform
   /// certain operations on the typed secret.
-  public var policyMember: GoogleIamV1.ResourcePolicyMember? = nil
+  public var policyMember: GoogleIAMV1.ResourcePolicyMember? = nil
 
   /// Expiration policy attached to the
   /// [Secret][google.cloud.secretmanager.v1.Secret]. If specified the
@@ -224,7 +224,7 @@ public struct Secret: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     self.tags = try container.decode([Swift.String: Swift.String].self, forKey: .tags)
     self.secretType = try container.decode(Secret.SecretType.self, forKey: .secretType)
     self.policyMember = try container.decodeIfPresent(
-      GoogleIamV1.ResourcePolicyMember.self, forKey: .policyMember)
+      GoogleIAMV1.ResourcePolicyMember.self, forKey: .policyMember)
 
     var expiration: OneOf_Expiration? = nil
     let expirationCheckAndSet = {
