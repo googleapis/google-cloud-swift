@@ -57,17 +57,17 @@ for dir in "${packages[@]}"; do
     [[ -d "${dir}/Tests" ]] || continue
     echo "::info:: --- Testing ${dir} ---"
     if swift test "${flags[@]}" --quiet --package-path "${dir}"; then
-        echo "::info:: ✓ ${dir} passed"
+        echo "::notice:: ✓ ${dir} passed"
         echo "::endgroup::"
     else
         echo "::endgroup::"
-        echo "::error:: ✗ ${dir} failed" >&2
+        echo "::error:: ✗ ${dir} failed"
         errors=$((errors + 1))
     fi
 done
 
 echo ""
-echo "::info:: ${count} local package(s) tested, ${errors} failure(s)."
+echo "::notice:: ${count} local package(s) tested, ${errors} failure(s)."
 
 if [[ ${errors} -gt 0 ]]; then
     exit 1

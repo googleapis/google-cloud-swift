@@ -65,17 +65,17 @@ for dir in "${packages[@]}"; do
     # For local packages, we run swift-format directly on the Sources and Tests directories
     # to avoid the SPM plugin forcefully feeding the generated Rust bridge files.
     if swift-format lint -r "${dir}/Sources" "${dir}/Tests"; then
-        echo "::info:: ✓ ${dir} passed"
+        echo "::notice:: ✓ ${dir} passed"
         echo "::endgroup::"
     else
         echo "::endgroup::"
-        echo "::error:: ✗ ${dir} failed" >&2
+        echo "::error:: ✗ ${dir} failed"
         errors=$((errors + 1))
     fi
 done
 
 echo ""
-echo "::info:: ${count} local package(s) linted, ${errors} failure(s)."
+echo "::notice:: ${count} local package(s) linted, ${errors} failure(s)."
 
 if [[ ${errors} -gt 0 ]]; then
     exit 1
