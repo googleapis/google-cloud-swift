@@ -23,9 +23,11 @@ import Testing
     let mock = MockPollingPolicy(onError: { _, e in .permanent(e) })
     let policy = mock.continueOnTooManyRequests()
 
-    #expect(policy.onError(state: PollingState(), error: tooManyRequests()) == .retry(tooManyRequests()))
     #expect(
-      policy.onError(state: PollingState(), error: tooManyRequestsHttp()) == .retry(tooManyRequestsHttp()))
+      policy.onError(state: PollingState(), error: tooManyRequests()) == .retry(tooManyRequests()))
+    #expect(
+      policy.onError(state: PollingState(), error: tooManyRequestsHttp())
+        == .retry(tooManyRequestsHttp()))
     #expect(policy.onError(state: PollingState(), error: permanent()) == .permanent(permanent()))
   }
 
