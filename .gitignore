@@ -15,7 +15,7 @@
 # Swift creates many files:
 .build/
 Packages/*/.build/
-.swiftpm/xcode/package.xcworkspace/contents.xcwrappercontents
+.swiftpm/xcode/package.xcworkspace/contents.xcworkspacedata
 .swiftpm/configuration/
 
 */**/Package.resolved
