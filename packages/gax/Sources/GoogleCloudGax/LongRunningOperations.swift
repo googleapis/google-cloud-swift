@@ -60,8 +60,8 @@ public final class _PollableOperationImpl<ResponseType>: PollableOperation {
   private var state: State
   private let pollOp: Poll
   private let sleep: Sleep
-  private var backoffPolicy: BackoffPolicy = LinearBackoffPolicy()
-  private var pollingPolicy: PollingErrorPolicy = BasePollingPolicy()
+  private let pollingPolicy: PollingErrorPolicy
+  private let backoffPolicy: BackoffPolicy
 
   /// Initializes a new pollable operation implementation.
   ///
@@ -77,13 +77,30 @@ public final class _PollableOperationImpl<ResponseType>: PollableOperation {
     self.state = initialState
     self.pollOp = poll
     self.sleep = sleep
+    self.pollingPolicy = defaultPollingErrorPolicy()
+    self.backoffPolicy = defaultPollingBackoffPolicy()
   }
 
-  public func withPolicies(polling: PollingErrorPolicy, backoff: BackoffPolicy) -> Self {
-    let copy = self
-    copy.pollingPolicy = polling
-    copy.backoffPolicy = backoff
-    return copy
+  /// Initializes a new pollable operation implementation.
+  ///
+  /// - Parameters:
+  ///   - initialState: The initial state of the operation, typically constructed from the initial response.
+  ///   - polling: The polling error policy, how the loop responds when `pollOp` throws an error.
+  ///   - backoff: The backoff policy, how long the loop waits after polling.
+  ///   - poll: A closure that fetches the latest state of the operation from the server.
+  ///   - sleep: A closure that suspends the current task. Defaults to using `Task.sleep(for:)`.
+  public init(
+    initialState: State,
+    polling: any PollingErrorPolicy,
+    backoff: any BackoffPolicy,
+    poll: @escaping Poll,
+    sleep: @escaping Sleep = { try await Task.sleep(for: $0) },
+  ) {
+    self.state = initialState
+    self.pollOp = poll
+    self.sleep = sleep
+    self.pollingPolicy = polling
+    self.backoffPolicy = backoff
   }
 
   /// Waits for the long-running operation to complete.

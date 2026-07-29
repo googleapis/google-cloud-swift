@@ -23,7 +23,7 @@ import GoogleRpc
 /// This policy only continues if the error is an I/O error, or a safe error code.
 ///
 /// [AIP-194]: https://google.aip.dev/194
-final public class BasePollingPolicy: PollingErrorPolicy {
+final public class BasePollingErrorPolicy: PollingErrorPolicy {
   let inner: TooManyRequests<ContinueOnIO<Aip194>>
 
   public init() {

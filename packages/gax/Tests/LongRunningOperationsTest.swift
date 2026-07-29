@@ -204,9 +204,11 @@ import GoogleRpc
 
     let op = _PollableOperationImpl<String>(
       initialState: Self.pendingState(),
-      poll: pollProvider.poll, sleep: sleepProvider.sleep
+      polling: pollingPolicy,
+      backoff: backoffPolicy,
+      poll: pollProvider.poll,
+      sleep: sleepProvider.sleep,
     )
-    .withPolicies(polling: pollingPolicy, backoff: backoffPolicy)
     let res = try await op.wait()
     #expect(res == "polling success")
     #expect(inProgressCount.load(ordering: .sequentiallyConsistent) == 5)
@@ -241,9 +243,11 @@ import GoogleRpc
 
     let op = _PollableOperationImpl<String>(
       initialState: Self.pendingState(),
-      poll: pollProvider.poll, sleep: sleepProvider.sleep
+      polling: pollingPolicy,
+      backoff: backoffPolicy,
+      poll: pollProvider.poll,
+      sleep: sleepProvider.sleep
     )
-    .withPolicies(polling: pollingPolicy, backoff: backoffPolicy)
     let error = await #expect(throws: RequestError.self) {
       try await op.wait()
     }

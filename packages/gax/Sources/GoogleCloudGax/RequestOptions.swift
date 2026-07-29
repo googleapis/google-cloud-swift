@@ -58,4 +58,14 @@ public struct RequestOptions: Sendable {
   /// be when the requests may be logically grouped by some backend resource, say a database or
   /// storage system instance, where one may expect they suffer from independent overload conditions.
   public var retryThrottler: (any RetryThrottler)? = nil
+
+  /// Overrides the default polling error policy.
+  ///
+  /// Without an override, the request uses the polling error policy configured in the client.
+  public var pollingErrorPolicy: (any PollingErrorPolicy)? = nil
+
+  /// Overrides the default polling backoff policy.
+  ///
+  /// Without an override, the request uses the polling backoff policy configured in the client.
+  public var pollingBackoffPolicy: (any BackoffPolicy)? = nil
 }
