@@ -59,6 +59,9 @@ default:
       - name: GoogleCloudLocation
         path: generated/google-cloud-location
         api_package: google.cloud.location
+      - name: GoogleCloudLoggingType
+        path: generated/google-logging-type
+        api_package: google.logging.type
       - name: GoogleCloudOSConfigV1
         path: generated/google-cloud-osconfig-v1
         api_package: google.cloud.osconfig.v1
@@ -80,9 +83,6 @@ default:
       - name: GoogleIdentityAccessContextManagerV1
         path: generated/google-identity-accesscontextmanager-v1
         api_package: google.identity.accesscontextmanager.v1
-      - name: GoogleLoggingType
-        path: generated/google-logging-type
-        api_package: google.logging.type
       - name: GoogleLongRunning
         path: generated/google-longrunning
         api_package: google.longrunning
@@ -142,6 +142,8 @@ libraries:
   - name: google-bigtable-admin-v2
     version: 0.0.0-preview
     copyright_year: "2026"
+    swift:
+      library_name_override: GoogleCloudBigtableAdminV2
   - name: google-cloud-abuseevent-logging-v1
     version: 0.0.0-preview
     copyright_year: "2026"
@@ -332,6 +334,8 @@ libraries:
   - name: google-cloud-config-v1
     version: 0.0.0-preview
     copyright_year: "2026"
+    swift:
+      library_name_override: GoogleCloudConfigV1
   - name: google-cloud-configdelivery-v1
     version: 0.0.0-preview
     copyright_year: "2026"
@@ -367,6 +371,7 @@ libraries:
     version: 0.0.0-preview
     copyright_year: "2026"
     swift:
+      library_name_override: GoogleCloudDialogflowCXV3
       per_service_traits: true
       default_traits:
         - Agents
@@ -587,6 +592,8 @@ libraries:
   - name: google-cloud-translate-v3
     version: 0.0.0-preview
     copyright_year: "2026"
+    swift:
+      library_name_override: GoogleCloudTranslateV3
   - name: google-cloud-vision-v1
     version: 0.0.0-preview
     copyright_year: "2026"
@@ -621,15 +628,23 @@ libraries:
       library_name_override: GoogleCloudWorkloadManagerV1
   - name: google-container-v1
     copyright_year: "2026"
+    swift:
+      library_name_override: GoogleCloudContainerV1
   - name: google-datastore-admin-v1
     version: 0.0.0-preview
     copyright_year: "2026"
+    swift:
+      library_name_override: GoogleCloudDatastoreAdminV1
   - name: google-devtools-artifactregistry-v1
     version: 0.0.0-preview
     copyright_year: "2026"
+    swift:
+      library_name_override: GoogleCloudArtifactRegistryV1
   - name: google-devtools-cloudtrace-v2
     version: 0.0.0-preview
     copyright_year: "2026"
+    swift:
+      library_name_override: GoogleCloudTraceV2
   - name: google-iam-admin-v1
     version: 0.0.0-preview
     copyright_year: "2026"
@@ -668,9 +683,13 @@ libraries:
   - name: google-logging-type
     version: 0.0.0-preview
     copyright_year: "2026"
+    swift:
+      library_name_override: GoogleCloudLoggingType
   - name: google-logging-v2
     version: 0.0.0-preview
     copyright_year: "2026"
+    swift:
+      library_name_override: GoogleCloudLoggingV2
   - name: google-longrunning
     version: 0.0.0-preview
     copyright_year: "2026"
@@ -679,12 +698,18 @@ libraries:
   - name: google-monitoring-dashboard-v1
     version: 0.0.0-preview
     copyright_year: "2026"
+    swift:
+      library_name_override: GoogleCloudMonitoringDashboardV1
   - name: google-monitoring-v3
     version: 0.0.0-preview
     copyright_year: "2026"
+    swift:
+      library_name_override: GoogleCloudMonitoringV3
   - name: google-privacy-dlp-v2
     version: 0.0.0-preview
     copyright_year: "2026"
+    swift:
+      library_name_override: GoogleCloudDLPV2
   - name: google-rpc
     version: 0.0.0-preview
     copyright_year: "2026"
