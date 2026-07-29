@@ -126,8 +126,9 @@ func defaultPollingErrorPolicy() -> some PollingErrorPolicy {
 }
 
 func defaultPollingBackoffPolicy() -> some BackoffPolicy {
-  try! ExponentialBackoff(config: ExponentialBackoffConfig().with {
-    $0.initialDelay = .seconds(1)
-    $0.maximumDelay = .seconds(300)
-  })
+  try! ExponentialBackoff(
+    config: ExponentialBackoffConfig().with {
+      $0.initialDelay = .seconds(1)
+      $0.maximumDelay = .seconds(300)
+    })
 }
