@@ -83,7 +83,7 @@ default:
       - name: GoogleLoggingType
         path: generated/google-logging-type
         api_package: google.logging.type
-      - name: GoogleLongrunning
+      - name: GoogleLongRunning
         path: generated/google-longrunning
         api_package: google.longrunning
       - name: GoogleRpc
@@ -674,6 +674,8 @@ libraries:
   - name: google-longrunning
     version: 0.0.0-preview
     copyright_year: "2026"
+    swift:
+      library_name_override: GoogleLongRunning
   - name: google-monitoring-dashboard-v1
     version: 0.0.0-preview
     copyright_year: "2026"
