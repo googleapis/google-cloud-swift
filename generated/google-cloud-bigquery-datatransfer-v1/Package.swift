@@ -18,11 +18,10 @@
 import PackageDescription
 
 let package = Package(
-  name: "GoogleCloudBigqueryDatatransferV1",
+  name: "GoogleBigQueryDataTransferV1",
   platforms: [.macOS(.v15)],
   products: [
-    .library(
-      name: "GoogleCloudBigqueryDatatransferV1", targets: ["GoogleCloudBigqueryDatatransferV1"])
+    .library(name: "GoogleBigQueryDataTransferV1", targets: ["GoogleBigQueryDataTransferV1"])
   ],
   dependencies: [
     .package(path: "../../packages/auth"),
@@ -34,7 +33,7 @@ let package = Package(
   ],
   targets: [
     .target(
-      name: "GoogleCloudBigqueryDatatransferV1",
+      name: "GoogleBigQueryDataTransferV1",
       dependencies: [
         .product(name: "GoogleCloudAuth", package: "auth"),
         .product(name: "GoogleCloudGax", package: "gax"),

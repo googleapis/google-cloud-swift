@@ -43,7 +43,7 @@ public class ConnectionServiceClient: Clients.ConnectionServiceProtocol {
   /// @Snippet(path: "ConnectionService_CreateConnection")
   public func createConnection(
     request: CreateConnectionRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudBigqueryConnectionV1.Connection {
+  ) async throws -> GoogleBigQueryConnectionV1.Connection {
     try await self.inner.createConnection(request: request, options: options)
   }
 
@@ -52,7 +52,7 @@ public class ConnectionServiceClient: Clients.ConnectionServiceProtocol {
   /// @Snippet(path: "ConnectionService_GetConnection")
   public func getConnection(
     request: GetConnectionRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudBigqueryConnectionV1.Connection {
+  ) async throws -> GoogleBigQueryConnectionV1.Connection {
     try await self.inner.getConnection(request: request, options: options)
   }
 
@@ -61,7 +61,7 @@ public class ConnectionServiceClient: Clients.ConnectionServiceProtocol {
   /// @Snippet(path: "ConnectionService_ListConnections")
   public func listConnections(
     request: ListConnectionsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudBigqueryConnectionV1.ListConnectionsResponse {
+  ) async throws -> GoogleBigQueryConnectionV1.ListConnectionsResponse {
     try await self.inner.listConnections(request: request, options: options)
   }
 
@@ -72,8 +72,7 @@ public class ConnectionServiceClient: Clients.ConnectionServiceProtocol {
     byItem: ListConnectionsRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<Connection, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudBigqueryConnectionV1.ListConnectionsResponse
-      in
+      (token: Swift.String) async throws -> GoogleBigQueryConnectionV1.ListConnectionsResponse in
       var request = byItem
       request.pageToken = token
       return try await self.listConnections(request: request, options: options)
@@ -87,7 +86,7 @@ public class ConnectionServiceClient: Clients.ConnectionServiceProtocol {
   /// @Snippet(path: "ConnectionService_UpdateConnection")
   public func updateConnection(
     request: UpdateConnectionRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudBigqueryConnectionV1.Connection {
+  ) async throws -> GoogleBigQueryConnectionV1.Connection {
     try await self.inner.updateConnection(request: request, options: options)
   }
 
@@ -148,27 +147,27 @@ extension Clients {
   public protocol ConnectionServiceProtocol {
     /// See `ConnectionServiceClient.createConnection`.
     func createConnection(request: CreateConnectionRequest) async throws
-      -> GoogleCloudBigqueryConnectionV1.Connection
+      -> GoogleBigQueryConnectionV1.Connection
 
     /// See `ConnectionServiceClient.createConnection`.
     func createConnection(
       parent: Swift.String,
       connection: Connection?,
       connectionId: Swift.String,
-    ) async throws -> GoogleCloudBigqueryConnectionV1.Connection
+    ) async throws -> GoogleBigQueryConnectionV1.Connection
 
     /// See `ConnectionServiceClient.getConnection`.
     func getConnection(request: GetConnectionRequest) async throws
-      -> GoogleCloudBigqueryConnectionV1.Connection
+      -> GoogleBigQueryConnectionV1.Connection
 
     /// See `ConnectionServiceClient.getConnection`.
     func getConnection(
       name: Swift.String,
-    ) async throws -> GoogleCloudBigqueryConnectionV1.Connection
+    ) async throws -> GoogleBigQueryConnectionV1.Connection
 
     /// See `ConnectionServiceClient.listConnections`.
     func listConnections(request: ListConnectionsRequest) async throws
-      -> GoogleCloudBigqueryConnectionV1.ListConnectionsResponse
+      -> GoogleBigQueryConnectionV1.ListConnectionsResponse
 
     /// See `ConnectionServiceClient.listConnections`.
     func listConnections(
@@ -182,14 +181,14 @@ extension Clients {
 
     /// See `ConnectionServiceClient.updateConnection`.
     func updateConnection(request: UpdateConnectionRequest) async throws
-      -> GoogleCloudBigqueryConnectionV1.Connection
+      -> GoogleBigQueryConnectionV1.Connection
 
     /// See `ConnectionServiceClient.updateConnection`.
     func updateConnection(
       name: Swift.String,
       connection: Connection?,
       updateMask: GoogleCloudWkt.FieldMask?,
-    ) async throws -> GoogleCloudBigqueryConnectionV1.Connection
+    ) async throws -> GoogleBigQueryConnectionV1.Connection
 
     /// See `ConnectionServiceClient.deleteConnection`.
     func deleteConnection(request: DeleteConnectionRequest) async throws
@@ -230,17 +229,17 @@ extension Clients {
     /// See `ConnectionServiceClient.createConnection`.
     func createConnection(
       request: CreateConnectionRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryConnectionV1.Connection
+    ) async throws -> GoogleBigQueryConnectionV1.Connection
 
     /// See `ConnectionServiceClient.getConnection`.
     func getConnection(
       request: GetConnectionRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryConnectionV1.Connection
+    ) async throws -> GoogleBigQueryConnectionV1.Connection
 
     /// See `ConnectionServiceClient.listConnections`.
     func listConnections(
       request: ListConnectionsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryConnectionV1.ListConnectionsResponse
+    ) async throws -> GoogleBigQueryConnectionV1.ListConnectionsResponse
 
     /// See `ConnectionServiceClient.listConnections`.
     func listConnections(
@@ -250,7 +249,7 @@ extension Clients {
     /// See `ConnectionServiceClient.updateConnection`.
     func updateConnection(
       request: UpdateConnectionRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryConnectionV1.Connection
+    ) async throws -> GoogleBigQueryConnectionV1.Connection
 
     /// See `ConnectionServiceClient.deleteConnection`.
     func deleteConnection(
@@ -277,14 +276,14 @@ extension Clients {
 // Default implementations
 extension Clients.ConnectionServiceProtocol {
   public func createConnection(request: CreateConnectionRequest) async throws
-    -> GoogleCloudBigqueryConnectionV1.Connection
+    -> GoogleBigQueryConnectionV1.Connection
   {
     try await self.createConnection(request: request, options: .init())
   }
 
   public func createConnection(
     request: CreateConnectionRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudBigqueryConnectionV1.Connection {
+  ) async throws -> GoogleBigQueryConnectionV1.Connection {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -292,7 +291,7 @@ extension Clients.ConnectionServiceProtocol {
     parent: Swift.String,
     connection: Connection?,
     connectionId: Swift.String,
-  ) async throws -> GoogleCloudBigqueryConnectionV1.Connection {
+  ) async throws -> GoogleBigQueryConnectionV1.Connection {
     let request = CreateConnectionRequest().with {
       $0.parent = parent
       $0.connection = connection
@@ -302,20 +301,20 @@ extension Clients.ConnectionServiceProtocol {
   }
 
   public func getConnection(request: GetConnectionRequest) async throws
-    -> GoogleCloudBigqueryConnectionV1.Connection
+    -> GoogleBigQueryConnectionV1.Connection
   {
     try await self.getConnection(request: request, options: .init())
   }
 
   public func getConnection(
     request: GetConnectionRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudBigqueryConnectionV1.Connection {
+  ) async throws -> GoogleBigQueryConnectionV1.Connection {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func getConnection(
     name: Swift.String,
-  ) async throws -> GoogleCloudBigqueryConnectionV1.Connection {
+  ) async throws -> GoogleBigQueryConnectionV1.Connection {
     let request = GetConnectionRequest().with {
       $0.name = name
     }
@@ -323,14 +322,14 @@ extension Clients.ConnectionServiceProtocol {
   }
 
   public func listConnections(request: ListConnectionsRequest) async throws
-    -> GoogleCloudBigqueryConnectionV1.ListConnectionsResponse
+    -> GoogleBigQueryConnectionV1.ListConnectionsResponse
   {
     try await self.listConnections(request: request, options: .init())
   }
 
   public func listConnections(
     request: ListConnectionsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudBigqueryConnectionV1.ListConnectionsResponse {
+  ) async throws -> GoogleBigQueryConnectionV1.ListConnectionsResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -344,8 +343,7 @@ extension Clients.ConnectionServiceProtocol {
     byItem: ListConnectionsRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<Connection, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudBigqueryConnectionV1.ListConnectionsResponse
-      in
+      (token: Swift.String) async throws -> GoogleBigQueryConnectionV1.ListConnectionsResponse in
       throw GoogleCloudGax.RequestError.unimplemented
     }
     return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
@@ -361,14 +359,14 @@ extension Clients.ConnectionServiceProtocol {
   }
 
   public func updateConnection(request: UpdateConnectionRequest) async throws
-    -> GoogleCloudBigqueryConnectionV1.Connection
+    -> GoogleBigQueryConnectionV1.Connection
   {
     try await self.updateConnection(request: request, options: .init())
   }
 
   public func updateConnection(
     request: UpdateConnectionRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudBigqueryConnectionV1.Connection {
+  ) async throws -> GoogleBigQueryConnectionV1.Connection {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -376,7 +374,7 @@ extension Clients.ConnectionServiceProtocol {
     name: Swift.String,
     connection: Connection?,
     updateMask: GoogleCloudWkt.FieldMask?,
-  ) async throws -> GoogleCloudBigqueryConnectionV1.Connection {
+  ) async throws -> GoogleBigQueryConnectionV1.Connection {
     let request = UpdateConnectionRequest().with {
       $0.name = name
       $0.connection = connection

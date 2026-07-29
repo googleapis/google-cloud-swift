@@ -18,11 +18,10 @@
 import PackageDescription
 
 let package = Package(
-  name: "GoogleCloudBigqueryAnalyticshubV1",
+  name: "GoogleBigQueryAnalyticsHubV1",
   platforms: [.macOS(.v15)],
   products: [
-    .library(
-      name: "GoogleCloudBigqueryAnalyticshubV1", targets: ["GoogleCloudBigqueryAnalyticshubV1"])
+    .library(name: "GoogleBigQueryAnalyticsHubV1", targets: ["GoogleBigQueryAnalyticsHubV1"])
   ],
   dependencies: [
     .package(path: "../../packages/auth"),
@@ -35,7 +34,7 @@ let package = Package(
   ],
   targets: [
     .target(
-      name: "GoogleCloudBigqueryAnalyticshubV1",
+      name: "GoogleBigQueryAnalyticsHubV1",
       dependencies: [
         .product(name: "GoogleCloudAuth", package: "auth"),
         .product(name: "GoogleCloudGax", package: "gax"),

@@ -44,7 +44,7 @@ public class DataTransferServiceClient: Clients.DataTransferServiceProtocol {
   /// @Snippet(path: "DataTransferService_GetDataSource")
   public func getDataSource(
     request: GetDataSourceRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudBigqueryDatatransferV1.DataSource {
+  ) async throws -> GoogleBigQueryDataTransferV1.DataSource {
     try await self.inner.getDataSource(request: request, options: options)
   }
 
@@ -53,7 +53,7 @@ public class DataTransferServiceClient: Clients.DataTransferServiceProtocol {
   /// @Snippet(path: "DataTransferService_ListDataSources")
   public func listDataSources(
     request: ListDataSourcesRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudBigqueryDatatransferV1.ListDataSourcesResponse {
+  ) async throws -> GoogleBigQueryDataTransferV1.ListDataSourcesResponse {
     try await self.inner.listDataSources(request: request, options: options)
   }
 
@@ -64,8 +64,7 @@ public class DataTransferServiceClient: Clients.DataTransferServiceProtocol {
     byItem: ListDataSourcesRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<DataSource, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws
-        -> GoogleCloudBigqueryDatatransferV1.ListDataSourcesResponse in
+      (token: Swift.String) async throws -> GoogleBigQueryDataTransferV1.ListDataSourcesResponse in
       var request = byItem
       request.pageToken = token
       return try await self.listDataSources(request: request, options: options)
@@ -78,7 +77,7 @@ public class DataTransferServiceClient: Clients.DataTransferServiceProtocol {
   /// @Snippet(path: "DataTransferService_CreateTransferConfig")
   public func createTransferConfig(
     request: CreateTransferConfigRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudBigqueryDatatransferV1.TransferConfig {
+  ) async throws -> GoogleBigQueryDataTransferV1.TransferConfig {
     try await self.inner.createTransferConfig(request: request, options: options)
   }
 
@@ -88,7 +87,7 @@ public class DataTransferServiceClient: Clients.DataTransferServiceProtocol {
   /// @Snippet(path: "DataTransferService_UpdateTransferConfig")
   public func updateTransferConfig(
     request: UpdateTransferConfigRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudBigqueryDatatransferV1.TransferConfig {
+  ) async throws -> GoogleBigQueryDataTransferV1.TransferConfig {
     try await self.inner.updateTransferConfig(request: request, options: options)
   }
 
@@ -107,7 +106,7 @@ public class DataTransferServiceClient: Clients.DataTransferServiceProtocol {
   /// @Snippet(path: "DataTransferService_GetTransferConfig")
   public func getTransferConfig(
     request: GetTransferConfigRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudBigqueryDatatransferV1.TransferConfig {
+  ) async throws -> GoogleBigQueryDataTransferV1.TransferConfig {
     try await self.inner.getTransferConfig(request: request, options: options)
   }
 
@@ -117,7 +116,7 @@ public class DataTransferServiceClient: Clients.DataTransferServiceProtocol {
   /// @Snippet(path: "DataTransferService_ListTransferConfigs")
   public func listTransferConfigs(
     request: ListTransferConfigsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudBigqueryDatatransferV1.ListTransferConfigsResponse {
+  ) async throws -> GoogleBigQueryDataTransferV1.ListTransferConfigsResponse {
     try await self.inner.listTransferConfigs(request: request, options: options)
   }
 
@@ -129,8 +128,8 @@ public class DataTransferServiceClient: Clients.DataTransferServiceProtocol {
     byItem: ListTransferConfigsRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<TransferConfig, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws
-        -> GoogleCloudBigqueryDatatransferV1.ListTransferConfigsResponse in
+      (token: Swift.String) async throws -> GoogleBigQueryDataTransferV1.ListTransferConfigsResponse
+      in
       var request = byItem
       request.pageToken = token
       return try await self.listTransferConfigs(request: request, options: options)
@@ -148,7 +147,7 @@ public class DataTransferServiceClient: Clients.DataTransferServiceProtocol {
   @available(*, deprecated)
   public func scheduleTransferRuns(
     request: ScheduleTransferRunsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudBigqueryDatatransferV1.ScheduleTransferRunsResponse {
+  ) async throws -> GoogleBigQueryDataTransferV1.ScheduleTransferRunsResponse {
     try await self.inner.scheduleTransferRuns(request: request, options: options)
   }
 
@@ -160,7 +159,7 @@ public class DataTransferServiceClient: Clients.DataTransferServiceProtocol {
   /// @Snippet(path: "DataTransferService_StartManualTransferRuns")
   public func startManualTransferRuns(
     request: StartManualTransferRunsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudBigqueryDatatransferV1.StartManualTransferRunsResponse {
+  ) async throws -> GoogleBigQueryDataTransferV1.StartManualTransferRunsResponse {
     try await self.inner.startManualTransferRuns(request: request, options: options)
   }
 
@@ -169,7 +168,7 @@ public class DataTransferServiceClient: Clients.DataTransferServiceProtocol {
   /// @Snippet(path: "DataTransferService_GetTransferRun")
   public func getTransferRun(
     request: GetTransferRunRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudBigqueryDatatransferV1.TransferRun {
+  ) async throws -> GoogleBigQueryDataTransferV1.TransferRun {
     try await self.inner.getTransferRun(request: request, options: options)
   }
 
@@ -187,7 +186,7 @@ public class DataTransferServiceClient: Clients.DataTransferServiceProtocol {
   /// @Snippet(path: "DataTransferService_ListTransferRuns")
   public func listTransferRuns(
     request: ListTransferRunsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudBigqueryDatatransferV1.ListTransferRunsResponse {
+  ) async throws -> GoogleBigQueryDataTransferV1.ListTransferRunsResponse {
     try await self.inner.listTransferRuns(request: request, options: options)
   }
 
@@ -198,8 +197,7 @@ public class DataTransferServiceClient: Clients.DataTransferServiceProtocol {
     byItem: ListTransferRunsRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<TransferRun, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws
-        -> GoogleCloudBigqueryDatatransferV1.ListTransferRunsResponse in
+      (token: Swift.String) async throws -> GoogleBigQueryDataTransferV1.ListTransferRunsResponse in
       var request = byItem
       request.pageToken = token
       return try await self.listTransferRuns(request: request, options: options)
@@ -212,7 +210,7 @@ public class DataTransferServiceClient: Clients.DataTransferServiceProtocol {
   /// @Snippet(path: "DataTransferService_ListTransferLogs")
   public func listTransferLogs(
     request: ListTransferLogsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudBigqueryDatatransferV1.ListTransferLogsResponse {
+  ) async throws -> GoogleBigQueryDataTransferV1.ListTransferLogsResponse {
     try await self.inner.listTransferLogs(request: request, options: options)
   }
 
@@ -223,8 +221,7 @@ public class DataTransferServiceClient: Clients.DataTransferServiceProtocol {
     byItem: ListTransferLogsRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<TransferMessage, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws
-        -> GoogleCloudBigqueryDatatransferV1.ListTransferLogsResponse in
+      (token: Swift.String) async throws -> GoogleBigQueryDataTransferV1.ListTransferLogsResponse in
       var request = byItem
       request.pageToken = token
       return try await self.listTransferLogs(request: request, options: options)
@@ -238,7 +235,7 @@ public class DataTransferServiceClient: Clients.DataTransferServiceProtocol {
   /// @Snippet(path: "DataTransferService_CheckValidCreds")
   public func checkValidCreds(
     request: CheckValidCredsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudBigqueryDatatransferV1.CheckValidCredsResponse {
+  ) async throws -> GoogleBigQueryDataTransferV1.CheckValidCredsResponse {
     try await self.inner.checkValidCreds(request: request, options: options)
   }
 
@@ -314,16 +311,16 @@ extension Clients {
   public protocol DataTransferServiceProtocol {
     /// See `DataTransferServiceClient.getDataSource`.
     func getDataSource(request: GetDataSourceRequest) async throws
-      -> GoogleCloudBigqueryDatatransferV1.DataSource
+      -> GoogleBigQueryDataTransferV1.DataSource
 
     /// See `DataTransferServiceClient.getDataSource`.
     func getDataSource(
       name: Swift.String,
-    ) async throws -> GoogleCloudBigqueryDatatransferV1.DataSource
+    ) async throws -> GoogleBigQueryDataTransferV1.DataSource
 
     /// See `DataTransferServiceClient.listDataSources`.
     func listDataSources(request: ListDataSourcesRequest) async throws
-      -> GoogleCloudBigqueryDatatransferV1.ListDataSourcesResponse
+      -> GoogleBigQueryDataTransferV1.ListDataSourcesResponse
 
     /// See `DataTransferServiceClient.listDataSources`.
     func listDataSources(
@@ -337,23 +334,23 @@ extension Clients {
 
     /// See `DataTransferServiceClient.createTransferConfig`.
     func createTransferConfig(request: CreateTransferConfigRequest) async throws
-      -> GoogleCloudBigqueryDatatransferV1.TransferConfig
+      -> GoogleBigQueryDataTransferV1.TransferConfig
 
     /// See `DataTransferServiceClient.createTransferConfig`.
     func createTransferConfig(
       parent: Swift.String,
       transferConfig: TransferConfig?,
-    ) async throws -> GoogleCloudBigqueryDatatransferV1.TransferConfig
+    ) async throws -> GoogleBigQueryDataTransferV1.TransferConfig
 
     /// See `DataTransferServiceClient.updateTransferConfig`.
     func updateTransferConfig(request: UpdateTransferConfigRequest) async throws
-      -> GoogleCloudBigqueryDatatransferV1.TransferConfig
+      -> GoogleBigQueryDataTransferV1.TransferConfig
 
     /// See `DataTransferServiceClient.updateTransferConfig`.
     func updateTransferConfig(
       transferConfig: TransferConfig?,
       updateMask: GoogleCloudWkt.FieldMask?,
-    ) async throws -> GoogleCloudBigqueryDatatransferV1.TransferConfig
+    ) async throws -> GoogleBigQueryDataTransferV1.TransferConfig
 
     /// See `DataTransferServiceClient.deleteTransferConfig`.
     func deleteTransferConfig(request: DeleteTransferConfigRequest) async throws
@@ -365,16 +362,16 @@ extension Clients {
 
     /// See `DataTransferServiceClient.getTransferConfig`.
     func getTransferConfig(request: GetTransferConfigRequest) async throws
-      -> GoogleCloudBigqueryDatatransferV1.TransferConfig
+      -> GoogleBigQueryDataTransferV1.TransferConfig
 
     /// See `DataTransferServiceClient.getTransferConfig`.
     func getTransferConfig(
       name: Swift.String,
-    ) async throws -> GoogleCloudBigqueryDatatransferV1.TransferConfig
+    ) async throws -> GoogleBigQueryDataTransferV1.TransferConfig
 
     /// See `DataTransferServiceClient.listTransferConfigs`.
     func listTransferConfigs(request: ListTransferConfigsRequest) async throws
-      -> GoogleCloudBigqueryDatatransferV1.ListTransferConfigsResponse
+      -> GoogleBigQueryDataTransferV1.ListTransferConfigsResponse
 
     /// See `DataTransferServiceClient.listTransferConfigs`.
     func listTransferConfigs(
@@ -389,7 +386,7 @@ extension Clients {
     /// See `DataTransferServiceClient.scheduleTransferRuns`.
     @available(*, deprecated)
     func scheduleTransferRuns(request: ScheduleTransferRunsRequest) async throws
-      -> GoogleCloudBigqueryDatatransferV1.ScheduleTransferRunsResponse
+      -> GoogleBigQueryDataTransferV1.ScheduleTransferRunsResponse
 
     /// See `DataTransferServiceClient.scheduleTransferRuns`.
     @available(*, deprecated)
@@ -397,20 +394,20 @@ extension Clients {
       parent: Swift.String,
       startTime: GoogleCloudWkt.Timestamp?,
       endTime: GoogleCloudWkt.Timestamp?,
-    ) async throws -> GoogleCloudBigqueryDatatransferV1.ScheduleTransferRunsResponse
+    ) async throws -> GoogleBigQueryDataTransferV1.ScheduleTransferRunsResponse
 
     /// See `DataTransferServiceClient.startManualTransferRuns`.
     func startManualTransferRuns(request: StartManualTransferRunsRequest) async throws
-      -> GoogleCloudBigqueryDatatransferV1.StartManualTransferRunsResponse
+      -> GoogleBigQueryDataTransferV1.StartManualTransferRunsResponse
 
     /// See `DataTransferServiceClient.getTransferRun`.
     func getTransferRun(request: GetTransferRunRequest) async throws
-      -> GoogleCloudBigqueryDatatransferV1.TransferRun
+      -> GoogleBigQueryDataTransferV1.TransferRun
 
     /// See `DataTransferServiceClient.getTransferRun`.
     func getTransferRun(
       name: Swift.String,
-    ) async throws -> GoogleCloudBigqueryDatatransferV1.TransferRun
+    ) async throws -> GoogleBigQueryDataTransferV1.TransferRun
 
     /// See `DataTransferServiceClient.deleteTransferRun`.
     func deleteTransferRun(request: DeleteTransferRunRequest) async throws
@@ -422,7 +419,7 @@ extension Clients {
 
     /// See `DataTransferServiceClient.listTransferRuns`.
     func listTransferRuns(request: ListTransferRunsRequest) async throws
-      -> GoogleCloudBigqueryDatatransferV1.ListTransferRunsResponse
+      -> GoogleBigQueryDataTransferV1.ListTransferRunsResponse
 
     /// See `DataTransferServiceClient.listTransferRuns`.
     func listTransferRuns(
@@ -436,7 +433,7 @@ extension Clients {
 
     /// See `DataTransferServiceClient.listTransferLogs`.
     func listTransferLogs(request: ListTransferLogsRequest) async throws
-      -> GoogleCloudBigqueryDatatransferV1.ListTransferLogsResponse
+      -> GoogleBigQueryDataTransferV1.ListTransferLogsResponse
 
     /// See `DataTransferServiceClient.listTransferLogs`.
     func listTransferLogs(
@@ -450,12 +447,12 @@ extension Clients {
 
     /// See `DataTransferServiceClient.checkValidCreds`.
     func checkValidCreds(request: CheckValidCredsRequest) async throws
-      -> GoogleCloudBigqueryDatatransferV1.CheckValidCredsResponse
+      -> GoogleBigQueryDataTransferV1.CheckValidCredsResponse
 
     /// See `DataTransferServiceClient.checkValidCreds`.
     func checkValidCreds(
       name: Swift.String,
-    ) async throws -> GoogleCloudBigqueryDatatransferV1.CheckValidCredsResponse
+    ) async throws -> GoogleBigQueryDataTransferV1.CheckValidCredsResponse
 
     /// See `DataTransferServiceClient.enrollDataSources`.
     func enrollDataSources(request: EnrollDataSourcesRequest) async throws
@@ -479,12 +476,12 @@ extension Clients {
     /// See `DataTransferServiceClient.getDataSource`.
     func getDataSource(
       request: GetDataSourceRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryDatatransferV1.DataSource
+    ) async throws -> GoogleBigQueryDataTransferV1.DataSource
 
     /// See `DataTransferServiceClient.listDataSources`.
     func listDataSources(
       request: ListDataSourcesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryDatatransferV1.ListDataSourcesResponse
+    ) async throws -> GoogleBigQueryDataTransferV1.ListDataSourcesResponse
 
     /// See `DataTransferServiceClient.listDataSources`.
     func listDataSources(
@@ -494,12 +491,12 @@ extension Clients {
     /// See `DataTransferServiceClient.createTransferConfig`.
     func createTransferConfig(
       request: CreateTransferConfigRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryDatatransferV1.TransferConfig
+    ) async throws -> GoogleBigQueryDataTransferV1.TransferConfig
 
     /// See `DataTransferServiceClient.updateTransferConfig`.
     func updateTransferConfig(
       request: UpdateTransferConfigRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryDatatransferV1.TransferConfig
+    ) async throws -> GoogleBigQueryDataTransferV1.TransferConfig
 
     /// See `DataTransferServiceClient.deleteTransferConfig`.
     func deleteTransferConfig(
@@ -509,12 +506,12 @@ extension Clients {
     /// See `DataTransferServiceClient.getTransferConfig`.
     func getTransferConfig(
       request: GetTransferConfigRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryDatatransferV1.TransferConfig
+    ) async throws -> GoogleBigQueryDataTransferV1.TransferConfig
 
     /// See `DataTransferServiceClient.listTransferConfigs`.
     func listTransferConfigs(
       request: ListTransferConfigsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryDatatransferV1.ListTransferConfigsResponse
+    ) async throws -> GoogleBigQueryDataTransferV1.ListTransferConfigsResponse
 
     /// See `DataTransferServiceClient.listTransferConfigs`.
     func listTransferConfigs(
@@ -525,17 +522,17 @@ extension Clients {
     @available(*, deprecated)
     func scheduleTransferRuns(
       request: ScheduleTransferRunsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryDatatransferV1.ScheduleTransferRunsResponse
+    ) async throws -> GoogleBigQueryDataTransferV1.ScheduleTransferRunsResponse
 
     /// See `DataTransferServiceClient.startManualTransferRuns`.
     func startManualTransferRuns(
       request: StartManualTransferRunsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryDatatransferV1.StartManualTransferRunsResponse
+    ) async throws -> GoogleBigQueryDataTransferV1.StartManualTransferRunsResponse
 
     /// See `DataTransferServiceClient.getTransferRun`.
     func getTransferRun(
       request: GetTransferRunRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryDatatransferV1.TransferRun
+    ) async throws -> GoogleBigQueryDataTransferV1.TransferRun
 
     /// See `DataTransferServiceClient.deleteTransferRun`.
     func deleteTransferRun(
@@ -545,7 +542,7 @@ extension Clients {
     /// See `DataTransferServiceClient.listTransferRuns`.
     func listTransferRuns(
       request: ListTransferRunsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryDatatransferV1.ListTransferRunsResponse
+    ) async throws -> GoogleBigQueryDataTransferV1.ListTransferRunsResponse
 
     /// See `DataTransferServiceClient.listTransferRuns`.
     func listTransferRuns(
@@ -555,7 +552,7 @@ extension Clients {
     /// See `DataTransferServiceClient.listTransferLogs`.
     func listTransferLogs(
       request: ListTransferLogsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryDatatransferV1.ListTransferLogsResponse
+    ) async throws -> GoogleBigQueryDataTransferV1.ListTransferLogsResponse
 
     /// See `DataTransferServiceClient.listTransferLogs`.
     func listTransferLogs(
@@ -565,7 +562,7 @@ extension Clients {
     /// See `DataTransferServiceClient.checkValidCreds`.
     func checkValidCreds(
       request: CheckValidCredsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryDatatransferV1.CheckValidCredsResponse
+    ) async throws -> GoogleBigQueryDataTransferV1.CheckValidCredsResponse
 
     /// See `DataTransferServiceClient.enrollDataSources`.
     func enrollDataSources(
@@ -597,20 +594,20 @@ extension Clients {
 // Default implementations
 extension Clients.DataTransferServiceProtocol {
   public func getDataSource(request: GetDataSourceRequest) async throws
-    -> GoogleCloudBigqueryDatatransferV1.DataSource
+    -> GoogleBigQueryDataTransferV1.DataSource
   {
     try await self.getDataSource(request: request, options: .init())
   }
 
   public func getDataSource(
     request: GetDataSourceRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudBigqueryDatatransferV1.DataSource {
+  ) async throws -> GoogleBigQueryDataTransferV1.DataSource {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func getDataSource(
     name: Swift.String,
-  ) async throws -> GoogleCloudBigqueryDatatransferV1.DataSource {
+  ) async throws -> GoogleBigQueryDataTransferV1.DataSource {
     let request = GetDataSourceRequest().with {
       $0.name = name
     }
@@ -618,14 +615,14 @@ extension Clients.DataTransferServiceProtocol {
   }
 
   public func listDataSources(request: ListDataSourcesRequest) async throws
-    -> GoogleCloudBigqueryDatatransferV1.ListDataSourcesResponse
+    -> GoogleBigQueryDataTransferV1.ListDataSourcesResponse
   {
     try await self.listDataSources(request: request, options: .init())
   }
 
   public func listDataSources(
     request: ListDataSourcesRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudBigqueryDatatransferV1.ListDataSourcesResponse {
+  ) async throws -> GoogleBigQueryDataTransferV1.ListDataSourcesResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -639,8 +636,7 @@ extension Clients.DataTransferServiceProtocol {
     byItem: ListDataSourcesRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<DataSource, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws
-        -> GoogleCloudBigqueryDatatransferV1.ListDataSourcesResponse in
+      (token: Swift.String) async throws -> GoogleBigQueryDataTransferV1.ListDataSourcesResponse in
       throw GoogleCloudGax.RequestError.unimplemented
     }
     return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
@@ -656,21 +652,21 @@ extension Clients.DataTransferServiceProtocol {
   }
 
   public func createTransferConfig(request: CreateTransferConfigRequest) async throws
-    -> GoogleCloudBigqueryDatatransferV1.TransferConfig
+    -> GoogleBigQueryDataTransferV1.TransferConfig
   {
     try await self.createTransferConfig(request: request, options: .init())
   }
 
   public func createTransferConfig(
     request: CreateTransferConfigRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudBigqueryDatatransferV1.TransferConfig {
+  ) async throws -> GoogleBigQueryDataTransferV1.TransferConfig {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func createTransferConfig(
     parent: Swift.String,
     transferConfig: TransferConfig?,
-  ) async throws -> GoogleCloudBigqueryDatatransferV1.TransferConfig {
+  ) async throws -> GoogleBigQueryDataTransferV1.TransferConfig {
     let request = CreateTransferConfigRequest().with {
       $0.parent = parent
       $0.transferConfig = transferConfig
@@ -679,21 +675,21 @@ extension Clients.DataTransferServiceProtocol {
   }
 
   public func updateTransferConfig(request: UpdateTransferConfigRequest) async throws
-    -> GoogleCloudBigqueryDatatransferV1.TransferConfig
+    -> GoogleBigQueryDataTransferV1.TransferConfig
   {
     try await self.updateTransferConfig(request: request, options: .init())
   }
 
   public func updateTransferConfig(
     request: UpdateTransferConfigRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudBigqueryDatatransferV1.TransferConfig {
+  ) async throws -> GoogleBigQueryDataTransferV1.TransferConfig {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func updateTransferConfig(
     transferConfig: TransferConfig?,
     updateMask: GoogleCloudWkt.FieldMask?,
-  ) async throws -> GoogleCloudBigqueryDatatransferV1.TransferConfig {
+  ) async throws -> GoogleBigQueryDataTransferV1.TransferConfig {
     let request = UpdateTransferConfigRequest().with {
       $0.transferConfig = transferConfig
       $0.updateMask = updateMask
@@ -721,20 +717,20 @@ extension Clients.DataTransferServiceProtocol {
   }
 
   public func getTransferConfig(request: GetTransferConfigRequest) async throws
-    -> GoogleCloudBigqueryDatatransferV1.TransferConfig
+    -> GoogleBigQueryDataTransferV1.TransferConfig
   {
     try await self.getTransferConfig(request: request, options: .init())
   }
 
   public func getTransferConfig(
     request: GetTransferConfigRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudBigqueryDatatransferV1.TransferConfig {
+  ) async throws -> GoogleBigQueryDataTransferV1.TransferConfig {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func getTransferConfig(
     name: Swift.String,
-  ) async throws -> GoogleCloudBigqueryDatatransferV1.TransferConfig {
+  ) async throws -> GoogleBigQueryDataTransferV1.TransferConfig {
     let request = GetTransferConfigRequest().with {
       $0.name = name
     }
@@ -742,14 +738,14 @@ extension Clients.DataTransferServiceProtocol {
   }
 
   public func listTransferConfigs(request: ListTransferConfigsRequest) async throws
-    -> GoogleCloudBigqueryDatatransferV1.ListTransferConfigsResponse
+    -> GoogleBigQueryDataTransferV1.ListTransferConfigsResponse
   {
     try await self.listTransferConfigs(request: request, options: .init())
   }
 
   public func listTransferConfigs(
     request: ListTransferConfigsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudBigqueryDatatransferV1.ListTransferConfigsResponse {
+  ) async throws -> GoogleBigQueryDataTransferV1.ListTransferConfigsResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -763,8 +759,8 @@ extension Clients.DataTransferServiceProtocol {
     byItem: ListTransferConfigsRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<TransferConfig, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws
-        -> GoogleCloudBigqueryDatatransferV1.ListTransferConfigsResponse in
+      (token: Swift.String) async throws -> GoogleBigQueryDataTransferV1.ListTransferConfigsResponse
+      in
       throw GoogleCloudGax.RequestError.unimplemented
     }
     return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
@@ -780,14 +776,14 @@ extension Clients.DataTransferServiceProtocol {
   }
 
   public func scheduleTransferRuns(request: ScheduleTransferRunsRequest) async throws
-    -> GoogleCloudBigqueryDatatransferV1.ScheduleTransferRunsResponse
+    -> GoogleBigQueryDataTransferV1.ScheduleTransferRunsResponse
   {
     try await self.scheduleTransferRuns(request: request, options: .init())
   }
 
   public func scheduleTransferRuns(
     request: ScheduleTransferRunsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudBigqueryDatatransferV1.ScheduleTransferRunsResponse {
+  ) async throws -> GoogleBigQueryDataTransferV1.ScheduleTransferRunsResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -795,7 +791,7 @@ extension Clients.DataTransferServiceProtocol {
     parent: Swift.String,
     startTime: GoogleCloudWkt.Timestamp?,
     endTime: GoogleCloudWkt.Timestamp?,
-  ) async throws -> GoogleCloudBigqueryDatatransferV1.ScheduleTransferRunsResponse {
+  ) async throws -> GoogleBigQueryDataTransferV1.ScheduleTransferRunsResponse {
     let request = ScheduleTransferRunsRequest().with {
       $0.parent = parent
       $0.startTime = startTime
@@ -805,32 +801,32 @@ extension Clients.DataTransferServiceProtocol {
   }
 
   public func startManualTransferRuns(request: StartManualTransferRunsRequest) async throws
-    -> GoogleCloudBigqueryDatatransferV1.StartManualTransferRunsResponse
+    -> GoogleBigQueryDataTransferV1.StartManualTransferRunsResponse
   {
     try await self.startManualTransferRuns(request: request, options: .init())
   }
 
   public func startManualTransferRuns(
     request: StartManualTransferRunsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudBigqueryDatatransferV1.StartManualTransferRunsResponse {
+  ) async throws -> GoogleBigQueryDataTransferV1.StartManualTransferRunsResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func getTransferRun(request: GetTransferRunRequest) async throws
-    -> GoogleCloudBigqueryDatatransferV1.TransferRun
+    -> GoogleBigQueryDataTransferV1.TransferRun
   {
     try await self.getTransferRun(request: request, options: .init())
   }
 
   public func getTransferRun(
     request: GetTransferRunRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudBigqueryDatatransferV1.TransferRun {
+  ) async throws -> GoogleBigQueryDataTransferV1.TransferRun {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func getTransferRun(
     name: Swift.String,
-  ) async throws -> GoogleCloudBigqueryDatatransferV1.TransferRun {
+  ) async throws -> GoogleBigQueryDataTransferV1.TransferRun {
     let request = GetTransferRunRequest().with {
       $0.name = name
     }
@@ -857,14 +853,14 @@ extension Clients.DataTransferServiceProtocol {
   }
 
   public func listTransferRuns(request: ListTransferRunsRequest) async throws
-    -> GoogleCloudBigqueryDatatransferV1.ListTransferRunsResponse
+    -> GoogleBigQueryDataTransferV1.ListTransferRunsResponse
   {
     try await self.listTransferRuns(request: request, options: .init())
   }
 
   public func listTransferRuns(
     request: ListTransferRunsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudBigqueryDatatransferV1.ListTransferRunsResponse {
+  ) async throws -> GoogleBigQueryDataTransferV1.ListTransferRunsResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -878,8 +874,7 @@ extension Clients.DataTransferServiceProtocol {
     byItem: ListTransferRunsRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<TransferRun, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws
-        -> GoogleCloudBigqueryDatatransferV1.ListTransferRunsResponse in
+      (token: Swift.String) async throws -> GoogleBigQueryDataTransferV1.ListTransferRunsResponse in
       throw GoogleCloudGax.RequestError.unimplemented
     }
     return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
@@ -895,14 +890,14 @@ extension Clients.DataTransferServiceProtocol {
   }
 
   public func listTransferLogs(request: ListTransferLogsRequest) async throws
-    -> GoogleCloudBigqueryDatatransferV1.ListTransferLogsResponse
+    -> GoogleBigQueryDataTransferV1.ListTransferLogsResponse
   {
     try await self.listTransferLogs(request: request, options: .init())
   }
 
   public func listTransferLogs(
     request: ListTransferLogsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudBigqueryDatatransferV1.ListTransferLogsResponse {
+  ) async throws -> GoogleBigQueryDataTransferV1.ListTransferLogsResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -916,8 +911,7 @@ extension Clients.DataTransferServiceProtocol {
     byItem: ListTransferLogsRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<TransferMessage, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws
-        -> GoogleCloudBigqueryDatatransferV1.ListTransferLogsResponse in
+      (token: Swift.String) async throws -> GoogleBigQueryDataTransferV1.ListTransferLogsResponse in
       throw GoogleCloudGax.RequestError.unimplemented
     }
     return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
@@ -933,20 +927,20 @@ extension Clients.DataTransferServiceProtocol {
   }
 
   public func checkValidCreds(request: CheckValidCredsRequest) async throws
-    -> GoogleCloudBigqueryDatatransferV1.CheckValidCredsResponse
+    -> GoogleBigQueryDataTransferV1.CheckValidCredsResponse
   {
     try await self.checkValidCreds(request: request, options: .init())
   }
 
   public func checkValidCreds(
     request: CheckValidCredsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudBigqueryDatatransferV1.CheckValidCredsResponse {
+  ) async throws -> GoogleBigQueryDataTransferV1.CheckValidCredsResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func checkValidCreds(
     name: Swift.String,
-  ) async throws -> GoogleCloudBigqueryDatatransferV1.CheckValidCredsResponse {
+  ) async throws -> GoogleBigQueryDataTransferV1.CheckValidCredsResponse {
     let request = CheckValidCredsRequest().with {
       $0.name = name
     }

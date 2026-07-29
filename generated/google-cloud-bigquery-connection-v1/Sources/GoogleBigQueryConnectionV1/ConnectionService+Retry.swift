@@ -23,11 +23,11 @@ import GoogleIAMV1
 import GoogleCloudGax
 
 extension Clients {
-  final class DataPolicyServiceRetry: DataPolicyServiceStub {
-    let inner: any DataPolicyServiceStub
+  final class ConnectionServiceRetry: ConnectionServiceStub {
+    let inner: any ConnectionServiceStub
     let options: GoogleCloudGax.ClientOptions
 
-    public init(_ inner: any DataPolicyServiceStub, options: GoogleCloudGax.ClientOptions) {
+    public init(_ inner: any ConnectionServiceStub, options: GoogleCloudGax.ClientOptions) {
       self.inner = inner
       self.options = options
     }
@@ -49,91 +49,76 @@ extension Clients {
       return try await loop.run(attempt: attempt)
     }
 
-    public func createDataPolicy(
-      request: CreateDataPolicyRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryDatapoliciesV1.DataPolicy {
+    public func createConnection(
+      request: CreateConnectionRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleBigQueryConnectionV1.Connection {
       try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
         action: {
-          (r: CreateDataPolicyRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleCloudBigqueryDatapoliciesV1.DataPolicy
+          (r: CreateConnectionRequest, o: GoogleCloudGax.RequestOptions) async throws
+            -> GoogleBigQueryConnectionV1.Connection
           in
-          return try await self.inner.createDataPolicy(request: r, options: o)
+          return try await self.inner.createConnection(request: r, options: o)
         })
     }
 
-    public func updateDataPolicy(
-      request: UpdateDataPolicyRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryDatapoliciesV1.DataPolicy {
+    public func getConnection(
+      request: GetConnectionRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleBigQueryConnectionV1.Connection {
+      try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: true,
+        action: {
+          (r: GetConnectionRequest, o: GoogleCloudGax.RequestOptions) async throws
+            -> GoogleBigQueryConnectionV1.Connection
+          in
+          return try await self.inner.getConnection(request: r, options: o)
+        })
+    }
+
+    public func listConnections(
+      request: ListConnectionsRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleBigQueryConnectionV1.ListConnectionsResponse {
+      try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: true,
+        action: {
+          (r: ListConnectionsRequest, o: GoogleCloudGax.RequestOptions) async throws
+            -> GoogleBigQueryConnectionV1.ListConnectionsResponse
+          in
+          return try await self.inner.listConnections(request: r, options: o)
+        })
+    }
+
+    public func updateConnection(
+      request: UpdateConnectionRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleBigQueryConnectionV1.Connection {
       try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
         action: {
-          (r: UpdateDataPolicyRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleCloudBigqueryDatapoliciesV1.DataPolicy
+          (r: UpdateConnectionRequest, o: GoogleCloudGax.RequestOptions) async throws
+            -> GoogleBigQueryConnectionV1.Connection
           in
-          return try await self.inner.updateDataPolicy(request: r, options: o)
+          return try await self.inner.updateConnection(request: r, options: o)
         })
     }
 
-    public func renameDataPolicy(
-      request: RenameDataPolicyRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryDatapoliciesV1.DataPolicy {
-      try await self._intercept(
-        request: request,
-        options: options,
-        idempotent: false,
-        action: {
-          (r: RenameDataPolicyRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleCloudBigqueryDatapoliciesV1.DataPolicy
-          in
-          return try await self.inner.renameDataPolicy(request: r, options: o)
-        })
-    }
-
-    public func deleteDataPolicy(
-      request: DeleteDataPolicyRequest, options: GoogleCloudGax.RequestOptions
+    public func deleteConnection(
+      request: DeleteConnectionRequest, options: GoogleCloudGax.RequestOptions
     ) async throws {
       try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
         action: {
-          (r: DeleteDataPolicyRequest, o: GoogleCloudGax.RequestOptions) async throws -> Void in
-          return try await self.inner.deleteDataPolicy(request: r, options: o)
-        })
-    }
-
-    public func getDataPolicy(
-      request: GetDataPolicyRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryDatapoliciesV1.DataPolicy {
-      try await self._intercept(
-        request: request,
-        options: options,
-        idempotent: true,
-        action: {
-          (r: GetDataPolicyRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleCloudBigqueryDatapoliciesV1.DataPolicy
-          in
-          return try await self.inner.getDataPolicy(request: r, options: o)
-        })
-    }
-
-    public func listDataPolicies(
-      request: ListDataPoliciesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryDatapoliciesV1.ListDataPoliciesResponse {
-      try await self._intercept(
-        request: request,
-        options: options,
-        idempotent: true,
-        action: {
-          (r: ListDataPoliciesRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleCloudBigqueryDatapoliciesV1.ListDataPoliciesResponse
-          in
-          return try await self.inner.listDataPolicies(request: r, options: o)
+          (r: DeleteConnectionRequest, o: GoogleCloudGax.RequestOptions) async throws -> Void in
+          return try await self.inner.deleteConnection(request: r, options: o)
         })
     }
 

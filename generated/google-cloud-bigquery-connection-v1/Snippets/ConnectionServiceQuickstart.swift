@@ -17,12 +17,12 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudBigqueryConnectionV1
+import GoogleBigQueryConnectionV1
 import GoogleCloudWkt
 import GoogleIAMV1
 
 func sample(parent: String, ) async throws {
-  let client = try GoogleCloudBigqueryConnectionV1.ConnectionServiceClient()
+  let client = try GoogleBigQueryConnectionV1.ConnectionServiceClient()
   let items = try client.listConnections(
     byItem: ListConnectionsRequest()
       .with {

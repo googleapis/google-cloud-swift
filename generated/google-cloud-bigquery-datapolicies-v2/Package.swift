@@ -18,11 +18,10 @@
 import PackageDescription
 
 let package = Package(
-  name: "GoogleCloudBigqueryDatapoliciesV2",
+  name: "GoogleBigQueryDataPoliciesV2",
   platforms: [.macOS(.v15)],
   products: [
-    .library(
-      name: "GoogleCloudBigqueryDatapoliciesV2", targets: ["GoogleCloudBigqueryDatapoliciesV2"])
+    .library(name: "GoogleBigQueryDataPoliciesV2", targets: ["GoogleBigQueryDataPoliciesV2"])
   ],
   dependencies: [
     .package(path: "../../packages/auth"),
@@ -33,7 +32,7 @@ let package = Package(
   ],
   targets: [
     .target(
-      name: "GoogleCloudBigqueryDatapoliciesV2",
+      name: "GoogleBigQueryDataPoliciesV2",
       dependencies: [
         .product(name: "GoogleCloudAuth", package: "auth"),
         .product(name: "GoogleCloudGax", package: "gax"),

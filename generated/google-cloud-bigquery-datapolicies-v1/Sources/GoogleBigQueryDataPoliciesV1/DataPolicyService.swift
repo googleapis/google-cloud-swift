@@ -44,7 +44,7 @@ public class DataPolicyServiceClient: Clients.DataPolicyServiceProtocol {
   /// @Snippet(path: "DataPolicyService_CreateDataPolicy")
   public func createDataPolicy(
     request: CreateDataPolicyRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudBigqueryDatapoliciesV1.DataPolicy {
+  ) async throws -> GoogleBigQueryDataPoliciesV1.DataPolicy {
     try await self.inner.createDataPolicy(request: request, options: options)
   }
 
@@ -54,7 +54,7 @@ public class DataPolicyServiceClient: Clients.DataPolicyServiceProtocol {
   /// @Snippet(path: "DataPolicyService_UpdateDataPolicy")
   public func updateDataPolicy(
     request: UpdateDataPolicyRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudBigqueryDatapoliciesV1.DataPolicy {
+  ) async throws -> GoogleBigQueryDataPoliciesV1.DataPolicy {
     try await self.inner.updateDataPolicy(request: request, options: options)
   }
 
@@ -63,7 +63,7 @@ public class DataPolicyServiceClient: Clients.DataPolicyServiceProtocol {
   /// @Snippet(path: "DataPolicyService_RenameDataPolicy")
   public func renameDataPolicy(
     request: RenameDataPolicyRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudBigqueryDatapoliciesV1.DataPolicy {
+  ) async throws -> GoogleBigQueryDataPoliciesV1.DataPolicy {
     try await self.inner.renameDataPolicy(request: request, options: options)
   }
 
@@ -81,7 +81,7 @@ public class DataPolicyServiceClient: Clients.DataPolicyServiceProtocol {
   /// @Snippet(path: "DataPolicyService_GetDataPolicy")
   public func getDataPolicy(
     request: GetDataPolicyRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudBigqueryDatapoliciesV1.DataPolicy {
+  ) async throws -> GoogleBigQueryDataPoliciesV1.DataPolicy {
     try await self.inner.getDataPolicy(request: request, options: options)
   }
 
@@ -90,7 +90,7 @@ public class DataPolicyServiceClient: Clients.DataPolicyServiceProtocol {
   /// @Snippet(path: "DataPolicyService_ListDataPolicies")
   public func listDataPolicies(
     request: ListDataPoliciesRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudBigqueryDatapoliciesV1.ListDataPoliciesResponse {
+  ) async throws -> GoogleBigQueryDataPoliciesV1.ListDataPoliciesResponse {
     try await self.inner.listDataPolicies(request: request, options: options)
   }
 
@@ -101,8 +101,7 @@ public class DataPolicyServiceClient: Clients.DataPolicyServiceProtocol {
     byItem: ListDataPoliciesRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<DataPolicy, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws
-        -> GoogleCloudBigqueryDatapoliciesV1.ListDataPoliciesResponse in
+      (token: Swift.String) async throws -> GoogleBigQueryDataPoliciesV1.ListDataPoliciesResponse in
       var request = byItem
       request.pageToken = token
       return try await self.listDataPolicies(request: request, options: options)
@@ -147,33 +146,33 @@ extension Clients {
   public protocol DataPolicyServiceProtocol {
     /// See `DataPolicyServiceClient.createDataPolicy`.
     func createDataPolicy(request: CreateDataPolicyRequest) async throws
-      -> GoogleCloudBigqueryDatapoliciesV1.DataPolicy
+      -> GoogleBigQueryDataPoliciesV1.DataPolicy
 
     /// See `DataPolicyServiceClient.createDataPolicy`.
     func createDataPolicy(
       parent: Swift.String,
       dataPolicy: DataPolicy?,
-    ) async throws -> GoogleCloudBigqueryDatapoliciesV1.DataPolicy
+    ) async throws -> GoogleBigQueryDataPoliciesV1.DataPolicy
 
     /// See `DataPolicyServiceClient.updateDataPolicy`.
     func updateDataPolicy(request: UpdateDataPolicyRequest) async throws
-      -> GoogleCloudBigqueryDatapoliciesV1.DataPolicy
+      -> GoogleBigQueryDataPoliciesV1.DataPolicy
 
     /// See `DataPolicyServiceClient.updateDataPolicy`.
     func updateDataPolicy(
       dataPolicy: DataPolicy?,
       updateMask: GoogleCloudWkt.FieldMask?,
-    ) async throws -> GoogleCloudBigqueryDatapoliciesV1.DataPolicy
+    ) async throws -> GoogleBigQueryDataPoliciesV1.DataPolicy
 
     /// See `DataPolicyServiceClient.renameDataPolicy`.
     func renameDataPolicy(request: RenameDataPolicyRequest) async throws
-      -> GoogleCloudBigqueryDatapoliciesV1.DataPolicy
+      -> GoogleBigQueryDataPoliciesV1.DataPolicy
 
     /// See `DataPolicyServiceClient.renameDataPolicy`.
     func renameDataPolicy(
       name: Swift.String,
       newDataPolicyId: Swift.String,
-    ) async throws -> GoogleCloudBigqueryDatapoliciesV1.DataPolicy
+    ) async throws -> GoogleBigQueryDataPoliciesV1.DataPolicy
 
     /// See `DataPolicyServiceClient.deleteDataPolicy`.
     func deleteDataPolicy(request: DeleteDataPolicyRequest) async throws
@@ -185,16 +184,16 @@ extension Clients {
 
     /// See `DataPolicyServiceClient.getDataPolicy`.
     func getDataPolicy(request: GetDataPolicyRequest) async throws
-      -> GoogleCloudBigqueryDatapoliciesV1.DataPolicy
+      -> GoogleBigQueryDataPoliciesV1.DataPolicy
 
     /// See `DataPolicyServiceClient.getDataPolicy`.
     func getDataPolicy(
       name: Swift.String,
-    ) async throws -> GoogleCloudBigqueryDatapoliciesV1.DataPolicy
+    ) async throws -> GoogleBigQueryDataPoliciesV1.DataPolicy
 
     /// See `DataPolicyServiceClient.listDataPolicies`.
     func listDataPolicies(request: ListDataPoliciesRequest) async throws
-      -> GoogleCloudBigqueryDatapoliciesV1.ListDataPoliciesResponse
+      -> GoogleBigQueryDataPoliciesV1.ListDataPoliciesResponse
 
     /// See `DataPolicyServiceClient.listDataPolicies`.
     func listDataPolicies(
@@ -219,17 +218,17 @@ extension Clients {
     /// See `DataPolicyServiceClient.createDataPolicy`.
     func createDataPolicy(
       request: CreateDataPolicyRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryDatapoliciesV1.DataPolicy
+    ) async throws -> GoogleBigQueryDataPoliciesV1.DataPolicy
 
     /// See `DataPolicyServiceClient.updateDataPolicy`.
     func updateDataPolicy(
       request: UpdateDataPolicyRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryDatapoliciesV1.DataPolicy
+    ) async throws -> GoogleBigQueryDataPoliciesV1.DataPolicy
 
     /// See `DataPolicyServiceClient.renameDataPolicy`.
     func renameDataPolicy(
       request: RenameDataPolicyRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryDatapoliciesV1.DataPolicy
+    ) async throws -> GoogleBigQueryDataPoliciesV1.DataPolicy
 
     /// See `DataPolicyServiceClient.deleteDataPolicy`.
     func deleteDataPolicy(
@@ -239,12 +238,12 @@ extension Clients {
     /// See `DataPolicyServiceClient.getDataPolicy`.
     func getDataPolicy(
       request: GetDataPolicyRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryDatapoliciesV1.DataPolicy
+    ) async throws -> GoogleBigQueryDataPoliciesV1.DataPolicy
 
     /// See `DataPolicyServiceClient.listDataPolicies`.
     func listDataPolicies(
       request: ListDataPoliciesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryDatapoliciesV1.ListDataPoliciesResponse
+    ) async throws -> GoogleBigQueryDataPoliciesV1.ListDataPoliciesResponse
 
     /// See `DataPolicyServiceClient.listDataPolicies`.
     func listDataPolicies(
@@ -271,21 +270,21 @@ extension Clients {
 // Default implementations
 extension Clients.DataPolicyServiceProtocol {
   public func createDataPolicy(request: CreateDataPolicyRequest) async throws
-    -> GoogleCloudBigqueryDatapoliciesV1.DataPolicy
+    -> GoogleBigQueryDataPoliciesV1.DataPolicy
   {
     try await self.createDataPolicy(request: request, options: .init())
   }
 
   public func createDataPolicy(
     request: CreateDataPolicyRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudBigqueryDatapoliciesV1.DataPolicy {
+  ) async throws -> GoogleBigQueryDataPoliciesV1.DataPolicy {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func createDataPolicy(
     parent: Swift.String,
     dataPolicy: DataPolicy?,
-  ) async throws -> GoogleCloudBigqueryDatapoliciesV1.DataPolicy {
+  ) async throws -> GoogleBigQueryDataPoliciesV1.DataPolicy {
     let request = CreateDataPolicyRequest().with {
       $0.parent = parent
       $0.dataPolicy = dataPolicy
@@ -294,21 +293,21 @@ extension Clients.DataPolicyServiceProtocol {
   }
 
   public func updateDataPolicy(request: UpdateDataPolicyRequest) async throws
-    -> GoogleCloudBigqueryDatapoliciesV1.DataPolicy
+    -> GoogleBigQueryDataPoliciesV1.DataPolicy
   {
     try await self.updateDataPolicy(request: request, options: .init())
   }
 
   public func updateDataPolicy(
     request: UpdateDataPolicyRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudBigqueryDatapoliciesV1.DataPolicy {
+  ) async throws -> GoogleBigQueryDataPoliciesV1.DataPolicy {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func updateDataPolicy(
     dataPolicy: DataPolicy?,
     updateMask: GoogleCloudWkt.FieldMask?,
-  ) async throws -> GoogleCloudBigqueryDatapoliciesV1.DataPolicy {
+  ) async throws -> GoogleBigQueryDataPoliciesV1.DataPolicy {
     let request = UpdateDataPolicyRequest().with {
       $0.dataPolicy = dataPolicy
       $0.updateMask = updateMask
@@ -317,21 +316,21 @@ extension Clients.DataPolicyServiceProtocol {
   }
 
   public func renameDataPolicy(request: RenameDataPolicyRequest) async throws
-    -> GoogleCloudBigqueryDatapoliciesV1.DataPolicy
+    -> GoogleBigQueryDataPoliciesV1.DataPolicy
   {
     try await self.renameDataPolicy(request: request, options: .init())
   }
 
   public func renameDataPolicy(
     request: RenameDataPolicyRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudBigqueryDatapoliciesV1.DataPolicy {
+  ) async throws -> GoogleBigQueryDataPoliciesV1.DataPolicy {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func renameDataPolicy(
     name: Swift.String,
     newDataPolicyId: Swift.String,
-  ) async throws -> GoogleCloudBigqueryDatapoliciesV1.DataPolicy {
+  ) async throws -> GoogleBigQueryDataPoliciesV1.DataPolicy {
     let request = RenameDataPolicyRequest().with {
       $0.name = name
       $0.newDataPolicyId = newDataPolicyId
@@ -359,20 +358,20 @@ extension Clients.DataPolicyServiceProtocol {
   }
 
   public func getDataPolicy(request: GetDataPolicyRequest) async throws
-    -> GoogleCloudBigqueryDatapoliciesV1.DataPolicy
+    -> GoogleBigQueryDataPoliciesV1.DataPolicy
   {
     try await self.getDataPolicy(request: request, options: .init())
   }
 
   public func getDataPolicy(
     request: GetDataPolicyRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudBigqueryDatapoliciesV1.DataPolicy {
+  ) async throws -> GoogleBigQueryDataPoliciesV1.DataPolicy {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func getDataPolicy(
     name: Swift.String,
-  ) async throws -> GoogleCloudBigqueryDatapoliciesV1.DataPolicy {
+  ) async throws -> GoogleBigQueryDataPoliciesV1.DataPolicy {
     let request = GetDataPolicyRequest().with {
       $0.name = name
     }
@@ -380,14 +379,14 @@ extension Clients.DataPolicyServiceProtocol {
   }
 
   public func listDataPolicies(request: ListDataPoliciesRequest) async throws
-    -> GoogleCloudBigqueryDatapoliciesV1.ListDataPoliciesResponse
+    -> GoogleBigQueryDataPoliciesV1.ListDataPoliciesResponse
   {
     try await self.listDataPolicies(request: request, options: .init())
   }
 
   public func listDataPolicies(
     request: ListDataPoliciesRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudBigqueryDatapoliciesV1.ListDataPoliciesResponse {
+  ) async throws -> GoogleBigQueryDataPoliciesV1.ListDataPoliciesResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -401,8 +400,7 @@ extension Clients.DataPolicyServiceProtocol {
     byItem: ListDataPoliciesRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<DataPolicy, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws
-        -> GoogleCloudBigqueryDatapoliciesV1.ListDataPoliciesResponse in
+      (token: Swift.String) async throws -> GoogleBigQueryDataPoliciesV1.ListDataPoliciesResponse in
       throw GoogleCloudGax.RequestError.unimplemented
     }
     return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)

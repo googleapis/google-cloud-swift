@@ -28,23 +28,23 @@ extension Clients {
   protocol AnalyticsHubServiceStub {
     func listDataExchanges(
       request: ListDataExchangesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryAnalyticshubV1.ListDataExchangesResponse
+    ) async throws -> GoogleBigQueryAnalyticsHubV1.ListDataExchangesResponse
 
     func listOrgDataExchanges(
       request: ListOrgDataExchangesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryAnalyticshubV1.ListOrgDataExchangesResponse
+    ) async throws -> GoogleBigQueryAnalyticsHubV1.ListOrgDataExchangesResponse
 
     func getDataExchange(
       request: GetDataExchangeRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryAnalyticshubV1.DataExchange
+    ) async throws -> GoogleBigQueryAnalyticsHubV1.DataExchange
 
     func createDataExchange(
       request: CreateDataExchangeRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryAnalyticshubV1.DataExchange
+    ) async throws -> GoogleBigQueryAnalyticsHubV1.DataExchange
 
     func updateDataExchange(
       request: UpdateDataExchangeRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryAnalyticshubV1.DataExchange
+    ) async throws -> GoogleBigQueryAnalyticsHubV1.DataExchange
 
     func deleteDataExchange(
       request: DeleteDataExchangeRequest, options: GoogleCloudGax.RequestOptions
@@ -52,19 +52,19 @@ extension Clients {
 
     func listListings(
       request: ListListingsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryAnalyticshubV1.ListListingsResponse
+    ) async throws -> GoogleBigQueryAnalyticsHubV1.ListListingsResponse
 
     func getListing(
       request: GetListingRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryAnalyticshubV1.Listing
+    ) async throws -> GoogleBigQueryAnalyticsHubV1.Listing
 
     func createListing(
       request: CreateListingRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryAnalyticshubV1.Listing
+    ) async throws -> GoogleBigQueryAnalyticsHubV1.Listing
 
     func updateListing(
       request: UpdateListingRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryAnalyticshubV1.Listing
+    ) async throws -> GoogleBigQueryAnalyticsHubV1.Listing
 
     func deleteListing(
       request: DeleteListingRequest, options: GoogleCloudGax.RequestOptions
@@ -72,7 +72,7 @@ extension Clients {
 
     func subscribeListing(
       request: SubscribeListingRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryAnalyticshubV1.SubscribeListingResponse
+    ) async throws -> GoogleBigQueryAnalyticsHubV1.SubscribeListingResponse
 
     func subscribeDataExchange(
       request: SubscribeDataExchangeRequest, options: GoogleCloudGax.RequestOptions
@@ -84,19 +84,19 @@ extension Clients {
 
     func getSubscription(
       request: GetSubscriptionRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryAnalyticshubV1.Subscription
+    ) async throws -> GoogleBigQueryAnalyticsHubV1.Subscription
 
     func listSubscriptions(
       request: ListSubscriptionsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryAnalyticshubV1.ListSubscriptionsResponse
+    ) async throws -> GoogleBigQueryAnalyticsHubV1.ListSubscriptionsResponse
 
     func listSharedResourceSubscriptions(
       request: ListSharedResourceSubscriptionsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryAnalyticshubV1.ListSharedResourceSubscriptionsResponse
+    ) async throws -> GoogleBigQueryAnalyticsHubV1.ListSharedResourceSubscriptionsResponse
 
     func revokeSubscription(
       request: RevokeSubscriptionRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryAnalyticshubV1.RevokeSubscriptionResponse
+    ) async throws -> GoogleBigQueryAnalyticsHubV1.RevokeSubscriptionResponse
 
     func deleteSubscription(
       request: DeleteSubscriptionRequest, options: GoogleCloudGax.RequestOptions
@@ -116,19 +116,19 @@ extension Clients {
 
     func createQueryTemplate(
       request: CreateQueryTemplateRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryAnalyticshubV1.QueryTemplate
+    ) async throws -> GoogleBigQueryAnalyticsHubV1.QueryTemplate
 
     func getQueryTemplate(
       request: GetQueryTemplateRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryAnalyticshubV1.QueryTemplate
+    ) async throws -> GoogleBigQueryAnalyticsHubV1.QueryTemplate
 
     func listQueryTemplates(
       request: ListQueryTemplatesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryAnalyticshubV1.ListQueryTemplatesResponse
+    ) async throws -> GoogleBigQueryAnalyticsHubV1.ListQueryTemplatesResponse
 
     func updateQueryTemplate(
       request: UpdateQueryTemplateRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryAnalyticshubV1.QueryTemplate
+    ) async throws -> GoogleBigQueryAnalyticsHubV1.QueryTemplate
 
     func deleteQueryTemplate(
       request: DeleteQueryTemplateRequest, options: GoogleCloudGax.RequestOptions
@@ -136,11 +136,11 @@ extension Clients {
 
     func submitQueryTemplate(
       request: SubmitQueryTemplateRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryAnalyticshubV1.QueryTemplate
+    ) async throws -> GoogleBigQueryAnalyticsHubV1.QueryTemplate
 
     func approveQueryTemplate(
       request: ApproveQueryTemplateRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryAnalyticshubV1.QueryTemplate
+    ) async throws -> GoogleBigQueryAnalyticsHubV1.QueryTemplate
 
     func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
@@ -157,7 +157,7 @@ extension Clients {
 
     public func listDataExchanges(
       request: ListDataExchangesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryAnalyticshubV1.ListDataExchangesResponse {
+    ) async throws -> GoogleBigQueryAnalyticsHubV1.ListDataExchangesResponse {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.parent' is not set or is empty")
@@ -175,12 +175,12 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudBigqueryAnalyticshubV1.ListDataExchangesResponse.self, from: data)
+        GoogleBigQueryAnalyticsHubV1.ListDataExchangesResponse.self, from: data)
     }
 
     public func listOrgDataExchanges(
       request: ListOrgDataExchangesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryAnalyticshubV1.ListOrgDataExchangesResponse {
+    ) async throws -> GoogleBigQueryAnalyticsHubV1.ListOrgDataExchangesResponse {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.organization as Swift.String?, !pathVariable0.isEmpty
         else {
@@ -199,12 +199,12 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudBigqueryAnalyticshubV1.ListOrgDataExchangesResponse.self, from: data)
+        GoogleBigQueryAnalyticsHubV1.ListOrgDataExchangesResponse.self, from: data)
     }
 
     public func getDataExchange(
       request: GetDataExchangeRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryAnalyticshubV1.DataExchange {
+    ) async throws -> GoogleBigQueryAnalyticsHubV1.DataExchange {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -219,12 +219,12 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudBigqueryAnalyticshubV1.DataExchange.self, from: data)
+        GoogleBigQueryAnalyticsHubV1.DataExchange.self, from: data)
     }
 
     public func createDataExchange(
       request: CreateDataExchangeRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryAnalyticshubV1.DataExchange {
+    ) async throws -> GoogleBigQueryAnalyticsHubV1.DataExchange {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.parent' is not set or is empty")
@@ -245,12 +245,12 @@ extension Clients {
       }
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudBigqueryAnalyticshubV1.DataExchange.self, from: data)
+        GoogleBigQueryAnalyticsHubV1.DataExchange.self, from: data)
     }
 
     public func updateDataExchange(
       request: UpdateDataExchangeRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryAnalyticshubV1.DataExchange {
+    ) async throws -> GoogleBigQueryAnalyticsHubV1.DataExchange {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.dataExchange.map({ $0.name }), !pathVariable0.isEmpty
         else {
@@ -273,7 +273,7 @@ extension Clients {
       }
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudBigqueryAnalyticshubV1.DataExchange.self, from: data)
+        GoogleBigQueryAnalyticsHubV1.DataExchange.self, from: data)
     }
 
     public func deleteDataExchange(
@@ -296,7 +296,7 @@ extension Clients {
 
     public func listListings(
       request: ListListingsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryAnalyticshubV1.ListListingsResponse {
+    ) async throws -> GoogleBigQueryAnalyticsHubV1.ListListingsResponse {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.parent' is not set or is empty")
@@ -314,12 +314,12 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudBigqueryAnalyticshubV1.ListListingsResponse.self, from: data)
+        GoogleBigQueryAnalyticsHubV1.ListListingsResponse.self, from: data)
     }
 
     public func getListing(
       request: GetListingRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryAnalyticshubV1.Listing {
+    ) async throws -> GoogleBigQueryAnalyticsHubV1.Listing {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -334,12 +334,12 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudBigqueryAnalyticshubV1.Listing.self, from: data)
+        GoogleBigQueryAnalyticsHubV1.Listing.self, from: data)
     }
 
     public func createListing(
       request: CreateListingRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryAnalyticshubV1.Listing {
+    ) async throws -> GoogleBigQueryAnalyticsHubV1.Listing {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.parent' is not set or is empty")
@@ -360,12 +360,12 @@ extension Clients {
       }
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudBigqueryAnalyticshubV1.Listing.self, from: data)
+        GoogleBigQueryAnalyticsHubV1.Listing.self, from: data)
     }
 
     public func updateListing(
       request: UpdateListingRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryAnalyticshubV1.Listing {
+    ) async throws -> GoogleBigQueryAnalyticsHubV1.Listing {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.listing.map({ $0.name }), !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.listing.name' is not set or is empty")
@@ -386,7 +386,7 @@ extension Clients {
       }
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudBigqueryAnalyticshubV1.Listing.self, from: data)
+        GoogleBigQueryAnalyticsHubV1.Listing.self, from: data)
     }
 
     public func deleteListing(
@@ -412,7 +412,7 @@ extension Clients {
 
     public func subscribeListing(
       request: SubscribeListingRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryAnalyticshubV1.SubscribeListingResponse {
+    ) async throws -> GoogleBigQueryAnalyticsHubV1.SubscribeListingResponse {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -429,7 +429,7 @@ extension Clients {
       req.httpBody = try JSONEncoder().encode(request)
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudBigqueryAnalyticshubV1.SubscribeListingResponse.self, from: data)
+        GoogleBigQueryAnalyticsHubV1.SubscribeListingResponse.self, from: data)
     }
 
     public func subscribeDataExchange(
@@ -478,7 +478,7 @@ extension Clients {
 
     public func getSubscription(
       request: GetSubscriptionRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryAnalyticshubV1.Subscription {
+    ) async throws -> GoogleBigQueryAnalyticsHubV1.Subscription {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -493,12 +493,12 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudBigqueryAnalyticshubV1.Subscription.self, from: data)
+        GoogleBigQueryAnalyticsHubV1.Subscription.self, from: data)
     }
 
     public func listSubscriptions(
       request: ListSubscriptionsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryAnalyticshubV1.ListSubscriptionsResponse {
+    ) async throws -> GoogleBigQueryAnalyticsHubV1.ListSubscriptionsResponse {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.parent' is not set or is empty")
@@ -517,12 +517,12 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudBigqueryAnalyticshubV1.ListSubscriptionsResponse.self, from: data)
+        GoogleBigQueryAnalyticsHubV1.ListSubscriptionsResponse.self, from: data)
     }
 
     public func listSharedResourceSubscriptions(
       request: ListSharedResourceSubscriptionsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryAnalyticshubV1.ListSharedResourceSubscriptionsResponse {
+    ) async throws -> GoogleBigQueryAnalyticsHubV1.ListSharedResourceSubscriptionsResponse {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.resource as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.resource' is not set or is empty")
@@ -543,12 +543,12 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudBigqueryAnalyticshubV1.ListSharedResourceSubscriptionsResponse.self, from: data)
+        GoogleBigQueryAnalyticsHubV1.ListSharedResourceSubscriptionsResponse.self, from: data)
     }
 
     public func revokeSubscription(
       request: RevokeSubscriptionRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryAnalyticshubV1.RevokeSubscriptionResponse {
+    ) async throws -> GoogleBigQueryAnalyticsHubV1.RevokeSubscriptionResponse {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -565,7 +565,7 @@ extension Clients {
       req.httpBody = try JSONEncoder().encode(request)
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudBigqueryAnalyticshubV1.RevokeSubscriptionResponse.self, from: data)
+        GoogleBigQueryAnalyticsHubV1.RevokeSubscriptionResponse.self, from: data)
     }
 
     public func deleteSubscription(
@@ -656,7 +656,7 @@ extension Clients {
 
     public func createQueryTemplate(
       request: CreateQueryTemplateRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryAnalyticshubV1.QueryTemplate {
+    ) async throws -> GoogleBigQueryAnalyticsHubV1.QueryTemplate {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.parent' is not set or is empty")
@@ -678,12 +678,12 @@ extension Clients {
       }
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudBigqueryAnalyticshubV1.QueryTemplate.self, from: data)
+        GoogleBigQueryAnalyticsHubV1.QueryTemplate.self, from: data)
     }
 
     public func getQueryTemplate(
       request: GetQueryTemplateRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryAnalyticshubV1.QueryTemplate {
+    ) async throws -> GoogleBigQueryAnalyticsHubV1.QueryTemplate {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -698,12 +698,12 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudBigqueryAnalyticshubV1.QueryTemplate.self, from: data)
+        GoogleBigQueryAnalyticsHubV1.QueryTemplate.self, from: data)
     }
 
     public func listQueryTemplates(
       request: ListQueryTemplatesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryAnalyticshubV1.ListQueryTemplatesResponse {
+    ) async throws -> GoogleBigQueryAnalyticsHubV1.ListQueryTemplatesResponse {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.parent' is not set or is empty")
@@ -721,12 +721,12 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudBigqueryAnalyticshubV1.ListQueryTemplatesResponse.self, from: data)
+        GoogleBigQueryAnalyticsHubV1.ListQueryTemplatesResponse.self, from: data)
     }
 
     public func updateQueryTemplate(
       request: UpdateQueryTemplateRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryAnalyticshubV1.QueryTemplate {
+    ) async throws -> GoogleBigQueryAnalyticsHubV1.QueryTemplate {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.queryTemplate.map({ $0.name }), !pathVariable0.isEmpty
         else {
@@ -749,7 +749,7 @@ extension Clients {
       }
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudBigqueryAnalyticshubV1.QueryTemplate.self, from: data)
+        GoogleBigQueryAnalyticsHubV1.QueryTemplate.self, from: data)
     }
 
     public func deleteQueryTemplate(
@@ -772,7 +772,7 @@ extension Clients {
 
     public func submitQueryTemplate(
       request: SubmitQueryTemplateRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryAnalyticshubV1.QueryTemplate {
+    ) async throws -> GoogleBigQueryAnalyticsHubV1.QueryTemplate {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -789,12 +789,12 @@ extension Clients {
       req.httpBody = try JSONEncoder().encode(request)
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudBigqueryAnalyticshubV1.QueryTemplate.self, from: data)
+        GoogleBigQueryAnalyticsHubV1.QueryTemplate.self, from: data)
     }
 
     public func approveQueryTemplate(
       request: ApproveQueryTemplateRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryAnalyticshubV1.QueryTemplate {
+    ) async throws -> GoogleBigQueryAnalyticsHubV1.QueryTemplate {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -811,7 +811,7 @@ extension Clients {
       req.httpBody = try JSONEncoder().encode(request)
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudBigqueryAnalyticshubV1.QueryTemplate.self, from: data)
+        GoogleBigQueryAnalyticsHubV1.QueryTemplate.self, from: data)
     }
 
     public func getOperation(

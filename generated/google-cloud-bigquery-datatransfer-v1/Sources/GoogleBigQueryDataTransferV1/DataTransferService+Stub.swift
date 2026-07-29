@@ -26,19 +26,19 @@ extension Clients {
   protocol DataTransferServiceStub {
     func getDataSource(
       request: GetDataSourceRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryDatatransferV1.DataSource
+    ) async throws -> GoogleBigQueryDataTransferV1.DataSource
 
     func listDataSources(
       request: ListDataSourcesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryDatatransferV1.ListDataSourcesResponse
+    ) async throws -> GoogleBigQueryDataTransferV1.ListDataSourcesResponse
 
     func createTransferConfig(
       request: CreateTransferConfigRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryDatatransferV1.TransferConfig
+    ) async throws -> GoogleBigQueryDataTransferV1.TransferConfig
 
     func updateTransferConfig(
       request: UpdateTransferConfigRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryDatatransferV1.TransferConfig
+    ) async throws -> GoogleBigQueryDataTransferV1.TransferConfig
 
     func deleteTransferConfig(
       request: DeleteTransferConfigRequest, options: GoogleCloudGax.RequestOptions
@@ -46,23 +46,23 @@ extension Clients {
 
     func getTransferConfig(
       request: GetTransferConfigRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryDatatransferV1.TransferConfig
+    ) async throws -> GoogleBigQueryDataTransferV1.TransferConfig
 
     func listTransferConfigs(
       request: ListTransferConfigsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryDatatransferV1.ListTransferConfigsResponse
+    ) async throws -> GoogleBigQueryDataTransferV1.ListTransferConfigsResponse
 
     func scheduleTransferRuns(
       request: ScheduleTransferRunsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryDatatransferV1.ScheduleTransferRunsResponse
+    ) async throws -> GoogleBigQueryDataTransferV1.ScheduleTransferRunsResponse
 
     func startManualTransferRuns(
       request: StartManualTransferRunsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryDatatransferV1.StartManualTransferRunsResponse
+    ) async throws -> GoogleBigQueryDataTransferV1.StartManualTransferRunsResponse
 
     func getTransferRun(
       request: GetTransferRunRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryDatatransferV1.TransferRun
+    ) async throws -> GoogleBigQueryDataTransferV1.TransferRun
 
     func deleteTransferRun(
       request: DeleteTransferRunRequest, options: GoogleCloudGax.RequestOptions
@@ -70,15 +70,15 @@ extension Clients {
 
     func listTransferRuns(
       request: ListTransferRunsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryDatatransferV1.ListTransferRunsResponse
+    ) async throws -> GoogleBigQueryDataTransferV1.ListTransferRunsResponse
 
     func listTransferLogs(
       request: ListTransferLogsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryDatatransferV1.ListTransferLogsResponse
+    ) async throws -> GoogleBigQueryDataTransferV1.ListTransferLogsResponse
 
     func checkValidCreds(
       request: CheckValidCredsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryDatatransferV1.CheckValidCredsResponse
+    ) async throws -> GoogleBigQueryDataTransferV1.CheckValidCredsResponse
 
     func enrollDataSources(
       request: EnrollDataSourcesRequest, options: GoogleCloudGax.RequestOptions
@@ -107,7 +107,7 @@ extension Clients {
 
     public func getDataSource(
       request: GetDataSourceRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryDatatransferV1.DataSource {
+    ) async throws -> GoogleBigQueryDataTransferV1.DataSource {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -122,12 +122,12 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudBigqueryDatatransferV1.DataSource.self, from: data)
+        GoogleBigQueryDataTransferV1.DataSource.self, from: data)
     }
 
     public func listDataSources(
       request: ListDataSourcesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryDatatransferV1.ListDataSourcesResponse {
+    ) async throws -> GoogleBigQueryDataTransferV1.ListDataSourcesResponse {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.parent' is not set or is empty")
@@ -145,12 +145,12 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudBigqueryDatatransferV1.ListDataSourcesResponse.self, from: data)
+        GoogleBigQueryDataTransferV1.ListDataSourcesResponse.self, from: data)
     }
 
     public func createTransferConfig(
       request: CreateTransferConfigRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryDatatransferV1.TransferConfig {
+    ) async throws -> GoogleBigQueryDataTransferV1.TransferConfig {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.parent' is not set or is empty")
@@ -175,12 +175,12 @@ extension Clients {
       }
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudBigqueryDatatransferV1.TransferConfig.self, from: data)
+        GoogleBigQueryDataTransferV1.TransferConfig.self, from: data)
     }
 
     public func updateTransferConfig(
       request: UpdateTransferConfigRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryDatatransferV1.TransferConfig {
+    ) async throws -> GoogleBigQueryDataTransferV1.TransferConfig {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.transferConfig.map({ $0.name }), !pathVariable0.isEmpty
         else {
@@ -208,7 +208,7 @@ extension Clients {
       }
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudBigqueryDatatransferV1.TransferConfig.self, from: data)
+        GoogleBigQueryDataTransferV1.TransferConfig.self, from: data)
     }
 
     public func deleteTransferConfig(
@@ -231,7 +231,7 @@ extension Clients {
 
     public func getTransferConfig(
       request: GetTransferConfigRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryDatatransferV1.TransferConfig {
+    ) async throws -> GoogleBigQueryDataTransferV1.TransferConfig {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -246,12 +246,12 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudBigqueryDatatransferV1.TransferConfig.self, from: data)
+        GoogleBigQueryDataTransferV1.TransferConfig.self, from: data)
     }
 
     public func listTransferConfigs(
       request: ListTransferConfigsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryDatatransferV1.ListTransferConfigsResponse {
+    ) async throws -> GoogleBigQueryDataTransferV1.ListTransferConfigsResponse {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.parent' is not set or is empty")
@@ -270,12 +270,12 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudBigqueryDatatransferV1.ListTransferConfigsResponse.self, from: data)
+        GoogleBigQueryDataTransferV1.ListTransferConfigsResponse.self, from: data)
     }
 
     public func scheduleTransferRuns(
       request: ScheduleTransferRunsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryDatatransferV1.ScheduleTransferRunsResponse {
+    ) async throws -> GoogleBigQueryDataTransferV1.ScheduleTransferRunsResponse {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.parent' is not set or is empty")
@@ -292,12 +292,12 @@ extension Clients {
       req.httpBody = try JSONEncoder().encode(request)
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudBigqueryDatatransferV1.ScheduleTransferRunsResponse.self, from: data)
+        GoogleBigQueryDataTransferV1.ScheduleTransferRunsResponse.self, from: data)
     }
 
     public func startManualTransferRuns(
       request: StartManualTransferRunsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryDatatransferV1.StartManualTransferRunsResponse {
+    ) async throws -> GoogleBigQueryDataTransferV1.StartManualTransferRunsResponse {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.parent' is not set or is empty")
@@ -314,12 +314,12 @@ extension Clients {
       req.httpBody = try JSONEncoder().encode(request)
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudBigqueryDatatransferV1.StartManualTransferRunsResponse.self, from: data)
+        GoogleBigQueryDataTransferV1.StartManualTransferRunsResponse.self, from: data)
     }
 
     public func getTransferRun(
       request: GetTransferRunRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryDatatransferV1.TransferRun {
+    ) async throws -> GoogleBigQueryDataTransferV1.TransferRun {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -334,7 +334,7 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudBigqueryDatatransferV1.TransferRun.self, from: data)
+        GoogleBigQueryDataTransferV1.TransferRun.self, from: data)
     }
 
     public func deleteTransferRun(
@@ -357,7 +357,7 @@ extension Clients {
 
     public func listTransferRuns(
       request: ListTransferRunsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryDatatransferV1.ListTransferRunsResponse {
+    ) async throws -> GoogleBigQueryDataTransferV1.ListTransferRunsResponse {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.parent' is not set or is empty")
@@ -377,12 +377,12 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudBigqueryDatatransferV1.ListTransferRunsResponse.self, from: data)
+        GoogleBigQueryDataTransferV1.ListTransferRunsResponse.self, from: data)
     }
 
     public func listTransferLogs(
       request: ListTransferLogsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryDatatransferV1.ListTransferLogsResponse {
+    ) async throws -> GoogleBigQueryDataTransferV1.ListTransferLogsResponse {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.parent' is not set or is empty")
@@ -401,12 +401,12 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudBigqueryDatatransferV1.ListTransferLogsResponse.self, from: data)
+        GoogleBigQueryDataTransferV1.ListTransferLogsResponse.self, from: data)
     }
 
     public func checkValidCreds(
       request: CheckValidCredsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudBigqueryDatatransferV1.CheckValidCredsResponse {
+    ) async throws -> GoogleBigQueryDataTransferV1.CheckValidCredsResponse {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -423,7 +423,7 @@ extension Clients {
       req.httpBody = try JSONEncoder().encode(request)
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudBigqueryDatatransferV1.CheckValidCredsResponse.self, from: data)
+        GoogleBigQueryDataTransferV1.CheckValidCredsResponse.self, from: data)
     }
 
     public func enrollDataSources(

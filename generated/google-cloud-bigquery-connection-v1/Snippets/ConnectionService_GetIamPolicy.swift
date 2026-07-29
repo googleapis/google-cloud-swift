@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudBigqueryConnectionV1
+import GoogleBigQueryConnectionV1
 import GoogleCloudWkt
 import GoogleIAMV1
 
@@ -34,7 +34,7 @@ func sample(client: ConnectionServiceClient) async throws {
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleCloudBigqueryConnectionV1.ConnectionServiceClient()
+      let client = try GoogleBigQueryConnectionV1.ConnectionServiceClient()
       try await sample(client: client)
     } catch {
       print("Error: \(error)")
