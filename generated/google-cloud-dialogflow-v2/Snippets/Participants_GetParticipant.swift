@@ -21,7 +21,7 @@
   import GoogleCloudDialogflowV2
   import GoogleCloudLocation
   import GoogleCloudWkt
-  import GoogleLongrunning
+  import GoogleLongRunning
 
   func sample(
     client: ParticipantsClient, projectId: String, conversationId: String, participantId: String

@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudWkt
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
 
@@ -77,7 +77,7 @@ public class TagBindingsClient: Clients.TagBindingsProtocol {
   /// @Snippet(path: "TagBindings_CreateTagBinding")
   public func createTagBinding(
     request: CreateTagBindingRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.createTagBinding(request: request, options: options)
   }
 
@@ -88,7 +88,7 @@ public class TagBindingsClient: Clients.TagBindingsProtocol {
     withPolling: CreateTagBindingRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<TagBinding> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<TagBinding>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -140,7 +140,7 @@ public class TagBindingsClient: Clients.TagBindingsProtocol {
   /// @Snippet(path: "TagBindings_DeleteTagBinding")
   public func deleteTagBinding(
     request: DeleteTagBindingRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.deleteTagBinding(request: request, options: options)
   }
 
@@ -151,7 +151,7 @@ public class TagBindingsClient: Clients.TagBindingsProtocol {
     withPolling: DeleteTagBindingRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
+      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
       in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -223,8 +223,8 @@ public class TagBindingsClient: Clients.TagBindingsProtocol {
   ///
   /// @Snippet(path: "TagBindings_GetOperation")
   func getOperation(
-    request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+    request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.getOperation(request: request, options: options)
   }
 }
@@ -252,7 +252,7 @@ extension Clients {
 
     /// See `TagBindingsClient.createTagBinding`.
     func createTagBinding(request: CreateTagBindingRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `TagBindingsClient.createTagBinding`.
     func createTagBinding(withPolling: CreateTagBindingRequest) async throws -> any GoogleCloudGax
@@ -265,7 +265,7 @@ extension Clients {
 
     /// See `TagBindingsClient.deleteTagBinding`.
     func deleteTagBinding(request: DeleteTagBindingRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `TagBindingsClient.deleteTagBinding`.
     func deleteTagBinding(withPolling: DeleteTagBindingRequest) async throws -> any GoogleCloudGax
@@ -303,7 +303,7 @@ extension Clients {
     /// See `TagBindingsClient.createTagBinding`.
     func createTagBinding(
       request: CreateTagBindingRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `TagBindingsClient.createTagBinding`.
     func createTagBinding(
@@ -313,7 +313,7 @@ extension Clients {
     /// See `TagBindingsClient.deleteTagBinding`.
     func deleteTagBinding(
       request: DeleteTagBindingRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `TagBindingsClient.deleteTagBinding`.
     func deleteTagBinding(
@@ -372,14 +372,14 @@ extension Clients.TagBindingsProtocol {
   }
 
   public func createTagBinding(request: CreateTagBindingRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.createTagBinding(request: request, options: .init())
   }
 
   public func createTagBinding(
     request: CreateTagBindingRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -409,14 +409,14 @@ extension Clients.TagBindingsProtocol {
   }
 
   public func deleteTagBinding(request: DeleteTagBindingRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.deleteTagBinding(request: request, options: .init())
   }
 
   public func deleteTagBinding(
     request: DeleteTagBindingRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -483,22 +483,22 @@ extension Clients.TagBindingsProtocol {
     return try self.listEffectiveTags(byItem: request)
   }
 
-  public func getOperation(request: GoogleLongrunning.GetOperationRequest) async throws
-    -> GoogleLongrunning.Operation
+  public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
+    -> GoogleLongRunning.Operation
   {
     try await self.getOperation(request: request, options: .init())
   }
 
   public func getOperation(
-    request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+    request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func getOperation(
     name: Swift.String,
-  ) async throws -> GoogleLongrunning.Operation {
-    let request = GoogleLongrunning.GetOperationRequest().with {
+  ) async throws -> GoogleLongRunning.Operation {
+    let request = GoogleLongRunning.GetOperationRequest().with {
       $0.name = name
     }
     return try await self.getOperation(request: request)

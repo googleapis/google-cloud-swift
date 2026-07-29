@@ -21,7 +21,7 @@
   #endif
   import GoogleCloudLocation
   import GoogleCloudWkt
-  import GoogleLongrunning
+  import GoogleLongRunning
   import GoogleRpc
   import GoogleCloudGax
 
@@ -37,27 +37,27 @@
 
       func createDocument(
         request: CreateDocumentRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+      ) async throws -> GoogleLongRunning.Operation
 
       func importDocuments(
         request: ImportDocumentsRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+      ) async throws -> GoogleLongRunning.Operation
 
       func deleteDocument(
         request: DeleteDocumentRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+      ) async throws -> GoogleLongRunning.Operation
 
       func updateDocument(
         request: UpdateDocumentRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+      ) async throws -> GoogleLongRunning.Operation
 
       func reloadDocument(
         request: ReloadDocumentRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+      ) async throws -> GoogleLongRunning.Operation
 
       func exportDocument(
         request: ExportDocumentRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+      ) async throws -> GoogleLongRunning.Operation
 
       func listLocations(
         request: GoogleCloudLocation.ListLocationsRequest, options: GoogleCloudGax.RequestOptions
@@ -68,15 +68,15 @@
       ) async throws -> GoogleCloudLocation.Location
 
       func listOperations(
-        request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.ListOperationsResponse
+        request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+      ) async throws -> GoogleLongRunning.ListOperationsResponse
 
       func getOperation(
-        request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+        request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+      ) async throws -> GoogleLongRunning.Operation
 
       func cancelOperation(
-        request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+        request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
       ) async throws
     }
 
@@ -134,7 +134,7 @@
 
       public func createDocument(
         request: CreateDocumentRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation {
+      ) async throws -> GoogleLongRunning.Operation {
         let path = try { () throws -> Swift.String in
           guard let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty else {
             throw GoogleCloudGax.RequestError.binding("'request.parent' is not set or is empty")
@@ -153,12 +153,12 @@
         }
         let (data, _) = try await self.inner.rpc(for: req).get()
         return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleLongrunning.Operation.self, from: data)
+          GoogleLongRunning.Operation.self, from: data)
       }
 
       public func importDocuments(
         request: ImportDocumentsRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation {
+      ) async throws -> GoogleLongRunning.Operation {
         let path = try { () throws -> Swift.String in
           guard let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty else {
             throw GoogleCloudGax.RequestError.binding("'request.parent' is not set or is empty")
@@ -175,12 +175,12 @@
         req.httpBody = try JSONEncoder().encode(request)
         let (data, _) = try await self.inner.rpc(for: req).get()
         return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleLongrunning.Operation.self, from: data)
+          GoogleLongRunning.Operation.self, from: data)
       }
 
       public func deleteDocument(
         request: DeleteDocumentRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation {
+      ) async throws -> GoogleLongRunning.Operation {
         let path = try { () throws -> Swift.String in
           guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
             throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -195,12 +195,12 @@
         req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
         let (data, _) = try await self.inner.rpc(for: req).get()
         return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleLongrunning.Operation.self, from: data)
+          GoogleLongRunning.Operation.self, from: data)
       }
 
       public func updateDocument(
         request: UpdateDocumentRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation {
+      ) async throws -> GoogleLongRunning.Operation {
         let path = try { () throws -> Swift.String in
           guard let pathVariable0 = request.document.map({ $0.name }), !pathVariable0.isEmpty else {
             throw GoogleCloudGax.RequestError.binding(
@@ -222,12 +222,12 @@
         }
         let (data, _) = try await self.inner.rpc(for: req).get()
         return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleLongrunning.Operation.self, from: data)
+          GoogleLongRunning.Operation.self, from: data)
       }
 
       public func reloadDocument(
         request: ReloadDocumentRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation {
+      ) async throws -> GoogleLongRunning.Operation {
         let path = try { () throws -> Swift.String in
           guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
             throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -244,12 +244,12 @@
         req.httpBody = try JSONEncoder().encode(request)
         let (data, _) = try await self.inner.rpc(for: req).get()
         return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleLongrunning.Operation.self, from: data)
+          GoogleLongRunning.Operation.self, from: data)
       }
 
       public func exportDocument(
         request: ExportDocumentRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation {
+      ) async throws -> GoogleLongRunning.Operation {
         let path = try { () throws -> Swift.String in
           guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
             throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -266,7 +266,7 @@
         req.httpBody = try JSONEncoder().encode(request)
         let (data, _) = try await self.inner.rpc(for: req).get()
         return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleLongrunning.Operation.self, from: data)
+          GoogleLongRunning.Operation.self, from: data)
       }
 
       public func listLocations(
@@ -314,8 +314,8 @@
       }
 
       public func listOperations(
-        request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.ListOperationsResponse {
+        request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+      ) async throws -> GoogleLongRunning.ListOperationsResponse {
         let path = try { () throws -> Swift.String in
           guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
             throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -337,12 +337,12 @@
         req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
         let (data, _) = try await self.inner.rpc(for: req).get()
         return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleLongrunning.ListOperationsResponse.self, from: data)
+          GoogleLongRunning.ListOperationsResponse.self, from: data)
       }
 
       public func getOperation(
-        request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation {
+        request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+      ) async throws -> GoogleLongRunning.Operation {
         let path = try { () throws -> Swift.String in
           guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
             throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -357,11 +357,11 @@
         req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
         let (data, _) = try await self.inner.rpc(for: req).get()
         return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleLongrunning.Operation.self, from: data)
+          GoogleLongRunning.Operation.self, from: data)
       }
 
       public func cancelOperation(
-        request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+        request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
       ) async throws {
         let path = try { () throws -> Swift.String in
           guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {

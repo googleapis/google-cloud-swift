@@ -20,7 +20,7 @@ import Foundation
 #endif
 import GoogleCloudLocation
 import GoogleCloudWkt
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
 
@@ -36,19 +36,19 @@ extension Clients {
 
     func createCluster(
       request: CreateClusterRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     func updateCluster(
       request: UpdateClusterRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     func upgradeCluster(
       request: UpgradeClusterRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     func deleteCluster(
       request: DeleteClusterRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     func generateAccessToken(
       request: GenerateAccessTokenRequest, options: GoogleCloudGax.RequestOptions
@@ -68,15 +68,15 @@ extension Clients {
 
     func createNodePool(
       request: CreateNodePoolRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     func updateNodePool(
       request: UpdateNodePoolRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     func deleteNodePool(
       request: DeleteNodePoolRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     func listMachines(
       request: ListMachinesRequest, options: GoogleCloudGax.RequestOptions
@@ -96,11 +96,11 @@ extension Clients {
 
     func createVpnConnection(
       request: CreateVpnConnectionRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     func deleteVpnConnection(
       request: DeleteVpnConnectionRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     func getServerConfig(
       request: GetServerConfigRequest, options: GoogleCloudGax.RequestOptions
@@ -115,19 +115,19 @@ extension Clients {
     ) async throws -> GoogleCloudLocation.Location
 
     func listOperations(
-      request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.ListOperationsResponse
+      request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.ListOperationsResponse
 
     func getOperation(
-      request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+      request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
 
     func deleteOperation(
-      request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+      request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws
 
     func cancelOperation(
-      request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+      request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws
   }
 
@@ -186,7 +186,7 @@ extension Clients {
 
     public func createCluster(
       request: CreateClusterRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.parent' is not set or is empty")
@@ -208,12 +208,12 @@ extension Clients {
       }
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleLongrunning.Operation.self, from: data)
+        GoogleLongRunning.Operation.self, from: data)
     }
 
     public func updateCluster(
       request: UpdateClusterRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.cluster.map({ $0.name }), !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.cluster.name' is not set or is empty")
@@ -235,12 +235,12 @@ extension Clients {
       }
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleLongrunning.Operation.self, from: data)
+        GoogleLongRunning.Operation.self, from: data)
     }
 
     public func upgradeCluster(
       request: UpgradeClusterRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -257,12 +257,12 @@ extension Clients {
       req.httpBody = try JSONEncoder().encode(request)
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleLongrunning.Operation.self, from: data)
+        GoogleLongRunning.Operation.self, from: data)
     }
 
     public func deleteCluster(
       request: DeleteClusterRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -279,7 +279,7 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleLongrunning.Operation.self, from: data)
+        GoogleLongRunning.Operation.self, from: data)
     }
 
     public func generateAccessToken(
@@ -369,7 +369,7 @@ extension Clients {
 
     public func createNodePool(
       request: CreateNodePoolRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.parent' is not set or is empty")
@@ -391,12 +391,12 @@ extension Clients {
       }
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleLongrunning.Operation.self, from: data)
+        GoogleLongRunning.Operation.self, from: data)
     }
 
     public func updateNodePool(
       request: UpdateNodePoolRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.nodePool.map({ $0.name }), !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding(
@@ -419,12 +419,12 @@ extension Clients {
       }
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleLongrunning.Operation.self, from: data)
+        GoogleLongRunning.Operation.self, from: data)
     }
 
     public func deleteNodePool(
       request: DeleteNodePoolRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -441,7 +441,7 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleLongrunning.Operation.self, from: data)
+        GoogleLongRunning.Operation.self, from: data)
     }
 
     public func listMachines(
@@ -536,7 +536,7 @@ extension Clients {
 
     public func createVpnConnection(
       request: CreateVpnConnectionRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.parent' is not set or is empty")
@@ -559,12 +559,12 @@ extension Clients {
       }
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleLongrunning.Operation.self, from: data)
+        GoogleLongRunning.Operation.self, from: data)
     }
 
     public func deleteVpnConnection(
       request: DeleteVpnConnectionRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -581,7 +581,7 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleLongrunning.Operation.self, from: data)
+        GoogleLongRunning.Operation.self, from: data)
     }
 
     public func getServerConfig(
@@ -649,8 +649,8 @@ extension Clients {
     }
 
     public func listOperations(
-      request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.ListOperationsResponse {
+      request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.ListOperationsResponse {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -672,12 +672,12 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleLongrunning.ListOperationsResponse.self, from: data)
+        GoogleLongRunning.ListOperationsResponse.self, from: data)
     }
 
     public func getOperation(
-      request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+      request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -692,11 +692,11 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleLongrunning.Operation.self, from: data)
+        GoogleLongRunning.Operation.self, from: data)
     }
 
     public func deleteOperation(
-      request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+      request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
@@ -714,7 +714,7 @@ extension Clients {
     }
 
     public func cancelOperation(
-      request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+      request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {

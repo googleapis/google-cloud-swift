@@ -20,7 +20,7 @@ import Foundation
 #endif
 import GoogleCloudLocation
 import GoogleCloudWkt
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
 
@@ -128,14 +128,14 @@ extension Clients {
 
     public func deletePlugin(
       request: DeletePluginRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
         action: {
           (r: DeletePluginRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleLongrunning.Operation
+            -> GoogleLongRunning.Operation
           in
           return try await self.inner.deletePlugin(request: r, options: o)
         })
@@ -143,14 +143,14 @@ extension Clients {
 
     public func createPluginInstance(
       request: CreatePluginInstanceRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
         action: {
           (r: CreatePluginInstanceRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleLongrunning.Operation
+            -> GoogleLongRunning.Operation
           in
           return try await self.inner.createPluginInstance(request: r, options: o)
         })
@@ -158,14 +158,14 @@ extension Clients {
 
     public func executePluginInstanceAction(
       request: ExecutePluginInstanceActionRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
         action: {
           (r: ExecutePluginInstanceActionRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleLongrunning.Operation
+            -> GoogleLongRunning.Operation
           in
           return try await self.inner.executePluginInstanceAction(request: r, options: o)
         })
@@ -203,14 +203,14 @@ extension Clients {
 
     public func enablePluginInstanceAction(
       request: EnablePluginInstanceActionRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
         action: {
           (r: EnablePluginInstanceActionRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleLongrunning.Operation
+            -> GoogleLongRunning.Operation
           in
           return try await self.inner.enablePluginInstanceAction(request: r, options: o)
         })
@@ -218,14 +218,14 @@ extension Clients {
 
     public func disablePluginInstanceAction(
       request: DisablePluginInstanceActionRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
         action: {
           (r: DisablePluginInstanceActionRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleLongrunning.Operation
+            -> GoogleLongRunning.Operation
           in
           return try await self.inner.disablePluginInstanceAction(request: r, options: o)
         })
@@ -248,14 +248,14 @@ extension Clients {
 
     public func deletePluginInstance(
       request: DeletePluginInstanceRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
         action: {
           (r: DeletePluginInstanceRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleLongrunning.Operation
+            -> GoogleLongRunning.Operation
           in
           return try await self.inner.deletePluginInstance(request: r, options: o)
         })
@@ -292,58 +292,58 @@ extension Clients {
     }
 
     public func listOperations(
-      request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.ListOperationsResponse {
+      request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.ListOperationsResponse {
       try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
         action: {
-          (r: GoogleLongrunning.ListOperationsRequest, o: GoogleCloudGax.RequestOptions)
-            async throws -> GoogleLongrunning.ListOperationsResponse
+          (r: GoogleLongRunning.ListOperationsRequest, o: GoogleCloudGax.RequestOptions)
+            async throws -> GoogleLongRunning.ListOperationsResponse
           in
           return try await self.inner.listOperations(request: r, options: o)
         })
     }
 
     public func getOperation(
-      request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+      request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
       try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
         action: {
-          (r: GoogleLongrunning.GetOperationRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleLongrunning.Operation
+          (r: GoogleLongRunning.GetOperationRequest, o: GoogleCloudGax.RequestOptions) async throws
+            -> GoogleLongRunning.Operation
           in
           return try await self.inner.getOperation(request: r, options: o)
         })
     }
 
     public func deleteOperation(
-      request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+      request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws {
       try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
         action: {
-          (r: GoogleLongrunning.DeleteOperationRequest, o: GoogleCloudGax.RequestOptions)
+          (r: GoogleLongRunning.DeleteOperationRequest, o: GoogleCloudGax.RequestOptions)
             async throws -> Void in
           return try await self.inner.deleteOperation(request: r, options: o)
         })
     }
 
     public func cancelOperation(
-      request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+      request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws {
       try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
         action: {
-          (r: GoogleLongrunning.CancelOperationRequest, o: GoogleCloudGax.RequestOptions)
+          (r: GoogleLongRunning.CancelOperationRequest, o: GoogleCloudGax.RequestOptions)
             async throws -> Void in
           return try await self.inner.cancelOperation(request: r, options: o)
         })

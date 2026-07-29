@@ -19,7 +19,7 @@
 import Foundation
 import GoogleCloudDomainsV1
 import GoogleCloudWkt
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleRpc
 import GoogleType
 

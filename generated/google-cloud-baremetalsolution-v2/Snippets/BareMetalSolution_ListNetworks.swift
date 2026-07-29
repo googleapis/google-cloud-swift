@@ -20,7 +20,7 @@ import Foundation
 import GoogleCloudBareMetalSolutionV2
 import GoogleCloudLocation
 import GoogleCloudWkt
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleRpc
 
 func sample(client: BareMetalSolutionClient, parent: String) async throws {

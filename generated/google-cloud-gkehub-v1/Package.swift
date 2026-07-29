@@ -50,7 +50,7 @@ let package = Package(
           package: "google-cloud-gkehub-rbacrolebindingactuation-v1"),
         .product(name: "GoogleCloudGax", package: "gax"),
         .product(name: "GoogleCloudWkt", package: "wkt"),
-        .product(name: "GoogleLongrunning", package: "google-longrunning"),
+        .product(name: "GoogleLongRunning", package: "google-longrunning"),
         .product(name: "GoogleRpc", package: "google-rpc"),
         .product(name: "Logging", package: "swift-log"),
       ],

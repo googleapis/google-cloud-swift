@@ -21,7 +21,7 @@
   import GoogleCloudDialogflowV2
   import GoogleCloudLocation
   import GoogleCloudWkt
-  import GoogleLongrunning
+  import GoogleLongRunning
 
   func sample(client: KnowledgeBasesClient, projectId: String) async throws {
     let response = try await client.createKnowledgeBase(

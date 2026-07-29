@@ -21,7 +21,7 @@
   import GoogleCloudDiscoveryEngineV1
   import GoogleApi
   import GoogleCloudWkt
-  import GoogleLongrunning
+  import GoogleLongRunning
   import GoogleRpc
 
   func sample(client: UserEventServiceClient) async throws {

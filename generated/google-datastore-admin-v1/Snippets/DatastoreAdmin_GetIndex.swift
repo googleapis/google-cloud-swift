@@ -19,7 +19,7 @@
 import Foundation
 import GoogleDatastoreAdminV1
 import GoogleCloudWkt
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleRpc
 
 func sample(client: DatastoreAdminClient) async throws {

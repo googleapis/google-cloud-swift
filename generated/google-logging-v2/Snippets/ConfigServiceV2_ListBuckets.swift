@@ -19,7 +19,7 @@
 import Foundation
 import GoogleLoggingV2
 import GoogleCloudWkt
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleRpc
 
 func sample(client: ConfigServiceV2Client, projectId: String, locationId: String) async throws {

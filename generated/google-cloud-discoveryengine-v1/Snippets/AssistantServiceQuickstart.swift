@@ -20,12 +20,12 @@
   import Foundation
   import GoogleCloudDiscoveryEngineV1
   import GoogleCloudWkt
-  import GoogleLongrunning
+  import GoogleLongRunning
 
   func sample() async throws {
     let client = try GoogleCloudDiscoveryEngineV1.AssistantServiceClient()
     let items = try client.listOperations(
-      byItem: GoogleLongrunning.ListOperationsRequest()
+      byItem: GoogleLongRunning.ListOperationsRequest()
         /* set fields using .with { $0... } */
     )
     for try await item in items {

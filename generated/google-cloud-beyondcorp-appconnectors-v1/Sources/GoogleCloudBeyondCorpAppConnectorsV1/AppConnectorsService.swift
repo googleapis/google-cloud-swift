@@ -21,7 +21,7 @@ import Foundation
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleIAMV1
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
 
@@ -94,7 +94,7 @@ public class AppConnectorsServiceClient: Clients.AppConnectorsServiceProtocol {
   /// @Snippet(path: "AppConnectorsService_CreateAppConnector")
   public func createAppConnector(
     request: CreateAppConnectorRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.createAppConnector(request: request, options: options)
   }
 
@@ -105,7 +105,7 @@ public class AppConnectorsServiceClient: Clients.AppConnectorsServiceProtocol {
     withPolling: CreateAppConnectorRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<AppConnector> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<AppConnector>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -157,7 +157,7 @@ public class AppConnectorsServiceClient: Clients.AppConnectorsServiceProtocol {
   /// @Snippet(path: "AppConnectorsService_UpdateAppConnector")
   public func updateAppConnector(
     request: UpdateAppConnectorRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.updateAppConnector(request: request, options: options)
   }
 
@@ -168,7 +168,7 @@ public class AppConnectorsServiceClient: Clients.AppConnectorsServiceProtocol {
     withPolling: UpdateAppConnectorRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<AppConnector> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<AppConnector>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -220,7 +220,7 @@ public class AppConnectorsServiceClient: Clients.AppConnectorsServiceProtocol {
   /// @Snippet(path: "AppConnectorsService_DeleteAppConnector")
   public func deleteAppConnector(
     request: DeleteAppConnectorRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.deleteAppConnector(request: request, options: options)
   }
 
@@ -231,7 +231,7 @@ public class AppConnectorsServiceClient: Clients.AppConnectorsServiceProtocol {
     withPolling: DeleteAppConnectorRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
+      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
       in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -275,7 +275,7 @@ public class AppConnectorsServiceClient: Clients.AppConnectorsServiceProtocol {
   /// @Snippet(path: "AppConnectorsService_ReportStatus")
   public func reportStatus(
     request: ReportStatusRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.reportStatus(request: request, options: options)
   }
 
@@ -286,7 +286,7 @@ public class AppConnectorsServiceClient: Clients.AppConnectorsServiceProtocol {
     withPolling: ReportStatusRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<AppConnector> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<AppConnector>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -410,8 +410,8 @@ public class AppConnectorsServiceClient: Clients.AppConnectorsServiceProtocol {
   ///
   /// @Snippet(path: "AppConnectorsService_ListOperations")
   public func listOperations(
-    request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.ListOperationsResponse {
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.ListOperationsResponse {
     try await self.inner.listOperations(request: request, options: options)
   }
 
@@ -421,10 +421,10 @@ public class AppConnectorsServiceClient: Clients.AppConnectorsServiceProtocol {
   ///
   /// @Snippet(path: "AppConnectorsService_ListOperations")
   public func listOperations(
-    byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongrunning.ListOperationsResponse in
+      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
@@ -438,8 +438,8 @@ public class AppConnectorsServiceClient: Clients.AppConnectorsServiceProtocol {
   ///
   /// @Snippet(path: "AppConnectorsService_GetOperation")
   func getOperation(
-    request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+    request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.getOperation(request: request, options: options)
   }
 
@@ -449,7 +449,7 @@ public class AppConnectorsServiceClient: Clients.AppConnectorsServiceProtocol {
   ///
   /// @Snippet(path: "AppConnectorsService_DeleteOperation")
   public func deleteOperation(
-    request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+    request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws {
     try await self.inner.deleteOperation(request: request, options: options)
   }
@@ -460,7 +460,7 @@ public class AppConnectorsServiceClient: Clients.AppConnectorsServiceProtocol {
   ///
   /// @Snippet(path: "AppConnectorsService_CancelOperation")
   public func cancelOperation(
-    request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+    request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws {
     try await self.inner.cancelOperation(request: request, options: options)
   }
@@ -498,7 +498,7 @@ extension Clients {
 
     /// See `AppConnectorsServiceClient.createAppConnector`.
     func createAppConnector(request: CreateAppConnectorRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `AppConnectorsServiceClient.createAppConnector`.
     func createAppConnector(withPolling: CreateAppConnectorRequest) async throws
@@ -513,7 +513,7 @@ extension Clients {
 
     /// See `AppConnectorsServiceClient.updateAppConnector`.
     func updateAppConnector(request: UpdateAppConnectorRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `AppConnectorsServiceClient.updateAppConnector`.
     func updateAppConnector(withPolling: UpdateAppConnectorRequest) async throws
@@ -527,7 +527,7 @@ extension Clients {
 
     /// See `AppConnectorsServiceClient.deleteAppConnector`.
     func deleteAppConnector(request: DeleteAppConnectorRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `AppConnectorsServiceClient.deleteAppConnector`.
     func deleteAppConnector(withPolling: DeleteAppConnectorRequest) async throws
@@ -539,7 +539,7 @@ extension Clients {
     ) async throws -> any GoogleCloudGax.PollableOperation<Void>
 
     /// See `AppConnectorsServiceClient.reportStatus`.
-    func reportStatus(request: ReportStatusRequest) async throws -> GoogleLongrunning.Operation
+    func reportStatus(request: ReportStatusRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `AppConnectorsServiceClient.reportStatus`.
     func reportStatus(withPolling: ReportStatusRequest) async throws -> any GoogleCloudGax
@@ -575,22 +575,22 @@ extension Clients {
       -> GoogleIAMV1.TestIamPermissionsResponse
 
     /// See `AppConnectorsServiceClient.listOperations`.
-    func listOperations(request: GoogleLongrunning.ListOperationsRequest) async throws
-      -> GoogleLongrunning.ListOperationsResponse
+    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
+      -> GoogleLongRunning.ListOperationsResponse
 
     /// See `AppConnectorsServiceClient.listOperations`.
     func listOperations(
-      byItem: GoogleLongrunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+      byItem: GoogleLongRunning.ListOperationsRequest
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `AppConnectorsServiceClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `AppConnectorsServiceClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongrunning.DeleteOperationRequest) async throws
+    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
 
     /// See `AppConnectorsServiceClient.deleteOperation`.
     func deleteOperation(
@@ -598,7 +598,7 @@ extension Clients {
     ) async throws
 
     /// See `AppConnectorsServiceClient.cancelOperation`.
-    func cancelOperation(request: GoogleLongrunning.CancelOperationRequest) async throws
+    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
 
     /// See `AppConnectorsServiceClient.cancelOperation`.
     func cancelOperation(
@@ -623,7 +623,7 @@ extension Clients {
     /// See `AppConnectorsServiceClient.createAppConnector`.
     func createAppConnector(
       request: CreateAppConnectorRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `AppConnectorsServiceClient.createAppConnector`.
     func createAppConnector(
@@ -633,7 +633,7 @@ extension Clients {
     /// See `AppConnectorsServiceClient.updateAppConnector`.
     func updateAppConnector(
       request: UpdateAppConnectorRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `AppConnectorsServiceClient.updateAppConnector`.
     func updateAppConnector(
@@ -643,7 +643,7 @@ extension Clients {
     /// See `AppConnectorsServiceClient.deleteAppConnector`.
     func deleteAppConnector(
       request: DeleteAppConnectorRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `AppConnectorsServiceClient.deleteAppConnector`.
     func deleteAppConnector(
@@ -653,7 +653,7 @@ extension Clients {
     /// See `AppConnectorsServiceClient.reportStatus`.
     func reportStatus(
       request: ReportStatusRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `AppConnectorsServiceClient.reportStatus`.
     func reportStatus(
@@ -692,22 +692,22 @@ extension Clients {
 
     /// See `AppConnectorsServiceClient.listOperations`.
     func listOperations(
-      request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.ListOperationsResponse
+      request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.ListOperationsResponse
 
     /// See `AppConnectorsServiceClient.listOperations`.
     func listOperations(
-      byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `AppConnectorsServiceClient.deleteOperation`.
     func deleteOperation(
-      request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+      request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws
 
     /// See `AppConnectorsServiceClient.cancelOperation`.
     func cancelOperation(
-      request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+      request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws
   }
 }
@@ -774,14 +774,14 @@ extension Clients.AppConnectorsServiceProtocol {
   }
 
   public func createAppConnector(request: CreateAppConnectorRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.createAppConnector(request: request, options: .init())
   }
 
   public func createAppConnector(
     request: CreateAppConnectorRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -815,14 +815,14 @@ extension Clients.AppConnectorsServiceProtocol {
   }
 
   public func updateAppConnector(request: UpdateAppConnectorRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.updateAppConnector(request: request, options: .init())
   }
 
   public func updateAppConnector(
     request: UpdateAppConnectorRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -854,14 +854,14 @@ extension Clients.AppConnectorsServiceProtocol {
   }
 
   public func deleteAppConnector(request: DeleteAppConnectorRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.deleteAppConnector(request: request, options: .init())
   }
 
   public func deleteAppConnector(
     request: DeleteAppConnectorRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -890,14 +890,14 @@ extension Clients.AppConnectorsServiceProtocol {
     return try await self.deleteAppConnector(withPolling: request)
   }
 
-  public func reportStatus(request: ReportStatusRequest) async throws -> GoogleLongrunning.Operation
+  public func reportStatus(request: ReportStatusRequest) async throws -> GoogleLongRunning.Operation
   {
     try await self.reportStatus(request: request, options: .init())
   }
 
   public func reportStatus(
     request: ReportStatusRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1004,29 +1004,29 @@ extension Clients.AppConnectorsServiceProtocol {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
-  public func listOperations(request: GoogleLongrunning.ListOperationsRequest) async throws
-    -> GoogleLongrunning.ListOperationsResponse
+  public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
+    -> GoogleLongRunning.ListOperationsResponse
   {
     try await self.listOperations(request: request, options: .init())
   }
 
   public func listOperations(
-    request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.ListOperationsResponse {
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.ListOperationsResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func listOperations(
-    byItem: GoogleLongrunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+    byItem: GoogleLongRunning.ListOperationsRequest
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     try self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
-    byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongrunning.ListOperationsResponse in
+      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleCloudGax.RequestError.unimplemented
     }
     return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
@@ -1035,41 +1035,41 @@ extension Clients.AppConnectorsServiceProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
-    let request = GoogleLongrunning.ListOperationsRequest().with {
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
     return try self.listOperations(byItem: request)
   }
 
-  public func getOperation(request: GoogleLongrunning.GetOperationRequest) async throws
-    -> GoogleLongrunning.Operation
+  public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
+    -> GoogleLongRunning.Operation
   {
     try await self.getOperation(request: request, options: .init())
   }
 
   public func getOperation(
-    request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+    request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func getOperation(
     name: Swift.String,
-  ) async throws -> GoogleLongrunning.Operation {
-    let request = GoogleLongrunning.GetOperationRequest().with {
+  ) async throws -> GoogleLongRunning.Operation {
+    let request = GoogleLongRunning.GetOperationRequest().with {
       $0.name = name
     }
     return try await self.getOperation(request: request)
   }
 
-  public func deleteOperation(request: GoogleLongrunning.DeleteOperationRequest) async throws {
+  public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
 
   public func deleteOperation(
-    request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+    request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws {
     throw GoogleCloudGax.RequestError.unimplemented
   }
@@ -1077,18 +1077,18 @@ extension Clients.AppConnectorsServiceProtocol {
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
-    let request = GoogleLongrunning.DeleteOperationRequest().with {
+    let request = GoogleLongRunning.DeleteOperationRequest().with {
       $0.name = name
     }
     try await self.deleteOperation(request: request)
   }
 
-  public func cancelOperation(request: GoogleLongrunning.CancelOperationRequest) async throws {
+  public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
 
   public func cancelOperation(
-    request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+    request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws {
     throw GoogleCloudGax.RequestError.unimplemented
   }
@@ -1096,7 +1096,7 @@ extension Clients.AppConnectorsServiceProtocol {
   public func cancelOperation(
     name: Swift.String,
   ) async throws {
-    let request = GoogleLongrunning.CancelOperationRequest().with {
+    let request = GoogleLongRunning.CancelOperationRequest().with {
       $0.name = name
     }
     try await self.cancelOperation(request: request)

@@ -21,11 +21,11 @@ import GoogleCloudDataplexV1
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleIAMV1
-import GoogleLongrunning
+import GoogleLongRunning
 
 func sample(client: ContentServiceClient) async throws {
   try await client.cancelOperation(
-    request: GoogleLongrunning.CancelOperationRequest()
+    request: GoogleLongRunning.CancelOperationRequest()
       /* set fields using .with { $0... } */
   )
   print("Success (no response expected)")

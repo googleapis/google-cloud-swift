@@ -19,7 +19,7 @@
 import Foundation
 import GoogleCloudRunV2
 import GoogleCloudWkt
-import GoogleLongrunning
+import GoogleLongRunning
 
 func sample(
   client: TasksClient, projectId: String, locationId: String, jobId: String, executionId: String

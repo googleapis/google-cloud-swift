@@ -19,7 +19,7 @@
 import Foundation
 import GoogleAppEngineV1
 import GoogleCloudWkt
-import GoogleLongrunning
+import GoogleLongRunning
 
 func sample() async throws {
   let client = try GoogleAppEngineV1.FirewallClient()

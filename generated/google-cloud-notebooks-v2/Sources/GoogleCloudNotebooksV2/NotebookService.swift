@@ -21,7 +21,7 @@ import Foundation
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleIAMV1
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
 
@@ -79,7 +79,7 @@ public class NotebookServiceClient: Clients.NotebookServiceProtocol {
   /// @Snippet(path: "NotebookService_CreateInstance")
   public func createInstance(
     request: CreateInstanceRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.createInstance(request: request, options: options)
   }
 
@@ -90,7 +90,7 @@ public class NotebookServiceClient: Clients.NotebookServiceProtocol {
     withPolling: CreateInstanceRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Instance> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Instance>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -142,7 +142,7 @@ public class NotebookServiceClient: Clients.NotebookServiceProtocol {
   /// @Snippet(path: "NotebookService_UpdateInstance")
   public func updateInstance(
     request: UpdateInstanceRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.updateInstance(request: request, options: options)
   }
 
@@ -153,7 +153,7 @@ public class NotebookServiceClient: Clients.NotebookServiceProtocol {
     withPolling: UpdateInstanceRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Instance> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Instance>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -205,7 +205,7 @@ public class NotebookServiceClient: Clients.NotebookServiceProtocol {
   /// @Snippet(path: "NotebookService_DeleteInstance")
   public func deleteInstance(
     request: DeleteInstanceRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.deleteInstance(request: request, options: options)
   }
 
@@ -216,7 +216,7 @@ public class NotebookServiceClient: Clients.NotebookServiceProtocol {
     withPolling: DeleteInstanceRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
+      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
       in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -260,7 +260,7 @@ public class NotebookServiceClient: Clients.NotebookServiceProtocol {
   /// @Snippet(path: "NotebookService_StartInstance")
   public func startInstance(
     request: StartInstanceRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.startInstance(request: request, options: options)
   }
 
@@ -271,7 +271,7 @@ public class NotebookServiceClient: Clients.NotebookServiceProtocol {
     withPolling: StartInstanceRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Instance> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Instance>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -323,7 +323,7 @@ public class NotebookServiceClient: Clients.NotebookServiceProtocol {
   /// @Snippet(path: "NotebookService_StopInstance")
   public func stopInstance(
     request: StopInstanceRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.stopInstance(request: request, options: options)
   }
 
@@ -334,7 +334,7 @@ public class NotebookServiceClient: Clients.NotebookServiceProtocol {
     withPolling: StopInstanceRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Instance> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Instance>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -386,7 +386,7 @@ public class NotebookServiceClient: Clients.NotebookServiceProtocol {
   /// @Snippet(path: "NotebookService_ResetInstance")
   public func resetInstance(
     request: ResetInstanceRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.resetInstance(request: request, options: options)
   }
 
@@ -397,7 +397,7 @@ public class NotebookServiceClient: Clients.NotebookServiceProtocol {
     withPolling: ResetInstanceRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Instance> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Instance>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -458,7 +458,7 @@ public class NotebookServiceClient: Clients.NotebookServiceProtocol {
   /// @Snippet(path: "NotebookService_UpgradeInstance")
   public func upgradeInstance(
     request: UpgradeInstanceRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.upgradeInstance(request: request, options: options)
   }
 
@@ -469,7 +469,7 @@ public class NotebookServiceClient: Clients.NotebookServiceProtocol {
     withPolling: UpgradeInstanceRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Instance> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Instance>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -521,7 +521,7 @@ public class NotebookServiceClient: Clients.NotebookServiceProtocol {
   /// @Snippet(path: "NotebookService_RollbackInstance")
   public func rollbackInstance(
     request: RollbackInstanceRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.rollbackInstance(request: request, options: options)
   }
 
@@ -532,7 +532,7 @@ public class NotebookServiceClient: Clients.NotebookServiceProtocol {
     withPolling: RollbackInstanceRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Instance> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Instance>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -584,7 +584,7 @@ public class NotebookServiceClient: Clients.NotebookServiceProtocol {
   /// @Snippet(path: "NotebookService_DiagnoseInstance")
   public func diagnoseInstance(
     request: DiagnoseInstanceRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.diagnoseInstance(request: request, options: options)
   }
 
@@ -595,7 +595,7 @@ public class NotebookServiceClient: Clients.NotebookServiceProtocol {
     withPolling: DiagnoseInstanceRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Instance> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Instance>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -719,8 +719,8 @@ public class NotebookServiceClient: Clients.NotebookServiceProtocol {
   ///
   /// @Snippet(path: "NotebookService_ListOperations")
   public func listOperations(
-    request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.ListOperationsResponse {
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.ListOperationsResponse {
     try await self.inner.listOperations(request: request, options: options)
   }
 
@@ -730,10 +730,10 @@ public class NotebookServiceClient: Clients.NotebookServiceProtocol {
   ///
   /// @Snippet(path: "NotebookService_ListOperations")
   public func listOperations(
-    byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongrunning.ListOperationsResponse in
+      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
@@ -747,8 +747,8 @@ public class NotebookServiceClient: Clients.NotebookServiceProtocol {
   ///
   /// @Snippet(path: "NotebookService_GetOperation")
   func getOperation(
-    request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+    request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.getOperation(request: request, options: options)
   }
 
@@ -758,7 +758,7 @@ public class NotebookServiceClient: Clients.NotebookServiceProtocol {
   ///
   /// @Snippet(path: "NotebookService_DeleteOperation")
   public func deleteOperation(
-    request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+    request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws {
     try await self.inner.deleteOperation(request: request, options: options)
   }
@@ -769,7 +769,7 @@ public class NotebookServiceClient: Clients.NotebookServiceProtocol {
   ///
   /// @Snippet(path: "NotebookService_CancelOperation")
   public func cancelOperation(
-    request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+    request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws {
     try await self.inner.cancelOperation(request: request, options: options)
   }
@@ -805,7 +805,7 @@ extension Clients {
     ) async throws -> GoogleCloudNotebooksV2.Instance
 
     /// See `NotebookServiceClient.createInstance`.
-    func createInstance(request: CreateInstanceRequest) async throws -> GoogleLongrunning.Operation
+    func createInstance(request: CreateInstanceRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `NotebookServiceClient.createInstance`.
     func createInstance(withPolling: CreateInstanceRequest) async throws -> any GoogleCloudGax
@@ -819,7 +819,7 @@ extension Clients {
     ) async throws -> any GoogleCloudGax.PollableOperation<Instance>
 
     /// See `NotebookServiceClient.updateInstance`.
-    func updateInstance(request: UpdateInstanceRequest) async throws -> GoogleLongrunning.Operation
+    func updateInstance(request: UpdateInstanceRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `NotebookServiceClient.updateInstance`.
     func updateInstance(withPolling: UpdateInstanceRequest) async throws -> any GoogleCloudGax
@@ -832,7 +832,7 @@ extension Clients {
     ) async throws -> any GoogleCloudGax.PollableOperation<Instance>
 
     /// See `NotebookServiceClient.deleteInstance`.
-    func deleteInstance(request: DeleteInstanceRequest) async throws -> GoogleLongrunning.Operation
+    func deleteInstance(request: DeleteInstanceRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `NotebookServiceClient.deleteInstance`.
     func deleteInstance(withPolling: DeleteInstanceRequest) async throws -> any GoogleCloudGax
@@ -844,21 +844,21 @@ extension Clients {
     ) async throws -> any GoogleCloudGax.PollableOperation<Void>
 
     /// See `NotebookServiceClient.startInstance`.
-    func startInstance(request: StartInstanceRequest) async throws -> GoogleLongrunning.Operation
+    func startInstance(request: StartInstanceRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `NotebookServiceClient.startInstance`.
     func startInstance(withPolling: StartInstanceRequest) async throws -> any GoogleCloudGax
       .PollableOperation<Instance>
 
     /// See `NotebookServiceClient.stopInstance`.
-    func stopInstance(request: StopInstanceRequest) async throws -> GoogleLongrunning.Operation
+    func stopInstance(request: StopInstanceRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `NotebookServiceClient.stopInstance`.
     func stopInstance(withPolling: StopInstanceRequest) async throws -> any GoogleCloudGax
       .PollableOperation<Instance>
 
     /// See `NotebookServiceClient.resetInstance`.
-    func resetInstance(request: ResetInstanceRequest) async throws -> GoogleLongrunning.Operation
+    func resetInstance(request: ResetInstanceRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `NotebookServiceClient.resetInstance`.
     func resetInstance(withPolling: ResetInstanceRequest) async throws -> any GoogleCloudGax
@@ -870,7 +870,7 @@ extension Clients {
 
     /// See `NotebookServiceClient.upgradeInstance`.
     func upgradeInstance(request: UpgradeInstanceRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `NotebookServiceClient.upgradeInstance`.
     func upgradeInstance(withPolling: UpgradeInstanceRequest) async throws -> any GoogleCloudGax
@@ -878,7 +878,7 @@ extension Clients {
 
     /// See `NotebookServiceClient.rollbackInstance`.
     func rollbackInstance(request: RollbackInstanceRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `NotebookServiceClient.rollbackInstance`.
     func rollbackInstance(withPolling: RollbackInstanceRequest) async throws -> any GoogleCloudGax
@@ -886,7 +886,7 @@ extension Clients {
 
     /// See `NotebookServiceClient.diagnoseInstance`.
     func diagnoseInstance(request: DiagnoseInstanceRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `NotebookServiceClient.diagnoseInstance`.
     func diagnoseInstance(withPolling: DiagnoseInstanceRequest) async throws -> any GoogleCloudGax
@@ -922,22 +922,22 @@ extension Clients {
       -> GoogleIAMV1.TestIamPermissionsResponse
 
     /// See `NotebookServiceClient.listOperations`.
-    func listOperations(request: GoogleLongrunning.ListOperationsRequest) async throws
-      -> GoogleLongrunning.ListOperationsResponse
+    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
+      -> GoogleLongRunning.ListOperationsResponse
 
     /// See `NotebookServiceClient.listOperations`.
     func listOperations(
-      byItem: GoogleLongrunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+      byItem: GoogleLongRunning.ListOperationsRequest
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `NotebookServiceClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `NotebookServiceClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongrunning.DeleteOperationRequest) async throws
+    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
 
     /// See `NotebookServiceClient.deleteOperation`.
     func deleteOperation(
@@ -945,7 +945,7 @@ extension Clients {
     ) async throws
 
     /// See `NotebookServiceClient.cancelOperation`.
-    func cancelOperation(request: GoogleLongrunning.CancelOperationRequest) async throws
+    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
 
     /// See `NotebookServiceClient.cancelOperation`.
     func cancelOperation(
@@ -970,7 +970,7 @@ extension Clients {
     /// See `NotebookServiceClient.createInstance`.
     func createInstance(
       request: CreateInstanceRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `NotebookServiceClient.createInstance`.
     func createInstance(
@@ -980,7 +980,7 @@ extension Clients {
     /// See `NotebookServiceClient.updateInstance`.
     func updateInstance(
       request: UpdateInstanceRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `NotebookServiceClient.updateInstance`.
     func updateInstance(
@@ -990,7 +990,7 @@ extension Clients {
     /// See `NotebookServiceClient.deleteInstance`.
     func deleteInstance(
       request: DeleteInstanceRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `NotebookServiceClient.deleteInstance`.
     func deleteInstance(
@@ -1000,7 +1000,7 @@ extension Clients {
     /// See `NotebookServiceClient.startInstance`.
     func startInstance(
       request: StartInstanceRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `NotebookServiceClient.startInstance`.
     func startInstance(
@@ -1010,7 +1010,7 @@ extension Clients {
     /// See `NotebookServiceClient.stopInstance`.
     func stopInstance(
       request: StopInstanceRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `NotebookServiceClient.stopInstance`.
     func stopInstance(
@@ -1020,7 +1020,7 @@ extension Clients {
     /// See `NotebookServiceClient.resetInstance`.
     func resetInstance(
       request: ResetInstanceRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `NotebookServiceClient.resetInstance`.
     func resetInstance(
@@ -1035,7 +1035,7 @@ extension Clients {
     /// See `NotebookServiceClient.upgradeInstance`.
     func upgradeInstance(
       request: UpgradeInstanceRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `NotebookServiceClient.upgradeInstance`.
     func upgradeInstance(
@@ -1045,7 +1045,7 @@ extension Clients {
     /// See `NotebookServiceClient.rollbackInstance`.
     func rollbackInstance(
       request: RollbackInstanceRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `NotebookServiceClient.rollbackInstance`.
     func rollbackInstance(
@@ -1055,7 +1055,7 @@ extension Clients {
     /// See `NotebookServiceClient.diagnoseInstance`.
     func diagnoseInstance(
       request: DiagnoseInstanceRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `NotebookServiceClient.diagnoseInstance`.
     func diagnoseInstance(
@@ -1094,22 +1094,22 @@ extension Clients {
 
     /// See `NotebookServiceClient.listOperations`.
     func listOperations(
-      request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.ListOperationsResponse
+      request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.ListOperationsResponse
 
     /// See `NotebookServiceClient.listOperations`.
     func listOperations(
-      byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `NotebookServiceClient.deleteOperation`.
     func deleteOperation(
-      request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+      request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws
 
     /// See `NotebookServiceClient.cancelOperation`.
     func cancelOperation(
-      request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+      request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws
   }
 }
@@ -1175,14 +1175,14 @@ extension Clients.NotebookServiceProtocol {
   }
 
   public func createInstance(request: CreateInstanceRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.createInstance(request: request, options: .init())
   }
 
   public func createInstance(
     request: CreateInstanceRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1216,14 +1216,14 @@ extension Clients.NotebookServiceProtocol {
   }
 
   public func updateInstance(request: UpdateInstanceRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.updateInstance(request: request, options: .init())
   }
 
   public func updateInstance(
     request: UpdateInstanceRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1255,14 +1255,14 @@ extension Clients.NotebookServiceProtocol {
   }
 
   public func deleteInstance(request: DeleteInstanceRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.deleteInstance(request: request, options: .init())
   }
 
   public func deleteInstance(
     request: DeleteInstanceRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1292,14 +1292,14 @@ extension Clients.NotebookServiceProtocol {
   }
 
   public func startInstance(request: StartInstanceRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.startInstance(request: request, options: .init())
   }
 
   public func startInstance(
     request: StartInstanceRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1319,14 +1319,14 @@ extension Clients.NotebookServiceProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func stopInstance(request: StopInstanceRequest) async throws -> GoogleLongrunning.Operation
+  public func stopInstance(request: StopInstanceRequest) async throws -> GoogleLongRunning.Operation
   {
     try await self.stopInstance(request: request, options: .init())
   }
 
   public func stopInstance(
     request: StopInstanceRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1347,14 +1347,14 @@ extension Clients.NotebookServiceProtocol {
   }
 
   public func resetInstance(request: ResetInstanceRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.resetInstance(request: request, options: .init())
   }
 
   public func resetInstance(
     request: ResetInstanceRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1387,14 +1387,14 @@ extension Clients.NotebookServiceProtocol {
   }
 
   public func upgradeInstance(request: UpgradeInstanceRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.upgradeInstance(request: request, options: .init())
   }
 
   public func upgradeInstance(
     request: UpgradeInstanceRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1415,14 +1415,14 @@ extension Clients.NotebookServiceProtocol {
   }
 
   public func rollbackInstance(request: RollbackInstanceRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.rollbackInstance(request: request, options: .init())
   }
 
   public func rollbackInstance(
     request: RollbackInstanceRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1443,14 +1443,14 @@ extension Clients.NotebookServiceProtocol {
   }
 
   public func diagnoseInstance(request: DiagnoseInstanceRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.diagnoseInstance(request: request, options: .init())
   }
 
   public func diagnoseInstance(
     request: DiagnoseInstanceRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1557,29 +1557,29 @@ extension Clients.NotebookServiceProtocol {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
-  public func listOperations(request: GoogleLongrunning.ListOperationsRequest) async throws
-    -> GoogleLongrunning.ListOperationsResponse
+  public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
+    -> GoogleLongRunning.ListOperationsResponse
   {
     try await self.listOperations(request: request, options: .init())
   }
 
   public func listOperations(
-    request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.ListOperationsResponse {
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.ListOperationsResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func listOperations(
-    byItem: GoogleLongrunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+    byItem: GoogleLongRunning.ListOperationsRequest
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     try self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
-    byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongrunning.ListOperationsResponse in
+      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleCloudGax.RequestError.unimplemented
     }
     return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
@@ -1588,41 +1588,41 @@ extension Clients.NotebookServiceProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
-    let request = GoogleLongrunning.ListOperationsRequest().with {
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
     return try self.listOperations(byItem: request)
   }
 
-  public func getOperation(request: GoogleLongrunning.GetOperationRequest) async throws
-    -> GoogleLongrunning.Operation
+  public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
+    -> GoogleLongRunning.Operation
   {
     try await self.getOperation(request: request, options: .init())
   }
 
   public func getOperation(
-    request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+    request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func getOperation(
     name: Swift.String,
-  ) async throws -> GoogleLongrunning.Operation {
-    let request = GoogleLongrunning.GetOperationRequest().with {
+  ) async throws -> GoogleLongRunning.Operation {
+    let request = GoogleLongRunning.GetOperationRequest().with {
       $0.name = name
     }
     return try await self.getOperation(request: request)
   }
 
-  public func deleteOperation(request: GoogleLongrunning.DeleteOperationRequest) async throws {
+  public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
 
   public func deleteOperation(
-    request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+    request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws {
     throw GoogleCloudGax.RequestError.unimplemented
   }
@@ -1630,18 +1630,18 @@ extension Clients.NotebookServiceProtocol {
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
-    let request = GoogleLongrunning.DeleteOperationRequest().with {
+    let request = GoogleLongRunning.DeleteOperationRequest().with {
       $0.name = name
     }
     try await self.deleteOperation(request: request)
   }
 
-  public func cancelOperation(request: GoogleLongrunning.CancelOperationRequest) async throws {
+  public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
 
   public func cancelOperation(
-    request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+    request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws {
     throw GoogleCloudGax.RequestError.unimplemented
   }
@@ -1649,7 +1649,7 @@ extension Clients.NotebookServiceProtocol {
   public func cancelOperation(
     name: Swift.String,
   ) async throws {
-    let request = GoogleLongrunning.CancelOperationRequest().with {
+    let request = GoogleLongRunning.CancelOperationRequest().with {
       $0.name = name
     }
     try await self.cancelOperation(request: request)

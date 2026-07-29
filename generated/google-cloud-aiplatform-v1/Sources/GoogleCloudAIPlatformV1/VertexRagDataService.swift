@@ -22,7 +22,7 @@
   import GoogleCloudLocation
   import GoogleCloudWkt
   import GoogleIAMV1
-  import GoogleLongrunning
+  import GoogleLongRunning
   import GoogleRpc
   import GoogleCloudGax
 
@@ -48,7 +48,7 @@
     /// @Snippet(path: "VertexRagDataService_CreateRagCorpus")
     public func createRagCorpus(
       request: CreateRagCorpusRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       try await self.inner.createRagCorpus(request: request, options: options)
     }
 
@@ -59,7 +59,7 @@
       withPolling: CreateRagCorpusRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> any GoogleCloudGax.PollableOperation<RagCorpus> {
       let extractStatus = {
-        (op: GoogleLongrunning.Operation) throws
+        (op: GoogleLongRunning.Operation) throws
           -> GoogleCloudGax._PollableOperationImpl<RagCorpus>.State in
         guard op.done else {
           return .init(done: false, result: nil)
@@ -111,7 +111,7 @@
     /// @Snippet(path: "VertexRagDataService_UpdateRagCorpus")
     public func updateRagCorpus(
       request: UpdateRagCorpusRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       try await self.inner.updateRagCorpus(request: request, options: options)
     }
 
@@ -122,7 +122,7 @@
       withPolling: UpdateRagCorpusRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> any GoogleCloudGax.PollableOperation<RagCorpus> {
       let extractStatus = {
-        (op: GoogleLongrunning.Operation) throws
+        (op: GoogleLongRunning.Operation) throws
           -> GoogleCloudGax._PollableOperationImpl<RagCorpus>.State in
         guard op.done else {
           return .init(done: false, result: nil)
@@ -207,7 +207,7 @@
     /// @Snippet(path: "VertexRagDataService_DeleteRagCorpus")
     public func deleteRagCorpus(
       request: DeleteRagCorpusRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       try await self.inner.deleteRagCorpus(request: request, options: options)
     }
 
@@ -218,7 +218,7 @@
       withPolling: DeleteRagCorpusRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
       let extractStatus = {
-        (op: GoogleLongrunning.Operation) throws
+        (op: GoogleLongRunning.Operation) throws
           -> GoogleCloudGax._PollableOperationImpl<Void>.State in
         guard op.done else {
           return .init(done: false, result: nil)
@@ -271,7 +271,7 @@
     /// @Snippet(path: "VertexRagDataService_ImportRagFiles")
     public func importRagFiles(
       request: ImportRagFilesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       try await self.inner.importRagFiles(request: request, options: options)
     }
 
@@ -282,7 +282,7 @@
       withPolling: ImportRagFilesRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> any GoogleCloudGax.PollableOperation<ImportRagFilesResponse> {
       let extractStatus = {
-        (op: GoogleLongrunning.Operation) throws
+        (op: GoogleLongRunning.Operation) throws
           -> GoogleCloudGax._PollableOperationImpl<ImportRagFilesResponse>.State in
         guard op.done else {
           return .init(done: false, result: nil)
@@ -368,7 +368,7 @@
     /// @Snippet(path: "VertexRagDataService_DeleteRagFile")
     public func deleteRagFile(
       request: DeleteRagFileRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       try await self.inner.deleteRagFile(request: request, options: options)
     }
 
@@ -379,7 +379,7 @@
       withPolling: DeleteRagFileRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
       let extractStatus = {
-        (op: GoogleLongrunning.Operation) throws
+        (op: GoogleLongRunning.Operation) throws
           -> GoogleCloudGax._PollableOperationImpl<Void>.State in
         guard op.done else {
           return .init(done: false, result: nil)
@@ -423,7 +423,7 @@
     /// @Snippet(path: "VertexRagDataService_UpdateRagEngineConfig")
     public func updateRagEngineConfig(
       request: UpdateRagEngineConfigRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       try await self.inner.updateRagEngineConfig(request: request, options: options)
     }
 
@@ -434,7 +434,7 @@
       withPolling: UpdateRagEngineConfigRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> any GoogleCloudGax.PollableOperation<RagEngineConfig> {
       let extractStatus = {
-        (op: GoogleLongrunning.Operation) throws
+        (op: GoogleLongRunning.Operation) throws
           -> GoogleCloudGax._PollableOperationImpl<RagEngineConfig>.State in
         guard op.done else {
           return .init(done: false, result: nil)
@@ -568,8 +568,8 @@
     ///
     /// @Snippet(path: "VertexRagDataService_ListOperations")
     public func listOperations(
-      request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.ListOperationsResponse {
+      request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.ListOperationsResponse {
       try await self.inner.listOperations(request: request, options: options)
     }
 
@@ -579,10 +579,10 @@
     ///
     /// @Snippet(path: "VertexRagDataService_ListOperations")
     public func listOperations(
-      byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
-        (token: Swift.String) async throws -> GoogleLongrunning.ListOperationsResponse in
+        (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
         var request = byItem
         request.pageToken = token
         return try await self.listOperations(request: request, options: options)
@@ -596,8 +596,8 @@
     ///
     /// @Snippet(path: "VertexRagDataService_GetOperation")
     func getOperation(
-      request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+      request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
       try await self.inner.getOperation(request: request, options: options)
     }
 
@@ -607,7 +607,7 @@
     ///
     /// @Snippet(path: "VertexRagDataService_DeleteOperation")
     public func deleteOperation(
-      request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+      request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws {
       try await self.inner.deleteOperation(request: request, options: options)
     }
@@ -618,7 +618,7 @@
     ///
     /// @Snippet(path: "VertexRagDataService_CancelOperation")
     public func cancelOperation(
-      request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+      request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws {
       try await self.inner.cancelOperation(request: request, options: options)
     }
@@ -629,8 +629,8 @@
     ///
     /// @Snippet(path: "VertexRagDataService_WaitOperation")
     public func waitOperation(
-      request: GoogleLongrunning.WaitOperationRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+      request: GoogleLongRunning.WaitOperationRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
       try await self.inner.waitOperation(request: request, options: options)
     }
   }
@@ -644,7 +644,7 @@
     public protocol VertexRagDataServiceProtocol {
       /// See `VertexRagDataServiceClient.createRagCorpus`.
       func createRagCorpus(request: CreateRagCorpusRequest) async throws
-        -> GoogleLongrunning.Operation
+        -> GoogleLongRunning.Operation
 
       /// See `VertexRagDataServiceClient.createRagCorpus`.
       func createRagCorpus(withPolling: CreateRagCorpusRequest) async throws -> any GoogleCloudGax
@@ -658,7 +658,7 @@
 
       /// See `VertexRagDataServiceClient.updateRagCorpus`.
       func updateRagCorpus(request: UpdateRagCorpusRequest) async throws
-        -> GoogleLongrunning.Operation
+        -> GoogleLongRunning.Operation
 
       /// See `VertexRagDataServiceClient.updateRagCorpus`.
       func updateRagCorpus(withPolling: UpdateRagCorpusRequest) async throws -> any GoogleCloudGax
@@ -694,7 +694,7 @@
 
       /// See `VertexRagDataServiceClient.deleteRagCorpus`.
       func deleteRagCorpus(request: DeleteRagCorpusRequest) async throws
-        -> GoogleLongrunning.Operation
+        -> GoogleLongRunning.Operation
 
       /// See `VertexRagDataServiceClient.deleteRagCorpus`.
       func deleteRagCorpus(withPolling: DeleteRagCorpusRequest) async throws -> any GoogleCloudGax
@@ -718,7 +718,7 @@
 
       /// See `VertexRagDataServiceClient.importRagFiles`.
       func importRagFiles(request: ImportRagFilesRequest) async throws
-        -> GoogleLongrunning.Operation
+        -> GoogleLongRunning.Operation
 
       /// See `VertexRagDataServiceClient.importRagFiles`.
       func importRagFiles(withPolling: ImportRagFilesRequest) async throws -> any GoogleCloudGax
@@ -753,7 +753,7 @@
       ) throws -> any AsyncSequence<RagFile, Swift.Error>
 
       /// See `VertexRagDataServiceClient.deleteRagFile`.
-      func deleteRagFile(request: DeleteRagFileRequest) async throws -> GoogleLongrunning.Operation
+      func deleteRagFile(request: DeleteRagFileRequest) async throws -> GoogleLongRunning.Operation
 
       /// See `VertexRagDataServiceClient.deleteRagFile`.
       func deleteRagFile(withPolling: DeleteRagFileRequest) async throws -> any GoogleCloudGax
@@ -766,7 +766,7 @@
 
       /// See `VertexRagDataServiceClient.updateRagEngineConfig`.
       func updateRagEngineConfig(request: UpdateRagEngineConfigRequest) async throws
-        -> GoogleLongrunning.Operation
+        -> GoogleLongRunning.Operation
 
       /// See `VertexRagDataServiceClient.updateRagEngineConfig`.
       func updateRagEngineConfig(withPolling: UpdateRagEngineConfigRequest) async throws
@@ -810,22 +810,22 @@
         -> GoogleIAMV1.TestIamPermissionsResponse
 
       /// See `VertexRagDataServiceClient.listOperations`.
-      func listOperations(request: GoogleLongrunning.ListOperationsRequest) async throws
-        -> GoogleLongrunning.ListOperationsResponse
+      func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
+        -> GoogleLongRunning.ListOperationsResponse
 
       /// See `VertexRagDataServiceClient.listOperations`.
       func listOperations(
-        byItem: GoogleLongrunning.ListOperationsRequest
-      ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+        byItem: GoogleLongRunning.ListOperationsRequest
+      ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `VertexRagDataServiceClient.listOperations`.
       func listOperations(
         name: Swift.String,
         filter: Swift.String,
-      ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+      ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `VertexRagDataServiceClient.deleteOperation`.
-      func deleteOperation(request: GoogleLongrunning.DeleteOperationRequest) async throws
+      func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
 
       /// See `VertexRagDataServiceClient.deleteOperation`.
       func deleteOperation(
@@ -833,7 +833,7 @@
       ) async throws
 
       /// See `VertexRagDataServiceClient.cancelOperation`.
-      func cancelOperation(request: GoogleLongrunning.CancelOperationRequest) async throws
+      func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
 
       /// See `VertexRagDataServiceClient.cancelOperation`.
       func cancelOperation(
@@ -841,13 +841,13 @@
       ) async throws
 
       /// See `VertexRagDataServiceClient.waitOperation`.
-      func waitOperation(request: GoogleLongrunning.WaitOperationRequest) async throws
-        -> GoogleLongrunning.Operation
+      func waitOperation(request: GoogleLongRunning.WaitOperationRequest) async throws
+        -> GoogleLongRunning.Operation
 
       /// See `VertexRagDataServiceClient.createRagCorpus`.
       func createRagCorpus(
         request: CreateRagCorpusRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+      ) async throws -> GoogleLongRunning.Operation
 
       /// See `VertexRagDataServiceClient.createRagCorpus`.
       func createRagCorpus(
@@ -857,7 +857,7 @@
       /// See `VertexRagDataServiceClient.updateRagCorpus`.
       func updateRagCorpus(
         request: UpdateRagCorpusRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+      ) async throws -> GoogleLongRunning.Operation
 
       /// See `VertexRagDataServiceClient.updateRagCorpus`.
       func updateRagCorpus(
@@ -882,7 +882,7 @@
       /// See `VertexRagDataServiceClient.deleteRagCorpus`.
       func deleteRagCorpus(
         request: DeleteRagCorpusRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+      ) async throws -> GoogleLongRunning.Operation
 
       /// See `VertexRagDataServiceClient.deleteRagCorpus`.
       func deleteRagCorpus(
@@ -897,7 +897,7 @@
       /// See `VertexRagDataServiceClient.importRagFiles`.
       func importRagFiles(
         request: ImportRagFilesRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+      ) async throws -> GoogleLongRunning.Operation
 
       /// See `VertexRagDataServiceClient.importRagFiles`.
       func importRagFiles(
@@ -922,7 +922,7 @@
       /// See `VertexRagDataServiceClient.deleteRagFile`.
       func deleteRagFile(
         request: DeleteRagFileRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+      ) async throws -> GoogleLongRunning.Operation
 
       /// See `VertexRagDataServiceClient.deleteRagFile`.
       func deleteRagFile(
@@ -932,7 +932,7 @@
       /// See `VertexRagDataServiceClient.updateRagEngineConfig`.
       func updateRagEngineConfig(
         request: UpdateRagEngineConfigRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+      ) async throws -> GoogleLongRunning.Operation
 
       /// See `VertexRagDataServiceClient.updateRagEngineConfig`.
       func updateRagEngineConfig(
@@ -976,42 +976,42 @@
 
       /// See `VertexRagDataServiceClient.listOperations`.
       func listOperations(
-        request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.ListOperationsResponse
+        request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+      ) async throws -> GoogleLongRunning.ListOperationsResponse
 
       /// See `VertexRagDataServiceClient.listOperations`.
       func listOperations(
-        byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-      ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+        byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+      ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `VertexRagDataServiceClient.deleteOperation`.
       func deleteOperation(
-        request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+        request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
       ) async throws
 
       /// See `VertexRagDataServiceClient.cancelOperation`.
       func cancelOperation(
-        request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+        request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
       ) async throws
 
       /// See `VertexRagDataServiceClient.waitOperation`.
       func waitOperation(
-        request: GoogleLongrunning.WaitOperationRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+        request: GoogleLongRunning.WaitOperationRequest, options: GoogleCloudGax.RequestOptions
+      ) async throws -> GoogleLongRunning.Operation
     }
   }
 
   // Default implementations
   extension Clients.VertexRagDataServiceProtocol {
     public func createRagCorpus(request: CreateRagCorpusRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
     {
       try await self.createRagCorpus(request: request, options: .init())
     }
 
     public func createRagCorpus(
       request: CreateRagCorpusRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       throw GoogleCloudGax.RequestError.unimplemented
     }
 
@@ -1043,14 +1043,14 @@
     }
 
     public func updateRagCorpus(request: UpdateRagCorpusRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
     {
       try await self.updateRagCorpus(request: request, options: .init())
     }
 
     public func updateRagCorpus(
       request: UpdateRagCorpusRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       throw GoogleCloudGax.RequestError.unimplemented
     }
 
@@ -1138,14 +1138,14 @@
     }
 
     public func deleteRagCorpus(request: DeleteRagCorpusRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
     {
       try await self.deleteRagCorpus(request: request, options: .init())
     }
 
     public func deleteRagCorpus(
       request: DeleteRagCorpusRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       throw GoogleCloudGax.RequestError.unimplemented
     }
 
@@ -1200,14 +1200,14 @@
     }
 
     public func importRagFiles(request: ImportRagFilesRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
     {
       try await self.importRagFiles(request: request, options: .init())
     }
 
     public func importRagFiles(
       request: ImportRagFilesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       throw GoogleCloudGax.RequestError.unimplemented
     }
 
@@ -1298,14 +1298,14 @@
     }
 
     public func deleteRagFile(request: DeleteRagFileRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
     {
       try await self.deleteRagFile(request: request, options: .init())
     }
 
     public func deleteRagFile(
       request: DeleteRagFileRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       throw GoogleCloudGax.RequestError.unimplemented
     }
 
@@ -1335,14 +1335,14 @@
     }
 
     public func updateRagEngineConfig(request: UpdateRagEngineConfigRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
     {
       try await self.updateRagEngineConfig(request: request, options: .init())
     }
 
     public func updateRagEngineConfig(
       request: UpdateRagEngineConfigRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       throw GoogleCloudGax.RequestError.unimplemented
     }
 
@@ -1469,29 +1469,29 @@
       throw GoogleCloudGax.RequestError.unimplemented
     }
 
-    public func listOperations(request: GoogleLongrunning.ListOperationsRequest) async throws
-      -> GoogleLongrunning.ListOperationsResponse
+    public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
+      -> GoogleLongRunning.ListOperationsResponse
     {
       try await self.listOperations(request: request, options: .init())
     }
 
     public func listOperations(
-      request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.ListOperationsResponse {
+      request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.ListOperationsResponse {
       throw GoogleCloudGax.RequestError.unimplemented
     }
 
     public func listOperations(
-      byItem: GoogleLongrunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+      byItem: GoogleLongRunning.ListOperationsRequest
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       try self.listOperations(byItem: byItem, options: .init())
     }
 
     public func listOperations(
-      byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
-        (token: Swift.String) async throws -> GoogleLongrunning.ListOperationsResponse in
+        (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
         throw GoogleCloudGax.RequestError.unimplemented
       }
       return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
@@ -1500,41 +1500,41 @@
     public func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
-      let request = GoogleLongrunning.ListOperationsRequest().with {
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+      let request = GoogleLongRunning.ListOperationsRequest().with {
         $0.name = name
         $0.filter = filter
       }
       return try self.listOperations(byItem: request)
     }
 
-    public func getOperation(request: GoogleLongrunning.GetOperationRequest) async throws
-      -> GoogleLongrunning.Operation
+    public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
+      -> GoogleLongRunning.Operation
     {
       try await self.getOperation(request: request, options: .init())
     }
 
     public func getOperation(
-      request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+      request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
       throw GoogleCloudGax.RequestError.unimplemented
     }
 
     public func getOperation(
       name: Swift.String,
-    ) async throws -> GoogleLongrunning.Operation {
-      let request = GoogleLongrunning.GetOperationRequest().with {
+    ) async throws -> GoogleLongRunning.Operation {
+      let request = GoogleLongRunning.GetOperationRequest().with {
         $0.name = name
       }
       return try await self.getOperation(request: request)
     }
 
-    public func deleteOperation(request: GoogleLongrunning.DeleteOperationRequest) async throws {
+    public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
       try await self.deleteOperation(request: request, options: .init())
     }
 
     public func deleteOperation(
-      request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+      request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws {
       throw GoogleCloudGax.RequestError.unimplemented
     }
@@ -1542,18 +1542,18 @@
     public func deleteOperation(
       name: Swift.String,
     ) async throws {
-      let request = GoogleLongrunning.DeleteOperationRequest().with {
+      let request = GoogleLongRunning.DeleteOperationRequest().with {
         $0.name = name
       }
       try await self.deleteOperation(request: request)
     }
 
-    public func cancelOperation(request: GoogleLongrunning.CancelOperationRequest) async throws {
+    public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
       try await self.cancelOperation(request: request, options: .init())
     }
 
     public func cancelOperation(
-      request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+      request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws {
       throw GoogleCloudGax.RequestError.unimplemented
     }
@@ -1561,21 +1561,21 @@
     public func cancelOperation(
       name: Swift.String,
     ) async throws {
-      let request = GoogleLongrunning.CancelOperationRequest().with {
+      let request = GoogleLongRunning.CancelOperationRequest().with {
         $0.name = name
       }
       try await self.cancelOperation(request: request)
     }
 
-    public func waitOperation(request: GoogleLongrunning.WaitOperationRequest) async throws
-      -> GoogleLongrunning.Operation
+    public func waitOperation(request: GoogleLongRunning.WaitOperationRequest) async throws
+      -> GoogleLongRunning.Operation
     {
       try await self.waitOperation(request: request, options: .init())
     }
 
     public func waitOperation(
-      request: GoogleLongrunning.WaitOperationRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+      request: GoogleLongRunning.WaitOperationRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
       throw GoogleCloudGax.RequestError.unimplemented
     }
   }

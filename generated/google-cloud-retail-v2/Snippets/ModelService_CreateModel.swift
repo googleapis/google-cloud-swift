@@ -19,7 +19,7 @@
 import Foundation
 import GoogleCloudRetailV2
 import GoogleCloudWkt
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleRpc
 
 func sample(client: ModelServiceClient, projectId: String, locationId: String, catalogId: String)

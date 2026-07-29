@@ -19,7 +19,7 @@
 import Foundation
 import GoogleCloudRetailV2
 import GoogleCloudWkt
-import GoogleLongrunning
+import GoogleLongRunning
 
 func sample(client: SearchServiceClient) async throws {
   let items = try client.search(

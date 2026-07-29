@@ -20,7 +20,7 @@ import Foundation
 import GoogleCloudApiHubV1
 import GoogleCloudLocation
 import GoogleCloudWkt
-import GoogleLongrunning
+import GoogleLongRunning
 
 func sample(client: HostProjectRegistrationServiceClient) async throws {
   let items = try client.listLocations(

@@ -45,7 +45,7 @@ public struct ImportMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// [Operation][google.longrunning.Operation].
   /// Format of the Pub/Sub topic is `projects/{project}/topics/{topic}`.
   ///
-  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongrunning.Operation
+  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   public var notificationPubsubTopic: Swift.String = Swift.String()
 
   /// Initialize a new instance of `ImportMetadata`.

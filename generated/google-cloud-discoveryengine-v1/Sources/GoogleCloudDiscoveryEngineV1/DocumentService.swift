@@ -20,7 +20,7 @@
     import FoundationNetworking
   #endif
   import GoogleCloudWkt
-  import GoogleLongrunning
+  import GoogleLongRunning
   import GoogleRpc
   import GoogleCloudGax
 
@@ -128,7 +128,7 @@
     /// @Snippet(path: "DocumentService_ImportDocuments")
     public func importDocuments(
       request: ImportDocumentsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       try await self.inner.importDocuments(request: request, options: options)
     }
 
@@ -147,7 +147,7 @@
       withPolling: ImportDocumentsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> any GoogleCloudGax.PollableOperation<ImportDocumentsResponse> {
       let extractStatus = {
-        (op: GoogleLongrunning.Operation) throws
+        (op: GoogleLongRunning.Operation) throws
           -> GoogleCloudGax._PollableOperationImpl<ImportDocumentsResponse>.State in
         guard op.done else {
           return .init(done: false, result: nil)
@@ -220,7 +220,7 @@
     /// @Snippet(path: "DocumentService_PurgeDocuments")
     public func purgeDocuments(
       request: PurgeDocumentsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       try await self.inner.purgeDocuments(request: request, options: options)
     }
 
@@ -251,7 +251,7 @@
       withPolling: PurgeDocumentsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> any GoogleCloudGax.PollableOperation<PurgeDocumentsResponse> {
       let extractStatus = {
-        (op: GoogleLongrunning.Operation) throws
+        (op: GoogleLongRunning.Operation) throws
           -> GoogleCloudGax._PollableOperationImpl<PurgeDocumentsResponse>.State in
         guard op.done else {
           return .init(done: false, result: nil)
@@ -318,8 +318,8 @@
     ///
     /// @Snippet(path: "DocumentService_ListOperations")
     public func listOperations(
-      request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.ListOperationsResponse {
+      request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.ListOperationsResponse {
       try await self.inner.listOperations(request: request, options: options)
     }
 
@@ -329,10 +329,10 @@
     ///
     /// @Snippet(path: "DocumentService_ListOperations")
     public func listOperations(
-      byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
-        (token: Swift.String) async throws -> GoogleLongrunning.ListOperationsResponse in
+        (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
         var request = byItem
         request.pageToken = token
         return try await self.listOperations(request: request, options: options)
@@ -346,8 +346,8 @@
     ///
     /// @Snippet(path: "DocumentService_GetOperation")
     func getOperation(
-      request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+      request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
       try await self.inner.getOperation(request: request, options: options)
     }
 
@@ -357,7 +357,7 @@
     ///
     /// @Snippet(path: "DocumentService_CancelOperation")
     public func cancelOperation(
-      request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+      request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws {
       try await self.inner.cancelOperation(request: request, options: options)
     }
@@ -424,7 +424,7 @@
 
       /// See `DocumentServiceClient.importDocuments`.
       func importDocuments(request: ImportDocumentsRequest) async throws
-        -> GoogleLongrunning.Operation
+        -> GoogleLongRunning.Operation
 
       /// See `DocumentServiceClient.importDocuments`.
       func importDocuments(withPolling: ImportDocumentsRequest) async throws -> any GoogleCloudGax
@@ -432,7 +432,7 @@
 
       /// See `DocumentServiceClient.purgeDocuments`.
       func purgeDocuments(request: PurgeDocumentsRequest) async throws
-        -> GoogleLongrunning.Operation
+        -> GoogleLongRunning.Operation
 
       /// See `DocumentServiceClient.purgeDocuments`.
       func purgeDocuments(withPolling: PurgeDocumentsRequest) async throws -> any GoogleCloudGax
@@ -448,22 +448,22 @@
       ) async throws -> GoogleCloudDiscoveryEngineV1.BatchGetDocumentsMetadataResponse
 
       /// See `DocumentServiceClient.listOperations`.
-      func listOperations(request: GoogleLongrunning.ListOperationsRequest) async throws
-        -> GoogleLongrunning.ListOperationsResponse
+      func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
+        -> GoogleLongRunning.ListOperationsResponse
 
       /// See `DocumentServiceClient.listOperations`.
       func listOperations(
-        byItem: GoogleLongrunning.ListOperationsRequest
-      ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+        byItem: GoogleLongRunning.ListOperationsRequest
+      ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `DocumentServiceClient.listOperations`.
       func listOperations(
         name: Swift.String,
         filter: Swift.String,
-      ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+      ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `DocumentServiceClient.cancelOperation`.
-      func cancelOperation(request: GoogleLongrunning.CancelOperationRequest) async throws
+      func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
 
       /// See `DocumentServiceClient.cancelOperation`.
       func cancelOperation(
@@ -503,7 +503,7 @@
       /// See `DocumentServiceClient.importDocuments`.
       func importDocuments(
         request: ImportDocumentsRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+      ) async throws -> GoogleLongRunning.Operation
 
       /// See `DocumentServiceClient.importDocuments`.
       func importDocuments(
@@ -513,7 +513,7 @@
       /// See `DocumentServiceClient.purgeDocuments`.
       func purgeDocuments(
         request: PurgeDocumentsRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+      ) async throws -> GoogleLongRunning.Operation
 
       /// See `DocumentServiceClient.purgeDocuments`.
       func purgeDocuments(
@@ -527,17 +527,17 @@
 
       /// See `DocumentServiceClient.listOperations`.
       func listOperations(
-        request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.ListOperationsResponse
+        request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+      ) async throws -> GoogleLongRunning.ListOperationsResponse
 
       /// See `DocumentServiceClient.listOperations`.
       func listOperations(
-        byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-      ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+        byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+      ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `DocumentServiceClient.cancelOperation`.
       func cancelOperation(
-        request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+        request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
       ) async throws
     }
   }
@@ -670,14 +670,14 @@
     }
 
     public func importDocuments(request: ImportDocumentsRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
     {
       try await self.importDocuments(request: request, options: .init())
     }
 
     public func importDocuments(
       request: ImportDocumentsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       throw GoogleCloudGax.RequestError.unimplemented
     }
 
@@ -699,14 +699,14 @@
     }
 
     public func purgeDocuments(request: PurgeDocumentsRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
     {
       try await self.purgeDocuments(request: request, options: .init())
     }
 
     public func purgeDocuments(
       request: PurgeDocumentsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       throw GoogleCloudGax.RequestError.unimplemented
     }
 
@@ -748,29 +748,29 @@
       return try await self.batchGetDocumentsMetadata(request: request)
     }
 
-    public func listOperations(request: GoogleLongrunning.ListOperationsRequest) async throws
-      -> GoogleLongrunning.ListOperationsResponse
+    public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
+      -> GoogleLongRunning.ListOperationsResponse
     {
       try await self.listOperations(request: request, options: .init())
     }
 
     public func listOperations(
-      request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.ListOperationsResponse {
+      request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.ListOperationsResponse {
       throw GoogleCloudGax.RequestError.unimplemented
     }
 
     public func listOperations(
-      byItem: GoogleLongrunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+      byItem: GoogleLongRunning.ListOperationsRequest
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       try self.listOperations(byItem: byItem, options: .init())
     }
 
     public func listOperations(
-      byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
-        (token: Swift.String) async throws -> GoogleLongrunning.ListOperationsResponse in
+        (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
         throw GoogleCloudGax.RequestError.unimplemented
       }
       return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
@@ -779,41 +779,41 @@
     public func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
-      let request = GoogleLongrunning.ListOperationsRequest().with {
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+      let request = GoogleLongRunning.ListOperationsRequest().with {
         $0.name = name
         $0.filter = filter
       }
       return try self.listOperations(byItem: request)
     }
 
-    public func getOperation(request: GoogleLongrunning.GetOperationRequest) async throws
-      -> GoogleLongrunning.Operation
+    public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
+      -> GoogleLongRunning.Operation
     {
       try await self.getOperation(request: request, options: .init())
     }
 
     public func getOperation(
-      request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+      request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
       throw GoogleCloudGax.RequestError.unimplemented
     }
 
     public func getOperation(
       name: Swift.String,
-    ) async throws -> GoogleLongrunning.Operation {
-      let request = GoogleLongrunning.GetOperationRequest().with {
+    ) async throws -> GoogleLongRunning.Operation {
+      let request = GoogleLongRunning.GetOperationRequest().with {
         $0.name = name
       }
       return try await self.getOperation(request: request)
     }
 
-    public func cancelOperation(request: GoogleLongrunning.CancelOperationRequest) async throws {
+    public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
       try await self.cancelOperation(request: request, options: .init())
     }
 
     public func cancelOperation(
-      request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+      request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws {
       throw GoogleCloudGax.RequestError.unimplemented
     }
@@ -821,7 +821,7 @@
     public func cancelOperation(
       name: Swift.String,
     ) async throws {
-      let request = GoogleLongrunning.CancelOperationRequest().with {
+      let request = GoogleLongRunning.CancelOperationRequest().with {
         $0.name = name
       }
       try await self.cancelOperation(request: request)

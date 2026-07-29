@@ -19,7 +19,7 @@
 import Foundation
 import GoogleCloudTalentV4
 import GoogleCloudWkt
-import GoogleLongrunning
+import GoogleLongRunning
 
 func sample(client: TenantServiceClient, parent: String) async throws {
   let items = try client.listTenants(

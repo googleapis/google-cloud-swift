@@ -22,7 +22,7 @@
   import GoogleCloudLocation
   import GoogleCloudWkt
   import GoogleIAMV1
-  import GoogleLongrunning
+  import GoogleLongRunning
 
   func sample(client: DataFoundryServiceClient) async throws {
     let items = try client.listLocations(

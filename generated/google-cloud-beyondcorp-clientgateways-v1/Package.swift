@@ -44,7 +44,7 @@ let package = Package(
         .product(name: "GoogleCloudLocation", package: "google-cloud-location"),
         .product(name: "GoogleCloudWkt", package: "wkt"),
         .product(name: "GoogleIAMV1", package: "google-iam-v1"),
-        .product(name: "GoogleLongrunning", package: "google-longrunning"),
+        .product(name: "GoogleLongRunning", package: "google-longrunning"),
         .product(name: "GoogleRpc", package: "google-rpc"),
         .product(name: "Logging", package: "swift-log"),
       ],

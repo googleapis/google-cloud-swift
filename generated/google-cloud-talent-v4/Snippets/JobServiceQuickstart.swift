@@ -19,7 +19,7 @@
 import Foundation
 import GoogleCloudTalentV4
 import GoogleCloudWkt
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleRpc
 
 func sample(projectId: String, tenantId: String, ) async throws {

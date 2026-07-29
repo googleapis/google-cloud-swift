@@ -19,7 +19,7 @@
 import Foundation
 import GoogleCloudTalentV4
 import GoogleCloudWkt
-import GoogleLongrunning
+import GoogleLongRunning
 
 func sample(client: CompanyServiceClient, projectId: String, tenantId: String, companyId: String)
   async throws

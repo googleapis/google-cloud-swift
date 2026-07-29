@@ -16,14 +16,14 @@
 
 import Foundation
 import GoogleCloudWkt
-import GoogleLongrunning
+import GoogleLongRunning
 
 /// Response message for submitting a Build.
 public struct SubmitBuildResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
   /// Cloud Build operation to be polled via CloudBuild API.
-  public var buildOperation: GoogleLongrunning.Operation? = nil
+  public var buildOperation: GoogleLongRunning.Operation? = nil
 
   /// URI of the base builder image in Artifact Registry being used in the build.
   /// Used to opt into automatic base image updates.

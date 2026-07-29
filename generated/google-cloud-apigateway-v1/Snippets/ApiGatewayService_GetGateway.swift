@@ -19,7 +19,7 @@
 import Foundation
 import GoogleCloudApiGatewayV1
 import GoogleCloudWkt
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleRpc
 
 func sample(

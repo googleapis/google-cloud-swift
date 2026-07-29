@@ -22,7 +22,7 @@
   import GoogleCloudLocation
   import GoogleCloudWkt
   import GoogleIAMV1
-  import GoogleLongrunning
+  import GoogleLongRunning
   import GoogleRpc
   import GoogleCloudGax
 
@@ -48,7 +48,7 @@
     /// @Snippet(path: "IndexEndpointService_CreateIndexEndpoint")
     public func createIndexEndpoint(
       request: CreateIndexEndpointRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       try await self.inner.createIndexEndpoint(request: request, options: options)
     }
 
@@ -59,7 +59,7 @@
       withPolling: CreateIndexEndpointRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> any GoogleCloudGax.PollableOperation<IndexEndpoint> {
       let extractStatus = {
-        (op: GoogleLongrunning.Operation) throws
+        (op: GoogleLongRunning.Operation) throws
           -> GoogleCloudGax._PollableOperationImpl<IndexEndpoint>.State in
         guard op.done else {
           return .init(done: false, result: nil)
@@ -153,7 +153,7 @@
     /// @Snippet(path: "IndexEndpointService_DeleteIndexEndpoint")
     public func deleteIndexEndpoint(
       request: DeleteIndexEndpointRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       try await self.inner.deleteIndexEndpoint(request: request, options: options)
     }
 
@@ -164,7 +164,7 @@
       withPolling: DeleteIndexEndpointRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
       let extractStatus = {
-        (op: GoogleLongrunning.Operation) throws
+        (op: GoogleLongRunning.Operation) throws
           -> GoogleCloudGax._PollableOperationImpl<Void>.State in
         guard op.done else {
           return .init(done: false, result: nil)
@@ -210,7 +210,7 @@
     /// @Snippet(path: "IndexEndpointService_DeployIndex")
     public func deployIndex(
       request: DeployIndexRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       try await self.inner.deployIndex(request: request, options: options)
     }
 
@@ -223,7 +223,7 @@
       withPolling: DeployIndexRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> any GoogleCloudGax.PollableOperation<DeployIndexResponse> {
       let extractStatus = {
-        (op: GoogleLongrunning.Operation) throws
+        (op: GoogleLongRunning.Operation) throws
           -> GoogleCloudGax._PollableOperationImpl<DeployIndexResponse>.State in
         guard op.done else {
           return .init(done: false, result: nil)
@@ -277,7 +277,7 @@
     /// @Snippet(path: "IndexEndpointService_UndeployIndex")
     public func undeployIndex(
       request: UndeployIndexRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       try await self.inner.undeployIndex(request: request, options: options)
     }
 
@@ -289,7 +289,7 @@
       withPolling: UndeployIndexRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> any GoogleCloudGax.PollableOperation<UndeployIndexResponse> {
       let extractStatus = {
-        (op: GoogleLongrunning.Operation) throws
+        (op: GoogleLongRunning.Operation) throws
           -> GoogleCloudGax._PollableOperationImpl<UndeployIndexResponse>.State in
         guard op.done else {
           return .init(done: false, result: nil)
@@ -342,7 +342,7 @@
     /// @Snippet(path: "IndexEndpointService_MutateDeployedIndex")
     public func mutateDeployedIndex(
       request: MutateDeployedIndexRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       try await self.inner.mutateDeployedIndex(request: request, options: options)
     }
 
@@ -353,7 +353,7 @@
       withPolling: MutateDeployedIndexRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> any GoogleCloudGax.PollableOperation<MutateDeployedIndexResponse> {
       let extractStatus = {
-        (op: GoogleLongrunning.Operation) throws
+        (op: GoogleLongRunning.Operation) throws
           -> GoogleCloudGax._PollableOperationImpl<MutateDeployedIndexResponse>.State in
         guard op.done else {
           return .init(done: false, result: nil)
@@ -479,8 +479,8 @@
     ///
     /// @Snippet(path: "IndexEndpointService_ListOperations")
     public func listOperations(
-      request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.ListOperationsResponse {
+      request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.ListOperationsResponse {
       try await self.inner.listOperations(request: request, options: options)
     }
 
@@ -490,10 +490,10 @@
     ///
     /// @Snippet(path: "IndexEndpointService_ListOperations")
     public func listOperations(
-      byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
-        (token: Swift.String) async throws -> GoogleLongrunning.ListOperationsResponse in
+        (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
         var request = byItem
         request.pageToken = token
         return try await self.listOperations(request: request, options: options)
@@ -507,8 +507,8 @@
     ///
     /// @Snippet(path: "IndexEndpointService_GetOperation")
     func getOperation(
-      request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+      request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
       try await self.inner.getOperation(request: request, options: options)
     }
 
@@ -518,7 +518,7 @@
     ///
     /// @Snippet(path: "IndexEndpointService_DeleteOperation")
     public func deleteOperation(
-      request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+      request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws {
       try await self.inner.deleteOperation(request: request, options: options)
     }
@@ -529,7 +529,7 @@
     ///
     /// @Snippet(path: "IndexEndpointService_CancelOperation")
     public func cancelOperation(
-      request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+      request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws {
       try await self.inner.cancelOperation(request: request, options: options)
     }
@@ -540,8 +540,8 @@
     ///
     /// @Snippet(path: "IndexEndpointService_WaitOperation")
     public func waitOperation(
-      request: GoogleLongrunning.WaitOperationRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+      request: GoogleLongRunning.WaitOperationRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
       try await self.inner.waitOperation(request: request, options: options)
     }
   }
@@ -555,7 +555,7 @@
     public protocol IndexEndpointServiceProtocol {
       /// See `IndexEndpointServiceClient.createIndexEndpoint`.
       func createIndexEndpoint(request: CreateIndexEndpointRequest) async throws
-        -> GoogleLongrunning.Operation
+        -> GoogleLongRunning.Operation
 
       /// See `IndexEndpointServiceClient.createIndexEndpoint`.
       func createIndexEndpoint(withPolling: CreateIndexEndpointRequest) async throws
@@ -602,7 +602,7 @@
 
       /// See `IndexEndpointServiceClient.deleteIndexEndpoint`.
       func deleteIndexEndpoint(request: DeleteIndexEndpointRequest) async throws
-        -> GoogleLongrunning.Operation
+        -> GoogleLongRunning.Operation
 
       /// See `IndexEndpointServiceClient.deleteIndexEndpoint`.
       func deleteIndexEndpoint(withPolling: DeleteIndexEndpointRequest) async throws
@@ -614,7 +614,7 @@
       ) async throws -> any GoogleCloudGax.PollableOperation<Void>
 
       /// See `IndexEndpointServiceClient.deployIndex`.
-      func deployIndex(request: DeployIndexRequest) async throws -> GoogleLongrunning.Operation
+      func deployIndex(request: DeployIndexRequest) async throws -> GoogleLongRunning.Operation
 
       /// See `IndexEndpointServiceClient.deployIndex`.
       func deployIndex(withPolling: DeployIndexRequest) async throws -> any GoogleCloudGax
@@ -627,7 +627,7 @@
       ) async throws -> any GoogleCloudGax.PollableOperation<DeployIndexResponse>
 
       /// See `IndexEndpointServiceClient.undeployIndex`.
-      func undeployIndex(request: UndeployIndexRequest) async throws -> GoogleLongrunning.Operation
+      func undeployIndex(request: UndeployIndexRequest) async throws -> GoogleLongRunning.Operation
 
       /// See `IndexEndpointServiceClient.undeployIndex`.
       func undeployIndex(withPolling: UndeployIndexRequest) async throws -> any GoogleCloudGax
@@ -641,7 +641,7 @@
 
       /// See `IndexEndpointServiceClient.mutateDeployedIndex`.
       func mutateDeployedIndex(request: MutateDeployedIndexRequest) async throws
-        -> GoogleLongrunning.Operation
+        -> GoogleLongRunning.Operation
 
       /// See `IndexEndpointServiceClient.mutateDeployedIndex`.
       func mutateDeployedIndex(withPolling: MutateDeployedIndexRequest) async throws
@@ -677,22 +677,22 @@
         -> GoogleIAMV1.TestIamPermissionsResponse
 
       /// See `IndexEndpointServiceClient.listOperations`.
-      func listOperations(request: GoogleLongrunning.ListOperationsRequest) async throws
-        -> GoogleLongrunning.ListOperationsResponse
+      func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
+        -> GoogleLongRunning.ListOperationsResponse
 
       /// See `IndexEndpointServiceClient.listOperations`.
       func listOperations(
-        byItem: GoogleLongrunning.ListOperationsRequest
-      ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+        byItem: GoogleLongRunning.ListOperationsRequest
+      ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `IndexEndpointServiceClient.listOperations`.
       func listOperations(
         name: Swift.String,
         filter: Swift.String,
-      ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+      ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `IndexEndpointServiceClient.deleteOperation`.
-      func deleteOperation(request: GoogleLongrunning.DeleteOperationRequest) async throws
+      func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
 
       /// See `IndexEndpointServiceClient.deleteOperation`.
       func deleteOperation(
@@ -700,7 +700,7 @@
       ) async throws
 
       /// See `IndexEndpointServiceClient.cancelOperation`.
-      func cancelOperation(request: GoogleLongrunning.CancelOperationRequest) async throws
+      func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
 
       /// See `IndexEndpointServiceClient.cancelOperation`.
       func cancelOperation(
@@ -708,13 +708,13 @@
       ) async throws
 
       /// See `IndexEndpointServiceClient.waitOperation`.
-      func waitOperation(request: GoogleLongrunning.WaitOperationRequest) async throws
-        -> GoogleLongrunning.Operation
+      func waitOperation(request: GoogleLongRunning.WaitOperationRequest) async throws
+        -> GoogleLongRunning.Operation
 
       /// See `IndexEndpointServiceClient.createIndexEndpoint`.
       func createIndexEndpoint(
         request: CreateIndexEndpointRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+      ) async throws -> GoogleLongRunning.Operation
 
       /// See `IndexEndpointServiceClient.createIndexEndpoint`.
       func createIndexEndpoint(
@@ -744,7 +744,7 @@
       /// See `IndexEndpointServiceClient.deleteIndexEndpoint`.
       func deleteIndexEndpoint(
         request: DeleteIndexEndpointRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+      ) async throws -> GoogleLongRunning.Operation
 
       /// See `IndexEndpointServiceClient.deleteIndexEndpoint`.
       func deleteIndexEndpoint(
@@ -754,7 +754,7 @@
       /// See `IndexEndpointServiceClient.deployIndex`.
       func deployIndex(
         request: DeployIndexRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+      ) async throws -> GoogleLongRunning.Operation
 
       /// See `IndexEndpointServiceClient.deployIndex`.
       func deployIndex(
@@ -764,7 +764,7 @@
       /// See `IndexEndpointServiceClient.undeployIndex`.
       func undeployIndex(
         request: UndeployIndexRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+      ) async throws -> GoogleLongRunning.Operation
 
       /// See `IndexEndpointServiceClient.undeployIndex`.
       func undeployIndex(
@@ -774,7 +774,7 @@
       /// See `IndexEndpointServiceClient.mutateDeployedIndex`.
       func mutateDeployedIndex(
         request: MutateDeployedIndexRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+      ) async throws -> GoogleLongRunning.Operation
 
       /// See `IndexEndpointServiceClient.mutateDeployedIndex`.
       func mutateDeployedIndex(
@@ -813,42 +813,42 @@
 
       /// See `IndexEndpointServiceClient.listOperations`.
       func listOperations(
-        request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.ListOperationsResponse
+        request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+      ) async throws -> GoogleLongRunning.ListOperationsResponse
 
       /// See `IndexEndpointServiceClient.listOperations`.
       func listOperations(
-        byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-      ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+        byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+      ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `IndexEndpointServiceClient.deleteOperation`.
       func deleteOperation(
-        request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+        request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
       ) async throws
 
       /// See `IndexEndpointServiceClient.cancelOperation`.
       func cancelOperation(
-        request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+        request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
       ) async throws
 
       /// See `IndexEndpointServiceClient.waitOperation`.
       func waitOperation(
-        request: GoogleLongrunning.WaitOperationRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+        request: GoogleLongRunning.WaitOperationRequest, options: GoogleCloudGax.RequestOptions
+      ) async throws -> GoogleLongRunning.Operation
     }
   }
 
   // Default implementations
   extension Clients.IndexEndpointServiceProtocol {
     public func createIndexEndpoint(request: CreateIndexEndpointRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
     {
       try await self.createIndexEndpoint(request: request, options: .init())
     }
 
     public func createIndexEndpoint(
       request: CreateIndexEndpointRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       throw GoogleCloudGax.RequestError.unimplemented
     }
 
@@ -961,14 +961,14 @@
     }
 
     public func deleteIndexEndpoint(request: DeleteIndexEndpointRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
     {
       try await self.deleteIndexEndpoint(request: request, options: .init())
     }
 
     public func deleteIndexEndpoint(
       request: DeleteIndexEndpointRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       throw GoogleCloudGax.RequestError.unimplemented
     }
 
@@ -997,14 +997,14 @@
       return try await self.deleteIndexEndpoint(withPolling: request)
     }
 
-    public func deployIndex(request: DeployIndexRequest) async throws -> GoogleLongrunning.Operation
+    public func deployIndex(request: DeployIndexRequest) async throws -> GoogleLongRunning.Operation
     {
       try await self.deployIndex(request: request, options: .init())
     }
 
     public func deployIndex(
       request: DeployIndexRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       throw GoogleCloudGax.RequestError.unimplemented
     }
 
@@ -1037,14 +1037,14 @@
     }
 
     public func undeployIndex(request: UndeployIndexRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
     {
       try await self.undeployIndex(request: request, options: .init())
     }
 
     public func undeployIndex(
       request: UndeployIndexRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       throw GoogleCloudGax.RequestError.unimplemented
     }
 
@@ -1077,14 +1077,14 @@
     }
 
     public func mutateDeployedIndex(request: MutateDeployedIndexRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
     {
       try await self.mutateDeployedIndex(request: request, options: .init())
     }
 
     public func mutateDeployedIndex(
       request: MutateDeployedIndexRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       throw GoogleCloudGax.RequestError.unimplemented
     }
 
@@ -1193,29 +1193,29 @@
       throw GoogleCloudGax.RequestError.unimplemented
     }
 
-    public func listOperations(request: GoogleLongrunning.ListOperationsRequest) async throws
-      -> GoogleLongrunning.ListOperationsResponse
+    public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
+      -> GoogleLongRunning.ListOperationsResponse
     {
       try await self.listOperations(request: request, options: .init())
     }
 
     public func listOperations(
-      request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.ListOperationsResponse {
+      request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.ListOperationsResponse {
       throw GoogleCloudGax.RequestError.unimplemented
     }
 
     public func listOperations(
-      byItem: GoogleLongrunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+      byItem: GoogleLongRunning.ListOperationsRequest
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       try self.listOperations(byItem: byItem, options: .init())
     }
 
     public func listOperations(
-      byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
-        (token: Swift.String) async throws -> GoogleLongrunning.ListOperationsResponse in
+        (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
         throw GoogleCloudGax.RequestError.unimplemented
       }
       return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
@@ -1224,41 +1224,41 @@
     public func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
-      let request = GoogleLongrunning.ListOperationsRequest().with {
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+      let request = GoogleLongRunning.ListOperationsRequest().with {
         $0.name = name
         $0.filter = filter
       }
       return try self.listOperations(byItem: request)
     }
 
-    public func getOperation(request: GoogleLongrunning.GetOperationRequest) async throws
-      -> GoogleLongrunning.Operation
+    public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
+      -> GoogleLongRunning.Operation
     {
       try await self.getOperation(request: request, options: .init())
     }
 
     public func getOperation(
-      request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+      request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
       throw GoogleCloudGax.RequestError.unimplemented
     }
 
     public func getOperation(
       name: Swift.String,
-    ) async throws -> GoogleLongrunning.Operation {
-      let request = GoogleLongrunning.GetOperationRequest().with {
+    ) async throws -> GoogleLongRunning.Operation {
+      let request = GoogleLongRunning.GetOperationRequest().with {
         $0.name = name
       }
       return try await self.getOperation(request: request)
     }
 
-    public func deleteOperation(request: GoogleLongrunning.DeleteOperationRequest) async throws {
+    public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
       try await self.deleteOperation(request: request, options: .init())
     }
 
     public func deleteOperation(
-      request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+      request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws {
       throw GoogleCloudGax.RequestError.unimplemented
     }
@@ -1266,18 +1266,18 @@
     public func deleteOperation(
       name: Swift.String,
     ) async throws {
-      let request = GoogleLongrunning.DeleteOperationRequest().with {
+      let request = GoogleLongRunning.DeleteOperationRequest().with {
         $0.name = name
       }
       try await self.deleteOperation(request: request)
     }
 
-    public func cancelOperation(request: GoogleLongrunning.CancelOperationRequest) async throws {
+    public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
       try await self.cancelOperation(request: request, options: .init())
     }
 
     public func cancelOperation(
-      request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+      request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws {
       throw GoogleCloudGax.RequestError.unimplemented
     }
@@ -1285,21 +1285,21 @@
     public func cancelOperation(
       name: Swift.String,
     ) async throws {
-      let request = GoogleLongrunning.CancelOperationRequest().with {
+      let request = GoogleLongRunning.CancelOperationRequest().with {
         $0.name = name
       }
       try await self.cancelOperation(request: request)
     }
 
-    public func waitOperation(request: GoogleLongrunning.WaitOperationRequest) async throws
-      -> GoogleLongrunning.Operation
+    public func waitOperation(request: GoogleLongRunning.WaitOperationRequest) async throws
+      -> GoogleLongRunning.Operation
     {
       try await self.waitOperation(request: request, options: .init())
     }
 
     public func waitOperation(
-      request: GoogleLongrunning.WaitOperationRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+      request: GoogleLongRunning.WaitOperationRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
       throw GoogleCloudGax.RequestError.unimplemented
     }
   }

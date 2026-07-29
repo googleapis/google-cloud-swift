@@ -70,7 +70,7 @@ public struct ImportProductsRequest: Codable, Equatable, GoogleCloudWkt._AnyPack
   ///
   /// [google.cloud.retail.v2.ImportProductsRequest.parent]: <doc:ImportProductsRequest/parent>
   /// [google.cloud.retail.v2.ImportProductsRequest.reconciliation_mode]: <doc:ImportProductsRequest/reconciliationMode>
-  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongrunning.Operation
+  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   public var notificationPubsubTopic: Swift.String = Swift.String()
 
   /// Initialize a new instance of `ImportProductsRequest`.

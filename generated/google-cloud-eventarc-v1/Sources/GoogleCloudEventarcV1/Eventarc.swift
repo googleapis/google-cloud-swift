@@ -21,7 +21,7 @@ import Foundation
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleIAMV1
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
 
@@ -80,7 +80,7 @@ public class EventarcClient: Clients.EventarcProtocol {
   /// @Snippet(path: "Eventarc_CreateTrigger")
   public func createTrigger(
     request: CreateTriggerRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.createTrigger(request: request, options: options)
   }
 
@@ -91,7 +91,7 @@ public class EventarcClient: Clients.EventarcProtocol {
     withPolling: CreateTriggerRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Trigger> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Trigger>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -143,7 +143,7 @@ public class EventarcClient: Clients.EventarcProtocol {
   /// @Snippet(path: "Eventarc_UpdateTrigger")
   public func updateTrigger(
     request: UpdateTriggerRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.updateTrigger(request: request, options: options)
   }
 
@@ -154,7 +154,7 @@ public class EventarcClient: Clients.EventarcProtocol {
     withPolling: UpdateTriggerRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Trigger> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Trigger>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -206,7 +206,7 @@ public class EventarcClient: Clients.EventarcProtocol {
   /// @Snippet(path: "Eventarc_DeleteTrigger")
   public func deleteTrigger(
     request: DeleteTriggerRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.deleteTrigger(request: request, options: options)
   }
 
@@ -217,7 +217,7 @@ public class EventarcClient: Clients.EventarcProtocol {
     withPolling: DeleteTriggerRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Trigger> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Trigger>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -302,7 +302,7 @@ public class EventarcClient: Clients.EventarcProtocol {
   /// @Snippet(path: "Eventarc_CreateChannel")
   public func createChannel(
     request: CreateChannelRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.createChannel(request: request, options: options)
   }
 
@@ -313,7 +313,7 @@ public class EventarcClient: Clients.EventarcProtocol {
     withPolling: CreateChannelRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Channel> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Channel>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -365,7 +365,7 @@ public class EventarcClient: Clients.EventarcProtocol {
   /// @Snippet(path: "Eventarc_UpdateChannel")
   public func updateChannel(
     request: UpdateChannelRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.updateChannel(request: request, options: options)
   }
 
@@ -376,7 +376,7 @@ public class EventarcClient: Clients.EventarcProtocol {
     withPolling: UpdateChannelRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Channel> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Channel>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -428,7 +428,7 @@ public class EventarcClient: Clients.EventarcProtocol {
   /// @Snippet(path: "Eventarc_DeleteChannel")
   public func deleteChannel(
     request: DeleteChannelRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.deleteChannel(request: request, options: options)
   }
 
@@ -439,7 +439,7 @@ public class EventarcClient: Clients.EventarcProtocol {
     withPolling: DeleteChannelRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Channel> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Channel>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -557,7 +557,7 @@ public class EventarcClient: Clients.EventarcProtocol {
   /// @Snippet(path: "Eventarc_CreateChannelConnection")
   public func createChannelConnection(
     request: CreateChannelConnectionRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.createChannelConnection(request: request, options: options)
   }
 
@@ -568,7 +568,7 @@ public class EventarcClient: Clients.EventarcProtocol {
     withPolling: CreateChannelConnectionRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<ChannelConnection> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<ChannelConnection>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -621,7 +621,7 @@ public class EventarcClient: Clients.EventarcProtocol {
   /// @Snippet(path: "Eventarc_DeleteChannelConnection")
   public func deleteChannelConnection(
     request: DeleteChannelConnectionRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.deleteChannelConnection(request: request, options: options)
   }
 
@@ -632,7 +632,7 @@ public class EventarcClient: Clients.EventarcProtocol {
     withPolling: DeleteChannelConnectionRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<ChannelConnection> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<ChannelConnection>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -747,7 +747,7 @@ public class EventarcClient: Clients.EventarcProtocol {
   /// @Snippet(path: "Eventarc_CreateMessageBus")
   public func createMessageBus(
     request: CreateMessageBusRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.createMessageBus(request: request, options: options)
   }
 
@@ -758,7 +758,7 @@ public class EventarcClient: Clients.EventarcProtocol {
     withPolling: CreateMessageBusRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<MessageBus> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<MessageBus>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -810,7 +810,7 @@ public class EventarcClient: Clients.EventarcProtocol {
   /// @Snippet(path: "Eventarc_UpdateMessageBus")
   public func updateMessageBus(
     request: UpdateMessageBusRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.updateMessageBus(request: request, options: options)
   }
 
@@ -821,7 +821,7 @@ public class EventarcClient: Clients.EventarcProtocol {
     withPolling: UpdateMessageBusRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<MessageBus> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<MessageBus>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -873,7 +873,7 @@ public class EventarcClient: Clients.EventarcProtocol {
   /// @Snippet(path: "Eventarc_DeleteMessageBus")
   public func deleteMessageBus(
     request: DeleteMessageBusRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.deleteMessageBus(request: request, options: options)
   }
 
@@ -884,7 +884,7 @@ public class EventarcClient: Clients.EventarcProtocol {
     withPolling: DeleteMessageBusRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<MessageBus> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<MessageBus>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -969,7 +969,7 @@ public class EventarcClient: Clients.EventarcProtocol {
   /// @Snippet(path: "Eventarc_CreateEnrollment")
   public func createEnrollment(
     request: CreateEnrollmentRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.createEnrollment(request: request, options: options)
   }
 
@@ -980,7 +980,7 @@ public class EventarcClient: Clients.EventarcProtocol {
     withPolling: CreateEnrollmentRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Enrollment> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Enrollment>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -1032,7 +1032,7 @@ public class EventarcClient: Clients.EventarcProtocol {
   /// @Snippet(path: "Eventarc_UpdateEnrollment")
   public func updateEnrollment(
     request: UpdateEnrollmentRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.updateEnrollment(request: request, options: options)
   }
 
@@ -1043,7 +1043,7 @@ public class EventarcClient: Clients.EventarcProtocol {
     withPolling: UpdateEnrollmentRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Enrollment> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Enrollment>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -1095,7 +1095,7 @@ public class EventarcClient: Clients.EventarcProtocol {
   /// @Snippet(path: "Eventarc_DeleteEnrollment")
   public func deleteEnrollment(
     request: DeleteEnrollmentRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.deleteEnrollment(request: request, options: options)
   }
 
@@ -1106,7 +1106,7 @@ public class EventarcClient: Clients.EventarcProtocol {
     withPolling: DeleteEnrollmentRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Enrollment> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Enrollment>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -1191,7 +1191,7 @@ public class EventarcClient: Clients.EventarcProtocol {
   /// @Snippet(path: "Eventarc_CreatePipeline")
   public func createPipeline(
     request: CreatePipelineRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.createPipeline(request: request, options: options)
   }
 
@@ -1202,7 +1202,7 @@ public class EventarcClient: Clients.EventarcProtocol {
     withPolling: CreatePipelineRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Pipeline> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Pipeline>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -1254,7 +1254,7 @@ public class EventarcClient: Clients.EventarcProtocol {
   /// @Snippet(path: "Eventarc_UpdatePipeline")
   public func updatePipeline(
     request: UpdatePipelineRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.updatePipeline(request: request, options: options)
   }
 
@@ -1265,7 +1265,7 @@ public class EventarcClient: Clients.EventarcProtocol {
     withPolling: UpdatePipelineRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Pipeline> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Pipeline>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -1317,7 +1317,7 @@ public class EventarcClient: Clients.EventarcProtocol {
   /// @Snippet(path: "Eventarc_DeletePipeline")
   public func deletePipeline(
     request: DeletePipelineRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.deletePipeline(request: request, options: options)
   }
 
@@ -1328,7 +1328,7 @@ public class EventarcClient: Clients.EventarcProtocol {
     withPolling: DeletePipelineRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Pipeline> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Pipeline>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -1413,7 +1413,7 @@ public class EventarcClient: Clients.EventarcProtocol {
   /// @Snippet(path: "Eventarc_CreateGoogleApiSource")
   public func createGoogleApiSource(
     request: CreateGoogleApiSourceRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.createGoogleApiSource(request: request, options: options)
   }
 
@@ -1424,7 +1424,7 @@ public class EventarcClient: Clients.EventarcProtocol {
     withPolling: CreateGoogleApiSourceRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<GoogleApiSource> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<GoogleApiSource>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -1476,7 +1476,7 @@ public class EventarcClient: Clients.EventarcProtocol {
   /// @Snippet(path: "Eventarc_UpdateGoogleApiSource")
   public func updateGoogleApiSource(
     request: UpdateGoogleApiSourceRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.updateGoogleApiSource(request: request, options: options)
   }
 
@@ -1487,7 +1487,7 @@ public class EventarcClient: Clients.EventarcProtocol {
     withPolling: UpdateGoogleApiSourceRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<GoogleApiSource> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<GoogleApiSource>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -1539,7 +1539,7 @@ public class EventarcClient: Clients.EventarcProtocol {
   /// @Snippet(path: "Eventarc_DeleteGoogleApiSource")
   public func deleteGoogleApiSource(
     request: DeleteGoogleApiSourceRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.deleteGoogleApiSource(request: request, options: options)
   }
 
@@ -1550,7 +1550,7 @@ public class EventarcClient: Clients.EventarcProtocol {
     withPolling: DeleteGoogleApiSourceRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<GoogleApiSource> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<GoogleApiSource>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -1674,8 +1674,8 @@ public class EventarcClient: Clients.EventarcProtocol {
   ///
   /// @Snippet(path: "Eventarc_ListOperations")
   public func listOperations(
-    request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.ListOperationsResponse {
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.ListOperationsResponse {
     try await self.inner.listOperations(request: request, options: options)
   }
 
@@ -1685,10 +1685,10 @@ public class EventarcClient: Clients.EventarcProtocol {
   ///
   /// @Snippet(path: "Eventarc_ListOperations")
   public func listOperations(
-    byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongrunning.ListOperationsResponse in
+      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
@@ -1702,8 +1702,8 @@ public class EventarcClient: Clients.EventarcProtocol {
   ///
   /// @Snippet(path: "Eventarc_GetOperation")
   func getOperation(
-    request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+    request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.getOperation(request: request, options: options)
   }
 
@@ -1713,7 +1713,7 @@ public class EventarcClient: Clients.EventarcProtocol {
   ///
   /// @Snippet(path: "Eventarc_DeleteOperation")
   public func deleteOperation(
-    request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+    request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws {
     try await self.inner.deleteOperation(request: request, options: options)
   }
@@ -1724,7 +1724,7 @@ public class EventarcClient: Clients.EventarcProtocol {
   ///
   /// @Snippet(path: "Eventarc_CancelOperation")
   public func cancelOperation(
-    request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+    request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws {
     try await self.inner.cancelOperation(request: request, options: options)
   }
@@ -1760,7 +1760,7 @@ extension Clients {
     ) throws -> any AsyncSequence<Trigger, Swift.Error>
 
     /// See `EventarcClient.createTrigger`.
-    func createTrigger(request: CreateTriggerRequest) async throws -> GoogleLongrunning.Operation
+    func createTrigger(request: CreateTriggerRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `EventarcClient.createTrigger`.
     func createTrigger(withPolling: CreateTriggerRequest) async throws -> any GoogleCloudGax
@@ -1774,7 +1774,7 @@ extension Clients {
     ) async throws -> any GoogleCloudGax.PollableOperation<Trigger>
 
     /// See `EventarcClient.updateTrigger`.
-    func updateTrigger(request: UpdateTriggerRequest) async throws -> GoogleLongrunning.Operation
+    func updateTrigger(request: UpdateTriggerRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `EventarcClient.updateTrigger`.
     func updateTrigger(withPolling: UpdateTriggerRequest) async throws -> any GoogleCloudGax
@@ -1788,7 +1788,7 @@ extension Clients {
     ) async throws -> any GoogleCloudGax.PollableOperation<Trigger>
 
     /// See `EventarcClient.deleteTrigger`.
-    func deleteTrigger(request: DeleteTriggerRequest) async throws -> GoogleLongrunning.Operation
+    func deleteTrigger(request: DeleteTriggerRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `EventarcClient.deleteTrigger`.
     func deleteTrigger(withPolling: DeleteTriggerRequest) async throws -> any GoogleCloudGax
@@ -1823,7 +1823,7 @@ extension Clients {
     ) throws -> any AsyncSequence<Channel, Swift.Error>
 
     /// See `EventarcClient.createChannel`.
-    func createChannel(request: CreateChannelRequest) async throws -> GoogleLongrunning.Operation
+    func createChannel(request: CreateChannelRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `EventarcClient.createChannel`.
     func createChannel(withPolling: CreateChannelRequest) async throws -> any GoogleCloudGax
@@ -1837,7 +1837,7 @@ extension Clients {
     ) async throws -> any GoogleCloudGax.PollableOperation<Channel>
 
     /// See `EventarcClient.updateChannel`.
-    func updateChannel(request: UpdateChannelRequest) async throws -> GoogleLongrunning.Operation
+    func updateChannel(request: UpdateChannelRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `EventarcClient.updateChannel`.
     func updateChannel(withPolling: UpdateChannelRequest) async throws -> any GoogleCloudGax
@@ -1850,7 +1850,7 @@ extension Clients {
     ) async throws -> any GoogleCloudGax.PollableOperation<Channel>
 
     /// See `EventarcClient.deleteChannel`.
-    func deleteChannel(request: DeleteChannelRequest) async throws -> GoogleLongrunning.Operation
+    func deleteChannel(request: DeleteChannelRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `EventarcClient.deleteChannel`.
     func deleteChannel(withPolling: DeleteChannelRequest) async throws -> any GoogleCloudGax
@@ -1908,7 +1908,7 @@ extension Clients {
 
     /// See `EventarcClient.createChannelConnection`.
     func createChannelConnection(request: CreateChannelConnectionRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `EventarcClient.createChannelConnection`.
     func createChannelConnection(withPolling: CreateChannelConnectionRequest) async throws
@@ -1923,7 +1923,7 @@ extension Clients {
 
     /// See `EventarcClient.deleteChannelConnection`.
     func deleteChannelConnection(request: DeleteChannelConnectionRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `EventarcClient.deleteChannelConnection`.
     func deleteChannelConnection(withPolling: DeleteChannelConnectionRequest) async throws
@@ -1987,7 +1987,7 @@ extension Clients {
 
     /// See `EventarcClient.createMessageBus`.
     func createMessageBus(request: CreateMessageBusRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `EventarcClient.createMessageBus`.
     func createMessageBus(withPolling: CreateMessageBusRequest) async throws -> any GoogleCloudGax
@@ -2002,7 +2002,7 @@ extension Clients {
 
     /// See `EventarcClient.updateMessageBus`.
     func updateMessageBus(request: UpdateMessageBusRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `EventarcClient.updateMessageBus`.
     func updateMessageBus(withPolling: UpdateMessageBusRequest) async throws -> any GoogleCloudGax
@@ -2016,7 +2016,7 @@ extension Clients {
 
     /// See `EventarcClient.deleteMessageBus`.
     func deleteMessageBus(request: DeleteMessageBusRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `EventarcClient.deleteMessageBus`.
     func deleteMessageBus(withPolling: DeleteMessageBusRequest) async throws -> any GoogleCloudGax
@@ -2053,7 +2053,7 @@ extension Clients {
 
     /// See `EventarcClient.createEnrollment`.
     func createEnrollment(request: CreateEnrollmentRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `EventarcClient.createEnrollment`.
     func createEnrollment(withPolling: CreateEnrollmentRequest) async throws -> any GoogleCloudGax
@@ -2068,7 +2068,7 @@ extension Clients {
 
     /// See `EventarcClient.updateEnrollment`.
     func updateEnrollment(request: UpdateEnrollmentRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `EventarcClient.updateEnrollment`.
     func updateEnrollment(withPolling: UpdateEnrollmentRequest) async throws -> any GoogleCloudGax
@@ -2082,7 +2082,7 @@ extension Clients {
 
     /// See `EventarcClient.deleteEnrollment`.
     func deleteEnrollment(request: DeleteEnrollmentRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `EventarcClient.deleteEnrollment`.
     func deleteEnrollment(withPolling: DeleteEnrollmentRequest) async throws -> any GoogleCloudGax
@@ -2117,7 +2117,7 @@ extension Clients {
     ) throws -> any AsyncSequence<Pipeline, Swift.Error>
 
     /// See `EventarcClient.createPipeline`.
-    func createPipeline(request: CreatePipelineRequest) async throws -> GoogleLongrunning.Operation
+    func createPipeline(request: CreatePipelineRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `EventarcClient.createPipeline`.
     func createPipeline(withPolling: CreatePipelineRequest) async throws -> any GoogleCloudGax
@@ -2131,7 +2131,7 @@ extension Clients {
     ) async throws -> any GoogleCloudGax.PollableOperation<Pipeline>
 
     /// See `EventarcClient.updatePipeline`.
-    func updatePipeline(request: UpdatePipelineRequest) async throws -> GoogleLongrunning.Operation
+    func updatePipeline(request: UpdatePipelineRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `EventarcClient.updatePipeline`.
     func updatePipeline(withPolling: UpdatePipelineRequest) async throws -> any GoogleCloudGax
@@ -2144,7 +2144,7 @@ extension Clients {
     ) async throws -> any GoogleCloudGax.PollableOperation<Pipeline>
 
     /// See `EventarcClient.deletePipeline`.
-    func deletePipeline(request: DeletePipelineRequest) async throws -> GoogleLongrunning.Operation
+    func deletePipeline(request: DeletePipelineRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `EventarcClient.deletePipeline`.
     func deletePipeline(withPolling: DeletePipelineRequest) async throws -> any GoogleCloudGax
@@ -2181,7 +2181,7 @@ extension Clients {
 
     /// See `EventarcClient.createGoogleApiSource`.
     func createGoogleApiSource(request: CreateGoogleApiSourceRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `EventarcClient.createGoogleApiSource`.
     func createGoogleApiSource(withPolling: CreateGoogleApiSourceRequest) async throws
@@ -2196,7 +2196,7 @@ extension Clients {
 
     /// See `EventarcClient.updateGoogleApiSource`.
     func updateGoogleApiSource(request: UpdateGoogleApiSourceRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `EventarcClient.updateGoogleApiSource`.
     func updateGoogleApiSource(withPolling: UpdateGoogleApiSourceRequest) async throws
@@ -2210,7 +2210,7 @@ extension Clients {
 
     /// See `EventarcClient.deleteGoogleApiSource`.
     func deleteGoogleApiSource(request: DeleteGoogleApiSourceRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `EventarcClient.deleteGoogleApiSource`.
     func deleteGoogleApiSource(withPolling: DeleteGoogleApiSourceRequest) async throws
@@ -2246,22 +2246,22 @@ extension Clients {
       -> GoogleIAMV1.TestIamPermissionsResponse
 
     /// See `EventarcClient.listOperations`.
-    func listOperations(request: GoogleLongrunning.ListOperationsRequest) async throws
-      -> GoogleLongrunning.ListOperationsResponse
+    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
+      -> GoogleLongRunning.ListOperationsResponse
 
     /// See `EventarcClient.listOperations`.
     func listOperations(
-      byItem: GoogleLongrunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+      byItem: GoogleLongRunning.ListOperationsRequest
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `EventarcClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `EventarcClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongrunning.DeleteOperationRequest) async throws
+    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
 
     /// See `EventarcClient.deleteOperation`.
     func deleteOperation(
@@ -2269,7 +2269,7 @@ extension Clients {
     ) async throws
 
     /// See `EventarcClient.cancelOperation`.
-    func cancelOperation(request: GoogleLongrunning.CancelOperationRequest) async throws
+    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
 
     /// See `EventarcClient.cancelOperation`.
     func cancelOperation(
@@ -2294,7 +2294,7 @@ extension Clients {
     /// See `EventarcClient.createTrigger`.
     func createTrigger(
       request: CreateTriggerRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `EventarcClient.createTrigger`.
     func createTrigger(
@@ -2304,7 +2304,7 @@ extension Clients {
     /// See `EventarcClient.updateTrigger`.
     func updateTrigger(
       request: UpdateTriggerRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `EventarcClient.updateTrigger`.
     func updateTrigger(
@@ -2314,7 +2314,7 @@ extension Clients {
     /// See `EventarcClient.deleteTrigger`.
     func deleteTrigger(
       request: DeleteTriggerRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `EventarcClient.deleteTrigger`.
     func deleteTrigger(
@@ -2339,7 +2339,7 @@ extension Clients {
     /// See `EventarcClient.createChannel`.
     func createChannel(
       request: CreateChannelRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `EventarcClient.createChannel`.
     func createChannel(
@@ -2349,7 +2349,7 @@ extension Clients {
     /// See `EventarcClient.updateChannel`.
     func updateChannel(
       request: UpdateChannelRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `EventarcClient.updateChannel`.
     func updateChannel(
@@ -2359,7 +2359,7 @@ extension Clients {
     /// See `EventarcClient.deleteChannel`.
     func deleteChannel(
       request: DeleteChannelRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `EventarcClient.deleteChannel`.
     func deleteChannel(
@@ -2399,7 +2399,7 @@ extension Clients {
     /// See `EventarcClient.createChannelConnection`.
     func createChannelConnection(
       request: CreateChannelConnectionRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `EventarcClient.createChannelConnection`.
     func createChannelConnection(
@@ -2409,7 +2409,7 @@ extension Clients {
     /// See `EventarcClient.deleteChannelConnection`.
     func deleteChannelConnection(
       request: DeleteChannelConnectionRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `EventarcClient.deleteChannelConnection`.
     func deleteChannelConnection(
@@ -2449,7 +2449,7 @@ extension Clients {
     /// See `EventarcClient.createMessageBus`.
     func createMessageBus(
       request: CreateMessageBusRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `EventarcClient.createMessageBus`.
     func createMessageBus(
@@ -2459,7 +2459,7 @@ extension Clients {
     /// See `EventarcClient.updateMessageBus`.
     func updateMessageBus(
       request: UpdateMessageBusRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `EventarcClient.updateMessageBus`.
     func updateMessageBus(
@@ -2469,7 +2469,7 @@ extension Clients {
     /// See `EventarcClient.deleteMessageBus`.
     func deleteMessageBus(
       request: DeleteMessageBusRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `EventarcClient.deleteMessageBus`.
     func deleteMessageBus(
@@ -2494,7 +2494,7 @@ extension Clients {
     /// See `EventarcClient.createEnrollment`.
     func createEnrollment(
       request: CreateEnrollmentRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `EventarcClient.createEnrollment`.
     func createEnrollment(
@@ -2504,7 +2504,7 @@ extension Clients {
     /// See `EventarcClient.updateEnrollment`.
     func updateEnrollment(
       request: UpdateEnrollmentRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `EventarcClient.updateEnrollment`.
     func updateEnrollment(
@@ -2514,7 +2514,7 @@ extension Clients {
     /// See `EventarcClient.deleteEnrollment`.
     func deleteEnrollment(
       request: DeleteEnrollmentRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `EventarcClient.deleteEnrollment`.
     func deleteEnrollment(
@@ -2539,7 +2539,7 @@ extension Clients {
     /// See `EventarcClient.createPipeline`.
     func createPipeline(
       request: CreatePipelineRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `EventarcClient.createPipeline`.
     func createPipeline(
@@ -2549,7 +2549,7 @@ extension Clients {
     /// See `EventarcClient.updatePipeline`.
     func updatePipeline(
       request: UpdatePipelineRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `EventarcClient.updatePipeline`.
     func updatePipeline(
@@ -2559,7 +2559,7 @@ extension Clients {
     /// See `EventarcClient.deletePipeline`.
     func deletePipeline(
       request: DeletePipelineRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `EventarcClient.deletePipeline`.
     func deletePipeline(
@@ -2584,7 +2584,7 @@ extension Clients {
     /// See `EventarcClient.createGoogleApiSource`.
     func createGoogleApiSource(
       request: CreateGoogleApiSourceRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `EventarcClient.createGoogleApiSource`.
     func createGoogleApiSource(
@@ -2594,7 +2594,7 @@ extension Clients {
     /// See `EventarcClient.updateGoogleApiSource`.
     func updateGoogleApiSource(
       request: UpdateGoogleApiSourceRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `EventarcClient.updateGoogleApiSource`.
     func updateGoogleApiSource(
@@ -2604,7 +2604,7 @@ extension Clients {
     /// See `EventarcClient.deleteGoogleApiSource`.
     func deleteGoogleApiSource(
       request: DeleteGoogleApiSourceRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `EventarcClient.deleteGoogleApiSource`.
     func deleteGoogleApiSource(
@@ -2643,22 +2643,22 @@ extension Clients {
 
     /// See `EventarcClient.listOperations`.
     func listOperations(
-      request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.ListOperationsResponse
+      request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.ListOperationsResponse
 
     /// See `EventarcClient.listOperations`.
     func listOperations(
-      byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `EventarcClient.deleteOperation`.
     func deleteOperation(
-      request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+      request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws
 
     /// See `EventarcClient.cancelOperation`.
     func cancelOperation(
-      request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+      request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws
   }
 }
@@ -2722,14 +2722,14 @@ extension Clients.EventarcProtocol {
   }
 
   public func createTrigger(request: CreateTriggerRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.createTrigger(request: request, options: .init())
   }
 
   public func createTrigger(
     request: CreateTriggerRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -2763,14 +2763,14 @@ extension Clients.EventarcProtocol {
   }
 
   public func updateTrigger(request: UpdateTriggerRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.updateTrigger(request: request, options: .init())
   }
 
   public func updateTrigger(
     request: UpdateTriggerRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -2804,14 +2804,14 @@ extension Clients.EventarcProtocol {
   }
 
   public func deleteTrigger(request: DeleteTriggerRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.deleteTrigger(request: request, options: .init())
   }
 
   public func deleteTrigger(
     request: DeleteTriggerRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -2899,14 +2899,14 @@ extension Clients.EventarcProtocol {
   }
 
   public func createChannel(request: CreateChannelRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.createChannel(request: request, options: .init())
   }
 
   public func createChannel(
     request: CreateChannelRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -2940,14 +2940,14 @@ extension Clients.EventarcProtocol {
   }
 
   public func updateChannel(request: UpdateChannelRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.updateChannel(request: request, options: .init())
   }
 
   public func updateChannel(
     request: UpdateChannelRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -2979,14 +2979,14 @@ extension Clients.EventarcProtocol {
   }
 
   public func deleteChannel(request: DeleteChannelRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.deleteChannel(request: request, options: .init())
   }
 
   public func deleteChannel(
     request: DeleteChannelRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -3132,14 +3132,14 @@ extension Clients.EventarcProtocol {
   }
 
   public func createChannelConnection(request: CreateChannelConnectionRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.createChannelConnection(request: request, options: .init())
   }
 
   public func createChannelConnection(
     request: CreateChannelConnectionRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -3174,14 +3174,14 @@ extension Clients.EventarcProtocol {
   }
 
   public func deleteChannelConnection(request: DeleteChannelConnectionRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.deleteChannelConnection(request: request, options: .init())
   }
 
   public func deleteChannelConnection(
     request: DeleteChannelConnectionRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -3335,14 +3335,14 @@ extension Clients.EventarcProtocol {
   }
 
   public func createMessageBus(request: CreateMessageBusRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.createMessageBus(request: request, options: .init())
   }
 
   public func createMessageBus(
     request: CreateMessageBusRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -3376,14 +3376,14 @@ extension Clients.EventarcProtocol {
   }
 
   public func updateMessageBus(request: UpdateMessageBusRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.updateMessageBus(request: request, options: .init())
   }
 
   public func updateMessageBus(
     request: UpdateMessageBusRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -3415,14 +3415,14 @@ extension Clients.EventarcProtocol {
   }
 
   public func deleteMessageBus(request: DeleteMessageBusRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.deleteMessageBus(request: request, options: .init())
   }
 
   public func deleteMessageBus(
     request: DeleteMessageBusRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -3512,14 +3512,14 @@ extension Clients.EventarcProtocol {
   }
 
   public func createEnrollment(request: CreateEnrollmentRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.createEnrollment(request: request, options: .init())
   }
 
   public func createEnrollment(
     request: CreateEnrollmentRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -3553,14 +3553,14 @@ extension Clients.EventarcProtocol {
   }
 
   public func updateEnrollment(request: UpdateEnrollmentRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.updateEnrollment(request: request, options: .init())
   }
 
   public func updateEnrollment(
     request: UpdateEnrollmentRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -3592,14 +3592,14 @@ extension Clients.EventarcProtocol {
   }
 
   public func deleteEnrollment(request: DeleteEnrollmentRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.deleteEnrollment(request: request, options: .init())
   }
 
   public func deleteEnrollment(
     request: DeleteEnrollmentRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -3689,14 +3689,14 @@ extension Clients.EventarcProtocol {
   }
 
   public func createPipeline(request: CreatePipelineRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.createPipeline(request: request, options: .init())
   }
 
   public func createPipeline(
     request: CreatePipelineRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -3730,14 +3730,14 @@ extension Clients.EventarcProtocol {
   }
 
   public func updatePipeline(request: UpdatePipelineRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.updatePipeline(request: request, options: .init())
   }
 
   public func updatePipeline(
     request: UpdatePipelineRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -3769,14 +3769,14 @@ extension Clients.EventarcProtocol {
   }
 
   public func deletePipeline(request: DeletePipelineRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.deletePipeline(request: request, options: .init())
   }
 
   public func deletePipeline(
     request: DeletePipelineRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -3866,14 +3866,14 @@ extension Clients.EventarcProtocol {
   }
 
   public func createGoogleApiSource(request: CreateGoogleApiSourceRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.createGoogleApiSource(request: request, options: .init())
   }
 
   public func createGoogleApiSource(
     request: CreateGoogleApiSourceRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -3907,14 +3907,14 @@ extension Clients.EventarcProtocol {
   }
 
   public func updateGoogleApiSource(request: UpdateGoogleApiSourceRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.updateGoogleApiSource(request: request, options: .init())
   }
 
   public func updateGoogleApiSource(
     request: UpdateGoogleApiSourceRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -3946,14 +3946,14 @@ extension Clients.EventarcProtocol {
   }
 
   public func deleteGoogleApiSource(request: DeleteGoogleApiSourceRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.deleteGoogleApiSource(request: request, options: .init())
   }
 
   public func deleteGoogleApiSource(
     request: DeleteGoogleApiSourceRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -4060,29 +4060,29 @@ extension Clients.EventarcProtocol {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
-  public func listOperations(request: GoogleLongrunning.ListOperationsRequest) async throws
-    -> GoogleLongrunning.ListOperationsResponse
+  public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
+    -> GoogleLongRunning.ListOperationsResponse
   {
     try await self.listOperations(request: request, options: .init())
   }
 
   public func listOperations(
-    request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.ListOperationsResponse {
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.ListOperationsResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func listOperations(
-    byItem: GoogleLongrunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+    byItem: GoogleLongRunning.ListOperationsRequest
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     try self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
-    byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongrunning.ListOperationsResponse in
+      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleCloudGax.RequestError.unimplemented
     }
     return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
@@ -4091,41 +4091,41 @@ extension Clients.EventarcProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
-    let request = GoogleLongrunning.ListOperationsRequest().with {
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
     return try self.listOperations(byItem: request)
   }
 
-  public func getOperation(request: GoogleLongrunning.GetOperationRequest) async throws
-    -> GoogleLongrunning.Operation
+  public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
+    -> GoogleLongRunning.Operation
   {
     try await self.getOperation(request: request, options: .init())
   }
 
   public func getOperation(
-    request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+    request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func getOperation(
     name: Swift.String,
-  ) async throws -> GoogleLongrunning.Operation {
-    let request = GoogleLongrunning.GetOperationRequest().with {
+  ) async throws -> GoogleLongRunning.Operation {
+    let request = GoogleLongRunning.GetOperationRequest().with {
       $0.name = name
     }
     return try await self.getOperation(request: request)
   }
 
-  public func deleteOperation(request: GoogleLongrunning.DeleteOperationRequest) async throws {
+  public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
 
   public func deleteOperation(
-    request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+    request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws {
     throw GoogleCloudGax.RequestError.unimplemented
   }
@@ -4133,18 +4133,18 @@ extension Clients.EventarcProtocol {
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
-    let request = GoogleLongrunning.DeleteOperationRequest().with {
+    let request = GoogleLongRunning.DeleteOperationRequest().with {
       $0.name = name
     }
     try await self.deleteOperation(request: request)
   }
 
-  public func cancelOperation(request: GoogleLongrunning.CancelOperationRequest) async throws {
+  public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
 
   public func cancelOperation(
-    request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+    request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws {
     throw GoogleCloudGax.RequestError.unimplemented
   }
@@ -4152,7 +4152,7 @@ extension Clients.EventarcProtocol {
   public func cancelOperation(
     name: Swift.String,
   ) async throws {
-    let request = GoogleLongrunning.CancelOperationRequest().with {
+    let request = GoogleLongRunning.CancelOperationRequest().with {
       $0.name = name
     }
     try await self.cancelOperation(request: request)

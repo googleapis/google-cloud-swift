@@ -22,7 +22,7 @@
   import GoogleCloudLocation
   import GoogleCloudWkt
   import GoogleIAMV1
-  import GoogleLongrunning
+  import GoogleLongRunning
   import GoogleRpc
   import GoogleCloudGax
 
@@ -30,7 +30,7 @@
     protocol FeaturestoreServiceStub {
       func createFeaturestore(
         request: CreateFeaturestoreRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+      ) async throws -> GoogleLongRunning.Operation
 
       func getFeaturestore(
         request: GetFeaturestoreRequest, options: GoogleCloudGax.RequestOptions
@@ -42,15 +42,15 @@
 
       func updateFeaturestore(
         request: UpdateFeaturestoreRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+      ) async throws -> GoogleLongRunning.Operation
 
       func deleteFeaturestore(
         request: DeleteFeaturestoreRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+      ) async throws -> GoogleLongRunning.Operation
 
       func createEntityType(
         request: CreateEntityTypeRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+      ) async throws -> GoogleLongRunning.Operation
 
       func getEntityType(
         request: GetEntityTypeRequest, options: GoogleCloudGax.RequestOptions
@@ -66,15 +66,15 @@
 
       func deleteEntityType(
         request: DeleteEntityTypeRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+      ) async throws -> GoogleLongRunning.Operation
 
       func createFeature(
         request: CreateFeatureRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+      ) async throws -> GoogleLongRunning.Operation
 
       func batchCreateFeatures(
         request: BatchCreateFeaturesRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+      ) async throws -> GoogleLongRunning.Operation
 
       func getFeature(
         request: GetFeatureRequest, options: GoogleCloudGax.RequestOptions
@@ -90,23 +90,23 @@
 
       func deleteFeature(
         request: DeleteFeatureRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+      ) async throws -> GoogleLongRunning.Operation
 
       func importFeatureValues(
         request: ImportFeatureValuesRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+      ) async throws -> GoogleLongRunning.Operation
 
       func batchReadFeatureValues(
         request: BatchReadFeatureValuesRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+      ) async throws -> GoogleLongRunning.Operation
 
       func exportFeatureValues(
         request: ExportFeatureValuesRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+      ) async throws -> GoogleLongRunning.Operation
 
       func deleteFeatureValues(
         request: DeleteFeatureValuesRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+      ) async throws -> GoogleLongRunning.Operation
 
       func searchFeatures(
         request: SearchFeaturesRequest, options: GoogleCloudGax.RequestOptions
@@ -133,24 +133,24 @@
       ) async throws -> GoogleIAMV1.TestIamPermissionsResponse
 
       func listOperations(
-        request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.ListOperationsResponse
+        request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+      ) async throws -> GoogleLongRunning.ListOperationsResponse
 
       func getOperation(
-        request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+        request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+      ) async throws -> GoogleLongRunning.Operation
 
       func deleteOperation(
-        request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+        request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
       ) async throws
 
       func cancelOperation(
-        request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+        request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
       ) async throws
 
       func waitOperation(
-        request: GoogleLongrunning.WaitOperationRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+        request: GoogleLongRunning.WaitOperationRequest, options: GoogleCloudGax.RequestOptions
+      ) async throws -> GoogleLongRunning.Operation
     }
 
     class FeaturestoreServiceTransport: FeaturestoreServiceStub {
@@ -163,7 +163,7 @@
 
       public func createFeaturestore(
         request: CreateFeaturestoreRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation {
+      ) async throws -> GoogleLongRunning.Operation {
         let path = try { () throws -> Swift.String in
           guard let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty else {
             throw GoogleCloudGax.RequestError.binding("'request.parent' is not set or is empty")
@@ -185,7 +185,7 @@
         }
         let (data, _) = try await self.inner.rpc(for: req).get()
         return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleLongrunning.Operation.self, from: data)
+          GoogleLongRunning.Operation.self, from: data)
       }
 
       public func getFeaturestore(
@@ -236,7 +236,7 @@
 
       public func updateFeaturestore(
         request: UpdateFeaturestoreRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation {
+      ) async throws -> GoogleLongRunning.Operation {
         let path = try { () throws -> Swift.String in
           guard let pathVariable0 = request.featurestore.map({ $0.name }), !pathVariable0.isEmpty
           else {
@@ -259,12 +259,12 @@
         }
         let (data, _) = try await self.inner.rpc(for: req).get()
         return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleLongrunning.Operation.self, from: data)
+          GoogleLongRunning.Operation.self, from: data)
       }
 
       public func deleteFeaturestore(
         request: DeleteFeaturestoreRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation {
+      ) async throws -> GoogleLongRunning.Operation {
         let path = try { () throws -> Swift.String in
           guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
             throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -281,12 +281,12 @@
         req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
         let (data, _) = try await self.inner.rpc(for: req).get()
         return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleLongrunning.Operation.self, from: data)
+          GoogleLongRunning.Operation.self, from: data)
       }
 
       public func createEntityType(
         request: CreateEntityTypeRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation {
+      ) async throws -> GoogleLongRunning.Operation {
         let path = try { () throws -> Swift.String in
           guard let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty else {
             throw GoogleCloudGax.RequestError.binding("'request.parent' is not set or is empty")
@@ -307,7 +307,7 @@
         }
         let (data, _) = try await self.inner.rpc(for: req).get()
         return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleLongrunning.Operation.self, from: data)
+          GoogleLongRunning.Operation.self, from: data)
       }
 
       public func getEntityType(
@@ -386,7 +386,7 @@
 
       public func deleteEntityType(
         request: DeleteEntityTypeRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation {
+      ) async throws -> GoogleLongRunning.Operation {
         let path = try { () throws -> Swift.String in
           guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
             throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -403,12 +403,12 @@
         req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
         let (data, _) = try await self.inner.rpc(for: req).get()
         return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleLongrunning.Operation.self, from: data)
+          GoogleLongRunning.Operation.self, from: data)
       }
 
       public func createFeature(
         request: CreateFeatureRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation {
+      ) async throws -> GoogleLongRunning.Operation {
         let path = try { () throws -> Swift.String in
           guard let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty else {
             throw GoogleCloudGax.RequestError.binding("'request.parent' is not set or is empty")
@@ -429,12 +429,12 @@
         }
         let (data, _) = try await self.inner.rpc(for: req).get()
         return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleLongrunning.Operation.self, from: data)
+          GoogleLongRunning.Operation.self, from: data)
       }
 
       public func batchCreateFeatures(
         request: BatchCreateFeaturesRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation {
+      ) async throws -> GoogleLongRunning.Operation {
         let path = try { () throws -> Swift.String in
           guard let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty else {
             throw GoogleCloudGax.RequestError.binding("'request.parent' is not set or is empty")
@@ -451,7 +451,7 @@
         req.httpBody = try JSONEncoder().encode(request)
         let (data, _) = try await self.inner.rpc(for: req).get()
         return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleLongrunning.Operation.self, from: data)
+          GoogleLongRunning.Operation.self, from: data)
       }
 
       public func getFeature(
@@ -531,7 +531,7 @@
 
       public func deleteFeature(
         request: DeleteFeatureRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation {
+      ) async throws -> GoogleLongRunning.Operation {
         let path = try { () throws -> Swift.String in
           guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
             throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -546,12 +546,12 @@
         req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
         let (data, _) = try await self.inner.rpc(for: req).get()
         return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleLongrunning.Operation.self, from: data)
+          GoogleLongRunning.Operation.self, from: data)
       }
 
       public func importFeatureValues(
         request: ImportFeatureValuesRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation {
+      ) async throws -> GoogleLongRunning.Operation {
         let path = try { () throws -> Swift.String in
           guard let pathVariable0 = request.entityType as Swift.String?, !pathVariable0.isEmpty
           else {
@@ -570,12 +570,12 @@
         req.httpBody = try JSONEncoder().encode(request)
         let (data, _) = try await self.inner.rpc(for: req).get()
         return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleLongrunning.Operation.self, from: data)
+          GoogleLongRunning.Operation.self, from: data)
       }
 
       public func batchReadFeatureValues(
         request: BatchReadFeatureValuesRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation {
+      ) async throws -> GoogleLongRunning.Operation {
         let path = try { () throws -> Swift.String in
           guard let pathVariable0 = request.featurestore as Swift.String?, !pathVariable0.isEmpty
           else {
@@ -594,12 +594,12 @@
         req.httpBody = try JSONEncoder().encode(request)
         let (data, _) = try await self.inner.rpc(for: req).get()
         return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleLongrunning.Operation.self, from: data)
+          GoogleLongRunning.Operation.self, from: data)
       }
 
       public func exportFeatureValues(
         request: ExportFeatureValuesRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation {
+      ) async throws -> GoogleLongRunning.Operation {
         let path = try { () throws -> Swift.String in
           guard let pathVariable0 = request.entityType as Swift.String?, !pathVariable0.isEmpty
           else {
@@ -618,12 +618,12 @@
         req.httpBody = try JSONEncoder().encode(request)
         let (data, _) = try await self.inner.rpc(for: req).get()
         return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleLongrunning.Operation.self, from: data)
+          GoogleLongRunning.Operation.self, from: data)
       }
 
       public func deleteFeatureValues(
         request: DeleteFeatureValuesRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation {
+      ) async throws -> GoogleLongRunning.Operation {
         let path = try { () throws -> Swift.String in
           guard let pathVariable0 = request.entityType as Swift.String?, !pathVariable0.isEmpty
           else {
@@ -642,7 +642,7 @@
         req.httpBody = try JSONEncoder().encode(request)
         let (data, _) = try await self.inner.rpc(for: req).get()
         return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleLongrunning.Operation.self, from: data)
+          GoogleLongRunning.Operation.self, from: data)
       }
 
       public func searchFeatures(
@@ -780,8 +780,8 @@
       }
 
       public func listOperations(
-        request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.ListOperationsResponse {
+        request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+      ) async throws -> GoogleLongRunning.ListOperationsResponse {
         let path = try { () throws -> Swift.String in
           guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
             throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -803,12 +803,12 @@
         req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
         let (data, _) = try await self.inner.rpc(for: req).get()
         return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleLongrunning.ListOperationsResponse.self, from: data)
+          GoogleLongRunning.ListOperationsResponse.self, from: data)
       }
 
       public func getOperation(
-        request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation {
+        request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+      ) async throws -> GoogleLongRunning.Operation {
         let path = try { () throws -> Swift.String in
           guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
             throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -823,11 +823,11 @@
         req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
         let (data, _) = try await self.inner.rpc(for: req).get()
         return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleLongrunning.Operation.self, from: data)
+          GoogleLongRunning.Operation.self, from: data)
       }
 
       public func deleteOperation(
-        request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+        request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
       ) async throws {
         let path = try { () throws -> Swift.String in
           guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
@@ -845,7 +845,7 @@
       }
 
       public func cancelOperation(
-        request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+        request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
       ) async throws {
         let path = try { () throws -> Swift.String in
           guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
@@ -863,8 +863,8 @@
       }
 
       public func waitOperation(
-        request: GoogleLongrunning.WaitOperationRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation {
+        request: GoogleLongRunning.WaitOperationRequest, options: GoogleCloudGax.RequestOptions
+      ) async throws -> GoogleLongRunning.Operation {
         let path = try { () throws -> Swift.String in
           guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
             throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -881,7 +881,7 @@
         req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
         let (data, _) = try await self.inner.rpc(for: req).get()
         return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleLongrunning.Operation.self, from: data)
+          GoogleLongRunning.Operation.self, from: data)
       }
     }
   }

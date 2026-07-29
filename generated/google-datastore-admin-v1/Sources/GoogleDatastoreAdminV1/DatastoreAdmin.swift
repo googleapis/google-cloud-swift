@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudWkt
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
 
@@ -97,7 +97,7 @@ public class DatastoreAdminClient: Clients.DatastoreAdminProtocol {
   /// @Snippet(path: "DatastoreAdmin_ExportEntities")
   public func exportEntities(
     request: ExportEntitiesRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.exportEntities(request: request, options: options)
   }
 
@@ -115,7 +115,7 @@ public class DatastoreAdminClient: Clients.DatastoreAdminProtocol {
     withPolling: ExportEntitiesRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<ExportEntitiesResponse> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<ExportEntitiesResponse>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -172,7 +172,7 @@ public class DatastoreAdminClient: Clients.DatastoreAdminProtocol {
   /// @Snippet(path: "DatastoreAdmin_ImportEntities")
   public func importEntities(
     request: ImportEntitiesRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.importEntities(request: request, options: options)
   }
 
@@ -187,7 +187,7 @@ public class DatastoreAdminClient: Clients.DatastoreAdminProtocol {
     withPolling: ImportEntitiesRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
+      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
       in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -242,12 +242,12 @@ public class DatastoreAdminClient: Clients.DatastoreAdminProtocol {
   /// Indexes with a single property cannot be created.
   ///
   /// [google.datastore.admin.v1.DatastoreAdmin.DeleteIndex]: <doc:DatastoreAdmin/deleteIndex(request:)>
-  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongrunning.Operation
+  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   ///
   /// @Snippet(path: "DatastoreAdmin_CreateIndex")
   public func createIndex(
     request: CreateIndexRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.createIndex(request: request, options: options)
   }
 
@@ -267,14 +267,14 @@ public class DatastoreAdminClient: Clients.DatastoreAdminProtocol {
   /// Indexes with a single property cannot be created.
   ///
   /// [google.datastore.admin.v1.DatastoreAdmin.DeleteIndex]: <doc:DatastoreAdmin/deleteIndex(request:)>
-  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongrunning.Operation
+  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   ///
   /// @Snippet(path: "DatastoreAdmin_CreateIndex")
   public func createIndex(
     withPolling: CreateIndexRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Index> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Index>.State
+      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Index>.State
       in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -335,12 +335,12 @@ public class DatastoreAdminClient: Clients.DatastoreAdminProtocol {
   ///
   /// [google.datastore.admin.v1.DatastoreAdmin.DeleteIndex]: <doc:DatastoreAdmin/deleteIndex(request:)>
   /// [google.datastore.admin.v1.Index.State]: <doc:Index/State>
-  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongrunning.Operation
+  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   ///
   /// @Snippet(path: "DatastoreAdmin_DeleteIndex")
   public func deleteIndex(
     request: DeleteIndexRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.deleteIndex(request: request, options: options)
   }
 
@@ -358,14 +358,14 @@ public class DatastoreAdminClient: Clients.DatastoreAdminProtocol {
   ///
   /// [google.datastore.admin.v1.DatastoreAdmin.DeleteIndex]: <doc:DatastoreAdmin/deleteIndex(request:)>
   /// [google.datastore.admin.v1.Index.State]: <doc:Index/State>
-  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongrunning.Operation
+  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   ///
   /// @Snippet(path: "DatastoreAdmin_DeleteIndex")
   public func deleteIndex(
     withPolling: DeleteIndexRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Index> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Index>.State
+      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Index>.State
       in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -455,8 +455,8 @@ public class DatastoreAdminClient: Clients.DatastoreAdminProtocol {
   ///
   /// @Snippet(path: "DatastoreAdmin_ListOperations")
   public func listOperations(
-    request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.ListOperationsResponse {
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.ListOperationsResponse {
     try await self.inner.listOperations(request: request, options: options)
   }
 
@@ -466,10 +466,10 @@ public class DatastoreAdminClient: Clients.DatastoreAdminProtocol {
   ///
   /// @Snippet(path: "DatastoreAdmin_ListOperations")
   public func listOperations(
-    byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongrunning.ListOperationsResponse in
+      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
@@ -483,8 +483,8 @@ public class DatastoreAdminClient: Clients.DatastoreAdminProtocol {
   ///
   /// @Snippet(path: "DatastoreAdmin_GetOperation")
   func getOperation(
-    request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+    request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.getOperation(request: request, options: options)
   }
 
@@ -494,7 +494,7 @@ public class DatastoreAdminClient: Clients.DatastoreAdminProtocol {
   ///
   /// @Snippet(path: "DatastoreAdmin_DeleteOperation")
   public func deleteOperation(
-    request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+    request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws {
     try await self.inner.deleteOperation(request: request, options: options)
   }
@@ -505,7 +505,7 @@ public class DatastoreAdminClient: Clients.DatastoreAdminProtocol {
   ///
   /// @Snippet(path: "DatastoreAdmin_CancelOperation")
   public func cancelOperation(
-    request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+    request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws {
     try await self.inner.cancelOperation(request: request, options: options)
   }
@@ -519,7 +519,7 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol DatastoreAdminProtocol {
     /// See `DatastoreAdminClient.exportEntities`.
-    func exportEntities(request: ExportEntitiesRequest) async throws -> GoogleLongrunning.Operation
+    func exportEntities(request: ExportEntitiesRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `DatastoreAdminClient.exportEntities`.
     func exportEntities(withPolling: ExportEntitiesRequest) async throws -> any GoogleCloudGax
@@ -534,7 +534,7 @@ extension Clients {
     ) async throws -> any GoogleCloudGax.PollableOperation<ExportEntitiesResponse>
 
     /// See `DatastoreAdminClient.importEntities`.
-    func importEntities(request: ImportEntitiesRequest) async throws -> GoogleLongrunning.Operation
+    func importEntities(request: ImportEntitiesRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `DatastoreAdminClient.importEntities`.
     func importEntities(withPolling: ImportEntitiesRequest) async throws -> any GoogleCloudGax
@@ -549,14 +549,14 @@ extension Clients {
     ) async throws -> any GoogleCloudGax.PollableOperation<Void>
 
     /// See `DatastoreAdminClient.createIndex`.
-    func createIndex(request: CreateIndexRequest) async throws -> GoogleLongrunning.Operation
+    func createIndex(request: CreateIndexRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `DatastoreAdminClient.createIndex`.
     func createIndex(withPolling: CreateIndexRequest) async throws -> any GoogleCloudGax
       .PollableOperation<Index>
 
     /// See `DatastoreAdminClient.deleteIndex`.
-    func deleteIndex(request: DeleteIndexRequest) async throws -> GoogleLongrunning.Operation
+    func deleteIndex(request: DeleteIndexRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `DatastoreAdminClient.deleteIndex`.
     func deleteIndex(withPolling: DeleteIndexRequest) async throws -> any GoogleCloudGax
@@ -575,22 +575,22 @@ extension Clients {
     ) throws -> any AsyncSequence<Index, Swift.Error>
 
     /// See `DatastoreAdminClient.listOperations`.
-    func listOperations(request: GoogleLongrunning.ListOperationsRequest) async throws
-      -> GoogleLongrunning.ListOperationsResponse
+    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
+      -> GoogleLongRunning.ListOperationsResponse
 
     /// See `DatastoreAdminClient.listOperations`.
     func listOperations(
-      byItem: GoogleLongrunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+      byItem: GoogleLongRunning.ListOperationsRequest
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `DatastoreAdminClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `DatastoreAdminClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongrunning.DeleteOperationRequest) async throws
+    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
 
     /// See `DatastoreAdminClient.deleteOperation`.
     func deleteOperation(
@@ -598,7 +598,7 @@ extension Clients {
     ) async throws
 
     /// See `DatastoreAdminClient.cancelOperation`.
-    func cancelOperation(request: GoogleLongrunning.CancelOperationRequest) async throws
+    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
 
     /// See `DatastoreAdminClient.cancelOperation`.
     func cancelOperation(
@@ -608,7 +608,7 @@ extension Clients {
     /// See `DatastoreAdminClient.exportEntities`.
     func exportEntities(
       request: ExportEntitiesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `DatastoreAdminClient.exportEntities`.
     func exportEntities(
@@ -618,7 +618,7 @@ extension Clients {
     /// See `DatastoreAdminClient.importEntities`.
     func importEntities(
       request: ImportEntitiesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `DatastoreAdminClient.importEntities`.
     func importEntities(
@@ -628,7 +628,7 @@ extension Clients {
     /// See `DatastoreAdminClient.createIndex`.
     func createIndex(
       request: CreateIndexRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `DatastoreAdminClient.createIndex`.
     func createIndex(
@@ -638,7 +638,7 @@ extension Clients {
     /// See `DatastoreAdminClient.deleteIndex`.
     func deleteIndex(
       request: DeleteIndexRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `DatastoreAdminClient.deleteIndex`.
     func deleteIndex(
@@ -662,22 +662,22 @@ extension Clients {
 
     /// See `DatastoreAdminClient.listOperations`.
     func listOperations(
-      request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.ListOperationsResponse
+      request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.ListOperationsResponse
 
     /// See `DatastoreAdminClient.listOperations`.
     func listOperations(
-      byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `DatastoreAdminClient.deleteOperation`.
     func deleteOperation(
-      request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+      request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws
 
     /// See `DatastoreAdminClient.cancelOperation`.
     func cancelOperation(
-      request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+      request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws
   }
 }
@@ -685,14 +685,14 @@ extension Clients {
 // Default implementations
 extension Clients.DatastoreAdminProtocol {
   public func exportEntities(request: ExportEntitiesRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.exportEntities(request: request, options: .init())
   }
 
   public func exportEntities(
     request: ExportEntitiesRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -729,14 +729,14 @@ extension Clients.DatastoreAdminProtocol {
   }
 
   public func importEntities(request: ImportEntitiesRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.importEntities(request: request, options: .init())
   }
 
   public func importEntities(
     request: ImportEntitiesRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -771,13 +771,13 @@ extension Clients.DatastoreAdminProtocol {
     return try await self.importEntities(withPolling: request)
   }
 
-  public func createIndex(request: CreateIndexRequest) async throws -> GoogleLongrunning.Operation {
+  public func createIndex(request: CreateIndexRequest) async throws -> GoogleLongRunning.Operation {
     try await self.createIndex(request: request, options: .init())
   }
 
   public func createIndex(
     request: CreateIndexRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -797,13 +797,13 @@ extension Clients.DatastoreAdminProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
-  public func deleteIndex(request: DeleteIndexRequest) async throws -> GoogleLongrunning.Operation {
+  public func deleteIndex(request: DeleteIndexRequest) async throws -> GoogleLongRunning.Operation {
     try await self.deleteIndex(request: request, options: .init())
   }
 
   public func deleteIndex(
     request: DeleteIndexRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -861,29 +861,29 @@ extension Clients.DatastoreAdminProtocol {
     return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func listOperations(request: GoogleLongrunning.ListOperationsRequest) async throws
-    -> GoogleLongrunning.ListOperationsResponse
+  public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
+    -> GoogleLongRunning.ListOperationsResponse
   {
     try await self.listOperations(request: request, options: .init())
   }
 
   public func listOperations(
-    request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.ListOperationsResponse {
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.ListOperationsResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func listOperations(
-    byItem: GoogleLongrunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+    byItem: GoogleLongRunning.ListOperationsRequest
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     try self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
-    byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongrunning.ListOperationsResponse in
+      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleCloudGax.RequestError.unimplemented
     }
     return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
@@ -892,41 +892,41 @@ extension Clients.DatastoreAdminProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
-    let request = GoogleLongrunning.ListOperationsRequest().with {
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
     return try self.listOperations(byItem: request)
   }
 
-  public func getOperation(request: GoogleLongrunning.GetOperationRequest) async throws
-    -> GoogleLongrunning.Operation
+  public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
+    -> GoogleLongRunning.Operation
   {
     try await self.getOperation(request: request, options: .init())
   }
 
   public func getOperation(
-    request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+    request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func getOperation(
     name: Swift.String,
-  ) async throws -> GoogleLongrunning.Operation {
-    let request = GoogleLongrunning.GetOperationRequest().with {
+  ) async throws -> GoogleLongRunning.Operation {
+    let request = GoogleLongRunning.GetOperationRequest().with {
       $0.name = name
     }
     return try await self.getOperation(request: request)
   }
 
-  public func deleteOperation(request: GoogleLongrunning.DeleteOperationRequest) async throws {
+  public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
 
   public func deleteOperation(
-    request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+    request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws {
     throw GoogleCloudGax.RequestError.unimplemented
   }
@@ -934,18 +934,18 @@ extension Clients.DatastoreAdminProtocol {
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
-    let request = GoogleLongrunning.DeleteOperationRequest().with {
+    let request = GoogleLongRunning.DeleteOperationRequest().with {
       $0.name = name
     }
     try await self.deleteOperation(request: request)
   }
 
-  public func cancelOperation(request: GoogleLongrunning.CancelOperationRequest) async throws {
+  public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
 
   public func cancelOperation(
-    request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+    request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws {
     throw GoogleCloudGax.RequestError.unimplemented
   }
@@ -953,7 +953,7 @@ extension Clients.DatastoreAdminProtocol {
   public func cancelOperation(
     name: Swift.String,
   ) async throws {
-    let request = GoogleLongrunning.CancelOperationRequest().with {
+    let request = GoogleLongRunning.CancelOperationRequest().with {
       $0.name = name
     }
     try await self.cancelOperation(request: request)

@@ -20,7 +20,7 @@ import Foundation
 #endif
 import GoogleCloudWkt
 import GoogleIAMV1
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
 
@@ -142,7 +142,7 @@ public class ProjectsClient: Clients.ProjectsProtocol {
   /// @Snippet(path: "Projects_CreateProject")
   public func createProject(
     request: CreateProjectRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.createProject(request: request, options: options)
   }
 
@@ -157,7 +157,7 @@ public class ProjectsClient: Clients.ProjectsProtocol {
     withPolling: CreateProjectRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Project> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Project>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -214,7 +214,7 @@ public class ProjectsClient: Clients.ProjectsProtocol {
   /// @Snippet(path: "Projects_UpdateProject")
   public func updateProject(
     request: UpdateProjectRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.updateProject(request: request, options: options)
   }
 
@@ -230,7 +230,7 @@ public class ProjectsClient: Clients.ProjectsProtocol {
     withPolling: UpdateProjectRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Project> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Project>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -297,7 +297,7 @@ public class ProjectsClient: Clients.ProjectsProtocol {
   /// @Snippet(path: "Projects_MoveProject")
   public func moveProject(
     request: MoveProjectRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.moveProject(request: request, options: options)
   }
 
@@ -323,7 +323,7 @@ public class ProjectsClient: Clients.ProjectsProtocol {
     withPolling: MoveProjectRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Project> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Project>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -411,7 +411,7 @@ public class ProjectsClient: Clients.ProjectsProtocol {
   /// @Snippet(path: "Projects_DeleteProject")
   public func deleteProject(
     request: DeleteProjectRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.deleteProject(request: request, options: options)
   }
 
@@ -458,7 +458,7 @@ public class ProjectsClient: Clients.ProjectsProtocol {
     withPolling: DeleteProjectRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Project> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Project>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -518,7 +518,7 @@ public class ProjectsClient: Clients.ProjectsProtocol {
   /// @Snippet(path: "Projects_UndeleteProject")
   public func undeleteProject(
     request: UndeleteProjectRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.undeleteProject(request: request, options: options)
   }
 
@@ -537,7 +537,7 @@ public class ProjectsClient: Clients.ProjectsProtocol {
     withPolling: UndeleteProjectRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Project> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Project>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -660,8 +660,8 @@ public class ProjectsClient: Clients.ProjectsProtocol {
   ///
   /// @Snippet(path: "Projects_GetOperation")
   func getOperation(
-    request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+    request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.getOperation(request: request, options: options)
   }
 }
@@ -710,7 +710,7 @@ extension Clients {
     ) throws -> any AsyncSequence<Project, Swift.Error>
 
     /// See `ProjectsClient.createProject`.
-    func createProject(request: CreateProjectRequest) async throws -> GoogleLongrunning.Operation
+    func createProject(request: CreateProjectRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `ProjectsClient.createProject`.
     func createProject(withPolling: CreateProjectRequest) async throws -> any GoogleCloudGax
@@ -722,7 +722,7 @@ extension Clients {
     ) async throws -> any GoogleCloudGax.PollableOperation<Project>
 
     /// See `ProjectsClient.updateProject`.
-    func updateProject(request: UpdateProjectRequest) async throws -> GoogleLongrunning.Operation
+    func updateProject(request: UpdateProjectRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `ProjectsClient.updateProject`.
     func updateProject(withPolling: UpdateProjectRequest) async throws -> any GoogleCloudGax
@@ -735,7 +735,7 @@ extension Clients {
     ) async throws -> any GoogleCloudGax.PollableOperation<Project>
 
     /// See `ProjectsClient.moveProject`.
-    func moveProject(request: MoveProjectRequest) async throws -> GoogleLongrunning.Operation
+    func moveProject(request: MoveProjectRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `ProjectsClient.moveProject`.
     func moveProject(withPolling: MoveProjectRequest) async throws -> any GoogleCloudGax
@@ -748,7 +748,7 @@ extension Clients {
     ) async throws -> any GoogleCloudGax.PollableOperation<Project>
 
     /// See `ProjectsClient.deleteProject`.
-    func deleteProject(request: DeleteProjectRequest) async throws -> GoogleLongrunning.Operation
+    func deleteProject(request: DeleteProjectRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `ProjectsClient.deleteProject`.
     func deleteProject(withPolling: DeleteProjectRequest) async throws -> any GoogleCloudGax
@@ -761,7 +761,7 @@ extension Clients {
 
     /// See `ProjectsClient.undeleteProject`.
     func undeleteProject(request: UndeleteProjectRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `ProjectsClient.undeleteProject`.
     func undeleteProject(withPolling: UndeleteProjectRequest) async throws -> any GoogleCloudGax
@@ -827,7 +827,7 @@ extension Clients {
     /// See `ProjectsClient.createProject`.
     func createProject(
       request: CreateProjectRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `ProjectsClient.createProject`.
     func createProject(
@@ -837,7 +837,7 @@ extension Clients {
     /// See `ProjectsClient.updateProject`.
     func updateProject(
       request: UpdateProjectRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `ProjectsClient.updateProject`.
     func updateProject(
@@ -847,7 +847,7 @@ extension Clients {
     /// See `ProjectsClient.moveProject`.
     func moveProject(
       request: MoveProjectRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `ProjectsClient.moveProject`.
     func moveProject(
@@ -857,7 +857,7 @@ extension Clients {
     /// See `ProjectsClient.deleteProject`.
     func deleteProject(
       request: DeleteProjectRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `ProjectsClient.deleteProject`.
     func deleteProject(
@@ -867,7 +867,7 @@ extension Clients {
     /// See `ProjectsClient.undeleteProject`.
     func undeleteProject(
       request: UndeleteProjectRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `ProjectsClient.undeleteProject`.
     func undeleteProject(
@@ -989,14 +989,14 @@ extension Clients.ProjectsProtocol {
   }
 
   public func createProject(request: CreateProjectRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.createProject(request: request, options: .init())
   }
 
   public func createProject(
     request: CreateProjectRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1026,14 +1026,14 @@ extension Clients.ProjectsProtocol {
   }
 
   public func updateProject(request: UpdateProjectRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.updateProject(request: request, options: .init())
   }
 
   public func updateProject(
     request: UpdateProjectRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1064,13 +1064,13 @@ extension Clients.ProjectsProtocol {
     return try await self.updateProject(withPolling: request)
   }
 
-  public func moveProject(request: MoveProjectRequest) async throws -> GoogleLongrunning.Operation {
+  public func moveProject(request: MoveProjectRequest) async throws -> GoogleLongRunning.Operation {
     try await self.moveProject(request: request, options: .init())
   }
 
   public func moveProject(
     request: MoveProjectRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1102,14 +1102,14 @@ extension Clients.ProjectsProtocol {
   }
 
   public func deleteProject(request: DeleteProjectRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.deleteProject(request: request, options: .init())
   }
 
   public func deleteProject(
     request: DeleteProjectRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1139,14 +1139,14 @@ extension Clients.ProjectsProtocol {
   }
 
   public func undeleteProject(request: UndeleteProjectRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.undeleteProject(request: request, options: .init())
   }
 
   public func undeleteProject(
     request: UndeleteProjectRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1242,22 +1242,22 @@ extension Clients.ProjectsProtocol {
     return try await self.testIamPermissions(request: request)
   }
 
-  public func getOperation(request: GoogleLongrunning.GetOperationRequest) async throws
-    -> GoogleLongrunning.Operation
+  public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
+    -> GoogleLongRunning.Operation
   {
     try await self.getOperation(request: request, options: .init())
   }
 
   public func getOperation(
-    request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+    request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func getOperation(
     name: Swift.String,
-  ) async throws -> GoogleLongrunning.Operation {
-    let request = GoogleLongrunning.GetOperationRequest().with {
+  ) async throws -> GoogleLongRunning.Operation {
+    let request = GoogleLongRunning.GetOperationRequest().with {
       $0.name = name
     }
     return try await self.getOperation(request: request)

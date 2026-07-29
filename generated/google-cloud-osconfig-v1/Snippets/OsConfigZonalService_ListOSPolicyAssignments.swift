@@ -19,7 +19,7 @@
 import Foundation
 import GoogleCloudOSConfigV1
 import GoogleCloudWkt
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleRpc
 
 func sample(client: OsConfigZonalServiceClient, parent: String) async throws {

@@ -21,7 +21,7 @@
   import GoogleCloudDialogflowV2
   import GoogleCloudLocation
   import GoogleCloudWkt
-  import GoogleLongrunning
+  import GoogleLongRunning
 
   func sample(projectId: String, locationId: String, ) async throws {
     let client = try GoogleCloudDialogflowV2.SipTrunksClient()

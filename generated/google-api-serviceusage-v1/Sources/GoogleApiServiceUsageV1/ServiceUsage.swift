@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudWkt
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
 
@@ -48,7 +48,7 @@ public class ServiceUsageClient: Clients.ServiceUsageProtocol {
   /// @Snippet(path: "ServiceUsage_EnableService")
   public func enableService(
     request: EnableServiceRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.enableService(request: request, options: options)
   }
 
@@ -59,7 +59,7 @@ public class ServiceUsageClient: Clients.ServiceUsageProtocol {
     withPolling: EnableServiceRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<EnableServiceResponse> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<EnableServiceResponse>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -118,7 +118,7 @@ public class ServiceUsageClient: Clients.ServiceUsageProtocol {
   /// @Snippet(path: "ServiceUsage_DisableService")
   public func disableService(
     request: DisableServiceRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.disableService(request: request, options: options)
   }
 
@@ -135,7 +135,7 @@ public class ServiceUsageClient: Clients.ServiceUsageProtocol {
     withPolling: DisableServiceRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<DisableServiceResponse> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<DisableServiceResponse>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -247,7 +247,7 @@ public class ServiceUsageClient: Clients.ServiceUsageProtocol {
   /// @Snippet(path: "ServiceUsage_BatchEnableServices")
   public func batchEnableServices(
     request: BatchEnableServicesRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.batchEnableServices(request: request, options: options)
   }
 
@@ -260,7 +260,7 @@ public class ServiceUsageClient: Clients.ServiceUsageProtocol {
     withPolling: BatchEnableServicesRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<BatchEnableServicesResponse> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<BatchEnableServicesResponse>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -324,8 +324,8 @@ public class ServiceUsageClient: Clients.ServiceUsageProtocol {
   ///
   /// @Snippet(path: "ServiceUsage_ListOperations")
   public func listOperations(
-    request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.ListOperationsResponse {
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.ListOperationsResponse {
     try await self.inner.listOperations(request: request, options: options)
   }
 
@@ -335,10 +335,10 @@ public class ServiceUsageClient: Clients.ServiceUsageProtocol {
   ///
   /// @Snippet(path: "ServiceUsage_ListOperations")
   public func listOperations(
-    byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongrunning.ListOperationsResponse in
+      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
@@ -352,8 +352,8 @@ public class ServiceUsageClient: Clients.ServiceUsageProtocol {
   ///
   /// @Snippet(path: "ServiceUsage_GetOperation")
   func getOperation(
-    request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+    request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.getOperation(request: request, options: options)
   }
 }
@@ -366,14 +366,14 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol ServiceUsageProtocol {
     /// See `ServiceUsageClient.enableService`.
-    func enableService(request: EnableServiceRequest) async throws -> GoogleLongrunning.Operation
+    func enableService(request: EnableServiceRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `ServiceUsageClient.enableService`.
     func enableService(withPolling: EnableServiceRequest) async throws -> any GoogleCloudGax
       .PollableOperation<EnableServiceResponse>
 
     /// See `ServiceUsageClient.disableService`.
-    func disableService(request: DisableServiceRequest) async throws -> GoogleLongrunning.Operation
+    func disableService(request: DisableServiceRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `ServiceUsageClient.disableService`.
     func disableService(withPolling: DisableServiceRequest) async throws -> any GoogleCloudGax
@@ -393,7 +393,7 @@ extension Clients {
 
     /// See `ServiceUsageClient.batchEnableServices`.
     func batchEnableServices(request: BatchEnableServicesRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `ServiceUsageClient.batchEnableServices`.
     func batchEnableServices(withPolling: BatchEnableServicesRequest) async throws
@@ -404,24 +404,24 @@ extension Clients {
       -> GoogleApiServiceUsageV1.BatchGetServicesResponse
 
     /// See `ServiceUsageClient.listOperations`.
-    func listOperations(request: GoogleLongrunning.ListOperationsRequest) async throws
-      -> GoogleLongrunning.ListOperationsResponse
+    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
+      -> GoogleLongRunning.ListOperationsResponse
 
     /// See `ServiceUsageClient.listOperations`.
     func listOperations(
-      byItem: GoogleLongrunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+      byItem: GoogleLongRunning.ListOperationsRequest
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `ServiceUsageClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `ServiceUsageClient.enableService`.
     func enableService(
       request: EnableServiceRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `ServiceUsageClient.enableService`.
     func enableService(
@@ -431,7 +431,7 @@ extension Clients {
     /// See `ServiceUsageClient.disableService`.
     func disableService(
       request: DisableServiceRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `ServiceUsageClient.disableService`.
     func disableService(
@@ -456,7 +456,7 @@ extension Clients {
     /// See `ServiceUsageClient.batchEnableServices`.
     func batchEnableServices(
       request: BatchEnableServicesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `ServiceUsageClient.batchEnableServices`.
     func batchEnableServices(
@@ -470,27 +470,27 @@ extension Clients {
 
     /// See `ServiceUsageClient.listOperations`.
     func listOperations(
-      request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.ListOperationsResponse
+      request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.ListOperationsResponse
 
     /// See `ServiceUsageClient.listOperations`.
     func listOperations(
-      byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
   }
 }
 
 // Default implementations
 extension Clients.ServiceUsageProtocol {
   public func enableService(request: EnableServiceRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.enableService(request: request, options: .init())
   }
 
   public func enableService(
     request: EnableServiceRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -512,14 +512,14 @@ extension Clients.ServiceUsageProtocol {
   }
 
   public func disableService(request: DisableServiceRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.disableService(request: request, options: .init())
   }
 
   public func disableService(
     request: DisableServiceRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -580,14 +580,14 @@ extension Clients.ServiceUsageProtocol {
   }
 
   public func batchEnableServices(request: BatchEnableServicesRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.batchEnableServices(request: request, options: .init())
   }
 
   public func batchEnableServices(
     request: BatchEnableServicesRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -620,29 +620,29 @@ extension Clients.ServiceUsageProtocol {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
-  public func listOperations(request: GoogleLongrunning.ListOperationsRequest) async throws
-    -> GoogleLongrunning.ListOperationsResponse
+  public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
+    -> GoogleLongRunning.ListOperationsResponse
   {
     try await self.listOperations(request: request, options: .init())
   }
 
   public func listOperations(
-    request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.ListOperationsResponse {
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.ListOperationsResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func listOperations(
-    byItem: GoogleLongrunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+    byItem: GoogleLongRunning.ListOperationsRequest
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     try self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
-    byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongrunning.ListOperationsResponse in
+      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleCloudGax.RequestError.unimplemented
     }
     return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
@@ -651,30 +651,30 @@ extension Clients.ServiceUsageProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
-    let request = GoogleLongrunning.ListOperationsRequest().with {
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
     return try self.listOperations(byItem: request)
   }
 
-  public func getOperation(request: GoogleLongrunning.GetOperationRequest) async throws
-    -> GoogleLongrunning.Operation
+  public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
+    -> GoogleLongRunning.Operation
   {
     try await self.getOperation(request: request, options: .init())
   }
 
   public func getOperation(
-    request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+    request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func getOperation(
     name: Swift.String,
-  ) async throws -> GoogleLongrunning.Operation {
-    let request = GoogleLongrunning.GetOperationRequest().with {
+  ) async throws -> GoogleLongRunning.Operation {
+    let request = GoogleLongRunning.GetOperationRequest().with {
       $0.name = name
     }
     return try await self.getOperation(request: request)

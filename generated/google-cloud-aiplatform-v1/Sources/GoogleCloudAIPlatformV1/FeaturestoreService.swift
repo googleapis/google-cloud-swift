@@ -22,7 +22,7 @@
   import GoogleCloudLocation
   import GoogleCloudWkt
   import GoogleIAMV1
-  import GoogleLongrunning
+  import GoogleLongRunning
   import GoogleRpc
   import GoogleCloudGax
 
@@ -48,7 +48,7 @@
     /// @Snippet(path: "FeaturestoreService_CreateFeaturestore")
     public func createFeaturestore(
       request: CreateFeaturestoreRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       try await self.inner.createFeaturestore(request: request, options: options)
     }
 
@@ -59,7 +59,7 @@
       withPolling: CreateFeaturestoreRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> any GoogleCloudGax.PollableOperation<Featurestore> {
       let extractStatus = {
-        (op: GoogleLongrunning.Operation) throws
+        (op: GoogleLongRunning.Operation) throws
           -> GoogleCloudGax._PollableOperationImpl<Featurestore>.State in
         guard op.done else {
           return .init(done: false, result: nil)
@@ -144,7 +144,7 @@
     /// @Snippet(path: "FeaturestoreService_UpdateFeaturestore")
     public func updateFeaturestore(
       request: UpdateFeaturestoreRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       try await self.inner.updateFeaturestore(request: request, options: options)
     }
 
@@ -155,7 +155,7 @@
       withPolling: UpdateFeaturestoreRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> any GoogleCloudGax.PollableOperation<Featurestore> {
       let extractStatus = {
-        (op: GoogleLongrunning.Operation) throws
+        (op: GoogleLongRunning.Operation) throws
           -> GoogleCloudGax._PollableOperationImpl<Featurestore>.State in
         guard op.done else {
           return .init(done: false, result: nil)
@@ -208,7 +208,7 @@
     /// @Snippet(path: "FeaturestoreService_DeleteFeaturestore")
     public func deleteFeaturestore(
       request: DeleteFeaturestoreRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       try await self.inner.deleteFeaturestore(request: request, options: options)
     }
 
@@ -220,7 +220,7 @@
       withPolling: DeleteFeaturestoreRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
       let extractStatus = {
-        (op: GoogleLongrunning.Operation) throws
+        (op: GoogleLongRunning.Operation) throws
           -> GoogleCloudGax._PollableOperationImpl<Void>.State in
         guard op.done else {
           return .init(done: false, result: nil)
@@ -264,7 +264,7 @@
     /// @Snippet(path: "FeaturestoreService_CreateEntityType")
     public func createEntityType(
       request: CreateEntityTypeRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       try await self.inner.createEntityType(request: request, options: options)
     }
 
@@ -275,7 +275,7 @@
       withPolling: CreateEntityTypeRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> any GoogleCloudGax.PollableOperation<EntityType> {
       let extractStatus = {
-        (op: GoogleLongrunning.Operation) throws
+        (op: GoogleLongRunning.Operation) throws
           -> GoogleCloudGax._PollableOperationImpl<EntityType>.State in
         guard op.done else {
           return .init(done: false, result: nil)
@@ -370,7 +370,7 @@
     /// @Snippet(path: "FeaturestoreService_DeleteEntityType")
     public func deleteEntityType(
       request: DeleteEntityTypeRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       try await self.inner.deleteEntityType(request: request, options: options)
     }
 
@@ -382,7 +382,7 @@
       withPolling: DeleteEntityTypeRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
       let extractStatus = {
-        (op: GoogleLongrunning.Operation) throws
+        (op: GoogleLongRunning.Operation) throws
           -> GoogleCloudGax._PollableOperationImpl<Void>.State in
         guard op.done else {
           return .init(done: false, result: nil)
@@ -426,7 +426,7 @@
     /// @Snippet(path: "FeaturestoreService_CreateFeature")
     public func createFeature(
       request: CreateFeatureRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       try await self.inner.createFeature(request: request, options: options)
     }
 
@@ -437,7 +437,7 @@
       withPolling: CreateFeatureRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> any GoogleCloudGax.PollableOperation<Feature> {
       let extractStatus = {
-        (op: GoogleLongrunning.Operation) throws
+        (op: GoogleLongRunning.Operation) throws
           -> GoogleCloudGax._PollableOperationImpl<Feature>.State in
         guard op.done else {
           return .init(done: false, result: nil)
@@ -489,7 +489,7 @@
     /// @Snippet(path: "FeaturestoreService_BatchCreateFeatures")
     public func batchCreateFeatures(
       request: BatchCreateFeaturesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       try await self.inner.batchCreateFeatures(request: request, options: options)
     }
 
@@ -500,7 +500,7 @@
       withPolling: BatchCreateFeaturesRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> any GoogleCloudGax.PollableOperation<BatchCreateFeaturesResponse> {
       let extractStatus = {
-        (op: GoogleLongrunning.Operation) throws
+        (op: GoogleLongRunning.Operation) throws
           -> GoogleCloudGax._PollableOperationImpl<BatchCreateFeaturesResponse>.State in
         guard op.done else {
           return .init(done: false, result: nil)
@@ -596,7 +596,7 @@
     /// @Snippet(path: "FeaturestoreService_DeleteFeature")
     public func deleteFeature(
       request: DeleteFeatureRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       try await self.inner.deleteFeature(request: request, options: options)
     }
 
@@ -607,7 +607,7 @@
       withPolling: DeleteFeatureRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
       let extractStatus = {
-        (op: GoogleLongrunning.Operation) throws
+        (op: GoogleLongRunning.Operation) throws
           -> GoogleCloudGax._PollableOperationImpl<Void>.State in
         guard op.done else {
           return .init(done: false, result: nil)
@@ -670,7 +670,7 @@
     /// @Snippet(path: "FeaturestoreService_ImportFeatureValues")
     public func importFeatureValues(
       request: ImportFeatureValuesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       try await self.inner.importFeatureValues(request: request, options: options)
     }
 
@@ -700,7 +700,7 @@
       withPolling: ImportFeatureValuesRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> any GoogleCloudGax.PollableOperation<ImportFeatureValuesResponse> {
       let extractStatus = {
-        (op: GoogleLongrunning.Operation) throws
+        (op: GoogleLongRunning.Operation) throws
           -> GoogleCloudGax._PollableOperationImpl<ImportFeatureValuesResponse>.State in
         guard op.done else {
           return .init(done: false, result: nil)
@@ -759,7 +759,7 @@
     /// @Snippet(path: "FeaturestoreService_BatchReadFeatureValues")
     public func batchReadFeatureValues(
       request: BatchReadFeatureValuesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       try await self.inner.batchReadFeatureValues(request: request, options: options)
     }
 
@@ -775,7 +775,7 @@
       withPolling: BatchReadFeatureValuesRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> any GoogleCloudGax.PollableOperation<BatchReadFeatureValuesResponse> {
       let extractStatus = {
-        (op: GoogleLongrunning.Operation) throws
+        (op: GoogleLongRunning.Operation) throws
           -> GoogleCloudGax._PollableOperationImpl<BatchReadFeatureValuesResponse>.State in
         guard op.done else {
           return .init(done: false, result: nil)
@@ -829,7 +829,7 @@
     /// @Snippet(path: "FeaturestoreService_ExportFeatureValues")
     public func exportFeatureValues(
       request: ExportFeatureValuesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       try await self.inner.exportFeatureValues(request: request, options: options)
     }
 
@@ -840,7 +840,7 @@
       withPolling: ExportFeatureValuesRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> any GoogleCloudGax.PollableOperation<ExportFeatureValuesResponse> {
       let extractStatus = {
-        (op: GoogleLongrunning.Operation) throws
+        (op: GoogleLongRunning.Operation) throws
           -> GoogleCloudGax._PollableOperationImpl<ExportFeatureValuesResponse>.State in
         guard op.done else {
           return .init(done: false, result: nil)
@@ -903,7 +903,7 @@
     /// @Snippet(path: "FeaturestoreService_DeleteFeatureValues")
     public func deleteFeatureValues(
       request: DeleteFeatureValuesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       try await self.inner.deleteFeatureValues(request: request, options: options)
     }
 
@@ -923,7 +923,7 @@
       withPolling: DeleteFeatureValuesRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> any GoogleCloudGax.PollableOperation<DeleteFeatureValuesResponse> {
       let extractStatus = {
-        (op: GoogleLongrunning.Operation) throws
+        (op: GoogleLongRunning.Operation) throws
           -> GoogleCloudGax._PollableOperationImpl<DeleteFeatureValuesResponse>.State in
         guard op.done else {
           return .init(done: false, result: nil)
@@ -1073,8 +1073,8 @@
     ///
     /// @Snippet(path: "FeaturestoreService_ListOperations")
     public func listOperations(
-      request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.ListOperationsResponse {
+      request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.ListOperationsResponse {
       try await self.inner.listOperations(request: request, options: options)
     }
 
@@ -1084,10 +1084,10 @@
     ///
     /// @Snippet(path: "FeaturestoreService_ListOperations")
     public func listOperations(
-      byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
-        (token: Swift.String) async throws -> GoogleLongrunning.ListOperationsResponse in
+        (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
         var request = byItem
         request.pageToken = token
         return try await self.listOperations(request: request, options: options)
@@ -1101,8 +1101,8 @@
     ///
     /// @Snippet(path: "FeaturestoreService_GetOperation")
     func getOperation(
-      request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+      request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
       try await self.inner.getOperation(request: request, options: options)
     }
 
@@ -1112,7 +1112,7 @@
     ///
     /// @Snippet(path: "FeaturestoreService_DeleteOperation")
     public func deleteOperation(
-      request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+      request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws {
       try await self.inner.deleteOperation(request: request, options: options)
     }
@@ -1123,7 +1123,7 @@
     ///
     /// @Snippet(path: "FeaturestoreService_CancelOperation")
     public func cancelOperation(
-      request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+      request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws {
       try await self.inner.cancelOperation(request: request, options: options)
     }
@@ -1134,8 +1134,8 @@
     ///
     /// @Snippet(path: "FeaturestoreService_WaitOperation")
     public func waitOperation(
-      request: GoogleLongrunning.WaitOperationRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+      request: GoogleLongRunning.WaitOperationRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
       try await self.inner.waitOperation(request: request, options: options)
     }
   }
@@ -1149,7 +1149,7 @@
     public protocol FeaturestoreServiceProtocol {
       /// See `FeaturestoreServiceClient.createFeaturestore`.
       func createFeaturestore(request: CreateFeaturestoreRequest) async throws
-        -> GoogleLongrunning.Operation
+        -> GoogleLongRunning.Operation
 
       /// See `FeaturestoreServiceClient.createFeaturestore`.
       func createFeaturestore(withPolling: CreateFeaturestoreRequest) async throws
@@ -1193,7 +1193,7 @@
 
       /// See `FeaturestoreServiceClient.updateFeaturestore`.
       func updateFeaturestore(request: UpdateFeaturestoreRequest) async throws
-        -> GoogleLongrunning.Operation
+        -> GoogleLongRunning.Operation
 
       /// See `FeaturestoreServiceClient.updateFeaturestore`.
       func updateFeaturestore(withPolling: UpdateFeaturestoreRequest) async throws
@@ -1207,7 +1207,7 @@
 
       /// See `FeaturestoreServiceClient.deleteFeaturestore`.
       func deleteFeaturestore(request: DeleteFeaturestoreRequest) async throws
-        -> GoogleLongrunning.Operation
+        -> GoogleLongRunning.Operation
 
       /// See `FeaturestoreServiceClient.deleteFeaturestore`.
       func deleteFeaturestore(withPolling: DeleteFeaturestoreRequest) async throws
@@ -1226,7 +1226,7 @@
 
       /// See `FeaturestoreServiceClient.createEntityType`.
       func createEntityType(request: CreateEntityTypeRequest) async throws
-        -> GoogleLongrunning.Operation
+        -> GoogleLongRunning.Operation
 
       /// See `FeaturestoreServiceClient.createEntityType`.
       func createEntityType(withPolling: CreateEntityTypeRequest) async throws -> any GoogleCloudGax
@@ -1280,7 +1280,7 @@
 
       /// See `FeaturestoreServiceClient.deleteEntityType`.
       func deleteEntityType(request: DeleteEntityTypeRequest) async throws
-        -> GoogleLongrunning.Operation
+        -> GoogleLongRunning.Operation
 
       /// See `FeaturestoreServiceClient.deleteEntityType`.
       func deleteEntityType(withPolling: DeleteEntityTypeRequest) async throws -> any GoogleCloudGax
@@ -1298,7 +1298,7 @@
       ) async throws -> any GoogleCloudGax.PollableOperation<Void>
 
       /// See `FeaturestoreServiceClient.createFeature`.
-      func createFeature(request: CreateFeatureRequest) async throws -> GoogleLongrunning.Operation
+      func createFeature(request: CreateFeatureRequest) async throws -> GoogleLongRunning.Operation
 
       /// See `FeaturestoreServiceClient.createFeature`.
       func createFeature(withPolling: CreateFeatureRequest) async throws -> any GoogleCloudGax
@@ -1319,7 +1319,7 @@
 
       /// See `FeaturestoreServiceClient.batchCreateFeatures`.
       func batchCreateFeatures(request: BatchCreateFeaturesRequest) async throws
-        -> GoogleLongrunning.Operation
+        -> GoogleLongRunning.Operation
 
       /// See `FeaturestoreServiceClient.batchCreateFeatures`.
       func batchCreateFeatures(withPolling: BatchCreateFeaturesRequest) async throws
@@ -1364,7 +1364,7 @@
       ) async throws -> GoogleCloudAIPlatformV1.Feature
 
       /// See `FeaturestoreServiceClient.deleteFeature`.
-      func deleteFeature(request: DeleteFeatureRequest) async throws -> GoogleLongrunning.Operation
+      func deleteFeature(request: DeleteFeatureRequest) async throws -> GoogleLongRunning.Operation
 
       /// See `FeaturestoreServiceClient.deleteFeature`.
       func deleteFeature(withPolling: DeleteFeatureRequest) async throws -> any GoogleCloudGax
@@ -1377,7 +1377,7 @@
 
       /// See `FeaturestoreServiceClient.importFeatureValues`.
       func importFeatureValues(request: ImportFeatureValuesRequest) async throws
-        -> GoogleLongrunning.Operation
+        -> GoogleLongRunning.Operation
 
       /// See `FeaturestoreServiceClient.importFeatureValues`.
       func importFeatureValues(withPolling: ImportFeatureValuesRequest) async throws
@@ -1390,7 +1390,7 @@
 
       /// See `FeaturestoreServiceClient.batchReadFeatureValues`.
       func batchReadFeatureValues(request: BatchReadFeatureValuesRequest) async throws
-        -> GoogleLongrunning.Operation
+        -> GoogleLongRunning.Operation
 
       /// See `FeaturestoreServiceClient.batchReadFeatureValues`.
       func batchReadFeatureValues(withPolling: BatchReadFeatureValuesRequest) async throws
@@ -1403,7 +1403,7 @@
 
       /// See `FeaturestoreServiceClient.exportFeatureValues`.
       func exportFeatureValues(request: ExportFeatureValuesRequest) async throws
-        -> GoogleLongrunning.Operation
+        -> GoogleLongRunning.Operation
 
       /// See `FeaturestoreServiceClient.exportFeatureValues`.
       func exportFeatureValues(withPolling: ExportFeatureValuesRequest) async throws
@@ -1416,7 +1416,7 @@
 
       /// See `FeaturestoreServiceClient.deleteFeatureValues`.
       func deleteFeatureValues(request: DeleteFeatureValuesRequest) async throws
-        -> GoogleLongrunning.Operation
+        -> GoogleLongRunning.Operation
 
       /// See `FeaturestoreServiceClient.deleteFeatureValues`.
       func deleteFeatureValues(withPolling: DeleteFeatureValuesRequest) async throws
@@ -1471,22 +1471,22 @@
         -> GoogleIAMV1.TestIamPermissionsResponse
 
       /// See `FeaturestoreServiceClient.listOperations`.
-      func listOperations(request: GoogleLongrunning.ListOperationsRequest) async throws
-        -> GoogleLongrunning.ListOperationsResponse
+      func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
+        -> GoogleLongRunning.ListOperationsResponse
 
       /// See `FeaturestoreServiceClient.listOperations`.
       func listOperations(
-        byItem: GoogleLongrunning.ListOperationsRequest
-      ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+        byItem: GoogleLongRunning.ListOperationsRequest
+      ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `FeaturestoreServiceClient.listOperations`.
       func listOperations(
         name: Swift.String,
         filter: Swift.String,
-      ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+      ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `FeaturestoreServiceClient.deleteOperation`.
-      func deleteOperation(request: GoogleLongrunning.DeleteOperationRequest) async throws
+      func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
 
       /// See `FeaturestoreServiceClient.deleteOperation`.
       func deleteOperation(
@@ -1494,7 +1494,7 @@
       ) async throws
 
       /// See `FeaturestoreServiceClient.cancelOperation`.
-      func cancelOperation(request: GoogleLongrunning.CancelOperationRequest) async throws
+      func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
 
       /// See `FeaturestoreServiceClient.cancelOperation`.
       func cancelOperation(
@@ -1502,13 +1502,13 @@
       ) async throws
 
       /// See `FeaturestoreServiceClient.waitOperation`.
-      func waitOperation(request: GoogleLongrunning.WaitOperationRequest) async throws
-        -> GoogleLongrunning.Operation
+      func waitOperation(request: GoogleLongRunning.WaitOperationRequest) async throws
+        -> GoogleLongRunning.Operation
 
       /// See `FeaturestoreServiceClient.createFeaturestore`.
       func createFeaturestore(
         request: CreateFeaturestoreRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+      ) async throws -> GoogleLongRunning.Operation
 
       /// See `FeaturestoreServiceClient.createFeaturestore`.
       func createFeaturestore(
@@ -1533,7 +1533,7 @@
       /// See `FeaturestoreServiceClient.updateFeaturestore`.
       func updateFeaturestore(
         request: UpdateFeaturestoreRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+      ) async throws -> GoogleLongRunning.Operation
 
       /// See `FeaturestoreServiceClient.updateFeaturestore`.
       func updateFeaturestore(
@@ -1543,7 +1543,7 @@
       /// See `FeaturestoreServiceClient.deleteFeaturestore`.
       func deleteFeaturestore(
         request: DeleteFeaturestoreRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+      ) async throws -> GoogleLongRunning.Operation
 
       /// See `FeaturestoreServiceClient.deleteFeaturestore`.
       func deleteFeaturestore(
@@ -1553,7 +1553,7 @@
       /// See `FeaturestoreServiceClient.createEntityType`.
       func createEntityType(
         request: CreateEntityTypeRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+      ) async throws -> GoogleLongRunning.Operation
 
       /// See `FeaturestoreServiceClient.createEntityType`.
       func createEntityType(
@@ -1583,7 +1583,7 @@
       /// See `FeaturestoreServiceClient.deleteEntityType`.
       func deleteEntityType(
         request: DeleteEntityTypeRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+      ) async throws -> GoogleLongRunning.Operation
 
       /// See `FeaturestoreServiceClient.deleteEntityType`.
       func deleteEntityType(
@@ -1593,7 +1593,7 @@
       /// See `FeaturestoreServiceClient.createFeature`.
       func createFeature(
         request: CreateFeatureRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+      ) async throws -> GoogleLongRunning.Operation
 
       /// See `FeaturestoreServiceClient.createFeature`.
       func createFeature(
@@ -1603,7 +1603,7 @@
       /// See `FeaturestoreServiceClient.batchCreateFeatures`.
       func batchCreateFeatures(
         request: BatchCreateFeaturesRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+      ) async throws -> GoogleLongRunning.Operation
 
       /// See `FeaturestoreServiceClient.batchCreateFeatures`.
       func batchCreateFeatures(
@@ -1633,7 +1633,7 @@
       /// See `FeaturestoreServiceClient.deleteFeature`.
       func deleteFeature(
         request: DeleteFeatureRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+      ) async throws -> GoogleLongRunning.Operation
 
       /// See `FeaturestoreServiceClient.deleteFeature`.
       func deleteFeature(
@@ -1643,7 +1643,7 @@
       /// See `FeaturestoreServiceClient.importFeatureValues`.
       func importFeatureValues(
         request: ImportFeatureValuesRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+      ) async throws -> GoogleLongRunning.Operation
 
       /// See `FeaturestoreServiceClient.importFeatureValues`.
       func importFeatureValues(
@@ -1653,7 +1653,7 @@
       /// See `FeaturestoreServiceClient.batchReadFeatureValues`.
       func batchReadFeatureValues(
         request: BatchReadFeatureValuesRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+      ) async throws -> GoogleLongRunning.Operation
 
       /// See `FeaturestoreServiceClient.batchReadFeatureValues`.
       func batchReadFeatureValues(
@@ -1663,7 +1663,7 @@
       /// See `FeaturestoreServiceClient.exportFeatureValues`.
       func exportFeatureValues(
         request: ExportFeatureValuesRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+      ) async throws -> GoogleLongRunning.Operation
 
       /// See `FeaturestoreServiceClient.exportFeatureValues`.
       func exportFeatureValues(
@@ -1673,7 +1673,7 @@
       /// See `FeaturestoreServiceClient.deleteFeatureValues`.
       func deleteFeatureValues(
         request: DeleteFeatureValuesRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+      ) async throws -> GoogleLongRunning.Operation
 
       /// See `FeaturestoreServiceClient.deleteFeatureValues`.
       func deleteFeatureValues(
@@ -1722,42 +1722,42 @@
 
       /// See `FeaturestoreServiceClient.listOperations`.
       func listOperations(
-        request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.ListOperationsResponse
+        request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+      ) async throws -> GoogleLongRunning.ListOperationsResponse
 
       /// See `FeaturestoreServiceClient.listOperations`.
       func listOperations(
-        byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-      ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+        byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+      ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `FeaturestoreServiceClient.deleteOperation`.
       func deleteOperation(
-        request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+        request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
       ) async throws
 
       /// See `FeaturestoreServiceClient.cancelOperation`.
       func cancelOperation(
-        request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+        request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
       ) async throws
 
       /// See `FeaturestoreServiceClient.waitOperation`.
       func waitOperation(
-        request: GoogleLongrunning.WaitOperationRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+        request: GoogleLongRunning.WaitOperationRequest, options: GoogleCloudGax.RequestOptions
+      ) async throws -> GoogleLongRunning.Operation
     }
   }
 
   // Default implementations
   extension Clients.FeaturestoreServiceProtocol {
     public func createFeaturestore(request: CreateFeaturestoreRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
     {
       try await self.createFeaturestore(request: request, options: .init())
     }
 
     public func createFeaturestore(
       request: CreateFeaturestoreRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       throw GoogleCloudGax.RequestError.unimplemented
     }
 
@@ -1860,14 +1860,14 @@
     }
 
     public func updateFeaturestore(request: UpdateFeaturestoreRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
     {
       try await self.updateFeaturestore(request: request, options: .init())
     }
 
     public func updateFeaturestore(
       request: UpdateFeaturestoreRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       throw GoogleCloudGax.RequestError.unimplemented
     }
 
@@ -1899,14 +1899,14 @@
     }
 
     public func deleteFeaturestore(request: DeleteFeaturestoreRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
     {
       try await self.deleteFeaturestore(request: request, options: .init())
     }
 
     public func deleteFeaturestore(
       request: DeleteFeaturestoreRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       throw GoogleCloudGax.RequestError.unimplemented
     }
 
@@ -1947,14 +1947,14 @@
     }
 
     public func createEntityType(request: CreateEntityTypeRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
     {
       try await self.createEntityType(request: request, options: .init())
     }
 
     public func createEntityType(
       request: CreateEntityTypeRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       throw GoogleCloudGax.RequestError.unimplemented
     }
 
@@ -2080,14 +2080,14 @@
     }
 
     public func deleteEntityType(request: DeleteEntityTypeRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
     {
       try await self.deleteEntityType(request: request, options: .init())
     }
 
     public func deleteEntityType(
       request: DeleteEntityTypeRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       throw GoogleCloudGax.RequestError.unimplemented
     }
 
@@ -2128,14 +2128,14 @@
     }
 
     public func createFeature(request: CreateFeatureRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
     {
       try await self.createFeature(request: request, options: .init())
     }
 
     public func createFeature(
       request: CreateFeatureRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       throw GoogleCloudGax.RequestError.unimplemented
     }
 
@@ -2180,14 +2180,14 @@
     }
 
     public func batchCreateFeatures(request: BatchCreateFeaturesRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
     {
       try await self.batchCreateFeatures(request: request, options: .init())
     }
 
     public func batchCreateFeatures(
       request: BatchCreateFeaturesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       throw GoogleCloudGax.RequestError.unimplemented
     }
 
@@ -2302,14 +2302,14 @@
     }
 
     public func deleteFeature(request: DeleteFeatureRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
     {
       try await self.deleteFeature(request: request, options: .init())
     }
 
     public func deleteFeature(
       request: DeleteFeatureRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       throw GoogleCloudGax.RequestError.unimplemented
     }
 
@@ -2339,14 +2339,14 @@
     }
 
     public func importFeatureValues(request: ImportFeatureValuesRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
     {
       try await self.importFeatureValues(request: request, options: .init())
     }
 
     public func importFeatureValues(
       request: ImportFeatureValuesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       throw GoogleCloudGax.RequestError.unimplemented
     }
 
@@ -2378,14 +2378,14 @@
     }
 
     public func batchReadFeatureValues(request: BatchReadFeatureValuesRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
     {
       try await self.batchReadFeatureValues(request: request, options: .init())
     }
 
     public func batchReadFeatureValues(
       request: BatchReadFeatureValuesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       throw GoogleCloudGax.RequestError.unimplemented
     }
 
@@ -2417,14 +2417,14 @@
     }
 
     public func exportFeatureValues(request: ExportFeatureValuesRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
     {
       try await self.exportFeatureValues(request: request, options: .init())
     }
 
     public func exportFeatureValues(
       request: ExportFeatureValuesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       throw GoogleCloudGax.RequestError.unimplemented
     }
 
@@ -2456,14 +2456,14 @@
     }
 
     public func deleteFeatureValues(request: DeleteFeatureValuesRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
     {
       try await self.deleteFeatureValues(request: request, options: .init())
     }
 
     public func deleteFeatureValues(
       request: DeleteFeatureValuesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       throw GoogleCloudGax.RequestError.unimplemented
     }
 
@@ -2618,29 +2618,29 @@
       throw GoogleCloudGax.RequestError.unimplemented
     }
 
-    public func listOperations(request: GoogleLongrunning.ListOperationsRequest) async throws
-      -> GoogleLongrunning.ListOperationsResponse
+    public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
+      -> GoogleLongRunning.ListOperationsResponse
     {
       try await self.listOperations(request: request, options: .init())
     }
 
     public func listOperations(
-      request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.ListOperationsResponse {
+      request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.ListOperationsResponse {
       throw GoogleCloudGax.RequestError.unimplemented
     }
 
     public func listOperations(
-      byItem: GoogleLongrunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+      byItem: GoogleLongRunning.ListOperationsRequest
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       try self.listOperations(byItem: byItem, options: .init())
     }
 
     public func listOperations(
-      byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
-        (token: Swift.String) async throws -> GoogleLongrunning.ListOperationsResponse in
+        (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
         throw GoogleCloudGax.RequestError.unimplemented
       }
       return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
@@ -2649,41 +2649,41 @@
     public func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
-      let request = GoogleLongrunning.ListOperationsRequest().with {
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+      let request = GoogleLongRunning.ListOperationsRequest().with {
         $0.name = name
         $0.filter = filter
       }
       return try self.listOperations(byItem: request)
     }
 
-    public func getOperation(request: GoogleLongrunning.GetOperationRequest) async throws
-      -> GoogleLongrunning.Operation
+    public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
+      -> GoogleLongRunning.Operation
     {
       try await self.getOperation(request: request, options: .init())
     }
 
     public func getOperation(
-      request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+      request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
       throw GoogleCloudGax.RequestError.unimplemented
     }
 
     public func getOperation(
       name: Swift.String,
-    ) async throws -> GoogleLongrunning.Operation {
-      let request = GoogleLongrunning.GetOperationRequest().with {
+    ) async throws -> GoogleLongRunning.Operation {
+      let request = GoogleLongRunning.GetOperationRequest().with {
         $0.name = name
       }
       return try await self.getOperation(request: request)
     }
 
-    public func deleteOperation(request: GoogleLongrunning.DeleteOperationRequest) async throws {
+    public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
       try await self.deleteOperation(request: request, options: .init())
     }
 
     public func deleteOperation(
-      request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+      request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws {
       throw GoogleCloudGax.RequestError.unimplemented
     }
@@ -2691,18 +2691,18 @@
     public func deleteOperation(
       name: Swift.String,
     ) async throws {
-      let request = GoogleLongrunning.DeleteOperationRequest().with {
+      let request = GoogleLongRunning.DeleteOperationRequest().with {
         $0.name = name
       }
       try await self.deleteOperation(request: request)
     }
 
-    public func cancelOperation(request: GoogleLongrunning.CancelOperationRequest) async throws {
+    public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
       try await self.cancelOperation(request: request, options: .init())
     }
 
     public func cancelOperation(
-      request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+      request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws {
       throw GoogleCloudGax.RequestError.unimplemented
     }
@@ -2710,21 +2710,21 @@
     public func cancelOperation(
       name: Swift.String,
     ) async throws {
-      let request = GoogleLongrunning.CancelOperationRequest().with {
+      let request = GoogleLongRunning.CancelOperationRequest().with {
         $0.name = name
       }
       try await self.cancelOperation(request: request)
     }
 
-    public func waitOperation(request: GoogleLongrunning.WaitOperationRequest) async throws
-      -> GoogleLongrunning.Operation
+    public func waitOperation(request: GoogleLongRunning.WaitOperationRequest) async throws
+      -> GoogleLongRunning.Operation
     {
       try await self.waitOperation(request: request, options: .init())
     }
 
     public func waitOperation(
-      request: GoogleLongrunning.WaitOperationRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+      request: GoogleLongRunning.WaitOperationRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
       throw GoogleCloudGax.RequestError.unimplemented
     }
   }

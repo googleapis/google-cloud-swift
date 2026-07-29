@@ -21,7 +21,7 @@ import GoogleCloudFilestoreV1
 import GoogleCloudCommon
 import GoogleCloudLocation
 import GoogleCloudWkt
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleRpc
 
 func sample(

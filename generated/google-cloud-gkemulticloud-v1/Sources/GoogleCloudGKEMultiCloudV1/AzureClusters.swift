@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudWkt
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
 
@@ -53,13 +53,13 @@ public class AzureClustersClient: Clients.AzureClustersProtocol {
   /// described to track the status of the operation.
   ///
   /// [google.cloud.gkemulticloud.v1.AzureClient]: <doc:AzureClient>
-  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongrunning.Operation
+  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   ///
   /// @Snippet(path: "AzureClusters_CreateAzureClient")
   @available(*, deprecated)
   public func createAzureClient(
     request: CreateAzureClientRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.createAzureClient(request: request, options: options)
   }
 
@@ -75,7 +75,7 @@ public class AzureClustersClient: Clients.AzureClustersProtocol {
   /// described to track the status of the operation.
   ///
   /// [google.cloud.gkemulticloud.v1.AzureClient]: <doc:AzureClient>
-  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongrunning.Operation
+  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   ///
   /// @Snippet(path: "AzureClusters_CreateAzureClient")
   @available(*, deprecated)
@@ -83,7 +83,7 @@ public class AzureClustersClient: Clients.AzureClustersProtocol {
     withPolling: CreateAzureClientRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<AzureClient> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<AzureClient>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -186,13 +186,13 @@ public class AzureClustersClient: Clients.AzureClustersProtocol {
   /// described to track the status of the operation.
   ///
   /// [google.cloud.gkemulticloud.v1.AzureClient]: <doc:AzureClient>
-  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongrunning.Operation
+  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   ///
   /// @Snippet(path: "AzureClusters_DeleteAzureClient")
   @available(*, deprecated)
   public func deleteAzureClient(
     request: DeleteAzureClientRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.deleteAzureClient(request: request, options: options)
   }
 
@@ -207,7 +207,7 @@ public class AzureClustersClient: Clients.AzureClustersProtocol {
   /// described to track the status of the operation.
   ///
   /// [google.cloud.gkemulticloud.v1.AzureClient]: <doc:AzureClient>
-  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongrunning.Operation
+  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   ///
   /// @Snippet(path: "AzureClusters_DeleteAzureClient")
   @available(*, deprecated)
@@ -215,7 +215,7 @@ public class AzureClustersClient: Clients.AzureClustersProtocol {
     withPolling: DeleteAzureClientRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
+      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
       in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -262,13 +262,13 @@ public class AzureClustersClient: Clients.AzureClustersProtocol {
   /// described to track the status of the operation.
   ///
   /// [google.cloud.gkemulticloud.v1.AzureCluster]: <doc:AzureCluster>
-  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongrunning.Operation
+  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   ///
   /// @Snippet(path: "AzureClusters_CreateAzureCluster")
   @available(*, deprecated)
   public func createAzureCluster(
     request: CreateAzureClusterRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.createAzureCluster(request: request, options: options)
   }
 
@@ -280,7 +280,7 @@ public class AzureClustersClient: Clients.AzureClustersProtocol {
   /// described to track the status of the operation.
   ///
   /// [google.cloud.gkemulticloud.v1.AzureCluster]: <doc:AzureCluster>
-  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongrunning.Operation
+  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   ///
   /// @Snippet(path: "AzureClusters_CreateAzureCluster")
   @available(*, deprecated)
@@ -288,7 +288,7 @@ public class AzureClustersClient: Clients.AzureClustersProtocol {
     withPolling: CreateAzureClusterRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<AzureCluster> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<AzureCluster>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -343,7 +343,7 @@ public class AzureClustersClient: Clients.AzureClustersProtocol {
   @available(*, deprecated)
   public func updateAzureCluster(
     request: UpdateAzureClusterRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.updateAzureCluster(request: request, options: options)
   }
 
@@ -357,7 +357,7 @@ public class AzureClustersClient: Clients.AzureClustersProtocol {
     withPolling: UpdateAzureClusterRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<AzureCluster> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<AzureCluster>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -461,13 +461,13 @@ public class AzureClustersClient: Clients.AzureClustersProtocol {
   ///
   /// [google.cloud.gkemulticloud.v1.AzureCluster]: <doc:AzureCluster>
   /// [google.cloud.gkemulticloud.v1.AzureNodePool]: <doc:AzureNodePool>
-  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongrunning.Operation
+  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   ///
   /// @Snippet(path: "AzureClusters_DeleteAzureCluster")
   @available(*, deprecated)
   public func deleteAzureCluster(
     request: DeleteAzureClusterRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.deleteAzureCluster(request: request, options: options)
   }
 
@@ -483,7 +483,7 @@ public class AzureClustersClient: Clients.AzureClustersProtocol {
   ///
   /// [google.cloud.gkemulticloud.v1.AzureCluster]: <doc:AzureCluster>
   /// [google.cloud.gkemulticloud.v1.AzureNodePool]: <doc:AzureNodePool>
-  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongrunning.Operation
+  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   ///
   /// @Snippet(path: "AzureClusters_DeleteAzureCluster")
   @available(*, deprecated)
@@ -491,7 +491,7 @@ public class AzureClustersClient: Clients.AzureClustersProtocol {
     withPolling: DeleteAzureClusterRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
+      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
       in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -563,13 +563,13 @@ public class AzureClustersClient: Clients.AzureClustersProtocol {
   ///
   /// [google.cloud.gkemulticloud.v1.AzureCluster]: <doc:AzureCluster>
   /// [google.cloud.gkemulticloud.v1.AzureNodePool]: <doc:AzureNodePool>
-  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongrunning.Operation
+  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   ///
   /// @Snippet(path: "AzureClusters_CreateAzureNodePool")
   @available(*, deprecated)
   public func createAzureNodePool(
     request: CreateAzureNodePoolRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.createAzureNodePool(request: request, options: options)
   }
 
@@ -583,7 +583,7 @@ public class AzureClustersClient: Clients.AzureClustersProtocol {
   ///
   /// [google.cloud.gkemulticloud.v1.AzureCluster]: <doc:AzureCluster>
   /// [google.cloud.gkemulticloud.v1.AzureNodePool]: <doc:AzureNodePool>
-  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongrunning.Operation
+  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   ///
   /// @Snippet(path: "AzureClusters_CreateAzureNodePool")
   @available(*, deprecated)
@@ -591,7 +591,7 @@ public class AzureClustersClient: Clients.AzureClustersProtocol {
     withPolling: CreateAzureNodePoolRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<AzureNodePool> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<AzureNodePool>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -646,7 +646,7 @@ public class AzureClustersClient: Clients.AzureClustersProtocol {
   @available(*, deprecated)
   public func updateAzureNodePool(
     request: UpdateAzureNodePoolRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.updateAzureNodePool(request: request, options: options)
   }
 
@@ -660,7 +660,7 @@ public class AzureClustersClient: Clients.AzureClustersProtocol {
     withPolling: UpdateAzureNodePoolRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<AzureNodePool> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<AzureNodePool>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -764,13 +764,13 @@ public class AzureClustersClient: Clients.AzureClustersProtocol {
   /// described to track the status of the operation.
   ///
   /// [google.cloud.gkemulticloud.v1.AzureNodePool]: <doc:AzureNodePool>
-  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongrunning.Operation
+  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   ///
   /// @Snippet(path: "AzureClusters_DeleteAzureNodePool")
   @available(*, deprecated)
   public func deleteAzureNodePool(
     request: DeleteAzureNodePoolRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.deleteAzureNodePool(request: request, options: options)
   }
 
@@ -782,7 +782,7 @@ public class AzureClustersClient: Clients.AzureClustersProtocol {
   /// described to track the status of the operation.
   ///
   /// [google.cloud.gkemulticloud.v1.AzureNodePool]: <doc:AzureNodePool>
-  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongrunning.Operation
+  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   ///
   /// @Snippet(path: "AzureClusters_DeleteAzureNodePool")
   @available(*, deprecated)
@@ -790,7 +790,7 @@ public class AzureClustersClient: Clients.AzureClustersProtocol {
     withPolling: DeleteAzureNodePoolRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
+      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
       in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -871,8 +871,8 @@ public class AzureClustersClient: Clients.AzureClustersProtocol {
   ///
   /// @Snippet(path: "AzureClusters_ListOperations")
   public func listOperations(
-    request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.ListOperationsResponse {
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.ListOperationsResponse {
     try await self.inner.listOperations(request: request, options: options)
   }
 
@@ -882,10 +882,10 @@ public class AzureClustersClient: Clients.AzureClustersProtocol {
   ///
   /// @Snippet(path: "AzureClusters_ListOperations")
   public func listOperations(
-    byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongrunning.ListOperationsResponse in
+      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
@@ -899,8 +899,8 @@ public class AzureClustersClient: Clients.AzureClustersProtocol {
   ///
   /// @Snippet(path: "AzureClusters_GetOperation")
   func getOperation(
-    request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+    request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.getOperation(request: request, options: options)
   }
 
@@ -910,7 +910,7 @@ public class AzureClustersClient: Clients.AzureClustersProtocol {
   ///
   /// @Snippet(path: "AzureClusters_DeleteOperation")
   public func deleteOperation(
-    request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+    request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws {
     try await self.inner.deleteOperation(request: request, options: options)
   }
@@ -921,7 +921,7 @@ public class AzureClustersClient: Clients.AzureClustersProtocol {
   ///
   /// @Snippet(path: "AzureClusters_CancelOperation")
   public func cancelOperation(
-    request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+    request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws {
     try await self.inner.cancelOperation(request: request, options: options)
   }
@@ -938,7 +938,7 @@ extension Clients {
     /// See `AzureClustersClient.createAzureClient`.
     @available(*, deprecated)
     func createAzureClient(request: CreateAzureClientRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `AzureClustersClient.createAzureClient`.
     @available(*, deprecated)
@@ -984,7 +984,7 @@ extension Clients {
     /// See `AzureClustersClient.deleteAzureClient`.
     @available(*, deprecated)
     func deleteAzureClient(request: DeleteAzureClientRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `AzureClustersClient.deleteAzureClient`.
     @available(*, deprecated)
@@ -1000,7 +1000,7 @@ extension Clients {
     /// See `AzureClustersClient.createAzureCluster`.
     @available(*, deprecated)
     func createAzureCluster(request: CreateAzureClusterRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `AzureClustersClient.createAzureCluster`.
     @available(*, deprecated)
@@ -1018,7 +1018,7 @@ extension Clients {
     /// See `AzureClustersClient.updateAzureCluster`.
     @available(*, deprecated)
     func updateAzureCluster(request: UpdateAzureClusterRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `AzureClustersClient.updateAzureCluster`.
     @available(*, deprecated)
@@ -1063,7 +1063,7 @@ extension Clients {
     /// See `AzureClustersClient.deleteAzureCluster`.
     @available(*, deprecated)
     func deleteAzureCluster(request: DeleteAzureClusterRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `AzureClustersClient.deleteAzureCluster`.
     @available(*, deprecated)
@@ -1089,7 +1089,7 @@ extension Clients {
     /// See `AzureClustersClient.createAzureNodePool`.
     @available(*, deprecated)
     func createAzureNodePool(request: CreateAzureNodePoolRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `AzureClustersClient.createAzureNodePool`.
     @available(*, deprecated)
@@ -1107,7 +1107,7 @@ extension Clients {
     /// See `AzureClustersClient.updateAzureNodePool`.
     @available(*, deprecated)
     func updateAzureNodePool(request: UpdateAzureNodePoolRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `AzureClustersClient.updateAzureNodePool`.
     @available(*, deprecated)
@@ -1152,7 +1152,7 @@ extension Clients {
     /// See `AzureClustersClient.deleteAzureNodePool`.
     @available(*, deprecated)
     func deleteAzureNodePool(request: DeleteAzureNodePoolRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `AzureClustersClient.deleteAzureNodePool`.
     @available(*, deprecated)
@@ -1199,22 +1199,22 @@ extension Clients {
     ) async throws -> GoogleCloudGKEMultiCloudV1.AzureServerConfig
 
     /// See `AzureClustersClient.listOperations`.
-    func listOperations(request: GoogleLongrunning.ListOperationsRequest) async throws
-      -> GoogleLongrunning.ListOperationsResponse
+    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
+      -> GoogleLongRunning.ListOperationsResponse
 
     /// See `AzureClustersClient.listOperations`.
     func listOperations(
-      byItem: GoogleLongrunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+      byItem: GoogleLongRunning.ListOperationsRequest
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `AzureClustersClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `AzureClustersClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongrunning.DeleteOperationRequest) async throws
+    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
 
     /// See `AzureClustersClient.deleteOperation`.
     func deleteOperation(
@@ -1222,7 +1222,7 @@ extension Clients {
     ) async throws
 
     /// See `AzureClustersClient.cancelOperation`.
-    func cancelOperation(request: GoogleLongrunning.CancelOperationRequest) async throws
+    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
 
     /// See `AzureClustersClient.cancelOperation`.
     func cancelOperation(
@@ -1233,7 +1233,7 @@ extension Clients {
     @available(*, deprecated)
     func createAzureClient(
       request: CreateAzureClientRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `AzureClustersClient.createAzureClient`.
     @available(*, deprecated)
@@ -1263,7 +1263,7 @@ extension Clients {
     @available(*, deprecated)
     func deleteAzureClient(
       request: DeleteAzureClientRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `AzureClustersClient.deleteAzureClient`.
     @available(*, deprecated)
@@ -1275,7 +1275,7 @@ extension Clients {
     @available(*, deprecated)
     func createAzureCluster(
       request: CreateAzureClusterRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `AzureClustersClient.createAzureCluster`.
     @available(*, deprecated)
@@ -1287,7 +1287,7 @@ extension Clients {
     @available(*, deprecated)
     func updateAzureCluster(
       request: UpdateAzureClusterRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `AzureClustersClient.updateAzureCluster`.
     @available(*, deprecated)
@@ -1317,7 +1317,7 @@ extension Clients {
     @available(*, deprecated)
     func deleteAzureCluster(
       request: DeleteAzureClusterRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `AzureClustersClient.deleteAzureCluster`.
     @available(*, deprecated)
@@ -1341,7 +1341,7 @@ extension Clients {
     @available(*, deprecated)
     func createAzureNodePool(
       request: CreateAzureNodePoolRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `AzureClustersClient.createAzureNodePool`.
     @available(*, deprecated)
@@ -1353,7 +1353,7 @@ extension Clients {
     @available(*, deprecated)
     func updateAzureNodePool(
       request: UpdateAzureNodePoolRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `AzureClustersClient.updateAzureNodePool`.
     @available(*, deprecated)
@@ -1383,7 +1383,7 @@ extension Clients {
     @available(*, deprecated)
     func deleteAzureNodePool(
       request: DeleteAzureNodePoolRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `AzureClustersClient.deleteAzureNodePool`.
     @available(*, deprecated)
@@ -1411,22 +1411,22 @@ extension Clients {
 
     /// See `AzureClustersClient.listOperations`.
     func listOperations(
-      request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.ListOperationsResponse
+      request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.ListOperationsResponse
 
     /// See `AzureClustersClient.listOperations`.
     func listOperations(
-      byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `AzureClustersClient.deleteOperation`.
     func deleteOperation(
-      request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+      request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws
 
     /// See `AzureClustersClient.cancelOperation`.
     func cancelOperation(
-      request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+      request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws
   }
 }
@@ -1434,14 +1434,14 @@ extension Clients {
 // Default implementations
 extension Clients.AzureClustersProtocol {
   public func createAzureClient(request: CreateAzureClientRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.createAzureClient(request: request, options: .init())
   }
 
   public func createAzureClient(
     request: CreateAzureClientRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1533,14 +1533,14 @@ extension Clients.AzureClustersProtocol {
   }
 
   public func deleteAzureClient(request: DeleteAzureClientRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.deleteAzureClient(request: request, options: .init())
   }
 
   public func deleteAzureClient(
     request: DeleteAzureClientRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1570,14 +1570,14 @@ extension Clients.AzureClustersProtocol {
   }
 
   public func createAzureCluster(request: CreateAzureClusterRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.createAzureCluster(request: request, options: .init())
   }
 
   public func createAzureCluster(
     request: CreateAzureClusterRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1611,14 +1611,14 @@ extension Clients.AzureClustersProtocol {
   }
 
   public func updateAzureCluster(request: UpdateAzureClusterRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.updateAzureCluster(request: request, options: .init())
   }
 
   public func updateAzureCluster(
     request: UpdateAzureClusterRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1708,14 +1708,14 @@ extension Clients.AzureClustersProtocol {
   }
 
   public func deleteAzureCluster(request: DeleteAzureClusterRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.deleteAzureCluster(request: request, options: .init())
   }
 
   public func deleteAzureCluster(
     request: DeleteAzureClusterRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1769,14 +1769,14 @@ extension Clients.AzureClustersProtocol {
   }
 
   public func createAzureNodePool(request: CreateAzureNodePoolRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.createAzureNodePool(request: request, options: .init())
   }
 
   public func createAzureNodePool(
     request: CreateAzureNodePoolRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1810,14 +1810,14 @@ extension Clients.AzureClustersProtocol {
   }
 
   public func updateAzureNodePool(request: UpdateAzureNodePoolRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.updateAzureNodePool(request: request, options: .init())
   }
 
   public func updateAzureNodePool(
     request: UpdateAzureNodePoolRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1907,14 +1907,14 @@ extension Clients.AzureClustersProtocol {
   }
 
   public func deleteAzureNodePool(request: DeleteAzureNodePoolRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.deleteAzureNodePool(request: request, options: .init())
   }
 
   public func deleteAzureNodePool(
     request: DeleteAzureNodePoolRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -2006,29 +2006,29 @@ extension Clients.AzureClustersProtocol {
     return try await self.getAzureServerConfig(request: request)
   }
 
-  public func listOperations(request: GoogleLongrunning.ListOperationsRequest) async throws
-    -> GoogleLongrunning.ListOperationsResponse
+  public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
+    -> GoogleLongRunning.ListOperationsResponse
   {
     try await self.listOperations(request: request, options: .init())
   }
 
   public func listOperations(
-    request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.ListOperationsResponse {
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.ListOperationsResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func listOperations(
-    byItem: GoogleLongrunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+    byItem: GoogleLongRunning.ListOperationsRequest
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     try self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
-    byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongrunning.ListOperationsResponse in
+      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleCloudGax.RequestError.unimplemented
     }
     return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
@@ -2037,41 +2037,41 @@ extension Clients.AzureClustersProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
-    let request = GoogleLongrunning.ListOperationsRequest().with {
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
     return try self.listOperations(byItem: request)
   }
 
-  public func getOperation(request: GoogleLongrunning.GetOperationRequest) async throws
-    -> GoogleLongrunning.Operation
+  public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
+    -> GoogleLongRunning.Operation
   {
     try await self.getOperation(request: request, options: .init())
   }
 
   public func getOperation(
-    request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+    request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func getOperation(
     name: Swift.String,
-  ) async throws -> GoogleLongrunning.Operation {
-    let request = GoogleLongrunning.GetOperationRequest().with {
+  ) async throws -> GoogleLongRunning.Operation {
+    let request = GoogleLongRunning.GetOperationRequest().with {
       $0.name = name
     }
     return try await self.getOperation(request: request)
   }
 
-  public func deleteOperation(request: GoogleLongrunning.DeleteOperationRequest) async throws {
+  public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
 
   public func deleteOperation(
-    request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+    request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws {
     throw GoogleCloudGax.RequestError.unimplemented
   }
@@ -2079,18 +2079,18 @@ extension Clients.AzureClustersProtocol {
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
-    let request = GoogleLongrunning.DeleteOperationRequest().with {
+    let request = GoogleLongRunning.DeleteOperationRequest().with {
       $0.name = name
     }
     try await self.deleteOperation(request: request)
   }
 
-  public func cancelOperation(request: GoogleLongrunning.CancelOperationRequest) async throws {
+  public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
 
   public func cancelOperation(
-    request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+    request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws {
     throw GoogleCloudGax.RequestError.unimplemented
   }
@@ -2098,7 +2098,7 @@ extension Clients.AzureClustersProtocol {
   public func cancelOperation(
     name: Swift.String,
   ) async throws {
-    let request = GoogleLongrunning.CancelOperationRequest().with {
+    let request = GoogleLongRunning.CancelOperationRequest().with {
       $0.name = name
     }
     try await self.cancelOperation(request: request)

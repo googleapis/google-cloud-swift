@@ -19,7 +19,7 @@
 import Foundation
 import GoogleCloudVisionV1
 import GoogleCloudWkt
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleRpc
 
 func sample(client: ImageAnnotatorClient) async throws {

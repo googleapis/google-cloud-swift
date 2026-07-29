@@ -21,7 +21,7 @@ import Foundation
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleIAMV1
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
 
@@ -347,7 +347,7 @@ public class KeyManagementServiceClient: Clients.KeyManagementServiceProtocol {
   /// @Snippet(path: "KeyManagementService_DeleteCryptoKey")
   public func deleteCryptoKey(
     request: DeleteCryptoKeyRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.deleteCryptoKey(request: request, options: options)
   }
 
@@ -367,7 +367,7 @@ public class KeyManagementServiceClient: Clients.KeyManagementServiceProtocol {
     withPolling: DeleteCryptoKeyRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
+      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
       in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -424,7 +424,7 @@ public class KeyManagementServiceClient: Clients.KeyManagementServiceProtocol {
   /// @Snippet(path: "KeyManagementService_DeleteCryptoKeyVersion")
   public func deleteCryptoKeyVersion(
     request: DeleteCryptoKeyVersionRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.deleteCryptoKeyVersion(request: request, options: options)
   }
 
@@ -448,7 +448,7 @@ public class KeyManagementServiceClient: Clients.KeyManagementServiceProtocol {
     withPolling: DeleteCryptoKeyVersionRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
+      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
       in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -952,8 +952,8 @@ public class KeyManagementServiceClient: Clients.KeyManagementServiceProtocol {
   ///
   /// @Snippet(path: "KeyManagementService_GetOperation")
   func getOperation(
-    request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+    request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.getOperation(request: request, options: options)
   }
 }
@@ -1117,7 +1117,7 @@ extension Clients {
 
     /// See `KeyManagementServiceClient.deleteCryptoKey`.
     func deleteCryptoKey(request: DeleteCryptoKeyRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `KeyManagementServiceClient.deleteCryptoKey`.
     func deleteCryptoKey(withPolling: DeleteCryptoKeyRequest) async throws -> any GoogleCloudGax
@@ -1130,7 +1130,7 @@ extension Clients {
 
     /// See `KeyManagementServiceClient.deleteCryptoKeyVersion`.
     func deleteCryptoKeyVersion(request: DeleteCryptoKeyVersionRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `KeyManagementServiceClient.deleteCryptoKeyVersion`.
     func deleteCryptoKeyVersion(withPolling: DeleteCryptoKeyVersionRequest) async throws
@@ -1411,7 +1411,7 @@ extension Clients {
     /// See `KeyManagementServiceClient.deleteCryptoKey`.
     func deleteCryptoKey(
       request: DeleteCryptoKeyRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `KeyManagementServiceClient.deleteCryptoKey`.
     func deleteCryptoKey(
@@ -1421,7 +1421,7 @@ extension Clients {
     /// See `KeyManagementServiceClient.deleteCryptoKeyVersion`.
     func deleteCryptoKeyVersion(
       request: DeleteCryptoKeyVersionRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `KeyManagementServiceClient.deleteCryptoKeyVersion`.
     func deleteCryptoKeyVersion(
@@ -1935,14 +1935,14 @@ extension Clients.KeyManagementServiceProtocol {
   }
 
   public func deleteCryptoKey(request: DeleteCryptoKeyRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.deleteCryptoKey(request: request, options: .init())
   }
 
   public func deleteCryptoKey(
     request: DeleteCryptoKeyRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1972,14 +1972,14 @@ extension Clients.KeyManagementServiceProtocol {
   }
 
   public func deleteCryptoKeyVersion(request: DeleteCryptoKeyVersionRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.deleteCryptoKeyVersion(request: request, options: .init())
   }
 
   public func deleteCryptoKeyVersion(
     request: DeleteCryptoKeyVersionRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -2451,22 +2451,22 @@ extension Clients.KeyManagementServiceProtocol {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
-  public func getOperation(request: GoogleLongrunning.GetOperationRequest) async throws
-    -> GoogleLongrunning.Operation
+  public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
+    -> GoogleLongRunning.Operation
   {
     try await self.getOperation(request: request, options: .init())
   }
 
   public func getOperation(
-    request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+    request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func getOperation(
     name: Swift.String,
-  ) async throws -> GoogleLongrunning.Operation {
-    let request = GoogleLongrunning.GetOperationRequest().with {
+  ) async throws -> GoogleLongRunning.Operation {
+    let request = GoogleLongRunning.GetOperationRequest().with {
       $0.name = name
     }
     return try await self.getOperation(request: request)

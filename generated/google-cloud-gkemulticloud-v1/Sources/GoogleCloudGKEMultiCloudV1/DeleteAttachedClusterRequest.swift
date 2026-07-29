@@ -45,7 +45,7 @@ public struct DeleteAttachedClusterRequest: Codable, Equatable, GoogleCloudWkt._
   /// Useful for idempotent deletion.
   ///
   /// [google.cloud.gkemulticloud.v1.AttachedCluster]: <doc:AttachedCluster>
-  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongrunning.Operation
+  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   public var allowMissing: Swift.Bool = Swift.Bool()
 
   /// If set to true, the deletion of

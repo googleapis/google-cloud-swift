@@ -19,7 +19,7 @@
 import Foundation
 import GoogleIAMV2
 import GoogleCloudWkt
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleRpc
 
 func sample(client: PoliciesClient) async throws {

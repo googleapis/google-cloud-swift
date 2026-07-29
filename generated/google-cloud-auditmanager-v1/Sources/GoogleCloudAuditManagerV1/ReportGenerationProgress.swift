@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [google.longrunning.Operation][google.longrunning.Operation] returned to the
 /// client for every `GetOperation` request.
 ///
-/// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongrunning.Operation
+/// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
 public struct ReportGenerationProgress: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

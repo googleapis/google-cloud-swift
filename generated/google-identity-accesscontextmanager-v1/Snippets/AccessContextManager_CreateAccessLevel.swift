@@ -20,7 +20,7 @@ import Foundation
 import GoogleIdentityAccessContextManagerV1
 import GoogleCloudWkt
 import GoogleIAMV1
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleRpc
 
 func sample(client: AccessContextManagerClient, accessPolicyId: String) async throws {

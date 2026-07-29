@@ -21,7 +21,7 @@ import Foundation
 import GoogleCloudCommon
 import GoogleCloudLocation
 import GoogleCloudWkt
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
 
@@ -103,7 +103,7 @@ public class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerProtocol 
   /// @Snippet(path: "CloudFilestoreManager_CreateInstance")
   public func createInstance(
     request: CreateInstanceRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.createInstance(request: request, options: options)
   }
 
@@ -117,7 +117,7 @@ public class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerProtocol 
     withPolling: CreateInstanceRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Instance> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Instance>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -169,7 +169,7 @@ public class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerProtocol 
   /// @Snippet(path: "CloudFilestoreManager_UpdateInstance")
   public func updateInstance(
     request: UpdateInstanceRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.updateInstance(request: request, options: options)
   }
 
@@ -180,7 +180,7 @@ public class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerProtocol 
     withPolling: UpdateInstanceRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Instance> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Instance>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -236,7 +236,7 @@ public class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerProtocol 
   /// @Snippet(path: "CloudFilestoreManager_RestoreInstance")
   public func restoreInstance(
     request: RestoreInstanceRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.restoreInstance(request: request, options: options)
   }
 
@@ -251,7 +251,7 @@ public class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerProtocol 
     withPolling: RestoreInstanceRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Instance> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Instance>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -303,7 +303,7 @@ public class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerProtocol 
   /// @Snippet(path: "CloudFilestoreManager_RevertInstance")
   public func revertInstance(
     request: RevertInstanceRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.revertInstance(request: request, options: options)
   }
 
@@ -314,7 +314,7 @@ public class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerProtocol 
     withPolling: RevertInstanceRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Instance> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Instance>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -366,7 +366,7 @@ public class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerProtocol 
   /// @Snippet(path: "CloudFilestoreManager_DeleteInstance")
   public func deleteInstance(
     request: DeleteInstanceRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.deleteInstance(request: request, options: options)
   }
 
@@ -377,7 +377,7 @@ public class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerProtocol 
     withPolling: DeleteInstanceRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
+      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
       in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -456,7 +456,7 @@ public class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerProtocol 
   /// @Snippet(path: "CloudFilestoreManager_CreateSnapshot")
   public func createSnapshot(
     request: CreateSnapshotRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.createSnapshot(request: request, options: options)
   }
 
@@ -467,7 +467,7 @@ public class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerProtocol 
     withPolling: CreateSnapshotRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Snapshot> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Snapshot>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -519,7 +519,7 @@ public class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerProtocol 
   /// @Snippet(path: "CloudFilestoreManager_DeleteSnapshot")
   public func deleteSnapshot(
     request: DeleteSnapshotRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.deleteSnapshot(request: request, options: options)
   }
 
@@ -530,7 +530,7 @@ public class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerProtocol 
     withPolling: DeleteSnapshotRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
+      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
       in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -574,7 +574,7 @@ public class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerProtocol 
   /// @Snippet(path: "CloudFilestoreManager_UpdateSnapshot")
   public func updateSnapshot(
     request: UpdateSnapshotRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.updateSnapshot(request: request, options: options)
   }
 
@@ -585,7 +585,7 @@ public class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerProtocol 
     withPolling: UpdateSnapshotRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Snapshot> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Snapshot>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -672,7 +672,7 @@ public class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerProtocol 
   /// @Snippet(path: "CloudFilestoreManager_CreateBackup")
   public func createBackup(
     request: CreateBackupRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.createBackup(request: request, options: options)
   }
 
@@ -683,7 +683,7 @@ public class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerProtocol 
     withPolling: CreateBackupRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Backup> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Backup>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -735,7 +735,7 @@ public class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerProtocol 
   /// @Snippet(path: "CloudFilestoreManager_DeleteBackup")
   public func deleteBackup(
     request: DeleteBackupRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.deleteBackup(request: request, options: options)
   }
 
@@ -746,7 +746,7 @@ public class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerProtocol 
     withPolling: DeleteBackupRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
+      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
       in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -790,7 +790,7 @@ public class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerProtocol 
   /// @Snippet(path: "CloudFilestoreManager_UpdateBackup")
   public func updateBackup(
     request: UpdateBackupRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.updateBackup(request: request, options: options)
   }
 
@@ -801,7 +801,7 @@ public class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerProtocol 
     withPolling: UpdateBackupRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Backup> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Backup>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -853,7 +853,7 @@ public class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerProtocol 
   /// @Snippet(path: "CloudFilestoreManager_PromoteReplica")
   public func promoteReplica(
     request: PromoteReplicaRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.promoteReplica(request: request, options: options)
   }
 
@@ -864,7 +864,7 @@ public class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerProtocol 
     withPolling: PromoteReplicaRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Instance> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Instance>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -950,8 +950,8 @@ public class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerProtocol 
   ///
   /// @Snippet(path: "CloudFilestoreManager_ListOperations")
   public func listOperations(
-    request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.ListOperationsResponse {
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.ListOperationsResponse {
     try await self.inner.listOperations(request: request, options: options)
   }
 
@@ -961,10 +961,10 @@ public class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerProtocol 
   ///
   /// @Snippet(path: "CloudFilestoreManager_ListOperations")
   public func listOperations(
-    byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongrunning.ListOperationsResponse in
+      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
@@ -978,8 +978,8 @@ public class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerProtocol 
   ///
   /// @Snippet(path: "CloudFilestoreManager_GetOperation")
   func getOperation(
-    request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+    request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.getOperation(request: request, options: options)
   }
 
@@ -989,7 +989,7 @@ public class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerProtocol 
   ///
   /// @Snippet(path: "CloudFilestoreManager_DeleteOperation")
   public func deleteOperation(
-    request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+    request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws {
     try await self.inner.deleteOperation(request: request, options: options)
   }
@@ -1000,7 +1000,7 @@ public class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerProtocol 
   ///
   /// @Snippet(path: "CloudFilestoreManager_CancelOperation")
   public func cancelOperation(
-    request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+    request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws {
     try await self.inner.cancelOperation(request: request, options: options)
   }
@@ -1036,7 +1036,7 @@ extension Clients {
     ) async throws -> GoogleCloudFilestoreV1.Instance
 
     /// See `CloudFilestoreManagerClient.createInstance`.
-    func createInstance(request: CreateInstanceRequest) async throws -> GoogleLongrunning.Operation
+    func createInstance(request: CreateInstanceRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `CloudFilestoreManagerClient.createInstance`.
     func createInstance(withPolling: CreateInstanceRequest) async throws -> any GoogleCloudGax
@@ -1050,7 +1050,7 @@ extension Clients {
     ) async throws -> any GoogleCloudGax.PollableOperation<Instance>
 
     /// See `CloudFilestoreManagerClient.updateInstance`.
-    func updateInstance(request: UpdateInstanceRequest) async throws -> GoogleLongrunning.Operation
+    func updateInstance(request: UpdateInstanceRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `CloudFilestoreManagerClient.updateInstance`.
     func updateInstance(withPolling: UpdateInstanceRequest) async throws -> any GoogleCloudGax
@@ -1064,21 +1064,21 @@ extension Clients {
 
     /// See `CloudFilestoreManagerClient.restoreInstance`.
     func restoreInstance(request: RestoreInstanceRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `CloudFilestoreManagerClient.restoreInstance`.
     func restoreInstance(withPolling: RestoreInstanceRequest) async throws -> any GoogleCloudGax
       .PollableOperation<Instance>
 
     /// See `CloudFilestoreManagerClient.revertInstance`.
-    func revertInstance(request: RevertInstanceRequest) async throws -> GoogleLongrunning.Operation
+    func revertInstance(request: RevertInstanceRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `CloudFilestoreManagerClient.revertInstance`.
     func revertInstance(withPolling: RevertInstanceRequest) async throws -> any GoogleCloudGax
       .PollableOperation<Instance>
 
     /// See `CloudFilestoreManagerClient.deleteInstance`.
-    func deleteInstance(request: DeleteInstanceRequest) async throws -> GoogleLongrunning.Operation
+    func deleteInstance(request: DeleteInstanceRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `CloudFilestoreManagerClient.deleteInstance`.
     func deleteInstance(withPolling: DeleteInstanceRequest) async throws -> any GoogleCloudGax
@@ -1112,7 +1112,7 @@ extension Clients {
     ) async throws -> GoogleCloudFilestoreV1.Snapshot
 
     /// See `CloudFilestoreManagerClient.createSnapshot`.
-    func createSnapshot(request: CreateSnapshotRequest) async throws -> GoogleLongrunning.Operation
+    func createSnapshot(request: CreateSnapshotRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `CloudFilestoreManagerClient.createSnapshot`.
     func createSnapshot(withPolling: CreateSnapshotRequest) async throws -> any GoogleCloudGax
@@ -1126,7 +1126,7 @@ extension Clients {
     ) async throws -> any GoogleCloudGax.PollableOperation<Snapshot>
 
     /// See `CloudFilestoreManagerClient.deleteSnapshot`.
-    func deleteSnapshot(request: DeleteSnapshotRequest) async throws -> GoogleLongrunning.Operation
+    func deleteSnapshot(request: DeleteSnapshotRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `CloudFilestoreManagerClient.deleteSnapshot`.
     func deleteSnapshot(withPolling: DeleteSnapshotRequest) async throws -> any GoogleCloudGax
@@ -1138,7 +1138,7 @@ extension Clients {
     ) async throws -> any GoogleCloudGax.PollableOperation<Void>
 
     /// See `CloudFilestoreManagerClient.updateSnapshot`.
-    func updateSnapshot(request: UpdateSnapshotRequest) async throws -> GoogleLongrunning.Operation
+    func updateSnapshot(request: UpdateSnapshotRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `CloudFilestoreManagerClient.updateSnapshot`.
     func updateSnapshot(withPolling: UpdateSnapshotRequest) async throws -> any GoogleCloudGax
@@ -1173,7 +1173,7 @@ extension Clients {
     ) async throws -> GoogleCloudFilestoreV1.Backup
 
     /// See `CloudFilestoreManagerClient.createBackup`.
-    func createBackup(request: CreateBackupRequest) async throws -> GoogleLongrunning.Operation
+    func createBackup(request: CreateBackupRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `CloudFilestoreManagerClient.createBackup`.
     func createBackup(withPolling: CreateBackupRequest) async throws -> any GoogleCloudGax
@@ -1187,7 +1187,7 @@ extension Clients {
     ) async throws -> any GoogleCloudGax.PollableOperation<Backup>
 
     /// See `CloudFilestoreManagerClient.deleteBackup`.
-    func deleteBackup(request: DeleteBackupRequest) async throws -> GoogleLongrunning.Operation
+    func deleteBackup(request: DeleteBackupRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `CloudFilestoreManagerClient.deleteBackup`.
     func deleteBackup(withPolling: DeleteBackupRequest) async throws -> any GoogleCloudGax
@@ -1199,7 +1199,7 @@ extension Clients {
     ) async throws -> any GoogleCloudGax.PollableOperation<Void>
 
     /// See `CloudFilestoreManagerClient.updateBackup`.
-    func updateBackup(request: UpdateBackupRequest) async throws -> GoogleLongrunning.Operation
+    func updateBackup(request: UpdateBackupRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `CloudFilestoreManagerClient.updateBackup`.
     func updateBackup(withPolling: UpdateBackupRequest) async throws -> any GoogleCloudGax
@@ -1212,7 +1212,7 @@ extension Clients {
     ) async throws -> any GoogleCloudGax.PollableOperation<Backup>
 
     /// See `CloudFilestoreManagerClient.promoteReplica`.
-    func promoteReplica(request: PromoteReplicaRequest) async throws -> GoogleLongrunning.Operation
+    func promoteReplica(request: PromoteReplicaRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `CloudFilestoreManagerClient.promoteReplica`.
     func promoteReplica(withPolling: PromoteReplicaRequest) async throws -> any GoogleCloudGax
@@ -1232,22 +1232,22 @@ extension Clients {
       -> GoogleCloudLocation.Location
 
     /// See `CloudFilestoreManagerClient.listOperations`.
-    func listOperations(request: GoogleLongrunning.ListOperationsRequest) async throws
-      -> GoogleLongrunning.ListOperationsResponse
+    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
+      -> GoogleLongRunning.ListOperationsResponse
 
     /// See `CloudFilestoreManagerClient.listOperations`.
     func listOperations(
-      byItem: GoogleLongrunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+      byItem: GoogleLongRunning.ListOperationsRequest
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `CloudFilestoreManagerClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `CloudFilestoreManagerClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongrunning.DeleteOperationRequest) async throws
+    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
 
     /// See `CloudFilestoreManagerClient.deleteOperation`.
     func deleteOperation(
@@ -1255,7 +1255,7 @@ extension Clients {
     ) async throws
 
     /// See `CloudFilestoreManagerClient.cancelOperation`.
-    func cancelOperation(request: GoogleLongrunning.CancelOperationRequest) async throws
+    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
 
     /// See `CloudFilestoreManagerClient.cancelOperation`.
     func cancelOperation(
@@ -1280,7 +1280,7 @@ extension Clients {
     /// See `CloudFilestoreManagerClient.createInstance`.
     func createInstance(
       request: CreateInstanceRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `CloudFilestoreManagerClient.createInstance`.
     func createInstance(
@@ -1290,7 +1290,7 @@ extension Clients {
     /// See `CloudFilestoreManagerClient.updateInstance`.
     func updateInstance(
       request: UpdateInstanceRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `CloudFilestoreManagerClient.updateInstance`.
     func updateInstance(
@@ -1300,7 +1300,7 @@ extension Clients {
     /// See `CloudFilestoreManagerClient.restoreInstance`.
     func restoreInstance(
       request: RestoreInstanceRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `CloudFilestoreManagerClient.restoreInstance`.
     func restoreInstance(
@@ -1310,7 +1310,7 @@ extension Clients {
     /// See `CloudFilestoreManagerClient.revertInstance`.
     func revertInstance(
       request: RevertInstanceRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `CloudFilestoreManagerClient.revertInstance`.
     func revertInstance(
@@ -1320,7 +1320,7 @@ extension Clients {
     /// See `CloudFilestoreManagerClient.deleteInstance`.
     func deleteInstance(
       request: DeleteInstanceRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `CloudFilestoreManagerClient.deleteInstance`.
     func deleteInstance(
@@ -1345,7 +1345,7 @@ extension Clients {
     /// See `CloudFilestoreManagerClient.createSnapshot`.
     func createSnapshot(
       request: CreateSnapshotRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `CloudFilestoreManagerClient.createSnapshot`.
     func createSnapshot(
@@ -1355,7 +1355,7 @@ extension Clients {
     /// See `CloudFilestoreManagerClient.deleteSnapshot`.
     func deleteSnapshot(
       request: DeleteSnapshotRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `CloudFilestoreManagerClient.deleteSnapshot`.
     func deleteSnapshot(
@@ -1365,7 +1365,7 @@ extension Clients {
     /// See `CloudFilestoreManagerClient.updateSnapshot`.
     func updateSnapshot(
       request: UpdateSnapshotRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `CloudFilestoreManagerClient.updateSnapshot`.
     func updateSnapshot(
@@ -1390,7 +1390,7 @@ extension Clients {
     /// See `CloudFilestoreManagerClient.createBackup`.
     func createBackup(
       request: CreateBackupRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `CloudFilestoreManagerClient.createBackup`.
     func createBackup(
@@ -1400,7 +1400,7 @@ extension Clients {
     /// See `CloudFilestoreManagerClient.deleteBackup`.
     func deleteBackup(
       request: DeleteBackupRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `CloudFilestoreManagerClient.deleteBackup`.
     func deleteBackup(
@@ -1410,7 +1410,7 @@ extension Clients {
     /// See `CloudFilestoreManagerClient.updateBackup`.
     func updateBackup(
       request: UpdateBackupRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `CloudFilestoreManagerClient.updateBackup`.
     func updateBackup(
@@ -1420,7 +1420,7 @@ extension Clients {
     /// See `CloudFilestoreManagerClient.promoteReplica`.
     func promoteReplica(
       request: PromoteReplicaRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `CloudFilestoreManagerClient.promoteReplica`.
     func promoteReplica(
@@ -1444,22 +1444,22 @@ extension Clients {
 
     /// See `CloudFilestoreManagerClient.listOperations`.
     func listOperations(
-      request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.ListOperationsResponse
+      request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.ListOperationsResponse
 
     /// See `CloudFilestoreManagerClient.listOperations`.
     func listOperations(
-      byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `CloudFilestoreManagerClient.deleteOperation`.
     func deleteOperation(
-      request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+      request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws
 
     /// See `CloudFilestoreManagerClient.cancelOperation`.
     func cancelOperation(
-      request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+      request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws
   }
 }
@@ -1525,14 +1525,14 @@ extension Clients.CloudFilestoreManagerProtocol {
   }
 
   public func createInstance(request: CreateInstanceRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.createInstance(request: request, options: .init())
   }
 
   public func createInstance(
     request: CreateInstanceRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1566,14 +1566,14 @@ extension Clients.CloudFilestoreManagerProtocol {
   }
 
   public func updateInstance(request: UpdateInstanceRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.updateInstance(request: request, options: .init())
   }
 
   public func updateInstance(
     request: UpdateInstanceRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1605,14 +1605,14 @@ extension Clients.CloudFilestoreManagerProtocol {
   }
 
   public func restoreInstance(request: RestoreInstanceRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.restoreInstance(request: request, options: .init())
   }
 
   public func restoreInstance(
     request: RestoreInstanceRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1633,14 +1633,14 @@ extension Clients.CloudFilestoreManagerProtocol {
   }
 
   public func revertInstance(request: RevertInstanceRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.revertInstance(request: request, options: .init())
   }
 
   public func revertInstance(
     request: RevertInstanceRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1661,14 +1661,14 @@ extension Clients.CloudFilestoreManagerProtocol {
   }
 
   public func deleteInstance(request: DeleteInstanceRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.deleteInstance(request: request, options: .init())
   }
 
   public func deleteInstance(
     request: DeleteInstanceRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1756,14 +1756,14 @@ extension Clients.CloudFilestoreManagerProtocol {
   }
 
   public func createSnapshot(request: CreateSnapshotRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.createSnapshot(request: request, options: .init())
   }
 
   public func createSnapshot(
     request: CreateSnapshotRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1797,14 +1797,14 @@ extension Clients.CloudFilestoreManagerProtocol {
   }
 
   public func deleteSnapshot(request: DeleteSnapshotRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.deleteSnapshot(request: request, options: .init())
   }
 
   public func deleteSnapshot(
     request: DeleteSnapshotRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1834,14 +1834,14 @@ extension Clients.CloudFilestoreManagerProtocol {
   }
 
   public func updateSnapshot(request: UpdateSnapshotRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.updateSnapshot(request: request, options: .init())
   }
 
   public func updateSnapshot(
     request: UpdateSnapshotRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1928,14 +1928,14 @@ extension Clients.CloudFilestoreManagerProtocol {
     return try await self.getBackup(request: request)
   }
 
-  public func createBackup(request: CreateBackupRequest) async throws -> GoogleLongrunning.Operation
+  public func createBackup(request: CreateBackupRequest) async throws -> GoogleLongRunning.Operation
   {
     try await self.createBackup(request: request, options: .init())
   }
 
   public func createBackup(
     request: CreateBackupRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1968,14 +1968,14 @@ extension Clients.CloudFilestoreManagerProtocol {
     return try await self.createBackup(withPolling: request)
   }
 
-  public func deleteBackup(request: DeleteBackupRequest) async throws -> GoogleLongrunning.Operation
+  public func deleteBackup(request: DeleteBackupRequest) async throws -> GoogleLongRunning.Operation
   {
     try await self.deleteBackup(request: request, options: .init())
   }
 
   public func deleteBackup(
     request: DeleteBackupRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -2004,14 +2004,14 @@ extension Clients.CloudFilestoreManagerProtocol {
     return try await self.deleteBackup(withPolling: request)
   }
 
-  public func updateBackup(request: UpdateBackupRequest) async throws -> GoogleLongrunning.Operation
+  public func updateBackup(request: UpdateBackupRequest) async throws -> GoogleLongRunning.Operation
   {
     try await self.updateBackup(request: request, options: .init())
   }
 
   public func updateBackup(
     request: UpdateBackupRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -2043,14 +2043,14 @@ extension Clients.CloudFilestoreManagerProtocol {
   }
 
   public func promoteReplica(request: PromoteReplicaRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.promoteReplica(request: request, options: .init())
   }
 
   public func promoteReplica(
     request: PromoteReplicaRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -2110,29 +2110,29 @@ extension Clients.CloudFilestoreManagerProtocol {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
-  public func listOperations(request: GoogleLongrunning.ListOperationsRequest) async throws
-    -> GoogleLongrunning.ListOperationsResponse
+  public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
+    -> GoogleLongRunning.ListOperationsResponse
   {
     try await self.listOperations(request: request, options: .init())
   }
 
   public func listOperations(
-    request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.ListOperationsResponse {
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.ListOperationsResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func listOperations(
-    byItem: GoogleLongrunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+    byItem: GoogleLongRunning.ListOperationsRequest
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     try self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
-    byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongrunning.ListOperationsResponse in
+      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleCloudGax.RequestError.unimplemented
     }
     return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
@@ -2141,41 +2141,41 @@ extension Clients.CloudFilestoreManagerProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
-    let request = GoogleLongrunning.ListOperationsRequest().with {
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
     return try self.listOperations(byItem: request)
   }
 
-  public func getOperation(request: GoogleLongrunning.GetOperationRequest) async throws
-    -> GoogleLongrunning.Operation
+  public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
+    -> GoogleLongRunning.Operation
   {
     try await self.getOperation(request: request, options: .init())
   }
 
   public func getOperation(
-    request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+    request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func getOperation(
     name: Swift.String,
-  ) async throws -> GoogleLongrunning.Operation {
-    let request = GoogleLongrunning.GetOperationRequest().with {
+  ) async throws -> GoogleLongRunning.Operation {
+    let request = GoogleLongRunning.GetOperationRequest().with {
       $0.name = name
     }
     return try await self.getOperation(request: request)
   }
 
-  public func deleteOperation(request: GoogleLongrunning.DeleteOperationRequest) async throws {
+  public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
 
   public func deleteOperation(
-    request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+    request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws {
     throw GoogleCloudGax.RequestError.unimplemented
   }
@@ -2183,18 +2183,18 @@ extension Clients.CloudFilestoreManagerProtocol {
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
-    let request = GoogleLongrunning.DeleteOperationRequest().with {
+    let request = GoogleLongRunning.DeleteOperationRequest().with {
       $0.name = name
     }
     try await self.deleteOperation(request: request)
   }
 
-  public func cancelOperation(request: GoogleLongrunning.CancelOperationRequest) async throws {
+  public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
 
   public func cancelOperation(
-    request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+    request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws {
     throw GoogleCloudGax.RequestError.unimplemented
   }
@@ -2202,7 +2202,7 @@ extension Clients.CloudFilestoreManagerProtocol {
   public func cancelOperation(
     name: Swift.String,
   ) async throws {
-    let request = GoogleLongrunning.CancelOperationRequest().with {
+    let request = GoogleLongRunning.CancelOperationRequest().with {
       $0.name = name
     }
     try await self.cancelOperation(request: request)

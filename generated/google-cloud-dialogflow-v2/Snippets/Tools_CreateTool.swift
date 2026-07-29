@@ -21,7 +21,7 @@
   import GoogleCloudDialogflowV2
   import GoogleCloudLocation
   import GoogleCloudWkt
-  import GoogleLongrunning
+  import GoogleLongRunning
 
   func sample(client: ToolsClient, projectId: String, locationId: String) async throws {
     let response = try await client.createTool(

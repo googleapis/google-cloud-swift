@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudWkt
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
 
@@ -78,7 +78,7 @@ public class ImageAnnotatorClient: Clients.ImageAnnotatorProtocol {
   /// @Snippet(path: "ImageAnnotator_AsyncBatchAnnotateImages")
   public func asyncBatchAnnotateImages(
     request: AsyncBatchAnnotateImagesRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.asyncBatchAnnotateImages(request: request, options: options)
   }
 
@@ -97,7 +97,7 @@ public class ImageAnnotatorClient: Clients.ImageAnnotatorProtocol {
     withPolling: AsyncBatchAnnotateImagesRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<AsyncBatchAnnotateImagesResponse> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<AsyncBatchAnnotateImagesResponse>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -156,7 +156,7 @@ public class ImageAnnotatorClient: Clients.ImageAnnotatorProtocol {
   /// @Snippet(path: "ImageAnnotator_AsyncBatchAnnotateFiles")
   public func asyncBatchAnnotateFiles(
     request: AsyncBatchAnnotateFilesRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.asyncBatchAnnotateFiles(request: request, options: options)
   }
 
@@ -172,7 +172,7 @@ public class ImageAnnotatorClient: Clients.ImageAnnotatorProtocol {
     withPolling: AsyncBatchAnnotateFilesRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<AsyncBatchAnnotateFilesResponse> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<AsyncBatchAnnotateFilesResponse>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -227,8 +227,8 @@ public class ImageAnnotatorClient: Clients.ImageAnnotatorProtocol {
   ///
   /// @Snippet(path: "ImageAnnotator_GetOperation")
   func getOperation(
-    request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+    request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.getOperation(request: request, options: options)
   }
 }
@@ -260,7 +260,7 @@ extension Clients {
 
     /// See `ImageAnnotatorClient.asyncBatchAnnotateImages`.
     func asyncBatchAnnotateImages(request: AsyncBatchAnnotateImagesRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `ImageAnnotatorClient.asyncBatchAnnotateImages`.
     func asyncBatchAnnotateImages(withPolling: AsyncBatchAnnotateImagesRequest) async throws
@@ -274,7 +274,7 @@ extension Clients {
 
     /// See `ImageAnnotatorClient.asyncBatchAnnotateFiles`.
     func asyncBatchAnnotateFiles(request: AsyncBatchAnnotateFilesRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `ImageAnnotatorClient.asyncBatchAnnotateFiles`.
     func asyncBatchAnnotateFiles(withPolling: AsyncBatchAnnotateFilesRequest) async throws
@@ -298,7 +298,7 @@ extension Clients {
     /// See `ImageAnnotatorClient.asyncBatchAnnotateImages`.
     func asyncBatchAnnotateImages(
       request: AsyncBatchAnnotateImagesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `ImageAnnotatorClient.asyncBatchAnnotateImages`.
     func asyncBatchAnnotateImages(
@@ -308,7 +308,7 @@ extension Clients {
     /// See `ImageAnnotatorClient.asyncBatchAnnotateFiles`.
     func asyncBatchAnnotateFiles(
       request: AsyncBatchAnnotateFilesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `ImageAnnotatorClient.asyncBatchAnnotateFiles`.
     func asyncBatchAnnotateFiles(
@@ -362,14 +362,14 @@ extension Clients.ImageAnnotatorProtocol {
   }
 
   public func asyncBatchAnnotateImages(request: AsyncBatchAnnotateImagesRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.asyncBatchAnnotateImages(request: request, options: .init())
   }
 
   public func asyncBatchAnnotateImages(
     request: AsyncBatchAnnotateImagesRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -403,14 +403,14 @@ extension Clients.ImageAnnotatorProtocol {
   }
 
   public func asyncBatchAnnotateFiles(request: AsyncBatchAnnotateFilesRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.asyncBatchAnnotateFiles(request: request, options: .init())
   }
 
   public func asyncBatchAnnotateFiles(
     request: AsyncBatchAnnotateFilesRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -441,22 +441,22 @@ extension Clients.ImageAnnotatorProtocol {
     return try await self.asyncBatchAnnotateFiles(withPolling: request)
   }
 
-  public func getOperation(request: GoogleLongrunning.GetOperationRequest) async throws
-    -> GoogleLongrunning.Operation
+  public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
+    -> GoogleLongRunning.Operation
   {
     try await self.getOperation(request: request, options: .init())
   }
 
   public func getOperation(
-    request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+    request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func getOperation(
     name: Swift.String,
-  ) async throws -> GoogleLongrunning.Operation {
-    let request = GoogleLongrunning.GetOperationRequest().with {
+  ) async throws -> GoogleLongRunning.Operation {
+    let request = GoogleLongRunning.GetOperationRequest().with {
       $0.name = name
     }
     return try await self.getOperation(request: request)

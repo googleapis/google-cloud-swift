@@ -20,7 +20,7 @@ import Foundation
 import GoogleCloudLicenseManagerV1
 import GoogleCloudLocation
 import GoogleCloudWkt
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleRpc
 
 func sample(client: LicenseManagerClient, projectId: String, locationId: String, productId: String)

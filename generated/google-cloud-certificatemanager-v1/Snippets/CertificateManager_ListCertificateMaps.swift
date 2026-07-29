@@ -20,7 +20,7 @@ import Foundation
 import GoogleCloudCertificateManagerV1
 import GoogleCloudLocation
 import GoogleCloudWkt
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleRpc
 
 func sample(client: CertificateManagerClient, parent: String) async throws {

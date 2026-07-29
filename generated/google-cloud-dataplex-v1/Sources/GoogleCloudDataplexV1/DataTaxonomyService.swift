@@ -21,7 +21,7 @@ import Foundation
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleIAMV1
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
 
@@ -50,7 +50,7 @@ public class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtocol {
   @available(*, deprecated)
   public func createDataTaxonomy(
     request: CreateDataTaxonomyRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.createDataTaxonomy(request: request, options: options)
   }
 
@@ -62,7 +62,7 @@ public class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtocol {
     withPolling: CreateDataTaxonomyRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<DataTaxonomy> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<DataTaxonomy>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -115,7 +115,7 @@ public class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtocol {
   @available(*, deprecated)
   public func updateDataTaxonomy(
     request: UpdateDataTaxonomyRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.updateDataTaxonomy(request: request, options: options)
   }
 
@@ -127,7 +127,7 @@ public class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtocol {
     withPolling: UpdateDataTaxonomyRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<DataTaxonomy> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<DataTaxonomy>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -181,7 +181,7 @@ public class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtocol {
   @available(*, deprecated)
   public func deleteDataTaxonomy(
     request: DeleteDataTaxonomyRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.deleteDataTaxonomy(request: request, options: options)
   }
 
@@ -194,7 +194,7 @@ public class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtocol {
     withPolling: DeleteDataTaxonomyRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
+      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
       in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -275,7 +275,7 @@ public class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtocol {
   @available(*, deprecated)
   public func createDataAttributeBinding(
     request: CreateDataAttributeBindingRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.createDataAttributeBinding(request: request, options: options)
   }
 
@@ -287,7 +287,7 @@ public class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtocol {
     withPolling: CreateDataAttributeBindingRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<DataAttributeBinding> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<DataAttributeBinding>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -341,7 +341,7 @@ public class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtocol {
   @available(*, deprecated)
   public func updateDataAttributeBinding(
     request: UpdateDataAttributeBindingRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.updateDataAttributeBinding(request: request, options: options)
   }
 
@@ -353,7 +353,7 @@ public class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtocol {
     withPolling: UpdateDataAttributeBindingRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<DataAttributeBinding> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<DataAttributeBinding>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -409,7 +409,7 @@ public class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtocol {
   @available(*, deprecated)
   public func deleteDataAttributeBinding(
     request: DeleteDataAttributeBindingRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.deleteDataAttributeBinding(request: request, options: options)
   }
 
@@ -423,7 +423,7 @@ public class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtocol {
     withPolling: DeleteDataAttributeBindingRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
+      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
       in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -505,7 +505,7 @@ public class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtocol {
   @available(*, deprecated)
   public func createDataAttribute(
     request: CreateDataAttributeRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.createDataAttribute(request: request, options: options)
   }
 
@@ -517,7 +517,7 @@ public class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtocol {
     withPolling: CreateDataAttributeRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<DataAttribute> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<DataAttribute>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -570,7 +570,7 @@ public class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtocol {
   @available(*, deprecated)
   public func updateDataAttribute(
     request: UpdateDataAttributeRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.updateDataAttribute(request: request, options: options)
   }
 
@@ -582,7 +582,7 @@ public class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtocol {
     withPolling: UpdateDataAttributeRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<DataAttribute> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<DataAttribute>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -635,7 +635,7 @@ public class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtocol {
   @available(*, deprecated)
   public func deleteDataAttribute(
     request: DeleteDataAttributeRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.deleteDataAttribute(request: request, options: options)
   }
 
@@ -647,7 +647,7 @@ public class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtocol {
     withPolling: DeleteDataAttributeRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
+      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
       in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -833,8 +833,8 @@ public class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtocol {
   ///
   /// @Snippet(path: "DataTaxonomyService_ListOperations")
   public func listOperations(
-    request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.ListOperationsResponse {
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.ListOperationsResponse {
     try await self.inner.listOperations(request: request, options: options)
   }
 
@@ -844,10 +844,10 @@ public class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtocol {
   ///
   /// @Snippet(path: "DataTaxonomyService_ListOperations")
   public func listOperations(
-    byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongrunning.ListOperationsResponse in
+      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
@@ -861,8 +861,8 @@ public class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtocol {
   ///
   /// @Snippet(path: "DataTaxonomyService_GetOperation")
   func getOperation(
-    request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+    request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.getOperation(request: request, options: options)
   }
 
@@ -872,7 +872,7 @@ public class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtocol {
   ///
   /// @Snippet(path: "DataTaxonomyService_DeleteOperation")
   public func deleteOperation(
-    request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+    request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws {
     try await self.inner.deleteOperation(request: request, options: options)
   }
@@ -883,7 +883,7 @@ public class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtocol {
   ///
   /// @Snippet(path: "DataTaxonomyService_CancelOperation")
   public func cancelOperation(
-    request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+    request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws {
     try await self.inner.cancelOperation(request: request, options: options)
   }
@@ -900,7 +900,7 @@ extension Clients {
     /// See `DataTaxonomyServiceClient.createDataTaxonomy`.
     @available(*, deprecated)
     func createDataTaxonomy(request: CreateDataTaxonomyRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `DataTaxonomyServiceClient.createDataTaxonomy`.
     @available(*, deprecated)
@@ -918,7 +918,7 @@ extension Clients {
     /// See `DataTaxonomyServiceClient.updateDataTaxonomy`.
     @available(*, deprecated)
     func updateDataTaxonomy(request: UpdateDataTaxonomyRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `DataTaxonomyServiceClient.updateDataTaxonomy`.
     @available(*, deprecated)
@@ -935,7 +935,7 @@ extension Clients {
     /// See `DataTaxonomyServiceClient.deleteDataTaxonomy`.
     @available(*, deprecated)
     func deleteDataTaxonomy(request: DeleteDataTaxonomyRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `DataTaxonomyServiceClient.deleteDataTaxonomy`.
     @available(*, deprecated)
@@ -979,7 +979,7 @@ extension Clients {
     /// See `DataTaxonomyServiceClient.createDataAttributeBinding`.
     @available(*, deprecated)
     func createDataAttributeBinding(request: CreateDataAttributeBindingRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `DataTaxonomyServiceClient.createDataAttributeBinding`.
     @available(*, deprecated)
@@ -997,7 +997,7 @@ extension Clients {
     /// See `DataTaxonomyServiceClient.updateDataAttributeBinding`.
     @available(*, deprecated)
     func updateDataAttributeBinding(request: UpdateDataAttributeBindingRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `DataTaxonomyServiceClient.updateDataAttributeBinding`.
     @available(*, deprecated)
@@ -1014,7 +1014,7 @@ extension Clients {
     /// See `DataTaxonomyServiceClient.deleteDataAttributeBinding`.
     @available(*, deprecated)
     func deleteDataAttributeBinding(request: DeleteDataAttributeBindingRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `DataTaxonomyServiceClient.deleteDataAttributeBinding`.
     @available(*, deprecated)
@@ -1058,7 +1058,7 @@ extension Clients {
     /// See `DataTaxonomyServiceClient.createDataAttribute`.
     @available(*, deprecated)
     func createDataAttribute(request: CreateDataAttributeRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `DataTaxonomyServiceClient.createDataAttribute`.
     @available(*, deprecated)
@@ -1076,7 +1076,7 @@ extension Clients {
     /// See `DataTaxonomyServiceClient.updateDataAttribute`.
     @available(*, deprecated)
     func updateDataAttribute(request: UpdateDataAttributeRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `DataTaxonomyServiceClient.updateDataAttribute`.
     @available(*, deprecated)
@@ -1093,7 +1093,7 @@ extension Clients {
     /// See `DataTaxonomyServiceClient.deleteDataAttribute`.
     @available(*, deprecated)
     func deleteDataAttribute(request: DeleteDataAttributeRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `DataTaxonomyServiceClient.deleteDataAttribute`.
     @available(*, deprecated)
@@ -1158,22 +1158,22 @@ extension Clients {
       -> GoogleIAMV1.TestIamPermissionsResponse
 
     /// See `DataTaxonomyServiceClient.listOperations`.
-    func listOperations(request: GoogleLongrunning.ListOperationsRequest) async throws
-      -> GoogleLongrunning.ListOperationsResponse
+    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
+      -> GoogleLongRunning.ListOperationsResponse
 
     /// See `DataTaxonomyServiceClient.listOperations`.
     func listOperations(
-      byItem: GoogleLongrunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+      byItem: GoogleLongRunning.ListOperationsRequest
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `DataTaxonomyServiceClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `DataTaxonomyServiceClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongrunning.DeleteOperationRequest) async throws
+    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
 
     /// See `DataTaxonomyServiceClient.deleteOperation`.
     func deleteOperation(
@@ -1181,7 +1181,7 @@ extension Clients {
     ) async throws
 
     /// See `DataTaxonomyServiceClient.cancelOperation`.
-    func cancelOperation(request: GoogleLongrunning.CancelOperationRequest) async throws
+    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
 
     /// See `DataTaxonomyServiceClient.cancelOperation`.
     func cancelOperation(
@@ -1192,7 +1192,7 @@ extension Clients {
     @available(*, deprecated)
     func createDataTaxonomy(
       request: CreateDataTaxonomyRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `DataTaxonomyServiceClient.createDataTaxonomy`.
     @available(*, deprecated)
@@ -1204,7 +1204,7 @@ extension Clients {
     @available(*, deprecated)
     func updateDataTaxonomy(
       request: UpdateDataTaxonomyRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `DataTaxonomyServiceClient.updateDataTaxonomy`.
     @available(*, deprecated)
@@ -1216,7 +1216,7 @@ extension Clients {
     @available(*, deprecated)
     func deleteDataTaxonomy(
       request: DeleteDataTaxonomyRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `DataTaxonomyServiceClient.deleteDataTaxonomy`.
     @available(*, deprecated)
@@ -1246,7 +1246,7 @@ extension Clients {
     @available(*, deprecated)
     func createDataAttributeBinding(
       request: CreateDataAttributeBindingRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `DataTaxonomyServiceClient.createDataAttributeBinding`.
     @available(*, deprecated)
@@ -1258,7 +1258,7 @@ extension Clients {
     @available(*, deprecated)
     func updateDataAttributeBinding(
       request: UpdateDataAttributeBindingRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `DataTaxonomyServiceClient.updateDataAttributeBinding`.
     @available(*, deprecated)
@@ -1270,7 +1270,7 @@ extension Clients {
     @available(*, deprecated)
     func deleteDataAttributeBinding(
       request: DeleteDataAttributeBindingRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `DataTaxonomyServiceClient.deleteDataAttributeBinding`.
     @available(*, deprecated)
@@ -1300,7 +1300,7 @@ extension Clients {
     @available(*, deprecated)
     func createDataAttribute(
       request: CreateDataAttributeRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `DataTaxonomyServiceClient.createDataAttribute`.
     @available(*, deprecated)
@@ -1312,7 +1312,7 @@ extension Clients {
     @available(*, deprecated)
     func updateDataAttribute(
       request: UpdateDataAttributeRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `DataTaxonomyServiceClient.updateDataAttribute`.
     @available(*, deprecated)
@@ -1324,7 +1324,7 @@ extension Clients {
     @available(*, deprecated)
     func deleteDataAttribute(
       request: DeleteDataAttributeRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `DataTaxonomyServiceClient.deleteDataAttribute`.
     @available(*, deprecated)
@@ -1382,22 +1382,22 @@ extension Clients {
 
     /// See `DataTaxonomyServiceClient.listOperations`.
     func listOperations(
-      request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.ListOperationsResponse
+      request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.ListOperationsResponse
 
     /// See `DataTaxonomyServiceClient.listOperations`.
     func listOperations(
-      byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `DataTaxonomyServiceClient.deleteOperation`.
     func deleteOperation(
-      request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+      request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws
 
     /// See `DataTaxonomyServiceClient.cancelOperation`.
     func cancelOperation(
-      request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+      request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws
   }
 }
@@ -1405,14 +1405,14 @@ extension Clients {
 // Default implementations
 extension Clients.DataTaxonomyServiceProtocol {
   public func createDataTaxonomy(request: CreateDataTaxonomyRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.createDataTaxonomy(request: request, options: .init())
   }
 
   public func createDataTaxonomy(
     request: CreateDataTaxonomyRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1446,14 +1446,14 @@ extension Clients.DataTaxonomyServiceProtocol {
   }
 
   public func updateDataTaxonomy(request: UpdateDataTaxonomyRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.updateDataTaxonomy(request: request, options: .init())
   }
 
   public func updateDataTaxonomy(
     request: UpdateDataTaxonomyRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1485,14 +1485,14 @@ extension Clients.DataTaxonomyServiceProtocol {
   }
 
   public func deleteDataTaxonomy(request: DeleteDataTaxonomyRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.deleteDataTaxonomy(request: request, options: .init())
   }
 
   public func deleteDataTaxonomy(
     request: DeleteDataTaxonomyRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1580,14 +1580,14 @@ extension Clients.DataTaxonomyServiceProtocol {
   }
 
   public func createDataAttributeBinding(request: CreateDataAttributeBindingRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.createDataAttributeBinding(request: request, options: .init())
   }
 
   public func createDataAttributeBinding(
     request: CreateDataAttributeBindingRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1622,14 +1622,14 @@ extension Clients.DataTaxonomyServiceProtocol {
   }
 
   public func updateDataAttributeBinding(request: UpdateDataAttributeBindingRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.updateDataAttributeBinding(request: request, options: .init())
   }
 
   public func updateDataAttributeBinding(
     request: UpdateDataAttributeBindingRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1662,14 +1662,14 @@ extension Clients.DataTaxonomyServiceProtocol {
   }
 
   public func deleteDataAttributeBinding(request: DeleteDataAttributeBindingRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.deleteDataAttributeBinding(request: request, options: .init())
   }
 
   public func deleteDataAttributeBinding(
     request: DeleteDataAttributeBindingRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1758,14 +1758,14 @@ extension Clients.DataTaxonomyServiceProtocol {
   }
 
   public func createDataAttribute(request: CreateDataAttributeRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.createDataAttribute(request: request, options: .init())
   }
 
   public func createDataAttribute(
     request: CreateDataAttributeRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1799,14 +1799,14 @@ extension Clients.DataTaxonomyServiceProtocol {
   }
 
   public func updateDataAttribute(request: UpdateDataAttributeRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.updateDataAttribute(request: request, options: .init())
   }
 
   public func updateDataAttribute(
     request: UpdateDataAttributeRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1838,14 +1838,14 @@ extension Clients.DataTaxonomyServiceProtocol {
   }
 
   public func deleteDataAttribute(request: DeleteDataAttributeRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.deleteDataAttribute(request: request, options: .init())
   }
 
   public func deleteDataAttribute(
     request: DeleteDataAttributeRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -2008,29 +2008,29 @@ extension Clients.DataTaxonomyServiceProtocol {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
-  public func listOperations(request: GoogleLongrunning.ListOperationsRequest) async throws
-    -> GoogleLongrunning.ListOperationsResponse
+  public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
+    -> GoogleLongRunning.ListOperationsResponse
   {
     try await self.listOperations(request: request, options: .init())
   }
 
   public func listOperations(
-    request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.ListOperationsResponse {
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.ListOperationsResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func listOperations(
-    byItem: GoogleLongrunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+    byItem: GoogleLongRunning.ListOperationsRequest
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     try self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
-    byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongrunning.ListOperationsResponse in
+      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleCloudGax.RequestError.unimplemented
     }
     return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
@@ -2039,41 +2039,41 @@ extension Clients.DataTaxonomyServiceProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
-    let request = GoogleLongrunning.ListOperationsRequest().with {
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
     return try self.listOperations(byItem: request)
   }
 
-  public func getOperation(request: GoogleLongrunning.GetOperationRequest) async throws
-    -> GoogleLongrunning.Operation
+  public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
+    -> GoogleLongRunning.Operation
   {
     try await self.getOperation(request: request, options: .init())
   }
 
   public func getOperation(
-    request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+    request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func getOperation(
     name: Swift.String,
-  ) async throws -> GoogleLongrunning.Operation {
-    let request = GoogleLongrunning.GetOperationRequest().with {
+  ) async throws -> GoogleLongRunning.Operation {
+    let request = GoogleLongRunning.GetOperationRequest().with {
       $0.name = name
     }
     return try await self.getOperation(request: request)
   }
 
-  public func deleteOperation(request: GoogleLongrunning.DeleteOperationRequest) async throws {
+  public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
 
   public func deleteOperation(
-    request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+    request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws {
     throw GoogleCloudGax.RequestError.unimplemented
   }
@@ -2081,18 +2081,18 @@ extension Clients.DataTaxonomyServiceProtocol {
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
-    let request = GoogleLongrunning.DeleteOperationRequest().with {
+    let request = GoogleLongRunning.DeleteOperationRequest().with {
       $0.name = name
     }
     try await self.deleteOperation(request: request)
   }
 
-  public func cancelOperation(request: GoogleLongrunning.CancelOperationRequest) async throws {
+  public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
 
   public func cancelOperation(
-    request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+    request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws {
     throw GoogleCloudGax.RequestError.unimplemented
   }
@@ -2100,7 +2100,7 @@ extension Clients.DataTaxonomyServiceProtocol {
   public func cancelOperation(
     name: Swift.String,
   ) async throws {
-    let request = GoogleLongrunning.CancelOperationRequest().with {
+    let request = GoogleLongRunning.CancelOperationRequest().with {
       $0.name = name
     }
     try await self.cancelOperation(request: request)

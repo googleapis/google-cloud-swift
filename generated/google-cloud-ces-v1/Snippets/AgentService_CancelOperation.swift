@@ -20,12 +20,12 @@ import Foundation
 import GoogleCloudCESV1
 import GoogleCloudLocation
 import GoogleCloudWkt
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleRpc
 
 func sample(client: AgentServiceClient) async throws {
   try await client.cancelOperation(
-    request: GoogleLongrunning.CancelOperationRequest()
+    request: GoogleLongRunning.CancelOperationRequest()
       /* set fields using .with { $0... } */
   )
   print("Success (no response expected)")

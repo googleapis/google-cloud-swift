@@ -19,7 +19,7 @@
 import Foundation
 import GoogleCloudRetailV2
 import GoogleCloudWkt
-import GoogleLongrunning
+import GoogleLongRunning
 
 func sample(client: ServingConfigServiceClient) async throws {
   let response = try await client.addControl(

@@ -19,7 +19,7 @@
 import Foundation
 import GoogleCloudOSConfigV1
 import GoogleCloudWkt
-import GoogleLongrunning
+import GoogleLongRunning
 
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudOSConfigV1.OsConfigServiceClient()

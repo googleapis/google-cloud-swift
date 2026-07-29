@@ -20,7 +20,7 @@ import Foundation
 import GoogleCloudResourceManagerV3
 import GoogleCloudWkt
 import GoogleIAMV1
-import GoogleLongrunning
+import GoogleLongRunning
 
 func sample(client: OrganizationsClient, organizationId: String) async throws {
   let response = try await client.getOrganization(

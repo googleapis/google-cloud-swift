@@ -21,12 +21,12 @@ import GoogleCloudConfigV1
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleIAMV1
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleRpc
 
 func sample(client: ConfigClient) async throws {
   try await client.deleteOperation(
-    request: GoogleLongrunning.DeleteOperationRequest()
+    request: GoogleLongRunning.DeleteOperationRequest()
       /* set fields using .with { $0... } */
   )
   print("Success (no response expected)")

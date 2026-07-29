@@ -21,7 +21,7 @@
   #endif
   import GoogleCloudLocation
   import GoogleCloudWkt
-  import GoogleLongrunning
+  import GoogleLongRunning
   import GoogleRpc
   import GoogleCloudGax
   import struct Logging.Logger
@@ -92,14 +92,14 @@
 
       public func createDocument(
         request: CreateDocumentRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation {
+      ) async throws -> GoogleLongRunning.Operation {
         try await self._intercept(
           request: request,
           options: options,
           name: "createDocument",
           action: {
             (r: CreateDocumentRequest, o: GoogleCloudGax.RequestOptions) async throws
-              -> GoogleLongrunning.Operation
+              -> GoogleLongRunning.Operation
             in
             return try await self.inner.createDocument(request: r, options: o)
           })
@@ -107,14 +107,14 @@
 
       public func importDocuments(
         request: ImportDocumentsRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation {
+      ) async throws -> GoogleLongRunning.Operation {
         try await self._intercept(
           request: request,
           options: options,
           name: "importDocuments",
           action: {
             (r: ImportDocumentsRequest, o: GoogleCloudGax.RequestOptions) async throws
-              -> GoogleLongrunning.Operation
+              -> GoogleLongRunning.Operation
             in
             return try await self.inner.importDocuments(request: r, options: o)
           })
@@ -122,14 +122,14 @@
 
       public func deleteDocument(
         request: DeleteDocumentRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation {
+      ) async throws -> GoogleLongRunning.Operation {
         try await self._intercept(
           request: request,
           options: options,
           name: "deleteDocument",
           action: {
             (r: DeleteDocumentRequest, o: GoogleCloudGax.RequestOptions) async throws
-              -> GoogleLongrunning.Operation
+              -> GoogleLongRunning.Operation
             in
             return try await self.inner.deleteDocument(request: r, options: o)
           })
@@ -137,14 +137,14 @@
 
       public func updateDocument(
         request: UpdateDocumentRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation {
+      ) async throws -> GoogleLongRunning.Operation {
         try await self._intercept(
           request: request,
           options: options,
           name: "updateDocument",
           action: {
             (r: UpdateDocumentRequest, o: GoogleCloudGax.RequestOptions) async throws
-              -> GoogleLongrunning.Operation
+              -> GoogleLongRunning.Operation
             in
             return try await self.inner.updateDocument(request: r, options: o)
           })
@@ -152,14 +152,14 @@
 
       public func reloadDocument(
         request: ReloadDocumentRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation {
+      ) async throws -> GoogleLongRunning.Operation {
         try await self._intercept(
           request: request,
           options: options,
           name: "reloadDocument",
           action: {
             (r: ReloadDocumentRequest, o: GoogleCloudGax.RequestOptions) async throws
-              -> GoogleLongrunning.Operation
+              -> GoogleLongRunning.Operation
             in
             return try await self.inner.reloadDocument(request: r, options: o)
           })
@@ -167,14 +167,14 @@
 
       public func exportDocument(
         request: ExportDocumentRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation {
+      ) async throws -> GoogleLongRunning.Operation {
         try await self._intercept(
           request: request,
           options: options,
           name: "exportDocument",
           action: {
             (r: ExportDocumentRequest, o: GoogleCloudGax.RequestOptions) async throws
-              -> GoogleLongrunning.Operation
+              -> GoogleLongRunning.Operation
             in
             return try await self.inner.exportDocument(request: r, options: o)
           })
@@ -211,44 +211,44 @@
       }
 
       public func listOperations(
-        request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.ListOperationsResponse {
+        request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+      ) async throws -> GoogleLongRunning.ListOperationsResponse {
         try await self._intercept(
           request: request,
           options: options,
           name: "listOperations",
           action: {
-            (r: GoogleLongrunning.ListOperationsRequest, o: GoogleCloudGax.RequestOptions)
-              async throws -> GoogleLongrunning.ListOperationsResponse
+            (r: GoogleLongRunning.ListOperationsRequest, o: GoogleCloudGax.RequestOptions)
+              async throws -> GoogleLongRunning.ListOperationsResponse
             in
             return try await self.inner.listOperations(request: r, options: o)
           })
       }
 
       public func getOperation(
-        request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation {
+        request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+      ) async throws -> GoogleLongRunning.Operation {
         try await self._intercept(
           request: request,
           options: options,
           name: "getOperation",
           action: {
-            (r: GoogleLongrunning.GetOperationRequest, o: GoogleCloudGax.RequestOptions)
-              async throws -> GoogleLongrunning.Operation
+            (r: GoogleLongRunning.GetOperationRequest, o: GoogleCloudGax.RequestOptions)
+              async throws -> GoogleLongRunning.Operation
             in
             return try await self.inner.getOperation(request: r, options: o)
           })
       }
 
       public func cancelOperation(
-        request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+        request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
       ) async throws {
         try await self._intercept(
           request: request,
           options: options,
           name: "cancelOperation",
           action: {
-            (r: GoogleLongrunning.CancelOperationRequest, o: GoogleCloudGax.RequestOptions)
+            (r: GoogleLongRunning.CancelOperationRequest, o: GoogleCloudGax.RequestOptions)
               async throws -> Void in
             return try await self.inner.cancelOperation(request: r, options: o)
           })

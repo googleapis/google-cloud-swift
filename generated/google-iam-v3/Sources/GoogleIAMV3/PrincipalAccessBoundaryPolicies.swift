@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudWkt
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
 
@@ -48,7 +48,7 @@ public class PrincipalAccessBoundaryPoliciesClient: Clients.PrincipalAccessBound
   /// @Snippet(path: "PrincipalAccessBoundaryPolicies_CreatePrincipalAccessBoundaryPolicy")
   public func createPrincipalAccessBoundaryPolicy(
     request: CreatePrincipalAccessBoundaryPolicyRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.createPrincipalAccessBoundaryPolicy(request: request, options: options)
   }
 
@@ -60,7 +60,7 @@ public class PrincipalAccessBoundaryPoliciesClient: Clients.PrincipalAccessBound
     withPolling: CreatePrincipalAccessBoundaryPolicyRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<PrincipalAccessBoundaryPolicy> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<PrincipalAccessBoundaryPolicy>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -124,7 +124,7 @@ public class PrincipalAccessBoundaryPoliciesClient: Clients.PrincipalAccessBound
   /// @Snippet(path: "PrincipalAccessBoundaryPolicies_UpdatePrincipalAccessBoundaryPolicy")
   public func updatePrincipalAccessBoundaryPolicy(
     request: UpdatePrincipalAccessBoundaryPolicyRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.updatePrincipalAccessBoundaryPolicy(request: request, options: options)
   }
 
@@ -135,7 +135,7 @@ public class PrincipalAccessBoundaryPoliciesClient: Clients.PrincipalAccessBound
     withPolling: UpdatePrincipalAccessBoundaryPolicyRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<PrincipalAccessBoundaryPolicy> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<PrincipalAccessBoundaryPolicy>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -190,7 +190,7 @@ public class PrincipalAccessBoundaryPoliciesClient: Clients.PrincipalAccessBound
   /// @Snippet(path: "PrincipalAccessBoundaryPolicies_DeletePrincipalAccessBoundaryPolicy")
   public func deletePrincipalAccessBoundaryPolicy(
     request: DeletePrincipalAccessBoundaryPolicyRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.deletePrincipalAccessBoundaryPolicy(request: request, options: options)
   }
 
@@ -201,7 +201,7 @@ public class PrincipalAccessBoundaryPoliciesClient: Clients.PrincipalAccessBound
     withPolling: DeletePrincipalAccessBoundaryPolicyRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
+      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
       in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -303,8 +303,8 @@ public class PrincipalAccessBoundaryPoliciesClient: Clients.PrincipalAccessBound
   ///
   /// @Snippet(path: "PrincipalAccessBoundaryPolicies_GetOperation")
   func getOperation(
-    request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+    request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.getOperation(request: request, options: options)
   }
 }
@@ -318,7 +318,7 @@ extension Clients {
   public protocol PrincipalAccessBoundaryPoliciesProtocol {
     /// See `PrincipalAccessBoundaryPoliciesClient.createPrincipalAccessBoundaryPolicy`.
     func createPrincipalAccessBoundaryPolicy(request: CreatePrincipalAccessBoundaryPolicyRequest)
-      async throws -> GoogleLongrunning.Operation
+      async throws -> GoogleLongRunning.Operation
 
     /// See `PrincipalAccessBoundaryPoliciesClient.createPrincipalAccessBoundaryPolicy`.
     func createPrincipalAccessBoundaryPolicy(
@@ -343,7 +343,7 @@ extension Clients {
 
     /// See `PrincipalAccessBoundaryPoliciesClient.updatePrincipalAccessBoundaryPolicy`.
     func updatePrincipalAccessBoundaryPolicy(request: UpdatePrincipalAccessBoundaryPolicyRequest)
-      async throws -> GoogleLongrunning.Operation
+      async throws -> GoogleLongRunning.Operation
 
     /// See `PrincipalAccessBoundaryPoliciesClient.updatePrincipalAccessBoundaryPolicy`.
     func updatePrincipalAccessBoundaryPolicy(
@@ -358,7 +358,7 @@ extension Clients {
 
     /// See `PrincipalAccessBoundaryPoliciesClient.deletePrincipalAccessBoundaryPolicy`.
     func deletePrincipalAccessBoundaryPolicy(request: DeletePrincipalAccessBoundaryPolicyRequest)
-      async throws -> GoogleLongrunning.Operation
+      async throws -> GoogleLongRunning.Operation
 
     /// See `PrincipalAccessBoundaryPoliciesClient.deletePrincipalAccessBoundaryPolicy`.
     func deletePrincipalAccessBoundaryPolicy(
@@ -402,7 +402,7 @@ extension Clients {
     /// See `PrincipalAccessBoundaryPoliciesClient.createPrincipalAccessBoundaryPolicy`.
     func createPrincipalAccessBoundaryPolicy(
       request: CreatePrincipalAccessBoundaryPolicyRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `PrincipalAccessBoundaryPoliciesClient.createPrincipalAccessBoundaryPolicy`.
     func createPrincipalAccessBoundaryPolicy(
@@ -418,7 +418,7 @@ extension Clients {
     /// See `PrincipalAccessBoundaryPoliciesClient.updatePrincipalAccessBoundaryPolicy`.
     func updatePrincipalAccessBoundaryPolicy(
       request: UpdatePrincipalAccessBoundaryPolicyRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `PrincipalAccessBoundaryPoliciesClient.updatePrincipalAccessBoundaryPolicy`.
     func updatePrincipalAccessBoundaryPolicy(
@@ -429,7 +429,7 @@ extension Clients {
     /// See `PrincipalAccessBoundaryPoliciesClient.deletePrincipalAccessBoundaryPolicy`.
     func deletePrincipalAccessBoundaryPolicy(
       request: DeletePrincipalAccessBoundaryPolicyRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `PrincipalAccessBoundaryPoliciesClient.deletePrincipalAccessBoundaryPolicy`.
     func deletePrincipalAccessBoundaryPolicy(
@@ -465,13 +465,13 @@ extension Clients {
 extension Clients.PrincipalAccessBoundaryPoliciesProtocol {
   public func createPrincipalAccessBoundaryPolicy(
     request: CreatePrincipalAccessBoundaryPolicyRequest
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.createPrincipalAccessBoundaryPolicy(request: request, options: .init())
   }
 
   public func createPrincipalAccessBoundaryPolicy(
     request: CreatePrincipalAccessBoundaryPolicyRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -529,13 +529,13 @@ extension Clients.PrincipalAccessBoundaryPoliciesProtocol {
 
   public func updatePrincipalAccessBoundaryPolicy(
     request: UpdatePrincipalAccessBoundaryPolicyRequest
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.updatePrincipalAccessBoundaryPolicy(request: request, options: .init())
   }
 
   public func updatePrincipalAccessBoundaryPolicy(
     request: UpdatePrincipalAccessBoundaryPolicyRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -570,13 +570,13 @@ extension Clients.PrincipalAccessBoundaryPoliciesProtocol {
 
   public func deletePrincipalAccessBoundaryPolicy(
     request: DeletePrincipalAccessBoundaryPolicyRequest
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.deletePrincipalAccessBoundaryPolicy(request: request, options: .init())
   }
 
   public func deletePrincipalAccessBoundaryPolicy(
     request: DeletePrincipalAccessBoundaryPolicyRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -683,22 +683,22 @@ extension Clients.PrincipalAccessBoundaryPoliciesProtocol {
     return try self.searchPrincipalAccessBoundaryPolicyBindings(byItem: request)
   }
 
-  public func getOperation(request: GoogleLongrunning.GetOperationRequest) async throws
-    -> GoogleLongrunning.Operation
+  public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
+    -> GoogleLongRunning.Operation
   {
     try await self.getOperation(request: request, options: .init())
   }
 
   public func getOperation(
-    request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+    request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func getOperation(
     name: Swift.String,
-  ) async throws -> GoogleLongrunning.Operation {
-    let request = GoogleLongrunning.GetOperationRequest().with {
+  ) async throws -> GoogleLongRunning.Operation {
+    let request = GoogleLongRunning.GetOperationRequest().with {
       $0.name = name
     }
     return try await self.getOperation(request: request)

@@ -20,7 +20,7 @@ import Foundation
 import GoogleCloudConfigDeliveryV1
 import GoogleCloudLocation
 import GoogleCloudWkt
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleRpc
 
 func sample(projectId: String, locationId: String, ) async throws {

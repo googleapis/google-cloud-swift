@@ -19,7 +19,7 @@
 import Foundation
 import GoogleStorageTransferV1
 import GoogleCloudWkt
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleRpc
 
 func sample(client: StorageTransferServiceClient) async throws {

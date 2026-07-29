@@ -23,7 +23,7 @@ import GoogleRpc
 /// [ReconcileTags][google.cloud.datacatalog.v1.DataCatalog.ReconcileTags].
 ///
 /// [google.cloud.datacatalog.v1.DataCatalog.ReconcileTags]: <doc:DataCatalog/reconcileTags(request:)>
-/// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongrunning.Operation
+/// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
 public struct ReconcileTagsMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

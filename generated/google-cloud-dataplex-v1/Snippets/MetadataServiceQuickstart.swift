@@ -21,7 +21,7 @@ import GoogleCloudDataplexV1
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleIAMV1
-import GoogleLongrunning
+import GoogleLongRunning
 
 func sample(projectId: String, locationId: String, lakeId: String, zoneId: String, ) async throws {
   let client = try GoogleCloudDataplexV1.MetadataServiceClient()

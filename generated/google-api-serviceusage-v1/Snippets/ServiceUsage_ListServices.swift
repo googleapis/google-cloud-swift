@@ -19,7 +19,7 @@
 import Foundation
 import GoogleApiServiceUsageV1
 import GoogleCloudWkt
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleRpc
 
 func sample(client: ServiceUsageClient, parent: String) async throws {

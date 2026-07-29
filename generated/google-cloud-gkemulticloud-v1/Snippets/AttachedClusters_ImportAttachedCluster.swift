@@ -19,7 +19,7 @@
 import Foundation
 import GoogleCloudGKEMultiCloudV1
 import GoogleCloudWkt
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleRpc
 
 func sample(client: AttachedClustersClient) async throws {

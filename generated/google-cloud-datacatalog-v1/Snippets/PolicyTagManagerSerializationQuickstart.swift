@@ -19,7 +19,7 @@
 import Foundation
 import GoogleCloudDataCatalogV1
 import GoogleCloudWkt
-import GoogleLongrunning
+import GoogleLongRunning
 
 func sample() async throws {
   let client = try GoogleCloudDataCatalogV1.PolicyTagManagerSerializationClient()

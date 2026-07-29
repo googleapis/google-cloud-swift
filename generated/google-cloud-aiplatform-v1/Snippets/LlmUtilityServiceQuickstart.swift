@@ -22,7 +22,7 @@
   import GoogleCloudLocation
   import GoogleCloudWkt
   import GoogleIAMV1
-  import GoogleLongrunning
+  import GoogleLongRunning
 
   func sample() async throws {
     let client = try GoogleCloudAIPlatformV1.LlmUtilityServiceClient()

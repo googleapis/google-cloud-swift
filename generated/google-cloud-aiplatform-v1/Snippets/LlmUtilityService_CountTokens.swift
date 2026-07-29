@@ -22,7 +22,7 @@
   import GoogleCloudLocation
   import GoogleCloudWkt
   import GoogleIAMV1
-  import GoogleLongrunning
+  import GoogleLongRunning
 
   func sample(client: LlmUtilityServiceClient) async throws {
     let response = try await client.countTokens(

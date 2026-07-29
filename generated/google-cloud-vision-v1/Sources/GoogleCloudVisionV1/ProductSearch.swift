@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudWkt
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
 
@@ -409,12 +409,12 @@ public class ProductSearchClient: Clients.ProductSearchProtocol {
   /// [ImportProductSetsGcsSource.csv_file_uri][google.cloud.vision.v1.ImportProductSetsGcsSource.csv_file_uri].
   ///
   /// [google.cloud.vision.v1.ImportProductSetsGcsSource.csv_file_uri]: <doc:ImportProductSetsGcsSource/csvFileUri>
-  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongrunning.Operation
+  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   ///
   /// @Snippet(path: "ProductSearch_ImportProductSets")
   public func importProductSets(
     request: ImportProductSetsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.importProductSets(request: request, options: options)
   }
 
@@ -431,14 +431,14 @@ public class ProductSearchClient: Clients.ProductSearchProtocol {
   /// [ImportProductSetsGcsSource.csv_file_uri][google.cloud.vision.v1.ImportProductSetsGcsSource.csv_file_uri].
   ///
   /// [google.cloud.vision.v1.ImportProductSetsGcsSource.csv_file_uri]: <doc:ImportProductSetsGcsSource/csvFileUri>
-  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongrunning.Operation
+  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   ///
   /// @Snippet(path: "ProductSearch_ImportProductSets")
   public func importProductSets(
     withPolling: ImportProductSetsRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<ImportProductSetsResponse> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<ImportProductSetsResponse>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -511,12 +511,12 @@ public class ProductSearchClient: Clients.ProductSearchProtocol {
   /// used to keep track of the progress and results of the request.
   /// `Operation.metadata` contains `BatchOperationMetadata`. (progress)
   ///
-  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongrunning.Operation
+  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   ///
   /// @Snippet(path: "ProductSearch_PurgeProducts")
   public func purgeProducts(
     request: PurgeProductsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.purgeProducts(request: request, options: options)
   }
 
@@ -545,14 +545,14 @@ public class ProductSearchClient: Clients.ProductSearchProtocol {
   /// used to keep track of the progress and results of the request.
   /// `Operation.metadata` contains `BatchOperationMetadata`. (progress)
   ///
-  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongrunning.Operation
+  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   ///
   /// @Snippet(path: "ProductSearch_PurgeProducts")
   public func purgeProducts(
     withPolling: PurgeProductsRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
+      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
       in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -597,8 +597,8 @@ public class ProductSearchClient: Clients.ProductSearchProtocol {
   ///
   /// @Snippet(path: "ProductSearch_GetOperation")
   func getOperation(
-    request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+    request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.getOperation(request: request, options: options)
   }
 }
@@ -786,7 +786,7 @@ extension Clients {
 
     /// See `ProductSearchClient.importProductSets`.
     func importProductSets(request: ImportProductSetsRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `ProductSearchClient.importProductSets`.
     func importProductSets(withPolling: ImportProductSetsRequest) async throws -> any GoogleCloudGax
@@ -799,7 +799,7 @@ extension Clients {
     ) async throws -> any GoogleCloudGax.PollableOperation<ImportProductSetsResponse>
 
     /// See `ProductSearchClient.purgeProducts`.
-    func purgeProducts(request: PurgeProductsRequest) async throws -> GoogleLongrunning.Operation
+    func purgeProducts(request: PurgeProductsRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `ProductSearchClient.purgeProducts`.
     func purgeProducts(withPolling: PurgeProductsRequest) async throws -> any GoogleCloudGax
@@ -918,7 +918,7 @@ extension Clients {
     /// See `ProductSearchClient.importProductSets`.
     func importProductSets(
       request: ImportProductSetsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `ProductSearchClient.importProductSets`.
     func importProductSets(
@@ -928,7 +928,7 @@ extension Clients {
     /// See `ProductSearchClient.purgeProducts`.
     func purgeProducts(
       request: PurgeProductsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `ProductSearchClient.purgeProducts`.
     func purgeProducts(
@@ -1370,14 +1370,14 @@ extension Clients.ProductSearchProtocol {
   }
 
   public func importProductSets(request: ImportProductSetsRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.importProductSets(request: request, options: .init())
   }
 
   public func importProductSets(
     request: ImportProductSetsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1410,14 +1410,14 @@ extension Clients.ProductSearchProtocol {
   }
 
   public func purgeProducts(request: PurgeProductsRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.purgeProducts(request: request, options: .init())
   }
 
   public func purgeProducts(
     request: PurgeProductsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1446,22 +1446,22 @@ extension Clients.ProductSearchProtocol {
     return try await self.purgeProducts(withPolling: request)
   }
 
-  public func getOperation(request: GoogleLongrunning.GetOperationRequest) async throws
-    -> GoogleLongrunning.Operation
+  public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
+    -> GoogleLongRunning.Operation
   {
     try await self.getOperation(request: request, options: .init())
   }
 
   public func getOperation(
-    request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+    request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func getOperation(
     name: Swift.String,
-  ) async throws -> GoogleLongrunning.Operation {
-    let request = GoogleLongrunning.GetOperationRequest().with {
+  ) async throws -> GoogleLongRunning.Operation {
+    let request = GoogleLongRunning.GetOperationRequest().with {
       $0.name = name
     }
     return try await self.getOperation(request: request)

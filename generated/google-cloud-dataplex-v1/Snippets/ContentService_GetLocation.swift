@@ -21,7 +21,7 @@ import GoogleCloudDataplexV1
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleIAMV1
-import GoogleLongrunning
+import GoogleLongRunning
 
 func sample(client: ContentServiceClient) async throws {
   let response = try await client.getLocation(

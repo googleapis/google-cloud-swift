@@ -19,7 +19,7 @@
 import Foundation
 import GoogleCloudOSConfigV1
 import GoogleCloudWkt
-import GoogleLongrunning
+import GoogleLongRunning
 
 func sample(client: OsConfigServiceClient, projectId: String, patchJobId: String) async throws {
   let response = try await client.getPatchJob(

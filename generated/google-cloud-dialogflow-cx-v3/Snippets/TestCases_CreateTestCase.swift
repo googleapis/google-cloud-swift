@@ -21,7 +21,7 @@
   import GoogleCloudDialogflowCxV3
   import GoogleCloudLocation
   import GoogleCloudWkt
-  import GoogleLongrunning
+  import GoogleLongRunning
   import GoogleRpc
 
   func sample(client: TestCasesClient, projectId: String, locationId: String, agentId: String)

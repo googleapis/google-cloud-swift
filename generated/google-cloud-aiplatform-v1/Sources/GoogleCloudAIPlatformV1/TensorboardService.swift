@@ -22,7 +22,7 @@
   import GoogleCloudLocation
   import GoogleCloudWkt
   import GoogleIAMV1
-  import GoogleLongrunning
+  import GoogleLongRunning
   import GoogleRpc
   import GoogleCloudGax
 
@@ -48,7 +48,7 @@
     /// @Snippet(path: "TensorboardService_CreateTensorboard")
     public func createTensorboard(
       request: CreateTensorboardRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       try await self.inner.createTensorboard(request: request, options: options)
     }
 
@@ -59,7 +59,7 @@
       withPolling: CreateTensorboardRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> any GoogleCloudGax.PollableOperation<Tensorboard> {
       let extractStatus = {
-        (op: GoogleLongrunning.Operation) throws
+        (op: GoogleLongRunning.Operation) throws
           -> GoogleCloudGax._PollableOperationImpl<Tensorboard>.State in
         guard op.done else {
           return .init(done: false, result: nil)
@@ -120,7 +120,7 @@
     /// @Snippet(path: "TensorboardService_UpdateTensorboard")
     public func updateTensorboard(
       request: UpdateTensorboardRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       try await self.inner.updateTensorboard(request: request, options: options)
     }
 
@@ -131,7 +131,7 @@
       withPolling: UpdateTensorboardRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> any GoogleCloudGax.PollableOperation<Tensorboard> {
       let extractStatus = {
-        (op: GoogleLongrunning.Operation) throws
+        (op: GoogleLongRunning.Operation) throws
           -> GoogleCloudGax._PollableOperationImpl<Tensorboard>.State in
         guard op.done else {
           return .init(done: false, result: nil)
@@ -207,7 +207,7 @@
     /// @Snippet(path: "TensorboardService_DeleteTensorboard")
     public func deleteTensorboard(
       request: DeleteTensorboardRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       try await self.inner.deleteTensorboard(request: request, options: options)
     }
 
@@ -218,7 +218,7 @@
       withPolling: DeleteTensorboardRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
       let extractStatus = {
-        (op: GoogleLongrunning.Operation) throws
+        (op: GoogleLongRunning.Operation) throws
           -> GoogleCloudGax._PollableOperationImpl<Void>.State in
         guard op.done else {
           return .init(done: false, result: nil)
@@ -332,7 +332,7 @@
     /// @Snippet(path: "TensorboardService_DeleteTensorboardExperiment")
     public func deleteTensorboardExperiment(
       request: DeleteTensorboardExperimentRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       try await self.inner.deleteTensorboardExperiment(request: request, options: options)
     }
 
@@ -343,7 +343,7 @@
       withPolling: DeleteTensorboardExperimentRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
       let extractStatus = {
-        (op: GoogleLongrunning.Operation) throws
+        (op: GoogleLongRunning.Operation) throws
           -> GoogleCloudGax._PollableOperationImpl<Void>.State in
         guard op.done else {
           return .init(done: false, result: nil)
@@ -447,7 +447,7 @@
     /// @Snippet(path: "TensorboardService_DeleteTensorboardRun")
     public func deleteTensorboardRun(
       request: DeleteTensorboardRunRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       try await self.inner.deleteTensorboardRun(request: request, options: options)
     }
 
@@ -458,7 +458,7 @@
       withPolling: DeleteTensorboardRunRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
       let extractStatus = {
-        (op: GoogleLongrunning.Operation) throws
+        (op: GoogleLongRunning.Operation) throws
           -> GoogleCloudGax._PollableOperationImpl<Void>.State in
         guard op.done else {
           return .init(done: false, result: nil)
@@ -563,7 +563,7 @@
     /// @Snippet(path: "TensorboardService_DeleteTensorboardTimeSeries")
     public func deleteTensorboardTimeSeries(
       request: DeleteTensorboardTimeSeriesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       try await self.inner.deleteTensorboardTimeSeries(request: request, options: options)
     }
 
@@ -574,7 +574,7 @@
       withPolling: DeleteTensorboardTimeSeriesRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
       let extractStatus = {
-        (op: GoogleLongrunning.Operation) throws
+        (op: GoogleLongRunning.Operation) throws
           -> GoogleCloudGax._PollableOperationImpl<Void>.State in
         guard op.done else {
           return .init(done: false, result: nil)
@@ -775,8 +775,8 @@
     ///
     /// @Snippet(path: "TensorboardService_ListOperations")
     public func listOperations(
-      request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.ListOperationsResponse {
+      request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.ListOperationsResponse {
       try await self.inner.listOperations(request: request, options: options)
     }
 
@@ -786,10 +786,10 @@
     ///
     /// @Snippet(path: "TensorboardService_ListOperations")
     public func listOperations(
-      byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
-        (token: Swift.String) async throws -> GoogleLongrunning.ListOperationsResponse in
+        (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
         var request = byItem
         request.pageToken = token
         return try await self.listOperations(request: request, options: options)
@@ -803,8 +803,8 @@
     ///
     /// @Snippet(path: "TensorboardService_GetOperation")
     func getOperation(
-      request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+      request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
       try await self.inner.getOperation(request: request, options: options)
     }
 
@@ -814,7 +814,7 @@
     ///
     /// @Snippet(path: "TensorboardService_DeleteOperation")
     public func deleteOperation(
-      request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+      request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws {
       try await self.inner.deleteOperation(request: request, options: options)
     }
@@ -825,7 +825,7 @@
     ///
     /// @Snippet(path: "TensorboardService_CancelOperation")
     public func cancelOperation(
-      request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+      request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws {
       try await self.inner.cancelOperation(request: request, options: options)
     }
@@ -836,8 +836,8 @@
     ///
     /// @Snippet(path: "TensorboardService_WaitOperation")
     public func waitOperation(
-      request: GoogleLongrunning.WaitOperationRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+      request: GoogleLongRunning.WaitOperationRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
       try await self.inner.waitOperation(request: request, options: options)
     }
   }
@@ -851,7 +851,7 @@
     public protocol TensorboardServiceProtocol {
       /// See `TensorboardServiceClient.createTensorboard`.
       func createTensorboard(request: CreateTensorboardRequest) async throws
-        -> GoogleLongrunning.Operation
+        -> GoogleLongRunning.Operation
 
       /// See `TensorboardServiceClient.createTensorboard`.
       func createTensorboard(withPolling: CreateTensorboardRequest) async throws
@@ -874,7 +874,7 @@
 
       /// See `TensorboardServiceClient.updateTensorboard`.
       func updateTensorboard(request: UpdateTensorboardRequest) async throws
-        -> GoogleLongrunning.Operation
+        -> GoogleLongRunning.Operation
 
       /// See `TensorboardServiceClient.updateTensorboard`.
       func updateTensorboard(withPolling: UpdateTensorboardRequest) async throws
@@ -902,7 +902,7 @@
 
       /// See `TensorboardServiceClient.deleteTensorboard`.
       func deleteTensorboard(request: DeleteTensorboardRequest) async throws
-        -> GoogleLongrunning.Operation
+        -> GoogleLongRunning.Operation
 
       /// See `TensorboardServiceClient.deleteTensorboard`.
       func deleteTensorboard(withPolling: DeleteTensorboardRequest) async throws
@@ -977,7 +977,7 @@
 
       /// See `TensorboardServiceClient.deleteTensorboardExperiment`.
       func deleteTensorboardExperiment(request: DeleteTensorboardExperimentRequest) async throws
-        -> GoogleLongrunning.Operation
+        -> GoogleLongRunning.Operation
 
       /// See `TensorboardServiceClient.deleteTensorboardExperiment`.
       func deleteTensorboardExperiment(withPolling: DeleteTensorboardExperimentRequest) async throws
@@ -1044,7 +1044,7 @@
 
       /// See `TensorboardServiceClient.deleteTensorboardRun`.
       func deleteTensorboardRun(request: DeleteTensorboardRunRequest) async throws
-        -> GoogleLongrunning.Operation
+        -> GoogleLongRunning.Operation
 
       /// See `TensorboardServiceClient.deleteTensorboardRun`.
       func deleteTensorboardRun(withPolling: DeleteTensorboardRunRequest) async throws
@@ -1110,7 +1110,7 @@
 
       /// See `TensorboardServiceClient.deleteTensorboardTimeSeries`.
       func deleteTensorboardTimeSeries(request: DeleteTensorboardTimeSeriesRequest) async throws
-        -> GoogleLongrunning.Operation
+        -> GoogleLongRunning.Operation
 
       /// See `TensorboardServiceClient.deleteTensorboardTimeSeries`.
       func deleteTensorboardTimeSeries(withPolling: DeleteTensorboardTimeSeriesRequest) async throws
@@ -1206,22 +1206,22 @@
         -> GoogleIAMV1.TestIamPermissionsResponse
 
       /// See `TensorboardServiceClient.listOperations`.
-      func listOperations(request: GoogleLongrunning.ListOperationsRequest) async throws
-        -> GoogleLongrunning.ListOperationsResponse
+      func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
+        -> GoogleLongRunning.ListOperationsResponse
 
       /// See `TensorboardServiceClient.listOperations`.
       func listOperations(
-        byItem: GoogleLongrunning.ListOperationsRequest
-      ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+        byItem: GoogleLongRunning.ListOperationsRequest
+      ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `TensorboardServiceClient.listOperations`.
       func listOperations(
         name: Swift.String,
         filter: Swift.String,
-      ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+      ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `TensorboardServiceClient.deleteOperation`.
-      func deleteOperation(request: GoogleLongrunning.DeleteOperationRequest) async throws
+      func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
 
       /// See `TensorboardServiceClient.deleteOperation`.
       func deleteOperation(
@@ -1229,7 +1229,7 @@
       ) async throws
 
       /// See `TensorboardServiceClient.cancelOperation`.
-      func cancelOperation(request: GoogleLongrunning.CancelOperationRequest) async throws
+      func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
 
       /// See `TensorboardServiceClient.cancelOperation`.
       func cancelOperation(
@@ -1237,13 +1237,13 @@
       ) async throws
 
       /// See `TensorboardServiceClient.waitOperation`.
-      func waitOperation(request: GoogleLongrunning.WaitOperationRequest) async throws
-        -> GoogleLongrunning.Operation
+      func waitOperation(request: GoogleLongRunning.WaitOperationRequest) async throws
+        -> GoogleLongRunning.Operation
 
       /// See `TensorboardServiceClient.createTensorboard`.
       func createTensorboard(
         request: CreateTensorboardRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+      ) async throws -> GoogleLongRunning.Operation
 
       /// See `TensorboardServiceClient.createTensorboard`.
       func createTensorboard(
@@ -1258,7 +1258,7 @@
       /// See `TensorboardServiceClient.updateTensorboard`.
       func updateTensorboard(
         request: UpdateTensorboardRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+      ) async throws -> GoogleLongRunning.Operation
 
       /// See `TensorboardServiceClient.updateTensorboard`.
       func updateTensorboard(
@@ -1278,7 +1278,7 @@
       /// See `TensorboardServiceClient.deleteTensorboard`.
       func deleteTensorboard(
         request: DeleteTensorboardRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+      ) async throws -> GoogleLongRunning.Operation
 
       /// See `TensorboardServiceClient.deleteTensorboard`.
       func deleteTensorboard(
@@ -1323,7 +1323,7 @@
       /// See `TensorboardServiceClient.deleteTensorboardExperiment`.
       func deleteTensorboardExperiment(
         request: DeleteTensorboardExperimentRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+      ) async throws -> GoogleLongRunning.Operation
 
       /// See `TensorboardServiceClient.deleteTensorboardExperiment`.
       func deleteTensorboardExperiment(
@@ -1363,7 +1363,7 @@
       /// See `TensorboardServiceClient.deleteTensorboardRun`.
       func deleteTensorboardRun(
         request: DeleteTensorboardRunRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+      ) async throws -> GoogleLongRunning.Operation
 
       /// See `TensorboardServiceClient.deleteTensorboardRun`.
       func deleteTensorboardRun(
@@ -1403,7 +1403,7 @@
       /// See `TensorboardServiceClient.deleteTensorboardTimeSeries`.
       func deleteTensorboardTimeSeries(
         request: DeleteTensorboardTimeSeriesRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+      ) async throws -> GoogleLongRunning.Operation
 
       /// See `TensorboardServiceClient.deleteTensorboardTimeSeries`.
       func deleteTensorboardTimeSeries(
@@ -1477,42 +1477,42 @@
 
       /// See `TensorboardServiceClient.listOperations`.
       func listOperations(
-        request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.ListOperationsResponse
+        request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+      ) async throws -> GoogleLongRunning.ListOperationsResponse
 
       /// See `TensorboardServiceClient.listOperations`.
       func listOperations(
-        byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-      ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+        byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+      ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `TensorboardServiceClient.deleteOperation`.
       func deleteOperation(
-        request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+        request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
       ) async throws
 
       /// See `TensorboardServiceClient.cancelOperation`.
       func cancelOperation(
-        request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+        request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
       ) async throws
 
       /// See `TensorboardServiceClient.waitOperation`.
       func waitOperation(
-        request: GoogleLongrunning.WaitOperationRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+        request: GoogleLongRunning.WaitOperationRequest, options: GoogleCloudGax.RequestOptions
+      ) async throws -> GoogleLongRunning.Operation
     }
   }
 
   // Default implementations
   extension Clients.TensorboardServiceProtocol {
     public func createTensorboard(request: CreateTensorboardRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
     {
       try await self.createTensorboard(request: request, options: .init())
     }
 
     public func createTensorboard(
       request: CreateTensorboardRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       throw GoogleCloudGax.RequestError.unimplemented
     }
 
@@ -1565,14 +1565,14 @@
     }
 
     public func updateTensorboard(request: UpdateTensorboardRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
     {
       try await self.updateTensorboard(request: request, options: .init())
     }
 
     public func updateTensorboard(
       request: UpdateTensorboardRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       throw GoogleCloudGax.RequestError.unimplemented
     }
 
@@ -1641,14 +1641,14 @@
     }
 
     public func deleteTensorboard(request: DeleteTensorboardRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
     {
       try await self.deleteTensorboard(request: request, options: .init())
     }
 
     public func deleteTensorboard(
       request: DeleteTensorboardRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       throw GoogleCloudGax.RequestError.unimplemented
     }
 
@@ -1827,14 +1827,14 @@
     }
 
     public func deleteTensorboardExperiment(request: DeleteTensorboardExperimentRequest)
-      async throws -> GoogleLongrunning.Operation
+      async throws -> GoogleLongRunning.Operation
     {
       try await self.deleteTensorboardExperiment(request: request, options: .init())
     }
 
     public func deleteTensorboardExperiment(
       request: DeleteTensorboardExperimentRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       throw GoogleCloudGax.RequestError.unimplemented
     }
 
@@ -1993,14 +1993,14 @@
     }
 
     public func deleteTensorboardRun(request: DeleteTensorboardRunRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
     {
       try await self.deleteTensorboardRun(request: request, options: .init())
     }
 
     public func deleteTensorboardRun(
       request: DeleteTensorboardRunRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       throw GoogleCloudGax.RequestError.unimplemented
     }
 
@@ -2158,14 +2158,14 @@
     }
 
     public func deleteTensorboardTimeSeries(request: DeleteTensorboardTimeSeriesRequest)
-      async throws -> GoogleLongrunning.Operation
+      async throws -> GoogleLongRunning.Operation
     {
       try await self.deleteTensorboardTimeSeries(request: request, options: .init())
     }
 
     public func deleteTensorboardTimeSeries(
       request: DeleteTensorboardTimeSeriesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       throw GoogleCloudGax.RequestError.unimplemented
     }
 
@@ -2417,29 +2417,29 @@
       throw GoogleCloudGax.RequestError.unimplemented
     }
 
-    public func listOperations(request: GoogleLongrunning.ListOperationsRequest) async throws
-      -> GoogleLongrunning.ListOperationsResponse
+    public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
+      -> GoogleLongRunning.ListOperationsResponse
     {
       try await self.listOperations(request: request, options: .init())
     }
 
     public func listOperations(
-      request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.ListOperationsResponse {
+      request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.ListOperationsResponse {
       throw GoogleCloudGax.RequestError.unimplemented
     }
 
     public func listOperations(
-      byItem: GoogleLongrunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+      byItem: GoogleLongRunning.ListOperationsRequest
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       try self.listOperations(byItem: byItem, options: .init())
     }
 
     public func listOperations(
-      byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
-        (token: Swift.String) async throws -> GoogleLongrunning.ListOperationsResponse in
+        (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
         throw GoogleCloudGax.RequestError.unimplemented
       }
       return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
@@ -2448,41 +2448,41 @@
     public func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
-      let request = GoogleLongrunning.ListOperationsRequest().with {
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+      let request = GoogleLongRunning.ListOperationsRequest().with {
         $0.name = name
         $0.filter = filter
       }
       return try self.listOperations(byItem: request)
     }
 
-    public func getOperation(request: GoogleLongrunning.GetOperationRequest) async throws
-      -> GoogleLongrunning.Operation
+    public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
+      -> GoogleLongRunning.Operation
     {
       try await self.getOperation(request: request, options: .init())
     }
 
     public func getOperation(
-      request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+      request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
       throw GoogleCloudGax.RequestError.unimplemented
     }
 
     public func getOperation(
       name: Swift.String,
-    ) async throws -> GoogleLongrunning.Operation {
-      let request = GoogleLongrunning.GetOperationRequest().with {
+    ) async throws -> GoogleLongRunning.Operation {
+      let request = GoogleLongRunning.GetOperationRequest().with {
         $0.name = name
       }
       return try await self.getOperation(request: request)
     }
 
-    public func deleteOperation(request: GoogleLongrunning.DeleteOperationRequest) async throws {
+    public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
       try await self.deleteOperation(request: request, options: .init())
     }
 
     public func deleteOperation(
-      request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+      request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws {
       throw GoogleCloudGax.RequestError.unimplemented
     }
@@ -2490,18 +2490,18 @@
     public func deleteOperation(
       name: Swift.String,
     ) async throws {
-      let request = GoogleLongrunning.DeleteOperationRequest().with {
+      let request = GoogleLongRunning.DeleteOperationRequest().with {
         $0.name = name
       }
       try await self.deleteOperation(request: request)
     }
 
-    public func cancelOperation(request: GoogleLongrunning.CancelOperationRequest) async throws {
+    public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
       try await self.cancelOperation(request: request, options: .init())
     }
 
     public func cancelOperation(
-      request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+      request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws {
       throw GoogleCloudGax.RequestError.unimplemented
     }
@@ -2509,21 +2509,21 @@
     public func cancelOperation(
       name: Swift.String,
     ) async throws {
-      let request = GoogleLongrunning.CancelOperationRequest().with {
+      let request = GoogleLongRunning.CancelOperationRequest().with {
         $0.name = name
       }
       try await self.cancelOperation(request: request)
     }
 
-    public func waitOperation(request: GoogleLongrunning.WaitOperationRequest) async throws
-      -> GoogleLongrunning.Operation
+    public func waitOperation(request: GoogleLongRunning.WaitOperationRequest) async throws
+      -> GoogleLongRunning.Operation
     {
       try await self.waitOperation(request: request, options: .init())
     }
 
     public func waitOperation(
-      request: GoogleLongrunning.WaitOperationRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+      request: GoogleLongRunning.WaitOperationRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
       throw GoogleCloudGax.RequestError.unimplemented
     }
   }

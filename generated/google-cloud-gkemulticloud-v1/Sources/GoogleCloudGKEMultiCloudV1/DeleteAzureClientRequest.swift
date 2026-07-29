@@ -43,7 +43,7 @@ public struct DeleteAzureClientRequest: Codable, Equatable, GoogleCloudWkt._AnyP
   /// Useful for idempotent deletion.
   ///
   /// [google.cloud.gkemulticloud.v1.AzureClient]: <doc:AzureClient>
-  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongrunning.Operation
+  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   public var allowMissing: Swift.Bool = Swift.Bool()
 
   /// If set, only validate the request, but do not actually delete the resource.

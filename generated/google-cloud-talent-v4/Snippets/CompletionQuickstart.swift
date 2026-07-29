@@ -19,7 +19,7 @@
 import Foundation
 import GoogleCloudTalentV4
 import GoogleCloudWkt
-import GoogleLongrunning
+import GoogleLongRunning
 
 func sample() async throws {
   let client = try GoogleCloudTalentV4.CompletionClient()

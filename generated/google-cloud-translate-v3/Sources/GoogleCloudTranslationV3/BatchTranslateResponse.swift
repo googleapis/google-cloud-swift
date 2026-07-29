@@ -22,7 +22,7 @@ import GoogleCloudWkt
 /// field returned by BatchTranslateText if at least one sentence is translated
 /// successfully.
 ///
-/// [google.longrunning.Operation.response]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongrunning.Operation/response
+/// [google.longrunning.Operation.response]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/response
 public struct BatchTranslateResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
@@ -42,7 +42,7 @@ public struct BatchTranslateResponse: Codable, Equatable, GoogleCloudWkt._AnyPac
   /// [google.longrunning.Operation.done][google.longrunning.Operation.done] is
   /// set to true.
   ///
-  /// [google.longrunning.Operation.done]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongrunning.Operation/done
+  /// [google.longrunning.Operation.done]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/done
   public var endTime: GoogleCloudWkt.Timestamp? = nil
 
   /// Initialize a new instance of `BatchTranslateResponse`.

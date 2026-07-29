@@ -20,7 +20,7 @@ import Foundation
 #endif
 import GoogleCloudLocation
 import GoogleCloudWkt
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
 
@@ -79,7 +79,7 @@ public class LicenseManagerClient: Clients.LicenseManagerProtocol {
   /// @Snippet(path: "LicenseManager_CreateConfiguration")
   public func createConfiguration(
     request: CreateConfigurationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.createConfiguration(request: request, options: options)
   }
 
@@ -90,7 +90,7 @@ public class LicenseManagerClient: Clients.LicenseManagerProtocol {
     withPolling: CreateConfigurationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Configuration> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Configuration>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -142,7 +142,7 @@ public class LicenseManagerClient: Clients.LicenseManagerProtocol {
   /// @Snippet(path: "LicenseManager_UpdateConfiguration")
   public func updateConfiguration(
     request: UpdateConfigurationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.updateConfiguration(request: request, options: options)
   }
 
@@ -153,7 +153,7 @@ public class LicenseManagerClient: Clients.LicenseManagerProtocol {
     withPolling: UpdateConfigurationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Configuration> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Configuration>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -205,7 +205,7 @@ public class LicenseManagerClient: Clients.LicenseManagerProtocol {
   /// @Snippet(path: "LicenseManager_DeleteConfiguration")
   public func deleteConfiguration(
     request: DeleteConfigurationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.deleteConfiguration(request: request, options: options)
   }
 
@@ -216,7 +216,7 @@ public class LicenseManagerClient: Clients.LicenseManagerProtocol {
     withPolling: DeleteConfigurationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
+      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
       in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -293,7 +293,7 @@ public class LicenseManagerClient: Clients.LicenseManagerProtocol {
   /// @Snippet(path: "LicenseManager_DeactivateConfiguration")
   public func deactivateConfiguration(
     request: DeactivateConfigurationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.deactivateConfiguration(request: request, options: options)
   }
 
@@ -304,7 +304,7 @@ public class LicenseManagerClient: Clients.LicenseManagerProtocol {
     withPolling: DeactivateConfigurationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Configuration> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Configuration>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -356,7 +356,7 @@ public class LicenseManagerClient: Clients.LicenseManagerProtocol {
   /// @Snippet(path: "LicenseManager_ReactivateConfiguration")
   public func reactivateConfiguration(
     request: ReactivateConfigurationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.reactivateConfiguration(request: request, options: options)
   }
 
@@ -367,7 +367,7 @@ public class LicenseManagerClient: Clients.LicenseManagerProtocol {
     withPolling: ReactivateConfigurationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Configuration> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Configuration>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -519,8 +519,8 @@ public class LicenseManagerClient: Clients.LicenseManagerProtocol {
   ///
   /// @Snippet(path: "LicenseManager_ListOperations")
   public func listOperations(
-    request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.ListOperationsResponse {
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.ListOperationsResponse {
     try await self.inner.listOperations(request: request, options: options)
   }
 
@@ -530,10 +530,10 @@ public class LicenseManagerClient: Clients.LicenseManagerProtocol {
   ///
   /// @Snippet(path: "LicenseManager_ListOperations")
   public func listOperations(
-    byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongrunning.ListOperationsResponse in
+      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
@@ -547,8 +547,8 @@ public class LicenseManagerClient: Clients.LicenseManagerProtocol {
   ///
   /// @Snippet(path: "LicenseManager_GetOperation")
   func getOperation(
-    request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+    request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.getOperation(request: request, options: options)
   }
 
@@ -558,7 +558,7 @@ public class LicenseManagerClient: Clients.LicenseManagerProtocol {
   ///
   /// @Snippet(path: "LicenseManager_DeleteOperation")
   public func deleteOperation(
-    request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+    request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws {
     try await self.inner.deleteOperation(request: request, options: options)
   }
@@ -569,7 +569,7 @@ public class LicenseManagerClient: Clients.LicenseManagerProtocol {
   ///
   /// @Snippet(path: "LicenseManager_CancelOperation")
   public func cancelOperation(
-    request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+    request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws {
     try await self.inner.cancelOperation(request: request, options: options)
   }
@@ -607,7 +607,7 @@ extension Clients {
 
     /// See `LicenseManagerClient.createConfiguration`.
     func createConfiguration(request: CreateConfigurationRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `LicenseManagerClient.createConfiguration`.
     func createConfiguration(withPolling: CreateConfigurationRequest) async throws
@@ -622,7 +622,7 @@ extension Clients {
 
     /// See `LicenseManagerClient.updateConfiguration`.
     func updateConfiguration(request: UpdateConfigurationRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `LicenseManagerClient.updateConfiguration`.
     func updateConfiguration(withPolling: UpdateConfigurationRequest) async throws
@@ -636,7 +636,7 @@ extension Clients {
 
     /// See `LicenseManagerClient.deleteConfiguration`.
     func deleteConfiguration(request: DeleteConfigurationRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `LicenseManagerClient.deleteConfiguration`.
     func deleteConfiguration(withPolling: DeleteConfigurationRequest) async throws
@@ -672,7 +672,7 @@ extension Clients {
 
     /// See `LicenseManagerClient.deactivateConfiguration`.
     func deactivateConfiguration(request: DeactivateConfigurationRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `LicenseManagerClient.deactivateConfiguration`.
     func deactivateConfiguration(withPolling: DeactivateConfigurationRequest) async throws
@@ -685,7 +685,7 @@ extension Clients {
 
     /// See `LicenseManagerClient.reactivateConfiguration`.
     func reactivateConfiguration(request: ReactivateConfigurationRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `LicenseManagerClient.reactivateConfiguration`.
     func reactivateConfiguration(withPolling: ReactivateConfigurationRequest) async throws
@@ -759,22 +759,22 @@ extension Clients {
       -> GoogleCloudLocation.Location
 
     /// See `LicenseManagerClient.listOperations`.
-    func listOperations(request: GoogleLongrunning.ListOperationsRequest) async throws
-      -> GoogleLongrunning.ListOperationsResponse
+    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
+      -> GoogleLongRunning.ListOperationsResponse
 
     /// See `LicenseManagerClient.listOperations`.
     func listOperations(
-      byItem: GoogleLongrunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+      byItem: GoogleLongRunning.ListOperationsRequest
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `LicenseManagerClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `LicenseManagerClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongrunning.DeleteOperationRequest) async throws
+    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
 
     /// See `LicenseManagerClient.deleteOperation`.
     func deleteOperation(
@@ -782,7 +782,7 @@ extension Clients {
     ) async throws
 
     /// See `LicenseManagerClient.cancelOperation`.
-    func cancelOperation(request: GoogleLongrunning.CancelOperationRequest) async throws
+    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
 
     /// See `LicenseManagerClient.cancelOperation`.
     func cancelOperation(
@@ -807,7 +807,7 @@ extension Clients {
     /// See `LicenseManagerClient.createConfiguration`.
     func createConfiguration(
       request: CreateConfigurationRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `LicenseManagerClient.createConfiguration`.
     func createConfiguration(
@@ -817,7 +817,7 @@ extension Clients {
     /// See `LicenseManagerClient.updateConfiguration`.
     func updateConfiguration(
       request: UpdateConfigurationRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `LicenseManagerClient.updateConfiguration`.
     func updateConfiguration(
@@ -827,7 +827,7 @@ extension Clients {
     /// See `LicenseManagerClient.deleteConfiguration`.
     func deleteConfiguration(
       request: DeleteConfigurationRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `LicenseManagerClient.deleteConfiguration`.
     func deleteConfiguration(
@@ -852,7 +852,7 @@ extension Clients {
     /// See `LicenseManagerClient.deactivateConfiguration`.
     func deactivateConfiguration(
       request: DeactivateConfigurationRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `LicenseManagerClient.deactivateConfiguration`.
     func deactivateConfiguration(
@@ -862,7 +862,7 @@ extension Clients {
     /// See `LicenseManagerClient.reactivateConfiguration`.
     func reactivateConfiguration(
       request: ReactivateConfigurationRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `LicenseManagerClient.reactivateConfiguration`.
     func reactivateConfiguration(
@@ -916,22 +916,22 @@ extension Clients {
 
     /// See `LicenseManagerClient.listOperations`.
     func listOperations(
-      request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.ListOperationsResponse
+      request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.ListOperationsResponse
 
     /// See `LicenseManagerClient.listOperations`.
     func listOperations(
-      byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `LicenseManagerClient.deleteOperation`.
     func deleteOperation(
-      request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+      request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws
 
     /// See `LicenseManagerClient.cancelOperation`.
     func cancelOperation(
-      request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+      request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws
   }
 }
@@ -998,14 +998,14 @@ extension Clients.LicenseManagerProtocol {
   }
 
   public func createConfiguration(request: CreateConfigurationRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.createConfiguration(request: request, options: .init())
   }
 
   public func createConfiguration(
     request: CreateConfigurationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1039,14 +1039,14 @@ extension Clients.LicenseManagerProtocol {
   }
 
   public func updateConfiguration(request: UpdateConfigurationRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.updateConfiguration(request: request, options: .init())
   }
 
   public func updateConfiguration(
     request: UpdateConfigurationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1078,14 +1078,14 @@ extension Clients.LicenseManagerProtocol {
   }
 
   public func deleteConfiguration(request: DeleteConfigurationRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.deleteConfiguration(request: request, options: .init())
   }
 
   public func deleteConfiguration(
     request: DeleteConfigurationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1173,14 +1173,14 @@ extension Clients.LicenseManagerProtocol {
   }
 
   public func deactivateConfiguration(request: DeactivateConfigurationRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.deactivateConfiguration(request: request, options: .init())
   }
 
   public func deactivateConfiguration(
     request: DeactivateConfigurationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1210,14 +1210,14 @@ extension Clients.LicenseManagerProtocol {
   }
 
   public func reactivateConfiguration(request: ReactivateConfigurationRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.reactivateConfiguration(request: request, options: .init())
   }
 
   public func reactivateConfiguration(
     request: ReactivateConfigurationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1410,29 +1410,29 @@ extension Clients.LicenseManagerProtocol {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
-  public func listOperations(request: GoogleLongrunning.ListOperationsRequest) async throws
-    -> GoogleLongrunning.ListOperationsResponse
+  public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
+    -> GoogleLongRunning.ListOperationsResponse
   {
     try await self.listOperations(request: request, options: .init())
   }
 
   public func listOperations(
-    request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.ListOperationsResponse {
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.ListOperationsResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func listOperations(
-    byItem: GoogleLongrunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+    byItem: GoogleLongRunning.ListOperationsRequest
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     try self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
-    byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongrunning.ListOperationsResponse in
+      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleCloudGax.RequestError.unimplemented
     }
     return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
@@ -1441,41 +1441,41 @@ extension Clients.LicenseManagerProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
-    let request = GoogleLongrunning.ListOperationsRequest().with {
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
     return try self.listOperations(byItem: request)
   }
 
-  public func getOperation(request: GoogleLongrunning.GetOperationRequest) async throws
-    -> GoogleLongrunning.Operation
+  public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
+    -> GoogleLongRunning.Operation
   {
     try await self.getOperation(request: request, options: .init())
   }
 
   public func getOperation(
-    request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+    request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func getOperation(
     name: Swift.String,
-  ) async throws -> GoogleLongrunning.Operation {
-    let request = GoogleLongrunning.GetOperationRequest().with {
+  ) async throws -> GoogleLongRunning.Operation {
+    let request = GoogleLongRunning.GetOperationRequest().with {
       $0.name = name
     }
     return try await self.getOperation(request: request)
   }
 
-  public func deleteOperation(request: GoogleLongrunning.DeleteOperationRequest) async throws {
+  public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
 
   public func deleteOperation(
-    request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+    request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws {
     throw GoogleCloudGax.RequestError.unimplemented
   }
@@ -1483,18 +1483,18 @@ extension Clients.LicenseManagerProtocol {
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
-    let request = GoogleLongrunning.DeleteOperationRequest().with {
+    let request = GoogleLongRunning.DeleteOperationRequest().with {
       $0.name = name
     }
     try await self.deleteOperation(request: request)
   }
 
-  public func cancelOperation(request: GoogleLongrunning.CancelOperationRequest) async throws {
+  public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
 
   public func cancelOperation(
-    request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+    request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws {
     throw GoogleCloudGax.RequestError.unimplemented
   }
@@ -1502,7 +1502,7 @@ extension Clients.LicenseManagerProtocol {
   public func cancelOperation(
     name: Swift.String,
   ) async throws {
-    let request = GoogleLongrunning.CancelOperationRequest().with {
+    let request = GoogleLongRunning.CancelOperationRequest().with {
       $0.name = name
     }
     try await self.cancelOperation(request: request)

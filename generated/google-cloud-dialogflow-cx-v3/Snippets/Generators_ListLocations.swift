@@ -21,7 +21,7 @@
   import GoogleCloudDialogflowCxV3
   import GoogleCloudLocation
   import GoogleCloudWkt
-  import GoogleLongrunning
+  import GoogleLongRunning
 
   func sample(client: GeneratorsClient) async throws {
     let items = try client.listLocations(

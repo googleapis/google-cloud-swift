@@ -20,7 +20,7 @@ import Foundation
 #endif
 import GoogleCloudLocation
 import GoogleCloudWkt
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
 
@@ -84,7 +84,7 @@ public class WorkflowsClient: Clients.WorkflowsProtocol {
   /// @Snippet(path: "Workflows_CreateWorkflow")
   public func createWorkflow(
     request: CreateWorkflowRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.createWorkflow(request: request, options: options)
   }
 
@@ -97,7 +97,7 @@ public class WorkflowsClient: Clients.WorkflowsProtocol {
     withPolling: CreateWorkflowRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Workflow> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Workflow>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -151,7 +151,7 @@ public class WorkflowsClient: Clients.WorkflowsProtocol {
   /// @Snippet(path: "Workflows_DeleteWorkflow")
   public func deleteWorkflow(
     request: DeleteWorkflowRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.deleteWorkflow(request: request, options: options)
   }
 
@@ -164,7 +164,7 @@ public class WorkflowsClient: Clients.WorkflowsProtocol {
     withPolling: DeleteWorkflowRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
+      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
       in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -212,7 +212,7 @@ public class WorkflowsClient: Clients.WorkflowsProtocol {
   /// @Snippet(path: "Workflows_UpdateWorkflow")
   public func updateWorkflow(
     request: UpdateWorkflowRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.updateWorkflow(request: request, options: options)
   }
 
@@ -227,7 +227,7 @@ public class WorkflowsClient: Clients.WorkflowsProtocol {
     withPolling: UpdateWorkflowRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Workflow> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Workflow>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -337,8 +337,8 @@ public class WorkflowsClient: Clients.WorkflowsProtocol {
   ///
   /// @Snippet(path: "Workflows_ListOperations")
   public func listOperations(
-    request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.ListOperationsResponse {
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.ListOperationsResponse {
     try await self.inner.listOperations(request: request, options: options)
   }
 
@@ -348,10 +348,10 @@ public class WorkflowsClient: Clients.WorkflowsProtocol {
   ///
   /// @Snippet(path: "Workflows_ListOperations")
   public func listOperations(
-    byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongrunning.ListOperationsResponse in
+      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
@@ -365,8 +365,8 @@ public class WorkflowsClient: Clients.WorkflowsProtocol {
   ///
   /// @Snippet(path: "Workflows_GetOperation")
   func getOperation(
-    request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+    request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.getOperation(request: request, options: options)
   }
 
@@ -376,7 +376,7 @@ public class WorkflowsClient: Clients.WorkflowsProtocol {
   ///
   /// @Snippet(path: "Workflows_DeleteOperation")
   public func deleteOperation(
-    request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+    request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws {
     try await self.inner.deleteOperation(request: request, options: options)
   }
@@ -412,7 +412,7 @@ extension Clients {
     ) async throws -> GoogleCloudWorkflowsV1.Workflow
 
     /// See `WorkflowsClient.createWorkflow`.
-    func createWorkflow(request: CreateWorkflowRequest) async throws -> GoogleLongrunning.Operation
+    func createWorkflow(request: CreateWorkflowRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `WorkflowsClient.createWorkflow`.
     func createWorkflow(withPolling: CreateWorkflowRequest) async throws -> any GoogleCloudGax
@@ -426,7 +426,7 @@ extension Clients {
     ) async throws -> any GoogleCloudGax.PollableOperation<Workflow>
 
     /// See `WorkflowsClient.deleteWorkflow`.
-    func deleteWorkflow(request: DeleteWorkflowRequest) async throws -> GoogleLongrunning.Operation
+    func deleteWorkflow(request: DeleteWorkflowRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `WorkflowsClient.deleteWorkflow`.
     func deleteWorkflow(withPolling: DeleteWorkflowRequest) async throws -> any GoogleCloudGax
@@ -438,7 +438,7 @@ extension Clients {
     ) async throws -> any GoogleCloudGax.PollableOperation<Void>
 
     /// See `WorkflowsClient.updateWorkflow`.
-    func updateWorkflow(request: UpdateWorkflowRequest) async throws -> GoogleLongrunning.Operation
+    func updateWorkflow(request: UpdateWorkflowRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `WorkflowsClient.updateWorkflow`.
     func updateWorkflow(withPolling: UpdateWorkflowRequest) async throws -> any GoogleCloudGax
@@ -473,22 +473,22 @@ extension Clients {
       -> GoogleCloudLocation.Location
 
     /// See `WorkflowsClient.listOperations`.
-    func listOperations(request: GoogleLongrunning.ListOperationsRequest) async throws
-      -> GoogleLongrunning.ListOperationsResponse
+    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
+      -> GoogleLongRunning.ListOperationsResponse
 
     /// See `WorkflowsClient.listOperations`.
     func listOperations(
-      byItem: GoogleLongrunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+      byItem: GoogleLongRunning.ListOperationsRequest
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `WorkflowsClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `WorkflowsClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongrunning.DeleteOperationRequest) async throws
+    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
 
     /// See `WorkflowsClient.deleteOperation`.
     func deleteOperation(
@@ -513,7 +513,7 @@ extension Clients {
     /// See `WorkflowsClient.createWorkflow`.
     func createWorkflow(
       request: CreateWorkflowRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `WorkflowsClient.createWorkflow`.
     func createWorkflow(
@@ -523,7 +523,7 @@ extension Clients {
     /// See `WorkflowsClient.deleteWorkflow`.
     func deleteWorkflow(
       request: DeleteWorkflowRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `WorkflowsClient.deleteWorkflow`.
     func deleteWorkflow(
@@ -533,7 +533,7 @@ extension Clients {
     /// See `WorkflowsClient.updateWorkflow`.
     func updateWorkflow(
       request: UpdateWorkflowRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `WorkflowsClient.updateWorkflow`.
     func updateWorkflow(
@@ -567,17 +567,17 @@ extension Clients {
 
     /// See `WorkflowsClient.listOperations`.
     func listOperations(
-      request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.ListOperationsResponse
+      request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.ListOperationsResponse
 
     /// See `WorkflowsClient.listOperations`.
     func listOperations(
-      byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `WorkflowsClient.deleteOperation`.
     func deleteOperation(
-      request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+      request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws
   }
 }
@@ -643,14 +643,14 @@ extension Clients.WorkflowsProtocol {
   }
 
   public func createWorkflow(request: CreateWorkflowRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.createWorkflow(request: request, options: .init())
   }
 
   public func createWorkflow(
     request: CreateWorkflowRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -684,14 +684,14 @@ extension Clients.WorkflowsProtocol {
   }
 
   public func deleteWorkflow(request: DeleteWorkflowRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.deleteWorkflow(request: request, options: .init())
   }
 
   public func deleteWorkflow(
     request: DeleteWorkflowRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -721,14 +721,14 @@ extension Clients.WorkflowsProtocol {
   }
 
   public func updateWorkflow(request: UpdateWorkflowRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.updateWorkflow(request: request, options: .init())
   }
 
   public func updateWorkflow(
     request: UpdateWorkflowRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -827,29 +827,29 @@ extension Clients.WorkflowsProtocol {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
-  public func listOperations(request: GoogleLongrunning.ListOperationsRequest) async throws
-    -> GoogleLongrunning.ListOperationsResponse
+  public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
+    -> GoogleLongRunning.ListOperationsResponse
   {
     try await self.listOperations(request: request, options: .init())
   }
 
   public func listOperations(
-    request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.ListOperationsResponse {
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.ListOperationsResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func listOperations(
-    byItem: GoogleLongrunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+    byItem: GoogleLongRunning.ListOperationsRequest
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     try self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
-    byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongrunning.ListOperationsResponse in
+      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleCloudGax.RequestError.unimplemented
     }
     return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
@@ -858,41 +858,41 @@ extension Clients.WorkflowsProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
-    let request = GoogleLongrunning.ListOperationsRequest().with {
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
     return try self.listOperations(byItem: request)
   }
 
-  public func getOperation(request: GoogleLongrunning.GetOperationRequest) async throws
-    -> GoogleLongrunning.Operation
+  public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
+    -> GoogleLongRunning.Operation
   {
     try await self.getOperation(request: request, options: .init())
   }
 
   public func getOperation(
-    request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+    request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func getOperation(
     name: Swift.String,
-  ) async throws -> GoogleLongrunning.Operation {
-    let request = GoogleLongrunning.GetOperationRequest().with {
+  ) async throws -> GoogleLongRunning.Operation {
+    let request = GoogleLongRunning.GetOperationRequest().with {
       $0.name = name
     }
     return try await self.getOperation(request: request)
   }
 
-  public func deleteOperation(request: GoogleLongrunning.DeleteOperationRequest) async throws {
+  public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
 
   public func deleteOperation(
-    request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+    request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws {
     throw GoogleCloudGax.RequestError.unimplemented
   }
@@ -900,7 +900,7 @@ extension Clients.WorkflowsProtocol {
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
-    let request = GoogleLongrunning.DeleteOperationRequest().with {
+    let request = GoogleLongRunning.DeleteOperationRequest().with {
       $0.name = name
     }
     try await self.deleteOperation(request: request)

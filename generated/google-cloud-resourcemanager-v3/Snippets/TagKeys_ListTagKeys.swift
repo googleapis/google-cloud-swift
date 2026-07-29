@@ -20,7 +20,7 @@ import Foundation
 import GoogleCloudResourceManagerV3
 import GoogleCloudWkt
 import GoogleIAMV1
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleRpc
 
 func sample(client: TagKeysClient, parent: String) async throws {

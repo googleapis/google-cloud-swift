@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudWkt
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
 
@@ -56,7 +56,7 @@ public class OsConfigZonalServiceClient: Clients.OsConfigZonalServiceProtocol {
   /// @Snippet(path: "OsConfigZonalService_CreateOSPolicyAssignment")
   public func createOspolicyAssignment(
     request: CreateOSPolicyAssignmentRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.createOspolicyAssignment(request: request, options: options)
   }
 
@@ -75,7 +75,7 @@ public class OsConfigZonalServiceClient: Clients.OsConfigZonalServiceProtocol {
     withPolling: CreateOSPolicyAssignmentRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<OSPolicyAssignment> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<OSPolicyAssignment>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -136,7 +136,7 @@ public class OsConfigZonalServiceClient: Clients.OsConfigZonalServiceProtocol {
   /// @Snippet(path: "OsConfigZonalService_UpdateOSPolicyAssignment")
   public func updateOspolicyAssignment(
     request: UpdateOSPolicyAssignmentRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.updateOspolicyAssignment(request: request, options: options)
   }
 
@@ -155,7 +155,7 @@ public class OsConfigZonalServiceClient: Clients.OsConfigZonalServiceProtocol {
     withPolling: UpdateOSPolicyAssignmentRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<OSPolicyAssignment> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<OSPolicyAssignment>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -285,7 +285,7 @@ public class OsConfigZonalServiceClient: Clients.OsConfigZonalServiceProtocol {
   /// @Snippet(path: "OsConfigZonalService_DeleteOSPolicyAssignment")
   public func deleteOspolicyAssignment(
     request: DeleteOSPolicyAssignmentRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.deleteOspolicyAssignment(request: request, options: options)
   }
 
@@ -307,7 +307,7 @@ public class OsConfigZonalServiceClient: Clients.OsConfigZonalServiceProtocol {
     withPolling: DeleteOSPolicyAssignmentRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
+      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
       in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -458,8 +458,8 @@ public class OsConfigZonalServiceClient: Clients.OsConfigZonalServiceProtocol {
   ///
   /// @Snippet(path: "OsConfigZonalService_GetOperation")
   func getOperation(
-    request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+    request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.getOperation(request: request, options: options)
   }
 
@@ -469,7 +469,7 @@ public class OsConfigZonalServiceClient: Clients.OsConfigZonalServiceProtocol {
   ///
   /// @Snippet(path: "OsConfigZonalService_CancelOperation")
   public func cancelOperation(
-    request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+    request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws {
     try await self.inner.cancelOperation(request: request, options: options)
   }
@@ -484,7 +484,7 @@ extension Clients {
   public protocol OsConfigZonalServiceProtocol {
     /// See `OsConfigZonalServiceClient.createOspolicyAssignment`.
     func createOspolicyAssignment(request: CreateOSPolicyAssignmentRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `OsConfigZonalServiceClient.createOspolicyAssignment`.
     func createOspolicyAssignment(withPolling: CreateOSPolicyAssignmentRequest) async throws
@@ -499,7 +499,7 @@ extension Clients {
 
     /// See `OsConfigZonalServiceClient.updateOspolicyAssignment`.
     func updateOspolicyAssignment(request: UpdateOSPolicyAssignmentRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `OsConfigZonalServiceClient.updateOspolicyAssignment`.
     func updateOspolicyAssignment(withPolling: UpdateOSPolicyAssignmentRequest) async throws
@@ -550,7 +550,7 @@ extension Clients {
 
     /// See `OsConfigZonalServiceClient.deleteOspolicyAssignment`.
     func deleteOspolicyAssignment(request: DeleteOSPolicyAssignmentRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `OsConfigZonalServiceClient.deleteOspolicyAssignment`.
     func deleteOspolicyAssignment(withPolling: DeleteOSPolicyAssignmentRequest) async throws
@@ -630,7 +630,7 @@ extension Clients {
     ) throws -> any AsyncSequence<VulnerabilityReport, Swift.Error>
 
     /// See `OsConfigZonalServiceClient.cancelOperation`.
-    func cancelOperation(request: GoogleLongrunning.CancelOperationRequest) async throws
+    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
 
     /// See `OsConfigZonalServiceClient.cancelOperation`.
     func cancelOperation(
@@ -640,7 +640,7 @@ extension Clients {
     /// See `OsConfigZonalServiceClient.createOspolicyAssignment`.
     func createOspolicyAssignment(
       request: CreateOSPolicyAssignmentRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `OsConfigZonalServiceClient.createOspolicyAssignment`.
     func createOspolicyAssignment(
@@ -650,7 +650,7 @@ extension Clients {
     /// See `OsConfigZonalServiceClient.updateOspolicyAssignment`.
     func updateOspolicyAssignment(
       request: UpdateOSPolicyAssignmentRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `OsConfigZonalServiceClient.updateOspolicyAssignment`.
     func updateOspolicyAssignment(
@@ -685,7 +685,7 @@ extension Clients {
     /// See `OsConfigZonalServiceClient.deleteOspolicyAssignment`.
     func deleteOspolicyAssignment(
       request: DeleteOSPolicyAssignmentRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `OsConfigZonalServiceClient.deleteOspolicyAssignment`.
     func deleteOspolicyAssignment(
@@ -739,7 +739,7 @@ extension Clients {
 
     /// See `OsConfigZonalServiceClient.cancelOperation`.
     func cancelOperation(
-      request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+      request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws
   }
 }
@@ -747,14 +747,14 @@ extension Clients {
 // Default implementations
 extension Clients.OsConfigZonalServiceProtocol {
   public func createOspolicyAssignment(request: CreateOSPolicyAssignmentRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.createOspolicyAssignment(request: request, options: .init())
   }
 
   public func createOspolicyAssignment(
     request: CreateOSPolicyAssignmentRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -789,14 +789,14 @@ extension Clients.OsConfigZonalServiceProtocol {
   }
 
   public func updateOspolicyAssignment(request: UpdateOSPolicyAssignmentRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.updateOspolicyAssignment(request: request, options: .init())
   }
 
   public func updateOspolicyAssignment(
     request: UpdateOSPolicyAssignmentRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -925,14 +925,14 @@ extension Clients.OsConfigZonalServiceProtocol {
   }
 
   public func deleteOspolicyAssignment(request: DeleteOSPolicyAssignmentRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.deleteOspolicyAssignment(request: request, options: .init())
   }
 
   public func deleteOspolicyAssignment(
     request: DeleteOSPolicyAssignmentRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1137,33 +1137,33 @@ extension Clients.OsConfigZonalServiceProtocol {
     return try self.listVulnerabilityReports(byItem: request)
   }
 
-  public func getOperation(request: GoogleLongrunning.GetOperationRequest) async throws
-    -> GoogleLongrunning.Operation
+  public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
+    -> GoogleLongRunning.Operation
   {
     try await self.getOperation(request: request, options: .init())
   }
 
   public func getOperation(
-    request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+    request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func getOperation(
     name: Swift.String,
-  ) async throws -> GoogleLongrunning.Operation {
-    let request = GoogleLongrunning.GetOperationRequest().with {
+  ) async throws -> GoogleLongRunning.Operation {
+    let request = GoogleLongRunning.GetOperationRequest().with {
       $0.name = name
     }
     return try await self.getOperation(request: request)
   }
 
-  public func cancelOperation(request: GoogleLongrunning.CancelOperationRequest) async throws {
+  public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
 
   public func cancelOperation(
-    request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+    request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws {
     throw GoogleCloudGax.RequestError.unimplemented
   }
@@ -1171,7 +1171,7 @@ extension Clients.OsConfigZonalServiceProtocol {
   public func cancelOperation(
     name: Swift.String,
   ) async throws {
-    let request = GoogleLongrunning.CancelOperationRequest().with {
+    let request = GoogleLongRunning.CancelOperationRequest().with {
       $0.name = name
     }
     try await self.cancelOperation(request: request)

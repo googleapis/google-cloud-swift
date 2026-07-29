@@ -20,11 +20,11 @@ import Foundation
 import GoogleCloudApiHubV1
 import GoogleCloudLocation
 import GoogleCloudWkt
-import GoogleLongrunning
+import GoogleLongRunning
 
 func sample(client: ApiHubCurateClient) async throws {
   try await client.deleteOperation(
-    request: GoogleLongrunning.DeleteOperationRequest()
+    request: GoogleLongRunning.DeleteOperationRequest()
       /* set fields using .with { $0... } */
   )
   print("Success (no response expected)")

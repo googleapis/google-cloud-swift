@@ -20,7 +20,7 @@ import Foundation
 import GoogleCloudRunV2
 import GoogleCloudWkt
 import GoogleIAMV1
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleRpc
 
 func sample(client: WorkerPoolsClient, projectId: String, locationId: String, workerPoolId: String)

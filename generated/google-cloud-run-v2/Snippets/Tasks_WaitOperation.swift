@@ -19,11 +19,11 @@
 import Foundation
 import GoogleCloudRunV2
 import GoogleCloudWkt
-import GoogleLongrunning
+import GoogleLongRunning
 
 func sample(client: TasksClient) async throws {
   let response = try await client.waitOperation(
-    request: GoogleLongrunning.WaitOperationRequest()
+    request: GoogleLongRunning.WaitOperationRequest()
       /* set fields using .with { $0... } */
   )
   print("Success: \(response)")

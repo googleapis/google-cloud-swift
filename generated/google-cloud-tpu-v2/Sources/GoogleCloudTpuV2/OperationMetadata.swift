@@ -19,7 +19,7 @@ import GoogleCloudWkt
 
 /// Metadata describing an [Operation][google.longrunning.Operation]
 ///
-/// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongrunning.Operation
+/// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
 public struct OperationMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

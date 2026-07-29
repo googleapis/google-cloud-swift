@@ -22,7 +22,7 @@
   import GoogleCloudLocation
   import GoogleCloudWkt
   import GoogleIAMV1
-  import GoogleLongrunning
+  import GoogleLongRunning
   import GoogleRpc
   import GoogleCloudGax
 
@@ -42,7 +42,7 @@
 
       func deleteCustomJob(
         request: DeleteCustomJobRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+      ) async throws -> GoogleLongRunning.Operation
 
       func cancelCustomJob(
         request: CancelCustomJobRequest, options: GoogleCloudGax.RequestOptions
@@ -62,7 +62,7 @@
 
       func deleteDataLabelingJob(
         request: DeleteDataLabelingJobRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+      ) async throws -> GoogleLongRunning.Operation
 
       func cancelDataLabelingJob(
         request: CancelDataLabelingJobRequest, options: GoogleCloudGax.RequestOptions
@@ -82,7 +82,7 @@
 
       func deleteHyperparameterTuningJob(
         request: DeleteHyperparameterTuningJobRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+      ) async throws -> GoogleLongRunning.Operation
 
       func cancelHyperparameterTuningJob(
         request: CancelHyperparameterTuningJobRequest, options: GoogleCloudGax.RequestOptions
@@ -102,7 +102,7 @@
 
       func deleteNasJob(
         request: DeleteNasJobRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+      ) async throws -> GoogleLongRunning.Operation
 
       func cancelNasJob(
         request: CancelNasJobRequest, options: GoogleCloudGax.RequestOptions
@@ -130,7 +130,7 @@
 
       func deleteBatchPredictionJob(
         request: DeleteBatchPredictionJobRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+      ) async throws -> GoogleLongRunning.Operation
 
       func cancelBatchPredictionJob(
         request: CancelBatchPredictionJobRequest, options: GoogleCloudGax.RequestOptions
@@ -156,11 +156,11 @@
 
       func updateModelDeploymentMonitoringJob(
         request: UpdateModelDeploymentMonitoringJobRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+      ) async throws -> GoogleLongRunning.Operation
 
       func deleteModelDeploymentMonitoringJob(
         request: DeleteModelDeploymentMonitoringJobRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+      ) async throws -> GoogleLongRunning.Operation
 
       func pauseModelDeploymentMonitoringJob(
         request: PauseModelDeploymentMonitoringJobRequest, options: GoogleCloudGax.RequestOptions
@@ -191,24 +191,24 @@
       ) async throws -> GoogleIAMV1.TestIamPermissionsResponse
 
       func listOperations(
-        request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.ListOperationsResponse
+        request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+      ) async throws -> GoogleLongRunning.ListOperationsResponse
 
       func getOperation(
-        request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+        request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+      ) async throws -> GoogleLongRunning.Operation
 
       func deleteOperation(
-        request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+        request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
       ) async throws
 
       func cancelOperation(
-        request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+        request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
       ) async throws
 
       func waitOperation(
-        request: GoogleLongrunning.WaitOperationRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+        request: GoogleLongRunning.WaitOperationRequest, options: GoogleCloudGax.RequestOptions
+      ) async throws -> GoogleLongRunning.Operation
     }
 
     class JobServiceTransport: JobServiceStub {
@@ -290,7 +290,7 @@
 
       public func deleteCustomJob(
         request: DeleteCustomJobRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation {
+      ) async throws -> GoogleLongRunning.Operation {
         let path = try { () throws -> Swift.String in
           guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
             throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -305,7 +305,7 @@
         req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
         let (data, _) = try await self.inner.rpc(for: req).get()
         return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleLongrunning.Operation.self, from: data)
+          GoogleLongRunning.Operation.self, from: data)
       }
 
       public func cancelCustomJob(
@@ -400,7 +400,7 @@
 
       public func deleteDataLabelingJob(
         request: DeleteDataLabelingJobRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation {
+      ) async throws -> GoogleLongRunning.Operation {
         let path = try { () throws -> Swift.String in
           guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
             throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -415,7 +415,7 @@
         req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
         let (data, _) = try await self.inner.rpc(for: req).get()
         return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleLongrunning.Operation.self, from: data)
+          GoogleLongRunning.Operation.self, from: data)
       }
 
       public func cancelDataLabelingJob(
@@ -509,7 +509,7 @@
 
       public func deleteHyperparameterTuningJob(
         request: DeleteHyperparameterTuningJobRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation {
+      ) async throws -> GoogleLongRunning.Operation {
         let path = try { () throws -> Swift.String in
           guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
             throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -524,7 +524,7 @@
         req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
         let (data, _) = try await self.inner.rpc(for: req).get()
         return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleLongrunning.Operation.self, from: data)
+          GoogleLongRunning.Operation.self, from: data)
       }
 
       public func cancelHyperparameterTuningJob(
@@ -618,7 +618,7 @@
 
       public func deleteNasJob(
         request: DeleteNasJobRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation {
+      ) async throws -> GoogleLongRunning.Operation {
         let path = try { () throws -> Swift.String in
           guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
             throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -633,7 +633,7 @@
         req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
         let (data, _) = try await self.inner.rpc(for: req).get()
         return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleLongrunning.Operation.self, from: data)
+          GoogleLongRunning.Operation.self, from: data)
       }
 
       public func cancelNasJob(
@@ -770,7 +770,7 @@
 
       public func deleteBatchPredictionJob(
         request: DeleteBatchPredictionJobRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation {
+      ) async throws -> GoogleLongRunning.Operation {
         let path = try { () throws -> Swift.String in
           guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
             throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -785,7 +785,7 @@
         req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
         let (data, _) = try await self.inner.rpc(for: req).get()
         return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleLongrunning.Operation.self, from: data)
+          GoogleLongRunning.Operation.self, from: data)
       }
 
       public func cancelBatchPredictionJob(
@@ -908,7 +908,7 @@
 
       public func updateModelDeploymentMonitoringJob(
         request: UpdateModelDeploymentMonitoringJobRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation {
+      ) async throws -> GoogleLongRunning.Operation {
         let path = try { () throws -> Swift.String in
           guard let pathVariable0 = request.modelDeploymentMonitoringJob.map({ $0.name }),
             !pathVariable0.isEmpty
@@ -932,12 +932,12 @@
         }
         let (data, _) = try await self.inner.rpc(for: req).get()
         return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleLongrunning.Operation.self, from: data)
+          GoogleLongRunning.Operation.self, from: data)
       }
 
       public func deleteModelDeploymentMonitoringJob(
         request: DeleteModelDeploymentMonitoringJobRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation {
+      ) async throws -> GoogleLongRunning.Operation {
         let path = try { () throws -> Swift.String in
           guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
             throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -952,7 +952,7 @@
         req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
         let (data, _) = try await self.inner.rpc(for: req).get()
         return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleLongrunning.Operation.self, from: data)
+          GoogleLongRunning.Operation.self, from: data)
       }
 
       public func pauseModelDeploymentMonitoringJob(
@@ -1106,8 +1106,8 @@
       }
 
       public func listOperations(
-        request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.ListOperationsResponse {
+        request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+      ) async throws -> GoogleLongRunning.ListOperationsResponse {
         let path = try { () throws -> Swift.String in
           guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
             throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -1129,12 +1129,12 @@
         req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
         let (data, _) = try await self.inner.rpc(for: req).get()
         return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleLongrunning.ListOperationsResponse.self, from: data)
+          GoogleLongRunning.ListOperationsResponse.self, from: data)
       }
 
       public func getOperation(
-        request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation {
+        request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+      ) async throws -> GoogleLongRunning.Operation {
         let path = try { () throws -> Swift.String in
           guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
             throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -1149,11 +1149,11 @@
         req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
         let (data, _) = try await self.inner.rpc(for: req).get()
         return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleLongrunning.Operation.self, from: data)
+          GoogleLongRunning.Operation.self, from: data)
       }
 
       public func deleteOperation(
-        request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+        request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
       ) async throws {
         let path = try { () throws -> Swift.String in
           guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
@@ -1171,7 +1171,7 @@
       }
 
       public func cancelOperation(
-        request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+        request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
       ) async throws {
         let path = try { () throws -> Swift.String in
           guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
@@ -1189,8 +1189,8 @@
       }
 
       public func waitOperation(
-        request: GoogleLongrunning.WaitOperationRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation {
+        request: GoogleLongRunning.WaitOperationRequest, options: GoogleCloudGax.RequestOptions
+      ) async throws -> GoogleLongRunning.Operation {
         let path = try { () throws -> Swift.String in
           guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
             throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -1207,7 +1207,7 @@
         req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
         let (data, _) = try await self.inner.rpc(for: req).get()
         return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleLongrunning.Operation.self, from: data)
+          GoogleLongRunning.Operation.self, from: data)
       }
     }
   }

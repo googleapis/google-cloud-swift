@@ -22,7 +22,7 @@ import GoogleCloudWkt
 /// packaged into a longrunning [Operation][google.longrunning.Operation].
 ///
 /// [google.cloud.speech.v2.Speech.BatchRecognize]: <doc:Speech/batchRecognize(request:)>
-/// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongrunning.Operation
+/// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
 public struct BatchRecognizeResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

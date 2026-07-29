@@ -21,7 +21,7 @@ import Foundation
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleIAMV1
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
 
@@ -50,7 +50,7 @@ public class CatalogServiceClient: Clients.CatalogServiceProtocol {
   /// @Snippet(path: "CatalogService_CreateEntryType")
   public func createEntryType(
     request: CreateEntryTypeRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.createEntryType(request: request, options: options)
   }
 
@@ -61,7 +61,7 @@ public class CatalogServiceClient: Clients.CatalogServiceProtocol {
     withPolling: CreateEntryTypeRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<EntryType> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<EntryType>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -113,7 +113,7 @@ public class CatalogServiceClient: Clients.CatalogServiceProtocol {
   /// @Snippet(path: "CatalogService_UpdateEntryType")
   public func updateEntryType(
     request: UpdateEntryTypeRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.updateEntryType(request: request, options: options)
   }
 
@@ -124,7 +124,7 @@ public class CatalogServiceClient: Clients.CatalogServiceProtocol {
     withPolling: UpdateEntryTypeRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<EntryType> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<EntryType>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -176,7 +176,7 @@ public class CatalogServiceClient: Clients.CatalogServiceProtocol {
   /// @Snippet(path: "CatalogService_DeleteEntryType")
   public func deleteEntryType(
     request: DeleteEntryTypeRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.deleteEntryType(request: request, options: options)
   }
 
@@ -187,7 +187,7 @@ public class CatalogServiceClient: Clients.CatalogServiceProtocol {
     withPolling: DeleteEntryTypeRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
+      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
       in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -264,7 +264,7 @@ public class CatalogServiceClient: Clients.CatalogServiceProtocol {
   /// @Snippet(path: "CatalogService_CreateAspectType")
   public func createAspectType(
     request: CreateAspectTypeRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.createAspectType(request: request, options: options)
   }
 
@@ -275,7 +275,7 @@ public class CatalogServiceClient: Clients.CatalogServiceProtocol {
     withPolling: CreateAspectTypeRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<AspectType> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<AspectType>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -327,7 +327,7 @@ public class CatalogServiceClient: Clients.CatalogServiceProtocol {
   /// @Snippet(path: "CatalogService_UpdateAspectType")
   public func updateAspectType(
     request: UpdateAspectTypeRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.updateAspectType(request: request, options: options)
   }
 
@@ -338,7 +338,7 @@ public class CatalogServiceClient: Clients.CatalogServiceProtocol {
     withPolling: UpdateAspectTypeRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<AspectType> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<AspectType>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -390,7 +390,7 @@ public class CatalogServiceClient: Clients.CatalogServiceProtocol {
   /// @Snippet(path: "CatalogService_DeleteAspectType")
   public func deleteAspectType(
     request: DeleteAspectTypeRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.deleteAspectType(request: request, options: options)
   }
 
@@ -401,7 +401,7 @@ public class CatalogServiceClient: Clients.CatalogServiceProtocol {
     withPolling: DeleteAspectTypeRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
+      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
       in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -478,7 +478,7 @@ public class CatalogServiceClient: Clients.CatalogServiceProtocol {
   /// @Snippet(path: "CatalogService_CreateEntryGroup")
   public func createEntryGroup(
     request: CreateEntryGroupRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.createEntryGroup(request: request, options: options)
   }
 
@@ -489,7 +489,7 @@ public class CatalogServiceClient: Clients.CatalogServiceProtocol {
     withPolling: CreateEntryGroupRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<EntryGroup> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<EntryGroup>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -541,7 +541,7 @@ public class CatalogServiceClient: Clients.CatalogServiceProtocol {
   /// @Snippet(path: "CatalogService_UpdateEntryGroup")
   public func updateEntryGroup(
     request: UpdateEntryGroupRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.updateEntryGroup(request: request, options: options)
   }
 
@@ -552,7 +552,7 @@ public class CatalogServiceClient: Clients.CatalogServiceProtocol {
     withPolling: UpdateEntryGroupRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<EntryGroup> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<EntryGroup>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -604,7 +604,7 @@ public class CatalogServiceClient: Clients.CatalogServiceProtocol {
   /// @Snippet(path: "CatalogService_DeleteEntryGroup")
   public func deleteEntryGroup(
     request: DeleteEntryGroupRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.deleteEntryGroup(request: request, options: options)
   }
 
@@ -615,7 +615,7 @@ public class CatalogServiceClient: Clients.CatalogServiceProtocol {
     withPolling: DeleteEntryGroupRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
+      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
       in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -795,7 +795,7 @@ public class CatalogServiceClient: Clients.CatalogServiceProtocol {
   /// @Snippet(path: "CatalogService_CreateMetadataJob")
   public func createMetadataJob(
     request: CreateMetadataJobRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.createMetadataJob(request: request, options: options)
   }
 
@@ -807,7 +807,7 @@ public class CatalogServiceClient: Clients.CatalogServiceProtocol {
     withPolling: CreateMetadataJobRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<MetadataJob> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<MetadataJob>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -975,7 +975,7 @@ public class CatalogServiceClient: Clients.CatalogServiceProtocol {
   /// @Snippet(path: "CatalogService_CreateMetadataFeed")
   public func createMetadataFeed(
     request: CreateMetadataFeedRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.createMetadataFeed(request: request, options: options)
   }
 
@@ -986,7 +986,7 @@ public class CatalogServiceClient: Clients.CatalogServiceProtocol {
     withPolling: CreateMetadataFeedRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<MetadataFeed> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<MetadataFeed>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -1071,7 +1071,7 @@ public class CatalogServiceClient: Clients.CatalogServiceProtocol {
   /// @Snippet(path: "CatalogService_DeleteMetadataFeed")
   public func deleteMetadataFeed(
     request: DeleteMetadataFeedRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.deleteMetadataFeed(request: request, options: options)
   }
 
@@ -1082,7 +1082,7 @@ public class CatalogServiceClient: Clients.CatalogServiceProtocol {
     withPolling: DeleteMetadataFeedRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
+      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
       in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -1126,7 +1126,7 @@ public class CatalogServiceClient: Clients.CatalogServiceProtocol {
   /// @Snippet(path: "CatalogService_UpdateMetadataFeed")
   public func updateMetadataFeed(
     request: UpdateMetadataFeedRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.updateMetadataFeed(request: request, options: options)
   }
 
@@ -1137,7 +1137,7 @@ public class CatalogServiceClient: Clients.CatalogServiceProtocol {
     withPolling: UpdateMetadataFeedRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<MetadataFeed> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<MetadataFeed>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -1295,8 +1295,8 @@ public class CatalogServiceClient: Clients.CatalogServiceProtocol {
   ///
   /// @Snippet(path: "CatalogService_ListOperations")
   public func listOperations(
-    request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.ListOperationsResponse {
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.ListOperationsResponse {
     try await self.inner.listOperations(request: request, options: options)
   }
 
@@ -1306,10 +1306,10 @@ public class CatalogServiceClient: Clients.CatalogServiceProtocol {
   ///
   /// @Snippet(path: "CatalogService_ListOperations")
   public func listOperations(
-    byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongrunning.ListOperationsResponse in
+      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
@@ -1323,8 +1323,8 @@ public class CatalogServiceClient: Clients.CatalogServiceProtocol {
   ///
   /// @Snippet(path: "CatalogService_GetOperation")
   func getOperation(
-    request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+    request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.getOperation(request: request, options: options)
   }
 
@@ -1334,7 +1334,7 @@ public class CatalogServiceClient: Clients.CatalogServiceProtocol {
   ///
   /// @Snippet(path: "CatalogService_DeleteOperation")
   public func deleteOperation(
-    request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+    request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws {
     try await self.inner.deleteOperation(request: request, options: options)
   }
@@ -1345,7 +1345,7 @@ public class CatalogServiceClient: Clients.CatalogServiceProtocol {
   ///
   /// @Snippet(path: "CatalogService_CancelOperation")
   public func cancelOperation(
-    request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+    request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws {
     try await self.inner.cancelOperation(request: request, options: options)
   }
@@ -1360,7 +1360,7 @@ extension Clients {
   public protocol CatalogServiceProtocol {
     /// See `CatalogServiceClient.createEntryType`.
     func createEntryType(request: CreateEntryTypeRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `CatalogServiceClient.createEntryType`.
     func createEntryType(withPolling: CreateEntryTypeRequest) async throws -> any GoogleCloudGax
@@ -1375,7 +1375,7 @@ extension Clients {
 
     /// See `CatalogServiceClient.updateEntryType`.
     func updateEntryType(request: UpdateEntryTypeRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `CatalogServiceClient.updateEntryType`.
     func updateEntryType(withPolling: UpdateEntryTypeRequest) async throws -> any GoogleCloudGax
@@ -1389,7 +1389,7 @@ extension Clients {
 
     /// See `CatalogServiceClient.deleteEntryType`.
     func deleteEntryType(request: DeleteEntryTypeRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `CatalogServiceClient.deleteEntryType`.
     func deleteEntryType(withPolling: DeleteEntryTypeRequest) async throws -> any GoogleCloudGax
@@ -1424,7 +1424,7 @@ extension Clients {
 
     /// See `CatalogServiceClient.createAspectType`.
     func createAspectType(request: CreateAspectTypeRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `CatalogServiceClient.createAspectType`.
     func createAspectType(withPolling: CreateAspectTypeRequest) async throws -> any GoogleCloudGax
@@ -1439,7 +1439,7 @@ extension Clients {
 
     /// See `CatalogServiceClient.updateAspectType`.
     func updateAspectType(request: UpdateAspectTypeRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `CatalogServiceClient.updateAspectType`.
     func updateAspectType(withPolling: UpdateAspectTypeRequest) async throws -> any GoogleCloudGax
@@ -1453,7 +1453,7 @@ extension Clients {
 
     /// See `CatalogServiceClient.deleteAspectType`.
     func deleteAspectType(request: DeleteAspectTypeRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `CatalogServiceClient.deleteAspectType`.
     func deleteAspectType(withPolling: DeleteAspectTypeRequest) async throws -> any GoogleCloudGax
@@ -1489,7 +1489,7 @@ extension Clients {
 
     /// See `CatalogServiceClient.createEntryGroup`.
     func createEntryGroup(request: CreateEntryGroupRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `CatalogServiceClient.createEntryGroup`.
     func createEntryGroup(withPolling: CreateEntryGroupRequest) async throws -> any GoogleCloudGax
@@ -1504,7 +1504,7 @@ extension Clients {
 
     /// See `CatalogServiceClient.updateEntryGroup`.
     func updateEntryGroup(request: UpdateEntryGroupRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `CatalogServiceClient.updateEntryGroup`.
     func updateEntryGroup(withPolling: UpdateEntryGroupRequest) async throws -> any GoogleCloudGax
@@ -1518,7 +1518,7 @@ extension Clients {
 
     /// See `CatalogServiceClient.deleteEntryGroup`.
     func deleteEntryGroup(request: DeleteEntryGroupRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `CatalogServiceClient.deleteEntryGroup`.
     func deleteEntryGroup(withPolling: DeleteEntryGroupRequest) async throws -> any GoogleCloudGax
@@ -1624,7 +1624,7 @@ extension Clients {
 
     /// See `CatalogServiceClient.createMetadataJob`.
     func createMetadataJob(request: CreateMetadataJobRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `CatalogServiceClient.createMetadataJob`.
     func createMetadataJob(withPolling: CreateMetadataJobRequest) async throws -> any GoogleCloudGax
@@ -1720,7 +1720,7 @@ extension Clients {
 
     /// See `CatalogServiceClient.createMetadataFeed`.
     func createMetadataFeed(request: CreateMetadataFeedRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `CatalogServiceClient.createMetadataFeed`.
     func createMetadataFeed(withPolling: CreateMetadataFeedRequest) async throws
@@ -1758,7 +1758,7 @@ extension Clients {
 
     /// See `CatalogServiceClient.deleteMetadataFeed`.
     func deleteMetadataFeed(request: DeleteMetadataFeedRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `CatalogServiceClient.deleteMetadataFeed`.
     func deleteMetadataFeed(withPolling: DeleteMetadataFeedRequest) async throws
@@ -1771,7 +1771,7 @@ extension Clients {
 
     /// See `CatalogServiceClient.updateMetadataFeed`.
     func updateMetadataFeed(request: UpdateMetadataFeedRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `CatalogServiceClient.updateMetadataFeed`.
     func updateMetadataFeed(withPolling: UpdateMetadataFeedRequest) async throws
@@ -1807,22 +1807,22 @@ extension Clients {
       -> GoogleIAMV1.TestIamPermissionsResponse
 
     /// See `CatalogServiceClient.listOperations`.
-    func listOperations(request: GoogleLongrunning.ListOperationsRequest) async throws
-      -> GoogleLongrunning.ListOperationsResponse
+    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
+      -> GoogleLongRunning.ListOperationsResponse
 
     /// See `CatalogServiceClient.listOperations`.
     func listOperations(
-      byItem: GoogleLongrunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+      byItem: GoogleLongRunning.ListOperationsRequest
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `CatalogServiceClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `CatalogServiceClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongrunning.DeleteOperationRequest) async throws
+    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
 
     /// See `CatalogServiceClient.deleteOperation`.
     func deleteOperation(
@@ -1830,7 +1830,7 @@ extension Clients {
     ) async throws
 
     /// See `CatalogServiceClient.cancelOperation`.
-    func cancelOperation(request: GoogleLongrunning.CancelOperationRequest) async throws
+    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
 
     /// See `CatalogServiceClient.cancelOperation`.
     func cancelOperation(
@@ -1840,7 +1840,7 @@ extension Clients {
     /// See `CatalogServiceClient.createEntryType`.
     func createEntryType(
       request: CreateEntryTypeRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `CatalogServiceClient.createEntryType`.
     func createEntryType(
@@ -1850,7 +1850,7 @@ extension Clients {
     /// See `CatalogServiceClient.updateEntryType`.
     func updateEntryType(
       request: UpdateEntryTypeRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `CatalogServiceClient.updateEntryType`.
     func updateEntryType(
@@ -1860,7 +1860,7 @@ extension Clients {
     /// See `CatalogServiceClient.deleteEntryType`.
     func deleteEntryType(
       request: DeleteEntryTypeRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `CatalogServiceClient.deleteEntryType`.
     func deleteEntryType(
@@ -1885,7 +1885,7 @@ extension Clients {
     /// See `CatalogServiceClient.createAspectType`.
     func createAspectType(
       request: CreateAspectTypeRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `CatalogServiceClient.createAspectType`.
     func createAspectType(
@@ -1895,7 +1895,7 @@ extension Clients {
     /// See `CatalogServiceClient.updateAspectType`.
     func updateAspectType(
       request: UpdateAspectTypeRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `CatalogServiceClient.updateAspectType`.
     func updateAspectType(
@@ -1905,7 +1905,7 @@ extension Clients {
     /// See `CatalogServiceClient.deleteAspectType`.
     func deleteAspectType(
       request: DeleteAspectTypeRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `CatalogServiceClient.deleteAspectType`.
     func deleteAspectType(
@@ -1930,7 +1930,7 @@ extension Clients {
     /// See `CatalogServiceClient.createEntryGroup`.
     func createEntryGroup(
       request: CreateEntryGroupRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `CatalogServiceClient.createEntryGroup`.
     func createEntryGroup(
@@ -1940,7 +1940,7 @@ extension Clients {
     /// See `CatalogServiceClient.updateEntryGroup`.
     func updateEntryGroup(
       request: UpdateEntryGroupRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `CatalogServiceClient.updateEntryGroup`.
     func updateEntryGroup(
@@ -1950,7 +1950,7 @@ extension Clients {
     /// See `CatalogServiceClient.deleteEntryGroup`.
     func deleteEntryGroup(
       request: DeleteEntryGroupRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `CatalogServiceClient.deleteEntryGroup`.
     func deleteEntryGroup(
@@ -2025,7 +2025,7 @@ extension Clients {
     /// See `CatalogServiceClient.createMetadataJob`.
     func createMetadataJob(
       request: CreateMetadataJobRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `CatalogServiceClient.createMetadataJob`.
     func createMetadataJob(
@@ -2090,7 +2090,7 @@ extension Clients {
     /// See `CatalogServiceClient.createMetadataFeed`.
     func createMetadataFeed(
       request: CreateMetadataFeedRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `CatalogServiceClient.createMetadataFeed`.
     func createMetadataFeed(
@@ -2115,7 +2115,7 @@ extension Clients {
     /// See `CatalogServiceClient.deleteMetadataFeed`.
     func deleteMetadataFeed(
       request: DeleteMetadataFeedRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `CatalogServiceClient.deleteMetadataFeed`.
     func deleteMetadataFeed(
@@ -2125,7 +2125,7 @@ extension Clients {
     /// See `CatalogServiceClient.updateMetadataFeed`.
     func updateMetadataFeed(
       request: UpdateMetadataFeedRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `CatalogServiceClient.updateMetadataFeed`.
     func updateMetadataFeed(
@@ -2164,22 +2164,22 @@ extension Clients {
 
     /// See `CatalogServiceClient.listOperations`.
     func listOperations(
-      request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.ListOperationsResponse
+      request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.ListOperationsResponse
 
     /// See `CatalogServiceClient.listOperations`.
     func listOperations(
-      byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `CatalogServiceClient.deleteOperation`.
     func deleteOperation(
-      request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+      request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws
 
     /// See `CatalogServiceClient.cancelOperation`.
     func cancelOperation(
-      request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+      request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws
   }
 }
@@ -2187,14 +2187,14 @@ extension Clients {
 // Default implementations
 extension Clients.CatalogServiceProtocol {
   public func createEntryType(request: CreateEntryTypeRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.createEntryType(request: request, options: .init())
   }
 
   public func createEntryType(
     request: CreateEntryTypeRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -2228,14 +2228,14 @@ extension Clients.CatalogServiceProtocol {
   }
 
   public func updateEntryType(request: UpdateEntryTypeRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.updateEntryType(request: request, options: .init())
   }
 
   public func updateEntryType(
     request: UpdateEntryTypeRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -2267,14 +2267,14 @@ extension Clients.CatalogServiceProtocol {
   }
 
   public func deleteEntryType(request: DeleteEntryTypeRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.deleteEntryType(request: request, options: .init())
   }
 
   public func deleteEntryType(
     request: DeleteEntryTypeRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -2362,14 +2362,14 @@ extension Clients.CatalogServiceProtocol {
   }
 
   public func createAspectType(request: CreateAspectTypeRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.createAspectType(request: request, options: .init())
   }
 
   public func createAspectType(
     request: CreateAspectTypeRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -2403,14 +2403,14 @@ extension Clients.CatalogServiceProtocol {
   }
 
   public func updateAspectType(request: UpdateAspectTypeRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.updateAspectType(request: request, options: .init())
   }
 
   public func updateAspectType(
     request: UpdateAspectTypeRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -2442,14 +2442,14 @@ extension Clients.CatalogServiceProtocol {
   }
 
   public func deleteAspectType(request: DeleteAspectTypeRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.deleteAspectType(request: request, options: .init())
   }
 
   public func deleteAspectType(
     request: DeleteAspectTypeRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -2537,14 +2537,14 @@ extension Clients.CatalogServiceProtocol {
   }
 
   public func createEntryGroup(request: CreateEntryGroupRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.createEntryGroup(request: request, options: .init())
   }
 
   public func createEntryGroup(
     request: CreateEntryGroupRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -2578,14 +2578,14 @@ extension Clients.CatalogServiceProtocol {
   }
 
   public func updateEntryGroup(request: UpdateEntryGroupRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.updateEntryGroup(request: request, options: .init())
   }
 
   public func updateEntryGroup(
     request: UpdateEntryGroupRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -2617,14 +2617,14 @@ extension Clients.CatalogServiceProtocol {
   }
 
   public func deleteEntryGroup(request: DeleteEntryGroupRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.deleteEntryGroup(request: request, options: .init())
   }
 
   public func deleteEntryGroup(
     request: DeleteEntryGroupRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -2890,14 +2890,14 @@ extension Clients.CatalogServiceProtocol {
   }
 
   public func createMetadataJob(request: CreateMetadataJobRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.createMetadataJob(request: request, options: .init())
   }
 
   public func createMetadataJob(
     request: CreateMetadataJobRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -3136,14 +3136,14 @@ extension Clients.CatalogServiceProtocol {
   }
 
   public func createMetadataFeed(request: CreateMetadataFeedRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.createMetadataFeed(request: request, options: .init())
   }
 
   public func createMetadataFeed(
     request: CreateMetadataFeedRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -3235,14 +3235,14 @@ extension Clients.CatalogServiceProtocol {
   }
 
   public func deleteMetadataFeed(request: DeleteMetadataFeedRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.deleteMetadataFeed(request: request, options: .init())
   }
 
   public func deleteMetadataFeed(
     request: DeleteMetadataFeedRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -3272,14 +3272,14 @@ extension Clients.CatalogServiceProtocol {
   }
 
   public func updateMetadataFeed(request: UpdateMetadataFeedRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.updateMetadataFeed(request: request, options: .init())
   }
 
   public func updateMetadataFeed(
     request: UpdateMetadataFeedRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -3386,29 +3386,29 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
-  public func listOperations(request: GoogleLongrunning.ListOperationsRequest) async throws
-    -> GoogleLongrunning.ListOperationsResponse
+  public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
+    -> GoogleLongRunning.ListOperationsResponse
   {
     try await self.listOperations(request: request, options: .init())
   }
 
   public func listOperations(
-    request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.ListOperationsResponse {
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.ListOperationsResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func listOperations(
-    byItem: GoogleLongrunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+    byItem: GoogleLongRunning.ListOperationsRequest
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     try self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
-    byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongrunning.ListOperationsResponse in
+      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleCloudGax.RequestError.unimplemented
     }
     return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
@@ -3417,41 +3417,41 @@ extension Clients.CatalogServiceProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
-    let request = GoogleLongrunning.ListOperationsRequest().with {
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
     return try self.listOperations(byItem: request)
   }
 
-  public func getOperation(request: GoogleLongrunning.GetOperationRequest) async throws
-    -> GoogleLongrunning.Operation
+  public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
+    -> GoogleLongRunning.Operation
   {
     try await self.getOperation(request: request, options: .init())
   }
 
   public func getOperation(
-    request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+    request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func getOperation(
     name: Swift.String,
-  ) async throws -> GoogleLongrunning.Operation {
-    let request = GoogleLongrunning.GetOperationRequest().with {
+  ) async throws -> GoogleLongRunning.Operation {
+    let request = GoogleLongRunning.GetOperationRequest().with {
       $0.name = name
     }
     return try await self.getOperation(request: request)
   }
 
-  public func deleteOperation(request: GoogleLongrunning.DeleteOperationRequest) async throws {
+  public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
 
   public func deleteOperation(
-    request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+    request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws {
     throw GoogleCloudGax.RequestError.unimplemented
   }
@@ -3459,18 +3459,18 @@ extension Clients.CatalogServiceProtocol {
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
-    let request = GoogleLongrunning.DeleteOperationRequest().with {
+    let request = GoogleLongRunning.DeleteOperationRequest().with {
       $0.name = name
     }
     try await self.deleteOperation(request: request)
   }
 
-  public func cancelOperation(request: GoogleLongrunning.CancelOperationRequest) async throws {
+  public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
 
   public func cancelOperation(
-    request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+    request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws {
     throw GoogleCloudGax.RequestError.unimplemented
   }
@@ -3478,7 +3478,7 @@ extension Clients.CatalogServiceProtocol {
   public func cancelOperation(
     name: Swift.String,
   ) async throws {
-    let request = GoogleLongrunning.CancelOperationRequest().with {
+    let request = GoogleLongRunning.CancelOperationRequest().with {
       $0.name = name
     }
     try await self.cancelOperation(request: request)

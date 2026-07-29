@@ -19,7 +19,7 @@
 import Foundation
 import GoogleCloudTextToSpeechV1
 import GoogleCloudWkt
-import GoogleLongrunning
+import GoogleLongRunning
 
 func sample(client: TextToSpeechClient) async throws {
   let response = try await client.listVoices(

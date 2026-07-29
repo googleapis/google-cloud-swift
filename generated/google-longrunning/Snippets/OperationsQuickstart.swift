@@ -17,11 +17,11 @@
 
 // snippet.show
 import Foundation
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleCloudWkt
 
 func sample() async throws {
-  let client = try GoogleLongrunning.OperationsClient()
+  let client = try GoogleLongRunning.OperationsClient()
   let items = try client.listOperations(
     byItem: ListOperationsRequest()
       /* set fields using .with { $0... } */

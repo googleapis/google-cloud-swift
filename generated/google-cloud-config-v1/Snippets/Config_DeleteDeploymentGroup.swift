@@ -21,7 +21,7 @@ import GoogleCloudConfigV1
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleIAMV1
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleRpc
 
 func sample(client: ConfigClient, projectId: String, locationId: String, deploymentGroupId: String)

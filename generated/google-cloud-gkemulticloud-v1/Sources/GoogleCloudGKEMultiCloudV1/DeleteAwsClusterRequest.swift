@@ -45,7 +45,7 @@ public struct DeleteAwsClusterRequest: Codable, Equatable, GoogleCloudWkt._AnyPa
   /// Useful for idempotent deletion.
   ///
   /// [google.cloud.gkemulticloud.v1.AwsCluster]: <doc:AwsCluster>
-  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongrunning.Operation
+  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   public var allowMissing: Swift.Bool = Swift.Bool()
 
   /// Optional. If set to true, the deletion of

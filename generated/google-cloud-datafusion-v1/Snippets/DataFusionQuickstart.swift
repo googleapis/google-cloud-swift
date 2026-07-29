@@ -19,7 +19,7 @@
 import Foundation
 import GoogleCloudDataFusionV1
 import GoogleCloudWkt
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleRpc
 
 func sample(parent: String, ) async throws {

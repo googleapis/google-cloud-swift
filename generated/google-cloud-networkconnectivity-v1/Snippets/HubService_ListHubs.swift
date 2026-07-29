@@ -21,7 +21,7 @@ import GoogleCloudNetworkConnectivityV1
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleIAMV1
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleRpc
 
 func sample(client: HubServiceClient, parent: String) async throws {

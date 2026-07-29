@@ -22,7 +22,7 @@
   import GoogleCloudLocation
   import GoogleCloudWkt
   import GoogleIAMV1
-  import GoogleLongrunning
+  import GoogleLongRunning
   import GoogleRpc
   import GoogleCloudGax
 
@@ -30,7 +30,7 @@
     protocol TensorboardServiceStub {
       func createTensorboard(
         request: CreateTensorboardRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+      ) async throws -> GoogleLongRunning.Operation
 
       func getTensorboard(
         request: GetTensorboardRequest, options: GoogleCloudGax.RequestOptions
@@ -38,7 +38,7 @@
 
       func updateTensorboard(
         request: UpdateTensorboardRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+      ) async throws -> GoogleLongRunning.Operation
 
       func listTensorboards(
         request: ListTensorboardsRequest, options: GoogleCloudGax.RequestOptions
@@ -46,7 +46,7 @@
 
       func deleteTensorboard(
         request: DeleteTensorboardRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+      ) async throws -> GoogleLongRunning.Operation
 
       func readTensorboardUsage(
         request: ReadTensorboardUsageRequest, options: GoogleCloudGax.RequestOptions
@@ -74,7 +74,7 @@
 
       func deleteTensorboardExperiment(
         request: DeleteTensorboardExperimentRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+      ) async throws -> GoogleLongRunning.Operation
 
       func createTensorboardRun(
         request: CreateTensorboardRunRequest, options: GoogleCloudGax.RequestOptions
@@ -98,7 +98,7 @@
 
       func deleteTensorboardRun(
         request: DeleteTensorboardRunRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+      ) async throws -> GoogleLongRunning.Operation
 
       func batchCreateTensorboardTimeSeries(
         request: BatchCreateTensorboardTimeSeriesRequest, options: GoogleCloudGax.RequestOptions
@@ -122,7 +122,7 @@
 
       func deleteTensorboardTimeSeries(
         request: DeleteTensorboardTimeSeriesRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+      ) async throws -> GoogleLongRunning.Operation
 
       func batchReadTensorboardTimeSeriesData(
         request: BatchReadTensorboardTimeSeriesDataRequest, options: GoogleCloudGax.RequestOptions
@@ -169,24 +169,24 @@
       ) async throws -> GoogleIAMV1.TestIamPermissionsResponse
 
       func listOperations(
-        request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.ListOperationsResponse
+        request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+      ) async throws -> GoogleLongRunning.ListOperationsResponse
 
       func getOperation(
-        request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+        request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+      ) async throws -> GoogleLongRunning.Operation
 
       func deleteOperation(
-        request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+        request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
       ) async throws
 
       func cancelOperation(
-        request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+        request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
       ) async throws
 
       func waitOperation(
-        request: GoogleLongrunning.WaitOperationRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+        request: GoogleLongRunning.WaitOperationRequest, options: GoogleCloudGax.RequestOptions
+      ) async throws -> GoogleLongRunning.Operation
     }
 
     class TensorboardServiceTransport: TensorboardServiceStub {
@@ -199,7 +199,7 @@
 
       public func createTensorboard(
         request: CreateTensorboardRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation {
+      ) async throws -> GoogleLongRunning.Operation {
         let path = try { () throws -> Swift.String in
           guard let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty else {
             throw GoogleCloudGax.RequestError.binding("'request.parent' is not set or is empty")
@@ -218,7 +218,7 @@
         }
         let (data, _) = try await self.inner.rpc(for: req).get()
         return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleLongrunning.Operation.self, from: data)
+          GoogleLongRunning.Operation.self, from: data)
       }
 
       public func getTensorboard(
@@ -243,7 +243,7 @@
 
       public func updateTensorboard(
         request: UpdateTensorboardRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation {
+      ) async throws -> GoogleLongRunning.Operation {
         let path = try { () throws -> Swift.String in
           guard let pathVariable0 = request.tensorboard.map({ $0.name }), !pathVariable0.isEmpty
           else {
@@ -266,7 +266,7 @@
         }
         let (data, _) = try await self.inner.rpc(for: req).get()
         return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleLongrunning.Operation.self, from: data)
+          GoogleLongRunning.Operation.self, from: data)
       }
 
       public func listTensorboards(
@@ -297,7 +297,7 @@
 
       public func deleteTensorboard(
         request: DeleteTensorboardRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation {
+      ) async throws -> GoogleLongRunning.Operation {
         let path = try { () throws -> Swift.String in
           guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
             throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -312,7 +312,7 @@
         req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
         let (data, _) = try await self.inner.rpc(for: req).get()
         return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleLongrunning.Operation.self, from: data)
+          GoogleLongRunning.Operation.self, from: data)
       }
 
       public func readTensorboardUsage(
@@ -464,7 +464,7 @@
 
       public func deleteTensorboardExperiment(
         request: DeleteTensorboardExperimentRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation {
+      ) async throws -> GoogleLongRunning.Operation {
         let path = try { () throws -> Swift.String in
           guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
             throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -479,7 +479,7 @@
         req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
         let (data, _) = try await self.inner.rpc(for: req).get()
         return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleLongrunning.Operation.self, from: data)
+          GoogleLongRunning.Operation.self, from: data)
       }
 
       public func createTensorboardRun(
@@ -607,7 +607,7 @@
 
       public func deleteTensorboardRun(
         request: DeleteTensorboardRunRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation {
+      ) async throws -> GoogleLongRunning.Operation {
         let path = try { () throws -> Swift.String in
           guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
             throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -622,7 +622,7 @@
         req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
         let (data, _) = try await self.inner.rpc(for: req).get()
         return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleLongrunning.Operation.self, from: data)
+          GoogleLongRunning.Operation.self, from: data)
       }
 
       public func batchCreateTensorboardTimeSeries(
@@ -752,7 +752,7 @@
 
       public func deleteTensorboardTimeSeries(
         request: DeleteTensorboardTimeSeriesRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation {
+      ) async throws -> GoogleLongRunning.Operation {
         let path = try { () throws -> Swift.String in
           guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
             throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -767,7 +767,7 @@
         req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
         let (data, _) = try await self.inner.rpc(for: req).get()
         return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleLongrunning.Operation.self, from: data)
+          GoogleLongRunning.Operation.self, from: data)
       }
 
       public func batchReadTensorboardTimeSeriesData(
@@ -1029,8 +1029,8 @@
       }
 
       public func listOperations(
-        request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.ListOperationsResponse {
+        request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+      ) async throws -> GoogleLongRunning.ListOperationsResponse {
         let path = try { () throws -> Swift.String in
           guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
             throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -1052,12 +1052,12 @@
         req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
         let (data, _) = try await self.inner.rpc(for: req).get()
         return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleLongrunning.ListOperationsResponse.self, from: data)
+          GoogleLongRunning.ListOperationsResponse.self, from: data)
       }
 
       public func getOperation(
-        request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation {
+        request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+      ) async throws -> GoogleLongRunning.Operation {
         let path = try { () throws -> Swift.String in
           guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
             throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -1072,11 +1072,11 @@
         req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
         let (data, _) = try await self.inner.rpc(for: req).get()
         return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleLongrunning.Operation.self, from: data)
+          GoogleLongRunning.Operation.self, from: data)
       }
 
       public func deleteOperation(
-        request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+        request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
       ) async throws {
         let path = try { () throws -> Swift.String in
           guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
@@ -1094,7 +1094,7 @@
       }
 
       public func cancelOperation(
-        request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+        request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
       ) async throws {
         let path = try { () throws -> Swift.String in
           guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
@@ -1112,8 +1112,8 @@
       }
 
       public func waitOperation(
-        request: GoogleLongrunning.WaitOperationRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation {
+        request: GoogleLongRunning.WaitOperationRequest, options: GoogleCloudGax.RequestOptions
+      ) async throws -> GoogleLongRunning.Operation {
         let path = try { () throws -> Swift.String in
           guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
             throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -1130,7 +1130,7 @@
         req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
         let (data, _) = try await self.inner.rpc(for: req).get()
         return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleLongrunning.Operation.self, from: data)
+          GoogleLongRunning.Operation.self, from: data)
       }
     }
   }

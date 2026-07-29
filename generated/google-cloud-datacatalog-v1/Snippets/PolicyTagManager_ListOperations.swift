@@ -20,11 +20,11 @@ import Foundation
 import GoogleCloudDataCatalogV1
 import GoogleCloudWkt
 import GoogleIAMV1
-import GoogleLongrunning
+import GoogleLongRunning
 
 func sample(client: PolicyTagManagerClient) async throws {
   let items = try client.listOperations(
-    byItem: GoogleLongrunning.ListOperationsRequest()
+    byItem: GoogleLongRunning.ListOperationsRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

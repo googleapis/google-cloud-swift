@@ -19,13 +19,13 @@
 import Foundation
 import GoogleCloudDomainsV1
 import GoogleCloudWkt
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleRpc
 import GoogleType
 
 func sample(client: DomainsClient) async throws {
   let items = try client.listOperations(
-    byItem: GoogleLongrunning.ListOperationsRequest()
+    byItem: GoogleLongRunning.ListOperationsRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

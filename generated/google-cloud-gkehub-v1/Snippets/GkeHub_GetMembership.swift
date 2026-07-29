@@ -19,7 +19,7 @@
 import Foundation
 import GoogleCloudGKEHubV1
 import GoogleCloudWkt
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleRpc
 
 func sample(client: GkeHubClient, projectId: String, locationId: String, membershipId: String)

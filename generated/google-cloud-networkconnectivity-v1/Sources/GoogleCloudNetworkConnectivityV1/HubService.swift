@@ -21,7 +21,7 @@ import Foundation
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleIAMV1
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
 
@@ -81,7 +81,7 @@ public class HubServiceClient: Clients.HubServiceProtocol {
   /// @Snippet(path: "HubService_CreateHub")
   public func createHub(
     request: CreateHubRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.createHub(request: request, options: options)
   }
 
@@ -92,7 +92,7 @@ public class HubServiceClient: Clients.HubServiceProtocol {
     withPolling: CreateHubRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Hub> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Hub>.State
+      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Hub>.State
       in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -145,7 +145,7 @@ public class HubServiceClient: Clients.HubServiceProtocol {
   /// @Snippet(path: "HubService_UpdateHub")
   public func updateHub(
     request: UpdateHubRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.updateHub(request: request, options: options)
   }
 
@@ -157,7 +157,7 @@ public class HubServiceClient: Clients.HubServiceProtocol {
     withPolling: UpdateHubRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Hub> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Hub>.State
+      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Hub>.State
       in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -209,7 +209,7 @@ public class HubServiceClient: Clients.HubServiceProtocol {
   /// @Snippet(path: "HubService_DeleteHub")
   public func deleteHub(
     request: DeleteHubRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.deleteHub(request: request, options: options)
   }
 
@@ -220,7 +220,7 @@ public class HubServiceClient: Clients.HubServiceProtocol {
     withPolling: DeleteHubRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
+      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
       in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -355,7 +355,7 @@ public class HubServiceClient: Clients.HubServiceProtocol {
   /// @Snippet(path: "HubService_CreateSpoke")
   public func createSpoke(
     request: CreateSpokeRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.createSpoke(request: request, options: options)
   }
 
@@ -366,7 +366,7 @@ public class HubServiceClient: Clients.HubServiceProtocol {
     withPolling: CreateSpokeRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Spoke> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Spoke>.State
+      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Spoke>.State
       in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -418,7 +418,7 @@ public class HubServiceClient: Clients.HubServiceProtocol {
   /// @Snippet(path: "HubService_UpdateSpoke")
   public func updateSpoke(
     request: UpdateSpokeRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.updateSpoke(request: request, options: options)
   }
 
@@ -429,7 +429,7 @@ public class HubServiceClient: Clients.HubServiceProtocol {
     withPolling: UpdateSpokeRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Spoke> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Spoke>.State
+      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Spoke>.State
       in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -484,7 +484,7 @@ public class HubServiceClient: Clients.HubServiceProtocol {
   /// @Snippet(path: "HubService_RejectHubSpoke")
   public func rejectHubSpoke(
     request: RejectHubSpokeRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.rejectHubSpoke(request: request, options: options)
   }
 
@@ -498,7 +498,7 @@ public class HubServiceClient: Clients.HubServiceProtocol {
     withPolling: RejectHubSpokeRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<RejectHubSpokeResponse> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<RejectHubSpokeResponse>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -552,7 +552,7 @@ public class HubServiceClient: Clients.HubServiceProtocol {
   /// @Snippet(path: "HubService_AcceptHubSpoke")
   public func acceptHubSpoke(
     request: AcceptHubSpokeRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.acceptHubSpoke(request: request, options: options)
   }
 
@@ -564,7 +564,7 @@ public class HubServiceClient: Clients.HubServiceProtocol {
     withPolling: AcceptHubSpokeRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<AcceptHubSpokeResponse> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<AcceptHubSpokeResponse>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -617,7 +617,7 @@ public class HubServiceClient: Clients.HubServiceProtocol {
   /// @Snippet(path: "HubService_AcceptSpokeUpdate")
   public func acceptSpokeUpdate(
     request: AcceptSpokeUpdateRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.acceptSpokeUpdate(request: request, options: options)
   }
 
@@ -628,7 +628,7 @@ public class HubServiceClient: Clients.HubServiceProtocol {
     withPolling: AcceptSpokeUpdateRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<AcceptSpokeUpdateResponse> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<AcceptSpokeUpdateResponse>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -681,7 +681,7 @@ public class HubServiceClient: Clients.HubServiceProtocol {
   /// @Snippet(path: "HubService_RejectSpokeUpdate")
   public func rejectSpokeUpdate(
     request: RejectSpokeUpdateRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.rejectSpokeUpdate(request: request, options: options)
   }
 
@@ -692,7 +692,7 @@ public class HubServiceClient: Clients.HubServiceProtocol {
     withPolling: RejectSpokeUpdateRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<RejectSpokeUpdateResponse> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<RejectSpokeUpdateResponse>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -745,7 +745,7 @@ public class HubServiceClient: Clients.HubServiceProtocol {
   /// @Snippet(path: "HubService_DeleteSpoke")
   public func deleteSpoke(
     request: DeleteSpokeRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.deleteSpoke(request: request, options: options)
   }
 
@@ -756,7 +756,7 @@ public class HubServiceClient: Clients.HubServiceProtocol {
     withPolling: DeleteSpokeRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
+      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
       in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -900,7 +900,7 @@ public class HubServiceClient: Clients.HubServiceProtocol {
   /// @Snippet(path: "HubService_UpdateGroup")
   public func updateGroup(
     request: UpdateGroupRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.updateGroup(request: request, options: options)
   }
 
@@ -911,7 +911,7 @@ public class HubServiceClient: Clients.HubServiceProtocol {
     withPolling: UpdateGroupRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Group> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Group>.State
+      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Group>.State
       in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -1035,8 +1035,8 @@ public class HubServiceClient: Clients.HubServiceProtocol {
   ///
   /// @Snippet(path: "HubService_ListOperations")
   public func listOperations(
-    request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.ListOperationsResponse {
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.ListOperationsResponse {
     try await self.inner.listOperations(request: request, options: options)
   }
 
@@ -1046,10 +1046,10 @@ public class HubServiceClient: Clients.HubServiceProtocol {
   ///
   /// @Snippet(path: "HubService_ListOperations")
   public func listOperations(
-    byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongrunning.ListOperationsResponse in
+      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
@@ -1063,8 +1063,8 @@ public class HubServiceClient: Clients.HubServiceProtocol {
   ///
   /// @Snippet(path: "HubService_GetOperation")
   func getOperation(
-    request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+    request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.getOperation(request: request, options: options)
   }
 
@@ -1074,7 +1074,7 @@ public class HubServiceClient: Clients.HubServiceProtocol {
   ///
   /// @Snippet(path: "HubService_DeleteOperation")
   public func deleteOperation(
-    request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+    request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws {
     try await self.inner.deleteOperation(request: request, options: options)
   }
@@ -1085,7 +1085,7 @@ public class HubServiceClient: Clients.HubServiceProtocol {
   ///
   /// @Snippet(path: "HubService_CancelOperation")
   public func cancelOperation(
-    request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+    request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws {
     try await self.inner.cancelOperation(request: request, options: options)
   }
@@ -1121,7 +1121,7 @@ extension Clients {
     ) async throws -> GoogleCloudNetworkConnectivityV1.Hub
 
     /// See `HubServiceClient.createHub`.
-    func createHub(request: CreateHubRequest) async throws -> GoogleLongrunning.Operation
+    func createHub(request: CreateHubRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `HubServiceClient.createHub`.
     func createHub(withPolling: CreateHubRequest) async throws -> any GoogleCloudGax
@@ -1135,7 +1135,7 @@ extension Clients {
     ) async throws -> any GoogleCloudGax.PollableOperation<Hub>
 
     /// See `HubServiceClient.updateHub`.
-    func updateHub(request: UpdateHubRequest) async throws -> GoogleLongrunning.Operation
+    func updateHub(request: UpdateHubRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `HubServiceClient.updateHub`.
     func updateHub(withPolling: UpdateHubRequest) async throws -> any GoogleCloudGax
@@ -1148,7 +1148,7 @@ extension Clients {
     ) async throws -> any GoogleCloudGax.PollableOperation<Hub>
 
     /// See `HubServiceClient.deleteHub`.
-    func deleteHub(request: DeleteHubRequest) async throws -> GoogleLongrunning.Operation
+    func deleteHub(request: DeleteHubRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `HubServiceClient.deleteHub`.
     func deleteHub(withPolling: DeleteHubRequest) async throws -> any GoogleCloudGax
@@ -1210,7 +1210,7 @@ extension Clients {
     ) async throws -> GoogleCloudNetworkConnectivityV1.Spoke
 
     /// See `HubServiceClient.createSpoke`.
-    func createSpoke(request: CreateSpokeRequest) async throws -> GoogleLongrunning.Operation
+    func createSpoke(request: CreateSpokeRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `HubServiceClient.createSpoke`.
     func createSpoke(withPolling: CreateSpokeRequest) async throws -> any GoogleCloudGax
@@ -1224,7 +1224,7 @@ extension Clients {
     ) async throws -> any GoogleCloudGax.PollableOperation<Spoke>
 
     /// See `HubServiceClient.updateSpoke`.
-    func updateSpoke(request: UpdateSpokeRequest) async throws -> GoogleLongrunning.Operation
+    func updateSpoke(request: UpdateSpokeRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `HubServiceClient.updateSpoke`.
     func updateSpoke(withPolling: UpdateSpokeRequest) async throws -> any GoogleCloudGax
@@ -1237,7 +1237,7 @@ extension Clients {
     ) async throws -> any GoogleCloudGax.PollableOperation<Spoke>
 
     /// See `HubServiceClient.rejectHubSpoke`.
-    func rejectHubSpoke(request: RejectHubSpokeRequest) async throws -> GoogleLongrunning.Operation
+    func rejectHubSpoke(request: RejectHubSpokeRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `HubServiceClient.rejectHubSpoke`.
     func rejectHubSpoke(withPolling: RejectHubSpokeRequest) async throws -> any GoogleCloudGax
@@ -1250,7 +1250,7 @@ extension Clients {
     ) async throws -> any GoogleCloudGax.PollableOperation<RejectHubSpokeResponse>
 
     /// See `HubServiceClient.acceptHubSpoke`.
-    func acceptHubSpoke(request: AcceptHubSpokeRequest) async throws -> GoogleLongrunning.Operation
+    func acceptHubSpoke(request: AcceptHubSpokeRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `HubServiceClient.acceptHubSpoke`.
     func acceptHubSpoke(withPolling: AcceptHubSpokeRequest) async throws -> any GoogleCloudGax
@@ -1264,7 +1264,7 @@ extension Clients {
 
     /// See `HubServiceClient.acceptSpokeUpdate`.
     func acceptSpokeUpdate(request: AcceptSpokeUpdateRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `HubServiceClient.acceptSpokeUpdate`.
     func acceptSpokeUpdate(withPolling: AcceptSpokeUpdateRequest) async throws -> any GoogleCloudGax
@@ -1279,7 +1279,7 @@ extension Clients {
 
     /// See `HubServiceClient.rejectSpokeUpdate`.
     func rejectSpokeUpdate(request: RejectSpokeUpdateRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `HubServiceClient.rejectSpokeUpdate`.
     func rejectSpokeUpdate(withPolling: RejectSpokeUpdateRequest) async throws -> any GoogleCloudGax
@@ -1293,7 +1293,7 @@ extension Clients {
     ) async throws -> any GoogleCloudGax.PollableOperation<RejectSpokeUpdateResponse>
 
     /// See `HubServiceClient.deleteSpoke`.
-    func deleteSpoke(request: DeleteSpokeRequest) async throws -> GoogleLongrunning.Operation
+    func deleteSpoke(request: DeleteSpokeRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `HubServiceClient.deleteSpoke`.
     func deleteSpoke(withPolling: DeleteSpokeRequest) async throws -> any GoogleCloudGax
@@ -1372,7 +1372,7 @@ extension Clients {
     ) throws -> any AsyncSequence<Group, Swift.Error>
 
     /// See `HubServiceClient.updateGroup`.
-    func updateGroup(request: UpdateGroupRequest) async throws -> GoogleLongrunning.Operation
+    func updateGroup(request: UpdateGroupRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `HubServiceClient.updateGroup`.
     func updateGroup(withPolling: UpdateGroupRequest) async throws -> any GoogleCloudGax
@@ -1408,22 +1408,22 @@ extension Clients {
       -> GoogleIAMV1.TestIamPermissionsResponse
 
     /// See `HubServiceClient.listOperations`.
-    func listOperations(request: GoogleLongrunning.ListOperationsRequest) async throws
-      -> GoogleLongrunning.ListOperationsResponse
+    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
+      -> GoogleLongRunning.ListOperationsResponse
 
     /// See `HubServiceClient.listOperations`.
     func listOperations(
-      byItem: GoogleLongrunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+      byItem: GoogleLongRunning.ListOperationsRequest
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `HubServiceClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `HubServiceClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongrunning.DeleteOperationRequest) async throws
+    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
 
     /// See `HubServiceClient.deleteOperation`.
     func deleteOperation(
@@ -1431,7 +1431,7 @@ extension Clients {
     ) async throws
 
     /// See `HubServiceClient.cancelOperation`.
-    func cancelOperation(request: GoogleLongrunning.CancelOperationRequest) async throws
+    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
 
     /// See `HubServiceClient.cancelOperation`.
     func cancelOperation(
@@ -1456,7 +1456,7 @@ extension Clients {
     /// See `HubServiceClient.createHub`.
     func createHub(
       request: CreateHubRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `HubServiceClient.createHub`.
     func createHub(
@@ -1466,7 +1466,7 @@ extension Clients {
     /// See `HubServiceClient.updateHub`.
     func updateHub(
       request: UpdateHubRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `HubServiceClient.updateHub`.
     func updateHub(
@@ -1476,7 +1476,7 @@ extension Clients {
     /// See `HubServiceClient.deleteHub`.
     func deleteHub(
       request: DeleteHubRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `HubServiceClient.deleteHub`.
     func deleteHub(
@@ -1521,7 +1521,7 @@ extension Clients {
     /// See `HubServiceClient.createSpoke`.
     func createSpoke(
       request: CreateSpokeRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `HubServiceClient.createSpoke`.
     func createSpoke(
@@ -1531,7 +1531,7 @@ extension Clients {
     /// See `HubServiceClient.updateSpoke`.
     func updateSpoke(
       request: UpdateSpokeRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `HubServiceClient.updateSpoke`.
     func updateSpoke(
@@ -1541,7 +1541,7 @@ extension Clients {
     /// See `HubServiceClient.rejectHubSpoke`.
     func rejectHubSpoke(
       request: RejectHubSpokeRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `HubServiceClient.rejectHubSpoke`.
     func rejectHubSpoke(
@@ -1551,7 +1551,7 @@ extension Clients {
     /// See `HubServiceClient.acceptHubSpoke`.
     func acceptHubSpoke(
       request: AcceptHubSpokeRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `HubServiceClient.acceptHubSpoke`.
     func acceptHubSpoke(
@@ -1561,7 +1561,7 @@ extension Clients {
     /// See `HubServiceClient.acceptSpokeUpdate`.
     func acceptSpokeUpdate(
       request: AcceptSpokeUpdateRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `HubServiceClient.acceptSpokeUpdate`.
     func acceptSpokeUpdate(
@@ -1571,7 +1571,7 @@ extension Clients {
     /// See `HubServiceClient.rejectSpokeUpdate`.
     func rejectSpokeUpdate(
       request: RejectSpokeUpdateRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `HubServiceClient.rejectSpokeUpdate`.
     func rejectSpokeUpdate(
@@ -1581,7 +1581,7 @@ extension Clients {
     /// See `HubServiceClient.deleteSpoke`.
     func deleteSpoke(
       request: DeleteSpokeRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `HubServiceClient.deleteSpoke`.
     func deleteSpoke(
@@ -1636,7 +1636,7 @@ extension Clients {
     /// See `HubServiceClient.updateGroup`.
     func updateGroup(
       request: UpdateGroupRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `HubServiceClient.updateGroup`.
     func updateGroup(
@@ -1675,22 +1675,22 @@ extension Clients {
 
     /// See `HubServiceClient.listOperations`.
     func listOperations(
-      request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.ListOperationsResponse
+      request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.ListOperationsResponse
 
     /// See `HubServiceClient.listOperations`.
     func listOperations(
-      byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `HubServiceClient.deleteOperation`.
     func deleteOperation(
-      request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+      request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws
 
     /// See `HubServiceClient.cancelOperation`.
     func cancelOperation(
-      request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+      request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws
   }
 }
@@ -1753,13 +1753,13 @@ extension Clients.HubServiceProtocol {
     return try await self.getHub(request: request)
   }
 
-  public func createHub(request: CreateHubRequest) async throws -> GoogleLongrunning.Operation {
+  public func createHub(request: CreateHubRequest) async throws -> GoogleLongRunning.Operation {
     try await self.createHub(request: request, options: .init())
   }
 
   public func createHub(
     request: CreateHubRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1792,13 +1792,13 @@ extension Clients.HubServiceProtocol {
     return try await self.createHub(withPolling: request)
   }
 
-  public func updateHub(request: UpdateHubRequest) async throws -> GoogleLongrunning.Operation {
+  public func updateHub(request: UpdateHubRequest) async throws -> GoogleLongRunning.Operation {
     try await self.updateHub(request: request, options: .init())
   }
 
   public func updateHub(
     request: UpdateHubRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1829,13 +1829,13 @@ extension Clients.HubServiceProtocol {
     return try await self.updateHub(withPolling: request)
   }
 
-  public func deleteHub(request: DeleteHubRequest) async throws -> GoogleLongrunning.Operation {
+  public func deleteHub(request: DeleteHubRequest) async throws -> GoogleLongRunning.Operation {
     try await self.deleteHub(request: request, options: .init())
   }
 
   public func deleteHub(
     request: DeleteHubRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1998,13 +1998,13 @@ extension Clients.HubServiceProtocol {
     return try await self.getSpoke(request: request)
   }
 
-  public func createSpoke(request: CreateSpokeRequest) async throws -> GoogleLongrunning.Operation {
+  public func createSpoke(request: CreateSpokeRequest) async throws -> GoogleLongRunning.Operation {
     try await self.createSpoke(request: request, options: .init())
   }
 
   public func createSpoke(
     request: CreateSpokeRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -2037,13 +2037,13 @@ extension Clients.HubServiceProtocol {
     return try await self.createSpoke(withPolling: request)
   }
 
-  public func updateSpoke(request: UpdateSpokeRequest) async throws -> GoogleLongrunning.Operation {
+  public func updateSpoke(request: UpdateSpokeRequest) async throws -> GoogleLongRunning.Operation {
     try await self.updateSpoke(request: request, options: .init())
   }
 
   public func updateSpoke(
     request: UpdateSpokeRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -2075,14 +2075,14 @@ extension Clients.HubServiceProtocol {
   }
 
   public func rejectHubSpoke(request: RejectHubSpokeRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.rejectHubSpoke(request: request, options: .init())
   }
 
   public func rejectHubSpoke(
     request: RejectHubSpokeRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -2115,14 +2115,14 @@ extension Clients.HubServiceProtocol {
   }
 
   public func acceptHubSpoke(request: AcceptHubSpokeRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.acceptHubSpoke(request: request, options: .init())
   }
 
   public func acceptHubSpoke(
     request: AcceptHubSpokeRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -2155,14 +2155,14 @@ extension Clients.HubServiceProtocol {
   }
 
   public func acceptSpokeUpdate(request: AcceptSpokeUpdateRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.acceptSpokeUpdate(request: request, options: .init())
   }
 
   public func acceptSpokeUpdate(
     request: AcceptSpokeUpdateRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -2197,14 +2197,14 @@ extension Clients.HubServiceProtocol {
   }
 
   public func rejectSpokeUpdate(request: RejectSpokeUpdateRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.rejectSpokeUpdate(request: request, options: .init())
   }
 
   public func rejectSpokeUpdate(
     request: RejectSpokeUpdateRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -2238,13 +2238,13 @@ extension Clients.HubServiceProtocol {
     return try await self.rejectSpokeUpdate(withPolling: request)
   }
 
-  public func deleteSpoke(request: DeleteSpokeRequest) async throws -> GoogleLongrunning.Operation {
+  public func deleteSpoke(request: DeleteSpokeRequest) async throws -> GoogleLongRunning.Operation {
     try await self.deleteSpoke(request: request, options: .init())
   }
 
   public func deleteSpoke(
     request: DeleteSpokeRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -2448,13 +2448,13 @@ extension Clients.HubServiceProtocol {
     return try self.listGroups(byItem: request)
   }
 
-  public func updateGroup(request: UpdateGroupRequest) async throws -> GoogleLongrunning.Operation {
+  public func updateGroup(request: UpdateGroupRequest) async throws -> GoogleLongRunning.Operation {
     try await self.updateGroup(request: request, options: .init())
   }
 
   public func updateGroup(
     request: UpdateGroupRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -2561,29 +2561,29 @@ extension Clients.HubServiceProtocol {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
-  public func listOperations(request: GoogleLongrunning.ListOperationsRequest) async throws
-    -> GoogleLongrunning.ListOperationsResponse
+  public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
+    -> GoogleLongRunning.ListOperationsResponse
   {
     try await self.listOperations(request: request, options: .init())
   }
 
   public func listOperations(
-    request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.ListOperationsResponse {
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.ListOperationsResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func listOperations(
-    byItem: GoogleLongrunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+    byItem: GoogleLongRunning.ListOperationsRequest
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     try self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
-    byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongrunning.ListOperationsResponse in
+      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleCloudGax.RequestError.unimplemented
     }
     return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
@@ -2592,41 +2592,41 @@ extension Clients.HubServiceProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
-    let request = GoogleLongrunning.ListOperationsRequest().with {
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
     return try self.listOperations(byItem: request)
   }
 
-  public func getOperation(request: GoogleLongrunning.GetOperationRequest) async throws
-    -> GoogleLongrunning.Operation
+  public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
+    -> GoogleLongRunning.Operation
   {
     try await self.getOperation(request: request, options: .init())
   }
 
   public func getOperation(
-    request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+    request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func getOperation(
     name: Swift.String,
-  ) async throws -> GoogleLongrunning.Operation {
-    let request = GoogleLongrunning.GetOperationRequest().with {
+  ) async throws -> GoogleLongRunning.Operation {
+    let request = GoogleLongRunning.GetOperationRequest().with {
       $0.name = name
     }
     return try await self.getOperation(request: request)
   }
 
-  public func deleteOperation(request: GoogleLongrunning.DeleteOperationRequest) async throws {
+  public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
 
   public func deleteOperation(
-    request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+    request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws {
     throw GoogleCloudGax.RequestError.unimplemented
   }
@@ -2634,18 +2634,18 @@ extension Clients.HubServiceProtocol {
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
-    let request = GoogleLongrunning.DeleteOperationRequest().with {
+    let request = GoogleLongRunning.DeleteOperationRequest().with {
       $0.name = name
     }
     try await self.deleteOperation(request: request)
   }
 
-  public func cancelOperation(request: GoogleLongrunning.CancelOperationRequest) async throws {
+  public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
 
   public func cancelOperation(
-    request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+    request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws {
     throw GoogleCloudGax.RequestError.unimplemented
   }
@@ -2653,7 +2653,7 @@ extension Clients.HubServiceProtocol {
   public func cancelOperation(
     name: Swift.String,
   ) async throws {
-    let request = GoogleLongrunning.CancelOperationRequest().with {
+    let request = GoogleLongRunning.CancelOperationRequest().with {
       $0.name = name
     }
     try await self.cancelOperation(request: request)

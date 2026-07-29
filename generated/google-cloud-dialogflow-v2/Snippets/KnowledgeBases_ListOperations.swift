@@ -21,11 +21,11 @@
   import GoogleCloudDialogflowV2
   import GoogleCloudLocation
   import GoogleCloudWkt
-  import GoogleLongrunning
+  import GoogleLongRunning
 
   func sample(client: KnowledgeBasesClient) async throws {
     let items = try client.listOperations(
-      byItem: GoogleLongrunning.ListOperationsRequest()
+      byItem: GoogleLongRunning.ListOperationsRequest()
         /* set fields using .with { $0... } */
     )
     for try await item in items {

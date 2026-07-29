@@ -20,12 +20,12 @@ import Foundation
 import GoogleCloudRetailV2
 import GoogleApi
 import GoogleCloudWkt
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleRpc
 
 func sample(client: UserEventServiceClient) async throws {
   let items = try client.listOperations(
-    byItem: GoogleLongrunning.ListOperationsRequest()
+    byItem: GoogleLongRunning.ListOperationsRequest()
       /* set fields using .with { $0... } */
   )
   for try await item in items {

@@ -20,11 +20,11 @@ import Foundation
 import GoogleLoggingV2
 import GoogleApi
 import GoogleCloudWkt
-import GoogleLongrunning
+import GoogleLongRunning
 
 func sample(client: LoggingServiceV2Client) async throws {
   try await client.cancelOperation(
-    request: GoogleLongrunning.CancelOperationRequest()
+    request: GoogleLongRunning.CancelOperationRequest()
       /* set fields using .with { $0... } */
   )
   print("Success (no response expected)")

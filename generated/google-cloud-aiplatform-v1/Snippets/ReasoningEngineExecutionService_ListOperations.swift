@@ -23,12 +23,12 @@
   import GoogleCloudLocation
   import GoogleCloudWkt
   import GoogleIAMV1
-  import GoogleLongrunning
+  import GoogleLongRunning
   import GoogleRpc
 
   func sample(client: ReasoningEngineExecutionServiceClient) async throws {
     let items = try client.listOperations(
-      byItem: GoogleLongrunning.ListOperationsRequest()
+      byItem: GoogleLongRunning.ListOperationsRequest()
         /* set fields using .with { $0... } */
     )
     for try await item in items {

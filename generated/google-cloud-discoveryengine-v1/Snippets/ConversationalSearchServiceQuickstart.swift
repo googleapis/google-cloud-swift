@@ -20,7 +20,7 @@
   import Foundation
   import GoogleCloudDiscoveryEngineV1
   import GoogleCloudWkt
-  import GoogleLongrunning
+  import GoogleLongRunning
 
   func sample(projectId: String, locationId: String, dataStoreId: String, ) async throws {
     let client = try GoogleCloudDiscoveryEngineV1.ConversationalSearchServiceClient()

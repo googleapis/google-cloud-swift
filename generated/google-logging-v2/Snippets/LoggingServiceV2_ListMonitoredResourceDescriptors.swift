@@ -20,7 +20,7 @@ import Foundation
 import GoogleLoggingV2
 import GoogleApi
 import GoogleCloudWkt
-import GoogleLongrunning
+import GoogleLongRunning
 
 func sample(client: LoggingServiceV2Client) async throws {
   let items = try client.listMonitoredResourceDescriptors(

@@ -19,7 +19,7 @@
 import Foundation
 import GoogleCloudResourceManagerV3
 import GoogleCloudWkt
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleRpc
 
 func sample(tagValueId: String, ) async throws {

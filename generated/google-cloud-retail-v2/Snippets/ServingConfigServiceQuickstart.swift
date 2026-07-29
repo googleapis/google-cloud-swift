@@ -19,7 +19,7 @@
 import Foundation
 import GoogleCloudRetailV2
 import GoogleCloudWkt
-import GoogleLongrunning
+import GoogleLongRunning
 
 func sample(projectId: String, locationId: String, catalogId: String, ) async throws {
   let client = try GoogleCloudRetailV2.ServingConfigServiceClient()

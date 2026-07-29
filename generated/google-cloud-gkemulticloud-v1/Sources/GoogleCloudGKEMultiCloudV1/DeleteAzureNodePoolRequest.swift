@@ -47,7 +47,7 @@ public struct DeleteAzureNodePoolRequest: Codable, Equatable, GoogleCloudWkt._An
   /// Useful for idempotent deletion.
   ///
   /// [google.cloud.gkemulticloud.v1.AzureNodePool]: <doc:AzureNodePool>
-  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongrunning.Operation
+  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   public var allowMissing: Swift.Bool = Swift.Bool()
 
   /// The current ETag of the

@@ -19,7 +19,7 @@
 import Foundation
 import GoogleCloudTalentV4
 import GoogleCloudWkt
-import GoogleLongrunning
+import GoogleLongRunning
 
 func sample(client: TenantServiceClient, projectId: String, tenantId: String) async throws {
   try await client.deleteTenant(

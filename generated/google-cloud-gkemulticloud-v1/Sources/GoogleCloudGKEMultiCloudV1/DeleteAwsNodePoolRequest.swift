@@ -46,7 +46,7 @@ public struct DeleteAwsNodePoolRequest: Codable, Equatable, GoogleCloudWkt._AnyP
   /// Useful for idempotent deletion.
   ///
   /// [google.cloud.gkemulticloud.v1.AwsNodePool]: <doc:AwsNodePool>
-  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongrunning.Operation
+  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   public var allowMissing: Swift.Bool = Swift.Bool()
 
   /// Optional. If set to true, the deletion of

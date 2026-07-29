@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudWkt
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
 
@@ -159,7 +159,7 @@ public class GkeHubClient: Clients.GkeHubProtocol {
   /// @Snippet(path: "GkeHub_CreateMembership")
   public func createMembership(
     request: CreateMembershipRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.createMembership(request: request, options: options)
   }
 
@@ -174,7 +174,7 @@ public class GkeHubClient: Clients.GkeHubProtocol {
     withPolling: CreateMembershipRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Membership> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Membership>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -226,7 +226,7 @@ public class GkeHubClient: Clients.GkeHubProtocol {
   /// @Snippet(path: "GkeHub_CreateFeature")
   public func createFeature(
     request: CreateFeatureRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.createFeature(request: request, options: options)
   }
 
@@ -237,7 +237,7 @@ public class GkeHubClient: Clients.GkeHubProtocol {
     withPolling: CreateFeatureRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Feature> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Feature>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -293,7 +293,7 @@ public class GkeHubClient: Clients.GkeHubProtocol {
   /// @Snippet(path: "GkeHub_DeleteMembership")
   public func deleteMembership(
     request: DeleteMembershipRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.deleteMembership(request: request, options: options)
   }
 
@@ -308,7 +308,7 @@ public class GkeHubClient: Clients.GkeHubProtocol {
     withPolling: DeleteMembershipRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
+      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
       in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -352,7 +352,7 @@ public class GkeHubClient: Clients.GkeHubProtocol {
   /// @Snippet(path: "GkeHub_DeleteFeature")
   public func deleteFeature(
     request: DeleteFeatureRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.deleteFeature(request: request, options: options)
   }
 
@@ -363,7 +363,7 @@ public class GkeHubClient: Clients.GkeHubProtocol {
     withPolling: DeleteFeatureRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
+      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
       in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -407,7 +407,7 @@ public class GkeHubClient: Clients.GkeHubProtocol {
   /// @Snippet(path: "GkeHub_UpdateMembership")
   public func updateMembership(
     request: UpdateMembershipRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.updateMembership(request: request, options: options)
   }
 
@@ -418,7 +418,7 @@ public class GkeHubClient: Clients.GkeHubProtocol {
     withPolling: UpdateMembershipRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Membership> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Membership>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -470,7 +470,7 @@ public class GkeHubClient: Clients.GkeHubProtocol {
   /// @Snippet(path: "GkeHub_UpdateFeature")
   public func updateFeature(
     request: UpdateFeatureRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.updateFeature(request: request, options: options)
   }
 
@@ -481,7 +481,7 @@ public class GkeHubClient: Clients.GkeHubProtocol {
     withPolling: UpdateFeatureRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Feature> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Feature>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -545,7 +545,7 @@ public class GkeHubClient: Clients.GkeHubProtocol {
   /// @Snippet(path: "GkeHub_CreateFleet")
   public func createFleet(
     request: CreateFleetRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.createFleet(request: request, options: options)
   }
 
@@ -556,7 +556,7 @@ public class GkeHubClient: Clients.GkeHubProtocol {
     withPolling: CreateFleetRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Fleet> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Fleet>.State
+      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Fleet>.State
       in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -617,7 +617,7 @@ public class GkeHubClient: Clients.GkeHubProtocol {
   /// @Snippet(path: "GkeHub_UpdateFleet")
   public func updateFleet(
     request: UpdateFleetRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.updateFleet(request: request, options: options)
   }
 
@@ -628,7 +628,7 @@ public class GkeHubClient: Clients.GkeHubProtocol {
     withPolling: UpdateFleetRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Fleet> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Fleet>.State
+      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Fleet>.State
       in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -680,7 +680,7 @@ public class GkeHubClient: Clients.GkeHubProtocol {
   /// @Snippet(path: "GkeHub_DeleteFleet")
   public func deleteFleet(
     request: DeleteFleetRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.deleteFleet(request: request, options: options)
   }
 
@@ -691,7 +691,7 @@ public class GkeHubClient: Clients.GkeHubProtocol {
     withPolling: DeleteFleetRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
+      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
       in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -769,7 +769,7 @@ public class GkeHubClient: Clients.GkeHubProtocol {
   /// @Snippet(path: "GkeHub_CreateScopeNamespace")
   public func createScopeNamespace(
     request: CreateScopeNamespaceRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.createScopeNamespace(request: request, options: options)
   }
 
@@ -780,7 +780,7 @@ public class GkeHubClient: Clients.GkeHubProtocol {
     withPolling: CreateScopeNamespaceRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Namespace> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Namespace>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -832,7 +832,7 @@ public class GkeHubClient: Clients.GkeHubProtocol {
   /// @Snippet(path: "GkeHub_UpdateScopeNamespace")
   public func updateScopeNamespace(
     request: UpdateScopeNamespaceRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.updateScopeNamespace(request: request, options: options)
   }
 
@@ -843,7 +843,7 @@ public class GkeHubClient: Clients.GkeHubProtocol {
     withPolling: UpdateScopeNamespaceRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Namespace> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Namespace>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -895,7 +895,7 @@ public class GkeHubClient: Clients.GkeHubProtocol {
   /// @Snippet(path: "GkeHub_DeleteScopeNamespace")
   public func deleteScopeNamespace(
     request: DeleteScopeNamespaceRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.deleteScopeNamespace(request: request, options: options)
   }
 
@@ -906,7 +906,7 @@ public class GkeHubClient: Clients.GkeHubProtocol {
     withPolling: DeleteScopeNamespaceRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
+      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
       in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -983,7 +983,7 @@ public class GkeHubClient: Clients.GkeHubProtocol {
   /// @Snippet(path: "GkeHub_CreateScopeRBACRoleBinding")
   public func createScopeRbacroleBinding(
     request: CreateScopeRBACRoleBindingRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.createScopeRbacroleBinding(request: request, options: options)
   }
 
@@ -994,7 +994,7 @@ public class GkeHubClient: Clients.GkeHubProtocol {
     withPolling: CreateScopeRBACRoleBindingRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<RBACRoleBinding> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<RBACRoleBinding>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -1046,7 +1046,7 @@ public class GkeHubClient: Clients.GkeHubProtocol {
   /// @Snippet(path: "GkeHub_UpdateScopeRBACRoleBinding")
   public func updateScopeRbacroleBinding(
     request: UpdateScopeRBACRoleBindingRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.updateScopeRbacroleBinding(request: request, options: options)
   }
 
@@ -1057,7 +1057,7 @@ public class GkeHubClient: Clients.GkeHubProtocol {
     withPolling: UpdateScopeRBACRoleBindingRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<RBACRoleBinding> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<RBACRoleBinding>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -1109,7 +1109,7 @@ public class GkeHubClient: Clients.GkeHubProtocol {
   /// @Snippet(path: "GkeHub_DeleteScopeRBACRoleBinding")
   public func deleteScopeRbacroleBinding(
     request: DeleteScopeRBACRoleBindingRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.deleteScopeRbacroleBinding(request: request, options: options)
   }
 
@@ -1120,7 +1120,7 @@ public class GkeHubClient: Clients.GkeHubProtocol {
     withPolling: DeleteScopeRBACRoleBindingRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
+      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
       in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -1197,7 +1197,7 @@ public class GkeHubClient: Clients.GkeHubProtocol {
   /// @Snippet(path: "GkeHub_CreateScope")
   public func createScope(
     request: CreateScopeRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.createScope(request: request, options: options)
   }
 
@@ -1208,7 +1208,7 @@ public class GkeHubClient: Clients.GkeHubProtocol {
     withPolling: CreateScopeRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Scope> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Scope>.State
+      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Scope>.State
       in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -1260,7 +1260,7 @@ public class GkeHubClient: Clients.GkeHubProtocol {
   /// @Snippet(path: "GkeHub_UpdateScope")
   public func updateScope(
     request: UpdateScopeRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.updateScope(request: request, options: options)
   }
 
@@ -1271,7 +1271,7 @@ public class GkeHubClient: Clients.GkeHubProtocol {
     withPolling: UpdateScopeRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Scope> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Scope>.State
+      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Scope>.State
       in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -1323,7 +1323,7 @@ public class GkeHubClient: Clients.GkeHubProtocol {
   /// @Snippet(path: "GkeHub_DeleteScope")
   public func deleteScope(
     request: DeleteScopeRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.deleteScope(request: request, options: options)
   }
 
@@ -1334,7 +1334,7 @@ public class GkeHubClient: Clients.GkeHubProtocol {
     withPolling: DeleteScopeRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
+      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
       in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -1434,7 +1434,7 @@ public class GkeHubClient: Clients.GkeHubProtocol {
   /// @Snippet(path: "GkeHub_CreateMembershipBinding")
   public func createMembershipBinding(
     request: CreateMembershipBindingRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.createMembershipBinding(request: request, options: options)
   }
 
@@ -1445,7 +1445,7 @@ public class GkeHubClient: Clients.GkeHubProtocol {
     withPolling: CreateMembershipBindingRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<MembershipBinding> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<MembershipBinding>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -1498,7 +1498,7 @@ public class GkeHubClient: Clients.GkeHubProtocol {
   /// @Snippet(path: "GkeHub_UpdateMembershipBinding")
   public func updateMembershipBinding(
     request: UpdateMembershipBindingRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.updateMembershipBinding(request: request, options: options)
   }
 
@@ -1509,7 +1509,7 @@ public class GkeHubClient: Clients.GkeHubProtocol {
     withPolling: UpdateMembershipBindingRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<MembershipBinding> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<MembershipBinding>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -1562,7 +1562,7 @@ public class GkeHubClient: Clients.GkeHubProtocol {
   /// @Snippet(path: "GkeHub_DeleteMembershipBinding")
   public func deleteMembershipBinding(
     request: DeleteMembershipBindingRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.deleteMembershipBinding(request: request, options: options)
   }
 
@@ -1573,7 +1573,7 @@ public class GkeHubClient: Clients.GkeHubProtocol {
     withPolling: DeleteMembershipBindingRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
+      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
       in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -1650,7 +1650,7 @@ public class GkeHubClient: Clients.GkeHubProtocol {
   /// @Snippet(path: "GkeHub_CreateMembershipRBACRoleBinding")
   public func createMembershipRbacroleBinding(
     request: CreateMembershipRBACRoleBindingRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.createMembershipRbacroleBinding(request: request, options: options)
   }
 
@@ -1661,7 +1661,7 @@ public class GkeHubClient: Clients.GkeHubProtocol {
     withPolling: CreateMembershipRBACRoleBindingRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<RBACRoleBinding> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<RBACRoleBinding>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -1714,7 +1714,7 @@ public class GkeHubClient: Clients.GkeHubProtocol {
   /// @Snippet(path: "GkeHub_UpdateMembershipRBACRoleBinding")
   public func updateMembershipRbacroleBinding(
     request: UpdateMembershipRBACRoleBindingRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.updateMembershipRbacroleBinding(request: request, options: options)
   }
 
@@ -1725,7 +1725,7 @@ public class GkeHubClient: Clients.GkeHubProtocol {
     withPolling: UpdateMembershipRBACRoleBindingRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<RBACRoleBinding> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<RBACRoleBinding>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -1778,7 +1778,7 @@ public class GkeHubClient: Clients.GkeHubProtocol {
   /// @Snippet(path: "GkeHub_DeleteMembershipRBACRoleBinding")
   public func deleteMembershipRbacroleBinding(
     request: DeleteMembershipRBACRoleBindingRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.deleteMembershipRbacroleBinding(request: request, options: options)
   }
 
@@ -1789,7 +1789,7 @@ public class GkeHubClient: Clients.GkeHubProtocol {
     withPolling: DeleteMembershipRBACRoleBindingRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
+      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
       in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -1870,8 +1870,8 @@ public class GkeHubClient: Clients.GkeHubProtocol {
   ///
   /// @Snippet(path: "GkeHub_ListOperations")
   public func listOperations(
-    request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.ListOperationsResponse {
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.ListOperationsResponse {
     try await self.inner.listOperations(request: request, options: options)
   }
 
@@ -1881,10 +1881,10 @@ public class GkeHubClient: Clients.GkeHubProtocol {
   ///
   /// @Snippet(path: "GkeHub_ListOperations")
   public func listOperations(
-    byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongrunning.ListOperationsResponse in
+      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
@@ -1898,8 +1898,8 @@ public class GkeHubClient: Clients.GkeHubProtocol {
   ///
   /// @Snippet(path: "GkeHub_GetOperation")
   func getOperation(
-    request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+    request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.getOperation(request: request, options: options)
   }
 
@@ -1909,7 +1909,7 @@ public class GkeHubClient: Clients.GkeHubProtocol {
   ///
   /// @Snippet(path: "GkeHub_DeleteOperation")
   public func deleteOperation(
-    request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+    request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws {
     try await self.inner.deleteOperation(request: request, options: options)
   }
@@ -1920,7 +1920,7 @@ public class GkeHubClient: Clients.GkeHubProtocol {
   ///
   /// @Snippet(path: "GkeHub_CancelOperation")
   public func cancelOperation(
-    request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+    request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws {
     try await self.inner.cancelOperation(request: request, options: options)
   }
@@ -1993,7 +1993,7 @@ extension Clients {
 
     /// See `GkeHubClient.createMembership`.
     func createMembership(request: CreateMembershipRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `GkeHubClient.createMembership`.
     func createMembership(withPolling: CreateMembershipRequest) async throws -> any GoogleCloudGax
@@ -2007,7 +2007,7 @@ extension Clients {
     ) async throws -> any GoogleCloudGax.PollableOperation<Membership>
 
     /// See `GkeHubClient.createFeature`.
-    func createFeature(request: CreateFeatureRequest) async throws -> GoogleLongrunning.Operation
+    func createFeature(request: CreateFeatureRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `GkeHubClient.createFeature`.
     func createFeature(withPolling: CreateFeatureRequest) async throws -> any GoogleCloudGax
@@ -2022,7 +2022,7 @@ extension Clients {
 
     /// See `GkeHubClient.deleteMembership`.
     func deleteMembership(request: DeleteMembershipRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `GkeHubClient.deleteMembership`.
     func deleteMembership(withPolling: DeleteMembershipRequest) async throws -> any GoogleCloudGax
@@ -2034,7 +2034,7 @@ extension Clients {
     ) async throws -> any GoogleCloudGax.PollableOperation<Void>
 
     /// See `GkeHubClient.deleteFeature`.
-    func deleteFeature(request: DeleteFeatureRequest) async throws -> GoogleLongrunning.Operation
+    func deleteFeature(request: DeleteFeatureRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `GkeHubClient.deleteFeature`.
     func deleteFeature(withPolling: DeleteFeatureRequest) async throws -> any GoogleCloudGax
@@ -2047,7 +2047,7 @@ extension Clients {
 
     /// See `GkeHubClient.updateMembership`.
     func updateMembership(request: UpdateMembershipRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `GkeHubClient.updateMembership`.
     func updateMembership(withPolling: UpdateMembershipRequest) async throws -> any GoogleCloudGax
@@ -2061,7 +2061,7 @@ extension Clients {
     ) async throws -> any GoogleCloudGax.PollableOperation<Membership>
 
     /// See `GkeHubClient.updateFeature`.
-    func updateFeature(request: UpdateFeatureRequest) async throws -> GoogleLongrunning.Operation
+    func updateFeature(request: UpdateFeatureRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `GkeHubClient.updateFeature`.
     func updateFeature(withPolling: UpdateFeatureRequest) async throws -> any GoogleCloudGax
@@ -2079,7 +2079,7 @@ extension Clients {
       -> GoogleCloudGKEHubV1.GenerateConnectManifestResponse
 
     /// See `GkeHubClient.createFleet`.
-    func createFleet(request: CreateFleetRequest) async throws -> GoogleLongrunning.Operation
+    func createFleet(request: CreateFleetRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `GkeHubClient.createFleet`.
     func createFleet(withPolling: CreateFleetRequest) async throws -> any GoogleCloudGax
@@ -2100,7 +2100,7 @@ extension Clients {
     ) async throws -> GoogleCloudGKEHubV1.Fleet
 
     /// See `GkeHubClient.updateFleet`.
-    func updateFleet(request: UpdateFleetRequest) async throws -> GoogleLongrunning.Operation
+    func updateFleet(request: UpdateFleetRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `GkeHubClient.updateFleet`.
     func updateFleet(withPolling: UpdateFleetRequest) async throws -> any GoogleCloudGax
@@ -2113,7 +2113,7 @@ extension Clients {
     ) async throws -> any GoogleCloudGax.PollableOperation<Fleet>
 
     /// See `GkeHubClient.deleteFleet`.
-    func deleteFleet(request: DeleteFleetRequest) async throws -> GoogleLongrunning.Operation
+    func deleteFleet(request: DeleteFleetRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `GkeHubClient.deleteFleet`.
     func deleteFleet(withPolling: DeleteFleetRequest) async throws -> any GoogleCloudGax
@@ -2149,7 +2149,7 @@ extension Clients {
 
     /// See `GkeHubClient.createScopeNamespace`.
     func createScopeNamespace(request: CreateScopeNamespaceRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `GkeHubClient.createScopeNamespace`.
     func createScopeNamespace(withPolling: CreateScopeNamespaceRequest) async throws
@@ -2164,7 +2164,7 @@ extension Clients {
 
     /// See `GkeHubClient.updateScopeNamespace`.
     func updateScopeNamespace(request: UpdateScopeNamespaceRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `GkeHubClient.updateScopeNamespace`.
     func updateScopeNamespace(withPolling: UpdateScopeNamespaceRequest) async throws
@@ -2178,7 +2178,7 @@ extension Clients {
 
     /// See `GkeHubClient.deleteScopeNamespace`.
     func deleteScopeNamespace(request: DeleteScopeNamespaceRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `GkeHubClient.deleteScopeNamespace`.
     func deleteScopeNamespace(withPolling: DeleteScopeNamespaceRequest) async throws
@@ -2214,7 +2214,7 @@ extension Clients {
 
     /// See `GkeHubClient.createScopeRbacroleBinding`.
     func createScopeRbacroleBinding(request: CreateScopeRBACRoleBindingRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `GkeHubClient.createScopeRbacroleBinding`.
     func createScopeRbacroleBinding(withPolling: CreateScopeRBACRoleBindingRequest) async throws
@@ -2229,7 +2229,7 @@ extension Clients {
 
     /// See `GkeHubClient.updateScopeRbacroleBinding`.
     func updateScopeRbacroleBinding(request: UpdateScopeRBACRoleBindingRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `GkeHubClient.updateScopeRbacroleBinding`.
     func updateScopeRbacroleBinding(withPolling: UpdateScopeRBACRoleBindingRequest) async throws
@@ -2243,7 +2243,7 @@ extension Clients {
 
     /// See `GkeHubClient.deleteScopeRbacroleBinding`.
     func deleteScopeRbacroleBinding(request: DeleteScopeRBACRoleBindingRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `GkeHubClient.deleteScopeRbacroleBinding`.
     func deleteScopeRbacroleBinding(withPolling: DeleteScopeRBACRoleBindingRequest) async throws
@@ -2277,7 +2277,7 @@ extension Clients {
     ) async throws -> GoogleCloudGKEHubV1.Scope
 
     /// See `GkeHubClient.createScope`.
-    func createScope(request: CreateScopeRequest) async throws -> GoogleLongrunning.Operation
+    func createScope(request: CreateScopeRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `GkeHubClient.createScope`.
     func createScope(withPolling: CreateScopeRequest) async throws -> any GoogleCloudGax
@@ -2291,7 +2291,7 @@ extension Clients {
     ) async throws -> any GoogleCloudGax.PollableOperation<Scope>
 
     /// See `GkeHubClient.updateScope`.
-    func updateScope(request: UpdateScopeRequest) async throws -> GoogleLongrunning.Operation
+    func updateScope(request: UpdateScopeRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `GkeHubClient.updateScope`.
     func updateScope(withPolling: UpdateScopeRequest) async throws -> any GoogleCloudGax
@@ -2304,7 +2304,7 @@ extension Clients {
     ) async throws -> any GoogleCloudGax.PollableOperation<Scope>
 
     /// See `GkeHubClient.deleteScope`.
-    func deleteScope(request: DeleteScopeRequest) async throws -> GoogleLongrunning.Operation
+    func deleteScope(request: DeleteScopeRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `GkeHubClient.deleteScope`.
     func deleteScope(withPolling: DeleteScopeRequest) async throws -> any GoogleCloudGax
@@ -2354,7 +2354,7 @@ extension Clients {
 
     /// See `GkeHubClient.createMembershipBinding`.
     func createMembershipBinding(request: CreateMembershipBindingRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `GkeHubClient.createMembershipBinding`.
     func createMembershipBinding(withPolling: CreateMembershipBindingRequest) async throws
@@ -2369,7 +2369,7 @@ extension Clients {
 
     /// See `GkeHubClient.updateMembershipBinding`.
     func updateMembershipBinding(request: UpdateMembershipBindingRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `GkeHubClient.updateMembershipBinding`.
     func updateMembershipBinding(withPolling: UpdateMembershipBindingRequest) async throws
@@ -2383,7 +2383,7 @@ extension Clients {
 
     /// See `GkeHubClient.deleteMembershipBinding`.
     func deleteMembershipBinding(request: DeleteMembershipBindingRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `GkeHubClient.deleteMembershipBinding`.
     func deleteMembershipBinding(withPolling: DeleteMembershipBindingRequest) async throws
@@ -2419,7 +2419,7 @@ extension Clients {
 
     /// See `GkeHubClient.createMembershipRbacroleBinding`.
     func createMembershipRbacroleBinding(request: CreateMembershipRBACRoleBindingRequest)
-      async throws -> GoogleLongrunning.Operation
+      async throws -> GoogleLongRunning.Operation
 
     /// See `GkeHubClient.createMembershipRbacroleBinding`.
     func createMembershipRbacroleBinding(withPolling: CreateMembershipRBACRoleBindingRequest)
@@ -2434,7 +2434,7 @@ extension Clients {
 
     /// See `GkeHubClient.updateMembershipRbacroleBinding`.
     func updateMembershipRbacroleBinding(request: UpdateMembershipRBACRoleBindingRequest)
-      async throws -> GoogleLongrunning.Operation
+      async throws -> GoogleLongRunning.Operation
 
     /// See `GkeHubClient.updateMembershipRbacroleBinding`.
     func updateMembershipRbacroleBinding(withPolling: UpdateMembershipRBACRoleBindingRequest)
@@ -2448,7 +2448,7 @@ extension Clients {
 
     /// See `GkeHubClient.deleteMembershipRbacroleBinding`.
     func deleteMembershipRbacroleBinding(request: DeleteMembershipRBACRoleBindingRequest)
-      async throws -> GoogleLongrunning.Operation
+      async throws -> GoogleLongRunning.Operation
 
     /// See `GkeHubClient.deleteMembershipRbacroleBinding`.
     func deleteMembershipRbacroleBinding(withPolling: DeleteMembershipRBACRoleBindingRequest)
@@ -2479,22 +2479,22 @@ extension Clients {
     ) async throws -> GoogleCloudGKEHubV1.GenerateMembershipRBACRoleBindingYAMLResponse
 
     /// See `GkeHubClient.listOperations`.
-    func listOperations(request: GoogleLongrunning.ListOperationsRequest) async throws
-      -> GoogleLongrunning.ListOperationsResponse
+    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
+      -> GoogleLongRunning.ListOperationsResponse
 
     /// See `GkeHubClient.listOperations`.
     func listOperations(
-      byItem: GoogleLongrunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+      byItem: GoogleLongRunning.ListOperationsRequest
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `GkeHubClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `GkeHubClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongrunning.DeleteOperationRequest) async throws
+    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
 
     /// See `GkeHubClient.deleteOperation`.
     func deleteOperation(
@@ -2502,7 +2502,7 @@ extension Clients {
     ) async throws
 
     /// See `GkeHubClient.cancelOperation`.
-    func cancelOperation(request: GoogleLongrunning.CancelOperationRequest) async throws
+    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
 
     /// See `GkeHubClient.cancelOperation`.
     func cancelOperation(
@@ -2552,7 +2552,7 @@ extension Clients {
     /// See `GkeHubClient.createMembership`.
     func createMembership(
       request: CreateMembershipRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `GkeHubClient.createMembership`.
     func createMembership(
@@ -2562,7 +2562,7 @@ extension Clients {
     /// See `GkeHubClient.createFeature`.
     func createFeature(
       request: CreateFeatureRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `GkeHubClient.createFeature`.
     func createFeature(
@@ -2572,7 +2572,7 @@ extension Clients {
     /// See `GkeHubClient.deleteMembership`.
     func deleteMembership(
       request: DeleteMembershipRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `GkeHubClient.deleteMembership`.
     func deleteMembership(
@@ -2582,7 +2582,7 @@ extension Clients {
     /// See `GkeHubClient.deleteFeature`.
     func deleteFeature(
       request: DeleteFeatureRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `GkeHubClient.deleteFeature`.
     func deleteFeature(
@@ -2592,7 +2592,7 @@ extension Clients {
     /// See `GkeHubClient.updateMembership`.
     func updateMembership(
       request: UpdateMembershipRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `GkeHubClient.updateMembership`.
     func updateMembership(
@@ -2602,7 +2602,7 @@ extension Clients {
     /// See `GkeHubClient.updateFeature`.
     func updateFeature(
       request: UpdateFeatureRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `GkeHubClient.updateFeature`.
     func updateFeature(
@@ -2617,7 +2617,7 @@ extension Clients {
     /// See `GkeHubClient.createFleet`.
     func createFleet(
       request: CreateFleetRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `GkeHubClient.createFleet`.
     func createFleet(
@@ -2632,7 +2632,7 @@ extension Clients {
     /// See `GkeHubClient.updateFleet`.
     func updateFleet(
       request: UpdateFleetRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `GkeHubClient.updateFleet`.
     func updateFleet(
@@ -2642,7 +2642,7 @@ extension Clients {
     /// See `GkeHubClient.deleteFleet`.
     func deleteFleet(
       request: DeleteFleetRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `GkeHubClient.deleteFleet`.
     func deleteFleet(
@@ -2667,7 +2667,7 @@ extension Clients {
     /// See `GkeHubClient.createScopeNamespace`.
     func createScopeNamespace(
       request: CreateScopeNamespaceRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `GkeHubClient.createScopeNamespace`.
     func createScopeNamespace(
@@ -2677,7 +2677,7 @@ extension Clients {
     /// See `GkeHubClient.updateScopeNamespace`.
     func updateScopeNamespace(
       request: UpdateScopeNamespaceRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `GkeHubClient.updateScopeNamespace`.
     func updateScopeNamespace(
@@ -2687,7 +2687,7 @@ extension Clients {
     /// See `GkeHubClient.deleteScopeNamespace`.
     func deleteScopeNamespace(
       request: DeleteScopeNamespaceRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `GkeHubClient.deleteScopeNamespace`.
     func deleteScopeNamespace(
@@ -2712,7 +2712,7 @@ extension Clients {
     /// See `GkeHubClient.createScopeRbacroleBinding`.
     func createScopeRbacroleBinding(
       request: CreateScopeRBACRoleBindingRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `GkeHubClient.createScopeRbacroleBinding`.
     func createScopeRbacroleBinding(
@@ -2722,7 +2722,7 @@ extension Clients {
     /// See `GkeHubClient.updateScopeRbacroleBinding`.
     func updateScopeRbacroleBinding(
       request: UpdateScopeRBACRoleBindingRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `GkeHubClient.updateScopeRbacroleBinding`.
     func updateScopeRbacroleBinding(
@@ -2732,7 +2732,7 @@ extension Clients {
     /// See `GkeHubClient.deleteScopeRbacroleBinding`.
     func deleteScopeRbacroleBinding(
       request: DeleteScopeRBACRoleBindingRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `GkeHubClient.deleteScopeRbacroleBinding`.
     func deleteScopeRbacroleBinding(
@@ -2757,7 +2757,7 @@ extension Clients {
     /// See `GkeHubClient.createScope`.
     func createScope(
       request: CreateScopeRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `GkeHubClient.createScope`.
     func createScope(
@@ -2767,7 +2767,7 @@ extension Clients {
     /// See `GkeHubClient.updateScope`.
     func updateScope(
       request: UpdateScopeRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `GkeHubClient.updateScope`.
     func updateScope(
@@ -2777,7 +2777,7 @@ extension Clients {
     /// See `GkeHubClient.deleteScope`.
     func deleteScope(
       request: DeleteScopeRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `GkeHubClient.deleteScope`.
     func deleteScope(
@@ -2812,7 +2812,7 @@ extension Clients {
     /// See `GkeHubClient.createMembershipBinding`.
     func createMembershipBinding(
       request: CreateMembershipBindingRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `GkeHubClient.createMembershipBinding`.
     func createMembershipBinding(
@@ -2822,7 +2822,7 @@ extension Clients {
     /// See `GkeHubClient.updateMembershipBinding`.
     func updateMembershipBinding(
       request: UpdateMembershipBindingRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `GkeHubClient.updateMembershipBinding`.
     func updateMembershipBinding(
@@ -2832,7 +2832,7 @@ extension Clients {
     /// See `GkeHubClient.deleteMembershipBinding`.
     func deleteMembershipBinding(
       request: DeleteMembershipBindingRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `GkeHubClient.deleteMembershipBinding`.
     func deleteMembershipBinding(
@@ -2857,7 +2857,7 @@ extension Clients {
     /// See `GkeHubClient.createMembershipRbacroleBinding`.
     func createMembershipRbacroleBinding(
       request: CreateMembershipRBACRoleBindingRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `GkeHubClient.createMembershipRbacroleBinding`.
     func createMembershipRbacroleBinding(
@@ -2867,7 +2867,7 @@ extension Clients {
     /// See `GkeHubClient.updateMembershipRbacroleBinding`.
     func updateMembershipRbacroleBinding(
       request: UpdateMembershipRBACRoleBindingRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `GkeHubClient.updateMembershipRbacroleBinding`.
     func updateMembershipRbacroleBinding(
@@ -2877,7 +2877,7 @@ extension Clients {
     /// See `GkeHubClient.deleteMembershipRbacroleBinding`.
     func deleteMembershipRbacroleBinding(
       request: DeleteMembershipRBACRoleBindingRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `GkeHubClient.deleteMembershipRbacroleBinding`.
     func deleteMembershipRbacroleBinding(
@@ -2901,22 +2901,22 @@ extension Clients {
 
     /// See `GkeHubClient.listOperations`.
     func listOperations(
-      request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.ListOperationsResponse
+      request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.ListOperationsResponse
 
     /// See `GkeHubClient.listOperations`.
     func listOperations(
-      byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `GkeHubClient.deleteOperation`.
     func deleteOperation(
-      request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+      request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws
 
     /// See `GkeHubClient.cancelOperation`.
     func cancelOperation(
-      request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+      request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws
   }
 }
@@ -3075,14 +3075,14 @@ extension Clients.GkeHubProtocol {
   }
 
   public func createMembership(request: CreateMembershipRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.createMembership(request: request, options: .init())
   }
 
   public func createMembership(
     request: CreateMembershipRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -3116,14 +3116,14 @@ extension Clients.GkeHubProtocol {
   }
 
   public func createFeature(request: CreateFeatureRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.createFeature(request: request, options: .init())
   }
 
   public func createFeature(
     request: CreateFeatureRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -3157,14 +3157,14 @@ extension Clients.GkeHubProtocol {
   }
 
   public func deleteMembership(request: DeleteMembershipRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.deleteMembership(request: request, options: .init())
   }
 
   public func deleteMembership(
     request: DeleteMembershipRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -3194,14 +3194,14 @@ extension Clients.GkeHubProtocol {
   }
 
   public func deleteFeature(request: DeleteFeatureRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.deleteFeature(request: request, options: .init())
   }
 
   public func deleteFeature(
     request: DeleteFeatureRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -3231,14 +3231,14 @@ extension Clients.GkeHubProtocol {
   }
 
   public func updateMembership(request: UpdateMembershipRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.updateMembership(request: request, options: .init())
   }
 
   public func updateMembership(
     request: UpdateMembershipRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -3272,14 +3272,14 @@ extension Clients.GkeHubProtocol {
   }
 
   public func updateFeature(request: UpdateFeatureRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.updateFeature(request: request, options: .init())
   }
 
   public func updateFeature(
     request: UpdateFeatureRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -3324,13 +3324,13 @@ extension Clients.GkeHubProtocol {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
-  public func createFleet(request: CreateFleetRequest) async throws -> GoogleLongrunning.Operation {
+  public func createFleet(request: CreateFleetRequest) async throws -> GoogleLongRunning.Operation {
     try await self.createFleet(request: request, options: .init())
   }
 
   public func createFleet(
     request: CreateFleetRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -3380,13 +3380,13 @@ extension Clients.GkeHubProtocol {
     return try await self.getFleet(request: request)
   }
 
-  public func updateFleet(request: UpdateFleetRequest) async throws -> GoogleLongrunning.Operation {
+  public func updateFleet(request: UpdateFleetRequest) async throws -> GoogleLongRunning.Operation {
     try await self.updateFleet(request: request, options: .init())
   }
 
   public func updateFleet(
     request: UpdateFleetRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -3417,13 +3417,13 @@ extension Clients.GkeHubProtocol {
     return try await self.updateFleet(withPolling: request)
   }
 
-  public func deleteFleet(request: DeleteFleetRequest) async throws -> GoogleLongrunning.Operation {
+  public func deleteFleet(request: DeleteFleetRequest) async throws -> GoogleLongRunning.Operation {
     try await self.deleteFleet(request: request, options: .init())
   }
 
   public func deleteFleet(
     request: DeleteFleetRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -3510,14 +3510,14 @@ extension Clients.GkeHubProtocol {
   }
 
   public func createScopeNamespace(request: CreateScopeNamespaceRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.createScopeNamespace(request: request, options: .init())
   }
 
   public func createScopeNamespace(
     request: CreateScopeNamespaceRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -3551,14 +3551,14 @@ extension Clients.GkeHubProtocol {
   }
 
   public func updateScopeNamespace(request: UpdateScopeNamespaceRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.updateScopeNamespace(request: request, options: .init())
   }
 
   public func updateScopeNamespace(
     request: UpdateScopeNamespaceRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -3590,14 +3590,14 @@ extension Clients.GkeHubProtocol {
   }
 
   public func deleteScopeNamespace(request: DeleteScopeNamespaceRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.deleteScopeNamespace(request: request, options: .init())
   }
 
   public func deleteScopeNamespace(
     request: DeleteScopeNamespaceRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -3685,14 +3685,14 @@ extension Clients.GkeHubProtocol {
   }
 
   public func createScopeRbacroleBinding(request: CreateScopeRBACRoleBindingRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.createScopeRbacroleBinding(request: request, options: .init())
   }
 
   public func createScopeRbacroleBinding(
     request: CreateScopeRBACRoleBindingRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -3726,14 +3726,14 @@ extension Clients.GkeHubProtocol {
   }
 
   public func updateScopeRbacroleBinding(request: UpdateScopeRBACRoleBindingRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.updateScopeRbacroleBinding(request: request, options: .init())
   }
 
   public func updateScopeRbacroleBinding(
     request: UpdateScopeRBACRoleBindingRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -3765,14 +3765,14 @@ extension Clients.GkeHubProtocol {
   }
 
   public func deleteScopeRbacroleBinding(request: DeleteScopeRBACRoleBindingRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.deleteScopeRbacroleBinding(request: request, options: .init())
   }
 
   public func deleteScopeRbacroleBinding(
     request: DeleteScopeRBACRoleBindingRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -3857,13 +3857,13 @@ extension Clients.GkeHubProtocol {
     return try await self.getScope(request: request)
   }
 
-  public func createScope(request: CreateScopeRequest) async throws -> GoogleLongrunning.Operation {
+  public func createScope(request: CreateScopeRequest) async throws -> GoogleLongRunning.Operation {
     try await self.createScope(request: request, options: .init())
   }
 
   public func createScope(
     request: CreateScopeRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -3896,13 +3896,13 @@ extension Clients.GkeHubProtocol {
     return try await self.createScope(withPolling: request)
   }
 
-  public func updateScope(request: UpdateScopeRequest) async throws -> GoogleLongrunning.Operation {
+  public func updateScope(request: UpdateScopeRequest) async throws -> GoogleLongRunning.Operation {
     try await self.updateScope(request: request, options: .init())
   }
 
   public func updateScope(
     request: UpdateScopeRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -3933,13 +3933,13 @@ extension Clients.GkeHubProtocol {
     return try await self.updateScope(withPolling: request)
   }
 
-  public func deleteScope(request: DeleteScopeRequest) async throws -> GoogleLongrunning.Operation {
+  public func deleteScope(request: DeleteScopeRequest) async throws -> GoogleLongRunning.Operation {
     try await self.deleteScope(request: request, options: .init())
   }
 
   public func deleteScope(
     request: DeleteScopeRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -4063,14 +4063,14 @@ extension Clients.GkeHubProtocol {
   }
 
   public func createMembershipBinding(request: CreateMembershipBindingRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.createMembershipBinding(request: request, options: .init())
   }
 
   public func createMembershipBinding(
     request: CreateMembershipBindingRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -4105,14 +4105,14 @@ extension Clients.GkeHubProtocol {
   }
 
   public func updateMembershipBinding(request: UpdateMembershipBindingRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.updateMembershipBinding(request: request, options: .init())
   }
 
   public func updateMembershipBinding(
     request: UpdateMembershipBindingRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -4145,14 +4145,14 @@ extension Clients.GkeHubProtocol {
   }
 
   public func deleteMembershipBinding(request: DeleteMembershipBindingRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.deleteMembershipBinding(request: request, options: .init())
   }
 
   public func deleteMembershipBinding(
     request: DeleteMembershipBindingRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -4240,14 +4240,14 @@ extension Clients.GkeHubProtocol {
   }
 
   public func createMembershipRbacroleBinding(request: CreateMembershipRBACRoleBindingRequest)
-    async throws -> GoogleLongrunning.Operation
+    async throws -> GoogleLongRunning.Operation
   {
     try await self.createMembershipRbacroleBinding(request: request, options: .init())
   }
 
   public func createMembershipRbacroleBinding(
     request: CreateMembershipRBACRoleBindingRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -4281,14 +4281,14 @@ extension Clients.GkeHubProtocol {
   }
 
   public func updateMembershipRbacroleBinding(request: UpdateMembershipRBACRoleBindingRequest)
-    async throws -> GoogleLongrunning.Operation
+    async throws -> GoogleLongRunning.Operation
   {
     try await self.updateMembershipRbacroleBinding(request: request, options: .init())
   }
 
   public func updateMembershipRbacroleBinding(
     request: UpdateMembershipRBACRoleBindingRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -4320,14 +4320,14 @@ extension Clients.GkeHubProtocol {
   }
 
   public func deleteMembershipRbacroleBinding(request: DeleteMembershipRBACRoleBindingRequest)
-    async throws -> GoogleLongrunning.Operation
+    async throws -> GoogleLongRunning.Operation
   {
     try await self.deleteMembershipRbacroleBinding(request: request, options: .init())
   }
 
   public func deleteMembershipRbacroleBinding(
     request: DeleteMembershipRBACRoleBindingRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -4406,29 +4406,29 @@ extension Clients.GkeHubProtocol {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
-  public func listOperations(request: GoogleLongrunning.ListOperationsRequest) async throws
-    -> GoogleLongrunning.ListOperationsResponse
+  public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
+    -> GoogleLongRunning.ListOperationsResponse
   {
     try await self.listOperations(request: request, options: .init())
   }
 
   public func listOperations(
-    request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.ListOperationsResponse {
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.ListOperationsResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func listOperations(
-    byItem: GoogleLongrunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+    byItem: GoogleLongRunning.ListOperationsRequest
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     try self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
-    byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongrunning.ListOperationsResponse in
+      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleCloudGax.RequestError.unimplemented
     }
     return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
@@ -4437,41 +4437,41 @@ extension Clients.GkeHubProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
-    let request = GoogleLongrunning.ListOperationsRequest().with {
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
     return try self.listOperations(byItem: request)
   }
 
-  public func getOperation(request: GoogleLongrunning.GetOperationRequest) async throws
-    -> GoogleLongrunning.Operation
+  public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
+    -> GoogleLongRunning.Operation
   {
     try await self.getOperation(request: request, options: .init())
   }
 
   public func getOperation(
-    request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+    request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func getOperation(
     name: Swift.String,
-  ) async throws -> GoogleLongrunning.Operation {
-    let request = GoogleLongrunning.GetOperationRequest().with {
+  ) async throws -> GoogleLongRunning.Operation {
+    let request = GoogleLongRunning.GetOperationRequest().with {
       $0.name = name
     }
     return try await self.getOperation(request: request)
   }
 
-  public func deleteOperation(request: GoogleLongrunning.DeleteOperationRequest) async throws {
+  public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
 
   public func deleteOperation(
-    request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+    request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws {
     throw GoogleCloudGax.RequestError.unimplemented
   }
@@ -4479,18 +4479,18 @@ extension Clients.GkeHubProtocol {
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
-    let request = GoogleLongrunning.DeleteOperationRequest().with {
+    let request = GoogleLongRunning.DeleteOperationRequest().with {
       $0.name = name
     }
     try await self.deleteOperation(request: request)
   }
 
-  public func cancelOperation(request: GoogleLongrunning.CancelOperationRequest) async throws {
+  public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
 
   public func cancelOperation(
-    request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+    request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws {
     throw GoogleCloudGax.RequestError.unimplemented
   }
@@ -4498,7 +4498,7 @@ extension Clients.GkeHubProtocol {
   public func cancelOperation(
     name: Swift.String,
   ) async throws {
-    let request = GoogleLongrunning.CancelOperationRequest().with {
+    let request = GoogleLongRunning.CancelOperationRequest().with {
       $0.name = name
     }
     try await self.cancelOperation(request: request)

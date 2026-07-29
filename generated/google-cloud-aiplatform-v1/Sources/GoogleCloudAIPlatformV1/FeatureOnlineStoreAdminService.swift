@@ -22,7 +22,7 @@
   import GoogleCloudLocation
   import GoogleCloudWkt
   import GoogleIAMV1
-  import GoogleLongrunning
+  import GoogleLongRunning
   import GoogleRpc
   import GoogleCloudGax
 
@@ -50,7 +50,7 @@
     /// @Snippet(path: "FeatureOnlineStoreAdminService_CreateFeatureOnlineStore")
     public func createFeatureOnlineStore(
       request: CreateFeatureOnlineStoreRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       try await self.inner.createFeatureOnlineStore(request: request, options: options)
     }
 
@@ -61,7 +61,7 @@
       withPolling: CreateFeatureOnlineStoreRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> any GoogleCloudGax.PollableOperation<FeatureOnlineStore> {
       let extractStatus = {
-        (op: GoogleLongrunning.Operation) throws
+        (op: GoogleLongRunning.Operation) throws
           -> GoogleCloudGax._PollableOperationImpl<FeatureOnlineStore>.State in
         guard op.done else {
           return .init(done: false, result: nil)
@@ -148,7 +148,7 @@
     /// @Snippet(path: "FeatureOnlineStoreAdminService_UpdateFeatureOnlineStore")
     public func updateFeatureOnlineStore(
       request: UpdateFeatureOnlineStoreRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       try await self.inner.updateFeatureOnlineStore(request: request, options: options)
     }
 
@@ -159,7 +159,7 @@
       withPolling: UpdateFeatureOnlineStoreRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> any GoogleCloudGax.PollableOperation<FeatureOnlineStore> {
       let extractStatus = {
-        (op: GoogleLongrunning.Operation) throws
+        (op: GoogleLongRunning.Operation) throws
           -> GoogleCloudGax._PollableOperationImpl<FeatureOnlineStore>.State in
         guard op.done else {
           return .init(done: false, result: nil)
@@ -213,7 +213,7 @@
     /// @Snippet(path: "FeatureOnlineStoreAdminService_DeleteFeatureOnlineStore")
     public func deleteFeatureOnlineStore(
       request: DeleteFeatureOnlineStoreRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       try await self.inner.deleteFeatureOnlineStore(request: request, options: options)
     }
 
@@ -225,7 +225,7 @@
       withPolling: DeleteFeatureOnlineStoreRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
       let extractStatus = {
-        (op: GoogleLongrunning.Operation) throws
+        (op: GoogleLongRunning.Operation) throws
           -> GoogleCloudGax._PollableOperationImpl<Void>.State in
         guard op.done else {
           return .init(done: false, result: nil)
@@ -269,7 +269,7 @@
     /// @Snippet(path: "FeatureOnlineStoreAdminService_CreateFeatureView")
     public func createFeatureView(
       request: CreateFeatureViewRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       try await self.inner.createFeatureView(request: request, options: options)
     }
 
@@ -280,7 +280,7 @@
       withPolling: CreateFeatureViewRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> any GoogleCloudGax.PollableOperation<FeatureView> {
       let extractStatus = {
-        (op: GoogleLongrunning.Operation) throws
+        (op: GoogleLongRunning.Operation) throws
           -> GoogleCloudGax._PollableOperationImpl<FeatureView>.State in
         guard op.done else {
           return .init(done: false, result: nil)
@@ -365,7 +365,7 @@
     /// @Snippet(path: "FeatureOnlineStoreAdminService_UpdateFeatureView")
     public func updateFeatureView(
       request: UpdateFeatureViewRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       try await self.inner.updateFeatureView(request: request, options: options)
     }
 
@@ -376,7 +376,7 @@
       withPolling: UpdateFeatureViewRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> any GoogleCloudGax.PollableOperation<FeatureView> {
       let extractStatus = {
-        (op: GoogleLongrunning.Operation) throws
+        (op: GoogleLongRunning.Operation) throws
           -> GoogleCloudGax._PollableOperationImpl<FeatureView>.State in
         guard op.done else {
           return .init(done: false, result: nil)
@@ -428,7 +428,7 @@
     /// @Snippet(path: "FeatureOnlineStoreAdminService_DeleteFeatureView")
     public func deleteFeatureView(
       request: DeleteFeatureViewRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       try await self.inner.deleteFeatureView(request: request, options: options)
     }
 
@@ -439,7 +439,7 @@
       withPolling: DeleteFeatureViewRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
       let extractStatus = {
-        (op: GoogleLongrunning.Operation) throws
+        (op: GoogleLongRunning.Operation) throws
           -> GoogleCloudGax._PollableOperationImpl<Void>.State in
         guard op.done else {
           return .init(done: false, result: nil)
@@ -598,8 +598,8 @@
     ///
     /// @Snippet(path: "FeatureOnlineStoreAdminService_ListOperations")
     public func listOperations(
-      request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.ListOperationsResponse {
+      request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.ListOperationsResponse {
       try await self.inner.listOperations(request: request, options: options)
     }
 
@@ -609,10 +609,10 @@
     ///
     /// @Snippet(path: "FeatureOnlineStoreAdminService_ListOperations")
     public func listOperations(
-      byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
-        (token: Swift.String) async throws -> GoogleLongrunning.ListOperationsResponse in
+        (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
         var request = byItem
         request.pageToken = token
         return try await self.listOperations(request: request, options: options)
@@ -626,8 +626,8 @@
     ///
     /// @Snippet(path: "FeatureOnlineStoreAdminService_GetOperation")
     func getOperation(
-      request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+      request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
       try await self.inner.getOperation(request: request, options: options)
     }
 
@@ -637,7 +637,7 @@
     ///
     /// @Snippet(path: "FeatureOnlineStoreAdminService_DeleteOperation")
     public func deleteOperation(
-      request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+      request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws {
       try await self.inner.deleteOperation(request: request, options: options)
     }
@@ -648,7 +648,7 @@
     ///
     /// @Snippet(path: "FeatureOnlineStoreAdminService_CancelOperation")
     public func cancelOperation(
-      request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+      request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws {
       try await self.inner.cancelOperation(request: request, options: options)
     }
@@ -659,8 +659,8 @@
     ///
     /// @Snippet(path: "FeatureOnlineStoreAdminService_WaitOperation")
     public func waitOperation(
-      request: GoogleLongrunning.WaitOperationRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+      request: GoogleLongRunning.WaitOperationRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
       try await self.inner.waitOperation(request: request, options: options)
     }
   }
@@ -674,7 +674,7 @@
     public protocol FeatureOnlineStoreAdminServiceProtocol {
       /// See `FeatureOnlineStoreAdminServiceClient.createFeatureOnlineStore`.
       func createFeatureOnlineStore(request: CreateFeatureOnlineStoreRequest) async throws
-        -> GoogleLongrunning.Operation
+        -> GoogleLongRunning.Operation
 
       /// See `FeatureOnlineStoreAdminServiceClient.createFeatureOnlineStore`.
       func createFeatureOnlineStore(withPolling: CreateFeatureOnlineStoreRequest) async throws
@@ -712,7 +712,7 @@
 
       /// See `FeatureOnlineStoreAdminServiceClient.updateFeatureOnlineStore`.
       func updateFeatureOnlineStore(request: UpdateFeatureOnlineStoreRequest) async throws
-        -> GoogleLongrunning.Operation
+        -> GoogleLongRunning.Operation
 
       /// See `FeatureOnlineStoreAdminServiceClient.updateFeatureOnlineStore`.
       func updateFeatureOnlineStore(withPolling: UpdateFeatureOnlineStoreRequest) async throws
@@ -726,7 +726,7 @@
 
       /// See `FeatureOnlineStoreAdminServiceClient.deleteFeatureOnlineStore`.
       func deleteFeatureOnlineStore(request: DeleteFeatureOnlineStoreRequest) async throws
-        -> GoogleLongrunning.Operation
+        -> GoogleLongRunning.Operation
 
       /// See `FeatureOnlineStoreAdminServiceClient.deleteFeatureOnlineStore`.
       func deleteFeatureOnlineStore(withPolling: DeleteFeatureOnlineStoreRequest) async throws
@@ -740,7 +740,7 @@
 
       /// See `FeatureOnlineStoreAdminServiceClient.createFeatureView`.
       func createFeatureView(request: CreateFeatureViewRequest) async throws
-        -> GoogleLongrunning.Operation
+        -> GoogleLongRunning.Operation
 
       /// See `FeatureOnlineStoreAdminServiceClient.createFeatureView`.
       func createFeatureView(withPolling: CreateFeatureViewRequest) async throws
@@ -778,7 +778,7 @@
 
       /// See `FeatureOnlineStoreAdminServiceClient.updateFeatureView`.
       func updateFeatureView(request: UpdateFeatureViewRequest) async throws
-        -> GoogleLongrunning.Operation
+        -> GoogleLongRunning.Operation
 
       /// See `FeatureOnlineStoreAdminServiceClient.updateFeatureView`.
       func updateFeatureView(withPolling: UpdateFeatureViewRequest) async throws
@@ -792,7 +792,7 @@
 
       /// See `FeatureOnlineStoreAdminServiceClient.deleteFeatureView`.
       func deleteFeatureView(request: DeleteFeatureViewRequest) async throws
-        -> GoogleLongrunning.Operation
+        -> GoogleLongRunning.Operation
 
       /// See `FeatureOnlineStoreAdminServiceClient.deleteFeatureView`.
       func deleteFeatureView(withPolling: DeleteFeatureViewRequest) async throws
@@ -859,22 +859,22 @@
         -> GoogleIAMV1.TestIamPermissionsResponse
 
       /// See `FeatureOnlineStoreAdminServiceClient.listOperations`.
-      func listOperations(request: GoogleLongrunning.ListOperationsRequest) async throws
-        -> GoogleLongrunning.ListOperationsResponse
+      func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
+        -> GoogleLongRunning.ListOperationsResponse
 
       /// See `FeatureOnlineStoreAdminServiceClient.listOperations`.
       func listOperations(
-        byItem: GoogleLongrunning.ListOperationsRequest
-      ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+        byItem: GoogleLongRunning.ListOperationsRequest
+      ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `FeatureOnlineStoreAdminServiceClient.listOperations`.
       func listOperations(
         name: Swift.String,
         filter: Swift.String,
-      ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+      ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `FeatureOnlineStoreAdminServiceClient.deleteOperation`.
-      func deleteOperation(request: GoogleLongrunning.DeleteOperationRequest) async throws
+      func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
 
       /// See `FeatureOnlineStoreAdminServiceClient.deleteOperation`.
       func deleteOperation(
@@ -882,7 +882,7 @@
       ) async throws
 
       /// See `FeatureOnlineStoreAdminServiceClient.cancelOperation`.
-      func cancelOperation(request: GoogleLongrunning.CancelOperationRequest) async throws
+      func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
 
       /// See `FeatureOnlineStoreAdminServiceClient.cancelOperation`.
       func cancelOperation(
@@ -890,13 +890,13 @@
       ) async throws
 
       /// See `FeatureOnlineStoreAdminServiceClient.waitOperation`.
-      func waitOperation(request: GoogleLongrunning.WaitOperationRequest) async throws
-        -> GoogleLongrunning.Operation
+      func waitOperation(request: GoogleLongRunning.WaitOperationRequest) async throws
+        -> GoogleLongRunning.Operation
 
       /// See `FeatureOnlineStoreAdminServiceClient.createFeatureOnlineStore`.
       func createFeatureOnlineStore(
         request: CreateFeatureOnlineStoreRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+      ) async throws -> GoogleLongRunning.Operation
 
       /// See `FeatureOnlineStoreAdminServiceClient.createFeatureOnlineStore`.
       func createFeatureOnlineStore(
@@ -921,7 +921,7 @@
       /// See `FeatureOnlineStoreAdminServiceClient.updateFeatureOnlineStore`.
       func updateFeatureOnlineStore(
         request: UpdateFeatureOnlineStoreRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+      ) async throws -> GoogleLongRunning.Operation
 
       /// See `FeatureOnlineStoreAdminServiceClient.updateFeatureOnlineStore`.
       func updateFeatureOnlineStore(
@@ -931,7 +931,7 @@
       /// See `FeatureOnlineStoreAdminServiceClient.deleteFeatureOnlineStore`.
       func deleteFeatureOnlineStore(
         request: DeleteFeatureOnlineStoreRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+      ) async throws -> GoogleLongRunning.Operation
 
       /// See `FeatureOnlineStoreAdminServiceClient.deleteFeatureOnlineStore`.
       func deleteFeatureOnlineStore(
@@ -941,7 +941,7 @@
       /// See `FeatureOnlineStoreAdminServiceClient.createFeatureView`.
       func createFeatureView(
         request: CreateFeatureViewRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+      ) async throws -> GoogleLongRunning.Operation
 
       /// See `FeatureOnlineStoreAdminServiceClient.createFeatureView`.
       func createFeatureView(
@@ -966,7 +966,7 @@
       /// See `FeatureOnlineStoreAdminServiceClient.updateFeatureView`.
       func updateFeatureView(
         request: UpdateFeatureViewRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+      ) async throws -> GoogleLongRunning.Operation
 
       /// See `FeatureOnlineStoreAdminServiceClient.updateFeatureView`.
       func updateFeatureView(
@@ -976,7 +976,7 @@
       /// See `FeatureOnlineStoreAdminServiceClient.deleteFeatureView`.
       func deleteFeatureView(
         request: DeleteFeatureViewRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+      ) async throws -> GoogleLongRunning.Operation
 
       /// See `FeatureOnlineStoreAdminServiceClient.deleteFeatureView`.
       func deleteFeatureView(
@@ -1035,42 +1035,42 @@
 
       /// See `FeatureOnlineStoreAdminServiceClient.listOperations`.
       func listOperations(
-        request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.ListOperationsResponse
+        request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+      ) async throws -> GoogleLongRunning.ListOperationsResponse
 
       /// See `FeatureOnlineStoreAdminServiceClient.listOperations`.
       func listOperations(
-        byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-      ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+        byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+      ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
       /// See `FeatureOnlineStoreAdminServiceClient.deleteOperation`.
       func deleteOperation(
-        request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+        request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
       ) async throws
 
       /// See `FeatureOnlineStoreAdminServiceClient.cancelOperation`.
       func cancelOperation(
-        request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+        request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
       ) async throws
 
       /// See `FeatureOnlineStoreAdminServiceClient.waitOperation`.
       func waitOperation(
-        request: GoogleLongrunning.WaitOperationRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleLongrunning.Operation
+        request: GoogleLongRunning.WaitOperationRequest, options: GoogleCloudGax.RequestOptions
+      ) async throws -> GoogleLongRunning.Operation
     }
   }
 
   // Default implementations
   extension Clients.FeatureOnlineStoreAdminServiceProtocol {
     public func createFeatureOnlineStore(request: CreateFeatureOnlineStoreRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
     {
       try await self.createFeatureOnlineStore(request: request, options: .init())
     }
 
     public func createFeatureOnlineStore(
       request: CreateFeatureOnlineStoreRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       throw GoogleCloudGax.RequestError.unimplemented
     }
 
@@ -1164,14 +1164,14 @@
     }
 
     public func updateFeatureOnlineStore(request: UpdateFeatureOnlineStoreRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
     {
       try await self.updateFeatureOnlineStore(request: request, options: .init())
     }
 
     public func updateFeatureOnlineStore(
       request: UpdateFeatureOnlineStoreRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       throw GoogleCloudGax.RequestError.unimplemented
     }
 
@@ -1204,14 +1204,14 @@
     }
 
     public func deleteFeatureOnlineStore(request: DeleteFeatureOnlineStoreRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
     {
       try await self.deleteFeatureOnlineStore(request: request, options: .init())
     }
 
     public func deleteFeatureOnlineStore(
       request: DeleteFeatureOnlineStoreRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       throw GoogleCloudGax.RequestError.unimplemented
     }
 
@@ -1243,14 +1243,14 @@
     }
 
     public func createFeatureView(request: CreateFeatureViewRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
     {
       try await self.createFeatureView(request: request, options: .init())
     }
 
     public func createFeatureView(
       request: CreateFeatureViewRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       throw GoogleCloudGax.RequestError.unimplemented
     }
 
@@ -1342,14 +1342,14 @@
     }
 
     public func updateFeatureView(request: UpdateFeatureViewRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
     {
       try await self.updateFeatureView(request: request, options: .init())
     }
 
     public func updateFeatureView(
       request: UpdateFeatureViewRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       throw GoogleCloudGax.RequestError.unimplemented
     }
 
@@ -1381,14 +1381,14 @@
     }
 
     public func deleteFeatureView(request: DeleteFeatureViewRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
     {
       try await self.deleteFeatureView(request: request, options: .init())
     }
 
     public func deleteFeatureView(
       request: DeleteFeatureViewRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+    ) async throws -> GoogleLongRunning.Operation {
       throw GoogleCloudGax.RequestError.unimplemented
     }
 
@@ -1573,29 +1573,29 @@
       throw GoogleCloudGax.RequestError.unimplemented
     }
 
-    public func listOperations(request: GoogleLongrunning.ListOperationsRequest) async throws
-      -> GoogleLongrunning.ListOperationsResponse
+    public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
+      -> GoogleLongRunning.ListOperationsResponse
     {
       try await self.listOperations(request: request, options: .init())
     }
 
     public func listOperations(
-      request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.ListOperationsResponse {
+      request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.ListOperationsResponse {
       throw GoogleCloudGax.RequestError.unimplemented
     }
 
     public func listOperations(
-      byItem: GoogleLongrunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+      byItem: GoogleLongRunning.ListOperationsRequest
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       try self.listOperations(byItem: byItem, options: .init())
     }
 
     public func listOperations(
-      byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
       let listRpc = {
-        (token: Swift.String) async throws -> GoogleLongrunning.ListOperationsResponse in
+        (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
         throw GoogleCloudGax.RequestError.unimplemented
       }
       return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
@@ -1604,41 +1604,41 @@
     public func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
-      let request = GoogleLongrunning.ListOperationsRequest().with {
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+      let request = GoogleLongRunning.ListOperationsRequest().with {
         $0.name = name
         $0.filter = filter
       }
       return try self.listOperations(byItem: request)
     }
 
-    public func getOperation(request: GoogleLongrunning.GetOperationRequest) async throws
-      -> GoogleLongrunning.Operation
+    public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
+      -> GoogleLongRunning.Operation
     {
       try await self.getOperation(request: request, options: .init())
     }
 
     public func getOperation(
-      request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+      request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
       throw GoogleCloudGax.RequestError.unimplemented
     }
 
     public func getOperation(
       name: Swift.String,
-    ) async throws -> GoogleLongrunning.Operation {
-      let request = GoogleLongrunning.GetOperationRequest().with {
+    ) async throws -> GoogleLongRunning.Operation {
+      let request = GoogleLongRunning.GetOperationRequest().with {
         $0.name = name
       }
       return try await self.getOperation(request: request)
     }
 
-    public func deleteOperation(request: GoogleLongrunning.DeleteOperationRequest) async throws {
+    public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
       try await self.deleteOperation(request: request, options: .init())
     }
 
     public func deleteOperation(
-      request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+      request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws {
       throw GoogleCloudGax.RequestError.unimplemented
     }
@@ -1646,18 +1646,18 @@
     public func deleteOperation(
       name: Swift.String,
     ) async throws {
-      let request = GoogleLongrunning.DeleteOperationRequest().with {
+      let request = GoogleLongRunning.DeleteOperationRequest().with {
         $0.name = name
       }
       try await self.deleteOperation(request: request)
     }
 
-    public func cancelOperation(request: GoogleLongrunning.CancelOperationRequest) async throws {
+    public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
       try await self.cancelOperation(request: request, options: .init())
     }
 
     public func cancelOperation(
-      request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+      request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws {
       throw GoogleCloudGax.RequestError.unimplemented
     }
@@ -1665,21 +1665,21 @@
     public func cancelOperation(
       name: Swift.String,
     ) async throws {
-      let request = GoogleLongrunning.CancelOperationRequest().with {
+      let request = GoogleLongRunning.CancelOperationRequest().with {
         $0.name = name
       }
       try await self.cancelOperation(request: request)
     }
 
-    public func waitOperation(request: GoogleLongrunning.WaitOperationRequest) async throws
-      -> GoogleLongrunning.Operation
+    public func waitOperation(request: GoogleLongRunning.WaitOperationRequest) async throws
+      -> GoogleLongRunning.Operation
     {
       try await self.waitOperation(request: request, options: .init())
     }
 
     public func waitOperation(
-      request: GoogleLongrunning.WaitOperationRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation {
+      request: GoogleLongRunning.WaitOperationRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
       throw GoogleCloudGax.RequestError.unimplemented
     }
   }

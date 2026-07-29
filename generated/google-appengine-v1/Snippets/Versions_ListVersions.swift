@@ -19,7 +19,7 @@
 import Foundation
 import GoogleAppEngineV1
 import GoogleCloudWkt
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleRpc
 
 func sample(client: VersionsClient) async throws {

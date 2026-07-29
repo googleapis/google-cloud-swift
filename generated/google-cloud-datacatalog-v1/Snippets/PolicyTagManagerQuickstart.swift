@@ -20,7 +20,7 @@ import Foundation
 import GoogleCloudDataCatalogV1
 import GoogleCloudWkt
 import GoogleIAMV1
-import GoogleLongrunning
+import GoogleLongRunning
 
 func sample(projectId: String, locationId: String, ) async throws {
   let client = try GoogleCloudDataCatalogV1.PolicyTagManagerClient()

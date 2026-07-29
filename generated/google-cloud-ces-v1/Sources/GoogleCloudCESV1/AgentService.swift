@@ -20,7 +20,7 @@ import Foundation
 #endif
 import GoogleCloudLocation
 import GoogleCloudWkt
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
 
@@ -78,7 +78,7 @@ public class AgentServiceClient: Clients.AgentServiceProtocol {
   /// @Snippet(path: "AgentService_CreateApp")
   public func createApp(
     request: CreateAppRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.createApp(request: request, options: options)
   }
 
@@ -89,7 +89,7 @@ public class AgentServiceClient: Clients.AgentServiceProtocol {
     withPolling: CreateAppRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<App> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<App>.State
+      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<App>.State
       in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -150,7 +150,7 @@ public class AgentServiceClient: Clients.AgentServiceProtocol {
   /// @Snippet(path: "AgentService_DeleteApp")
   public func deleteApp(
     request: DeleteAppRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.deleteApp(request: request, options: options)
   }
 
@@ -161,7 +161,7 @@ public class AgentServiceClient: Clients.AgentServiceProtocol {
     withPolling: DeleteAppRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
+      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
       in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -205,7 +205,7 @@ public class AgentServiceClient: Clients.AgentServiceProtocol {
   /// @Snippet(path: "AgentService_ExportApp")
   public func exportApp(
     request: ExportAppRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.exportApp(request: request, options: options)
   }
 
@@ -216,7 +216,7 @@ public class AgentServiceClient: Clients.AgentServiceProtocol {
     withPolling: ExportAppRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<ExportAppResponse> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<ExportAppResponse>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -269,7 +269,7 @@ public class AgentServiceClient: Clients.AgentServiceProtocol {
   /// @Snippet(path: "AgentService_ImportApp")
   public func importApp(
     request: ImportAppRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.importApp(request: request, options: options)
   }
 
@@ -280,7 +280,7 @@ public class AgentServiceClient: Clients.AgentServiceProtocol {
     withPolling: ImportAppRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<ImportAppResponse> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<ImportAppResponse>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -525,7 +525,7 @@ public class AgentServiceClient: Clients.AgentServiceProtocol {
   /// @Snippet(path: "AgentService_BatchDeleteConversations")
   public func batchDeleteConversations(
     request: BatchDeleteConversationsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.batchDeleteConversations(request: request, options: options)
   }
 
@@ -536,7 +536,7 @@ public class AgentServiceClient: Clients.AgentServiceProtocol {
     withPolling: BatchDeleteConversationsRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<BatchDeleteConversationsResponse> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<BatchDeleteConversationsResponse>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -848,7 +848,7 @@ public class AgentServiceClient: Clients.AgentServiceProtocol {
   /// @Snippet(path: "AgentService_RestoreAppVersion")
   public func restoreAppVersion(
     request: RestoreAppVersionRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.restoreAppVersion(request: request, options: options)
   }
 
@@ -861,7 +861,7 @@ public class AgentServiceClient: Clients.AgentServiceProtocol {
     withPolling: RestoreAppVersionRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<RestoreAppVersionResponse> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<RestoreAppVersionResponse>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -1014,8 +1014,8 @@ public class AgentServiceClient: Clients.AgentServiceProtocol {
   ///
   /// @Snippet(path: "AgentService_ListOperations")
   public func listOperations(
-    request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.ListOperationsResponse {
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.ListOperationsResponse {
     try await self.inner.listOperations(request: request, options: options)
   }
 
@@ -1025,10 +1025,10 @@ public class AgentServiceClient: Clients.AgentServiceProtocol {
   ///
   /// @Snippet(path: "AgentService_ListOperations")
   public func listOperations(
-    byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongrunning.ListOperationsResponse in
+      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
@@ -1042,8 +1042,8 @@ public class AgentServiceClient: Clients.AgentServiceProtocol {
   ///
   /// @Snippet(path: "AgentService_GetOperation")
   func getOperation(
-    request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+    request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.getOperation(request: request, options: options)
   }
 
@@ -1053,7 +1053,7 @@ public class AgentServiceClient: Clients.AgentServiceProtocol {
   ///
   /// @Snippet(path: "AgentService_DeleteOperation")
   public func deleteOperation(
-    request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+    request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws {
     try await self.inner.deleteOperation(request: request, options: options)
   }
@@ -1064,7 +1064,7 @@ public class AgentServiceClient: Clients.AgentServiceProtocol {
   ///
   /// @Snippet(path: "AgentService_CancelOperation")
   public func cancelOperation(
-    request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+    request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws {
     try await self.inner.cancelOperation(request: request, options: options)
   }
@@ -1099,7 +1099,7 @@ extension Clients {
     ) async throws -> GoogleCloudCESV1.App
 
     /// See `AgentServiceClient.createApp`.
-    func createApp(request: CreateAppRequest) async throws -> GoogleLongrunning.Operation
+    func createApp(request: CreateAppRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `AgentServiceClient.createApp`.
     func createApp(withPolling: CreateAppRequest) async throws -> any GoogleCloudGax
@@ -1128,7 +1128,7 @@ extension Clients {
     ) async throws -> GoogleCloudCESV1.App
 
     /// See `AgentServiceClient.deleteApp`.
-    func deleteApp(request: DeleteAppRequest) async throws -> GoogleLongrunning.Operation
+    func deleteApp(request: DeleteAppRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `AgentServiceClient.deleteApp`.
     func deleteApp(withPolling: DeleteAppRequest) async throws -> any GoogleCloudGax
@@ -1140,7 +1140,7 @@ extension Clients {
     ) async throws -> any GoogleCloudGax.PollableOperation<Void>
 
     /// See `AgentServiceClient.exportApp`.
-    func exportApp(request: ExportAppRequest) async throws -> GoogleLongrunning.Operation
+    func exportApp(request: ExportAppRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `AgentServiceClient.exportApp`.
     func exportApp(withPolling: ExportAppRequest) async throws -> any GoogleCloudGax
@@ -1152,7 +1152,7 @@ extension Clients {
     ) async throws -> any GoogleCloudGax.PollableOperation<ExportAppResponse>
 
     /// See `AgentServiceClient.importApp`.
-    func importApp(request: ImportAppRequest) async throws -> GoogleLongrunning.Operation
+    func importApp(request: ImportAppRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `AgentServiceClient.importApp`.
     func importApp(withPolling: ImportAppRequest) async throws -> any GoogleCloudGax
@@ -1328,7 +1328,7 @@ extension Clients {
 
     /// See `AgentServiceClient.batchDeleteConversations`.
     func batchDeleteConversations(request: BatchDeleteConversationsRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `AgentServiceClient.batchDeleteConversations`.
     func batchDeleteConversations(withPolling: BatchDeleteConversationsRequest) async throws
@@ -1588,7 +1588,7 @@ extension Clients {
 
     /// See `AgentServiceClient.restoreAppVersion`.
     func restoreAppVersion(request: RestoreAppVersionRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `AgentServiceClient.restoreAppVersion`.
     func restoreAppVersion(withPolling: RestoreAppVersionRequest) async throws -> any GoogleCloudGax
@@ -1635,22 +1635,22 @@ extension Clients {
       -> GoogleCloudLocation.Location
 
     /// See `AgentServiceClient.listOperations`.
-    func listOperations(request: GoogleLongrunning.ListOperationsRequest) async throws
-      -> GoogleLongrunning.ListOperationsResponse
+    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
+      -> GoogleLongRunning.ListOperationsResponse
 
     /// See `AgentServiceClient.listOperations`.
     func listOperations(
-      byItem: GoogleLongrunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+      byItem: GoogleLongRunning.ListOperationsRequest
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `AgentServiceClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `AgentServiceClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongrunning.DeleteOperationRequest) async throws
+    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
 
     /// See `AgentServiceClient.deleteOperation`.
     func deleteOperation(
@@ -1658,7 +1658,7 @@ extension Clients {
     ) async throws
 
     /// See `AgentServiceClient.cancelOperation`.
-    func cancelOperation(request: GoogleLongrunning.CancelOperationRequest) async throws
+    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
 
     /// See `AgentServiceClient.cancelOperation`.
     func cancelOperation(
@@ -1683,7 +1683,7 @@ extension Clients {
     /// See `AgentServiceClient.createApp`.
     func createApp(
       request: CreateAppRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `AgentServiceClient.createApp`.
     func createApp(
@@ -1698,7 +1698,7 @@ extension Clients {
     /// See `AgentServiceClient.deleteApp`.
     func deleteApp(
       request: DeleteAppRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `AgentServiceClient.deleteApp`.
     func deleteApp(
@@ -1708,7 +1708,7 @@ extension Clients {
     /// See `AgentServiceClient.exportApp`.
     func exportApp(
       request: ExportAppRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `AgentServiceClient.exportApp`.
     func exportApp(
@@ -1718,7 +1718,7 @@ extension Clients {
     /// See `AgentServiceClient.importApp`.
     func importApp(
       request: ImportAppRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `AgentServiceClient.importApp`.
     func importApp(
@@ -1823,7 +1823,7 @@ extension Clients {
     /// See `AgentServiceClient.batchDeleteConversations`.
     func batchDeleteConversations(
       request: BatchDeleteConversationsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `AgentServiceClient.batchDeleteConversations`.
     func batchDeleteConversations(
@@ -1963,7 +1963,7 @@ extension Clients {
     /// See `AgentServiceClient.restoreAppVersion`.
     func restoreAppVersion(
       request: RestoreAppVersionRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `AgentServiceClient.restoreAppVersion`.
     func restoreAppVersion(
@@ -2002,22 +2002,22 @@ extension Clients {
 
     /// See `AgentServiceClient.listOperations`.
     func listOperations(
-      request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.ListOperationsResponse
+      request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.ListOperationsResponse
 
     /// See `AgentServiceClient.listOperations`.
     func listOperations(
-      byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `AgentServiceClient.deleteOperation`.
     func deleteOperation(
-      request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+      request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws
 
     /// See `AgentServiceClient.cancelOperation`.
     func cancelOperation(
-      request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+      request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws
   }
 }
@@ -2077,13 +2077,13 @@ extension Clients.AgentServiceProtocol {
     return try await self.getApp(request: request)
   }
 
-  public func createApp(request: CreateAppRequest) async throws -> GoogleLongrunning.Operation {
+  public func createApp(request: CreateAppRequest) async throws -> GoogleLongRunning.Operation {
     try await self.createApp(request: request, options: .init())
   }
 
   public func createApp(
     request: CreateAppRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -2148,13 +2148,13 @@ extension Clients.AgentServiceProtocol {
     return try await self.updateApp(request: request)
   }
 
-  public func deleteApp(request: DeleteAppRequest) async throws -> GoogleLongrunning.Operation {
+  public func deleteApp(request: DeleteAppRequest) async throws -> GoogleLongRunning.Operation {
     try await self.deleteApp(request: request, options: .init())
   }
 
   public func deleteApp(
     request: DeleteAppRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -2183,13 +2183,13 @@ extension Clients.AgentServiceProtocol {
     return try await self.deleteApp(withPolling: request)
   }
 
-  public func exportApp(request: ExportAppRequest) async throws -> GoogleLongrunning.Operation {
+  public func exportApp(request: ExportAppRequest) async throws -> GoogleLongRunning.Operation {
     try await self.exportApp(request: request, options: .init())
   }
 
   public func exportApp(
     request: ExportAppRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -2219,13 +2219,13 @@ extension Clients.AgentServiceProtocol {
     return try await self.exportApp(withPolling: request)
   }
 
-  public func importApp(request: ImportAppRequest) async throws -> GoogleLongrunning.Operation {
+  public func importApp(request: ImportAppRequest) async throws -> GoogleLongRunning.Operation {
     try await self.importApp(request: request, options: .init())
   }
 
   public func importApp(
     request: ImportAppRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -2652,14 +2652,14 @@ extension Clients.AgentServiceProtocol {
   }
 
   public func batchDeleteConversations(request: BatchDeleteConversationsRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.batchDeleteConversations(request: request, options: .init())
   }
 
   public func batchDeleteConversations(
     request: BatchDeleteConversationsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -3279,14 +3279,14 @@ extension Clients.AgentServiceProtocol {
   }
 
   public func restoreAppVersion(request: RestoreAppVersionRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.restoreAppVersion(request: request, options: .init())
   }
 
   public func restoreAppVersion(
     request: RestoreAppVersionRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -3412,29 +3412,29 @@ extension Clients.AgentServiceProtocol {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
-  public func listOperations(request: GoogleLongrunning.ListOperationsRequest) async throws
-    -> GoogleLongrunning.ListOperationsResponse
+  public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
+    -> GoogleLongRunning.ListOperationsResponse
   {
     try await self.listOperations(request: request, options: .init())
   }
 
   public func listOperations(
-    request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.ListOperationsResponse {
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.ListOperationsResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func listOperations(
-    byItem: GoogleLongrunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+    byItem: GoogleLongRunning.ListOperationsRequest
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     try self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
-    byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongrunning.ListOperationsResponse in
+      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleCloudGax.RequestError.unimplemented
     }
     return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
@@ -3443,41 +3443,41 @@ extension Clients.AgentServiceProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
-    let request = GoogleLongrunning.ListOperationsRequest().with {
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
     return try self.listOperations(byItem: request)
   }
 
-  public func getOperation(request: GoogleLongrunning.GetOperationRequest) async throws
-    -> GoogleLongrunning.Operation
+  public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
+    -> GoogleLongRunning.Operation
   {
     try await self.getOperation(request: request, options: .init())
   }
 
   public func getOperation(
-    request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+    request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func getOperation(
     name: Swift.String,
-  ) async throws -> GoogleLongrunning.Operation {
-    let request = GoogleLongrunning.GetOperationRequest().with {
+  ) async throws -> GoogleLongRunning.Operation {
+    let request = GoogleLongRunning.GetOperationRequest().with {
       $0.name = name
     }
     return try await self.getOperation(request: request)
   }
 
-  public func deleteOperation(request: GoogleLongrunning.DeleteOperationRequest) async throws {
+  public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
 
   public func deleteOperation(
-    request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+    request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws {
     throw GoogleCloudGax.RequestError.unimplemented
   }
@@ -3485,18 +3485,18 @@ extension Clients.AgentServiceProtocol {
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
-    let request = GoogleLongrunning.DeleteOperationRequest().with {
+    let request = GoogleLongRunning.DeleteOperationRequest().with {
       $0.name = name
     }
     try await self.deleteOperation(request: request)
   }
 
-  public func cancelOperation(request: GoogleLongrunning.CancelOperationRequest) async throws {
+  public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
 
   public func cancelOperation(
-    request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+    request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws {
     throw GoogleCloudGax.RequestError.unimplemented
   }
@@ -3504,7 +3504,7 @@ extension Clients.AgentServiceProtocol {
   public func cancelOperation(
     name: Swift.String,
   ) async throws {
-    let request = GoogleLongrunning.CancelOperationRequest().with {
+    let request = GoogleLongRunning.CancelOperationRequest().with {
       $0.name = name
     }
     try await self.cancelOperation(request: request)

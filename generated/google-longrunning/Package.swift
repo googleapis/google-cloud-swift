@@ -18,10 +18,10 @@
 import PackageDescription
 
 let package = Package(
-  name: "GoogleLongrunning",
+  name: "GoogleLongRunning",
   platforms: [.macOS(.v15)],
   products: [
-    .library(name: "GoogleLongrunning", targets: ["GoogleLongrunning"])
+    .library(name: "GoogleLongRunning", targets: ["GoogleLongRunning"])
   ],
   dependencies: [
     .package(path: "../../packages/auth"),
@@ -32,7 +32,7 @@ let package = Package(
   ],
   targets: [
     .target(
-      name: "GoogleLongrunning",
+      name: "GoogleLongRunning",
       dependencies: [
         .product(name: "GoogleCloudAuth", package: "auth"),
         .product(name: "GoogleCloudGax", package: "gax"),

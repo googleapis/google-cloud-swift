@@ -21,7 +21,7 @@ import GoogleCloudKMSV1
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleIAMV1
-import GoogleLongrunning
+import GoogleLongRunning
 
 func sample(client: AutokeyAdminClient) async throws {
   let response = try await client.getLocation(

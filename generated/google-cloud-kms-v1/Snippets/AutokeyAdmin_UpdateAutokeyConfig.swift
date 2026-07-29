@@ -21,7 +21,7 @@ import GoogleCloudKMSV1
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleIAMV1
-import GoogleLongrunning
+import GoogleLongRunning
 
 func sample(client: AutokeyAdminClient, folderId: String) async throws {
   let response = try await client.updateAutokeyConfig(

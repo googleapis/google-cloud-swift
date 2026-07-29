@@ -20,7 +20,7 @@ import Foundation
 #endif
 import GoogleCloudWkt
 import GoogleIAMV1
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
 
@@ -217,7 +217,7 @@ public class AnalyticsHubServiceClient: Clients.AnalyticsHubServiceProtocol {
   /// @Snippet(path: "AnalyticsHubService_SubscribeDataExchange")
   public func subscribeDataExchange(
     request: SubscribeDataExchangeRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.subscribeDataExchange(request: request, options: options)
   }
 
@@ -231,7 +231,7 @@ public class AnalyticsHubServiceClient: Clients.AnalyticsHubServiceProtocol {
     withPolling: SubscribeDataExchangeRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<SubscribeDataExchangeResponse> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<SubscribeDataExchangeResponse>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -287,7 +287,7 @@ public class AnalyticsHubServiceClient: Clients.AnalyticsHubServiceProtocol {
   /// @Snippet(path: "AnalyticsHubService_RefreshSubscription")
   public func refreshSubscription(
     request: RefreshSubscriptionRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.refreshSubscription(request: request, options: options)
   }
 
@@ -300,7 +300,7 @@ public class AnalyticsHubServiceClient: Clients.AnalyticsHubServiceProtocol {
     withPolling: RefreshSubscriptionRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<RefreshSubscriptionResponse> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<RefreshSubscriptionResponse>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -421,7 +421,7 @@ public class AnalyticsHubServiceClient: Clients.AnalyticsHubServiceProtocol {
   /// @Snippet(path: "AnalyticsHubService_DeleteSubscription")
   public func deleteSubscription(
     request: DeleteSubscriptionRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.deleteSubscription(request: request, options: options)
   }
 
@@ -432,7 +432,7 @@ public class AnalyticsHubServiceClient: Clients.AnalyticsHubServiceProtocol {
     withPolling: DeleteSubscriptionRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
+      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
       in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -583,8 +583,8 @@ public class AnalyticsHubServiceClient: Clients.AnalyticsHubServiceProtocol {
   ///
   /// @Snippet(path: "AnalyticsHubService_GetOperation")
   func getOperation(
-    request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+    request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.getOperation(request: request, options: options)
   }
 }
@@ -723,7 +723,7 @@ extension Clients {
 
     /// See `AnalyticsHubServiceClient.subscribeDataExchange`.
     func subscribeDataExchange(request: SubscribeDataExchangeRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `AnalyticsHubServiceClient.subscribeDataExchange`.
     func subscribeDataExchange(withPolling: SubscribeDataExchangeRequest) async throws
@@ -736,7 +736,7 @@ extension Clients {
 
     /// See `AnalyticsHubServiceClient.refreshSubscription`.
     func refreshSubscription(request: RefreshSubscriptionRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `AnalyticsHubServiceClient.refreshSubscription`.
     func refreshSubscription(withPolling: RefreshSubscriptionRequest) async throws
@@ -795,7 +795,7 @@ extension Clients {
 
     /// See `AnalyticsHubServiceClient.deleteSubscription`.
     func deleteSubscription(request: DeleteSubscriptionRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `AnalyticsHubServiceClient.deleteSubscription`.
     func deleteSubscription(withPolling: DeleteSubscriptionRequest) async throws
@@ -964,7 +964,7 @@ extension Clients {
     /// See `AnalyticsHubServiceClient.subscribeDataExchange`.
     func subscribeDataExchange(
       request: SubscribeDataExchangeRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `AnalyticsHubServiceClient.subscribeDataExchange`.
     func subscribeDataExchange(
@@ -974,7 +974,7 @@ extension Clients {
     /// See `AnalyticsHubServiceClient.refreshSubscription`.
     func refreshSubscription(
       request: RefreshSubscriptionRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `AnalyticsHubServiceClient.refreshSubscription`.
     func refreshSubscription(
@@ -1014,7 +1014,7 @@ extension Clients {
     /// See `AnalyticsHubServiceClient.deleteSubscription`.
     func deleteSubscription(
       request: DeleteSubscriptionRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `AnalyticsHubServiceClient.deleteSubscription`.
     func deleteSubscription(
@@ -1388,14 +1388,14 @@ extension Clients.AnalyticsHubServiceProtocol {
   }
 
   public func subscribeDataExchange(request: SubscribeDataExchangeRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.subscribeDataExchange(request: request, options: .init())
   }
 
   public func subscribeDataExchange(
     request: SubscribeDataExchangeRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1427,14 +1427,14 @@ extension Clients.AnalyticsHubServiceProtocol {
   }
 
   public func refreshSubscription(request: RefreshSubscriptionRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.refreshSubscription(request: request, options: .init())
   }
 
   public func refreshSubscription(
     request: RefreshSubscriptionRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1583,14 +1583,14 @@ extension Clients.AnalyticsHubServiceProtocol {
   }
 
   public func deleteSubscription(request: DeleteSubscriptionRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.deleteSubscription(request: request, options: .init())
   }
 
   public func deleteSubscription(
     request: DeleteSubscriptionRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1823,22 +1823,22 @@ extension Clients.AnalyticsHubServiceProtocol {
     return try await self.approveQueryTemplate(request: request)
   }
 
-  public func getOperation(request: GoogleLongrunning.GetOperationRequest) async throws
-    -> GoogleLongrunning.Operation
+  public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
+    -> GoogleLongRunning.Operation
   {
     try await self.getOperation(request: request, options: .init())
   }
 
   public func getOperation(
-    request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+    request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func getOperation(
     name: Swift.String,
-  ) async throws -> GoogleLongrunning.Operation {
-    let request = GoogleLongrunning.GetOperationRequest().with {
+  ) async throws -> GoogleLongRunning.Operation {
+    let request = GoogleLongRunning.GetOperationRequest().with {
       $0.name = name
     }
     return try await self.getOperation(request: request)

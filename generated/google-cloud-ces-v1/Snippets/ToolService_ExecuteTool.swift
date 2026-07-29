@@ -20,7 +20,7 @@ import Foundation
 import GoogleCloudCESV1
 import GoogleCloudLocation
 import GoogleCloudWkt
-import GoogleLongrunning
+import GoogleLongRunning
 
 func sample(client: ToolServiceClient) async throws {
   let response = try await client.executeTool(

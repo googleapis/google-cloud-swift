@@ -20,7 +20,7 @@ import Foundation
 import GoogleCloudSpeechV2
 import GoogleCloudLocation
 import GoogleCloudWkt
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleRpc
 
 func sample(client: SpeechClient, projectId: String, locationId: String) async throws {

@@ -22,7 +22,7 @@
   import GoogleCloudLocation
   import GoogleCloudWkt
   import GoogleIAMV1
-  import GoogleLongrunning
+  import GoogleLongRunning
 
   func sample(projectId: String, locationId: String, ) async throws {
     let client = try GoogleCloudAIPlatformV1.GenAiCacheServiceClient()

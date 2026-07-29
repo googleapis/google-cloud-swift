@@ -21,7 +21,7 @@ import GoogleCloudConnectorsV1
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleIAMV1
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleRpc
 
 func sample(client: ConnectorsClient, projectId: String, locationId: String, connectionId: String)

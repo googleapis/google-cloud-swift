@@ -21,7 +21,7 @@ import Foundation
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleIAMV1
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
 
@@ -103,7 +103,7 @@ public class HsmManagementClient: Clients.HsmManagementProtocol {
   /// @Snippet(path: "HsmManagement_CreateSingleTenantHsmInstance")
   public func createSingleTenantHsmInstance(
     request: CreateSingleTenantHsmInstanceRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.createSingleTenantHsmInstance(request: request, options: options)
   }
 
@@ -120,7 +120,7 @@ public class HsmManagementClient: Clients.HsmManagementProtocol {
     withPolling: CreateSingleTenantHsmInstanceRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<SingleTenantHsmInstance> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<SingleTenantHsmInstance>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -179,7 +179,7 @@ public class HsmManagementClient: Clients.HsmManagementProtocol {
   /// @Snippet(path: "HsmManagement_CreateSingleTenantHsmInstanceProposal")
   public func createSingleTenantHsmInstanceProposal(
     request: CreateSingleTenantHsmInstanceProposalRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.createSingleTenantHsmInstanceProposal(request: request, options: options)
   }
 
@@ -197,7 +197,7 @@ public class HsmManagementClient: Clients.HsmManagementProtocol {
     options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<SingleTenantHsmInstanceProposal> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<SingleTenantHsmInstanceProposal>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -281,7 +281,7 @@ public class HsmManagementClient: Clients.HsmManagementProtocol {
   /// @Snippet(path: "HsmManagement_ExecuteSingleTenantHsmInstanceProposal")
   public func executeSingleTenantHsmInstanceProposal(
     request: ExecuteSingleTenantHsmInstanceProposalRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.executeSingleTenantHsmInstanceProposal(request: request, options: options)
   }
 
@@ -305,7 +305,7 @@ public class HsmManagementClient: Clients.HsmManagementProtocol {
     ExecuteSingleTenantHsmInstanceProposalResponse
   > {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<ExecuteSingleTenantHsmInstanceProposalResponse>
         .State in
       guard op.done else {
@@ -524,8 +524,8 @@ public class HsmManagementClient: Clients.HsmManagementProtocol {
   ///
   /// @Snippet(path: "HsmManagement_GetOperation")
   func getOperation(
-    request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+    request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.getOperation(request: request, options: options)
   }
 }
@@ -562,7 +562,7 @@ extension Clients {
 
     /// See `HsmManagementClient.createSingleTenantHsmInstance`.
     func createSingleTenantHsmInstance(request: CreateSingleTenantHsmInstanceRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `HsmManagementClient.createSingleTenantHsmInstance`.
     func createSingleTenantHsmInstance(withPolling: CreateSingleTenantHsmInstanceRequest)
@@ -578,7 +578,7 @@ extension Clients {
     /// See `HsmManagementClient.createSingleTenantHsmInstanceProposal`.
     func createSingleTenantHsmInstanceProposal(
       request: CreateSingleTenantHsmInstanceProposalRequest
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `HsmManagementClient.createSingleTenantHsmInstanceProposal`.
     func createSingleTenantHsmInstanceProposal(
@@ -606,7 +606,7 @@ extension Clients {
     /// See `HsmManagementClient.executeSingleTenantHsmInstanceProposal`.
     func executeSingleTenantHsmInstanceProposal(
       request: ExecuteSingleTenantHsmInstanceProposalRequest
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `HsmManagementClient.executeSingleTenantHsmInstanceProposal`.
     func executeSingleTenantHsmInstanceProposal(
@@ -695,7 +695,7 @@ extension Clients {
     /// See `HsmManagementClient.createSingleTenantHsmInstance`.
     func createSingleTenantHsmInstance(
       request: CreateSingleTenantHsmInstanceRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `HsmManagementClient.createSingleTenantHsmInstance`.
     func createSingleTenantHsmInstance(
@@ -705,7 +705,7 @@ extension Clients {
     /// See `HsmManagementClient.createSingleTenantHsmInstanceProposal`.
     func createSingleTenantHsmInstanceProposal(
       request: CreateSingleTenantHsmInstanceProposalRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `HsmManagementClient.createSingleTenantHsmInstanceProposal`.
     func createSingleTenantHsmInstanceProposal(
@@ -721,7 +721,7 @@ extension Clients {
     /// See `HsmManagementClient.executeSingleTenantHsmInstanceProposal`.
     func executeSingleTenantHsmInstanceProposal(
       request: ExecuteSingleTenantHsmInstanceProposalRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `HsmManagementClient.executeSingleTenantHsmInstanceProposal`.
     func executeSingleTenantHsmInstanceProposal(
@@ -844,14 +844,14 @@ extension Clients.HsmManagementProtocol {
   }
 
   public func createSingleTenantHsmInstance(request: CreateSingleTenantHsmInstanceRequest)
-    async throws -> GoogleLongrunning.Operation
+    async throws -> GoogleLongRunning.Operation
   {
     try await self.createSingleTenantHsmInstance(request: request, options: .init())
   }
 
   public func createSingleTenantHsmInstance(
     request: CreateSingleTenantHsmInstanceRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -887,13 +887,13 @@ extension Clients.HsmManagementProtocol {
 
   public func createSingleTenantHsmInstanceProposal(
     request: CreateSingleTenantHsmInstanceProposalRequest
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.createSingleTenantHsmInstanceProposal(request: request, options: .init())
   }
 
   public func createSingleTenantHsmInstanceProposal(
     request: CreateSingleTenantHsmInstanceProposalRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -954,13 +954,13 @@ extension Clients.HsmManagementProtocol {
 
   public func executeSingleTenantHsmInstanceProposal(
     request: ExecuteSingleTenantHsmInstanceProposalRequest
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.executeSingleTenantHsmInstanceProposal(request: request, options: .init())
   }
 
   public func executeSingleTenantHsmInstanceProposal(
     request: ExecuteSingleTenantHsmInstanceProposalRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1156,22 +1156,22 @@ extension Clients.HsmManagementProtocol {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
-  public func getOperation(request: GoogleLongrunning.GetOperationRequest) async throws
-    -> GoogleLongrunning.Operation
+  public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
+    -> GoogleLongRunning.Operation
   {
     try await self.getOperation(request: request, options: .init())
   }
 
   public func getOperation(
-    request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+    request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func getOperation(
     name: Swift.String,
-  ) async throws -> GoogleLongrunning.Operation {
-    let request = GoogleLongrunning.GetOperationRequest().with {
+  ) async throws -> GoogleLongRunning.Operation {
+    let request = GoogleLongRunning.GetOperationRequest().with {
       $0.name = name
     }
     return try await self.getOperation(request: request)

@@ -20,7 +20,7 @@ import Foundation
 import GoogleCloudBatchV1
 import GoogleCloudLocation
 import GoogleCloudWkt
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleRpc
 
 func sample(client: BatchServiceClient, parent: String) async throws {

@@ -21,7 +21,7 @@ import Foundation
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleIAMV1
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
 
@@ -84,7 +84,7 @@ public class DataTransferServiceClient: Clients.DataTransferServiceProtocol {
   /// @Snippet(path: "DataTransferService_CreateMulticloudDataTransferConfig")
   public func createMulticloudDataTransferConfig(
     request: CreateMulticloudDataTransferConfigRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.createMulticloudDataTransferConfig(request: request, options: options)
   }
 
@@ -96,7 +96,7 @@ public class DataTransferServiceClient: Clients.DataTransferServiceProtocol {
     withPolling: CreateMulticloudDataTransferConfigRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<MulticloudDataTransferConfig> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<MulticloudDataTransferConfig>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -152,7 +152,7 @@ public class DataTransferServiceClient: Clients.DataTransferServiceProtocol {
   /// @Snippet(path: "DataTransferService_UpdateMulticloudDataTransferConfig")
   public func updateMulticloudDataTransferConfig(
     request: UpdateMulticloudDataTransferConfigRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.updateMulticloudDataTransferConfig(request: request, options: options)
   }
 
@@ -164,7 +164,7 @@ public class DataTransferServiceClient: Clients.DataTransferServiceProtocol {
     withPolling: UpdateMulticloudDataTransferConfigRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<MulticloudDataTransferConfig> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<MulticloudDataTransferConfig>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -219,7 +219,7 @@ public class DataTransferServiceClient: Clients.DataTransferServiceProtocol {
   /// @Snippet(path: "DataTransferService_DeleteMulticloudDataTransferConfig")
   public func deleteMulticloudDataTransferConfig(
     request: DeleteMulticloudDataTransferConfigRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.deleteMulticloudDataTransferConfig(request: request, options: options)
   }
 
@@ -230,7 +230,7 @@ public class DataTransferServiceClient: Clients.DataTransferServiceProtocol {
     withPolling: DeleteMulticloudDataTransferConfigRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
+      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
       in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -309,7 +309,7 @@ public class DataTransferServiceClient: Clients.DataTransferServiceProtocol {
   /// @Snippet(path: "DataTransferService_CreateDestination")
   public func createDestination(
     request: CreateDestinationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.createDestination(request: request, options: options)
   }
 
@@ -320,7 +320,7 @@ public class DataTransferServiceClient: Clients.DataTransferServiceProtocol {
     withPolling: CreateDestinationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Destination> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Destination>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -372,7 +372,7 @@ public class DataTransferServiceClient: Clients.DataTransferServiceProtocol {
   /// @Snippet(path: "DataTransferService_UpdateDestination")
   public func updateDestination(
     request: UpdateDestinationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.updateDestination(request: request, options: options)
   }
 
@@ -383,7 +383,7 @@ public class DataTransferServiceClient: Clients.DataTransferServiceProtocol {
     withPolling: UpdateDestinationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Destination> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Destination>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -435,7 +435,7 @@ public class DataTransferServiceClient: Clients.DataTransferServiceProtocol {
   /// @Snippet(path: "DataTransferService_DeleteDestination")
   public func deleteDestination(
     request: DeleteDestinationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.deleteDestination(request: request, options: options)
   }
 
@@ -446,7 +446,7 @@ public class DataTransferServiceClient: Clients.DataTransferServiceProtocol {
     withPolling: DeleteDestinationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
+      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
       in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -607,8 +607,8 @@ public class DataTransferServiceClient: Clients.DataTransferServiceProtocol {
   ///
   /// @Snippet(path: "DataTransferService_ListOperations")
   public func listOperations(
-    request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.ListOperationsResponse {
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.ListOperationsResponse {
     try await self.inner.listOperations(request: request, options: options)
   }
 
@@ -618,10 +618,10 @@ public class DataTransferServiceClient: Clients.DataTransferServiceProtocol {
   ///
   /// @Snippet(path: "DataTransferService_ListOperations")
   public func listOperations(
-    byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongrunning.ListOperationsResponse in
+      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
@@ -635,8 +635,8 @@ public class DataTransferServiceClient: Clients.DataTransferServiceProtocol {
   ///
   /// @Snippet(path: "DataTransferService_GetOperation")
   func getOperation(
-    request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+    request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.getOperation(request: request, options: options)
   }
 
@@ -646,7 +646,7 @@ public class DataTransferServiceClient: Clients.DataTransferServiceProtocol {
   ///
   /// @Snippet(path: "DataTransferService_DeleteOperation")
   public func deleteOperation(
-    request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+    request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws {
     try await self.inner.deleteOperation(request: request, options: options)
   }
@@ -657,7 +657,7 @@ public class DataTransferServiceClient: Clients.DataTransferServiceProtocol {
   ///
   /// @Snippet(path: "DataTransferService_CancelOperation")
   public func cancelOperation(
-    request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+    request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws {
     try await self.inner.cancelOperation(request: request, options: options)
   }
@@ -695,7 +695,7 @@ extension Clients {
 
     /// See `DataTransferServiceClient.createMulticloudDataTransferConfig`.
     func createMulticloudDataTransferConfig(request: CreateMulticloudDataTransferConfigRequest)
-      async throws -> GoogleLongrunning.Operation
+      async throws -> GoogleLongRunning.Operation
 
     /// See `DataTransferServiceClient.createMulticloudDataTransferConfig`.
     func createMulticloudDataTransferConfig(withPolling: CreateMulticloudDataTransferConfigRequest)
@@ -710,7 +710,7 @@ extension Clients {
 
     /// See `DataTransferServiceClient.updateMulticloudDataTransferConfig`.
     func updateMulticloudDataTransferConfig(request: UpdateMulticloudDataTransferConfigRequest)
-      async throws -> GoogleLongrunning.Operation
+      async throws -> GoogleLongRunning.Operation
 
     /// See `DataTransferServiceClient.updateMulticloudDataTransferConfig`.
     func updateMulticloudDataTransferConfig(withPolling: UpdateMulticloudDataTransferConfigRequest)
@@ -724,7 +724,7 @@ extension Clients {
 
     /// See `DataTransferServiceClient.deleteMulticloudDataTransferConfig`.
     func deleteMulticloudDataTransferConfig(request: DeleteMulticloudDataTransferConfigRequest)
-      async throws -> GoogleLongrunning.Operation
+      async throws -> GoogleLongRunning.Operation
 
     /// See `DataTransferServiceClient.deleteMulticloudDataTransferConfig`.
     func deleteMulticloudDataTransferConfig(withPolling: DeleteMulticloudDataTransferConfigRequest)
@@ -760,7 +760,7 @@ extension Clients {
 
     /// See `DataTransferServiceClient.createDestination`.
     func createDestination(request: CreateDestinationRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `DataTransferServiceClient.createDestination`.
     func createDestination(withPolling: CreateDestinationRequest) async throws -> any GoogleCloudGax
@@ -775,7 +775,7 @@ extension Clients {
 
     /// See `DataTransferServiceClient.updateDestination`.
     func updateDestination(request: UpdateDestinationRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `DataTransferServiceClient.updateDestination`.
     func updateDestination(withPolling: UpdateDestinationRequest) async throws -> any GoogleCloudGax
@@ -789,7 +789,7 @@ extension Clients {
 
     /// See `DataTransferServiceClient.deleteDestination`.
     func deleteDestination(request: DeleteDestinationRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `DataTransferServiceClient.deleteDestination`.
     func deleteDestination(withPolling: DeleteDestinationRequest) async throws -> any GoogleCloudGax
@@ -850,22 +850,22 @@ extension Clients {
       -> GoogleIAMV1.TestIamPermissionsResponse
 
     /// See `DataTransferServiceClient.listOperations`.
-    func listOperations(request: GoogleLongrunning.ListOperationsRequest) async throws
-      -> GoogleLongrunning.ListOperationsResponse
+    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
+      -> GoogleLongRunning.ListOperationsResponse
 
     /// See `DataTransferServiceClient.listOperations`.
     func listOperations(
-      byItem: GoogleLongrunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+      byItem: GoogleLongRunning.ListOperationsRequest
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `DataTransferServiceClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `DataTransferServiceClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongrunning.DeleteOperationRequest) async throws
+    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
 
     /// See `DataTransferServiceClient.deleteOperation`.
     func deleteOperation(
@@ -873,7 +873,7 @@ extension Clients {
     ) async throws
 
     /// See `DataTransferServiceClient.cancelOperation`.
-    func cancelOperation(request: GoogleLongrunning.CancelOperationRequest) async throws
+    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
 
     /// See `DataTransferServiceClient.cancelOperation`.
     func cancelOperation(
@@ -898,7 +898,7 @@ extension Clients {
     /// See `DataTransferServiceClient.createMulticloudDataTransferConfig`.
     func createMulticloudDataTransferConfig(
       request: CreateMulticloudDataTransferConfigRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `DataTransferServiceClient.createMulticloudDataTransferConfig`.
     func createMulticloudDataTransferConfig(
@@ -908,7 +908,7 @@ extension Clients {
     /// See `DataTransferServiceClient.updateMulticloudDataTransferConfig`.
     func updateMulticloudDataTransferConfig(
       request: UpdateMulticloudDataTransferConfigRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `DataTransferServiceClient.updateMulticloudDataTransferConfig`.
     func updateMulticloudDataTransferConfig(
@@ -918,7 +918,7 @@ extension Clients {
     /// See `DataTransferServiceClient.deleteMulticloudDataTransferConfig`.
     func deleteMulticloudDataTransferConfig(
       request: DeleteMulticloudDataTransferConfigRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `DataTransferServiceClient.deleteMulticloudDataTransferConfig`.
     func deleteMulticloudDataTransferConfig(
@@ -943,7 +943,7 @@ extension Clients {
     /// See `DataTransferServiceClient.createDestination`.
     func createDestination(
       request: CreateDestinationRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `DataTransferServiceClient.createDestination`.
     func createDestination(
@@ -953,7 +953,7 @@ extension Clients {
     /// See `DataTransferServiceClient.updateDestination`.
     func updateDestination(
       request: UpdateDestinationRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `DataTransferServiceClient.updateDestination`.
     func updateDestination(
@@ -963,7 +963,7 @@ extension Clients {
     /// See `DataTransferServiceClient.deleteDestination`.
     func deleteDestination(
       request: DeleteDestinationRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `DataTransferServiceClient.deleteDestination`.
     func deleteDestination(
@@ -1021,22 +1021,22 @@ extension Clients {
 
     /// See `DataTransferServiceClient.listOperations`.
     func listOperations(
-      request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.ListOperationsResponse
+      request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.ListOperationsResponse
 
     /// See `DataTransferServiceClient.listOperations`.
     func listOperations(
-      byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `DataTransferServiceClient.deleteOperation`.
     func deleteOperation(
-      request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+      request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws
 
     /// See `DataTransferServiceClient.cancelOperation`.
     func cancelOperation(
-      request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+      request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws
   }
 }
@@ -1103,14 +1103,14 @@ extension Clients.DataTransferServiceProtocol {
   }
 
   public func createMulticloudDataTransferConfig(request: CreateMulticloudDataTransferConfigRequest)
-    async throws -> GoogleLongrunning.Operation
+    async throws -> GoogleLongRunning.Operation
   {
     try await self.createMulticloudDataTransferConfig(request: request, options: .init())
   }
 
   public func createMulticloudDataTransferConfig(
     request: CreateMulticloudDataTransferConfigRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1146,14 +1146,14 @@ extension Clients.DataTransferServiceProtocol {
   }
 
   public func updateMulticloudDataTransferConfig(request: UpdateMulticloudDataTransferConfigRequest)
-    async throws -> GoogleLongrunning.Operation
+    async throws -> GoogleLongRunning.Operation
   {
     try await self.updateMulticloudDataTransferConfig(request: request, options: .init())
   }
 
   public func updateMulticloudDataTransferConfig(
     request: UpdateMulticloudDataTransferConfigRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1187,14 +1187,14 @@ extension Clients.DataTransferServiceProtocol {
   }
 
   public func deleteMulticloudDataTransferConfig(request: DeleteMulticloudDataTransferConfigRequest)
-    async throws -> GoogleLongrunning.Operation
+    async throws -> GoogleLongRunning.Operation
   {
     try await self.deleteMulticloudDataTransferConfig(request: request, options: .init())
   }
 
   public func deleteMulticloudDataTransferConfig(
     request: DeleteMulticloudDataTransferConfigRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1283,14 +1283,14 @@ extension Clients.DataTransferServiceProtocol {
   }
 
   public func createDestination(request: CreateDestinationRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.createDestination(request: request, options: .init())
   }
 
   public func createDestination(
     request: CreateDestinationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1324,14 +1324,14 @@ extension Clients.DataTransferServiceProtocol {
   }
 
   public func updateDestination(request: UpdateDestinationRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.updateDestination(request: request, options: .init())
   }
 
   public func updateDestination(
     request: UpdateDestinationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1363,14 +1363,14 @@ extension Clients.DataTransferServiceProtocol {
   }
 
   public func deleteDestination(request: DeleteDestinationRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.deleteDestination(request: request, options: .init())
   }
 
   public func deleteDestination(
     request: DeleteDestinationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1541,29 +1541,29 @@ extension Clients.DataTransferServiceProtocol {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
-  public func listOperations(request: GoogleLongrunning.ListOperationsRequest) async throws
-    -> GoogleLongrunning.ListOperationsResponse
+  public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
+    -> GoogleLongRunning.ListOperationsResponse
   {
     try await self.listOperations(request: request, options: .init())
   }
 
   public func listOperations(
-    request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.ListOperationsResponse {
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.ListOperationsResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func listOperations(
-    byItem: GoogleLongrunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+    byItem: GoogleLongRunning.ListOperationsRequest
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     try self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
-    byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongrunning.ListOperationsResponse in
+      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleCloudGax.RequestError.unimplemented
     }
     return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
@@ -1572,41 +1572,41 @@ extension Clients.DataTransferServiceProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
-    let request = GoogleLongrunning.ListOperationsRequest().with {
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
     return try self.listOperations(byItem: request)
   }
 
-  public func getOperation(request: GoogleLongrunning.GetOperationRequest) async throws
-    -> GoogleLongrunning.Operation
+  public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
+    -> GoogleLongRunning.Operation
   {
     try await self.getOperation(request: request, options: .init())
   }
 
   public func getOperation(
-    request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+    request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func getOperation(
     name: Swift.String,
-  ) async throws -> GoogleLongrunning.Operation {
-    let request = GoogleLongrunning.GetOperationRequest().with {
+  ) async throws -> GoogleLongRunning.Operation {
+    let request = GoogleLongRunning.GetOperationRequest().with {
       $0.name = name
     }
     return try await self.getOperation(request: request)
   }
 
-  public func deleteOperation(request: GoogleLongrunning.DeleteOperationRequest) async throws {
+  public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
 
   public func deleteOperation(
-    request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+    request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws {
     throw GoogleCloudGax.RequestError.unimplemented
   }
@@ -1614,18 +1614,18 @@ extension Clients.DataTransferServiceProtocol {
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
-    let request = GoogleLongrunning.DeleteOperationRequest().with {
+    let request = GoogleLongRunning.DeleteOperationRequest().with {
       $0.name = name
     }
     try await self.deleteOperation(request: request)
   }
 
-  public func cancelOperation(request: GoogleLongrunning.CancelOperationRequest) async throws {
+  public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
 
   public func cancelOperation(
-    request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+    request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws {
     throw GoogleCloudGax.RequestError.unimplemented
   }
@@ -1633,7 +1633,7 @@ extension Clients.DataTransferServiceProtocol {
   public func cancelOperation(
     name: Swift.String,
   ) async throws {
-    let request = GoogleLongrunning.CancelOperationRequest().with {
+    let request = GoogleLongRunning.CancelOperationRequest().with {
       $0.name = name
     }
     try await self.cancelOperation(request: request)

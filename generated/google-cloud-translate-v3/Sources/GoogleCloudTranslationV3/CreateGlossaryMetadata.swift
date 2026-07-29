@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [google.longrunning.Operation.metadata][google.longrunning.Operation.metadata]
 /// field returned by CreateGlossary.
 ///
-/// [google.longrunning.Operation.metadata]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongrunning.Operation/metadata
+/// [google.longrunning.Operation.metadata]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/metadata
 public struct CreateGlossaryMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

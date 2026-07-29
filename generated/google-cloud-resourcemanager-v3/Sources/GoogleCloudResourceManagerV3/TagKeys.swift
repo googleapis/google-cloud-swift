@@ -20,7 +20,7 @@ import Foundation
 #endif
 import GoogleCloudWkt
 import GoogleIAMV1
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
 
@@ -93,7 +93,7 @@ public class TagKeysClient: Clients.TagKeysProtocol {
   /// @Snippet(path: "TagKeys_CreateTagKey")
   public func createTagKey(
     request: CreateTagKeyRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.createTagKey(request: request, options: options)
   }
 
@@ -107,7 +107,7 @@ public class TagKeysClient: Clients.TagKeysProtocol {
     withPolling: CreateTagKeyRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<TagKey> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<TagKey>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -159,7 +159,7 @@ public class TagKeysClient: Clients.TagKeysProtocol {
   /// @Snippet(path: "TagKeys_UpdateTagKey")
   public func updateTagKey(
     request: UpdateTagKeyRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.updateTagKey(request: request, options: options)
   }
 
@@ -170,7 +170,7 @@ public class TagKeysClient: Clients.TagKeysProtocol {
     withPolling: UpdateTagKeyRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<TagKey> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<TagKey>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -223,7 +223,7 @@ public class TagKeysClient: Clients.TagKeysProtocol {
   /// @Snippet(path: "TagKeys_DeleteTagKey")
   public func deleteTagKey(
     request: DeleteTagKeyRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.deleteTagKey(request: request, options: options)
   }
 
@@ -235,7 +235,7 @@ public class TagKeysClient: Clients.TagKeysProtocol {
     withPolling: DeleteTagKeyRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<TagKey> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<TagKey>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -328,8 +328,8 @@ public class TagKeysClient: Clients.TagKeysProtocol {
   ///
   /// @Snippet(path: "TagKeys_GetOperation")
   func getOperation(
-    request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+    request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.getOperation(request: request, options: options)
   }
 }
@@ -373,7 +373,7 @@ extension Clients {
     ) async throws -> GoogleCloudResourceManagerV3.TagKey
 
     /// See `TagKeysClient.createTagKey`.
-    func createTagKey(request: CreateTagKeyRequest) async throws -> GoogleLongrunning.Operation
+    func createTagKey(request: CreateTagKeyRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `TagKeysClient.createTagKey`.
     func createTagKey(withPolling: CreateTagKeyRequest) async throws -> any GoogleCloudGax
@@ -385,7 +385,7 @@ extension Clients {
     ) async throws -> any GoogleCloudGax.PollableOperation<TagKey>
 
     /// See `TagKeysClient.updateTagKey`.
-    func updateTagKey(request: UpdateTagKeyRequest) async throws -> GoogleLongrunning.Operation
+    func updateTagKey(request: UpdateTagKeyRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `TagKeysClient.updateTagKey`.
     func updateTagKey(withPolling: UpdateTagKeyRequest) async throws -> any GoogleCloudGax
@@ -398,7 +398,7 @@ extension Clients {
     ) async throws -> any GoogleCloudGax.PollableOperation<TagKey>
 
     /// See `TagKeysClient.deleteTagKey`.
-    func deleteTagKey(request: DeleteTagKeyRequest) async throws -> GoogleLongrunning.Operation
+    func deleteTagKey(request: DeleteTagKeyRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `TagKeysClient.deleteTagKey`.
     func deleteTagKey(withPolling: DeleteTagKeyRequest) async throws -> any GoogleCloudGax
@@ -459,7 +459,7 @@ extension Clients {
     /// See `TagKeysClient.createTagKey`.
     func createTagKey(
       request: CreateTagKeyRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `TagKeysClient.createTagKey`.
     func createTagKey(
@@ -469,7 +469,7 @@ extension Clients {
     /// See `TagKeysClient.updateTagKey`.
     func updateTagKey(
       request: UpdateTagKeyRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `TagKeysClient.updateTagKey`.
     func updateTagKey(
@@ -479,7 +479,7 @@ extension Clients {
     /// See `TagKeysClient.deleteTagKey`.
     func deleteTagKey(
       request: DeleteTagKeyRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `TagKeysClient.deleteTagKey`.
     func deleteTagKey(
@@ -584,14 +584,14 @@ extension Clients.TagKeysProtocol {
     return try await self.getNamespacedTagKey(request: request)
   }
 
-  public func createTagKey(request: CreateTagKeyRequest) async throws -> GoogleLongrunning.Operation
+  public func createTagKey(request: CreateTagKeyRequest) async throws -> GoogleLongRunning.Operation
   {
     try await self.createTagKey(request: request, options: .init())
   }
 
   public func createTagKey(
     request: CreateTagKeyRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -620,14 +620,14 @@ extension Clients.TagKeysProtocol {
     return try await self.createTagKey(withPolling: request)
   }
 
-  public func updateTagKey(request: UpdateTagKeyRequest) async throws -> GoogleLongrunning.Operation
+  public func updateTagKey(request: UpdateTagKeyRequest) async throws -> GoogleLongRunning.Operation
   {
     try await self.updateTagKey(request: request, options: .init())
   }
 
   public func updateTagKey(
     request: UpdateTagKeyRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -658,14 +658,14 @@ extension Clients.TagKeysProtocol {
     return try await self.updateTagKey(withPolling: request)
   }
 
-  public func deleteTagKey(request: DeleteTagKeyRequest) async throws -> GoogleLongrunning.Operation
+  public func deleteTagKey(request: DeleteTagKeyRequest) async throws -> GoogleLongRunning.Operation
   {
     try await self.deleteTagKey(request: request, options: .init())
   }
 
   public func deleteTagKey(
     request: DeleteTagKeyRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -761,22 +761,22 @@ extension Clients.TagKeysProtocol {
     return try await self.testIamPermissions(request: request)
   }
 
-  public func getOperation(request: GoogleLongrunning.GetOperationRequest) async throws
-    -> GoogleLongrunning.Operation
+  public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
+    -> GoogleLongRunning.Operation
   {
     try await self.getOperation(request: request, options: .init())
   }
 
   public func getOperation(
-    request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+    request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func getOperation(
     name: Swift.String,
-  ) async throws -> GoogleLongrunning.Operation {
-    let request = GoogleLongrunning.GetOperationRequest().with {
+  ) async throws -> GoogleLongRunning.Operation {
+    let request = GoogleLongRunning.GetOperationRequest().with {
       $0.name = name
     }
     return try await self.getOperation(request: request)

@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudWkt
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleRpc
 import GoogleType
 import GoogleCloudGax
@@ -80,7 +80,7 @@ public class DomainsClient: Clients.DomainsProtocol {
   /// @Snippet(path: "Domains_RegisterDomain")
   public func registerDomain(
     request: RegisterDomainRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.registerDomain(request: request, options: options)
   }
 
@@ -103,7 +103,7 @@ public class DomainsClient: Clients.DomainsProtocol {
     withPolling: RegisterDomainRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Registration> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Registration>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -189,7 +189,7 @@ public class DomainsClient: Clients.DomainsProtocol {
   /// @Snippet(path: "Domains_TransferDomain")
   public func transferDomain(
     request: TransferDomainRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.transferDomain(request: request, options: options)
   }
 
@@ -220,7 +220,7 @@ public class DomainsClient: Clients.DomainsProtocol {
     withPolling: TransferDomainRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Registration> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Registration>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -310,7 +310,7 @@ public class DomainsClient: Clients.DomainsProtocol {
   /// @Snippet(path: "Domains_UpdateRegistration")
   public func updateRegistration(
     request: UpdateRegistrationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.updateRegistration(request: request, options: options)
   }
 
@@ -326,7 +326,7 @@ public class DomainsClient: Clients.DomainsProtocol {
     withPolling: UpdateRegistrationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Registration> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Registration>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -378,7 +378,7 @@ public class DomainsClient: Clients.DomainsProtocol {
   /// @Snippet(path: "Domains_ConfigureManagementSettings")
   public func configureManagementSettings(
     request: ConfigureManagementSettingsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.configureManagementSettings(request: request, options: options)
   }
 
@@ -389,7 +389,7 @@ public class DomainsClient: Clients.DomainsProtocol {
     withPolling: ConfigureManagementSettingsRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Registration> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Registration>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -441,7 +441,7 @@ public class DomainsClient: Clients.DomainsProtocol {
   /// @Snippet(path: "Domains_ConfigureDnsSettings")
   public func configureDnsSettings(
     request: ConfigureDnsSettingsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.configureDnsSettings(request: request, options: options)
   }
 
@@ -452,7 +452,7 @@ public class DomainsClient: Clients.DomainsProtocol {
     withPolling: ConfigureDnsSettingsRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Registration> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Registration>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -505,7 +505,7 @@ public class DomainsClient: Clients.DomainsProtocol {
   /// @Snippet(path: "Domains_ConfigureContactSettings")
   public func configureContactSettings(
     request: ConfigureContactSettingsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.configureContactSettings(request: request, options: options)
   }
 
@@ -517,7 +517,7 @@ public class DomainsClient: Clients.DomainsProtocol {
     withPolling: ConfigureContactSettingsRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Registration> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Registration>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -577,7 +577,7 @@ public class DomainsClient: Clients.DomainsProtocol {
   /// @Snippet(path: "Domains_ExportRegistration")
   public func exportRegistration(
     request: ExportRegistrationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.exportRegistration(request: request, options: options)
   }
 
@@ -596,7 +596,7 @@ public class DomainsClient: Clients.DomainsProtocol {
     withPolling: ExportRegistrationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Registration> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Registration>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -666,7 +666,7 @@ public class DomainsClient: Clients.DomainsProtocol {
   /// @Snippet(path: "Domains_DeleteRegistration")
   public func deleteRegistration(
     request: DeleteRegistrationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.deleteRegistration(request: request, options: options)
   }
 
@@ -695,7 +695,7 @@ public class DomainsClient: Clients.DomainsProtocol {
     withPolling: DeleteRegistrationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
+      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
       in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -765,8 +765,8 @@ public class DomainsClient: Clients.DomainsProtocol {
   ///
   /// @Snippet(path: "Domains_ListOperations")
   public func listOperations(
-    request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.ListOperationsResponse {
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.ListOperationsResponse {
     try await self.inner.listOperations(request: request, options: options)
   }
 
@@ -776,10 +776,10 @@ public class DomainsClient: Clients.DomainsProtocol {
   ///
   /// @Snippet(path: "Domains_ListOperations")
   public func listOperations(
-    byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongrunning.ListOperationsResponse in
+      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
@@ -793,8 +793,8 @@ public class DomainsClient: Clients.DomainsProtocol {
   ///
   /// @Snippet(path: "Domains_GetOperation")
   func getOperation(
-    request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+    request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.getOperation(request: request, options: options)
   }
 }
@@ -827,7 +827,7 @@ extension Clients {
     ) async throws -> GoogleCloudDomainsV1.RetrieveRegisterParametersResponse
 
     /// See `DomainsClient.registerDomain`.
-    func registerDomain(request: RegisterDomainRequest) async throws -> GoogleLongrunning.Operation
+    func registerDomain(request: RegisterDomainRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `DomainsClient.registerDomain`.
     func registerDomain(withPolling: RegisterDomainRequest) async throws -> any GoogleCloudGax
@@ -851,7 +851,7 @@ extension Clients {
     ) async throws -> GoogleCloudDomainsV1.RetrieveTransferParametersResponse
 
     /// See `DomainsClient.transferDomain`.
-    func transferDomain(request: TransferDomainRequest) async throws -> GoogleLongrunning.Operation
+    func transferDomain(request: TransferDomainRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `DomainsClient.transferDomain`.
     func transferDomain(withPolling: TransferDomainRequest) async throws -> any GoogleCloudGax
@@ -890,7 +890,7 @@ extension Clients {
 
     /// See `DomainsClient.updateRegistration`.
     func updateRegistration(request: UpdateRegistrationRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `DomainsClient.updateRegistration`.
     func updateRegistration(withPolling: UpdateRegistrationRequest) async throws
@@ -904,7 +904,7 @@ extension Clients {
 
     /// See `DomainsClient.configureManagementSettings`.
     func configureManagementSettings(request: ConfigureManagementSettingsRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `DomainsClient.configureManagementSettings`.
     func configureManagementSettings(withPolling: ConfigureManagementSettingsRequest) async throws
@@ -919,7 +919,7 @@ extension Clients {
 
     /// See `DomainsClient.configureDnsSettings`.
     func configureDnsSettings(request: ConfigureDnsSettingsRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `DomainsClient.configureDnsSettings`.
     func configureDnsSettings(withPolling: ConfigureDnsSettingsRequest) async throws
@@ -934,7 +934,7 @@ extension Clients {
 
     /// See `DomainsClient.configureContactSettings`.
     func configureContactSettings(request: ConfigureContactSettingsRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `DomainsClient.configureContactSettings`.
     func configureContactSettings(withPolling: ConfigureContactSettingsRequest) async throws
@@ -949,7 +949,7 @@ extension Clients {
 
     /// See `DomainsClient.exportRegistration`.
     func exportRegistration(request: ExportRegistrationRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `DomainsClient.exportRegistration`.
     func exportRegistration(withPolling: ExportRegistrationRequest) async throws
@@ -962,7 +962,7 @@ extension Clients {
 
     /// See `DomainsClient.deleteRegistration`.
     func deleteRegistration(request: DeleteRegistrationRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `DomainsClient.deleteRegistration`.
     func deleteRegistration(withPolling: DeleteRegistrationRequest) async throws
@@ -992,19 +992,19 @@ extension Clients {
     ) async throws -> GoogleCloudDomainsV1.AuthorizationCode
 
     /// See `DomainsClient.listOperations`.
-    func listOperations(request: GoogleLongrunning.ListOperationsRequest) async throws
-      -> GoogleLongrunning.ListOperationsResponse
+    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
+      -> GoogleLongRunning.ListOperationsResponse
 
     /// See `DomainsClient.listOperations`.
     func listOperations(
-      byItem: GoogleLongrunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+      byItem: GoogleLongRunning.ListOperationsRequest
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `DomainsClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `DomainsClient.searchDomains`.
     func searchDomains(
@@ -1019,7 +1019,7 @@ extension Clients {
     /// See `DomainsClient.registerDomain`.
     func registerDomain(
       request: RegisterDomainRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `DomainsClient.registerDomain`.
     func registerDomain(
@@ -1034,7 +1034,7 @@ extension Clients {
     /// See `DomainsClient.transferDomain`.
     func transferDomain(
       request: TransferDomainRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `DomainsClient.transferDomain`.
     func transferDomain(
@@ -1059,7 +1059,7 @@ extension Clients {
     /// See `DomainsClient.updateRegistration`.
     func updateRegistration(
       request: UpdateRegistrationRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `DomainsClient.updateRegistration`.
     func updateRegistration(
@@ -1069,7 +1069,7 @@ extension Clients {
     /// See `DomainsClient.configureManagementSettings`.
     func configureManagementSettings(
       request: ConfigureManagementSettingsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `DomainsClient.configureManagementSettings`.
     func configureManagementSettings(
@@ -1079,7 +1079,7 @@ extension Clients {
     /// See `DomainsClient.configureDnsSettings`.
     func configureDnsSettings(
       request: ConfigureDnsSettingsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `DomainsClient.configureDnsSettings`.
     func configureDnsSettings(
@@ -1089,7 +1089,7 @@ extension Clients {
     /// See `DomainsClient.configureContactSettings`.
     func configureContactSettings(
       request: ConfigureContactSettingsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `DomainsClient.configureContactSettings`.
     func configureContactSettings(
@@ -1099,7 +1099,7 @@ extension Clients {
     /// See `DomainsClient.exportRegistration`.
     func exportRegistration(
       request: ExportRegistrationRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `DomainsClient.exportRegistration`.
     func exportRegistration(
@@ -1109,7 +1109,7 @@ extension Clients {
     /// See `DomainsClient.deleteRegistration`.
     func deleteRegistration(
       request: DeleteRegistrationRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `DomainsClient.deleteRegistration`.
     func deleteRegistration(
@@ -1128,13 +1128,13 @@ extension Clients {
 
     /// See `DomainsClient.listOperations`.
     func listOperations(
-      request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.ListOperationsResponse
+      request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.ListOperationsResponse
 
     /// See `DomainsClient.listOperations`.
     func listOperations(
-      byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
   }
 }
 
@@ -1187,14 +1187,14 @@ extension Clients.DomainsProtocol {
   }
 
   public func registerDomain(request: RegisterDomainRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.registerDomain(request: request, options: .init())
   }
 
   public func registerDomain(
     request: RegisterDomainRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1251,14 +1251,14 @@ extension Clients.DomainsProtocol {
   }
 
   public func transferDomain(request: TransferDomainRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.transferDomain(request: request, options: .init())
   }
 
   public func transferDomain(
     request: TransferDomainRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1352,14 +1352,14 @@ extension Clients.DomainsProtocol {
   }
 
   public func updateRegistration(request: UpdateRegistrationRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.updateRegistration(request: request, options: .init())
   }
 
   public func updateRegistration(
     request: UpdateRegistrationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1391,14 +1391,14 @@ extension Clients.DomainsProtocol {
   }
 
   public func configureManagementSettings(request: ConfigureManagementSettingsRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.configureManagementSettings(request: request, options: .init())
   }
 
   public func configureManagementSettings(
     request: ConfigureManagementSettingsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1432,14 +1432,14 @@ extension Clients.DomainsProtocol {
   }
 
   public func configureDnsSettings(request: ConfigureDnsSettingsRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.configureDnsSettings(request: request, options: .init())
   }
 
   public func configureDnsSettings(
     request: ConfigureDnsSettingsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1473,14 +1473,14 @@ extension Clients.DomainsProtocol {
   }
 
   public func configureContactSettings(request: ConfigureContactSettingsRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.configureContactSettings(request: request, options: .init())
   }
 
   public func configureContactSettings(
     request: ConfigureContactSettingsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1514,14 +1514,14 @@ extension Clients.DomainsProtocol {
   }
 
   public func exportRegistration(request: ExportRegistrationRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.exportRegistration(request: request, options: .init())
   }
 
   public func exportRegistration(
     request: ExportRegistrationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1551,14 +1551,14 @@ extension Clients.DomainsProtocol {
   }
 
   public func deleteRegistration(request: DeleteRegistrationRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.deleteRegistration(request: request, options: .init())
   }
 
   public func deleteRegistration(
     request: DeleteRegistrationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1629,29 +1629,29 @@ extension Clients.DomainsProtocol {
     return try await self.resetAuthorizationCode(request: request)
   }
 
-  public func listOperations(request: GoogleLongrunning.ListOperationsRequest) async throws
-    -> GoogleLongrunning.ListOperationsResponse
+  public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
+    -> GoogleLongRunning.ListOperationsResponse
   {
     try await self.listOperations(request: request, options: .init())
   }
 
   public func listOperations(
-    request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.ListOperationsResponse {
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.ListOperationsResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func listOperations(
-    byItem: GoogleLongrunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+    byItem: GoogleLongRunning.ListOperationsRequest
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     try self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
-    byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongrunning.ListOperationsResponse in
+      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleCloudGax.RequestError.unimplemented
     }
     return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
@@ -1660,30 +1660,30 @@ extension Clients.DomainsProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
-    let request = GoogleLongrunning.ListOperationsRequest().with {
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
     return try self.listOperations(byItem: request)
   }
 
-  public func getOperation(request: GoogleLongrunning.GetOperationRequest) async throws
-    -> GoogleLongrunning.Operation
+  public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
+    -> GoogleLongRunning.Operation
   {
     try await self.getOperation(request: request, options: .init())
   }
 
   public func getOperation(
-    request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+    request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func getOperation(
     name: Swift.String,
-  ) async throws -> GoogleLongrunning.Operation {
-    let request = GoogleLongrunning.GetOperationRequest().with {
+  ) async throws -> GoogleLongRunning.Operation {
+    let request = GoogleLongRunning.GetOperationRequest().with {
       $0.name = name
     }
     return try await self.getOperation(request: request)

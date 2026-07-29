@@ -19,7 +19,7 @@
 import Foundation
 import GoogleCloudRetailV2
 import GoogleCloudWkt
-import GoogleLongrunning
+import GoogleLongRunning
 
 func sample(
   client: ServingConfigServiceClient, projectId: String, locationId: String, catalogId: String,

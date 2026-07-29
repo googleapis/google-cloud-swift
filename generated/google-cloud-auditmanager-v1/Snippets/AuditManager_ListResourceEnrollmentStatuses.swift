@@ -20,7 +20,7 @@ import Foundation
 import GoogleCloudAuditManagerV1
 import GoogleCloudLocation
 import GoogleCloudWkt
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleRpc
 
 func sample(client: AuditManagerClient, parent: String) async throws {

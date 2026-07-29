@@ -20,7 +20,7 @@ import Foundation
 #endif
 import GoogleCloudLocation
 import GoogleCloudWkt
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
 
@@ -104,7 +104,7 @@ public class CertificateManagerClient: Clients.CertificateManagerProtocol {
   /// @Snippet(path: "CertificateManager_CreateCertificate")
   public func createCertificate(
     request: CreateCertificateRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.createCertificate(request: request, options: options)
   }
 
@@ -115,7 +115,7 @@ public class CertificateManagerClient: Clients.CertificateManagerProtocol {
     withPolling: CreateCertificateRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Certificate> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Certificate>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -167,7 +167,7 @@ public class CertificateManagerClient: Clients.CertificateManagerProtocol {
   /// @Snippet(path: "CertificateManager_UpdateCertificate")
   public func updateCertificate(
     request: UpdateCertificateRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.updateCertificate(request: request, options: options)
   }
 
@@ -178,7 +178,7 @@ public class CertificateManagerClient: Clients.CertificateManagerProtocol {
     withPolling: UpdateCertificateRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Certificate> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Certificate>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -230,7 +230,7 @@ public class CertificateManagerClient: Clients.CertificateManagerProtocol {
   /// @Snippet(path: "CertificateManager_DeleteCertificate")
   public func deleteCertificate(
     request: DeleteCertificateRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.deleteCertificate(request: request, options: options)
   }
 
@@ -241,7 +241,7 @@ public class CertificateManagerClient: Clients.CertificateManagerProtocol {
     withPolling: DeleteCertificateRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
+      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
       in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -319,7 +319,7 @@ public class CertificateManagerClient: Clients.CertificateManagerProtocol {
   /// @Snippet(path: "CertificateManager_CreateCertificateMap")
   public func createCertificateMap(
     request: CreateCertificateMapRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.createCertificateMap(request: request, options: options)
   }
 
@@ -330,7 +330,7 @@ public class CertificateManagerClient: Clients.CertificateManagerProtocol {
     withPolling: CreateCertificateMapRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<CertificateMap> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<CertificateMap>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -382,7 +382,7 @@ public class CertificateManagerClient: Clients.CertificateManagerProtocol {
   /// @Snippet(path: "CertificateManager_UpdateCertificateMap")
   public func updateCertificateMap(
     request: UpdateCertificateMapRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.updateCertificateMap(request: request, options: options)
   }
 
@@ -393,7 +393,7 @@ public class CertificateManagerClient: Clients.CertificateManagerProtocol {
     withPolling: UpdateCertificateMapRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<CertificateMap> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<CertificateMap>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -447,7 +447,7 @@ public class CertificateManagerClient: Clients.CertificateManagerProtocol {
   /// @Snippet(path: "CertificateManager_DeleteCertificateMap")
   public func deleteCertificateMap(
     request: DeleteCertificateMapRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.deleteCertificateMap(request: request, options: options)
   }
 
@@ -460,7 +460,7 @@ public class CertificateManagerClient: Clients.CertificateManagerProtocol {
     withPolling: DeleteCertificateMapRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
+      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
       in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -538,7 +538,7 @@ public class CertificateManagerClient: Clients.CertificateManagerProtocol {
   /// @Snippet(path: "CertificateManager_CreateCertificateMapEntry")
   public func createCertificateMapEntry(
     request: CreateCertificateMapEntryRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.createCertificateMapEntry(request: request, options: options)
   }
 
@@ -549,7 +549,7 @@ public class CertificateManagerClient: Clients.CertificateManagerProtocol {
     withPolling: CreateCertificateMapEntryRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<CertificateMapEntry> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<CertificateMapEntry>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -602,7 +602,7 @@ public class CertificateManagerClient: Clients.CertificateManagerProtocol {
   /// @Snippet(path: "CertificateManager_UpdateCertificateMapEntry")
   public func updateCertificateMapEntry(
     request: UpdateCertificateMapEntryRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.updateCertificateMapEntry(request: request, options: options)
   }
 
@@ -613,7 +613,7 @@ public class CertificateManagerClient: Clients.CertificateManagerProtocol {
     withPolling: UpdateCertificateMapEntryRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<CertificateMapEntry> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<CertificateMapEntry>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -666,7 +666,7 @@ public class CertificateManagerClient: Clients.CertificateManagerProtocol {
   /// @Snippet(path: "CertificateManager_DeleteCertificateMapEntry")
   public func deleteCertificateMapEntry(
     request: DeleteCertificateMapEntryRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.deleteCertificateMapEntry(request: request, options: options)
   }
 
@@ -677,7 +677,7 @@ public class CertificateManagerClient: Clients.CertificateManagerProtocol {
     withPolling: DeleteCertificateMapEntryRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
+      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
       in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -755,7 +755,7 @@ public class CertificateManagerClient: Clients.CertificateManagerProtocol {
   /// @Snippet(path: "CertificateManager_CreateDnsAuthorization")
   public func createDnsAuthorization(
     request: CreateDnsAuthorizationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.createDnsAuthorization(request: request, options: options)
   }
 
@@ -766,7 +766,7 @@ public class CertificateManagerClient: Clients.CertificateManagerProtocol {
     withPolling: CreateDnsAuthorizationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<DnsAuthorization> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<DnsAuthorization>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -818,7 +818,7 @@ public class CertificateManagerClient: Clients.CertificateManagerProtocol {
   /// @Snippet(path: "CertificateManager_UpdateDnsAuthorization")
   public func updateDnsAuthorization(
     request: UpdateDnsAuthorizationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.updateDnsAuthorization(request: request, options: options)
   }
 
@@ -829,7 +829,7 @@ public class CertificateManagerClient: Clients.CertificateManagerProtocol {
     withPolling: UpdateDnsAuthorizationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<DnsAuthorization> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<DnsAuthorization>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -881,7 +881,7 @@ public class CertificateManagerClient: Clients.CertificateManagerProtocol {
   /// @Snippet(path: "CertificateManager_DeleteDnsAuthorization")
   public func deleteDnsAuthorization(
     request: DeleteDnsAuthorizationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.deleteDnsAuthorization(request: request, options: options)
   }
 
@@ -892,7 +892,7 @@ public class CertificateManagerClient: Clients.CertificateManagerProtocol {
     withPolling: DeleteDnsAuthorizationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
+      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
       in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -970,7 +970,7 @@ public class CertificateManagerClient: Clients.CertificateManagerProtocol {
   /// @Snippet(path: "CertificateManager_CreateCertificateIssuanceConfig")
   public func createCertificateIssuanceConfig(
     request: CreateCertificateIssuanceConfigRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.createCertificateIssuanceConfig(request: request, options: options)
   }
 
@@ -981,7 +981,7 @@ public class CertificateManagerClient: Clients.CertificateManagerProtocol {
     withPolling: CreateCertificateIssuanceConfigRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<CertificateIssuanceConfig> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<CertificateIssuanceConfig>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -1035,7 +1035,7 @@ public class CertificateManagerClient: Clients.CertificateManagerProtocol {
   /// @Snippet(path: "CertificateManager_DeleteCertificateIssuanceConfig")
   public func deleteCertificateIssuanceConfig(
     request: DeleteCertificateIssuanceConfigRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.deleteCertificateIssuanceConfig(request: request, options: options)
   }
 
@@ -1046,7 +1046,7 @@ public class CertificateManagerClient: Clients.CertificateManagerProtocol {
     withPolling: DeleteCertificateIssuanceConfigRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
+      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
       in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -1125,7 +1125,7 @@ public class CertificateManagerClient: Clients.CertificateManagerProtocol {
   /// @Snippet(path: "CertificateManager_CreateTrustConfig")
   public func createTrustConfig(
     request: CreateTrustConfigRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.createTrustConfig(request: request, options: options)
   }
 
@@ -1136,7 +1136,7 @@ public class CertificateManagerClient: Clients.CertificateManagerProtocol {
     withPolling: CreateTrustConfigRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<TrustConfig> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<TrustConfig>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -1188,7 +1188,7 @@ public class CertificateManagerClient: Clients.CertificateManagerProtocol {
   /// @Snippet(path: "CertificateManager_UpdateTrustConfig")
   public func updateTrustConfig(
     request: UpdateTrustConfigRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.updateTrustConfig(request: request, options: options)
   }
 
@@ -1199,7 +1199,7 @@ public class CertificateManagerClient: Clients.CertificateManagerProtocol {
     withPolling: UpdateTrustConfigRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<TrustConfig> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<TrustConfig>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -1251,7 +1251,7 @@ public class CertificateManagerClient: Clients.CertificateManagerProtocol {
   /// @Snippet(path: "CertificateManager_DeleteTrustConfig")
   public func deleteTrustConfig(
     request: DeleteTrustConfigRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.deleteTrustConfig(request: request, options: options)
   }
 
@@ -1262,7 +1262,7 @@ public class CertificateManagerClient: Clients.CertificateManagerProtocol {
     withPolling: DeleteTrustConfigRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
+      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
       in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -1340,8 +1340,8 @@ public class CertificateManagerClient: Clients.CertificateManagerProtocol {
   ///
   /// @Snippet(path: "CertificateManager_ListOperations")
   public func listOperations(
-    request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.ListOperationsResponse {
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.ListOperationsResponse {
     try await self.inner.listOperations(request: request, options: options)
   }
 
@@ -1351,10 +1351,10 @@ public class CertificateManagerClient: Clients.CertificateManagerProtocol {
   ///
   /// @Snippet(path: "CertificateManager_ListOperations")
   public func listOperations(
-    byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongrunning.ListOperationsResponse in
+      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
@@ -1368,8 +1368,8 @@ public class CertificateManagerClient: Clients.CertificateManagerProtocol {
   ///
   /// @Snippet(path: "CertificateManager_GetOperation")
   func getOperation(
-    request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+    request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.getOperation(request: request, options: options)
   }
 
@@ -1379,7 +1379,7 @@ public class CertificateManagerClient: Clients.CertificateManagerProtocol {
   ///
   /// @Snippet(path: "CertificateManager_DeleteOperation")
   public func deleteOperation(
-    request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+    request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws {
     try await self.inner.deleteOperation(request: request, options: options)
   }
@@ -1390,7 +1390,7 @@ public class CertificateManagerClient: Clients.CertificateManagerProtocol {
   ///
   /// @Snippet(path: "CertificateManager_CancelOperation")
   public func cancelOperation(
-    request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+    request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws {
     try await self.inner.cancelOperation(request: request, options: options)
   }
@@ -1428,7 +1428,7 @@ extension Clients {
 
     /// See `CertificateManagerClient.createCertificate`.
     func createCertificate(request: CreateCertificateRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `CertificateManagerClient.createCertificate`.
     func createCertificate(withPolling: CreateCertificateRequest) async throws -> any GoogleCloudGax
@@ -1443,7 +1443,7 @@ extension Clients {
 
     /// See `CertificateManagerClient.updateCertificate`.
     func updateCertificate(request: UpdateCertificateRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `CertificateManagerClient.updateCertificate`.
     func updateCertificate(withPolling: UpdateCertificateRequest) async throws -> any GoogleCloudGax
@@ -1457,7 +1457,7 @@ extension Clients {
 
     /// See `CertificateManagerClient.deleteCertificate`.
     func deleteCertificate(request: DeleteCertificateRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `CertificateManagerClient.deleteCertificate`.
     func deleteCertificate(withPolling: DeleteCertificateRequest) async throws -> any GoogleCloudGax
@@ -1493,7 +1493,7 @@ extension Clients {
 
     /// See `CertificateManagerClient.createCertificateMap`.
     func createCertificateMap(request: CreateCertificateMapRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `CertificateManagerClient.createCertificateMap`.
     func createCertificateMap(withPolling: CreateCertificateMapRequest) async throws
@@ -1508,7 +1508,7 @@ extension Clients {
 
     /// See `CertificateManagerClient.updateCertificateMap`.
     func updateCertificateMap(request: UpdateCertificateMapRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `CertificateManagerClient.updateCertificateMap`.
     func updateCertificateMap(withPolling: UpdateCertificateMapRequest) async throws
@@ -1522,7 +1522,7 @@ extension Clients {
 
     /// See `CertificateManagerClient.deleteCertificateMap`.
     func deleteCertificateMap(request: DeleteCertificateMapRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `CertificateManagerClient.deleteCertificateMap`.
     func deleteCertificateMap(withPolling: DeleteCertificateMapRequest) async throws
@@ -1558,7 +1558,7 @@ extension Clients {
 
     /// See `CertificateManagerClient.createCertificateMapEntry`.
     func createCertificateMapEntry(request: CreateCertificateMapEntryRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `CertificateManagerClient.createCertificateMapEntry`.
     func createCertificateMapEntry(withPolling: CreateCertificateMapEntryRequest) async throws
@@ -1573,7 +1573,7 @@ extension Clients {
 
     /// See `CertificateManagerClient.updateCertificateMapEntry`.
     func updateCertificateMapEntry(request: UpdateCertificateMapEntryRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `CertificateManagerClient.updateCertificateMapEntry`.
     func updateCertificateMapEntry(withPolling: UpdateCertificateMapEntryRequest) async throws
@@ -1587,7 +1587,7 @@ extension Clients {
 
     /// See `CertificateManagerClient.deleteCertificateMapEntry`.
     func deleteCertificateMapEntry(request: DeleteCertificateMapEntryRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `CertificateManagerClient.deleteCertificateMapEntry`.
     func deleteCertificateMapEntry(withPolling: DeleteCertificateMapEntryRequest) async throws
@@ -1623,7 +1623,7 @@ extension Clients {
 
     /// See `CertificateManagerClient.createDnsAuthorization`.
     func createDnsAuthorization(request: CreateDnsAuthorizationRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `CertificateManagerClient.createDnsAuthorization`.
     func createDnsAuthorization(withPolling: CreateDnsAuthorizationRequest) async throws
@@ -1638,7 +1638,7 @@ extension Clients {
 
     /// See `CertificateManagerClient.updateDnsAuthorization`.
     func updateDnsAuthorization(request: UpdateDnsAuthorizationRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `CertificateManagerClient.updateDnsAuthorization`.
     func updateDnsAuthorization(withPolling: UpdateDnsAuthorizationRequest) async throws
@@ -1652,7 +1652,7 @@ extension Clients {
 
     /// See `CertificateManagerClient.deleteDnsAuthorization`.
     func deleteDnsAuthorization(request: DeleteDnsAuthorizationRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `CertificateManagerClient.deleteDnsAuthorization`.
     func deleteDnsAuthorization(withPolling: DeleteDnsAuthorizationRequest) async throws
@@ -1688,7 +1688,7 @@ extension Clients {
 
     /// See `CertificateManagerClient.createCertificateIssuanceConfig`.
     func createCertificateIssuanceConfig(request: CreateCertificateIssuanceConfigRequest)
-      async throws -> GoogleLongrunning.Operation
+      async throws -> GoogleLongRunning.Operation
 
     /// See `CertificateManagerClient.createCertificateIssuanceConfig`.
     func createCertificateIssuanceConfig(withPolling: CreateCertificateIssuanceConfigRequest)
@@ -1703,7 +1703,7 @@ extension Clients {
 
     /// See `CertificateManagerClient.deleteCertificateIssuanceConfig`.
     func deleteCertificateIssuanceConfig(request: DeleteCertificateIssuanceConfigRequest)
-      async throws -> GoogleLongrunning.Operation
+      async throws -> GoogleLongRunning.Operation
 
     /// See `CertificateManagerClient.deleteCertificateIssuanceConfig`.
     func deleteCertificateIssuanceConfig(withPolling: DeleteCertificateIssuanceConfigRequest)
@@ -1739,7 +1739,7 @@ extension Clients {
 
     /// See `CertificateManagerClient.createTrustConfig`.
     func createTrustConfig(request: CreateTrustConfigRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `CertificateManagerClient.createTrustConfig`.
     func createTrustConfig(withPolling: CreateTrustConfigRequest) async throws -> any GoogleCloudGax
@@ -1754,7 +1754,7 @@ extension Clients {
 
     /// See `CertificateManagerClient.updateTrustConfig`.
     func updateTrustConfig(request: UpdateTrustConfigRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `CertificateManagerClient.updateTrustConfig`.
     func updateTrustConfig(withPolling: UpdateTrustConfigRequest) async throws -> any GoogleCloudGax
@@ -1768,7 +1768,7 @@ extension Clients {
 
     /// See `CertificateManagerClient.deleteTrustConfig`.
     func deleteTrustConfig(request: DeleteTrustConfigRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `CertificateManagerClient.deleteTrustConfig`.
     func deleteTrustConfig(withPolling: DeleteTrustConfigRequest) async throws -> any GoogleCloudGax
@@ -1793,22 +1793,22 @@ extension Clients {
       -> GoogleCloudLocation.Location
 
     /// See `CertificateManagerClient.listOperations`.
-    func listOperations(request: GoogleLongrunning.ListOperationsRequest) async throws
-      -> GoogleLongrunning.ListOperationsResponse
+    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
+      -> GoogleLongRunning.ListOperationsResponse
 
     /// See `CertificateManagerClient.listOperations`.
     func listOperations(
-      byItem: GoogleLongrunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+      byItem: GoogleLongRunning.ListOperationsRequest
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `CertificateManagerClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `CertificateManagerClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongrunning.DeleteOperationRequest) async throws
+    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
 
     /// See `CertificateManagerClient.deleteOperation`.
     func deleteOperation(
@@ -1816,7 +1816,7 @@ extension Clients {
     ) async throws
 
     /// See `CertificateManagerClient.cancelOperation`.
-    func cancelOperation(request: GoogleLongrunning.CancelOperationRequest) async throws
+    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
 
     /// See `CertificateManagerClient.cancelOperation`.
     func cancelOperation(
@@ -1841,7 +1841,7 @@ extension Clients {
     /// See `CertificateManagerClient.createCertificate`.
     func createCertificate(
       request: CreateCertificateRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `CertificateManagerClient.createCertificate`.
     func createCertificate(
@@ -1851,7 +1851,7 @@ extension Clients {
     /// See `CertificateManagerClient.updateCertificate`.
     func updateCertificate(
       request: UpdateCertificateRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `CertificateManagerClient.updateCertificate`.
     func updateCertificate(
@@ -1861,7 +1861,7 @@ extension Clients {
     /// See `CertificateManagerClient.deleteCertificate`.
     func deleteCertificate(
       request: DeleteCertificateRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `CertificateManagerClient.deleteCertificate`.
     func deleteCertificate(
@@ -1886,7 +1886,7 @@ extension Clients {
     /// See `CertificateManagerClient.createCertificateMap`.
     func createCertificateMap(
       request: CreateCertificateMapRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `CertificateManagerClient.createCertificateMap`.
     func createCertificateMap(
@@ -1896,7 +1896,7 @@ extension Clients {
     /// See `CertificateManagerClient.updateCertificateMap`.
     func updateCertificateMap(
       request: UpdateCertificateMapRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `CertificateManagerClient.updateCertificateMap`.
     func updateCertificateMap(
@@ -1906,7 +1906,7 @@ extension Clients {
     /// See `CertificateManagerClient.deleteCertificateMap`.
     func deleteCertificateMap(
       request: DeleteCertificateMapRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `CertificateManagerClient.deleteCertificateMap`.
     func deleteCertificateMap(
@@ -1931,7 +1931,7 @@ extension Clients {
     /// See `CertificateManagerClient.createCertificateMapEntry`.
     func createCertificateMapEntry(
       request: CreateCertificateMapEntryRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `CertificateManagerClient.createCertificateMapEntry`.
     func createCertificateMapEntry(
@@ -1941,7 +1941,7 @@ extension Clients {
     /// See `CertificateManagerClient.updateCertificateMapEntry`.
     func updateCertificateMapEntry(
       request: UpdateCertificateMapEntryRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `CertificateManagerClient.updateCertificateMapEntry`.
     func updateCertificateMapEntry(
@@ -1951,7 +1951,7 @@ extension Clients {
     /// See `CertificateManagerClient.deleteCertificateMapEntry`.
     func deleteCertificateMapEntry(
       request: DeleteCertificateMapEntryRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `CertificateManagerClient.deleteCertificateMapEntry`.
     func deleteCertificateMapEntry(
@@ -1976,7 +1976,7 @@ extension Clients {
     /// See `CertificateManagerClient.createDnsAuthorization`.
     func createDnsAuthorization(
       request: CreateDnsAuthorizationRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `CertificateManagerClient.createDnsAuthorization`.
     func createDnsAuthorization(
@@ -1986,7 +1986,7 @@ extension Clients {
     /// See `CertificateManagerClient.updateDnsAuthorization`.
     func updateDnsAuthorization(
       request: UpdateDnsAuthorizationRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `CertificateManagerClient.updateDnsAuthorization`.
     func updateDnsAuthorization(
@@ -1996,7 +1996,7 @@ extension Clients {
     /// See `CertificateManagerClient.deleteDnsAuthorization`.
     func deleteDnsAuthorization(
       request: DeleteDnsAuthorizationRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `CertificateManagerClient.deleteDnsAuthorization`.
     func deleteDnsAuthorization(
@@ -2021,7 +2021,7 @@ extension Clients {
     /// See `CertificateManagerClient.createCertificateIssuanceConfig`.
     func createCertificateIssuanceConfig(
       request: CreateCertificateIssuanceConfigRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `CertificateManagerClient.createCertificateIssuanceConfig`.
     func createCertificateIssuanceConfig(
@@ -2031,7 +2031,7 @@ extension Clients {
     /// See `CertificateManagerClient.deleteCertificateIssuanceConfig`.
     func deleteCertificateIssuanceConfig(
       request: DeleteCertificateIssuanceConfigRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `CertificateManagerClient.deleteCertificateIssuanceConfig`.
     func deleteCertificateIssuanceConfig(
@@ -2056,7 +2056,7 @@ extension Clients {
     /// See `CertificateManagerClient.createTrustConfig`.
     func createTrustConfig(
       request: CreateTrustConfigRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `CertificateManagerClient.createTrustConfig`.
     func createTrustConfig(
@@ -2066,7 +2066,7 @@ extension Clients {
     /// See `CertificateManagerClient.updateTrustConfig`.
     func updateTrustConfig(
       request: UpdateTrustConfigRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `CertificateManagerClient.updateTrustConfig`.
     func updateTrustConfig(
@@ -2076,7 +2076,7 @@ extension Clients {
     /// See `CertificateManagerClient.deleteTrustConfig`.
     func deleteTrustConfig(
       request: DeleteTrustConfigRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `CertificateManagerClient.deleteTrustConfig`.
     func deleteTrustConfig(
@@ -2100,22 +2100,22 @@ extension Clients {
 
     /// See `CertificateManagerClient.listOperations`.
     func listOperations(
-      request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.ListOperationsResponse
+      request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.ListOperationsResponse
 
     /// See `CertificateManagerClient.listOperations`.
     func listOperations(
-      byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `CertificateManagerClient.deleteOperation`.
     func deleteOperation(
-      request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+      request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws
 
     /// See `CertificateManagerClient.cancelOperation`.
     func cancelOperation(
-      request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+      request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws
   }
 }
@@ -2182,14 +2182,14 @@ extension Clients.CertificateManagerProtocol {
   }
 
   public func createCertificate(request: CreateCertificateRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.createCertificate(request: request, options: .init())
   }
 
   public func createCertificate(
     request: CreateCertificateRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -2223,14 +2223,14 @@ extension Clients.CertificateManagerProtocol {
   }
 
   public func updateCertificate(request: UpdateCertificateRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.updateCertificate(request: request, options: .init())
   }
 
   public func updateCertificate(
     request: UpdateCertificateRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -2262,14 +2262,14 @@ extension Clients.CertificateManagerProtocol {
   }
 
   public func deleteCertificate(request: DeleteCertificateRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.deleteCertificate(request: request, options: .init())
   }
 
   public func deleteCertificate(
     request: DeleteCertificateRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -2358,14 +2358,14 @@ extension Clients.CertificateManagerProtocol {
   }
 
   public func createCertificateMap(request: CreateCertificateMapRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.createCertificateMap(request: request, options: .init())
   }
 
   public func createCertificateMap(
     request: CreateCertificateMapRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -2399,14 +2399,14 @@ extension Clients.CertificateManagerProtocol {
   }
 
   public func updateCertificateMap(request: UpdateCertificateMapRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.updateCertificateMap(request: request, options: .init())
   }
 
   public func updateCertificateMap(
     request: UpdateCertificateMapRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -2438,14 +2438,14 @@ extension Clients.CertificateManagerProtocol {
   }
 
   public func deleteCertificateMap(request: DeleteCertificateMapRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.deleteCertificateMap(request: request, options: .init())
   }
 
   public func deleteCertificateMap(
     request: DeleteCertificateMapRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -2534,14 +2534,14 @@ extension Clients.CertificateManagerProtocol {
   }
 
   public func createCertificateMapEntry(request: CreateCertificateMapEntryRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.createCertificateMapEntry(request: request, options: .init())
   }
 
   public func createCertificateMapEntry(
     request: CreateCertificateMapEntryRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -2576,14 +2576,14 @@ extension Clients.CertificateManagerProtocol {
   }
 
   public func updateCertificateMapEntry(request: UpdateCertificateMapEntryRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.updateCertificateMapEntry(request: request, options: .init())
   }
 
   public func updateCertificateMapEntry(
     request: UpdateCertificateMapEntryRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -2616,14 +2616,14 @@ extension Clients.CertificateManagerProtocol {
   }
 
   public func deleteCertificateMapEntry(request: DeleteCertificateMapEntryRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.deleteCertificateMapEntry(request: request, options: .init())
   }
 
   public func deleteCertificateMapEntry(
     request: DeleteCertificateMapEntryRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -2712,14 +2712,14 @@ extension Clients.CertificateManagerProtocol {
   }
 
   public func createDnsAuthorization(request: CreateDnsAuthorizationRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.createDnsAuthorization(request: request, options: .init())
   }
 
   public func createDnsAuthorization(
     request: CreateDnsAuthorizationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -2753,14 +2753,14 @@ extension Clients.CertificateManagerProtocol {
   }
 
   public func updateDnsAuthorization(request: UpdateDnsAuthorizationRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.updateDnsAuthorization(request: request, options: .init())
   }
 
   public func updateDnsAuthorization(
     request: UpdateDnsAuthorizationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -2792,14 +2792,14 @@ extension Clients.CertificateManagerProtocol {
   }
 
   public func deleteDnsAuthorization(request: DeleteDnsAuthorizationRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.deleteDnsAuthorization(request: request, options: .init())
   }
 
   public func deleteDnsAuthorization(
     request: DeleteDnsAuthorizationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -2888,14 +2888,14 @@ extension Clients.CertificateManagerProtocol {
   }
 
   public func createCertificateIssuanceConfig(request: CreateCertificateIssuanceConfigRequest)
-    async throws -> GoogleLongrunning.Operation
+    async throws -> GoogleLongRunning.Operation
   {
     try await self.createCertificateIssuanceConfig(request: request, options: .init())
   }
 
   public func createCertificateIssuanceConfig(
     request: CreateCertificateIssuanceConfigRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -2930,14 +2930,14 @@ extension Clients.CertificateManagerProtocol {
   }
 
   public func deleteCertificateIssuanceConfig(request: DeleteCertificateIssuanceConfigRequest)
-    async throws -> GoogleLongrunning.Operation
+    async throws -> GoogleLongRunning.Operation
   {
     try await self.deleteCertificateIssuanceConfig(request: request, options: .init())
   }
 
   public func deleteCertificateIssuanceConfig(
     request: DeleteCertificateIssuanceConfigRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -3026,14 +3026,14 @@ extension Clients.CertificateManagerProtocol {
   }
 
   public func createTrustConfig(request: CreateTrustConfigRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.createTrustConfig(request: request, options: .init())
   }
 
   public func createTrustConfig(
     request: CreateTrustConfigRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -3067,14 +3067,14 @@ extension Clients.CertificateManagerProtocol {
   }
 
   public func updateTrustConfig(request: UpdateTrustConfigRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.updateTrustConfig(request: request, options: .init())
   }
 
   public func updateTrustConfig(
     request: UpdateTrustConfigRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -3106,14 +3106,14 @@ extension Clients.CertificateManagerProtocol {
   }
 
   public func deleteTrustConfig(request: DeleteTrustConfigRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.deleteTrustConfig(request: request, options: .init())
   }
 
   public func deleteTrustConfig(
     request: DeleteTrustConfigRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -3182,29 +3182,29 @@ extension Clients.CertificateManagerProtocol {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
-  public func listOperations(request: GoogleLongrunning.ListOperationsRequest) async throws
-    -> GoogleLongrunning.ListOperationsResponse
+  public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
+    -> GoogleLongRunning.ListOperationsResponse
   {
     try await self.listOperations(request: request, options: .init())
   }
 
   public func listOperations(
-    request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.ListOperationsResponse {
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.ListOperationsResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func listOperations(
-    byItem: GoogleLongrunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+    byItem: GoogleLongRunning.ListOperationsRequest
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     try self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
-    byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongrunning.ListOperationsResponse in
+      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleCloudGax.RequestError.unimplemented
     }
     return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
@@ -3213,41 +3213,41 @@ extension Clients.CertificateManagerProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
-    let request = GoogleLongrunning.ListOperationsRequest().with {
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
     return try self.listOperations(byItem: request)
   }
 
-  public func getOperation(request: GoogleLongrunning.GetOperationRequest) async throws
-    -> GoogleLongrunning.Operation
+  public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
+    -> GoogleLongRunning.Operation
   {
     try await self.getOperation(request: request, options: .init())
   }
 
   public func getOperation(
-    request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+    request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func getOperation(
     name: Swift.String,
-  ) async throws -> GoogleLongrunning.Operation {
-    let request = GoogleLongrunning.GetOperationRequest().with {
+  ) async throws -> GoogleLongRunning.Operation {
+    let request = GoogleLongRunning.GetOperationRequest().with {
       $0.name = name
     }
     return try await self.getOperation(request: request)
   }
 
-  public func deleteOperation(request: GoogleLongrunning.DeleteOperationRequest) async throws {
+  public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
 
   public func deleteOperation(
-    request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+    request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws {
     throw GoogleCloudGax.RequestError.unimplemented
   }
@@ -3255,18 +3255,18 @@ extension Clients.CertificateManagerProtocol {
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
-    let request = GoogleLongrunning.DeleteOperationRequest().with {
+    let request = GoogleLongRunning.DeleteOperationRequest().with {
       $0.name = name
     }
     try await self.deleteOperation(request: request)
   }
 
-  public func cancelOperation(request: GoogleLongrunning.CancelOperationRequest) async throws {
+  public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
 
   public func cancelOperation(
-    request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+    request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws {
     throw GoogleCloudGax.RequestError.unimplemented
   }
@@ -3274,7 +3274,7 @@ extension Clients.CertificateManagerProtocol {
   public func cancelOperation(
     name: Swift.String,
   ) async throws {
-    let request = GoogleLongrunning.CancelOperationRequest().with {
+    let request = GoogleLongRunning.CancelOperationRequest().with {
       $0.name = name
     }
     try await self.cancelOperation(request: request)

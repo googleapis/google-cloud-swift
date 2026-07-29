@@ -21,7 +21,7 @@ import Foundation
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleIAMV1
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
 
@@ -77,7 +77,7 @@ public class AutokeyClient: Clients.AutokeyProtocol {
   /// @Snippet(path: "Autokey_CreateKeyHandle")
   public func createKeyHandle(
     request: CreateKeyHandleRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.createKeyHandle(request: request, options: options)
   }
 
@@ -97,7 +97,7 @@ public class AutokeyClient: Clients.AutokeyProtocol {
     withPolling: CreateKeyHandleRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<KeyHandle> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<KeyHandle>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -293,8 +293,8 @@ public class AutokeyClient: Clients.AutokeyProtocol {
   ///
   /// @Snippet(path: "Autokey_GetOperation")
   func getOperation(
-    request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+    request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.getOperation(request: request, options: options)
   }
 }
@@ -308,7 +308,7 @@ extension Clients {
   public protocol AutokeyProtocol {
     /// See `AutokeyClient.createKeyHandle`.
     func createKeyHandle(request: CreateKeyHandleRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `AutokeyClient.createKeyHandle`.
     func createKeyHandle(withPolling: CreateKeyHandleRequest) async throws -> any GoogleCloudGax
@@ -369,7 +369,7 @@ extension Clients {
     /// See `AutokeyClient.createKeyHandle`.
     func createKeyHandle(
       request: CreateKeyHandleRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `AutokeyClient.createKeyHandle`.
     func createKeyHandle(
@@ -426,14 +426,14 @@ extension Clients {
 // Default implementations
 extension Clients.AutokeyProtocol {
   public func createKeyHandle(request: CreateKeyHandleRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.createKeyHandle(request: request, options: .init())
   }
 
   public func createKeyHandle(
     request: CreateKeyHandleRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -598,22 +598,22 @@ extension Clients.AutokeyProtocol {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
-  public func getOperation(request: GoogleLongrunning.GetOperationRequest) async throws
-    -> GoogleLongrunning.Operation
+  public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
+    -> GoogleLongRunning.Operation
   {
     try await self.getOperation(request: request, options: .init())
   }
 
   public func getOperation(
-    request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+    request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func getOperation(
     name: Swift.String,
-  ) async throws -> GoogleLongrunning.Operation {
-    let request = GoogleLongrunning.GetOperationRequest().with {
+  ) async throws -> GoogleLongRunning.Operation {
+    let request = GoogleLongRunning.GetOperationRequest().with {
       $0.name = name
     }
     return try await self.getOperation(request: request)

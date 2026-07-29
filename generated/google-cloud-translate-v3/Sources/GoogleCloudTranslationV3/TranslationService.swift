@@ -20,7 +20,7 @@ import Foundation
 #endif
 import GoogleCloudLocation
 import GoogleCloudWkt
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
 
@@ -96,7 +96,7 @@ public class TranslationServiceClient: Clients.TranslationServiceProtocol {
   /// @Snippet(path: "TranslationService_BatchTranslateText")
   public func batchTranslateText(
     request: BatchTranslateTextRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.batchTranslateText(request: request, options: options)
   }
 
@@ -113,7 +113,7 @@ public class TranslationServiceClient: Clients.TranslationServiceProtocol {
     withPolling: BatchTranslateTextRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<BatchTranslateResponse> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<BatchTranslateResponse>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -172,7 +172,7 @@ public class TranslationServiceClient: Clients.TranslationServiceProtocol {
   /// @Snippet(path: "TranslationService_BatchTranslateDocument")
   public func batchTranslateDocument(
     request: BatchTranslateDocumentRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.batchTranslateDocument(request: request, options: options)
   }
 
@@ -189,7 +189,7 @@ public class TranslationServiceClient: Clients.TranslationServiceProtocol {
     withPolling: BatchTranslateDocumentRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<BatchTranslateDocumentResponse> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<BatchTranslateDocumentResponse>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -244,7 +244,7 @@ public class TranslationServiceClient: Clients.TranslationServiceProtocol {
   /// @Snippet(path: "TranslationService_CreateGlossary")
   public func createGlossary(
     request: CreateGlossaryRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.createGlossary(request: request, options: options)
   }
 
@@ -256,7 +256,7 @@ public class TranslationServiceClient: Clients.TranslationServiceProtocol {
     withPolling: CreateGlossaryRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Glossary> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Glossary>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -309,7 +309,7 @@ public class TranslationServiceClient: Clients.TranslationServiceProtocol {
   /// @Snippet(path: "TranslationService_UpdateGlossary")
   public func updateGlossary(
     request: UpdateGlossaryRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.updateGlossary(request: request, options: options)
   }
 
@@ -321,7 +321,7 @@ public class TranslationServiceClient: Clients.TranslationServiceProtocol {
     withPolling: UpdateGlossaryRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Glossary> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Glossary>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -411,7 +411,7 @@ public class TranslationServiceClient: Clients.TranslationServiceProtocol {
   /// @Snippet(path: "TranslationService_DeleteGlossary")
   public func deleteGlossary(
     request: DeleteGlossaryRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.deleteGlossary(request: request, options: options)
   }
 
@@ -424,7 +424,7 @@ public class TranslationServiceClient: Clients.TranslationServiceProtocol {
     withPolling: DeleteGlossaryRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<DeleteGlossaryResponse> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<DeleteGlossaryResponse>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -537,7 +537,7 @@ public class TranslationServiceClient: Clients.TranslationServiceProtocol {
   /// @Snippet(path: "TranslationService_CreateDataset")
   public func createDataset(
     request: CreateDatasetRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.createDataset(request: request, options: options)
   }
 
@@ -548,7 +548,7 @@ public class TranslationServiceClient: Clients.TranslationServiceProtocol {
     withPolling: CreateDatasetRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Dataset> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Dataset>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -633,7 +633,7 @@ public class TranslationServiceClient: Clients.TranslationServiceProtocol {
   /// @Snippet(path: "TranslationService_DeleteDataset")
   public func deleteDataset(
     request: DeleteDatasetRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.deleteDataset(request: request, options: options)
   }
 
@@ -644,7 +644,7 @@ public class TranslationServiceClient: Clients.TranslationServiceProtocol {
     withPolling: DeleteDatasetRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
+      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
       in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -827,7 +827,7 @@ public class TranslationServiceClient: Clients.TranslationServiceProtocol {
   /// @Snippet(path: "TranslationService_ImportData")
   public func importData(
     request: ImportDataRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.importData(request: request, options: options)
   }
 
@@ -838,7 +838,7 @@ public class TranslationServiceClient: Clients.TranslationServiceProtocol {
     withPolling: ImportDataRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
+      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
       in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -882,7 +882,7 @@ public class TranslationServiceClient: Clients.TranslationServiceProtocol {
   /// @Snippet(path: "TranslationService_ExportData")
   public func exportData(
     request: ExportDataRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.exportData(request: request, options: options)
   }
 
@@ -893,7 +893,7 @@ public class TranslationServiceClient: Clients.TranslationServiceProtocol {
     withPolling: ExportDataRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
+      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
       in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -961,7 +961,7 @@ public class TranslationServiceClient: Clients.TranslationServiceProtocol {
   /// @Snippet(path: "TranslationService_CreateModel")
   public func createModel(
     request: CreateModelRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.createModel(request: request, options: options)
   }
 
@@ -972,7 +972,7 @@ public class TranslationServiceClient: Clients.TranslationServiceProtocol {
     withPolling: CreateModelRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Model> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Model>.State
+      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Model>.State
       in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -1057,7 +1057,7 @@ public class TranslationServiceClient: Clients.TranslationServiceProtocol {
   /// @Snippet(path: "TranslationService_DeleteModel")
   public func deleteModel(
     request: DeleteModelRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.deleteModel(request: request, options: options)
   }
 
@@ -1068,7 +1068,7 @@ public class TranslationServiceClient: Clients.TranslationServiceProtocol {
     withPolling: DeleteModelRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
+      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
       in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -1146,8 +1146,8 @@ public class TranslationServiceClient: Clients.TranslationServiceProtocol {
   ///
   /// @Snippet(path: "TranslationService_ListOperations")
   public func listOperations(
-    request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.ListOperationsResponse {
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.ListOperationsResponse {
     try await self.inner.listOperations(request: request, options: options)
   }
 
@@ -1157,10 +1157,10 @@ public class TranslationServiceClient: Clients.TranslationServiceProtocol {
   ///
   /// @Snippet(path: "TranslationService_ListOperations")
   public func listOperations(
-    byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongrunning.ListOperationsResponse in
+      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
@@ -1174,8 +1174,8 @@ public class TranslationServiceClient: Clients.TranslationServiceProtocol {
   ///
   /// @Snippet(path: "TranslationService_GetOperation")
   func getOperation(
-    request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+    request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.getOperation(request: request, options: options)
   }
 
@@ -1185,7 +1185,7 @@ public class TranslationServiceClient: Clients.TranslationServiceProtocol {
   ///
   /// @Snippet(path: "TranslationService_DeleteOperation")
   public func deleteOperation(
-    request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+    request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws {
     try await self.inner.deleteOperation(request: request, options: options)
   }
@@ -1196,7 +1196,7 @@ public class TranslationServiceClient: Clients.TranslationServiceProtocol {
   ///
   /// @Snippet(path: "TranslationService_CancelOperation")
   public func cancelOperation(
-    request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+    request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws {
     try await self.inner.cancelOperation(request: request, options: options)
   }
@@ -1207,8 +1207,8 @@ public class TranslationServiceClient: Clients.TranslationServiceProtocol {
   ///
   /// @Snippet(path: "TranslationService_WaitOperation")
   public func waitOperation(
-    request: GoogleLongrunning.WaitOperationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+    request: GoogleLongRunning.WaitOperationRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.waitOperation(request: request, options: options)
   }
 }
@@ -1280,7 +1280,7 @@ extension Clients {
 
     /// See `TranslationServiceClient.batchTranslateText`.
     func batchTranslateText(request: BatchTranslateTextRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `TranslationServiceClient.batchTranslateText`.
     func batchTranslateText(withPolling: BatchTranslateTextRequest) async throws
@@ -1288,7 +1288,7 @@ extension Clients {
 
     /// See `TranslationServiceClient.batchTranslateDocument`.
     func batchTranslateDocument(request: BatchTranslateDocumentRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `TranslationServiceClient.batchTranslateDocument`.
     func batchTranslateDocument(withPolling: BatchTranslateDocumentRequest) async throws
@@ -1304,7 +1304,7 @@ extension Clients {
     ) async throws -> any GoogleCloudGax.PollableOperation<BatchTranslateDocumentResponse>
 
     /// See `TranslationServiceClient.createGlossary`.
-    func createGlossary(request: CreateGlossaryRequest) async throws -> GoogleLongrunning.Operation
+    func createGlossary(request: CreateGlossaryRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `TranslationServiceClient.createGlossary`.
     func createGlossary(withPolling: CreateGlossaryRequest) async throws -> any GoogleCloudGax
@@ -1317,7 +1317,7 @@ extension Clients {
     ) async throws -> any GoogleCloudGax.PollableOperation<Glossary>
 
     /// See `TranslationServiceClient.updateGlossary`.
-    func updateGlossary(request: UpdateGlossaryRequest) async throws -> GoogleLongrunning.Operation
+    func updateGlossary(request: UpdateGlossaryRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `TranslationServiceClient.updateGlossary`.
     func updateGlossary(withPolling: UpdateGlossaryRequest) async throws -> any GoogleCloudGax
@@ -1352,7 +1352,7 @@ extension Clients {
     ) async throws -> GoogleCloudTranslationV3.Glossary
 
     /// See `TranslationServiceClient.deleteGlossary`.
-    func deleteGlossary(request: DeleteGlossaryRequest) async throws -> GoogleLongrunning.Operation
+    func deleteGlossary(request: DeleteGlossaryRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `TranslationServiceClient.deleteGlossary`.
     func deleteGlossary(withPolling: DeleteGlossaryRequest) async throws -> any GoogleCloudGax
@@ -1414,7 +1414,7 @@ extension Clients {
     ) async throws
 
     /// See `TranslationServiceClient.createDataset`.
-    func createDataset(request: CreateDatasetRequest) async throws -> GoogleLongrunning.Operation
+    func createDataset(request: CreateDatasetRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `TranslationServiceClient.createDataset`.
     func createDataset(withPolling: CreateDatasetRequest) async throws -> any GoogleCloudGax
@@ -1449,7 +1449,7 @@ extension Clients {
     ) throws -> any AsyncSequence<Dataset, Swift.Error>
 
     /// See `TranslationServiceClient.deleteDataset`.
-    func deleteDataset(request: DeleteDatasetRequest) async throws -> GoogleLongrunning.Operation
+    func deleteDataset(request: DeleteDatasetRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `TranslationServiceClient.deleteDataset`.
     func deleteDataset(withPolling: DeleteDatasetRequest) async throws -> any GoogleCloudGax
@@ -1566,7 +1566,7 @@ extension Clients {
     ) throws -> any AsyncSequence<AdaptiveMtSentence, Swift.Error>
 
     /// See `TranslationServiceClient.importData`.
-    func importData(request: ImportDataRequest) async throws -> GoogleLongrunning.Operation
+    func importData(request: ImportDataRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `TranslationServiceClient.importData`.
     func importData(withPolling: ImportDataRequest) async throws -> any GoogleCloudGax
@@ -1579,7 +1579,7 @@ extension Clients {
     ) async throws -> any GoogleCloudGax.PollableOperation<Void>
 
     /// See `TranslationServiceClient.exportData`.
-    func exportData(request: ExportDataRequest) async throws -> GoogleLongrunning.Operation
+    func exportData(request: ExportDataRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `TranslationServiceClient.exportData`.
     func exportData(withPolling: ExportDataRequest) async throws -> any GoogleCloudGax
@@ -1606,7 +1606,7 @@ extension Clients {
     ) throws -> any AsyncSequence<Example, Swift.Error>
 
     /// See `TranslationServiceClient.createModel`.
-    func createModel(request: CreateModelRequest) async throws -> GoogleLongrunning.Operation
+    func createModel(request: CreateModelRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `TranslationServiceClient.createModel`.
     func createModel(withPolling: CreateModelRequest) async throws -> any GoogleCloudGax
@@ -1641,7 +1641,7 @@ extension Clients {
     ) async throws -> GoogleCloudTranslationV3.Model
 
     /// See `TranslationServiceClient.deleteModel`.
-    func deleteModel(request: DeleteModelRequest) async throws -> GoogleLongrunning.Operation
+    func deleteModel(request: DeleteModelRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `TranslationServiceClient.deleteModel`.
     func deleteModel(withPolling: DeleteModelRequest) async throws -> any GoogleCloudGax
@@ -1666,22 +1666,22 @@ extension Clients {
       -> GoogleCloudLocation.Location
 
     /// See `TranslationServiceClient.listOperations`.
-    func listOperations(request: GoogleLongrunning.ListOperationsRequest) async throws
-      -> GoogleLongrunning.ListOperationsResponse
+    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
+      -> GoogleLongRunning.ListOperationsResponse
 
     /// See `TranslationServiceClient.listOperations`.
     func listOperations(
-      byItem: GoogleLongrunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+      byItem: GoogleLongRunning.ListOperationsRequest
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `TranslationServiceClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `TranslationServiceClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongrunning.DeleteOperationRequest) async throws
+    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
 
     /// See `TranslationServiceClient.deleteOperation`.
     func deleteOperation(
@@ -1689,7 +1689,7 @@ extension Clients {
     ) async throws
 
     /// See `TranslationServiceClient.cancelOperation`.
-    func cancelOperation(request: GoogleLongrunning.CancelOperationRequest) async throws
+    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
 
     /// See `TranslationServiceClient.cancelOperation`.
     func cancelOperation(
@@ -1697,8 +1697,8 @@ extension Clients {
     ) async throws
 
     /// See `TranslationServiceClient.waitOperation`.
-    func waitOperation(request: GoogleLongrunning.WaitOperationRequest) async throws
-      -> GoogleLongrunning.Operation
+    func waitOperation(request: GoogleLongRunning.WaitOperationRequest) async throws
+      -> GoogleLongRunning.Operation
 
     /// See `TranslationServiceClient.translateText`.
     func translateText(
@@ -1728,7 +1728,7 @@ extension Clients {
     /// See `TranslationServiceClient.batchTranslateText`.
     func batchTranslateText(
       request: BatchTranslateTextRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `TranslationServiceClient.batchTranslateText`.
     func batchTranslateText(
@@ -1738,7 +1738,7 @@ extension Clients {
     /// See `TranslationServiceClient.batchTranslateDocument`.
     func batchTranslateDocument(
       request: BatchTranslateDocumentRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `TranslationServiceClient.batchTranslateDocument`.
     func batchTranslateDocument(
@@ -1748,7 +1748,7 @@ extension Clients {
     /// See `TranslationServiceClient.createGlossary`.
     func createGlossary(
       request: CreateGlossaryRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `TranslationServiceClient.createGlossary`.
     func createGlossary(
@@ -1758,7 +1758,7 @@ extension Clients {
     /// See `TranslationServiceClient.updateGlossary`.
     func updateGlossary(
       request: UpdateGlossaryRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `TranslationServiceClient.updateGlossary`.
     func updateGlossary(
@@ -1783,7 +1783,7 @@ extension Clients {
     /// See `TranslationServiceClient.deleteGlossary`.
     func deleteGlossary(
       request: DeleteGlossaryRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `TranslationServiceClient.deleteGlossary`.
     func deleteGlossary(
@@ -1823,7 +1823,7 @@ extension Clients {
     /// See `TranslationServiceClient.createDataset`.
     func createDataset(
       request: CreateDatasetRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `TranslationServiceClient.createDataset`.
     func createDataset(
@@ -1848,7 +1848,7 @@ extension Clients {
     /// See `TranslationServiceClient.deleteDataset`.
     func deleteDataset(
       request: DeleteDatasetRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `TranslationServiceClient.deleteDataset`.
     func deleteDataset(
@@ -1923,7 +1923,7 @@ extension Clients {
     /// See `TranslationServiceClient.importData`.
     func importData(
       request: ImportDataRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `TranslationServiceClient.importData`.
     func importData(
@@ -1933,7 +1933,7 @@ extension Clients {
     /// See `TranslationServiceClient.exportData`.
     func exportData(
       request: ExportDataRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `TranslationServiceClient.exportData`.
     func exportData(
@@ -1953,7 +1953,7 @@ extension Clients {
     /// See `TranslationServiceClient.createModel`.
     func createModel(
       request: CreateModelRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `TranslationServiceClient.createModel`.
     func createModel(
@@ -1978,7 +1978,7 @@ extension Clients {
     /// See `TranslationServiceClient.deleteModel`.
     func deleteModel(
       request: DeleteModelRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `TranslationServiceClient.deleteModel`.
     func deleteModel(
@@ -2002,28 +2002,28 @@ extension Clients {
 
     /// See `TranslationServiceClient.listOperations`.
     func listOperations(
-      request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.ListOperationsResponse
+      request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.ListOperationsResponse
 
     /// See `TranslationServiceClient.listOperations`.
     func listOperations(
-      byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `TranslationServiceClient.deleteOperation`.
     func deleteOperation(
-      request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+      request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws
 
     /// See `TranslationServiceClient.cancelOperation`.
     func cancelOperation(
-      request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+      request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws
 
     /// See `TranslationServiceClient.waitOperation`.
     func waitOperation(
-      request: GoogleLongrunning.WaitOperationRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+      request: GoogleLongRunning.WaitOperationRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
   }
 }
 
@@ -2161,14 +2161,14 @@ extension Clients.TranslationServiceProtocol {
   }
 
   public func batchTranslateText(request: BatchTranslateTextRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.batchTranslateText(request: request, options: .init())
   }
 
   public func batchTranslateText(
     request: BatchTranslateTextRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -2190,14 +2190,14 @@ extension Clients.TranslationServiceProtocol {
   }
 
   public func batchTranslateDocument(request: BatchTranslateDocumentRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.batchTranslateDocument(request: request, options: .init())
   }
 
   public func batchTranslateDocument(
     request: BatchTranslateDocumentRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -2237,14 +2237,14 @@ extension Clients.TranslationServiceProtocol {
   }
 
   public func createGlossary(request: CreateGlossaryRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.createGlossary(request: request, options: .init())
   }
 
   public func createGlossary(
     request: CreateGlossaryRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -2276,14 +2276,14 @@ extension Clients.TranslationServiceProtocol {
   }
 
   public func updateGlossary(request: UpdateGlossaryRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.updateGlossary(request: request, options: .init())
   }
 
   public func updateGlossary(
     request: UpdateGlossaryRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -2373,14 +2373,14 @@ extension Clients.TranslationServiceProtocol {
   }
 
   public func deleteGlossary(request: DeleteGlossaryRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.deleteGlossary(request: request, options: .init())
   }
 
   public func deleteGlossary(
     request: DeleteGlossaryRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -2532,14 +2532,14 @@ extension Clients.TranslationServiceProtocol {
   }
 
   public func createDataset(request: CreateDatasetRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.createDataset(request: request, options: .init())
   }
 
   public func createDataset(
     request: CreateDatasetRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -2629,14 +2629,14 @@ extension Clients.TranslationServiceProtocol {
   }
 
   public func deleteDataset(request: DeleteDatasetRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.deleteDataset(request: request, options: .init())
   }
 
   public func deleteDataset(
     request: DeleteDatasetRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -2925,13 +2925,13 @@ extension Clients.TranslationServiceProtocol {
     return try self.listAdaptiveMtSentences(byItem: request)
   }
 
-  public func importData(request: ImportDataRequest) async throws -> GoogleLongrunning.Operation {
+  public func importData(request: ImportDataRequest) async throws -> GoogleLongRunning.Operation {
     try await self.importData(request: request, options: .init())
   }
 
   public func importData(
     request: ImportDataRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -2962,13 +2962,13 @@ extension Clients.TranslationServiceProtocol {
     return try await self.importData(withPolling: request)
   }
 
-  public func exportData(request: ExportDataRequest) async throws -> GoogleLongrunning.Operation {
+  public func exportData(request: ExportDataRequest) async throws -> GoogleLongRunning.Operation {
     try await self.exportData(request: request, options: .init())
   }
 
   public func exportData(
     request: ExportDataRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -3036,13 +3036,13 @@ extension Clients.TranslationServiceProtocol {
     return try self.listExamples(byItem: request)
   }
 
-  public func createModel(request: CreateModelRequest) async throws -> GoogleLongrunning.Operation {
+  public func createModel(request: CreateModelRequest) async throws -> GoogleLongRunning.Operation {
     try await self.createModel(request: request, options: .init())
   }
 
   public func createModel(
     request: CreateModelRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -3129,13 +3129,13 @@ extension Clients.TranslationServiceProtocol {
     return try await self.getModel(request: request)
   }
 
-  public func deleteModel(request: DeleteModelRequest) async throws -> GoogleLongrunning.Operation {
+  public func deleteModel(request: DeleteModelRequest) async throws -> GoogleLongRunning.Operation {
     try await self.deleteModel(request: request, options: .init())
   }
 
   public func deleteModel(
     request: DeleteModelRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -3204,29 +3204,29 @@ extension Clients.TranslationServiceProtocol {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
-  public func listOperations(request: GoogleLongrunning.ListOperationsRequest) async throws
-    -> GoogleLongrunning.ListOperationsResponse
+  public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
+    -> GoogleLongRunning.ListOperationsResponse
   {
     try await self.listOperations(request: request, options: .init())
   }
 
   public func listOperations(
-    request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.ListOperationsResponse {
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.ListOperationsResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func listOperations(
-    byItem: GoogleLongrunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+    byItem: GoogleLongRunning.ListOperationsRequest
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     try self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
-    byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongrunning.ListOperationsResponse in
+      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleCloudGax.RequestError.unimplemented
     }
     return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
@@ -3235,41 +3235,41 @@ extension Clients.TranslationServiceProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
-    let request = GoogleLongrunning.ListOperationsRequest().with {
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
     return try self.listOperations(byItem: request)
   }
 
-  public func getOperation(request: GoogleLongrunning.GetOperationRequest) async throws
-    -> GoogleLongrunning.Operation
+  public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
+    -> GoogleLongRunning.Operation
   {
     try await self.getOperation(request: request, options: .init())
   }
 
   public func getOperation(
-    request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+    request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func getOperation(
     name: Swift.String,
-  ) async throws -> GoogleLongrunning.Operation {
-    let request = GoogleLongrunning.GetOperationRequest().with {
+  ) async throws -> GoogleLongRunning.Operation {
+    let request = GoogleLongRunning.GetOperationRequest().with {
       $0.name = name
     }
     return try await self.getOperation(request: request)
   }
 
-  public func deleteOperation(request: GoogleLongrunning.DeleteOperationRequest) async throws {
+  public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
 
   public func deleteOperation(
-    request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+    request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws {
     throw GoogleCloudGax.RequestError.unimplemented
   }
@@ -3277,18 +3277,18 @@ extension Clients.TranslationServiceProtocol {
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
-    let request = GoogleLongrunning.DeleteOperationRequest().with {
+    let request = GoogleLongRunning.DeleteOperationRequest().with {
       $0.name = name
     }
     try await self.deleteOperation(request: request)
   }
 
-  public func cancelOperation(request: GoogleLongrunning.CancelOperationRequest) async throws {
+  public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
 
   public func cancelOperation(
-    request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+    request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws {
     throw GoogleCloudGax.RequestError.unimplemented
   }
@@ -3296,21 +3296,21 @@ extension Clients.TranslationServiceProtocol {
   public func cancelOperation(
     name: Swift.String,
   ) async throws {
-    let request = GoogleLongrunning.CancelOperationRequest().with {
+    let request = GoogleLongRunning.CancelOperationRequest().with {
       $0.name = name
     }
     try await self.cancelOperation(request: request)
   }
 
-  public func waitOperation(request: GoogleLongrunning.WaitOperationRequest) async throws
-    -> GoogleLongrunning.Operation
+  public func waitOperation(request: GoogleLongRunning.WaitOperationRequest) async throws
+    -> GoogleLongRunning.Operation
   {
     try await self.waitOperation(request: request, options: .init())
   }
 
   public func waitOperation(
-    request: GoogleLongrunning.WaitOperationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+    request: GoogleLongRunning.WaitOperationRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 }

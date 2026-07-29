@@ -21,7 +21,7 @@ import GoogleCloudDataplexV1
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleIAMV1
-import GoogleLongrunning
+import GoogleLongRunning
 
 func sample(
   client: MetadataServiceClient, projectId: String, locationId: String, lakeId: String,

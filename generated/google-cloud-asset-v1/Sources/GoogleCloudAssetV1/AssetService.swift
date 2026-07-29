@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudWkt
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
 
@@ -52,12 +52,12 @@ public class AssetServiceClient: Clients.AssetServiceProtocol {
   /// 5 minutes.
   ///
   /// [google.cloud.asset.v1.Asset]: <doc:Asset>
-  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongrunning.Operation
+  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   ///
   /// @Snippet(path: "AssetService_ExportAssets")
   public func exportAssets(
     request: ExportAssetsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.exportAssets(request: request, options: options)
   }
 
@@ -74,14 +74,14 @@ public class AssetServiceClient: Clients.AssetServiceProtocol {
   /// 5 minutes.
   ///
   /// [google.cloud.asset.v1.Asset]: <doc:Asset>
-  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongrunning.Operation
+  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   ///
   /// @Snippet(path: "AssetService_ExportAssets")
   public func exportAssets(
     withPolling: ExportAssetsRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<ExportAssetsResponse> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<ExportAssetsResponse>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -297,12 +297,12 @@ public class AssetServiceClient: Clients.AssetServiceProtocol {
   /// metadata contains the metadata for the long-running operation.
   ///
   /// [google.cloud.asset.v1.AnalyzeIamPolicyResponse]: <doc:AnalyzeIamPolicyResponse>
-  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongrunning.Operation
+  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   ///
   /// @Snippet(path: "AssetService_AnalyzeIamPolicyLongrunning")
   public func analyzeIamPolicyLongrunning(
     request: AnalyzeIamPolicyLongrunningRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.analyzeIamPolicyLongrunning(request: request, options: options)
   }
 
@@ -318,14 +318,14 @@ public class AssetServiceClient: Clients.AssetServiceProtocol {
   /// metadata contains the metadata for the long-running operation.
   ///
   /// [google.cloud.asset.v1.AnalyzeIamPolicyResponse]: <doc:AnalyzeIamPolicyResponse>
-  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongrunning.Operation
+  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   ///
   /// @Snippet(path: "AssetService_AnalyzeIamPolicyLongrunning")
   public func analyzeIamPolicyLongrunning(
     withPolling: AnalyzeIamPolicyLongrunningRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<AnalyzeIamPolicyLongrunningResponse> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<AnalyzeIamPolicyLongrunningResponse>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -656,8 +656,8 @@ public class AssetServiceClient: Clients.AssetServiceProtocol {
   ///
   /// @Snippet(path: "AssetService_GetOperation")
   func getOperation(
-    request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+    request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.getOperation(request: request, options: options)
   }
 }
@@ -670,7 +670,7 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol AssetServiceProtocol {
     /// See `AssetServiceClient.exportAssets`.
-    func exportAssets(request: ExportAssetsRequest) async throws -> GoogleLongrunning.Operation
+    func exportAssets(request: ExportAssetsRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `AssetServiceClient.exportAssets`.
     func exportAssets(withPolling: ExportAssetsRequest) async throws -> any GoogleCloudGax
@@ -771,7 +771,7 @@ extension Clients {
 
     /// See `AssetServiceClient.analyzeIamPolicyLongrunning`.
     func analyzeIamPolicyLongrunning(request: AnalyzeIamPolicyLongrunningRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `AssetServiceClient.analyzeIamPolicyLongrunning`.
     func analyzeIamPolicyLongrunning(withPolling: AnalyzeIamPolicyLongrunningRequest) async throws
@@ -895,7 +895,7 @@ extension Clients {
     /// See `AssetServiceClient.exportAssets`.
     func exportAssets(
       request: ExportAssetsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `AssetServiceClient.exportAssets`.
     func exportAssets(
@@ -970,7 +970,7 @@ extension Clients {
     /// See `AssetServiceClient.analyzeIamPolicyLongrunning`.
     func analyzeIamPolicyLongrunning(
       request: AnalyzeIamPolicyLongrunningRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `AssetServiceClient.analyzeIamPolicyLongrunning`.
     func analyzeIamPolicyLongrunning(
@@ -1058,14 +1058,14 @@ extension Clients {
 
 // Default implementations
 extension Clients.AssetServiceProtocol {
-  public func exportAssets(request: ExportAssetsRequest) async throws -> GoogleLongrunning.Operation
+  public func exportAssets(request: ExportAssetsRequest) async throws -> GoogleLongRunning.Operation
   {
     try await self.exportAssets(request: request, options: .init())
   }
 
   public func exportAssets(
     request: ExportAssetsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1324,14 +1324,14 @@ extension Clients.AssetServiceProtocol {
   }
 
   public func analyzeIamPolicyLongrunning(request: AnalyzeIamPolicyLongrunningRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.analyzeIamPolicyLongrunning(request: request, options: .init())
   }
 
   public func analyzeIamPolicyLongrunning(
     request: AnalyzeIamPolicyLongrunningRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1645,22 +1645,22 @@ extension Clients.AssetServiceProtocol {
     return try self.analyzeOrgPolicyGovernedAssets(byItem: request)
   }
 
-  public func getOperation(request: GoogleLongrunning.GetOperationRequest) async throws
-    -> GoogleLongrunning.Operation
+  public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
+    -> GoogleLongRunning.Operation
   {
     try await self.getOperation(request: request, options: .init())
   }
 
   public func getOperation(
-    request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+    request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func getOperation(
     name: Swift.String,
-  ) async throws -> GoogleLongrunning.Operation {
-    let request = GoogleLongrunning.GetOperationRequest().with {
+  ) async throws -> GoogleLongRunning.Operation {
+    let request = GoogleLongRunning.GetOperationRequest().with {
       $0.name = name
     }
     return try await self.getOperation(request: request)

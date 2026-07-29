@@ -20,12 +20,12 @@ import Foundation
 import GoogleCloudTranslationV3
 import GoogleCloudLocation
 import GoogleCloudWkt
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleRpc
 
 func sample(client: TranslationServiceClient) async throws {
   let response = try await client.waitOperation(
-    request: GoogleLongrunning.WaitOperationRequest()
+    request: GoogleLongRunning.WaitOperationRequest()
       /* set fields using .with { $0... } */
   )
   print("Success: \(response)")

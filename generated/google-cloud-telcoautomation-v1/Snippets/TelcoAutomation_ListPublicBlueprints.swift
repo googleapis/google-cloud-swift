@@ -20,7 +20,7 @@ import Foundation
 import GoogleCloudTelcoAutomationV1
 import GoogleCloudLocation
 import GoogleCloudWkt
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleRpc
 
 func sample(client: TelcoAutomationClient, projectId: String, locationId: String) async throws {

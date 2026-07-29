@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudWkt
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
 
@@ -47,7 +47,7 @@ public class ApiKeysClient: Clients.ApiKeysProtocol {
   /// @Snippet(path: "ApiKeys_CreateKey")
   public func createKey(
     request: CreateKeyRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.createKey(request: request, options: options)
   }
 
@@ -61,7 +61,7 @@ public class ApiKeysClient: Clients.ApiKeysProtocol {
     withPolling: CreateKeyRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Key> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Key>.State
+      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Key>.State
       in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -173,7 +173,7 @@ public class ApiKeysClient: Clients.ApiKeysProtocol {
   /// @Snippet(path: "ApiKeys_UpdateKey")
   public func updateKey(
     request: UpdateKeyRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.updateKey(request: request, options: options)
   }
 
@@ -188,7 +188,7 @@ public class ApiKeysClient: Clients.ApiKeysProtocol {
     withPolling: UpdateKeyRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Key> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Key>.State
+      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Key>.State
       in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -244,7 +244,7 @@ public class ApiKeysClient: Clients.ApiKeysProtocol {
   /// @Snippet(path: "ApiKeys_DeleteKey")
   public func deleteKey(
     request: DeleteKeyRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.deleteKey(request: request, options: options)
   }
 
@@ -259,7 +259,7 @@ public class ApiKeysClient: Clients.ApiKeysProtocol {
     withPolling: DeleteKeyRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Key> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Key>.State
+      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Key>.State
       in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -314,7 +314,7 @@ public class ApiKeysClient: Clients.ApiKeysProtocol {
   /// @Snippet(path: "ApiKeys_UndeleteKey")
   public func undeleteKey(
     request: UndeleteKeyRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.undeleteKey(request: request, options: options)
   }
 
@@ -328,7 +328,7 @@ public class ApiKeysClient: Clients.ApiKeysProtocol {
     withPolling: UndeleteKeyRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Key> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Key>.State
+      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Key>.State
       in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -394,8 +394,8 @@ public class ApiKeysClient: Clients.ApiKeysProtocol {
   ///
   /// @Snippet(path: "ApiKeys_GetOperation")
   func getOperation(
-    request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+    request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.getOperation(request: request, options: options)
   }
 }
@@ -408,7 +408,7 @@ extension Clients {
   /// and pass a mock implementation in your tests.
   public protocol ApiKeysProtocol {
     /// See `ApiKeysClient.createKey`.
-    func createKey(request: CreateKeyRequest) async throws -> GoogleLongrunning.Operation
+    func createKey(request: CreateKeyRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `ApiKeysClient.createKey`.
     func createKey(withPolling: CreateKeyRequest) async throws -> any GoogleCloudGax
@@ -452,7 +452,7 @@ extension Clients {
     ) async throws -> GoogleApiApiKeysV1.GetKeyStringResponse
 
     /// See `ApiKeysClient.updateKey`.
-    func updateKey(request: UpdateKeyRequest) async throws -> GoogleLongrunning.Operation
+    func updateKey(request: UpdateKeyRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `ApiKeysClient.updateKey`.
     func updateKey(withPolling: UpdateKeyRequest) async throws -> any GoogleCloudGax
@@ -465,7 +465,7 @@ extension Clients {
     ) async throws -> any GoogleCloudGax.PollableOperation<Key>
 
     /// See `ApiKeysClient.deleteKey`.
-    func deleteKey(request: DeleteKeyRequest) async throws -> GoogleLongrunning.Operation
+    func deleteKey(request: DeleteKeyRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `ApiKeysClient.deleteKey`.
     func deleteKey(withPolling: DeleteKeyRequest) async throws -> any GoogleCloudGax
@@ -477,7 +477,7 @@ extension Clients {
     ) async throws -> any GoogleCloudGax.PollableOperation<Key>
 
     /// See `ApiKeysClient.undeleteKey`.
-    func undeleteKey(request: UndeleteKeyRequest) async throws -> GoogleLongrunning.Operation
+    func undeleteKey(request: UndeleteKeyRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `ApiKeysClient.undeleteKey`.
     func undeleteKey(withPolling: UndeleteKeyRequest) async throws -> any GoogleCloudGax
@@ -489,7 +489,7 @@ extension Clients {
     /// See `ApiKeysClient.createKey`.
     func createKey(
       request: CreateKeyRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `ApiKeysClient.createKey`.
     func createKey(
@@ -519,7 +519,7 @@ extension Clients {
     /// See `ApiKeysClient.updateKey`.
     func updateKey(
       request: UpdateKeyRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `ApiKeysClient.updateKey`.
     func updateKey(
@@ -529,7 +529,7 @@ extension Clients {
     /// See `ApiKeysClient.deleteKey`.
     func deleteKey(
       request: DeleteKeyRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `ApiKeysClient.deleteKey`.
     func deleteKey(
@@ -539,7 +539,7 @@ extension Clients {
     /// See `ApiKeysClient.undeleteKey`.
     func undeleteKey(
       request: UndeleteKeyRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `ApiKeysClient.undeleteKey`.
     func undeleteKey(
@@ -555,13 +555,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.ApiKeysProtocol {
-  public func createKey(request: CreateKeyRequest) async throws -> GoogleLongrunning.Operation {
+  public func createKey(request: CreateKeyRequest) async throws -> GoogleLongRunning.Operation {
     try await self.createKey(request: request, options: .init())
   }
 
   public func createKey(
     request: CreateKeyRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -669,13 +669,13 @@ extension Clients.ApiKeysProtocol {
     return try await self.getKeyString(request: request)
   }
 
-  public func updateKey(request: UpdateKeyRequest) async throws -> GoogleLongrunning.Operation {
+  public func updateKey(request: UpdateKeyRequest) async throws -> GoogleLongRunning.Operation {
     try await self.updateKey(request: request, options: .init())
   }
 
   public func updateKey(
     request: UpdateKeyRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -706,13 +706,13 @@ extension Clients.ApiKeysProtocol {
     return try await self.updateKey(withPolling: request)
   }
 
-  public func deleteKey(request: DeleteKeyRequest) async throws -> GoogleLongrunning.Operation {
+  public func deleteKey(request: DeleteKeyRequest) async throws -> GoogleLongRunning.Operation {
     try await self.deleteKey(request: request, options: .init())
   }
 
   public func deleteKey(
     request: DeleteKeyRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -741,13 +741,13 @@ extension Clients.ApiKeysProtocol {
     return try await self.deleteKey(withPolling: request)
   }
 
-  public func undeleteKey(request: UndeleteKeyRequest) async throws -> GoogleLongrunning.Operation {
+  public func undeleteKey(request: UndeleteKeyRequest) async throws -> GoogleLongRunning.Operation {
     try await self.undeleteKey(request: request, options: .init())
   }
 
   public func undeleteKey(
     request: UndeleteKeyRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -779,22 +779,22 @@ extension Clients.ApiKeysProtocol {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
-  public func getOperation(request: GoogleLongrunning.GetOperationRequest) async throws
-    -> GoogleLongrunning.Operation
+  public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
+    -> GoogleLongRunning.Operation
   {
     try await self.getOperation(request: request, options: .init())
   }
 
   public func getOperation(
-    request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+    request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func getOperation(
     name: Swift.String,
-  ) async throws -> GoogleLongrunning.Operation {
-    let request = GoogleLongrunning.GetOperationRequest().with {
+  ) async throws -> GoogleLongRunning.Operation {
+    let request = GoogleLongRunning.GetOperationRequest().with {
       $0.name = name
     }
     return try await self.getOperation(request: request)

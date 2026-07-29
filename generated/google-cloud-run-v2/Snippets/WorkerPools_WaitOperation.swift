@@ -20,12 +20,12 @@ import Foundation
 import GoogleCloudRunV2
 import GoogleCloudWkt
 import GoogleIAMV1
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleRpc
 
 func sample(client: WorkerPoolsClient) async throws {
   let response = try await client.waitOperation(
-    request: GoogleLongrunning.WaitOperationRequest()
+    request: GoogleLongRunning.WaitOperationRequest()
       /* set fields using .with { $0... } */
   )
   print("Success: \(response)")

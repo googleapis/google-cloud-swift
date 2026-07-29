@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleCloudWkt
 
 func sample(client: OperationsClient) async throws {
@@ -35,7 +35,7 @@ func sample(client: OperationsClient) async throws {
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleLongrunning.OperationsClient()
+      let client = try GoogleLongRunning.OperationsClient()
       try await sample(client: client)
     } catch {
       print("Error: \(error)")

@@ -21,7 +21,7 @@ import Foundation
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleIAMV1
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
 
@@ -80,7 +80,7 @@ public class CloudDeployClient: Clients.CloudDeployProtocol {
   /// @Snippet(path: "CloudDeploy_CreateDeliveryPipeline")
   public func createDeliveryPipeline(
     request: CreateDeliveryPipelineRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.createDeliveryPipeline(request: request, options: options)
   }
 
@@ -91,7 +91,7 @@ public class CloudDeployClient: Clients.CloudDeployProtocol {
     withPolling: CreateDeliveryPipelineRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<DeliveryPipeline> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<DeliveryPipeline>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -143,7 +143,7 @@ public class CloudDeployClient: Clients.CloudDeployProtocol {
   /// @Snippet(path: "CloudDeploy_UpdateDeliveryPipeline")
   public func updateDeliveryPipeline(
     request: UpdateDeliveryPipelineRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.updateDeliveryPipeline(request: request, options: options)
   }
 
@@ -154,7 +154,7 @@ public class CloudDeployClient: Clients.CloudDeployProtocol {
     withPolling: UpdateDeliveryPipelineRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<DeliveryPipeline> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<DeliveryPipeline>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -206,7 +206,7 @@ public class CloudDeployClient: Clients.CloudDeployProtocol {
   /// @Snippet(path: "CloudDeploy_DeleteDeliveryPipeline")
   public func deleteDeliveryPipeline(
     request: DeleteDeliveryPipelineRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.deleteDeliveryPipeline(request: request, options: options)
   }
 
@@ -217,7 +217,7 @@ public class CloudDeployClient: Clients.CloudDeployProtocol {
     withPolling: DeleteDeliveryPipelineRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
+      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
       in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -302,7 +302,7 @@ public class CloudDeployClient: Clients.CloudDeployProtocol {
   /// @Snippet(path: "CloudDeploy_CreateTarget")
   public func createTarget(
     request: CreateTargetRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.createTarget(request: request, options: options)
   }
 
@@ -313,7 +313,7 @@ public class CloudDeployClient: Clients.CloudDeployProtocol {
     withPolling: CreateTargetRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Target> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Target>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -365,7 +365,7 @@ public class CloudDeployClient: Clients.CloudDeployProtocol {
   /// @Snippet(path: "CloudDeploy_UpdateTarget")
   public func updateTarget(
     request: UpdateTargetRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.updateTarget(request: request, options: options)
   }
 
@@ -376,7 +376,7 @@ public class CloudDeployClient: Clients.CloudDeployProtocol {
     withPolling: UpdateTargetRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Target> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Target>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -428,7 +428,7 @@ public class CloudDeployClient: Clients.CloudDeployProtocol {
   /// @Snippet(path: "CloudDeploy_DeleteTarget")
   public func deleteTarget(
     request: DeleteTargetRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.deleteTarget(request: request, options: options)
   }
 
@@ -439,7 +439,7 @@ public class CloudDeployClient: Clients.CloudDeployProtocol {
     withPolling: DeleteTargetRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
+      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
       in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -516,7 +516,7 @@ public class CloudDeployClient: Clients.CloudDeployProtocol {
   /// @Snippet(path: "CloudDeploy_CreateCustomTargetType")
   public func createCustomTargetType(
     request: CreateCustomTargetTypeRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.createCustomTargetType(request: request, options: options)
   }
 
@@ -527,7 +527,7 @@ public class CloudDeployClient: Clients.CloudDeployProtocol {
     withPolling: CreateCustomTargetTypeRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<CustomTargetType> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<CustomTargetType>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -579,7 +579,7 @@ public class CloudDeployClient: Clients.CloudDeployProtocol {
   /// @Snippet(path: "CloudDeploy_UpdateCustomTargetType")
   public func updateCustomTargetType(
     request: UpdateCustomTargetTypeRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.updateCustomTargetType(request: request, options: options)
   }
 
@@ -590,7 +590,7 @@ public class CloudDeployClient: Clients.CloudDeployProtocol {
     withPolling: UpdateCustomTargetTypeRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<CustomTargetType> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<CustomTargetType>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -642,7 +642,7 @@ public class CloudDeployClient: Clients.CloudDeployProtocol {
   /// @Snippet(path: "CloudDeploy_DeleteCustomTargetType")
   public func deleteCustomTargetType(
     request: DeleteCustomTargetTypeRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.deleteCustomTargetType(request: request, options: options)
   }
 
@@ -653,7 +653,7 @@ public class CloudDeployClient: Clients.CloudDeployProtocol {
     withPolling: DeleteCustomTargetTypeRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
+      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
       in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -730,7 +730,7 @@ public class CloudDeployClient: Clients.CloudDeployProtocol {
   /// @Snippet(path: "CloudDeploy_CreateRelease")
   public func createRelease(
     request: CreateReleaseRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.createRelease(request: request, options: options)
   }
 
@@ -741,7 +741,7 @@ public class CloudDeployClient: Clients.CloudDeployProtocol {
     withPolling: CreateReleaseRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Release> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Release>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -802,7 +802,7 @@ public class CloudDeployClient: Clients.CloudDeployProtocol {
   /// @Snippet(path: "CloudDeploy_CreateDeployPolicy")
   public func createDeployPolicy(
     request: CreateDeployPolicyRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.createDeployPolicy(request: request, options: options)
   }
 
@@ -813,7 +813,7 @@ public class CloudDeployClient: Clients.CloudDeployProtocol {
     withPolling: CreateDeployPolicyRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<DeployPolicy> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<DeployPolicy>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -865,7 +865,7 @@ public class CloudDeployClient: Clients.CloudDeployProtocol {
   /// @Snippet(path: "CloudDeploy_UpdateDeployPolicy")
   public func updateDeployPolicy(
     request: UpdateDeployPolicyRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.updateDeployPolicy(request: request, options: options)
   }
 
@@ -876,7 +876,7 @@ public class CloudDeployClient: Clients.CloudDeployProtocol {
     withPolling: UpdateDeployPolicyRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<DeployPolicy> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<DeployPolicy>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -928,7 +928,7 @@ public class CloudDeployClient: Clients.CloudDeployProtocol {
   /// @Snippet(path: "CloudDeploy_DeleteDeployPolicy")
   public func deleteDeployPolicy(
     request: DeleteDeployPolicyRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.deleteDeployPolicy(request: request, options: options)
   }
 
@@ -939,7 +939,7 @@ public class CloudDeployClient: Clients.CloudDeployProtocol {
     withPolling: DeleteDeployPolicyRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
+      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
       in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -1076,7 +1076,7 @@ public class CloudDeployClient: Clients.CloudDeployProtocol {
   /// @Snippet(path: "CloudDeploy_CreateRollout")
   public func createRollout(
     request: CreateRolloutRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.createRollout(request: request, options: options)
   }
 
@@ -1087,7 +1087,7 @@ public class CloudDeployClient: Clients.CloudDeployProtocol {
     withPolling: CreateRolloutRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Rollout> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Rollout>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -1207,7 +1207,7 @@ public class CloudDeployClient: Clients.CloudDeployProtocol {
   /// @Snippet(path: "CloudDeploy_CreateAutomation")
   public func createAutomation(
     request: CreateAutomationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.createAutomation(request: request, options: options)
   }
 
@@ -1218,7 +1218,7 @@ public class CloudDeployClient: Clients.CloudDeployProtocol {
     withPolling: CreateAutomationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Automation> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Automation>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -1270,7 +1270,7 @@ public class CloudDeployClient: Clients.CloudDeployProtocol {
   /// @Snippet(path: "CloudDeploy_UpdateAutomation")
   public func updateAutomation(
     request: UpdateAutomationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.updateAutomation(request: request, options: options)
   }
 
@@ -1281,7 +1281,7 @@ public class CloudDeployClient: Clients.CloudDeployProtocol {
     withPolling: UpdateAutomationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Automation> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws
+      (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Automation>.State in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -1333,7 +1333,7 @@ public class CloudDeployClient: Clients.CloudDeployProtocol {
   /// @Snippet(path: "CloudDeploy_DeleteAutomation")
   public func deleteAutomation(
     request: DeleteAutomationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.deleteAutomation(request: request, options: options)
   }
 
@@ -1344,7 +1344,7 @@ public class CloudDeployClient: Clients.CloudDeployProtocol {
     withPolling: DeleteAutomationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
     let extractStatus = {
-      (op: GoogleLongrunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
+      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
       in
       guard op.done else {
         return .init(done: false, result: nil)
@@ -1538,8 +1538,8 @@ public class CloudDeployClient: Clients.CloudDeployProtocol {
   ///
   /// @Snippet(path: "CloudDeploy_ListOperations")
   public func listOperations(
-    request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.ListOperationsResponse {
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.ListOperationsResponse {
     try await self.inner.listOperations(request: request, options: options)
   }
 
@@ -1549,10 +1549,10 @@ public class CloudDeployClient: Clients.CloudDeployProtocol {
   ///
   /// @Snippet(path: "CloudDeploy_ListOperations")
   public func listOperations(
-    byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongrunning.ListOperationsResponse in
+      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = byItem
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
@@ -1566,8 +1566,8 @@ public class CloudDeployClient: Clients.CloudDeployProtocol {
   ///
   /// @Snippet(path: "CloudDeploy_GetOperation")
   func getOperation(
-    request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+    request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
     try await self.inner.getOperation(request: request, options: options)
   }
 
@@ -1577,7 +1577,7 @@ public class CloudDeployClient: Clients.CloudDeployProtocol {
   ///
   /// @Snippet(path: "CloudDeploy_DeleteOperation")
   public func deleteOperation(
-    request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+    request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws {
     try await self.inner.deleteOperation(request: request, options: options)
   }
@@ -1588,7 +1588,7 @@ public class CloudDeployClient: Clients.CloudDeployProtocol {
   ///
   /// @Snippet(path: "CloudDeploy_CancelOperation")
   public func cancelOperation(
-    request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+    request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws {
     try await self.inner.cancelOperation(request: request, options: options)
   }
@@ -1626,7 +1626,7 @@ extension Clients {
 
     /// See `CloudDeployClient.createDeliveryPipeline`.
     func createDeliveryPipeline(request: CreateDeliveryPipelineRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `CloudDeployClient.createDeliveryPipeline`.
     func createDeliveryPipeline(withPolling: CreateDeliveryPipelineRequest) async throws
@@ -1641,7 +1641,7 @@ extension Clients {
 
     /// See `CloudDeployClient.updateDeliveryPipeline`.
     func updateDeliveryPipeline(request: UpdateDeliveryPipelineRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `CloudDeployClient.updateDeliveryPipeline`.
     func updateDeliveryPipeline(withPolling: UpdateDeliveryPipelineRequest) async throws
@@ -1655,7 +1655,7 @@ extension Clients {
 
     /// See `CloudDeployClient.deleteDeliveryPipeline`.
     func deleteDeliveryPipeline(request: DeleteDeliveryPipelineRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `CloudDeployClient.deleteDeliveryPipeline`.
     func deleteDeliveryPipeline(withPolling: DeleteDeliveryPipelineRequest) async throws
@@ -1700,7 +1700,7 @@ extension Clients {
     ) async throws -> GoogleCloudDeployV1.Target
 
     /// See `CloudDeployClient.createTarget`.
-    func createTarget(request: CreateTargetRequest) async throws -> GoogleLongrunning.Operation
+    func createTarget(request: CreateTargetRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `CloudDeployClient.createTarget`.
     func createTarget(withPolling: CreateTargetRequest) async throws -> any GoogleCloudGax
@@ -1714,7 +1714,7 @@ extension Clients {
     ) async throws -> any GoogleCloudGax.PollableOperation<Target>
 
     /// See `CloudDeployClient.updateTarget`.
-    func updateTarget(request: UpdateTargetRequest) async throws -> GoogleLongrunning.Operation
+    func updateTarget(request: UpdateTargetRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `CloudDeployClient.updateTarget`.
     func updateTarget(withPolling: UpdateTargetRequest) async throws -> any GoogleCloudGax
@@ -1727,7 +1727,7 @@ extension Clients {
     ) async throws -> any GoogleCloudGax.PollableOperation<Target>
 
     /// See `CloudDeployClient.deleteTarget`.
-    func deleteTarget(request: DeleteTargetRequest) async throws -> GoogleLongrunning.Operation
+    func deleteTarget(request: DeleteTargetRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `CloudDeployClient.deleteTarget`.
     func deleteTarget(withPolling: DeleteTargetRequest) async throws -> any GoogleCloudGax
@@ -1763,7 +1763,7 @@ extension Clients {
 
     /// See `CloudDeployClient.createCustomTargetType`.
     func createCustomTargetType(request: CreateCustomTargetTypeRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `CloudDeployClient.createCustomTargetType`.
     func createCustomTargetType(withPolling: CreateCustomTargetTypeRequest) async throws
@@ -1778,7 +1778,7 @@ extension Clients {
 
     /// See `CloudDeployClient.updateCustomTargetType`.
     func updateCustomTargetType(request: UpdateCustomTargetTypeRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `CloudDeployClient.updateCustomTargetType`.
     func updateCustomTargetType(withPolling: UpdateCustomTargetTypeRequest) async throws
@@ -1792,7 +1792,7 @@ extension Clients {
 
     /// See `CloudDeployClient.deleteCustomTargetType`.
     func deleteCustomTargetType(request: DeleteCustomTargetTypeRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `CloudDeployClient.deleteCustomTargetType`.
     func deleteCustomTargetType(withPolling: DeleteCustomTargetTypeRequest) async throws
@@ -1826,7 +1826,7 @@ extension Clients {
     ) async throws -> GoogleCloudDeployV1.Release
 
     /// See `CloudDeployClient.createRelease`.
-    func createRelease(request: CreateReleaseRequest) async throws -> GoogleLongrunning.Operation
+    func createRelease(request: CreateReleaseRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `CloudDeployClient.createRelease`.
     func createRelease(withPolling: CreateReleaseRequest) async throws -> any GoogleCloudGax
@@ -1850,7 +1850,7 @@ extension Clients {
 
     /// See `CloudDeployClient.createDeployPolicy`.
     func createDeployPolicy(request: CreateDeployPolicyRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `CloudDeployClient.createDeployPolicy`.
     func createDeployPolicy(withPolling: CreateDeployPolicyRequest) async throws
@@ -1865,7 +1865,7 @@ extension Clients {
 
     /// See `CloudDeployClient.updateDeployPolicy`.
     func updateDeployPolicy(request: UpdateDeployPolicyRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `CloudDeployClient.updateDeployPolicy`.
     func updateDeployPolicy(withPolling: UpdateDeployPolicyRequest) async throws
@@ -1879,7 +1879,7 @@ extension Clients {
 
     /// See `CloudDeployClient.deleteDeployPolicy`.
     func deleteDeployPolicy(request: DeleteDeployPolicyRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `CloudDeployClient.deleteDeployPolicy`.
     func deleteDeployPolicy(withPolling: DeleteDeployPolicyRequest) async throws
@@ -1964,7 +1964,7 @@ extension Clients {
     ) async throws -> GoogleCloudDeployV1.Rollout
 
     /// See `CloudDeployClient.createRollout`.
-    func createRollout(request: CreateRolloutRequest) async throws -> GoogleLongrunning.Operation
+    func createRollout(request: CreateRolloutRequest) async throws -> GoogleLongRunning.Operation
 
     /// See `CloudDeployClient.createRollout`.
     func createRollout(withPolling: CreateRolloutRequest) async throws -> any GoogleCloudGax
@@ -2038,7 +2038,7 @@ extension Clients {
 
     /// See `CloudDeployClient.createAutomation`.
     func createAutomation(request: CreateAutomationRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `CloudDeployClient.createAutomation`.
     func createAutomation(withPolling: CreateAutomationRequest) async throws -> any GoogleCloudGax
@@ -2053,7 +2053,7 @@ extension Clients {
 
     /// See `CloudDeployClient.updateAutomation`.
     func updateAutomation(request: UpdateAutomationRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `CloudDeployClient.updateAutomation`.
     func updateAutomation(withPolling: UpdateAutomationRequest) async throws -> any GoogleCloudGax
@@ -2067,7 +2067,7 @@ extension Clients {
 
     /// See `CloudDeployClient.deleteAutomation`.
     func deleteAutomation(request: DeleteAutomationRequest) async throws
-      -> GoogleLongrunning.Operation
+      -> GoogleLongRunning.Operation
 
     /// See `CloudDeployClient.deleteAutomation`.
     func deleteAutomation(withPolling: DeleteAutomationRequest) async throws -> any GoogleCloudGax
@@ -2156,22 +2156,22 @@ extension Clients {
       -> GoogleIAMV1.TestIamPermissionsResponse
 
     /// See `CloudDeployClient.listOperations`.
-    func listOperations(request: GoogleLongrunning.ListOperationsRequest) async throws
-      -> GoogleLongrunning.ListOperationsResponse
+    func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
+      -> GoogleLongRunning.ListOperationsResponse
 
     /// See `CloudDeployClient.listOperations`.
     func listOperations(
-      byItem: GoogleLongrunning.ListOperationsRequest
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+      byItem: GoogleLongRunning.ListOperationsRequest
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `CloudDeployClient.listOperations`.
     func listOperations(
       name: Swift.String,
       filter: Swift.String,
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `CloudDeployClient.deleteOperation`.
-    func deleteOperation(request: GoogleLongrunning.DeleteOperationRequest) async throws
+    func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws
 
     /// See `CloudDeployClient.deleteOperation`.
     func deleteOperation(
@@ -2179,7 +2179,7 @@ extension Clients {
     ) async throws
 
     /// See `CloudDeployClient.cancelOperation`.
-    func cancelOperation(request: GoogleLongrunning.CancelOperationRequest) async throws
+    func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws
 
     /// See `CloudDeployClient.cancelOperation`.
     func cancelOperation(
@@ -2204,7 +2204,7 @@ extension Clients {
     /// See `CloudDeployClient.createDeliveryPipeline`.
     func createDeliveryPipeline(
       request: CreateDeliveryPipelineRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `CloudDeployClient.createDeliveryPipeline`.
     func createDeliveryPipeline(
@@ -2214,7 +2214,7 @@ extension Clients {
     /// See `CloudDeployClient.updateDeliveryPipeline`.
     func updateDeliveryPipeline(
       request: UpdateDeliveryPipelineRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `CloudDeployClient.updateDeliveryPipeline`.
     func updateDeliveryPipeline(
@@ -2224,7 +2224,7 @@ extension Clients {
     /// See `CloudDeployClient.deleteDeliveryPipeline`.
     func deleteDeliveryPipeline(
       request: DeleteDeliveryPipelineRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `CloudDeployClient.deleteDeliveryPipeline`.
     func deleteDeliveryPipeline(
@@ -2254,7 +2254,7 @@ extension Clients {
     /// See `CloudDeployClient.createTarget`.
     func createTarget(
       request: CreateTargetRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `CloudDeployClient.createTarget`.
     func createTarget(
@@ -2264,7 +2264,7 @@ extension Clients {
     /// See `CloudDeployClient.updateTarget`.
     func updateTarget(
       request: UpdateTargetRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `CloudDeployClient.updateTarget`.
     func updateTarget(
@@ -2274,7 +2274,7 @@ extension Clients {
     /// See `CloudDeployClient.deleteTarget`.
     func deleteTarget(
       request: DeleteTargetRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `CloudDeployClient.deleteTarget`.
     func deleteTarget(
@@ -2299,7 +2299,7 @@ extension Clients {
     /// See `CloudDeployClient.createCustomTargetType`.
     func createCustomTargetType(
       request: CreateCustomTargetTypeRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `CloudDeployClient.createCustomTargetType`.
     func createCustomTargetType(
@@ -2309,7 +2309,7 @@ extension Clients {
     /// See `CloudDeployClient.updateCustomTargetType`.
     func updateCustomTargetType(
       request: UpdateCustomTargetTypeRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `CloudDeployClient.updateCustomTargetType`.
     func updateCustomTargetType(
@@ -2319,7 +2319,7 @@ extension Clients {
     /// See `CloudDeployClient.deleteCustomTargetType`.
     func deleteCustomTargetType(
       request: DeleteCustomTargetTypeRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `CloudDeployClient.deleteCustomTargetType`.
     func deleteCustomTargetType(
@@ -2344,7 +2344,7 @@ extension Clients {
     /// See `CloudDeployClient.createRelease`.
     func createRelease(
       request: CreateReleaseRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `CloudDeployClient.createRelease`.
     func createRelease(
@@ -2359,7 +2359,7 @@ extension Clients {
     /// See `CloudDeployClient.createDeployPolicy`.
     func createDeployPolicy(
       request: CreateDeployPolicyRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `CloudDeployClient.createDeployPolicy`.
     func createDeployPolicy(
@@ -2369,7 +2369,7 @@ extension Clients {
     /// See `CloudDeployClient.updateDeployPolicy`.
     func updateDeployPolicy(
       request: UpdateDeployPolicyRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `CloudDeployClient.updateDeployPolicy`.
     func updateDeployPolicy(
@@ -2379,7 +2379,7 @@ extension Clients {
     /// See `CloudDeployClient.deleteDeployPolicy`.
     func deleteDeployPolicy(
       request: DeleteDeployPolicyRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `CloudDeployClient.deleteDeployPolicy`.
     func deleteDeployPolicy(
@@ -2434,7 +2434,7 @@ extension Clients {
     /// See `CloudDeployClient.createRollout`.
     func createRollout(
       request: CreateRolloutRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `CloudDeployClient.createRollout`.
     func createRollout(
@@ -2479,7 +2479,7 @@ extension Clients {
     /// See `CloudDeployClient.createAutomation`.
     func createAutomation(
       request: CreateAutomationRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `CloudDeployClient.createAutomation`.
     func createAutomation(
@@ -2489,7 +2489,7 @@ extension Clients {
     /// See `CloudDeployClient.updateAutomation`.
     func updateAutomation(
       request: UpdateAutomationRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `CloudDeployClient.updateAutomation`.
     func updateAutomation(
@@ -2499,7 +2499,7 @@ extension Clients {
     /// See `CloudDeployClient.deleteAutomation`.
     func deleteAutomation(
       request: DeleteAutomationRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.Operation
+    ) async throws -> GoogleLongRunning.Operation
 
     /// See `CloudDeployClient.deleteAutomation`.
     func deleteAutomation(
@@ -2573,22 +2573,22 @@ extension Clients {
 
     /// See `CloudDeployClient.listOperations`.
     func listOperations(
-      request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongrunning.ListOperationsResponse
+      request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.ListOperationsResponse
 
     /// See `CloudDeployClient.listOperations`.
     func listOperations(
-      byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-    ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error>
+      byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+    ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error>
 
     /// See `CloudDeployClient.deleteOperation`.
     func deleteOperation(
-      request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+      request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws
 
     /// See `CloudDeployClient.cancelOperation`.
     func cancelOperation(
-      request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+      request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws
   }
 }
@@ -2654,14 +2654,14 @@ extension Clients.CloudDeployProtocol {
   }
 
   public func createDeliveryPipeline(request: CreateDeliveryPipelineRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.createDeliveryPipeline(request: request, options: .init())
   }
 
   public func createDeliveryPipeline(
     request: CreateDeliveryPipelineRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -2695,14 +2695,14 @@ extension Clients.CloudDeployProtocol {
   }
 
   public func updateDeliveryPipeline(request: UpdateDeliveryPipelineRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.updateDeliveryPipeline(request: request, options: .init())
   }
 
   public func updateDeliveryPipeline(
     request: UpdateDeliveryPipelineRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -2734,14 +2734,14 @@ extension Clients.CloudDeployProtocol {
   }
 
   public func deleteDeliveryPipeline(request: DeleteDeliveryPipelineRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.deleteDeliveryPipeline(request: request, options: .init())
   }
 
   public func deleteDeliveryPipeline(
     request: DeleteDeliveryPipelineRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -2850,14 +2850,14 @@ extension Clients.CloudDeployProtocol {
     return try await self.getTarget(request: request)
   }
 
-  public func createTarget(request: CreateTargetRequest) async throws -> GoogleLongrunning.Operation
+  public func createTarget(request: CreateTargetRequest) async throws -> GoogleLongRunning.Operation
   {
     try await self.createTarget(request: request, options: .init())
   }
 
   public func createTarget(
     request: CreateTargetRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -2890,14 +2890,14 @@ extension Clients.CloudDeployProtocol {
     return try await self.createTarget(withPolling: request)
   }
 
-  public func updateTarget(request: UpdateTargetRequest) async throws -> GoogleLongrunning.Operation
+  public func updateTarget(request: UpdateTargetRequest) async throws -> GoogleLongRunning.Operation
   {
     try await self.updateTarget(request: request, options: .init())
   }
 
   public func updateTarget(
     request: UpdateTargetRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -2928,14 +2928,14 @@ extension Clients.CloudDeployProtocol {
     return try await self.updateTarget(withPolling: request)
   }
 
-  public func deleteTarget(request: DeleteTargetRequest) async throws -> GoogleLongrunning.Operation
+  public func deleteTarget(request: DeleteTargetRequest) async throws -> GoogleLongRunning.Operation
   {
     try await self.deleteTarget(request: request, options: .init())
   }
 
   public func deleteTarget(
     request: DeleteTargetRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -3023,14 +3023,14 @@ extension Clients.CloudDeployProtocol {
   }
 
   public func createCustomTargetType(request: CreateCustomTargetTypeRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.createCustomTargetType(request: request, options: .init())
   }
 
   public func createCustomTargetType(
     request: CreateCustomTargetTypeRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -3064,14 +3064,14 @@ extension Clients.CloudDeployProtocol {
   }
 
   public func updateCustomTargetType(request: UpdateCustomTargetTypeRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.updateCustomTargetType(request: request, options: .init())
   }
 
   public func updateCustomTargetType(
     request: UpdateCustomTargetTypeRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -3103,14 +3103,14 @@ extension Clients.CloudDeployProtocol {
   }
 
   public func deleteCustomTargetType(request: DeleteCustomTargetTypeRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.deleteCustomTargetType(request: request, options: .init())
   }
 
   public func deleteCustomTargetType(
     request: DeleteCustomTargetTypeRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -3196,14 +3196,14 @@ extension Clients.CloudDeployProtocol {
   }
 
   public func createRelease(request: CreateReleaseRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.createRelease(request: request, options: .init())
   }
 
   public func createRelease(
     request: CreateReleaseRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -3258,14 +3258,14 @@ extension Clients.CloudDeployProtocol {
   }
 
   public func createDeployPolicy(request: CreateDeployPolicyRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.createDeployPolicy(request: request, options: .init())
   }
 
   public func createDeployPolicy(
     request: CreateDeployPolicyRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -3299,14 +3299,14 @@ extension Clients.CloudDeployProtocol {
   }
 
   public func updateDeployPolicy(request: UpdateDeployPolicyRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.updateDeployPolicy(request: request, options: .init())
   }
 
   public func updateDeployPolicy(
     request: UpdateDeployPolicyRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -3338,14 +3338,14 @@ extension Clients.CloudDeployProtocol {
   }
 
   public func deleteDeployPolicy(request: DeleteDeployPolicyRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.deleteDeployPolicy(request: request, options: .init())
   }
 
   public func deleteDeployPolicy(
     request: DeleteDeployPolicyRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -3554,14 +3554,14 @@ extension Clients.CloudDeployProtocol {
   }
 
   public func createRollout(request: CreateRolloutRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.createRollout(request: request, options: .init())
   }
 
   public func createRollout(
     request: CreateRolloutRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -3740,14 +3740,14 @@ extension Clients.CloudDeployProtocol {
   }
 
   public func createAutomation(request: CreateAutomationRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.createAutomation(request: request, options: .init())
   }
 
   public func createAutomation(
     request: CreateAutomationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -3781,14 +3781,14 @@ extension Clients.CloudDeployProtocol {
   }
 
   public func updateAutomation(request: UpdateAutomationRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.updateAutomation(request: request, options: .init())
   }
 
   public func updateAutomation(
     request: UpdateAutomationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -3820,14 +3820,14 @@ extension Clients.CloudDeployProtocol {
   }
 
   public func deleteAutomation(request: DeleteAutomationRequest) async throws
-    -> GoogleLongrunning.Operation
+    -> GoogleLongRunning.Operation
   {
     try await self.deleteAutomation(request: request, options: .init())
   }
 
   public func deleteAutomation(
     request: DeleteAutomationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -4069,29 +4069,29 @@ extension Clients.CloudDeployProtocol {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
-  public func listOperations(request: GoogleLongrunning.ListOperationsRequest) async throws
-    -> GoogleLongrunning.ListOperationsResponse
+  public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
+    -> GoogleLongRunning.ListOperationsResponse
   {
     try await self.listOperations(request: request, options: .init())
   }
 
   public func listOperations(
-    request: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.ListOperationsResponse {
+    request: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.ListOperationsResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func listOperations(
-    byItem: GoogleLongrunning.ListOperationsRequest
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+    byItem: GoogleLongRunning.ListOperationsRequest
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     try self.listOperations(byItem: byItem, options: .init())
   }
 
   public func listOperations(
-    byItem: GoogleLongrunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
+    byItem: GoogleLongRunning.ListOperationsRequest, options: GoogleCloudGax.RequestOptions
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongrunning.ListOperationsResponse in
+      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       throw GoogleCloudGax.RequestError.unimplemented
     }
     return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
@@ -4100,41 +4100,41 @@ extension Clients.CloudDeployProtocol {
   public func listOperations(
     name: Swift.String,
     filter: Swift.String,
-  ) throws -> any AsyncSequence<GoogleLongrunning.Operation, Swift.Error> {
-    let request = GoogleLongrunning.ListOperationsRequest().with {
+  ) throws -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
     }
     return try self.listOperations(byItem: request)
   }
 
-  public func getOperation(request: GoogleLongrunning.GetOperationRequest) async throws
-    -> GoogleLongrunning.Operation
+  public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
+    -> GoogleLongRunning.Operation
   {
     try await self.getOperation(request: request, options: .init())
   }
 
   public func getOperation(
-    request: GoogleLongrunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleLongrunning.Operation {
+    request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func getOperation(
     name: Swift.String,
-  ) async throws -> GoogleLongrunning.Operation {
-    let request = GoogleLongrunning.GetOperationRequest().with {
+  ) async throws -> GoogleLongRunning.Operation {
+    let request = GoogleLongRunning.GetOperationRequest().with {
       $0.name = name
     }
     return try await self.getOperation(request: request)
   }
 
-  public func deleteOperation(request: GoogleLongrunning.DeleteOperationRequest) async throws {
+  public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
 
   public func deleteOperation(
-    request: GoogleLongrunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
+    request: GoogleLongRunning.DeleteOperationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws {
     throw GoogleCloudGax.RequestError.unimplemented
   }
@@ -4142,18 +4142,18 @@ extension Clients.CloudDeployProtocol {
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
-    let request = GoogleLongrunning.DeleteOperationRequest().with {
+    let request = GoogleLongRunning.DeleteOperationRequest().with {
       $0.name = name
     }
     try await self.deleteOperation(request: request)
   }
 
-  public func cancelOperation(request: GoogleLongrunning.CancelOperationRequest) async throws {
+  public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
 
   public func cancelOperation(
-    request: GoogleLongrunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
+    request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws {
     throw GoogleCloudGax.RequestError.unimplemented
   }
@@ -4161,7 +4161,7 @@ extension Clients.CloudDeployProtocol {
   public func cancelOperation(
     name: Swift.String,
   ) async throws {
-    let request = GoogleLongrunning.CancelOperationRequest().with {
+    let request = GoogleLongRunning.CancelOperationRequest().with {
       $0.name = name
     }
     try await self.cancelOperation(request: request)

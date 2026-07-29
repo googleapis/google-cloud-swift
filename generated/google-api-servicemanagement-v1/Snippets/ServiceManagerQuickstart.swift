@@ -21,7 +21,7 @@ import GoogleApiServiceManagementV1
 import GoogleApi
 import GoogleCloudWkt
 import GoogleIAMV1
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleRpc
 
 func sample() async throws {

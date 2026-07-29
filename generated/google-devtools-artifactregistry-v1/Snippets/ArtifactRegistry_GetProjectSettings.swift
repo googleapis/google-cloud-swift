@@ -21,7 +21,7 @@ import GoogleDevtoolsArtifactregistryV1
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleIAMV1
-import GoogleLongrunning
+import GoogleLongRunning
 import GoogleRpc
 
 func sample(client: ArtifactRegistryClient, projectId: String) async throws {
