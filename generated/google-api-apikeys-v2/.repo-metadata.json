@@ -1,0 +1,14 @@
+{
+    "api_description": "Manages the API keys associated with developer projects.",
+    "api_id": "apikeys.googleapis.com",
+    "api_shortname": "apikeys",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/google-api-apikeys-v2/documentation",
+    "distribution_name": "google-api-apikeys-v2",
+    "language": "swift",
+    "library_type": "GAPIC_AUTO",
+    "name": "apikeys",
+    "name_pretty": "API Keys",
+    "product_documentation": "https://cloud.google.com/api-keys/docs",
+    "release_level": "preview",
+    "repo": "googleapis/google-cloud-swift"
+}

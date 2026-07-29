@@ -1,0 +1,15 @@
+{
+    "api_description": "Manages lightweight user-provided functions executed in response to events.",
+    "api_id": "cloudfunctions.googleapis.com",
+    "api_shortname": "cloudfunctions",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/google-cloud-functions-v2/documentation",
+    "distribution_name": "google-cloud-functions-v2",
+    "issue_tracker": "https://issuetracker.google.com/savedsearches/559729",
+    "language": "swift",
+    "library_type": "GAPIC_AUTO",
+    "name": "cloudfunctions",
+    "name_pretty": "Cloud Functions",
+    "product_documentation": "https://cloud.google.com/functions/",
+    "release_level": "preview",
+    "repo": "googleapis/google-cloud-swift"
+}

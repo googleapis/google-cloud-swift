@@ -1,0 +1,15 @@
+{
+    "api_description": "An API for accessing Advisory Notifications in Google Cloud",
+    "api_id": "advisorynotifications.googleapis.com",
+    "api_shortname": "advisorynotifications",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/google-cloud-advisorynotifications-v1/documentation",
+    "distribution_name": "google-cloud-advisorynotifications-v1",
+    "issue_tracker": "https://issuetracker.google.com/issues/new?component=1009495",
+    "language": "swift",
+    "library_type": "GAPIC_AUTO",
+    "name": "advisorynotifications",
+    "name_pretty": "Advisory Notifications",
+    "product_documentation": "https://cloud.google.com/advisory-notifications/",
+    "release_level": "preview",
+    "repo": "googleapis/google-cloud-swift"
+}

@@ -1,0 +1,15 @@
+{
+    "api_description": "A unified, intelligent governance solution for data and AI assets.",
+    "api_id": "dataplex.googleapis.com",
+    "api_shortname": "dataplex",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/google-cloud-dataplex-v1/documentation",
+    "distribution_name": "google-cloud-dataplex-v1",
+    "issue_tracker": "https://issuetracker.google.com/issues/new?component=1155079\u0026template=1656695",
+    "language": "swift",
+    "library_type": "GAPIC_AUTO",
+    "name": "dataplex",
+    "name_pretty": "Cloud Dataplex",
+    "product_documentation": "https://cloud.google.com/dataplex/",
+    "release_level": "preview",
+    "repo": "googleapis/google-cloud-swift"
+}

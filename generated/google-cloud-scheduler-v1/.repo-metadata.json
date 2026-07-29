@@ -1,0 +1,15 @@
+{
+    "api_description": "Creates and manages jobs run on a regular recurring schedule.",
+    "api_id": "cloudscheduler.googleapis.com",
+    "api_shortname": "cloudscheduler",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/google-cloud-scheduler-v1/documentation",
+    "distribution_name": "google-cloud-scheduler-v1",
+    "issue_tracker": "https://issuetracker.google.com/savedsearches/5411429",
+    "language": "swift",
+    "library_type": "GAPIC_AUTO",
+    "name": "cloudscheduler",
+    "name_pretty": "Cloud Scheduler",
+    "product_documentation": "https://cloud.google.com/scheduler/docs",
+    "release_level": "preview",
+    "repo": "googleapis/google-cloud-swift"
+}

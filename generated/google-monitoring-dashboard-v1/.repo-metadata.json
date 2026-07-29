@@ -1,0 +1,15 @@
+{
+    "api_description": "Manages your Cloud Monitoring data and configurations.",
+    "api_id": "monitoring.googleapis.com",
+    "api_shortname": "monitoring",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/google-monitoring-dashboard-v1/documentation",
+    "distribution_name": "google-monitoring-dashboard-v1",
+    "issue_tracker": "https://issuetracker.google.com/savedsearches/559785",
+    "language": "swift",
+    "library_type": "GAPIC_AUTO",
+    "name": "monitoring",
+    "name_pretty": "Cloud Monitoring",
+    "product_documentation": "https://cloud.google.com/monitoring/dashboards/",
+    "release_level": "preview",
+    "repo": "googleapis/google-cloud-swift"
+}

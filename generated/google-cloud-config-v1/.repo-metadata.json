@@ -1,0 +1,15 @@
+{
+    "api_description": "Creates and manages Google Cloud Platform resources and infrastructure.",
+    "api_id": "config.googleapis.com",
+    "api_shortname": "infra-manager",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/google-cloud-config-v1/documentation",
+    "distribution_name": "google-cloud-config-v1",
+    "issue_tracker": "https://issuetracker.google.com/issues/new?component=536700",
+    "language": "swift",
+    "library_type": "GAPIC_AUTO",
+    "name": "infra-manager",
+    "name_pretty": "Infrastructure Manager",
+    "product_documentation": "https://cloud.google.com/infrastructure-manager/",
+    "release_level": "preview",
+    "repo": "googleapis/google-cloud-swift"
+}

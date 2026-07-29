@@ -1,0 +1,12 @@
+{
+    "api_id": "blockchainnodeengine.googleapis.com",
+    "api_shortname": "blockchainnodeengine",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/google-cloud-blockchainnodeengine-v1/documentation",
+    "distribution_name": "google-cloud-blockchainnodeengine-v1",
+    "language": "swift",
+    "library_type": "GAPIC_AUTO",
+    "name": "blockchainnodeengine",
+    "name_pretty": "Blockchain Node Engine",
+    "release_level": "preview",
+    "repo": "googleapis/google-cloud-swift"
+}

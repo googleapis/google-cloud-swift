@@ -1,0 +1,14 @@
+{
+    "api_description": "OS management tools that can be used for patch management, patch\ncompliance, and configuration management on VM instances.",
+    "api_id": "osconfig.googleapis.com",
+    "api_shortname": "osconfig",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/google-cloud-osconfig-v1/documentation",
+    "distribution_name": "google-cloud-osconfig-v1",
+    "language": "swift",
+    "library_type": "GAPIC_AUTO",
+    "name": "osconfig",
+    "name_pretty": "OS Config",
+    "product_documentation": "https://cloud.google.com/compute/",
+    "release_level": "preview",
+    "repo": "googleapis/google-cloud-swift"
+}

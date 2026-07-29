@@ -1,0 +1,14 @@
+{
+    "api_description": "Provides admission control and telemetry reporting for services integrated\nwith Service Infrastructure.",
+    "api_id": "servicecontrol.googleapis.com",
+    "api_shortname": "servicecontrol",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/google-api-servicecontrol-v2/documentation",
+    "distribution_name": "google-api-servicecontrol-v2",
+    "language": "swift",
+    "library_type": "GAPIC_AUTO",
+    "name": "servicecontrol",
+    "name_pretty": "Service Control",
+    "product_documentation": "https://cloud.google.com/service-infrastructure/",
+    "release_level": "preview",
+    "repo": "googleapis/google-cloud-swift"
+}

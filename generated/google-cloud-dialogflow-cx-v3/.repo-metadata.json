@@ -1,0 +1,15 @@
+{
+    "api_description": "Builds conversational interfaces (for example, chatbots, and voice-powered\napps and devices).",
+    "api_id": "dialogflow.googleapis.com",
+    "api_shortname": "dialogflow",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/google-cloud-dialogflow-cx-v3/documentation",
+    "distribution_name": "google-cloud-dialogflow-cx-v3",
+    "issue_tracker": "https://issuetracker.google.com/savedsearches/5300385",
+    "language": "swift",
+    "library_type": "GAPIC_AUTO",
+    "name": "dialogflow",
+    "name_pretty": "Dialogflow",
+    "product_documentation": "https://cloud.google.com/dialogflow/cx/docs",
+    "release_level": "preview",
+    "repo": "googleapis/google-cloud-swift"
+}

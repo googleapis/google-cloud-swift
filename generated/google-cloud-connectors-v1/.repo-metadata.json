@@ -1,0 +1,13 @@
+{
+    "api_description": "Enables users to create and manage connections to Google Cloud services\nand third-party business applications using the Connectors interface.",
+    "api_id": "connectors.googleapis.com",
+    "api_shortname": "connectors",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/google-cloud-connectors-v1/documentation",
+    "distribution_name": "google-cloud-connectors-v1",
+    "language": "swift",
+    "library_type": "GAPIC_AUTO",
+    "name": "connectors",
+    "name_pretty": "Connectors",
+    "release_level": "preview",
+    "repo": "googleapis/google-cloud-swift"
+}

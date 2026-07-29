@@ -1,0 +1,13 @@
+{
+    "api_description": "This API provides static metadata about Google Cloud Platform. Currently,\nit only provides basic information about Google Cloud locations, such as\nzones, regions, and countries.",
+    "api_id": "cloud.googleapis.com",
+    "api_shortname": "cloud",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/google-cloud-location/documentation",
+    "distribution_name": "google-cloud-location",
+    "language": "swift",
+    "library_type": "GAPIC_AUTO",
+    "name": "cloud",
+    "name_pretty": "Cloud Metadata",
+    "release_level": "preview",
+    "repo": "googleapis/google-cloud-swift"
+}

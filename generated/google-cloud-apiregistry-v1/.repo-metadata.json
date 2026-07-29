@@ -1,0 +1,14 @@
+{
+    "api_id": "cloudapiregistry.googleapis.com",
+    "api_shortname": "cloudapiregistry",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/google-cloud-apiregistry-v1/documentation",
+    "distribution_name": "google-cloud-apiregistry-v1",
+    "issue_tracker": "https://issuetracker.google.com/issues/new?component=1979613\u0026template=2231768",
+    "language": "swift",
+    "library_type": "GAPIC_AUTO",
+    "name": "cloudapiregistry",
+    "name_pretty": "Cloud API Registry",
+    "product_documentation": "https://docs.cloud.google.com/api-registry/",
+    "release_level": "preview",
+    "repo": "googleapis/google-cloud-swift"
+}

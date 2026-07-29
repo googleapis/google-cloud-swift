@@ -1,0 +1,13 @@
+{
+    "api_description": "Cloud SQL Admin API",
+    "api_id": "sqladmin.googleapis.com",
+    "api_shortname": "sqladmin",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/google-cloud-sql-v1/documentation",
+    "distribution_name": "google-cloud-sql-v1",
+    "language": "swift",
+    "library_type": "GAPIC_AUTO",
+    "name": "sqladmin",
+    "name_pretty": "Cloud SQL Admin",
+    "release_level": "preview",
+    "repo": "googleapis/google-cloud-swift"
+}

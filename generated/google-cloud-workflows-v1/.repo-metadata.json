@@ -1,0 +1,15 @@
+{
+    "api_description": "Manage workflow definitions. To execute workflows and manage executions,\nsee the Workflows Executions API.",
+    "api_id": "workflows.googleapis.com",
+    "api_shortname": "workflows",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/google-cloud-workflows-v1/documentation",
+    "distribution_name": "google-cloud-workflows-v1",
+    "issue_tracker": "https://issuetracker.google.com/savedsearches/559729",
+    "language": "swift",
+    "library_type": "GAPIC_AUTO",
+    "name": "workflows",
+    "name_pretty": "Workflows",
+    "product_documentation": "https://cloud.google.com/workflows/",
+    "release_level": "preview",
+    "repo": "googleapis/google-cloud-swift"
+}

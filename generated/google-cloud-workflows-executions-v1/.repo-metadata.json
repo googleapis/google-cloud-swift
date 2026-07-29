@@ -1,0 +1,15 @@
+{
+    "api_description": "Execute workflows created with Workflows API.",
+    "api_id": "workflowexecutions.googleapis.com",
+    "api_shortname": "workflowexecutions",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/google-cloud-workflows-executions-v1/documentation",
+    "distribution_name": "google-cloud-workflows-executions-v1",
+    "issue_tracker": "https://issuetracker.google.com/savedsearches/559729",
+    "language": "swift",
+    "library_type": "GAPIC_AUTO",
+    "name": "workflowexecutions",
+    "name_pretty": "Workflow Executions",
+    "product_documentation": "https://cloud.google.com/workflows/",
+    "release_level": "preview",
+    "repo": "googleapis/google-cloud-swift"
+}

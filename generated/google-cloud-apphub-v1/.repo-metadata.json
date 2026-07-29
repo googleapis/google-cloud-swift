@@ -1,0 +1,15 @@
+{
+    "api_description": "App Hub acts as the foundational data model and central registry for your applications on Google Cloud.",
+    "api_id": "apphub.googleapis.com",
+    "api_shortname": "apphub",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/google-cloud-apphub-v1/documentation",
+    "distribution_name": "google-cloud-apphub-v1",
+    "issue_tracker": "https://issuetracker.google.com/issues/new?component=1509913",
+    "language": "swift",
+    "library_type": "GAPIC_AUTO",
+    "name": "apphub",
+    "name_pretty": "App Hub",
+    "product_documentation": "https://cloud.google.com/app-hub/",
+    "release_level": "preview",
+    "repo": "googleapis/google-cloud-swift"
+}

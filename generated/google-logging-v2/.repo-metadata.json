@@ -1,0 +1,15 @@
+{
+    "api_description": "Writes log entries and manages your Cloud Logging configuration.",
+    "api_id": "logging.googleapis.com",
+    "api_shortname": "logging",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/google-logging-v2/documentation",
+    "distribution_name": "google-logging-v2",
+    "issue_tracker": "https://issuetracker.google.com/savedsearches/559764",
+    "language": "swift",
+    "library_type": "GAPIC_AUTO",
+    "name": "logging",
+    "name_pretty": "Cloud Logging",
+    "product_documentation": "https://cloud.google.com/logging/",
+    "release_level": "preview",
+    "repo": "googleapis/google-cloud-swift"
+}

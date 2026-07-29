@@ -1,0 +1,15 @@
+{
+    "api_description": "Creates short-lived, limited-privilege credentials for IAM service accounts.",
+    "api_id": "iamcredentials.googleapis.com",
+    "api_shortname": "iamcredentials",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/google-iam-credentials-v1/documentation",
+    "distribution_name": "google-iam-credentials-v1",
+    "issue_tracker": "https://issuetracker.google.com/savedsearches/559761",
+    "language": "swift",
+    "library_type": "GAPIC_AUTO",
+    "name": "iamcredentials",
+    "name_pretty": "IAM Service Account Credentials",
+    "product_documentation": "https://cloud.google.com/iam/",
+    "release_level": "preview",
+    "repo": "googleapis/google-cloud-swift"
+}

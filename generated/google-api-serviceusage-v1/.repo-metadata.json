@@ -1,0 +1,14 @@
+{
+    "api_description": "Enables services that service consumers want to use on Google Cloud\nPlatform, lists the available or enabled services, or disables services\nthat service consumers no longer use.",
+    "api_id": "serviceusage.googleapis.com",
+    "api_shortname": "serviceusage",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/google-api-serviceusage-v1/documentation",
+    "distribution_name": "google-api-serviceusage-v1",
+    "language": "swift",
+    "library_type": "GAPIC_AUTO",
+    "name": "serviceusage",
+    "name_pretty": "Service Usage",
+    "product_documentation": "https://cloud.google.com/service-usage",
+    "release_level": "preview",
+    "repo": "googleapis/google-cloud-swift"
+}

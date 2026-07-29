@@ -1,0 +1,14 @@
+{
+    "api_description": "Discover and protect your sensitive data. A fully managed service designed\nto help you discover, classify, and protect your valuable data assets with\nease.",
+    "api_id": "dlp.googleapis.com",
+    "api_shortname": "dlp",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/google-privacy-dlp-v2/documentation",
+    "distribution_name": "google-privacy-dlp-v2",
+    "language": "swift",
+    "library_type": "GAPIC_AUTO",
+    "name": "dlp",
+    "name_pretty": "Sensitive Data Protection (DLP)",
+    "product_documentation": "https://cloud.google.com/dlp/",
+    "release_level": "preview",
+    "repo": "googleapis/google-cloud-swift"
+}

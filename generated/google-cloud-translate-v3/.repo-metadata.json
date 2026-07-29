@@ -1,0 +1,15 @@
+{
+    "api_description": "Integrates text translation into your website or application.",
+    "api_id": "translate.googleapis.com",
+    "api_shortname": "translate",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/google-cloud-translate-v3/documentation",
+    "distribution_name": "google-cloud-translate-v3",
+    "issue_tracker": "https://issuetracker.google.com/savedsearches/559749",
+    "language": "swift",
+    "library_type": "GAPIC_AUTO",
+    "name": "translate",
+    "name_pretty": "Cloud Translation",
+    "product_documentation": "https://cloud.google.com/translate/",
+    "release_level": "preview",
+    "repo": "googleapis/google-cloud-swift"
+}

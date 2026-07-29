@@ -1,0 +1,14 @@
+{
+    "api_description": "This API enables connectivity with and between Google Cloud resources.",
+    "api_id": "networkconnectivity.googleapis.com",
+    "api_shortname": "networkconnectivity",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/google-cloud-networkconnectivity-v1/documentation",
+    "distribution_name": "google-cloud-networkconnectivity-v1",
+    "language": "swift",
+    "library_type": "GAPIC_AUTO",
+    "name": "networkconnectivity",
+    "name_pretty": "Network Connectivity",
+    "product_documentation": "https://cloud.google.com/network-connectivity/",
+    "release_level": "preview",
+    "repo": "googleapis/google-cloud-swift"
+}

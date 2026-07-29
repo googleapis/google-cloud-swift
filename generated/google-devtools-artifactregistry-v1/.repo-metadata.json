@@ -1,0 +1,14 @@
+{
+    "api_description": "Store and manage build artifacts in a scalable and integrated service built\non Google infrastructure.",
+    "api_id": "artifactregistry.googleapis.com",
+    "api_shortname": "artifactregistry",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/google-devtools-artifactregistry-v1/documentation",
+    "distribution_name": "google-devtools-artifactregistry-v1",
+    "language": "swift",
+    "library_type": "GAPIC_AUTO",
+    "name": "artifactregistry",
+    "name_pretty": "Artifact Registry",
+    "product_documentation": "https://cloud.google.com/artifact-registry",
+    "release_level": "preview",
+    "repo": "googleapis/google-cloud-swift"
+}
