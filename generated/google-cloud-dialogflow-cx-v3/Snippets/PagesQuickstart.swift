@@ -18,14 +18,14 @@
 #if Pages
   // snippet.show
   import Foundation
-  import GoogleCloudDialogflowCxV3
+  import GoogleCloudDialogflowCXV3
   import GoogleCloudLocation
   import GoogleCloudWkt
   import GoogleLongRunning
 
   func sample(projectId: String, locationId: String, agentId: String, flowId: String, ) async throws
   {
-    let client = try GoogleCloudDialogflowCxV3.PagesClient()
+    let client = try GoogleCloudDialogflowCXV3.PagesClient()
     let items = try client.listPages(
       byItem: ListPagesRequest()
         .with {

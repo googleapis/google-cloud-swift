@@ -18,13 +18,13 @@
 #if Changelogs
   // snippet.show
   import Foundation
-  import GoogleCloudDialogflowCxV3
+  import GoogleCloudDialogflowCXV3
   import GoogleCloudLocation
   import GoogleCloudWkt
   import GoogleLongRunning
 
   func sample(projectId: String, locationId: String, agentId: String, ) async throws {
-    let client = try GoogleCloudDialogflowCxV3.ChangelogsClient()
+    let client = try GoogleCloudDialogflowCXV3.ChangelogsClient()
     let items = try client.listChangelogs(
       byItem: ListChangelogsRequest()
         .with {

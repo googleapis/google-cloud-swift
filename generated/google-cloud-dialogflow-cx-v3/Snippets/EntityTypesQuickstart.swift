@@ -18,14 +18,14 @@
 #if EntityTypes
   // snippet.show
   import Foundation
-  import GoogleCloudDialogflowCxV3
+  import GoogleCloudDialogflowCXV3
   import GoogleCloudLocation
   import GoogleCloudWkt
   import GoogleLongRunning
   import GoogleRpc
 
   func sample(projectId: String, locationId: String, agentId: String, ) async throws {
-    let client = try GoogleCloudDialogflowCxV3.EntityTypesClient()
+    let client = try GoogleCloudDialogflowCXV3.EntityTypesClient()
     let items = try client.listEntityTypes(
       byItem: ListEntityTypesRequest()
         .with {

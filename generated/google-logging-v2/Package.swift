@@ -18,30 +18,30 @@
 import PackageDescription
 
 let package = Package(
-  name: "GoogleLoggingV2",
+  name: "GoogleCloudLoggingV2",
   platforms: [.macOS(.v15)],
   products: [
-    .library(name: "GoogleLoggingV2", targets: ["GoogleLoggingV2"])
+    .library(name: "GoogleCloudLoggingV2", targets: ["GoogleCloudLoggingV2"])
   ],
   dependencies: [
     .package(path: "../../generated/google-api"),
     .package(path: "../../packages/auth"),
     .package(path: "../../packages/gax"),
-    .package(path: "../../packages/wkt"),
     .package(path: "../../generated/google-logging-type"),
+    .package(path: "../../packages/wkt"),
     .package(path: "../../generated/google-longrunning"),
     .package(path: "../../generated/google-rpc"),
     .package(url: "https://github.com/apple/swift-log", from: "1.12.0"),
   ],
   targets: [
     .target(
-      name: "GoogleLoggingV2",
+      name: "GoogleCloudLoggingV2",
       dependencies: [
         .product(name: "GoogleApi", package: "google-api"),
         .product(name: "GoogleCloudAuth", package: "auth"),
         .product(name: "GoogleCloudGax", package: "gax"),
+        .product(name: "GoogleCloudLoggingType", package: "google-logging-type"),
         .product(name: "GoogleCloudWkt", package: "wkt"),
-        .product(name: "GoogleLoggingType", package: "google-logging-type"),
         .product(name: "GoogleLongRunning", package: "google-longrunning"),
         .product(name: "GoogleRpc", package: "google-rpc"),
         .product(name: "Logging", package: "swift-log"),

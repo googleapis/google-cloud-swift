@@ -17,14 +17,14 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudTranslationV3
+import GoogleCloudTranslateV3
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleLongRunning
 import GoogleRpc
 
 func sample(parent: String, ) async throws {
-  let client = try GoogleCloudTranslationV3.TranslationServiceClient()
+  let client = try GoogleCloudTranslateV3.TranslationServiceClient()
   let items = try client.listGlossaries(
     byItem: ListGlossariesRequest()
       .with {

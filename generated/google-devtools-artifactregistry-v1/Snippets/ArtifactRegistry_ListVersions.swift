@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleDevtoolsArtifactregistryV1
+import GoogleCloudArtifactRegistryV1
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleIAMV1
@@ -41,7 +41,7 @@ func sample(client: ArtifactRegistryClient, parent: String) async throws {
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleDevtoolsArtifactregistryV1.ArtifactRegistryClient()
+      let client = try GoogleCloudArtifactRegistryV1.ArtifactRegistryClient()
       try await sample(client: client, parent: "[placeholder]")
     } catch {
       print("Error: \(error)")

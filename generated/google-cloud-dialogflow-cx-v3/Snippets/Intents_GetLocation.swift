@@ -18,7 +18,7 @@
 #if Intents
   // snippet.show
   import Foundation
-  import GoogleCloudDialogflowCxV3
+  import GoogleCloudDialogflowCXV3
   import GoogleCloudLocation
   import GoogleCloudWkt
   import GoogleLongRunning
@@ -37,7 +37,7 @@
   struct SnippetRunner {
     static func main() async throws {
       do {
-        let client = try GoogleCloudDialogflowCxV3.IntentsClient()
+        let client = try GoogleCloudDialogflowCXV3.IntentsClient()
         try await sample(client: client)
       } catch {
         print("Error: \(error)")

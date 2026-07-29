@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleContainerV1
+import GoogleCloudContainerV1
 import GoogleCloudWkt
 
 func sample(client: ClusterManagerClient) async throws {
@@ -33,7 +33,7 @@ func sample(client: ClusterManagerClient) async throws {
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleContainerV1.ClusterManagerClient()
+      let client = try GoogleCloudContainerV1.ClusterManagerClient()
       try await sample(client: client)
     } catch {
       print("Error: \(error)")

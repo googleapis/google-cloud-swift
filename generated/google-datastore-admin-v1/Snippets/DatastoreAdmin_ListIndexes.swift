@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleDatastoreAdminV1
+import GoogleCloudDatastoreAdminV1
 import GoogleCloudWkt
 import GoogleLongRunning
 import GoogleRpc
@@ -37,7 +37,7 @@ func sample(client: DatastoreAdminClient) async throws {
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleDatastoreAdminV1.DatastoreAdminClient()
+      let client = try GoogleCloudDatastoreAdminV1.DatastoreAdminClient()
       try await sample(client: client)
     } catch {
       print("Error: \(error)")

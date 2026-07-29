@@ -18,7 +18,7 @@
 #if Versions
   // snippet.show
   import Foundation
-  import GoogleCloudDialogflowCxV3
+  import GoogleCloudDialogflowCXV3
   import GoogleCloudLocation
   import GoogleCloudWkt
   import GoogleLongRunning
@@ -26,7 +26,7 @@
 
   func sample(projectId: String, locationId: String, agentId: String, flowId: String, ) async throws
   {
-    let client = try GoogleCloudDialogflowCxV3.VersionsClient()
+    let client = try GoogleCloudDialogflowCXV3.VersionsClient()
     let items = try client.listVersions(
       byItem: ListVersionsRequest()
         .with {

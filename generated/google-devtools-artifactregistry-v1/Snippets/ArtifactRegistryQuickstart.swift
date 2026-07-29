@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleDevtoolsArtifactregistryV1
+import GoogleCloudArtifactRegistryV1
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleIAMV1
@@ -25,7 +25,7 @@ import GoogleLongRunning
 import GoogleRpc
 
 func sample(parent: String, ) async throws {
-  let client = try GoogleDevtoolsArtifactregistryV1.ArtifactRegistryClient()
+  let client = try GoogleCloudArtifactRegistryV1.ArtifactRegistryClient()
   let items = try client.listDockerImages(
     byItem: ListDockerImagesRequest()
       .with {

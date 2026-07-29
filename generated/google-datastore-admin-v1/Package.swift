@@ -18,10 +18,10 @@
 import PackageDescription
 
 let package = Package(
-  name: "GoogleDatastoreAdminV1",
+  name: "GoogleCloudDatastoreAdminV1",
   platforms: [.macOS(.v15)],
   products: [
-    .library(name: "GoogleDatastoreAdminV1", targets: ["GoogleDatastoreAdminV1"])
+    .library(name: "GoogleCloudDatastoreAdminV1", targets: ["GoogleCloudDatastoreAdminV1"])
   ],
   dependencies: [
     .package(path: "../../packages/auth"),
@@ -33,7 +33,7 @@ let package = Package(
   ],
   targets: [
     .target(
-      name: "GoogleDatastoreAdminV1",
+      name: "GoogleCloudDatastoreAdminV1",
       dependencies: [
         .product(name: "GoogleCloudAuth", package: "auth"),
         .product(name: "GoogleCloudGax", package: "gax"),

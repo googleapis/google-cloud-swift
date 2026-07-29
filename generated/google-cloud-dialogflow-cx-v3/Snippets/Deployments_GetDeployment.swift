@@ -18,7 +18,7 @@
 #if Deployments
   // snippet.show
   import Foundation
-  import GoogleCloudDialogflowCxV3
+  import GoogleCloudDialogflowCXV3
   import GoogleCloudLocation
   import GoogleCloudWkt
   import GoogleLongRunning
@@ -42,7 +42,7 @@
   struct SnippetRunner {
     static func main() async throws {
       do {
-        let client = try GoogleCloudDialogflowCxV3.DeploymentsClient()
+        let client = try GoogleCloudDialogflowCXV3.DeploymentsClient()
         try await sample(
           client: client, projectId: "[placeholder]", locationId: "[placeholder]",
           agentId: "[placeholder]", environmentId: "[placeholder]", deploymentId: "[placeholder]")

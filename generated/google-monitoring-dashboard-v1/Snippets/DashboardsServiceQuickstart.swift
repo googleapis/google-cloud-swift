@@ -17,11 +17,11 @@
 
 // snippet.show
 import Foundation
-import GoogleMonitoringDashboardV1
+import GoogleCloudMonitoringDashboardV1
 import GoogleCloudWkt
 
 func sample(parent: String, ) async throws {
-  let client = try GoogleMonitoringDashboardV1.DashboardsServiceClient()
+  let client = try GoogleCloudMonitoringDashboardV1.DashboardsServiceClient()
   let items = try client.listDashboards(
     byItem: ListDashboardsRequest()
       .with {

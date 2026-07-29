@@ -18,13 +18,13 @@
 #if Generators
   // snippet.show
   import Foundation
-  import GoogleCloudDialogflowCxV3
+  import GoogleCloudDialogflowCXV3
   import GoogleCloudLocation
   import GoogleCloudWkt
   import GoogleLongRunning
 
   func sample(projectId: String, locationId: String, agentId: String, ) async throws {
-    let client = try GoogleCloudDialogflowCxV3.GeneratorsClient()
+    let client = try GoogleCloudDialogflowCXV3.GeneratorsClient()
     let items = try client.listGenerators(
       byItem: ListGeneratorsRequest()
         .with {

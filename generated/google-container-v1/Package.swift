@@ -18,10 +18,10 @@
 import PackageDescription
 
 let package = Package(
-  name: "GoogleContainerV1",
+  name: "GoogleCloudContainerV1",
   platforms: [.macOS(.v15)],
   products: [
-    .library(name: "GoogleContainerV1", targets: ["GoogleContainerV1"])
+    .library(name: "GoogleCloudContainerV1", targets: ["GoogleCloudContainerV1"])
   ],
   dependencies: [
     .package(path: "../../packages/auth"),
@@ -33,7 +33,7 @@ let package = Package(
   ],
   targets: [
     .target(
-      name: "GoogleContainerV1",
+      name: "GoogleCloudContainerV1",
       dependencies: [
         .product(name: "GoogleCloudAuth", package: "auth"),
         .product(name: "GoogleCloudGax", package: "gax"),

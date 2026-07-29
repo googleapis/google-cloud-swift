@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleLoggingV2
+import GoogleCloudLoggingV2
 import GoogleCloudWkt
 import GoogleLongRunning
 import GoogleRpc
@@ -39,7 +39,7 @@ func sample(client: ConfigServiceV2Client, parent: String) async throws {
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleLoggingV2.ConfigServiceV2Client()
+      let client = try GoogleCloudLoggingV2.ConfigServiceV2Client()
       try await sample(client: client, parent: "[placeholder]")
     } catch {
       print("Error: \(error)")

@@ -18,10 +18,10 @@
 import PackageDescription
 
 let package = Package(
-  name: "GoogleDevtoolsCloudtraceV2",
+  name: "GoogleCloudTraceV2",
   platforms: [.macOS(.v15)],
   products: [
-    .library(name: "GoogleDevtoolsCloudtraceV2", targets: ["GoogleDevtoolsCloudtraceV2"])
+    .library(name: "GoogleCloudTraceV2", targets: ["GoogleCloudTraceV2"])
   ],
   dependencies: [
     .package(path: "../../packages/auth"),
@@ -32,7 +32,7 @@ let package = Package(
   ],
   targets: [
     .target(
-      name: "GoogleDevtoolsCloudtraceV2",
+      name: "GoogleCloudTraceV2",
       dependencies: [
         .product(name: "GoogleCloudAuth", package: "auth"),
         .product(name: "GoogleCloudGax", package: "gax"),

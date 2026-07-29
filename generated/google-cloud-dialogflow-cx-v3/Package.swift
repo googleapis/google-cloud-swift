@@ -18,10 +18,10 @@
 import PackageDescription
 
 let package = Package(
-  name: "GoogleCloudDialogflowCxV3",
+  name: "GoogleCloudDialogflowCXV3",
   platforms: [.macOS(.v15)],
   products: [
-    .library(name: "GoogleCloudDialogflowCxV3", targets: ["GoogleCloudDialogflowCxV3"])
+    .library(name: "GoogleCloudDialogflowCXV3", targets: ["GoogleCloudDialogflowCXV3"])
   ],
   traits: [
     .trait(
@@ -100,7 +100,7 @@ let package = Package(
   ],
   targets: [
     .target(
-      name: "GoogleCloudDialogflowCxV3",
+      name: "GoogleCloudDialogflowCXV3",
       dependencies: [
         .product(name: "GoogleCloudAuth", package: "auth"),
         .product(name: "GoogleCloudGax", package: "gax"),

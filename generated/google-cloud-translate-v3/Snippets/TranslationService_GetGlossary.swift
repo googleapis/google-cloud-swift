@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudTranslationV3
+import GoogleCloudTranslateV3
 import GoogleCloudLocation
 import GoogleCloudWkt
 import GoogleLongRunning
@@ -40,7 +40,7 @@ func sample(
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleCloudTranslationV3.TranslationServiceClient()
+      let client = try GoogleCloudTranslateV3.TranslationServiceClient()
       try await sample(
         client: client, projectId: "[placeholder]", locationId: "[placeholder]",
         glossaryId: "[placeholder]")

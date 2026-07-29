@@ -17,11 +17,11 @@
 
 // snippet.show
 import Foundation
-import GoogleContainerV1
+import GoogleCloudContainerV1
 import GoogleCloudWkt
 
 func sample() async throws {
-  let client = try GoogleContainerV1.ClusterManagerClient()
+  let client = try GoogleCloudContainerV1.ClusterManagerClient()
   let response = try await client.listClusters(
     request: ListClustersRequest()
       /* set fields using .with { $0... } */

@@ -18,14 +18,14 @@
 #if Environments
   // snippet.show
   import Foundation
-  import GoogleCloudDialogflowCxV3
+  import GoogleCloudDialogflowCXV3
   import GoogleCloudLocation
   import GoogleCloudWkt
   import GoogleLongRunning
   import GoogleRpc
 
   func sample(projectId: String, locationId: String, agentId: String, ) async throws {
-    let client = try GoogleCloudDialogflowCxV3.EnvironmentsClient()
+    let client = try GoogleCloudDialogflowCXV3.EnvironmentsClient()
     let items = try client.listEnvironments(
       byItem: ListEnvironmentsRequest()
         .with {

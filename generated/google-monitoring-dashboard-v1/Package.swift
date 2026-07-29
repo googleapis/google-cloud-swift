@@ -18,10 +18,11 @@
 import PackageDescription
 
 let package = Package(
-  name: "GoogleMonitoringDashboardV1",
+  name: "GoogleCloudMonitoringDashboardV1",
   platforms: [.macOS(.v15)],
   products: [
-    .library(name: "GoogleMonitoringDashboardV1", targets: ["GoogleMonitoringDashboardV1"])
+    .library(
+      name: "GoogleCloudMonitoringDashboardV1", targets: ["GoogleCloudMonitoringDashboardV1"])
   ],
   dependencies: [
     .package(path: "../../generated/google-api"),
@@ -33,7 +34,7 @@ let package = Package(
   ],
   targets: [
     .target(
-      name: "GoogleMonitoringDashboardV1",
+      name: "GoogleCloudMonitoringDashboardV1",
       dependencies: [
         .product(name: "GoogleApi", package: "google-api"),
         .product(name: "GoogleCloudAuth", package: "auth"),

@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GooglePrivacyDlpV2
+import GoogleCloudDLPV2
 import GoogleCloudWkt
 
 func sample(
@@ -39,7 +39,7 @@ func sample(
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GooglePrivacyDlpV2.DlpServiceClient()
+      let client = try GoogleCloudDLPV2.DlpServiceClient()
       try await sample(
         client: client, organizationId: "[placeholder]", locationId: "[placeholder]",
         fileStoreDataProfileId: "[placeholder]")

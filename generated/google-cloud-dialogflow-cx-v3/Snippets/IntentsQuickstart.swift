@@ -18,14 +18,14 @@
 #if Intents
   // snippet.show
   import Foundation
-  import GoogleCloudDialogflowCxV3
+  import GoogleCloudDialogflowCXV3
   import GoogleCloudLocation
   import GoogleCloudWkt
   import GoogleLongRunning
   import GoogleRpc
 
   func sample(projectId: String, locationId: String, agentId: String, ) async throws {
-    let client = try GoogleCloudDialogflowCxV3.IntentsClient()
+    let client = try GoogleCloudDialogflowCXV3.IntentsClient()
     let items = try client.listIntents(
       byItem: ListIntentsRequest()
         .with {

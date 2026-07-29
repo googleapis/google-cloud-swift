@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleBigtableAdminV2
+import GoogleCloudBigtableAdminV2
 import GoogleCloudWkt
 import GoogleIAMV1
 import GoogleLongRunning
@@ -38,7 +38,7 @@ func sample(client: BigtableTableAdminClient) async throws {
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleBigtableAdminV2.BigtableTableAdminClient()
+      let client = try GoogleCloudBigtableAdminV2.BigtableTableAdminClient()
       try await sample(client: client)
     } catch {
       print("Error: \(error)")

@@ -17,13 +17,13 @@
 
 // snippet.show
 import Foundation
-import GoogleDatastoreAdminV1
+import GoogleCloudDatastoreAdminV1
 import GoogleCloudWkt
 import GoogleLongRunning
 import GoogleRpc
 
 func sample() async throws {
-  let client = try GoogleDatastoreAdminV1.DatastoreAdminClient()
+  let client = try GoogleCloudDatastoreAdminV1.DatastoreAdminClient()
   let poller = try await client.exportEntities(
     withPolling: ExportEntitiesRequest()
       /* set fields using .with { $0... } */

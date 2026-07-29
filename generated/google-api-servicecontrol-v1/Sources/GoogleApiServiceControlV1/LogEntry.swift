@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
+import GoogleCloudLoggingType
 import GoogleCloudWkt
-import GoogleLoggingType
 
 /// An individual log entry.
 public struct LogEntry: Codable, Equatable, GoogleCloudWkt._AnyPackable,
@@ -32,7 +32,7 @@ public struct LogEntry: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// The severity of the log entry. The default value is
   /// `LogSeverity.DEFAULT`.
-  public var severity: GoogleLoggingType.LogSeverity = GoogleLoggingType.LogSeverity()
+  public var severity: GoogleCloudLoggingType.LogSeverity = GoogleCloudLoggingType.LogSeverity()
 
   /// Optional. Information about the HTTP request associated with this
   /// log entry, if applicable.
@@ -99,7 +99,7 @@ public struct LogEntry: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     self.name = try container.decode(Swift.String.self, forKey: .name)
     self.timestamp = try container.decodeIfPresent(
       GoogleCloudWkt.Timestamp.self, forKey: .timestamp)
-    self.severity = try container.decode(GoogleLoggingType.LogSeverity.self, forKey: .severity)
+    self.severity = try container.decode(GoogleCloudLoggingType.LogSeverity.self, forKey: .severity)
     self.httpRequest = try container.decodeIfPresent(HttpRequest.self, forKey: .httpRequest)
     self.trace = try container.decode(Swift.String.self, forKey: .trace)
     self.insertId = try container.decode(Swift.String.self, forKey: .insertId)

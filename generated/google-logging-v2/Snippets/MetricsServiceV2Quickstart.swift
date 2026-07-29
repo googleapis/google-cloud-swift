@@ -17,12 +17,12 @@
 
 // snippet.show
 import Foundation
-import GoogleLoggingV2
+import GoogleCloudLoggingV2
 import GoogleCloudWkt
 import GoogleLongRunning
 
 func sample(parent: String, ) async throws {
-  let client = try GoogleLoggingV2.MetricsServiceV2Client()
+  let client = try GoogleCloudLoggingV2.MetricsServiceV2Client()
   let items = try client.listLogMetrics(
     byItem: ListLogMetricsRequest()
       .with {

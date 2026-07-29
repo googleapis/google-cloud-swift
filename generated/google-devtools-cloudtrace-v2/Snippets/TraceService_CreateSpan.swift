@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleDevtoolsCloudtraceV2
+import GoogleCloudTraceV2
 import GoogleCloudWkt
 
 func sample(client: TraceServiceClient) async throws {
@@ -33,7 +33,7 @@ func sample(client: TraceServiceClient) async throws {
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleDevtoolsCloudtraceV2.TraceServiceClient()
+      let client = try GoogleCloudTraceV2.TraceServiceClient()
       try await sample(client: client)
     } catch {
       print("Error: \(error)")

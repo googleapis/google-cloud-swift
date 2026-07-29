@@ -17,11 +17,11 @@
 
 // snippet.show
 import Foundation
-import GooglePrivacyDlpV2
+import GoogleCloudDLPV2
 import GoogleCloudWkt
 
 func sample(projectId: String, ) async throws {
-  let client = try GooglePrivacyDlpV2.DlpServiceClient()
+  let client = try GoogleCloudDLPV2.DlpServiceClient()
   let items = try client.listDlpJobs(
     byItem: ListDlpJobsRequest()
       .with {

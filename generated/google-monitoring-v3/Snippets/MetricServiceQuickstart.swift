@@ -17,12 +17,12 @@
 
 // snippet.show
 import Foundation
-import GoogleMonitoringV3
+import GoogleCloudMonitoringV3
 import GoogleApi
 import GoogleCloudWkt
 
 func sample() async throws {
-  let client = try GoogleMonitoringV3.MetricServiceClient()
+  let client = try GoogleCloudMonitoringV3.MetricServiceClient()
   let items = try client.listMetricDescriptors(
     byItem: ListMetricDescriptorsRequest()
       /* set fields using .with { $0... } */

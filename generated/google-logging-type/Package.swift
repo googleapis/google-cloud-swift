@@ -18,17 +18,17 @@
 import PackageDescription
 
 let package = Package(
-  name: "GoogleLoggingType",
+  name: "GoogleCloudLoggingType",
   platforms: [.macOS(.v15)],
   products: [
-    .library(name: "GoogleLoggingType", targets: ["GoogleLoggingType"])
+    .library(name: "GoogleCloudLoggingType", targets: ["GoogleCloudLoggingType"])
   ],
   dependencies: [
     .package(path: "../../packages/wkt")
   ],
   targets: [
     .target(
-      name: "GoogleLoggingType",
+      name: "GoogleCloudLoggingType",
       dependencies: [
         .product(name: "GoogleCloudWkt", package: "wkt")
       ],

@@ -17,12 +17,12 @@
 
 // snippet.show
 import Foundation
-import GoogleMonitoringV3
+import GoogleCloudMonitoringV3
 import GoogleApi
 import GoogleCloudWkt
 
 func sample(projectId: String, ) async throws {
-  let client = try GoogleMonitoringV3.GroupServiceClient()
+  let client = try GoogleCloudMonitoringV3.GroupServiceClient()
   let items = try client.listGroups(
     byItem: ListGroupsRequest()
       .with {

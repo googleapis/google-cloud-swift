@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleMonitoringDashboardV1
+import GoogleCloudMonitoringDashboardV1
 import GoogleCloudWkt
 
 func sample(client: DashboardsServiceClient, projectId: String, dashboardId: String) async throws {
@@ -37,7 +37,7 @@ func sample(client: DashboardsServiceClient, projectId: String, dashboardId: Str
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleMonitoringDashboardV1.DashboardsServiceClient()
+      let client = try GoogleCloudMonitoringDashboardV1.DashboardsServiceClient()
       try await sample(client: client, projectId: "[placeholder]", dashboardId: "[placeholder]")
     } catch {
       print("Error: \(error)")

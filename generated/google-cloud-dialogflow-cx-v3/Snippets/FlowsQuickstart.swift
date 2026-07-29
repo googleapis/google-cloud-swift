@@ -18,14 +18,14 @@
 #if Flows
   // snippet.show
   import Foundation
-  import GoogleCloudDialogflowCxV3
+  import GoogleCloudDialogflowCXV3
   import GoogleCloudLocation
   import GoogleCloudWkt
   import GoogleLongRunning
   import GoogleRpc
 
   func sample(projectId: String, locationId: String, agentId: String, ) async throws {
-    let client = try GoogleCloudDialogflowCxV3.FlowsClient()
+    let client = try GoogleCloudDialogflowCXV3.FlowsClient()
     let items = try client.listFlows(
       byItem: ListFlowsRequest()
         .with {

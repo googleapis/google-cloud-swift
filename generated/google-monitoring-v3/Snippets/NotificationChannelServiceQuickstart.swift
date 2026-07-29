@@ -17,11 +17,11 @@
 
 // snippet.show
 import Foundation
-import GoogleMonitoringV3
+import GoogleCloudMonitoringV3
 import GoogleCloudWkt
 
 func sample(projectId: String, ) async throws {
-  let client = try GoogleMonitoringV3.NotificationChannelServiceClient()
+  let client = try GoogleCloudMonitoringV3.NotificationChannelServiceClient()
   let items = try client.listNotificationChannelDescriptors(
     byItem: ListNotificationChannelDescriptorsRequest()
       .with {

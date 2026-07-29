@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleMonitoringV3
+import GoogleCloudMonitoringV3
 import GoogleCloudWkt
 
 func sample(client: UptimeCheckServiceClient) async throws {
@@ -35,7 +35,7 @@ func sample(client: UptimeCheckServiceClient) async throws {
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleMonitoringV3.UptimeCheckServiceClient()
+      let client = try GoogleCloudMonitoringV3.UptimeCheckServiceClient()
       try await sample(client: client)
     } catch {
       print("Error: \(error)")

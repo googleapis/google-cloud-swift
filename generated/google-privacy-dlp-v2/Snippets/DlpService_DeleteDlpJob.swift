@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GooglePrivacyDlpV2
+import GoogleCloudDLPV2
 import GoogleCloudWkt
 
 func sample(client: DlpServiceClient, projectId: String, dlpJobId: String) async throws {
@@ -35,7 +35,7 @@ func sample(client: DlpServiceClient, projectId: String, dlpJobId: String) async
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GooglePrivacyDlpV2.DlpServiceClient()
+      let client = try GoogleCloudDLPV2.DlpServiceClient()
       try await sample(client: client, projectId: "[placeholder]", dlpJobId: "[placeholder]")
     } catch {
       print("Error: \(error)")

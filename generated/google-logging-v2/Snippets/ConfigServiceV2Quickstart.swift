@@ -17,13 +17,13 @@
 
 // snippet.show
 import Foundation
-import GoogleLoggingV2
+import GoogleCloudLoggingV2
 import GoogleCloudWkt
 import GoogleLongRunning
 import GoogleRpc
 
 func sample(projectId: String, locationId: String, ) async throws {
-  let client = try GoogleLoggingV2.ConfigServiceV2Client()
+  let client = try GoogleCloudLoggingV2.ConfigServiceV2Client()
   let items = try client.listBuckets(
     byItem: ListBucketsRequest()
       .with {

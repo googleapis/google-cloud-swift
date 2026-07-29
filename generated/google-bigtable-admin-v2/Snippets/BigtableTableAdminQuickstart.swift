@@ -17,14 +17,14 @@
 
 // snippet.show
 import Foundation
-import GoogleBigtableAdminV2
+import GoogleCloudBigtableAdminV2
 import GoogleCloudWkt
 import GoogleIAMV1
 import GoogleLongRunning
 import GoogleRpc
 
 func sample(projectId: String, instanceId: String, ) async throws {
-  let client = try GoogleBigtableAdminV2.BigtableTableAdminClient()
+  let client = try GoogleCloudBigtableAdminV2.BigtableTableAdminClient()
   let items = try client.listTables(
     byItem: ListTablesRequest()
       .with {

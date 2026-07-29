@@ -18,10 +18,10 @@
 import PackageDescription
 
 let package = Package(
-  name: "GooglePrivacyDlpV2",
+  name: "GoogleCloudDLPV2",
   platforms: [.macOS(.v15)],
   products: [
-    .library(name: "GooglePrivacyDlpV2", targets: ["GooglePrivacyDlpV2"])
+    .library(name: "GoogleCloudDLPV2", targets: ["GoogleCloudDLPV2"])
   ],
   dependencies: [
     .package(path: "../../packages/auth"),
@@ -33,7 +33,7 @@ let package = Package(
   ],
   targets: [
     .target(
-      name: "GooglePrivacyDlpV2",
+      name: "GoogleCloudDLPV2",
       dependencies: [
         .product(name: "GoogleCloudAuth", package: "auth"),
         .product(name: "GoogleCloudGax", package: "gax"),

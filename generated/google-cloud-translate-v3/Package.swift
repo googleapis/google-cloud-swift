@@ -18,10 +18,10 @@
 import PackageDescription
 
 let package = Package(
-  name: "GoogleCloudTranslationV3",
+  name: "GoogleCloudTranslateV3",
   platforms: [.macOS(.v15)],
   products: [
-    .library(name: "GoogleCloudTranslationV3", targets: ["GoogleCloudTranslationV3"])
+    .library(name: "GoogleCloudTranslateV3", targets: ["GoogleCloudTranslateV3"])
   ],
   dependencies: [
     .package(path: "../../packages/auth"),
@@ -34,7 +34,7 @@ let package = Package(
   ],
   targets: [
     .target(
-      name: "GoogleCloudTranslationV3",
+      name: "GoogleCloudTranslateV3",
       dependencies: [
         .product(name: "GoogleCloudAuth", package: "auth"),
         .product(name: "GoogleCloudGax", package: "gax"),

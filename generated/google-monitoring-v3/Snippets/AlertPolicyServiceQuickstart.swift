@@ -17,11 +17,11 @@
 
 // snippet.show
 import Foundation
-import GoogleMonitoringV3
+import GoogleCloudMonitoringV3
 import GoogleCloudWkt
 
 func sample(projectId: String, ) async throws {
-  let client = try GoogleMonitoringV3.AlertPolicyServiceClient()
+  let client = try GoogleCloudMonitoringV3.AlertPolicyServiceClient()
   let items = try client.listAlertPolicies(
     byItem: ListAlertPoliciesRequest()
       .with {

@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleMonitoringV3
+import GoogleCloudMonitoringV3
 import GoogleCloudWkt
 
 func sample(client: SnoozeServiceClient, projectId: String) async throws {
@@ -36,7 +36,7 @@ func sample(client: SnoozeServiceClient, projectId: String) async throws {
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleMonitoringV3.SnoozeServiceClient()
+      let client = try GoogleCloudMonitoringV3.SnoozeServiceClient()
       try await sample(client: client, projectId: "[placeholder]")
     } catch {
       print("Error: \(error)")

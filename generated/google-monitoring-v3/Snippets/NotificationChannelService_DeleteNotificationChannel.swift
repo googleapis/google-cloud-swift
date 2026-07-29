@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleMonitoringV3
+import GoogleCloudMonitoringV3
 import GoogleCloudWkt
 
 func sample(
@@ -37,7 +37,7 @@ func sample(
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleMonitoringV3.NotificationChannelServiceClient()
+      let client = try GoogleCloudMonitoringV3.NotificationChannelServiceClient()
       try await sample(
         client: client, projectId: "[placeholder]", notificationChannelId: "[placeholder]")
     } catch {

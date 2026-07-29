@@ -18,7 +18,7 @@
 #if Deployments
   // snippet.show
   import Foundation
-  import GoogleCloudDialogflowCxV3
+  import GoogleCloudDialogflowCXV3
   import GoogleCloudLocation
   import GoogleCloudWkt
   import GoogleLongRunning
@@ -26,7 +26,7 @@
   func sample(projectId: String, locationId: String, agentId: String, environmentId: String, )
     async throws
   {
-    let client = try GoogleCloudDialogflowCxV3.DeploymentsClient()
+    let client = try GoogleCloudDialogflowCXV3.DeploymentsClient()
     let items = try client.listDeployments(
       byItem: ListDeploymentsRequest()
         .with {

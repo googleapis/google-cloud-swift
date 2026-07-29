@@ -18,13 +18,13 @@
 #if Sessions
   // snippet.show
   import Foundation
-  import GoogleCloudDialogflowCxV3
+  import GoogleCloudDialogflowCXV3
   import GoogleCloudLocation
   import GoogleCloudWkt
   import GoogleLongRunning
 
   func sample() async throws {
-    let client = try GoogleCloudDialogflowCxV3.SessionsClient()
+    let client = try GoogleCloudDialogflowCXV3.SessionsClient()
     let response = try await client.detectIntent(
       request: DetectIntentRequest()
         /* set fields using .with { $0... } */

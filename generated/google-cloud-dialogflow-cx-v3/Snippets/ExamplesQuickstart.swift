@@ -18,7 +18,7 @@
 #if Examples
   // snippet.show
   import Foundation
-  import GoogleCloudDialogflowCxV3
+  import GoogleCloudDialogflowCXV3
   import GoogleCloudLocation
   import GoogleCloudWkt
   import GoogleLongRunning
@@ -26,7 +26,7 @@
   func sample(projectId: String, locationId: String, agentId: String, playbookId: String, )
     async throws
   {
-    let client = try GoogleCloudDialogflowCxV3.ExamplesClient()
+    let client = try GoogleCloudDialogflowCXV3.ExamplesClient()
     let items = try client.listExamples(
       byItem: ListExamplesRequest()
         .with {

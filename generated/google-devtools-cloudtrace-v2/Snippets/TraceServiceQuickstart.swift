@@ -17,11 +17,11 @@
 
 // snippet.show
 import Foundation
-import GoogleDevtoolsCloudtraceV2
+import GoogleCloudTraceV2
 import GoogleCloudWkt
 
 func sample() async throws {
-  let client = try GoogleDevtoolsCloudtraceV2.TraceServiceClient()
+  let client = try GoogleCloudTraceV2.TraceServiceClient()
   try await client.batchWriteSpans(
     request: BatchWriteSpansRequest()
       /* set fields using .with { $0... } */

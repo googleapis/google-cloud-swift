@@ -17,11 +17,11 @@
 
 // snippet.show
 import Foundation
-import GoogleMonitoringV3
+import GoogleCloudMonitoringV3
 import GoogleCloudWkt
 
 func sample() async throws {
-  let client = try GoogleMonitoringV3.QueryServiceClient()
+  let client = try GoogleCloudMonitoringV3.QueryServiceClient()
   let items = try client.queryTimeSeries(
     byItem: QueryTimeSeriesRequest()
       /* set fields using .with { $0... } */
