@@ -574,10 +574,19 @@ libraries:
             - ../../../rpc/status.proto
             - ../../../type/expr.proto
             - ../../../type/interval.proto
-        - output: packages/storage/Sources/GoogleCloudStorage/generated
+        - output: packages/storage/Sources/GoogleCloudStorage/generated/StorageControl
+          api_path: google/storage/control/v2
+          module_type: default
+        - output: packages/storage/Sources/GoogleCloudStorage/generated/StorageControl/Convert/StorageControl
           api_path: google/storage/control/v2
           module_type: convert-swift
           module_path: StorageControlProtos
+        - output: packages/storage/Sources/GoogleCloudStorage/generated/StorageControl/Convert/GoogleType
+          api_path: google/type
+          module_type: convert-swift
+          module_path: StorageControlProtos
+          include_list:
+            - interval.proto
   - name: google-cloud-storageinsights-v1
     version: 0.1.0-preview
     copyright_year: "2026"
