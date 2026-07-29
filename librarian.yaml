@@ -256,18 +256,28 @@ libraries:
   - name: google-cloud-bigquery-analyticshub-v1
     version: 0.0.0-preview
     copyright_year: "2026"
+    swift:
+      library_name_override: GoogleBigQueryAnalyticsHubV1
   - name: google-cloud-bigquery-connection-v1
     version: 0.0.0-preview
     copyright_year: "2026"
+    swift:
+      library_name_override: GoogleBigQueryConnectionV1
   - name: google-cloud-bigquery-datapolicies-v1
     version: 0.0.0-preview
     copyright_year: "2026"
+    swift:
+      library_name_override: GoogleBigQueryDataPoliciesV1
   - name: google-cloud-bigquery-datapolicies-v2
     version: 0.0.0-preview
     copyright_year: "2026"
+    swift:
+      library_name_override: GoogleBigQueryDataPoliciesV2
   - name: google-cloud-bigquery-datatransfer-v1
     version: 0.0.0-preview
     copyright_year: "2026"
+    swift:
+      library_name_override: GoogleBigQueryDataTransferV1
   - name: google-cloud-billing-budgets-v1
     version: 0.0.0-preview
     copyright_year: "2026"
