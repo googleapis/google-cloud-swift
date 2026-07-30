@@ -561,6 +561,7 @@ libraries:
     copyright_year: "2026"
     output: packages/storage/Sources/generated/StorageControlProtos
     swift:
+      library_name_override: GoogleCloudStorageV2
       modules:
         - output: packages/storage/Sources/generated/StorageControlProtos
           api_path: google/storage/control/v2
@@ -623,6 +624,7 @@ libraries:
     roots:
       - protobuf-src
     swift:
+      library_name_override: GoogleCloudWkt
       include_list:
         - api.proto
         - type.proto
