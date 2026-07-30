@@ -27,6 +27,8 @@
   /// @Snippet(path: "urlMapsQuickstart")
   public class UrlMapsClient: Clients.UrlMapsProtocol {
     let inner: any Clients.UrlMapsStub
+    let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
+    let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy
 
     /// Creates a new `UrlMapsClient` instance.
     public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {
@@ -36,6 +38,8 @@
         inner = Clients.UrlMapsLogging(inner, logger: logger)
       }
       self.inner = inner
+      self.pollingErrorPolicy = options.pollingErrorPolicy
+      self.pollingBackoffPolicy = options.pollingBackoffPolicy
     }
 
     /// Retrieves the list of all UrlMap resources, regional and global,
@@ -111,7 +115,12 @@
           }, options: options)
         return try extractStatus(op)
       }
-      return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+      return GoogleCloudGax._PollableOperationImpl(
+        initialState: initialState,
+        polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+        backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+        poll: poll
+      )
     }
 
     /// Returns the specified UrlMap resource.
@@ -166,7 +175,12 @@
           }, options: options)
         return try extractStatus(op)
       }
-      return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+      return GoogleCloudGax._PollableOperationImpl(
+        initialState: initialState,
+        polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+        backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+        poll: poll
+      )
     }
 
     /// Initiates a cache invalidation operation, invalidating the specified path,
@@ -218,7 +232,12 @@
           }, options: options)
         return try extractStatus(op)
       }
-      return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+      return GoogleCloudGax._PollableOperationImpl(
+        initialState: initialState,
+        polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+        backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+        poll: poll
+      )
     }
 
     /// Retrieves the list of UrlMap resources available to the specified
@@ -293,7 +312,12 @@
           }, options: options)
         return try extractStatus(op)
       }
-      return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+      return GoogleCloudGax._PollableOperationImpl(
+        initialState: initialState,
+        polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+        backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+        poll: poll
+      )
     }
 
     /// Returns permissions that a caller has on the specified resource.
@@ -348,7 +372,12 @@
           }, options: options)
         return try extractStatus(op)
       }
-      return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+      return GoogleCloudGax._PollableOperationImpl(
+        initialState: initialState,
+        polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+        backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+        poll: poll
+      )
     }
 
     /// Runs static validation for the UrlMap. In particular, the tests of the

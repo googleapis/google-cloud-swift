@@ -31,6 +31,8 @@
   /// @Snippet(path: "JobServiceQuickstart")
   public class JobServiceClient: Clients.JobServiceProtocol {
     let inner: any Clients.JobServiceStub
+    let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
+    let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy
 
     /// Creates a new `JobServiceClient` instance.
     public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {
@@ -40,6 +42,8 @@
         inner = Clients.JobServiceLogging(inner, logger: logger)
       }
       self.inner = inner
+      self.pollingErrorPolicy = options.pollingErrorPolicy
+      self.pollingBackoffPolicy = options.pollingBackoffPolicy
     }
 
     /// Creates a CustomJob. A created CustomJob right away
@@ -137,7 +141,12 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+      return GoogleCloudGax._PollableOperationImpl(
+        initialState: initialState,
+        polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+        backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+        poll: poll,
+      )
     }
 
     /// Cancels a CustomJob.
@@ -261,7 +270,12 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+      return GoogleCloudGax._PollableOperationImpl(
+        initialState: initialState,
+        polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+        backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+        poll: poll,
+      )
     }
 
     /// Cancels a DataLabelingJob. Success of cancellation is not guaranteed.
@@ -369,7 +383,12 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+      return GoogleCloudGax._PollableOperationImpl(
+        initialState: initialState,
+        polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+        backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+        poll: poll,
+      )
     }
 
     /// Cancels a HyperparameterTuningJob.
@@ -493,7 +512,12 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+      return GoogleCloudGax._PollableOperationImpl(
+        initialState: initialState,
+        polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+        backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+        poll: poll,
+      )
     }
 
     /// Cancels a NasJob.
@@ -653,7 +677,12 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+      return GoogleCloudGax._PollableOperationImpl(
+        initialState: initialState,
+        polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+        backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+        poll: poll,
+      )
     }
 
     /// Cancels a BatchPredictionJob.
@@ -816,7 +845,12 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+      return GoogleCloudGax._PollableOperationImpl(
+        initialState: initialState,
+        polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+        backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+        poll: poll,
+      )
     }
 
     /// Deletes a ModelDeploymentMonitoringJob.
@@ -872,7 +906,12 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+      return GoogleCloudGax._PollableOperationImpl(
+        initialState: initialState,
+        polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+        backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+        poll: poll,
+      )
     }
 
     /// Pauses a ModelDeploymentMonitoringJob. If the job is running, the server

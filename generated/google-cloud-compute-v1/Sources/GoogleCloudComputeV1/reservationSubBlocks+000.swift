@@ -27,6 +27,8 @@
   /// @Snippet(path: "reservationSubBlocksQuickstart")
   public class ReservationSubBlocksClient: Clients.ReservationSubBlocksProtocol {
     let inner: any Clients.ReservationSubBlocksStub
+    let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
+    let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy
 
     /// Creates a new `ReservationSubBlocksClient` instance.
     public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {
@@ -37,6 +39,8 @@
         inner = Clients.ReservationSubBlocksLogging(inner, logger: logger)
       }
       self.inner = inner
+      self.pollingErrorPolicy = options.pollingErrorPolicy
+      self.pollingBackoffPolicy = options.pollingBackoffPolicy
     }
 
     /// Retrieves information about the specified reservation subBlock.
@@ -102,7 +106,12 @@
           }, options: options)
         return try extractStatus(op)
       }
-      return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+      return GoogleCloudGax._PollableOperationImpl(
+        initialState: initialState,
+        polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+        backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+        poll: poll
+      )
     }
 
     /// Retrieves a list of reservation subBlocks under a single reservation.
@@ -174,7 +183,12 @@
           }, options: options)
         return try extractStatus(op)
       }
-      return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+      return GoogleCloudGax._PollableOperationImpl(
+        initialState: initialState,
+        polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+        backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+        poll: poll
+      )
     }
 
     /// Allows customers to report a faulty subBlock.
@@ -221,7 +235,12 @@
           }, options: options)
         return try extractStatus(op)
       }
-      return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+      return GoogleCloudGax._PollableOperationImpl(
+        initialState: initialState,
+        polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+        backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+        poll: poll
+      )
     }
 
     /// Sets the access control policy on the specified resource.

@@ -32,6 +32,8 @@
   /// @Snippet(path: "ScheduleServiceQuickstart")
   public class ScheduleServiceClient: Clients.ScheduleServiceProtocol {
     let inner: any Clients.ScheduleServiceStub
+    let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
+    let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy
 
     /// Creates a new `ScheduleServiceClient` instance.
     public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {
@@ -41,6 +43,8 @@
         inner = Clients.ScheduleServiceLogging(inner, logger: logger)
       }
       self.inner = inner
+      self.pollingErrorPolicy = options.pollingErrorPolicy
+      self.pollingBackoffPolicy = options.pollingBackoffPolicy
     }
 
     /// Creates a Schedule.
@@ -104,7 +108,12 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+      return GoogleCloudGax._PollableOperationImpl(
+        initialState: initialState,
+        polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+        backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+        poll: poll,
+      )
     }
 
     /// Gets a Schedule.

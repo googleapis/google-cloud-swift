@@ -27,6 +27,8 @@
   /// @Snippet(path: "securityPoliciesQuickstart")
   public class SecurityPoliciesClient: Clients.SecurityPoliciesProtocol {
     let inner: any Clients.SecurityPoliciesStub
+    let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
+    let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy
 
     /// Creates a new `SecurityPoliciesClient` instance.
     public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {
@@ -36,6 +38,8 @@
         inner = Clients.SecurityPoliciesLogging(inner, logger: logger)
       }
       self.inner = inner
+      self.pollingErrorPolicy = options.pollingErrorPolicy
+      self.pollingBackoffPolicy = options.pollingBackoffPolicy
     }
 
     /// Inserts a rule into a security policy.
@@ -79,7 +83,12 @@
           }, options: options)
         return try extractStatus(op)
       }
-      return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+      return GoogleCloudGax._PollableOperationImpl(
+        initialState: initialState,
+        polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+        backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+        poll: poll
+      )
     }
 
     /// Retrieves the list of all SecurityPolicy resources, regional and global,
@@ -155,7 +164,12 @@
           }, options: options)
         return try extractStatus(op)
       }
-      return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+      return GoogleCloudGax._PollableOperationImpl(
+        initialState: initialState,
+        polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+        backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+        poll: poll
+      )
     }
 
     /// List all of the ordered rules present in a single specified policy.
@@ -219,7 +233,12 @@
           }, options: options)
         return try extractStatus(op)
       }
-      return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+      return GoogleCloudGax._PollableOperationImpl(
+        initialState: initialState,
+        polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+        backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+        poll: poll
+      )
     }
 
     /// List all the policies that have been configured for the specified project.
@@ -306,7 +325,12 @@
           }, options: options)
         return try extractStatus(op)
       }
-      return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+      return GoogleCloudGax._PollableOperationImpl(
+        initialState: initialState,
+        polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+        backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+        poll: poll
+      )
     }
 
     /// Patches a rule at the specified priority. To clear fields in the rule,
@@ -352,7 +376,12 @@
           }, options: options)
         return try extractStatus(op)
       }
-      return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+      return GoogleCloudGax._PollableOperationImpl(
+        initialState: initialState,
+        polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+        backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+        poll: poll
+      )
     }
 
     /// Deletes a rule at the specified priority.
@@ -396,7 +425,12 @@
           }, options: options)
         return try extractStatus(op)
       }
-      return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+      return GoogleCloudGax._PollableOperationImpl(
+        initialState: initialState,
+        polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+        backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+        poll: poll
+      )
     }
 
     /// Sets the labels on a security policy. To learn more about labels,
@@ -444,7 +478,12 @@
           }, options: options)
         return try extractStatus(op)
       }
-      return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+      return GoogleCloudGax._PollableOperationImpl(
+        initialState: initialState,
+        polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+        backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+        poll: poll
+      )
     }
 
     /// Retrieves the specified Operations resource.

@@ -27,6 +27,8 @@
   /// @Snippet(path: "regionInstanceGroupsQuickstart")
   public class RegionInstanceGroupsClient: Clients.RegionInstanceGroupsProtocol {
     let inner: any Clients.RegionInstanceGroupsStub
+    let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
+    let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy
 
     /// Creates a new `RegionInstanceGroupsClient` instance.
     public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {
@@ -37,6 +39,8 @@
         inner = Clients.RegionInstanceGroupsLogging(inner, logger: logger)
       }
       self.inner = inner
+      self.pollingErrorPolicy = options.pollingErrorPolicy
+      self.pollingBackoffPolicy = options.pollingBackoffPolicy
     }
 
     /// Returns the specified instance group resource.
@@ -151,7 +155,12 @@
           }, options: options)
         return try extractStatus(op)
       }
-      return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+      return GoogleCloudGax._PollableOperationImpl(
+        initialState: initialState,
+        polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+        backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+        poll: poll
+      )
     }
 
     /// Returns permissions that a caller has on the specified resource.

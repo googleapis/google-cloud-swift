@@ -27,6 +27,8 @@
   /// @Snippet(path: "regionHealthSourcesQuickstart")
   public class RegionHealthSourcesClient: Clients.RegionHealthSourcesProtocol {
     let inner: any Clients.RegionHealthSourcesStub
+    let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
+    let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy
 
     /// Creates a new `RegionHealthSourcesClient` instance.
     public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {
@@ -37,6 +39,8 @@
         inner = Clients.RegionHealthSourcesLogging(inner, logger: logger)
       }
       self.inner = inner
+      self.pollingErrorPolicy = options.pollingErrorPolicy
+      self.pollingBackoffPolicy = options.pollingBackoffPolicy
     }
 
     /// Retrieves the list of all HealthSource resources (all
@@ -115,7 +119,12 @@
           }, options: options)
         return try extractStatus(op)
       }
-      return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+      return GoogleCloudGax._PollableOperationImpl(
+        initialState: initialState,
+        polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+        backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+        poll: poll
+      )
     }
 
     /// Returns the specified HealthSource resource in the given region.
@@ -181,7 +190,12 @@
           }, options: options)
         return try extractStatus(op)
       }
-      return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+      return GoogleCloudGax._PollableOperationImpl(
+        initialState: initialState,
+        polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+        backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+        poll: poll
+      )
     }
 
     /// Lists the HealthSources for a project in the given region.
@@ -255,7 +269,12 @@
           }, options: options)
         return try extractStatus(op)
       }
-      return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+      return GoogleCloudGax._PollableOperationImpl(
+        initialState: initialState,
+        polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+        backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+        poll: poll
+      )
     }
 
     /// Returns permissions that a caller has on the specified resource.

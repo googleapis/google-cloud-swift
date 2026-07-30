@@ -29,6 +29,8 @@ import GoogleCloudGax
 /// @Snippet(path: "AnalyticsServiceQuickstart")
 public class AnalyticsServiceClient: Clients.AnalyticsServiceProtocol {
   let inner: any Clients.AnalyticsServiceStub
+  let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
+  let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy
 
   /// Creates a new `AnalyticsServiceClient` instance.
   public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {
@@ -38,6 +40,8 @@ public class AnalyticsServiceClient: Clients.AnalyticsServiceProtocol {
       inner = Clients.AnalyticsServiceLogging(inner, logger: logger)
     }
     self.inner = inner
+    self.pollingErrorPolicy = options.pollingErrorPolicy
+    self.pollingBackoffPolicy = options.pollingBackoffPolicy
   }
 
   /// Exports analytics metrics.
@@ -108,7 +112,12 @@ public class AnalyticsServiceClient: Clients.AnalyticsServiceProtocol {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+    return GoogleCloudGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.

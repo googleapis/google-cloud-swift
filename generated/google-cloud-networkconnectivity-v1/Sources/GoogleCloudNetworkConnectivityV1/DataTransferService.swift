@@ -30,6 +30,8 @@ import GoogleCloudGax
 /// @Snippet(path: "DataTransferServiceQuickstart")
 public class DataTransferServiceClient: Clients.DataTransferServiceProtocol {
   let inner: any Clients.DataTransferServiceStub
+  let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
+  let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy
 
   /// Creates a new `DataTransferServiceClient` instance.
   public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {
@@ -40,6 +42,8 @@ public class DataTransferServiceClient: Clients.DataTransferServiceProtocol {
       inner = Clients.DataTransferServiceLogging(inner, logger: logger)
     }
     self.inner = inner
+    self.pollingErrorPolicy = options.pollingErrorPolicy
+    self.pollingBackoffPolicy = options.pollingBackoffPolicy
   }
 
   /// Lists the `MulticloudDataTransferConfig` resources in a specified project
@@ -143,7 +147,12 @@ public class DataTransferServiceClient: Clients.DataTransferServiceProtocol {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+    return GoogleCloudGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
   }
 
   /// Updates a `MulticloudDataTransferConfig` resource in a specified project
@@ -211,7 +220,12 @@ public class DataTransferServiceClient: Clients.DataTransferServiceProtocol {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+    return GoogleCloudGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
   }
 
   /// Deletes a `MulticloudDataTransferConfig` resource.
@@ -267,7 +281,12 @@ public class DataTransferServiceClient: Clients.DataTransferServiceProtocol {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+    return GoogleCloudGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
   }
 
   /// Lists the `Destination` resources in a specified project and location.
@@ -364,7 +383,12 @@ public class DataTransferServiceClient: Clients.DataTransferServiceProtocol {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+    return GoogleCloudGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
   }
 
   /// Updates a `Destination` resource in a specified project and location.
@@ -427,7 +451,12 @@ public class DataTransferServiceClient: Clients.DataTransferServiceProtocol {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+    return GoogleCloudGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
   }
 
   /// Deletes a `Destination` resource.
@@ -482,7 +511,12 @@ public class DataTransferServiceClient: Clients.DataTransferServiceProtocol {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+    return GoogleCloudGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
   }
 
   /// Gets the details of a service that is supported for Data Transfer

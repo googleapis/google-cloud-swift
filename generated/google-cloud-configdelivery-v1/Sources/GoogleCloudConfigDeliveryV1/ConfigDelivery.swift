@@ -30,6 +30,8 @@ import GoogleCloudGax
 /// @Snippet(path: "ConfigDeliveryQuickstart")
 public class ConfigDeliveryClient: Clients.ConfigDeliveryProtocol {
   let inner: any Clients.ConfigDeliveryStub
+  let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
+  let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy
 
   /// Creates a new `ConfigDeliveryClient` instance.
   public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {
@@ -39,6 +41,8 @@ public class ConfigDeliveryClient: Clients.ConfigDeliveryProtocol {
       inner = Clients.ConfigDeliveryLogging(inner, logger: logger)
     }
     self.inner = inner
+    self.pollingErrorPolicy = options.pollingErrorPolicy
+    self.pollingBackoffPolicy = options.pollingBackoffPolicy
   }
 
   /// Lists ResourceBundles in a given project and location.
@@ -135,7 +139,12 @@ public class ConfigDeliveryClient: Clients.ConfigDeliveryProtocol {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+    return GoogleCloudGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
   }
 
   /// Updates the parameters of a single ResourceBundle.
@@ -198,7 +207,12 @@ public class ConfigDeliveryClient: Clients.ConfigDeliveryProtocol {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+    return GoogleCloudGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
   }
 
   /// Deletes a single ResourceBundle.
@@ -253,7 +267,12 @@ public class ConfigDeliveryClient: Clients.ConfigDeliveryProtocol {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+    return GoogleCloudGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
   }
 
   /// Lists FleetPackages in a given project and location.
@@ -349,7 +368,12 @@ public class ConfigDeliveryClient: Clients.ConfigDeliveryProtocol {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+    return GoogleCloudGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
   }
 
   /// Updates the parameters of a single FleetPackage.
@@ -412,7 +436,12 @@ public class ConfigDeliveryClient: Clients.ConfigDeliveryProtocol {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+    return GoogleCloudGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
   }
 
   /// Deletes a single FleetPackage.
@@ -467,7 +496,12 @@ public class ConfigDeliveryClient: Clients.ConfigDeliveryProtocol {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+    return GoogleCloudGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
   }
 
   /// Lists Releases in a given project and location.
@@ -563,7 +597,12 @@ public class ConfigDeliveryClient: Clients.ConfigDeliveryProtocol {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+    return GoogleCloudGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
   }
 
   /// Updates the parameters of a single Release.
@@ -626,7 +665,12 @@ public class ConfigDeliveryClient: Clients.ConfigDeliveryProtocol {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+    return GoogleCloudGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
   }
 
   /// Deletes a single Release.
@@ -681,7 +725,12 @@ public class ConfigDeliveryClient: Clients.ConfigDeliveryProtocol {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+    return GoogleCloudGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
   }
 
   /// Lists Variants in a given project and location.
@@ -779,7 +828,12 @@ public class ConfigDeliveryClient: Clients.ConfigDeliveryProtocol {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+    return GoogleCloudGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
   }
 
   /// Updates the parameters of a single Variant.
@@ -842,7 +896,12 @@ public class ConfigDeliveryClient: Clients.ConfigDeliveryProtocol {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+    return GoogleCloudGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
   }
 
   /// Deletes a single Variant.
@@ -897,7 +956,12 @@ public class ConfigDeliveryClient: Clients.ConfigDeliveryProtocol {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+    return GoogleCloudGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
   }
 
   /// Lists Rollouts in a given project, location, and Fleet Package.
@@ -993,7 +1057,12 @@ public class ConfigDeliveryClient: Clients.ConfigDeliveryProtocol {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+    return GoogleCloudGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
   }
 
   /// Resume a Rollout.
@@ -1056,7 +1125,12 @@ public class ConfigDeliveryClient: Clients.ConfigDeliveryProtocol {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+    return GoogleCloudGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
   }
 
   /// Abort a Rollout.
@@ -1119,7 +1193,12 @@ public class ConfigDeliveryClient: Clients.ConfigDeliveryProtocol {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+    return GoogleCloudGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
   }
 
   /// Lists information about the supported locations for this service.

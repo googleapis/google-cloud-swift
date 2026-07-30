@@ -30,6 +30,8 @@ import GoogleCloudGax
 /// @Snippet(path: "CrossNetworkAutomationServiceQuickstart")
 public class CrossNetworkAutomationServiceClient: Clients.CrossNetworkAutomationServiceProtocol {
   let inner: any Clients.CrossNetworkAutomationServiceStub
+  let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
+  let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy
 
   /// Creates a new `CrossNetworkAutomationServiceClient` instance.
   public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {
@@ -40,6 +42,8 @@ public class CrossNetworkAutomationServiceClient: Clients.CrossNetworkAutomation
       inner = Clients.CrossNetworkAutomationServiceLogging(inner, logger: logger)
     }
     self.inner = inner
+    self.pollingErrorPolicy = options.pollingErrorPolicy
+    self.pollingBackoffPolicy = options.pollingBackoffPolicy
   }
 
   /// Lists ServiceConnectionMaps in a given project and location.
@@ -137,7 +141,12 @@ public class CrossNetworkAutomationServiceClient: Clients.CrossNetworkAutomation
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+    return GoogleCloudGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
   }
 
   /// Updates the parameters of a single ServiceConnectionMap.
@@ -201,7 +210,12 @@ public class CrossNetworkAutomationServiceClient: Clients.CrossNetworkAutomation
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+    return GoogleCloudGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
   }
 
   /// Deletes a single ServiceConnectionMap.
@@ -256,7 +270,12 @@ public class CrossNetworkAutomationServiceClient: Clients.CrossNetworkAutomation
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+    return GoogleCloudGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
   }
 
   /// Lists ServiceConnectionPolicies in a given project and location.
@@ -354,7 +373,12 @@ public class CrossNetworkAutomationServiceClient: Clients.CrossNetworkAutomation
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+    return GoogleCloudGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
   }
 
   /// Updates the parameters of a single ServiceConnectionPolicy.
@@ -418,7 +442,12 @@ public class CrossNetworkAutomationServiceClient: Clients.CrossNetworkAutomation
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+    return GoogleCloudGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
   }
 
   /// Deletes a single ServiceConnectionPolicy.
@@ -473,7 +502,12 @@ public class CrossNetworkAutomationServiceClient: Clients.CrossNetworkAutomation
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+    return GoogleCloudGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
   }
 
   /// Lists ServiceClasses in a given project and location.
@@ -570,7 +604,12 @@ public class CrossNetworkAutomationServiceClient: Clients.CrossNetworkAutomation
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+    return GoogleCloudGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
   }
 
   /// Deletes a single ServiceClass.
@@ -625,7 +664,12 @@ public class CrossNetworkAutomationServiceClient: Clients.CrossNetworkAutomation
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+    return GoogleCloudGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
   }
 
   /// Gets details of a single ServiceConnectionToken.
@@ -723,7 +767,12 @@ public class CrossNetworkAutomationServiceClient: Clients.CrossNetworkAutomation
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+    return GoogleCloudGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
   }
 
   /// Deletes a single ServiceConnectionToken.
@@ -778,7 +827,12 @@ public class CrossNetworkAutomationServiceClient: Clients.CrossNetworkAutomation
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+    return GoogleCloudGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
   }
 
   /// Lists information about the supported locations for this service.

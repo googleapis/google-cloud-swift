@@ -40,6 +40,8 @@ import GoogleCloudGax
 /// @Snippet(path: "ClientGatewaysServiceQuickstart")
 public class ClientGatewaysServiceClient: Clients.ClientGatewaysServiceProtocol {
   let inner: any Clients.ClientGatewaysServiceStub
+  let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
+  let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy
 
   /// Creates a new `ClientGatewaysServiceClient` instance.
   public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {
@@ -50,6 +52,8 @@ public class ClientGatewaysServiceClient: Clients.ClientGatewaysServiceProtocol 
       inner = Clients.ClientGatewaysServiceLogging(inner, logger: logger)
     }
     self.inner = inner
+    self.pollingErrorPolicy = options.pollingErrorPolicy
+    self.pollingBackoffPolicy = options.pollingBackoffPolicy
   }
 
   /// Lists ClientGateways in a given project and location.
@@ -146,7 +150,12 @@ public class ClientGatewaysServiceClient: Clients.ClientGatewaysServiceProtocol 
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+    return GoogleCloudGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
   }
 
   /// Deletes a single ClientGateway.
@@ -201,7 +210,12 @@ public class ClientGatewaysServiceClient: Clients.ClientGatewaysServiceProtocol 
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+    return GoogleCloudGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
   }
 
   /// Lists information about the supported locations for this service.

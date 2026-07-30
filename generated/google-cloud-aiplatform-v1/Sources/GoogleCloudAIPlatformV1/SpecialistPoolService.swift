@@ -36,6 +36,8 @@
   /// @Snippet(path: "SpecialistPoolServiceQuickstart")
   public class SpecialistPoolServiceClient: Clients.SpecialistPoolServiceProtocol {
     let inner: any Clients.SpecialistPoolServiceStub
+    let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
+    let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy
 
     /// Creates a new `SpecialistPoolServiceClient` instance.
     public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {
@@ -46,6 +48,8 @@
         inner = Clients.SpecialistPoolServiceLogging(inner, logger: logger)
       }
       self.inner = inner
+      self.pollingErrorPolicy = options.pollingErrorPolicy
+      self.pollingBackoffPolicy = options.pollingBackoffPolicy
     }
 
     /// Creates a SpecialistPool.
@@ -108,7 +112,12 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+      return GoogleCloudGax._PollableOperationImpl(
+        initialState: initialState,
+        polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+        backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+        poll: poll,
+      )
     }
 
     /// Gets a SpecialistPool.
@@ -196,7 +205,12 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+      return GoogleCloudGax._PollableOperationImpl(
+        initialState: initialState,
+        polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+        backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+        poll: poll,
+      )
     }
 
     /// Updates a SpecialistPool.
@@ -259,7 +273,12 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+      return GoogleCloudGax._PollableOperationImpl(
+        initialState: initialState,
+        polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+        backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+        poll: poll,
+      )
     }
 
     /// Lists information about the supported locations for this service.

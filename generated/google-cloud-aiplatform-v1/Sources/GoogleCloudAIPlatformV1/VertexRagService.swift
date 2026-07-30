@@ -31,6 +31,8 @@
   /// @Snippet(path: "VertexRagServiceQuickstart")
   public class VertexRagServiceClient: Clients.VertexRagServiceProtocol {
     let inner: any Clients.VertexRagServiceStub
+    let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
+    let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy
 
     /// Creates a new `VertexRagServiceClient` instance.
     public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {
@@ -40,6 +42,8 @@
         inner = Clients.VertexRagServiceLogging(inner, logger: logger)
       }
       self.inner = inner
+      self.pollingErrorPolicy = options.pollingErrorPolicy
+      self.pollingBackoffPolicy = options.pollingBackoffPolicy
     }
 
     /// Retrieves relevant contexts for a query.
@@ -143,7 +147,12 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+      return GoogleCloudGax._PollableOperationImpl(
+        initialState: initialState,
+        polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+        backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+        poll: poll,
+      )
     }
 
     /// Lists information about the supported locations for this service.

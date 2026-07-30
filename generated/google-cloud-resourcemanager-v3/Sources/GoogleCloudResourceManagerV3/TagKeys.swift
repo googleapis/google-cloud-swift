@@ -29,6 +29,8 @@ import GoogleCloudGax
 /// @Snippet(path: "TagKeysQuickstart")
 public class TagKeysClient: Clients.TagKeysProtocol {
   let inner: any Clients.TagKeysStub
+  let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
+  let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy
 
   /// Creates a new `TagKeysClient` instance.
   public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {
@@ -38,6 +40,8 @@ public class TagKeysClient: Clients.TagKeysProtocol {
       inner = Clients.TagKeysLogging(inner, logger: logger)
     }
     self.inner = inner
+    self.pollingErrorPolicy = options.pollingErrorPolicy
+    self.pollingBackoffPolicy = options.pollingBackoffPolicy
   }
 
   /// Lists all TagKeys for a parent resource.
@@ -151,7 +155,12 @@ public class TagKeysClient: Clients.TagKeysProtocol {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+    return GoogleCloudGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
   }
 
   /// Updates the attributes of the TagKey resource.
@@ -214,7 +223,12 @@ public class TagKeysClient: Clients.TagKeysProtocol {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+    return GoogleCloudGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
   }
 
   /// Deletes a TagKey. The TagKey cannot be deleted if it has any child
@@ -279,7 +293,12 @@ public class TagKeysClient: Clients.TagKeysProtocol {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+    return GoogleCloudGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
   }
 
   /// Gets the access control policy for a TagKey. The returned policy may be

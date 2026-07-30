@@ -54,7 +54,7 @@
             "/compute/v1/projects/\(pathVariable0)/zones/\(pathVariable1)/imageFamilyViews/\(pathVariable2)"
         }()
         let query = [
-          URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+          URLQueryItem(name: "$alt", value: "json")
         ]
         var req = try await self.inner.Request(path: path, query: query)
         req.httpMethod = "GET"

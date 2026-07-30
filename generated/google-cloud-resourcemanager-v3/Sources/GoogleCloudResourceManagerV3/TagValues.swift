@@ -29,6 +29,8 @@ import GoogleCloudGax
 /// @Snippet(path: "TagValuesQuickstart")
 public class TagValuesClient: Clients.TagValuesProtocol {
   let inner: any Clients.TagValuesStub
+  let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
+  let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy
 
   /// Creates a new `TagValuesClient` instance.
   public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {
@@ -38,6 +40,8 @@ public class TagValuesClient: Clients.TagValuesProtocol {
       inner = Clients.TagValuesLogging(inner, logger: logger)
     }
     self.inner = inner
+    self.pollingErrorPolicy = options.pollingErrorPolicy
+    self.pollingBackoffPolicy = options.pollingBackoffPolicy
   }
 
   /// Lists all TagValues for a specific TagKey.
@@ -151,7 +155,12 @@ public class TagValuesClient: Clients.TagValuesProtocol {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+    return GoogleCloudGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
   }
 
   /// Updates the attributes of the TagValue resource.
@@ -214,7 +223,12 @@ public class TagValuesClient: Clients.TagValuesProtocol {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+    return GoogleCloudGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
   }
 
   /// Deletes a TagValue. The TagValue cannot have any bindings when it is
@@ -279,7 +293,12 @@ public class TagValuesClient: Clients.TagValuesProtocol {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+    return GoogleCloudGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
   }
 
   /// Gets the access control policy for a TagValue. The returned policy may be

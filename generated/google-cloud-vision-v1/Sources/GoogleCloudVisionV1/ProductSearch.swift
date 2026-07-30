@@ -47,6 +47,8 @@ import GoogleCloudGax
 /// @Snippet(path: "ProductSearchQuickstart")
 public class ProductSearchClient: Clients.ProductSearchProtocol {
   let inner: any Clients.ProductSearchStub
+  let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
+  let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy
 
   /// Creates a new `ProductSearchClient` instance.
   public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {
@@ -56,6 +58,8 @@ public class ProductSearchClient: Clients.ProductSearchProtocol {
       inner = Clients.ProductSearchLogging(inner, logger: logger)
     }
     self.inner = inner
+    self.pollingErrorPolicy = options.pollingErrorPolicy
+    self.pollingBackoffPolicy = options.pollingBackoffPolicy
   }
 
   /// Creates and returns a new ProductSet resource.
@@ -483,7 +487,12 @@ public class ProductSearchClient: Clients.ProductSearchProtocol {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+    return GoogleCloudGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
   }
 
   /// Asynchronous API to delete all Products in a ProductSet or all Products
@@ -588,7 +597,12 @@ public class ProductSearchClient: Clients.ProductSearchProtocol {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+    return GoogleCloudGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.

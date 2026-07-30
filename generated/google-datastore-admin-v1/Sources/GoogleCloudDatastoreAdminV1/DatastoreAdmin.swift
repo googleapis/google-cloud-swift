@@ -74,6 +74,8 @@ import GoogleCloudGax
 /// @Snippet(path: "DatastoreAdminQuickstart")
 public class DatastoreAdminClient: Clients.DatastoreAdminProtocol {
   let inner: any Clients.DatastoreAdminStub
+  let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
+  let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy
 
   /// Creates a new `DatastoreAdminClient` instance.
   public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {
@@ -83,6 +85,8 @@ public class DatastoreAdminClient: Clients.DatastoreAdminProtocol {
       inner = Clients.DatastoreAdminLogging(inner, logger: logger)
     }
     self.inner = inner
+    self.pollingErrorPolicy = options.pollingErrorPolicy
+    self.pollingBackoffPolicy = options.pollingBackoffPolicy
   }
 
   /// Exports a copy of all or a subset of entities from Google Cloud Datastore
@@ -160,7 +164,12 @@ public class DatastoreAdminClient: Clients.DatastoreAdminProtocol {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+    return GoogleCloudGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
   }
 
   /// Imports entities into Google Cloud Datastore. Existing entities with the
@@ -223,7 +232,12 @@ public class DatastoreAdminClient: Clients.DatastoreAdminProtocol {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+    return GoogleCloudGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
   }
 
   /// Creates the specified index.
@@ -318,7 +332,12 @@ public class DatastoreAdminClient: Clients.DatastoreAdminProtocol {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+    return GoogleCloudGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
   }
 
   /// Deletes an existing index.
@@ -409,7 +428,12 @@ public class DatastoreAdminClient: Clients.DatastoreAdminProtocol {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+    return GoogleCloudGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
   }
 
   /// Gets an index.

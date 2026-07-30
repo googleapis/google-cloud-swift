@@ -33,6 +33,8 @@ import GoogleCloudGax
 @available(*, deprecated)
 public class DataCatalogClient: Clients.DataCatalogProtocol {
   let inner: any Clients.DataCatalogStub
+  let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
+  let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy
 
   /// Creates a new `DataCatalogClient` instance.
   public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {
@@ -42,6 +44,8 @@ public class DataCatalogClient: Clients.DataCatalogProtocol {
       inner = Clients.DataCatalogLogging(inner, logger: logger)
     }
     self.inner = inner
+    self.pollingErrorPolicy = options.pollingErrorPolicy
+    self.pollingBackoffPolicy = options.pollingBackoffPolicy
   }
 
   /// Searches Data Catalog for multiple resources like entries and tags that
@@ -648,7 +652,12 @@ public class DataCatalogClient: Clients.DataCatalogProtocol {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+    return GoogleCloudGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
   }
 
   /// Marks an [Entry][google.cloud.datacatalog.v1.Entry] as starred by
@@ -861,7 +870,12 @@ public class DataCatalogClient: Clients.DataCatalogProtocol {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+    return GoogleCloudGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
   }
 
   /// Sets the configuration related to the migration to Dataplex for an

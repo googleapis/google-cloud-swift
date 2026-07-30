@@ -28,6 +28,8 @@ import GoogleCloudGax
 /// @Snippet(path: "AssuredWorkloadsServiceQuickstart")
 public class AssuredWorkloadsServiceClient: Clients.AssuredWorkloadsServiceProtocol {
   let inner: any Clients.AssuredWorkloadsServiceStub
+  let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
+  let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy
 
   /// Creates a new `AssuredWorkloadsServiceClient` instance.
   public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {
@@ -38,6 +40,8 @@ public class AssuredWorkloadsServiceClient: Clients.AssuredWorkloadsServiceProto
       inner = Clients.AssuredWorkloadsServiceLogging(inner, logger: logger)
     }
     self.inner = inner
+    self.pollingErrorPolicy = options.pollingErrorPolicy
+    self.pollingBackoffPolicy = options.pollingBackoffPolicy
   }
 
   /// Creates Assured Workload.
@@ -100,7 +104,12 @@ public class AssuredWorkloadsServiceClient: Clients.AssuredWorkloadsServiceProto
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+    return GoogleCloudGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
   }
 
   /// Updates an existing workload.

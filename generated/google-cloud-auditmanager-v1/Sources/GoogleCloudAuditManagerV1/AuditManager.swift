@@ -29,6 +29,8 @@ import GoogleCloudGax
 /// @Snippet(path: "AuditManagerQuickstart")
 public class AuditManagerClient: Clients.AuditManagerProtocol {
   let inner: any Clients.AuditManagerStub
+  let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
+  let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy
 
   /// Creates a new `AuditManagerClient` instance.
   public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {
@@ -38,6 +40,8 @@ public class AuditManagerClient: Clients.AuditManagerProtocol {
       inner = Clients.AuditManagerLogging(inner, logger: logger)
     }
     self.inner = inner
+    self.pollingErrorPolicy = options.pollingErrorPolicy
+    self.pollingBackoffPolicy = options.pollingBackoffPolicy
   }
 
   /// Enrolls the customer resource(folder/project/organization) to the audit
@@ -126,7 +130,12 @@ public class AuditManagerClient: Clients.AuditManagerProtocol {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+    return GoogleCloudGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
   }
 
   /// Lists audit reports in the selected parent scope

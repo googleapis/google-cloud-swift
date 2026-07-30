@@ -60,7 +60,7 @@
           return "/compute/v1/locations/global/operations/\(pathVariable0)"
         }()
         var query = [
-          URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+          URLQueryItem(name: "$alt", value: "json")
         ]
         let encoder = GoogleCloudGax.QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.parentId, prefix: "parentId"))
@@ -82,7 +82,7 @@
           return "/compute/v1/locations/global/operations/\(pathVariable0)"
         }()
         var query = [
-          URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+          URLQueryItem(name: "$alt", value: "json")
         ]
         let encoder = GoogleCloudGax.QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.parentId, prefix: "parentId"))
@@ -102,7 +102,7 @@
           return "/compute/v1/locations/global/operations"
         }()
         var query = [
-          URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+          URLQueryItem(name: "$alt", value: "json")
         ]
         let encoder = GoogleCloudGax.QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.filter, prefix: "filter"))

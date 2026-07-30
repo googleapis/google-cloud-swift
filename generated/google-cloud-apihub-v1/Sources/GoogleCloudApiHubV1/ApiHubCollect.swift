@@ -31,6 +31,8 @@ import GoogleCloudGax
 /// @Snippet(path: "ApiHubCollectQuickstart")
 public class ApiHubCollectClient: Clients.ApiHubCollectProtocol {
   let inner: any Clients.ApiHubCollectStub
+  let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
+  let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy
 
   /// Creates a new `ApiHubCollectClient` instance.
   public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {
@@ -40,6 +42,8 @@ public class ApiHubCollectClient: Clients.ApiHubCollectProtocol {
       inner = Clients.ApiHubCollectLogging(inner, logger: logger)
     }
     self.inner = inner
+    self.pollingErrorPolicy = options.pollingErrorPolicy
+    self.pollingBackoffPolicy = options.pollingBackoffPolicy
   }
 
   /// Collect API data from a source and push it to Hub's collect layer.
@@ -103,7 +107,12 @@ public class ApiHubCollectClient: Clients.ApiHubCollectProtocol {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+    return GoogleCloudGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
   }
 
   /// Lists information about the supported locations for this service.

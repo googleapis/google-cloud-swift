@@ -79,7 +79,7 @@
           return "/compute/v1/projects/\(pathVariable0)/aggregated/addresses"
         }()
         var query = [
-          URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+          URLQueryItem(name: "$alt", value: "json")
         ]
         let encoder = GoogleCloudGax.QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.filter, prefix: "filter"))
@@ -119,7 +119,7 @@
             "/compute/v1/projects/\(pathVariable0)/regions/\(pathVariable1)/addresses/\(pathVariable2)"
         }()
         var query = [
-          URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+          URLQueryItem(name: "$alt", value: "json")
         ]
         let encoder = GoogleCloudGax.QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.requestId, prefix: "requestId"))
@@ -148,7 +148,7 @@
             "/compute/v1/projects/\(pathVariable0)/regions/\(pathVariable1)/addresses/\(pathVariable2)"
         }()
         let query = [
-          URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+          URLQueryItem(name: "$alt", value: "json")
         ]
         var req = try await self.inner.Request(path: path, query: query)
         req.httpMethod = "GET"
@@ -171,7 +171,7 @@
           return "/compute/v1/projects/\(pathVariable0)/regions/\(pathVariable1)/addresses"
         }()
         var query = [
-          URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+          URLQueryItem(name: "$alt", value: "json")
         ]
         let encoder = GoogleCloudGax.QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.requestId, prefix: "requestId"))
@@ -200,7 +200,7 @@
           return "/compute/v1/projects/\(pathVariable0)/regions/\(pathVariable1)/addresses"
         }()
         var query = [
-          URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+          URLQueryItem(name: "$alt", value: "json")
         ]
         let encoder = GoogleCloudGax.QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.filter, prefix: "filter"))
@@ -235,7 +235,7 @@
             "/compute/v1/projects/\(pathVariable0)/regions/\(pathVariable1)/addresses/\(pathVariable2)/move"
         }()
         var query = [
-          URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+          URLQueryItem(name: "$alt", value: "json")
         ]
         let encoder = GoogleCloudGax.QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.requestId, prefix: "requestId"))
@@ -268,7 +268,7 @@
             "/compute/v1/projects/\(pathVariable0)/regions/\(pathVariable1)/addresses/\(pathVariable2)/setLabels"
         }()
         var query = [
-          URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+          URLQueryItem(name: "$alt", value: "json")
         ]
         let encoder = GoogleCloudGax.QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.requestId, prefix: "requestId"))
@@ -301,7 +301,7 @@
             "/compute/v1/projects/\(pathVariable0)/regions/\(pathVariable1)/addresses/\(pathVariable2)/testIamPermissions"
         }()
         let query = [
-          URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+          URLQueryItem(name: "$alt", value: "json")
         ]
         var req = try await self.inner.Request(path: path, query: query)
         req.httpMethod = "POST"
@@ -333,7 +333,7 @@
             "/compute/v1/projects/\(pathVariable0)/regions/\(pathVariable1)/operations/\(pathVariable2)"
         }()
         let query = [
-          URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+          URLQueryItem(name: "$alt", value: "json")
         ]
         var req = try await self.inner.Request(path: path, query: query)
         req.httpMethod = "GET"

@@ -43,6 +43,8 @@ import GoogleCloudGax
 /// @Snippet(path: "AppConnectionsServiceQuickstart")
 public class AppConnectionsServiceClient: Clients.AppConnectionsServiceProtocol {
   let inner: any Clients.AppConnectionsServiceStub
+  let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
+  let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy
 
   /// Creates a new `AppConnectionsServiceClient` instance.
   public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {
@@ -53,6 +55,8 @@ public class AppConnectionsServiceClient: Clients.AppConnectionsServiceProtocol 
       inner = Clients.AppConnectionsServiceLogging(inner, logger: logger)
     }
     self.inner = inner
+    self.pollingErrorPolicy = options.pollingErrorPolicy
+    self.pollingBackoffPolicy = options.pollingBackoffPolicy
   }
 
   /// Lists AppConnections in a given project and location.
@@ -149,7 +153,12 @@ public class AppConnectionsServiceClient: Clients.AppConnectionsServiceProtocol 
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+    return GoogleCloudGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
   }
 
   /// Updates the parameters of a single AppConnection.
@@ -212,7 +221,12 @@ public class AppConnectionsServiceClient: Clients.AppConnectionsServiceProtocol 
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+    return GoogleCloudGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
   }
 
   /// Deletes a single AppConnection.
@@ -267,7 +281,12 @@ public class AppConnectionsServiceClient: Clients.AppConnectionsServiceProtocol 
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+    return GoogleCloudGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
   }
 
   /// Resolves AppConnections details for a given AppConnector.

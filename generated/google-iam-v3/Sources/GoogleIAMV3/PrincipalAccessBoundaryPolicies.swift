@@ -30,6 +30,8 @@ import GoogleCloudGax
 public class PrincipalAccessBoundaryPoliciesClient: Clients.PrincipalAccessBoundaryPoliciesProtocol
 {
   let inner: any Clients.PrincipalAccessBoundaryPoliciesStub
+  let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
+  let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy
 
   /// Creates a new `PrincipalAccessBoundaryPoliciesClient` instance.
   public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {
@@ -40,6 +42,8 @@ public class PrincipalAccessBoundaryPoliciesClient: Clients.PrincipalAccessBound
       inner = Clients.PrincipalAccessBoundaryPoliciesLogging(inner, logger: logger)
     }
     self.inner = inner
+    self.pollingErrorPolicy = options.pollingErrorPolicy
+    self.pollingBackoffPolicy = options.pollingBackoffPolicy
   }
 
   /// Creates a principal access boundary policy, and returns a long running
@@ -107,7 +111,12 @@ public class PrincipalAccessBoundaryPoliciesClient: Clients.PrincipalAccessBound
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+    return GoogleCloudGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
   }
 
   /// Gets a principal access boundary policy.
@@ -182,7 +191,12 @@ public class PrincipalAccessBoundaryPoliciesClient: Clients.PrincipalAccessBound
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+    return GoogleCloudGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
   }
 
   /// Deletes a principal access boundary policy.
@@ -238,7 +252,12 @@ public class PrincipalAccessBoundaryPoliciesClient: Clients.PrincipalAccessBound
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+    return GoogleCloudGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
   }
 
   /// Lists principal access boundary policies.

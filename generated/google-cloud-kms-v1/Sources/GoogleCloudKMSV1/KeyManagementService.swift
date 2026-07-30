@@ -46,6 +46,8 @@ import GoogleCloudGax
 /// @Snippet(path: "KeyManagementServiceQuickstart")
 public class KeyManagementServiceClient: Clients.KeyManagementServiceProtocol {
   let inner: any Clients.KeyManagementServiceStub
+  let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
+  let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy
 
   /// Creates a new `KeyManagementServiceClient` instance.
   public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {
@@ -56,6 +58,8 @@ public class KeyManagementServiceClient: Clients.KeyManagementServiceProtocol {
       inner = Clients.KeyManagementServiceLogging(inner, logger: logger)
     }
     self.inner = inner
+    self.pollingErrorPolicy = options.pollingErrorPolicy
+    self.pollingBackoffPolicy = options.pollingBackoffPolicy
   }
 
   /// Lists [KeyRings][google.cloud.kms.v1.KeyRing].
@@ -403,7 +407,12 @@ public class KeyManagementServiceClient: Clients.KeyManagementServiceProtocol {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+    return GoogleCloudGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
   }
 
   /// Permanently deletes the given
@@ -484,7 +493,12 @@ public class KeyManagementServiceClient: Clients.KeyManagementServiceProtocol {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleCloudGax._PollableOperationImpl(initialState: initialState, poll: poll)
+    return GoogleCloudGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
   }
 
   /// Import wrapped key material into a

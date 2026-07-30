@@ -88,7 +88,7 @@
             "/compute/v1/projects/\(pathVariable0)/zones/\(pathVariable1)/reservations/\(pathVariable2)/reservationBlocks/\(pathVariable3)"
         }()
         var query = [
-          URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+          URLQueryItem(name: "$alt", value: "json")
         ]
         let encoder = GoogleCloudGax.QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.view, prefix: "view"))
@@ -122,7 +122,7 @@
             "/compute/v1/projects/\(pathVariable0)/zones/\(pathVariable1)/reservations/\(pathVariable2)/reservationBlocks/\(pathVariable3)/getIamPolicy"
         }()
         var query = [
-          URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+          URLQueryItem(name: "$alt", value: "json")
         ]
         let encoder = GoogleCloudGax.QueryParameterEncoder()
         query.append(
@@ -155,7 +155,7 @@
             "/compute/v1/projects/\(pathVariable0)/zones/\(pathVariable1)/reservations/\(pathVariable2)/reservationBlocks"
         }()
         var query = [
-          URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+          URLQueryItem(name: "$alt", value: "json")
         ]
         let encoder = GoogleCloudGax.QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.filter, prefix: "filter"))
@@ -199,7 +199,7 @@
             "/compute/v1/projects/\(pathVariable0)/zones/\(pathVariable1)/reservations/\(pathVariable2)/reservationBlocks/\(pathVariable3)/performMaintenance"
         }()
         var query = [
-          URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+          URLQueryItem(name: "$alt", value: "json")
         ]
         let encoder = GoogleCloudGax.QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.requestId, prefix: "requestId"))
@@ -237,7 +237,7 @@
             "/compute/v1/projects/\(pathVariable0)/zones/\(pathVariable1)/reservations/\(pathVariable2)/reservationBlocks/\(pathVariable3)/setIamPolicy"
         }()
         let query = [
-          URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+          URLQueryItem(name: "$alt", value: "json")
         ]
         var req = try await self.inner.Request(path: path, query: query)
         req.httpMethod = "POST"
@@ -274,7 +274,7 @@
             "/compute/v1/projects/\(pathVariable0)/zones/\(pathVariable1)/reservations/\(pathVariable2)/reservationBlocks/\(pathVariable3)/testIamPermissions"
         }()
         let query = [
-          URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+          URLQueryItem(name: "$alt", value: "json")
         ]
         var req = try await self.inner.Request(path: path, query: query)
         req.httpMethod = "POST"
@@ -306,7 +306,7 @@
             "/compute/v1/projects/\(pathVariable0)/zones/\(pathVariable1)/operations/\(pathVariable2)"
         }()
         let query = [
-          URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+          URLQueryItem(name: "$alt", value: "json")
         ]
         var req = try await self.inner.Request(path: path, query: query)
         req.httpMethod = "GET"
