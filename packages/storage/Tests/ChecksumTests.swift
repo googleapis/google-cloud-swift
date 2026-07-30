@@ -16,6 +16,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
+import GoogleCloudAuth
 import GoogleCloudGax
 @testable import GoogleCloudStorage
 import Testing
@@ -115,6 +116,7 @@ import Testing
       $0.client = .init().with {
         $0.endpoint = registry.endpoint
         $0._testSession = session
+        $0.credentials = try! Credentials(configuration: .anonymous)
       }
     }
 
@@ -163,6 +165,7 @@ import Testing
       $0.client = .init().with {
         $0.endpoint = registry.endpoint
         $0._testSession = session
+        $0.credentials = try! Credentials(configuration: .anonymous)
       }
     }
 
