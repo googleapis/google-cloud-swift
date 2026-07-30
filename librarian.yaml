@@ -561,7 +561,7 @@ libraries:
     copyright_year: "2026"
     output: packages/storage/Sources/generated/StorageControlProtos
     swift:
-      library_name_override: GoogleCloudStorageV2
+      library_name_override: GoogleCloudStorage
       modules:
         - output: packages/storage/Sources/generated/StorageControlProtos
           api_path: google/storage/control/v2
