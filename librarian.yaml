@@ -102,65 +102,65 @@ default:
     default_version: 0.0.0-preview
 libraries:
   - name: google-api
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
   - name: google-api-apikeys-v2
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleApiApiKeysV1
   - name: google-api-cloudquotas-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleApiCloudQuotasV1
   - name: google-api-servicecontrol-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleApiServiceControlV1
   - name: google-api-servicecontrol-v2
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleApiServiceControlV2
   - name: google-api-servicemanagement-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleApiServiceManagementV1
   - name: google-api-serviceusage-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleApiServiceUsageV1
   - name: google-appengine-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleAppEngineV1
   - name: google-bigtable-admin-v2
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudBigtableAdminV2
   - name: google-cloud-abuseevent-logging-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudAbuseEventLoggingV1
   - name: google-cloud-accessapproval-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudAccessApprovalV1
   - name: google-cloud-advisorynotifications-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudAdvisoryNotificationsV1
   - name: google-cloud-aiplatform-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudAIPlatformV1
@@ -168,45 +168,45 @@ libraries:
       default_traits:
         - PredictionService
   - name: google-cloud-alloydb-connectors-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudAlloyDBConnectorsV1
   - name: google-cloud-alloydb-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudAlloyDBV1
   - name: google-cloud-apigateway-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudApiGatewayV1
   - name: google-cloud-apihub-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudApiHubV1
   - name: google-cloud-apiregistry-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudApiRegistryV1
   - name: google-cloud-apphub-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudAppHubV1
   - name: google-cloud-asset-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
   - name: google-cloud-assuredworkloads-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudAssuredWorkloadsV1
   - name: google-cloud-auditmanager-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudAuditManagerV1
@@ -220,89 +220,89 @@ libraries:
           api_path: ""
           module_type: package-version
   - name: google-cloud-baremetalsolution-v2
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudBareMetalSolutionV2
   - name: google-cloud-batch-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
   - name: google-cloud-beyondcorp-appconnections-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudBeyondCorpAppConnectionsV1
   - name: google-cloud-beyondcorp-appconnectors-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudBeyondCorpAppConnectorsV1
   - name: google-cloud-beyondcorp-appgateways-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudBeyondCorpAppGatewaysV1
   - name: google-cloud-beyondcorp-clientconnectorservices-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudBeyondCorpClientConnectorServicesV1
   - name: google-cloud-beyondcorp-clientgateways-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudBeyondCorpClientGatewaysV1
   - name: google-cloud-biglake-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
   - name: google-cloud-bigquery-analyticshub-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleBigQueryAnalyticsHubV1
   - name: google-cloud-bigquery-connection-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleBigQueryConnectionV1
   - name: google-cloud-bigquery-datapolicies-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleBigQueryDataPoliciesV1
   - name: google-cloud-bigquery-datapolicies-v2
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleBigQueryDataPoliciesV2
   - name: google-cloud-bigquery-datatransfer-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleBigQueryDataTransferV1
   - name: google-cloud-billing-budgets-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
   - name: google-cloud-billing-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
   - name: google-cloud-binaryauthorization-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudBinaryAuthorizationV1
   - name: google-cloud-blockchainnodeengine-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudBlockChainNodeEngineV1
   - name: google-cloud-certificatemanager-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudCertificateManagerV1
   - name: google-cloud-ces-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudCESV1
@@ -310,7 +310,7 @@ libraries:
     version: 0.0.0-preview
     copyright_year: "2026"
   - name: google-cloud-compute-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     apis:
       - path: discoveries/compute.v1.json
     copyright_year: "2026"
@@ -337,48 +337,48 @@ libraries:
           - prefix: compute/v1/
             method_id: .google.cloud.compute.v1.globalOrganizationOperations.get
   - name: google-cloud-confidentialcomputing-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudConfidentialComputingV1
   - name: google-cloud-config-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudConfigV1
   - name: google-cloud-configdelivery-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudConfigDeliveryV1
   - name: google-cloud-connectors-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
   - name: google-cloud-datacatalog-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudDataCatalogV1
   - name: google-cloud-dataform-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudDataFormV1
   - name: google-cloud-datafusion-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudDataFusionV1
   - name: google-cloud-dataplex-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudDataplexV1
   - name: google-cloud-deploy-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
   - name: google-cloud-dialogflow-cx-v3
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudDialogflowCXV3
@@ -386,14 +386,14 @@ libraries:
       default_traits:
         - Agents
   - name: google-cloud-dialogflow-v2
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       per_service_traits: true
       default_traits:
         - Agents
   - name: google-cloud-discoveryengine-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudDiscoveryEngineV1
@@ -402,26 +402,26 @@ libraries:
         - SearchService
         - RecommendationService
   - name: google-cloud-domains-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
   - name: google-cloud-edgecontainer-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudEdgeContainerV1
   - name: google-cloud-edgenetwork-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudEdgeNetworkV1
   - name: google-cloud-eventarc-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
   - name: google-cloud-filestore-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
   - name: google-cloud-functions-v2
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
   - name: google-cloud-gax
     version: 0.0.0-preview
@@ -433,126 +433,126 @@ libraries:
           api_path: ""
           module_type: package-version
   - name: google-cloud-gkebackup-logging-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudGKEBackupLoggingV1
   - name: google-cloud-gkehub-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudGKEHubV1
   - name: google-cloud-gkehub-v1-configmanagement
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     output: generated/google-cloud-gkehub-configmanagement-v1
     swift:
       library_name_override: GoogleCloudGKEHubConfigManagementV1
   - name: google-cloud-gkehub-v1-multiclusteringress
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     output: generated/google-cloud-gkehub-multiclusteringress-v1
     swift:
       library_name_override: GoogleCloudGKEHubMultiClusterIngressV1
   - name: google-cloud-gkehub-v1-rbacrolebindingactuation
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     output: generated/google-cloud-gkehub-rbacrolebindingactuation-v1
     swift:
       library_name_override: GoogleCloudGKEHubRBACRoleBindingActuationV1
   - name: google-cloud-gkemulticloud-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudGKEMultiCloudV1
   - name: google-cloud-kms-inventory-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudKMSInventoryV1
   - name: google-cloud-kms-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudKMSV1
   - name: google-cloud-language-v2
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
   - name: google-cloud-licensemanager-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudLicenseManagerV1
   - name: google-cloud-location
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
   - name: google-cloud-locationfinder-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudLocationFinderV1
   - name: google-cloud-memorystore-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudMemoryStoreV1
   - name: google-cloud-networkconnectivity-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudNetworkConnectivityV1
   - name: google-cloud-notebooks-v2
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
   - name: google-cloud-orgpolicy-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudOrgPolicyV1
   - name: google-cloud-osconfig-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudOSConfigV1
   - name: google-cloud-parallelstore-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudParallelStoreV1
   - name: google-cloud-resourcemanager-v3
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudResourceManagerV3
   - name: google-cloud-retail-v2
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
   - name: google-cloud-run-v2
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
   - name: google-cloud-scheduler-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
   - name: google-cloud-secretmanager-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudSecretManagerV1
   - name: google-cloud-security-privateca-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudSecurityPrivateCAV1
   - name: google-cloud-security-publicca-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudSecurityPublicCAV1
   - name: google-cloud-speech-v2
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
   - name: google-cloud-sql-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       per_service_traits: true
@@ -579,36 +579,36 @@ libraries:
           module_type: convert-swift
           module_path: StorageControlProtos
   - name: google-cloud-storageinsights-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudStorageInsightsV1
   - name: google-cloud-talent-v4
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
   - name: google-cloud-telcoautomation-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudTelcoAutomationV1
   - name: google-cloud-texttospeech-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudTextToSpeechV1
   - name: google-cloud-tpu-v2
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
   - name: google-cloud-translate-v3
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudTranslateV3
   - name: google-cloud-vision-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
   - name: google-cloud-wkt
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     output: packages/wkt/Sources/GoogleCloudWkt/generated
     roots:
@@ -626,116 +626,117 @@ libraries:
           api_path: google/protobuf
           module_type: package-version
   - name: google-cloud-workflows-executions-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
   - name: google-cloud-workflows-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
   - name: google-cloud-workloadmanager-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudWorkloadManagerV1
   - name: google-container-v1
+    version: 0.1.0
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudContainerV1
   - name: google-datastore-admin-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudDatastoreAdminV1
   - name: google-devtools-artifactregistry-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudArtifactRegistryV1
   - name: google-devtools-cloudtrace-v2
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudTraceV2
   - name: google-iam-admin-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleIAMAdminV1
   - name: google-iam-credentials-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleIAMCredentialsV1
   - name: google-iam-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleIAMV1
   - name: google-iam-v2
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleIAMV2
   - name: google-iam-v3
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleIAMV3
   - name: google-identity-accesscontextmanager-type
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleIdentityAccessContextManagerType
   - name: google-identity-accesscontextmanager-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleIdentityAccessContextManagerV1
   - name: google-logging-type
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudLoggingType
   - name: google-logging-v2
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudLoggingV2
   - name: google-longrunning
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleLongRunning
   - name: google-monitoring-dashboard-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudMonitoringDashboardV1
   - name: google-monitoring-v3
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudMonitoringV3
   - name: google-privacy-dlp-v2
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudDLPV2
   - name: google-rpc
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
   - name: google-rpc-context
     version: 0.0.0-preview
     copyright_year: "2026"
   - name: google-storagetransfer-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleStorageTransferV1
   - name: google-type
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
   - name: grafeas-v1
-    version: 0.0.0-preview
+    version: 0.1.0-preview
     copyright_year: "2026"
     swift:
       library_name_override: GoogleGrafeasV1
