@@ -10,6 +10,6 @@
     "name": "container",
     "name_pretty": "Kubernetes Engine",
     "product_documentation": "https://cloud.google.com/kubernetes-engine/",
-    "release_level": "stable",
+    "release_level": "preview",
     "repo": "googleapis/google-cloud-swift"
 }
