@@ -759,6 +759,7 @@ libraries:
     skip_release: true
     specification_format: discovery
     swift:
+      library_name_override: TestsDiscovery
       modules:
         - output: Tests/Discovery/generated
           api_path: Tests/Discovery/disco/discovery-bytes.json
