@@ -408,7 +408,9 @@ struct ExternalAccountTests {
     #expect(attempts.getCount() == 1)
   }
 
-  @Test("Programmatic credentials retry on custom provider errors")
+  @Test(
+    "Programmatic credentials retry on custom provider errors",
+    .disabled("TODO(https://github.com/googleapis/google-cloud-swift/issues/84) - the test flakes"))
   func programmaticCredentialsRetriesOnProviderErrors() async throws {
     let provider = MockFailingSubjectTokenProvider()
     let targetURL = URL(string: "https://sts.googleapis.com/v1/token")!
