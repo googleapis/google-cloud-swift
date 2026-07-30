@@ -439,7 +439,9 @@ struct ExternalAccountTests {
     #expect(count2 >= 2)
   }
 
-  @Test("Successfully signs tokens and performs service account impersonation", .disabled("PR3"))
+  @Test(
+    "Successfully signs tokens and performs service account impersonation",
+    .disabled("TODO(https://github.com/googleapis/google-cloud-swift/issues/86) - implement test"))
   func externalAccountWithImpersonationSuccess() async throws {}
 
   @Test("Successfully returns the direct STS access token when no impersonation is active")
@@ -489,15 +491,18 @@ struct ExternalAccountTests {
   }
 
   @Test(
-    "Constructs valid AccessTokenCredentials from programmatic configurations", .disabled("PR3"))
+    "Constructs valid AccessTokenCredentials from programmatic configurations",
+    .disabled("TODO(https://github.com/googleapis/google-cloud-swift/issues/86) - implement test"))
   func externalAccountAccessTokenCredentialsSuccess() async throws {}
 
-  @Test("Propagates transient errors when the STS endpoint fails with a 500", .disabled("PR3"))
+  @Test(
+    "Propagates transient errors when the STS endpoint fails with a 500",
+    .disabled("TODO(https://github.com/googleapis/google-cloud-swift/issues/86) - implement test"))
   func impersonationFlowSTSCallFails() async throws {}
 
   @Test(
     "Immediately aborts and throws permanent errors on 403 Forbidden IAM exceptions",
-    .disabled("PR3"))
+    .disabled("TODO(https://github.com/googleapis/google-cloud-swift/issues/86) - implement test"))
   func impersonationFlowIAMCallFails() async throws {}
 
   @Test("Programmatic credentials recover successfully on transient retry conditions")
