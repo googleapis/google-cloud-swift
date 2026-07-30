@@ -13,64 +13,11 @@
 // limitations under the License.
 
 import Foundation
-#if canImport(FoundationNetworking)
-  import FoundationNetworking
-#endif
 import Testing
-
+import AsyncHTTPClient
 @testable import GoogleCloudAuth
 
-// MARK: - Mock Response Model
-
-private struct MockTokenResponse: Codable, Sendable, Equatable {
-  let accessToken: String
-  let expiresIn: Int
-}
-
-// MARK: - Mock URL Protocol for Mocking Network Requests
-
-private final class MockURLProtocol: URLProtocol {
-  nonisolated(unsafe) static var requestHandler:
-    (@Sendable (URLRequest) throws -> (URLResponse, Data))?
-
-  override class func canInit(with request: URLRequest) -> Bool {
-    return true
-  }
-
-  override class func canonicalRequest(for request: URLRequest) -> URLRequest {
-    return request
-  }
-
-  override func startLoading() {
-    guard let handler = MockURLProtocol.requestHandler else {
-      fatalError("Handler is not set.")
-    }
-
-    do {
-      let (response, data) = try handler(request)
-      client?.urlProtocol(self, didReceive: response, cacheStoragePolicy: .notAllowed)
-      client?.urlProtocol(self, didLoad: data)
-      client?.urlProtocolDidFinishLoading(self)
-    } catch {
-      client?.urlProtocol(self, didFailWithError: error)
-    }
-  }
-
-  override func stopLoading() {}
-}
-
-// MARK: - Suite: AuthHTTPClient Test
-
-// Serialized because MockURLProtocol uses a shared static requestHandler.
-@Suite(.serialized) struct AuthHTTPClientTest {
-  private let mockSession: URLSession
-
-  init() {
-    let config = URLSessionConfiguration.ephemeral
-    config.protocolClasses = [MockURLProtocol.self]
-    self.mockSession = URLSession(configuration: config)
-  }
-
+@Suite struct AuthHTTPClientTest {
   @Test func clientPerformsGetAndDecodesSnakeCase() async throws {
     let targetURL = URL(string: "https://oauth2.googleapis.com/token")!
     let mockPayload = MockTokenResponse(accessToken: "fake-token-123", expiresIn: 3600)
@@ -78,22 +25,21 @@ private final class MockURLProtocol: URLProtocol {
     encoder.keyEncodingStrategy = .convertToSnakeCase
     let encodedData = try encoder.encode(mockPayload)
 
-    MockURLProtocol.requestHandler = { (request: URLRequest) in
-      #expect(request.url == targetURL)
-      #expect(request.httpMethod == "GET")
-      #expect(request.value(forHTTPHeaderField: "X-Goog-Custom-Header") == "HeaderValue")
-      #expect(request.cachePolicy == .reloadIgnoringLocalCacheData)
+    let mock = MockHTTPClient([
+      { (request: HTTPClientRequest) in
+        #expect(request.url == targetURL.absoluteString)
+        #expect(request.method == .GET)
+        #expect(request.headers["X-Goog-Custom-Header"] == ["HeaderValue"])
+        return HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([("Content-Type", "application/json")]),
+          body: .bytes(.init(data: encodedData)),
+        )
+      }
+    ])
 
-      let response = HTTPURLResponse(
-        url: targetURL,
-        statusCode: 200,
-        httpVersion: nil as String?,
-        headerFields: ["Content-Type": "application/json"]
-      )!
-      return (response, encodedData)
-    }
-
-    let client = AuthHTTPClient(session: self.mockSession)
+    let client = AuthHTTPClient(mock: mock)
     let response: MockTokenResponse = try await client.get(
       url: targetURL,
       headers: ["X-Goog-Custom-Header": "HeaderValue"]
@@ -109,22 +55,22 @@ private final class MockURLProtocol: URLProtocol {
     encoder.keyEncodingStrategy = .convertToSnakeCase
     let encodedData = try encoder.encode(mockPayload)
 
-    MockURLProtocol.requestHandler = { (request: URLRequest) in
-      #expect(request.url == targetURL)
-      #expect(request.httpMethod == "POST")
-      #expect(request.value(forHTTPHeaderField: "Content-Type") == "application/json")
-      #expect(request.cachePolicy == .reloadIgnoringLocalCacheData)
+    let mock = MockHTTPClient([
+      { (request: HTTPClientRequest) in
+        #expect(request.url == targetURL.absoluteString)
+        #expect(request.method == .POST)
+        #expect(request.headers["Content-Type"] == ["application/json"])
 
-      let response = HTTPURLResponse(
-        url: targetURL,
-        statusCode: 200,
-        httpVersion: nil as String?,
-        headerFields: ["Content-Type": "application/json"]
-      )!
-      return (response, encodedData)
-    }
+        return HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([("Content-Type", "application/json")]),
+          body: .bytes(.init(data: encodedData)),
+        )
+      }
+    ])
 
-    let client = AuthHTTPClient(session: self.mockSession)
+    let client = AuthHTTPClient(mock: mock)
     let response: MockTokenResponse = try await client.post(
       url: targetURL,
       body: ["grant_type": "refresh_token"]
@@ -135,19 +81,16 @@ private final class MockURLProtocol: URLProtocol {
 
   @Test func clientThrowsHTTPStatusCodeError() async throws {
     let targetURL = URL(string: "https://oauth2.googleapis.com/invalid")!
+    let mock = MockHTTPClient([
+      { (request: HTTPClientRequest) in
+        return HTTPClientResponse(
+          version: .http2,
+          status: .serviceUnavailable,
+        )
+      }
+    ])
 
-    MockURLProtocol.requestHandler = { (request: URLRequest) in
-      let response = HTTPURLResponse(
-        url: targetURL,
-        statusCode: 503,
-        httpVersion: nil as String?,
-        headerFields: nil as [String: String]?
-      )!
-      return (response, Data())
-    }
-
-    let client = AuthHTTPClient(session: self.mockSession)
-
+    let client = AuthHTTPClient(mock: mock)
     await #expect(throws: AuthHTTPError.self) {
       let _: MockTokenResponse = try await client.get(url: targetURL)
     }
@@ -158,22 +101,21 @@ private final class MockURLProtocol: URLProtocol {
     let mockEmail = "test-service-account@google.com"
     let mockData = Data(mockEmail.utf8)
 
-    MockURLProtocol.requestHandler = { (request: URLRequest) in
-      #expect(request.url == targetURL)
-      #expect(request.httpMethod == "GET")
-      #expect(request.value(forHTTPHeaderField: "Metadata-Flavor") == "Google")
-      #expect(request.cachePolicy == .reloadIgnoringLocalCacheData)
+    let mock = MockHTTPClient([
+      { (request: HTTPClientRequest) in
+        #expect(request.url == targetURL.absoluteString)
+        #expect(request.method == .GET)
+        #expect(request.headers["Metadata-Flavor"] == ["Google"])
 
-      let response = HTTPURLResponse(
-        url: targetURL,
-        statusCode: 200,
-        httpVersion: nil as String?,
-        headerFields: nil as [String: String]?
-      )!
-      return (response, mockData)
-    }
+        return HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          body: .bytes(.init(data: mockData)),
+        )
+      }
+    ])
 
-    let client = AuthHTTPClient(session: self.mockSession)
+    let client = AuthHTTPClient(mock: mock)
     let result = try await client.getString(
       url: targetURL,
       headers: ["Metadata-Flavor": "Google"]
@@ -184,13 +126,13 @@ private final class MockURLProtocol: URLProtocol {
 
   @Test func clientThrowsNetworkError() async throws {
     let targetURL = URL(string: "https://oauth2.googleapis.com/token")!
+    let mock = MockHTTPClient([
+      { (request: HTTPClientRequest) in
+        throw URLError(.notConnectedToInternet)
+      }
+    ])
 
-    MockURLProtocol.requestHandler = { (request: URLRequest) in
-      throw URLError(.notConnectedToInternet)
-    }
-
-    let client = AuthHTTPClient(session: self.mockSession)
-
+    let client = AuthHTTPClient(mock: mock)
     await #expect(throws: AuthHTTPError.self) {
       let _: MockTokenResponse = try await client.get(url: targetURL)
     }
@@ -203,21 +145,20 @@ private final class MockURLProtocol: URLProtocol {
   @Test func clientGetStringFailsOnInvalidUTF8() async throws {
     let targetURL = URL(string: "http://metadata.google.internal/invalid-utf8")!
     let mockData = Data([0xFF, 0xFE, 0xFD])  // Invalid UTF-8
+    let mock = MockHTTPClient([
+      { (request: HTTPClientRequest) in
+        return HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          body: .bytes(.init(data: mockData)),
+        )
+      }
+    ])
 
-    MockURLProtocol.requestHandler = { (request: URLRequest) in
-      let response = HTTPURLResponse(
-        url: targetURL,
-        statusCode: 200,
-        httpVersion: nil as String?,
-        headerFields: nil as [String: String]?
-      )!
-      return (response, mockData)
-    }
-
-    let client = AuthHTTPClient(session: self.mockSession)
-
+    let client = AuthHTTPClient(mock: mock)
     await #expect(throws: AuthHTTPError.self) {
-      try await client.getString(url: targetURL)
+      let s = try await client.getString(url: targetURL)
+      print(" s = \(s)")
     }
   }
 
@@ -227,22 +168,22 @@ private final class MockURLProtocol: URLProtocol {
     let encoder = JSONEncoder()
     encoder.keyEncodingStrategy = .convertToSnakeCase
     let encodedData = try encoder.encode(mockPayload)
+    let mock = MockHTTPClient([
+      { (request: HTTPClientRequest) in
+        #expect(request.url == targetURL.absoluteString)
+        #expect(request.method == .POST)
+        #expect(request.headers["X-Custom-Header"] == ["CustomValue"])
 
-    MockURLProtocol.requestHandler = { (request: URLRequest) in
-      #expect(request.url == targetURL)
-      #expect(request.httpMethod == "POST")
-      #expect(request.value(forHTTPHeaderField: "X-Custom-Header") == "CustomValue")
+        return HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([("Content-Type", "application/json")]),
+          body: .bytes(.init(data: encodedData)),
+        )
+      }
+    ])
 
-      let response = HTTPURLResponse(
-        url: targetURL,
-        statusCode: 200,
-        httpVersion: nil as String?,
-        headerFields: ["Content-Type": "application/json"]
-      )!
-      return (response, encodedData)
-    }
-
-    let client = AuthHTTPClient(session: self.mockSession)
+    let client = AuthHTTPClient(mock: mock)
     let response: MockTokenResponse = try await client.post(
       url: targetURL,
       body: ["grant_type": "refresh_token"],
@@ -252,40 +193,21 @@ private final class MockURLProtocol: URLProtocol {
     #expect(response == mockPayload)
   }
 
-  @Test func clientThrowsOnNonHTTPResponse() async throws {
-    let targetURL = URL(string: "https://oauth2.googleapis.com/token")!
-
-    MockURLProtocol.requestHandler = { (request: URLRequest) in
-      let response = URLResponse(
-        url: targetURL,
-        mimeType: nil,
-        expectedContentLength: 0,
-        textEncodingName: nil
-      )
-      return (response, Data())
-    }
-
-    let client = AuthHTTPClient(session: self.mockSession)
-
-    await #expect(throws: AuthHTTPError.self) {
-      let _: MockTokenResponse = try await client.get(url: targetURL)
-    }
-  }
-
   @Test func clientThrowsOnEmptyHTTPResponse() async throws {
     let targetURL = URL(string: "https://oauth2.googleapis.com/token")!
 
-    MockURLProtocol.requestHandler = { (request: URLRequest) in
-      let response = HTTPURLResponse(
-        url: targetURL,
-        statusCode: 200,
-        httpVersion: nil as String?,
-        headerFields: ["Content-Type": "application/json"]
-      )!
-      return (response, Data())
-    }
+    let mock = MockHTTPClient([
+      { (request: HTTPClientRequest) in
+        return HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([("Content-Type", "application/json")]),
+          body: .bytes(.init(data: Data())),
+        )
+      }
+    ])
 
-    let client = AuthHTTPClient(session: self.mockSession)
+    let client = AuthHTTPClient(mock: mock)
     await #expect(throws: AuthHTTPError.self) {
       let _: MockTokenResponse = try await client.get(url: targetURL)
     }
@@ -300,25 +222,26 @@ private final class MockURLProtocol: URLProtocol {
 
     let postBody = Data("grant_type=urn:ietf:params:oauth:grant-type:token-exchange".utf8)
 
-    MockURLProtocol.requestHandler = { (request: URLRequest) in
-      #expect(request.url == targetURL)
-      #expect(request.httpMethod == "POST")
-      #expect(
-        request.value(forHTTPHeaderField: "Content-Type") == "application/x-www-form-urlencoded")
-      #expect(request.value(forHTTPHeaderField: "X-Custom-Header") == "Val")
+    let mock = MockHTTPClient([
+      { (request: HTTPClientRequest) async throws in
+        #expect(request.url == targetURL.absoluteString)
+        #expect(request.method == .POST)
+        #expect(request.headers["Content-Type"] == ["application/x-www-form-urlencoded"])
+        #expect(request.headers["X-Custom-Header"] == ["Val"])
+        let buffer = try await request.body!.collect(upTo: 1024 * 1024)
+        let got = Data(buffer: buffer)
+        #expect(got == postBody)
 
-      #expect(request.bodyData == postBody)
+        return HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([("Content-Type", "application/json")]),
+          body: .bytes(.init(data: encodedData)),
+        )
+      }
+    ])
 
-      let response = HTTPURLResponse(
-        url: targetURL,
-        statusCode: 200,
-        httpVersion: nil as String?,
-        headerFields: ["Content-Type": "application/json"]
-      )!
-      return (response, encodedData)
-    }
-
-    let client = AuthHTTPClient(session: self.mockSession)
+    let client = AuthHTTPClient(mock: mock)
     let response: MockTokenResponse = try await client.postData(
       url: targetURL,
       bodyData: postBody,
@@ -328,4 +251,9 @@ private final class MockURLProtocol: URLProtocol {
 
     #expect(response == mockPayload)
   }
+}
+
+private struct MockTokenResponse: Codable, Sendable, Equatable {
+  let accessToken: String
+  let expiresIn: Int
 }

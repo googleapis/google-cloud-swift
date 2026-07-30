@@ -14,16 +14,8 @@
 
 import Foundation
 import Testing
-
-#if canImport(FoundationNetworking)
-  import FoundationNetworking
-#endif
-
+import struct AsyncHTTPClient.HTTPClientResponse
 @testable import GoogleCloudAuth
-
-// MARK: - Thread-Safe Concurrency Counter for Swift 6 @Sendable Captures
-
-// MARK: - Suite: RetryEngine Test
 
 @Suite struct RetryEngineTest {
   private let testURL = URL(string: "https://example.com")!
@@ -60,9 +52,7 @@ import Testing
     ) {
       attempts.increment()
       if attempts.getCount() < 3 {
-        throw AuthHTTPError.unsuccessfulResponse(
-          response: HTTPURLResponse(
-            url: self.testURL, statusCode: 503, httpVersion: nil, headerFields: nil)!, data: Data())
+        throw Self.internalError()
       }
       return "recovered"
     }
@@ -91,9 +81,7 @@ import Testing
         }
       ) {
         attempts.increment()
-        throw AuthHTTPError.unsuccessfulResponse(
-          response: HTTPURLResponse(
-            url: self.testURL, statusCode: 404, httpVersion: nil, headerFields: nil)!, data: Data())
+        throw Self.notFoundError()
       }
     }
 
@@ -120,9 +108,7 @@ import Testing
         }
       ) {
         attempts.increment()
-        throw AuthHTTPError.unsuccessfulResponse(
-          response: HTTPURLResponse(
-            url: self.testURL, statusCode: 503, httpVersion: nil, headerFields: nil)!, data: Data())
+        throw Self.internalError()
       }
     }
 
@@ -214,6 +200,16 @@ import Testing
     }
 
     #expect(attempts.getCount() == 1)
+  }
+
+  static func internalError() -> AuthHTTPError {
+    .unsuccessfulResponse(
+      response: HTTPClientResponse(version: .http1_1, status: .serviceUnavailable))
+  }
+
+  static func notFoundError() -> AuthHTTPError {
+    .unsuccessfulResponse(
+      response: HTTPClientResponse(version: .http1_1, status: .notFound))
   }
 }
 

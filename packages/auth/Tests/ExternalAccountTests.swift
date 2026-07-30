@@ -13,42 +13,9 @@
 // limitations under the License.
 
 import Foundation
-#if canImport(FoundationNetworking)
-  import FoundationNetworking
-#endif
+import AsyncHTTPClient
 import Testing
-
 @testable import GoogleCloudAuth
-
-private final class MockURLProtocol: URLProtocol {
-  nonisolated(unsafe) static var requestHandler:
-    (@Sendable (URLRequest) throws -> (URLResponse, Data))?
-
-  override class func canInit(with request: URLRequest) -> Bool {
-    return true
-  }
-
-  override class func canonicalRequest(for request: URLRequest) -> URLRequest {
-    return request
-  }
-
-  override func startLoading() {
-    guard let handler = MockURLProtocol.requestHandler else {
-      fatalError("Handler is not set.")
-    }
-
-    do {
-      let (response, data) = try handler(request)
-      client?.urlProtocol(self, didReceive: response, cacheStoragePolicy: .notAllowed)
-      client?.urlProtocol(self, didLoad: data)
-      client?.urlProtocolDidFinishLoading(self)
-    } catch {
-      client?.urlProtocol(self, didFailWithError: error)
-    }
-  }
-
-  override func stopLoading() {}
-}
 
 private struct MockSubjectTokenProvider: SubjectTokenProvider {
   let token: String
@@ -69,16 +36,7 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
   }
 }
 
-@Suite(.serialized)
-struct ExternalAccountTests {
-  private let mockSession: URLSession
-
-  init() {
-    let config = URLSessionConfiguration.ephemeral
-    config.protocolClasses = [MockURLProtocol.self]
-    self.mockSession = URLSession(configuration: config)
-  }
-
+@Suite struct ExternalAccountTests {
   @Test("Configures programmatic credentials with custom providers successfully")
   func createProgrammaticCredentials() throws {
     let provider = MockSubjectTokenProvider(token: "mock-provider-token")
@@ -269,22 +227,22 @@ struct ExternalAccountTests {
     encoder.keyEncodingStrategy = .convertToSnakeCase
     let responseData = try encoder.encode(expectedResponse)
 
-    MockURLProtocol.requestHandler = { request in
-      #expect(request.url == targetURL)
-      #expect(request.httpMethod == "POST")
-      #expect(
-        request.value(forHTTPHeaderField: "Content-Type") == "application/x-www-form-urlencoded")
+    let mock = MockHTTPClient([
+      { (request: HTTPClientRequest) in
+        #expect(request.url == targetURL.absoluteString)
+        #expect(request.method == .POST)
+        #expect(request.headers["Content-Type"] == ["application/x-www-form-urlencoded"])
 
-      let response = HTTPURLResponse(
-        url: targetURL,
-        statusCode: 200,
-        httpVersion: nil,
-        headerFields: ["Content-Type": "application/json"]
-      )!
-      return (response, responseData)
-    }
+        return HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([("Content-Type", "application/json")]),
+          body: .bytes(.init(data: responseData)),
+        )
+      }
+    ])
 
-    let httpClient = AuthHTTPClient(session: self.mockSession)
+    let httpClient = AuthHTTPClient(mock: mock)
     let creds = try ExternalAccountCredentials(
       credentialSource: .programmatic(subjectTokenProvider: provider),
       audience: "//iam.googleapis.com/locations/global/workforcePools/wpool/providers/wprov",
@@ -319,30 +277,18 @@ struct ExternalAccountTests {
     encoder.keyEncodingStrategy = .convertToSnakeCase
     let responseData = try encoder.encode(expectedResponse)
 
-    let attempts = CallCounter()
-
-    MockURLProtocol.requestHandler = { request in
-      let attempt = attempts.increment()
-      if attempt == 1 {
-        // Fail with transient 429 error first
-        let response = HTTPURLResponse(
-          url: targetURL,
-          statusCode: 429,
-          httpVersion: nil,
-          headerFields: [:]
-        )!
-        return (response, Data())
-      } else {
-        // Succeed on subsequent attempt
-        let response = HTTPURLResponse(
-          url: targetURL,
-          statusCode: 200,
-          httpVersion: nil,
-          headerFields: ["Content-Type": "application/json"]
-        )!
-        return (response, responseData)
-      }
+    let busy = { @Sendable (request: HTTPClientRequest) in
+      return HTTPClientResponse(version: .http2, status: .tooManyRequests)
     }
+    let success = { @Sendable (request: HTTPClientRequest) in
+      return HTTPClientResponse(
+        version: .http2,
+        status: .ok,
+        headers: .init([("Content-Type", "application/json")]),
+        body: .bytes(.init(data: responseData)),
+      )
+    }
+    let mock = MockHTTPClient([busy, success])
 
     let retryConfig = RetryConfiguration(
       maxAttempts: 2,
@@ -351,7 +297,7 @@ struct ExternalAccountTests {
       maxDelay: .milliseconds(1)
     )
 
-    let httpClient = AuthHTTPClient(session: self.mockSession)
+    let httpClient = AuthHTTPClient(mock: mock)
     let creds = try ExternalAccountCredentials(
       credentialSource: .programmatic(subjectTokenProvider: provider),
       audience: "aud",
@@ -364,7 +310,6 @@ struct ExternalAccountTests {
     // The call should succeed because the internal retry engine resolves it
     let headers = try await creds.headers()
     #expect(headers.contains { $0.0 == "Authorization" && $0.1 == "Bearer ya29.success-token" })
-    #expect(attempts.getCount() == 2)
   }
 
   @Test("Programmatic credentials do not retry on non-transient failures")
@@ -374,19 +319,15 @@ struct ExternalAccountTests {
 
     let attempts = CallCounter()
 
-    MockURLProtocol.requestHandler = { request in
-      attempts.increment()
-      // Permanent 403 error
-      let response = HTTPURLResponse(
-        url: targetURL,
-        statusCode: 403,
-        httpVersion: nil,
-        headerFields: [:]
-      )!
-      return (response, Data())
-    }
+    let mock = MockHTTPClient([
+      { (request: HTTPClientRequest) in
+        attempts.increment()
+        // Permanent 403 error
+        return HTTPClientResponse(version: .http2, status: .forbidden)
+      }
+    ])
 
-    let httpClient = AuthHTTPClient(session: self.mockSession)
+    let httpClient = AuthHTTPClient(mock: mock)
     let creds = try ExternalAccountCredentials(
       credentialSource: .programmatic(subjectTokenProvider: provider),
       audience: "aud",
@@ -414,8 +355,8 @@ struct ExternalAccountTests {
   func programmaticCredentialsRetriesOnProviderErrors() async throws {
     let provider = MockFailingSubjectTokenProvider()
     let targetURL = URL(string: "https://sts.googleapis.com/v1/token")!
-
-    let httpClient = AuthHTTPClient(session: self.mockSession)
+    let mock = MockHTTPClient([])
+    let httpClient = AuthHTTPClient(mock: mock)
     let creds = try ExternalAccountCredentials(
       credentialSource: .programmatic(subjectTokenProvider: provider),
       audience: "aud",
@@ -463,20 +404,21 @@ struct ExternalAccountTests {
     encoder.keyEncodingStrategy = .convertToSnakeCase
     let responseData = try encoder.encode(expectedResponse)
 
-    MockURLProtocol.requestHandler = { request in
-      #expect(request.url == targetURL)
-      #expect(request.httpMethod == "POST")
+    let mock = MockHTTPClient([
+      { (request: HTTPClientRequest) in
+        #expect(request.url == targetURL.absoluteString)
+        #expect(request.method == .POST)
 
-      let response = HTTPURLResponse(
-        url: targetURL,
-        statusCode: 200,
-        httpVersion: nil,
-        headerFields: ["Content-Type": "application/json"]
-      )!
-      return (response, responseData)
-    }
+        return HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([("Content-Type", "application/json")]),
+          body: .bytes(.init(data: responseData)),
+        )
+      }
+    ])
 
-    let httpClient = AuthHTTPClient(session: self.mockSession)
+    let httpClient = AuthHTTPClient(mock: mock)
     let creds = try ExternalAccountCredentials(
       credentialSource: .programmatic(subjectTokenProvider: provider),
       audience: "aud",
@@ -526,28 +468,20 @@ struct ExternalAccountTests {
 
     let attempts = CallCounter()
 
-    MockURLProtocol.requestHandler = { request in
-      let attempt = attempts.increment()
-      if attempt <= 2 {
-        // Fail with transient 503 error for first two attempts
-        let response = HTTPURLResponse(
-          url: targetURL,
-          statusCode: 503,
-          httpVersion: nil,
-          headerFields: [:]
-        )!
-        return (response, Data())
-      } else {
-        // Succeed on third attempt
-        let response = HTTPURLResponse(
-          url: targetURL,
-          statusCode: 200,
-          httpVersion: nil,
-          headerFields: ["Content-Type": "application/json"]
-        )!
-        return (response, responseData)
-      }
+    let unavailable = { @Sendable (request: HTTPClientRequest) in
+      attempts.increment()
+      return HTTPClientResponse(version: .http2, status: .serviceUnavailable)
     }
+    let success = { @Sendable (request: HTTPClientRequest) in
+      attempts.increment()
+      return HTTPClientResponse(
+        version: .http2,
+        status: .ok,
+        headers: .init([("Content-Type", "application/json")]),
+        body: .bytes(.init(data: responseData)),
+      )
+    }
+    let mock = MockHTTPClient([unavailable, unavailable, success])
 
     let retryConfig = RetryConfiguration(
       maxAttempts: 3,
@@ -556,7 +490,7 @@ struct ExternalAccountTests {
       maxDelay: .milliseconds(1)
     )
 
-    let httpClient = AuthHTTPClient(session: self.mockSession)
+    let httpClient = AuthHTTPClient(mock: mock)
     let creds = try ExternalAccountCredentials(
       credentialSource: .programmatic(subjectTokenProvider: provider),
       audience: "aud",
@@ -592,41 +526,35 @@ struct ExternalAccountTests {
     encoder.keyEncodingStrategy = .convertToSnakeCase
     let responseData = try encoder.encode(expectedResponse)
 
-    MockURLProtocol.requestHandler = { request in
-      #expect(request.url == targetURL)
-      #expect(request.httpMethod == "POST")
+    let mock = MockHTTPClient([
+      { (request: HTTPClientRequest) async throws in
+        #expect(request.url == targetURL.absoluteString)
+        #expect(request.method == .POST)
 
-      guard let bodyData = request.httpBody,
-        let bodyString = String(data: bodyData, encoding: .utf8)
-      else {
-        Issue.record("Request body is empty")
-        let errResponse = HTTPURLResponse(
-          url: targetURL,
-          statusCode: 400,
-          httpVersion: nil,
-          headerFields: nil
-        )!
-        return (errResponse, Data())
+        guard let buffer = try await request.body?.collect(upTo: 1024 * 1024) else {
+          Issue.record("Request body is empty")
+          return HTTPClientResponse(version: .http2, status: .badRequest)
+        }
+
+        let bodyString = (try buffer.getUTF8ValidatedString(at: 0, length: buffer.readableBytes))!
+        let queryItems = URLComponents(string: "?" + bodyString)?.queryItems ?? []
+        let params = Dictionary(uniqueKeysWithValues: queryItems.map { ($0.name, $0.value) })
+
+        #expect(params["options"] == nil)
+        #expect(
+          request.headers["Authorization"] == ["Basic dGVzdC1jbGllbnQtaWQ6dGVzdC1jbGllbnQtc2VjcmV0"]
+        )
+
+        return HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([("Content-Type", "application/json")]),
+          body: .bytes(.init(data: responseData)),
+        )
       }
+    ])
 
-      let queryItems = URLComponents(string: "?" + bodyString)?.queryItems ?? []
-      let params = Dictionary(uniqueKeysWithValues: queryItems.map { ($0.name, $0.value) })
-
-      #expect(params["options"] == nil)
-      let expectedAuth =
-        "Basic dGVzdC1jbGllbnQtaWQ6dGVzdC1jbGllbnQtc2VjcmV0"
-      #expect(request.value(forHTTPHeaderField: "Authorization") == expectedAuth)
-
-      let response = HTTPURLResponse(
-        url: targetURL,
-        statusCode: 200,
-        httpVersion: nil,
-        headerFields: ["Content-Type": "application/json"]
-      )!
-      return (response, responseData)
-    }
-
-    let httpClient = AuthHTTPClient(session: self.mockSession)
+    let httpClient = AuthHTTPClient(mock: mock)
     let creds = try ExternalAccountCredentials(
       credentialSource: .programmatic(subjectTokenProvider: provider),
       audience: "//iam.googleapis.com/locations/global/workforcePools/wpool/providers/wprov",
@@ -658,38 +586,32 @@ struct ExternalAccountTests {
     encoder.keyEncodingStrategy = .convertToSnakeCase
     let responseData = try encoder.encode(expectedResponse)
 
-    MockURLProtocol.requestHandler = { request in
-      #expect(request.url == targetURL)
-      #expect(request.httpMethod == "POST")
+    let mock = MockHTTPClient([
+      { (request: HTTPClientRequest) in
+        #expect(request.url == targetURL.absoluteString)
+        #expect(request.method == .POST)
 
-      guard let bodyData = request.httpBody,
-        let bodyString = String(data: bodyData, encoding: .utf8)
-      else {
-        Issue.record("Request body is empty")
-        let errResponse = HTTPURLResponse(
-          url: targetURL,
-          statusCode: 400,
-          httpVersion: nil,
-          headerFields: nil
-        )!
-        return (errResponse, Data())
+        guard let buffer = try await request.body?.collect(upTo: 1024 * 1024) else {
+          Issue.record("Request body is empty")
+          return HTTPClientResponse(version: .http2, status: .badRequest)
+        }
+
+        let bodyString = (try buffer.getUTF8ValidatedString(at: 0, length: buffer.readableBytes))!
+        let queryItems = URLComponents(string: "?" + bodyString)?.queryItems ?? []
+        let params = Dictionary(uniqueKeysWithValues: queryItems.map { ($0.name, $0.value) })
+
+        #expect(params["options"] == "{\"userProject\":\"quota-project\"}")
+
+        return HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([("Content-Type", "application/json")]),
+          body: .bytes(.init(data: responseData)),
+        )
       }
+    ])
 
-      let queryItems = URLComponents(string: "?" + bodyString)?.queryItems ?? []
-      let params = Dictionary(uniqueKeysWithValues: queryItems.map { ($0.name, $0.value) })
-
-      #expect(params["options"] == "{\"userProject\":\"quota-project\"}")
-
-      let response = HTTPURLResponse(
-        url: targetURL,
-        statusCode: 200,
-        httpVersion: nil,
-        headerFields: ["Content-Type": "application/json"]
-      )!
-      return (response, responseData)
-    }
-
-    let httpClient = AuthHTTPClient(session: self.mockSession)
+    let httpClient = AuthHTTPClient(mock: mock)
     let creds = try ExternalAccountCredentials(
       credentialSource: .programmatic(subjectTokenProvider: provider),
       audience: "//iam.googleapis.com/locations/global/workforcePools/wpool/providers/wprov",

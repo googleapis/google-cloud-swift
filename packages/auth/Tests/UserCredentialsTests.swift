@@ -14,47 +14,39 @@
 
 import Foundation
 import Testing
-#if canImport(FoundationNetworking)
-  import FoundationNetworking
-#endif
+import AsyncHTTPClient
 @testable import GoogleCloudAuth
 
 typealias UserCredentials = UserCredentialsGeneric<TestClock>
 
-@Suite(.serialized) struct UserCredentialsTest {
-  private let mockSession: URLSession
-
-  init() {
-    let config = URLSessionConfiguration.ephemeral
-    config.protocolClasses = [MockURLProtocol.self]
-    self.mockSession = URLSession(configuration: config)
-  }
-
+@Suite struct UserCredentialsTest {
   @Test func userProviderHeadersAndUniverseDomain() async throws {
     let targetURL = URL(string: "https://mock.example.com")!
-    MockURLProtocol.requestHandler = { (request: URLRequest) in
-      let response = HTTPURLResponse(
-        url: targetURL,
-        statusCode: 200,
-        httpVersion: nil as String?,
-        headerFields: ["Content-Type": "application/json"]
-      )!
-      return (response, Data("{}".utf8))
-    }
+    let mock = MockHTTPClient([
+      { (request: HTTPClientRequest) in
+        #expect(request.url == targetURL.absoluteString)
+        return HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([("Content-Type", "application/json")]),
+          body: .bytes(.init(data: Data("{}".utf8))),
+        )
+      }
+    ])
 
     let mockData = UserAccountData(
       type: "authorized_user",
       clientId: "mock-id",
       clientSecret: "mock-secret",
       refreshToken: "mock-token",
-      tokenUri: "https://mock.example.com",
+      tokenUri: targetURL.absoluteString,
       quotaProjectId: "mock-project"
     )
 
     let provider = try UserCredentials(
       user: mockData,
       universeDomain: defaultUniverseDomain,
-      httpClient: AuthHTTPClient(session: self.mockSession),
+      httpClient: AuthHTTPClient(mock: mock),
       retryConfiguration: .defaultConfiguration,
       clock: TestClock()
     )
@@ -77,20 +69,20 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
     encoder.keyEncodingStrategy = .convertToSnakeCase
     let encodedData = try encoder.encode(responsePayload)
 
-    MockURLProtocol.requestHandler = { (request: URLRequest) in
-      #expect(request.url == targetURL)
-      #expect(request.httpMethod == "POST")
-      #expect(request.value(forHTTPHeaderField: "Content-Type") == "application/json")
-      #expect(request.cachePolicy == .reloadIgnoringLocalCacheData)
+    let mock = MockHTTPClient([
+      { (request: HTTPClientRequest) in
+        #expect(request.url == targetURL.absoluteString)
+        #expect(request.method == .POST)
+        #expect(request.headers["Content-Type"] == ["application/json"])
 
-      let response = HTTPURLResponse(
-        url: targetURL,
-        statusCode: 200,
-        httpVersion: nil as String?,
-        headerFields: ["Content-Type": "application/json"]
-      )!
-      return (response, encodedData)
-    }
+        return HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([("Content-Type", "application/json")]),
+          body: .bytes(.init(data: encodedData)),
+        )
+      }
+    ])
 
     let data = UserAccountData(
       type: "authorized_user",
@@ -103,7 +95,7 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
     let source = try UserCredentials(
       user: data,
       scopes: nil,
-      httpClient: AuthHTTPClient(session: self.mockSession),
+      httpClient: AuthHTTPClient(mock: mock),
       retryConfiguration: .defaultConfiguration,
       clock: TestClock()
     )
@@ -126,35 +118,36 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
     encoder.keyEncodingStrategy = .convertToSnakeCase
     let encodedData = try encoder.encode(responsePayload)
 
-    MockURLProtocol.requestHandler = { (request: URLRequest) in
-      #expect(request.url == targetURL)
-      #expect(request.httpMethod == "POST")
+    let mock = MockHTTPClient([
+      { (request: HTTPClientRequest) async throws in
+        #expect(request.url == targetURL.absoluteString)
+        #expect(request.method == .POST)
 
-      // Read request body and verify scopes are space-separated
-      guard let bodyData = request.bodyData else {
-        fatalError("Expected HTTP body")
-      }
-      let decoder = JSONDecoder()
-      decoder.keyDecodingStrategy = .convertFromSnakeCase
-      do {
-        let requestPayload = try decoder.decode(Oauth2RefreshRequest.self, from: bodyData)
-        #expect(requestPayload.scopes == "scope1 scope2")
-        #expect(requestPayload.clientId == "test-client-id")
-        #expect(requestPayload.clientSecret == "test-client-secret")
-        #expect(requestPayload.refreshToken == "test-refresh-token")
-        #expect(requestPayload.grantType == "refresh_token")
-      } catch {
-        Issue.record("Failed to decode request body: \(error)")
-      }
+        // Read request body and verify scopes are space-separated
+        guard let bodyData = try await request.body?.collect(upTo: 1024 * 1024) else {
+          fatalError("Expected HTTP body")
+        }
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        do {
+          let requestPayload = try decoder.decode(Oauth2RefreshRequest.self, from: bodyData)
+          #expect(requestPayload.scopes == "scope1 scope2")
+          #expect(requestPayload.clientId == "test-client-id")
+          #expect(requestPayload.clientSecret == "test-client-secret")
+          #expect(requestPayload.refreshToken == "test-refresh-token")
+          #expect(requestPayload.grantType == "refresh_token")
+        } catch {
+          Issue.record("Failed to decode request body: \(error)")
+        }
 
-      let response = HTTPURLResponse(
-        url: targetURL,
-        statusCode: 200,
-        httpVersion: nil as String?,
-        headerFields: ["Content-Type": "application/json"]
-      )!
-      return (response, encodedData)
-    }
+        return HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([("Content-Type", "application/json")]),
+          body: .bytes(.init(data: encodedData)),
+        )
+      }
+    ])
 
     let data = UserAccountData(
       type: "authorized_user",
@@ -166,7 +159,7 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
     let source = try UserCredentials(
       user: data,
       scopes: ["scope1", "scope2"],
-      httpClient: AuthHTTPClient(session: self.mockSession),
+      httpClient: AuthHTTPClient(mock: mock),
       retryConfiguration: .defaultConfiguration,
       clock: TestClock()
     )
@@ -183,15 +176,15 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
   @Test func credentialProviderRetryableError() async throws {
     let targetURL = URL(string: "https://oauth2.googleapis.com/token")!
 
-    MockURLProtocol.requestHandler = { (request: URLRequest) in
-      let response = HTTPURLResponse(
-        url: targetURL,
-        statusCode: 503,
-        httpVersion: nil as String?,
-        headerFields: nil as [String: String]?
-      )!
-      return (response, Data())
-    }
+    let mock = MockHTTPClient([
+      { (request: HTTPClientRequest) in
+        #expect(request.url == targetURL.absoluteString)
+        return HTTPClientResponse(
+          version: .http2,
+          status: .serviceUnavailable,
+        )
+      }
+    ])
 
     let data = UserAccountData(
       type: "authorized_user",
@@ -211,7 +204,7 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
     let source = try UserCredentials(
       user: data,
       scopes: nil,
-      httpClient: AuthHTTPClient(session: self.mockSession),
+      httpClient: AuthHTTPClient(mock: mock),
       retryConfiguration: retryConfig,
       clock: TestClock()
     )
@@ -224,15 +217,15 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
   @Test func tokenProviderNonretryableError() async throws {
     let targetURL = URL(string: "https://oauth2.googleapis.com/token")!
 
-    MockURLProtocol.requestHandler = { (request: URLRequest) in
-      let response = HTTPURLResponse(
-        url: targetURL,
-        statusCode: 401,
-        httpVersion: nil as String?,
-        headerFields: nil as [String: String]?
-      )!
-      return (response, Data())
-    }
+    let mock = MockHTTPClient([
+      { (request: HTTPClientRequest) in
+        #expect(request.url == targetURL.absoluteString)
+        return HTTPClientResponse(
+          version: .http2,
+          status: .unauthorized,
+        )
+      }
+    ])
 
     let data = UserAccountData(
       type: "authorized_user",
@@ -244,7 +237,7 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
     let source = try UserCredentials(
       user: data,
       scopes: nil,
-      httpClient: AuthHTTPClient(session: self.mockSession),
+      httpClient: AuthHTTPClient(mock: mock),
       retryConfiguration: .defaultConfiguration,
       clock: TestClock()
     )
@@ -255,19 +248,19 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
   }
 
   @Test func tokenProviderMalformedResponseIsNonretryable() async throws {
-    let targetURL = URL(string: "https://oauth2.googleapis.com/token")!
     let malformedPayload = "invalid-json"
     let encodedData = Data(malformedPayload.utf8)
 
-    MockURLProtocol.requestHandler = { (request: URLRequest) in
-      let response = HTTPURLResponse(
-        url: targetURL,
-        statusCode: 200,
-        httpVersion: nil as String?,
-        headerFields: ["Content-Type": "application/json"]
-      )!
-      return (response, encodedData)
-    }
+    let mock = MockHTTPClient([
+      { (request: HTTPClientRequest) in
+        return HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([("Content-Type", "application/json")]),
+          body: .bytes(.init(data: encodedData)),
+        )
+      }
+    ])
 
     let data = UserAccountData(
       type: "authorized_user",
@@ -279,7 +272,7 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
     let source = try UserCredentials(
       user: data,
       scopes: nil,
-      httpClient: AuthHTTPClient(session: self.mockSession),
+      httpClient: AuthHTTPClient(mock: mock),
       retryConfiguration: .defaultConfiguration,
       clock: TestClock()
     )
@@ -322,23 +315,24 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
 
     let requestCount = CallCounter()
 
-    MockURLProtocol.requestHandler = { (request: URLRequest) in
-      #expect(request.url == targetURL)
-      #expect(request.httpMethod == "POST")
+    let mock = MockHTTPClient([
+      { (request: HTTPClientRequest) async throws in
+        #expect(request.url == targetURL.absoluteString)
+        #expect(request.method == .POST)
 
-      // Artificial small delay to let concurrent tasks spawn and queue up on the active refresh task
-      Thread.sleep(forTimeInterval: 0.05)
+        // Artificial small delay to let concurrent tasks spawn and queue up on the active refresh task
+        try await Task.sleep(until: ContinuousClock.Instant.now + .milliseconds(50))
 
-      requestCount.increment()
+        requestCount.increment()
 
-      let response = HTTPURLResponse(
-        url: targetURL,
-        statusCode: 200,
-        httpVersion: nil as String?,
-        headerFields: ["Content-Type": "application/json"]
-      )!
-      return (response, encodedData)
-    }
+        return HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([("Content-Type", "application/json")]),
+          body: .bytes(.init(data: encodedData)),
+        )
+      }
+    ])
 
     let data = UserAccountData(
       type: "authorized_user",
@@ -350,7 +344,7 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
     let source = try UserCredentials(
       user: data,
       scopes: nil,
-      httpClient: AuthHTTPClient(session: self.mockSession),
+      httpClient: AuthHTTPClient(mock: mock),
       retryConfiguration: .defaultConfiguration,
       clock: TestClock()
     )
@@ -383,20 +377,19 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
   }
 
   @Test func testReproNonRetryableRetry() async throws {
-    let targetURL = URL(string: "https://oauth2.googleapis.com/token")!
     let attempts = CallCounter()
 
-    MockURLProtocol.requestHandler = { (request: URLRequest) in
-      attempts.increment()
-      let response = HTTPURLResponse(
-        url: targetURL,
-        statusCode: 401,
-        httpVersion: nil as String?,
-        headerFields: nil as [String: String]?
-      )!
-      let errorPayload = Data("{\"error\": \"invalid_grant\"}".utf8)
-      return (response, errorPayload)
-    }
+    let mock = MockHTTPClient([
+      { (request: HTTPClientRequest) in
+        attempts.increment()
+        let errorPayload = Data("{\"error\": \"invalid_grant\"}".utf8)
+        return HTTPClientResponse(
+          version: .http2,
+          status: .unauthorized,
+          body: .bytes(.init(data: errorPayload)),
+        )
+      }
+    ])
 
     let data = UserAccountData(
       type: "authorized_user",
@@ -417,7 +410,7 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
     let source = try UserCredentials(
       user: data,
       scopes: nil,
-      httpClient: AuthHTTPClient(session: self.mockSession),
+      httpClient: AuthHTTPClient(mock: mock),
       retryConfiguration: retryConfig,
       clock: clock
     )
@@ -447,12 +440,13 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
       clientSecret: "mock-secret",
       refreshToken: "mock-token"
     )
+    let mock = MockHTTPClient([])
 
     #expect {
       try UserCredentials(
         user: mockData,
         universeDomain: "custom.com",
-        httpClient: AuthHTTPClient(session: self.mockSession),
+        httpClient: AuthHTTPClient(mock: mock),
         retryConfiguration: .defaultConfiguration,
         clock: TestClock()
       )
@@ -466,7 +460,6 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
   }
 
   @Test func testRetryOnTransientNetworkError() async throws {
-    let targetURL = URL(string: "https://oauth2.googleapis.com/token")!
     let attempts = CallCounter()
     let responsePayload = Oauth2RefreshResponse(
       accessToken: "recovered-timeout-token",
@@ -477,20 +470,21 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
     encoder.keyEncodingStrategy = .convertToSnakeCase
     let encodedData = try encoder.encode(responsePayload)
 
-    MockURLProtocol.requestHandler = { (request: URLRequest) in
-      attempts.increment()
-      if attempts.getCount() == 1 {
+    let mock = MockHTTPClient([
+      { (request: HTTPClientRequest) in
+        attempts.increment()
         throw URLError(.timedOut)
-      } else {
-        let response = HTTPURLResponse(
-          url: targetURL,
-          statusCode: 200,
-          httpVersion: nil as String?,
-          headerFields: ["Content-Type": "application/json"]
-        )!
-        return (response, encodedData)
-      }
-    }
+      },
+      { (request: HTTPClientRequest) in
+        attempts.increment()
+        return HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([("Content-Type", "application/json")]),
+          body: .bytes(.init(data: encodedData)),
+        )
+      },
+    ])
 
     let data = UserAccountData(
       type: "authorized_user",
@@ -511,7 +505,7 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
     let source = try UserCredentials(
       user: data,
       scopes: nil,
-      httpClient: AuthHTTPClient(session: self.mockSession),
+      httpClient: AuthHTTPClient(mock: mock),
       retryConfiguration: retryConfig,
       clock: clock
     )
@@ -535,28 +529,4 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
       headers.contains { $0.0 == "Authorization" && $0.1 == "Bearer recovered-timeout-token" })
     #expect(attempts.getCount() == 2)
   }
-}
-
-private final class MockURLProtocol: URLProtocol {
-  nonisolated(unsafe) static var requestHandler: ((URLRequest) throws -> (URLResponse, Data))?
-
-  override class func canInit(with request: URLRequest) -> Bool { true }
-  override class func canonicalRequest(for request: URLRequest) -> URLRequest { request }
-
-  override func startLoading() {
-    guard let handler = Self.requestHandler else {
-      fatalError("Handler is not set.")
-    }
-
-    do {
-      let (response, data) = try handler(request)
-      client?.urlProtocol(self, didReceive: response, cacheStoragePolicy: .notAllowed)
-      client?.urlProtocol(self, didLoad: data)
-      client?.urlProtocolDidFinishLoading(self)
-    } catch {
-      client?.urlProtocol(self, didFailWithError: error)
-    }
-  }
-
-  override func stopLoading() {}
 }

@@ -115,7 +115,7 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
         if case .transportError = error {
           throw self.missingConfigurationError(targetURL: url, underlyingError: error)
         }
-        if case .unsuccessfulResponse(let response, _) = error, response.statusCode == 404 {
+        if case .unsuccessfulResponse(let response) = error, response.status == .notFound {
           throw self.missingConfigurationError(targetURL: url, underlyingError: error)
         }
       }

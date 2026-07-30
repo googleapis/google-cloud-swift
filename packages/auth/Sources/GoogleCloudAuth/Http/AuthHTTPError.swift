@@ -13,19 +13,16 @@
 // limitations under the License.
 
 import Foundation
-
-#if canImport(FoundationNetworking)
-  import FoundationNetworking
-#endif
+import struct AsyncHTTPClient.HTTPClientResponse
 
 /// Represents any error occurring during an authentication HTTP request.
 enum AuthHTTPError: Error, Sendable {
   /// The server returned a non-2xx status code.
-  case unsuccessfulResponse(response: HTTPURLResponse, data: Data)
+  case unsuccessfulResponse(response: HTTPClientResponse)
   /// A transport-level error occurred (e.g., timeout, connection lost).
   case transportError(URLError)
   /// A decoding error occurred while parsing the response.
-  case decodingError(error: any Error & Sendable, data: Data)
+  case decodingError(error: any Error & Sendable)
   /// An unexpected or unknown error occurred.
   case unknown(any Error & Sendable)
   /// Failed to decode the response body as a UTF-8 string.
@@ -44,10 +41,10 @@ extension AuthHTTPError {
   }
 
   /// The HTTP status code if this is an unsuccessful response.
-  var statusCode: Int? {
+  var statusCode: UInt? {
     switch self {
-    case .unsuccessfulResponse(let response, _):
-      return response.statusCode
+    case .unsuccessfulResponse(let response):
+      return response.status.code
     default:
       return nil
     }
@@ -56,10 +53,11 @@ extension AuthHTTPError {
   /// The raw response body as a UTF-8 string if this is an unsuccessful response or a decoding error.
   var body: String? {
     switch self {
-    case .unsuccessfulResponse(_, let data):
-      return String(data: data, encoding: .utf8)
-    case .decodingError(_, let data):
-      return String(data: data, encoding: .utf8)
+    case .unsuccessfulResponse(_):
+      // TODO(#81) - return the body
+      return nil
+    case .decodingError(_):
+      return nil
     default:
       return nil
     }
@@ -68,10 +66,11 @@ extension AuthHTTPError {
   /// The raw response body data if this is an unsuccessful response or a decoding error.
   var bodyData: Data? {
     switch self {
-    case .unsuccessfulResponse(_, let data):
-      return data
-    case .decodingError(_, let data):
-      return data
+    case .unsuccessfulResponse(_):
+      // TODO(#81) - return the data, if any.
+      return nil
+    case .decodingError(_):
+      return nil
     default:
       return nil
     }
@@ -80,12 +79,10 @@ extension AuthHTTPError {
   /// The HTTP response headers as a string map if this is an unsuccessful response.
   var headers: [String: String]? {
     switch self {
-    case .unsuccessfulResponse(let response, _):
+    case .unsuccessfulResponse(let response):
       var result: [String: String] = [:]
-      for (key, value) in response.allHeaderFields {
-        if let keyString = key as? String, let valueString = value as? String {
-          result[keyString] = valueString
-        }
+      for (key, value) in response.headers {
+        result[key] = value
       }
       return result
     default:

@@ -13,32 +13,70 @@
 // limitations under the License.
 
 import Foundation
+import AsyncHTTPClient
+import struct Logging.Logger
+import struct NIOCore.TimeAmount
+import struct NIOCore.ByteBufferAllocator
 
-#if canImport(FoundationNetworking)
-  import FoundationNetworking
-#endif
+protocol HTTPClientProtocol: Sendable {
+  func execute(
+    request: HTTPClientRequest,
+    timeout: Duration,
+    logger: Logger?
+  ) async throws -> HTTPClientResponse
+}
+
+/// Automatically call shutdown() on a HTTPClient.
+///
+/// HTTPClient requires an (asynchronous) call to `shutdown()` or it leaks resources.
+/// This class automates the call.
+///
+/// SAFETY: calling `shutdown()` requires all requests to be finished. In the AuthHTTPClient struct
+/// each HTTP request is executed within a function, therefore the object is live while the HTTP
+/// request is in progress. By the time deinit starts, all starting a call requires having a
+/// reference to the object, so shutdown
+final class HTTPClientHolder: HTTPClientProtocol {
+  let inner = HTTPClient()
+  deinit {
+    // Use a background task to shutdown the inner client. In most cases, the application will
+    // continue running and the HTTPClient is shutdown "eventually". Except for (maybe) some false
+    // positives in leak detectors, there is no harm if the application terminates before this gets
+    // to run.
+    let copy = inner
+    Task {
+      // Note how we make a copy of `inner` to avoid capturing `self`.
+      do {
+        try await copy.shutdown()
+      } catch {
+        // Ignore any exceptions. If `shutdown()` failed there is nothing the application can do.
+      }
+    }
+  }
+
+  func execute(
+    request: HTTPClientRequest,
+    timeout: Duration,
+    logger: Logger?
+  ) async throws -> HTTPClientResponse {
+    try await self.inner.execute(request, timeout: .init(timeout), logger: logger)
+  }
+}
 
 /// A lightweight, portable, and secure HTTP request client dedicated to authentication requests.
 struct AuthHTTPClient: Sendable {
-  private static let sharedSession = URLSession(configuration: .ephemeral)
-  private let sessionProvider: @Sendable () -> URLSession
+  static let maxResponseSize: Int = 1024 * 1024
+
+  let inner: any HTTPClientProtocol
 
   /// Initializes the client with a dynamic session provider closure.
   ///
   /// - Parameter sessionProvider: A closure returning a `URLSession` for network dispatching.
-  init(sessionProvider: @Sendable @escaping () -> URLSession) {
-    self.sessionProvider = sessionProvider
+  public init() {
+    self.inner = HTTPClientHolder()
   }
 
-  /// Initializes the client with a customized static session.
-  ///
-  /// - Parameter session: The static `URLSession` injected for network dispatching. Defaults to constructing an ephemeral configuration on demand.
-  init(session: URLSession? = nil) {
-    if let session = session {
-      self.sessionProvider = { session }
-    } else {
-      self.sessionProvider = { Self.sharedSession }
-    }
+  init<T: HTTPClientProtocol>(mock: T) {
+    self.inner = mock
   }
 
   /// Asynchronously dispatches a GET request and decodes the generic JSON response.
@@ -52,21 +90,17 @@ struct AuthHTTPClient: Sendable {
     headers: [String: String] = [:]
   ) async throws -> T {
     return try await self.mapError {
-      var request = URLRequest(url: url)
-      request.httpMethod = "GET"
-      request.cachePolicy = .reloadIgnoringLocalCacheData
-
-      for (key, value) in headers {
-        request.setValue(value, forHTTPHeaderField: key)
-      }
-
-      let (data, response) = try await self.performRequest(request)
-      try self.ensureSuccess(response, data: data)
+      var request = HTTPClientRequest(url: url.absoluteString)
+      request.method = .GET
+      request.headers = .init(headers.map { ($0.key, $0.value) })
+      let response = try await self.performRequest(request)
+      let buffer = try await response.body.collect(upTo: Self.maxResponseSize)
+      try self.ensureSuccess(response)
 
       do {
-        return try self.makeDecoder().decode(T.self, from: data)
+        return try self.makeDecoder().decode(T.self, from: buffer)
       } catch let error as DecodingError {
-        throw AuthHTTPError.decodingError(error: error, data: data)
+        throw AuthHTTPError.decodingError(error: error)
       }
     }
   }
@@ -78,21 +112,22 @@ struct AuthHTTPClient: Sendable {
     headers: [String: String] = [:]
   ) async throws -> String {
     return try await self.mapError {
-      var request = URLRequest(url: url)
-      request.httpMethod = "GET"
-      request.cachePolicy = .reloadIgnoringLocalCacheData
+      var request = HTTPClientRequest(url: url.absoluteString)
+      request.method = .GET
+      request.headers = .init(headers.map { ($0.key, $0.value) })
+      let response = try await self.performRequest(request)
+      try self.ensureSuccess(response)
+      var buffer = try await response.body.collect(upTo: Self.maxResponseSize)
 
-      for (key, value) in headers {
-        request.setValue(value, forHTTPHeaderField: key)
+      do {
+        guard let plainText = try buffer.readUTF8ValidatedString(length: buffer.readableBytes)
+        else {
+          throw AuthHTTPError.decodingError(error: AuthHTTPError.invalidUTF8Response)
+        }
+        return plainText
+      } catch {
+        throw AuthHTTPError.decodingError(error: error)
       }
-
-      let (data, response) = try await self.performRequest(request)
-      try self.ensureSuccess(response, data: data)
-
-      guard let plainText = String(data: data, encoding: .utf8) else {
-        throw AuthHTTPError.decodingError(error: AuthHTTPError.invalidUTF8Response, data: data)
-      }
-      return plainText
     }
   }
 
@@ -109,24 +144,25 @@ struct AuthHTTPClient: Sendable {
     headers: [String: String] = [:]
   ) async throws -> Response {
     return try await self.mapError {
-      var request = URLRequest(url: url)
-      request.httpMethod = "POST"
-      request.cachePolicy = .reloadIgnoringLocalCacheData
-      request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+      var request = HTTPClientRequest(url: url.absoluteString)
+      request.method = .POST
+      request.headers = .init(headers.map { ($0.key, $0.value) })
+      request.headers.add(name: "Content-Type", value: "application/json")
+      let encoder = JSONEncoder()
+      let buffer = try encoder.encodeAsByteBuffer(
+        body,
+        allocator: ByteBufferAllocator()
+      )
+      request.body = .bytes(buffer)
 
-      for (key, value) in headers {
-        request.setValue(value, forHTTPHeaderField: key)
-      }
-
-      request.httpBody = try self.makeEncoder().encode(body)
-
-      let (data, response) = try await self.performRequest(request)
-      try self.ensureSuccess(response, data: data)
+      let response = try await self.performRequest(request)
+      try self.ensureSuccess(response)
+      let recvBuffer = try await response.body.collect(upTo: Self.maxResponseSize)
 
       do {
-        return try self.makeDecoder().decode(Response.self, from: data)
+        return try self.makeDecoder().decode(Response.self, from: recvBuffer)
       } catch let error as DecodingError {
-        throw AuthHTTPError.decodingError(error: error, data: data)
+        throw AuthHTTPError.decodingError(error: error)
       }
     }
   }
@@ -146,29 +182,23 @@ struct AuthHTTPClient: Sendable {
     headers: [String: String] = [:]
   ) async throws -> Response {
     return try await self.mapError {
-      var request = URLRequest(url: url)
-      request.httpMethod = "POST"
-      request.cachePolicy = .reloadIgnoringLocalCacheData
-      request.setValue(contentType, forHTTPHeaderField: "Content-Type")
+      var request = HTTPClientRequest(url: url.absoluteString)
+      request.method = .POST
+      request.headers = .init(headers.map { ($0.key, $0.value) })
+      request.headers.add(name: "Content-Type", value: contentType)
+      request.body = .bytes(bodyData)
 
-      for (key, value) in headers {
-        request.setValue(value, forHTTPHeaderField: key)
-      }
-
-      request.httpBody = bodyData
-
-      let (data, response) = try await self.performRequest(request)
-      try self.ensureSuccess(response, data: data)
+      let response = try await self.performRequest(request)
+      try self.ensureSuccess(response)
+      let buffer = try await response.body.collect(upTo: Self.maxResponseSize)
 
       do {
-        return try self.makeDecoder().decode(Response.self, from: data)
+        return try self.makeDecoder().decode(Response.self, from: buffer)
       } catch let error as DecodingError {
-        throw AuthHTTPError.decodingError(error: error, data: data)
+        throw AuthHTTPError.decodingError(error: error)
       }
     }
   }
-
-  // MARK: - Private Helpers
 
   /// Centralizes error mapping logic to wrap any transport or unknown failures in AuthHTTPError.
   private func mapError<T>(
@@ -185,28 +215,8 @@ struct AuthHTTPClient: Sendable {
     }
   }
 
-  private func performRequest(_ request: URLRequest) async throws -> (Data, URLResponse) {
-    let session = self.sessionProvider()
-
-    // Support async/await directly on URLSession (handles modern platforms and Linux compatibility)
-    #if os(Linux)
-      return try await withCheckedThrowingContinuation { continuation in
-        let task = session.dataTask(with: request) { data, response, error in
-          if let error = error {
-            continuation.resume(throwing: error)
-          } else if let data = data, let response = response {
-            continuation.resume(returning: (data, response))
-          } else {
-            continuation.resume(
-              throwing: URLError(
-                .unknown, userInfo: [NSLocalizedDescriptionKey: "Empty HTTP response"]))
-          }
-        }
-        task.resume()
-      }
-    #else
-      return try await session.data(for: request)
-    #endif
+  private func performRequest(_ request: HTTPClientRequest) async throws -> HTTPClientResponse {
+    return try await inner.execute(request: request, timeout: .seconds(30), logger: nil)
   }
 
   private func makeDecoder() -> JSONDecoder {
@@ -221,15 +231,10 @@ struct AuthHTTPClient: Sendable {
     return encoder
   }
 
-  private func ensureSuccess(_ response: URLResponse, data: Data) throws {
-    guard let httpResponse = response as? HTTPURLResponse else {
-      throw URLError(
-        .badServerResponse, userInfo: [NSLocalizedDescriptionKey: "Non-HTTP URL response received"])
-    }
-
-    let statusCode = httpResponse.statusCode
+  private func ensureSuccess(_ response: HTTPClientResponse) throws {
+    let statusCode = response.status.code
     guard (200...299).contains(statusCode) else {
-      throw AuthHTTPError.unsuccessfulResponse(response: httpResponse, data: data)
+      throw AuthHTTPError.unsuccessfulResponse(response: response)
     }
   }
 }

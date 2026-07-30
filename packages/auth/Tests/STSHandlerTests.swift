@@ -13,52 +13,11 @@
 // limitations under the License.
 
 import Foundation
-#if canImport(FoundationNetworking)
-  import FoundationNetworking
-#endif
+import AsyncHTTPClient
 import Testing
-
 @testable import GoogleCloudAuth
 
-private final class MockURLProtocol: URLProtocol {
-  nonisolated(unsafe) static var requestHandler:
-    (@Sendable (URLRequest) throws -> (URLResponse, Data))?
-
-  override class func canInit(with request: URLRequest) -> Bool {
-    return true
-  }
-
-  override class func canonicalRequest(for request: URLRequest) -> URLRequest {
-    return request
-  }
-
-  override func startLoading() {
-    guard let handler = MockURLProtocol.requestHandler else {
-      fatalError("Handler is not set.")
-    }
-
-    do {
-      let (response, data) = try handler(request)
-      client?.urlProtocol(self, didReceive: response, cacheStoragePolicy: .notAllowed)
-      client?.urlProtocol(self, didLoad: data)
-      client?.urlProtocolDidFinishLoading(self)
-    } catch {
-      client?.urlProtocol(self, didFailWithError: error)
-    }
-  }
-
-  override func stopLoading() {}
-}
-
-@Suite(.serialized) struct STSHandlerTests {
-  private let mockSession: URLSession
-
-  init() {
-    let config = URLSessionConfiguration.ephemeral
-    config.protocolClasses = [MockURLProtocol.self]
-    self.mockSession = URLSession(configuration: config)
-  }
-
+@Suite struct STSHandlerTests {
   @Test("Verifies form-urlencoded POST exchange parameters and client authentication headers")
   func exchangeToken() async throws {
     let targetURL = try #require(URL(string: "https://sts.googleapis.com/v1/token"))
@@ -77,50 +36,47 @@ private final class MockURLProtocol: URLProtocol {
     encoder.keyEncodingStrategy = .convertToSnakeCase
     let encodedResponse = try encoder.encode(expectedResponse)
 
-    MockURLProtocol.requestHandler = { (request: URLRequest) in
-      #expect(request.url == targetURL)
-      #expect(request.httpMethod == "POST")
-      #expect(
-        request.value(forHTTPHeaderField: "Content-Type") == "application/x-www-form-urlencoded")
+    let mock = MockHTTPClient([
+      { (request: HTTPClientRequest) async throws in
+        #expect(request.url == targetURL.absoluteString)
+        #expect(request.method == .POST)
+        #expect(request.headers["Content-Type"] == ["application/x-www-form-urlencoded"])
 
-      // HTTP Basic Authentication verifies client credentials formatted as "clientID:clientSecret" encoded in Base64.
-      let expectedAuth = "Basic \(Data("\(clientID):\(clientSecret)".utf8).base64EncodedString())"
-      #expect(request.value(forHTTPHeaderField: "Authorization") == expectedAuth)
+        // HTTP Basic Authentication verifies client credentials formatted as "clientID:clientSecret" encoded in Base64.
+        let expectedAuth = "Basic \(Data("\(clientID):\(clientSecret)".utf8).base64EncodedString())"
+        #expect(request.headers["Authorization"] == [expectedAuth])
 
-      // Request body verification
-      guard let bodyData = request.httpBody,
-        let bodyString = String(data: bodyData, encoding: .utf8)
-      else {
-        Issue.record("Request body is empty")
-        let response = try #require(
-          HTTPURLResponse(
-            url: targetURL, statusCode: 400, httpVersion: nil as String?,
-            headerFields: nil as [String: String]?))
-        return (response, Data())
+        // Request body verification
+        guard let buffer = try await request.body?.collect(upTo: 1024 * 1024) else {
+          Issue.record("Request body is empty")
+          return HTTPClientResponse(version: .http2, status: .badRequest)
+        }
+        let bodyString = String(
+          data: buffer.getData(at: 0, length: buffer.readableBytes)!,
+          encoding: .utf8,
+        )!
+
+        // Verify body parameters
+        let queryItems = URLComponents(string: "?" + bodyString)?.queryItems ?? []
+        let params = Dictionary(uniqueKeysWithValues: queryItems.map { ($0.name, $0.value) })
+
+        #expect(params["grant_type"] == "urn:ietf:params:oauth:grant-type:token-exchange")
+        #expect(params["requested_token_type"] == "urn:ietf:params:oauth:token-type:access_token")
+        #expect(params["subject_token"] == "fake-subject-token")
+        #expect(params["subject_token_type"] == "urn:ietf:params:oauth:token-type:id_token")
+        #expect(params["scope"] == "scope1 scope2")
+        #expect(params["audience"] == "test-audience")
+
+        return HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([("Content-Type", "application/json")]),
+          body: .bytes(.init(data: encodedResponse)),
+        )
       }
+    ])
 
-      // Verify body parameters
-      let queryItems = URLComponents(string: "?" + bodyString)?.queryItems ?? []
-      let params = Dictionary(uniqueKeysWithValues: queryItems.map { ($0.name, $0.value) })
-
-      #expect(params["grant_type"] == "urn:ietf:params:oauth:grant-type:token-exchange")
-      #expect(params["requested_token_type"] == "urn:ietf:params:oauth:token-type:access_token")
-      #expect(params["subject_token"] == "fake-subject-token")
-      #expect(params["subject_token_type"] == "urn:ietf:params:oauth:token-type:id_token")
-      #expect(params["scope"] == "scope1 scope2")
-      #expect(params["audience"] == "test-audience")
-
-      let response = try #require(
-        HTTPURLResponse(
-          url: targetURL,
-          statusCode: 200,
-          httpVersion: nil as String?,
-          headerFields: ["Content-Type": "application/json"]
-        ))
-      return (response, encodedResponse)
-    }
-
-    let client = AuthHTTPClient(session: self.mockSession)
+    let client = AuthHTTPClient(mock: mock)
     let handler = STSHandler(httpClient: client)
 
     let request = ExchangeTokenRequest(
@@ -144,24 +100,25 @@ private final class MockURLProtocol: URLProtocol {
   func exchangeTokenErr() async throws {
     let targetURL = try #require(URL(string: "https://sts.googleapis.com/v1/token"))
 
-    MockURLProtocol.requestHandler = { (request: URLRequest) in
-      let response = try #require(
-        HTTPURLResponse(
-          url: targetURL,
-          statusCode: 400,
-          httpVersion: nil as String?,
-          headerFields: ["Content-Type": "application/json"]
-        ))
-      let errorPayload = """
-        {
-          "error": "invalid_grant",
-          "error_description": "Invalid subject token"
-        }
-        """
-      return (response, Data(errorPayload.utf8))
-    }
+    let mock = MockHTTPClient([
+      { (request: HTTPClientRequest) in
+        let errorPayload = """
+          {
+            "error": "invalid_grant",
+            "error_description": "Invalid subject token"
+          }
+          """
+        return
+          HTTPClientResponse(
+            version: .http2,
+            status: .badRequest,
+            headers: .init([("Content-Type", "application/json")]),
+            body: .bytes(.init(data: Data(errorPayload.utf8))),
+          )
+      }
+    ])
 
-    let client = AuthHTTPClient(session: self.mockSession)
+    let client = AuthHTTPClient(mock: mock)
     let handler = STSHandler(httpClient: client)
 
     let request = ExchangeTokenRequest(
@@ -190,42 +147,39 @@ private final class MockURLProtocol: URLProtocol {
     encoder.keyEncodingStrategy = .convertToSnakeCase
     let encodedResponse = try encoder.encode(expectedResponse)
 
-    MockURLProtocol.requestHandler = { (request: URLRequest) in
-      #expect(request.url == targetURL)
-      #expect(request.httpMethod == "POST")
-      #expect(request.value(forHTTPHeaderField: "Content-Type") == "application/json")
+    let mock = MockHTTPClient([
+      { (request: HTTPClientRequest) async throws in
+        #expect(request.url == targetURL.absoluteString)
+        #expect(request.method == .POST)
+        #expect(request.headers["Content-Type"] == ["application/json"])
 
-      guard let bodyData = request.httpBody else {
-        Issue.record("Request body is empty")
-        let response = try #require(
-          HTTPURLResponse(
-            url: targetURL, statusCode: 400, httpVersion: nil as String?,
-            headerFields: nil as [String: String]?))
-        return (response, Data())
+        guard let bodyData = try await request.body?.collect(upTo: 1024 * 1024) else {
+          Issue.record("Request body is empty")
+          return HTTPClientResponse(version: .http2, status: .badRequest)
+        }
+
+        do {
+          let jsonDict = try JSONDecoder().decode([String: String].self, from: bodyData)
+          #expect(jsonDict["grant_type"] == "urn:ietf:params:oauth:grant-type:token-exchange")
+          #expect(
+            jsonDict["requested_token_type"] == "urn:ietf:params:oauth:token-type:access_token")
+          #expect(jsonDict["subject_token"] == "fake-subject-token")
+          #expect(jsonDict["subject_token_type"] == "urn:ietf:params:oauth:token-type:id_token")
+          #expect(jsonDict["options"] == "{\"userProject\":\"test-quota-project\"}")
+        } catch {
+          Issue.record("Failed to parse JSON body: \(error)")
+        }
+
+        return HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([("Content-Type", "application/json")]),
+          body: .bytes(.init(data: encodedResponse)),
+        )
       }
+    ])
 
-      do {
-        let jsonDict = try JSONDecoder().decode([String: String].self, from: bodyData)
-        #expect(jsonDict["grant_type"] == "urn:ietf:params:oauth:grant-type:token-exchange")
-        #expect(jsonDict["requested_token_type"] == "urn:ietf:params:oauth:token-type:access_token")
-        #expect(jsonDict["subject_token"] == "fake-subject-token")
-        #expect(jsonDict["subject_token_type"] == "urn:ietf:params:oauth:token-type:id_token")
-        #expect(jsonDict["options"] == "{\"userProject\":\"test-quota-project\"}")
-      } catch {
-        Issue.record("Failed to parse JSON body: \(error)")
-      }
-
-      let response = try #require(
-        HTTPURLResponse(
-          url: targetURL,
-          statusCode: 200,
-          httpVersion: nil as String?,
-          headerFields: ["Content-Type": "application/json"]
-        ))
-      return (response, encodedResponse)
-    }
-
-    let client = AuthHTTPClient(session: self.mockSession)
+    let client = AuthHTTPClient(mock: mock)
     let handler = STSHandler(httpClient: client)
 
     let request = ExchangeTokenRequest(

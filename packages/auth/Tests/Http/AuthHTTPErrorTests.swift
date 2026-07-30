@@ -13,11 +13,8 @@
 // limitations under the License.
 
 import Foundation
+import struct AsyncHTTPClient.HTTPClientResponse
 import Testing
-
-#if canImport(FoundationNetworking)
-  import FoundationNetworking
-#endif
 
 @testable import GoogleCloudAuth
 
@@ -25,20 +22,16 @@ import Testing
   private let testURL = URL(string: "https://example.com")!
 
   @Test func unsuccessfulResponseAccessors() {
-    let response = HTTPURLResponse(
-      url: testURL,
-      statusCode: 403,
-      httpVersion: nil,
-      headerFields: ["X-Custom-Header": "CustomValue"]
-    )!
     let bodyString = "Forbidden Access"
-    let data = Data(bodyString.utf8)
-
-    let error = AuthHTTPError.unsuccessfulResponse(response: response, data: data)
+    let response = HTTPClientResponse(
+      version: .http2,
+      status: .forbidden,
+      headers: .init([("X-Custom-Header", "CustomValue")]),
+      body: .bytes(.init(data: Data(bodyString.utf8))),
+    )
+    let error = AuthHTTPError.unsuccessfulResponse(response: response)
 
     #expect(error.statusCode == 403)
-    #expect(error.body == bodyString)
-    #expect(error.bodyData == data)
     #expect(error.headers?["X-Custom-Header"] == "CustomValue")
     #expect(error.urlError == nil)
   }
@@ -59,13 +52,10 @@ import Testing
       String.self,
       DecodingError.Context(codingPath: [], debugDescription: "Test")
     )
-    let testData = Data("Invalid JSON".utf8)
-    let error = AuthHTTPError.decodingError(error: decodingError, data: testData)
+    let error = AuthHTTPError.decodingError(error: decodingError)
 
     #expect(error.urlError == nil)
     #expect(error.statusCode == nil)
-    #expect(error.body == "Invalid JSON")
-    #expect(error.bodyData == testData)
     #expect(error.headers == nil)
   }
 
