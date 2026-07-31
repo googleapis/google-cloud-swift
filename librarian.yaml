@@ -524,11 +524,6 @@ libraries:
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudOSConfigV1
-  - name: google-cloud-parallelstore-v1
-    version: 0.1.0-preview
-    copyright_year: "2026"
-    swift:
-      library_name_override: GoogleCloudParallelStoreV1
   - name: google-cloud-redis-v1
     version: 0.0.0-preview
     copyright_year: "2026"
