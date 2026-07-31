@@ -22,16 +22,14 @@ locals {
   # These builds appear in both the PR (Pull Request) triggers and the
   # PM (Post Merge) triggers. See below for builds that only appear in one.
   common_builds = {
-    # TODO(https://github.com/googleapis/google-cloud-swift/issues/99) - enable
-    # these triggers
-    #    unit-tests = {
-    #      config = "scripted.yaml"
-    #      script = "unit-tests"
-    #    }
-    #    minimum-swift = {
-    #      config = "minimum-swift.yaml"
-    #      script = "unit-tests"
-    #    }
+    unit-tests = {
+      config = "scripted.yaml"
+      script = "unit-tests"
+    }
+    minimum-swift = {
+      config = "minimum-swift.yaml"
+      script = "unit-tests"
+    }
   }
 
   # These are builds that only run during Pull Requests.
