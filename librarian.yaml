@@ -134,6 +134,11 @@ libraries:
     copyright_year: "2026"
     swift:
       library_name_override: GoogleApiServiceUsageV1
+  - name: google-appengine-logging-v1
+    version: 0.0.0-preview
+    copyright_year: "2026"
+    swift:
+      library_name_override: GoogleAppEngineLoggingV1
   - name: google-appengine-v1
     version: 0.1.0-preview
     copyright_year: "2026"
