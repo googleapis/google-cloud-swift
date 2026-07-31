@@ -16,8 +16,8 @@ import GoogleCloudLocation
 import GoogleCloudSecretManagerV1
 import GoogleCloudTestHelpers
 import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import struct GoogleCloudGax._CRC32C
 import GoogleIAMV1
-import CryptoSwift
 import Logging
 import Foundation
 
@@ -92,7 +92,7 @@ public enum GlobalEndpoint {
   {
     logger.info("\nTesting secret version CRUD")
     let data = Data("the quick brown fox jumps over the lazy dog".utf8)
-    let checksum = CryptoSwift.Checksum.crc32c(data.byteArray)
+    let checksum = _CRC32C.compute(data)
     let version = try await client.addSecretVersion(
       request: .init().with {
         $0.parent = secretName

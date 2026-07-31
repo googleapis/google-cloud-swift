@@ -14,6 +14,7 @@
 
 import Crypto
 import Foundation
+@_spi(GoogleCloudInternal) import struct GoogleCloudGax._CRC32C
 
 struct ChunkInfo: Sendable {
   let data: Data
@@ -25,7 +26,7 @@ struct ChecksummedSource<S: UploadSource> {
   var source: S
   let options: ChecksumOptions
   private var md5 = Insecure.MD5()
-  private var crc32c = CRC32C()
+  private var crc32c = _CRC32C()
   private var nextChunk: Data? = nil
   private var isInitialized = false
   private var isFinished = false

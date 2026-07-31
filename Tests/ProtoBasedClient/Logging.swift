@@ -16,7 +16,6 @@ import GoogleCloudGax
 import GoogleCloudLocation
 import GoogleCloudSecretManagerV1
 import GoogleCloudTestHelpers
-import CryptoSwift
 import Logging
 import InMemoryLogging
 import Testing

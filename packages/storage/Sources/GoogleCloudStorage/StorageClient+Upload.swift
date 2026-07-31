@@ -18,6 +18,7 @@ import Foundation
 #endif
 import GoogleCloudGax
 import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import struct GoogleCloudGax._CRC32C
 import Crypto
 
 extension StorageClient {
@@ -488,7 +489,7 @@ extension StorageClient {
     if let crcOption = options.crc32c {
       switch crcOption {
       case .auto:
-        let crc = CRC32C.compute(data)
+        let crc = _CRC32C.compute(data)
         let bigEndian = crc.bigEndian
         var bytes = [UInt8]()
         withUnsafeBytes(of: bigEndian) {

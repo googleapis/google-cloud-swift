@@ -15,8 +15,9 @@
 import Foundation
 
 /// A lookup-table based implementation of the CRC32C (Castagnoli) checksum algorithm.
-// TODO(#482): Use hardware accelerated CRC32C on supported platforms.
-public struct CRC32C: Sendable {
+// TODO(https://github.com/googleapis/google-cloud-swift/issues/38) - Use hardware accelerated
+//   CRC32C on supported platforms.
+@_spi(GoogleCloudInternal) public struct _CRC32C: Sendable {
   private static let table: [UInt32] = {
     (0..<256).map { i in
       var crc = UInt32(i)
@@ -45,7 +46,7 @@ public struct CRC32C: Sendable {
   }
 
   public static func compute(_ data: Data) -> UInt32 {
-    var crc = CRC32C()
+    var crc = Self()
     crc.update(data)
     return crc.finalize()
   }
