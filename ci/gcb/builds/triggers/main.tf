@@ -78,7 +78,7 @@ resource "google_cloudbuild_trigger" "pull-request" {
   for_each = tomap(local.pr_builds)
   location = var.region
   name     = "gcb-pr-${each.key}"
-  filename = ".gcb/${each.value.config}"
+  filename = "ci/gcb/${each.value.config}"
   tags     = ["pull-request", "name:${each.key}"]
 
   service_account = var.service_account
@@ -109,7 +109,7 @@ resource "google_cloudbuild_trigger" "post-merge" {
   }
   location       = var.region
   name           = "gcb-pm-${each.key}"
-  filename       = ".gcb/${each.value.config}"
+  filename       = "ci/gcb/${each.value.config}"
   tags           = ["post-merge", "push", "name:${each.key}"]
   included_files = each.value.included_files
 
