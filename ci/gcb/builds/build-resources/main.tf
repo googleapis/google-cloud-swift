@@ -39,7 +39,7 @@ resource "google_storage_bucket" "build-cache" {
     enabled = false
   }
   # Remove objects older than 90d. It is unlikely that any build artifact is
-  # usefull after that long, and we can always rebuild them if needed.
+  # useful after that long, and we can always rebuild them if needed.
   lifecycle_rule {
     condition {
       age = 90
@@ -52,7 +52,7 @@ resource "google_storage_bucket" "build-cache" {
 
 # The e2-standard-8 images schedule faster than the e2-standard-32 images.
 #
-# For builds that don't need a lot of CPUs, it is benefitial to use a smaller
+# For builds that don't need a lot of CPUs, it is beneficial to use a smaller
 # machine type.
 resource "google_cloudbuild_worker_pool" "pool" {
   name     = "swift-sdk-pool"
