@@ -15,36 +15,23 @@
 variable "project" {}
 variable "region" {}
 variable "service_account" {}
+variable "gcb_app_installation_id" {}
+variable "gcb_secret_name" {}
 
 locals {
-  # Google Cloud Build installs an application on the GitHub organization or
-  # repository. This id is hard-coded here because there is no easy way [^1] to
-  # manage that installation via terraform.
-  #
-  # [^1]: there is a way, described in [Connecting a Gitub host programmatically]
-  #     but I would not call that "easy". It requires (for example) manually
-  #     creating a personally access token (PAT) on GitHub, and storing that
-  #     in the Terraform file.
-  # [Connecting a Gitub host programmatically]: https://cloud.google.com/build/docs/automating-builds/github/connect-repo-github?generation=2nd-gen#terraform
-  #
-  gcb_app_installation_id = 1168573
-
-  # Google Cloud uses Secret Manager to save the Github access token. Similar to
-  # the previous problem. It is much easier to use the UI to create the
-  # connection and just record it here.
-  gcb_secret_name = "projects/${var.project}/secrets/GitHub-github-oauthtoken-a264d3/versions/latest"
-
   # These builds appear in both the PR (Pull Request) triggers and the
   # PM (Post Merge) triggers. See below for builds that only appear in one.
   common_builds = {
-#    unit-tests = {
-#      config = "scripted.yaml"
-#      script = "unit-tests"
-#    }
-#    minimum-swift = {
-#      config = "minimum-swift.yaml"
-#      script = "unit-tests"
-#    }
+    # TODO(https://github.com/googleapis/google-cloud-swift/issues/99) - enable
+    # these triggers
+    #    unit-tests = {
+    #      config = "scripted.yaml"
+    #      script = "unit-tests"
+    #    }
+    #    minimum-swift = {
+    #      config = "minimum-swift.yaml"
+    #      script = "unit-tests"
+    #    }
   }
 
   # These are builds that only run during Pull Requests.
@@ -74,9 +61,9 @@ resource "google_cloudbuildv2_connection" "github" {
   name     = "github"
 
   github_config {
-    app_installation_id = local.gcb_app_installation_id
+    app_installation_id = var.gcb_app_installation_id
     authorizer_credential {
-      oauth_token_secret_version = local.gcb_secret_name
+      oauth_token_secret_version = var.gcb_secret_name
     }
   }
 }

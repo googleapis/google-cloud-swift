@@ -75,9 +75,11 @@ module "grants" {
 
 # Create the GCB triggers.
 module "triggers" {
-  depends_on      = [module.services, module.build-resources, module.test-resources, module.grants]
-  source          = "./triggers"
-  project         = var.project
-  region          = var.region
-  service_account = module.grants.runner
+  depends_on              = [module.services, module.build-resources, module.test-resources, module.grants]
+  source                  = "./triggers"
+  project                 = var.project
+  region                  = var.region
+  gcb_app_installation_id = var.gcb_app_installation_id
+  gcb_secret_name         = var.gcb_secret_name
+  service_account         = module.grants.runner
 }
