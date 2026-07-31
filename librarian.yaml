@@ -260,6 +260,11 @@ libraries:
     copyright_year: "2026"
     swift:
       library_name_override: GoogleBigQueryAnalyticsHubV1
+  - name: google-cloud-bigquery-biglake-v1
+    version: 0.0.0-preview
+    copyright_year: "2026"
+    swift:
+      library_name_override: GoogleBigQueryBigLakeV1
   - name: google-cloud-bigquery-connection-v1
     version: 0.1.0-preview
     copyright_year: "2026"
