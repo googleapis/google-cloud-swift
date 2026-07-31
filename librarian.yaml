@@ -611,6 +611,11 @@ libraries:
   - name: google-cloud-vision-v1
     version: 0.1.0-preview
     copyright_year: "2026"
+  - name: google-cloud-webrisk-v1
+    version: 0.0.0-preview
+    copyright_year: "2026"
+    swift:
+      library_name_override: GoogleCloudWebRiskV1
   - name: google-cloud-wkt
     version: 0.1.0-preview
     copyright_year: "2026"
