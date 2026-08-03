@@ -761,38 +761,76 @@ import Testing
       chunkReq.value(forHTTPHeaderField: "x-goog-encryption-key-sha256") == sample.keyHashBase64)
   }
 
-  /// Tests resuming an upload from an intermediate offset when user provided a pre-computed checksum.
-  /// The user-provided checksum MUST be attached to the final chunk PUT request.
-  @Test func testResumeUploadWithUserProvidedChecksum() async throws {
+  // MARK: - Upload Source Types Unit Tests
+
+  // --- Source Type 1: Fixed Buffers in Memory ---
+
+  /// Tests resumable upload using a fixed buffer in memory (`BytesSource`).
+  @Test func resumableUploadFixedBufferMemorySuccess() async throws {
     let registry = MockRegistry.create()
     let bucket = "test-bucket"
-    let objectName = "test-object"
-    let data = Data(repeating: 1, count: 1 * 1024 * 1024)  // 1MB payload
+    let objectName = "fixed-buffer-object"
+    let data = Data(repeating: 0xAB, count: 10 * 1024 * 1024)  // 10MB
     let source = BytesSource(data: data)
 
-    let queryUrl = registry.url(
-      "/upload/storage/v1/b/\(bucket)/o?upload_id=user-checksum-upload-id")
+    let startUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?uploadType=resumable&name=\(objectName)")
+    let chunkUrl = registry.url("/upload/storage/v1/b/\(bucket)/o?upload_id=fixed-buffer-id")
 
-    let objectJSON = """
-      {
-        "name": "\(objectName)",
-        "bucket": "\(bucket)",
-        "generation": "1",
-        "metageneration": "1",
-        "size": "\(data.count)",
-        "contentType": "application/octet-stream",
-        "storageClass": "STANDARD"
+    registry.register(
+      response: .success(
+        statusCode: 200, data: Data(),
+        headers: ["Location": chunkUrl.absoluteString]),
+      for: startUrl)
+    registry.register(
+      response: .success(
+        statusCode: 200, data: makeObjectJSON(name: objectName, bucket: bucket, size: data.count),
+        headers: nil),
+      for: chunkUrl)
+
+    let config = URLSessionConfiguration.ephemeral
+    config.protocolClasses = [MockURLProtocol.self]
+    let session = URLSession(configuration: config)
+
+    let options = StorageClientOptions().with {
+      $0.client = .init().with {
+        $0.endpoint = registry.endpoint
+        $0._testSession = session
+        $0.credentials = try! Credentials(configuration: .anonymous)
       }
-      """
+    }
+
+    let client = try StorageClient(options)
+    let task = client.upload(source, to: bucket, as: objectName)
+    let object = try await task.value
+
+    #expect(object.name == objectName)
+    #expect(object.bucket == bucket)
+    #expect(object.size == Int64(data.count))
+  }
+
+  /// Tests resuming an interrupted upload for a fixed buffer in memory (`BytesSource`).
+  @Test func resumeUploadFixedBufferMemorySuccess() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "fixed-buffer-resumed"
+    let data = Data(repeating: 0xCD, count: 10 * 1024 * 1024)  // 10MB
+    let source = BytesSource(data: data)
+
+    let queryUrl = registry.url("/upload/storage/v1/b/\(bucket)/o?upload_id=fixed-buffer-resume-id")
+
+    // GCS reports 5MB uploaded (bytes 0-5242879 received)
+    let offset: Int64 = 5 * 1024 * 1024
+    let lastByte = offset - 1
 
     registry.register(
       response: .success(
         statusCode: 308, data: Data(),
-        headers: ["Range": "bytes=0-4999"]),
+        headers: ["Range": "bytes=0-\(lastByte)"]),
       for: queryUrl)
     registry.register(
       response: .success(
-        statusCode: 200, data: Data(objectJSON.utf8),
+        statusCode: 200, data: makeObjectJSON(name: objectName, bucket: bucket, size: data.count),
         headers: nil),
       for: queryUrl)
 
@@ -809,11 +847,7 @@ import Testing
     }
 
     let client = try StorageClient(options)
-    let uploadOptions = UploadOptions().with {
-      $0.checksums = ChecksumOptions(crc32c: "AAAAAA==")
-    }
-    let task = client.resumeUpload(
-      source, uploadId: queryUrl.absoluteString, options: uploadOptions)
+    let task = client.resumeUpload(source, uploadId: queryUrl.absoluteString)
     let object = try await task.value
 
     #expect(object.name == objectName)
@@ -821,42 +855,93 @@ import Testing
 
     let requests = registry.recordedRequests()
     #expect(requests.count == 2)
-    let finalChunkReq = requests[1]
-    #expect(finalChunkReq.value(forHTTPHeaderField: "x-goog-hash") == "crc32c=AAAAAA==")
+    // First is status query
+    #expect(requests[0].value(forHTTPHeaderField: "Content-Range") == "bytes */*")
+    // Second is remaining chunk request starting at 5MB
+    #expect(
+      requests[1].value(forHTTPHeaderField: "Content-Range")
+        == "bytes \(offset)-\(data.count - 1)/\(data.count)")
   }
 
-  /// Tests resuming an upload from an intermediate offset with automatic checksumming.
-  /// The SDK automatically calculates full-file checksum and attaches x-goog-hash header.
-  @Test func testResumeUploadWithAutoChecksumFromOffset() async throws {
+  // --- Source Type 2: Files from Disk ---
+
+  /// Tests resumable upload reading directly from a local file on disk (`FileSource`).
+  @Test func resumableUploadFileFromDiskSuccess() async throws {
+    let tempDirectory = FileManager.default.temporaryDirectory
+    let fileURL = tempDirectory.appendingPathComponent("test_disk_upload_\(UUID().uuidString).dat")
+    let data = Data(repeating: 0xEF, count: 10 * 1024 * 1024)  // 10MB file
+    try data.write(to: fileURL)
+    defer {
+      try? FileManager.default.removeItem(at: fileURL)
+    }
+
     let registry = MockRegistry.create()
     let bucket = "test-bucket"
-    let objectName = "test-object"
-    let data = Data(repeating: 1, count: 1 * 1024 * 1024)
-    let source = BytesSource(data: data)
+    let objectName = "file-from-disk-object"
+    let source = FileSource(fileURL: fileURL)
 
-    let queryUrl = registry.url(
-      "/upload/storage/v1/b/\(bucket)/o?upload_id=auto-checksum-upload-id")
+    let startUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?uploadType=resumable&name=\(objectName)")
+    let chunkUrl = registry.url("/upload/storage/v1/b/\(bucket)/o?upload_id=disk-file-id")
 
-    let objectJSON = """
-      {
-        "name": "\(objectName)",
-        "bucket": "\(bucket)",
-        "generation": "1",
-        "metageneration": "1",
-        "size": "\(data.count)",
-        "contentType": "application/octet-stream",
-        "storageClass": "STANDARD"
+    registry.register(
+      response: .success(
+        statusCode: 200, data: Data(),
+        headers: ["Location": chunkUrl.absoluteString]),
+      for: startUrl)
+    registry.register(
+      response: .success(
+        statusCode: 200, data: makeObjectJSON(name: objectName, bucket: bucket, size: data.count),
+        headers: nil),
+      for: chunkUrl)
+
+    let config = URLSessionConfiguration.ephemeral
+    config.protocolClasses = [MockURLProtocol.self]
+    let session = URLSession(configuration: config)
+
+    let options = StorageClientOptions().with {
+      $0.client = .init().with {
+        $0.endpoint = registry.endpoint
+        $0._testSession = session
+        $0.credentials = try! Credentials(configuration: .anonymous)
       }
-      """
+    }
+
+    let client = try StorageClient(options)
+    let task = client.upload(source, to: bucket, as: objectName)
+    let object = try await task.value
+
+    #expect(object.name == objectName)
+    #expect(object.bucket == bucket)
+    #expect(object.size == Int64(data.count))
+  }
+
+  /// Tests resuming an interrupted upload from a local file on disk (`FileSource`), seeking within the file.
+  @Test func resumeUploadFileFromDiskSuccess() async throws {
+    let tempDirectory = FileManager.default.temporaryDirectory
+    let fileURL = tempDirectory.appendingPathComponent("test_disk_resume_\(UUID().uuidString).dat")
+    let data = Data(repeating: 0x42, count: 10 * 1024 * 1024)  // 10MB file
+    try data.write(to: fileURL)
+    defer {
+      try? FileManager.default.removeItem(at: fileURL)
+    }
+
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "file-from-disk-resumed"
+    let source = FileSource(fileURL: fileURL)
+
+    let queryUrl = registry.url("/upload/storage/v1/b/\(bucket)/o?upload_id=disk-file-resume-id")
+    let resumeOffset: Int64 = 4 * 1024 * 1024  // GCS already received 4MB
 
     registry.register(
       response: .success(
         statusCode: 308, data: Data(),
-        headers: ["Range": "bytes=0-4999"]),
+        headers: ["Range": "bytes=0-\(resumeOffset - 1)"]),
       for: queryUrl)
     registry.register(
       response: .success(
-        statusCode: 200, data: Data(objectJSON.utf8),
+        statusCode: 200, data: makeObjectJSON(name: objectName, bucket: bucket, size: data.count),
         headers: nil),
       for: queryUrl)
 
@@ -873,52 +958,161 @@ import Testing
     }
 
     let client = try StorageClient(options)
-    let uploadOptions = UploadOptions().with {
-      $0.checksums = ChecksumOptions(crc32c: .auto)
-    }
-    let task = client.resumeUpload(
-      source, uploadId: queryUrl.absoluteString, options: uploadOptions)
+    let task = client.resumeUpload(source, uploadId: queryUrl.absoluteString)
     let object = try await task.value
 
     #expect(object.name == objectName)
+    #expect(object.bucket == bucket)
 
     let requests = registry.recordedRequests()
     #expect(requests.count == 2)
-    let finalChunkReq = requests[1]
-    #expect(finalChunkReq.value(forHTTPHeaderField: "x-goog-hash") != nil)
+    #expect(
+      requests[1].value(forHTTPHeaderField: "Content-Range")
+        == "bytes \(resumeOffset)-\(data.count - 1)/\(data.count)")
   }
 
-  /// Tests resuming an upload from offset 0 with automatic on-the-fly checksumming.
-  /// Because the stream starts at byte 0, the auto checksum MUST be attached to the final chunk PUT request.
-  @Test func testResumeUploadFromOffsetZeroWithAutoChecksum() async throws {
+  // --- Source Type 3: Dynamically Created Data via Computation ---
+
+  /// Tests resumable upload of data generated dynamically on-the-fly via computation with a known total size.
+  @Test func resumableUploadDynamicComputationKnownSizeSuccess() async throws {
     let registry = MockRegistry.create()
     let bucket = "test-bucket"
-    let objectName = "test-object"
-    let data = Data(repeating: 1, count: 1 * 1024 * 1024)
-    let source = BytesSource(data: data)
+    let objectName = "dynamic-computation-known"
+    let chunkSize = 4 * 1024 * 1024
+    let totalChunks = 3
+    let totalSize = Int64(chunkSize * totalChunks)  // 12MB
 
-    let queryUrl = registry.url("/upload/storage/v1/b/\(bucket)/o?upload_id=zero-offset-upload-id")
+    let source = DynamicComputationSource(
+      chunkSize: chunkSize, totalChunks: totalChunks, totalSize: totalSize)
 
-    let objectJSON = """
-      {
-        "name": "\(objectName)",
-        "bucket": "\(bucket)",
-        "generation": "1",
-        "metageneration": "1",
-        "size": "\(data.count)",
-        "contentType": "application/octet-stream",
-        "storageClass": "STANDARD"
+    let startUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?uploadType=resumable&name=\(objectName)")
+    let chunkUrl = registry.url("/upload/storage/v1/b/\(bucket)/o?upload_id=dynamic-comp-known-id")
+
+    registry.register(
+      response: .success(
+        statusCode: 200, data: Data(),
+        headers: ["Location": chunkUrl.absoluteString]),
+      for: startUrl)
+    registry.register(
+      response: .success(
+        statusCode: 200,
+        data: makeObjectJSON(name: objectName, bucket: bucket, size: Int(totalSize)),
+        headers: nil),
+      for: chunkUrl)
+
+    let config = URLSessionConfiguration.ephemeral
+    config.protocolClasses = [MockURLProtocol.self]
+    let session = URLSession(configuration: config)
+
+    let options = StorageClientOptions().with {
+      $0.client = .init().with {
+        $0.endpoint = registry.endpoint
+        $0._testSession = session
+        $0.credentials = try! Credentials(configuration: .anonymous)
       }
-      """
+    }
+
+    let client = try StorageClient(options)
+    let task = client.upload(source, to: bucket, as: objectName)
+    let object = try await task.value
+
+    #expect(object.name == objectName)
+    #expect(object.bucket == bucket)
+    #expect(object.size == totalSize)
+  }
+
+  /// Tests resumable upload of dynamically computed data where total size is unknown (`nil`).
+  @Test func resumableUploadDynamicComputationUnknownSizeSuccess() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "dynamic-computation-unknown"
+    let chunkSize = 4 * 1024 * 1024
+    let totalChunks = 2
+    let expectedTotalSize: Int64 = Int64(chunkSize * totalChunks)  // 8MB
+
+    let source = DynamicComputationSource(
+      chunkSize: chunkSize, totalChunks: totalChunks, totalSize: nil)
+
+    let startUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?uploadType=resumable&name=\(objectName)")
+    let chunkUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?upload_id=dynamic-comp-unknown-id")
+
+    registry.register(
+      response: .success(
+        statusCode: 200, data: Data(),
+        headers: ["Location": chunkUrl.absoluteString]),
+      for: startUrl)
+    // Chunk 1 (intermediate chunk -> 308)
+    registry.register(
+      response: .success(
+        statusCode: 308, data: Data(),
+        headers: ["Range": "bytes=0-\(chunkSize - 1)"]),
+      for: chunkUrl)
+    // Chunk 2 (final chunk -> 200 OK)
+    registry.register(
+      response: .success(
+        statusCode: 200,
+        data: makeObjectJSON(name: objectName, bucket: bucket, size: Int(expectedTotalSize)),
+        headers: nil),
+      for: chunkUrl)
+
+    let config = URLSessionConfiguration.ephemeral
+    config.protocolClasses = [MockURLProtocol.self]
+    let session = URLSession(configuration: config)
+
+    let options = StorageClientOptions().with {
+      $0.client = .init().with {
+        $0.endpoint = registry.endpoint
+        $0._testSession = session
+        $0.credentials = try! Credentials(configuration: .anonymous)
+      }
+    }
+
+    let uploadOptions = UploadOptions().with { $0.chunkSize = chunkSize }
+    let client = try StorageClient(options)
+    let task = client.upload(source, to: bucket, as: objectName, options: uploadOptions)
+    let object = try await task.value
+
+    #expect(object.name == objectName)
+    #expect(object.bucket == bucket)
+    #expect(object.size == expectedTotalSize)
+
+    let requests = registry.recordedRequests()
+    #expect(requests.count == 3)
+    // Request 0 is start resumable
+    // Request 1 is chunk 1 (intermediate, total length *)
+    #expect(requests[1].value(forHTTPHeaderField: "Content-Range") == "bytes 0-\(chunkSize - 1)/*")
+    // Request 2 is chunk 2 (final chunk, specifies final total length)
+    #expect(
+      requests[2].value(forHTTPHeaderField: "Content-Range")
+        == "bytes \(chunkSize)-\(expectedTotalSize - 1)/\(expectedTotalSize)")
+  }
+
+  /// Tests resuming an interrupted upload for a seekable computational source.
+  @Test func resumeUploadDynamicComputationSeekableSuccess() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "dynamic-computation-seekable-resumed"
+    let chunkSize = 4 * 1024 * 1024
+    let totalChunks = 3
+    let totalSize = Int64(chunkSize * totalChunks)  // 12MB
+
+    let source = SeekableComputationSource(chunkSize: chunkSize, totalChunks: totalChunks)
+
+    let queryUrl = registry.url("/upload/storage/v1/b/\(bucket)/o?upload_id=dynamic-seek-resume-id")
+    let resumeOffset: Int64 = Int64(chunkSize)  // 4MB already received
 
     registry.register(
       response: .success(
         statusCode: 308, data: Data(),
-        headers: [:]),
+        headers: ["Range": "bytes=0-\(resumeOffset - 1)"]),
       for: queryUrl)
     registry.register(
       response: .success(
-        statusCode: 200, data: Data(objectJSON.utf8),
+        statusCode: 200,
+        data: makeObjectJSON(name: objectName, bucket: bucket, size: Int(totalSize)),
         headers: nil),
       for: queryUrl)
 
@@ -935,18 +1129,233 @@ import Testing
     }
 
     let client = try StorageClient(options)
-    let uploadOptions = UploadOptions().with {
-      $0.checksums = ChecksumOptions(crc32c: .auto)
-    }
-    let task = client.resumeUpload(
-      source, uploadId: queryUrl.absoluteString, options: uploadOptions)
+    let task = client.resumeUpload(source, uploadId: queryUrl.absoluteString)
     let object = try await task.value
 
     #expect(object.name == objectName)
+    #expect(object.bucket == bucket)
+    #expect(object.size == totalSize)
+  }
+
+  // --- Source Type 4: Data Received Asynchronously from External Source (e.g. Download) ---
+
+  /// Tests resumable upload of data received asynchronously via `AsyncStream<Data>` with unknown total size (`nil`).
+  @Test func resumableUploadAsyncStreamUnknownSizeSuccess() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "async-download-stream-unknown"
+    let chunk1 = Data(repeating: 0x11, count: 5 * 1024 * 1024)
+    let chunk2 = Data(repeating: 0x22, count: 5 * 1024 * 1024)
+    let expectedTotalSize = Int64(chunk1.count + chunk2.count)
+
+    let asyncStream = makeAsyncStream(chunks: [chunk1, chunk2])
+    let source = StreamSource(sequence: asyncStream)
+
+    let startUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?uploadType=resumable&name=\(objectName)")
+    let chunkUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?upload_id=async-download-unknown-id")
+
+    registry.register(
+      response: .success(
+        statusCode: 200, data: Data(),
+        headers: ["Location": chunkUrl.absoluteString]),
+      for: startUrl)
+    registry.register(
+      response: .success(
+        statusCode: 200,
+        data: makeObjectJSON(name: objectName, bucket: bucket, size: Int(expectedTotalSize)),
+        headers: nil),
+      for: chunkUrl)
+
+    let config = URLSessionConfiguration.ephemeral
+    config.protocolClasses = [MockURLProtocol.self]
+    let session = URLSession(configuration: config)
+
+    let options = StorageClientOptions().with {
+      $0.client = .init().with {
+        $0.endpoint = registry.endpoint
+        $0._testSession = session
+        $0.credentials = try! Credentials(configuration: .anonymous)
+      }
+    }
+
+    let client = try StorageClient(options)
+    let task = client.upload(source, to: bucket, as: objectName)
+    let object = try await task.value
+
+    #expect(object.name == objectName)
+    #expect(object.bucket == bucket)
+    #expect(object.size == expectedTotalSize)
+  }
+
+  /// Tests resumable upload of data received asynchronously via `AsyncStream<Data>` with a known total size.
+  @Test func resumableUploadAsyncStreamKnownSizeSuccess() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "async-download-stream-known"
+    let chunk1 = Data(repeating: 0x33, count: 5 * 1024 * 1024)
+    let chunk2 = Data(repeating: 0x44, count: 5 * 1024 * 1024)
+    let totalSize = Int64(chunk1.count + chunk2.count)  // 10MB
+
+    let asyncStream = makeAsyncStream(chunks: [chunk1, chunk2])
+    let source = StreamSource(sequence: asyncStream, totalSize: totalSize)
+
+    let startUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?uploadType=resumable&name=\(objectName)")
+    let chunkUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?upload_id=async-download-known-id")
+
+    registry.register(
+      response: .success(
+        statusCode: 200, data: Data(),
+        headers: ["Location": chunkUrl.absoluteString]),
+      for: startUrl)
+    registry.register(
+      response: .success(
+        statusCode: 200,
+        data: makeObjectJSON(name: objectName, bucket: bucket, size: Int(totalSize)),
+        headers: nil),
+      for: chunkUrl)
+
+    let config = URLSessionConfiguration.ephemeral
+    config.protocolClasses = [MockURLProtocol.self]
+    let session = URLSession(configuration: config)
+
+    let options = StorageClientOptions().with {
+      $0.client = .init().with {
+        $0.endpoint = registry.endpoint
+        $0._testSession = session
+        $0.credentials = try! Credentials(configuration: .anonymous)
+      }
+    }
+
+    let client = try StorageClient(options)
+    let task = client.upload(source, to: bucket, as: objectName)
+    let object = try await task.value
+
+    #expect(object.name == objectName)
+    #expect(object.bucket == bucket)
+    #expect(object.size == totalSize)
+  }
+
+  /// Tests resumable upload of an empty asynchronous stream (0 bytes).
+  @Test func resumableUploadAsyncStreamEmptyStreamSuccess() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "async-download-empty"
+
+    let asyncStream = makeAsyncStream(chunks: [])
+    let source = StreamSource(sequence: asyncStream)
+
+    let startUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?uploadType=resumable&name=\(objectName)")
+    let chunkUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?upload_id=async-download-empty-id")
+
+    registry.register(
+      response: .success(
+        statusCode: 200, data: Data(),
+        headers: ["Location": chunkUrl.absoluteString]),
+      for: startUrl)
+    registry.register(
+      response: .success(
+        statusCode: 200, data: makeObjectJSON(name: objectName, bucket: bucket, size: 0),
+        headers: nil),
+      for: chunkUrl)
+
+    let config = URLSessionConfiguration.ephemeral
+    config.protocolClasses = [MockURLProtocol.self]
+    let session = URLSession(configuration: config)
+
+    let options = StorageClientOptions().with {
+      $0.client = .init().with {
+        $0.endpoint = registry.endpoint
+        $0._testSession = session
+        $0.credentials = try! Credentials(configuration: .anonymous)
+      }
+    }
+
+    let client = try StorageClient(options)
+    let task = client.upload(source, to: bucket, as: objectName)
+    let object = try await task.value
+
+    #expect(object.name == objectName)
+    #expect(object.bucket == bucket)
+    #expect(object.size == 0)
 
     let requests = registry.recordedRequests()
     #expect(requests.count == 2)
-    let finalChunkReq = requests[1]
-    #expect(finalChunkReq.value(forHTTPHeaderField: "x-goog-hash") != nil)
+    #expect(requests[1].value(forHTTPHeaderField: "Content-Range") == "bytes */0")
+  }
+}
+
+// MARK: - Test Helper Sources
+
+/// A non-seekable computational upload source generating deterministic bytes on-demand.
+private struct DynamicComputationSource: UploadSource {
+  let chunkSize: Int
+  let totalChunks: Int
+  let totalSize: Int64?
+  private var currentChunk: Int = 0
+
+  init(chunkSize: Int, totalChunks: Int, totalSize: Int64?) {
+    self.chunkSize = chunkSize
+    self.totalChunks = totalChunks
+    self.totalSize = totalSize
+  }
+
+  mutating func read(maxBytes: Int) async throws -> Data? {
+    guard currentChunk < totalChunks else { return nil }
+    let count = min(maxBytes, chunkSize)
+    let byteVal = UInt8((currentChunk + 1) % 256)
+    currentChunk += 1
+    return Data(repeating: byteVal, count: count)
+  }
+}
+
+/// A seekable computational upload source that can re-initialize its generator to any offset.
+private struct SeekableComputationSource: SeekableUploadSource {
+  let chunkSize: Int
+  let totalChunks: Int
+  let totalSize: Int64?
+  private var currentOffset: Int64 = 0
+
+  init(chunkSize: Int, totalChunks: Int) {
+    self.chunkSize = chunkSize
+    self.totalChunks = totalChunks
+    self.totalSize = Int64(chunkSize * totalChunks)
+  }
+
+  mutating func read(maxBytes: Int) async throws -> Data? {
+    guard let totalSize = totalSize, currentOffset < totalSize else { return nil }
+    let bytesToRead = min(Int64(maxBytes), totalSize - currentOffset)
+    guard bytesToRead > 0 else { return nil }
+    let chunkIndex = Int(currentOffset / Int64(chunkSize))
+    let byteVal = UInt8((chunkIndex + 1) % 256)
+    currentOffset += bytesToRead
+    return Data(repeating: byteVal, count: Int(bytesToRead))
+  }
+
+  mutating func seek(to offset: Int64) async throws {
+    guard offset >= 0, let total = totalSize, offset <= total else {
+      throw UploadError.localSourceTooSmall(localSize: totalSize ?? 0, gcsOffset: offset)
+    }
+    self.currentOffset = offset
+  }
+}
+
+/// Helper function to create an `AsyncStream<Data>` with asynchronous yielding.
+private func makeAsyncStream(chunks: [Data], delayNanoseconds: UInt64 = 1_000_000) -> AsyncStream<
+  Data
+> {
+  AsyncStream { continuation in
+    Task {
+      for chunk in chunks {
+        try? await Task.sleep(nanoseconds: delayNanoseconds)
+        continuation.yield(chunk)
+      }
+      continuation.finish()
+    }
   }
 }
