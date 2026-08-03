@@ -1288,6 +1288,76 @@ import Testing
     #expect(requests.count == 2)
     #expect(requests[1].value(forHTTPHeaderField: "Content-Range") == "bytes */0")
   }
+
+  /// Tests resumable upload with unknown total size (`totalSize == nil`), where data chunks are sent
+  /// with unknown total size (`*`), and the stream finishes with an empty final chunk specifying the final total size (`Content-Range: bytes */TOTAL`).
+  @Test func resumableUploadUnknownSizeStreamWithEmptyFinalChunkSuccess() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "async-stream-empty-final-chunk"
+    let chunk1 = Data(repeating: 0x11, count: 5 * 1024 * 1024)
+    let chunk2 = Data(repeating: 0x22, count: 5 * 1024 * 1024)
+    let expectedTotalSize = Int64(chunk1.count + chunk2.count)  // 10MB
+
+    let asyncStream = makeAsyncStream(chunks: [chunk1, chunk2, Data()])
+    let source = StreamSource(sequence: asyncStream)
+
+    let startUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?uploadType=resumable&name=\(objectName)")
+    let chunkUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?upload_id=async-stream-empty-final-id")
+
+    registry.register(
+      response: .success(
+        statusCode: 200, data: Data(),
+        headers: ["Location": chunkUrl.absoluteString]),
+      for: startUrl)
+    // Chunk 1 (5MB) -> 308
+    registry.register(
+      response: .success(
+        statusCode: 308, data: Data(),
+        headers: ["Range": "bytes=0-\(chunk1.count - 1)"]),
+      for: chunkUrl)
+    // Chunk 2 (5MB) -> 308
+    registry.register(
+      response: .success(
+        statusCode: 308, data: Data(),
+        headers: ["Range": "bytes=0-\(expectedTotalSize - 1)"]),
+      for: chunkUrl)
+    // Final empty chunk (0 bytes) specifying final total size -> 200 OK
+    registry.register(
+      response: .success(
+        statusCode: 200,
+        data: makeObjectJSON(name: objectName, bucket: bucket, size: Int(expectedTotalSize)),
+        headers: nil),
+      for: chunkUrl)
+
+    let config = URLSessionConfiguration.ephemeral
+    config.protocolClasses = [MockURLProtocol.self]
+    let session = URLSession(configuration: config)
+
+    let options = StorageClientOptions().with {
+      $0.client = .init().with {
+        $0.endpoint = registry.endpoint
+        $0._testSession = session
+        $0.credentials = try! Credentials(configuration: .anonymous)
+      }
+    }
+
+    let uploadOptions = UploadOptions().with { $0.chunkSize = 5 * 1024 * 1024 }
+    let client = try StorageClient(options)
+    let task = client.upload(source, to: bucket, as: objectName, options: uploadOptions)
+    let object = try await task.value
+
+    #expect(object.name == objectName)
+    #expect(object.bucket == bucket)
+    #expect(object.size == expectedTotalSize)
+
+    let requests = registry.recordedRequests()
+    #expect(requests.count >= 2)
+    #expect(
+      requests.last?.value(forHTTPHeaderField: "Content-Range") == "bytes */\(expectedTotalSize)")
+  }
 }
 
 // MARK: - Test Helper Sources
