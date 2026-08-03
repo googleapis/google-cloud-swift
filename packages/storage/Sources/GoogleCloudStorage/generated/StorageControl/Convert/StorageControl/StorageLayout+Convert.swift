@@ -30,11 +30,9 @@ extension StorageLayout {
     self.location = proto.location
     self.locationType = proto.locationType
     self.customPlacementConfig =
-      proto.hasCustomPlacementConfig
-      ? try StorageLayout.CustomPlacementConfig(proto: proto.customPlacementConfig) : nil
+      proto.hasCustomPlacementConfig ? try .init(proto: proto.customPlacementConfig) : nil
     self.hierarchicalNamespace =
-      proto.hasHierarchicalNamespace
-      ? try StorageLayout.HierarchicalNamespace(proto: proto.hierarchicalNamespace) : nil
+      proto.hasHierarchicalNamespace ? try .init(proto: proto.hierarchicalNamespace) : nil
   }
 
   internal func toProto() throws -> ProtoType {

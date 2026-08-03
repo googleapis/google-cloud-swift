@@ -27,8 +27,8 @@ extension Interval {
 
   internal init(proto: ProtoType) throws {
     self.init()
-    self.startTime = proto.hasStartTime ? try GoogleCloudWkt.Timestamp(proto: proto.startTime) : nil
-    self.endTime = proto.hasEndTime ? try GoogleCloudWkt.Timestamp(proto: proto.endTime) : nil
+    self.startTime = proto.hasStartTime ? try .init(proto: proto.startTime) : nil
+    self.endTime = proto.hasEndTime ? try .init(proto: proto.endTime) : nil
   }
 
   internal func toProto() throws -> ProtoType {

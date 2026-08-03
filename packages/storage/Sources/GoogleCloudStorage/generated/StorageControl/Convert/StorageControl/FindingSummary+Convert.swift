@@ -26,14 +26,12 @@ extension FindingSummary {
 
   internal init(proto: ProtoType) throws {
     self.init()
-    self.type = FindingType(proto: proto.type)
-    self.category = FindingCategory(proto: proto.category)
+    self.type = .init(proto: proto.type)
+    self.category = .init(proto: proto.category)
     self.targetResource = proto.targetResource
-    self.createTime =
-      proto.hasCreateTime ? try GoogleCloudWkt.Timestamp(proto: proto.createTime) : nil
-    self.updateTime =
-      proto.hasUpdateTime ? try GoogleCloudWkt.Timestamp(proto: proto.updateTime) : nil
-    self.severity = FindingSeverity(proto: proto.severity)
+    self.createTime = proto.hasCreateTime ? try .init(proto: proto.createTime) : nil
+    self.updateTime = proto.hasUpdateTime ? try .init(proto: proto.updateTime) : nil
+    self.severity = .init(proto: proto.severity)
   }
 
   internal func toProto() throws -> ProtoType {
@@ -54,7 +52,7 @@ extension FindingSummary.SummaryDetails {
 
   internal init(proto: ProtoType) throws {
     self.init()
-    self.resourceType = FindingSummary.SummaryDetails.ResourceType(proto: proto.resourceType)
+    self.resourceType = .init(proto: proto.resourceType)
     self.description = proto.description_p
   }
 

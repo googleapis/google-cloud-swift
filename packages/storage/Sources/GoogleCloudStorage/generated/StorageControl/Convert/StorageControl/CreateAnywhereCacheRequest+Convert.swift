@@ -28,8 +28,7 @@ extension CreateAnywhereCacheRequest {
   internal init(proto: ProtoType) throws {
     self.init()
     self.parent = proto.parent
-    self.anywhereCache =
-      proto.hasAnywhereCache ? try AnywhereCache(proto: proto.anywhereCache) : nil
+    self.anywhereCache = proto.hasAnywhereCache ? try .init(proto: proto.anywhereCache) : nil
     self.requestId = proto.requestID
   }
 

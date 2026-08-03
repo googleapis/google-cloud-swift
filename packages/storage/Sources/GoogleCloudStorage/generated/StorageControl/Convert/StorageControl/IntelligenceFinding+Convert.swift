@@ -30,16 +30,14 @@ extension IntelligenceFinding {
     self.init()
     self.name = proto.name
     self.description = proto.description_p
-    self.type = FindingType(proto: proto.type)
-    self.category = FindingCategory(proto: proto.category)
-    self.severity = FindingSeverity(proto: proto.severity)
-    self.createTime =
-      proto.hasCreateTime ? try GoogleCloudWkt.Timestamp(proto: proto.createTime) : nil
-    self.updateTime =
-      proto.hasUpdateTime ? try GoogleCloudWkt.Timestamp(proto: proto.updateTime) : nil
+    self.type = .init(proto: proto.type)
+    self.category = .init(proto: proto.category)
+    self.severity = .init(proto: proto.severity)
+    self.createTime = proto.hasCreateTime ? try .init(proto: proto.createTime) : nil
+    self.updateTime = proto.hasUpdateTime ? try .init(proto: proto.updateTime) : nil
     self.targetResource = proto.targetResource
     self.observationPeriod =
-      proto.hasObservationPeriod ? try GoogleType.Interval(proto: proto.observationPeriod) : nil
+      proto.hasObservationPeriod ? try .init(proto: proto.observationPeriod) : nil
   }
 
   internal func toProto() throws -> ProtoType {

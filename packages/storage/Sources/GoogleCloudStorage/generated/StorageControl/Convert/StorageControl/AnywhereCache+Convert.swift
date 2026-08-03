@@ -28,13 +28,11 @@ extension AnywhereCache {
     self.init()
     self.name = proto.name
     self.zone = proto.zone
-    self.ttl = proto.hasTtl ? try GoogleCloudWkt.Duration(proto: proto.ttl) : nil
+    self.ttl = proto.hasTtl ? try .init(proto: proto.ttl) : nil
     self.admissionPolicy = proto.admissionPolicy
     self.state = proto.state
-    self.createTime =
-      proto.hasCreateTime ? try GoogleCloudWkt.Timestamp(proto: proto.createTime) : nil
-    self.updateTime =
-      proto.hasUpdateTime ? try GoogleCloudWkt.Timestamp(proto: proto.updateTime) : nil
+    self.createTime = proto.hasCreateTime ? try .init(proto: proto.createTime) : nil
+    self.updateTime = proto.hasUpdateTime ? try .init(proto: proto.updateTime) : nil
     self.pendingUpdate = proto.pendingUpdate
   }
 

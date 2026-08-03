@@ -28,9 +28,8 @@ extension IntelligenceFindingRevision {
   internal init(proto: ProtoType) throws {
     self.init()
     self.name = proto.name
-    self.snapshot = proto.hasSnapshot ? try IntelligenceFinding(proto: proto.snapshot) : nil
-    self.createTime =
-      proto.hasCreateTime ? try GoogleCloudWkt.Timestamp(proto: proto.createTime) : nil
+    self.snapshot = proto.hasSnapshot ? try .init(proto: proto.snapshot) : nil
+    self.createTime = proto.hasCreateTime ? try .init(proto: proto.createTime) : nil
   }
 
   internal func toProto() throws -> ProtoType {

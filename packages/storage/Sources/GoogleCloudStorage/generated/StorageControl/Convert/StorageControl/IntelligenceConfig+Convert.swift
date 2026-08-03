@@ -27,16 +27,13 @@ extension IntelligenceConfig {
   internal init(proto: ProtoType) throws {
     self.init()
     self.name = proto.name
-    self.editionConfig = IntelligenceConfig.EditionConfig(proto: proto.editionConfig)
-    self.updateTime =
-      proto.hasUpdateTime ? try GoogleCloudWkt.Timestamp(proto: proto.updateTime) : nil
-    self.filter = proto.hasFilter ? try IntelligenceConfig.Filter(proto: proto.filter) : nil
+    self.editionConfig = .init(proto: proto.editionConfig)
+    self.updateTime = proto.hasUpdateTime ? try .init(proto: proto.updateTime) : nil
+    self.filter = proto.hasFilter ? try .init(proto: proto.filter) : nil
     self.effectiveIntelligenceConfig =
       proto.hasEffectiveIntelligenceConfig
-      ? try IntelligenceConfig.EffectiveIntelligenceConfig(proto: proto.effectiveIntelligenceConfig)
-      : nil
-    self.trialConfig =
-      proto.hasTrialConfig ? try IntelligenceConfig.TrialConfig(proto: proto.trialConfig) : nil
+      ? try .init(proto: proto.effectiveIntelligenceConfig) : nil
+    self.trialConfig = proto.hasTrialConfig ? try .init(proto: proto.trialConfig) : nil
   }
 
   internal func toProto() throws -> ProtoType {
@@ -101,8 +98,7 @@ extension IntelligenceConfig.EffectiveIntelligenceConfig {
 
   internal init(proto: ProtoType) throws {
     self.init()
-    self.effectiveEdition = IntelligenceConfig.EffectiveIntelligenceConfig.EffectiveEdition(
-      proto: proto.effectiveEdition)
+    self.effectiveEdition = .init(proto: proto.effectiveEdition)
     self.intelligenceConfig = proto.intelligenceConfig
   }
 
@@ -158,8 +154,7 @@ extension IntelligenceConfig.TrialConfig {
 
   internal init(proto: ProtoType) throws {
     self.init()
-    self.expireTime =
-      proto.hasExpireTime ? try GoogleCloudWkt.Timestamp(proto: proto.expireTime) : nil
+    self.expireTime = proto.hasExpireTime ? try .init(proto: proto.expireTime) : nil
   }
 
   internal func toProto() throws -> ProtoType {

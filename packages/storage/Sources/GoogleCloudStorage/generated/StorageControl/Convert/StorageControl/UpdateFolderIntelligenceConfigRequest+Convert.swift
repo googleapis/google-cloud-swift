@@ -28,9 +28,8 @@ extension UpdateFolderIntelligenceConfigRequest {
   internal init(proto: ProtoType) throws {
     self.init()
     self.intelligenceConfig =
-      proto.hasIntelligenceConfig ? try IntelligenceConfig(proto: proto.intelligenceConfig) : nil
-    self.updateMask =
-      proto.hasUpdateMask ? try GoogleCloudWkt.FieldMask(proto: proto.updateMask) : nil
+      proto.hasIntelligenceConfig ? try .init(proto: proto.intelligenceConfig) : nil
+    self.updateMask = proto.hasUpdateMask ? try .init(proto: proto.updateMask) : nil
     self.requestId = proto.requestID
   }
 

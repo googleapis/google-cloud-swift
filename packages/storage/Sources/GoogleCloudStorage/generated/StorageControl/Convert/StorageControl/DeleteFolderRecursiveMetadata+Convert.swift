@@ -27,9 +27,7 @@ extension DeleteFolderRecursiveMetadata {
 
   internal init(proto: ProtoType) throws {
     self.init()
-    self.commonMetadata =
-      proto.hasCommonMetadata
-      ? try CommonLongRunningOperationMetadata(proto: proto.commonMetadata) : nil
+    self.commonMetadata = proto.hasCommonMetadata ? try .init(proto: proto.commonMetadata) : nil
     self.folderId = proto.folderID
   }
 

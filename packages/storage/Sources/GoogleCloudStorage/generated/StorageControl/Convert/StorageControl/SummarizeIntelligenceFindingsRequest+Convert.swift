@@ -28,8 +28,7 @@ extension SummarizeIntelligenceFindingsRequest {
   internal init(proto: ProtoType) throws {
     self.init()
     self.parent = proto.parent
-    self.resourceScope = SummarizeIntelligenceFindingsRequest.ResourceScope(
-      proto: proto.resourceScope)
+    self.resourceScope = .init(proto: proto.resourceScope)
     self.filter = proto.filter
     self.pageSize = proto.pageSize
     self.pageToken = proto.pageToken

@@ -27,11 +27,9 @@ extension CommonLongRunningOperationMetadata {
 
   internal init(proto: ProtoType) throws {
     self.init()
-    self.createTime =
-      proto.hasCreateTime ? try GoogleCloudWkt.Timestamp(proto: proto.createTime) : nil
-    self.endTime = proto.hasEndTime ? try GoogleCloudWkt.Timestamp(proto: proto.endTime) : nil
-    self.updateTime =
-      proto.hasUpdateTime ? try GoogleCloudWkt.Timestamp(proto: proto.updateTime) : nil
+    self.createTime = proto.hasCreateTime ? try .init(proto: proto.createTime) : nil
+    self.endTime = proto.hasEndTime ? try .init(proto: proto.endTime) : nil
+    self.updateTime = proto.hasUpdateTime ? try .init(proto: proto.updateTime) : nil
     self.type = proto.type
     self.requestedCancellation = proto.requestedCancellation
     self.progressPercent = proto.progressPercent
