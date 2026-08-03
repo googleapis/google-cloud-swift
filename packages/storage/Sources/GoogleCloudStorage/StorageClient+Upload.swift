@@ -153,18 +153,24 @@ extension StorageClient {
     continuation: AsyncStream<UploadStatus>.Continuation
   ) async throws -> StorageObject {
     var offset = offset
+    var chunksSent = 0
     while true {
       guard let chunkInfo = try await checksummedSource.readChunk(maxBytes: chunkSize),
         !chunkInfo.data.isEmpty
       else {
         break
       }
+      chunksSent += 1
       let chunk = chunkInfo.data
       let isLast = chunkInfo.isLast
       let checksum = isLast ? chunkInfo.checksum : nil
 
+      let effectiveTotalSize =
+        (isLast && totalSize == nil) ? (offset + Int64(chunk.count)) : totalSize
+
       let uploadRequest = try await httpClient.buildUploadChunkRequest(
-        uploadId: uploadId, data: chunk, offset: offset, totalSize: totalSize, options: options,
+        uploadId: uploadId, data: chunk, offset: offset, totalSize: effectiveTotalSize,
+        options: options,
         checksum: checksum)
       let (uploadData, uploadResponse) = try await httpClient.data(for: uploadRequest)
 
@@ -174,7 +180,7 @@ extension StorageClient {
         continuation.yield(
           UploadStatus(
             bytesUploaded: offset + Int64(chunk.count),
-            totalBytes: totalSize, uploadId: uploadId))
+            totalBytes: effectiveTotalSize, uploadId: uploadId))
         return object
       } else if uploadResponse.statusCode == 308 {
         if let rangeHeader = uploadResponse.value(forHTTPHeaderField: "Range") {
@@ -188,6 +194,19 @@ extension StorageClient {
       } else {
         _ = try httpClient.handleObjectResponse(data: uploadData, response: uploadResponse)
       }
+    }
+
+    if chunksSent == 0 && offset == 0 {
+      let uploadRequest = try await httpClient.buildUploadChunkRequest(
+        uploadId: uploadId, data: Data(), offset: 0, totalSize: totalSize ?? 0, options: options,
+        checksum: nil)
+      let (uploadData, uploadResponse) = try await httpClient.data(for: uploadRequest)
+      let object = try httpClient.handleObjectResponse(
+        data: uploadData, response: uploadResponse)
+      continuation.yield(
+        UploadStatus(
+          bytesUploaded: 0, totalBytes: totalSize ?? 0, uploadId: uploadId))
+      return object
     }
 
     throw UploadError.internalError("Upload completed but object not returned")
@@ -470,9 +489,13 @@ extension HTTPClient {
 
     request.applyCustomerSuppliedEncryptionHeaders(options.customerEncryptionKey)
 
-    let end = offset + Int64(data.count) - 1
     let totalStr = totalSize.map { String($0) } ?? "*"
-    request.setValue("bytes \(offset)-\(end)/\(totalStr)", forHTTPHeaderField: "Content-Range")
+    if data.isEmpty {
+      request.setValue("bytes */\(totalStr)", forHTTPHeaderField: "Content-Range")
+    } else {
+      let end = offset + Int64(data.count) - 1
+      request.setValue("bytes \(offset)-\(end)/\(totalStr)", forHTTPHeaderField: "Content-Range")
+    }
     request.httpBody = data
     return request
   }

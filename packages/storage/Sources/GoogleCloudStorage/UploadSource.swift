@@ -106,27 +106,35 @@ public struct BytesSource: SeekableUploadSource {
 }
 
 /// An upload source that wraps an arbitrary AsyncSequence of Data chunks.
-public struct StreamSource<S: AsyncSequence>: UploadSource
-where S.Element == Data, S: Sendable, S.AsyncIterator: Sendable {
-  public var totalSize: Int64? { return nil }
-  private var iterator: S.AsyncIterator?
+public struct StreamSource<S: AsyncSequence>: UploadSource where S.Element == Data, S: Sendable {
+  private final class IteratorBox: @unchecked Sendable {
+    var iterator: S.AsyncIterator?
+
+    init(iterator: S.AsyncIterator) {
+      self.iterator = iterator
+    }
+  }
+
+  public var totalSize: Int64? { return totalSizeValue }
+  private let totalSizeValue: Int64?
+  private let box: IteratorBox
   private var buffer = Data()
 
-  public init(sequence: S) {
-    self.iterator = sequence.makeAsyncIterator()
+  public init(sequence: S, totalSize: Int64? = nil) {
+    self.box = IteratorBox(iterator: sequence.makeAsyncIterator())
+    self.totalSizeValue = totalSize
   }
 
   public mutating func read(maxBytes: Int) async throws -> Data? {
     while buffer.count < maxBytes {
-      guard var iterator = self.iterator else {
+      guard box.iterator != nil else {
         break
       }
-      guard let nextChunk = try await iterator.next() else {
-        self.iterator = nil
+      guard let nextChunk = try await box.iterator?.next() else {
+        box.iterator = nil
         break
       }
       buffer.append(nextChunk)
-      self.iterator = iterator
     }
 
     guard !buffer.isEmpty else {
