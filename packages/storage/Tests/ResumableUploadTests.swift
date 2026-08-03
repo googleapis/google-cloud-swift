@@ -37,7 +37,7 @@ import Testing
     let registry = MockRegistry.create()
     let bucket = "test-bucket"
     let objectName = "test-object"
-    let data = Data(repeating: 1, count: 10 * 1024 * 1024)  // 10MB
+    let data = Data(repeating: 1, count: 10 * 1024 * 1024)  // 10MiB
     let source = BytesSource(data: data)
 
     let startUrl = registry.url(
@@ -92,7 +92,7 @@ import Testing
     let registry = MockRegistry.create()
     let bucket = "test-bucket"
     let objectName = "test-object"
-    let data = Data(repeating: 1, count: 10 * 1024 * 1024)  // 10MB
+    let data = Data(repeating: 1, count: 10 * 1024 * 1024)  // 10MiB
     struct DummyError: Error {}
     let source = MockUploadSource(data: data, readError: DummyError())
 
@@ -131,7 +131,7 @@ import Testing
     let registry = MockRegistry.create()
     let bucket = "test-bucket"
     let objectName = "test-object"
-    let data = Data(repeating: 1, count: 10 * 1024 * 1024)  // 10MB
+    let data = Data(repeating: 1, count: 10 * 1024 * 1024)  // 10MiB
     let source = BytesSource(data: data)
 
     let startUrl = registry.url(
@@ -166,7 +166,7 @@ import Testing
     let registry = MockRegistry.create()
     let bucket = "test-bucket"
     let objectName = "test-object"
-    let data = Data(repeating: 1, count: 10 * 1024 * 1024)  // 10MB
+    let data = Data(repeating: 1, count: 10 * 1024 * 1024)  // 10MiB
     let source = BytesSource(data: data)
 
     let startUrl = registry.url(
@@ -215,7 +215,7 @@ import Testing
     let registry = MockRegistry.create()
     let bucket = "test-bucket"
     let objectName = "test-object"
-    let data = Data(repeating: 1, count: 10 * 1024 * 1024)  // 10MB
+    let data = Data(repeating: 1, count: 10 * 1024 * 1024)  // 10MiB
     let source = BytesSource(data: data)
 
     let queryUrl = registry.url("/upload/storage/v1/b/\(bucket)/o?upload_id=test-id")
@@ -341,7 +341,7 @@ import Testing
   @Test func resumeUploadSourceSeekError() async throws {
     let registry = MockRegistry.create()
     let bucket = "test-bucket"
-    let data = Data(repeating: 1, count: 10 * 1024 * 1024)  // 10MB
+    let data = Data(repeating: 1, count: 10 * 1024 * 1024)  // 10MiB
     struct DummyError: Error {}
     let source = MockUploadSource(data: data, seekError: DummyError())
 
@@ -770,7 +770,7 @@ import Testing
     let registry = MockRegistry.create()
     let bucket = "test-bucket"
     let objectName = "fixed-buffer-object"
-    let data = Data(repeating: 0xAB, count: 10 * 1024 * 1024)  // 10MB
+    let data = Data(repeating: 0xAB, count: 10 * 1024 * 1024)  // 10MiB
     let source = BytesSource(data: data)
 
     let startUrl = registry.url(
@@ -814,7 +814,7 @@ import Testing
     let registry = MockRegistry.create()
     let bucket = "test-bucket"
     let objectName = "fixed-buffer-resumed"
-    let data = Data(repeating: 0xCD, count: 10 * 1024 * 1024)  // 10MB
+    let data = Data(repeating: 0xCD, count: 10 * 1024 * 1024)  // 10MiB
     let source = BytesSource(data: data)
 
     let queryUrl = registry.url("/upload/storage/v1/b/\(bucket)/o?upload_id=fixed-buffer-resume-id")
@@ -869,7 +869,7 @@ import Testing
   @Test func resumableUploadFileFromDiskSuccess() async throws {
     let tempDirectory = FileManager.default.temporaryDirectory
     let fileURL = tempDirectory.appendingPathComponent("test_disk_upload_\(UUID().uuidString).dat")
-    let data = Data(repeating: 0xEF, count: 10 * 1024 * 1024)  // 10MB file
+    let data = Data(repeating: 0xEF, count: 10 * 1024 * 1024)  // 10MiB file
     try data.write(to: fileURL)
     defer {
       try? FileManager.default.removeItem(at: fileURL)
@@ -920,7 +920,7 @@ import Testing
   @Test func resumeUploadFileFromDiskSuccess() async throws {
     let tempDirectory = FileManager.default.temporaryDirectory
     let fileURL = tempDirectory.appendingPathComponent("test_disk_resume_\(UUID().uuidString).dat")
-    let data = Data(repeating: 0x42, count: 10 * 1024 * 1024)  // 10MB file
+    let data = Data(repeating: 0x42, count: 10 * 1024 * 1024)  // 10MiB file
     try data.write(to: fileURL)
     defer {
       try? FileManager.default.removeItem(at: fileURL)
@@ -1196,7 +1196,7 @@ import Testing
     let objectName = "async-download-stream-known"
     let chunk1 = Data(repeating: 0x33, count: 5 * 1024 * 1024)
     let chunk2 = Data(repeating: 0x44, count: 5 * 1024 * 1024)
-    let totalSize = Int64(chunk1.count + chunk2.count)  // 10MB
+    let totalSize = Int64(chunk1.count + chunk2.count)  // 10MiB
 
     let asyncStream = makeAsyncStream(chunks: [chunk1, chunk2])
     let source = StreamSource(sequence: asyncStream, totalSize: totalSize)
