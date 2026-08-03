@@ -555,6 +555,78 @@ import Testing
 
       print("Upload with metadata successful: \(object)")
     }
+
+    @Test func testDynamicSourceCompletelyEmptyUpload() async throws {
+      guard ProcessInfo.processInfo.environment["GOOGLE_CLOUD_PROJECT"] != nil else {
+        Issue.record("GOOGLE_CLOUD_PROJECT environment variable not set")
+        return
+      }
+      let bucketName =
+        ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_BUCKET"] ?? "test-bucket"
+      let objectName = "test-dynamic-empty-\(UUID().uuidString).bin"
+
+      let source = IntegrationDynamicSource(
+        chunkSize: 4 * 1024 * 1024, totalChunks: 0, totalSize: nil)
+
+      let storage = try StorageClient()
+      let task = storage.upload(source, to: bucketName, as: objectName)
+
+      let object = try await task.value
+      #expect(object.bucket == bucketName)
+      #expect(object.name == objectName)
+      #expect(object.size == 0)
+
+      print("Dynamic source completely empty upload successful: \(object)")
+    }
+
+    @Test func testDynamicSourceLastChunkEmptyUpload() async throws {
+      guard ProcessInfo.processInfo.environment["GOOGLE_CLOUD_PROJECT"] != nil else {
+        Issue.record("GOOGLE_CLOUD_PROJECT environment variable not set")
+        return
+      }
+      let bucketName =
+        ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_BUCKET"] ?? "test-bucket"
+      let objectName = "test-dynamic-last-chunk-empty-\(UUID().uuidString).bin"
+
+      let chunkSize = 5 * 1024 * 1024  // 5MB chunks
+      let totalChunks = 2
+      let expectedTotalSize = Int64(chunkSize * totalChunks)  // 10MB
+
+      let source = IntegrationDynamicSource(
+        chunkSize: chunkSize, totalChunks: totalChunks, totalSize: nil)
+
+      let storage = try StorageClient()
+      let options = UploadOptions().with { $0.chunkSize = chunkSize }
+      let task = storage.upload(source, to: bucketName, as: objectName, options: options)
+
+      let object = try await task.value
+      #expect(object.bucket == bucketName)
+      #expect(object.name == objectName)
+      #expect(object.size == expectedTotalSize)
+
+      print("Dynamic source with last chunk empty upload successful: \(object)")
+    }
+  }
+
+  private struct IntegrationDynamicSource: UploadSource {
+    let chunkSize: Int
+    let totalChunks: Int
+    let totalSize: Int64?
+    private var currentChunk: Int = 0
+
+    init(chunkSize: Int, totalChunks: Int, totalSize: Int64? = nil) {
+      self.chunkSize = chunkSize
+      self.totalChunks = totalChunks
+      self.totalSize = totalSize
+    }
+
+    mutating func read(maxBytes: Int) async throws -> Data? {
+      guard currentChunk < totalChunks else { return nil }
+      let count = min(maxBytes, chunkSize)
+      let byteVal = UInt8((currentChunk + 1) % 256)
+      currentChunk += 1
+      return Data(repeating: byteVal, count: count)
+    }
   }
 
   private struct FailingUploadSource: SeekableUploadSource {
