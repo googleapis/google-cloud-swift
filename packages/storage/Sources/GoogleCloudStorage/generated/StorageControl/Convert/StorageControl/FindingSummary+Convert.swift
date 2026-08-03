@@ -56,12 +56,28 @@ extension FindingSummary.SummaryDetails {
     self.init()
     self.resourceType = .init(proto: proto.resourceType)
     self.description = proto.description_p
+    if let oneof = proto.magnitude {
+      switch oneof {
+      case .count(let value):
+        self.magnitude = .count(value)
+      case .percentage(let value):
+        self.magnitude = .percentage(value)
+      }
+    }
   }
 
   internal func toProto() throws -> ProtoType {
     var proto = ProtoType()
     proto.resourceType = try self.resourceType.toProto()
     proto.description_p = self.description
+    if let oneof = self.magnitude {
+      switch oneof {
+      case .count(let value):
+        proto.magnitude = .count(value)
+      case .percentage(let value):
+        proto.magnitude = .percentage(value)
+      }
+    }
     return proto
   }
 }

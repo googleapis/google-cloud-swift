@@ -56,10 +56,50 @@ extension IntelligenceConfig.Filter {
 
   internal init(proto: ProtoType) throws {
     self.init()
+    if let oneof = proto.cloudStorageLocations {
+      switch oneof {
+      case .includedCloudStorageLocations(let value):
+        self.cloudStorageLocations = .includedCloudStorageLocations(try .init(proto: value))
+      case .excludedCloudStorageLocations(let value):
+        self.cloudStorageLocations = .excludedCloudStorageLocations(try .init(proto: value))
+      }
+    }
+    if let oneof = proto.cloudStorageBuckets {
+      switch oneof {
+      case .includedCloudStorageBuckets(let value):
+        self.cloudStorageBuckets = .includedCloudStorageBuckets(try .init(proto: value))
+      case .excludedCloudStorageBuckets(let value):
+        self.cloudStorageBuckets = .excludedCloudStorageBuckets(try .init(proto: value))
+      }
+    }
   }
 
   internal func toProto() throws -> ProtoType {
-    let proto = ProtoType()
+    var proto = ProtoType()
+    if let oneof = self.cloudStorageLocations {
+      switch oneof {
+      case .includedCloudStorageLocations(let value):
+        if let value = value {
+          proto.cloudStorageLocations = .includedCloudStorageLocations(try value.toProto())
+        }
+      case .excludedCloudStorageLocations(let value):
+        if let value = value {
+          proto.cloudStorageLocations = .excludedCloudStorageLocations(try value.toProto())
+        }
+      }
+    }
+    if let oneof = self.cloudStorageBuckets {
+      switch oneof {
+      case .includedCloudStorageBuckets(let value):
+        if let value = value {
+          proto.cloudStorageBuckets = .includedCloudStorageBuckets(try value.toProto())
+        }
+      case .excludedCloudStorageBuckets(let value):
+        if let value = value {
+          proto.cloudStorageBuckets = .excludedCloudStorageBuckets(try value.toProto())
+        }
+      }
+    }
     return proto
   }
 }

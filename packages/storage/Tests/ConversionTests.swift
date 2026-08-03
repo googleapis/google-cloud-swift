@@ -191,4 +191,66 @@ import Testing
     let roundtrippedGrowth = try IntelligenceFinding.StorageGrowthAboveTrend(proto: growthProto)
     #expect(roundtrippedGrowth == growthTrend)
   }
+
+  @Test func intelligenceFindingOneOfFields() throws {
+    let growthTrend = IntelligenceFinding.StorageGrowthAboveTrend().with {
+      $0.totalStorageGrowthBytes = 3072
+      $0.percentageIncrease = 22.0
+    }
+    var finding = IntelligenceFinding().with {
+      $0.name = "projects/my-project/locations/us-central1/findings/finding-oneof"
+      $0.intelligenceFindingDetails = .storageGrowthAboveTrend(growthTrend)
+    }
+
+    // Verify top-level oneof roundtrip
+    let findingProto = try finding.toProto()
+    guard case .storageGrowthAboveTrend(let protoGrowth)? = findingProto.intelligenceFindingDetails else {
+      Issue.record("Expected storageGrowthAboveTrend case in proto")
+      return
+    }
+    #expect(protoGrowth.totalStorageGrowthBytes == 3072)
+
+    let roundtrippedFinding = try IntelligenceFinding(proto: findingProto)
+    #expect(roundtrippedFinding == finding)
+
+    // Verify nested oneof in BucketContribution roundtrip
+    let prefixContribution = IntelligenceFinding.ColdlineAndArchivalStorageOperationsSpike.BucketContribution.Contribution.PrefixContribution().with {
+      $0.totalOperationsCount = 500
+      $0.percentageIncrease = 10.0
+      $0.prefix = "test/"
+    }
+    let contribution = IntelligenceFinding.ColdlineAndArchivalStorageOperationsSpike.BucketContribution.Contribution().with {
+      $0.topPrefixes = [prefixContribution]
+    }
+    let bucketContribution = IntelligenceFinding.ColdlineAndArchivalStorageOperationsSpike.BucketContribution().with {
+      $0.bucket = "projects/_/buckets/test-bucket"
+      $0.details = .contribution(contribution)
+    }
+
+    let contributionProto = try bucketContribution.toProto()
+    guard case .contribution(let protoContribution)? = contributionProto.details else {
+      Issue.record("Expected contribution case in proto")
+      return
+    }
+    #expect(protoContribution.topPrefixes[0].totalOperationsCount == 500)
+
+    let roundtrippedContribution = try IntelligenceFinding.ColdlineAndArchivalStorageOperationsSpike.BucketContribution(proto: contributionProto)
+    #expect(roundtrippedContribution == bucketContribution)
+
+    // Verify mutual exclusion (setting one case replaces the previous case)
+    let coldlineSpike = IntelligenceFinding.ColdlineAndArchivalStorageOperationsSpike().with {
+      $0.totalOperationsCount = 1000
+    }
+    finding.intelligenceFindingDetails = .coldlineAndArchivalStorageOperationsSpike(coldlineSpike)
+    let replacedProto = try finding.toProto()
+    guard case .coldlineAndArchivalStorageOperationsSpike(let protoColdline)? = replacedProto.intelligenceFindingDetails else {
+      Issue.record("Expected coldlineAndArchivalStorageOperationsSpike case in proto after replacement")
+      return
+    }
+    #expect(protoColdline.totalOperationsCount == 1000)
+
+    let roundtrippedReplaced = try IntelligenceFinding(proto: replacedProto)
+    #expect(roundtrippedReplaced == finding)
+  }
 }
+

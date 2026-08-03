@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 language: swift
-version: v0.33.1-0.20260805232938-95d34648b22e
+version: v0.33.1-0.20260806185819-40c48dff907c
 repo: googleapis/google-cloud-swift
 sources:
   conformance:
@@ -724,6 +724,12 @@ libraries:
           module_type: default
           skipped_ids:
             - .google.storage.v2.Storage
+        - output: packages/storage/Sources/GoogleCloudStorage/generated/StorageControl/Convert/GoogleRpc
+          api_path: google/rpc
+          module_type: convert-swift
+          include_list:
+            - status.proto
+          module_path: StorageControlProtos
   - name: google-cloud-storageinsights-v1
     version: 0.1.0-preview
     copyright_year: "2026"

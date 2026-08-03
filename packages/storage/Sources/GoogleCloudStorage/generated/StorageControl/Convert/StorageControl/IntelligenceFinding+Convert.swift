@@ -39,6 +39,19 @@ extension IntelligenceFinding {
     self.associatedResources = proto.associatedResources
     self.observationPeriod =
       proto.hasObservationPeriod ? try .init(proto: proto.observationPeriod) : nil
+    if let oneof = proto.intelligenceFindingDetails {
+      switch oneof {
+      case .coldlineAndArchivalStorageOperationsSpike(let value):
+        self.intelligenceFindingDetails = .coldlineAndArchivalStorageOperationsSpike(
+          try .init(proto: value))
+      case .throttledRequestsSpike(let value):
+        self.intelligenceFindingDetails = .throttledRequestsSpike(try .init(proto: value))
+      case .crossRegionEgressSpike(let value):
+        self.intelligenceFindingDetails = .crossRegionEgressSpike(try .init(proto: value))
+      case .storageGrowthAboveTrend(let value):
+        self.intelligenceFindingDetails = .storageGrowthAboveTrend(try .init(proto: value))
+      }
+    }
   }
 
   internal func toProto() throws -> ProtoType {
@@ -54,6 +67,27 @@ extension IntelligenceFinding {
     proto.associatedResources = self.associatedResources
     if let observationPeriod = self.observationPeriod {
       proto.observationPeriod = try observationPeriod.toProto()
+    }
+    if let oneof = self.intelligenceFindingDetails {
+      switch oneof {
+      case .coldlineAndArchivalStorageOperationsSpike(let value):
+        if let value = value {
+          proto.intelligenceFindingDetails = .coldlineAndArchivalStorageOperationsSpike(
+            try value.toProto())
+        }
+      case .throttledRequestsSpike(let value):
+        if let value = value {
+          proto.intelligenceFindingDetails = .throttledRequestsSpike(try value.toProto())
+        }
+      case .crossRegionEgressSpike(let value):
+        if let value = value {
+          proto.intelligenceFindingDetails = .crossRegionEgressSpike(try value.toProto())
+        }
+      case .storageGrowthAboveTrend(let value):
+        if let value = value {
+          proto.intelligenceFindingDetails = .storageGrowthAboveTrend(try value.toProto())
+        }
+      }
     }
     return proto
   }
@@ -88,6 +122,14 @@ extension IntelligenceFinding.ColdlineAndArchivalStorageOperationsSpike.BucketCo
     self.bucket = proto.bucket
     self.percentageIncrease = proto.percentageIncrease
     self.totalOperationsCount = proto.totalOperationsCount
+    if let oneof = proto.details {
+      switch oneof {
+      case .contribution(let value):
+        self.details = .contribution(try .init(proto: value))
+      case .error(let value):
+        self.details = .error(try .init(proto: value))
+      }
+    }
   }
 
   internal func toProto() throws -> ProtoType {
@@ -95,6 +137,18 @@ extension IntelligenceFinding.ColdlineAndArchivalStorageOperationsSpike.BucketCo
     proto.bucket = self.bucket
     proto.percentageIncrease = self.percentageIncrease
     proto.totalOperationsCount = self.totalOperationsCount
+    if let oneof = self.details {
+      switch oneof {
+      case .contribution(let value):
+        if let value = value {
+          proto.details = .contribution(try value.toProto())
+        }
+      case .error(let value):
+        if let value = value {
+          proto.details = .error(try value.toProto())
+        }
+      }
+    }
     return proto
   }
 }
@@ -168,6 +222,14 @@ extension IntelligenceFinding.CrossRegionEgressSpike.BucketContribution {
     self.bucket = proto.bucket
     self.totalEgressBytes = proto.totalEgressBytes
     self.percentageIncrease = proto.percentageIncrease
+    if let oneof = proto.details {
+      switch oneof {
+      case .contribution(let value):
+        self.details = .contribution(try .init(proto: value))
+      case .error(let value):
+        self.details = .error(try .init(proto: value))
+      }
+    }
   }
 
   internal func toProto() throws -> ProtoType {
@@ -175,6 +237,18 @@ extension IntelligenceFinding.CrossRegionEgressSpike.BucketContribution {
     proto.bucket = self.bucket
     proto.totalEgressBytes = self.totalEgressBytes
     proto.percentageIncrease = self.percentageIncrease
+    if let oneof = self.details {
+      switch oneof {
+      case .contribution(let value):
+        if let value = value {
+          proto.details = .contribution(try value.toProto())
+        }
+      case .error(let value):
+        if let value = value {
+          proto.details = .error(try value.toProto())
+        }
+      }
+    }
     return proto
   }
 }
@@ -246,6 +320,14 @@ extension IntelligenceFinding.ThrottledRequestSpike.BucketContribution {
     self.bucket = proto.bucket
     self.throttledRequests = proto.throttledRequests
     self.percentageIncrease = proto.percentageIncrease
+    if let oneof = proto.details {
+      switch oneof {
+      case .contribution(let value):
+        self.details = .contribution(try .init(proto: value))
+      case .error(let value):
+        self.details = .error(try .init(proto: value))
+      }
+    }
   }
 
   internal func toProto() throws -> ProtoType {
@@ -253,6 +335,18 @@ extension IntelligenceFinding.ThrottledRequestSpike.BucketContribution {
     proto.bucket = self.bucket
     proto.throttledRequests = self.throttledRequests
     proto.percentageIncrease = self.percentageIncrease
+    if let oneof = self.details {
+      switch oneof {
+      case .contribution(let value):
+        if let value = value {
+          proto.details = .contribution(try value.toProto())
+        }
+      case .error(let value):
+        if let value = value {
+          proto.details = .error(try value.toProto())
+        }
+      }
+    }
     return proto
   }
 }
@@ -324,6 +418,12 @@ extension IntelligenceFinding.StorageGrowthAboveTrend.BucketContribution {
     self.bucket = proto.bucket
     self.totalStorageGrowthBytes = proto.totalStorageGrowthBytes
     self.percentageIncrease = proto.percentageIncrease
+    if let oneof = proto.details {
+      switch oneof {
+      case .error(let value):
+        self.details = .error(try .init(proto: value))
+      }
+    }
   }
 
   internal func toProto() throws -> ProtoType {
@@ -331,6 +431,14 @@ extension IntelligenceFinding.StorageGrowthAboveTrend.BucketContribution {
     proto.bucket = self.bucket
     proto.totalStorageGrowthBytes = self.totalStorageGrowthBytes
     proto.percentageIncrease = self.percentageIncrease
+    if let oneof = self.details {
+      switch oneof {
+      case .error(let value):
+        if let value = value {
+          proto.details = .error(try value.toProto())
+        }
+      }
+    }
     return proto
   }
 }
