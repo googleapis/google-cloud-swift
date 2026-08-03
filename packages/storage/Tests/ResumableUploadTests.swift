@@ -1358,6 +1358,56 @@ import Testing
     #expect(
       requests.last?.value(forHTTPHeaderField: "Content-Range") == "bytes */\(expectedTotalSize)")
   }
+
+  /// Tests resumable upload of a dynamic computation source where total size is unknown (`nil`), but turns out to be completely empty (0 bytes).
+  @Test func resumableUploadDynamicComputationUnknownSizeCompletelyEmptySuccess() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "dynamic-computation-unknown-empty"
+
+    let source = DynamicComputationSource(
+      chunkSize: 4 * 1024 * 1024, totalChunks: 0, totalSize: nil)
+
+    let startUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?uploadType=resumable&name=\(objectName)")
+    let chunkUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?upload_id=dynamic-comp-unknown-empty-id")
+
+    registry.register(
+      response: .success(
+        statusCode: 200, data: Data(),
+        headers: ["Location": chunkUrl.absoluteString]),
+      for: startUrl)
+    registry.register(
+      response: .success(
+        statusCode: 200, data: makeObjectJSON(name: objectName, bucket: bucket, size: 0),
+        headers: nil),
+      for: chunkUrl)
+
+    let config = URLSessionConfiguration.ephemeral
+    config.protocolClasses = [MockURLProtocol.self]
+    let session = URLSession(configuration: config)
+
+    let options = StorageClientOptions().with {
+      $0.client = .init().with {
+        $0.endpoint = registry.endpoint
+        $0._testSession = session
+        $0.credentials = try! Credentials(configuration: .anonymous)
+      }
+    }
+
+    let client = try StorageClient(options)
+    let task = client.upload(source, to: bucket, as: objectName)
+    let object = try await task.value
+
+    #expect(object.name == objectName)
+    #expect(object.bucket == bucket)
+    #expect(object.size == 0)
+
+    let requests = registry.recordedRequests()
+    #expect(requests.count == 2)
+    #expect(requests[1].value(forHTTPHeaderField: "Content-Range") == "bytes */0")
+  }
 }
 
 // MARK: - Test Helper Sources
