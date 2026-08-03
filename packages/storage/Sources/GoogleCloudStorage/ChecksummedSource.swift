@@ -103,41 +103,44 @@ struct ChecksummedSource<S: UploadSource> {
 
     var checksumStr: String? = nil
     if isLast {
-      var parts = [String]()
-
-      if let crcOption = options.crc32c {
-        switch crcOption {
-        case .auto:
-          let bigEndian = crc32c.finalize().bigEndian
-          var bytes = [UInt8]()
-          withUnsafeBytes(of: bigEndian) {
-            bytes = Array($0)
-          }
-          parts.append("crc32c=" + Data(bytes).base64EncodedString())
-        case .value(let val):
-          let formatted = val.hasPrefix("crc32c=") ? val : "crc32c=" + val
-          parts.append(formatted)
-        }
-      }
-
-      if let md5Option = options.md5 {
-        switch md5Option {
-        case .auto:
-          let digest = md5.finalize()
-          parts.append("md5=" + Data(digest).base64EncodedString())
-        case .value(let val):
-          let formatted = val.hasPrefix("md5=") ? val : "md5=" + val
-          parts.append(formatted)
-        }
-      }
-
-      if !parts.isEmpty {
-        checksumStr = parts.joined(separator: ", ")
-      }
-      isFinished = true
+      checksumStr = finalizeChecksum()
     }
 
     return ChunkInfo(data: currentChunk, isLast: isLast, checksum: checksumStr)
+  }
+
+  mutating func finalizeChecksum() -> String? {
+    guard !isFinished else { return nil }
+    isFinished = true
+    var parts = [String]()
+
+    if let crcOption = options.crc32c {
+      switch crcOption {
+      case .auto:
+        let bigEndian = crc32c.finalize().bigEndian
+        var bytes = [UInt8]()
+        withUnsafeBytes(of: bigEndian) {
+          bytes = Array($0)
+        }
+        parts.append("crc32c=" + Data(bytes).base64EncodedString())
+      case .value(let val):
+        let formatted = val.hasPrefix("crc32c=") ? val : "crc32c=" + val
+        parts.append(formatted)
+      }
+    }
+
+    if let md5Option = options.md5 {
+      switch md5Option {
+      case .auto:
+        let digest = md5.finalize()
+        parts.append("md5=" + Data(digest).base64EncodedString())
+      case .value(let val):
+        let formatted = val.hasPrefix("md5=") ? val : "md5=" + val
+        parts.append(formatted)
+      }
+    }
+
+    return parts.isEmpty ? nil : parts.joined(separator: ", ")
   }
 }
 

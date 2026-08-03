@@ -196,20 +196,19 @@ extension StorageClient {
       }
     }
 
-    if chunksSent == 0 && offset == 0 {
-      let uploadRequest = try await httpClient.buildUploadChunkRequest(
-        uploadId: uploadId, data: Data(), offset: 0, totalSize: totalSize ?? 0, options: options,
-        checksum: nil)
-      let (uploadData, uploadResponse) = try await httpClient.data(for: uploadRequest)
-      let object = try httpClient.handleObjectResponse(
-        data: uploadData, response: uploadResponse)
-      continuation.yield(
-        UploadStatus(
-          bytesUploaded: 0, totalBytes: totalSize ?? 0, uploadId: uploadId))
-      return object
-    }
-
-    throw UploadError.internalError("Upload completed but object not returned")
+    // Finalize upload with an empty chunk if the stream finished without returning an object
+    let finalTotalSize = totalSize ?? offset
+    let checksum = checksummedSource.finalizeChecksum()
+    let uploadRequest = try await httpClient.buildUploadChunkRequest(
+      uploadId: uploadId, data: Data(), offset: offset, totalSize: finalTotalSize, options: options,
+      checksum: checksum)
+    let (uploadData, uploadResponse) = try await httpClient.data(for: uploadRequest)
+    let object = try httpClient.handleObjectResponse(
+      data: uploadData, response: uploadResponse)
+    continuation.yield(
+      UploadStatus(
+        bytesUploaded: offset, totalBytes: finalTotalSize, uploadId: uploadId))
+    return object
   }
 
   fileprivate static func continueResumableUpload<S: UploadSource>(
