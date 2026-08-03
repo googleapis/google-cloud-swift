@@ -27,15 +27,23 @@ extension CreateAnywhereCacheMetadata {
 
   internal init(proto: ProtoType) throws {
     self.init()
+    self.commonMetadata =
+      proto.hasCommonMetadata
+      ? try CommonLongRunningOperationMetadata(proto: proto.commonMetadata) : nil
     self.anywhereCacheId = proto.hasAnywhereCacheID ? proto.anywhereCacheID : nil
     self.zone = proto.hasZone ? proto.zone : nil
+    self.ttl = proto.hasTtl ? try GoogleCloudWkt.Duration(proto: proto.ttl) : nil
     self.admissionPolicy = proto.hasAdmissionPolicy ? proto.admissionPolicy : nil
   }
 
   internal func toProto() throws -> ProtoType {
     var proto = ProtoType()
+    if let commonMetadata = self.commonMetadata {
+      proto.commonMetadata = try commonMetadata.toProto()
+    }
     if let anywhereCacheId = self.anywhereCacheId { proto.anywhereCacheID = anywhereCacheId }
     if let zone = self.zone { proto.zone = zone }
+    if let ttl = self.ttl { proto.ttl = try ttl.toProto() }
     if let admissionPolicy = self.admissionPolicy { proto.admissionPolicy = admissionPolicy }
     return proto
   }

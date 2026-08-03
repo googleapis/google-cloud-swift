@@ -30,14 +30,293 @@ extension IntelligenceFinding {
     self.init()
     self.name = proto.name
     self.description = proto.description_p
+    self.type = FindingType(proto: proto.type)
+    self.category = FindingCategory(proto: proto.category)
+    self.severity = FindingSeverity(proto: proto.severity)
+    self.createTime =
+      proto.hasCreateTime ? try GoogleCloudWkt.Timestamp(proto: proto.createTime) : nil
+    self.updateTime =
+      proto.hasUpdateTime ? try GoogleCloudWkt.Timestamp(proto: proto.updateTime) : nil
     self.targetResource = proto.targetResource
+    self.observationPeriod =
+      proto.hasObservationPeriod ? try GoogleType.Interval(proto: proto.observationPeriod) : nil
   }
 
   internal func toProto() throws -> ProtoType {
     var proto = ProtoType()
     proto.name = self.name
     proto.description_p = self.description
+    proto.type = try self.type.toProto()
+    proto.category = try self.category.toProto()
+    proto.severity = try self.severity.toProto()
+    if let createTime = self.createTime { proto.createTime = try createTime.toProto() }
+    if let updateTime = self.updateTime { proto.updateTime = try updateTime.toProto() }
     proto.targetResource = self.targetResource
+    if let observationPeriod = self.observationPeriod {
+      proto.observationPeriod = try observationPeriod.toProto()
+    }
+    return proto
+  }
+}
+
+extension IntelligenceFinding.ColdlineAndArchivalStorageOperationsSpike {
+  internal typealias ProtoType = StorageControlProtos.Google_Storage_Control_V2_IntelligenceFinding
+    .ColdlineAndArchivalStorageOperationsSpike
+
+  internal init(proto: ProtoType) throws {
+    self.init()
+    self.percentageIncrease = proto.percentageIncrease
+    self.totalOperationsCount = proto.totalOperationsCount
+  }
+
+  internal func toProto() throws -> ProtoType {
+    var proto = ProtoType()
+    proto.percentageIncrease = self.percentageIncrease
+    proto.totalOperationsCount = self.totalOperationsCount
+    return proto
+  }
+}
+
+extension IntelligenceFinding.ColdlineAndArchivalStorageOperationsSpike.BucketContribution {
+  internal typealias ProtoType = StorageControlProtos.Google_Storage_Control_V2_IntelligenceFinding
+    .ColdlineAndArchivalStorageOperationsSpike.BucketContribution
+
+  internal init(proto: ProtoType) throws {
+    self.init()
+    self.bucket = proto.bucket
+    self.percentageIncrease = proto.percentageIncrease
+    self.totalOperationsCount = proto.totalOperationsCount
+  }
+
+  internal func toProto() throws -> ProtoType {
+    var proto = ProtoType()
+    proto.bucket = self.bucket
+    proto.percentageIncrease = self.percentageIncrease
+    proto.totalOperationsCount = self.totalOperationsCount
+    return proto
+  }
+}
+
+extension IntelligenceFinding.ColdlineAndArchivalStorageOperationsSpike.BucketContribution
+  .Contribution
+{
+  internal typealias ProtoType = StorageControlProtos.Google_Storage_Control_V2_IntelligenceFinding
+    .ColdlineAndArchivalStorageOperationsSpike.BucketContribution.Contribution
+
+  internal init(proto: ProtoType) throws {
+    self.init()
+  }
+
+  internal func toProto() throws -> ProtoType {
+    var proto = ProtoType()
+    return proto
+  }
+}
+
+extension IntelligenceFinding.ColdlineAndArchivalStorageOperationsSpike.BucketContribution
+  .Contribution.PrefixContribution
+{
+  internal typealias ProtoType = StorageControlProtos.Google_Storage_Control_V2_IntelligenceFinding
+    .ColdlineAndArchivalStorageOperationsSpike.BucketContribution.Contribution.PrefixContribution
+
+  internal init(proto: ProtoType) throws {
+    self.init()
+    self.`prefix` = proto.`prefix`
+    self.percentageIncrease = proto.percentageIncrease
+    self.totalOperationsCount = proto.totalOperationsCount
+  }
+
+  internal func toProto() throws -> ProtoType {
+    var proto = ProtoType()
+    proto.`prefix` = self.`prefix`
+    proto.percentageIncrease = self.percentageIncrease
+    proto.totalOperationsCount = self.totalOperationsCount
+    return proto
+  }
+}
+
+extension IntelligenceFinding.CrossRegionEgressSpike {
+  internal typealias ProtoType = StorageControlProtos.Google_Storage_Control_V2_IntelligenceFinding
+    .CrossRegionEgressSpike
+
+  internal init(proto: ProtoType) throws {
+    self.init()
+    self.totalEgressBytes = proto.totalEgressBytes
+    self.percentageIncrease = proto.percentageIncrease
+  }
+
+  internal func toProto() throws -> ProtoType {
+    var proto = ProtoType()
+    proto.totalEgressBytes = self.totalEgressBytes
+    proto.percentageIncrease = self.percentageIncrease
+    return proto
+  }
+}
+
+extension IntelligenceFinding.CrossRegionEgressSpike.BucketContribution {
+  internal typealias ProtoType = StorageControlProtos.Google_Storage_Control_V2_IntelligenceFinding
+    .CrossRegionEgressSpike.BucketContribution
+
+  internal init(proto: ProtoType) throws {
+    self.init()
+    self.bucket = proto.bucket
+    self.totalEgressBytes = proto.totalEgressBytes
+    self.percentageIncrease = proto.percentageIncrease
+  }
+
+  internal func toProto() throws -> ProtoType {
+    var proto = ProtoType()
+    proto.bucket = self.bucket
+    proto.totalEgressBytes = self.totalEgressBytes
+    proto.percentageIncrease = self.percentageIncrease
+    return proto
+  }
+}
+
+extension IntelligenceFinding.CrossRegionEgressSpike.BucketContribution.Contribution {
+  internal typealias ProtoType = StorageControlProtos.Google_Storage_Control_V2_IntelligenceFinding
+    .CrossRegionEgressSpike.BucketContribution.Contribution
+
+  internal init(proto: ProtoType) throws {
+    self.init()
+  }
+
+  internal func toProto() throws -> ProtoType {
+    var proto = ProtoType()
+    return proto
+  }
+}
+
+extension IntelligenceFinding.CrossRegionEgressSpike.BucketContribution.Contribution
+  .PrefixContribution
+{
+  internal typealias ProtoType = StorageControlProtos.Google_Storage_Control_V2_IntelligenceFinding
+    .CrossRegionEgressSpike.BucketContribution.Contribution.PrefixContribution
+
+  internal init(proto: ProtoType) throws {
+    self.init()
+    self.`prefix` = proto.`prefix`
+    self.totalEgressBytes = proto.totalEgressBytes
+    self.percentageIncrease = proto.percentageIncrease
+  }
+
+  internal func toProto() throws -> ProtoType {
+    var proto = ProtoType()
+    proto.`prefix` = self.`prefix`
+    proto.totalEgressBytes = self.totalEgressBytes
+    proto.percentageIncrease = self.percentageIncrease
+    return proto
+  }
+}
+
+extension IntelligenceFinding.ThrottledRequestSpike {
+  internal typealias ProtoType = StorageControlProtos.Google_Storage_Control_V2_IntelligenceFinding
+    .ThrottledRequestSpike
+
+  internal init(proto: ProtoType) throws {
+    self.init()
+    self.throttledRequests = proto.throttledRequests
+    self.percentageIncrease = proto.percentageIncrease
+  }
+
+  internal func toProto() throws -> ProtoType {
+    var proto = ProtoType()
+    proto.throttledRequests = self.throttledRequests
+    proto.percentageIncrease = self.percentageIncrease
+    return proto
+  }
+}
+
+extension IntelligenceFinding.ThrottledRequestSpike.BucketContribution {
+  internal typealias ProtoType = StorageControlProtos.Google_Storage_Control_V2_IntelligenceFinding
+    .ThrottledRequestSpike.BucketContribution
+
+  internal init(proto: ProtoType) throws {
+    self.init()
+    self.bucket = proto.bucket
+    self.throttledRequests = proto.throttledRequests
+    self.percentageIncrease = proto.percentageIncrease
+  }
+
+  internal func toProto() throws -> ProtoType {
+    var proto = ProtoType()
+    proto.bucket = self.bucket
+    proto.throttledRequests = self.throttledRequests
+    proto.percentageIncrease = self.percentageIncrease
+    return proto
+  }
+}
+
+extension IntelligenceFinding.ThrottledRequestSpike.BucketContribution.Contribution {
+  internal typealias ProtoType = StorageControlProtos.Google_Storage_Control_V2_IntelligenceFinding
+    .ThrottledRequestSpike.BucketContribution.Contribution
+
+  internal init(proto: ProtoType) throws {
+    self.init()
+  }
+
+  internal func toProto() throws -> ProtoType {
+    var proto = ProtoType()
+    return proto
+  }
+}
+
+extension IntelligenceFinding.ThrottledRequestSpike.BucketContribution.Contribution
+  .PrefixContribution
+{
+  internal typealias ProtoType = StorageControlProtos.Google_Storage_Control_V2_IntelligenceFinding
+    .ThrottledRequestSpike.BucketContribution.Contribution.PrefixContribution
+
+  internal init(proto: ProtoType) throws {
+    self.init()
+    self.`prefix` = proto.`prefix`
+    self.throttledRequests = proto.throttledRequests
+    self.percentageIncrease = proto.percentageIncrease
+  }
+
+  internal func toProto() throws -> ProtoType {
+    var proto = ProtoType()
+    proto.`prefix` = self.`prefix`
+    proto.throttledRequests = self.throttledRequests
+    proto.percentageIncrease = self.percentageIncrease
+    return proto
+  }
+}
+
+extension IntelligenceFinding.StorageGrowthAboveTrend {
+  internal typealias ProtoType = StorageControlProtos.Google_Storage_Control_V2_IntelligenceFinding
+    .StorageGrowthAboveTrend
+
+  internal init(proto: ProtoType) throws {
+    self.init()
+    self.totalStorageGrowthBytes = proto.totalStorageGrowthBytes
+    self.percentageIncrease = proto.percentageIncrease
+  }
+
+  internal func toProto() throws -> ProtoType {
+    var proto = ProtoType()
+    proto.totalStorageGrowthBytes = self.totalStorageGrowthBytes
+    proto.percentageIncrease = self.percentageIncrease
+    return proto
+  }
+}
+
+extension IntelligenceFinding.StorageGrowthAboveTrend.BucketContribution {
+  internal typealias ProtoType = StorageControlProtos.Google_Storage_Control_V2_IntelligenceFinding
+    .StorageGrowthAboveTrend.BucketContribution
+
+  internal init(proto: ProtoType) throws {
+    self.init()
+    self.bucket = proto.bucket
+    self.totalStorageGrowthBytes = proto.totalStorageGrowthBytes
+    self.percentageIncrease = proto.percentageIncrease
+  }
+
+  internal func toProto() throws -> ProtoType {
+    var proto = ProtoType()
+    proto.bucket = self.bucket
+    proto.totalStorageGrowthBytes = self.totalStorageGrowthBytes
+    proto.percentageIncrease = self.percentageIncrease
     return proto
   }
 }

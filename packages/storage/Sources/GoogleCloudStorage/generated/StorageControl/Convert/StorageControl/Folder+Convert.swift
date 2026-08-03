@@ -28,12 +28,23 @@ extension Folder {
     self.init()
     self.name = proto.name
     self.metageneration = proto.metageneration
+    self.createTime =
+      proto.hasCreateTime ? try GoogleCloudWkt.Timestamp(proto: proto.createTime) : nil
+    self.updateTime =
+      proto.hasUpdateTime ? try GoogleCloudWkt.Timestamp(proto: proto.updateTime) : nil
+    self.pendingRenameInfo =
+      proto.hasPendingRenameInfo ? try PendingRenameInfo(proto: proto.pendingRenameInfo) : nil
   }
 
   internal func toProto() throws -> ProtoType {
     var proto = ProtoType()
     proto.name = self.name
     proto.metageneration = self.metageneration
+    if let createTime = self.createTime { proto.createTime = try createTime.toProto() }
+    if let updateTime = self.updateTime { proto.updateTime = try updateTime.toProto() }
+    if let pendingRenameInfo = self.pendingRenameInfo {
+      proto.pendingRenameInfo = try pendingRenameInfo.toProto()
+    }
     return proto
   }
 }

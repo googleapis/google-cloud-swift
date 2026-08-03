@@ -28,6 +28,8 @@ extension CreateManagedFolderRequest {
   internal init(proto: ProtoType) throws {
     self.init()
     self.parent = proto.parent
+    self.managedFolder =
+      proto.hasManagedFolder ? try ManagedFolder(proto: proto.managedFolder) : nil
     self.managedFolderId = proto.managedFolderID
     self.requestId = proto.requestID
   }
@@ -35,6 +37,7 @@ extension CreateManagedFolderRequest {
   internal func toProto() throws -> ProtoType {
     var proto = ProtoType()
     proto.parent = self.parent
+    if let managedFolder = self.managedFolder { proto.managedFolder = try managedFolder.toProto() }
     proto.managedFolderID = self.managedFolderId
     proto.requestID = self.requestId
     return proto

@@ -27,11 +27,17 @@ extension UpdateAnywhereCacheRequest {
 
   internal init(proto: ProtoType) throws {
     self.init()
+    self.anywhereCache =
+      proto.hasAnywhereCache ? try AnywhereCache(proto: proto.anywhereCache) : nil
+    self.updateMask =
+      proto.hasUpdateMask ? try GoogleCloudWkt.FieldMask(proto: proto.updateMask) : nil
     self.requestId = proto.requestID
   }
 
   internal func toProto() throws -> ProtoType {
     var proto = ProtoType()
+    if let anywhereCache = self.anywhereCache { proto.anywhereCache = try anywhereCache.toProto() }
+    if let updateMask = self.updateMask { proto.updateMask = try updateMask.toProto() }
     proto.requestID = self.requestId
     return proto
   }

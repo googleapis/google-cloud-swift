@@ -27,11 +27,19 @@ extension UpdateProjectIntelligenceConfigRequest {
 
   internal init(proto: ProtoType) throws {
     self.init()
+    self.intelligenceConfig =
+      proto.hasIntelligenceConfig ? try IntelligenceConfig(proto: proto.intelligenceConfig) : nil
+    self.updateMask =
+      proto.hasUpdateMask ? try GoogleCloudWkt.FieldMask(proto: proto.updateMask) : nil
     self.requestId = proto.requestID
   }
 
   internal func toProto() throws -> ProtoType {
     var proto = ProtoType()
+    if let intelligenceConfig = self.intelligenceConfig {
+      proto.intelligenceConfig = try intelligenceConfig.toProto()
+    }
+    if let updateMask = self.updateMask { proto.updateMask = try updateMask.toProto() }
     proto.requestID = self.requestId
     return proto
   }

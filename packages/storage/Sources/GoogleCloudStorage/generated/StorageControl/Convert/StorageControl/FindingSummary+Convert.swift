@@ -26,12 +26,78 @@ extension FindingSummary {
 
   internal init(proto: ProtoType) throws {
     self.init()
+    self.type = FindingType(proto: proto.type)
+    self.category = FindingCategory(proto: proto.category)
     self.targetResource = proto.targetResource
+    self.createTime =
+      proto.hasCreateTime ? try GoogleCloudWkt.Timestamp(proto: proto.createTime) : nil
+    self.updateTime =
+      proto.hasUpdateTime ? try GoogleCloudWkt.Timestamp(proto: proto.updateTime) : nil
+    self.severity = FindingSeverity(proto: proto.severity)
   }
 
   internal func toProto() throws -> ProtoType {
     var proto = ProtoType()
+    proto.type = try self.type.toProto()
+    proto.category = try self.category.toProto()
     proto.targetResource = self.targetResource
+    if let createTime = self.createTime { proto.createTime = try createTime.toProto() }
+    if let updateTime = self.updateTime { proto.updateTime = try updateTime.toProto() }
+    proto.severity = try self.severity.toProto()
     return proto
+  }
+}
+
+extension FindingSummary.SummaryDetails {
+  internal typealias ProtoType = StorageControlProtos.Google_Storage_Control_V2_FindingSummary
+    .SummaryDetails
+
+  internal init(proto: ProtoType) throws {
+    self.init()
+    self.resourceType = FindingSummary.SummaryDetails.ResourceType(proto: proto.resourceType)
+    self.description = proto.description_p
+  }
+
+  internal func toProto() throws -> ProtoType {
+    var proto = ProtoType()
+    proto.resourceType = try self.resourceType.toProto()
+    proto.description_p = self.description
+    return proto
+  }
+}
+
+extension FindingSummary.SummaryDetails.ResourceType {
+  internal init(
+    proto: StorageControlProtos.Google_Storage_Control_V2_FindingSummary.SummaryDetails.ResourceType
+  ) {
+    switch proto {
+    case .unspecified:
+      self = .unspecified
+    case .project:
+      self = .project
+    case .bucket:
+      self = .bucket
+    case .UNRECOGNIZED(let val): self = .unknownIntValue(val)
+    }
+  }
+
+  internal func toProto() throws
+    -> StorageControlProtos.Google_Storage_Control_V2_FindingSummary.SummaryDetails.ResourceType
+  {
+    switch self {
+    case .unspecified:
+      return .unspecified
+    case .project:
+      return .project
+    case .bucket:
+      return .bucket
+    case .unknownIntValue(let val):
+      return StorageControlProtos.Google_Storage_Control_V2_FindingSummary.SummaryDetails
+        .ResourceType(rawValue: val)
+        ?? .UNRECOGNIZED(val)
+    case .unknownStringValue(let str):
+      throw GoogleCloudGax.ProtobufConversionError.noIntegerValue(
+        enumType: "FindingSummary.SummaryDetails.ResourceType", stringValue: str)
+    }
   }
 }

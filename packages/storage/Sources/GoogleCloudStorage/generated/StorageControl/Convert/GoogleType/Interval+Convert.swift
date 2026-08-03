@@ -19,28 +19,22 @@ import GoogleCloudGax
 internal import StorageControlProtos
 internal import SwiftProtobuf
 import GoogleCloudWkt
+import GoogleType
 internal import GoogleCloudWktConvert
 
-extension UpdateOrganizationIntelligenceConfigRequest {
-  internal typealias ProtoType = StorageControlProtos
-    .Google_Storage_Control_V2_UpdateOrganizationIntelligenceConfigRequest
+extension Interval {
+  internal typealias ProtoType = StorageControlProtos.Google_Type_Interval
 
   internal init(proto: ProtoType) throws {
     self.init()
-    self.intelligenceConfig =
-      proto.hasIntelligenceConfig ? try IntelligenceConfig(proto: proto.intelligenceConfig) : nil
-    self.updateMask =
-      proto.hasUpdateMask ? try GoogleCloudWkt.FieldMask(proto: proto.updateMask) : nil
-    self.requestId = proto.requestID
+    self.startTime = proto.hasStartTime ? try GoogleCloudWkt.Timestamp(proto: proto.startTime) : nil
+    self.endTime = proto.hasEndTime ? try GoogleCloudWkt.Timestamp(proto: proto.endTime) : nil
   }
 
   internal func toProto() throws -> ProtoType {
     var proto = ProtoType()
-    if let intelligenceConfig = self.intelligenceConfig {
-      proto.intelligenceConfig = try intelligenceConfig.toProto()
-    }
-    if let updateMask = self.updateMask { proto.updateMask = try updateMask.toProto() }
-    proto.requestID = self.requestId
+    if let startTime = self.startTime { proto.startTime = try startTime.toProto() }
+    if let endTime = self.endTime { proto.endTime = try endTime.toProto() }
     return proto
   }
 }

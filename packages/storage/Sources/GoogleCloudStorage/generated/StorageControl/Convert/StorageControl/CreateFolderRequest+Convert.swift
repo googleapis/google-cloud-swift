@@ -27,6 +27,7 @@ extension CreateFolderRequest {
   internal init(proto: ProtoType) throws {
     self.init()
     self.parent = proto.parent
+    self.folder = proto.hasFolder ? try Folder(proto: proto.folder) : nil
     self.folderId = proto.folderID
     self.recursive = proto.recursive
     self.requestId = proto.requestID
@@ -35,6 +36,7 @@ extension CreateFolderRequest {
   internal func toProto() throws -> ProtoType {
     var proto = ProtoType()
     proto.parent = self.parent
+    if let folder = self.folder { proto.folder = try folder.toProto() }
     proto.folderID = self.folderId
     proto.recursive = self.recursive
     proto.requestID = self.requestId

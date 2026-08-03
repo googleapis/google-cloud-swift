@@ -29,6 +29,12 @@ extension StorageLayout {
     self.name = proto.name
     self.location = proto.location
     self.locationType = proto.locationType
+    self.customPlacementConfig =
+      proto.hasCustomPlacementConfig
+      ? try StorageLayout.CustomPlacementConfig(proto: proto.customPlacementConfig) : nil
+    self.hierarchicalNamespace =
+      proto.hasHierarchicalNamespace
+      ? try StorageLayout.HierarchicalNamespace(proto: proto.hierarchicalNamespace) : nil
   }
 
   internal func toProto() throws -> ProtoType {
@@ -36,6 +42,42 @@ extension StorageLayout {
     proto.name = self.name
     proto.location = self.location
     proto.locationType = self.locationType
+    if let customPlacementConfig = self.customPlacementConfig {
+      proto.customPlacementConfig = try customPlacementConfig.toProto()
+    }
+    if let hierarchicalNamespace = self.hierarchicalNamespace {
+      proto.hierarchicalNamespace = try hierarchicalNamespace.toProto()
+    }
+    return proto
+  }
+}
+
+extension StorageLayout.CustomPlacementConfig {
+  internal typealias ProtoType = StorageControlProtos.Google_Storage_Control_V2_StorageLayout
+    .CustomPlacementConfig
+
+  internal init(proto: ProtoType) throws {
+    self.init()
+  }
+
+  internal func toProto() throws -> ProtoType {
+    var proto = ProtoType()
+    return proto
+  }
+}
+
+extension StorageLayout.HierarchicalNamespace {
+  internal typealias ProtoType = StorageControlProtos.Google_Storage_Control_V2_StorageLayout
+    .HierarchicalNamespace
+
+  internal init(proto: ProtoType) throws {
+    self.init()
+    self.enabled = proto.enabled
+  }
+
+  internal func toProto() throws -> ProtoType {
+    var proto = ProtoType()
+    proto.enabled = self.enabled
     return proto
   }
 }

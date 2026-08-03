@@ -28,12 +28,18 @@ extension ManagedFolder {
     self.init()
     self.name = proto.name
     self.metageneration = proto.metageneration
+    self.createTime =
+      proto.hasCreateTime ? try GoogleCloudWkt.Timestamp(proto: proto.createTime) : nil
+    self.updateTime =
+      proto.hasUpdateTime ? try GoogleCloudWkt.Timestamp(proto: proto.updateTime) : nil
   }
 
   internal func toProto() throws -> ProtoType {
     var proto = ProtoType()
     proto.name = self.name
     proto.metageneration = self.metageneration
+    if let createTime = self.createTime { proto.createTime = try createTime.toProto() }
+    if let updateTime = self.updateTime { proto.updateTime = try updateTime.toProto() }
     return proto
   }
 }

@@ -27,6 +27,11 @@ extension CommonLongRunningOperationMetadata {
 
   internal init(proto: ProtoType) throws {
     self.init()
+    self.createTime =
+      proto.hasCreateTime ? try GoogleCloudWkt.Timestamp(proto: proto.createTime) : nil
+    self.endTime = proto.hasEndTime ? try GoogleCloudWkt.Timestamp(proto: proto.endTime) : nil
+    self.updateTime =
+      proto.hasUpdateTime ? try GoogleCloudWkt.Timestamp(proto: proto.updateTime) : nil
     self.type = proto.type
     self.requestedCancellation = proto.requestedCancellation
     self.progressPercent = proto.progressPercent
@@ -34,6 +39,9 @@ extension CommonLongRunningOperationMetadata {
 
   internal func toProto() throws -> ProtoType {
     var proto = ProtoType()
+    if let createTime = self.createTime { proto.createTime = try createTime.toProto() }
+    if let endTime = self.endTime { proto.endTime = try endTime.toProto() }
+    if let updateTime = self.updateTime { proto.updateTime = try updateTime.toProto() }
     proto.type = self.type
     proto.requestedCancellation = self.requestedCancellation
     proto.progressPercent = self.progressPercent

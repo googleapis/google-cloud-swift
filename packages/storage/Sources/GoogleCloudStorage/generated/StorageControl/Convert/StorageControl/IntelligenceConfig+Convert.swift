@@ -27,11 +27,188 @@ extension IntelligenceConfig {
   internal init(proto: ProtoType) throws {
     self.init()
     self.name = proto.name
+    self.editionConfig = IntelligenceConfig.EditionConfig(proto: proto.editionConfig)
+    self.updateTime =
+      proto.hasUpdateTime ? try GoogleCloudWkt.Timestamp(proto: proto.updateTime) : nil
+    self.filter = proto.hasFilter ? try IntelligenceConfig.Filter(proto: proto.filter) : nil
+    self.effectiveIntelligenceConfig =
+      proto.hasEffectiveIntelligenceConfig
+      ? try IntelligenceConfig.EffectiveIntelligenceConfig(proto: proto.effectiveIntelligenceConfig)
+      : nil
+    self.trialConfig =
+      proto.hasTrialConfig ? try IntelligenceConfig.TrialConfig(proto: proto.trialConfig) : nil
   }
 
   internal func toProto() throws -> ProtoType {
     var proto = ProtoType()
     proto.name = self.name
+    proto.editionConfig = try self.editionConfig.toProto()
+    if let updateTime = self.updateTime { proto.updateTime = try updateTime.toProto() }
+    if let filter = self.filter { proto.filter = try filter.toProto() }
+    if let effectiveIntelligenceConfig = self.effectiveIntelligenceConfig {
+      proto.effectiveIntelligenceConfig = try effectiveIntelligenceConfig.toProto()
+    }
+    if let trialConfig = self.trialConfig { proto.trialConfig = try trialConfig.toProto() }
     return proto
+  }
+}
+
+extension IntelligenceConfig.Filter {
+  internal typealias ProtoType = StorageControlProtos.Google_Storage_Control_V2_IntelligenceConfig
+    .Filter
+
+  internal init(proto: ProtoType) throws {
+    self.init()
+  }
+
+  internal func toProto() throws -> ProtoType {
+    var proto = ProtoType()
+    return proto
+  }
+}
+
+extension IntelligenceConfig.Filter.CloudStorageLocations {
+  internal typealias ProtoType = StorageControlProtos.Google_Storage_Control_V2_IntelligenceConfig
+    .Filter.CloudStorageLocations
+
+  internal init(proto: ProtoType) throws {
+    self.init()
+  }
+
+  internal func toProto() throws -> ProtoType {
+    var proto = ProtoType()
+    return proto
+  }
+}
+
+extension IntelligenceConfig.Filter.CloudStorageBuckets {
+  internal typealias ProtoType = StorageControlProtos.Google_Storage_Control_V2_IntelligenceConfig
+    .Filter.CloudStorageBuckets
+
+  internal init(proto: ProtoType) throws {
+    self.init()
+  }
+
+  internal func toProto() throws -> ProtoType {
+    var proto = ProtoType()
+    return proto
+  }
+}
+
+extension IntelligenceConfig.EffectiveIntelligenceConfig {
+  internal typealias ProtoType = StorageControlProtos.Google_Storage_Control_V2_IntelligenceConfig
+    .EffectiveIntelligenceConfig
+
+  internal init(proto: ProtoType) throws {
+    self.init()
+    self.effectiveEdition = IntelligenceConfig.EffectiveIntelligenceConfig.EffectiveEdition(
+      proto: proto.effectiveEdition)
+    self.intelligenceConfig = proto.intelligenceConfig
+  }
+
+  internal func toProto() throws -> ProtoType {
+    var proto = ProtoType()
+    proto.effectiveEdition = try self.effectiveEdition.toProto()
+    proto.intelligenceConfig = self.intelligenceConfig
+    return proto
+  }
+}
+
+extension IntelligenceConfig.EffectiveIntelligenceConfig.EffectiveEdition {
+  internal init(
+    proto: StorageControlProtos.Google_Storage_Control_V2_IntelligenceConfig
+      .EffectiveIntelligenceConfig.EffectiveEdition
+  ) {
+    switch proto {
+    case .unspecified:
+      self = .unspecified
+    case .`none`:
+      self = .`none`
+    case .standard:
+      self = .standard
+    case .UNRECOGNIZED(let val): self = .unknownIntValue(val)
+    }
+  }
+
+  internal func toProto() throws
+    -> StorageControlProtos.Google_Storage_Control_V2_IntelligenceConfig.EffectiveIntelligenceConfig
+    .EffectiveEdition
+  {
+    switch self {
+    case .unspecified:
+      return .unspecified
+    case .`none`:
+      return .`none`
+    case .standard:
+      return .standard
+    case .unknownIntValue(let val):
+      return StorageControlProtos.Google_Storage_Control_V2_IntelligenceConfig
+        .EffectiveIntelligenceConfig.EffectiveEdition(rawValue: val)
+        ?? .UNRECOGNIZED(val)
+    case .unknownStringValue(let str):
+      throw GoogleCloudGax.ProtobufConversionError.noIntegerValue(
+        enumType: "IntelligenceConfig.EffectiveIntelligenceConfig.EffectiveEdition",
+        stringValue: str)
+    }
+  }
+}
+extension IntelligenceConfig.TrialConfig {
+  internal typealias ProtoType = StorageControlProtos.Google_Storage_Control_V2_IntelligenceConfig
+    .TrialConfig
+
+  internal init(proto: ProtoType) throws {
+    self.init()
+    self.expireTime =
+      proto.hasExpireTime ? try GoogleCloudWkt.Timestamp(proto: proto.expireTime) : nil
+  }
+
+  internal func toProto() throws -> ProtoType {
+    var proto = ProtoType()
+    if let expireTime = self.expireTime { proto.expireTime = try expireTime.toProto() }
+    return proto
+  }
+}
+
+extension IntelligenceConfig.EditionConfig {
+  internal init(
+    proto: StorageControlProtos.Google_Storage_Control_V2_IntelligenceConfig.EditionConfig
+  ) {
+    switch proto {
+    case .unspecified:
+      self = .unspecified
+    case .inherit:
+      self = .inherit
+    case .disabled:
+      self = .disabled
+    case .standard:
+      self = .standard
+    case .trial:
+      self = .trial
+    case .UNRECOGNIZED(let val): self = .unknownIntValue(val)
+    }
+  }
+
+  internal func toProto() throws
+    -> StorageControlProtos.Google_Storage_Control_V2_IntelligenceConfig.EditionConfig
+  {
+    switch self {
+    case .unspecified:
+      return .unspecified
+    case .inherit:
+      return .inherit
+    case .disabled:
+      return .disabled
+    case .standard:
+      return .standard
+    case .trial:
+      return .trial
+    case .unknownIntValue(let val):
+      return StorageControlProtos.Google_Storage_Control_V2_IntelligenceConfig.EditionConfig(
+        rawValue: val)
+        ?? .UNRECOGNIZED(val)
+    case .unknownStringValue(let str):
+      throw GoogleCloudGax.ProtobufConversionError.noIntegerValue(
+        enumType: "IntelligenceConfig.EditionConfig", stringValue: str)
+    }
   }
 }

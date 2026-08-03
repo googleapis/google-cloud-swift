@@ -28,12 +28,15 @@ extension CreateAnywhereCacheRequest {
   internal init(proto: ProtoType) throws {
     self.init()
     self.parent = proto.parent
+    self.anywhereCache =
+      proto.hasAnywhereCache ? try AnywhereCache(proto: proto.anywhereCache) : nil
     self.requestId = proto.requestID
   }
 
   internal func toProto() throws -> ProtoType {
     var proto = ProtoType()
     proto.parent = self.parent
+    if let anywhereCache = self.anywhereCache { proto.anywhereCache = try anywhereCache.toProto() }
     proto.requestID = self.requestId
     return proto
   }

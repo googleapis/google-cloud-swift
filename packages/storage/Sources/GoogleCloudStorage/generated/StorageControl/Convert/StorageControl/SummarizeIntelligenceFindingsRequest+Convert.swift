@@ -28,6 +28,8 @@ extension SummarizeIntelligenceFindingsRequest {
   internal init(proto: ProtoType) throws {
     self.init()
     self.parent = proto.parent
+    self.resourceScope = SummarizeIntelligenceFindingsRequest.ResourceScope(
+      proto: proto.resourceScope)
     self.filter = proto.filter
     self.pageSize = proto.pageSize
     self.pageToken = proto.pageToken
@@ -36,9 +38,48 @@ extension SummarizeIntelligenceFindingsRequest {
   internal func toProto() throws -> ProtoType {
     var proto = ProtoType()
     proto.parent = self.parent
+    proto.resourceScope = try self.resourceScope.toProto()
     proto.filter = self.filter
     proto.pageSize = self.pageSize
     proto.pageToken = self.pageToken
     return proto
+  }
+}
+
+extension SummarizeIntelligenceFindingsRequest.ResourceScope {
+  internal init(
+    proto: StorageControlProtos.Google_Storage_Control_V2_SummarizeIntelligenceFindingsRequest
+      .ResourceScope
+  ) {
+    switch proto {
+    case .unspecified:
+      self = .unspecified
+    case .parent:
+      self = .parent
+    case .project:
+      self = .project
+    case .UNRECOGNIZED(let val): self = .unknownIntValue(val)
+    }
+  }
+
+  internal func toProto() throws
+    -> StorageControlProtos.Google_Storage_Control_V2_SummarizeIntelligenceFindingsRequest
+    .ResourceScope
+  {
+    switch self {
+    case .unspecified:
+      return .unspecified
+    case .parent:
+      return .parent
+    case .project:
+      return .project
+    case .unknownIntValue(let val):
+      return StorageControlProtos.Google_Storage_Control_V2_SummarizeIntelligenceFindingsRequest
+        .ResourceScope(rawValue: val)
+        ?? .UNRECOGNIZED(val)
+    case .unknownStringValue(let str):
+      throw GoogleCloudGax.ProtobufConversionError.noIntegerValue(
+        enumType: "SummarizeIntelligenceFindingsRequest.ResourceScope", stringValue: str)
+    }
   }
 }
