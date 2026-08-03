@@ -27,11 +27,17 @@ extension ListIntelligenceFindingRevisionsResponse {
 
   internal init(proto: ProtoType) throws {
     self.init()
+    self.intelligenceFindingRevisions = try proto.intelligenceFindingRevisions.map {
+      try .init(proto: $0)
+    }
     self.nextPageToken = proto.nextPageToken
   }
 
   internal func toProto() throws -> ProtoType {
     var proto = ProtoType()
+    proto.intelligenceFindingRevisions = try self.intelligenceFindingRevisions.map {
+      try $0.toProto()
+    }
     proto.nextPageToken = self.nextPageToken
     return proto
   }

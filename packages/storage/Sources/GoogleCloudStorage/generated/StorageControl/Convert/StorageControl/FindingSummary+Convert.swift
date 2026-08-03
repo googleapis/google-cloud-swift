@@ -32,6 +32,7 @@ extension FindingSummary {
     self.createTime = proto.hasCreateTime ? try .init(proto: proto.createTime) : nil
     self.updateTime = proto.hasUpdateTime ? try .init(proto: proto.updateTime) : nil
     self.severity = .init(proto: proto.severity)
+    self.summaryDetails = try proto.summaryDetails.map { try .init(proto: $0) }
   }
 
   internal func toProto() throws -> ProtoType {
@@ -42,6 +43,7 @@ extension FindingSummary {
     if let createTime = self.createTime { proto.createTime = try createTime.toProto() }
     if let updateTime = self.updateTime { proto.updateTime = try updateTime.toProto() }
     proto.severity = try self.severity.toProto()
+    proto.summaryDetails = try self.summaryDetails.map { try $0.toProto() }
     return proto
   }
 }

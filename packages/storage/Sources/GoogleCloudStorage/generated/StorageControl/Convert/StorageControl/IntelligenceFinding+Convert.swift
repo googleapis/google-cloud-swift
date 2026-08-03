@@ -36,6 +36,7 @@ extension IntelligenceFinding {
     self.createTime = proto.hasCreateTime ? try .init(proto: proto.createTime) : nil
     self.updateTime = proto.hasUpdateTime ? try .init(proto: proto.updateTime) : nil
     self.targetResource = proto.targetResource
+    self.associatedResources = proto.associatedResources
     self.observationPeriod =
       proto.hasObservationPeriod ? try .init(proto: proto.observationPeriod) : nil
   }
@@ -50,6 +51,7 @@ extension IntelligenceFinding {
     if let createTime = self.createTime { proto.createTime = try createTime.toProto() }
     if let updateTime = self.updateTime { proto.updateTime = try updateTime.toProto() }
     proto.targetResource = self.targetResource
+    proto.associatedResources = self.associatedResources
     if let observationPeriod = self.observationPeriod {
       proto.observationPeriod = try observationPeriod.toProto()
     }
@@ -65,12 +67,14 @@ extension IntelligenceFinding.ColdlineAndArchivalStorageOperationsSpike {
     self.init()
     self.percentageIncrease = proto.percentageIncrease
     self.totalOperationsCount = proto.totalOperationsCount
+    self.topBuckets = try proto.topBuckets.map { try .init(proto: $0) }
   }
 
   internal func toProto() throws -> ProtoType {
     var proto = ProtoType()
     proto.percentageIncrease = self.percentageIncrease
     proto.totalOperationsCount = self.totalOperationsCount
+    proto.topBuckets = try self.topBuckets.map { try $0.toProto() }
     return proto
   }
 }
@@ -103,10 +107,12 @@ extension IntelligenceFinding.ColdlineAndArchivalStorageOperationsSpike.BucketCo
 
   internal init(proto: ProtoType) throws {
     self.init()
+    self.topPrefixes = try proto.topPrefixes.map { try .init(proto: $0) }
   }
 
   internal func toProto() throws -> ProtoType {
-    let proto = ProtoType()
+    var proto = ProtoType()
+    proto.topPrefixes = try self.topPrefixes.map { try $0.toProto() }
     return proto
   }
 }
@@ -141,12 +147,14 @@ extension IntelligenceFinding.CrossRegionEgressSpike {
     self.init()
     self.totalEgressBytes = proto.totalEgressBytes
     self.percentageIncrease = proto.percentageIncrease
+    self.topBuckets = try proto.topBuckets.map { try .init(proto: $0) }
   }
 
   internal func toProto() throws -> ProtoType {
     var proto = ProtoType()
     proto.totalEgressBytes = self.totalEgressBytes
     proto.percentageIncrease = self.percentageIncrease
+    proto.topBuckets = try self.topBuckets.map { try $0.toProto() }
     return proto
   }
 }
@@ -177,10 +185,12 @@ extension IntelligenceFinding.CrossRegionEgressSpike.BucketContribution.Contribu
 
   internal init(proto: ProtoType) throws {
     self.init()
+    self.topPrefixes = try proto.topPrefixes.map { try .init(proto: $0) }
   }
 
   internal func toProto() throws -> ProtoType {
-    let proto = ProtoType()
+    var proto = ProtoType()
+    proto.topPrefixes = try self.topPrefixes.map { try $0.toProto() }
     return proto
   }
 }
@@ -215,12 +225,14 @@ extension IntelligenceFinding.ThrottledRequestSpike {
     self.init()
     self.throttledRequests = proto.throttledRequests
     self.percentageIncrease = proto.percentageIncrease
+    self.topBuckets = try proto.topBuckets.map { try .init(proto: $0) }
   }
 
   internal func toProto() throws -> ProtoType {
     var proto = ProtoType()
     proto.throttledRequests = self.throttledRequests
     proto.percentageIncrease = self.percentageIncrease
+    proto.topBuckets = try self.topBuckets.map { try $0.toProto() }
     return proto
   }
 }
@@ -251,10 +263,12 @@ extension IntelligenceFinding.ThrottledRequestSpike.BucketContribution.Contribut
 
   internal init(proto: ProtoType) throws {
     self.init()
+    self.topPrefixes = try proto.topPrefixes.map { try .init(proto: $0) }
   }
 
   internal func toProto() throws -> ProtoType {
-    let proto = ProtoType()
+    var proto = ProtoType()
+    proto.topPrefixes = try self.topPrefixes.map { try $0.toProto() }
     return proto
   }
 }
@@ -289,12 +303,14 @@ extension IntelligenceFinding.StorageGrowthAboveTrend {
     self.init()
     self.totalStorageGrowthBytes = proto.totalStorageGrowthBytes
     self.percentageIncrease = proto.percentageIncrease
+    self.topBuckets = try proto.topBuckets.map { try .init(proto: $0) }
   }
 
   internal func toProto() throws -> ProtoType {
     var proto = ProtoType()
     proto.totalStorageGrowthBytes = self.totalStorageGrowthBytes
     proto.percentageIncrease = self.percentageIncrease
+    proto.topBuckets = try self.topBuckets.map { try $0.toProto() }
     return proto
   }
 }

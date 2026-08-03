@@ -70,10 +70,12 @@ extension IntelligenceConfig.Filter.CloudStorageLocations {
 
   internal init(proto: ProtoType) throws {
     self.init()
+    self.locations = proto.locations
   }
 
   internal func toProto() throws -> ProtoType {
-    let proto = ProtoType()
+    var proto = ProtoType()
+    proto.locations = self.locations
     return proto
   }
 }
@@ -84,10 +86,12 @@ extension IntelligenceConfig.Filter.CloudStorageBuckets {
 
   internal init(proto: ProtoType) throws {
     self.init()
+    self.bucketIdRegexes = proto.bucketIDRegexes
   }
 
   internal func toProto() throws -> ProtoType {
-    let proto = ProtoType()
+    var proto = ProtoType()
+    proto.bucketIDRegexes = self.bucketIdRegexes
     return proto
   }
 }

@@ -26,11 +26,13 @@ extension ListFoldersResponse {
 
   internal init(proto: ProtoType) throws {
     self.init()
+    self.folders = try proto.folders.map { try .init(proto: $0) }
     self.nextPageToken = proto.nextPageToken
   }
 
   internal func toProto() throws -> ProtoType {
     var proto = ProtoType()
+    proto.folders = try self.folders.map { try $0.toProto() }
     proto.nextPageToken = self.nextPageToken
     return proto
   }

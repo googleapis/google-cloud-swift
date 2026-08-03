@@ -150,4 +150,44 @@ import Testing
     #expect(roundtripped.startTime == startTime)
     #expect(roundtripped.endTime == endTime)
   }
+
+  @Test func intelligenceFindingRepeatedFields() throws {
+    let bucketContribution1 = IntelligenceFinding.StorageGrowthAboveTrend.BucketContribution().with {
+      $0.bucket = "projects/_/buckets/bucket-1"
+      $0.totalStorageGrowthBytes = 1024
+      $0.percentageIncrease = 15.5
+    }
+    let bucketContribution2 = IntelligenceFinding.StorageGrowthAboveTrend.BucketContribution().with {
+      $0.bucket = "projects/_/buckets/bucket-2"
+      $0.totalStorageGrowthBytes = 2048
+      $0.percentageIncrease = 30.0
+    }
+    let growthTrend = IntelligenceFinding.StorageGrowthAboveTrend().with {
+      $0.totalStorageGrowthBytes = 3072
+      $0.percentageIncrease = 22.0
+      $0.topBuckets = [bucketContribution1, bucketContribution2]
+    }
+
+    let finding = IntelligenceFinding().with {
+      $0.name = "projects/my-project/locations/us-central1/findings/finding-1"
+      $0.associatedResources = ["resource-a", "resource-b", "resource-c"]
+    }
+
+    // Test repeated primitive fields roundtrip
+    let findingProto = try finding.toProto()
+    #expect(findingProto.associatedResources == ["resource-a", "resource-b", "resource-c"])
+
+    let roundtrippedFinding = try IntelligenceFinding(proto: findingProto)
+    #expect(roundtrippedFinding.associatedResources == ["resource-a", "resource-b", "resource-c"])
+
+    // Test repeated message fields roundtrip
+    let growthProto = try growthTrend.toProto()
+    #expect(growthProto.topBuckets.count == 2)
+    #expect(growthProto.topBuckets[0].bucket == "projects/_/buckets/bucket-1")
+    #expect(growthProto.topBuckets[1].bucket == "projects/_/buckets/bucket-2")
+
+    let roundtrippedGrowth = try IntelligenceFinding.StorageGrowthAboveTrend(proto: growthProto)
+    #expect(roundtrippedGrowth == growthTrend)
+  }
 }
+

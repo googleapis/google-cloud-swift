@@ -27,11 +27,13 @@ extension ListAnywhereCachesResponse {
 
   internal init(proto: ProtoType) throws {
     self.init()
+    self.anywhereCaches = try proto.anywhereCaches.map { try .init(proto: $0) }
     self.nextPageToken = proto.nextPageToken
   }
 
   internal func toProto() throws -> ProtoType {
     var proto = ProtoType()
+    proto.anywhereCaches = try self.anywhereCaches.map { try $0.toProto() }
     proto.nextPageToken = self.nextPageToken
     return proto
   }

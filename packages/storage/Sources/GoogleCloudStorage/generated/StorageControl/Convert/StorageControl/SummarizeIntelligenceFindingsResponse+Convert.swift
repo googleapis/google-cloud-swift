@@ -27,11 +27,13 @@ extension SummarizeIntelligenceFindingsResponse {
 
   internal init(proto: ProtoType) throws {
     self.init()
+    self.findingSummaries = try proto.findingSummaries.map { try .init(proto: $0) }
     self.nextPageToken = proto.nextPageToken
   }
 
   internal func toProto() throws -> ProtoType {
     var proto = ProtoType()
+    proto.findingSummaries = try self.findingSummaries.map { try $0.toProto() }
     proto.nextPageToken = self.nextPageToken
     return proto
   }

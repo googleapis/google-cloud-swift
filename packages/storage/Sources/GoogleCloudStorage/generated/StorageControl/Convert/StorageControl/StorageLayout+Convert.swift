@@ -56,10 +56,12 @@ extension StorageLayout.CustomPlacementConfig {
 
   internal init(proto: ProtoType) throws {
     self.init()
+    self.dataLocations = proto.dataLocations
   }
 
   internal func toProto() throws -> ProtoType {
-    let proto = ProtoType()
+    var proto = ProtoType()
+    proto.dataLocations = self.dataLocations
     return proto
   }
 }
