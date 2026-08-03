@@ -59,7 +59,7 @@ extension IntelligenceConfig.Filter {
   }
 
   internal func toProto() throws -> ProtoType {
-    var proto = ProtoType()
+    let proto = ProtoType()
     return proto
   }
 }
@@ -73,7 +73,7 @@ extension IntelligenceConfig.Filter.CloudStorageLocations {
   }
 
   internal func toProto() throws -> ProtoType {
-    var proto = ProtoType()
+    let proto = ProtoType()
     return proto
   }
 }
@@ -87,7 +87,7 @@ extension IntelligenceConfig.Filter.CloudStorageBuckets {
   }
 
   internal func toProto() throws -> ProtoType {
-    var proto = ProtoType()
+    let proto = ProtoType()
     return proto
   }
 }

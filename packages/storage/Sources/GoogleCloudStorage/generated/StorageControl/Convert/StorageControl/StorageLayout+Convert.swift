@@ -59,7 +59,7 @@ extension StorageLayout.CustomPlacementConfig {
   }
 
   internal func toProto() throws -> ProtoType {
-    var proto = ProtoType()
+    let proto = ProtoType()
     return proto
   }
 }

@@ -106,7 +106,7 @@ extension IntelligenceFinding.ColdlineAndArchivalStorageOperationsSpike.BucketCo
   }
 
   internal func toProto() throws -> ProtoType {
-    var proto = ProtoType()
+    let proto = ProtoType()
     return proto
   }
 }
@@ -180,7 +180,7 @@ extension IntelligenceFinding.CrossRegionEgressSpike.BucketContribution.Contribu
   }
 
   internal func toProto() throws -> ProtoType {
-    var proto = ProtoType()
+    let proto = ProtoType()
     return proto
   }
 }
@@ -254,7 +254,7 @@ extension IntelligenceFinding.ThrottledRequestSpike.BucketContribution.Contribut
   }
 
   internal func toProto() throws -> ProtoType {
-    var proto = ProtoType()
+    let proto = ProtoType()
     return proto
   }
 }
