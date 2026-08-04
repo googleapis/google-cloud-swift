@@ -19,6 +19,8 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudWkt
+import GoogleLongRunning
+import GoogleRpc
 import GoogleCloudGax
 
 /// StorageControl service includes selected control plane operations.
@@ -26,6 +28,8 @@ import GoogleCloudGax
 /// @Snippet(path: "StorageControlQuickstart")
 public class StorageControlClient: Clients.StorageControlProtocol {
   let inner: any Clients.StorageControlStub
+  let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
+  let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy
 
   /// Creates a new `StorageControlClient` instance.
   public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {
@@ -35,6 +39,208 @@ public class StorageControlClient: Clients.StorageControlProtocol {
       inner = Clients.StorageControlLogging(inner, logger: logger)
     }
     self.inner = inner
+    self.pollingErrorPolicy = options.pollingErrorPolicy
+    self.pollingBackoffPolicy = options.pollingBackoffPolicy
+  }
+
+  /// Creates a new folder. This operation is only applicable to a hierarchical
+  /// namespace enabled bucket.
+  ///
+  /// @Snippet(path: "StorageControl_CreateFolder")
+  public func createFolder(
+    request: CreateFolderRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> Folder {
+    try await self.inner.createFolder(request: request, options: options)
+  }
+
+  /// Permanently deletes an empty folder. This operation is only applicable to a
+  /// hierarchical namespace enabled bucket.
+  ///
+  /// @Snippet(path: "StorageControl_DeleteFolder")
+  public func deleteFolder(
+    request: DeleteFolderRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws {
+    try await self.inner.deleteFolder(request: request, options: options)
+  }
+
+  /// Returns metadata for the specified folder. This operation is only
+  /// applicable to a hierarchical namespace enabled bucket.
+  ///
+  /// @Snippet(path: "StorageControl_GetFolder")
+  public func getFolder(
+    request: GetFolderRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> Folder {
+    try await self.inner.getFolder(request: request, options: options)
+  }
+
+  /// Retrieves a list of folders. This operation is only applicable to a
+  /// hierarchical namespace enabled bucket.
+  ///
+  /// @Snippet(path: "StorageControl_ListFolders")
+  public func listFolders(
+    request: ListFoldersRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> ListFoldersResponse {
+    try await self.inner.listFolders(request: request, options: options)
+  }
+
+  /// Retrieves a list of folders. This operation is only applicable to a
+  /// hierarchical namespace enabled bucket.
+  ///
+  /// @Snippet(path: "StorageControl_ListFolders")
+  public func listFolders(
+    byItem: ListFoldersRequest, options: GoogleCloudGax.RequestOptions
+  ) throws -> any AsyncSequence<Folder, Swift.Error> {
+    let listRpc = { (token: Swift.String) async throws -> ListFoldersResponse in
+      var request = byItem
+      request.pageToken = token
+      return try await self.listFolders(request: request, options: options)
+    }
+    return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
+  }
+
+  /// Renames a source folder to a destination folder. This operation is only
+  /// applicable to a hierarchical namespace enabled bucket. During a rename, the
+  /// source and destination folders are locked until the long running operation
+  /// completes.
+  ///
+  /// @Snippet(path: "StorageControl_RenameFolder")
+  public func renameFolder(
+    request: RenameFolderRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.inner.renameFolder(request: request, options: options)
+  }
+
+  /// Renames a source folder to a destination folder. This operation is only
+  /// applicable to a hierarchical namespace enabled bucket. During a rename, the
+  /// source and destination folders are locked until the long running operation
+  /// completes.
+  ///
+  /// @Snippet(path: "StorageControl_RenameFolder")
+  public func renameFolder(
+    withPolling: RenameFolderRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> any GoogleCloudGax.PollableOperation<Folder> {
+    let extractStatus = {
+      (op: GoogleLongRunning.Operation) throws
+        -> GoogleCloudGax._PollableOperationImpl<Folder>.State in
+      guard op.done else {
+        return .init(done: false, result: nil)
+      }
+
+      switch op.result {
+      case .response(let anyValue):
+        guard let anyValueUnwrapped = anyValue else {
+          return .init(
+            done: true,
+            result: .failure(
+              GoogleCloudGax.RequestError.binding(
+                "Operation completed but response value was missing")))
+        }
+        let response = try Folder(fromAny: anyValueUnwrapped)
+        return .init(done: true, result: .success(response))
+      case .error(let status):
+        guard let statusUnwrapped = status else {
+          return .init(
+            done: true,
+            result: .failure(
+              GoogleCloudGax.RequestError.binding("Operation completed but error value was missing")
+            ))
+        }
+        let error = GoogleCloudGax.RequestError.service(
+          GoogleCloudGax.ServiceError(
+            code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
+            message: statusUnwrapped.message))
+        return .init(done: true, result: .failure(error))
+      case .none:
+        return .init(
+          done: true,
+          result: .failure(
+            GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
+      }
+    }
+    let rawOp = try await self.renameFolder(request: withPolling, options: options)
+    let initialState = try extractStatus(rawOp)
+    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Folder>.State in
+      let op = try await self.getOperation(
+        request: .init().with { $0.name = rawOp.name }, options: options)
+      return try extractStatus(op)
+    }
+    return GoogleCloudGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
+  }
+
+  /// Deletes a folder recursively. This operation is only applicable to a
+  /// hierarchical namespace enabled bucket.
+  ///
+  /// @Snippet(path: "StorageControl_DeleteFolderRecursive")
+  public func deleteFolderRecursive(
+    request: DeleteFolderRecursiveRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.inner.deleteFolderRecursive(request: request, options: options)
+  }
+
+  /// Deletes a folder recursively. This operation is only applicable to a
+  /// hierarchical namespace enabled bucket.
+  ///
+  /// @Snippet(path: "StorageControl_DeleteFolderRecursive")
+  public func deleteFolderRecursive(
+    withPolling: DeleteFolderRecursiveRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+    let extractStatus = {
+      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
+      in
+      guard op.done else {
+        return .init(done: false, result: nil)
+      }
+
+      switch op.result {
+      case .response:
+        return .init(done: true, result: .success(()))
+      case .error(let status):
+        guard let statusUnwrapped = status else {
+          return .init(
+            done: true,
+            result: .failure(
+              GoogleCloudGax.RequestError.binding("Operation completed but error value was missing")
+            ))
+        }
+        let error = GoogleCloudGax.RequestError.service(
+          GoogleCloudGax.ServiceError(
+            code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
+            message: statusUnwrapped.message))
+        return .init(done: true, result: .failure(error))
+      case .none:
+        return .init(
+          done: true,
+          result: .failure(
+            GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
+      }
+    }
+    let rawOp = try await self.deleteFolderRecursive(request: withPolling, options: options)
+    let initialState = try extractStatus(rawOp)
+    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+      let op = try await self.getOperation(
+        request: .init().with { $0.name = rawOp.name }, options: options)
+      return try extractStatus(op)
+    }
+    return GoogleCloudGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
+  }
+
+  /// Returns the storage layout configuration for a given bucket.
+  ///
+  /// @Snippet(path: "StorageControl_GetStorageLayout")
+  public func getStorageLayout(
+    request: GetStorageLayoutRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> StorageLayout {
+    try await self.inner.getStorageLayout(request: request, options: options)
   }
 
   /// Returns the Project scoped singleton IntelligenceConfig resource.
@@ -100,7 +306,7 @@ public class StorageControlClient: Clients.StorageControlProtocol {
     try await self.inner.getIntelligenceFinding(request: request, options: options)
   }
 
-  /// Lists the `IntelligenceFinding` resources for the specified project.
+  /// Lists the `IntelligenceFinding` resources for the specified the project.
   ///
   /// @Snippet(path: "StorageControl_ListIntelligenceFindings")
   public func listIntelligenceFindings(
@@ -109,7 +315,7 @@ public class StorageControlClient: Clients.StorageControlProtocol {
     try await self.inner.listIntelligenceFindings(request: request, options: options)
   }
 
-  /// Lists the `IntelligenceFinding` resources for the specified project.
+  /// Lists the `IntelligenceFinding` resources for the specified the project.
   ///
   /// @Snippet(path: "StorageControl_ListIntelligenceFindings")
   public func listIntelligenceFindings(
@@ -123,8 +329,8 @@ public class StorageControlClient: Clients.StorageControlProtocol {
     return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  /// Summarize the intelligence findings for the specified scope(org, folder or
-  /// project).
+  /// Summarizes the intelligence findings for the specified scope (organization,
+  /// folder or project).
   ///
   /// @Snippet(path: "StorageControl_SummarizeIntelligenceFindings")
   public func summarizeIntelligenceFindings(
@@ -133,8 +339,8 @@ public class StorageControlClient: Clients.StorageControlProtocol {
     try await self.inner.summarizeIntelligenceFindings(request: request, options: options)
   }
 
-  /// Summarize the intelligence findings for the specified scope(org, folder or
-  /// project).
+  /// Summarizes the intelligence findings for the specified scope (organization,
+  /// folder or project).
   ///
   /// @Snippet(path: "StorageControl_SummarizeIntelligenceFindings")
   public func summarizeIntelligenceFindings(
@@ -180,6 +386,17 @@ public class StorageControlClient: Clients.StorageControlProtocol {
     }
     return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
   }
+
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  ///
+  /// @Snippet(path: "StorageControl_GetOperation")
+  func getOperation(
+    request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.inner.getOperation(request: request, options: options)
+  }
 }
 
 extension Clients {
@@ -189,6 +406,79 @@ extension Clients {
   /// `some StorageControlProtocol` or `any StorageControlProtocol`
   /// and pass a mock implementation in your tests.
   public protocol StorageControlProtocol {
+    /// See `StorageControlClient.createFolder`.
+    func createFolder(request: CreateFolderRequest) async throws -> Folder
+
+    /// See `StorageControlClient.createFolder`.
+    func createFolder(
+      parent: Swift.String,
+      folder: Folder?,
+      folderId: Swift.String,
+    ) async throws -> Folder
+
+    /// See `StorageControlClient.deleteFolder`.
+    func deleteFolder(request: DeleteFolderRequest) async throws
+
+    /// See `StorageControlClient.deleteFolder`.
+    func deleteFolder(
+      name: Swift.String,
+    ) async throws
+
+    /// See `StorageControlClient.getFolder`.
+    func getFolder(request: GetFolderRequest) async throws -> Folder
+
+    /// See `StorageControlClient.getFolder`.
+    func getFolder(
+      name: Swift.String,
+    ) async throws -> Folder
+
+    /// See `StorageControlClient.listFolders`.
+    func listFolders(request: ListFoldersRequest) async throws -> ListFoldersResponse
+
+    /// See `StorageControlClient.listFolders`.
+    func listFolders(
+      byItem: ListFoldersRequest
+    ) throws -> any AsyncSequence<Folder, Swift.Error>
+
+    /// See `StorageControlClient.listFolders`.
+    func listFolders(
+      parent: Swift.String,
+    ) throws -> any AsyncSequence<Folder, Swift.Error>
+
+    /// See `StorageControlClient.renameFolder`.
+    func renameFolder(request: RenameFolderRequest) async throws -> GoogleLongRunning.Operation
+
+    /// See `StorageControlClient.renameFolder`.
+    func renameFolder(withPolling: RenameFolderRequest) async throws -> any GoogleCloudGax
+      .PollableOperation<Folder>
+
+    /// See `StorageControlClient.renameFolder`.
+    func renameFolder(
+      name: Swift.String,
+      destinationFolderId: Swift.String,
+    ) async throws -> any GoogleCloudGax.PollableOperation<Folder>
+
+    /// See `StorageControlClient.deleteFolderRecursive`.
+    func deleteFolderRecursive(request: DeleteFolderRecursiveRequest) async throws
+      -> GoogleLongRunning.Operation
+
+    /// See `StorageControlClient.deleteFolderRecursive`.
+    func deleteFolderRecursive(withPolling: DeleteFolderRecursiveRequest) async throws
+      -> any GoogleCloudGax.PollableOperation<Void>
+
+    /// See `StorageControlClient.deleteFolderRecursive`.
+    func deleteFolderRecursive(
+      name: Swift.String,
+    ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+
+    /// See `StorageControlClient.getStorageLayout`.
+    func getStorageLayout(request: GetStorageLayoutRequest) async throws -> StorageLayout
+
+    /// See `StorageControlClient.getStorageLayout`.
+    func getStorageLayout(
+      name: Swift.String,
+    ) async throws -> StorageLayout
+
     /// See `StorageControlClient.getProjectIntelligenceConfig`.
     func getProjectIntelligenceConfig(request: GetProjectIntelligenceConfigRequest) async throws
       -> IntelligenceConfig
@@ -306,6 +596,56 @@ extension Clients {
       parent: Swift.String,
     ) throws -> any AsyncSequence<IntelligenceFindingRevision, Swift.Error>
 
+    /// See `StorageControlClient.createFolder`.
+    func createFolder(
+      request: CreateFolderRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> Folder
+
+    /// See `StorageControlClient.deleteFolder`.
+    func deleteFolder(
+      request: DeleteFolderRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws
+
+    /// See `StorageControlClient.getFolder`.
+    func getFolder(
+      request: GetFolderRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> Folder
+
+    /// See `StorageControlClient.listFolders`.
+    func listFolders(
+      request: ListFoldersRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> ListFoldersResponse
+
+    /// See `StorageControlClient.listFolders`.
+    func listFolders(
+      byItem: ListFoldersRequest, options: GoogleCloudGax.RequestOptions
+    ) throws -> any AsyncSequence<Folder, Swift.Error>
+
+    /// See `StorageControlClient.renameFolder`.
+    func renameFolder(
+      request: RenameFolderRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    /// See `StorageControlClient.renameFolder`.
+    func renameFolder(
+      withPolling: RenameFolderRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> any GoogleCloudGax.PollableOperation<Folder>
+
+    /// See `StorageControlClient.deleteFolderRecursive`.
+    func deleteFolderRecursive(
+      request: DeleteFolderRecursiveRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    /// See `StorageControlClient.deleteFolderRecursive`.
+    func deleteFolderRecursive(
+      withPolling: DeleteFolderRecursiveRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+
+    /// See `StorageControlClient.getStorageLayout`.
+    func getStorageLayout(
+      request: GetStorageLayoutRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> StorageLayout
+
     /// See `StorageControlClient.getProjectIntelligenceConfig`.
     func getProjectIntelligenceConfig(
       request: GetProjectIntelligenceConfigRequest, options: GoogleCloudGax.RequestOptions
@@ -380,6 +720,195 @@ extension Clients {
 
 // Default implementations
 extension Clients.StorageControlProtocol {
+  public func createFolder(request: CreateFolderRequest) async throws -> Folder {
+    try await self.createFolder(request: request, options: .init())
+  }
+
+  public func createFolder(
+    request: CreateFolderRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> Folder {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func createFolder(
+    parent: Swift.String,
+    folder: Folder?,
+    folderId: Swift.String,
+  ) async throws -> Folder {
+    let request = CreateFolderRequest().with {
+      $0.parent = parent
+      $0.folder = folder
+      $0.folderId = folderId
+    }
+    return try await self.createFolder(request: request)
+  }
+
+  public func deleteFolder(request: DeleteFolderRequest) async throws {
+    try await self.deleteFolder(request: request, options: .init())
+  }
+
+  public func deleteFolder(
+    request: DeleteFolderRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func deleteFolder(
+    name: Swift.String,
+  ) async throws {
+    let request = DeleteFolderRequest().with {
+      $0.name = name
+    }
+    try await self.deleteFolder(request: request)
+  }
+
+  public func getFolder(request: GetFolderRequest) async throws -> Folder {
+    try await self.getFolder(request: request, options: .init())
+  }
+
+  public func getFolder(
+    request: GetFolderRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> Folder {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func getFolder(
+    name: Swift.String,
+  ) async throws -> Folder {
+    let request = GetFolderRequest().with {
+      $0.name = name
+    }
+    return try await self.getFolder(request: request)
+  }
+
+  public func listFolders(request: ListFoldersRequest) async throws -> ListFoldersResponse {
+    try await self.listFolders(request: request, options: .init())
+  }
+
+  public func listFolders(
+    request: ListFoldersRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> ListFoldersResponse {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func listFolders(
+    byItem: ListFoldersRequest
+  ) throws -> any AsyncSequence<Folder, Swift.Error> {
+    try self.listFolders(byItem: byItem, options: .init())
+  }
+
+  public func listFolders(
+    byItem: ListFoldersRequest, options: GoogleCloudGax.RequestOptions
+  ) throws -> any AsyncSequence<Folder, Swift.Error> {
+    let listRpc = { (token: Swift.String) async throws -> ListFoldersResponse in
+      throw GoogleCloudGax.RequestError.unimplemented
+    }
+    return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
+  }
+
+  public func listFolders(
+    parent: Swift.String,
+  ) throws -> any AsyncSequence<Folder, Swift.Error> {
+    let request = ListFoldersRequest().with {
+      $0.parent = parent
+    }
+    return try self.listFolders(byItem: request)
+  }
+
+  public func renameFolder(request: RenameFolderRequest) async throws -> GoogleLongRunning.Operation
+  {
+    try await self.renameFolder(request: request, options: .init())
+  }
+
+  public func renameFolder(
+    request: RenameFolderRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func renameFolder(withPolling: RenameFolderRequest) async throws -> any GoogleCloudGax
+    .PollableOperation<Folder>
+  {
+    try await self.renameFolder(withPolling: withPolling, options: .init())
+  }
+
+  public func renameFolder(
+    withPolling: RenameFolderRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> any GoogleCloudGax.PollableOperation<Folder> {
+    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Folder>.State in
+      throw GoogleCloudGax.RequestError.unimplemented
+    }
+    return GoogleCloudGax._PollableOperationImpl(
+      initialState: .init(done: false, result: nil), poll: poll)
+  }
+
+  public func renameFolder(
+    name: Swift.String,
+    destinationFolderId: Swift.String,
+  ) async throws -> any GoogleCloudGax.PollableOperation<Folder> {
+    let request = RenameFolderRequest().with {
+      $0.name = name
+      $0.destinationFolderId = destinationFolderId
+    }
+    return try await self.renameFolder(withPolling: request)
+  }
+
+  public func deleteFolderRecursive(request: DeleteFolderRecursiveRequest) async throws
+    -> GoogleLongRunning.Operation
+  {
+    try await self.deleteFolderRecursive(request: request, options: .init())
+  }
+
+  public func deleteFolderRecursive(
+    request: DeleteFolderRecursiveRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func deleteFolderRecursive(withPolling: DeleteFolderRecursiveRequest) async throws
+    -> any GoogleCloudGax.PollableOperation<Void>
+  {
+    try await self.deleteFolderRecursive(withPolling: withPolling, options: .init())
+  }
+
+  public func deleteFolderRecursive(
+    withPolling: DeleteFolderRecursiveRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+      throw GoogleCloudGax.RequestError.unimplemented
+    }
+    return GoogleCloudGax._PollableOperationImpl(
+      initialState: .init(done: false, result: nil), poll: poll)
+  }
+
+  public func deleteFolderRecursive(
+    name: Swift.String,
+  ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+    let request = DeleteFolderRecursiveRequest().with {
+      $0.name = name
+    }
+    return try await self.deleteFolderRecursive(withPolling: request)
+  }
+
+  public func getStorageLayout(request: GetStorageLayoutRequest) async throws -> StorageLayout {
+    try await self.getStorageLayout(request: request, options: .init())
+  }
+
+  public func getStorageLayout(
+    request: GetStorageLayoutRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> StorageLayout {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func getStorageLayout(
+    name: Swift.String,
+  ) async throws -> StorageLayout {
+    let request = GetStorageLayoutRequest().with {
+      $0.name = name
+    }
+    return try await self.getStorageLayout(request: request)
+  }
+
   public func getProjectIntelligenceConfig(request: GetProjectIntelligenceConfigRequest)
     async throws -> IntelligenceConfig
   {
@@ -661,5 +1190,26 @@ extension Clients.StorageControlProtocol {
       $0.parent = parent
     }
     return try self.listIntelligenceFindingRevisions(byItem: request)
+  }
+
+  public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
+    -> GoogleLongRunning.Operation
+  {
+    try await self.getOperation(request: request, options: .init())
+  }
+
+  public func getOperation(
+    request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func getOperation(
+    name: Swift.String,
+  ) async throws -> GoogleLongRunning.Operation {
+    let request = GoogleLongRunning.GetOperationRequest().with {
+      $0.name = name
+    }
+    return try await self.getOperation(request: request)
   }
 }

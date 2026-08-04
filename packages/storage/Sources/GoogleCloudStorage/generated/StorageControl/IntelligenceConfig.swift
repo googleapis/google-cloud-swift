@@ -469,7 +469,7 @@ public struct IntelligenceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   /// signifies the edition used for configuring the `IntelligenceConfig`
   /// resource and can only take the following values:
   /// `EDITION_CONFIG_UNSPECIFIED`, `INHERIT`, `DISABLED`, `STANDARD` and
-  /// `TRIAL`.
+  /// `EVALUATE`.
   public enum EditionConfig: Codable, Equatable, Sendable {
     /// This is an unknown edition of the resource.
     case unspecified
@@ -487,6 +487,8 @@ public struct IntelligenceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackabl
     /// using filters. At the end of the trial period, the `IntelligenceConfig`
     /// resource is upgraded to `STANDARD` edition.
     case trial
+    /// The `IntelligenceConfig` resource is of ESSENTIALS edition.
+    case essentials
     /// Encodes an unknown integer value.
     ///
     /// The most common cause for an unknown values is for the service to send
@@ -514,6 +516,7 @@ public struct IntelligenceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackabl
       case .disabled: return 2
       case .standard: return 3
       case .trial: return 5
+      case .essentials: return 6
       case .unknownIntValue(let v): return v
       case .unknownStringValue: return nil
       }
@@ -529,6 +532,7 @@ public struct IntelligenceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackabl
       case .disabled: return "DISABLED"
       case .standard: return "STANDARD"
       case .trial: return "TRIAL"
+      case .essentials: return "ESSENTIALS"
       case .unknownIntValue: return nil
       case .unknownStringValue(let v): return v
       }
@@ -544,6 +548,7 @@ public struct IntelligenceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackabl
       case "DISABLED": self = .disabled
       case "STANDARD": self = .standard
       case "TRIAL": self = .trial
+      case "ESSENTIALS": self = .essentials
       default: self = .unknownStringValue(stringValue)
       }
     }
@@ -558,6 +563,7 @@ public struct IntelligenceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackabl
       case 2: self = .disabled
       case 3: self = .standard
       case 5: self = .trial
+      case 6: self = .essentials
       default: self = .unknownIntValue(intValue)
       }
     }
@@ -588,6 +594,7 @@ public struct IntelligenceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackabl
       case .disabled: return try container.encode(2)
       case .standard: return try container.encode(3)
       case .trial: return try container.encode(5)
+      case .essentials: return try container.encode(6)
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

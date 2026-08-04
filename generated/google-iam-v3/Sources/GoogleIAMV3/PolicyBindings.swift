@@ -46,7 +46,7 @@ public class PolicyBindingsClient: Clients.PolicyBindingsProtocol {
 
   /// Creates a policy binding and returns a long-running operation.
   /// Callers will need the IAM permissions on both the policy and target.
-  /// Once the binding is created, the policy is applied to the target.
+  /// After the binding is created, the policy is applied to the target.
   ///
   /// @Snippet(path: "PolicyBindings_CreatePolicyBinding")
   public func createPolicyBinding(
@@ -57,7 +57,7 @@ public class PolicyBindingsClient: Clients.PolicyBindingsProtocol {
 
   /// Creates a policy binding and returns a long-running operation.
   /// Callers will need the IAM permissions on both the policy and target.
-  /// Once the binding is created, the policy is applied to the target.
+  /// After the binding is created, the policy is applied to the target.
   ///
   /// @Snippet(path: "PolicyBindings_CreatePolicyBinding")
   public func createPolicyBinding(
@@ -127,9 +127,7 @@ public class PolicyBindingsClient: Clients.PolicyBindingsProtocol {
 
   /// Updates a policy binding and returns a long-running operation.
   /// Callers will need the IAM permissions on the policy and target in the
-  /// binding to update, and the IAM permission to remove the existing policy
-  /// from the binding. Target is immutable and cannot be updated. Once the
-  /// binding is updated, the new policy is applied to the target.
+  /// binding to update. Target and policy are immutable and cannot be updated.
   ///
   /// @Snippet(path: "PolicyBindings_UpdatePolicyBinding")
   public func updatePolicyBinding(
@@ -140,9 +138,7 @@ public class PolicyBindingsClient: Clients.PolicyBindingsProtocol {
 
   /// Updates a policy binding and returns a long-running operation.
   /// Callers will need the IAM permissions on the policy and target in the
-  /// binding to update, and the IAM permission to remove the existing policy
-  /// from the binding. Target is immutable and cannot be updated. Once the
-  /// binding is updated, the new policy is applied to the target.
+  /// binding to update. Target and policy are immutable and cannot be updated.
   ///
   /// @Snippet(path: "PolicyBindings_UpdatePolicyBinding")
   public func updatePolicyBinding(
@@ -203,7 +199,7 @@ public class PolicyBindingsClient: Clients.PolicyBindingsProtocol {
 
   /// Deletes a policy binding and returns a long-running operation.
   /// Callers will need the IAM permissions on both the policy and target.
-  /// Once the binding is deleted, the policy no longer applies to the target.
+  /// After the binding is deleted, the policy no longer applies to the target.
   ///
   /// @Snippet(path: "PolicyBindings_DeletePolicyBinding")
   public func deletePolicyBinding(
@@ -214,7 +210,7 @@ public class PolicyBindingsClient: Clients.PolicyBindingsProtocol {
 
   /// Deletes a policy binding and returns a long-running operation.
   /// Callers will need the IAM permissions on both the policy and target.
-  /// Once the binding is deleted, the policy no longer applies to the target.
+  /// After the binding is deleted, the policy no longer applies to the target.
   ///
   /// @Snippet(path: "PolicyBindings_DeletePolicyBinding")
   public func deletePolicyBinding(

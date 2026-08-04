@@ -56,6 +56,10 @@ public struct CodeCompilationConfig: Codable, Equatable, GoogleCloudWkt._AnyPack
   /// Optional. The default notebook runtime options.
   public var defaultNotebookRuntimeOptions: NotebookRuntimeOptions? = nil
 
+  /// Optional. The pipeline options which defines the pipeline type and path
+  /// within the Git repository.
+  public var pipelineConfig: PipelineConfig? = nil
+
   /// Initialize a new instance of `CodeCompilationConfig`.
   public init() {}
 

@@ -18,9 +18,14 @@ import Foundation
 
 /// CVSS Version.
 public enum CVSSVersion: Codable, Equatable, Sendable {
+  /// Unspecified.
   case unspecified
+  /// CVSS v2.
   case cvssVersion2
+  /// CVSS v3.
   case cvssVersion3
+  /// CVSS v4.
+  case cvssVersion4
   /// Encodes an unknown integer value.
   ///
   /// The most common cause for an unknown values is for the service to send
@@ -46,6 +51,7 @@ public enum CVSSVersion: Codable, Equatable, Sendable {
     case .unspecified: return 0
     case .cvssVersion2: return 1
     case .cvssVersion3: return 2
+    case .cvssVersion4: return 3
     case .unknownIntValue(let v): return v
     case .unknownStringValue: return nil
     }
@@ -59,6 +65,7 @@ public enum CVSSVersion: Codable, Equatable, Sendable {
     case .unspecified: return "CVSS_VERSION_UNSPECIFIED"
     case .cvssVersion2: return "CVSS_VERSION_2"
     case .cvssVersion3: return "CVSS_VERSION_3"
+    case .cvssVersion4: return "CVSS_VERSION_4"
     case .unknownIntValue: return nil
     case .unknownStringValue(let v): return v
     }
@@ -72,6 +79,7 @@ public enum CVSSVersion: Codable, Equatable, Sendable {
     case "CVSS_VERSION_UNSPECIFIED": self = .unspecified
     case "CVSS_VERSION_2": self = .cvssVersion2
     case "CVSS_VERSION_3": self = .cvssVersion3
+    case "CVSS_VERSION_4": self = .cvssVersion4
     default: self = .unknownStringValue(stringValue)
     }
   }
@@ -84,6 +92,7 @@ public enum CVSSVersion: Codable, Equatable, Sendable {
     case 0: self = .unspecified
     case 1: self = .cvssVersion2
     case 2: self = .cvssVersion3
+    case 3: self = .cvssVersion4
     default: self = .unknownIntValue(intValue)
     }
   }
@@ -112,6 +121,7 @@ public enum CVSSVersion: Codable, Equatable, Sendable {
     case .unspecified: return try container.encode(0)
     case .cvssVersion2: return try container.encode(1)
     case .cvssVersion3: return try container.encode(2)
+    case .cvssVersion4: return try container.encode(3)
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

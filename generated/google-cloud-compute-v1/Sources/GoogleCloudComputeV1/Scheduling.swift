@@ -36,6 +36,8 @@
     /// specified in the spread placement policy attached to the instance.
     public var availabilityDomain: Swift.Int32? = nil
 
+    public var gracefulShutdown: SchedulingGracefulShutdown? = nil
+
     /// Specify the time in seconds for host error detection, the value must be
     /// within the range of [90, 330] with the increment of 30, if unset, the
     /// default behavior of host error recovery will be used.
@@ -84,6 +86,11 @@
     /// therefore, in a `TERMINATED` state. SeeInstance Life
     /// Cycle for more information on the possible instance states.
     public var preemptible: Swift.Bool? = nil
+
+    /// Specifies the Metadata Service preemption notice duration before the GCE ACPI G2
+    /// Soft Off signal is triggered for Spot VMs only. If not specified,
+    /// there will be no wait before the G2 Soft Off signal is triggered.
+    public var preemptionNoticeDuration: Duration? = nil
 
     /// Specifies the provisioning model of the instance.
     public var provisioningModel: Scheduling.ProvisioningModel? = nil

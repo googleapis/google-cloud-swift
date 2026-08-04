@@ -33,7 +33,7 @@
     /// create the resource.
     public var description: Swift.String? = nil
 
-    /// Output only. [Output Only] Provisioned capacities for each SKU for this Exapool in GiB
+    /// Provisioned capacities for each SKU for this Exapool in GiB
     public var exapoolProvisionedCapacityGb: StoragePoolExapoolProvisionedCapacityGb? = nil
 
     /// Output only. [Output Only] The unique identifier for the resource. This identifier is
@@ -97,6 +97,9 @@
     /// Output only. [Output Only] Server-defined URL for this resource's resource id.
     public var selfLinkWithId: Swift.String? = nil
 
+    /// Share settings for the storage pool.
+    public var shareSettings: StoragePoolShareSettings? = nil
+
     /// Output only. [Output Only] The status of storage pool creation.
     ///
     ///
@@ -152,6 +155,7 @@
       case resourceStatus = "resourceStatus"
       case selfLink = "selfLink"
       case selfLinkWithId = "selfLinkWithId"
+      case shareSettings = "shareSettings"
       case state = "state"
       case status = "status"
       case storagePoolType = "storagePoolType"
@@ -194,6 +198,8 @@
       self.selfLink = try container.decodeIfPresent(Swift.String.self, forKey: .selfLink)
       self.selfLinkWithId = try container.decodeIfPresent(
         Swift.String.self, forKey: .selfLinkWithId)
+      self.shareSettings = try container.decodeIfPresent(
+        StoragePoolShareSettings.self, forKey: .shareSettings)
       self.state = try container.decodeIfPresent(StoragePool.State.self, forKey: .state)
       self.status = try container.decodeIfPresent(StoragePoolResourceStatus.self, forKey: .status)
       self.storagePoolType = try container.decodeIfPresent(
@@ -224,6 +230,7 @@
       try container.encode(self.resourceStatus, forKey: .resourceStatus)
       try container.encode(self.selfLink, forKey: .selfLink)
       try container.encode(self.selfLinkWithId, forKey: .selfLinkWithId)
+      try container.encode(self.shareSettings, forKey: .shareSettings)
       try container.encode(self.state, forKey: .state)
       try container.encode(self.status, forKey: .status)
       try container.encode(self.storagePoolType, forKey: .storagePoolType)

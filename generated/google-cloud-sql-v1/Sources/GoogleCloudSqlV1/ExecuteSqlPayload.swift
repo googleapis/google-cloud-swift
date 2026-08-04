@@ -71,6 +71,7 @@
       case user = "user"
       case sqlStatement = "sqlStatement"
       case database = "database"
+      case passwordSecretVersion = "passwordSecretVersion"
       case autoIamAuthn = "autoIamAuthn"
       case rowLimit = "rowLimit"
       case partialResultMode = "partialResultMode"
@@ -97,6 +98,11 @@
         }
         userPassword = $0
       }
+      if let passwordSecretVersion = try container.decodeIfPresent(
+        Swift.String.self, forKey: .passwordSecretVersion)
+      {
+        try userPasswordCheckAndSet(.passwordSecretVersion(passwordSecretVersion))
+      }
       if let autoIamAuthn = try container.decodeIfPresent(Swift.Bool.self, forKey: .autoIamAuthn) {
         try userPasswordCheckAndSet(.autoIamAuthn(autoIamAuthn))
       }
@@ -114,6 +120,8 @@
 
       if let choice = self.userPassword {
         switch choice {
+        case .passwordSecretVersion(let value):
+          try container.encode(value, forKey: .passwordSecretVersion)
         case .autoIamAuthn(let value):
           try container.encode(value, forKey: .autoIamAuthn)
         }
@@ -231,6 +239,15 @@
 
     /// Credentials for the database connection.
     public enum OneOf_UserPassword: Codable, Equatable, Sendable {
+      /// Optional. The resource name of the Secret Manager secret holding the
+      /// password for the user to log into the database. The secret should be
+      /// created using the regional endpoint (for API) or from the Regional
+      /// Secrets page (for UI), and stored in the same region as the Cloud SQL
+      /// instance. The expected resource name format is
+      /// `projects/{project}/locations/{location}/secrets/{secret}/versions/{secret_version}`.
+      /// Used together with the `user` field.
+      /// The secret resource name will not be stored.
+      case passwordSecretVersion(Swift.String)
       /// Optional. When set to `true`, the API caller identity associated with the
       /// request is used for database authentication. The API caller must be an
       /// IAM user in the database.

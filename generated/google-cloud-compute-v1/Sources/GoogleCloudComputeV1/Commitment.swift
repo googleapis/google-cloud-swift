@@ -548,6 +548,8 @@
       case memoryOptimizedX496012T
       /// CUD bucket for X4 machine with 960 vCPUs and 16TB of memory.
       case memoryOptimizedX496016T
+      /// CUD bucket for C4N (dual Diorite) machines.
+      case networkOptimizedC4N
       case storageOptimizedZ3
       /// Note for internal users: When adding a new enum Type for v1, make sure
       /// to also add it in the comment for the `optional Type type` definition.
@@ -613,8 +615,9 @@
         case .memoryOptimizedX44808T: return 35
         case .memoryOptimizedX496012T: return 36
         case .memoryOptimizedX496016T: return 37
-        case .storageOptimizedZ3: return 38
-        case .unspecified: return 39
+        case .networkOptimizedC4N: return 38
+        case .storageOptimizedZ3: return 39
+        case .unspecified: return 40
         case .unknownIntValue(let v): return v
         case .unknownStringValue: return nil
         }
@@ -663,6 +666,7 @@
         case .memoryOptimizedX44808T: return "MEMORY_OPTIMIZED_X4_480_8T"
         case .memoryOptimizedX496012T: return "MEMORY_OPTIMIZED_X4_960_12T"
         case .memoryOptimizedX496016T: return "MEMORY_OPTIMIZED_X4_960_16T"
+        case .networkOptimizedC4N: return "NETWORK_OPTIMIZED_C4N"
         case .storageOptimizedZ3: return "STORAGE_OPTIMIZED_Z3"
         case .unspecified: return "TYPE_UNSPECIFIED"
         case .unknownIntValue: return nil
@@ -713,6 +717,7 @@
         case "MEMORY_OPTIMIZED_X4_480_8T": self = .memoryOptimizedX44808T
         case "MEMORY_OPTIMIZED_X4_960_12T": self = .memoryOptimizedX496012T
         case "MEMORY_OPTIMIZED_X4_960_16T": self = .memoryOptimizedX496016T
+        case "NETWORK_OPTIMIZED_C4N": self = .networkOptimizedC4N
         case "STORAGE_OPTIMIZED_Z3": self = .storageOptimizedZ3
         case "TYPE_UNSPECIFIED": self = .unspecified
         default: self = .unknownStringValue(stringValue)
@@ -762,8 +767,9 @@
         case 35: self = .memoryOptimizedX44808T
         case 36: self = .memoryOptimizedX496012T
         case 37: self = .memoryOptimizedX496016T
-        case 38: self = .storageOptimizedZ3
-        case 39: self = .unspecified
+        case 38: self = .networkOptimizedC4N
+        case 39: self = .storageOptimizedZ3
+        case 40: self = .unspecified
         default: self = .unknownIntValue(intValue)
         }
       }
@@ -827,8 +833,9 @@
         case .memoryOptimizedX44808T: return try container.encode(35)
         case .memoryOptimizedX496012T: return try container.encode(36)
         case .memoryOptimizedX496016T: return try container.encode(37)
-        case .storageOptimizedZ3: return try container.encode(38)
-        case .unspecified: return try container.encode(39)
+        case .networkOptimizedC4N: return try container.encode(38)
+        case .storageOptimizedZ3: return try container.encode(39)
+        case .unspecified: return try container.encode(40)
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

@@ -42,6 +42,10 @@ public struct CreateAnywhereCacheMetadata: Codable, Equatable, GoogleCloudWkt._A
   /// applied if not specified in the create request.
   public var admissionPolicy: Swift.String? = nil
 
+  /// Optional. Specifies whether objects are ingested into the cache upon write.
+  /// Defaults to false.
+  public var ingestOnWrite: Swift.Bool? = nil
+
   /// Initialize a new instance of `CreateAnywhereCacheMetadata`.
   public init() {}
 

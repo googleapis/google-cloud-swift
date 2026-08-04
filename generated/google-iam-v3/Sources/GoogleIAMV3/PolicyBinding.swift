@@ -52,8 +52,8 @@ public struct PolicyBinding: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// size limitations
   public var annotations: [Swift.String: Swift.String] = [:]
 
-  /// Required. Immutable. Target is the full resource name of the resource to
-  /// which the policy will be bound. Immutable once set.
+  /// Required. Immutable. The full resource name of the resource to which the
+  /// policy will be bound. Immutable once set.
   public var target: PolicyBinding.Target? = nil
 
   /// Immutable. The kind of the policy to attach in this binding. This field
@@ -99,13 +99,14 @@ public struct PolicyBinding: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// - `principal.type != <principal type string>`
   /// - `principal.type in [<list of principal types>]`
   ///
-  /// Supported principal types are Workspace, Workforce Pool, Workload Pool and
-  /// Service Account. Allowed string must be one of:
+  /// Supported principal types are workspace, workforce pool, workload pool,
+  /// service account, and agent identity. Allowed string must be one of:
   ///
-  /// - iam.googleapis.com/WorkspaceIdentity
-  /// - iam.googleapis.com/WorkforcePoolIdentity
-  /// - iam.googleapis.com/WorkloadPoolIdentity
-  /// - iam.googleapis.com/ServiceAccount
+  /// - `iam.googleapis.com/WorkspaceIdentity`
+  /// - `iam.googleapis.com/WorkforcePoolIdentity`
+  /// - `iam.googleapis.com/WorkloadPoolIdentity`
+  /// - `iam.googleapis.com/ServiceAccount`
+  /// - `iam.googleapis.com/AgentPoolIdentity` (available in Preview)
   public var condition: GoogleType.Expr? = nil
 
   /// Output only. The time when the policy binding was created.
@@ -130,7 +131,7 @@ public struct PolicyBinding: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     return copy
   }
 
-  /// Target is the full resource name of the resource to which the policy will
+  /// The full resource name of the resource to which the policy will
   /// be bound. Immutable once set.
   public struct Target: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
@@ -156,6 +157,7 @@ public struct PolicyBinding: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     private enum CodingKeys: Swift.String, CodingKey {
       case principalSet = "principalSet"
+      case resource = "resource"
     }
 
     public init(from decoder: Decoder) throws {
@@ -175,6 +177,9 @@ public struct PolicyBinding: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       {
         try targetCheckAndSet(.principalSet(principalSet))
       }
+      if let resource = try container.decodeIfPresent(Swift.String.self, forKey: .resource) {
+        try targetCheckAndSet(.resource(resource))
+      }
       self.target = target
     }
 
@@ -185,35 +190,50 @@ public struct PolicyBinding: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         switch choice {
         case .principalSet(let value):
           try container.encode(value, forKey: .principalSet)
+        case .resource(let value):
+          try container.encode(value, forKey: .resource)
         }
       }
     }
 
     /// The different types of targets that can be bound to a policy.
     public enum OneOf_Target: Codable, Equatable, Sendable {
-      /// Immutable. Full Resource Name used for principal access boundary policy
-      /// bindings. The principal set must be directly parented by the policy
-      /// binding's parent or same as the parent if the target is a
-      /// project/folder/organization.
+      /// Immutable. The full resource name that's used for principal access
+      /// boundary policy bindings. The principal set must be directly parented
+      /// by the policy binding's parent or same as the parent if the target is a
+      /// project, folder, or organization.
       ///
       /// Examples:
-      /// * For binding's parented by an organization:
-      ///   * Organization:
-      ///   `//cloudresourcemanager.googleapis.com/organizations/ORGANIZATION_ID`
-      ///   * Workforce Identity:
-      ///   `//iam.googleapis.com/locations/global/workforcePools/WORKFORCE_POOL_ID`
-      ///   * Workspace Identity:
-      ///   `//iam.googleapis.com/locations/global/workspace/WORKSPACE_ID`
-      /// * For binding's parented by a folder:
-      ///   * Folder:
-      ///   `//cloudresourcemanager.googleapis.com/folders/FOLDER_ID`
-      /// * For binding's parented by a project:
-      ///   * Project:
+      ///
+      /// * For bindings parented by an organization:
+      ///     * Organization:
+      ///     `//cloudresourcemanager.googleapis.com/organizations/ORGANIZATION_ID`
+      ///     * Workforce Identity:
+      ///     `//iam.googleapis.com/locations/global/workforcePools/WORKFORCE_POOL_ID`
+      ///     * Workspace Identity:
+      ///     `//iam.googleapis.com/locations/global/workspace/WORKSPACE_ID`
+      /// * For bindings parented by a folder:
+      ///     * Folder:
+      ///       `//cloudresourcemanager.googleapis.com/folders/FOLDER_ID`
+      /// * For bindings parented by a project:
+      ///     * Project:
+      ///         * `//cloudresourcemanager.googleapis.com/projects/PROJECT_NUMBER`
+      ///         * `//cloudresourcemanager.googleapis.com/projects/PROJECT_ID`
+      ///     * Workload Identity Pool:
+      ///     `//iam.googleapis.com/projects/PROJECT_NUMBER/locations/LOCATION/workloadIdentityPools/WORKLOAD_POOL_ID`
+      case principalSet(Swift.String)
+      /// Immutable. The full resource name that's used for access policy
+      /// bindings.
+      ///
+      /// Examples:
+      ///
+      /// * Organization:
+      /// `//cloudresourcemanager.googleapis.com/organizations/ORGANIZATION_ID`
+      /// * Folder: `//cloudresourcemanager.googleapis.com/folders/FOLDER_ID`
+      /// * Project:
       ///     * `//cloudresourcemanager.googleapis.com/projects/PROJECT_NUMBER`
       ///     * `//cloudresourcemanager.googleapis.com/projects/PROJECT_ID`
-      ///   * Workload Identity Pool:
-      ///   `//iam.googleapis.com/projects/PROJECT_NUMBER/locations/LOCATION/workloadIdentityPools/WORKLOAD_POOL_ID`
-      case principalSet(Swift.String)
+      case resource(Swift.String)
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -227,12 +247,14 @@ public struct PolicyBinding: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     }
   }
 
-  /// Different policy kinds supported in this binding.
+  /// The different policy kinds supported in this binding.
   public enum PolicyKind: Codable, Equatable, Sendable {
     /// Unspecified policy kind; Not a valid state
     case unspecified
     /// Principal access boundary policy kind
     case principalAccessBoundary
+    /// Access policy kind.
+    case access
     /// Encodes an unknown integer value.
     ///
     /// The most common cause for an unknown values is for the service to send
@@ -257,6 +279,7 @@ public struct PolicyBinding: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       switch self {
       case .unspecified: return 0
       case .principalAccessBoundary: return 1
+      case .access: return 2
       case .unknownIntValue(let v): return v
       case .unknownStringValue: return nil
       }
@@ -269,6 +292,7 @@ public struct PolicyBinding: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       switch self {
       case .unspecified: return "POLICY_KIND_UNSPECIFIED"
       case .principalAccessBoundary: return "PRINCIPAL_ACCESS_BOUNDARY"
+      case .access: return "ACCESS"
       case .unknownIntValue: return nil
       case .unknownStringValue(let v): return v
       }
@@ -281,6 +305,7 @@ public struct PolicyBinding: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       switch stringValue {
       case "POLICY_KIND_UNSPECIFIED": self = .unspecified
       case "PRINCIPAL_ACCESS_BOUNDARY": self = .principalAccessBoundary
+      case "ACCESS": self = .access
       default: self = .unknownStringValue(stringValue)
       }
     }
@@ -292,6 +317,7 @@ public struct PolicyBinding: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       switch intValue {
       case 0: self = .unspecified
       case 1: self = .principalAccessBoundary
+      case 2: self = .access
       default: self = .unknownIntValue(intValue)
       }
     }
@@ -319,6 +345,7 @@ public struct PolicyBinding: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       switch self {
       case .unspecified: return try container.encode(0)
       case .principalAccessBoundary: return try container.encode(1)
+      case .access: return try container.encode(2)
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

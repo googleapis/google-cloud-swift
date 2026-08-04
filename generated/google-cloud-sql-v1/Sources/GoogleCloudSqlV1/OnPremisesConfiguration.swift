@@ -57,6 +57,10 @@
     /// Optional. SSL option for replica connection to the on-premises source.
     public var sslOption: OnPremisesConfiguration.SslOption = OnPremisesConfiguration.SslOption()
 
+    /// Output only. Indicates whether the resource is managed by Database
+    /// Migration Service.
+    public var dmsManaged: Swift.Bool = Swift.Bool()
+
     /// Initialize a new instance of `OnPremisesConfiguration`.
     public init() {}
 

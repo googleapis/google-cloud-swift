@@ -54,6 +54,10 @@ public struct CompilationResult: Codable, Equatable, GoogleCloudWkt._AnyPackable
   /// from a workspace.
   public var privateResourceMetadata: PrivateResourceMetadata? = nil
 
+  /// Output only. Metadata about the repository snapshot used by scheduled
+  /// notebooks.
+  public var gcsRepositorySnapshotMetadata: GcsRepositorySnapshotMetadata? = nil
+
   /// The source of the compilation result.
   public var source: OneOf_Source? = nil
 
@@ -86,6 +90,7 @@ public struct CompilationResult: Codable, Equatable, GoogleCloudWkt._AnyPackable
     case createTime = "createTime"
     case internalMetadata = "internalMetadata"
     case privateResourceMetadata = "privateResourceMetadata"
+    case gcsRepositorySnapshotMetadata = "gcsRepositorySnapshotMetadata"
   }
 
   public init(from decoder: Decoder) throws {
@@ -106,6 +111,8 @@ public struct CompilationResult: Codable, Equatable, GoogleCloudWkt._AnyPackable
       Swift.String.self, forKey: .internalMetadata)
     self.privateResourceMetadata = try container.decodeIfPresent(
       PrivateResourceMetadata.self, forKey: .privateResourceMetadata)
+    self.gcsRepositorySnapshotMetadata = try container.decodeIfPresent(
+      GcsRepositorySnapshotMetadata.self, forKey: .gcsRepositorySnapshotMetadata)
 
     var source: OneOf_Source? = nil
     let sourceCheckAndSet = {
@@ -141,6 +148,7 @@ public struct CompilationResult: Codable, Equatable, GoogleCloudWkt._AnyPackable
     try container.encode(self.createTime, forKey: .createTime)
     try container.encode(self.internalMetadata, forKey: .internalMetadata)
     try container.encode(self.privateResourceMetadata, forKey: .privateResourceMetadata)
+    try container.encode(self.gcsRepositorySnapshotMetadata, forKey: .gcsRepositorySnapshotMetadata)
 
     if let choice = self.source {
       switch choice {

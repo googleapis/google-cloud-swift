@@ -30,6 +30,8 @@ extension ManagedFolder {
     self.metageneration = proto.metageneration
     self.createTime = proto.hasCreateTime ? try .init(proto: proto.createTime) : nil
     self.updateTime = proto.hasUpdateTime ? try .init(proto: proto.updateTime) : nil
+    self.rapidCacheConfig =
+      proto.hasRapidCacheConfig ? try .init(proto: proto.rapidCacheConfig) : nil
   }
 
   internal func toProto() throws -> ProtoType {
@@ -38,6 +40,75 @@ extension ManagedFolder {
     proto.metageneration = self.metageneration
     if let createTime = self.createTime { proto.createTime = try createTime.toProto() }
     if let updateTime = self.updateTime { proto.updateTime = try updateTime.toProto() }
+    if let rapidCacheConfig = self.rapidCacheConfig {
+      proto.rapidCacheConfig = try rapidCacheConfig.toProto()
+    }
     return proto
+  }
+}
+
+extension ManagedFolder.RapidCacheConfig {
+  internal typealias ProtoType = StorageControlProtos.Google_Storage_Control_V2_ManagedFolder
+    .RapidCacheConfig
+
+  internal init(proto: ProtoType) throws {
+    self.init()
+  }
+
+  internal func toProto() throws -> ProtoType {
+    let proto = ProtoType()
+    return proto
+  }
+}
+
+extension ManagedFolder.RapidCacheConfig.RapidCachePolicy {
+  internal typealias ProtoType = StorageControlProtos.Google_Storage_Control_V2_ManagedFolder
+    .RapidCacheConfig.RapidCachePolicy
+
+  internal init(proto: ProtoType) throws {
+    self.init()
+    self.rapidCacheId = proto.rapidCacheID
+    self.ingestOnWrite = .init(proto: proto.ingestOnWrite)
+  }
+
+  internal func toProto() throws -> ProtoType {
+    var proto = ProtoType()
+    proto.rapidCacheID = self.rapidCacheId
+    proto.ingestOnWrite = try self.ingestOnWrite.toProto()
+    return proto
+  }
+}
+
+extension ManagedFolder.RapidCacheConfig.RapidCachePolicy.IngestOnWrite {
+  internal init(
+    proto: StorageControlProtos.Google_Storage_Control_V2_ManagedFolder.RapidCacheConfig
+      .RapidCachePolicy.IngestOnWrite
+  ) {
+    switch proto {
+    case .unspecified:
+      self = .unspecified
+    case .enabled:
+      self = .enabled
+    case .UNRECOGNIZED(let val): self = .unknownIntValue(val)
+    }
+  }
+
+  internal func toProto() throws
+    -> StorageControlProtos.Google_Storage_Control_V2_ManagedFolder.RapidCacheConfig
+    .RapidCachePolicy.IngestOnWrite
+  {
+    switch self {
+    case .unspecified:
+      return .unspecified
+    case .enabled:
+      return .enabled
+    case .unknownIntValue(let val):
+      return StorageControlProtos.Google_Storage_Control_V2_ManagedFolder.RapidCacheConfig
+        .RapidCachePolicy.IngestOnWrite(rawValue: val)
+        ?? .UNRECOGNIZED(val)
+    case .unknownStringValue(let str):
+      throw GoogleCloudGax.ProtobufConversionError.noIntegerValue(
+        enumType: "ManagedFolder.RapidCacheConfig.RapidCachePolicy.IngestOnWrite", stringValue: str)
+    }
   }
 }

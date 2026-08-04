@@ -240,6 +240,10 @@
     /// Output only. The list of DNS names used by this instance.
     public var dnsNames: [DnsNameMapping] = []
 
+    /// Optional. If true, instance metadata is sent to the Database Center. If
+    /// false, instance metadata is not sent to the Database Center.
+    public var databaseCenterIntegrationEnabled: GoogleCloudWkt.BoolValue? = nil
+
     /// Initialize a new instance of `DatabaseInstance`.
     public init() {}
 

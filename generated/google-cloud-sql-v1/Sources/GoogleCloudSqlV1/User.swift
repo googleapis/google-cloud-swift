@@ -73,6 +73,9 @@
     /// Optional. Role memberships of the user
     public var databaseRoles: [Swift.String] = []
 
+    /// Optional. The server roles for the SQL Server login.
+    public var serverRoles: [Swift.String] = []
+
     /// User details for specific database type
     public var userDetails: OneOf_UserDetails? = nil
 
@@ -107,6 +110,7 @@
       case dualPasswordType = "dualPasswordType"
       case iamStatus = "iamStatus"
       case databaseRoles = "databaseRoles"
+      case serverRoles = "serverRoles"
     }
 
     public init(from decoder: Decoder) throws {
@@ -126,6 +130,7 @@
         User.DualPasswordType.self, forKey: .dualPasswordType)
       self.iamStatus = try container.decodeIfPresent(User.IamStatus.self, forKey: .iamStatus)
       self.databaseRoles = try container.decode([Swift.String].self, forKey: .databaseRoles)
+      self.serverRoles = try container.decode([Swift.String].self, forKey: .serverRoles)
 
       var userDetails: OneOf_UserDetails? = nil
       let userDetailsCheckAndSet = {
@@ -160,6 +165,7 @@
       try container.encode(self.dualPasswordType, forKey: .dualPasswordType)
       try container.encode(self.iamStatus, forKey: .iamStatus)
       try container.encode(self.databaseRoles, forKey: .databaseRoles)
+      try container.encode(self.serverRoles, forKey: .serverRoles)
 
       if let choice = self.userDetails {
         switch choice {

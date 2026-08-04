@@ -142,6 +142,12 @@ let package = Package(
       ]
     ),
     .trait(
+      name: "Hosts",
+      enabledTraits: [
+        "ZoneOperations"
+      ]
+    ),
+    .trait(
       name: "HttpHealthChecks",
       enabledTraits: [
         "GlobalOperations"
@@ -527,6 +533,9 @@ let package = Package(
     ),
     .trait(
       name: "Regions",
+    ),
+    .trait(
+      name: "ReliabilityRisks",
     ),
     .trait(
       name: "ReservationBlocks",

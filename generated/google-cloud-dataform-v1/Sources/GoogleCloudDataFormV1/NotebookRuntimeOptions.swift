@@ -30,6 +30,10 @@ public struct NotebookRuntimeOptions: Codable, Equatable, GoogleCloudWkt._AnyPac
   /// The location to store the notebook execution result.
   public var executionSink: OneOf_ExecutionSink? = nil
 
+  /// The destination of the snapshot of repository files to be available for
+  /// read-only access inside a notebook runtime
+  public var repositorySnapshotStorage: OneOf_RepositorySnapshotStorage? = nil
+
   /// Initialize a new instance of `NotebookRuntimeOptions`.
   public init() {}
 
@@ -48,6 +52,7 @@ public struct NotebookRuntimeOptions: Codable, Equatable, GoogleCloudWkt._AnyPac
 
   private enum CodingKeys: Swift.String, CodingKey {
     case gcsOutputBucket = "gcsOutputBucket"
+    case gcsRepositorySnapshotDestination = "gcsRepositorySnapshotDestination"
     case aiPlatformNotebookRuntimeTemplate = "aiPlatformNotebookRuntimeTemplate"
   }
 
@@ -72,6 +77,24 @@ public struct NotebookRuntimeOptions: Codable, Equatable, GoogleCloudWkt._AnyPac
       try executionSinkCheckAndSet(.gcsOutputBucket(gcsOutputBucket))
     }
     self.executionSink = executionSink
+
+    var repositorySnapshotStorage: OneOf_RepositorySnapshotStorage? = nil
+    let repositorySnapshotStorageCheckAndSet = {
+      if repositorySnapshotStorage != nil {
+        throw DecodingError.dataCorrupted(
+          DecodingError.Context(
+            codingPath: decoder.codingPath,
+            debugDescription: "Multiple values set for oneof 'repositorySnapshotStorage'"))
+      }
+      repositorySnapshotStorage = $0
+    }
+    if let gcsRepositorySnapshotDestination = try container.decodeIfPresent(
+      GcsRepositorySnapshotDestination?.self, forKey: .gcsRepositorySnapshotDestination)
+    {
+      try repositorySnapshotStorageCheckAndSet(
+        .gcsRepositorySnapshotDestination(gcsRepositorySnapshotDestination))
+    }
+    self.repositorySnapshotStorage = repositorySnapshotStorage
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -85,6 +108,13 @@ public struct NotebookRuntimeOptions: Codable, Equatable, GoogleCloudWkt._AnyPac
         try container.encode(value, forKey: .gcsOutputBucket)
       }
     }
+
+    if let choice = self.repositorySnapshotStorage {
+      switch choice {
+      case .gcsRepositorySnapshotDestination(let value):
+        try container.encode(value, forKey: .gcsRepositorySnapshotDestination)
+      }
+    }
   }
 
   /// The location to store the notebook execution result.
@@ -92,6 +122,15 @@ public struct NotebookRuntimeOptions: Codable, Equatable, GoogleCloudWkt._AnyPac
     /// Optional. The Google Cloud Storage location to upload the result to.
     /// Format: `gs://bucket-name`.
     case gcsOutputBucket(Swift.String)
+  }
+
+  /// The destination of the snapshot of repository files to be available for
+  /// read-only access inside a notebook runtime
+  public enum OneOf_RepositorySnapshotStorage: Codable, Equatable, Sendable {
+    /// Optional. The Google Cloud Storage destination to upload the snapshot to.
+    /// For empty URI it defaults to the provided gcs_output_bucket.
+    /// Format: `gs://bucket-name/path/`.
+    indirect case gcsRepositorySnapshotDestination(GcsRepositorySnapshotDestination?)
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -36,8 +36,7 @@ public struct SearchTargetPolicyBindingsRequest: Codable, Equatable, GoogleCloud
   /// Optional. The maximum number of policy bindings to return. The service may
   /// return fewer than this value.
   ///
-  /// If unspecified, at most 50 policy bindings will be returned.
-  /// The maximum value is 1000; values above 1000 will be coerced to 1000.
+  /// The default value is 50. The maximum value is 1000.
   public var pageSize: Swift.Int32 = Swift.Int32()
 
   /// Optional. A page token, received from a previous
@@ -60,6 +59,18 @@ public struct SearchTargetPolicyBindingsRequest: Codable, Equatable, GoogleCloud
   /// * `folders/{folder_id}/locations/{location}`
   /// * `organizations/{organization_id}/locations/{location}`
   public var parent: Swift.String = Swift.String()
+
+  /// Optional. Filtering currently only supports the kind of policies to return,
+  /// and must be in the format "policy_kind={policy_kind}".
+  ///
+  /// If String is empty, bindings bound to all kinds of policies would be
+  /// returned.
+  ///
+  /// The only supported values are the following:
+  ///
+  /// * "policy_kind=PRINCIPAL_ACCESS_BOUNDARY",
+  /// * "policy_kind=ACCESS"
+  public var filter: Swift.String = Swift.String()
 
   /// Initialize a new instance of `SearchTargetPolicyBindingsRequest`.
   public init() {}

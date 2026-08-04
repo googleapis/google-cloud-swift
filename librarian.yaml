@@ -19,11 +19,11 @@ sources:
     commit: b407e8416e3893036aee5af9a12bd9b6a0e2b2e6
     sha256: 55912546338433f465a552e9ef09930c63b9eb697053937416890cff83a8622d
   discovery:
-    commit: ae1716748979a2f6d5668b67cd7362a2f4a5e3d3
-    sha256: 40a3e0f15a96629bcdeffd8293cebcaeece86510c87ba861b5dd2c4d12561776
+    commit: 61bad9715ee5bac87ba78ac62854bf066cfb7ba2
+    sha256: a9627769b9ac31267463efb76b5d78284fcc61b6d2606490f5b6031b1b185ff8
   googleapis:
-    commit: eeacbcfd6305391efe503993bae5f0ffa4311b28
-    sha256: e02aadee1ace11c36d5740d6c4a88fa058e22c3e775bcbf5e20052e117e46e5b
+    commit: 57394718a71457aa37ab002352b22081976bdd91
+    sha256: 633d12eb239bf48648613a8e8f1e4b4875ae8116150fdee0ba4abc910ffb9777
   protobuf:
     commit: b407e8416e3893036aee5af9a12bd9b6a0e2b2e6
     sha256: 55912546338433f465a552e9ef09930c63b9eb697053937416890cff83a8622d
@@ -595,6 +595,7 @@ libraries:
             - ../../../type/expr.proto
             - ../../../type/interval.proto
         - output: packages/storage/Sources/GoogleCloudStorage/generated/StorageControl
+          service_config: google/storage/control/v2/storage_v2.yaml
           api_path: google/storage/control/v2
           module_type: default
         - output: packages/storage/Sources/GoogleCloudStorage/generated/StorageControl/Convert/StorageControl

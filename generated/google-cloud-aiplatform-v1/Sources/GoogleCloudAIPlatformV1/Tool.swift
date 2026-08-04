@@ -69,6 +69,11 @@
     /// Parallel.ai and presented to the model for response generation
     public var parallelAiSearch: Tool.ParallelAiSearch? = nil
 
+    /// Optional. Uses Exa.ai to search for information to
+    /// answer user queries. The search results will be grounded on Exa.ai
+    /// and presented to the model for response generation
+    public var exaAiSearch: Tool.ExaAiSearch? = nil
+
     /// Optional. CodeExecution tool type.
     /// Enables the model to execute code as part of generation.
     public var codeExecution: Tool.CodeExecution? = nil
@@ -187,6 +192,45 @@
 
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.Tool.ParallelAiSearch"
+      }
+      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
+        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      }
+      public func _pack() throws -> GoogleCloudWkt.Struct {
+        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      }
+    }
+
+    /// ExaAiSearch tool type.
+    /// A tool that uses the Exa.ai search engine for grounding.
+    public struct ExaAiSearch: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      Sendable
+    {
+      /// Required. The API key for ExaAiSearch.
+      public var apiKey: Swift.String = Swift.String()
+
+      /// Optional. This field can be used to pass any parameter from the Exa.ai
+      /// Search API.
+      public var customConfigs: GoogleCloudWkt.Struct? = nil
+
+      /// Initialize a new instance of `ExaAiSearch`.
+      public init() {}
+
+      /// Use `config` to return a new instance of this object, with some fields updated.
+      ///
+      /// Commonly used to initialize the value, for example:
+      ///
+      /// ```
+      /// let value = ExaAiSearch().with { $0.apiKey = ... }
+      /// ```
+      public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+        var copy = self
+        try config(&copy)
+        return copy
+      }
+
+      public static var _anyTypeUrl: Swift.String {
+        return "type.googleapis.com/google.cloud.aiplatform.v1.Tool.ExaAiSearch"
       }
       public init(fromAny any: GoogleCloudWkt.`Any`) throws {
         self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)

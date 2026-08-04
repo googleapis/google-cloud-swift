@@ -52,6 +52,10 @@ public struct WorkflowInvocation: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   /// from a compilation result and the compilation result is user-scoped.
   public var privateResourceMetadata: PrivateResourceMetadata? = nil
 
+  /// Output only. The pipeline options which defines the pipeline type and path
+  /// within the Git repository.
+  public var pipelineConfig: PipelineConfig? = nil
+
   /// The source of the compilation result to use for this invocation.
   public var compilationSource: OneOf_CompilationSource? = nil
 
@@ -82,6 +86,7 @@ public struct WorkflowInvocation: Codable, Equatable, GoogleCloudWkt._AnyPackabl
     case dataEncryptionState = "dataEncryptionState"
     case internalMetadata = "internalMetadata"
     case privateResourceMetadata = "privateResourceMetadata"
+    case pipelineConfig = "pipelineConfig"
   }
 
   public init(from decoder: Decoder) throws {
@@ -100,6 +105,8 @@ public struct WorkflowInvocation: Codable, Equatable, GoogleCloudWkt._AnyPackabl
       Swift.String.self, forKey: .internalMetadata)
     self.privateResourceMetadata = try container.decodeIfPresent(
       PrivateResourceMetadata.self, forKey: .privateResourceMetadata)
+    self.pipelineConfig = try container.decodeIfPresent(
+      PipelineConfig.self, forKey: .pipelineConfig)
 
     var compilationSource: OneOf_CompilationSource? = nil
     let compilationSourceCheckAndSet = {
@@ -134,6 +141,7 @@ public struct WorkflowInvocation: Codable, Equatable, GoogleCloudWkt._AnyPackabl
     try container.encode(self.dataEncryptionState, forKey: .dataEncryptionState)
     try container.encode(self.internalMetadata, forKey: .internalMetadata)
     try container.encode(self.privateResourceMetadata, forKey: .privateResourceMetadata)
+    try container.encode(self.pipelineConfig, forKey: .pipelineConfig)
 
     if let choice = self.compilationSource {
       switch choice {

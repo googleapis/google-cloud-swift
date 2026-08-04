@@ -42,6 +42,16 @@
     /// specified in `database_roles` are added to the user's existing roles.
     public var revokeExistingRoles: Swift.Bool? = nil
 
+    /// Optional. The server roles to grant to the SQL Server login. Existing
+    /// server roles will not be revoked if revoke_existing_roles is false.
+    /// body.server_roles will be ignored for update request.
+    public var serverRoles: [Swift.String] = []
+
+    /// Optional. Specifies whether to revoke existing roles that are not present
+    /// in the `server_roles` field. If `false` or unset, the server roles
+    /// specified in `server_roles` are added to the user's existing server roles.
+    public var revokeExistingServerRoles: Swift.Bool? = nil
+
     public var body: User? = nil
 
     /// Initialize a new instance of `SqlUsersUpdateRequest`.

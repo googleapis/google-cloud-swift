@@ -24,6 +24,10 @@ public struct InstallNpmPackagesRequest: Codable, Equatable, GoogleCloudWkt._Any
   /// Required. The workspace's name.
   public var workspace: Swift.String = Swift.String()
 
+  /// Optional. The pipeline options which defines the pipeline type and path
+  /// within the Git repository.
+  public var pipelineConfig: PipelineConfig? = nil
+
   /// Initialize a new instance of `InstallNpmPackagesRequest`.
   public init() {}
 

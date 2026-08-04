@@ -28,6 +28,9 @@
     /// Project ID of the project that contains the instance.
     public var project: Swift.String = Swift.String()
 
+    /// Optional. Region of the Cloud SQL instance.
+    public var location: Swift.String = Swift.String()
+
     /// Initialize a new instance of `SqlOperationsCancelRequest`.
     public init() {}
 

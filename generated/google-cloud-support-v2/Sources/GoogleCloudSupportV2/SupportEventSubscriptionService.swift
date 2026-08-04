@@ -57,7 +57,7 @@ public class SupportEventSubscriptionServiceClient: Clients.SupportEventSubscrip
     try await self.inner.getSupportEventSubscription(request: request, options: options)
   }
 
-  /// Lists support event subscriptions.
+  /// Lists support event subscriptions for an organization.
   ///
   /// @Snippet(path: "SupportEventSubscriptionService_ListSupportEventSubscriptions")
   public func listSupportEventSubscriptions(
@@ -66,7 +66,7 @@ public class SupportEventSubscriptionServiceClient: Clients.SupportEventSubscrip
     try await self.inner.listSupportEventSubscriptions(request: request, options: options)
   }
 
-  /// Lists support event subscriptions.
+  /// Lists support event subscriptions for an organization.
   ///
   /// @Snippet(path: "SupportEventSubscriptionService_ListSupportEventSubscriptions")
   public func listSupportEventSubscriptions(
@@ -107,6 +107,45 @@ public class SupportEventSubscriptionServiceClient: Clients.SupportEventSubscrip
     request: UndeleteSupportEventSubscriptionRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> GoogleCloudSupportV2.SupportEventSubscription {
     try await self.inner.undeleteSupportEventSubscription(request: request, options: options)
+  }
+
+  /// Expunges a support event subscription.
+  ///
+  /// EXAMPLES:
+  ///
+  /// cURL:
+  ///
+  /// ```shell
+  /// support_event_subscription="organizations/123456789/supportEventSubscriptions/abcdef123456"
+  /// curl \
+  ///   --request POST \
+  ///   --header "Authorization: Bearer $(gcloud auth print-access-token)" \
+  ///   "https://cloudsupport.googleapis.com/v2/$support_event_subscription:expunge"
+  /// ```
+  ///
+  /// Python:
+  ///
+  /// ```python
+  /// import googleapiclient.discovery
+  ///
+  /// api_version = "v2"
+  /// supportApiService = googleapiclient.discovery.build(
+  ///     serviceName="cloudsupport",
+  ///     version=api_version,
+  ///     discoveryServiceUrl=f"https://cloudsupport.googleapis.com/$discovery/rest?version={api_version}",
+  /// )
+  ///
+  /// request = supportApiService.supportEventSubscriptions().expunge(
+  ///     name="organizations/123456789/supportEventSubscriptions/abcdef123456"
+  /// )
+  /// print(request.execute())
+  /// ```
+  ///
+  /// @Snippet(path: "SupportEventSubscriptionService_ExpungeSupportEventSubscription")
+  public func expungeSupportEventSubscription(
+    request: ExpungeSupportEventSubscriptionRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws {
+    try await self.inner.expungeSupportEventSubscription(request: request, options: options)
   }
 }
 
@@ -173,6 +212,15 @@ extension Clients {
     func undeleteSupportEventSubscription(request: UndeleteSupportEventSubscriptionRequest)
       async throws -> GoogleCloudSupportV2.SupportEventSubscription
 
+    /// See `SupportEventSubscriptionServiceClient.expungeSupportEventSubscription`.
+    func expungeSupportEventSubscription(request: ExpungeSupportEventSubscriptionRequest)
+      async throws
+
+    /// See `SupportEventSubscriptionServiceClient.expungeSupportEventSubscription`.
+    func expungeSupportEventSubscription(
+      name: Swift.String,
+    ) async throws
+
     /// See `SupportEventSubscriptionServiceClient.createSupportEventSubscription`.
     func createSupportEventSubscription(
       request: CreateSupportEventSubscriptionRequest, options: GoogleCloudGax.RequestOptions
@@ -207,6 +255,11 @@ extension Clients {
     func undeleteSupportEventSubscription(
       request: UndeleteSupportEventSubscriptionRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudSupportV2.SupportEventSubscription
+
+    /// See `SupportEventSubscriptionServiceClient.expungeSupportEventSubscription`.
+    func expungeSupportEventSubscription(
+      request: ExpungeSupportEventSubscriptionRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws
   }
 }
 
@@ -348,5 +401,26 @@ extension Clients.SupportEventSubscriptionServiceProtocol {
     request: UndeleteSupportEventSubscriptionRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> GoogleCloudSupportV2.SupportEventSubscription {
     throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func expungeSupportEventSubscription(request: ExpungeSupportEventSubscriptionRequest)
+    async throws
+  {
+    try await self.expungeSupportEventSubscription(request: request, options: .init())
+  }
+
+  public func expungeSupportEventSubscription(
+    request: ExpungeSupportEventSubscriptionRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func expungeSupportEventSubscription(
+    name: Swift.String,
+  ) async throws {
+    let request = ExpungeSupportEventSubscriptionRequest().with {
+      $0.name = name
+    }
+    try await self.expungeSupportEventSubscription(request: request)
   }
 }

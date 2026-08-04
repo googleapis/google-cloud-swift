@@ -31,26 +31,56 @@ public struct CVSS: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   public var impactScore: Swift.Float = Swift.Float()
 
-  /// Base Metrics
-  /// Represents the intrinsic characteristics of a vulnerability that are
-  /// constant over time and across user environments.
+  /// Attack Vector (AV). Defined in CVSS v2, v3, v4.
   public var attackVector: CVSS.AttackVector = CVSS.AttackVector()
 
+  /// Attack Complexity (AC). Defined in CVSS v2, v3, v4.
   public var attackComplexity: CVSS.AttackComplexity = CVSS.AttackComplexity()
 
+  /// Authentication (Au). Defined in CVSS v2.
   public var authentication: CVSS.Authentication = CVSS.Authentication()
 
+  /// Privileges Required (PR). Defined in CVSS v3, v4.
   public var privilegesRequired: CVSS.PrivilegesRequired = CVSS.PrivilegesRequired()
 
+  /// User Interaction (UI). Defined in CVSS v3, v4.
   public var userInteraction: CVSS.UserInteraction = CVSS.UserInteraction()
 
+  /// Scope (S). Defined in CVSS v3.
   public var scope: CVSS.Scope = CVSS.Scope()
 
+  /// Confidentiality Impact (C). Defined in CVSS v2, v3.
   public var confidentialityImpact: CVSS.Impact = CVSS.Impact()
 
+  /// Integrity Impact (I). Defined in CVSS v2, v3.
   public var integrityImpact: CVSS.Impact = CVSS.Impact()
 
+  /// Availability Impact (A). Defined in CVSS v2, v3.
   public var availabilityImpact: CVSS.Impact = CVSS.Impact()
+
+  /// Attack Requirements (AT). Defined in CVSS v4.
+  public var attackRequirements: CVSS.AttackRequirements = CVSS.AttackRequirements()
+
+  /// Vulnerable System Confidentiality Impact (VC). Defined in CVSS v4.
+  public var vulnerableSystemConfidentialityImpact: CVSS.Impact = CVSS.Impact()
+
+  /// Vulnerable System Integrity Impact (VI). Defined in CVSS v4.
+  public var vulnerableSystemIntegrityImpact: CVSS.Impact = CVSS.Impact()
+
+  /// Vulnerable System Availability Impact (VA). Defined in CVSS v4.
+  public var vulnerableSystemAvailabilityImpact: CVSS.Impact = CVSS.Impact()
+
+  /// Subsequent System Confidentiality Impact (SC). Defined in CVSS v4.
+  public var subsequentSystemConfidentialityImpact: CVSS.Impact = CVSS.Impact()
+
+  /// Subsequent System Integrity Impact (SI). Defined in CVSS v4.
+  public var subsequentSystemIntegrityImpact: CVSS.Impact = CVSS.Impact()
+
+  /// Subsequent System Availability Impact (SA). Defined in CVSS v4.
+  public var subsequentSystemAvailabilityImpact: CVSS.Impact = CVSS.Impact()
+
+  /// Exploit Maturity (E). Defined in CVSS v4.
+  public var exploitMaturity: CVSS.ExploitMaturity = CVSS.ExploitMaturity()
 
   /// Initialize a new instance of `CVSS`.
   public init() {}
@@ -68,11 +98,17 @@ public struct CVSS: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     return copy
   }
 
+  /// Attack Vector.
   public enum AttackVector: Codable, Equatable, Sendable {
+    /// Unspecified.
     case unspecified
+    /// Attack Vector: Network (AV:N). Defined in CVSS v2, v3, v4.
     case network
+    /// Attack Vector: Adjacent (AV:A). Defined in CVSS v2, v3, v4.
     case adjacent
+    ///  Attack Vector: Local (AV:L). Defined in CVSS v2, v3, v4.
     case local
+    /// Attack Vector: Physical (AV:P). Defined in CVSS v3, v4.
     case physical
     /// Encodes an unknown integer value.
     ///
@@ -181,10 +217,15 @@ public struct CVSS: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     }
   }
 
+  /// Attack Complexity.
   public enum AttackComplexity: Codable, Equatable, Sendable {
+    /// Unspecified.
     case unspecified
+    /// Low attack complexity (AC:L). Defined in CVSS v2, v3, v4.
     case low
+    /// High attack complexity (AC:H). Defined in CVSS v2, v3, v4.
     case high
+    /// Medium attack complexity (AC:M). Defined in CVSS v2.
     case medium
     /// Encodes an unknown integer value.
     ///
@@ -288,10 +329,15 @@ public struct CVSS: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     }
   }
 
+  /// Authentication.
   public enum Authentication: Codable, Equatable, Sendable {
+    /// Unspecified.
     case unspecified
+    /// Multiple authentication required (Au:M). Defined in CVSS v2.
     case multiple
+    /// Single authentication required (Au:S). Defined in CVSS v2.
     case single
+    /// No authentication required (Au:N). Defined in CVSS v2.
     case `none`
     /// Encodes an unknown integer value.
     ///
@@ -395,10 +441,15 @@ public struct CVSS: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     }
   }
 
+  /// Privileges Required.
   public enum PrivilegesRequired: Codable, Equatable, Sendable {
+    /// Unspecified.
     case unspecified
+    /// No privileges required (PR:N). Defined in CVSS v3, v4.
     case `none`
+    /// Low privileges required (PR:L). Defined in CVSS v3, v4.
     case low
+    /// High privileges required (PR:H). Defined in CVSS v3, v4.
     case high
     /// Encodes an unknown integer value.
     ///
@@ -502,10 +553,18 @@ public struct CVSS: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     }
   }
 
+  /// User Interaction.
   public enum UserInteraction: Codable, Equatable, Sendable {
+    /// Unspecified.
     case unspecified
+    /// No user interaction required (UI:N). Defined in CVSS v3, v4.
     case `none`
+    /// User interaction required (UI:R). Defined in CVSS v3.
     case `required`
+    /// Passive user interaction required (UI:P). Defined in CVSS v4.
+    case passive
+    /// Active user interaction required (UI:A). Defined in CVSS v4.
+    case active
     /// Encodes an unknown integer value.
     ///
     /// The most common cause for an unknown values is for the service to send
@@ -531,6 +590,8 @@ public struct CVSS: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       case .unspecified: return 0
       case .`none`: return 1
       case .`required`: return 2
+      case .passive: return 3
+      case .active: return 4
       case .unknownIntValue(let v): return v
       case .unknownStringValue: return nil
       }
@@ -544,6 +605,8 @@ public struct CVSS: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       case .unspecified: return "USER_INTERACTION_UNSPECIFIED"
       case .`none`: return "USER_INTERACTION_NONE"
       case .`required`: return "USER_INTERACTION_REQUIRED"
+      case .passive: return "USER_INTERACTION_PASSIVE"
+      case .active: return "USER_INTERACTION_ACTIVE"
       case .unknownIntValue: return nil
       case .unknownStringValue(let v): return v
       }
@@ -557,6 +620,8 @@ public struct CVSS: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       case "USER_INTERACTION_UNSPECIFIED": self = .unspecified
       case "USER_INTERACTION_NONE": self = .`none`
       case "USER_INTERACTION_REQUIRED": self = .`required`
+      case "USER_INTERACTION_PASSIVE": self = .passive
+      case "USER_INTERACTION_ACTIVE": self = .active
       default: self = .unknownStringValue(stringValue)
       }
     }
@@ -569,6 +634,8 @@ public struct CVSS: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       case 0: self = .unspecified
       case 1: self = .`none`
       case 2: self = .`required`
+      case 3: self = .passive
+      case 4: self = .active
       default: self = .unknownIntValue(intValue)
       }
     }
@@ -597,15 +664,21 @@ public struct CVSS: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       case .unspecified: return try container.encode(0)
       case .`none`: return try container.encode(1)
       case .`required`: return try container.encode(2)
+      case .passive: return try container.encode(3)
+      case .active: return try container.encode(4)
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
     }
   }
 
+  /// Scope.
   public enum Scope: Codable, Equatable, Sendable {
+    /// Unspecified.
     case unspecified
+    /// Scope: Unchanged (S:U). Defined in CVSS v3.
     case unchanged
+    /// Scope: Changed (S:C). Defined in CVSS v3.
     case changed
     /// Encodes an unknown integer value.
     ///
@@ -704,12 +777,19 @@ public struct CVSS: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     }
   }
 
+  /// Impact.
   public enum Impact: Codable, Equatable, Sendable {
+    /// Unspecified.
     case unspecified
+    /// High impact (H). Defined in CVSS v3, v4.
     case high
+    /// Low impact (L). Defined in CVSS v3, v4.
     case low
+    /// No impact (N). Defined in CVSS v2, v3, v4.
     case `none`
+    /// Partial impact (P). Defined in CVSS v2.
     case partial
+    /// Complete impact (C). Defined in CVSS v2.
     case complete
     /// Encodes an unknown integer value.
     ///
@@ -817,6 +897,230 @@ public struct CVSS: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       case .`none`: return try container.encode(3)
       case .partial: return try container.encode(4)
       case .complete: return try container.encode(5)
+      case .unknownIntValue(let v): return try container.encode(v)
+      case .unknownStringValue(let v): return try container.encode(v)
+      }
+    }
+  }
+
+  /// Attack Requirements.
+  public enum AttackRequirements: Codable, Equatable, Sendable {
+    /// Unspecified.
+    case unspecified
+    /// No attack requirements (AT:N). Defined in CVSS v4.
+    case `none`
+    /// Attack requirements: Present (AT:P). Defined in CVSS v4.
+    case present
+    /// Encodes an unknown integer value.
+    ///
+    /// The most common cause for an unknown values is for the service to send
+    /// a value unknown to the library. We recommend you update your library to
+    /// the latest version.
+    case unknownIntValue(Int)
+    /// Encodes an unknown string value.
+    ///
+    /// The most common cause for an unknown values is for the service to send
+    /// a value unknown to the library. We recommend you update your library to
+    /// the latest version.
+    case unknownStringValue(String)
+
+    public init() {
+      self = .unspecified
+    }
+
+    /// Returns the integer value associated with the enumeration.
+    ///
+    /// If the enumeration was initialized with an unknown string value, this returns `nil`.
+    public var intValue: Int? {
+      switch self {
+      case .unspecified: return 0
+      case .`none`: return 1
+      case .present: return 2
+      case .unknownIntValue(let v): return v
+      case .unknownStringValue: return nil
+      }
+    }
+
+    /// Returns the string value (or name) associated with the enumeration.
+    ///
+    /// If the enumeration was initialized with an unknown integer value, this returns `nil`.
+    public var stringValue: Swift.String? {
+      switch self {
+      case .unspecified: return "ATTACK_REQUIREMENTS_UNSPECIFIED"
+      case .`none`: return "ATTACK_REQUIREMENTS_NONE"
+      case .present: return "ATTACK_REQUIREMENTS_PRESENT"
+      case .unknownIntValue: return nil
+      case .unknownStringValue(let v): return v
+      }
+    }
+
+    /// Initialize from a string value.
+    ///
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:AttackRequirements/unknownStringValue(_:)).
+    public init(stringValue: Swift.String) {
+      switch stringValue {
+      case "ATTACK_REQUIREMENTS_UNSPECIFIED": self = .unspecified
+      case "ATTACK_REQUIREMENTS_NONE": self = .`none`
+      case "ATTACK_REQUIREMENTS_PRESENT": self = .present
+      default: self = .unknownStringValue(stringValue)
+      }
+    }
+
+    /// Initialize from an integer value.
+    ///
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:AttackRequirements/unknownIntValue(_:)).
+    public init(intValue: Int) {
+      switch intValue {
+      case 0: self = .unspecified
+      case 1: self = .`none`
+      case 2: self = .present
+      default: self = .unknownIntValue(intValue)
+      }
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.singleValueContainer()
+      if let v = try? container.decode(Int.self) {
+        self.init(intValue: v)
+        return
+      }
+      if let s = try? container.decode(String.self) {
+        if let v = Int(s) {
+          self.init(intValue: v)
+        } else {
+          self.init(stringValue: s)
+        }
+        return
+      }
+      throw DecodingError.dataCorruptedError(
+        in: container, debugDescription: "Expected enum value, must be integer or string.")
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.singleValueContainer()
+      switch self {
+      case .unspecified: return try container.encode(0)
+      case .`none`: return try container.encode(1)
+      case .present: return try container.encode(2)
+      case .unknownIntValue(let v): return try container.encode(v)
+      case .unknownStringValue(let v): return try container.encode(v)
+      }
+    }
+  }
+
+  /// Exploit Maturity (E). Defined in CVSS v4.
+  public enum ExploitMaturity: Codable, Equatable, Sendable {
+    /// Unspecified.
+    case unspecified
+    /// Exploit maturity: Not defined (E:X). Defined in CVSS v4.
+    case notDefined
+    /// Exploit maturity: Attacked (E:A). Defined in CVSS v4.
+    case attacked
+    /// Exploit maturity: Proof-of-concept (E:P). Defined in CVSS v4.
+    case poc
+    /// Exploit maturity: Unreported (E:U). Defined in CVSS v4.
+    case unreported
+    /// Encodes an unknown integer value.
+    ///
+    /// The most common cause for an unknown values is for the service to send
+    /// a value unknown to the library. We recommend you update your library to
+    /// the latest version.
+    case unknownIntValue(Int)
+    /// Encodes an unknown string value.
+    ///
+    /// The most common cause for an unknown values is for the service to send
+    /// a value unknown to the library. We recommend you update your library to
+    /// the latest version.
+    case unknownStringValue(String)
+
+    public init() {
+      self = .unspecified
+    }
+
+    /// Returns the integer value associated with the enumeration.
+    ///
+    /// If the enumeration was initialized with an unknown string value, this returns `nil`.
+    public var intValue: Int? {
+      switch self {
+      case .unspecified: return 0
+      case .notDefined: return 1
+      case .attacked: return 2
+      case .poc: return 3
+      case .unreported: return 4
+      case .unknownIntValue(let v): return v
+      case .unknownStringValue: return nil
+      }
+    }
+
+    /// Returns the string value (or name) associated with the enumeration.
+    ///
+    /// If the enumeration was initialized with an unknown integer value, this returns `nil`.
+    public var stringValue: Swift.String? {
+      switch self {
+      case .unspecified: return "EXPLOIT_MATURITY_UNSPECIFIED"
+      case .notDefined: return "EXPLOIT_MATURITY_NOT_DEFINED"
+      case .attacked: return "EXPLOIT_MATURITY_ATTACKED"
+      case .poc: return "EXPLOIT_MATURITY_POC"
+      case .unreported: return "EXPLOIT_MATURITY_UNREPORTED"
+      case .unknownIntValue: return nil
+      case .unknownStringValue(let v): return v
+      }
+    }
+
+    /// Initialize from a string value.
+    ///
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:ExploitMaturity/unknownStringValue(_:)).
+    public init(stringValue: Swift.String) {
+      switch stringValue {
+      case "EXPLOIT_MATURITY_UNSPECIFIED": self = .unspecified
+      case "EXPLOIT_MATURITY_NOT_DEFINED": self = .notDefined
+      case "EXPLOIT_MATURITY_ATTACKED": self = .attacked
+      case "EXPLOIT_MATURITY_POC": self = .poc
+      case "EXPLOIT_MATURITY_UNREPORTED": self = .unreported
+      default: self = .unknownStringValue(stringValue)
+      }
+    }
+
+    /// Initialize from an integer value.
+    ///
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:ExploitMaturity/unknownIntValue(_:)).
+    public init(intValue: Int) {
+      switch intValue {
+      case 0: self = .unspecified
+      case 1: self = .notDefined
+      case 2: self = .attacked
+      case 3: self = .poc
+      case 4: self = .unreported
+      default: self = .unknownIntValue(intValue)
+      }
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.singleValueContainer()
+      if let v = try? container.decode(Int.self) {
+        self.init(intValue: v)
+        return
+      }
+      if let s = try? container.decode(String.self) {
+        if let v = Int(s) {
+          self.init(intValue: v)
+        } else {
+          self.init(stringValue: s)
+        }
+        return
+      }
+      throw DecodingError.dataCorruptedError(
+        in: container, debugDescription: "Expected enum value, must be integer or string.")
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.singleValueContainer()
+      switch self {
+      case .unspecified: return try container.encode(0)
+      case .notDefined: return try container.encode(1)
+      case .attacked: return try container.encode(2)
+      case .poc: return try container.encode(3)
+      case .unreported: return try container.encode(4)
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

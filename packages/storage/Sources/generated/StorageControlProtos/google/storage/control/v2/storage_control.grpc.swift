@@ -73,6 +73,11 @@ public protocol Google_Storage_Control_V2_StorageControlClientProtocol: GRPCClie
     callOptions: CallOptions?
   ) -> UnaryCall<Google_Storage_Control_V2_ListManagedFoldersRequest, Google_Storage_Control_V2_ListManagedFoldersResponse>
 
+  func updateManagedFolder(
+    _ request: Google_Storage_Control_V2_UpdateManagedFolderRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Google_Storage_Control_V2_UpdateManagedFolderRequest, Google_Storage_Control_V2_ManagedFolder>
+
   func createAnywhereCache(
     _ request: Google_Storage_Control_V2_CreateAnywhereCacheRequest,
     callOptions: CallOptions?
@@ -107,6 +112,26 @@ public protocol Google_Storage_Control_V2_StorageControlClientProtocol: GRPCClie
     _ request: Google_Storage_Control_V2_ListAnywhereCachesRequest,
     callOptions: CallOptions?
   ) -> UnaryCall<Google_Storage_Control_V2_ListAnywhereCachesRequest, Google_Storage_Control_V2_ListAnywhereCachesResponse>
+
+  func createRapidCache(
+    _ request: Google_Storage_Control_V2_CreateRapidCacheRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Google_Storage_Control_V2_CreateRapidCacheRequest, Google_Longrunning_Operation>
+
+  func updateRapidCache(
+    _ request: Google_Storage_Control_V2_UpdateRapidCacheRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Google_Storage_Control_V2_UpdateRapidCacheRequest, Google_Longrunning_Operation>
+
+  func getRapidCache(
+    _ request: Google_Storage_Control_V2_GetRapidCacheRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Google_Storage_Control_V2_GetRapidCacheRequest, Google_Storage_Control_V2_RapidCache>
+
+  func listRapidCaches(
+    _ request: Google_Storage_Control_V2_ListRapidCachesRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Google_Storage_Control_V2_ListRapidCachesRequest, Google_Storage_Control_V2_ListRapidCachesResponse>
 
   func getProjectIntelligenceConfig(
     _ request: Google_Storage_Control_V2_GetProjectIntelligenceConfigRequest,
@@ -390,6 +415,25 @@ extension Google_Storage_Control_V2_StorageControlClientProtocol {
     )
   }
 
+  /// Updates a managed folder. Currently, this RPC only supports updating the
+  /// `rapid_cache_config` field.
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to UpdateManagedFolder.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  public func updateManagedFolder(
+    _ request: Google_Storage_Control_V2_UpdateManagedFolderRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Google_Storage_Control_V2_UpdateManagedFolderRequest, Google_Storage_Control_V2_ManagedFolder> {
+    return self.makeUnaryCall(
+      path: Google_Storage_Control_V2_StorageControlClientMetadata.Methods.updateManagedFolder.path,
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeUpdateManagedFolderInterceptors() ?? []
+    )
+  }
+
   /// Creates an Anywhere Cache instance.
   ///
   /// - Parameters:
@@ -517,6 +561,78 @@ extension Google_Storage_Control_V2_StorageControlClientProtocol {
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeListAnywhereCachesInterceptors() ?? []
+    )
+  }
+
+  /// Creates a Rapid Cache instance.
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to CreateRapidCache.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  public func createRapidCache(
+    _ request: Google_Storage_Control_V2_CreateRapidCacheRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Google_Storage_Control_V2_CreateRapidCacheRequest, Google_Longrunning_Operation> {
+    return self.makeUnaryCall(
+      path: Google_Storage_Control_V2_StorageControlClientMetadata.Methods.createRapidCache.path,
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeCreateRapidCacheInterceptors() ?? []
+    )
+  }
+
+  /// Updates a Rapid Cache instance.
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to UpdateRapidCache.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  public func updateRapidCache(
+    _ request: Google_Storage_Control_V2_UpdateRapidCacheRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Google_Storage_Control_V2_UpdateRapidCacheRequest, Google_Longrunning_Operation> {
+    return self.makeUnaryCall(
+      path: Google_Storage_Control_V2_StorageControlClientMetadata.Methods.updateRapidCache.path,
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeUpdateRapidCacheInterceptors() ?? []
+    )
+  }
+
+  /// Gets a Rapid Cache instance.
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to GetRapidCache.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  public func getRapidCache(
+    _ request: Google_Storage_Control_V2_GetRapidCacheRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Google_Storage_Control_V2_GetRapidCacheRequest, Google_Storage_Control_V2_RapidCache> {
+    return self.makeUnaryCall(
+      path: Google_Storage_Control_V2_StorageControlClientMetadata.Methods.getRapidCache.path,
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeGetRapidCacheInterceptors() ?? []
+    )
+  }
+
+  /// Lists Rapid Cache instances for a given bucket.
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to ListRapidCaches.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  public func listRapidCaches(
+    _ request: Google_Storage_Control_V2_ListRapidCachesRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Google_Storage_Control_V2_ListRapidCachesRequest, Google_Storage_Control_V2_ListRapidCachesResponse> {
+    return self.makeUnaryCall(
+      path: Google_Storage_Control_V2_StorageControlClientMetadata.Methods.listRapidCaches.path,
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeListRapidCachesInterceptors() ?? []
     )
   }
 
@@ -714,7 +830,7 @@ extension Google_Storage_Control_V2_StorageControlClientProtocol {
     )
   }
 
-  /// Lists the `IntelligenceFinding` resources for the specified project.
+  /// Lists the `IntelligenceFinding` resources for the specified the project.
   ///
   /// - Parameters:
   ///   - request: Request to send to ListIntelligenceFindings.
@@ -732,8 +848,8 @@ extension Google_Storage_Control_V2_StorageControlClientProtocol {
     )
   }
 
-  /// Summarize the intelligence findings for the specified scope(org, folder or
-  /// project).
+  /// Summarizes the intelligence findings for the specified scope (organization,
+  /// folder or project).
   ///
   /// - Parameters:
   ///   - request: Request to send to SummarizeIntelligenceFindings.
@@ -906,6 +1022,11 @@ public protocol Google_Storage_Control_V2_StorageControlAsyncClientProtocol: GRP
     callOptions: CallOptions?
   ) -> GRPCAsyncUnaryCall<Google_Storage_Control_V2_ListManagedFoldersRequest, Google_Storage_Control_V2_ListManagedFoldersResponse>
 
+  func makeUpdateManagedFolderCall(
+    _ request: Google_Storage_Control_V2_UpdateManagedFolderRequest,
+    callOptions: CallOptions?
+  ) -> GRPCAsyncUnaryCall<Google_Storage_Control_V2_UpdateManagedFolderRequest, Google_Storage_Control_V2_ManagedFolder>
+
   func makeCreateAnywhereCacheCall(
     _ request: Google_Storage_Control_V2_CreateAnywhereCacheRequest,
     callOptions: CallOptions?
@@ -940,6 +1061,26 @@ public protocol Google_Storage_Control_V2_StorageControlAsyncClientProtocol: GRP
     _ request: Google_Storage_Control_V2_ListAnywhereCachesRequest,
     callOptions: CallOptions?
   ) -> GRPCAsyncUnaryCall<Google_Storage_Control_V2_ListAnywhereCachesRequest, Google_Storage_Control_V2_ListAnywhereCachesResponse>
+
+  func makeCreateRapidCacheCall(
+    _ request: Google_Storage_Control_V2_CreateRapidCacheRequest,
+    callOptions: CallOptions?
+  ) -> GRPCAsyncUnaryCall<Google_Storage_Control_V2_CreateRapidCacheRequest, Google_Longrunning_Operation>
+
+  func makeUpdateRapidCacheCall(
+    _ request: Google_Storage_Control_V2_UpdateRapidCacheRequest,
+    callOptions: CallOptions?
+  ) -> GRPCAsyncUnaryCall<Google_Storage_Control_V2_UpdateRapidCacheRequest, Google_Longrunning_Operation>
+
+  func makeGetRapidCacheCall(
+    _ request: Google_Storage_Control_V2_GetRapidCacheRequest,
+    callOptions: CallOptions?
+  ) -> GRPCAsyncUnaryCall<Google_Storage_Control_V2_GetRapidCacheRequest, Google_Storage_Control_V2_RapidCache>
+
+  func makeListRapidCachesCall(
+    _ request: Google_Storage_Control_V2_ListRapidCachesRequest,
+    callOptions: CallOptions?
+  ) -> GRPCAsyncUnaryCall<Google_Storage_Control_V2_ListRapidCachesRequest, Google_Storage_Control_V2_ListRapidCachesResponse>
 
   func makeGetProjectIntelligenceConfigCall(
     _ request: Google_Storage_Control_V2_GetProjectIntelligenceConfigRequest,
@@ -1154,6 +1295,18 @@ extension Google_Storage_Control_V2_StorageControlAsyncClientProtocol {
     )
   }
 
+  public func makeUpdateManagedFolderCall(
+    _ request: Google_Storage_Control_V2_UpdateManagedFolderRequest,
+    callOptions: CallOptions? = nil
+  ) -> GRPCAsyncUnaryCall<Google_Storage_Control_V2_UpdateManagedFolderRequest, Google_Storage_Control_V2_ManagedFolder> {
+    return self.makeAsyncUnaryCall(
+      path: Google_Storage_Control_V2_StorageControlClientMetadata.Methods.updateManagedFolder.path,
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeUpdateManagedFolderInterceptors() ?? []
+    )
+  }
+
   public func makeCreateAnywhereCacheCall(
     _ request: Google_Storage_Control_V2_CreateAnywhereCacheRequest,
     callOptions: CallOptions? = nil
@@ -1235,6 +1388,54 @@ extension Google_Storage_Control_V2_StorageControlAsyncClientProtocol {
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeListAnywhereCachesInterceptors() ?? []
+    )
+  }
+
+  public func makeCreateRapidCacheCall(
+    _ request: Google_Storage_Control_V2_CreateRapidCacheRequest,
+    callOptions: CallOptions? = nil
+  ) -> GRPCAsyncUnaryCall<Google_Storage_Control_V2_CreateRapidCacheRequest, Google_Longrunning_Operation> {
+    return self.makeAsyncUnaryCall(
+      path: Google_Storage_Control_V2_StorageControlClientMetadata.Methods.createRapidCache.path,
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeCreateRapidCacheInterceptors() ?? []
+    )
+  }
+
+  public func makeUpdateRapidCacheCall(
+    _ request: Google_Storage_Control_V2_UpdateRapidCacheRequest,
+    callOptions: CallOptions? = nil
+  ) -> GRPCAsyncUnaryCall<Google_Storage_Control_V2_UpdateRapidCacheRequest, Google_Longrunning_Operation> {
+    return self.makeAsyncUnaryCall(
+      path: Google_Storage_Control_V2_StorageControlClientMetadata.Methods.updateRapidCache.path,
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeUpdateRapidCacheInterceptors() ?? []
+    )
+  }
+
+  public func makeGetRapidCacheCall(
+    _ request: Google_Storage_Control_V2_GetRapidCacheRequest,
+    callOptions: CallOptions? = nil
+  ) -> GRPCAsyncUnaryCall<Google_Storage_Control_V2_GetRapidCacheRequest, Google_Storage_Control_V2_RapidCache> {
+    return self.makeAsyncUnaryCall(
+      path: Google_Storage_Control_V2_StorageControlClientMetadata.Methods.getRapidCache.path,
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeGetRapidCacheInterceptors() ?? []
+    )
+  }
+
+  public func makeListRapidCachesCall(
+    _ request: Google_Storage_Control_V2_ListRapidCachesRequest,
+    callOptions: CallOptions? = nil
+  ) -> GRPCAsyncUnaryCall<Google_Storage_Control_V2_ListRapidCachesRequest, Google_Storage_Control_V2_ListRapidCachesResponse> {
+    return self.makeAsyncUnaryCall(
+      path: Google_Storage_Control_V2_StorageControlClientMetadata.Methods.listRapidCaches.path,
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeListRapidCachesInterceptors() ?? []
     )
   }
 
@@ -1541,6 +1742,18 @@ extension Google_Storage_Control_V2_StorageControlAsyncClientProtocol {
     )
   }
 
+  public func updateManagedFolder(
+    _ request: Google_Storage_Control_V2_UpdateManagedFolderRequest,
+    callOptions: CallOptions? = nil
+  ) async throws -> Google_Storage_Control_V2_ManagedFolder {
+    return try await self.performAsyncUnaryCall(
+      path: Google_Storage_Control_V2_StorageControlClientMetadata.Methods.updateManagedFolder.path,
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeUpdateManagedFolderInterceptors() ?? []
+    )
+  }
+
   public func createAnywhereCache(
     _ request: Google_Storage_Control_V2_CreateAnywhereCacheRequest,
     callOptions: CallOptions? = nil
@@ -1622,6 +1835,54 @@ extension Google_Storage_Control_V2_StorageControlAsyncClientProtocol {
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeListAnywhereCachesInterceptors() ?? []
+    )
+  }
+
+  public func createRapidCache(
+    _ request: Google_Storage_Control_V2_CreateRapidCacheRequest,
+    callOptions: CallOptions? = nil
+  ) async throws -> Google_Longrunning_Operation {
+    return try await self.performAsyncUnaryCall(
+      path: Google_Storage_Control_V2_StorageControlClientMetadata.Methods.createRapidCache.path,
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeCreateRapidCacheInterceptors() ?? []
+    )
+  }
+
+  public func updateRapidCache(
+    _ request: Google_Storage_Control_V2_UpdateRapidCacheRequest,
+    callOptions: CallOptions? = nil
+  ) async throws -> Google_Longrunning_Operation {
+    return try await self.performAsyncUnaryCall(
+      path: Google_Storage_Control_V2_StorageControlClientMetadata.Methods.updateRapidCache.path,
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeUpdateRapidCacheInterceptors() ?? []
+    )
+  }
+
+  public func getRapidCache(
+    _ request: Google_Storage_Control_V2_GetRapidCacheRequest,
+    callOptions: CallOptions? = nil
+  ) async throws -> Google_Storage_Control_V2_RapidCache {
+    return try await self.performAsyncUnaryCall(
+      path: Google_Storage_Control_V2_StorageControlClientMetadata.Methods.getRapidCache.path,
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeGetRapidCacheInterceptors() ?? []
+    )
+  }
+
+  public func listRapidCaches(
+    _ request: Google_Storage_Control_V2_ListRapidCachesRequest,
+    callOptions: CallOptions? = nil
+  ) async throws -> Google_Storage_Control_V2_ListRapidCachesResponse {
+    return try await self.performAsyncUnaryCall(
+      path: Google_Storage_Control_V2_StorageControlClientMetadata.Methods.listRapidCaches.path,
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeListRapidCachesInterceptors() ?? []
     )
   }
 
@@ -1846,6 +2107,9 @@ public protocol Google_Storage_Control_V2_StorageControlClientInterceptorFactory
   /// - Returns: Interceptors to use when invoking 'listManagedFolders'.
   func makeListManagedFoldersInterceptors() -> [ClientInterceptor<Google_Storage_Control_V2_ListManagedFoldersRequest, Google_Storage_Control_V2_ListManagedFoldersResponse>]
 
+  /// - Returns: Interceptors to use when invoking 'updateManagedFolder'.
+  func makeUpdateManagedFolderInterceptors() -> [ClientInterceptor<Google_Storage_Control_V2_UpdateManagedFolderRequest, Google_Storage_Control_V2_ManagedFolder>]
+
   /// - Returns: Interceptors to use when invoking 'createAnywhereCache'.
   func makeCreateAnywhereCacheInterceptors() -> [ClientInterceptor<Google_Storage_Control_V2_CreateAnywhereCacheRequest, Google_Longrunning_Operation>]
 
@@ -1866,6 +2130,18 @@ public protocol Google_Storage_Control_V2_StorageControlClientInterceptorFactory
 
   /// - Returns: Interceptors to use when invoking 'listAnywhereCaches'.
   func makeListAnywhereCachesInterceptors() -> [ClientInterceptor<Google_Storage_Control_V2_ListAnywhereCachesRequest, Google_Storage_Control_V2_ListAnywhereCachesResponse>]
+
+  /// - Returns: Interceptors to use when invoking 'createRapidCache'.
+  func makeCreateRapidCacheInterceptors() -> [ClientInterceptor<Google_Storage_Control_V2_CreateRapidCacheRequest, Google_Longrunning_Operation>]
+
+  /// - Returns: Interceptors to use when invoking 'updateRapidCache'.
+  func makeUpdateRapidCacheInterceptors() -> [ClientInterceptor<Google_Storage_Control_V2_UpdateRapidCacheRequest, Google_Longrunning_Operation>]
+
+  /// - Returns: Interceptors to use when invoking 'getRapidCache'.
+  func makeGetRapidCacheInterceptors() -> [ClientInterceptor<Google_Storage_Control_V2_GetRapidCacheRequest, Google_Storage_Control_V2_RapidCache>]
+
+  /// - Returns: Interceptors to use when invoking 'listRapidCaches'.
+  func makeListRapidCachesInterceptors() -> [ClientInterceptor<Google_Storage_Control_V2_ListRapidCachesRequest, Google_Storage_Control_V2_ListRapidCachesResponse>]
 
   /// - Returns: Interceptors to use when invoking 'getProjectIntelligenceConfig'.
   func makeGetProjectIntelligenceConfigInterceptors() -> [ClientInterceptor<Google_Storage_Control_V2_GetProjectIntelligenceConfigRequest, Google_Storage_Control_V2_IntelligenceConfig>]
@@ -1926,6 +2202,7 @@ public enum Google_Storage_Control_V2_StorageControlClientMetadata {
       Google_Storage_Control_V2_StorageControlClientMetadata.Methods.deleteManagedFolder,
       Google_Storage_Control_V2_StorageControlClientMetadata.Methods.getManagedFolder,
       Google_Storage_Control_V2_StorageControlClientMetadata.Methods.listManagedFolders,
+      Google_Storage_Control_V2_StorageControlClientMetadata.Methods.updateManagedFolder,
       Google_Storage_Control_V2_StorageControlClientMetadata.Methods.createAnywhereCache,
       Google_Storage_Control_V2_StorageControlClientMetadata.Methods.updateAnywhereCache,
       Google_Storage_Control_V2_StorageControlClientMetadata.Methods.disableAnywhereCache,
@@ -1933,6 +2210,10 @@ public enum Google_Storage_Control_V2_StorageControlClientMetadata {
       Google_Storage_Control_V2_StorageControlClientMetadata.Methods.resumeAnywhereCache,
       Google_Storage_Control_V2_StorageControlClientMetadata.Methods.getAnywhereCache,
       Google_Storage_Control_V2_StorageControlClientMetadata.Methods.listAnywhereCaches,
+      Google_Storage_Control_V2_StorageControlClientMetadata.Methods.createRapidCache,
+      Google_Storage_Control_V2_StorageControlClientMetadata.Methods.updateRapidCache,
+      Google_Storage_Control_V2_StorageControlClientMetadata.Methods.getRapidCache,
+      Google_Storage_Control_V2_StorageControlClientMetadata.Methods.listRapidCaches,
       Google_Storage_Control_V2_StorageControlClientMetadata.Methods.getProjectIntelligenceConfig,
       Google_Storage_Control_V2_StorageControlClientMetadata.Methods.updateProjectIntelligenceConfig,
       Google_Storage_Control_V2_StorageControlClientMetadata.Methods.getFolderIntelligenceConfig,
@@ -2017,6 +2298,12 @@ public enum Google_Storage_Control_V2_StorageControlClientMetadata {
       type: GRPCCallType.unary
     )
 
+    public static let updateManagedFolder = GRPCMethodDescriptor(
+      name: "UpdateManagedFolder",
+      path: "/google.storage.control.v2.StorageControl/UpdateManagedFolder",
+      type: GRPCCallType.unary
+    )
+
     public static let createAnywhereCache = GRPCMethodDescriptor(
       name: "CreateAnywhereCache",
       path: "/google.storage.control.v2.StorageControl/CreateAnywhereCache",
@@ -2056,6 +2343,30 @@ public enum Google_Storage_Control_V2_StorageControlClientMetadata {
     public static let listAnywhereCaches = GRPCMethodDescriptor(
       name: "ListAnywhereCaches",
       path: "/google.storage.control.v2.StorageControl/ListAnywhereCaches",
+      type: GRPCCallType.unary
+    )
+
+    public static let createRapidCache = GRPCMethodDescriptor(
+      name: "CreateRapidCache",
+      path: "/google.storage.control.v2.StorageControl/CreateRapidCache",
+      type: GRPCCallType.unary
+    )
+
+    public static let updateRapidCache = GRPCMethodDescriptor(
+      name: "UpdateRapidCache",
+      path: "/google.storage.control.v2.StorageControl/UpdateRapidCache",
+      type: GRPCCallType.unary
+    )
+
+    public static let getRapidCache = GRPCMethodDescriptor(
+      name: "GetRapidCache",
+      path: "/google.storage.control.v2.StorageControl/GetRapidCache",
+      type: GRPCCallType.unary
+    )
+
+    public static let listRapidCaches = GRPCMethodDescriptor(
+      name: "ListRapidCaches",
+      path: "/google.storage.control.v2.StorageControl/ListRapidCaches",
       type: GRPCCallType.unary
     )
 
@@ -2192,6 +2503,10 @@ public protocol Google_Storage_Control_V2_StorageControlProvider: CallHandlerPro
   /// Retrieves a list of managed folders for a given bucket.
   func listManagedFolders(request: Google_Storage_Control_V2_ListManagedFoldersRequest, context: StatusOnlyCallContext) -> EventLoopFuture<Google_Storage_Control_V2_ListManagedFoldersResponse>
 
+  /// Updates a managed folder. Currently, this RPC only supports updating the
+  /// `rapid_cache_config` field.
+  func updateManagedFolder(request: Google_Storage_Control_V2_UpdateManagedFolderRequest, context: StatusOnlyCallContext) -> EventLoopFuture<Google_Storage_Control_V2_ManagedFolder>
+
   /// Creates an Anywhere Cache instance.
   func createAnywhereCache(request: Google_Storage_Control_V2_CreateAnywhereCacheRequest, context: StatusOnlyCallContext) -> EventLoopFuture<Google_Longrunning_Operation>
 
@@ -2216,6 +2531,18 @@ public protocol Google_Storage_Control_V2_StorageControlProvider: CallHandlerPro
 
   /// Lists Anywhere Cache instances for a given bucket.
   func listAnywhereCaches(request: Google_Storage_Control_V2_ListAnywhereCachesRequest, context: StatusOnlyCallContext) -> EventLoopFuture<Google_Storage_Control_V2_ListAnywhereCachesResponse>
+
+  /// Creates a Rapid Cache instance.
+  func createRapidCache(request: Google_Storage_Control_V2_CreateRapidCacheRequest, context: StatusOnlyCallContext) -> EventLoopFuture<Google_Longrunning_Operation>
+
+  /// Updates a Rapid Cache instance.
+  func updateRapidCache(request: Google_Storage_Control_V2_UpdateRapidCacheRequest, context: StatusOnlyCallContext) -> EventLoopFuture<Google_Longrunning_Operation>
+
+  /// Gets a Rapid Cache instance.
+  func getRapidCache(request: Google_Storage_Control_V2_GetRapidCacheRequest, context: StatusOnlyCallContext) -> EventLoopFuture<Google_Storage_Control_V2_RapidCache>
+
+  /// Lists Rapid Cache instances for a given bucket.
+  func listRapidCaches(request: Google_Storage_Control_V2_ListRapidCachesRequest, context: StatusOnlyCallContext) -> EventLoopFuture<Google_Storage_Control_V2_ListRapidCachesResponse>
 
   /// Returns the Project scoped singleton IntelligenceConfig resource.
   func getProjectIntelligenceConfig(request: Google_Storage_Control_V2_GetProjectIntelligenceConfigRequest, context: StatusOnlyCallContext) -> EventLoopFuture<Google_Storage_Control_V2_IntelligenceConfig>
@@ -2261,11 +2588,11 @@ public protocol Google_Storage_Control_V2_StorageControlProvider: CallHandlerPro
   /// Gets the `IntelligenceFinding` for a project.
   func getIntelligenceFinding(request: Google_Storage_Control_V2_GetIntelligenceFindingRequest, context: StatusOnlyCallContext) -> EventLoopFuture<Google_Storage_Control_V2_IntelligenceFinding>
 
-  /// Lists the `IntelligenceFinding` resources for the specified project.
+  /// Lists the `IntelligenceFinding` resources for the specified the project.
   func listIntelligenceFindings(request: Google_Storage_Control_V2_ListIntelligenceFindingsRequest, context: StatusOnlyCallContext) -> EventLoopFuture<Google_Storage_Control_V2_ListIntelligenceFindingsResponse>
 
-  /// Summarize the intelligence findings for the specified scope(org, folder or
-  /// project).
+  /// Summarizes the intelligence findings for the specified scope (organization,
+  /// folder or project).
   func summarizeIntelligenceFindings(request: Google_Storage_Control_V2_SummarizeIntelligenceFindingsRequest, context: StatusOnlyCallContext) -> EventLoopFuture<Google_Storage_Control_V2_SummarizeIntelligenceFindingsResponse>
 
   /// Gets the `IntelligenceFindingRevision` resource.
@@ -2386,6 +2713,15 @@ extension Google_Storage_Control_V2_StorageControlProvider {
         userFunction: self.listManagedFolders(request:context:)
       )
 
+    case "UpdateManagedFolder":
+      return UnaryServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Google_Storage_Control_V2_UpdateManagedFolderRequest>(),
+        responseSerializer: ProtobufSerializer<Google_Storage_Control_V2_ManagedFolder>(),
+        interceptors: self.interceptors?.makeUpdateManagedFolderInterceptors() ?? [],
+        userFunction: self.updateManagedFolder(request:context:)
+      )
+
     case "CreateAnywhereCache":
       return UnaryServerHandler(
         context: context,
@@ -2447,6 +2783,42 @@ extension Google_Storage_Control_V2_StorageControlProvider {
         responseSerializer: ProtobufSerializer<Google_Storage_Control_V2_ListAnywhereCachesResponse>(),
         interceptors: self.interceptors?.makeListAnywhereCachesInterceptors() ?? [],
         userFunction: self.listAnywhereCaches(request:context:)
+      )
+
+    case "CreateRapidCache":
+      return UnaryServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Google_Storage_Control_V2_CreateRapidCacheRequest>(),
+        responseSerializer: ProtobufSerializer<Google_Longrunning_Operation>(),
+        interceptors: self.interceptors?.makeCreateRapidCacheInterceptors() ?? [],
+        userFunction: self.createRapidCache(request:context:)
+      )
+
+    case "UpdateRapidCache":
+      return UnaryServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Google_Storage_Control_V2_UpdateRapidCacheRequest>(),
+        responseSerializer: ProtobufSerializer<Google_Longrunning_Operation>(),
+        interceptors: self.interceptors?.makeUpdateRapidCacheInterceptors() ?? [],
+        userFunction: self.updateRapidCache(request:context:)
+      )
+
+    case "GetRapidCache":
+      return UnaryServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Google_Storage_Control_V2_GetRapidCacheRequest>(),
+        responseSerializer: ProtobufSerializer<Google_Storage_Control_V2_RapidCache>(),
+        interceptors: self.interceptors?.makeGetRapidCacheInterceptors() ?? [],
+        userFunction: self.getRapidCache(request:context:)
+      )
+
+    case "ListRapidCaches":
+      return UnaryServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Google_Storage_Control_V2_ListRapidCachesRequest>(),
+        responseSerializer: ProtobufSerializer<Google_Storage_Control_V2_ListRapidCachesResponse>(),
+        interceptors: self.interceptors?.makeListRapidCachesInterceptors() ?? [],
+        userFunction: self.listRapidCaches(request:context:)
       )
 
     case "GetProjectIntelligenceConfig":
@@ -2663,6 +3035,13 @@ public protocol Google_Storage_Control_V2_StorageControlAsyncProvider: CallHandl
     context: GRPCAsyncServerCallContext
   ) async throws -> Google_Storage_Control_V2_ListManagedFoldersResponse
 
+  /// Updates a managed folder. Currently, this RPC only supports updating the
+  /// `rapid_cache_config` field.
+  func updateManagedFolder(
+    request: Google_Storage_Control_V2_UpdateManagedFolderRequest,
+    context: GRPCAsyncServerCallContext
+  ) async throws -> Google_Storage_Control_V2_ManagedFolder
+
   /// Creates an Anywhere Cache instance.
   func createAnywhereCache(
     request: Google_Storage_Control_V2_CreateAnywhereCacheRequest,
@@ -2708,6 +3087,30 @@ public protocol Google_Storage_Control_V2_StorageControlAsyncProvider: CallHandl
     request: Google_Storage_Control_V2_ListAnywhereCachesRequest,
     context: GRPCAsyncServerCallContext
   ) async throws -> Google_Storage_Control_V2_ListAnywhereCachesResponse
+
+  /// Creates a Rapid Cache instance.
+  func createRapidCache(
+    request: Google_Storage_Control_V2_CreateRapidCacheRequest,
+    context: GRPCAsyncServerCallContext
+  ) async throws -> Google_Longrunning_Operation
+
+  /// Updates a Rapid Cache instance.
+  func updateRapidCache(
+    request: Google_Storage_Control_V2_UpdateRapidCacheRequest,
+    context: GRPCAsyncServerCallContext
+  ) async throws -> Google_Longrunning_Operation
+
+  /// Gets a Rapid Cache instance.
+  func getRapidCache(
+    request: Google_Storage_Control_V2_GetRapidCacheRequest,
+    context: GRPCAsyncServerCallContext
+  ) async throws -> Google_Storage_Control_V2_RapidCache
+
+  /// Lists Rapid Cache instances for a given bucket.
+  func listRapidCaches(
+    request: Google_Storage_Control_V2_ListRapidCachesRequest,
+    context: GRPCAsyncServerCallContext
+  ) async throws -> Google_Storage_Control_V2_ListRapidCachesResponse
 
   /// Returns the Project scoped singleton IntelligenceConfig resource.
   func getProjectIntelligenceConfig(
@@ -2783,14 +3186,14 @@ public protocol Google_Storage_Control_V2_StorageControlAsyncProvider: CallHandl
     context: GRPCAsyncServerCallContext
   ) async throws -> Google_Storage_Control_V2_IntelligenceFinding
 
-  /// Lists the `IntelligenceFinding` resources for the specified project.
+  /// Lists the `IntelligenceFinding` resources for the specified the project.
   func listIntelligenceFindings(
     request: Google_Storage_Control_V2_ListIntelligenceFindingsRequest,
     context: GRPCAsyncServerCallContext
   ) async throws -> Google_Storage_Control_V2_ListIntelligenceFindingsResponse
 
-  /// Summarize the intelligence findings for the specified scope(org, folder or
-  /// project).
+  /// Summarizes the intelligence findings for the specified scope (organization,
+  /// folder or project).
   func summarizeIntelligenceFindings(
     request: Google_Storage_Control_V2_SummarizeIntelligenceFindingsRequest,
     context: GRPCAsyncServerCallContext
@@ -2927,6 +3330,15 @@ extension Google_Storage_Control_V2_StorageControlAsyncProvider {
         wrapping: { try await self.listManagedFolders(request: $0, context: $1) }
       )
 
+    case "UpdateManagedFolder":
+      return GRPCAsyncServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Google_Storage_Control_V2_UpdateManagedFolderRequest>(),
+        responseSerializer: ProtobufSerializer<Google_Storage_Control_V2_ManagedFolder>(),
+        interceptors: self.interceptors?.makeUpdateManagedFolderInterceptors() ?? [],
+        wrapping: { try await self.updateManagedFolder(request: $0, context: $1) }
+      )
+
     case "CreateAnywhereCache":
       return GRPCAsyncServerHandler(
         context: context,
@@ -2988,6 +3400,42 @@ extension Google_Storage_Control_V2_StorageControlAsyncProvider {
         responseSerializer: ProtobufSerializer<Google_Storage_Control_V2_ListAnywhereCachesResponse>(),
         interceptors: self.interceptors?.makeListAnywhereCachesInterceptors() ?? [],
         wrapping: { try await self.listAnywhereCaches(request: $0, context: $1) }
+      )
+
+    case "CreateRapidCache":
+      return GRPCAsyncServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Google_Storage_Control_V2_CreateRapidCacheRequest>(),
+        responseSerializer: ProtobufSerializer<Google_Longrunning_Operation>(),
+        interceptors: self.interceptors?.makeCreateRapidCacheInterceptors() ?? [],
+        wrapping: { try await self.createRapidCache(request: $0, context: $1) }
+      )
+
+    case "UpdateRapidCache":
+      return GRPCAsyncServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Google_Storage_Control_V2_UpdateRapidCacheRequest>(),
+        responseSerializer: ProtobufSerializer<Google_Longrunning_Operation>(),
+        interceptors: self.interceptors?.makeUpdateRapidCacheInterceptors() ?? [],
+        wrapping: { try await self.updateRapidCache(request: $0, context: $1) }
+      )
+
+    case "GetRapidCache":
+      return GRPCAsyncServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Google_Storage_Control_V2_GetRapidCacheRequest>(),
+        responseSerializer: ProtobufSerializer<Google_Storage_Control_V2_RapidCache>(),
+        interceptors: self.interceptors?.makeGetRapidCacheInterceptors() ?? [],
+        wrapping: { try await self.getRapidCache(request: $0, context: $1) }
+      )
+
+    case "ListRapidCaches":
+      return GRPCAsyncServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Google_Storage_Control_V2_ListRapidCachesRequest>(),
+        responseSerializer: ProtobufSerializer<Google_Storage_Control_V2_ListRapidCachesResponse>(),
+        interceptors: self.interceptors?.makeListRapidCachesInterceptors() ?? [],
+        wrapping: { try await self.listRapidCaches(request: $0, context: $1) }
       )
 
     case "GetProjectIntelligenceConfig":
@@ -3168,6 +3616,10 @@ public protocol Google_Storage_Control_V2_StorageControlServerInterceptorFactory
   ///   Defaults to calling `self.makeInterceptors()`.
   func makeListManagedFoldersInterceptors() -> [ServerInterceptor<Google_Storage_Control_V2_ListManagedFoldersRequest, Google_Storage_Control_V2_ListManagedFoldersResponse>]
 
+  /// - Returns: Interceptors to use when handling 'updateManagedFolder'.
+  ///   Defaults to calling `self.makeInterceptors()`.
+  func makeUpdateManagedFolderInterceptors() -> [ServerInterceptor<Google_Storage_Control_V2_UpdateManagedFolderRequest, Google_Storage_Control_V2_ManagedFolder>]
+
   /// - Returns: Interceptors to use when handling 'createAnywhereCache'.
   ///   Defaults to calling `self.makeInterceptors()`.
   func makeCreateAnywhereCacheInterceptors() -> [ServerInterceptor<Google_Storage_Control_V2_CreateAnywhereCacheRequest, Google_Longrunning_Operation>]
@@ -3195,6 +3647,22 @@ public protocol Google_Storage_Control_V2_StorageControlServerInterceptorFactory
   /// - Returns: Interceptors to use when handling 'listAnywhereCaches'.
   ///   Defaults to calling `self.makeInterceptors()`.
   func makeListAnywhereCachesInterceptors() -> [ServerInterceptor<Google_Storage_Control_V2_ListAnywhereCachesRequest, Google_Storage_Control_V2_ListAnywhereCachesResponse>]
+
+  /// - Returns: Interceptors to use when handling 'createRapidCache'.
+  ///   Defaults to calling `self.makeInterceptors()`.
+  func makeCreateRapidCacheInterceptors() -> [ServerInterceptor<Google_Storage_Control_V2_CreateRapidCacheRequest, Google_Longrunning_Operation>]
+
+  /// - Returns: Interceptors to use when handling 'updateRapidCache'.
+  ///   Defaults to calling `self.makeInterceptors()`.
+  func makeUpdateRapidCacheInterceptors() -> [ServerInterceptor<Google_Storage_Control_V2_UpdateRapidCacheRequest, Google_Longrunning_Operation>]
+
+  /// - Returns: Interceptors to use when handling 'getRapidCache'.
+  ///   Defaults to calling `self.makeInterceptors()`.
+  func makeGetRapidCacheInterceptors() -> [ServerInterceptor<Google_Storage_Control_V2_GetRapidCacheRequest, Google_Storage_Control_V2_RapidCache>]
+
+  /// - Returns: Interceptors to use when handling 'listRapidCaches'.
+  ///   Defaults to calling `self.makeInterceptors()`.
+  func makeListRapidCachesInterceptors() -> [ServerInterceptor<Google_Storage_Control_V2_ListRapidCachesRequest, Google_Storage_Control_V2_ListRapidCachesResponse>]
 
   /// - Returns: Interceptors to use when handling 'getProjectIntelligenceConfig'.
   ///   Defaults to calling `self.makeInterceptors()`.
@@ -3269,6 +3737,7 @@ public enum Google_Storage_Control_V2_StorageControlServerMetadata {
       Google_Storage_Control_V2_StorageControlServerMetadata.Methods.deleteManagedFolder,
       Google_Storage_Control_V2_StorageControlServerMetadata.Methods.getManagedFolder,
       Google_Storage_Control_V2_StorageControlServerMetadata.Methods.listManagedFolders,
+      Google_Storage_Control_V2_StorageControlServerMetadata.Methods.updateManagedFolder,
       Google_Storage_Control_V2_StorageControlServerMetadata.Methods.createAnywhereCache,
       Google_Storage_Control_V2_StorageControlServerMetadata.Methods.updateAnywhereCache,
       Google_Storage_Control_V2_StorageControlServerMetadata.Methods.disableAnywhereCache,
@@ -3276,6 +3745,10 @@ public enum Google_Storage_Control_V2_StorageControlServerMetadata {
       Google_Storage_Control_V2_StorageControlServerMetadata.Methods.resumeAnywhereCache,
       Google_Storage_Control_V2_StorageControlServerMetadata.Methods.getAnywhereCache,
       Google_Storage_Control_V2_StorageControlServerMetadata.Methods.listAnywhereCaches,
+      Google_Storage_Control_V2_StorageControlServerMetadata.Methods.createRapidCache,
+      Google_Storage_Control_V2_StorageControlServerMetadata.Methods.updateRapidCache,
+      Google_Storage_Control_V2_StorageControlServerMetadata.Methods.getRapidCache,
+      Google_Storage_Control_V2_StorageControlServerMetadata.Methods.listRapidCaches,
       Google_Storage_Control_V2_StorageControlServerMetadata.Methods.getProjectIntelligenceConfig,
       Google_Storage_Control_V2_StorageControlServerMetadata.Methods.updateProjectIntelligenceConfig,
       Google_Storage_Control_V2_StorageControlServerMetadata.Methods.getFolderIntelligenceConfig,
@@ -3360,6 +3833,12 @@ public enum Google_Storage_Control_V2_StorageControlServerMetadata {
       type: GRPCCallType.unary
     )
 
+    public static let updateManagedFolder = GRPCMethodDescriptor(
+      name: "UpdateManagedFolder",
+      path: "/google.storage.control.v2.StorageControl/UpdateManagedFolder",
+      type: GRPCCallType.unary
+    )
+
     public static let createAnywhereCache = GRPCMethodDescriptor(
       name: "CreateAnywhereCache",
       path: "/google.storage.control.v2.StorageControl/CreateAnywhereCache",
@@ -3399,6 +3878,30 @@ public enum Google_Storage_Control_V2_StorageControlServerMetadata {
     public static let listAnywhereCaches = GRPCMethodDescriptor(
       name: "ListAnywhereCaches",
       path: "/google.storage.control.v2.StorageControl/ListAnywhereCaches",
+      type: GRPCCallType.unary
+    )
+
+    public static let createRapidCache = GRPCMethodDescriptor(
+      name: "CreateRapidCache",
+      path: "/google.storage.control.v2.StorageControl/CreateRapidCache",
+      type: GRPCCallType.unary
+    )
+
+    public static let updateRapidCache = GRPCMethodDescriptor(
+      name: "UpdateRapidCache",
+      path: "/google.storage.control.v2.StorageControl/UpdateRapidCache",
+      type: GRPCCallType.unary
+    )
+
+    public static let getRapidCache = GRPCMethodDescriptor(
+      name: "GetRapidCache",
+      path: "/google.storage.control.v2.StorageControl/GetRapidCache",
+      type: GRPCCallType.unary
+    )
+
+    public static let listRapidCaches = GRPCMethodDescriptor(
+      name: "ListRapidCaches",
+      path: "/google.storage.control.v2.StorageControl/ListRapidCaches",
       type: GRPCCallType.unary
     )
 

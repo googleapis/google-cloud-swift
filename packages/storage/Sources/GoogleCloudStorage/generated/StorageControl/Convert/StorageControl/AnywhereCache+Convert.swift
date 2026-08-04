@@ -34,6 +34,7 @@ extension AnywhereCache {
     self.createTime = proto.hasCreateTime ? try .init(proto: proto.createTime) : nil
     self.updateTime = proto.hasUpdateTime ? try .init(proto: proto.updateTime) : nil
     self.pendingUpdate = proto.pendingUpdate
+    self.ingestOnWrite = proto.hasIngestOnWrite ? proto.ingestOnWrite : nil
   }
 
   internal func toProto() throws -> ProtoType {
@@ -46,6 +47,7 @@ extension AnywhereCache {
     if let createTime = self.createTime { proto.createTime = try createTime.toProto() }
     if let updateTime = self.updateTime { proto.updateTime = try updateTime.toProto() }
     proto.pendingUpdate = self.pendingUpdate
+    if let ingestOnWrite = self.ingestOnWrite { proto.ingestOnWrite = ingestOnWrite }
     return proto
   }
 }

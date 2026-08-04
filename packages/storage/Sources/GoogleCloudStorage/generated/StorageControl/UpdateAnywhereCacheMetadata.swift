@@ -37,10 +37,14 @@ public struct UpdateAnywhereCacheMetadata: Codable, Equatable, GoogleCloudWkt._A
   /// update, this field equals to the new value specified in the Update request.
   public var ttl: GoogleCloudWkt.Duration? = nil
 
-  /// L4 Cache entry Admission Policy in kebab-case (e.g.,
+  /// Optional. Anywhere Cache entry Admission Policy in kebab-case (e.g.,
   /// "admit-on-first-miss"). If `admission_policy` is pending
   /// update, this field equals to the new value specified in the Update request.
   public var admissionPolicy: Swift.String? = nil
+
+  /// Specifies whether objects are ingested into the cache upon write. If not
+  /// set, it defaults to false.
+  public var ingestOnWrite: Swift.Bool? = nil
 
   /// Initialize a new instance of `UpdateAnywhereCacheMetadata`.
   public init() {}

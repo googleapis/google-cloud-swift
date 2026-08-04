@@ -19,12 +19,6 @@ import GoogleCloudWkt
 
 /// Request message to get the `IntelligenceConfig` resource associated with your
 /// organization.
-///
-/// **IAM Permissions**
-///
-/// Requires `storage.intelligenceConfigs.get`
-/// [IAM](https://cloud.google.com/iam/docs/overview#permissions) permission on
-/// the organization.
 public struct GetOrganizationIntelligenceConfigRequest: Codable, Equatable, GoogleCloudWkt
     ._AnyPackable,
   Sendable

@@ -183,6 +183,8 @@ extension IntelligenceConfig.EditionConfig {
       self = .standard
     case .trial:
       self = .trial
+    case .essentials:
+      self = .essentials
     case .UNRECOGNIZED(let val): self = .unknownIntValue(val)
     }
   }
@@ -201,6 +203,8 @@ extension IntelligenceConfig.EditionConfig {
       return .standard
     case .trial:
       return .trial
+    case .essentials:
+      return .essentials
     case .unknownIntValue(let val):
       return StorageControlProtos.Google_Storage_Control_V2_IntelligenceConfig.EditionConfig(
         rawValue: val)

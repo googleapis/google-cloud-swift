@@ -191,6 +191,9 @@ public struct WorkflowInvocationAction: Codable, Equatable, GoogleCloudWkt._AnyP
     /// started to run.
     public var jobId: Swift.String = Swift.String()
 
+    /// Output only. The path to the notebook file in the repository.
+    public var filePath: Swift.String = Swift.String()
+
     /// Initialize a new instance of `NotebookAction`.
     public init() {}
 

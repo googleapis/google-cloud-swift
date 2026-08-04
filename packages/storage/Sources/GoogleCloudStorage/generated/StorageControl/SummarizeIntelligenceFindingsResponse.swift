@@ -19,7 +19,7 @@ import GoogleCloudGax
 import GoogleCloudWkt
 
 /// Response message to summarize the intelligence findings for a specified
-/// scope(org, folder or project).
+/// scope (organization, folder or project).
 public struct SummarizeIntelligenceFindingsResponse: Codable, Equatable, GoogleCloudWkt
     ._AnyPackable,
   GoogleCloudGax._PaginatedResponse,

@@ -486,6 +486,9 @@
       /// Name of the instance resource to delete.
       public var instance: Swift.String = Swift.String()
 
+      /// If set to true, Graceful Shutdown is skipped.
+      public var noGracefulShutdown: Swift.Bool? = nil
+
       /// Project ID for this request.
       public var project: Swift.String = Swift.String()
 
@@ -2786,6 +2789,9 @@
 
       /// Name of the instance resource to stop.
       public var instance: Swift.String = Swift.String()
+
+      /// If set to true, Graceful Shutdown is skipped.
+      public var noGracefulShutdown: Swift.Bool? = nil
 
       /// Project ID for this request.
       public var project: Swift.String = Swift.String()

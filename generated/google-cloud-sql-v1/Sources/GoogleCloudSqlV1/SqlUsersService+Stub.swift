@@ -179,6 +179,10 @@
         query.append(
           contentsOf: try encoder.encode(request.revokeExistingRoles, prefix: "revokeExistingRoles")
         )
+        query.append(contentsOf: try encoder.encode(request.serverRoles, prefix: "serverRoles"))
+        query.append(
+          contentsOf: try encoder.encode(
+            request.revokeExistingServerRoles, prefix: "revokeExistingServerRoles"))
         var req = try await self.inner.Request(path: path, query: query)
         req.httpMethod = "PUT"
         req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")

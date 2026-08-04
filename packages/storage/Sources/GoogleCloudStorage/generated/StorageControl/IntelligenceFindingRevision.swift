@@ -22,7 +22,7 @@ import GoogleCloudWkt
 public struct IntelligenceFindingRevision: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
-  /// Identifier. The resource name of `IntelligenceFindingRevision`.
+  /// Output only. The resource name of `IntelligenceFindingRevision`.
   /// Format:
   /// `projects/{project}/locations/{location}/intelligenceFindings/{intelligence_finding}/revisions/{revision}`
   public var name: Swift.String = Swift.String()

@@ -107,7 +107,7 @@
     /// on what other health check fields are supported and what other resources
     /// can use this health check:
     ///
-    ///    - SSL, HTTP2, and GRPC protocols are not supported.
+    ///    - SSL, HTTP2, GRPC, and GRPC_WITH_TLS protocols are not supported.
     ///    - The TCP request field is not supported.
     ///    - The proxyHeader field for HTTP, HTTPS, and TCP is not
     ///    supported.
@@ -125,8 +125,9 @@
     /// value than checkIntervalSec.
     public var timeoutSec: Swift.Int32? = nil
 
-    /// Specifies the type of the healthCheck, either TCP,SSL, HTTP, HTTPS,HTTP2 or GRPC. Exactly one of the
-    /// protocol-specific health check fields must be specified, which must matchtype field.
+    /// Specifies the type of the healthCheck, either TCP,SSL, HTTP, HTTPS,HTTP2, GRPC or GRPC_WITH_TLS.
+    /// Exactly one of the protocol-specific health check fields must be specified,
+    /// which must match type field.
     public var type: HealthCheck.Type_? = nil
 
     /// A so-far healthy instance will be marked unhealthy after this many

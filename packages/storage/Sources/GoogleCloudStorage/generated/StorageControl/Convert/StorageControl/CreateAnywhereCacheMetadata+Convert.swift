@@ -32,6 +32,7 @@ extension CreateAnywhereCacheMetadata {
     self.zone = proto.hasZone ? proto.zone : nil
     self.ttl = proto.hasTtl ? try .init(proto: proto.ttl) : nil
     self.admissionPolicy = proto.hasAdmissionPolicy ? proto.admissionPolicy : nil
+    self.ingestOnWrite = proto.hasIngestOnWrite ? proto.ingestOnWrite : nil
   }
 
   internal func toProto() throws -> ProtoType {
@@ -43,6 +44,7 @@ extension CreateAnywhereCacheMetadata {
     if let zone = self.zone { proto.zone = zone }
     if let ttl = self.ttl { proto.ttl = try ttl.toProto() }
     if let admissionPolicy = self.admissionPolicy { proto.admissionPolicy = admissionPolicy }
+    if let ingestOnWrite = self.ingestOnWrite { proto.ingestOnWrite = ingestOnWrite }
     return proto
   }
 }

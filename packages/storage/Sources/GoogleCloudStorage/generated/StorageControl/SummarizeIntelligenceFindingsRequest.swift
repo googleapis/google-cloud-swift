@@ -18,7 +18,7 @@ import Foundation
 import GoogleCloudWkt
 
 /// Request message to summarize the intelligence findings for the specified
-/// scope(org, folder or project).
+/// scope (organization, folder or project).
 public struct SummarizeIntelligenceFindingsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

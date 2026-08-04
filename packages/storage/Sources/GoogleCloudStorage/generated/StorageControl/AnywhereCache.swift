@@ -42,7 +42,8 @@ public struct AnywhereCache: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// create request.
   public var admissionPolicy: Swift.String = Swift.String()
 
-  /// Output only. Cache state including RUNNING, CREATING, DISABLED and PAUSED.
+  /// Output only. Cache state including `running`, `creating`, `disabled` and
+  /// `paused`.
   public var state: Swift.String = Swift.String()
 
   /// Output only. Time when Anywhere cache instance is allocated.
@@ -56,6 +57,10 @@ public struct AnywhereCache: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// instance. Subsequential update requests will be rejected if this field is
   /// true. Output only.
   public var pendingUpdate: Swift.Bool = Swift.Bool()
+
+  /// Optional. Specifies whether objects are ingested into the cache upon write.
+  /// Defaults to false.
+  public var ingestOnWrite: Swift.Bool? = nil
 
   /// Initialize a new instance of `AnywhereCache`.
   public init() {}

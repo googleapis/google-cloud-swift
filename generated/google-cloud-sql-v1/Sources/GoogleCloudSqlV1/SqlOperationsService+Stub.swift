@@ -58,9 +58,11 @@
           }
           return "/v1/projects/\(pathVariable0)/operations/\(pathVariable1)"
         }()
-        let query = [
+        var query = [
           URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
         ]
+        let encoder = GoogleCloudGax.QueryParameterEncoder()
+        query.append(contentsOf: try encoder.encode(request.location, prefix: "location"))
         var req = try await self.inner.Request(path: path, query: query)
         req.httpMethod = "GET"
         req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
@@ -85,6 +87,7 @@
         query.append(contentsOf: try encoder.encode(request.instance, prefix: "instance"))
         query.append(contentsOf: try encoder.encode(request.maxResults, prefix: "maxResults"))
         query.append(contentsOf: try encoder.encode(request.pageToken, prefix: "pageToken"))
+        query.append(contentsOf: try encoder.encode(request.location, prefix: "location"))
         var req = try await self.inner.Request(path: path, query: query)
         req.httpMethod = "GET"
         req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
@@ -106,9 +109,11 @@
           }
           return "/v1/projects/\(pathVariable0)/operations/\(pathVariable1)/cancel"
         }()
-        let query = [
+        var query = [
           URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
         ]
+        let encoder = GoogleCloudGax.QueryParameterEncoder()
+        query.append(contentsOf: try encoder.encode(request.location, prefix: "location"))
         var req = try await self.inner.Request(path: path, query: query)
         req.httpMethod = "POST"
         req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")

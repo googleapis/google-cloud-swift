@@ -46,6 +46,10 @@ extension Clients {
     func undeleteSupportEventSubscription(
       request: UndeleteSupportEventSubscriptionRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudSupportV2.SupportEventSubscription
+
+    func expungeSupportEventSubscription(
+      request: ExpungeSupportEventSubscriptionRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws
   }
 
   class SupportEventSubscriptionServiceTransport: SupportEventSubscriptionServiceStub {
@@ -194,6 +198,26 @@ extension Clients {
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
         GoogleCloudSupportV2.SupportEventSubscription.self, from: data)
+    }
+
+    public func expungeSupportEventSubscription(
+      request: ExpungeSupportEventSubscriptionRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws {
+      let path = try { () throws -> Swift.String in
+        guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
+          throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
+        }
+        return "/v2/\(pathVariable0):expunge"
+      }()
+      let query = [
+        URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+      ]
+      var req = try await self.inner.Request(path: path, query: query)
+      req.httpMethod = "POST"
+      req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
+      req.setValue("application/json", forHTTPHeaderField: "Content-Type")
+      req.httpBody = try JSONEncoder().encode(request)
+      _ = try await self.inner.rpc(for: req).get()
     }
   }
 }

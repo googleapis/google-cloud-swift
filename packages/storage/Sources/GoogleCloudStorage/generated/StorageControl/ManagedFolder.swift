@@ -37,6 +37,9 @@ public struct ManagedFolder: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// Output only. The modification time of the managed folder.
   public var updateTime: GoogleCloudWkt.Timestamp? = nil
 
+  /// Rapid Cache configuration for a managed prefix.
+  public var rapidCacheConfig: ManagedFolder.RapidCacheConfig? = nil
+
   /// Initialize a new instance of `ManagedFolder`.
   public init() {}
 
@@ -51,6 +54,186 @@ public struct ManagedFolder: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  /// Rapid Cache configuration for a managed prefix. This configuration is used
+  /// to determine how the rapid cache behaves for objects under the managed
+  /// folder.
+  public struct RapidCacheConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    Sendable
+  {
+    /// Optional. A map of rapid_cache_id to RapidCachePolicy for this prefix.
+    /// Currently, the key rapid_cache_id is the zone. However, the
+    /// field is generalized as rapid_cache_id to align the policy lifetime
+    /// with the cache instance lifetime. This allows for a future transition
+    /// from zone to a cache id if required.
+    public var policies: [Swift.String: ManagedFolder.RapidCacheConfig.RapidCachePolicy] = [:]
+
+    /// Initialize a new instance of `RapidCacheConfig`.
+    public init() {}
+
+    /// Use `config` to return a new instance of this object, with some fields updated.
+    ///
+    /// Commonly used to initialize the value, for example:
+    ///
+    /// ```
+    /// let value = RapidCacheConfig().with { $0.policies = ... }
+    /// ```
+    public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+      var copy = self
+      try config(&copy)
+      return copy
+    }
+
+    /// Rapid Cache policy for a managed folder.
+    public struct RapidCachePolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      Sendable
+    {
+      /// Required. The identifier for the rapid cache.
+      public var rapidCacheId: Swift.String = Swift.String()
+
+      /// Required. If enabled, objects in the Managed Folder will be ingested
+      /// into the cache when they are written.
+      public var ingestOnWrite: ManagedFolder.RapidCacheConfig.RapidCachePolicy.IngestOnWrite =
+        ManagedFolder.RapidCacheConfig.RapidCachePolicy.IngestOnWrite()
+
+      /// Initialize a new instance of `RapidCachePolicy`.
+      public init() {}
+
+      /// Use `config` to return a new instance of this object, with some fields updated.
+      ///
+      /// Commonly used to initialize the value, for example:
+      ///
+      /// ```
+      /// let value = RapidCachePolicy().with { $0.rapidCacheId = ... }
+      /// ```
+      public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+        var copy = self
+        try config(&copy)
+        return copy
+      }
+
+      /// The behavior of the rapid cache when an object is written.
+      public enum IngestOnWrite: Codable, Equatable, Sendable {
+        /// The behavior is not specified at this resource level.
+        /// It should be inherited from the parent resource's configuration.
+        /// This is the default value.
+        case unspecified
+        /// Ingestion on write is explicitly enabled for this resource.
+        case enabled
+        /// Encodes an unknown integer value.
+        ///
+        /// The most common cause for an unknown values is for the service to send
+        /// a value unknown to the library. We recommend you update your library to
+        /// the latest version.
+        case unknownIntValue(Int)
+        /// Encodes an unknown string value.
+        ///
+        /// The most common cause for an unknown values is for the service to send
+        /// a value unknown to the library. We recommend you update your library to
+        /// the latest version.
+        case unknownStringValue(String)
+
+        public init() {
+          self = .unspecified
+        }
+
+        /// Returns the integer value associated with the enumeration.
+        ///
+        /// If the enumeration was initialized with an unknown string value, this returns `nil`.
+        public var intValue: Int? {
+          switch self {
+          case .unspecified: return 0
+          case .enabled: return 1
+          case .unknownIntValue(let v): return v
+          case .unknownStringValue: return nil
+          }
+        }
+
+        /// Returns the string value (or name) associated with the enumeration.
+        ///
+        /// If the enumeration was initialized with an unknown integer value, this returns `nil`.
+        public var stringValue: Swift.String? {
+          switch self {
+          case .unspecified: return "INGEST_ON_WRITE_UNSPECIFIED"
+          case .enabled: return "INGEST_ON_WRITE_ENABLED"
+          case .unknownIntValue: return nil
+          case .unknownStringValue(let v): return v
+          }
+        }
+
+        /// Initialize from a string value.
+        ///
+        /// If the value is unknown, this initializes to [`unknownStringValue`](doc:IngestOnWrite/unknownStringValue(_:)).
+        public init(stringValue: Swift.String) {
+          switch stringValue {
+          case "INGEST_ON_WRITE_UNSPECIFIED": self = .unspecified
+          case "INGEST_ON_WRITE_ENABLED": self = .enabled
+          default: self = .unknownStringValue(stringValue)
+          }
+        }
+
+        /// Initialize from an integer value.
+        ///
+        /// If the value is unknown, this initializes to [`unknownIntValue`](doc:IngestOnWrite/unknownIntValue(_:)).
+        public init(intValue: Int) {
+          switch intValue {
+          case 0: self = .unspecified
+          case 1: self = .enabled
+          default: self = .unknownIntValue(intValue)
+          }
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.singleValueContainer()
+          if let v = try? container.decode(Int.self) {
+            self.init(intValue: v)
+            return
+          }
+          if let s = try? container.decode(String.self) {
+            if let v = Int(s) {
+              self.init(intValue: v)
+            } else {
+              self.init(stringValue: s)
+            }
+            return
+          }
+          throw DecodingError.dataCorruptedError(
+            in: container, debugDescription: "Expected enum value, must be integer or string.")
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.singleValueContainer()
+          switch self {
+          case .unspecified: return try container.encode(0)
+          case .enabled: return try container.encode(1)
+          case .unknownIntValue(let v): return try container.encode(v)
+          case .unknownStringValue(let v): return try container.encode(v)
+          }
+        }
+      }
+
+      public static var _anyTypeUrl: Swift.String {
+        return
+          "type.googleapis.com/google.storage.control.v2.ManagedFolder.RapidCacheConfig.RapidCachePolicy"
+      }
+      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
+        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      }
+      public func _pack() throws -> GoogleCloudWkt.Struct {
+        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      }
+    }
+
+    public static var _anyTypeUrl: Swift.String {
+      return "type.googleapis.com/google.storage.control.v2.ManagedFolder.RapidCacheConfig"
+    }
+    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
+      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    }
+    public func _pack() throws -> GoogleCloudWkt.Struct {
+      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -19,6 +19,8 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudWkt
+import GoogleLongRunning
+import GoogleRpc
 import GoogleCloudGax
 import struct Logging.Logger
 
@@ -54,6 +56,106 @@ extension Clients {
         logger.debug("error  : \(request) \(options) \(error)")
         throw error
       }
+    }
+
+    public func createFolder(
+      request: CreateFolderRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> Folder {
+      try await self._intercept(
+        request: request,
+        options: options,
+        name: "createFolder",
+        action: {
+          (r: CreateFolderRequest, o: GoogleCloudGax.RequestOptions) async throws -> Folder
+          in
+          return try await self.inner.createFolder(request: r, options: o)
+        })
+    }
+
+    public func deleteFolder(
+      request: DeleteFolderRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws {
+      try await self._intercept(
+        request: request,
+        options: options,
+        name: "deleteFolder",
+        action: { (r: DeleteFolderRequest, o: GoogleCloudGax.RequestOptions) async throws -> Void in
+          return try await self.inner.deleteFolder(request: r, options: o)
+        })
+    }
+
+    public func getFolder(
+      request: GetFolderRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> Folder {
+      try await self._intercept(
+        request: request,
+        options: options,
+        name: "getFolder",
+        action: {
+          (r: GetFolderRequest, o: GoogleCloudGax.RequestOptions) async throws -> Folder
+          in
+          return try await self.inner.getFolder(request: r, options: o)
+        })
+    }
+
+    public func listFolders(
+      request: ListFoldersRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> ListFoldersResponse {
+      try await self._intercept(
+        request: request,
+        options: options,
+        name: "listFolders",
+        action: {
+          (r: ListFoldersRequest, o: GoogleCloudGax.RequestOptions) async throws
+            -> ListFoldersResponse
+          in
+          return try await self.inner.listFolders(request: r, options: o)
+        })
+    }
+
+    public func renameFolder(
+      request: RenameFolderRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
+      try await self._intercept(
+        request: request,
+        options: options,
+        name: "renameFolder",
+        action: {
+          (r: RenameFolderRequest, o: GoogleCloudGax.RequestOptions) async throws
+            -> GoogleLongRunning.Operation
+          in
+          return try await self.inner.renameFolder(request: r, options: o)
+        })
+    }
+
+    public func deleteFolderRecursive(
+      request: DeleteFolderRecursiveRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
+      try await self._intercept(
+        request: request,
+        options: options,
+        name: "deleteFolderRecursive",
+        action: {
+          (r: DeleteFolderRecursiveRequest, o: GoogleCloudGax.RequestOptions) async throws
+            -> GoogleLongRunning.Operation
+          in
+          return try await self.inner.deleteFolderRecursive(request: r, options: o)
+        })
+    }
+
+    public func getStorageLayout(
+      request: GetStorageLayoutRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> StorageLayout {
+      try await self._intercept(
+        request: request,
+        options: options,
+        name: "getStorageLayout",
+        action: {
+          (r: GetStorageLayoutRequest, o: GoogleCloudGax.RequestOptions) async throws
+            -> StorageLayout
+          in
+          return try await self.inner.getStorageLayout(request: r, options: o)
+        })
     }
 
     public func getProjectIntelligenceConfig(
@@ -218,6 +320,21 @@ extension Clients {
             async throws -> ListIntelligenceFindingRevisionsResponse
           in
           return try await self.inner.listIntelligenceFindingRevisions(request: r, options: o)
+        })
+    }
+
+    public func getOperation(
+      request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
+      try await self._intercept(
+        request: request,
+        options: options,
+        name: "getOperation",
+        action: {
+          (r: GoogleLongRunning.GetOperationRequest, o: GoogleCloudGax.RequestOptions) async throws
+            -> GoogleLongRunning.Operation
+          in
+          return try await self.inner.getOperation(request: r, options: o)
         })
     }
   }

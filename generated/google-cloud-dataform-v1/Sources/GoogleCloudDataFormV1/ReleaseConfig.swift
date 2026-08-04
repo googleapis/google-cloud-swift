@@ -41,9 +41,9 @@ public struct ReleaseConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var cronSchedule: Swift.String = Swift.String()
 
   /// Optional. Specifies the time zone to be used when interpreting
-  /// cron_schedule. Must be a time zone name from the time zone database
-  /// (https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). If left
-  /// unspecified, the default is UTC.
+  /// cron_schedule. Must be a time zone name from the [time zone
+  /// database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). If
+  /// left unspecified, the default is `UTC`.
   public var timeZone: Swift.String = Swift.String()
 
   /// Output only. Records of the 10 most recent scheduled release attempts,

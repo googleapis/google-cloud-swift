@@ -26,6 +26,13 @@
     /// specified in the spread placement policy attached to the instance.
     public var availabilityDomain: Swift.Int32? = nil
 
+    /// Output only. Specifies the timestamp, when the instance will start graceful shutdown
+    /// process, in RFC3339 text format.
+    public var gracefulShutdownTimestamp: Swift.String? = nil
+
+    /// Time in future when the instance will be terminated inRFC3339 text format.
+    public var terminationTimestamp: Swift.String? = nil
+
     /// Initialize a new instance of `ResourceStatusScheduling`.
     public init() {}
 

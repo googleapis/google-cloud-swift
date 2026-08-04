@@ -139,5 +139,19 @@ extension Clients {
           return try await self.inner.undeleteSupportEventSubscription(request: r, options: o)
         })
     }
+
+    public func expungeSupportEventSubscription(
+      request: ExpungeSupportEventSubscriptionRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws {
+      try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: ExpungeSupportEventSubscriptionRequest, o: GoogleCloudGax.RequestOptions) async throws
+            -> Void in
+          return try await self.inner.expungeSupportEventSubscription(request: r, options: o)
+        })
+    }
   }
 }

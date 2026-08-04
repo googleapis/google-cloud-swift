@@ -56,6 +56,8 @@
       /// For Flex Start provisioning instance is waiting for available capacity
       /// from Dynamic Workload Scheduler (DWS).
       case pending
+      /// The instance is gracefully shutting down.
+      case pendingStop
       /// Resources are being allocated for the instance.
       case provisioning
       /// The instance is in repair.
@@ -100,15 +102,16 @@
         switch self {
         case .deprovisioning: return 0
         case .pending: return 1
-        case .provisioning: return 2
-        case .repairing: return 3
-        case .running: return 4
-        case .staging: return 5
-        case .stopped: return 6
-        case .stopping: return 7
-        case .suspended: return 8
-        case .suspending: return 9
-        case .terminated: return 10
+        case .pendingStop: return 2
+        case .provisioning: return 3
+        case .repairing: return 4
+        case .running: return 5
+        case .staging: return 6
+        case .stopped: return 7
+        case .stopping: return 8
+        case .suspended: return 9
+        case .suspending: return 10
+        case .terminated: return 11
         case .unknownIntValue(let v): return v
         case .unknownStringValue: return nil
         }
@@ -121,6 +124,7 @@
         switch self {
         case .deprovisioning: return "DEPROVISIONING"
         case .pending: return "PENDING"
+        case .pendingStop: return "PENDING_STOP"
         case .provisioning: return "PROVISIONING"
         case .repairing: return "REPAIRING"
         case .running: return "RUNNING"
@@ -142,6 +146,7 @@
         switch stringValue {
         case "DEPROVISIONING": self = .deprovisioning
         case "PENDING": self = .pending
+        case "PENDING_STOP": self = .pendingStop
         case "PROVISIONING": self = .provisioning
         case "REPAIRING": self = .repairing
         case "RUNNING": self = .running
@@ -162,15 +167,16 @@
         switch intValue {
         case 0: self = .deprovisioning
         case 1: self = .pending
-        case 2: self = .provisioning
-        case 3: self = .repairing
-        case 4: self = .running
-        case 5: self = .staging
-        case 6: self = .stopped
-        case 7: self = .stopping
-        case 8: self = .suspended
-        case 9: self = .suspending
-        case 10: self = .terminated
+        case 2: self = .pendingStop
+        case 3: self = .provisioning
+        case 4: self = .repairing
+        case 5: self = .running
+        case 6: self = .staging
+        case 7: self = .stopped
+        case 8: self = .stopping
+        case 9: self = .suspended
+        case 10: self = .suspending
+        case 11: self = .terminated
         default: self = .unknownIntValue(intValue)
         }
       }
@@ -198,15 +204,16 @@
         switch self {
         case .deprovisioning: return try container.encode(0)
         case .pending: return try container.encode(1)
-        case .provisioning: return try container.encode(2)
-        case .repairing: return try container.encode(3)
-        case .running: return try container.encode(4)
-        case .staging: return try container.encode(5)
-        case .stopped: return try container.encode(6)
-        case .stopping: return try container.encode(7)
-        case .suspended: return try container.encode(8)
-        case .suspending: return try container.encode(9)
-        case .terminated: return try container.encode(10)
+        case .pendingStop: return try container.encode(2)
+        case .provisioning: return try container.encode(3)
+        case .repairing: return try container.encode(4)
+        case .running: return try container.encode(5)
+        case .staging: return try container.encode(6)
+        case .stopped: return try container.encode(7)
+        case .stopping: return try container.encode(8)
+        case .suspended: return try container.encode(9)
+        case .suspending: return try container.encode(10)
+        case .terminated: return try container.encode(11)
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

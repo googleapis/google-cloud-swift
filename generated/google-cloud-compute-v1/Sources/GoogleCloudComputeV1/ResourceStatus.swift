@@ -44,6 +44,9 @@
 
     public var scheduling: ResourceStatusScheduling? = nil
 
+    /// Output only. [Output Only] Details about the instance stopping state.
+    public var shutdownDetails: ResourceStatusShutdownDetails? = nil
+
     public var upcomingMaintenance: UpcomingMaintenance? = nil
 
     /// Initialize a new instance of `ResourceStatus`.

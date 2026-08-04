@@ -4,10 +4,12 @@
     "api_shortname": "sqladmin",
     "client_documentation": "https://swiftpackageindex.com/googleapis/google-cloud-sql-v1/documentation",
     "distribution_name": "google-cloud-sql-v1",
+    "issue_tracker": "https://issuetracker.google.com/issues/new?component=65246\u0026template=1161103",
     "language": "swift",
     "library_type": "GAPIC_AUTO",
     "name": "sqladmin",
     "name_pretty": "Cloud SQL Admin",
+    "product_documentation": "https://cloud.google.com/sql/",
     "release_level": "preview",
     "repo": "googleapis/google-cloud-swift"
 }

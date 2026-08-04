@@ -345,7 +345,7 @@
       /// of subnet/route in the VPC network and its peering networks. After the
       /// VLAN attachment is created with the reserved IP address range, when
       /// creating a new VPN gateway, its interface IP address is allocated
-      /// from the associated VLAN attachment’s IP address range.
+      /// from the associated VLAN attachment's IP address range.
       case ipsecInterconnect
       /// External IP automatically reserved for Cloud NAT.
       case natAuto
