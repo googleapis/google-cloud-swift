@@ -38,7 +38,7 @@ chmod 755 ci/gcb/scripts/asan.sh
 Now run the build on GCB, you may need to iterate on the build script until this
 works reliably:
 
-```shell
+```sh
 gcloud builds submit --project=swift-sdk-testing --region=us-central1 \
   --config=ci/gcb/scripted.yaml --substitutions=_SCRIPT=asan
 ```

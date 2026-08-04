@@ -30,6 +30,10 @@ locals {
       config = "minimum-swift.yaml"
       script = "unit-tests"
     }
+    integration-tests = {
+      config = "scripted.yaml"
+      script = "integration-tests"
+    }
   }
 
   # These are builds that only run during Pull Requests.

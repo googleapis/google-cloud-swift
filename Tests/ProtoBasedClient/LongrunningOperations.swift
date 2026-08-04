@@ -24,11 +24,12 @@ public enum LongrunningOperations {
   static public func run(_ logger: Logger) async throws {
     let project = try projectId()
     let location = locationId()
+    let runner = try testServiceAccount()
 
-    try await createAndDeleteWorkflow(projectId: project, location: location, logger: logger)
+    try await createAndDeleteWorkflow(projectId: project, location: location, runner: runner, logger: logger)
   }
 
-  static private func createAndDeleteWorkflow(projectId: String, location: String, logger: Logger)
+  static private func createAndDeleteWorkflow(projectId: String, location: String, runner: String, logger: Logger)
     async throws
   {
     let client = try WorkflowsClient()
@@ -43,6 +44,7 @@ public enum LongrunningOperations {
       $0.workflow = Workflow().with {
         $0.description = "Test workflow created by integration test"
         $0.labels = ["integration-test": "true"]
+        $0.serviceAccount = runner
         $0.sourceCode = .sourceContents(
           """
           - init:
