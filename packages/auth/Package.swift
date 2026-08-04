@@ -31,6 +31,7 @@ let package = Package(
     .package(url: "https://github.com/apple/swift-system.git", from: "1.0.0"),
     .package(url: "https://github.com/apple/swift-log", from: "1.14.0"),
     .package(url: "https://github.com/apple/swift-collections", from: "1.6.0"),
+    .package(url: "https://github.com/apple/swift-nio", from: "2.101.0"),
     .package(url: "https://github.com/swift-server/async-http-client.git", from: "1.36.0"),
     .package(url: "https://github.com/vapor/jwt-kit.git", from: "5.0.0"),
   ],
@@ -43,6 +44,8 @@ let package = Package(
         .product(name: "JWTKit", package: "jwt-kit"),
         .product(name: "SystemPackage", package: "swift-system"),
         .product(name: "Logging", package: "swift-log"),
+        .product(name: "NIOCore", package: "swift-nio"),
+        .product(name: "NIOFoundationCompat", package: "swift-nio"),
       ]
     ),
     .testTarget(

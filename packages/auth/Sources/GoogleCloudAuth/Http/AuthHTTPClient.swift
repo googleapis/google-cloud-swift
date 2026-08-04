@@ -14,6 +14,7 @@
 
 import Foundation
 import AsyncHTTPClient
+import NIOFoundationCompat
 import struct Logging.Logger
 import struct NIOCore.TimeAmount
 import struct NIOCore.ByteBufferAllocator
@@ -98,7 +99,7 @@ struct AuthHTTPClient: Sendable {
       try self.ensureSuccess(response)
 
       do {
-        return try self.makeDecoder().decode(T.self, from: buffer.getData(at: 0, length: buffer.readableBytes)!)
+        return try self.makeDecoder().decode(T.self, from: Data(buffer: buffer))
       } catch let error as DecodingError {
         throw AuthHTTPError.decodingError(error: error)
       }
@@ -149,8 +150,8 @@ struct AuthHTTPClient: Sendable {
       request.headers = .init(headers.map { ($0.key, $0.value) })
       request.headers.add(name: "Content-Type", value: "application/json")
       let encoder = JSONEncoder()
-      let data = try encoder.encode(body)
-      request.body = .bytes(.init(data: data))
+      let buffer = try encoder.encodeAsByteBuffer(body, allocator: ByteBufferAllocator())
+      request.body = .bytes(buffer)
 
       let response = try await self.performRequest(request)
       try self.ensureSuccess(response)
@@ -183,7 +184,7 @@ struct AuthHTTPClient: Sendable {
       request.method = .POST
       request.headers = .init(headers.map { ($0.key, $0.value) })
       request.headers.add(name: "Content-Type", value: contentType)
-      request.body = .bytes(.init(data: bodyData))
+      request.body = .bytes(bodyData)
 
       let response = try await self.performRequest(request)
       try self.ensureSuccess(response)
