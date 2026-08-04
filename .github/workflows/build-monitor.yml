@@ -36,6 +36,7 @@ jobs:
           CHECK_SUITE_URL: ${{ github.event.check_suite.url }}
           COMMIT_SHA: ${{ github.event.check_suite.head_sha }}
           PR_LIST: ${{ toJson(github.event.check_suite.pull_requests) }}
+          GITHUB_ACTOR: ${{ github.actor }}
         run: |
           ISSUE_TITLE="google-cloud-swift: CI (GCB) failure on main branch"
 
@@ -66,7 +67,7 @@ jobs:
             gh issue comment "$EXISTING_ISSUE" --repo $GH_REPO --body "The build failed again in GCB. Details: $CHECK_SUITE_URL (Commit: $COMMIT_SHA). $PR_TEXT"
           else
             echo "Creating new issue."
-            ISSUE_LINK=$(gh issue create --title "$ISSUE_TITLE" --body "$BODY" --label ":rotating_light: critical" --assignee ${{ github.actor }} -R $GH_REPO)
+            ISSUE_LINK=$(gh issue create --title "$ISSUE_TITLE" --body "$BODY" --label ":rotating_light: critical" --assignee ${GITHUB_ACTOR} -R $GH_REPO)
             ISSUE_NUM=${ISSUE_LINK##*/}
             gh issue comment $ISSUE_NUM --repo $GH_REPO --body "@googleapis/cloud-sdk-swift-team A critical issue has been created, please respond immediately."
           fi
