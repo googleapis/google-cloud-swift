@@ -13,16 +13,13 @@
 // limitations under the License.
 
 import Foundation
-#if canImport(FoundationNetworking)
-  import FoundationNetworking
-#endif
 @testable import GoogleCloudAuth
 import Testing
 
 #if IntegrationTests
 
   @Suite struct AuthHTTPClientIntegrationTests {
-    @Test func UrlSessionTest() async {
+    @Test func concurrentCallsStressTest() async {
       func runOnce() async {
         do {
           let client = AuthHTTPClient()
@@ -36,7 +33,7 @@ import Testing
       }
 
       let iterations = 100
-      print("Starting URLSession reproduction loop (\(iterations) iterations)...")
+      print("Starting concurrent requests stress test for (\(iterations) iterations)...")
       for i in 1...iterations {
         await runOnce()
         // Give it a tiny sleep to allow concurrent scheduling

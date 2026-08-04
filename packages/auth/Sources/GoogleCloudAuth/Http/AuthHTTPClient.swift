@@ -69,9 +69,7 @@ struct AuthHTTPClient: Sendable {
 
   let inner: any HTTPClientProtocol
 
-  /// Initializes the client with a dynamic session provider closure.
-  ///
-  /// - Parameter sessionProvider: A closure returning a `URLSession` for network dispatching.
+  /// Initializes the client with the default configuration.
   public init() {
     self.inner = HTTPClientHolder()
   }

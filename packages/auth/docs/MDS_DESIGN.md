@@ -29,8 +29,7 @@ credential provider that integrates seamlessly with the `TokenCache` actor and
 # Requirements
 
 -   **Requirement**: Implement the native `TokenProvider` protocol.
--   **Requirement**: Query the MDS `/token` endpoint using a secure `URLSession`
-    injected from the `AuthHTTPClient`.
+-   **Requirement**: Query the MDS `/token` endpoint using `AuthHTTPClient`.
 -   **Requirement**: Append the `Metadata-Flavor: Google` header to all MDS
     requests.
 -   **Requirement**: Parse the returned JSON response to extract the token and

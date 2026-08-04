@@ -256,18 +256,15 @@ token providers while keeping `GoogleCloudAuth` completely isolated from
 
 This internal client encapsulates the following networking policies:
 
--   **Linux Portability**: Conditionally imports `FoundationNetworking` under
-    `#if canImport(FoundationNetworking)` to support Linux targets.
--   **Secure Ephemeral Sessions**: Forces the use of `URLSession(configuration:
-    .ephemeral)` for its underlying session, preventing the OS from caching
-    sensitive tokens locally.
--   **Defense-in-Depth Request Caching Bypass**: Centralizes request-level
-    overrides by explicitly setting `request.cachePolicy =
-    .reloadIgnoringLocalCacheData` on all outbound queries.
--   **Acyclic Boundary Safety**: Performs raw network queries directly via
-    `URLSession`, ensuring `GoogleCloudAuth` remains independent of
-    `GoogleCloudGax`.
--   **Generic Decoding**: Decodes generic JSON responses using a default
+- **Portability**: use `AsyncHTTPClient.HTTPClient` because it is more portable
+    across different platforms (macOS, Windows, Linux).
+- **PQC Support**: use `AsyncHTTPClient.HTTPClient` because it supports
+    post-quantum cryptography across platforms.
+- **Easier Mocking**: implement our own HTTPClientProtocol to mock `HTTPClient`.
+- **Acyclic Boundary Safety**: Performs raw network queries directly via
+    `AsyncHTTPClient.HTTPClient`, ensuring `GoogleCloudAuth` remains independent
+    of `GoogleCloudGax`.
+- **Generic Decoding**: Decodes generic JSON responses using a default
     `JSONDecoder` configured with a `.convertFromSnakeCase` key decoding
     strategy.
 -   **Plain-Text Support**: Supports retrieving raw UTF-8 string responses

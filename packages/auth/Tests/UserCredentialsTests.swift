@@ -422,8 +422,8 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
     // Give the background task a moment to run and either sleep or terminate.
     try? await Task.sleep(for: .milliseconds(100))
 
-    // Real-time sleeps are necessary because background refresh loops and URLSession
-    // mock protocols execute asynchronously across thread boundaries.
+    // Real-time sleeps are necessary because background refresh loops and the mock execute
+    // asynchronously across thread boundaries.
     if clock.hasSleepers {
       clock.advance(by: .seconds(11))
       // Wait for the async retry attempt to complete
