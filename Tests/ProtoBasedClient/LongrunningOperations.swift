@@ -26,10 +26,13 @@ public enum LongrunningOperations {
     let location = locationId()
     let runner = try testServiceAccount()
 
-    try await createAndDeleteWorkflow(projectId: project, location: location, runner: runner, logger: logger)
+    try await createAndDeleteWorkflow(
+      projectId: project, location: location, runner: runner, logger: logger)
   }
 
-  static private func createAndDeleteWorkflow(projectId: String, location: String, runner: String, logger: Logger)
+  static private func createAndDeleteWorkflow(
+    projectId: String, location: String, runner: String, logger: Logger
+  )
     async throws
   {
     let client = try WorkflowsClient()
