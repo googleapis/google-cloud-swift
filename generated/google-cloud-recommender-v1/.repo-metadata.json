@@ -1,0 +1,14 @@
+{
+    "api_description": "Recommenders generate recommendations that fall into six value categories that can help you optimize your cloud in a variety of ways.",
+    "api_id": "recommender.googleapis.com",
+    "api_shortname": "recommender",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/google-cloud-recommender-v1/documentation",
+    "distribution_name": "google-cloud-recommender-v1",
+    "language": "swift",
+    "library_type": "GAPIC_AUTO",
+    "name": "recommender",
+    "name_pretty": "Recommender",
+    "product_documentation": "https://cloud.google.com/recommender",
+    "release_level": "preview",
+    "repo": "googleapis/google-cloud-swift"
+}
