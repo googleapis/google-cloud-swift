@@ -225,7 +225,7 @@ import GoogleRpc
   }
 }
 
-let errorResponseWithDetails = """
+fileprivate let errorResponseWithDetails = """
   {
     "error": {
       "code": 403,
@@ -263,7 +263,7 @@ let errorResponseWithDetails = """
   }
   """
 
-let wantDetails: [StatusDetail] = [
+fileprivate let wantDetails: [StatusDetail] = [
   .errorInfo(
     ErrorInfo().with {
       $0.reason = "SERVICE_DISABLED"

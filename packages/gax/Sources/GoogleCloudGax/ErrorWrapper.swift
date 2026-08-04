@@ -13,6 +13,7 @@
 // limitations under the License.
 
 import Foundation
+import struct AsyncHTTPClient.HTTPClientResponse
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
@@ -22,6 +23,13 @@ import GoogleRpc
 /// The services send errors using this structure.
 struct ErrorWrapper: Decodable {
   init?(data: Data, response: HTTPURLResponse) {
+    let decoder = GoogleCloudWkt._ProtoJSONDecoder()
+    guard let w = try? decoder.decode(Self.self, from: data) else {
+      return nil
+    }
+    self = w
+  }
+  init?(data: Data) {
     let decoder = GoogleCloudWkt._ProtoJSONDecoder()
     guard let w = try? decoder.decode(Self.self, from: data) else {
       return nil
