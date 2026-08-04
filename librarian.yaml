@@ -595,6 +595,9 @@ libraries:
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudStorageInsightsV1
+  - name: google-cloud-support-v2
+    version: 0.0.0-preview
+    copyright_year: "2026"
   - name: google-cloud-talent-v4
     version: 0.1.0-preview
     copyright_year: "2026"
