@@ -98,7 +98,7 @@ struct AuthHTTPClient: Sendable {
       try self.ensureSuccess(response)
 
       do {
-        return try self.makeDecoder().decode(T.self, from: buffer)
+        return try self.makeDecoder().decode(T.self, from: Data(buffer: buffer))
       } catch let error as DecodingError {
         throw AuthHTTPError.decodingError(error: error)
       }
@@ -193,7 +193,7 @@ struct AuthHTTPClient: Sendable {
       let buffer = try await response.body.collect(upTo: Self.maxResponseSize)
 
       do {
-        return try self.makeDecoder().decode(Response.self, from: buffer)
+        return try self.makeDecoder().decode(Response.self, from: Data(buffer: buffer))
       } catch let error as DecodingError {
         throw AuthHTTPError.decodingError(error: error)
       }
