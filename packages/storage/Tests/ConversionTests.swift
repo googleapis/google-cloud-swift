@@ -152,12 +152,14 @@ import Testing
   }
 
   @Test func intelligenceFindingRepeatedFields() throws {
-    let bucketContribution1 = IntelligenceFinding.StorageGrowthAboveTrend.BucketContribution().with {
+    let bucketContribution1 = IntelligenceFinding.StorageGrowthAboveTrend.BucketContribution().with
+    {
       $0.bucket = "projects/_/buckets/bucket-1"
       $0.totalStorageGrowthBytes = 1024
       $0.percentageIncrease = 15.5
     }
-    let bucketContribution2 = IntelligenceFinding.StorageGrowthAboveTrend.BucketContribution().with {
+    let bucketContribution2 = IntelligenceFinding.StorageGrowthAboveTrend.BucketContribution().with
+    {
       $0.bucket = "projects/_/buckets/bucket-2"
       $0.totalStorageGrowthBytes = 2048
       $0.percentageIncrease = 30.0
@@ -190,4 +192,3 @@ import Testing
     #expect(roundtrippedGrowth == growthTrend)
   }
 }
-
