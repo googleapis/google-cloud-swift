@@ -490,6 +490,11 @@ libraries:
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudGKEMultiCloudV1
+  - name: google-cloud-hypercomputecluster-v1
+    version: 0.0.0-preview
+    copyright_year: "2026"
+    swift:
+      library_name_override: GoogleCloudHypercomputeClusterV1
   - name: google-cloud-kms-inventory-v1
     version: 0.1.0-preview
     copyright_year: "2026"
