@@ -817,3 +817,10 @@ fileprivate func mapToPublicError(_ error: Error) -> Error {
   }
   return error
 }
+
+fileprivate func defaultUploadRetryPolicy() -> any RetryPolicy {
+  BaseRetryPolicy()
+    .retryOnTooManyRequests()
+    .withTimeLimit(.seconds(60))
+    .withAttemptLimit(10)
+}

@@ -537,13 +537,6 @@ public struct UploadOptions: Sendable {
   }
 }
 
-package func defaultUploadRetryPolicy() -> any RetryPolicy {
-  BaseRetryPolicy()
-    .retryOnTooManyRequests()
-    .withTimeLimit(.seconds(60))
-    .withAttemptLimit(10)
-}
-
 /// Customer encryption metadata returned in object responses.
 extension CustomerEncryption {
   /// Base64-encoded string representation of `keySha256Bytes`.
