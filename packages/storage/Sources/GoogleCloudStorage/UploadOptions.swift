@@ -670,13 +670,6 @@ public struct UploadOptions: Sendable {
   }
 }
 
-package func defaultUploadRetryPolicy() -> any RetryPolicy {
-  BaseRetryPolicy()
-    .retryOnTooManyRequests()
-    .withTimeLimit(.seconds(60))
-    .withAttemptLimit(10)
-}
-
 /// Customer encryption metadata returned in object responses.
 public struct CustomerEncryption: Sendable, Codable, Equatable {
   /// The encryption algorithm used to encrypt the object (e.g., "AES256").
