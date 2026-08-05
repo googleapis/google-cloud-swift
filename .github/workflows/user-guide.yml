@@ -23,7 +23,7 @@ on:
 
 jobs:
   guide:
-    if: github.repository == 'googleapis/google-cloud-rust'
+    if: github.repository == 'googleapis/google-cloud-swift'
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # ratchet:actions/checkout@v7.0.1
@@ -45,7 +45,7 @@ jobs:
 
   deploy:
     # TODO(https://github.com/googleapis/google-cloud-swift/issues/163) only push
-    # if: github.repository == 'googleapis/google-cloud-swift' && github.event_name == 'release'
+    if: github.repository == 'googleapis/google-cloud-swift' # && github.event_name == 'release'
     runs-on: ubuntu-24.04
     permissions:
       # to deploy to Pages
