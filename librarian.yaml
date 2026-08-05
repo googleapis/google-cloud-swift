@@ -172,6 +172,11 @@ libraries:
       per_service_traits: true
       default_traits:
         - PredictionService
+  - name: google-cloud-aiplatform-v1-schema-predict-params
+    version: 0.0.0-preview
+    copyright_year: "2026"
+    swift:
+      library_name_override: GoogleCloudAIPlatformV1SchemaPredictParams
   - name: google-cloud-alloydb-connectors-v1
     version: 0.1.0-preview
     copyright_year: "2026"
