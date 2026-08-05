@@ -1,0 +1,15 @@
+{
+    "api_description": "GKE Recommender API",
+    "api_id": "gkerecommender.googleapis.com",
+    "api_shortname": "gkerecommender",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/google-cloud-gkerecommender-v1/documentation",
+    "distribution_name": "google-cloud-gkerecommender-v1",
+    "issue_tracker": "https://issuetracker.google.com/issues/new?component=1790908",
+    "language": "swift",
+    "library_type": "GAPIC_AUTO",
+    "name": "gkerecommender",
+    "name_pretty": "GKE Recommender",
+    "product_documentation": "https://cloud.google.com/kubernetes-engine/",
+    "release_level": "preview",
+    "repo": "googleapis/google-cloud-swift"
+}
