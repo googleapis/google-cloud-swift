@@ -224,6 +224,11 @@ libraries:
         - output: packages/auth/Sources/GoogleCloudAuth/generated
           api_path: ""
           module_type: package-version
+  - name: google-cloud-backupdr-logging-v1
+    version: 0.0.0-preview
+    copyright_year: "2026"
+    swift:
+      library_name_override: GoogleCloudBackupDRLoggingV1
   - name: google-cloud-baremetalsolution-v2
     version: 0.1.0-preview
     copyright_year: "2026"
