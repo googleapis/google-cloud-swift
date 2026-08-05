@@ -575,6 +575,11 @@ libraries:
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudSecretManagerV1
+  - name: google-cloud-securesourcemanager-v1
+    version: 0.0.0-preview
+    copyright_year: "2026"
+    swift:
+      library_name_override: GoogleCloudSecureSourceManagerV1
   - name: google-cloud-security-privateca-v1
     version: 0.1.0-preview
     copyright_year: "2026"
