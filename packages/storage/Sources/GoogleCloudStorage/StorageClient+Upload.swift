@@ -407,27 +407,23 @@ extension StorageClient {
         idempotent: true
       )
 
-      let result: Either<StorageObject, ResumableUploadQueryStatus>
+      let (queryData, queryResponse): (Data, HTTPURLResponse)
       do {
-        result = try await retryLoop.run { _ in
+        (queryData, queryResponse) = try await retryLoop.run { _ in
           let queryRequest = try await httpClient.buildQueryResumableUploadRequest(
             uploadId: uploadId, options: options)
-          let (queryData, queryResponse) = try await httpClient.sendRequestWithMappedError(
-            queryRequest)
+          let (qData, qResponse) = try await httpClient.sendRequestWithMappedError(queryRequest)
 
-          if queryResponse.statusCode == 200 || queryResponse.statusCode == 201 {
-            let object = try httpClient.handleObjectResponse(
-              data: queryData, response: queryResponse)
-            return .left(object)
-          } else if queryResponse.statusCode == 308 {
-            let status = try httpClient.parseResumableUploadQueryStatus(from: queryResponse)
-            return .right(status)
+          if qResponse.statusCode == 200 || qResponse.statusCode == 201
+            || qResponse.statusCode == 308
+          {
+            return (qData, qResponse)
           } else {
             throw RequestError.http(
               HTTPDetails(
-                http_status_code: queryResponse.statusCode,
+                http_status_code: qResponse.statusCode,
                 headers: [:],
-                payload: queryData
+                payload: qData
               ))
           }
         }
@@ -435,13 +431,15 @@ extension StorageClient {
         throw mapToPublicError(error)
       }
 
-      switch result {
-      case .left(let object):
+      if queryResponse.statusCode == 200 || queryResponse.statusCode == 201 {
+        let object = try httpClient.handleObjectResponse(
+          data: queryData, response: queryResponse)
         continuation.yield(
           UploadStatus(
             bytesUploaded: totalSize ?? 0, totalBytes: totalSize, uploadId: uploadId))
         return object
-      case .right(let status):
+      } else {
+        let status = try httpClient.parseResumableUploadQueryStatus(from: queryResponse)
         continuation.yield(
           UploadStatus(
             bytesUploaded: status.nextOffset, totalBytes: totalSize, uploadId: uploadId))
@@ -762,11 +760,6 @@ extension URLRequest {
     setValue(key.keyBase64, forHTTPHeaderField: "x-goog-encryption-key")
     setValue(key.keyHashBase64, forHTTPHeaderField: "x-goog-encryption-key-sha256")
   }
-}
-
-fileprivate enum Either<L, R> {
-  case left(L)
-  case right(R)
 }
 
 fileprivate struct ChunkUploadResult: Sendable {
