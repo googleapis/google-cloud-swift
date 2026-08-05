@@ -1,0 +1,15 @@
+{
+    "api_description": "Provides insights about your customers and their Assured Workloads based on\nyour Sovereign Controls by Partners offering.",
+    "api_id": "cloudcontrolspartner.googleapis.com",
+    "api_shortname": "cloudcontrolspartner",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/google-cloud-cloudcontrolspartner-v1/documentation",
+    "distribution_name": "google-cloud-cloudcontrolspartner-v1",
+    "issue_tracker": "https://issuetracker.google.com/issues/new?component=1504051",
+    "language": "swift",
+    "library_type": "GAPIC_AUTO",
+    "name": "cloudcontrolspartner",
+    "name_pretty": "Cloud Controls Partner",
+    "product_documentation": "https://cloud.google.com/sovereign-controls-by-partners/",
+    "release_level": "preview",
+    "repo": "googleapis/google-cloud-swift"
+}
