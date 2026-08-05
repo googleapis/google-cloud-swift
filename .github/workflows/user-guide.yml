@@ -12,7 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 name: User Guide
-permissions: read-all # zizmor: ignore[excessive-permissions]
+# permissions: read-all # zizmor: ignore[excessive-permissions]
+permissions:
+  contents: write
+  pull-requests: write
 on:
   push:
     branches: [main, 'release-*']
@@ -20,7 +23,6 @@ on:
     branches: [main, 'release-*']
   release:
     types: [published]
-
 jobs:
   guide:
     if: github.repository == 'googleapis/google-cloud-swift'
@@ -33,16 +35,15 @@ jobs:
         uses: ./.github/actions/install-swift
       - name: Build Documentation
         run: |
-            swift package --allow-writing-to-package-directory \
-              generate-documentation --target UserGuide \
-              --output-path ./.render \
-              --hosting-base-path UserGuide
+          swift package --allow-writing-to-package-directory \
+            generate-documentation --target UserGuide \
+            --output-path ./.render \
+            --hosting-base-path UserGuide
       - name: Upload user guide
         id: deployment
         uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # ratchet:actions/upload-pages-artifact@v5
         with:
           path: .render
-
   deploy:
     # TODO(https://github.com/googleapis/google-cloud-swift/issues/163) only push
     if: github.repository == 'googleapis/google-cloud-swift' # && github.event_name == 'release'
