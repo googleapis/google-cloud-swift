@@ -79,4 +79,30 @@ import Testing
     #expect(proto.seconds == 987654321)
     #expect(proto.nanos == 123456789)
   }
+
+  @Test func anyProtoToNative() throws {
+    var durationProto = SwiftProtobuf.Google_Protobuf_Duration()
+    durationProto.seconds = 123
+    durationProto.nanos = 450000000
+    let proto = try SwiftProtobuf.Google_Protobuf_Any(message: durationProto)
+
+    let native = try GoogleCloudWkt.Any(proto: proto)
+    #expect(native.typeUrl == "type.googleapis.com/google.protobuf.Duration")
+
+    let unpackedDuration = try GoogleCloudWkt.Duration(fromAny: native)
+    #expect(unpackedDuration.seconds == 123)
+    #expect(unpackedDuration.nanos == 450000000)
+  }
+
+  @Test func anyNativeToProto() throws {
+    let nativeDuration = try GoogleCloudWkt.Duration(seconds: 123, nanos: 450000000)
+    let native = try GoogleCloudWkt.Any(fromMessage: nativeDuration)
+
+    let proto = try native.toProto()
+    #expect(proto.typeURL == "type.googleapis.com/google.protobuf.Duration")
+
+    let unpackedProto = try SwiftProtobuf.Google_Protobuf_Duration(unpackingAny: proto)
+    #expect(unpackedProto.seconds == 123)
+    #expect(unpackedProto.nanos == 450000000)
+  }
 }
