@@ -295,6 +295,11 @@ libraries:
     copyright_year: "2026"
     swift:
       library_name_override: GoogleBigQueryLoggingV1
+  - name: google-cloud-bigquery-migration-v2
+    version: 0.0.0-preview
+    copyright_year: "2026"
+    swift:
+      library_name_override: GoogleBigQueryMigrationV2
   - name: google-cloud-billing-budgets-v1
     version: 0.1.0-preview
     copyright_year: "2026"
