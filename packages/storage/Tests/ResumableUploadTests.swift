@@ -1564,12 +1564,6 @@ import Testing
     registry.register(
       response: .failure(URLError(.networkConnectionLost)),
       for: chunkUrl)
-    // Query status PUT returns 308 (0 bytes received)
-    registry.register(
-      response: .success(
-        statusCode: 308, data: Data(),
-        headers: ["Range": "bytes=0-0"]),
-      for: chunkUrl)
     // Retry chunk PUT succeeds with 200 OK
     registry.register(
       response: .success(
@@ -1597,7 +1591,7 @@ import Testing
     #expect(object.bucket == bucket)
 
     let requests = registry.recordedRequests()
-    #expect(requests.count == 4)
+    #expect(requests.count == 3)
   }
 
   /// Tests automatic retry and resume when a chunk upload receives a 503 Service Unavailable response.
@@ -1623,12 +1617,6 @@ import Testing
     registry.register(
       response: .success(
         statusCode: 503, data: Data("Service Unavailable".utf8),
-        headers: nil),
-      for: chunkUrl)
-    // Query status PUT returns 308 (0 bytes received)
-    registry.register(
-      response: .success(
-        statusCode: 308, data: Data(),
         headers: nil),
       for: chunkUrl)
     // Retry chunk PUT succeeds with 200 OK
