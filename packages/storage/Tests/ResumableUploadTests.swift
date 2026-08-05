@@ -178,11 +178,13 @@ import Testing
         statusCode: 200, data: Data(),
         headers: ["Location": chunkUrl.absoluteString]),
       for: startUrl)
-    registry.register(
-      response: .success(
-        statusCode: 500, data: Data("Internal Server Error".utf8),
-        headers: nil),
-      for: chunkUrl)
+    for _ in 0..<20 {
+      registry.register(
+        response: .success(
+          statusCode: 500, data: Data("Internal Server Error".utf8),
+          headers: nil),
+        for: chunkUrl)
+    }
 
     let config = URLSessionConfiguration.ephemeral
     config.protocolClasses = [MockURLProtocol.self]
@@ -1537,6 +1539,231 @@ import Testing
     let hashHeader = finalChunkReq.value(forHTTPHeaderField: "x-goog-hash")
     #expect(hashHeader != nil)
     #expect(hashHeader?.contains("md5=") == true)
+  }
+
+  /// Tests automatic retry and resume when a chunk upload encounters an I/O / network error.
+  @Test func resumableUploadChunkNetworkErrorRetrySuccess() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "test-network-retry"
+    let data = Data(repeating: 1, count: 10 * 1024 * 1024)
+    let source = BytesSource(data: data)
+
+    let startUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?uploadType=resumable&name=\(objectName)")
+    let chunkUrl = registry.url("/upload/storage/v1/b/\(bucket)/o?upload_id=retry-id")
+
+    let objectJSON = makeObjectJSON(name: objectName, bucket: bucket, size: data.count)
+
+    registry.register(
+      response: .success(
+        statusCode: 200, data: Data(),
+        headers: ["Location": chunkUrl.absoluteString]),
+      for: startUrl)
+    // First chunk PUT fails with network error
+    registry.register(
+      response: .failure(URLError(.networkConnectionLost)),
+      for: chunkUrl)
+    // Query status PUT returns 308 (0 bytes received)
+    registry.register(
+      response: .success(
+        statusCode: 308, data: Data(),
+        headers: ["Range": "bytes=0-0"]),
+      for: chunkUrl)
+    // Retry chunk PUT succeeds with 200 OK
+    registry.register(
+      response: .success(
+        statusCode: 200, data: objectJSON,
+        headers: nil),
+      for: chunkUrl)
+
+    let config = URLSessionConfiguration.ephemeral
+    config.protocolClasses = [MockURLProtocol.self]
+    let session = URLSession(configuration: config)
+
+    let options = StorageClientOptions().with {
+      $0.client = .init().with {
+        $0.endpoint = registry.endpoint
+        $0._testSession = session
+        $0.credentials = try! Credentials(configuration: .anonymous)
+      }
+    }
+
+    let client = try StorageClient(options)
+    let task = client.upload(source, to: bucket, as: objectName)
+    let object = try await task.value
+
+    #expect(object.name == objectName)
+    #expect(object.bucket == bucket)
+
+    let requests = registry.recordedRequests()
+    #expect(requests.count == 4)
+  }
+
+  /// Tests automatic retry and resume when a chunk upload receives a 503 Service Unavailable response.
+  @Test func resumableUploadChunk503ErrorRetrySuccess() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "test-503-retry"
+    let data = Data(repeating: 1, count: 10 * 1024 * 1024)
+    let source = BytesSource(data: data)
+
+    let startUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?uploadType=resumable&name=\(objectName)")
+    let chunkUrl = registry.url("/upload/storage/v1/b/\(bucket)/o?upload_id=503-retry-id")
+
+    let objectJSON = makeObjectJSON(name: objectName, bucket: bucket, size: data.count)
+
+    registry.register(
+      response: .success(
+        statusCode: 200, data: Data(),
+        headers: ["Location": chunkUrl.absoluteString]),
+      for: startUrl)
+    // First chunk PUT fails with 503
+    registry.register(
+      response: .success(
+        statusCode: 503, data: Data("Service Unavailable".utf8),
+        headers: nil),
+      for: chunkUrl)
+    // Query status PUT returns 308 (0 bytes received)
+    registry.register(
+      response: .success(
+        statusCode: 308, data: Data(),
+        headers: nil),
+      for: chunkUrl)
+    // Retry chunk PUT succeeds with 200 OK
+    registry.register(
+      response: .success(
+        statusCode: 200, data: objectJSON,
+        headers: nil),
+      for: chunkUrl)
+
+    let config = URLSessionConfiguration.ephemeral
+    config.protocolClasses = [MockURLProtocol.self]
+    let session = URLSession(configuration: config)
+
+    let options = StorageClientOptions().with {
+      $0.client = .init().with {
+        $0.endpoint = registry.endpoint
+        $0._testSession = session
+        $0.credentials = try! Credentials(configuration: .anonymous)
+      }
+    }
+
+    let client = try StorageClient(options)
+    let task = client.upload(source, to: bucket, as: objectName)
+    let object = try await task.value
+
+    #expect(object.name == objectName)
+    #expect(object.bucket == bucket)
+  }
+
+  /// Tests automatic retry when session initialization returns HTTP 503.
+  @Test func resumableUploadStartSessionRetrySuccess() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "test-start-retry"
+    let data = Data(repeating: 1, count: 10 * 1024 * 1024)
+    let source = BytesSource(data: data)
+
+    let startUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?uploadType=resumable&name=\(objectName)")
+    let chunkUrl = registry.url("/upload/storage/v1/b/\(bucket)/o?upload_id=start-retry-id")
+
+    let objectJSON = makeObjectJSON(name: objectName, bucket: bucket, size: data.count)
+
+    // First start request fails with 503
+    registry.register(
+      response: .success(
+        statusCode: 503, data: Data("Service Unavailable".utf8),
+        headers: nil),
+      for: startUrl)
+    // Retry start request succeeds with Location header
+    registry.register(
+      response: .success(
+        statusCode: 200, data: Data(),
+        headers: ["Location": chunkUrl.absoluteString]),
+      for: startUrl)
+    // Chunk PUT succeeds with 200 OK
+    registry.register(
+      response: .success(
+        statusCode: 200, data: objectJSON,
+        headers: nil),
+      for: chunkUrl)
+
+    let config = URLSessionConfiguration.ephemeral
+    config.protocolClasses = [MockURLProtocol.self]
+    let session = URLSession(configuration: config)
+
+    let options = StorageClientOptions().with {
+      $0.client = .init().with {
+        $0.endpoint = registry.endpoint
+        $0._testSession = session
+        $0.credentials = try! Credentials(configuration: .anonymous)
+      }
+    }
+
+    let client = try StorageClient(options)
+    let task = client.upload(source, to: bucket, as: objectName)
+    let object = try await task.value
+
+    #expect(object.name == objectName)
+    #expect(object.bucket == bucket)
+  }
+
+  /// Tests that configuring `NeverRetry()` on `UploadOptions` disables automatic retry.
+  @Test func resumableUploadCustomRetryPolicyNeverRetry() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "test-never-retry"
+    let data = Data(repeating: 1, count: 10 * 1024 * 1024)
+    let source = BytesSource(data: data)
+
+    let startUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?uploadType=resumable&name=\(objectName)")
+    let chunkUrl = registry.url("/upload/storage/v1/b/\(bucket)/o?upload_id=never-retry-id")
+
+    registry.register(
+      response: .success(
+        statusCode: 200, data: Data(),
+        headers: ["Location": chunkUrl.absoluteString]),
+      for: startUrl)
+    registry.register(
+      response: .success(
+        statusCode: 503, data: Data("Service Unavailable".utf8),
+        headers: nil),
+      for: chunkUrl)
+
+    let config = URLSessionConfiguration.ephemeral
+    config.protocolClasses = [MockURLProtocol.self]
+    let session = URLSession(configuration: config)
+
+    let options = StorageClientOptions().with {
+      $0.client = .init().with {
+        $0.endpoint = registry.endpoint
+        $0._testSession = session
+        $0.credentials = try! Credentials(configuration: .anonymous)
+      }
+    }
+
+    let client = try StorageClient(options)
+    let uploadOptions = UploadOptions().with {
+      $0.retryPolicy = NeverRetry()
+    }
+    let task = client.upload(source, to: bucket, as: objectName, options: uploadOptions)
+
+    let error = await expectUploadError {
+      try await task.value
+    }
+    if case .unexpectedServerResponse(let statusCode, let message) = error {
+      #expect(statusCode == 503)
+      #expect(message == "Service Unavailable")
+    } else {
+      Issue.record("Expected .unexpectedServerResponse, got \(String(describing: error))")
+    }
+
+    let requests = registry.recordedRequests()
+    #expect(requests.count == 2)
   }
 }
 

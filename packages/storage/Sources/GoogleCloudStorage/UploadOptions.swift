@@ -14,6 +14,7 @@
 
 import Crypto
 import Foundation
+import GoogleCloudGax
 import GoogleCloudWkt
 
 /// Strategy for data integrity validation.
@@ -625,6 +626,16 @@ public struct UploadOptions: Sendable {
   /// Predefined ACL to apply to the uploaded object (e.g. `.publicRead`, `.private`).
   public var predefinedAcl: PredefinedAcl?
 
+  /// Configures the retry policy for upload operations.
+  ///
+  /// If `nil`, the default upload retry policy is used.
+  public var retryPolicy: (any RetryPolicy)?
+
+  /// Configures the backoff policy for upload operations.
+  ///
+  /// If `nil`, the client's default backoff policy is used.
+  public var backoffPolicy: (any BackoffPolicy)?
+
   /// Legacy validation enum property for backward compatibility.
   public var validation: ChecksumValidation {
     get {
@@ -657,6 +668,13 @@ public struct UploadOptions: Sendable {
     config(&copy)
     return copy
   }
+}
+
+package func defaultUploadRetryPolicy() -> any RetryPolicy {
+  BaseRetryPolicy()
+    .retryOnTooManyRequests()
+    .withTimeLimit(.seconds(60))
+    .withAttemptLimit(10)
 }
 
 /// Customer encryption metadata returned in object responses.
