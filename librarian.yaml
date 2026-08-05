@@ -542,6 +542,11 @@ libraries:
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudOSConfigV1
+  - name: google-cloud-parametermanager-v1
+    version: 0.0.0-preview
+    copyright_year: "2026"
+    swift:
+      library_name_override: GoogleCloudParameterManagerV1
   - name: google-cloud-recommender-v1
     version: 0.0.0-preview
     copyright_year: "2026"
