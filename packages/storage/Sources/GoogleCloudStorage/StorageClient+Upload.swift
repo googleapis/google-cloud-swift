@@ -216,52 +216,21 @@ extension StorageClient {
     )
 
     while true {
-      guard let initialChunkInfo = try await checksummedSource.readChunk(maxBytes: chunkSize),
-        !initialChunkInfo.data.isEmpty
+      guard let chunkInfo = try await checksummedSource.readChunk(maxBytes: chunkSize),
+        !chunkInfo.data.isEmpty
       else {
         break
       }
 
-      var currentChunkInfo = initialChunkInfo
-      var attempt = 0
+      let chunk = chunkInfo.data
+      let isLast = chunkInfo.isLast
+      let checksum = isLast ? chunkInfo.checksum : nil
+      let effectiveTotalSize =
+        (isLast && totalSize == nil) ? (offset + Int64(chunk.count)) : totalSize
+
       let res: ChunkUploadResult
       do {
         res = try await retryLoop.run { _ in
-          attempt += 1
-          if attempt > 1 {
-            let queryRequest = try await httpClient.buildQueryResumableUploadRequest(
-              uploadId: uploadId, options: options)
-            let (qData, qResponse) = try await httpClient.sendRequestWithMappedError(queryRequest)
-            if qResponse.statusCode == 200 || qResponse.statusCode == 201 {
-              return ChunkUploadResult(
-                responseData: qData, response: qResponse, chunkCount: 0,
-                effectiveTotalSize: totalSize)
-            } else if qResponse.statusCode == 308 {
-              let status = try httpClient.parseResumableUploadQueryStatus(from: qResponse)
-              offset = status.nextOffset
-              if var seekable = checksummedSource.source as? SeekableUploadSource {
-                try await seekable.seek(to: offset)
-                checksummedSource.source = seekable as! S
-              }
-              if let reReadInfo = try await checksummedSource.readChunk(maxBytes: chunkSize) {
-                currentChunkInfo = reReadInfo
-              }
-            } else {
-              throw RequestError.http(
-                HTTPDetails(
-                  http_status_code: qResponse.statusCode,
-                  headers: [:],
-                  payload: qData
-                ))
-            }
-          }
-
-          let chunk = currentChunkInfo.data
-          let isLast = currentChunkInfo.isLast
-          let checksum = isLast ? currentChunkInfo.checksum : nil
-          let effectiveTotalSize =
-            (isLast && totalSize == nil) ? (offset + Int64(chunk.count)) : totalSize
-
           let uploadRequest = try await httpClient.buildUploadChunkRequest(
             uploadId: uploadId, data: chunk, offset: offset, totalSize: effectiveTotalSize,
             options: options, checksum: checksum)
