@@ -12,10 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 name: User Guide
-# permissions: read-all # zizmor: ignore[excessive-permissions]
-permissions:
-  contents: write
-  pull-requests: write
+permissions: read-all # zizmor: ignore[excessive-permissions]
 on:
   push:
     branches: [main, 'release-*']
@@ -45,8 +42,7 @@ jobs:
         with:
           path: .render
   deploy:
-    # TODO(https://github.com/googleapis/google-cloud-swift/issues/163) only push
-    if: github.repository == 'googleapis/google-cloud-swift' # && github.event_name == 'release'
+    if: github.repository == 'googleapis/google-cloud-swift' && github.event_name == 'push'
     runs-on: ubuntu-24.04
     permissions:
       # to deploy to Pages
