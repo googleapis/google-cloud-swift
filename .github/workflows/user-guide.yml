@@ -1,0 +1,62 @@
+# Copyright 2026 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+name: User Guide
+permissions: read-all # zizmor: ignore[excessive-permissions]
+on:
+  push:
+    branches: [main, 'release-*']
+  pull_request:
+    branches: [main, 'release-*']
+  release:
+    types: [published]
+
+jobs:
+  guide:
+    if: github.repository == 'googleapis/google-cloud-rust'
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # ratchet:actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+      - name: Install Swift
+        uses: ./.github/actions/install-swift
+      - name: Build Documentation
+        run: |
+            swift package --allow-writing-to-package-directory \
+              generate-documentation --target UserGuide \
+              --output-path ./.render \
+              --hosting-base-path UserGuide
+      - name: Upload user guide
+        id: deployment
+        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # ratchet:actions/upload-pages-artifact@v5
+        with:
+          path: .render
+
+  deploy:
+    # TODO(https://github.com/googleapis/google-cloud-swift/issues/163) only push
+    # if: github.repository == 'googleapis/google-cloud-swift' && github.event_name == 'release'
+    runs-on: ubuntu-24.04
+    permissions:
+      # to deploy to Pages
+      pages: write
+      # to verify the deployment originates from an appropriate source
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    needs: guide
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@cd2ce8fcbc39b97be8ca5fce6e763baed58fa128 # ratchet:actions/deploy-pages@v5
