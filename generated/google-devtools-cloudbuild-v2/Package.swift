@@ -18,10 +18,10 @@
 import PackageDescription
 
 let package = Package(
-  name: "GoogleCloudCloudBuildV2",
+  name: "GoogleCloudBuildV2",
   platforms: [.macOS(.v15)],
   products: [
-    .library(name: "GoogleCloudCloudBuildV2", targets: ["GoogleCloudCloudBuildV2"])
+    .library(name: "GoogleCloudBuildV2", targets: ["GoogleCloudBuildV2"])
   ],
   dependencies: [
     .package(path: "../../generated/google-api"),
@@ -35,7 +35,7 @@ let package = Package(
   ],
   targets: [
     .target(
-      name: "GoogleCloudCloudBuildV2",
+      name: "GoogleCloudBuildV2",
       dependencies: [
         .product(name: "GoogleApi", package: "google-api"),
         .product(name: "GoogleCloudAuth", package: "auth"),

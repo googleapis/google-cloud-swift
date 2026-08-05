@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudCloudBuildV2
+import GoogleCloudBuildV2
 import GoogleCloudWkt
 import GoogleIAMV1
 import GoogleLongRunning
@@ -40,7 +40,7 @@ func sample(client: RepositoryManagerClient, projectId: String, locationId: Stri
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleCloudCloudBuildV2.RepositoryManagerClient()
+      let client = try GoogleCloudBuildV2.RepositoryManagerClient()
       try await sample(client: client, projectId: "[placeholder]", locationId: "[placeholder]")
     } catch {
       print("Error: \(error)")

@@ -17,14 +17,14 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudCloudBuildV2
+import GoogleCloudBuildV2
 import GoogleCloudWkt
 import GoogleIAMV1
 import GoogleLongRunning
 import GoogleRpc
 
 func sample(projectId: String, locationId: String, ) async throws {
-  let client = try GoogleCloudCloudBuildV2.RepositoryManagerClient()
+  let client = try GoogleCloudBuildV2.RepositoryManagerClient()
   let items = try client.listConnections(
     byItem: ListConnectionsRequest()
       .with {

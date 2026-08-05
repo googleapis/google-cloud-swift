@@ -117,7 +117,7 @@ public class RepositoryManagerClient: Clients.RepositoryManagerProtocol {
   /// @Snippet(path: "RepositoryManager_GetConnection")
   public func getConnection(
     request: GetConnectionRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudCloudBuildV2.Connection {
+  ) async throws -> GoogleCloudBuildV2.Connection {
     try await self.inner.getConnection(request: request, options: options)
   }
 
@@ -126,7 +126,7 @@ public class RepositoryManagerClient: Clients.RepositoryManagerProtocol {
   /// @Snippet(path: "RepositoryManager_ListConnections")
   public func listConnections(
     request: ListConnectionsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudCloudBuildV2.ListConnectionsResponse {
+  ) async throws -> GoogleCloudBuildV2.ListConnectionsResponse {
     try await self.inner.listConnections(request: request, options: options)
   }
 
@@ -137,7 +137,7 @@ public class RepositoryManagerClient: Clients.RepositoryManagerProtocol {
     byItem: ListConnectionsRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<Connection, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudCloudBuildV2.ListConnectionsResponse in
+      (token: Swift.String) async throws -> GoogleCloudBuildV2.ListConnectionsResponse in
       var request = byItem
       request.pageToken = token
       return try await self.listConnections(request: request, options: options)
@@ -416,7 +416,7 @@ public class RepositoryManagerClient: Clients.RepositoryManagerProtocol {
   /// @Snippet(path: "RepositoryManager_GetRepository")
   public func getRepository(
     request: GetRepositoryRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudCloudBuildV2.Repository {
+  ) async throws -> GoogleCloudBuildV2.Repository {
     try await self.inner.getRepository(request: request, options: options)
   }
 
@@ -425,7 +425,7 @@ public class RepositoryManagerClient: Clients.RepositoryManagerProtocol {
   /// @Snippet(path: "RepositoryManager_ListRepositories")
   public func listRepositories(
     request: ListRepositoriesRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudCloudBuildV2.ListRepositoriesResponse {
+  ) async throws -> GoogleCloudBuildV2.ListRepositoriesResponse {
     try await self.inner.listRepositories(request: request, options: options)
   }
 
@@ -436,7 +436,7 @@ public class RepositoryManagerClient: Clients.RepositoryManagerProtocol {
     byItem: ListRepositoriesRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<Repository, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudCloudBuildV2.ListRepositoriesResponse in
+      (token: Swift.String) async throws -> GoogleCloudBuildV2.ListRepositoriesResponse in
       var request = byItem
       request.pageToken = token
       return try await self.listRepositories(request: request, options: options)
@@ -509,7 +509,7 @@ public class RepositoryManagerClient: Clients.RepositoryManagerProtocol {
   /// @Snippet(path: "RepositoryManager_FetchReadWriteToken")
   public func fetchReadWriteToken(
     request: FetchReadWriteTokenRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudCloudBuildV2.FetchReadWriteTokenResponse {
+  ) async throws -> GoogleCloudBuildV2.FetchReadWriteTokenResponse {
     try await self.inner.fetchReadWriteToken(request: request, options: options)
   }
 
@@ -518,7 +518,7 @@ public class RepositoryManagerClient: Clients.RepositoryManagerProtocol {
   /// @Snippet(path: "RepositoryManager_FetchReadToken")
   public func fetchReadToken(
     request: FetchReadTokenRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudCloudBuildV2.FetchReadTokenResponse {
+  ) async throws -> GoogleCloudBuildV2.FetchReadTokenResponse {
     try await self.inner.fetchReadToken(request: request, options: options)
   }
 
@@ -528,7 +528,7 @@ public class RepositoryManagerClient: Clients.RepositoryManagerProtocol {
   /// @Snippet(path: "RepositoryManager_FetchLinkableRepositories")
   public func fetchLinkableRepositories(
     request: FetchLinkableRepositoriesRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudCloudBuildV2.FetchLinkableRepositoriesResponse {
+  ) async throws -> GoogleCloudBuildV2.FetchLinkableRepositoriesResponse {
     try await self.inner.fetchLinkableRepositories(request: request, options: options)
   }
 
@@ -540,8 +540,7 @@ public class RepositoryManagerClient: Clients.RepositoryManagerProtocol {
     byItem: FetchLinkableRepositoriesRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<Repository, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws
-        -> GoogleCloudCloudBuildV2.FetchLinkableRepositoriesResponse in
+      (token: Swift.String) async throws -> GoogleCloudBuildV2.FetchLinkableRepositoriesResponse in
       var request = byItem
       request.pageToken = token
       return try await self.fetchLinkableRepositories(request: request, options: options)
@@ -554,7 +553,7 @@ public class RepositoryManagerClient: Clients.RepositoryManagerProtocol {
   /// @Snippet(path: "RepositoryManager_FetchGitRefs")
   public func fetchGitRefs(
     request: FetchGitRefsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudCloudBuildV2.FetchGitRefsResponse {
+  ) async throws -> GoogleCloudBuildV2.FetchGitRefsResponse {
     try await self.inner.fetchGitRefs(request: request, options: options)
   }
 
@@ -642,17 +641,16 @@ extension Clients {
     ) async throws -> any GoogleCloudGax.PollableOperation<Connection>
 
     /// See `RepositoryManagerClient.getConnection`.
-    func getConnection(request: GetConnectionRequest) async throws
-      -> GoogleCloudCloudBuildV2.Connection
+    func getConnection(request: GetConnectionRequest) async throws -> GoogleCloudBuildV2.Connection
 
     /// See `RepositoryManagerClient.getConnection`.
     func getConnection(
       name: Swift.String,
-    ) async throws -> GoogleCloudCloudBuildV2.Connection
+    ) async throws -> GoogleCloudBuildV2.Connection
 
     /// See `RepositoryManagerClient.listConnections`.
     func listConnections(request: ListConnectionsRequest) async throws
-      -> GoogleCloudCloudBuildV2.ListConnectionsResponse
+      -> GoogleCloudBuildV2.ListConnectionsResponse
 
     /// See `RepositoryManagerClient.listConnections`.
     func listConnections(
@@ -721,17 +719,16 @@ extension Clients {
     ) async throws -> any GoogleCloudGax.PollableOperation<BatchCreateRepositoriesResponse>
 
     /// See `RepositoryManagerClient.getRepository`.
-    func getRepository(request: GetRepositoryRequest) async throws
-      -> GoogleCloudCloudBuildV2.Repository
+    func getRepository(request: GetRepositoryRequest) async throws -> GoogleCloudBuildV2.Repository
 
     /// See `RepositoryManagerClient.getRepository`.
     func getRepository(
       name: Swift.String,
-    ) async throws -> GoogleCloudCloudBuildV2.Repository
+    ) async throws -> GoogleCloudBuildV2.Repository
 
     /// See `RepositoryManagerClient.listRepositories`.
     func listRepositories(request: ListRepositoriesRequest) async throws
-      -> GoogleCloudCloudBuildV2.ListRepositoriesResponse
+      -> GoogleCloudBuildV2.ListRepositoriesResponse
 
     /// See `RepositoryManagerClient.listRepositories`.
     func listRepositories(
@@ -758,25 +755,25 @@ extension Clients {
 
     /// See `RepositoryManagerClient.fetchReadWriteToken`.
     func fetchReadWriteToken(request: FetchReadWriteTokenRequest) async throws
-      -> GoogleCloudCloudBuildV2.FetchReadWriteTokenResponse
+      -> GoogleCloudBuildV2.FetchReadWriteTokenResponse
 
     /// See `RepositoryManagerClient.fetchReadWriteToken`.
     func fetchReadWriteToken(
       repository: Swift.String,
-    ) async throws -> GoogleCloudCloudBuildV2.FetchReadWriteTokenResponse
+    ) async throws -> GoogleCloudBuildV2.FetchReadWriteTokenResponse
 
     /// See `RepositoryManagerClient.fetchReadToken`.
     func fetchReadToken(request: FetchReadTokenRequest) async throws
-      -> GoogleCloudCloudBuildV2.FetchReadTokenResponse
+      -> GoogleCloudBuildV2.FetchReadTokenResponse
 
     /// See `RepositoryManagerClient.fetchReadToken`.
     func fetchReadToken(
       repository: Swift.String,
-    ) async throws -> GoogleCloudCloudBuildV2.FetchReadTokenResponse
+    ) async throws -> GoogleCloudBuildV2.FetchReadTokenResponse
 
     /// See `RepositoryManagerClient.fetchLinkableRepositories`.
     func fetchLinkableRepositories(request: FetchLinkableRepositoriesRequest) async throws
-      -> GoogleCloudCloudBuildV2.FetchLinkableRepositoriesResponse
+      -> GoogleCloudBuildV2.FetchLinkableRepositoriesResponse
 
     /// See `RepositoryManagerClient.fetchLinkableRepositories`.
     func fetchLinkableRepositories(
@@ -785,12 +782,12 @@ extension Clients {
 
     /// See `RepositoryManagerClient.fetchGitRefs`.
     func fetchGitRefs(request: FetchGitRefsRequest) async throws
-      -> GoogleCloudCloudBuildV2.FetchGitRefsResponse
+      -> GoogleCloudBuildV2.FetchGitRefsResponse
 
     /// See `RepositoryManagerClient.fetchGitRefs`.
     func fetchGitRefs(
       repository: Swift.String,
-    ) async throws -> GoogleCloudCloudBuildV2.FetchGitRefsResponse
+    ) async throws -> GoogleCloudBuildV2.FetchGitRefsResponse
 
     /// See `RepositoryManagerClient.setIamPolicy`.
     func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
@@ -823,12 +820,12 @@ extension Clients {
     /// See `RepositoryManagerClient.getConnection`.
     func getConnection(
       request: GetConnectionRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudCloudBuildV2.Connection
+    ) async throws -> GoogleCloudBuildV2.Connection
 
     /// See `RepositoryManagerClient.listConnections`.
     func listConnections(
       request: ListConnectionsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudCloudBuildV2.ListConnectionsResponse
+    ) async throws -> GoogleCloudBuildV2.ListConnectionsResponse
 
     /// See `RepositoryManagerClient.listConnections`.
     func listConnections(
@@ -878,12 +875,12 @@ extension Clients {
     /// See `RepositoryManagerClient.getRepository`.
     func getRepository(
       request: GetRepositoryRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudCloudBuildV2.Repository
+    ) async throws -> GoogleCloudBuildV2.Repository
 
     /// See `RepositoryManagerClient.listRepositories`.
     func listRepositories(
       request: ListRepositoriesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudCloudBuildV2.ListRepositoriesResponse
+    ) async throws -> GoogleCloudBuildV2.ListRepositoriesResponse
 
     /// See `RepositoryManagerClient.listRepositories`.
     func listRepositories(
@@ -903,17 +900,17 @@ extension Clients {
     /// See `RepositoryManagerClient.fetchReadWriteToken`.
     func fetchReadWriteToken(
       request: FetchReadWriteTokenRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudCloudBuildV2.FetchReadWriteTokenResponse
+    ) async throws -> GoogleCloudBuildV2.FetchReadWriteTokenResponse
 
     /// See `RepositoryManagerClient.fetchReadToken`.
     func fetchReadToken(
       request: FetchReadTokenRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudCloudBuildV2.FetchReadTokenResponse
+    ) async throws -> GoogleCloudBuildV2.FetchReadTokenResponse
 
     /// See `RepositoryManagerClient.fetchLinkableRepositories`.
     func fetchLinkableRepositories(
       request: FetchLinkableRepositoriesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudCloudBuildV2.FetchLinkableRepositoriesResponse
+    ) async throws -> GoogleCloudBuildV2.FetchLinkableRepositoriesResponse
 
     /// See `RepositoryManagerClient.fetchLinkableRepositories`.
     func fetchLinkableRepositories(
@@ -923,7 +920,7 @@ extension Clients {
     /// See `RepositoryManagerClient.fetchGitRefs`.
     func fetchGitRefs(
       request: FetchGitRefsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudCloudBuildV2.FetchGitRefsResponse
+    ) async throws -> GoogleCloudBuildV2.FetchGitRefsResponse
 
     /// See `RepositoryManagerClient.setIamPolicy`.
     func setIamPolicy(
@@ -991,20 +988,20 @@ extension Clients.RepositoryManagerProtocol {
   }
 
   public func getConnection(request: GetConnectionRequest) async throws
-    -> GoogleCloudCloudBuildV2.Connection
+    -> GoogleCloudBuildV2.Connection
   {
     try await self.getConnection(request: request, options: .init())
   }
 
   public func getConnection(
     request: GetConnectionRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudCloudBuildV2.Connection {
+  ) async throws -> GoogleCloudBuildV2.Connection {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func getConnection(
     name: Swift.String,
-  ) async throws -> GoogleCloudCloudBuildV2.Connection {
+  ) async throws -> GoogleCloudBuildV2.Connection {
     let request = GetConnectionRequest().with {
       $0.name = name
     }
@@ -1012,14 +1009,14 @@ extension Clients.RepositoryManagerProtocol {
   }
 
   public func listConnections(request: ListConnectionsRequest) async throws
-    -> GoogleCloudCloudBuildV2.ListConnectionsResponse
+    -> GoogleCloudBuildV2.ListConnectionsResponse
   {
     try await self.listConnections(request: request, options: .init())
   }
 
   public func listConnections(
     request: ListConnectionsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudCloudBuildV2.ListConnectionsResponse {
+  ) async throws -> GoogleCloudBuildV2.ListConnectionsResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1033,7 +1030,7 @@ extension Clients.RepositoryManagerProtocol {
     byItem: ListConnectionsRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<Connection, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudCloudBuildV2.ListConnectionsResponse in
+      (token: Swift.String) async throws -> GoogleCloudBuildV2.ListConnectionsResponse in
       throw GoogleCloudGax.RequestError.unimplemented
     }
     return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
@@ -1207,20 +1204,20 @@ extension Clients.RepositoryManagerProtocol {
   }
 
   public func getRepository(request: GetRepositoryRequest) async throws
-    -> GoogleCloudCloudBuildV2.Repository
+    -> GoogleCloudBuildV2.Repository
   {
     try await self.getRepository(request: request, options: .init())
   }
 
   public func getRepository(
     request: GetRepositoryRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudCloudBuildV2.Repository {
+  ) async throws -> GoogleCloudBuildV2.Repository {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func getRepository(
     name: Swift.String,
-  ) async throws -> GoogleCloudCloudBuildV2.Repository {
+  ) async throws -> GoogleCloudBuildV2.Repository {
     let request = GetRepositoryRequest().with {
       $0.name = name
     }
@@ -1228,14 +1225,14 @@ extension Clients.RepositoryManagerProtocol {
   }
 
   public func listRepositories(request: ListRepositoriesRequest) async throws
-    -> GoogleCloudCloudBuildV2.ListRepositoriesResponse
+    -> GoogleCloudBuildV2.ListRepositoriesResponse
   {
     try await self.listRepositories(request: request, options: .init())
   }
 
   public func listRepositories(
     request: ListRepositoriesRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudCloudBuildV2.ListRepositoriesResponse {
+  ) async throws -> GoogleCloudBuildV2.ListRepositoriesResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1249,7 +1246,7 @@ extension Clients.RepositoryManagerProtocol {
     byItem: ListRepositoriesRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<Repository, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudCloudBuildV2.ListRepositoriesResponse in
+      (token: Swift.String) async throws -> GoogleCloudBuildV2.ListRepositoriesResponse in
       throw GoogleCloudGax.RequestError.unimplemented
     }
     return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
@@ -1302,20 +1299,20 @@ extension Clients.RepositoryManagerProtocol {
   }
 
   public func fetchReadWriteToken(request: FetchReadWriteTokenRequest) async throws
-    -> GoogleCloudCloudBuildV2.FetchReadWriteTokenResponse
+    -> GoogleCloudBuildV2.FetchReadWriteTokenResponse
   {
     try await self.fetchReadWriteToken(request: request, options: .init())
   }
 
   public func fetchReadWriteToken(
     request: FetchReadWriteTokenRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudCloudBuildV2.FetchReadWriteTokenResponse {
+  ) async throws -> GoogleCloudBuildV2.FetchReadWriteTokenResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func fetchReadWriteToken(
     repository: Swift.String,
-  ) async throws -> GoogleCloudCloudBuildV2.FetchReadWriteTokenResponse {
+  ) async throws -> GoogleCloudBuildV2.FetchReadWriteTokenResponse {
     let request = FetchReadWriteTokenRequest().with {
       $0.repository = repository
     }
@@ -1323,20 +1320,20 @@ extension Clients.RepositoryManagerProtocol {
   }
 
   public func fetchReadToken(request: FetchReadTokenRequest) async throws
-    -> GoogleCloudCloudBuildV2.FetchReadTokenResponse
+    -> GoogleCloudBuildV2.FetchReadTokenResponse
   {
     try await self.fetchReadToken(request: request, options: .init())
   }
 
   public func fetchReadToken(
     request: FetchReadTokenRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudCloudBuildV2.FetchReadTokenResponse {
+  ) async throws -> GoogleCloudBuildV2.FetchReadTokenResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func fetchReadToken(
     repository: Swift.String,
-  ) async throws -> GoogleCloudCloudBuildV2.FetchReadTokenResponse {
+  ) async throws -> GoogleCloudBuildV2.FetchReadTokenResponse {
     let request = FetchReadTokenRequest().with {
       $0.repository = repository
     }
@@ -1344,14 +1341,14 @@ extension Clients.RepositoryManagerProtocol {
   }
 
   public func fetchLinkableRepositories(request: FetchLinkableRepositoriesRequest) async throws
-    -> GoogleCloudCloudBuildV2.FetchLinkableRepositoriesResponse
+    -> GoogleCloudBuildV2.FetchLinkableRepositoriesResponse
   {
     try await self.fetchLinkableRepositories(request: request, options: .init())
   }
 
   public func fetchLinkableRepositories(
     request: FetchLinkableRepositoriesRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudCloudBuildV2.FetchLinkableRepositoriesResponse {
+  ) async throws -> GoogleCloudBuildV2.FetchLinkableRepositoriesResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1365,28 +1362,27 @@ extension Clients.RepositoryManagerProtocol {
     byItem: FetchLinkableRepositoriesRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<Repository, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws
-        -> GoogleCloudCloudBuildV2.FetchLinkableRepositoriesResponse in
+      (token: Swift.String) async throws -> GoogleCloudBuildV2.FetchLinkableRepositoriesResponse in
       throw GoogleCloudGax.RequestError.unimplemented
     }
     return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   public func fetchGitRefs(request: FetchGitRefsRequest) async throws
-    -> GoogleCloudCloudBuildV2.FetchGitRefsResponse
+    -> GoogleCloudBuildV2.FetchGitRefsResponse
   {
     try await self.fetchGitRefs(request: request, options: .init())
   }
 
   public func fetchGitRefs(
     request: FetchGitRefsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudCloudBuildV2.FetchGitRefsResponse {
+  ) async throws -> GoogleCloudBuildV2.FetchGitRefsResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func fetchGitRefs(
     repository: Swift.String,
-  ) async throws -> GoogleCloudCloudBuildV2.FetchGitRefsResponse {
+  ) async throws -> GoogleCloudBuildV2.FetchGitRefsResponse {
     let request = FetchGitRefsRequest().with {
       $0.repository = repository
     }

@@ -32,11 +32,11 @@ extension Clients {
 
     func getConnection(
       request: GetConnectionRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudCloudBuildV2.Connection
+    ) async throws -> GoogleCloudBuildV2.Connection
 
     func listConnections(
       request: ListConnectionsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudCloudBuildV2.ListConnectionsResponse
+    ) async throws -> GoogleCloudBuildV2.ListConnectionsResponse
 
     func updateConnection(
       request: UpdateConnectionRequest, options: GoogleCloudGax.RequestOptions
@@ -56,11 +56,11 @@ extension Clients {
 
     func getRepository(
       request: GetRepositoryRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudCloudBuildV2.Repository
+    ) async throws -> GoogleCloudBuildV2.Repository
 
     func listRepositories(
       request: ListRepositoriesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudCloudBuildV2.ListRepositoriesResponse
+    ) async throws -> GoogleCloudBuildV2.ListRepositoriesResponse
 
     func deleteRepository(
       request: DeleteRepositoryRequest, options: GoogleCloudGax.RequestOptions
@@ -68,19 +68,19 @@ extension Clients {
 
     func fetchReadWriteToken(
       request: FetchReadWriteTokenRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudCloudBuildV2.FetchReadWriteTokenResponse
+    ) async throws -> GoogleCloudBuildV2.FetchReadWriteTokenResponse
 
     func fetchReadToken(
       request: FetchReadTokenRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudCloudBuildV2.FetchReadTokenResponse
+    ) async throws -> GoogleCloudBuildV2.FetchReadTokenResponse
 
     func fetchLinkableRepositories(
       request: FetchLinkableRepositoriesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudCloudBuildV2.FetchLinkableRepositoriesResponse
+    ) async throws -> GoogleCloudBuildV2.FetchLinkableRepositoriesResponse
 
     func fetchGitRefs(
       request: FetchGitRefsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudCloudBuildV2.FetchGitRefsResponse
+    ) async throws -> GoogleCloudBuildV2.FetchGitRefsResponse
 
     func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleCloudGax.RequestOptions
@@ -139,7 +139,7 @@ extension Clients {
 
     public func getConnection(
       request: GetConnectionRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudCloudBuildV2.Connection {
+    ) async throws -> GoogleCloudBuildV2.Connection {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -154,12 +154,12 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudCloudBuildV2.Connection.self, from: data)
+        GoogleCloudBuildV2.Connection.self, from: data)
     }
 
     public func listConnections(
       request: ListConnectionsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudCloudBuildV2.ListConnectionsResponse {
+    ) async throws -> GoogleCloudBuildV2.ListConnectionsResponse {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.parent' is not set or is empty")
@@ -177,7 +177,7 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudCloudBuildV2.ListConnectionsResponse.self, from: data)
+        GoogleCloudBuildV2.ListConnectionsResponse.self, from: data)
     }
 
     public func updateConnection(
@@ -282,7 +282,7 @@ extension Clients {
 
     public func getRepository(
       request: GetRepositoryRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudCloudBuildV2.Repository {
+    ) async throws -> GoogleCloudBuildV2.Repository {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -297,12 +297,12 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudCloudBuildV2.Repository.self, from: data)
+        GoogleCloudBuildV2.Repository.self, from: data)
     }
 
     public func listRepositories(
       request: ListRepositoriesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudCloudBuildV2.ListRepositoriesResponse {
+    ) async throws -> GoogleCloudBuildV2.ListRepositoriesResponse {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.parent' is not set or is empty")
@@ -321,7 +321,7 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudCloudBuildV2.ListRepositoriesResponse.self, from: data)
+        GoogleCloudBuildV2.ListRepositoriesResponse.self, from: data)
     }
 
     public func deleteRepository(
@@ -349,7 +349,7 @@ extension Clients {
 
     public func fetchReadWriteToken(
       request: FetchReadWriteTokenRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudCloudBuildV2.FetchReadWriteTokenResponse {
+    ) async throws -> GoogleCloudBuildV2.FetchReadWriteTokenResponse {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.repository as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.repository' is not set or is empty")
@@ -366,12 +366,12 @@ extension Clients {
       req.httpBody = try JSONEncoder().encode(request)
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudCloudBuildV2.FetchReadWriteTokenResponse.self, from: data)
+        GoogleCloudBuildV2.FetchReadWriteTokenResponse.self, from: data)
     }
 
     public func fetchReadToken(
       request: FetchReadTokenRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudCloudBuildV2.FetchReadTokenResponse {
+    ) async throws -> GoogleCloudBuildV2.FetchReadTokenResponse {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.repository as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.repository' is not set or is empty")
@@ -388,12 +388,12 @@ extension Clients {
       req.httpBody = try JSONEncoder().encode(request)
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudCloudBuildV2.FetchReadTokenResponse.self, from: data)
+        GoogleCloudBuildV2.FetchReadTokenResponse.self, from: data)
     }
 
     public func fetchLinkableRepositories(
       request: FetchLinkableRepositoriesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudCloudBuildV2.FetchLinkableRepositoriesResponse {
+    ) async throws -> GoogleCloudBuildV2.FetchLinkableRepositoriesResponse {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.connection as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.connection' is not set or is empty")
@@ -411,12 +411,12 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudCloudBuildV2.FetchLinkableRepositoriesResponse.self, from: data)
+        GoogleCloudBuildV2.FetchLinkableRepositoriesResponse.self, from: data)
     }
 
     public func fetchGitRefs(
       request: FetchGitRefsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudCloudBuildV2.FetchGitRefsResponse {
+    ) async throws -> GoogleCloudBuildV2.FetchGitRefsResponse {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.repository as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.repository' is not set or is empty")
@@ -433,7 +433,7 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudCloudBuildV2.FetchGitRefsResponse.self, from: data)
+        GoogleCloudBuildV2.FetchGitRefsResponse.self, from: data)
     }
 
     public func setIamPolicy(

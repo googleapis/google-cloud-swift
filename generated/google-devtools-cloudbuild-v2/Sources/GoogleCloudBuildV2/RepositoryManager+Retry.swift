@@ -68,14 +68,14 @@ extension Clients {
 
     public func getConnection(
       request: GetConnectionRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudCloudBuildV2.Connection {
+    ) async throws -> GoogleCloudBuildV2.Connection {
       try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
         action: {
           (r: GetConnectionRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleCloudCloudBuildV2.Connection
+            -> GoogleCloudBuildV2.Connection
           in
           return try await self.inner.getConnection(request: r, options: o)
         })
@@ -83,14 +83,14 @@ extension Clients {
 
     public func listConnections(
       request: ListConnectionsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudCloudBuildV2.ListConnectionsResponse {
+    ) async throws -> GoogleCloudBuildV2.ListConnectionsResponse {
       try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
         action: {
           (r: ListConnectionsRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleCloudCloudBuildV2.ListConnectionsResponse
+            -> GoogleCloudBuildV2.ListConnectionsResponse
           in
           return try await self.inner.listConnections(request: r, options: o)
         })
@@ -158,14 +158,14 @@ extension Clients {
 
     public func getRepository(
       request: GetRepositoryRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudCloudBuildV2.Repository {
+    ) async throws -> GoogleCloudBuildV2.Repository {
       try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
         action: {
           (r: GetRepositoryRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleCloudCloudBuildV2.Repository
+            -> GoogleCloudBuildV2.Repository
           in
           return try await self.inner.getRepository(request: r, options: o)
         })
@@ -173,14 +173,14 @@ extension Clients {
 
     public func listRepositories(
       request: ListRepositoriesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudCloudBuildV2.ListRepositoriesResponse {
+    ) async throws -> GoogleCloudBuildV2.ListRepositoriesResponse {
       try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
         action: {
           (r: ListRepositoriesRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleCloudCloudBuildV2.ListRepositoriesResponse
+            -> GoogleCloudBuildV2.ListRepositoriesResponse
           in
           return try await self.inner.listRepositories(request: r, options: o)
         })
@@ -203,14 +203,14 @@ extension Clients {
 
     public func fetchReadWriteToken(
       request: FetchReadWriteTokenRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudCloudBuildV2.FetchReadWriteTokenResponse {
+    ) async throws -> GoogleCloudBuildV2.FetchReadWriteTokenResponse {
       try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
         action: {
           (r: FetchReadWriteTokenRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleCloudCloudBuildV2.FetchReadWriteTokenResponse
+            -> GoogleCloudBuildV2.FetchReadWriteTokenResponse
           in
           return try await self.inner.fetchReadWriteToken(request: r, options: o)
         })
@@ -218,14 +218,14 @@ extension Clients {
 
     public func fetchReadToken(
       request: FetchReadTokenRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudCloudBuildV2.FetchReadTokenResponse {
+    ) async throws -> GoogleCloudBuildV2.FetchReadTokenResponse {
       try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
         action: {
           (r: FetchReadTokenRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleCloudCloudBuildV2.FetchReadTokenResponse
+            -> GoogleCloudBuildV2.FetchReadTokenResponse
           in
           return try await self.inner.fetchReadToken(request: r, options: o)
         })
@@ -233,14 +233,14 @@ extension Clients {
 
     public func fetchLinkableRepositories(
       request: FetchLinkableRepositoriesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudCloudBuildV2.FetchLinkableRepositoriesResponse {
+    ) async throws -> GoogleCloudBuildV2.FetchLinkableRepositoriesResponse {
       try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
         action: {
           (r: FetchLinkableRepositoriesRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleCloudCloudBuildV2.FetchLinkableRepositoriesResponse
+            -> GoogleCloudBuildV2.FetchLinkableRepositoriesResponse
           in
           return try await self.inner.fetchLinkableRepositories(request: r, options: o)
         })
@@ -248,14 +248,14 @@ extension Clients {
 
     public func fetchGitRefs(
       request: FetchGitRefsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudCloudBuildV2.FetchGitRefsResponse {
+    ) async throws -> GoogleCloudBuildV2.FetchGitRefsResponse {
       try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
         action: {
           (r: FetchGitRefsRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleCloudCloudBuildV2.FetchGitRefsResponse
+            -> GoogleCloudBuildV2.FetchGitRefsResponse
           in
           return try await self.inner.fetchGitRefs(request: r, options: o)
         })
