@@ -724,6 +724,11 @@ libraries:
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudArtifactRegistryV1
+  - name: google-devtools-cloudbuild-v2
+    version: 0.0.0-preview
+    copyright_year: "2026"
+    swift:
+      library_name_override: GoogleCloudCloudBuildV2
   - name: google-devtools-cloudtrace-v2
     version: 0.1.0-preview
     copyright_year: "2026"
