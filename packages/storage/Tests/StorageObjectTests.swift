@@ -25,7 +25,7 @@ import Testing
     #expect(object.generation == 0)
     #expect(object.metageneration == 0)
     #expect(object.size == 0)
-    #expect(object.contentType == "" || object.contentType == nil)
+    #expect(object.contentType == "")
     #expect(object.timeCreated == nil)
     #expect(object.updated == nil)
   }
