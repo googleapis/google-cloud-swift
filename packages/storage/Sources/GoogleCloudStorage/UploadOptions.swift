@@ -286,7 +286,6 @@ public enum PredefinedAcl: String, Sendable, Equatable {
   case publicRead
 }
 
-
 /// Object retention policy configuration for a GCS Object.
 public struct ObjectRetention: Sendable, Codable, Equatable {
   public var mode: String?
@@ -623,11 +622,13 @@ extension CustomerEncryption {
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: ExtensionCodingKeys.self)
-    self.encryptionAlgorithm = try container.decodeIfPresent(String.self, forKey: .encryptionAlgorithm) ?? ""
+    self.encryptionAlgorithm =
+      try container.decodeIfPresent(String.self, forKey: .encryptionAlgorithm) ?? ""
     if let data = try container.decodeIfPresent(Data.self, forKey: .keySha256Bytes) {
       self.keySha256Bytes = data
     } else if let b64 = try container.decodeIfPresent(String.self, forKey: .keySha256),
-              let data = Data(base64Encoded: b64) {
+      let data = Data(base64Encoded: b64)
+    {
       self.keySha256Bytes = data
     } else {
       self.keySha256Bytes = Data()

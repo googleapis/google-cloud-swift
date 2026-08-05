@@ -299,7 +299,9 @@ import Testing
     #expect(object.acl.count == 1)
     #expect(object.acl.first?.entity == "user-test@example.com")
     #expect(object.acl.first?.role == "OWNER")
-    #expect(object.retention?.mode == .unlocked || object.retention?.mode == .unknownStringValue("Unlocked"))
+    #expect(
+      object.retention?.mode == .unlocked
+        || object.retention?.mode == .unknownStringValue("Unlocked"))
     #expect(object.owner?.entity == "user-owner@example.com")
     #expect(object.owner?.entityId == "owner123")
   }
