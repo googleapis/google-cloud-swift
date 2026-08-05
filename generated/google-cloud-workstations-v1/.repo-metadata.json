@@ -1,0 +1,15 @@
+{
+    "api_description": "Allows administrators to create managed developer environments in the cloud.",
+    "api_id": "workstations.googleapis.com",
+    "api_shortname": "workstations",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/google-cloud-workstations-v1/documentation",
+    "distribution_name": "google-cloud-workstations-v1",
+    "issue_tracker": "https://issuetracker.google.com/issues/new?component=1328344",
+    "language": "swift",
+    "library_type": "GAPIC_AUTO",
+    "name": "workstations",
+    "name_pretty": "Cloud Workstations",
+    "product_documentation": "https://cloud.google.com/workstations/docs",
+    "release_level": "preview",
+    "repo": "googleapis/google-cloud-swift"
+}

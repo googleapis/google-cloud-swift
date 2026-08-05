@@ -683,6 +683,9 @@ libraries:
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudWorkloadManagerV1
+  - name: google-cloud-workstations-v1
+    version: 0.0.0-preview
+    copyright_year: "2026"
   - name: google-container-v1
     version: 0.1.0
     copyright_year: "2026"
