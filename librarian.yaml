@@ -645,6 +645,8 @@ libraries:
         - output: packages/storage/Sources/GoogleCloudStorage/generated/Storage
           api_path: google/storage/v2
           module_type: default
+          skipped_ids:
+            - .google.storage.v2.Storage
 
   - name: google-cloud-storageinsights-v1
     version: 0.1.0-preview
