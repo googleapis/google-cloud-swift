@@ -17,11 +17,11 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudCloudControlsPartnerV1
+import GoogleCloudControlsPartnerV1
 import GoogleCloudWkt
 
 func sample(organizationId: String, locationId: String, customerId: String, ) async throws {
-  let client = try GoogleCloudCloudControlsPartnerV1.CloudControlsPartnerCoreClient()
+  let client = try GoogleCloudControlsPartnerV1.CloudControlsPartnerCoreClient()
   let items = try client.listWorkloads(
     byItem: ListWorkloadsRequest()
       .with {

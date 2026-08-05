@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudCloudControlsPartnerV1
+import GoogleCloudControlsPartnerV1
 import GoogleCloudWkt
 
 func sample(client: CloudControlsPartnerCoreClient, organizationId: String, locationId: String)
@@ -37,7 +37,7 @@ func sample(client: CloudControlsPartnerCoreClient, organizationId: String, loca
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleCloudCloudControlsPartnerV1.CloudControlsPartnerCoreClient()
+      let client = try GoogleCloudControlsPartnerV1.CloudControlsPartnerCoreClient()
       try await sample(client: client, organizationId: "[placeholder]", locationId: "[placeholder]")
     } catch {
       print("Error: \(error)")

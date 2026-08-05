@@ -52,14 +52,14 @@ extension Clients {
 
     public func listViolations(
       request: ListViolationsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudCloudControlsPartnerV1.ListViolationsResponse {
+    ) async throws -> GoogleCloudControlsPartnerV1.ListViolationsResponse {
       try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
         action: {
           (r: ListViolationsRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleCloudCloudControlsPartnerV1.ListViolationsResponse
+            -> GoogleCloudControlsPartnerV1.ListViolationsResponse
           in
           return try await self.inner.listViolations(request: r, options: o)
         })
@@ -67,14 +67,14 @@ extension Clients {
 
     public func getViolation(
       request: GetViolationRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudCloudControlsPartnerV1.Violation {
+    ) async throws -> GoogleCloudControlsPartnerV1.Violation {
       try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
         action: {
           (r: GetViolationRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleCloudCloudControlsPartnerV1.Violation
+            -> GoogleCloudControlsPartnerV1.Violation
           in
           return try await self.inner.getViolation(request: r, options: o)
         })

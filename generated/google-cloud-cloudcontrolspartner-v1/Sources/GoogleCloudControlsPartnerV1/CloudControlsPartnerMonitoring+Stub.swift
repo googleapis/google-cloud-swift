@@ -25,11 +25,11 @@ extension Clients {
   protocol CloudControlsPartnerMonitoringStub {
     func listViolations(
       request: ListViolationsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudCloudControlsPartnerV1.ListViolationsResponse
+    ) async throws -> GoogleCloudControlsPartnerV1.ListViolationsResponse
 
     func getViolation(
       request: GetViolationRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudCloudControlsPartnerV1.Violation
+    ) async throws -> GoogleCloudControlsPartnerV1.Violation
   }
 
   class CloudControlsPartnerMonitoringTransport: CloudControlsPartnerMonitoringStub {
@@ -42,7 +42,7 @@ extension Clients {
 
     public func listViolations(
       request: ListViolationsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudCloudControlsPartnerV1.ListViolationsResponse {
+    ) async throws -> GoogleCloudControlsPartnerV1.ListViolationsResponse {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.parent' is not set or is empty")
@@ -63,12 +63,12 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudCloudControlsPartnerV1.ListViolationsResponse.self, from: data)
+        GoogleCloudControlsPartnerV1.ListViolationsResponse.self, from: data)
     }
 
     public func getViolation(
       request: GetViolationRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudCloudControlsPartnerV1.Violation {
+    ) async throws -> GoogleCloudControlsPartnerV1.Violation {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -83,7 +83,7 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudCloudControlsPartnerV1.Violation.self, from: data)
+        GoogleCloudControlsPartnerV1.Violation.self, from: data)
     }
   }
 }

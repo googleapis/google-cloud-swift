@@ -43,7 +43,7 @@ public class CloudControlsPartnerCoreClient: Clients.CloudControlsPartnerCorePro
   /// @Snippet(path: "CloudControlsPartnerCore_GetWorkload")
   public func getWorkload(
     request: GetWorkloadRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudCloudControlsPartnerV1.Workload {
+  ) async throws -> GoogleCloudControlsPartnerV1.Workload {
     try await self.inner.getWorkload(request: request, options: options)
   }
 
@@ -52,7 +52,7 @@ public class CloudControlsPartnerCoreClient: Clients.CloudControlsPartnerCorePro
   /// @Snippet(path: "CloudControlsPartnerCore_ListWorkloads")
   public func listWorkloads(
     request: ListWorkloadsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudCloudControlsPartnerV1.ListWorkloadsResponse {
+  ) async throws -> GoogleCloudControlsPartnerV1.ListWorkloadsResponse {
     try await self.inner.listWorkloads(request: request, options: options)
   }
 
@@ -63,8 +63,7 @@ public class CloudControlsPartnerCoreClient: Clients.CloudControlsPartnerCorePro
     byItem: ListWorkloadsRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<Workload, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudCloudControlsPartnerV1.ListWorkloadsResponse
-      in
+      (token: Swift.String) async throws -> GoogleCloudControlsPartnerV1.ListWorkloadsResponse in
       var request = byItem
       request.pageToken = token
       return try await self.listWorkloads(request: request, options: options)
@@ -77,7 +76,7 @@ public class CloudControlsPartnerCoreClient: Clients.CloudControlsPartnerCorePro
   /// @Snippet(path: "CloudControlsPartnerCore_GetCustomer")
   public func getCustomer(
     request: GetCustomerRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudCloudControlsPartnerV1.Customer {
+  ) async throws -> GoogleCloudControlsPartnerV1.Customer {
     try await self.inner.getCustomer(request: request, options: options)
   }
 
@@ -86,7 +85,7 @@ public class CloudControlsPartnerCoreClient: Clients.CloudControlsPartnerCorePro
   /// @Snippet(path: "CloudControlsPartnerCore_ListCustomers")
   public func listCustomers(
     request: ListCustomersRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudCloudControlsPartnerV1.ListCustomersResponse {
+  ) async throws -> GoogleCloudControlsPartnerV1.ListCustomersResponse {
     try await self.inner.listCustomers(request: request, options: options)
   }
 
@@ -97,8 +96,7 @@ public class CloudControlsPartnerCoreClient: Clients.CloudControlsPartnerCorePro
     byItem: ListCustomersRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<Customer, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudCloudControlsPartnerV1.ListCustomersResponse
-      in
+      (token: Swift.String) async throws -> GoogleCloudControlsPartnerV1.ListCustomersResponse in
       var request = byItem
       request.pageToken = token
       return try await self.listCustomers(request: request, options: options)
@@ -111,7 +109,7 @@ public class CloudControlsPartnerCoreClient: Clients.CloudControlsPartnerCorePro
   /// @Snippet(path: "CloudControlsPartnerCore_GetEkmConnections")
   public func getEkmConnections(
     request: GetEkmConnectionsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudCloudControlsPartnerV1.EkmConnections {
+  ) async throws -> GoogleCloudControlsPartnerV1.EkmConnections {
     try await self.inner.getEkmConnections(request: request, options: options)
   }
 
@@ -120,7 +118,7 @@ public class CloudControlsPartnerCoreClient: Clients.CloudControlsPartnerCorePro
   /// @Snippet(path: "CloudControlsPartnerCore_GetPartnerPermissions")
   public func getPartnerPermissions(
     request: GetPartnerPermissionsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudCloudControlsPartnerV1.PartnerPermissions {
+  ) async throws -> GoogleCloudControlsPartnerV1.PartnerPermissions {
     try await self.inner.getPartnerPermissions(request: request, options: options)
   }
 
@@ -131,7 +129,7 @@ public class CloudControlsPartnerCoreClient: Clients.CloudControlsPartnerCorePro
   @available(*, deprecated)
   public func listAccessApprovalRequests(
     request: ListAccessApprovalRequestsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudCloudControlsPartnerV1.ListAccessApprovalRequestsResponse {
+  ) async throws -> GoogleCloudControlsPartnerV1.ListAccessApprovalRequestsResponse {
     try await self.inner.listAccessApprovalRequests(request: request, options: options)
   }
 
@@ -145,7 +143,7 @@ public class CloudControlsPartnerCoreClient: Clients.CloudControlsPartnerCorePro
   ) throws -> any AsyncSequence<AccessApprovalRequest, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
-        -> GoogleCloudCloudControlsPartnerV1.ListAccessApprovalRequestsResponse in
+        -> GoogleCloudControlsPartnerV1.ListAccessApprovalRequestsResponse in
       var request = byItem
       request.pageToken = token
       return try await self.listAccessApprovalRequests(request: request, options: options)
@@ -158,7 +156,7 @@ public class CloudControlsPartnerCoreClient: Clients.CloudControlsPartnerCorePro
   /// @Snippet(path: "CloudControlsPartnerCore_GetPartner")
   public func getPartner(
     request: GetPartnerRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudCloudControlsPartnerV1.Partner {
+  ) async throws -> GoogleCloudControlsPartnerV1.Partner {
     try await self.inner.getPartner(request: request, options: options)
   }
 
@@ -167,7 +165,7 @@ public class CloudControlsPartnerCoreClient: Clients.CloudControlsPartnerCorePro
   /// @Snippet(path: "CloudControlsPartnerCore_CreateCustomer")
   public func createCustomer(
     request: CreateCustomerRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudCloudControlsPartnerV1.Customer {
+  ) async throws -> GoogleCloudControlsPartnerV1.Customer {
     try await self.inner.createCustomer(request: request, options: options)
   }
 
@@ -176,7 +174,7 @@ public class CloudControlsPartnerCoreClient: Clients.CloudControlsPartnerCorePro
   /// @Snippet(path: "CloudControlsPartnerCore_UpdateCustomer")
   public func updateCustomer(
     request: UpdateCustomerRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudCloudControlsPartnerV1.Customer {
+  ) async throws -> GoogleCloudControlsPartnerV1.Customer {
     try await self.inner.updateCustomer(request: request, options: options)
   }
 
@@ -199,16 +197,16 @@ extension Clients {
   public protocol CloudControlsPartnerCoreProtocol {
     /// See `CloudControlsPartnerCoreClient.getWorkload`.
     func getWorkload(request: GetWorkloadRequest) async throws
-      -> GoogleCloudCloudControlsPartnerV1.Workload
+      -> GoogleCloudControlsPartnerV1.Workload
 
     /// See `CloudControlsPartnerCoreClient.getWorkload`.
     func getWorkload(
       name: Swift.String,
-    ) async throws -> GoogleCloudCloudControlsPartnerV1.Workload
+    ) async throws -> GoogleCloudControlsPartnerV1.Workload
 
     /// See `CloudControlsPartnerCoreClient.listWorkloads`.
     func listWorkloads(request: ListWorkloadsRequest) async throws
-      -> GoogleCloudCloudControlsPartnerV1.ListWorkloadsResponse
+      -> GoogleCloudControlsPartnerV1.ListWorkloadsResponse
 
     /// See `CloudControlsPartnerCoreClient.listWorkloads`.
     func listWorkloads(
@@ -222,16 +220,16 @@ extension Clients {
 
     /// See `CloudControlsPartnerCoreClient.getCustomer`.
     func getCustomer(request: GetCustomerRequest) async throws
-      -> GoogleCloudCloudControlsPartnerV1.Customer
+      -> GoogleCloudControlsPartnerV1.Customer
 
     /// See `CloudControlsPartnerCoreClient.getCustomer`.
     func getCustomer(
       name: Swift.String,
-    ) async throws -> GoogleCloudCloudControlsPartnerV1.Customer
+    ) async throws -> GoogleCloudControlsPartnerV1.Customer
 
     /// See `CloudControlsPartnerCoreClient.listCustomers`.
     func listCustomers(request: ListCustomersRequest) async throws
-      -> GoogleCloudCloudControlsPartnerV1.ListCustomersResponse
+      -> GoogleCloudControlsPartnerV1.ListCustomersResponse
 
     /// See `CloudControlsPartnerCoreClient.listCustomers`.
     func listCustomers(
@@ -245,26 +243,26 @@ extension Clients {
 
     /// See `CloudControlsPartnerCoreClient.getEkmConnections`.
     func getEkmConnections(request: GetEkmConnectionsRequest) async throws
-      -> GoogleCloudCloudControlsPartnerV1.EkmConnections
+      -> GoogleCloudControlsPartnerV1.EkmConnections
 
     /// See `CloudControlsPartnerCoreClient.getEkmConnections`.
     func getEkmConnections(
       name: Swift.String,
-    ) async throws -> GoogleCloudCloudControlsPartnerV1.EkmConnections
+    ) async throws -> GoogleCloudControlsPartnerV1.EkmConnections
 
     /// See `CloudControlsPartnerCoreClient.getPartnerPermissions`.
     func getPartnerPermissions(request: GetPartnerPermissionsRequest) async throws
-      -> GoogleCloudCloudControlsPartnerV1.PartnerPermissions
+      -> GoogleCloudControlsPartnerV1.PartnerPermissions
 
     /// See `CloudControlsPartnerCoreClient.getPartnerPermissions`.
     func getPartnerPermissions(
       name: Swift.String,
-    ) async throws -> GoogleCloudCloudControlsPartnerV1.PartnerPermissions
+    ) async throws -> GoogleCloudControlsPartnerV1.PartnerPermissions
 
     /// See `CloudControlsPartnerCoreClient.listAccessApprovalRequests`.
     @available(*, deprecated)
     func listAccessApprovalRequests(request: ListAccessApprovalRequestsRequest) async throws
-      -> GoogleCloudCloudControlsPartnerV1.ListAccessApprovalRequestsResponse
+      -> GoogleCloudControlsPartnerV1.ListAccessApprovalRequestsResponse
 
     /// See `CloudControlsPartnerCoreClient.listAccessApprovalRequests`.
     @available(*, deprecated)
@@ -279,34 +277,33 @@ extension Clients {
     ) throws -> any AsyncSequence<AccessApprovalRequest, Swift.Error>
 
     /// See `CloudControlsPartnerCoreClient.getPartner`.
-    func getPartner(request: GetPartnerRequest) async throws
-      -> GoogleCloudCloudControlsPartnerV1.Partner
+    func getPartner(request: GetPartnerRequest) async throws -> GoogleCloudControlsPartnerV1.Partner
 
     /// See `CloudControlsPartnerCoreClient.getPartner`.
     func getPartner(
       name: Swift.String,
-    ) async throws -> GoogleCloudCloudControlsPartnerV1.Partner
+    ) async throws -> GoogleCloudControlsPartnerV1.Partner
 
     /// See `CloudControlsPartnerCoreClient.createCustomer`.
     func createCustomer(request: CreateCustomerRequest) async throws
-      -> GoogleCloudCloudControlsPartnerV1.Customer
+      -> GoogleCloudControlsPartnerV1.Customer
 
     /// See `CloudControlsPartnerCoreClient.createCustomer`.
     func createCustomer(
       parent: Swift.String,
       customer: Customer?,
       customerId: Swift.String,
-    ) async throws -> GoogleCloudCloudControlsPartnerV1.Customer
+    ) async throws -> GoogleCloudControlsPartnerV1.Customer
 
     /// See `CloudControlsPartnerCoreClient.updateCustomer`.
     func updateCustomer(request: UpdateCustomerRequest) async throws
-      -> GoogleCloudCloudControlsPartnerV1.Customer
+      -> GoogleCloudControlsPartnerV1.Customer
 
     /// See `CloudControlsPartnerCoreClient.updateCustomer`.
     func updateCustomer(
       customer: Customer?,
       updateMask: GoogleCloudWkt.FieldMask?,
-    ) async throws -> GoogleCloudCloudControlsPartnerV1.Customer
+    ) async throws -> GoogleCloudControlsPartnerV1.Customer
 
     /// See `CloudControlsPartnerCoreClient.deleteCustomer`.
     func deleteCustomer(request: DeleteCustomerRequest) async throws
@@ -319,12 +316,12 @@ extension Clients {
     /// See `CloudControlsPartnerCoreClient.getWorkload`.
     func getWorkload(
       request: GetWorkloadRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudCloudControlsPartnerV1.Workload
+    ) async throws -> GoogleCloudControlsPartnerV1.Workload
 
     /// See `CloudControlsPartnerCoreClient.listWorkloads`.
     func listWorkloads(
       request: ListWorkloadsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudCloudControlsPartnerV1.ListWorkloadsResponse
+    ) async throws -> GoogleCloudControlsPartnerV1.ListWorkloadsResponse
 
     /// See `CloudControlsPartnerCoreClient.listWorkloads`.
     func listWorkloads(
@@ -334,12 +331,12 @@ extension Clients {
     /// See `CloudControlsPartnerCoreClient.getCustomer`.
     func getCustomer(
       request: GetCustomerRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudCloudControlsPartnerV1.Customer
+    ) async throws -> GoogleCloudControlsPartnerV1.Customer
 
     /// See `CloudControlsPartnerCoreClient.listCustomers`.
     func listCustomers(
       request: ListCustomersRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudCloudControlsPartnerV1.ListCustomersResponse
+    ) async throws -> GoogleCloudControlsPartnerV1.ListCustomersResponse
 
     /// See `CloudControlsPartnerCoreClient.listCustomers`.
     func listCustomers(
@@ -349,18 +346,18 @@ extension Clients {
     /// See `CloudControlsPartnerCoreClient.getEkmConnections`.
     func getEkmConnections(
       request: GetEkmConnectionsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudCloudControlsPartnerV1.EkmConnections
+    ) async throws -> GoogleCloudControlsPartnerV1.EkmConnections
 
     /// See `CloudControlsPartnerCoreClient.getPartnerPermissions`.
     func getPartnerPermissions(
       request: GetPartnerPermissionsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudCloudControlsPartnerV1.PartnerPermissions
+    ) async throws -> GoogleCloudControlsPartnerV1.PartnerPermissions
 
     /// See `CloudControlsPartnerCoreClient.listAccessApprovalRequests`.
     @available(*, deprecated)
     func listAccessApprovalRequests(
       request: ListAccessApprovalRequestsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudCloudControlsPartnerV1.ListAccessApprovalRequestsResponse
+    ) async throws -> GoogleCloudControlsPartnerV1.ListAccessApprovalRequestsResponse
 
     /// See `CloudControlsPartnerCoreClient.listAccessApprovalRequests`.
     @available(*, deprecated)
@@ -371,17 +368,17 @@ extension Clients {
     /// See `CloudControlsPartnerCoreClient.getPartner`.
     func getPartner(
       request: GetPartnerRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudCloudControlsPartnerV1.Partner
+    ) async throws -> GoogleCloudControlsPartnerV1.Partner
 
     /// See `CloudControlsPartnerCoreClient.createCustomer`.
     func createCustomer(
       request: CreateCustomerRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudCloudControlsPartnerV1.Customer
+    ) async throws -> GoogleCloudControlsPartnerV1.Customer
 
     /// See `CloudControlsPartnerCoreClient.updateCustomer`.
     func updateCustomer(
       request: UpdateCustomerRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudCloudControlsPartnerV1.Customer
+    ) async throws -> GoogleCloudControlsPartnerV1.Customer
 
     /// See `CloudControlsPartnerCoreClient.deleteCustomer`.
     func deleteCustomer(
@@ -393,20 +390,20 @@ extension Clients {
 // Default implementations
 extension Clients.CloudControlsPartnerCoreProtocol {
   public func getWorkload(request: GetWorkloadRequest) async throws
-    -> GoogleCloudCloudControlsPartnerV1.Workload
+    -> GoogleCloudControlsPartnerV1.Workload
   {
     try await self.getWorkload(request: request, options: .init())
   }
 
   public func getWorkload(
     request: GetWorkloadRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudCloudControlsPartnerV1.Workload {
+  ) async throws -> GoogleCloudControlsPartnerV1.Workload {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func getWorkload(
     name: Swift.String,
-  ) async throws -> GoogleCloudCloudControlsPartnerV1.Workload {
+  ) async throws -> GoogleCloudControlsPartnerV1.Workload {
     let request = GetWorkloadRequest().with {
       $0.name = name
     }
@@ -414,14 +411,14 @@ extension Clients.CloudControlsPartnerCoreProtocol {
   }
 
   public func listWorkloads(request: ListWorkloadsRequest) async throws
-    -> GoogleCloudCloudControlsPartnerV1.ListWorkloadsResponse
+    -> GoogleCloudControlsPartnerV1.ListWorkloadsResponse
   {
     try await self.listWorkloads(request: request, options: .init())
   }
 
   public func listWorkloads(
     request: ListWorkloadsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudCloudControlsPartnerV1.ListWorkloadsResponse {
+  ) async throws -> GoogleCloudControlsPartnerV1.ListWorkloadsResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -435,8 +432,7 @@ extension Clients.CloudControlsPartnerCoreProtocol {
     byItem: ListWorkloadsRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<Workload, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudCloudControlsPartnerV1.ListWorkloadsResponse
-      in
+      (token: Swift.String) async throws -> GoogleCloudControlsPartnerV1.ListWorkloadsResponse in
       throw GoogleCloudGax.RequestError.unimplemented
     }
     return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
@@ -452,20 +448,20 @@ extension Clients.CloudControlsPartnerCoreProtocol {
   }
 
   public func getCustomer(request: GetCustomerRequest) async throws
-    -> GoogleCloudCloudControlsPartnerV1.Customer
+    -> GoogleCloudControlsPartnerV1.Customer
   {
     try await self.getCustomer(request: request, options: .init())
   }
 
   public func getCustomer(
     request: GetCustomerRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudCloudControlsPartnerV1.Customer {
+  ) async throws -> GoogleCloudControlsPartnerV1.Customer {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func getCustomer(
     name: Swift.String,
-  ) async throws -> GoogleCloudCloudControlsPartnerV1.Customer {
+  ) async throws -> GoogleCloudControlsPartnerV1.Customer {
     let request = GetCustomerRequest().with {
       $0.name = name
     }
@@ -473,14 +469,14 @@ extension Clients.CloudControlsPartnerCoreProtocol {
   }
 
   public func listCustomers(request: ListCustomersRequest) async throws
-    -> GoogleCloudCloudControlsPartnerV1.ListCustomersResponse
+    -> GoogleCloudControlsPartnerV1.ListCustomersResponse
   {
     try await self.listCustomers(request: request, options: .init())
   }
 
   public func listCustomers(
     request: ListCustomersRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudCloudControlsPartnerV1.ListCustomersResponse {
+  ) async throws -> GoogleCloudControlsPartnerV1.ListCustomersResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -494,8 +490,7 @@ extension Clients.CloudControlsPartnerCoreProtocol {
     byItem: ListCustomersRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<Customer, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudCloudControlsPartnerV1.ListCustomersResponse
-      in
+      (token: Swift.String) async throws -> GoogleCloudControlsPartnerV1.ListCustomersResponse in
       throw GoogleCloudGax.RequestError.unimplemented
     }
     return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
@@ -511,20 +506,20 @@ extension Clients.CloudControlsPartnerCoreProtocol {
   }
 
   public func getEkmConnections(request: GetEkmConnectionsRequest) async throws
-    -> GoogleCloudCloudControlsPartnerV1.EkmConnections
+    -> GoogleCloudControlsPartnerV1.EkmConnections
   {
     try await self.getEkmConnections(request: request, options: .init())
   }
 
   public func getEkmConnections(
     request: GetEkmConnectionsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudCloudControlsPartnerV1.EkmConnections {
+  ) async throws -> GoogleCloudControlsPartnerV1.EkmConnections {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func getEkmConnections(
     name: Swift.String,
-  ) async throws -> GoogleCloudCloudControlsPartnerV1.EkmConnections {
+  ) async throws -> GoogleCloudControlsPartnerV1.EkmConnections {
     let request = GetEkmConnectionsRequest().with {
       $0.name = name
     }
@@ -532,20 +527,20 @@ extension Clients.CloudControlsPartnerCoreProtocol {
   }
 
   public func getPartnerPermissions(request: GetPartnerPermissionsRequest) async throws
-    -> GoogleCloudCloudControlsPartnerV1.PartnerPermissions
+    -> GoogleCloudControlsPartnerV1.PartnerPermissions
   {
     try await self.getPartnerPermissions(request: request, options: .init())
   }
 
   public func getPartnerPermissions(
     request: GetPartnerPermissionsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudCloudControlsPartnerV1.PartnerPermissions {
+  ) async throws -> GoogleCloudControlsPartnerV1.PartnerPermissions {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func getPartnerPermissions(
     name: Swift.String,
-  ) async throws -> GoogleCloudCloudControlsPartnerV1.PartnerPermissions {
+  ) async throws -> GoogleCloudControlsPartnerV1.PartnerPermissions {
     let request = GetPartnerPermissionsRequest().with {
       $0.name = name
     }
@@ -553,14 +548,14 @@ extension Clients.CloudControlsPartnerCoreProtocol {
   }
 
   public func listAccessApprovalRequests(request: ListAccessApprovalRequestsRequest) async throws
-    -> GoogleCloudCloudControlsPartnerV1.ListAccessApprovalRequestsResponse
+    -> GoogleCloudControlsPartnerV1.ListAccessApprovalRequestsResponse
   {
     try await self.listAccessApprovalRequests(request: request, options: .init())
   }
 
   public func listAccessApprovalRequests(
     request: ListAccessApprovalRequestsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudCloudControlsPartnerV1.ListAccessApprovalRequestsResponse {
+  ) async throws -> GoogleCloudControlsPartnerV1.ListAccessApprovalRequestsResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -575,7 +570,7 @@ extension Clients.CloudControlsPartnerCoreProtocol {
   ) throws -> any AsyncSequence<AccessApprovalRequest, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
-        -> GoogleCloudCloudControlsPartnerV1.ListAccessApprovalRequestsResponse in
+        -> GoogleCloudControlsPartnerV1.ListAccessApprovalRequestsResponse in
       throw GoogleCloudGax.RequestError.unimplemented
     }
     return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
@@ -591,20 +586,20 @@ extension Clients.CloudControlsPartnerCoreProtocol {
   }
 
   public func getPartner(request: GetPartnerRequest) async throws
-    -> GoogleCloudCloudControlsPartnerV1.Partner
+    -> GoogleCloudControlsPartnerV1.Partner
   {
     try await self.getPartner(request: request, options: .init())
   }
 
   public func getPartner(
     request: GetPartnerRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudCloudControlsPartnerV1.Partner {
+  ) async throws -> GoogleCloudControlsPartnerV1.Partner {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func getPartner(
     name: Swift.String,
-  ) async throws -> GoogleCloudCloudControlsPartnerV1.Partner {
+  ) async throws -> GoogleCloudControlsPartnerV1.Partner {
     let request = GetPartnerRequest().with {
       $0.name = name
     }
@@ -612,14 +607,14 @@ extension Clients.CloudControlsPartnerCoreProtocol {
   }
 
   public func createCustomer(request: CreateCustomerRequest) async throws
-    -> GoogleCloudCloudControlsPartnerV1.Customer
+    -> GoogleCloudControlsPartnerV1.Customer
   {
     try await self.createCustomer(request: request, options: .init())
   }
 
   public func createCustomer(
     request: CreateCustomerRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudCloudControlsPartnerV1.Customer {
+  ) async throws -> GoogleCloudControlsPartnerV1.Customer {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -627,7 +622,7 @@ extension Clients.CloudControlsPartnerCoreProtocol {
     parent: Swift.String,
     customer: Customer?,
     customerId: Swift.String,
-  ) async throws -> GoogleCloudCloudControlsPartnerV1.Customer {
+  ) async throws -> GoogleCloudControlsPartnerV1.Customer {
     let request = CreateCustomerRequest().with {
       $0.parent = parent
       $0.customer = customer
@@ -637,21 +632,21 @@ extension Clients.CloudControlsPartnerCoreProtocol {
   }
 
   public func updateCustomer(request: UpdateCustomerRequest) async throws
-    -> GoogleCloudCloudControlsPartnerV1.Customer
+    -> GoogleCloudControlsPartnerV1.Customer
   {
     try await self.updateCustomer(request: request, options: .init())
   }
 
   public func updateCustomer(
     request: UpdateCustomerRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudCloudControlsPartnerV1.Customer {
+  ) async throws -> GoogleCloudControlsPartnerV1.Customer {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func updateCustomer(
     customer: Customer?,
     updateMask: GoogleCloudWkt.FieldMask?,
-  ) async throws -> GoogleCloudCloudControlsPartnerV1.Customer {
+  ) async throws -> GoogleCloudControlsPartnerV1.Customer {
     let request = UpdateCustomerRequest().with {
       $0.customer = customer
       $0.updateMask = updateMask

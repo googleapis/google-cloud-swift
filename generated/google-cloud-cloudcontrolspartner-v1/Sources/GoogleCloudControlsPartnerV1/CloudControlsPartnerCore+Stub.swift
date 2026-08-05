@@ -25,43 +25,43 @@ extension Clients {
   protocol CloudControlsPartnerCoreStub {
     func getWorkload(
       request: GetWorkloadRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudCloudControlsPartnerV1.Workload
+    ) async throws -> GoogleCloudControlsPartnerV1.Workload
 
     func listWorkloads(
       request: ListWorkloadsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudCloudControlsPartnerV1.ListWorkloadsResponse
+    ) async throws -> GoogleCloudControlsPartnerV1.ListWorkloadsResponse
 
     func getCustomer(
       request: GetCustomerRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudCloudControlsPartnerV1.Customer
+    ) async throws -> GoogleCloudControlsPartnerV1.Customer
 
     func listCustomers(
       request: ListCustomersRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudCloudControlsPartnerV1.ListCustomersResponse
+    ) async throws -> GoogleCloudControlsPartnerV1.ListCustomersResponse
 
     func getEkmConnections(
       request: GetEkmConnectionsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudCloudControlsPartnerV1.EkmConnections
+    ) async throws -> GoogleCloudControlsPartnerV1.EkmConnections
 
     func getPartnerPermissions(
       request: GetPartnerPermissionsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudCloudControlsPartnerV1.PartnerPermissions
+    ) async throws -> GoogleCloudControlsPartnerV1.PartnerPermissions
 
     func listAccessApprovalRequests(
       request: ListAccessApprovalRequestsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudCloudControlsPartnerV1.ListAccessApprovalRequestsResponse
+    ) async throws -> GoogleCloudControlsPartnerV1.ListAccessApprovalRequestsResponse
 
     func getPartner(
       request: GetPartnerRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudCloudControlsPartnerV1.Partner
+    ) async throws -> GoogleCloudControlsPartnerV1.Partner
 
     func createCustomer(
       request: CreateCustomerRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudCloudControlsPartnerV1.Customer
+    ) async throws -> GoogleCloudControlsPartnerV1.Customer
 
     func updateCustomer(
       request: UpdateCustomerRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudCloudControlsPartnerV1.Customer
+    ) async throws -> GoogleCloudControlsPartnerV1.Customer
 
     func deleteCustomer(
       request: DeleteCustomerRequest, options: GoogleCloudGax.RequestOptions
@@ -78,7 +78,7 @@ extension Clients {
 
     public func getWorkload(
       request: GetWorkloadRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudCloudControlsPartnerV1.Workload {
+    ) async throws -> GoogleCloudControlsPartnerV1.Workload {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -93,12 +93,12 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudCloudControlsPartnerV1.Workload.self, from: data)
+        GoogleCloudControlsPartnerV1.Workload.self, from: data)
     }
 
     public func listWorkloads(
       request: ListWorkloadsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudCloudControlsPartnerV1.ListWorkloadsResponse {
+    ) async throws -> GoogleCloudControlsPartnerV1.ListWorkloadsResponse {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.parent' is not set or is empty")
@@ -118,12 +118,12 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudCloudControlsPartnerV1.ListWorkloadsResponse.self, from: data)
+        GoogleCloudControlsPartnerV1.ListWorkloadsResponse.self, from: data)
     }
 
     public func getCustomer(
       request: GetCustomerRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudCloudControlsPartnerV1.Customer {
+    ) async throws -> GoogleCloudControlsPartnerV1.Customer {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -138,12 +138,12 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudCloudControlsPartnerV1.Customer.self, from: data)
+        GoogleCloudControlsPartnerV1.Customer.self, from: data)
     }
 
     public func listCustomers(
       request: ListCustomersRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudCloudControlsPartnerV1.ListCustomersResponse {
+    ) async throws -> GoogleCloudControlsPartnerV1.ListCustomersResponse {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.parent' is not set or is empty")
@@ -163,12 +163,12 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudCloudControlsPartnerV1.ListCustomersResponse.self, from: data)
+        GoogleCloudControlsPartnerV1.ListCustomersResponse.self, from: data)
     }
 
     public func getEkmConnections(
       request: GetEkmConnectionsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudCloudControlsPartnerV1.EkmConnections {
+    ) async throws -> GoogleCloudControlsPartnerV1.EkmConnections {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -183,12 +183,12 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudCloudControlsPartnerV1.EkmConnections.self, from: data)
+        GoogleCloudControlsPartnerV1.EkmConnections.self, from: data)
     }
 
     public func getPartnerPermissions(
       request: GetPartnerPermissionsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudCloudControlsPartnerV1.PartnerPermissions {
+    ) async throws -> GoogleCloudControlsPartnerV1.PartnerPermissions {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -203,12 +203,12 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudCloudControlsPartnerV1.PartnerPermissions.self, from: data)
+        GoogleCloudControlsPartnerV1.PartnerPermissions.self, from: data)
     }
 
     public func listAccessApprovalRequests(
       request: ListAccessApprovalRequestsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudCloudControlsPartnerV1.ListAccessApprovalRequestsResponse {
+    ) async throws -> GoogleCloudControlsPartnerV1.ListAccessApprovalRequestsResponse {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.parent' is not set or is empty")
@@ -228,12 +228,12 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudCloudControlsPartnerV1.ListAccessApprovalRequestsResponse.self, from: data)
+        GoogleCloudControlsPartnerV1.ListAccessApprovalRequestsResponse.self, from: data)
     }
 
     public func getPartner(
       request: GetPartnerRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudCloudControlsPartnerV1.Partner {
+    ) async throws -> GoogleCloudControlsPartnerV1.Partner {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -248,12 +248,12 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudCloudControlsPartnerV1.Partner.self, from: data)
+        GoogleCloudControlsPartnerV1.Partner.self, from: data)
     }
 
     public func createCustomer(
       request: CreateCustomerRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudCloudControlsPartnerV1.Customer {
+    ) async throws -> GoogleCloudControlsPartnerV1.Customer {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.parent' is not set or is empty")
@@ -274,12 +274,12 @@ extension Clients {
       }
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudCloudControlsPartnerV1.Customer.self, from: data)
+        GoogleCloudControlsPartnerV1.Customer.self, from: data)
     }
 
     public func updateCustomer(
       request: UpdateCustomerRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudCloudControlsPartnerV1.Customer {
+    ) async throws -> GoogleCloudControlsPartnerV1.Customer {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.customer.map({ $0.name }), !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding(
@@ -301,7 +301,7 @@ extension Clients {
       }
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudCloudControlsPartnerV1.Customer.self, from: data)
+        GoogleCloudControlsPartnerV1.Customer.self, from: data)
     }
 
     public func deleteCustomer(
