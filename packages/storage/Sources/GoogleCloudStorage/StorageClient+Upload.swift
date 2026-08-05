@@ -111,18 +111,17 @@ extension StorageClient {
     return object
   }
 
-  fileprivate static func performResumableUpload(
+  // Start a resumable upload session with configured retry and backoff. Upon success,
+  // returns the location of the upload (the uploadId)
+  fileprivate static func startResumableUpload(
     httpClient: HTTPClient,
-    source: inout some UploadSource,
     bucket: String,
     objectName: String,
     metadata: UploadMetadata?,
     options: UploadOptions,
-    totalSize: Int64?,
-    continuation: AsyncStream<UploadStatus>.Continuation,
     retryPolicy: any RetryPolicy,
     backoffPolicy: any BackoffPolicy
-  ) async throws -> StorageObject {
+  ) async throws -> String {
     let retryLoop = _RetryLoop(
       retryPolicy: retryPolicy,
       backoffPolicy: backoffPolicy,
@@ -130,9 +129,8 @@ extension StorageClient {
       idempotent: true
     )
 
-    let uploadId: String
     do {
-      uploadId = try await retryLoop.run { _ in
+      return try await retryLoop.run { _ in
         let startRequest = try await httpClient.buildStartResumableUploadRequest(
           bucket: bucket, objectName: objectName, metadata: metadata, options: options)
         let (startData, startResponse) = try await httpClient.sendRequestWithMappedError(
@@ -150,8 +148,33 @@ extension StorageClient {
         return location
       }
     } catch {
+      // Retry loop expects RequestError types, but we want to throw transformed
+      // UploadError types
       throw mapToPublicError(error)
     }
+  }
+
+  fileprivate static func performResumableUpload(
+    httpClient: HTTPClient,
+    source: inout some UploadSource,
+    bucket: String,
+    objectName: String,
+    metadata: UploadMetadata?,
+    options: UploadOptions,
+    totalSize: Int64?,
+    continuation: AsyncStream<UploadStatus>.Continuation,
+    retryPolicy: any RetryPolicy,
+    backoffPolicy: any BackoffPolicy
+  ) async throws -> StorageObject {
+    let uploadId = try await startResumableUpload(
+      httpClient: httpClient,
+      bucket: bucket,
+      objectName: objectName,
+      metadata: metadata,
+      options: options,
+      retryPolicy: retryPolicy,
+      backoffPolicy: backoffPolicy
+    )
 
     continuation.yield(
       UploadStatus(
