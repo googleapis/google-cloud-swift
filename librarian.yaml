@@ -647,7 +647,6 @@ libraries:
           module_type: default
           skipped_ids:
             - .google.storage.v2.Storage
-
   - name: google-cloud-storageinsights-v1
     version: 0.1.0-preview
     copyright_year: "2026"
