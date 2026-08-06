@@ -285,7 +285,7 @@ public struct UploadTask: Sendable {
 
     /// The final result of the upload.
     /// Awaiting this will suspend until the upload is complete.
-    public var value: StorageObject {
+    public var value: Object {
         get async throws
     }
 

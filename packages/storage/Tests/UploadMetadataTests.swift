@@ -280,7 +280,7 @@ import Testing
     }
 
     let decoder = GoogleCloudWkt._ProtoJSONDecoder()
-    let object = try decoder.decode(StorageObject.self, from: data)
+    let object = try decoder.decode(Object.self, from: data)
 
     #expect(object.bucket == "my-bucket")
     #expect(object.name == "image.png")

@@ -645,8 +645,6 @@ extension CustomerEncryption {
   }
 }
 
-public typealias StorageObject = Object
-
 extension Object {
   public var customMetadata: [String: String]? {
     get { metadata.isEmpty ? nil : metadata }

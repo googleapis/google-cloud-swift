@@ -49,12 +49,12 @@ public struct UploadStatus: Sendable {
 public struct UploadTask: Sendable {
   private let statusStreamController: AsyncStream<UploadStatus>.Continuation
   private let statusStream: AsyncStream<UploadStatus>
-  private let valueTask: Task<StorageObject, Error>
+  private let valueTask: Task<Object, Error>
 
   internal init(
     statusStream: AsyncStream<UploadStatus>,
     statusStreamController: AsyncStream<UploadStatus>.Continuation,
-    valueTask: Task<StorageObject, Error>
+    valueTask: Task<Object, Error>
   ) {
     self.statusStream = statusStream
     self.statusStreamController = statusStreamController
@@ -72,7 +72,7 @@ public struct UploadTask: Sendable {
 
   /// The final result of the upload.
   /// Awaiting this will suspend until the upload is complete.
-  public var value: StorageObject {
+  public var value: Object {
     get async throws {
       return try await valueTask.value
     }
@@ -91,7 +91,7 @@ public struct UploadTask: Sendable {
 extension UploadTask {
   internal static func create(
     operation:
-      @escaping @Sendable (AsyncStream<UploadStatus>.Continuation) async throws -> StorageObject
+      @escaping @Sendable (AsyncStream<UploadStatus>.Continuation) async throws -> Object
   ) -> UploadTask {
     let (stream, continuation) = AsyncStream.makeStream(of: UploadStatus.self)
     let valueTask = Task {
