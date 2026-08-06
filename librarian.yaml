@@ -341,6 +341,9 @@ libraries:
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudCESV1
+  - name: google-cloud-chronicle-v1
+    version: 0.0.0-preview
+    copyright_year: "2026"
   - name: google-cloud-cloudcontrolspartner-v1
     version: 0.0.0-preview
     copyright_year: "2026"
