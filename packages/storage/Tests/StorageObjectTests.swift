@@ -25,7 +25,7 @@ import Testing
     #expect(object.generation == 0)
     #expect(object.metageneration == 0)
     #expect(object.size == 0)
-    #expect(object.contentType == nil)
+    #expect(object.contentType == "")
     #expect(object.timeCreated == nil)
     #expect(object.updated == nil)
   }
@@ -64,8 +64,8 @@ import Testing
         "metageneration": "1",
         "size": "42",
         "contentType": "application/json",
-        "timeCreated": "1970-01-01T00:00:01.000000002Z",
-        "updated": "1970-01-01T00:00:01.000000002Z"
+        "createTime": "1970-01-01T00:00:01.000000002Z",
+        "updateTime": "1970-01-01T00:00:01.000000002Z"
       }
       """
     guard let data = jsonString.data(using: .utf8) else {
@@ -119,8 +119,8 @@ import Testing
 
     #expect(object.bucket == "my-bucket")
     #expect(object.name == "data.bin")
-    #expect(object.contexts?.custom?["classification"]?.value == "confidential")
-    #expect(object.contexts?.custom?["classification"]?.createTime != nil)
-    #expect(object.contexts?.custom?["classification"]?.updateTime != nil)
+    #expect(object.contexts?.custom["classification"]?.value == "confidential")
+    #expect(object.contexts?.custom["classification"]?.createTime != nil)
+    #expect(object.contexts?.custom["classification"]?.updateTime != nil)
   }
 }

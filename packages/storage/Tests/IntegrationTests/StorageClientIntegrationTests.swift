@@ -584,8 +584,8 @@ import Testing
       let object = try await task.value
       #expect(object.bucket == bucketName)
       #expect(object.name == objectName)
-      #expect(object.contexts?.custom?["environment"]?.value == "integration-test")
-      #expect(object.contexts?.custom?["team"]?.value == "swift-sdk")
+      #expect(object.contexts?.custom["environment"]?.value == "integration-test")
+      #expect(object.contexts?.custom["team"]?.value == "swift-sdk")
 
       print("Upload with object contexts successful: \(object)")
     }

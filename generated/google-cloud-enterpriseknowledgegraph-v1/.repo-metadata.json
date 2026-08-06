@@ -1,0 +1,13 @@
+{
+    "api_id": "enterpriseknowledgegraph.googleapis.com",
+    "api_shortname": "enterpriseknowledgegraph",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/google-cloud-enterpriseknowledgegraph-v1/documentation",
+    "distribution_name": "google-cloud-enterpriseknowledgegraph-v1",
+    "language": "swift",
+    "library_type": "GAPIC_AUTO",
+    "name": "enterpriseknowledgegraph",
+    "name_pretty": "Enterprise Knowledge Graph",
+    "product_documentation": "https://cloud.google.com/enterprise-knowledge-graph/",
+    "release_level": "preview",
+    "repo": "googleapis/google-cloud-swift"
+}

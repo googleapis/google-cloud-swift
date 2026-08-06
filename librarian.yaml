@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 language: swift
-version: v0.32.1-0.20260805024539-3cacaacd0552
+version: v0.33.1-0.20260805232938-95d34648b22e
 repo: googleapis/google-cloud-swift
 sources:
   conformance:
@@ -172,6 +172,11 @@ libraries:
       per_service_traits: true
       default_traits:
         - PredictionService
+  - name: google-cloud-aiplatform-v1-schema-predict-params
+    version: 0.0.0-preview
+    copyright_year: "2026"
+    swift:
+      library_name_override: GoogleCloudAIPlatformV1SchemaPredictParams
   - name: google-cloud-alloydb-connectors-v1
     version: 0.1.0-preview
     copyright_year: "2026"
@@ -187,6 +192,11 @@ libraries:
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudApiGatewayV1
+  - name: google-cloud-apigeeconnect-v1
+    version: 0.0.0-preview
+    copyright_year: "2026"
+    swift:
+      library_name_override: GoogleCloudApigeeConnectV1
   - name: google-cloud-apihub-v1
     version: 0.1.0-preview
     copyright_year: "2026"
@@ -224,6 +234,11 @@ libraries:
         - output: packages/auth/Sources/GoogleCloudAuth/generated
           api_path: ""
           module_type: package-version
+  - name: google-cloud-backupdr-logging-v1
+    version: 0.0.0-preview
+    copyright_year: "2026"
+    swift:
+      library_name_override: GoogleCloudBackupDRLoggingV1
   - name: google-cloud-baremetalsolution-v2
     version: 0.1.0-preview
     copyright_year: "2026"
@@ -326,6 +341,11 @@ libraries:
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudCESV1
+  - name: google-cloud-cloudcontrolspartner-v1
+    version: 0.0.0-preview
+    copyright_year: "2026"
+    swift:
+      library_name_override: GoogleCloudControlsPartnerV1
   - name: google-cloud-common
     version: 0.0.0-preview
     copyright_year: "2026"
@@ -394,6 +414,9 @@ libraries:
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudDataplexV1
+  - name: google-cloud-dataproc-logging
+    version: 0.0.0-preview
+    copyright_year: "2026"
   - name: google-cloud-deploy-v1
     version: 0.1.0-preview
     copyright_year: "2026"
@@ -434,6 +457,11 @@ libraries:
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudEdgeNetworkV1
+  - name: google-cloud-enterpriseknowledgegraph-v1
+    version: 0.0.0-preview
+    copyright_year: "2026"
+    swift:
+      library_name_override: GoogleCloudEnterpriseKnowledgeGraphV1
   - name: google-cloud-eventarc-v1
     version: 0.1.0-preview
     copyright_year: "2026"
@@ -495,6 +523,11 @@ libraries:
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudGkeRecommenderV1
+  - name: google-cloud-hypercomputecluster-v1
+    version: 0.0.0-preview
+    copyright_year: "2026"
+    swift:
+      library_name_override: GoogleCloudHypercomputeClusterV1
   - name: google-cloud-kms-inventory-v1
     version: 0.1.0-preview
     copyright_year: "2026"
@@ -524,6 +557,9 @@ libraries:
   - name: google-cloud-lustre-v1
     version: 0.0.0-preview
     copyright_year: "2026"
+  - name: google-cloud-maintenance-api-v1
+    version: 0.0.0-preview
+    copyright_year: "2026"
   - name: google-cloud-memcache-v1
     version: 0.0.0-preview
     copyright_year: "2026"
@@ -532,6 +568,11 @@ libraries:
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudMemoryStoreV1
+  - name: google-cloud-migrationcenter-v1
+    version: 0.0.0-preview
+    copyright_year: "2026"
+    swift:
+      library_name_override: GoogleCloudMigrationCenterV1
   - name: google-cloud-networkconnectivity-v1
     version: 0.1.0-preview
     copyright_year: "2026"
@@ -540,6 +581,11 @@ libraries:
   - name: google-cloud-notebooks-v2
     version: 0.1.0-preview
     copyright_year: "2026"
+  - name: google-cloud-oracledatabase-v1
+    version: 0.0.0-preview
+    copyright_year: "2026"
+    swift:
+      library_name_override: GoogleCloudOracleDatabaseV1
   - name: google-cloud-orgpolicy-v1
     version: 0.1.0-preview
     copyright_year: "2026"
@@ -555,6 +601,11 @@ libraries:
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudParameterManagerV1
+  - name: google-cloud-recaptchaenterprise-v1
+    version: 0.0.0-preview
+    copyright_year: "2026"
+    swift:
+      library_name_override: GoogleCloudRecaptchaEnterpriseV1
   - name: google-cloud-recommender-v1
     version: 0.0.0-preview
     copyright_year: "2026"
@@ -580,6 +631,11 @@ libraries:
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudSecretManagerV1
+  - name: google-cloud-securesourcemanager-v1
+    version: 0.0.0-preview
+    copyright_year: "2026"
+    swift:
+      library_name_override: GoogleCloudSecureSourceManagerV1
   - name: google-cloud-security-privateca-v1
     version: 0.1.0-preview
     copyright_year: "2026"
@@ -590,6 +646,9 @@ libraries:
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudSecurityPublicCAV1
+  - name: google-cloud-securityposture-v1
+    version: 0.0.0-preview
+    copyright_year: "2026"
   - name: google-cloud-servicedirectory-v1
     version: 0.0.0-preview
     copyright_year: "2026"
@@ -636,6 +695,22 @@ libraries:
           include_list:
             - interval.proto
           module_path: StorageControlProtos
+        - output: packages/storage/Sources/generated/StorageProtos
+          api_path: google/storage/v2
+          module_type: swift-protobuf
+          include_list:
+            - storage.proto
+            - ../../iam/v1/iam_policy.proto
+            - ../../iam/v1/policy.proto
+            - ../../iam/v1/options.proto
+            - ../../rpc/status.proto
+            - ../../type/date.proto
+            - ../../type/expr.proto
+        - output: packages/storage/Sources/GoogleCloudStorage/generated/Storage
+          api_path: google/storage/v2
+          module_type: default
+          skipped_ids:
+            - .google.storage.v2.Storage
   - name: google-cloud-storageinsights-v1
     version: 0.1.0-preview
     copyright_year: "2026"
@@ -668,6 +743,9 @@ libraries:
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudTranslateV3
+  - name: google-cloud-video-stitcher-v1
+    version: 0.0.0-preview
+    copyright_year: "2026"
   - name: google-cloud-vision-v1
     version: 0.1.0-preview
     copyright_year: "2026"
@@ -729,6 +807,11 @@ libraries:
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudArtifactRegistryV1
+  - name: google-devtools-cloudbuild-v2
+    version: 0.0.0-preview
+    copyright_year: "2026"
+    swift:
+      library_name_override: GoogleCloudBuildV2
   - name: google-devtools-cloudtrace-v2
     version: 0.1.0-preview
     copyright_year: "2026"

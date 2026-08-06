@@ -1,0 +1,14 @@
+{
+    "api_description": "Apigee Connect allows the Apigee hybrid management plane to connect securely to the MART service in the runtime plane without requiring you to expose the MART endpoint on the internet.",
+    "api_id": "apigeeconnect.googleapis.com",
+    "api_shortname": "apigeeconnect",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/google-cloud-apigeeconnect-v1/documentation",
+    "distribution_name": "google-cloud-apigeeconnect-v1",
+    "language": "swift",
+    "library_type": "GAPIC_AUTO",
+    "name": "apigeeconnect",
+    "name_pretty": "Apigee Connect",
+    "product_documentation": "https://cloud.google.com/apigee/",
+    "release_level": "preview",
+    "repo": "googleapis/google-cloud-swift"
+}
