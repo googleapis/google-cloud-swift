@@ -145,7 +145,7 @@ import Testing
     #expect(object.bucket == bucket)
     #expect(object.contentType == "text/plain")
     #expect(object.contentEncoding == "gzip")
-    #expect(object.customMetadata == ["author": "swift-sdk"])
+    #expect(object.metadata == ["author": "swift-sdk"])
 
     // Inspect recorded HTTP request to verify metadata payload and predefinedAcl query parameter
     let recordedReq = registry.lastRequest(for: simpleUploadUrl)
@@ -224,7 +224,7 @@ import Testing
     #expect(object.name == objectName)
     #expect(object.contentType == "image/png")
     #expect(object.storageClass == "NEARLINE")
-    #expect(object.customMetadata == ["resolution": "1080p"])
+    #expect(object.metadata == ["resolution": "1080p"])
 
     // Verify initial POST request contains metadata JSON
     let recordedInitReq = registry.lastRequest(for: initUrl)
@@ -295,7 +295,7 @@ import Testing
     #expect(object.storageClass == "COLDLINE")
     #expect(object.eventBasedHold == true)
     #expect(object.temporaryHold == false)
-    #expect(object.customMetadata == ["app": "swift-storage", "version": "1.0"])
+    #expect(object.metadata == ["app": "swift-storage", "version": "1.0"])
     #expect(object.acl.count == 1)
     #expect(object.acl.first?.entity == "user-test@example.com")
     #expect(object.acl.first?.role == "OWNER")

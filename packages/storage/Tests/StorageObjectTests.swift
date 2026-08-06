@@ -26,8 +26,8 @@ import Testing
     #expect(object.metageneration == 0)
     #expect(object.size == 0)
     #expect(object.contentType == "")
-    #expect(object.timeCreated == nil)
-    #expect(object.updated == nil)
+    #expect(object.createTime == nil)
+    #expect(object.updateTime == nil)
   }
 
   @Test func storageObjectWithHelperAllFields() throws {
@@ -41,8 +41,8 @@ import Testing
       $0.metageneration = 456
       $0.size = 1024
       $0.contentType = "application/json"
-      $0.timeCreated = timeCreated
-      $0.updated = updated
+      $0.createTime = timeCreated
+      $0.updateTime = updated
     }
 
     #expect(object.bucket == "my-bucket")
@@ -51,8 +51,8 @@ import Testing
     #expect(object.metageneration == 456)
     #expect(object.size == 1024)
     #expect(object.contentType == "application/json")
-    #expect(object.timeCreated == timeCreated)
-    #expect(object.updated == updated)
+    #expect(object.createTime == timeCreated)
+    #expect(object.updateTime == updated)
   }
 
   @Test func storageObjectJSONDeserializationStringValues() throws {
@@ -82,12 +82,12 @@ import Testing
     #expect(object.metageneration == 1)
     #expect(object.size == 42)
     #expect(object.contentType == "application/json")
-    #expect(object.timeCreated != nil)
-    #expect(object.updated != nil)
+    #expect(object.createTime != nil)
+    #expect(object.updateTime != nil)
 
     let expectedTime = try GoogleCloudWkt.Timestamp(seconds: 1, nanos: 2)
-    #expect(object.timeCreated == expectedTime)
-    #expect(object.updated == expectedTime)
+    #expect(object.createTime == expectedTime)
+    #expect(object.updateTime == expectedTime)
   }
 
   @Test func storageObjectWithContextsDeserialization() throws {
@@ -156,15 +156,15 @@ import Testing
     #expect(object.metageneration == 1)
     #expect(object.size == 42)
     #expect(object.contentType == "application/json")
-    #expect(object.timeCreated != nil)
-    #expect(object.updated != nil)
+    #expect(object.createTime != nil)
+    #expect(object.updateTime != nil)
     #expect(object.deleteTime != nil)
     #expect(object.updateStorageClassTime != nil)
     #expect(object.retentionExpireTime != nil)
     #expect(object.checksums != nil)
 
     let expectedTime = try GoogleCloudWkt.Timestamp(seconds: 1, nanos: 2)
-    #expect(object.timeCreated == expectedTime)
-    #expect(object.updated == expectedTime)
+    #expect(object.createTime == expectedTime)
+    #expect(object.updateTime == expectedTime)
   }
 }
