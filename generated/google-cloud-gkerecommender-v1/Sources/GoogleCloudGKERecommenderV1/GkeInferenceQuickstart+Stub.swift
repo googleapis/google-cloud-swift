@@ -25,27 +25,27 @@ extension Clients {
   protocol GkeInferenceQuickstartStub {
     func fetchModels(
       request: FetchModelsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudGkeRecommenderV1.FetchModelsResponse
+    ) async throws -> GoogleCloudGKERecommenderV1.FetchModelsResponse
 
     func fetchModelServers(
       request: FetchModelServersRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudGkeRecommenderV1.FetchModelServersResponse
+    ) async throws -> GoogleCloudGKERecommenderV1.FetchModelServersResponse
 
     func fetchModelServerVersions(
       request: FetchModelServerVersionsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudGkeRecommenderV1.FetchModelServerVersionsResponse
+    ) async throws -> GoogleCloudGKERecommenderV1.FetchModelServerVersionsResponse
 
     func fetchProfiles(
       request: FetchProfilesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudGkeRecommenderV1.FetchProfilesResponse
+    ) async throws -> GoogleCloudGKERecommenderV1.FetchProfilesResponse
 
     func generateOptimizedManifest(
       request: GenerateOptimizedManifestRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudGkeRecommenderV1.GenerateOptimizedManifestResponse
+    ) async throws -> GoogleCloudGKERecommenderV1.GenerateOptimizedManifestResponse
 
     func fetchBenchmarkingData(
       request: FetchBenchmarkingDataRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudGkeRecommenderV1.FetchBenchmarkingDataResponse
+    ) async throws -> GoogleCloudGKERecommenderV1.FetchBenchmarkingDataResponse
   }
 
   class GkeInferenceQuickstartTransport: GkeInferenceQuickstartStub {
@@ -58,7 +58,7 @@ extension Clients {
 
     public func fetchModels(
       request: FetchModelsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudGkeRecommenderV1.FetchModelsResponse {
+    ) async throws -> GoogleCloudGKERecommenderV1.FetchModelsResponse {
       let path = try { () throws -> Swift.String in
         return "/v1/models:fetch"
       }()
@@ -73,12 +73,12 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudGkeRecommenderV1.FetchModelsResponse.self, from: data)
+        GoogleCloudGKERecommenderV1.FetchModelsResponse.self, from: data)
     }
 
     public func fetchModelServers(
       request: FetchModelServersRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudGkeRecommenderV1.FetchModelServersResponse {
+    ) async throws -> GoogleCloudGKERecommenderV1.FetchModelServersResponse {
       let path = try { () throws -> Swift.String in
         return "/v1/modelServers:fetch"
       }()
@@ -94,12 +94,12 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudGkeRecommenderV1.FetchModelServersResponse.self, from: data)
+        GoogleCloudGKERecommenderV1.FetchModelServersResponse.self, from: data)
     }
 
     public func fetchModelServerVersions(
       request: FetchModelServerVersionsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudGkeRecommenderV1.FetchModelServerVersionsResponse {
+    ) async throws -> GoogleCloudGKERecommenderV1.FetchModelServerVersionsResponse {
       let path = try { () throws -> Swift.String in
         return "/v1/modelServerVersions:fetch"
       }()
@@ -116,12 +116,12 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudGkeRecommenderV1.FetchModelServerVersionsResponse.self, from: data)
+        GoogleCloudGKERecommenderV1.FetchModelServerVersionsResponse.self, from: data)
     }
 
     public func fetchProfiles(
       request: FetchProfilesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudGkeRecommenderV1.FetchProfilesResponse {
+    ) async throws -> GoogleCloudGKERecommenderV1.FetchProfilesResponse {
       let path = try { () throws -> Swift.String in
         return "/v1/profiles:fetch"
       }()
@@ -135,12 +135,12 @@ extension Clients {
       req.httpBody = try JSONEncoder().encode(request)
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudGkeRecommenderV1.FetchProfilesResponse.self, from: data)
+        GoogleCloudGKERecommenderV1.FetchProfilesResponse.self, from: data)
     }
 
     public func generateOptimizedManifest(
       request: GenerateOptimizedManifestRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudGkeRecommenderV1.GenerateOptimizedManifestResponse {
+    ) async throws -> GoogleCloudGKERecommenderV1.GenerateOptimizedManifestResponse {
       let path = try { () throws -> Swift.String in
         return "/v1/optimizedManifest:generate"
       }()
@@ -154,12 +154,12 @@ extension Clients {
       req.httpBody = try JSONEncoder().encode(request)
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudGkeRecommenderV1.GenerateOptimizedManifestResponse.self, from: data)
+        GoogleCloudGKERecommenderV1.GenerateOptimizedManifestResponse.self, from: data)
     }
 
     public func fetchBenchmarkingData(
       request: FetchBenchmarkingDataRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudGkeRecommenderV1.FetchBenchmarkingDataResponse {
+    ) async throws -> GoogleCloudGKERecommenderV1.FetchBenchmarkingDataResponse {
       let path = try { () throws -> Swift.String in
         return "/v1/benchmarkingData:fetch"
       }()
@@ -173,7 +173,7 @@ extension Clients {
       req.httpBody = try JSONEncoder().encode(request)
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudGkeRecommenderV1.FetchBenchmarkingDataResponse.self, from: data)
+        GoogleCloudGKERecommenderV1.FetchBenchmarkingDataResponse.self, from: data)
     }
   }
 }

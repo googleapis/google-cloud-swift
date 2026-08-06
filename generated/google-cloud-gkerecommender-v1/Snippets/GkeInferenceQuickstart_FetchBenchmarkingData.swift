@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudGkeRecommenderV1
+import GoogleCloudGKERecommenderV1
 import GoogleCloudWkt
 
 func sample(client: GkeInferenceQuickstartClient) async throws {
@@ -33,7 +33,7 @@ func sample(client: GkeInferenceQuickstartClient) async throws {
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleCloudGkeRecommenderV1.GkeInferenceQuickstartClient()
+      let client = try GoogleCloudGKERecommenderV1.GkeInferenceQuickstartClient()
       try await sample(client: client)
     } catch {
       print("Error: \(error)")

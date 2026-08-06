@@ -47,7 +47,7 @@ public class GkeInferenceQuickstartClient: Clients.GkeInferenceQuickstartProtoco
   /// @Snippet(path: "GkeInferenceQuickstart_FetchModels")
   public func fetchModels(
     request: FetchModelsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudGkeRecommenderV1.FetchModelsResponse {
+  ) async throws -> GoogleCloudGKERecommenderV1.FetchModelsResponse {
     try await self.inner.fetchModels(request: request, options: options)
   }
 
@@ -57,7 +57,7 @@ public class GkeInferenceQuickstartClient: Clients.GkeInferenceQuickstartProtoco
   /// @Snippet(path: "GkeInferenceQuickstart_FetchModelServers")
   public func fetchModelServers(
     request: FetchModelServersRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudGkeRecommenderV1.FetchModelServersResponse {
+  ) async throws -> GoogleCloudGKERecommenderV1.FetchModelServersResponse {
     try await self.inner.fetchModelServers(request: request, options: options)
   }
 
@@ -72,7 +72,7 @@ public class GkeInferenceQuickstartClient: Clients.GkeInferenceQuickstartProtoco
   /// @Snippet(path: "GkeInferenceQuickstart_FetchModelServerVersions")
   public func fetchModelServerVersions(
     request: FetchModelServerVersionsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudGkeRecommenderV1.FetchModelServerVersionsResponse {
+  ) async throws -> GoogleCloudGKERecommenderV1.FetchModelServerVersionsResponse {
     try await self.inner.fetchModelServerVersions(request: request, options: options)
   }
 
@@ -91,7 +91,7 @@ public class GkeInferenceQuickstartClient: Clients.GkeInferenceQuickstartProtoco
   /// @Snippet(path: "GkeInferenceQuickstart_FetchProfiles")
   public func fetchProfiles(
     request: FetchProfilesRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudGkeRecommenderV1.FetchProfilesResponse {
+  ) async throws -> GoogleCloudGKERecommenderV1.FetchProfilesResponse {
     try await self.inner.fetchProfiles(request: request, options: options)
   }
 
@@ -112,7 +112,7 @@ public class GkeInferenceQuickstartClient: Clients.GkeInferenceQuickstartProtoco
     byItem: FetchProfilesRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<Profile, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudGkeRecommenderV1.FetchProfilesResponse in
+      (token: Swift.String) async throws -> GoogleCloudGKERecommenderV1.FetchProfilesResponse in
       var request = byItem
       request.pageToken = token
       return try await self.fetchProfiles(request: request, options: options)
@@ -130,7 +130,7 @@ public class GkeInferenceQuickstartClient: Clients.GkeInferenceQuickstartProtoco
   /// @Snippet(path: "GkeInferenceQuickstart_GenerateOptimizedManifest")
   public func generateOptimizedManifest(
     request: GenerateOptimizedManifestRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudGkeRecommenderV1.GenerateOptimizedManifestResponse {
+  ) async throws -> GoogleCloudGKERecommenderV1.GenerateOptimizedManifestResponse {
     try await self.inner.generateOptimizedManifest(request: request, options: options)
   }
 
@@ -141,7 +141,7 @@ public class GkeInferenceQuickstartClient: Clients.GkeInferenceQuickstartProtoco
   /// @Snippet(path: "GkeInferenceQuickstart_FetchBenchmarkingData")
   public func fetchBenchmarkingData(
     request: FetchBenchmarkingDataRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudGkeRecommenderV1.FetchBenchmarkingDataResponse {
+  ) async throws -> GoogleCloudGKERecommenderV1.FetchBenchmarkingDataResponse {
     try await self.inner.fetchBenchmarkingData(request: request, options: options)
   }
 }
@@ -155,19 +155,19 @@ extension Clients {
   public protocol GkeInferenceQuickstartProtocol {
     /// See `GkeInferenceQuickstartClient.fetchModels`.
     func fetchModels(request: FetchModelsRequest) async throws
-      -> GoogleCloudGkeRecommenderV1.FetchModelsResponse
+      -> GoogleCloudGKERecommenderV1.FetchModelsResponse
 
     /// See `GkeInferenceQuickstartClient.fetchModelServers`.
     func fetchModelServers(request: FetchModelServersRequest) async throws
-      -> GoogleCloudGkeRecommenderV1.FetchModelServersResponse
+      -> GoogleCloudGKERecommenderV1.FetchModelServersResponse
 
     /// See `GkeInferenceQuickstartClient.fetchModelServerVersions`.
     func fetchModelServerVersions(request: FetchModelServerVersionsRequest) async throws
-      -> GoogleCloudGkeRecommenderV1.FetchModelServerVersionsResponse
+      -> GoogleCloudGKERecommenderV1.FetchModelServerVersionsResponse
 
     /// See `GkeInferenceQuickstartClient.fetchProfiles`.
     func fetchProfiles(request: FetchProfilesRequest) async throws
-      -> GoogleCloudGkeRecommenderV1.FetchProfilesResponse
+      -> GoogleCloudGKERecommenderV1.FetchProfilesResponse
 
     /// See `GkeInferenceQuickstartClient.fetchProfiles`.
     func fetchProfiles(
@@ -176,31 +176,31 @@ extension Clients {
 
     /// See `GkeInferenceQuickstartClient.generateOptimizedManifest`.
     func generateOptimizedManifest(request: GenerateOptimizedManifestRequest) async throws
-      -> GoogleCloudGkeRecommenderV1.GenerateOptimizedManifestResponse
+      -> GoogleCloudGKERecommenderV1.GenerateOptimizedManifestResponse
 
     /// See `GkeInferenceQuickstartClient.fetchBenchmarkingData`.
     func fetchBenchmarkingData(request: FetchBenchmarkingDataRequest) async throws
-      -> GoogleCloudGkeRecommenderV1.FetchBenchmarkingDataResponse
+      -> GoogleCloudGKERecommenderV1.FetchBenchmarkingDataResponse
 
     /// See `GkeInferenceQuickstartClient.fetchModels`.
     func fetchModels(
       request: FetchModelsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudGkeRecommenderV1.FetchModelsResponse
+    ) async throws -> GoogleCloudGKERecommenderV1.FetchModelsResponse
 
     /// See `GkeInferenceQuickstartClient.fetchModelServers`.
     func fetchModelServers(
       request: FetchModelServersRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudGkeRecommenderV1.FetchModelServersResponse
+    ) async throws -> GoogleCloudGKERecommenderV1.FetchModelServersResponse
 
     /// See `GkeInferenceQuickstartClient.fetchModelServerVersions`.
     func fetchModelServerVersions(
       request: FetchModelServerVersionsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudGkeRecommenderV1.FetchModelServerVersionsResponse
+    ) async throws -> GoogleCloudGKERecommenderV1.FetchModelServerVersionsResponse
 
     /// See `GkeInferenceQuickstartClient.fetchProfiles`.
     func fetchProfiles(
       request: FetchProfilesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudGkeRecommenderV1.FetchProfilesResponse
+    ) async throws -> GoogleCloudGKERecommenderV1.FetchProfilesResponse
 
     /// See `GkeInferenceQuickstartClient.fetchProfiles`.
     func fetchProfiles(
@@ -210,62 +210,62 @@ extension Clients {
     /// See `GkeInferenceQuickstartClient.generateOptimizedManifest`.
     func generateOptimizedManifest(
       request: GenerateOptimizedManifestRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudGkeRecommenderV1.GenerateOptimizedManifestResponse
+    ) async throws -> GoogleCloudGKERecommenderV1.GenerateOptimizedManifestResponse
 
     /// See `GkeInferenceQuickstartClient.fetchBenchmarkingData`.
     func fetchBenchmarkingData(
       request: FetchBenchmarkingDataRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudGkeRecommenderV1.FetchBenchmarkingDataResponse
+    ) async throws -> GoogleCloudGKERecommenderV1.FetchBenchmarkingDataResponse
   }
 }
 
 // Default implementations
 extension Clients.GkeInferenceQuickstartProtocol {
   public func fetchModels(request: FetchModelsRequest) async throws
-    -> GoogleCloudGkeRecommenderV1.FetchModelsResponse
+    -> GoogleCloudGKERecommenderV1.FetchModelsResponse
   {
     try await self.fetchModels(request: request, options: .init())
   }
 
   public func fetchModels(
     request: FetchModelsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudGkeRecommenderV1.FetchModelsResponse {
+  ) async throws -> GoogleCloudGKERecommenderV1.FetchModelsResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func fetchModelServers(request: FetchModelServersRequest) async throws
-    -> GoogleCloudGkeRecommenderV1.FetchModelServersResponse
+    -> GoogleCloudGKERecommenderV1.FetchModelServersResponse
   {
     try await self.fetchModelServers(request: request, options: .init())
   }
 
   public func fetchModelServers(
     request: FetchModelServersRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudGkeRecommenderV1.FetchModelServersResponse {
+  ) async throws -> GoogleCloudGKERecommenderV1.FetchModelServersResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func fetchModelServerVersions(request: FetchModelServerVersionsRequest) async throws
-    -> GoogleCloudGkeRecommenderV1.FetchModelServerVersionsResponse
+    -> GoogleCloudGKERecommenderV1.FetchModelServerVersionsResponse
   {
     try await self.fetchModelServerVersions(request: request, options: .init())
   }
 
   public func fetchModelServerVersions(
     request: FetchModelServerVersionsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudGkeRecommenderV1.FetchModelServerVersionsResponse {
+  ) async throws -> GoogleCloudGKERecommenderV1.FetchModelServerVersionsResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func fetchProfiles(request: FetchProfilesRequest) async throws
-    -> GoogleCloudGkeRecommenderV1.FetchProfilesResponse
+    -> GoogleCloudGKERecommenderV1.FetchProfilesResponse
   {
     try await self.fetchProfiles(request: request, options: .init())
   }
 
   public func fetchProfiles(
     request: FetchProfilesRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudGkeRecommenderV1.FetchProfilesResponse {
+  ) async throws -> GoogleCloudGKERecommenderV1.FetchProfilesResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -279,33 +279,33 @@ extension Clients.GkeInferenceQuickstartProtocol {
     byItem: FetchProfilesRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<Profile, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudGkeRecommenderV1.FetchProfilesResponse in
+      (token: Swift.String) async throws -> GoogleCloudGKERecommenderV1.FetchProfilesResponse in
       throw GoogleCloudGax.RequestError.unimplemented
     }
     return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   public func generateOptimizedManifest(request: GenerateOptimizedManifestRequest) async throws
-    -> GoogleCloudGkeRecommenderV1.GenerateOptimizedManifestResponse
+    -> GoogleCloudGKERecommenderV1.GenerateOptimizedManifestResponse
   {
     try await self.generateOptimizedManifest(request: request, options: .init())
   }
 
   public func generateOptimizedManifest(
     request: GenerateOptimizedManifestRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudGkeRecommenderV1.GenerateOptimizedManifestResponse {
+  ) async throws -> GoogleCloudGKERecommenderV1.GenerateOptimizedManifestResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func fetchBenchmarkingData(request: FetchBenchmarkingDataRequest) async throws
-    -> GoogleCloudGkeRecommenderV1.FetchBenchmarkingDataResponse
+    -> GoogleCloudGKERecommenderV1.FetchBenchmarkingDataResponse
   {
     try await self.fetchBenchmarkingData(request: request, options: .init())
   }
 
   public func fetchBenchmarkingData(
     request: FetchBenchmarkingDataRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudGkeRecommenderV1.FetchBenchmarkingDataResponse {
+  ) async throws -> GoogleCloudGKERecommenderV1.FetchBenchmarkingDataResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 }

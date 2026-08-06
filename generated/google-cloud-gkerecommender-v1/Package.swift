@@ -18,10 +18,10 @@
 import PackageDescription
 
 let package = Package(
-  name: "GoogleCloudGkeRecommenderV1",
+  name: "GoogleCloudGKERecommenderV1",
   platforms: [.macOS(.v15)],
   products: [
-    .library(name: "GoogleCloudGkeRecommenderV1", targets: ["GoogleCloudGkeRecommenderV1"])
+    .library(name: "GoogleCloudGKERecommenderV1", targets: ["GoogleCloudGKERecommenderV1"])
   ],
   dependencies: [
     .package(path: "../../packages/auth"),
@@ -31,7 +31,7 @@ let package = Package(
   ],
   targets: [
     .target(
-      name: "GoogleCloudGkeRecommenderV1",
+      name: "GoogleCloudGKERecommenderV1",
       dependencies: [
         .product(name: "GoogleCloudAuth", package: "auth"),
         .product(name: "GoogleCloudGax", package: "gax"),

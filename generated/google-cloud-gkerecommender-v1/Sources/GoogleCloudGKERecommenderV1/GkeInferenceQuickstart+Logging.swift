@@ -20,44 +20,52 @@ import Foundation
 #endif
 import GoogleCloudWkt
 import GoogleCloudGax
+import struct Logging.Logger
 
 extension Clients {
-  final class GkeInferenceQuickstartRetry: GkeInferenceQuickstartStub {
+  final class GkeInferenceQuickstartLogging: GkeInferenceQuickstartStub {
     let inner: any GkeInferenceQuickstartStub
-    let options: GoogleCloudGax.ClientOptions
+    let logger: Logger
 
-    public init(_ inner: any GkeInferenceQuickstartStub, options: GoogleCloudGax.ClientOptions) {
+    public init(_ inner: any GkeInferenceQuickstartStub, logger: Logger) {
+      var logger = logger
+      logger[metadataKey: "gcp.artifact.id"] = "google-cloud-gkerecommender-v1"
+      logger[metadataKey: "gcp.client.service"] = "gkerecommender"
+      logger[metadataKey: "gcp.experimental.swift.client"] = "GkeInferenceQuickstart"
       self.inner = inner
-      self.options = options
+      self.logger = logger
     }
 
     func _intercept<Input, Output>(
       request: Input,
       options: GoogleCloudGax.RequestOptions,
-      idempotent: Swift.Bool,
+      name: Swift.String,
       action: (Input, GoogleCloudGax.RequestOptions) async throws -> Output,
     ) async throws -> Output {
-      let loop = GoogleCloudGax._RetryLoop(
-        options: options, withDefault: self.options, idempotent: idempotent,
-      )
-      let attempt = { (attemptTimeout: Swift.Duration?) async throws -> Output in
-        var attemptOptions = options
-        attemptOptions.attemptTimeout = attemptTimeout
-        return try await action(request, attemptOptions)
+      var logger = logger
+      logger[metadataKey: "gcp.experimental.swift.request.id"] = "\(UUID())"
+      logger[metadataKey: "gcp.experimental.swift.method"] = .string(name)
+      logger.debug("enter  : \(request) \(options)")
+      do {
+        let output = try await action(request, options)
+        logger.debug("success: \(request) \(options) \(output)")
+        return output
+      } catch let error {
+        logger.debug("error  : \(request) \(options) \(error)")
+        throw error
       }
-      return try await loop.run(attempt: attempt)
     }
 
     public func fetchModels(
       request: FetchModelsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudGkeRecommenderV1.FetchModelsResponse {
+    ) async throws -> GoogleCloudGKERecommenderV1.FetchModelsResponse {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: true,
+        name: "fetchModels",
         action: {
           (r: FetchModelsRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleCloudGkeRecommenderV1.FetchModelsResponse
+            -> GoogleCloudGKERecommenderV1.FetchModelsResponse
           in
           return try await self.inner.fetchModels(request: r, options: o)
         })
@@ -65,14 +73,14 @@ extension Clients {
 
     public func fetchModelServers(
       request: FetchModelServersRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudGkeRecommenderV1.FetchModelServersResponse {
+    ) async throws -> GoogleCloudGKERecommenderV1.FetchModelServersResponse {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: true,
+        name: "fetchModelServers",
         action: {
           (r: FetchModelServersRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleCloudGkeRecommenderV1.FetchModelServersResponse
+            -> GoogleCloudGKERecommenderV1.FetchModelServersResponse
           in
           return try await self.inner.fetchModelServers(request: r, options: o)
         })
@@ -80,14 +88,14 @@ extension Clients {
 
     public func fetchModelServerVersions(
       request: FetchModelServerVersionsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudGkeRecommenderV1.FetchModelServerVersionsResponse {
+    ) async throws -> GoogleCloudGKERecommenderV1.FetchModelServerVersionsResponse {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: true,
+        name: "fetchModelServerVersions",
         action: {
           (r: FetchModelServerVersionsRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleCloudGkeRecommenderV1.FetchModelServerVersionsResponse
+            -> GoogleCloudGKERecommenderV1.FetchModelServerVersionsResponse
           in
           return try await self.inner.fetchModelServerVersions(request: r, options: o)
         })
@@ -95,14 +103,14 @@ extension Clients {
 
     public func fetchProfiles(
       request: FetchProfilesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudGkeRecommenderV1.FetchProfilesResponse {
+    ) async throws -> GoogleCloudGKERecommenderV1.FetchProfilesResponse {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        name: "fetchProfiles",
         action: {
           (r: FetchProfilesRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleCloudGkeRecommenderV1.FetchProfilesResponse
+            -> GoogleCloudGKERecommenderV1.FetchProfilesResponse
           in
           return try await self.inner.fetchProfiles(request: r, options: o)
         })
@@ -110,14 +118,14 @@ extension Clients {
 
     public func generateOptimizedManifest(
       request: GenerateOptimizedManifestRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudGkeRecommenderV1.GenerateOptimizedManifestResponse {
+    ) async throws -> GoogleCloudGKERecommenderV1.GenerateOptimizedManifestResponse {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        name: "generateOptimizedManifest",
         action: {
           (r: GenerateOptimizedManifestRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleCloudGkeRecommenderV1.GenerateOptimizedManifestResponse
+            -> GoogleCloudGKERecommenderV1.GenerateOptimizedManifestResponse
           in
           return try await self.inner.generateOptimizedManifest(request: r, options: o)
         })
@@ -125,14 +133,14 @@ extension Clients {
 
     public func fetchBenchmarkingData(
       request: FetchBenchmarkingDataRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudGkeRecommenderV1.FetchBenchmarkingDataResponse {
+    ) async throws -> GoogleCloudGKERecommenderV1.FetchBenchmarkingDataResponse {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        name: "fetchBenchmarkingData",
         action: {
           (r: FetchBenchmarkingDataRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleCloudGkeRecommenderV1.FetchBenchmarkingDataResponse
+            -> GoogleCloudGKERecommenderV1.FetchBenchmarkingDataResponse
           in
           return try await self.inner.fetchBenchmarkingData(request: r, options: o)
         })

@@ -17,11 +17,11 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudGkeRecommenderV1
+import GoogleCloudGKERecommenderV1
 import GoogleCloudWkt
 
 func sample() async throws {
-  let client = try GoogleCloudGkeRecommenderV1.GkeInferenceQuickstartClient()
+  let client = try GoogleCloudGKERecommenderV1.GkeInferenceQuickstartClient()
   let response = try await client.fetchModels(
     request: FetchModelsRequest()
       /* set fields using .with { $0... } */
