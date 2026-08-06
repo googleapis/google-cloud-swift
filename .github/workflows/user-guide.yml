@@ -34,8 +34,20 @@ jobs:
         run: |
           swift package --allow-writing-to-package-directory \
             generate-documentation --target UserGuide \
-            --output-path ./.render \
-            --hosting-base-path UserGuide
+            --hosting-base-path google-cloud-swift \
+            --transform-for-static-hosting \
+            --disable-indexing \
+            --output-path ./.render
+          # Replace the top-level index file with a redirect, as we only host
+          # one target. Otherwise users have to find the hidden directory.
+          cat >.render/index.html <<_EOF_
+          <!DOCTYPE html>
+          <html>
+          <head>
+              <meta http-equiv="refresh" content="0; url=./documentation/userguide">
+          </head>
+          </html>
+          _EOF_
       - name: Upload user guide
         id: deployment
         uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # ratchet:actions/upload-pages-artifact@v5
