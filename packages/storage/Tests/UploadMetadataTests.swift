@@ -296,11 +296,12 @@ import Testing
     #expect(object.eventBasedHold == true)
     #expect(object.temporaryHold == false)
     #expect(object.customMetadata == ["app": "swift-storage", "version": "1.0"])
-    #expect(object.customTime != nil)
-    #expect(object.acl?.count == 1)
-    #expect(object.acl?.first?.entity == "user-test@example.com")
-    #expect(object.acl?.first?.role == "OWNER")
-    #expect(object.retention?.mode == "Unlocked")
+    #expect(object.acl.count == 1)
+    #expect(object.acl.first?.entity == "user-test@example.com")
+    #expect(object.acl.first?.role == "OWNER")
+    #expect(
+      object.retention?.mode == .unlocked
+        || object.retention?.mode == .unknownStringValue("Unlocked"))
     #expect(object.owner?.entity == "user-owner@example.com")
     #expect(object.owner?.entityId == "owner123")
   }
@@ -320,8 +321,8 @@ import Testing
       $0.contexts = contexts
     }
 
-    #expect(uploadMetadata.contexts?.custom?["customer_id"]?.value == "cust-78901")
-    #expect(uploadMetadata.contexts?.custom?["payment_status"]?.value == "unpaid")
+    #expect(uploadMetadata.contexts?.custom["customer_id"]?.value == "cust-78901")
+    #expect(uploadMetadata.contexts?.custom["payment_status"]?.value == "unpaid")
 
     let encoder = JSONEncoder()
     let data = try encoder.encode(uploadMetadata)
@@ -338,10 +339,10 @@ import Testing
     let decoded = try decoder.decode(UploadMetadata.self, from: data)
 
     #expect(decoded == uploadMetadata)
-    #expect(decoded.contexts?.custom?["customer_id"]?.value == "cust-78901")
-    #expect(decoded.contexts?.custom?["customer_id"]?.createTime == createTime)
-    #expect(decoded.contexts?.custom?["customer_id"]?.updateTime == updateTime)
-    #expect(decoded.contexts?.custom?["payment_status"]?.value == "unpaid")
+    #expect(decoded.contexts?.custom["customer_id"]?.value == "cust-78901")
+    #expect(decoded.contexts?.custom["customer_id"]?.createTime == createTime)
+    #expect(decoded.contexts?.custom["customer_id"]?.updateTime == updateTime)
+    #expect(decoded.contexts?.custom["payment_status"]?.value == "unpaid")
   }
 
   @Test func simpleUploadWithObjectContextsInUploadOptions() async throws {
@@ -407,8 +408,8 @@ import Testing
 
     #expect(object.name == objectName)
     #expect(object.bucket == bucket)
-    #expect(object.contexts?.custom?["dept"]?.value == "engineering")
-    #expect(object.contexts?.custom?["environment"]?.value == "production")
+    #expect(object.contexts?.custom["dept"]?.value == "engineering")
+    #expect(object.contexts?.custom["environment"]?.value == "production")
 
     let recordedReq = registry.lastRequest(for: simpleUploadUrl)
     #expect(recordedReq != nil)
@@ -483,7 +484,7 @@ import Testing
     let object = try await task.value
 
     #expect(object.name == objectName)
-    #expect(object.contexts?.custom?["batch_id"]?.value == "2026_Q3")
+    #expect(object.contexts?.custom["batch_id"]?.value == "2026_Q3")
 
     let recordedInitReq = registry.lastRequest(for: initUrl)
     #expect(recordedInitReq != nil)

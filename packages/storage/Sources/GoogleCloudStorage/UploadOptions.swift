@@ -286,40 +286,6 @@ public enum PredefinedAcl: String, Sendable, Equatable {
   case publicRead
 }
 
-/// Project team info for ObjectAccessControl.
-public struct ProjectTeam: Sendable, Codable, Equatable {
-  public var projectNumber: String?
-  public var team: String?
-
-  public init() {}
-
-  public func with(_ config: (inout Self) -> Void) -> Self {
-    var copy = self
-    config(&copy)
-    return copy
-  }
-}
-
-/// Access Control List (ACL) entry for a GCS Object.
-public struct ObjectAccessControl: Sendable, Codable, Equatable {
-  public var entity: String?
-  public var role: String?
-  public var email: String?
-  public var domain: String?
-  public var entityId: String?
-  public var etag: String?
-  public var id: String?
-  public var projectTeam: ProjectTeam?
-
-  public init() {}
-
-  public func with(_ config: (inout Self) -> Void) -> Self {
-    var copy = self
-    config(&copy)
-    return copy
-  }
-}
-
 /// Object retention policy configuration for a GCS Object.
 public struct ObjectRetention: Sendable, Codable, Equatable {
   public var mode: String?
@@ -349,22 +315,14 @@ public struct ObjectOwner: Sendable, Codable, Equatable {
 }
 
 /// Payload for a custom context entry on a Cloud Storage object.
-public struct ObjectCustomContextPayload: Sendable, Codable, Equatable, ExpressibleByStringLiteral {
-  /// Value of the context key.
-  public var value: String?
-
-  /// Timestamp when the context key was created.
-  public var createTime: GoogleCloudWkt.Timestamp?
-
-  /// Timestamp when the context key was last updated.
-  public var updateTime: GoogleCloudWkt.Timestamp?
-
+extension ObjectCustomContextPayload: ExpressibleByStringLiteral {
   public init(
     value: String? = nil,
     createTime: GoogleCloudWkt.Timestamp? = nil,
     updateTime: GoogleCloudWkt.Timestamp? = nil
   ) {
-    self.value = value
+    self.init()
+    if let value = value { self.value = value }
     self.createTime = createTime
     self.updateTime = updateTime
   }
@@ -372,38 +330,22 @@ public struct ObjectCustomContextPayload: Sendable, Codable, Equatable, Expressi
   public init(stringLiteral value: String) {
     self.init(value: value)
   }
-
-  public func with(_ config: (inout Self) -> Void) -> Self {
-    var copy = self
-    config(&copy)
-    return copy
-  }
 }
 
 /// Container for object contexts on a Cloud Storage object.
-///
-/// Object contexts allow attaching custom key-value pairs to Cloud Storage objects
-/// to improve how you categorize, track, and search your data.
-public struct ObjectContexts: Sendable, Codable, Equatable, ExpressibleByDictionaryLiteral {
-  /// Map of custom context keys to their payloads.
-  public var custom: [String: ObjectCustomContextPayload]?
-
-  public init(custom: [String: ObjectCustomContextPayload]? = nil) {
+extension ObjectContexts: ExpressibleByDictionaryLiteral {
+  public init(custom: [String: ObjectCustomContextPayload] = [:]) {
+    self.init()
     self.custom = custom
   }
 
   public init(customValues: [String: String]) {
-    self.custom = customValues.mapValues { ObjectCustomContextPayload(value: $0) }
+    self.init()
+    self.custom = customValues.mapValues { val in ObjectCustomContextPayload(value: val) }
   }
 
   public init(dictionaryLiteral elements: (String, ObjectCustomContextPayload)...) {
-    self.custom = Dictionary(uniqueKeysWithValues: elements)
-  }
-
-  public func with(_ config: (inout Self) -> Void) -> Self {
-    var copy = self
-    config(&copy)
-    return copy
+    self.init(custom: Dictionary(uniqueKeysWithValues: elements))
   }
 }
 
@@ -660,141 +602,62 @@ public struct UploadOptions: Sendable {
 }
 
 /// Customer encryption metadata returned in object responses.
-public struct CustomerEncryption: Sendable, Codable, Equatable {
-  /// The encryption algorithm used to encrypt the object (e.g., "AES256").
-  public var encryptionAlgorithm: String?
+extension CustomerEncryption {
+  /// Base64-encoded string representation of `keySha256Bytes`.
+  public var keySha256: String? {
+    get {
+      guard !keySha256Bytes.isEmpty else { return nil }
+      return keySha256Bytes.base64EncodedString()
+    }
+    set {
+      keySha256Bytes = newValue.flatMap { Data(base64Encoded: $0) } ?? Data()
+    }
+  }
 
-  /// The Base64-encoded SHA-256 hash of the customer-supplied encryption key.
-  public var keySha256: String?
+  private enum ExtensionCodingKeys: String, CodingKey {
+    case encryptionAlgorithm
+    case keySha256Bytes
+    case keySha256
+  }
 
-  public init() {}
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: ExtensionCodingKeys.self)
+    self.encryptionAlgorithm =
+      try container.decodeIfPresent(String.self, forKey: .encryptionAlgorithm) ?? ""
+    if let data = try container.decodeIfPresent(Data.self, forKey: .keySha256Bytes) {
+      self.keySha256Bytes = data
+    } else if let b64 = try container.decodeIfPresent(String.self, forKey: .keySha256),
+      let data = Data(base64Encoded: b64)
+    {
+      self.keySha256Bytes = data
+    } else {
+      self.keySha256Bytes = Data()
+    }
+  }
 
-  public func with(_ config: (inout Self) -> Void) -> Self {
-    var copy = self
-    config(&copy)
-    return copy
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: ExtensionCodingKeys.self)
+    try container.encode(encryptionAlgorithm, forKey: .encryptionAlgorithm)
+    try container.encode(keySha256Bytes, forKey: .keySha256Bytes)
+    if !keySha256Bytes.isEmpty {
+      try container.encode(keySha256Bytes.base64EncodedString(), forKey: .keySha256)
+    }
   }
 }
 
-/// Represents a GCS Object.
-// TODO(#27): Replace with actual generated struct if available.
-public struct StorageObject: Sendable, Codable, Equatable {
-  public var bucket: String = String()
-  public var name: String = String()
-  public var generation: Int64 = Int64()
-  public var metageneration: Int64 = Int64()
-  public var size: Int64 = Int64()
-  public var contentType: String?
-  public var contentEncoding: String?
-  public var contentDisposition: String?
-  public var contentLanguage: String?
-  public var cacheControl: String?
-  public var customMetadata: [String: String]?
-  public var customerEncryption: CustomerEncryption?
-  public var md5Hash: String?
-  public var crc32c: String?
-  public var etag: String?
-  public var storageClass: String?
-  public var customTime: GoogleCloudWkt.Timestamp?
-  public var timeCreated: GoogleCloudWkt.Timestamp?
-  public var updated: GoogleCloudWkt.Timestamp?
-  public var eventBasedHold: Bool?
-  public var temporaryHold: Bool?
-  public var acl: [ObjectAccessControl]?
-  public var retention: ObjectRetention?
-  public var owner: ObjectOwner?
-  public var contexts: ObjectContexts?
+public typealias StorageObject = Object
 
-  public init() {}
-
-  public init(from decoder: Decoder) throws {
-    let container = try decoder.container(keyedBy: CodingKeys.self)
-    bucket = (try? container.decode(String.self, forKey: .bucket)) ?? ""
-    name = (try? container.decode(String.self, forKey: .name)) ?? ""
-
-    if let genStr = try? container.decode(String.self, forKey: .generation),
-      let gen = Int64(genStr)
-    {
-      generation = gen
-    } else {
-      generation = (try? container.decode(Int64.self, forKey: .generation)) ?? 0
-    }
-
-    if let metaStr = try? container.decode(String.self, forKey: .metageneration),
-      let meta = Int64(metaStr)
-    {
-      metageneration = meta
-    } else {
-      metageneration = (try? container.decode(Int64.self, forKey: .metageneration)) ?? 0
-    }
-
-    if let sizeStr = try? container.decode(String.self, forKey: .size), let s = Int64(sizeStr) {
-      size = s
-    } else {
-      size = (try? container.decode(Int64.self, forKey: .size)) ?? 0
-    }
-
-    contentType = try? container.decode(String.self, forKey: .contentType)
-    contentEncoding = try? container.decode(String.self, forKey: .contentEncoding)
-    contentDisposition = try? container.decode(String.self, forKey: .contentDisposition)
-    contentLanguage = try? container.decode(String.self, forKey: .contentLanguage)
-    cacheControl = try? container.decode(String.self, forKey: .cacheControl)
-    customMetadata = try? container.decode([String: String].self, forKey: .customMetadata)
-    customerEncryption = try? container.decode(
-      CustomerEncryption.self, forKey: .customerEncryption)
-    md5Hash = try? container.decode(String.self, forKey: .md5Hash)
-    crc32c = try? container.decode(String.self, forKey: .crc32c)
-    etag = try? container.decode(String.self, forKey: .etag)
-    storageClass = try? container.decode(String.self, forKey: .storageClass)
-    customTime = try? container.decode(GoogleCloudWkt.Timestamp.self, forKey: .customTime)
-    timeCreated = try? container.decode(GoogleCloudWkt.Timestamp.self, forKey: .timeCreated)
-    updated = try? container.decode(GoogleCloudWkt.Timestamp.self, forKey: .updated)
-    eventBasedHold = try? container.decode(Bool.self, forKey: .eventBasedHold)
-    temporaryHold = try? container.decode(Bool.self, forKey: .temporaryHold)
-    acl = try? container.decode([ObjectAccessControl].self, forKey: .acl)
-    retention = try? container.decode(ObjectRetention.self, forKey: .retention)
-    owner = try? container.decode(ObjectOwner.self, forKey: .owner)
-    contexts = try? container.decode(ObjectContexts.self, forKey: .contexts)
+extension Object {
+  public var customMetadata: [String: String]? {
+    get { metadata.isEmpty ? nil : metadata }
+    set { metadata = newValue ?? [:] }
   }
-
-  enum CodingKeys: String, CodingKey {
-    case bucket
-    case name
-    case generation
-    case metageneration
-    case size
-    case contentType
-    case contentEncoding
-    case contentDisposition
-    case contentLanguage
-    case cacheControl
-    case customMetadata = "metadata"
-    case customerEncryption
-    case md5Hash
-    case crc32c
-    case etag
-    case storageClass
-    case customTime
-    case timeCreated
-    case updated
-    case eventBasedHold
-    case temporaryHold
-    case acl
-    case retention
-    case owner
-    case contexts
+  public var timeCreated: GoogleCloudWkt.Timestamp? {
+    get { createTime }
+    set { createTime = newValue }
   }
-
-  /// Use `with` to return a new instance of this object, with some fields updated.
-  ///
-  /// Commonly used to initialize the value, for example:
-  ///
-  /// ```
-  /// let value = StorageObject().with { $0.name = ... }
-  /// ```
-  public func with(_ config: (inout Self) -> Void) -> Self {
-    var copy = self
-    config(&copy)
-    return copy
+  public var updated: GoogleCloudWkt.Timestamp? {
+    get { updateTime }
+    set { updateTime = newValue }
   }
 }

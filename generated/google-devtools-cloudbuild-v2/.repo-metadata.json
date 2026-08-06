@@ -1,0 +1,15 @@
+{
+    "api_description": "Creates and manages builds on Google Cloud Platform.",
+    "api_id": "cloudbuild.googleapis.com",
+    "api_shortname": "cloudbuild",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/google-devtools-cloudbuild-v2/documentation",
+    "distribution_name": "google-devtools-cloudbuild-v2",
+    "issue_tracker": "https://issuetracker.google.com/savedsearches/5226584",
+    "language": "swift",
+    "library_type": "GAPIC_AUTO",
+    "name": "cloudbuild",
+    "name_pretty": "Cloud Build",
+    "product_documentation": "https://cloud.google.com/cloud-build/",
+    "release_level": "preview",
+    "repo": "googleapis/google-cloud-swift"
+}
