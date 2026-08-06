@@ -66,7 +66,8 @@ extension Object {
     self.bucket = (try? container.decode(Swift.String.self, forKey: .bucket)) ?? ""
     self.etag = (try? container.decode(Swift.String.self, forKey: .etag)) ?? ""
 
-    if let genStr = try? container.decode(String.self, forKey: .generation), let gen = Int64(genStr) {
+    if let genStr = try? container.decode(String.self, forKey: .generation), let gen = Int64(genStr)
+    {
       self.generation = gen
     } else {
       self.generation = (try? container.decode(Swift.Int64.self, forKey: .generation)) ?? 0
@@ -74,7 +75,9 @@ extension Object {
 
     self.restoreToken = try? container.decode(Swift.String.self, forKey: .restoreToken)
 
-    if let metaStr = try? container.decode(String.self, forKey: .metageneration), let meta = Int64(metaStr) {
+    if let metaStr = try? container.decode(String.self, forKey: .metageneration),
+      let meta = Int64(metaStr)
+    {
       self.metageneration = meta
     } else {
       self.metageneration = (try? container.decode(Swift.Int64.self, forKey: .metageneration)) ?? 0
@@ -88,19 +91,26 @@ extension Object {
       self.size = (try? container.decode(Swift.Int64.self, forKey: .size)) ?? 0
     }
 
-    self.contentEncoding = (try? container.decode(Swift.String.self, forKey: .contentEncoding)) ?? ""
-    self.contentDisposition = (try? container.decode(Swift.String.self, forKey: .contentDisposition)) ?? ""
+    self.contentEncoding =
+      (try? container.decode(Swift.String.self, forKey: .contentEncoding)) ?? ""
+    self.contentDisposition =
+      (try? container.decode(Swift.String.self, forKey: .contentDisposition)) ?? ""
     self.cacheControl = (try? container.decode(Swift.String.self, forKey: .cacheControl)) ?? ""
     self.acl = (try? container.decode([ObjectAccessControl].self, forKey: .acl)) ?? []
-    self.contentLanguage = (try? container.decode(Swift.String.self, forKey: .contentLanguage)) ?? ""
-    self.deleteTime = (try? container.decode(GoogleCloudWkt.Timestamp.self, forKey: .deleteTime))
+    self.contentLanguage =
+      (try? container.decode(Swift.String.self, forKey: .contentLanguage)) ?? ""
+    self.deleteTime =
+      (try? container.decode(GoogleCloudWkt.Timestamp.self, forKey: .deleteTime))
       ?? (try? container.decode(GoogleCloudWkt.Timestamp.self, forKey: .timeDeleted))
     self.finalizeTime = try? container.decode(GoogleCloudWkt.Timestamp.self, forKey: .finalizeTime)
     self.contentType = (try? container.decode(Swift.String.self, forKey: .contentType)) ?? ""
-    self.createTime = (try? container.decode(GoogleCloudWkt.Timestamp.self, forKey: .createTime))
+    self.createTime =
+      (try? container.decode(GoogleCloudWkt.Timestamp.self, forKey: .createTime))
       ?? (try? container.decode(GoogleCloudWkt.Timestamp.self, forKey: .timeCreated))
 
-    if let compStr = try? container.decode(String.self, forKey: .componentCount), let c = Int32(compStr) {
+    if let compStr = try? container.decode(String.self, forKey: .componentCount),
+      let c = Int32(compStr)
+    {
       self.componentCount = c
     } else {
       self.componentCount = (try? container.decode(Swift.Int32.self, forKey: .componentCount)) ?? 0
@@ -143,22 +153,29 @@ extension Object {
       }
     }
 
-    self.updateTime = (try? container.decode(GoogleCloudWkt.Timestamp.self, forKey: .updateTime))
+    self.updateTime =
+      (try? container.decode(GoogleCloudWkt.Timestamp.self, forKey: .updateTime))
       ?? (try? container.decode(GoogleCloudWkt.Timestamp.self, forKey: .updated))
     self.kmsKey = (try? container.decode(Swift.String.self, forKey: .kmsKey)) ?? ""
-    self.updateStorageClassTime = (try? container.decode(GoogleCloudWkt.Timestamp.self, forKey: .updateStorageClassTime))
+    self.updateStorageClassTime =
+      (try? container.decode(GoogleCloudWkt.Timestamp.self, forKey: .updateStorageClassTime))
       ?? (try? container.decode(GoogleCloudWkt.Timestamp.self, forKey: .timeStorageClassUpdated))
     self.temporaryHold = (try? container.decode(Swift.Bool.self, forKey: .temporaryHold)) ?? false
-    self.retentionExpireTime = (try? container.decode(GoogleCloudWkt.Timestamp.self, forKey: .retentionExpireTime))
+    self.retentionExpireTime =
+      (try? container.decode(GoogleCloudWkt.Timestamp.self, forKey: .retentionExpireTime))
       ?? (try? container.decode(GoogleCloudWkt.Timestamp.self, forKey: .retentionExpirationTime))
-    self.metadata = (try? container.decode([Swift.String: Swift.String].self, forKey: .metadata)) ?? [:]
+    self.metadata =
+      (try? container.decode([Swift.String: Swift.String].self, forKey: .metadata)) ?? [:]
     self.contexts = try? container.decode(ObjectContexts.self, forKey: .contexts)
     self.eventBasedHold = try? container.decode(Swift.Bool.self, forKey: .eventBasedHold)
     self.owner = try? container.decode(Owner.self, forKey: .owner)
-    self.customerEncryption = try? container.decode(CustomerEncryption.self, forKey: .customerEncryption)
+    self.customerEncryption = try? container.decode(
+      CustomerEncryption.self, forKey: .customerEncryption)
     self.customTime = try? container.decode(GoogleCloudWkt.Timestamp.self, forKey: .customTime)
-    self.softDeleteTime = try? container.decode(GoogleCloudWkt.Timestamp.self, forKey: .softDeleteTime)
-    self.hardDeleteTime = try? container.decode(GoogleCloudWkt.Timestamp.self, forKey: .hardDeleteTime)
+    self.softDeleteTime = try? container.decode(
+      GoogleCloudWkt.Timestamp.self, forKey: .softDeleteTime)
+    self.hardDeleteTime = try? container.decode(
+      GoogleCloudWkt.Timestamp.self, forKey: .hardDeleteTime)
     self.retention = try? container.decode(Object.Retention.self, forKey: .retention)
   }
 
