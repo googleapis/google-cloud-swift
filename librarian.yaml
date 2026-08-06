@@ -425,6 +425,9 @@ libraries:
   - name: google-cloud-dataproc-logging
     version: 0.0.0-preview
     copyright_year: "2026"
+  - name: google-cloud-datastream-v1
+    version: 0.0.0-preview
+    copyright_year: "2026"
   - name: google-cloud-deploy-v1
     version: 0.1.0-preview
     copyright_year: "2026"
