@@ -522,7 +522,7 @@ libraries:
     version: 0.0.0-preview
     copyright_year: "2026"
     swift:
-      library_name_override: GoogleCloudGkeRecommenderV1
+      library_name_override: GoogleCloudGKERecommenderV1
   - name: google-cloud-hypercomputecluster-v1
     version: 0.0.0-preview
     copyright_year: "2026"
