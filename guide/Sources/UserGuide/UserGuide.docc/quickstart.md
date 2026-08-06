@@ -1,5 +1,15 @@
 # Quickstart
 
+<!-- 
+    It seems that swift-docc does not support reference-style links at the bottom of the file:
+    
+    https://github.com/swiftlang/swift-docc/issues/685
+-->
+[Installing Swift]: https://www.swift.org/getting-started/
+[Authenticate for using client libraries]: https://cloud.google.com/docs/authentication/client-libraries
+[Application Default Credentials]: https://cloud.google.com/docs/authentication/application-default-credentials
+[Get started with Google Cloud]: https://docs.cloud.google.com/docs/get-started
+
 ## Install Swift
 
 If you have not installed the Swift toolchain, follow the [Installing Swift]
@@ -103,8 +113,3 @@ swift run GoogleCloudCLI [PROJECT ID]
 The full code for your program should look like this:
 
 @Snippet(path: "GoogleCloudCLI")
-
-[Installing Swift]: https://www.swift.org/getting-started/
-[Authenticate for using client libraries]: https://cloud.google.com/docs/authentication/client-libraries
-[Application Default Credentials]: https://cloud.google.com/docs/authentication/application-default-credentials
-[Get started with Google Cloud]: https://docs.cloud.google.com/docs/get-started
