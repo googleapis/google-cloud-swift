@@ -34,3 +34,6 @@ substitutions:
   _POOL_REGION: us-central1
   _POOL_ID: swift-sdk-pool
   _SWIFT_VERSION: '6.3'
+# Increase the default timeout. Building all the packages
+# takes about 1h15m or 4500s, go with 3h (10800s) for a big margin.
+timeout: 10800s

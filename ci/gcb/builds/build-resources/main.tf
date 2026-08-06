@@ -69,8 +69,19 @@ resource "google_cloudbuild_worker_pool" "pool32" {
   name     = "swift-sdk-pool-large"
   location = "us-central1"
   worker_config {
-    disk_size_gb   = 256
+    disk_size_gb   = 2048
     machine_type   = "e2-standard-32"
+    no_external_ip = false
+  }
+}
+
+# We do not plan to use this much, but it is useful in testing.
+resource "google_cloudbuild_worker_pool" "pool64" {
+  name     = "swift-sdk-pool-xlarge"
+  location = "us-central1"
+  worker_config {
+    disk_size_gb   = 2048
+    machine_type   = "n2d-standard-64"
     no_external_ip = false
   }
 }

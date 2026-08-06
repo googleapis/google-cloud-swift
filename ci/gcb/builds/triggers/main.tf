@@ -34,6 +34,11 @@ locals {
       config = "scripted.yaml"
       script = "integration-tests"
     }
+    full = {
+      config  = "scripted.yaml"
+      script  = "full"
+      pool_id = "swift-sdk-pool-large"
+    }
   }
 
   # These are builds that only run during Pull Requests.
@@ -106,6 +111,7 @@ resource "google_cloudbuild_trigger" "post-merge" {
     for k, v in local.pm_builds : k => {
       config         = v.config,
       script         = try(v.script, "")
+      pool_id        = try(v.pool_id, "")
       flags          = try(v.flags, "")
       swift_version  = try(v.swift_version, null)
       included_files = try(v.included_files, [])
@@ -129,6 +135,7 @@ resource "google_cloudbuild_trigger" "post-merge" {
   substitutions = {
     _SCRIPT        = lookup(each.value, "script", "")
     _SWIFT_VERSION = lookup(each.value, "swift_version", null)
+    _POOL_ID       = lookup(each.value, "pool_id", null)
   }
 }
 
