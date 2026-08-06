@@ -645,17 +645,3 @@ extension CustomerEncryption {
   }
 }
 
-extension Object {
-  public var customMetadata: [String: String]? {
-    get { metadata.isEmpty ? nil : metadata }
-    set { metadata = newValue ?? [:] }
-  }
-  public var timeCreated: GoogleCloudWkt.Timestamp? {
-    get { createTime }
-    set { createTime = newValue }
-  }
-  public var updated: GoogleCloudWkt.Timestamp? {
-    get { updateTime }
-    set { updateTime = newValue }
-  }
-}
