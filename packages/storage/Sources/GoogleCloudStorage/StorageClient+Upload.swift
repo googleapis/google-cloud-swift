@@ -82,7 +82,7 @@ extension StorageClient {
     options: UploadOptions,
     totalSize: Int64?,
     continuation: AsyncStream<UploadStatus>.Continuation
-  ) async throws -> StorageObject {
+  ) async throws -> Object {
     guard let data = try await source.read(maxBytes: Int(totalSize ?? 0)) else {
       throw UploadError.internalError("Failed to read data from source")
     }
@@ -112,7 +112,7 @@ extension StorageClient {
     options: UploadOptions,
     totalSize: Int64?,
     continuation: AsyncStream<UploadStatus>.Continuation
-  ) async throws -> StorageObject {
+  ) async throws -> Object {
     let startRequest = try await httpClient.buildStartResumableUploadRequest(
       bucket: bucket, objectName: objectName, metadata: metadata, options: options)
     let (startData, startResponse) = try await httpClient.data(for: startRequest)
@@ -151,7 +151,7 @@ extension StorageClient {
     totalSize: Int64?,
     options: UploadOptions,
     continuation: AsyncStream<UploadStatus>.Continuation
-  ) async throws -> StorageObject {
+  ) async throws -> Object {
     var offset = offset
     var chunksSent = 0
     while true {
@@ -220,7 +220,7 @@ extension StorageClient {
     totalSize: Int64?,
     options: UploadOptions,
     continuation: AsyncStream<UploadStatus>.Continuation
-  ) async throws -> StorageObject {
+  ) async throws -> Object {
     var options = options
     // Explicitly disable calculated MD5 checksums if we are resuming an upload at offset >0
     // as MD5 requires reading the entire file from the start.
@@ -250,7 +250,7 @@ extension StorageClient {
     totalSize: Int64?,
     options: UploadOptions,
     continuation: AsyncStream<UploadStatus>.Continuation
-  ) async throws -> StorageObject {
+  ) async throws -> Object {
     var options = options
     // Explicitly disable calculated MD5 checksums if we are resuming an upload at offset >0
     // as MD5 requires reading the entire file from the start.
@@ -577,7 +577,7 @@ extension HTTPClient {
   }
 
   fileprivate func handleObjectResponse(data: Data, response: HTTPURLResponse) throws
-    -> StorageObject
+    -> Object
   {
     guard (200..<300).contains(response.statusCode) else {
       let message = String(data: data, encoding: .utf8) ?? ""
@@ -585,7 +585,7 @@ extension HTTPClient {
         statusCode: response.statusCode, message: message)
     }
     let decoder = GoogleCloudWkt._ProtoJSONDecoder()
-    return try decoder.decode(StorageObject.self, from: data)
+    return try decoder.decode(Object.self, from: data)
   }
 }
 

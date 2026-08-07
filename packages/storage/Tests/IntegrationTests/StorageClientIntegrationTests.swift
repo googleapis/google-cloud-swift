@@ -308,7 +308,7 @@ import Testing
       #expect(object.bucket == bucketName)
       #expect(object.name == objectName)
       #expect(object.size == Int64(fileSize))
-      #expect(object.crc32c != nil)
+      #expect(object.checksums?.crc32C != nil)
       print("Resumed upload with new source instance and CRC32C checksumming successful: \(object)")
     }
 
