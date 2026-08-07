@@ -1,0 +1,14 @@
+{
+    "api_description": "Manage Cloud Database Migration Service resources on Google Cloud Platform.",
+    "api_id": "datamigration.googleapis.com",
+    "api_shortname": "datamigration",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/google-cloud-clouddms-v1/documentation",
+    "distribution_name": "google-cloud-clouddms-v1",
+    "language": "swift",
+    "library_type": "GAPIC_AUTO",
+    "name": "datamigration",
+    "name_pretty": "Database Migration",
+    "product_documentation": "https://cloud.google.com/database-migration/",
+    "release_level": "preview",
+    "repo": "googleapis/google-cloud-swift"
+}

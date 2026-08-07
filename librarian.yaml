@@ -354,6 +354,11 @@ libraries:
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudControlsPartnerV1
+  - name: google-cloud-clouddms-v1
+    version: 0.0.0-preview
+    copyright_year: "2026"
+    swift:
+      library_name_override: GoogleCloudDMSV1
   - name: google-cloud-common
     version: 0.0.0-preview
     copyright_year: "2026"
