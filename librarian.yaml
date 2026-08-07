@@ -320,6 +320,11 @@ libraries:
     copyright_year: "2026"
     swift:
       library_name_override: GoogleBigQueryMigrationV2
+  - name: google-cloud-bigquery-reservation-v1
+    version: 0.0.0-preview
+    copyright_year: "2026"
+    swift:
+      library_name_override: GoogleBigQueryReservationV1
   - name: google-cloud-billing-budgets-v1
     version: 0.1.0-preview
     copyright_year: "2026"
