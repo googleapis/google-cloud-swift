@@ -46,4 +46,11 @@ public protocol StorageClientProtocol {
     as objectName: String,
     options: UploadOptions
   ) -> UploadTask
+
+  /// Reads (downloads) an object from Cloud Storage as an async sequence of Data chunks.
+  func readObject(
+    from bucket: String,
+    object: String,
+    options: ReadObjectOptions
+  ) async throws -> ReadObjectResult
 }
