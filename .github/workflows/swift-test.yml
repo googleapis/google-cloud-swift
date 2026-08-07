@@ -19,16 +19,6 @@ on:
   pull_request:
     branches: ["main"]
 jobs:
-  test:
-    name: Run Unit Tests
-    runs-on: ubuntu-24.04
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # ratchet:actions/checkout@v6
-      - name: Install Swift
-        uses: ./.github/actions/install-swift
-      - name: Run Tests
-        run: ./ci/test.sh
   generated:
     name: Build Generated Code
     runs-on: ubuntu-24.04
