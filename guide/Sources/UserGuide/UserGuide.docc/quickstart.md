@@ -1,4 +1,4 @@
-# Quickstart
+# Getting started with Swift
 
 <!-- 
     It seems that swift-docc does not support reference-style links at the bottom of the file:
@@ -9,6 +9,8 @@
 [Authenticate for using client libraries]: https://cloud.google.com/docs/authentication/client-libraries
 [Application Default Credentials]: https://cloud.google.com/docs/authentication/application-default-credentials
 [Get started with Google Cloud]: https://docs.cloud.google.com/docs/get-started
+[secret manager api]: https://cloud.google.com/secret-manager
+[service quickstart]: https://cloud.google.com/secret-manager/docs/quickstart
 
 ## Install Swift
 
@@ -20,11 +22,16 @@ instructions.
 If you do not have a Google Cloud project, follow the
 [Get started with Google Cloud] guide.
 
+## Enable the Secret Manager service
+
+This guide uses the [Secret Manager API]. To enable this API, follow the
+[service quickstart].
+
 ## Authenticate to Google Cloud
 
 Follow the instructions in the [Authenticate for using client libraries] guide.
-This guide will show you how to login to configure [Application Default Credentials]
-used in this guide.
+This guide will show you how to login to Google Cloud, and configure the
+[Application Default Credentials] used in this guide.
 
 ## Create a Swift project
 

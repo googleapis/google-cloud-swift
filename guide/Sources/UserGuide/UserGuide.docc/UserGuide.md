@@ -11,6 +11,18 @@ best-practices to retry failed requests.
 The client libraries use Swift 6.0 to provide asynchronous, thread-safe, and
 memory-safe APIs.
 
-## Topics
+<!-- TODO(https://github.com/googleapis/google-cloud-swift/issues/135)
+## Discover
+
+- <doc:overview>
+- <doc:supported-versions>
+
+-->
+
+## Get started
 
 - <doc:quickstart>
+
+## Develop
+
+- <doc:override-endpoint>
