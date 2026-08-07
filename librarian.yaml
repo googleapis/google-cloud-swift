@@ -560,6 +560,11 @@ libraries:
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudHypercomputeClusterV1
+  - name: google-cloud-iap-v1
+    version: 0.0.0-preview
+    copyright_year: "2026"
+    swift:
+      library_name_override: GoogleCloudIAPV1
   - name: google-cloud-ids-v1
     version: 0.0.0-preview
     copyright_year: "2026"
