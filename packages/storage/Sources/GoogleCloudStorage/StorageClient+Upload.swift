@@ -37,6 +37,12 @@ extension StorageClient {
     options: UploadOptions = .default
   ) -> UploadTask {
     let clientOptions = self.options.client
+    let effectiveRetryPolicy =
+      options.retryPolicy ?? self.options.upload.retryPolicy
+      ?? defaultUploadRetryPolicy()
+    let effectiveBackoffPolicy =
+      options.backoffPolicy ?? self.options.upload.backoffPolicy ?? clientOptions.backoffPolicy
+
     return UploadTask.create { continuation in
       let httpClient = try HTTPClient(
         from: clientOptions, withDefaultEndpoint: StorageClient.defaultEndpoint)
@@ -67,7 +73,9 @@ extension StorageClient {
           metadata: options.metadata,
           options: options,
           totalSize: totalSize,
-          continuation: continuation
+          continuation: continuation,
+          retryPolicy: effectiveRetryPolicy,
+          backoffPolicy: effectiveBackoffPolicy
         )
       }
     }
@@ -103,6 +111,49 @@ extension StorageClient {
     return object
   }
 
+  // Start a resumable upload session with configured retry and backoff. Upon success,
+  // returns the location of the upload (the uploadId)
+  fileprivate static func startResumableUpload(
+    httpClient: HTTPClient,
+    bucket: String,
+    objectName: String,
+    metadata: UploadMetadata?,
+    options: UploadOptions,
+    retryPolicy: any RetryPolicy,
+    backoffPolicy: any BackoffPolicy
+  ) async throws -> String {
+    let retryLoop = _RetryLoop(
+      retryPolicy: retryPolicy,
+      backoffPolicy: backoffPolicy,
+      retryThrottler: AdaptiveThrottler(),
+      idempotent: true
+    )
+
+    do {
+      return try await retryLoop.run { _ in
+        let startRequest = try await httpClient.buildStartResumableUploadRequest(
+          bucket: bucket, objectName: objectName, metadata: metadata, options: options)
+        let (startData, startResponse) = try await httpClient.sendRequestWithMappedError(
+          startRequest)
+        guard startResponse.statusCode == 200,
+          let location = startResponse.value(forHTTPHeaderField: "Location")
+        else {
+          throw RequestError.http(
+            HTTPDetails(
+              http_status_code: startResponse.statusCode,
+              headers: [:],
+              payload: startData
+            ))
+        }
+        return location
+      }
+    } catch {
+      // Retry loop expects RequestError types, but we want to throw transformed
+      // UploadError types
+      throw mapToPublicError(error)
+    }
+  }
+
   fileprivate static func performResumableUpload(
     httpClient: HTTPClient,
     source: inout some UploadSource,
@@ -111,19 +162,19 @@ extension StorageClient {
     metadata: UploadMetadata?,
     options: UploadOptions,
     totalSize: Int64?,
-    continuation: AsyncStream<UploadStatus>.Continuation
+    continuation: AsyncStream<UploadStatus>.Continuation,
+    retryPolicy: any RetryPolicy,
+    backoffPolicy: any BackoffPolicy
   ) async throws -> StorageObject {
-    let startRequest = try await httpClient.buildStartResumableUploadRequest(
-      bucket: bucket, objectName: objectName, metadata: metadata, options: options)
-    let (startData, startResponse) = try await httpClient.data(for: startRequest)
-    guard startResponse.statusCode == 200,
-      let location = startResponse.value(forHTTPHeaderField: "Location")
-    else {
-      throw UploadError.unexpectedServerResponse(
-        statusCode: startResponse.statusCode,
-        message: String(data: startData, encoding: .utf8) ?? "")
-    }
-    let uploadId = location
+    let uploadId = try await startResumableUpload(
+      httpClient: httpClient,
+      bucket: bucket,
+      objectName: objectName,
+      metadata: metadata,
+      options: options,
+      retryPolicy: retryPolicy,
+      backoffPolicy: backoffPolicy
+    )
 
     continuation.yield(
       UploadStatus(
@@ -138,7 +189,9 @@ extension StorageClient {
       chunkSize: chunkSize,
       totalSize: totalSize,
       options: options,
-      continuation: continuation
+      continuation: continuation,
+      retryPolicy: retryPolicy,
+      backoffPolicy: backoffPolicy
     )
   }
 
@@ -150,61 +203,110 @@ extension StorageClient {
     chunkSize: Int,
     totalSize: Int64?,
     options: UploadOptions,
-    continuation: AsyncStream<UploadStatus>.Continuation
+    continuation: AsyncStream<UploadStatus>.Continuation,
+    retryPolicy: any RetryPolicy,
+    backoffPolicy: any BackoffPolicy
   ) async throws -> StorageObject {
     var offset = offset
-    var chunksSent = 0
+    let retryLoop = _RetryLoop(
+      retryPolicy: retryPolicy,
+      backoffPolicy: backoffPolicy,
+      retryThrottler: AdaptiveThrottler(),
+      idempotent: true
+    )
+
     while true {
       guard let chunkInfo = try await checksummedSource.readChunk(maxBytes: chunkSize),
         !chunkInfo.data.isEmpty
       else {
         break
       }
-      chunksSent += 1
+
       let chunk = chunkInfo.data
       let isLast = chunkInfo.isLast
       let checksum = isLast ? chunkInfo.checksum : nil
-
       let effectiveTotalSize =
         (isLast && totalSize == nil) ? (offset + Int64(chunk.count)) : totalSize
 
-      let uploadRequest = try await httpClient.buildUploadChunkRequest(
-        uploadId: uploadId, data: chunk, offset: offset, totalSize: effectiveTotalSize,
-        options: options,
-        checksum: checksum)
-      let (uploadData, uploadResponse) = try await httpClient.data(for: uploadRequest)
+      let res: ChunkUploadResult
+      do {
+        res = try await retryLoop.run { _ in
+          let uploadRequest = try await httpClient.buildUploadChunkRequest(
+            uploadId: uploadId, data: chunk, offset: offset, totalSize: effectiveTotalSize,
+            options: options, checksum: checksum)
+          let (uData, uResponse) = try await httpClient.sendRequestWithMappedError(uploadRequest)
+          if uResponse.statusCode == 200 || uResponse.statusCode == 201
+            || uResponse.statusCode == 308
+          {
+            return ChunkUploadResult(
+              responseData: uData, response: uResponse, chunkCount: Int64(chunk.count),
+              effectiveTotalSize: effectiveTotalSize)
+          } else {
+            throw RequestError.http(
+              HTTPDetails(
+                http_status_code: uResponse.statusCode,
+                headers: [:],
+                payload: uData
+              ))
+          }
+        }
+      } catch {
+        throw mapToPublicError(error)
+      }
 
-      if uploadResponse.statusCode == 200 || uploadResponse.statusCode == 201 {
+      if res.response.statusCode == 204 {
+        break
+      }
+
+      if res.response.statusCode == 200 || res.response.statusCode == 201 {
         let object = try httpClient.handleObjectResponse(
-          data: uploadData, response: uploadResponse)
+          data: res.responseData, response: res.response)
         continuation.yield(
           UploadStatus(
-            bytesUploaded: offset + Int64(chunk.count),
-            totalBytes: effectiveTotalSize, uploadId: uploadId))
+            bytesUploaded: offset + res.chunkCount,
+            totalBytes: res.effectiveTotalSize ?? (offset + res.chunkCount), uploadId: uploadId))
         return object
-      } else if uploadResponse.statusCode == 308 {
-        if let rangeHeader = uploadResponse.value(forHTTPHeaderField: "Range") {
+      } else if res.response.statusCode == 308 {
+        if let rangeHeader = res.response.value(forHTTPHeaderField: "Range") {
           offset = try httpClient.parseNextRangeStart(rangeHeader)
         } else {
-          offset += Int64(chunk.count)
+          offset += res.chunkCount
         }
         continuation.yield(
           UploadStatus(
             bytesUploaded: offset, totalBytes: totalSize, uploadId: uploadId))
-      } else {
-        _ = try httpClient.handleObjectResponse(data: uploadData, response: uploadResponse)
       }
     }
 
     // Finalize upload with an empty chunk if the stream finished without returning an object
     let finalTotalSize = totalSize ?? offset
     let checksum = checksummedSource.finalizeChecksum()
-    let uploadRequest = try await httpClient.buildUploadChunkRequest(
-      uploadId: uploadId, data: Data(), offset: offset, totalSize: finalTotalSize, options: options,
-      checksum: checksum)
-    let (uploadData, uploadResponse) = try await httpClient.data(for: uploadRequest)
+
+    let finalResult: (Data, HTTPURLResponse)
+    do {
+      finalResult = try await retryLoop.run { _ in
+        let uploadRequest = try await httpClient.buildUploadChunkRequest(
+          uploadId: uploadId, data: Data(), offset: offset, totalSize: finalTotalSize,
+          options: options,
+          checksum: checksum)
+        let (uData, uResponse) = try await httpClient.sendRequestWithMappedError(uploadRequest)
+        if uResponse.statusCode == 200 || uResponse.statusCode == 201 {
+          return (uData, uResponse)
+        } else {
+          throw RequestError.http(
+            HTTPDetails(
+              http_status_code: uResponse.statusCode,
+              headers: [:],
+              payload: uData
+            ))
+        }
+      }
+    } catch {
+      throw mapToPublicError(error)
+    }
+
     let object = try httpClient.handleObjectResponse(
-      data: uploadData, response: uploadResponse)
+      data: finalResult.0, response: finalResult.1)
     continuation.yield(
       UploadStatus(
         bytesUploaded: offset, totalBytes: finalTotalSize, uploadId: uploadId))
@@ -219,11 +321,11 @@ extension StorageClient {
     chunkSize: Int,
     totalSize: Int64?,
     options: UploadOptions,
-    continuation: AsyncStream<UploadStatus>.Continuation
+    continuation: AsyncStream<UploadStatus>.Continuation,
+    retryPolicy: any RetryPolicy,
+    backoffPolicy: any BackoffPolicy
   ) async throws -> StorageObject {
     var options = options
-    // Explicitly disable calculated MD5 checksums if we are resuming an upload at offset >0
-    // as MD5 requires reading the entire file from the start.
     if offset > 0 && options.checksums.md5 == .auto {
       options.checksums.md5 = nil
     }
@@ -236,7 +338,9 @@ extension StorageClient {
       chunkSize: chunkSize,
       totalSize: totalSize,
       options: options,
-      continuation: continuation
+      continuation: continuation,
+      retryPolicy: retryPolicy,
+      backoffPolicy: backoffPolicy
     )
   }
 
@@ -249,11 +353,11 @@ extension StorageClient {
     chunkSize: Int,
     totalSize: Int64?,
     options: UploadOptions,
-    continuation: AsyncStream<UploadStatus>.Continuation
+    continuation: AsyncStream<UploadStatus>.Continuation,
+    retryPolicy: any RetryPolicy,
+    backoffPolicy: any BackoffPolicy
   ) async throws -> StorageObject {
     var options = options
-    // Explicitly disable calculated MD5 checksums if we are resuming an upload at offset >0
-    // as MD5 requires reading the entire file from the start.
     if offset > 0 && options.checksums.md5 == .auto {
       options.checksums.md5 = nil
     }
@@ -272,67 +376,88 @@ extension StorageClient {
       chunkSize: chunkSize,
       totalSize: totalSize,
       options: options,
-      continuation: continuation
+      continuation: continuation,
+      retryPolicy: retryPolicy,
+      backoffPolicy: backoffPolicy
     )
   }
 
-  /// Resumes a previously interrupted file upload using a saved upload ID.
-  ///
-  /// - Parameters:
-  ///   - source: The seekable upload source (must match the original source).
-  ///   - uploadId: The saved GCS Upload ID (Session URI).
-  ///   - options: Configuration options for the upload.
-  /// - Returns: An `UploadTask` to monitor and control the resumed upload.
   public func resumeUpload(
     _ source: some SeekableUploadSource,
     uploadId: String,
     options: UploadOptions = .default
   ) -> UploadTask {
     let clientOptions = self.options.client
+    let effectiveRetryPolicy =
+      options.retryPolicy ?? self.options.upload.retryPolicy
+      ?? defaultUploadRetryPolicy()
+    let effectiveBackoffPolicy =
+      options.backoffPolicy ?? self.options.upload.backoffPolicy ?? clientOptions.backoffPolicy
+
     return UploadTask.create { continuation in
       let httpClient = try HTTPClient(
         from: clientOptions, withDefaultEndpoint: Self.defaultEndpoint)
       var source = source
       let totalSize = source.totalSize
 
-      // Query GCS for current status - this includes any partially calculated
-      // checksums if available.
-      let queryRequest = try await httpClient.buildQueryResumableUploadRequest(
-        uploadId: uploadId, options: options)
-      let (queryData, queryResponse) = try await httpClient.data(for: queryRequest)
+      let retryLoop = _RetryLoop(
+        retryPolicy: effectiveRetryPolicy,
+        backoffPolicy: effectiveBackoffPolicy,
+        retryThrottler: AdaptiveThrottler(),
+        idempotent: true
+      )
 
-      var status = ResumableUploadQueryStatus(nextOffset: 0, crc32cSeed: nil)
-      if queryResponse.statusCode == 200 || queryResponse.statusCode == 201 {
-        let object = try httpClient.handleObjectResponse(data: queryData, response: queryResponse)
-        continuation.yield(
-          UploadStatus(
-            bytesUploaded: totalSize ?? 0, totalBytes: totalSize,
-            uploadId: uploadId))
-        return object
-      } else if queryResponse.statusCode == 308 {
-        status = try httpClient.parseResumableUploadQueryStatus(from: queryResponse)
-      } else {
-        throw UploadError.unexpectedServerResponse(
-          statusCode: queryResponse.statusCode,
-          message: String(data: queryData, encoding: .utf8) ?? "")
+      let (queryData, queryResponse): (Data, HTTPURLResponse)
+      do {
+        (queryData, queryResponse) = try await retryLoop.run { _ in
+          let queryRequest = try await httpClient.buildQueryResumableUploadRequest(
+            uploadId: uploadId, options: options)
+          let (qData, qResponse) = try await httpClient.sendRequestWithMappedError(queryRequest)
+
+          if qResponse.statusCode == 200 || qResponse.statusCode == 201
+            || qResponse.statusCode == 308
+          {
+            return (qData, qResponse)
+          } else {
+            throw RequestError.http(
+              HTTPDetails(
+                http_status_code: qResponse.statusCode,
+                headers: [:],
+                payload: qData
+              ))
+          }
+        }
+      } catch {
+        throw mapToPublicError(error)
       }
 
-      continuation.yield(
-        UploadStatus(
-          bytesUploaded: status.nextOffset, totalBytes: totalSize, uploadId: uploadId))
+      if queryResponse.statusCode == 200 || queryResponse.statusCode == 201 {
+        let object = try httpClient.handleObjectResponse(
+          data: queryData, response: queryResponse)
+        continuation.yield(
+          UploadStatus(
+            bytesUploaded: totalSize ?? 0, totalBytes: totalSize, uploadId: uploadId))
+        return object
+      } else {
+        let status = try httpClient.parseResumableUploadQueryStatus(from: queryResponse)
+        continuation.yield(
+          UploadStatus(
+            bytesUploaded: status.nextOffset, totalBytes: totalSize, uploadId: uploadId))
 
-      // Continue the main upload loop
-      return try await Self.continueResumableUpload(
-        httpClient: httpClient,
-        source: &source,
-        uploadId: uploadId,
-        offset: status.nextOffset,
-        crc32cSeed: status.crc32cSeed,
-        chunkSize: options.chunkSize,
-        totalSize: totalSize,
-        options: options,
-        continuation: continuation
-      )
+        return try await Self.continueResumableUpload(
+          httpClient: httpClient,
+          source: &source,
+          uploadId: uploadId,
+          offset: status.nextOffset,
+          crc32cSeed: status.crc32cSeed,
+          chunkSize: options.chunkSize,
+          totalSize: totalSize,
+          options: options,
+          continuation: continuation,
+          retryPolicy: effectiveRetryPolicy,
+          backoffPolicy: effectiveBackoffPolicy
+        )
+      }
     }
   }
 
@@ -635,4 +760,52 @@ extension URLRequest {
     setValue(key.keyBase64, forHTTPHeaderField: "x-goog-encryption-key")
     setValue(key.keyHashBase64, forHTTPHeaderField: "x-goog-encryption-key-sha256")
   }
+}
+
+fileprivate struct ChunkUploadResult: Sendable {
+  let responseData: Data
+  let response: HTTPURLResponse
+  let chunkCount: Int64
+  let effectiveTotalSize: Int64?
+}
+
+extension HTTPClient {
+  fileprivate func sendRequestWithMappedError(_ request: URLRequest) async throws -> (
+    Data, HTTPURLResponse
+  ) {
+    do {
+      let (data, response) = try await self.data(for: request)
+      return (data, response)
+    } catch let e as RequestError {
+      throw e
+    } catch let e {
+      throw RequestError.io(e)
+    }
+  }
+}
+
+fileprivate func mapToPublicError(_ error: Error) -> Error {
+  if let reqErr = error as? RequestError {
+    switch reqErr {
+    case .http(let details):
+      return UploadError.unexpectedServerResponse(
+        statusCode: details.http_status_code,
+        message: String(data: details.payload, encoding: .utf8) ?? ""
+      )
+    case .io(let inner):
+      return inner
+    case .exhausted(let limitErr):
+      return mapToPublicError(limitErr.source)
+    default:
+      return reqErr
+    }
+  }
+  return error
+}
+
+fileprivate func defaultUploadRetryPolicy() -> any RetryPolicy {
+  BaseRetryPolicy()
+    .retryOnTooManyRequests()
+    .withTimeLimit(.seconds(60))
+    .withAttemptLimit(10)
 }
