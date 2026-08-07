@@ -65,6 +65,9 @@ default:
       - name: GoogleCloudOSConfigV1
         path: generated/google-cloud-osconfig-v1
         api_package: google.cloud.osconfig.v1
+      - name: GoogleCloudOSLoginCommon
+        path: generated/google-cloud-oslogin-common
+        api_package: google.cloud.oslogin.common
       - name: GoogleCloudOrgPolicyV1
         path: generated/google-cloud-orgpolicy-v1
         api_package: google.cloud.orgpolicy.v1
@@ -604,6 +607,11 @@ libraries:
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudOSConfigV1
+  - name: google-cloud-oslogin-common
+    version: 0.0.0-preview
+    copyright_year: "2026"
+    swift:
+      library_name_override: GoogleCloudOSLoginCommon
   - name: google-cloud-parametermanager-v1
     version: 0.0.0-preview
     copyright_year: "2026"
