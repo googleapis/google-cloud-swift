@@ -261,4 +261,29 @@ import Testing
     let roundtrippedReplaced = try IntelligenceFinding(proto: replacedProto)
     #expect(roundtrippedReplaced == finding)
   }
+
+  @Test func managedFolderMapFields() throws {
+    let policy1 = ManagedFolder.RapidCacheConfig.RapidCachePolicy().with {
+      $0.rapidCacheId = "cache-1"
+      $0.ingestOnWrite = .enabled
+    }
+    let policy2 = ManagedFolder.RapidCacheConfig.RapidCachePolicy().with {
+      $0.rapidCacheId = "cache-2"
+      $0.ingestOnWrite = .unspecified
+    }
+    let rapidCacheConfig = ManagedFolder.RapidCacheConfig().with {
+      $0.policies = [
+        "policy-a": policy1,
+        "policy-b": policy2,
+      ]
+    }
+
+    let proto = try rapidCacheConfig.toProto()
+    #expect(proto.policies.count == 2)
+    #expect(proto.policies["policy-a"]?.rapidCacheID == "cache-1")
+    #expect(proto.policies["policy-b"]?.rapidCacheID == "cache-2")
+
+    let roundtripped = try ManagedFolder.RapidCacheConfig(proto: proto)
+    #expect(roundtripped == rapidCacheConfig)
+  }
 }

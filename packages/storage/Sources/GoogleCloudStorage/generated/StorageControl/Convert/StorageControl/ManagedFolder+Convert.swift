@@ -53,10 +53,12 @@ extension ManagedFolder.RapidCacheConfig {
 
   internal init(proto: ProtoType) throws {
     self.init()
+    self.policies = try proto.policies.mapValues { try .init(proto: $0) }
   }
 
   internal func toProto() throws -> ProtoType {
-    let proto = ProtoType()
+    var proto = ProtoType()
+    proto.policies = try self.policies.mapValues { try $0.toProto() }
     return proto
   }
 }
