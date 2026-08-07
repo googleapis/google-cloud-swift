@@ -32,84 +32,78 @@ In this guide we will create a CLI to access Google Cloud. Initialize your
 Swift project using:
 
 ```bash
-mkdir GoogleCloudCLI
-cd GoogleCloudCLI
-swift package init --name GoogleCloudCLI --type executable
+mkdir Quickstart
+cd Quickstart
+swift package init --name Quickstart --type executable
 ```
 
-## Install the Google Cloud Client Libraries
+## Configure the platforms
 
-At the moment, you need to extract the client libraries as source code. In your
-project directory run:
+The Google Cloud client libraries only support macOS >= 15, while
+`swift package init` defaults to much older versions. Edit the `Package.swift`
+project to insert a `platforms: [ .macOS(.v15) ]` directive. The delta should
+look like this:
 
-```bash
-# Replace the [REPO SOURCE] placeholder with the actual location of the code.
-git clone [REPO SOURCE] google-cloud-swift
+```diff
+diff --git a/Package.swift b/Package.swift
+index 949f55e..3a15eda 100644
+--- a/Package.swift
++++ b/Package.swift
+@@ -5,6 +5,7 @@ import PackageDescription
+
+ let package = Package(
+     name: "Quickstart",
++    platforms: [ .macOS(.v15), ],
+     dependencies: [
+         .package(path: "google-cloud-swift/generated/google-cloud-secretmanager-v1"),
+     ],
 ```
 
 ## Add the client library as a dependency
 
-Edit your `Package.swift` to add `GoogleCloudSecretManagerV1` as a dependency.
-It should read:
+1. While the Google Cloud Client Libraries for Swift are under development you
+   need to manually download the source to a local directory:
+   ```bash
+   git clone --depth 1 https://github.com/googleapis/google-cloud-swift
+   ```
+1. Then add the secret manager package within this download as a dependency:
+   ```bash
+   swift package add-dependency \
+     google-cloud-swift/generated/google-cloud-secretmanager-v1 --type path
+   ```
+1. And add the specific module as a dependency of your executable:
+   ```bash
+   swift package add-target-dependency \
+     GoogleCloudSecretManagerV1 Quickstart --package google-cloud-secretmanager-v1
+   ```
 
-```swift
-// swift-tools-version: 6.2
-import PackageDescription
+## Edit the program to use Google Cloud
 
-let package = Package(
-  name: "GoogleCloudCLI",
-  platforms: [.macOS(.v15)],
-  dependencies: [
-    .package(path: "google-cloud-swift/generated/google-cloud-secretmanager-v1")
-  ],
-  targets: [
-    .executableTarget(
-      name: "GoogleCloudCLI",
-      dependencies: [
-        .product(name: "GoogleCloudSecretManagerV1", package: "google-cloud-secretmanager-v1")
-      ],
-    )
-  ],
-)
-```
+Modify your program as follows:
 
-## Import the dependencies
+1. Import the dependencies
+   @Snippet(path: "Quickstart", slice: "imports")
+2. Create the entry point for your program
+   @Snippet(path: "Quickstart", slice: "main")
+3. Get your project id from the command-line:
+   @Snippet(path: "Quickstart", slice: "args")
+4. Initialize the client with the default settings
+   @Snippet(path: "Quickstart", slice: "client")
+5. Make a request to list all the secrets and iterate over the results
+   @Snippet(path: "Quickstart", slice: "list")
 
-@Snippet(path: "GoogleCloudCLI", slice: "imports")
+## Run the program
 
-## Create the entry point for your program
-
-@Snippet(path: "GoogleCloudCLI", slice: "main")
-
-## Get a project id
-
-Get your project id from the command-line:
-
-@Snippet(path: "GoogleCloudCLI", slice: "args")
-
-## Initialize the client
-
-Initialize the client with the defaults:
-
-@Snippet(path: "GoogleCloudCLI", slice: "client")
-
-## List the secrets
-
-And then list the secrets:
-
-@Snippet(path: "GoogleCloudCLI", slice: "list")
-
-## Running the program
-
-Run the program:
+To see the program in operation, run it with your project id as the first
+argument:
 
 ```bash
 # Replace the [PROJECT ID] placeholder with the id of your project
-swift run GoogleCloudCLI [PROJECT ID]
+swift run Quickstart [PROJECT ID]
 ```
 
 ## Full code
 
 The full code for your program should look like this:
 
-@Snippet(path: "GoogleCloudCLI")
+@Snippet(path: "Quickstart")

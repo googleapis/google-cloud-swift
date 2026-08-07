@@ -21,7 +21,7 @@ import GoogleCloudSecretManagerV1
 
 // snippet.main
 @main
-struct GoogleCloudCLI {
+struct Quickstart {
   static func main() async throws {
     // snippet.end
     // snippet.args
