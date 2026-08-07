@@ -536,6 +536,11 @@ libraries:
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudHypercomputeClusterV1
+  - name: google-cloud-ids-v1
+    version: 0.0.0-preview
+    copyright_year: "2026"
+    swift:
+      library_name_override: GoogleCloudIDSV1
   - name: google-cloud-kms-inventory-v1
     version: 0.1.0-preview
     copyright_year: "2026"
