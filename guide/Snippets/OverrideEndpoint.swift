@@ -34,7 +34,7 @@ func sample(projectId: String, region: String) async throws {
   for try await item in secrets {
     print("  \(item)")
   }
-  // snippet.end [START swift_override_endpoint_list]
+  // snippet.end [END swift_override_endpoint_list]
 }
 
 // snippet.hide
