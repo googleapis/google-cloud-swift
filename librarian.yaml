@@ -935,6 +935,11 @@ libraries:
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudMonitoringDashboardV1
+  - name: google-monitoring-metricsscope-v1
+    version: 0.0.0-preview
+    copyright_year: "2026"
+    swift:
+      library_name_override: GoogleCloudMonitoringMetricsScopeV1
   - name: google-monitoring-v3
     version: 0.1.0-preview
     copyright_year: "2026"
