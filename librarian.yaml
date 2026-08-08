@@ -71,6 +71,9 @@ default:
       - name: GoogleCloudOrgPolicyV1
         path: generated/google-cloud-orgpolicy-v1
         api_package: google.cloud.orgpolicy.v1
+      - name: GoogleCloudOrgPolicyV2
+        path: generated/google-cloud-orgpolicy-v2
+        api_package: google.cloud.orgpolicy.v2
       - name: GoogleCloudWkt
         path: packages/wkt
         api_package: google.protobuf
@@ -668,6 +671,11 @@ libraries:
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudParameterManagerV1
+  - name: google-cloud-policysimulator-v1
+    version: 0.0.0-preview
+    copyright_year: "2026"
+    swift:
+      library_name_override: GoogleCloudPolicySimulatorV1
   - name: google-cloud-policytroubleshooter-v1
     version: 0.0.0-preview
     copyright_year: "2026"
