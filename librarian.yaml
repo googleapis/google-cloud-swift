@@ -522,6 +522,11 @@ libraries:
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudGKEBackupV1
+  - name: google-cloud-gkeconnect-gateway-v1
+    version: 0.0.0-preview
+    copyright_year: "2026"
+    swift:
+      library_name_override: GoogleCloudGKEConnectGatewayV1
   - name: google-cloud-gkehub-v1
     version: 0.1.0-preview
     copyright_year: "2026"
