@@ -15,9 +15,6 @@
 // limitations under the License.
 
 import Foundation
-#if canImport(FoundationNetworking)
-  import FoundationNetworking
-#endif
 import GoogleCloudWkt
 import GoogleCloudGax
 
@@ -26,33 +23,5 @@ extension Clients {
     func troubleshootIamPolicy(
       request: TroubleshootIamPolicyRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudPolicyTroubleshooterV1.TroubleshootIamPolicyResponse
-  }
-
-  class IamCheckerTransport: IamCheckerStub {
-    let inner: GoogleCloudGax.HTTPClient
-
-    public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {
-      self.inner = try GoogleCloudGax.HTTPClient(
-        from: options, withDefaultEndpoint: "https://policytroubleshooter.googleapis.com")
-    }
-
-    public func troubleshootIamPolicy(
-      request: TroubleshootIamPolicyRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudPolicyTroubleshooterV1.TroubleshootIamPolicyResponse {
-      let path = try { () throws -> Swift.String in
-        return "/v1/iam:troubleshoot"
-      }()
-      let query = [
-        URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
-      ]
-      var req = try await self.inner.Request(path: path, query: query)
-      req.httpMethod = "POST"
-      req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-      req.setValue("application/json", forHTTPHeaderField: "Content-Type")
-      req.httpBody = try JSONEncoder().encode(request)
-      let (data, _) = try await self.inner.rpc(for: req).get()
-      return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudPolicyTroubleshooterV1.TroubleshootIamPolicyResponse.self, from: data)
-    }
   }
 }
