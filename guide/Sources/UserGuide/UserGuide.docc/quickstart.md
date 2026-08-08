@@ -12,6 +12,9 @@
 [secret manager api]: https://cloud.google.com/secret-manager
 [service quickstart]: https://cloud.google.com/secret-manager/docs/quickstart
 
+Follow this guide to create a small Swift project using the Google Cloud client
+libraries for Swift.
+
 ## Install Swift
 
 If you have not installed the Swift toolchain, follow the [Installing Swift]
