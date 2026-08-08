@@ -1,0 +1,13 @@
+{
+    "api_description": "Universal Ledger API.",
+    "api_id": "universalledger.googleapis.com",
+    "api_shortname": "universalledger",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/google-cloud-universalledger-v1/documentation",
+    "distribution_name": "google-cloud-universalledger-v1",
+    "language": "swift",
+    "library_type": "GAPIC_AUTO",
+    "name": "universalledger",
+    "name_pretty": "Universal Ledger",
+    "release_level": "preview",
+    "repo": "googleapis/google-cloud-swift"
+}
