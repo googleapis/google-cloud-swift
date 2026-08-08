@@ -684,6 +684,11 @@ libraries:
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudPolicyTroubleshooterV1
+  - name: google-cloud-rapidmigrationassessment-v1
+    version: 0.0.0-preview
+    copyright_year: "2026"
+    swift:
+      library_name_override: GoogleCloudRapidMigrationAssessmentV1
   - name: google-cloud-recaptchaenterprise-v1
     version: 0.0.0-preview
     copyright_year: "2026"
