@@ -147,6 +147,9 @@ libraries:
     copyright_year: "2026"
     swift:
       library_name_override: GoogleAppEngineV1
+  - name: google-apps-script-type
+    version: 0.0.0-preview
+    copyright_year: "2026"
   - name: google-bigtable-admin-v2
     version: 0.1.0-preview
     copyright_year: "2026"
