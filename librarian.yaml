@@ -813,6 +813,11 @@ libraries:
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudTextToSpeechV1
+  - name: google-cloud-timeseriesinsights-v1
+    version: 0.0.0-preview
+    copyright_year: "2026"
+    swift:
+      library_name_override: GoogleCloudTimeseriesInsightsV1
   - name: google-cloud-tpu-v2
     version: 0.1.0-preview
     copyright_year: "2026"
