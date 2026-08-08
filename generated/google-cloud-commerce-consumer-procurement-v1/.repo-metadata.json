@@ -1,0 +1,15 @@
+{
+    "api_description": "Enables consumers to procure products served by Cloud Marketplace platform",
+    "api_id": "cloudcommerceconsumerprocurement.googleapis.com",
+    "api_shortname": "cloudcommerceconsumerprocurement",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/google-cloud-commerce-consumer-procurement-v1/documentation",
+    "distribution_name": "google-cloud-commerce-consumer-procurement-v1",
+    "issue_tracker": "https://issuetracker.google.com/issues/new?component=1396141",
+    "language": "swift",
+    "library_type": "GAPIC_AUTO",
+    "name": "cloudcommerceconsumerprocurement",
+    "name_pretty": "Cloud Commerce Consumer Procurement",
+    "product_documentation": "https://cloud.google.com/marketplace/",
+    "release_level": "preview",
+    "repo": "googleapis/google-cloud-swift"
+}
