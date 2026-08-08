@@ -633,6 +633,9 @@ libraries:
   - name: google-cloud-notebooks-v2
     version: 0.1.0-preview
     copyright_year: "2026"
+  - name: google-cloud-optimization-v1
+    version: 0.0.0-preview
+    copyright_year: "2026"
   - name: google-cloud-oracledatabase-v1
     version: 0.0.0-preview
     copyright_year: "2026"
