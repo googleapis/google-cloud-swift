@@ -16,9 +16,6 @@
 
 #if SqlFlagsService
   import Foundation
-  #if canImport(FoundationNetworking)
-    import FoundationNetworking
-  #endif
   import GoogleCloudWkt
   import GoogleCloudGax
 
@@ -27,36 +24,6 @@
       func list(
         request: SqlFlagsListRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.FlagsListResponse
-    }
-
-    class SqlFlagsServiceTransport: SqlFlagsServiceStub {
-      let inner: GoogleCloudGax.HTTPClient
-
-      public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {
-        self.inner = try GoogleCloudGax.HTTPClient(
-          from: options, withDefaultEndpoint: "https://sqladmin.googleapis.com")
-      }
-
-      public func list(
-        request: SqlFlagsListRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleCloudSqlV1.FlagsListResponse {
-        let path = try { () throws -> Swift.String in
-          return "/v1/flags"
-        }()
-        var query = [
-          URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
-        ]
-        let encoder = GoogleCloudGax.QueryParameterEncoder()
-        query.append(
-          contentsOf: try encoder.encode(request.databaseVersion, prefix: "databaseVersion"))
-        query.append(contentsOf: try encoder.encode(request.flagScope, prefix: "flagScope"))
-        var req = try await self.inner.Request(path: path, query: query)
-        req.httpMethod = "GET"
-        req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-        let (data, _) = try await self.inner.rpc(for: req).get()
-        return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleCloudSqlV1.FlagsListResponse.self, from: data)
-      }
     }
   }
 #endif

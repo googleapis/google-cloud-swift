@@ -16,9 +16,6 @@
 
 #if SqlTiersService
   import Foundation
-  #if canImport(FoundationNetworking)
-    import FoundationNetworking
-  #endif
   import GoogleCloudWkt
   import GoogleCloudGax
 
@@ -27,35 +24,6 @@
       func list(
         request: SqlTiersListRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.TiersListResponse
-    }
-
-    class SqlTiersServiceTransport: SqlTiersServiceStub {
-      let inner: GoogleCloudGax.HTTPClient
-
-      public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {
-        self.inner = try GoogleCloudGax.HTTPClient(
-          from: options, withDefaultEndpoint: "https://sqladmin.googleapis.com")
-      }
-
-      public func list(
-        request: SqlTiersListRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleCloudSqlV1.TiersListResponse {
-        let path = try { () throws -> Swift.String in
-          guard let pathVariable0 = request.project as Swift.String?, !pathVariable0.isEmpty else {
-            throw GoogleCloudGax.RequestError.binding("'request.project' is not set or is empty")
-          }
-          return "/v1/projects/\(pathVariable0)/tiers"
-        }()
-        let query = [
-          URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
-        ]
-        var req = try await self.inner.Request(path: path, query: query)
-        req.httpMethod = "GET"
-        req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-        let (data, _) = try await self.inner.rpc(for: req).get()
-        return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleCloudSqlV1.TiersListResponse.self, from: data)
-      }
     }
   }
 #endif

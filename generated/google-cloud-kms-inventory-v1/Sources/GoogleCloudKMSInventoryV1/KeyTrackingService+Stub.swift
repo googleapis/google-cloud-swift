@@ -15,9 +15,6 @@
 // limitations under the License.
 
 import Foundation
-#if canImport(FoundationNetworking)
-  import FoundationNetworking
-#endif
 import GoogleCloudWkt
 import GoogleCloudGax
 
@@ -30,61 +27,5 @@ extension Clients {
     func searchProtectedResources(
       request: SearchProtectedResourcesRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudKMSInventoryV1.SearchProtectedResourcesResponse
-  }
-
-  class KeyTrackingServiceTransport: KeyTrackingServiceStub {
-    let inner: GoogleCloudGax.HTTPClient
-
-    public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {
-      self.inner = try GoogleCloudGax.HTTPClient(
-        from: options, withDefaultEndpoint: "https://kmsinventory.googleapis.com")
-    }
-
-    public func getProtectedResourcesSummary(
-      request: GetProtectedResourcesSummaryRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudKMSInventoryV1.ProtectedResourcesSummary {
-      let path = try { () throws -> Swift.String in
-        guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
-          throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
-        }
-        return "/v1/\(pathVariable0)/protectedResourcesSummary"
-      }()
-      var query = [
-        URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
-      ]
-      let encoder = GoogleCloudGax.QueryParameterEncoder()
-      query.append(contentsOf: try encoder.encode(request.fallbackScope, prefix: "fallbackScope"))
-      var req = try await self.inner.Request(path: path, query: query)
-      req.httpMethod = "GET"
-      req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-      let (data, _) = try await self.inner.rpc(for: req).get()
-      return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudKMSInventoryV1.ProtectedResourcesSummary.self, from: data)
-    }
-
-    public func searchProtectedResources(
-      request: SearchProtectedResourcesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudKMSInventoryV1.SearchProtectedResourcesResponse {
-      let path = try { () throws -> Swift.String in
-        guard let pathVariable0 = request.scope as Swift.String?, !pathVariable0.isEmpty else {
-          throw GoogleCloudGax.RequestError.binding("'request.scope' is not set or is empty")
-        }
-        return "/v1/\(pathVariable0)/protectedResources:search"
-      }()
-      var query = [
-        URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
-      ]
-      let encoder = GoogleCloudGax.QueryParameterEncoder()
-      query.append(contentsOf: try encoder.encode(request.cryptoKey, prefix: "cryptoKey"))
-      query.append(contentsOf: try encoder.encode(request.pageSize, prefix: "pageSize"))
-      query.append(contentsOf: try encoder.encode(request.pageToken, prefix: "pageToken"))
-      query.append(contentsOf: try encoder.encode(request.resourceTypes, prefix: "resourceTypes"))
-      var req = try await self.inner.Request(path: path, query: query)
-      req.httpMethod = "GET"
-      req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-      let (data, _) = try await self.inner.rpc(for: req).get()
-      return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudKMSInventoryV1.SearchProtectedResourcesResponse.self, from: data)
-    }
   }
 }

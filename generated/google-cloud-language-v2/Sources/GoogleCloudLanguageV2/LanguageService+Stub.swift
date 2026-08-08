@@ -15,9 +15,6 @@
 // limitations under the License.
 
 import Foundation
-#if canImport(FoundationNetworking)
-  import FoundationNetworking
-#endif
 import GoogleCloudWkt
 import GoogleCloudGax
 
@@ -42,109 +39,5 @@ extension Clients {
     func annotateText(
       request: AnnotateTextRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudLanguageV2.AnnotateTextResponse
-  }
-
-  class LanguageServiceTransport: LanguageServiceStub {
-    let inner: GoogleCloudGax.HTTPClient
-
-    public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {
-      self.inner = try GoogleCloudGax.HTTPClient(
-        from: options, withDefaultEndpoint: "https://language.googleapis.com")
-    }
-
-    public func analyzeSentiment(
-      request: AnalyzeSentimentRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudLanguageV2.AnalyzeSentimentResponse {
-      let path = try { () throws -> Swift.String in
-        return "/v2/documents:analyzeSentiment"
-      }()
-      let query = [
-        URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
-      ]
-      var req = try await self.inner.Request(path: path, query: query)
-      req.httpMethod = "POST"
-      req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-      req.setValue("application/json", forHTTPHeaderField: "Content-Type")
-      req.httpBody = try JSONEncoder().encode(request)
-      let (data, _) = try await self.inner.rpc(for: req).get()
-      return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudLanguageV2.AnalyzeSentimentResponse.self, from: data)
-    }
-
-    public func analyzeEntities(
-      request: AnalyzeEntitiesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudLanguageV2.AnalyzeEntitiesResponse {
-      let path = try { () throws -> Swift.String in
-        return "/v2/documents:analyzeEntities"
-      }()
-      let query = [
-        URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
-      ]
-      var req = try await self.inner.Request(path: path, query: query)
-      req.httpMethod = "POST"
-      req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-      req.setValue("application/json", forHTTPHeaderField: "Content-Type")
-      req.httpBody = try JSONEncoder().encode(request)
-      let (data, _) = try await self.inner.rpc(for: req).get()
-      return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudLanguageV2.AnalyzeEntitiesResponse.self, from: data)
-    }
-
-    public func classifyText(
-      request: ClassifyTextRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudLanguageV2.ClassifyTextResponse {
-      let path = try { () throws -> Swift.String in
-        return "/v2/documents:classifyText"
-      }()
-      let query = [
-        URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
-      ]
-      var req = try await self.inner.Request(path: path, query: query)
-      req.httpMethod = "POST"
-      req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-      req.setValue("application/json", forHTTPHeaderField: "Content-Type")
-      req.httpBody = try JSONEncoder().encode(request)
-      let (data, _) = try await self.inner.rpc(for: req).get()
-      return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudLanguageV2.ClassifyTextResponse.self, from: data)
-    }
-
-    public func moderateText(
-      request: ModerateTextRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudLanguageV2.ModerateTextResponse {
-      let path = try { () throws -> Swift.String in
-        return "/v2/documents:moderateText"
-      }()
-      let query = [
-        URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
-      ]
-      var req = try await self.inner.Request(path: path, query: query)
-      req.httpMethod = "POST"
-      req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-      req.setValue("application/json", forHTTPHeaderField: "Content-Type")
-      req.httpBody = try JSONEncoder().encode(request)
-      let (data, _) = try await self.inner.rpc(for: req).get()
-      return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudLanguageV2.ModerateTextResponse.self, from: data)
-    }
-
-    public func annotateText(
-      request: AnnotateTextRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudLanguageV2.AnnotateTextResponse {
-      let path = try { () throws -> Swift.String in
-        return "/v2/documents:annotateText"
-      }()
-      let query = [
-        URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
-      ]
-      var req = try await self.inner.Request(path: path, query: query)
-      req.httpMethod = "POST"
-      req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-      req.setValue("application/json", forHTTPHeaderField: "Content-Type")
-      req.httpBody = try JSONEncoder().encode(request)
-      let (data, _) = try await self.inner.rpc(for: req).get()
-      return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudLanguageV2.AnnotateTextResponse.self, from: data)
-    }
   }
 }

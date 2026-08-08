@@ -15,9 +15,6 @@
 // limitations under the License.
 
 import Foundation
-#if canImport(FoundationNetworking)
-  import FoundationNetworking
-#endif
 import GoogleCloudWkt
 import GoogleCloudGax
 
@@ -30,64 +27,5 @@ extension Clients {
     func getQuotaAdjusterSettings(
       request: GetQuotaAdjusterSettingsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleApiCloudQuotasV1.QuotaAdjusterSettings
-  }
-
-  class QuotaAdjusterSettingsManagerTransport: QuotaAdjusterSettingsManagerStub {
-    let inner: GoogleCloudGax.HTTPClient
-
-    public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {
-      self.inner = try GoogleCloudGax.HTTPClient(
-        from: options, withDefaultEndpoint: "https://cloudquotas.googleapis.com")
-    }
-
-    public func updateQuotaAdjusterSettings(
-      request: UpdateQuotaAdjusterSettingsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleApiCloudQuotasV1.QuotaAdjusterSettings {
-      let path = try { () throws -> Swift.String in
-        guard let pathVariable0 = request.quotaAdjusterSettings.map({ $0.name }),
-          !pathVariable0.isEmpty
-        else {
-          throw GoogleCloudGax.RequestError.binding(
-            "'request.quota_adjuster_settings.name' is not set or is empty")
-        }
-        return "/v1/\(pathVariable0)"
-      }()
-      var query = [
-        URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
-      ]
-      let encoder = GoogleCloudGax.QueryParameterEncoder()
-      query.append(contentsOf: try encoder.encode(request.updateMask, prefix: "updateMask"))
-      query.append(contentsOf: try encoder.encode(request.validateOnly, prefix: "validateOnly"))
-      var req = try await self.inner.Request(path: path, query: query)
-      req.httpMethod = "PATCH"
-      req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-      if let body = request.quotaAdjusterSettings {
-        req.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        req.httpBody = try JSONEncoder().encode(body)
-      }
-      let (data, _) = try await self.inner.rpc(for: req).get()
-      return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleApiCloudQuotasV1.QuotaAdjusterSettings.self, from: data)
-    }
-
-    public func getQuotaAdjusterSettings(
-      request: GetQuotaAdjusterSettingsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleApiCloudQuotasV1.QuotaAdjusterSettings {
-      let path = try { () throws -> Swift.String in
-        guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
-          throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
-        }
-        return "/v1/\(pathVariable0)"
-      }()
-      let query = [
-        URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
-      ]
-      var req = try await self.inner.Request(path: path, query: query)
-      req.httpMethod = "GET"
-      req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-      let (data, _) = try await self.inner.rpc(for: req).get()
-      return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleApiCloudQuotasV1.QuotaAdjusterSettings.self, from: data)
-    }
   }
 }

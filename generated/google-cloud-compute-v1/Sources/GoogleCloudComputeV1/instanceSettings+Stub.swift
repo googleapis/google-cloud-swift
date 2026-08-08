@@ -16,9 +16,6 @@
 
 #if InstanceSettings
   import Foundation
-  #if canImport(FoundationNetworking)
-    import FoundationNetworking
-  #endif
   import GoogleCloudWkt
   import GoogleCloudGax
 
@@ -35,96 +32,6 @@
       func getOperation(
         request: ZoneOperationsClient.GetRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
-    }
-
-    class InstanceSettingsTransport: InstanceSettingsStub {
-      let inner: GoogleCloudGax.HTTPClient
-
-      public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {
-        self.inner = try GoogleCloudGax.HTTPClient(
-          from: options, withDefaultEndpoint: "https://compute.googleapis.com")
-      }
-
-      public func `get`(
-        request: InstanceSettingsClient.GetRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleCloudComputeV1.InstanceSettings {
-        let path = try { () throws -> Swift.String in
-          guard let pathVariable0 = request.project as Swift.String?, !pathVariable0.isEmpty else {
-            throw GoogleCloudGax.RequestError.binding("'request.project' is not set or is empty")
-          }
-          guard let pathVariable1 = request.zone as Swift.String?, !pathVariable1.isEmpty else {
-            throw GoogleCloudGax.RequestError.binding("'request.zone' is not set or is empty")
-          }
-          return "/compute/v1/projects/\(pathVariable0)/zones/\(pathVariable1)/instanceSettings"
-        }()
-        let query = [
-          URLQueryItem(name: "$alt", value: "json")
-        ]
-        var req = try await self.inner.Request(path: path, query: query)
-        req.httpMethod = "GET"
-        req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-        let (data, _) = try await self.inner.rpc(for: req).get()
-        return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleCloudComputeV1.InstanceSettings.self, from: data)
-      }
-
-      public func patch(
-        request: InstanceSettingsClient.PatchRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleCloudComputeV1.Operation {
-        let path = try { () throws -> Swift.String in
-          guard let pathVariable0 = request.project as Swift.String?, !pathVariable0.isEmpty else {
-            throw GoogleCloudGax.RequestError.binding("'request.project' is not set or is empty")
-          }
-          guard let pathVariable1 = request.zone as Swift.String?, !pathVariable1.isEmpty else {
-            throw GoogleCloudGax.RequestError.binding("'request.zone' is not set or is empty")
-          }
-          return "/compute/v1/projects/\(pathVariable0)/zones/\(pathVariable1)/instanceSettings"
-        }()
-        var query = [
-          URLQueryItem(name: "$alt", value: "json")
-        ]
-        let encoder = GoogleCloudGax.QueryParameterEncoder()
-        query.append(contentsOf: try encoder.encode(request.requestId, prefix: "requestId"))
-        query.append(contentsOf: try encoder.encode(request.updateMask, prefix: "updateMask"))
-        var req = try await self.inner.Request(path: path, query: query)
-        req.httpMethod = "PATCH"
-        req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-        if let body = request.body {
-          req.setValue("application/json", forHTTPHeaderField: "Content-Type")
-          req.httpBody = try JSONEncoder().encode(body)
-        }
-        let (data, _) = try await self.inner.rpc(for: req).get()
-        return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleCloudComputeV1.Operation.self, from: data)
-      }
-
-      public func getOperation(
-        request: ZoneOperationsClient.GetRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleCloudComputeV1.Operation {
-        let path = try { () throws -> Swift.String in
-          guard let pathVariable0 = request.project as Swift.String?, !pathVariable0.isEmpty else {
-            throw GoogleCloudGax.RequestError.binding("'request.project' is not set or is empty")
-          }
-          guard let pathVariable1 = request.zone as Swift.String?, !pathVariable1.isEmpty else {
-            throw GoogleCloudGax.RequestError.binding("'request.zone' is not set or is empty")
-          }
-          guard let pathVariable2 = request.operation as Swift.String?, !pathVariable2.isEmpty
-          else {
-            throw GoogleCloudGax.RequestError.binding("'request.operation' is not set or is empty")
-          }
-          return
-            "/compute/v1/projects/\(pathVariable0)/zones/\(pathVariable1)/operations/\(pathVariable2)"
-        }()
-        let query = [
-          URLQueryItem(name: "$alt", value: "json")
-        ]
-        var req = try await self.inner.Request(path: path, query: query)
-        req.httpMethod = "GET"
-        req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-        let (data, _) = try await self.inner.rpc(for: req).get()
-        return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleCloudComputeV1.Operation.self, from: data)
-      }
     }
   }
 #endif

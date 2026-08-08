@@ -16,9 +16,6 @@
 
 #if NodeTypes
   import Foundation
-  #if canImport(FoundationNetworking)
-    import FoundationNetworking
-  #endif
   import GoogleCloudWkt
   import GoogleCloudGax
 
@@ -35,106 +32,6 @@
       func list(
         request: NodeTypesClient.ListRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.NodeTypeList
-    }
-
-    class NodeTypesTransport: NodeTypesStub {
-      let inner: GoogleCloudGax.HTTPClient
-
-      public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {
-        self.inner = try GoogleCloudGax.HTTPClient(
-          from: options, withDefaultEndpoint: "https://compute.googleapis.com")
-      }
-
-      public func aggregatedList(
-        request: NodeTypesClient.AggregatedListRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleCloudComputeV1.NodeTypeAggregatedList {
-        let path = try { () throws -> Swift.String in
-          guard let pathVariable0 = request.project as Swift.String?, !pathVariable0.isEmpty else {
-            throw GoogleCloudGax.RequestError.binding("'request.project' is not set or is empty")
-          }
-          return "/compute/v1/projects/\(pathVariable0)/aggregated/nodeTypes"
-        }()
-        var query = [
-          URLQueryItem(name: "$alt", value: "json")
-        ]
-        let encoder = GoogleCloudGax.QueryParameterEncoder()
-        query.append(contentsOf: try encoder.encode(request.filter, prefix: "filter"))
-        query.append(
-          contentsOf: try encoder.encode(request.includeAllScopes, prefix: "includeAllScopes"))
-        query.append(contentsOf: try encoder.encode(request.maxResults, prefix: "maxResults"))
-        query.append(contentsOf: try encoder.encode(request.orderBy, prefix: "orderBy"))
-        query.append(contentsOf: try encoder.encode(request.pageToken, prefix: "pageToken"))
-        query.append(
-          contentsOf: try encoder.encode(
-            request.returnPartialSuccess, prefix: "returnPartialSuccess"))
-        query.append(
-          contentsOf: try encoder.encode(
-            request.serviceProjectNumber, prefix: "serviceProjectNumber"))
-        var req = try await self.inner.Request(path: path, query: query)
-        req.httpMethod = "GET"
-        req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-        let (data, _) = try await self.inner.rpc(for: req).get()
-        return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleCloudComputeV1.NodeTypeAggregatedList.self, from: data)
-      }
-
-      public func `get`(
-        request: NodeTypesClient.GetRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleCloudComputeV1.NodeType {
-        let path = try { () throws -> Swift.String in
-          guard let pathVariable0 = request.project as Swift.String?, !pathVariable0.isEmpty else {
-            throw GoogleCloudGax.RequestError.binding("'request.project' is not set or is empty")
-          }
-          guard let pathVariable1 = request.zone as Swift.String?, !pathVariable1.isEmpty else {
-            throw GoogleCloudGax.RequestError.binding("'request.zone' is not set or is empty")
-          }
-          guard let pathVariable2 = request.nodeType as Swift.String?, !pathVariable2.isEmpty else {
-            throw GoogleCloudGax.RequestError.binding("'request.nodeType' is not set or is empty")
-          }
-          return
-            "/compute/v1/projects/\(pathVariable0)/zones/\(pathVariable1)/nodeTypes/\(pathVariable2)"
-        }()
-        let query = [
-          URLQueryItem(name: "$alt", value: "json")
-        ]
-        var req = try await self.inner.Request(path: path, query: query)
-        req.httpMethod = "GET"
-        req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-        let (data, _) = try await self.inner.rpc(for: req).get()
-        return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleCloudComputeV1.NodeType.self, from: data)
-      }
-
-      public func list(
-        request: NodeTypesClient.ListRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleCloudComputeV1.NodeTypeList {
-        let path = try { () throws -> Swift.String in
-          guard let pathVariable0 = request.project as Swift.String?, !pathVariable0.isEmpty else {
-            throw GoogleCloudGax.RequestError.binding("'request.project' is not set or is empty")
-          }
-          guard let pathVariable1 = request.zone as Swift.String?, !pathVariable1.isEmpty else {
-            throw GoogleCloudGax.RequestError.binding("'request.zone' is not set or is empty")
-          }
-          return "/compute/v1/projects/\(pathVariable0)/zones/\(pathVariable1)/nodeTypes"
-        }()
-        var query = [
-          URLQueryItem(name: "$alt", value: "json")
-        ]
-        let encoder = GoogleCloudGax.QueryParameterEncoder()
-        query.append(contentsOf: try encoder.encode(request.filter, prefix: "filter"))
-        query.append(contentsOf: try encoder.encode(request.maxResults, prefix: "maxResults"))
-        query.append(contentsOf: try encoder.encode(request.orderBy, prefix: "orderBy"))
-        query.append(contentsOf: try encoder.encode(request.pageToken, prefix: "pageToken"))
-        query.append(
-          contentsOf: try encoder.encode(
-            request.returnPartialSuccess, prefix: "returnPartialSuccess"))
-        var req = try await self.inner.Request(path: path, query: query)
-        req.httpMethod = "GET"
-        req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-        let (data, _) = try await self.inner.rpc(for: req).get()
-        return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleCloudComputeV1.NodeTypeList.self, from: data)
-      }
     }
   }
 #endif
