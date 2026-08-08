@@ -602,6 +602,11 @@ libraries:
   - name: google-cloud-maintenance-api-v1
     version: 0.0.0-preview
     copyright_year: "2026"
+  - name: google-cloud-managedidentities-v1
+    version: 0.0.0-preview
+    copyright_year: "2026"
+    swift:
+      library_name_override: GoogleCloudManagedIdentitiesV1
   - name: google-cloud-memcache-v1
     version: 0.0.0-preview
     copyright_year: "2026"
