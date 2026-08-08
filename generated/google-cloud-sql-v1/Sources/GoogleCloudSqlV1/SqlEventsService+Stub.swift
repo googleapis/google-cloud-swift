@@ -16,23 +16,11 @@
 
 #if SqlEventsService
   import Foundation
-  #if canImport(FoundationNetworking)
-    import FoundationNetworking
-  #endif
   import GoogleCloudWkt
   import GoogleCloudGax
 
   extension Clients {
     protocol SqlEventsServiceStub {
-    }
-
-    class SqlEventsServiceTransport: SqlEventsServiceStub {
-      let inner: GoogleCloudGax.HTTPClient
-
-      public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {
-        self.inner = try GoogleCloudGax.HTTPClient(
-          from: options, withDefaultEndpoint: "https://sqladmin.googleapis.com")
-      }
     }
   }
 #endif

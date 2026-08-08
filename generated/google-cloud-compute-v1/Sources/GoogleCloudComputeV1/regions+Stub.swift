@@ -16,9 +16,6 @@
 
 #if Regions
   import Foundation
-  #if canImport(FoundationNetworking)
-    import FoundationNetworking
-  #endif
   import GoogleCloudWkt
   import GoogleCloudGax
 
@@ -31,66 +28,6 @@
       func list(
         request: RegionsClient.ListRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.RegionList
-    }
-
-    class RegionsTransport: RegionsStub {
-      let inner: GoogleCloudGax.HTTPClient
-
-      public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {
-        self.inner = try GoogleCloudGax.HTTPClient(
-          from: options, withDefaultEndpoint: "https://compute.googleapis.com")
-      }
-
-      public func `get`(
-        request: RegionsClient.GetRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleCloudComputeV1.Region {
-        let path = try { () throws -> Swift.String in
-          guard let pathVariable0 = request.project as Swift.String?, !pathVariable0.isEmpty else {
-            throw GoogleCloudGax.RequestError.binding("'request.project' is not set or is empty")
-          }
-          guard let pathVariable1 = request.region as Swift.String?, !pathVariable1.isEmpty else {
-            throw GoogleCloudGax.RequestError.binding("'request.region' is not set or is empty")
-          }
-          return "/compute/v1/projects/\(pathVariable0)/regions/\(pathVariable1)"
-        }()
-        let query = [
-          URLQueryItem(name: "$alt", value: "json")
-        ]
-        var req = try await self.inner.Request(path: path, query: query)
-        req.httpMethod = "GET"
-        req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-        let (data, _) = try await self.inner.rpc(for: req).get()
-        return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleCloudComputeV1.Region.self, from: data)
-      }
-
-      public func list(
-        request: RegionsClient.ListRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleCloudComputeV1.RegionList {
-        let path = try { () throws -> Swift.String in
-          guard let pathVariable0 = request.project as Swift.String?, !pathVariable0.isEmpty else {
-            throw GoogleCloudGax.RequestError.binding("'request.project' is not set or is empty")
-          }
-          return "/compute/v1/projects/\(pathVariable0)/regions"
-        }()
-        var query = [
-          URLQueryItem(name: "$alt", value: "json")
-        ]
-        let encoder = GoogleCloudGax.QueryParameterEncoder()
-        query.append(contentsOf: try encoder.encode(request.filter, prefix: "filter"))
-        query.append(contentsOf: try encoder.encode(request.maxResults, prefix: "maxResults"))
-        query.append(contentsOf: try encoder.encode(request.orderBy, prefix: "orderBy"))
-        query.append(contentsOf: try encoder.encode(request.pageToken, prefix: "pageToken"))
-        query.append(
-          contentsOf: try encoder.encode(
-            request.returnPartialSuccess, prefix: "returnPartialSuccess"))
-        var req = try await self.inner.Request(path: path, query: query)
-        req.httpMethod = "GET"
-        req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-        let (data, _) = try await self.inner.rpc(for: req).get()
-        return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleCloudComputeV1.RegionList.self, from: data)
-      }
     }
   }
 #endif

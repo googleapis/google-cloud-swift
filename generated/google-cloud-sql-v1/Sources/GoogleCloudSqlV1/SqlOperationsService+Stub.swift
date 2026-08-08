@@ -16,9 +16,6 @@
 
 #if SqlOperationsService
   import Foundation
-  #if canImport(FoundationNetworking)
-    import FoundationNetworking
-  #endif
   import GoogleCloudWkt
   import GoogleCloudGax
 
@@ -35,90 +32,6 @@
       func cancel(
         request: SqlOperationsCancelRequest, options: GoogleCloudGax.RequestOptions
       ) async throws
-    }
-
-    class SqlOperationsServiceTransport: SqlOperationsServiceStub {
-      let inner: GoogleCloudGax.HTTPClient
-
-      public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {
-        self.inner = try GoogleCloudGax.HTTPClient(
-          from: options, withDefaultEndpoint: "https://sqladmin.googleapis.com")
-      }
-
-      public func `get`(
-        request: SqlOperationsGetRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleCloudSqlV1.Operation {
-        let path = try { () throws -> Swift.String in
-          guard let pathVariable0 = request.project as Swift.String?, !pathVariable0.isEmpty else {
-            throw GoogleCloudGax.RequestError.binding("'request.project' is not set or is empty")
-          }
-          guard let pathVariable1 = request.operation as Swift.String?, !pathVariable1.isEmpty
-          else {
-            throw GoogleCloudGax.RequestError.binding("'request.operation' is not set or is empty")
-          }
-          return "/v1/projects/\(pathVariable0)/operations/\(pathVariable1)"
-        }()
-        var query = [
-          URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
-        ]
-        let encoder = GoogleCloudGax.QueryParameterEncoder()
-        query.append(contentsOf: try encoder.encode(request.location, prefix: "location"))
-        var req = try await self.inner.Request(path: path, query: query)
-        req.httpMethod = "GET"
-        req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-        let (data, _) = try await self.inner.rpc(for: req).get()
-        return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleCloudSqlV1.Operation.self, from: data)
-      }
-
-      public func list(
-        request: SqlOperationsListRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> GoogleCloudSqlV1.OperationsListResponse {
-        let path = try { () throws -> Swift.String in
-          guard let pathVariable0 = request.project as Swift.String?, !pathVariable0.isEmpty else {
-            throw GoogleCloudGax.RequestError.binding("'request.project' is not set or is empty")
-          }
-          return "/v1/projects/\(pathVariable0)/operations"
-        }()
-        var query = [
-          URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
-        ]
-        let encoder = GoogleCloudGax.QueryParameterEncoder()
-        query.append(contentsOf: try encoder.encode(request.instance, prefix: "instance"))
-        query.append(contentsOf: try encoder.encode(request.maxResults, prefix: "maxResults"))
-        query.append(contentsOf: try encoder.encode(request.pageToken, prefix: "pageToken"))
-        query.append(contentsOf: try encoder.encode(request.location, prefix: "location"))
-        var req = try await self.inner.Request(path: path, query: query)
-        req.httpMethod = "GET"
-        req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-        let (data, _) = try await self.inner.rpc(for: req).get()
-        return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleCloudSqlV1.OperationsListResponse.self, from: data)
-      }
-
-      public func cancel(
-        request: SqlOperationsCancelRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws {
-        let path = try { () throws -> Swift.String in
-          guard let pathVariable0 = request.project as Swift.String?, !pathVariable0.isEmpty else {
-            throw GoogleCloudGax.RequestError.binding("'request.project' is not set or is empty")
-          }
-          guard let pathVariable1 = request.operation as Swift.String?, !pathVariable1.isEmpty
-          else {
-            throw GoogleCloudGax.RequestError.binding("'request.operation' is not set or is empty")
-          }
-          return "/v1/projects/\(pathVariable0)/operations/\(pathVariable1)/cancel"
-        }()
-        var query = [
-          URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
-        ]
-        let encoder = GoogleCloudGax.QueryParameterEncoder()
-        query.append(contentsOf: try encoder.encode(request.location, prefix: "location"))
-        var req = try await self.inner.Request(path: path, query: query)
-        req.httpMethod = "POST"
-        req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-        _ = try await self.inner.rpc(for: req).get()
-      }
     }
   }
 #endif

@@ -15,9 +15,6 @@
 // limitations under the License.
 
 import Foundation
-#if canImport(FoundationNetworking)
-  import FoundationNetworking
-#endif
 import GoogleCloudWkt
 import GoogleCloudGax
 
@@ -30,60 +27,5 @@ extension Clients {
     func report(
       request: ReportRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleApiServiceControlV2.ReportResponse
-  }
-
-  class ServiceControllerTransport: ServiceControllerStub {
-    let inner: GoogleCloudGax.HTTPClient
-
-    public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {
-      self.inner = try GoogleCloudGax.HTTPClient(
-        from: options, withDefaultEndpoint: "https://servicecontrol.googleapis.com")
-    }
-
-    public func check(
-      request: CheckRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleApiServiceControlV2.CheckResponse {
-      let path = try { () throws -> Swift.String in
-        guard let pathVariable0 = request.serviceName as Swift.String?, !pathVariable0.isEmpty
-        else {
-          throw GoogleCloudGax.RequestError.binding("'request.service_name' is not set or is empty")
-        }
-        return "/v2/services/\(pathVariable0):check"
-      }()
-      let query = [
-        URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
-      ]
-      var req = try await self.inner.Request(path: path, query: query)
-      req.httpMethod = "POST"
-      req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-      req.setValue("application/json", forHTTPHeaderField: "Content-Type")
-      req.httpBody = try JSONEncoder().encode(request)
-      let (data, _) = try await self.inner.rpc(for: req).get()
-      return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleApiServiceControlV2.CheckResponse.self, from: data)
-    }
-
-    public func report(
-      request: ReportRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleApiServiceControlV2.ReportResponse {
-      let path = try { () throws -> Swift.String in
-        guard let pathVariable0 = request.serviceName as Swift.String?, !pathVariable0.isEmpty
-        else {
-          throw GoogleCloudGax.RequestError.binding("'request.service_name' is not set or is empty")
-        }
-        return "/v2/services/\(pathVariable0):report"
-      }()
-      let query = [
-        URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
-      ]
-      var req = try await self.inner.Request(path: path, query: query)
-      req.httpMethod = "POST"
-      req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-      req.setValue("application/json", forHTTPHeaderField: "Content-Type")
-      req.httpBody = try JSONEncoder().encode(request)
-      let (data, _) = try await self.inner.rpc(for: req).get()
-      return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleApiServiceControlV2.ReportResponse.self, from: data)
-    }
   }
 }
