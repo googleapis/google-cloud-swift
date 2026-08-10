@@ -22,7 +22,7 @@ import GoogleCloudWkt
 import GoogleType
 internal import GoogleCloudWktConvert
 
-extension Interval {
+extension GoogleType.Interval {
   internal typealias ProtoType = StorageControlProtos.Google_Type_Interval
 
   internal init(proto: ProtoType) throws {

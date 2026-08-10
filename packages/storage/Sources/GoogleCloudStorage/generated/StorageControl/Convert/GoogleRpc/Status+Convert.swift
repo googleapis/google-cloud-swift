@@ -22,7 +22,7 @@ import GoogleCloudWkt
 import GoogleRpc
 internal import GoogleCloudWktConvert
 
-extension Status {
+extension GoogleRpc.Status {
   internal typealias ProtoType = StorageControlProtos.Google_Rpc_Status
 
   internal init(proto: ProtoType) throws {
