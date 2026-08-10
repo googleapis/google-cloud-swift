@@ -367,7 +367,7 @@
     /// deleting the Model instead.
     ///
     /// [google.cloud.aiplatform.v1.DeployedModel]: <doc:DeployedModel>
-    /// [google.cloud.aiplatform.v1.ModelService.DeleteModel]: <doc:ModelService/deleteModel(request:)>
+    /// [google.cloud.aiplatform.v1.ModelService.DeleteModel]: <doc:ModelServiceClient/deleteModel(request:)>
     ///
     /// @Snippet(path: "ModelService_DeleteModelVersion")
     public func deleteModelVersion(
@@ -385,7 +385,7 @@
     /// deleting the Model instead.
     ///
     /// [google.cloud.aiplatform.v1.DeployedModel]: <doc:DeployedModel>
-    /// [google.cloud.aiplatform.v1.ModelService.DeleteModel]: <doc:ModelService/deleteModel(request:)>
+    /// [google.cloud.aiplatform.v1.ModelService.DeleteModel]: <doc:ModelServiceClient/deleteModel(request:)>
     ///
     /// @Snippet(path: "ModelService_DeleteModelVersion")
     public func deleteModelVersion(
@@ -775,7 +775,7 @@
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
     ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "ModelService_ListOperations")
     public func listOperations(
@@ -786,7 +786,7 @@
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
     ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "ModelService_ListOperations")
     public func listOperations(
@@ -803,7 +803,7 @@
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
     ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "ModelService_GetOperation")
     func getOperation(
@@ -814,7 +814,7 @@
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
     ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "ModelService_DeleteOperation")
     public func deleteOperation(
@@ -825,7 +825,7 @@
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
     ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "ModelService_CancelOperation")
     public func cancelOperation(
@@ -836,7 +836,7 @@
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
     ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "ModelService_WaitOperation")
     public func waitOperation(

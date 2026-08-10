@@ -22,7 +22,7 @@
   /// Response message for
   /// [TensorboardService.ListTensorboards][google.cloud.aiplatform.v1.TensorboardService.ListTensorboards].
   ///
-  /// [google.cloud.aiplatform.v1.TensorboardService.ListTensorboards]: <doc:TensorboardService/listTensorboards(request:)>
+  /// [google.cloud.aiplatform.v1.TensorboardService.ListTensorboards]: <doc:TensorboardServiceClient/listTensorboards(request:)>
   public struct ListTensorboardsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable

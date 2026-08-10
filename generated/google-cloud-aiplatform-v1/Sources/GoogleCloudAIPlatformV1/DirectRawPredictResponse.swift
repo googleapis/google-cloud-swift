@@ -21,7 +21,7 @@
   /// Response message for
   /// [PredictionService.DirectRawPredict][google.cloud.aiplatform.v1.PredictionService.DirectRawPredict].
   ///
-  /// [google.cloud.aiplatform.v1.PredictionService.DirectRawPredict]: <doc:PredictionService/directRawPredict(request:)>
+  /// [google.cloud.aiplatform.v1.PredictionService.DirectRawPredict]: <doc:PredictionServiceClient/directRawPredict(request:)>
   public struct DirectRawPredictResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

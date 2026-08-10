@@ -43,7 +43,7 @@
     /// may be used, but note here it filters across all Annotations of the
     /// Dataset, and not just within a single DataItem.
     ///
-    /// [google.cloud.aiplatform.v1.DatasetService.ListAnnotations]: <doc:DatasetService/listAnnotations(request:)>
+    /// [google.cloud.aiplatform.v1.DatasetService.ListAnnotations]: <doc:DatasetServiceClient/listAnnotations(request:)>
     public var annotationsFilter: Swift.String = Swift.String()
 
     /// Applicable only to custom training with Datasets that have DataItems and

@@ -21,7 +21,7 @@
   /// Request message for
   /// [EndpointService.UpdateEndpointLongRunning][google.cloud.aiplatform.v1.EndpointService.UpdateEndpointLongRunning].
   ///
-  /// [google.cloud.aiplatform.v1.EndpointService.UpdateEndpointLongRunning]: <doc:EndpointService/updateEndpointLongRunning(request:)>
+  /// [google.cloud.aiplatform.v1.EndpointService.UpdateEndpointLongRunning]: <doc:EndpointServiceClient/updateEndpointLongRunning(request:)>
   public struct UpdateEndpointLongRunningRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

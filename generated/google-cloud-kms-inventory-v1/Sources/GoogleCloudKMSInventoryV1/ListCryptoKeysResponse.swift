@@ -22,7 +22,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [KeyDashboardService.ListCryptoKeys][google.cloud.kms.inventory.v1.KeyDashboardService.ListCryptoKeys].
 ///
-/// [google.cloud.kms.inventory.v1.KeyDashboardService.ListCryptoKeys]: <doc:KeyDashboardService/listCryptoKeys(request:)>
+/// [google.cloud.kms.inventory.v1.KeyDashboardService.ListCryptoKeys]: <doc:KeyDashboardServiceClient/listCryptoKeys(request:)>
 public struct ListCryptoKeysResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

@@ -21,7 +21,7 @@
   /// The response message for
   /// [Environments.RunContinuousTest][google.cloud.dialogflow.cx.v3.Environments.RunContinuousTest].
   ///
-  /// [google.cloud.dialogflow.cx.v3.Environments.RunContinuousTest]: <doc:Environments/runContinuousTest(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Environments.RunContinuousTest]: <doc:EnvironmentsClient/runContinuousTest(request:)>
   public struct RunContinuousTestResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

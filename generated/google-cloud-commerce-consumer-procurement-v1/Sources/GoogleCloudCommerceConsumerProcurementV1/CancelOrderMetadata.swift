@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Message stored in the metadata field of the Operation returned by
 /// [ConsumerProcurementService.CancelOrder][google.cloud.commerce.consumer.procurement.v1.ConsumerProcurementService.CancelOrder].
 ///
-/// [google.cloud.commerce.consumer.procurement.v1.ConsumerProcurementService.CancelOrder]: <doc:ConsumerProcurementService/cancelOrder(request:)>
+/// [google.cloud.commerce.consumer.procurement.v1.ConsumerProcurementService.CancelOrder]: <doc:ConsumerProcurementServiceClient/cancelOrder(request:)>
 public struct CancelOrderMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

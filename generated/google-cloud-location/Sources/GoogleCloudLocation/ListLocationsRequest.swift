@@ -19,7 +19,7 @@ import GoogleCloudWkt
 
 /// The request message for [Locations.ListLocations][google.cloud.location.Locations.ListLocations].
 ///
-/// [google.cloud.location.Locations.ListLocations]: <doc:Locations/listLocations(request:)>
+/// [google.cloud.location.Locations.ListLocations]: <doc:LocationsClient/listLocations(request:)>
 public struct ListLocationsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

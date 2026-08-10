@@ -50,7 +50,7 @@ public class CompletionClient: Clients.CompletionProtocol {
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Completion_GetOperation")
   func getOperation(

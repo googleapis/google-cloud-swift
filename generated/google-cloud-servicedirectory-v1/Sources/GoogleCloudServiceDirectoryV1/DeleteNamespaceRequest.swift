@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// The request message for
 /// [RegistrationService.DeleteNamespace][google.cloud.servicedirectory.v1.RegistrationService.DeleteNamespace].
 ///
-/// [google.cloud.servicedirectory.v1.RegistrationService.DeleteNamespace]: <doc:RegistrationService/deleteNamespace(request:)>
+/// [google.cloud.servicedirectory.v1.RegistrationService.DeleteNamespace]: <doc:RegistrationServiceClient/deleteNamespace(request:)>
 public struct DeleteNamespaceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

@@ -21,7 +21,7 @@
   /// The request message for
   /// [Agents.UpdateAgent][google.cloud.dialogflow.cx.v3.Agents.UpdateAgent].
   ///
-  /// [google.cloud.dialogflow.cx.v3.Agents.UpdateAgent]: <doc:Agents/updateAgent(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Agents.UpdateAgent]: <doc:AgentsClient/updateAgent(request:)>
   public struct UpdateAgentRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

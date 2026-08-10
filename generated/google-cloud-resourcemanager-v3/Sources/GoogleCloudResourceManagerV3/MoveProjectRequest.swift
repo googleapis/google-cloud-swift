@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [MoveProject][google.cloud.resourcemanager.v3.Projects.MoveProject]
 /// method.
 ///
-/// [google.cloud.resourcemanager.v3.Projects.MoveProject]: <doc:Projects/moveProject(request:)>
+/// [google.cloud.resourcemanager.v3.Projects.MoveProject]: <doc:ProjectsClient/moveProject(request:)>
 public struct MoveProjectRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

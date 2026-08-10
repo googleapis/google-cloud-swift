@@ -242,9 +242,9 @@ public class ApiHubClient: Clients.ApiHubProtocol {
   /// [ListAPIOperations][google.cloud.apihub.v1.ApiHub.ListApiOperations]
   /// method.
   ///
-  /// [google.cloud.apihub.v1.ApiHub.GetSpec]: <doc:ApiHub/getSpec(request:)>
-  /// [google.cloud.apihub.v1.ApiHub.GetSpecContents]: <doc:ApiHub/getSpecContents(request:)>
-  /// [google.cloud.apihub.v1.ApiHub.ListApiOperations]: <doc:ApiHub/listApiOperations(request:)>
+  /// [google.cloud.apihub.v1.ApiHub.GetSpec]: <doc:ApiHubClient/getSpec(request:)>
+  /// [google.cloud.apihub.v1.ApiHub.GetSpecContents]: <doc:ApiHubClient/getSpecContents(request:)>
+  /// [google.cloud.apihub.v1.ApiHub.ListApiOperations]: <doc:ApiHubClient/listApiOperations(request:)>
   ///
   /// @Snippet(path: "ApiHub_CreateSpec")
   public func createSpec(
@@ -258,7 +258,7 @@ public class ApiHubClient: Clients.ApiHubProtocol {
   /// Use [GetSpecContents][google.cloud.apihub.v1.ApiHub.GetSpecContents] method
   /// to retrieve the same.
   ///
-  /// [google.cloud.apihub.v1.ApiHub.GetSpecContents]: <doc:ApiHub/getSpecContents(request:)>
+  /// [google.cloud.apihub.v1.ApiHub.GetSpecContents]: <doc:ApiHubClient/getSpecContents(request:)>
   ///
   /// @Snippet(path: "ApiHub_GetSpec")
   public func getSpec(
@@ -413,7 +413,7 @@ public class ApiHubClient: Clients.ApiHubProtocol {
   /// If the operation was created by parsing the spec, then it can be edited by
   /// updating the spec.
   ///
-  /// [google.cloud.apihub.v1.ApiHub.CreateApiOperation]: <doc:ApiHub/createApiOperation(request:)>
+  /// [google.cloud.apihub.v1.ApiHub.CreateApiOperation]: <doc:ApiHubClient/createApiOperation(request:)>
   /// [google.cloud.apihub.v1.ApiOperation]: <doc:ApiOperation>
   /// [google.cloud.apihub.v1.ApiOperation.attributes]: <doc:ApiOperation/attributes>
   /// [google.cloud.apihub.v1.UpdateApiOperationRequest.update_mask]: <doc:UpdateApiOperationRequest/updateMask>
@@ -549,8 +549,8 @@ public class ApiHubClient: Clients.ApiHubProtocol {
   /// Allowed values for the same can be updated via
   /// [UpdateAttribute][google.cloud.apihub.v1.ApiHub.UpdateAttribute] method.
   ///
-  /// [google.cloud.apihub.v1.ApiHub.ListAttributes]: <doc:ApiHub/listAttributes(request:)>
-  /// [google.cloud.apihub.v1.ApiHub.UpdateAttribute]: <doc:ApiHub/updateAttribute(request:)>
+  /// [google.cloud.apihub.v1.ApiHub.ListAttributes]: <doc:ApiHubClient/listAttributes(request:)>
+  /// [google.cloud.apihub.v1.ApiHub.UpdateAttribute]: <doc:ApiHubClient/updateAttribute(request:)>
   ///
   /// @Snippet(path: "ApiHub_CreateAttribute")
   public func createAttribute(
@@ -780,7 +780,7 @@ public class ApiHubClient: Clients.ApiHubProtocol {
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ApiHub_ListOperations")
   public func listOperations(
@@ -791,7 +791,7 @@ public class ApiHubClient: Clients.ApiHubProtocol {
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ApiHub_ListOperations")
   public func listOperations(
@@ -808,7 +808,7 @@ public class ApiHubClient: Clients.ApiHubProtocol {
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ApiHub_GetOperation")
   func getOperation(
@@ -819,7 +819,7 @@ public class ApiHubClient: Clients.ApiHubProtocol {
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ApiHub_DeleteOperation")
   public func deleteOperation(
@@ -830,7 +830,7 @@ public class ApiHubClient: Clients.ApiHubProtocol {
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ApiHub_CancelOperation")
   public func cancelOperation(

@@ -124,7 +124,7 @@ public struct PriceInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// [google.cloud.retail.v2.Product]: <doc:Product>
   /// [google.cloud.retail.v2.Product.Type.PRIMARY]: <doc:Product/Type_/primary>
   /// [google.cloud.retail.v2.Product.Type.VARIANT]: <doc:Product/Type_/variant>
-  /// [google.cloud.retail.v2.ProductService.GetProduct]: <doc:ProductService/getProduct(request:)>
+  /// [google.cloud.retail.v2.ProductService.GetProduct]: <doc:ProductServiceClient/getProduct(request:)>
   public var priceRange: PriceInfo.PriceRange? = nil
 
   /// Initialize a new instance of `PriceInfo`.

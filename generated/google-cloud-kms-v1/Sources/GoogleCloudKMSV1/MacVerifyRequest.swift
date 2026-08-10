@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [KeyManagementService.MacVerify][google.cloud.kms.v1.KeyManagementService.MacVerify].
 ///
-/// [google.cloud.kms.v1.KeyManagementService.MacVerify]: <doc:KeyManagementService/macVerify(request:)>
+/// [google.cloud.kms.v1.KeyManagementService.MacVerify]: <doc:KeyManagementServiceClient/macVerify(request:)>
 public struct MacVerifyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
@@ -57,7 +57,7 @@ public struct MacVerifyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// 2^32-1, and can be safely downconverted to uint32 in languages that support
   /// this type.
   ///
-  /// [google.cloud.kms.v1.KeyManagementService]: <doc:KeyManagementService>
+  /// [google.cloud.kms.v1.KeyManagementService]: <doc:KeyManagementServiceClient>
   /// [google.cloud.kms.v1.MacVerifyRequest.data]: <doc:MacVerifyRequest/data>
   /// [google.cloud.kms.v1.MacVerifyRequest.data_crc32c]: <doc:MacVerifyRequest/dataCrc32C>
   public var dataCrc32C: GoogleCloudWkt.Int64Value? = nil
@@ -83,7 +83,7 @@ public struct MacVerifyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// 2^32-1, and can be safely downconverted to uint32 in languages that support
   /// this type.
   ///
-  /// [google.cloud.kms.v1.KeyManagementService]: <doc:KeyManagementService>
+  /// [google.cloud.kms.v1.KeyManagementService]: <doc:KeyManagementServiceClient>
   /// [google.cloud.kms.v1.MacVerifyRequest.mac]: <doc:MacVerifyRequest/mac>
   /// [google.cloud.kms.v1.MacVerifyRequest.mac_crc32c]: <doc:MacVerifyRequest/macCrc32C>
   public var macCrc32C: GoogleCloudWkt.Int64Value? = nil

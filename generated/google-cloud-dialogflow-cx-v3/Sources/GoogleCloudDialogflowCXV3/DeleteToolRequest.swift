@@ -21,7 +21,7 @@
   /// The request message for
   /// [Tools.DeleteTool][google.cloud.dialogflow.cx.v3.Tools.DeleteTool].
   ///
-  /// [google.cloud.dialogflow.cx.v3.Tools.DeleteTool]: <doc:Tools/deleteTool(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Tools.DeleteTool]: <doc:ToolsClient/deleteTool(request:)>
   public struct DeleteToolRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

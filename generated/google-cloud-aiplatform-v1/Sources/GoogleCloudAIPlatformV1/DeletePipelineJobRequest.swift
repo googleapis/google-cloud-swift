@@ -21,7 +21,7 @@
   /// Request message for
   /// [PipelineService.DeletePipelineJob][google.cloud.aiplatform.v1.PipelineService.DeletePipelineJob].
   ///
-  /// [google.cloud.aiplatform.v1.PipelineService.DeletePipelineJob]: <doc:PipelineService/deletePipelineJob(request:)>
+  /// [google.cloud.aiplatform.v1.PipelineService.DeletePipelineJob]: <doc:PipelineServiceClient/deletePipelineJob(request:)>
   public struct DeletePipelineJobRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

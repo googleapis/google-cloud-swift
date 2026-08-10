@@ -22,7 +22,7 @@
   /// The response message for
   /// [Deployments.ListDeployments][google.cloud.dialogflow.cx.v3.Deployments.ListDeployments].
   ///
-  /// [google.cloud.dialogflow.cx.v3.Deployments.ListDeployments]: <doc:Deployments/listDeployments(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Deployments.ListDeployments]: <doc:DeploymentsClient/listDeployments(request:)>
   public struct ListDeploymentsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable

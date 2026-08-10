@@ -22,7 +22,7 @@
   /// [SiteSearchEngineService.DeleteTargetSite][google.cloud.discoveryengine.v1.SiteSearchEngineService.DeleteTargetSite]
   /// method.
   ///
-  /// [google.cloud.discoveryengine.v1.SiteSearchEngineService.DeleteTargetSite]: <doc:SiteSearchEngineService/deleteTargetSite(request:)>
+  /// [google.cloud.discoveryengine.v1.SiteSearchEngineService.DeleteTargetSite]: <doc:SiteSearchEngineServiceClient/deleteTargetSite(request:)>
   public struct DeleteTargetSiteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

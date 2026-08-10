@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [ResumeQueue][google.cloud.tasks.v2.CloudTasks.ResumeQueue].
 ///
-/// [google.cloud.tasks.v2.CloudTasks.ResumeQueue]: <doc:CloudTasks/resumeQueue(request:)>
+/// [google.cloud.tasks.v2.CloudTasks.ResumeQueue]: <doc:CloudTasksClient/resumeQueue(request:)>
 public struct ResumeQueueRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

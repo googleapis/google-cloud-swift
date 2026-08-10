@@ -22,7 +22,7 @@
   /// [SearchTuningService.TrainCustomModel][google.cloud.discoveryengine.v1.SearchTuningService.TrainCustomModel]
   /// method.
   ///
-  /// [google.cloud.discoveryengine.v1.SearchTuningService.TrainCustomModel]: <doc:SearchTuningService/trainCustomModel(request:)>
+  /// [google.cloud.discoveryengine.v1.SearchTuningService.TrainCustomModel]: <doc:SearchTuningServiceClient/trainCustomModel(request:)>
   public struct TrainCustomModelRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

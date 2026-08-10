@@ -21,7 +21,7 @@
   /// Request message for
   /// [DatasetService.DeleteSavedQuery][google.cloud.aiplatform.v1.DatasetService.DeleteSavedQuery].
   ///
-  /// [google.cloud.aiplatform.v1.DatasetService.DeleteSavedQuery]: <doc:DatasetService/deleteSavedQuery(request:)>
+  /// [google.cloud.aiplatform.v1.DatasetService.DeleteSavedQuery]: <doc:DatasetServiceClient/deleteSavedQuery(request:)>
   public struct DeleteSavedQueryRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

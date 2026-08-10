@@ -21,7 +21,7 @@
   /// Runtime operation information for
   /// [EndpointService.UpdateEndpointLongRunning][google.cloud.aiplatform.v1.EndpointService.UpdateEndpointLongRunning].
   ///
-  /// [google.cloud.aiplatform.v1.EndpointService.UpdateEndpointLongRunning]: <doc:EndpointService/updateEndpointLongRunning(request:)>
+  /// [google.cloud.aiplatform.v1.EndpointService.UpdateEndpointLongRunning]: <doc:EndpointServiceClient/updateEndpointLongRunning(request:)>
   public struct UpdateEndpointOperationMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

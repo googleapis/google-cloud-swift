@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [CatalogService.RemoveCatalogAttribute][google.cloud.retail.v2.CatalogService.RemoveCatalogAttribute]
 /// method.
 ///
-/// [google.cloud.retail.v2.CatalogService.RemoveCatalogAttribute]: <doc:CatalogService/removeCatalogAttribute(request:)>
+/// [google.cloud.retail.v2.CatalogService.RemoveCatalogAttribute]: <doc:CatalogServiceClient/removeCatalogAttribute(request:)>
 public struct RemoveCatalogAttributeRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

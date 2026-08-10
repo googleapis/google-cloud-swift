@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [AgentService.GetAgent][google.cloud.ces.v1.AgentService.GetAgent].
 ///
-/// [google.cloud.ces.v1.AgentService.GetAgent]: <doc:AgentService/getAgent(request:)>
+/// [google.cloud.ces.v1.AgentService.GetAgent]: <doc:AgentServiceClient/getAgent(request:)>
 public struct GetAgentRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

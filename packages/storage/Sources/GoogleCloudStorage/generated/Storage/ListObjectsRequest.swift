@@ -19,7 +19,7 @@ import GoogleCloudWkt
 
 /// Request message for [ListObjects][google.storage.v2.Storage.ListObjects].
 ///
-/// [google.storage.v2.Storage.ListObjects]: <doc:Storage/listObjects(request:)>
+/// [google.storage.v2.Storage.ListObjects]: <doc:StorageClient/listObjects(request:)>
 public struct ListObjectsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

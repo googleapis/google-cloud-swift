@@ -21,7 +21,7 @@
   /// Runtime operation information for
   /// [DatasetService.CreateDataset][google.cloud.aiplatform.v1.DatasetService.CreateDataset].
   ///
-  /// [google.cloud.aiplatform.v1.DatasetService.CreateDataset]: <doc:DatasetService/createDataset(request:)>
+  /// [google.cloud.aiplatform.v1.DatasetService.CreateDataset]: <doc:DatasetServiceClient/createDataset(request:)>
   public struct CreateDatasetOperationMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

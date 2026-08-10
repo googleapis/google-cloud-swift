@@ -143,7 +143,7 @@ public class LoggingServiceV2Client: Clients.LoggingServiceV2Protocol {
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "LoggingServiceV2_ListOperations")
   public func listOperations(
@@ -154,7 +154,7 @@ public class LoggingServiceV2Client: Clients.LoggingServiceV2Protocol {
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "LoggingServiceV2_ListOperations")
   public func listOperations(
@@ -171,7 +171,7 @@ public class LoggingServiceV2Client: Clients.LoggingServiceV2Protocol {
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "LoggingServiceV2_GetOperation")
   func getOperation(
@@ -182,7 +182,7 @@ public class LoggingServiceV2Client: Clients.LoggingServiceV2Protocol {
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "LoggingServiceV2_CancelOperation")
   public func cancelOperation(

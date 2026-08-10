@@ -26,7 +26,7 @@ import GoogleCloudWkt
 /// information about how to create a metadata import file, see [Metadata import
 /// file](https://cloud.google.com/dataplex/docs/import-metadata#metadata-import-file).
 ///
-/// [google.cloud.dataplex.v1.CatalogService.CreateMetadataJob]: <doc:CatalogService/createMetadataJob(request:)>
+/// [google.cloud.dataplex.v1.CatalogService.CreateMetadataJob]: <doc:CatalogServiceClient/createMetadataJob(request:)>
 public struct ImportItem: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [UnstarEntry][google.cloud.datacatalog.v1.DataCatalog.UnstarEntry].
 /// Empty for now
 ///
-/// [google.cloud.datacatalog.v1.DataCatalog.UnstarEntry]: <doc:DataCatalog/unstarEntry(request:)>
+/// [google.cloud.datacatalog.v1.DataCatalog.UnstarEntry]: <doc:DataCatalogClient/unstarEntry(request:)>
 public struct UnstarEntryResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

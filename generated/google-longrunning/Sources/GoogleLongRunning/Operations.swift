@@ -109,7 +109,7 @@ public class OperationsClient: Clients.OperationsProtocol {
   /// `Code.CANCELLED`.
   ///
   /// [google.longrunning.Operation.error]: <doc:Operation/error>
-  /// [google.longrunning.Operations.GetOperation]: <doc:Operations/getOperation(request:)>
+  /// [google.longrunning.Operations.GetOperation]: <doc:OperationsClient/getOperation(request:)>
   /// [google.rpc.Status.code]: https://www.google.com/search?q=Swift+google.rpc+GoogleRpc.Status/code
   ///
   /// @Snippet(path: "Operations_CancelOperation")

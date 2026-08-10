@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [SecretManagerService.EnableManagedRotation][google.cloud.secretmanager.v1.SecretManagerService.EnableManagedRotation].
 ///
-/// [google.cloud.secretmanager.v1.SecretManagerService.EnableManagedRotation]: <doc:SecretManagerService/enableManagedRotation(request:)>
+/// [google.cloud.secretmanager.v1.SecretManagerService.EnableManagedRotation]: <doc:SecretManagerServiceClient/enableManagedRotation(request:)>
 public struct EnableManagedRotationRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

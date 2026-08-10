@@ -27,7 +27,7 @@ import GoogleCloudWkt
 /// `encryption_key_sha256_bytes` fields of the
 /// `common_object_request_params.customer_encryption` field.
 ///
-/// [google.storage.v2.Storage.RewriteObject]: <doc:Storage/rewriteObject(request:)>
+/// [google.storage.v2.Storage.RewriteObject]: <doc:StorageClient/rewriteObject(request:)>
 public struct RewriteObjectRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

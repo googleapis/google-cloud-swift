@@ -21,7 +21,7 @@
   /// Runtime operation information for
   /// [PipelineService.BatchCancelPipelineJobs][google.cloud.aiplatform.v1.PipelineService.BatchCancelPipelineJobs].
   ///
-  /// [google.cloud.aiplatform.v1.PipelineService.BatchCancelPipelineJobs]: <doc:PipelineService/batchCancelPipelineJobs(request:)>
+  /// [google.cloud.aiplatform.v1.PipelineService.BatchCancelPipelineJobs]: <doc:PipelineServiceClient/batchCancelPipelineJobs(request:)>
   public struct BatchCancelPipelineJobsOperationMetadata: Codable, Equatable, GoogleCloudWkt
       ._AnyPackable,
     Sendable

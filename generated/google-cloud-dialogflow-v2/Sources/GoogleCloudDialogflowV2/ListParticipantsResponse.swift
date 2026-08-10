@@ -22,7 +22,7 @@
   /// The response message for
   /// [Participants.ListParticipants][google.cloud.dialogflow.v2.Participants.ListParticipants].
   ///
-  /// [google.cloud.dialogflow.v2.Participants.ListParticipants]: <doc:Participants/listParticipants(request:)>
+  /// [google.cloud.dialogflow.v2.Participants.ListParticipants]: <doc:ParticipantsClient/listParticipants(request:)>
   public struct ListParticipantsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable

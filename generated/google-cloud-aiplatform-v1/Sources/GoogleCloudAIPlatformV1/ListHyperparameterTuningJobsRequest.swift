@@ -21,7 +21,7 @@
   /// Request message for
   /// [JobService.ListHyperparameterTuningJobs][google.cloud.aiplatform.v1.JobService.ListHyperparameterTuningJobs].
   ///
-  /// [google.cloud.aiplatform.v1.JobService.ListHyperparameterTuningJobs]: <doc:JobService/listHyperparameterTuningJobs(request:)>
+  /// [google.cloud.aiplatform.v1.JobService.ListHyperparameterTuningJobs]: <doc:JobServiceClient/listHyperparameterTuningJobs(request:)>
   public struct ListHyperparameterTuningJobsRequest: Codable, Equatable, GoogleCloudWkt
       ._AnyPackable,
     Sendable
@@ -63,7 +63,7 @@
     /// [JobService.ListHyperparameterTuningJobs][google.cloud.aiplatform.v1.JobService.ListHyperparameterTuningJobs]
     /// call.
     ///
-    /// [google.cloud.aiplatform.v1.JobService.ListHyperparameterTuningJobs]: <doc:JobService/listHyperparameterTuningJobs(request:)>
+    /// [google.cloud.aiplatform.v1.JobService.ListHyperparameterTuningJobs]: <doc:JobServiceClient/listHyperparameterTuningJobs(request:)>
     /// [google.cloud.aiplatform.v1.ListHyperparameterTuningJobsResponse.next_page_token]: <doc:ListHyperparameterTuningJobsResponse/nextPageToken>
     public var pageToken: Swift.String = Swift.String()
 

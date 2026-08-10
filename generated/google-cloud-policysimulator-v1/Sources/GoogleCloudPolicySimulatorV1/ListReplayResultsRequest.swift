@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [Simulator.ListReplayResults][google.cloud.policysimulator.v1.Simulator.ListReplayResults].
 ///
-/// [google.cloud.policysimulator.v1.Simulator.ListReplayResults]: <doc:Simulator/listReplayResults(request:)>
+/// [google.cloud.policysimulator.v1.Simulator.ListReplayResults]: <doc:SimulatorClient/listReplayResults(request:)>
 public struct ListReplayResultsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
@@ -52,7 +52,7 @@ public struct ListReplayResultsRequest: Codable, Equatable, GoogleCloudWkt._AnyP
   /// [Simulator.ListReplayResults[] must match the call that provided the page
   /// token.
   ///
-  /// [google.cloud.policysimulator.v1.Simulator.ListReplayResults]: <doc:Simulator/listReplayResults(request:)>
+  /// [google.cloud.policysimulator.v1.Simulator.ListReplayResults]: <doc:SimulatorClient/listReplayResults(request:)>
   public var pageToken: Swift.String = Swift.String()
 
   /// Initialize a new instance of `ListReplayResultsRequest`.

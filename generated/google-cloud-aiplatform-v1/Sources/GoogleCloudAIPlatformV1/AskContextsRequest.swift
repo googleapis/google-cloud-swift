@@ -22,7 +22,7 @@
   /// Request message for
   /// [VertexRagService.AskContexts][google.cloud.aiplatform.v1.VertexRagService.AskContexts].
   ///
-  /// [google.cloud.aiplatform.v1.VertexRagService.AskContexts]: <doc:VertexRagService/askContexts(request:)>
+  /// [google.cloud.aiplatform.v1.VertexRagService.AskContexts]: <doc:VertexRagServiceClient/askContexts(request:)>
   public struct AskContextsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

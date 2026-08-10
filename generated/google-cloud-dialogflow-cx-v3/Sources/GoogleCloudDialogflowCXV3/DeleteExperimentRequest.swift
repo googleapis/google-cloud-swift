@@ -21,7 +21,7 @@
   /// The request message for
   /// [Experiments.DeleteExperiment][google.cloud.dialogflow.cx.v3.Experiments.DeleteExperiment].
   ///
-  /// [google.cloud.dialogflow.cx.v3.Experiments.DeleteExperiment]: <doc:Experiments/deleteExperiment(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Experiments.DeleteExperiment]: <doc:ExperimentsClient/deleteExperiment(request:)>
   public struct DeleteExperimentRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

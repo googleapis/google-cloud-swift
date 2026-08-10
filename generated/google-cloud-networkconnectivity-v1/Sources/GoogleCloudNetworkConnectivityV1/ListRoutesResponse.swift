@@ -22,7 +22,7 @@ import GoogleCloudWkt
 /// [HubService.ListRoutes][google.cloud.networkconnectivity.v1.HubService.ListRoutes]
 /// method.
 ///
-/// [google.cloud.networkconnectivity.v1.HubService.ListRoutes]: <doc:HubService/listRoutes(request:)>
+/// [google.cloud.networkconnectivity.v1.HubService.ListRoutes]: <doc:HubServiceClient/listRoutes(request:)>
 public struct ListRoutesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

@@ -21,7 +21,7 @@
   extension RegionSnapshotsClient {
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.regionSnapshots.delete] method.
     ///
-    /// [google.cloud.compute.v1.regionSnapshots.delete]: <doc:RegionSnapshots/delete(request:)>
+    /// [google.cloud.compute.v1.regionSnapshots.delete]: <doc:RegionSnapshotsClient/delete(request:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -78,7 +78,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.regionSnapshots.get] method.
     ///
-    /// [google.cloud.compute.v1.regionSnapshots.get]: <doc:RegionSnapshots/`get`(request:)>
+    /// [google.cloud.compute.v1.regionSnapshots.get]: <doc:RegionSnapshotsClient/`get`(request:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -120,7 +120,7 @@
 
     /// Synthetic request message for the [getIamPolicy()][google.cloud.compute.v1.regionSnapshots.getIamPolicy] method.
     ///
-    /// [google.cloud.compute.v1.regionSnapshots.getIamPolicy]: <doc:RegionSnapshots/getIamPolicy(request:)>
+    /// [google.cloud.compute.v1.regionSnapshots.getIamPolicy]: <doc:RegionSnapshotsClient/getIamPolicy(request:)>
     public struct GetIamPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -165,7 +165,7 @@
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.regionSnapshots.insert] method.
     ///
-    /// [google.cloud.compute.v1.regionSnapshots.insert]: <doc:RegionSnapshots/insert(request:)>
+    /// [google.cloud.compute.v1.regionSnapshots.insert]: <doc:RegionSnapshotsClient/insert(request:)>
     public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -192,7 +192,7 @@
 
       /// Synthetic request body field for the [insert()][google.cloud.compute.v1.regionSnapshots.insert] method.
       ///
-      /// [google.cloud.compute.v1.regionSnapshots.insert]: <doc:RegionSnapshots/insert(request:)>
+      /// [google.cloud.compute.v1.regionSnapshots.insert]: <doc:RegionSnapshotsClient/insert(request:)>
       public var body: Snapshot? = nil
 
       /// Initialize a new instance of `InsertRequest`.
@@ -224,7 +224,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.regionSnapshots.list] method.
     ///
-    /// [google.cloud.compute.v1.regionSnapshots.list]: <doc:RegionSnapshots/list(request:)>
+    /// [google.cloud.compute.v1.regionSnapshots.list]: <doc:RegionSnapshotsClient/list(request:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -356,7 +356,7 @@
 
     /// Synthetic request message for the [setIamPolicy()][google.cloud.compute.v1.regionSnapshots.setIamPolicy] method.
     ///
-    /// [google.cloud.compute.v1.regionSnapshots.setIamPolicy]: <doc:RegionSnapshots/setIamPolicy(request:)>
+    /// [google.cloud.compute.v1.regionSnapshots.setIamPolicy]: <doc:RegionSnapshotsClient/setIamPolicy(request:)>
     public struct SetIamPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -371,7 +371,7 @@
 
       /// Synthetic request body field for the [setIamPolicy()][google.cloud.compute.v1.regionSnapshots.setIamPolicy] method.
       ///
-      /// [google.cloud.compute.v1.regionSnapshots.setIamPolicy]: <doc:RegionSnapshots/setIamPolicy(request:)>
+      /// [google.cloud.compute.v1.regionSnapshots.setIamPolicy]: <doc:RegionSnapshotsClient/setIamPolicy(request:)>
       public var body: RegionSetPolicyRequest? = nil
 
       /// Initialize a new instance of `SetIamPolicyRequest`.
@@ -403,7 +403,7 @@
 
     /// Synthetic request message for the [setLabels()][google.cloud.compute.v1.regionSnapshots.setLabels] method.
     ///
-    /// [google.cloud.compute.v1.regionSnapshots.setLabels]: <doc:RegionSnapshots/setLabels(request:)>
+    /// [google.cloud.compute.v1.regionSnapshots.setLabels]: <doc:RegionSnapshotsClient/setLabels(request:)>
     public struct SetLabelsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -433,7 +433,7 @@
 
       /// Synthetic request body field for the [setLabels()][google.cloud.compute.v1.regionSnapshots.setLabels] method.
       ///
-      /// [google.cloud.compute.v1.regionSnapshots.setLabels]: <doc:RegionSnapshots/setLabels(request:)>
+      /// [google.cloud.compute.v1.regionSnapshots.setLabels]: <doc:RegionSnapshotsClient/setLabels(request:)>
       public var body: RegionSetLabelsRequest? = nil
 
       /// Initialize a new instance of `SetLabelsRequest`.
@@ -465,7 +465,7 @@
 
     /// Synthetic request message for the [testIamPermissions()][google.cloud.compute.v1.regionSnapshots.testIamPermissions] method.
     ///
-    /// [google.cloud.compute.v1.regionSnapshots.testIamPermissions]: <doc:RegionSnapshots/testIamPermissions(request:)>
+    /// [google.cloud.compute.v1.regionSnapshots.testIamPermissions]: <doc:RegionSnapshotsClient/testIamPermissions(request:)>
     public struct TestIamPermissionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -480,7 +480,7 @@
 
       /// Synthetic request body field for the [testIamPermissions()][google.cloud.compute.v1.regionSnapshots.testIamPermissions] method.
       ///
-      /// [google.cloud.compute.v1.regionSnapshots.testIamPermissions]: <doc:RegionSnapshots/testIamPermissions(request:)>
+      /// [google.cloud.compute.v1.regionSnapshots.testIamPermissions]: <doc:RegionSnapshotsClient/testIamPermissions(request:)>
       public var body: TestPermissionsRequest? = nil
 
       /// Initialize a new instance of `TestIamPermissionsRequest`.
@@ -513,7 +513,7 @@
 
     /// Synthetic request message for the [updateKmsKey()][google.cloud.compute.v1.regionSnapshots.updateKmsKey] method.
     ///
-    /// [google.cloud.compute.v1.regionSnapshots.updateKmsKey]: <doc:RegionSnapshots/updateKmsKey(request:)>
+    /// [google.cloud.compute.v1.regionSnapshots.updateKmsKey]: <doc:RegionSnapshotsClient/updateKmsKey(request:)>
     public struct UpdateKmsKeyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -543,7 +543,7 @@
 
       /// Synthetic request body field for the [updateKmsKey()][google.cloud.compute.v1.regionSnapshots.updateKmsKey] method.
       ///
-      /// [google.cloud.compute.v1.regionSnapshots.updateKmsKey]: <doc:RegionSnapshots/updateKmsKey(request:)>
+      /// [google.cloud.compute.v1.regionSnapshots.updateKmsKey]: <doc:RegionSnapshotsClient/updateKmsKey(request:)>
       public var body: RegionSnapshotUpdateKmsKeyRequest? = nil
 
       /// Initialize a new instance of `UpdateKmsKeyRequest`.

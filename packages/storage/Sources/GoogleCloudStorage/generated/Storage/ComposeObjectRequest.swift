@@ -19,7 +19,7 @@ import GoogleCloudWkt
 
 /// Request message for [ComposeObject][google.storage.v2.Storage.ComposeObject].
 ///
-/// [google.storage.v2.Storage.ComposeObject]: <doc:Storage/composeObject(request:)>
+/// [google.storage.v2.Storage.ComposeObject]: <doc:StorageClient/composeObject(request:)>
 public struct ComposeObjectRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

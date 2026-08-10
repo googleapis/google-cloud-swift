@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [LookupService.ResolveService][google.cloud.servicedirectory.v1.LookupService.ResolveService].
 /// Looks up a service by its name, returns the service and its endpoints.
 ///
-/// [google.cloud.servicedirectory.v1.LookupService.ResolveService]: <doc:LookupService/resolveService(request:)>
+/// [google.cloud.servicedirectory.v1.LookupService.ResolveService]: <doc:LookupServiceClient/resolveService(request:)>
 public struct ResolveServiceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

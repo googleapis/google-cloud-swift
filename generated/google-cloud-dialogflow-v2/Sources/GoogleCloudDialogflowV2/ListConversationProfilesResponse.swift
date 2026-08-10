@@ -22,7 +22,7 @@
   /// The response message for
   /// [ConversationProfiles.ListConversationProfiles][google.cloud.dialogflow.v2.ConversationProfiles.ListConversationProfiles].
   ///
-  /// [google.cloud.dialogflow.v2.ConversationProfiles.ListConversationProfiles]: <doc:ConversationProfiles/listConversationProfiles(request:)>
+  /// [google.cloud.dialogflow.v2.ConversationProfiles.ListConversationProfiles]: <doc:ConversationProfilesClient/listConversationProfiles(request:)>
   public struct ListConversationProfilesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable

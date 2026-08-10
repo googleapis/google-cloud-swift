@@ -102,7 +102,7 @@ public class ProjectsClient: Clients.ProjectsProtocol {
   /// retrieve the latest state of a project, use the
   /// [GetProject][google.cloud.resourcemanager.v3.Projects.GetProject] method.
   ///
-  /// [google.cloud.resourcemanager.v3.Projects.GetProject]: <doc:Projects/getProject(request:)>
+  /// [google.cloud.resourcemanager.v3.Projects.GetProject]: <doc:ProjectsClient/getProject(request:)>
   ///
   /// @Snippet(path: "Projects_SearchProjects")
   public func searchProjects(
@@ -122,7 +122,7 @@ public class ProjectsClient: Clients.ProjectsProtocol {
   /// retrieve the latest state of a project, use the
   /// [GetProject][google.cloud.resourcemanager.v3.Projects.GetProject] method.
   ///
-  /// [google.cloud.resourcemanager.v3.Projects.GetProject]: <doc:Projects/getProject(request:)>
+  /// [google.cloud.resourcemanager.v3.Projects.GetProject]: <doc:ProjectsClient/getProject(request:)>
   ///
   /// @Snippet(path: "Projects_SearchProjects")
   public func searchProjects(
@@ -425,7 +425,7 @@ public class ProjectsClient: Clients.ProjectsProtocol {
   ///
   /// [google.cloud.resourcemanager.v3.Project.State.ACTIVE]: <doc:Project/State/active>
   /// [google.cloud.resourcemanager.v3.Project.State.DELETE_REQUESTED]: <doc:Project/State/deleteRequested>
-  /// [google.cloud.resourcemanager.v3.Projects.SearchProjects]: <doc:Projects/searchProjects(request:)>
+  /// [google.cloud.resourcemanager.v3.Projects.SearchProjects]: <doc:ProjectsClient/searchProjects(request:)>
   ///
   /// @Snippet(path: "Projects_DeleteProject")
   public func deleteProject(
@@ -470,7 +470,7 @@ public class ProjectsClient: Clients.ProjectsProtocol {
   ///
   /// [google.cloud.resourcemanager.v3.Project.State.ACTIVE]: <doc:Project/State/active>
   /// [google.cloud.resourcemanager.v3.Project.State.DELETE_REQUESTED]: <doc:Project/State/deleteRequested>
-  /// [google.cloud.resourcemanager.v3.Projects.SearchProjects]: <doc:Projects/searchProjects(request:)>
+  /// [google.cloud.resourcemanager.v3.Projects.SearchProjects]: <doc:ProjectsClient/searchProjects(request:)>
   ///
   /// @Snippet(path: "Projects_DeleteProject")
   public func deleteProject(
@@ -685,7 +685,7 @@ public class ProjectsClient: Clients.ProjectsProtocol {
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Projects_GetOperation")
   func getOperation(

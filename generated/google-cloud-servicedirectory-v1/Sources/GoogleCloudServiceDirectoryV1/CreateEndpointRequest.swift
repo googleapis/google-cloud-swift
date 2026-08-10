@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// The request message for
 /// [RegistrationService.CreateEndpoint][google.cloud.servicedirectory.v1.RegistrationService.CreateEndpoint].
 ///
-/// [google.cloud.servicedirectory.v1.RegistrationService.CreateEndpoint]: <doc:RegistrationService/createEndpoint(request:)>
+/// [google.cloud.servicedirectory.v1.RegistrationService.CreateEndpoint]: <doc:RegistrationServiceClient/createEndpoint(request:)>
 public struct CreateEndpointRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

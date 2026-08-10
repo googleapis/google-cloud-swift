@@ -22,7 +22,7 @@
   /// Response message for
   /// [TensorboardService.ExportTensorboardTimeSeriesData][google.cloud.aiplatform.v1.TensorboardService.ExportTensorboardTimeSeriesData].
   ///
-  /// [google.cloud.aiplatform.v1.TensorboardService.ExportTensorboardTimeSeriesData]: <doc:TensorboardService/exportTensorboardTimeSeriesData(request:)>
+  /// [google.cloud.aiplatform.v1.TensorboardService.ExportTensorboardTimeSeriesData]: <doc:TensorboardServiceClient/exportTensorboardTimeSeriesData(request:)>
   public struct ExportTensorboardTimeSeriesDataResponse: Codable, Equatable, GoogleCloudWkt
       ._AnyPackable,
     GoogleCloudGax._PaginatedResponse,

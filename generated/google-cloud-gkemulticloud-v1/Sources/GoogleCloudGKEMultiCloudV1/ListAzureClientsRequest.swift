@@ -48,7 +48,7 @@ public struct ListAzureClientsRequest: Codable, Equatable, GoogleCloudWkt._AnyPa
   /// [azureClients.list][google.cloud.gkemulticloud.v1.AzureClusters.ListAzureClients]
   /// request, if any.
   ///
-  /// [google.cloud.gkemulticloud.v1.AzureClusters.ListAzureClients]: <doc:AzureClusters/listAzureClients(request:)>
+  /// [google.cloud.gkemulticloud.v1.AzureClusters.ListAzureClients]: <doc:AzureClustersClient/listAzureClients(request:)>
   public var pageToken: Swift.String = Swift.String()
 
   /// Initialize a new instance of `ListAzureClientsRequest`.

@@ -255,7 +255,7 @@ public class DatastoreAdminClient: Clients.DatastoreAdminProtocol {
   ///
   /// Indexes with a single property cannot be created.
   ///
-  /// [google.datastore.admin.v1.DatastoreAdmin.DeleteIndex]: <doc:DatastoreAdmin/deleteIndex(request:)>
+  /// [google.datastore.admin.v1.DatastoreAdmin.DeleteIndex]: <doc:DatastoreAdminClient/deleteIndex(request:)>
   /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   ///
   /// @Snippet(path: "DatastoreAdmin_CreateIndex")
@@ -280,7 +280,7 @@ public class DatastoreAdminClient: Clients.DatastoreAdminProtocol {
   ///
   /// Indexes with a single property cannot be created.
   ///
-  /// [google.datastore.admin.v1.DatastoreAdmin.DeleteIndex]: <doc:DatastoreAdmin/deleteIndex(request:)>
+  /// [google.datastore.admin.v1.DatastoreAdmin.DeleteIndex]: <doc:DatastoreAdminClient/deleteIndex(request:)>
   /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   ///
   /// @Snippet(path: "DatastoreAdmin_CreateIndex")
@@ -352,7 +352,7 @@ public class DatastoreAdminClient: Clients.DatastoreAdminProtocol {
   /// by fixing the data that caused the error, followed by calling
   /// [delete][google.datastore.admin.v1.DatastoreAdmin.DeleteIndex] again.
   ///
-  /// [google.datastore.admin.v1.DatastoreAdmin.DeleteIndex]: <doc:DatastoreAdmin/deleteIndex(request:)>
+  /// [google.datastore.admin.v1.DatastoreAdmin.DeleteIndex]: <doc:DatastoreAdminClient/deleteIndex(request:)>
   /// [google.datastore.admin.v1.Index.State]: <doc:Index/State>
   /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   ///
@@ -375,7 +375,7 @@ public class DatastoreAdminClient: Clients.DatastoreAdminProtocol {
   /// by fixing the data that caused the error, followed by calling
   /// [delete][google.datastore.admin.v1.DatastoreAdmin.DeleteIndex] again.
   ///
-  /// [google.datastore.admin.v1.DatastoreAdmin.DeleteIndex]: <doc:DatastoreAdmin/deleteIndex(request:)>
+  /// [google.datastore.admin.v1.DatastoreAdmin.DeleteIndex]: <doc:DatastoreAdminClient/deleteIndex(request:)>
   /// [google.datastore.admin.v1.Index.State]: <doc:Index/State>
   /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   ///
@@ -475,7 +475,7 @@ public class DatastoreAdminClient: Clients.DatastoreAdminProtocol {
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DatastoreAdmin_ListOperations")
   public func listOperations(
@@ -486,7 +486,7 @@ public class DatastoreAdminClient: Clients.DatastoreAdminProtocol {
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DatastoreAdmin_ListOperations")
   public func listOperations(
@@ -503,7 +503,7 @@ public class DatastoreAdminClient: Clients.DatastoreAdminProtocol {
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DatastoreAdmin_GetOperation")
   func getOperation(
@@ -514,7 +514,7 @@ public class DatastoreAdminClient: Clients.DatastoreAdminProtocol {
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DatastoreAdmin_DeleteOperation")
   public func deleteOperation(
@@ -525,7 +525,7 @@ public class DatastoreAdminClient: Clients.DatastoreAdminProtocol {
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DatastoreAdmin_CancelOperation")
   public func cancelOperation(

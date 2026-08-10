@@ -22,7 +22,7 @@
   /// Response message for
   /// [Documents.ListDocuments][google.cloud.dialogflow.v2.Documents.ListDocuments].
   ///
-  /// [google.cloud.dialogflow.v2.Documents.ListDocuments]: <doc:Documents/listDocuments(request:)>
+  /// [google.cloud.dialogflow.v2.Documents.ListDocuments]: <doc:DocumentsClient/listDocuments(request:)>
   public struct ListDocumentsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable

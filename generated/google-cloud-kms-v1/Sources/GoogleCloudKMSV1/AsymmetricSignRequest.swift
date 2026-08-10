@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [KeyManagementService.AsymmetricSign][google.cloud.kms.v1.KeyManagementService.AsymmetricSign].
 ///
-/// [google.cloud.kms.v1.KeyManagementService.AsymmetricSign]: <doc:KeyManagementService/asymmetricSign(request:)>
+/// [google.cloud.kms.v1.KeyManagementService.AsymmetricSign]: <doc:KeyManagementServiceClient/asymmetricSign(request:)>
 public struct AsymmetricSignRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
@@ -65,7 +65,7 @@ public struct AsymmetricSignRequest: Codable, Equatable, GoogleCloudWkt._AnyPack
   ///
   /// [google.cloud.kms.v1.AsymmetricSignRequest.digest]: <doc:AsymmetricSignRequest/digest>
   /// [google.cloud.kms.v1.AsymmetricSignRequest.digest_crc32c]: <doc:AsymmetricSignRequest/digestCrc32C>
-  /// [google.cloud.kms.v1.KeyManagementService]: <doc:KeyManagementService>
+  /// [google.cloud.kms.v1.KeyManagementService]: <doc:KeyManagementServiceClient>
   public var digestCrc32C: GoogleCloudWkt.Int64Value? = nil
 
   /// Optional. The data to sign.
@@ -98,7 +98,7 @@ public struct AsymmetricSignRequest: Codable, Equatable, GoogleCloudWkt._AnyPack
   ///
   /// [google.cloud.kms.v1.AsymmetricSignRequest.data]: <doc:AsymmetricSignRequest/data>
   /// [google.cloud.kms.v1.AsymmetricSignRequest.data_crc32c]: <doc:AsymmetricSignRequest/dataCrc32C>
-  /// [google.cloud.kms.v1.KeyManagementService]: <doc:KeyManagementService>
+  /// [google.cloud.kms.v1.KeyManagementService]: <doc:KeyManagementServiceClient>
   public var dataCrc32C: GoogleCloudWkt.Int64Value? = nil
 
   /// Initialize a new instance of `AsymmetricSignRequest`.

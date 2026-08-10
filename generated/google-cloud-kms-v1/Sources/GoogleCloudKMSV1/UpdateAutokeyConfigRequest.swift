@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [UpdateAutokeyConfig][google.cloud.kms.v1.AutokeyAdmin.UpdateAutokeyConfig].
 ///
-/// [google.cloud.kms.v1.AutokeyAdmin.UpdateAutokeyConfig]: <doc:AutokeyAdmin/updateAutokeyConfig(request:)>
+/// [google.cloud.kms.v1.AutokeyAdmin.UpdateAutokeyConfig]: <doc:AutokeyAdminClient/updateAutokeyConfig(request:)>
 public struct UpdateAutokeyConfigRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

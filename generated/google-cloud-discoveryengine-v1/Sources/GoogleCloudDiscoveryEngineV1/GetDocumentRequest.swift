@@ -22,7 +22,7 @@
   /// [DocumentService.GetDocument][google.cloud.discoveryengine.v1.DocumentService.GetDocument]
   /// method.
   ///
-  /// [google.cloud.discoveryengine.v1.DocumentService.GetDocument]: <doc:DocumentService/getDocument(request:)>
+  /// [google.cloud.discoveryengine.v1.DocumentService.GetDocument]: <doc:DocumentServiceClient/getDocument(request:)>
   public struct GetDocumentRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

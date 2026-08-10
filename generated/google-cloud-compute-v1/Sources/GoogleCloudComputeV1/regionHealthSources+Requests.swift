@@ -21,7 +21,7 @@
   extension RegionHealthSourcesClient {
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.regionHealthSources.aggregatedList] method.
     ///
-    /// [google.cloud.compute.v1.regionHealthSources.aggregatedList]: <doc:RegionHealthSources/aggregatedList(request:)>
+    /// [google.cloud.compute.v1.regionHealthSources.aggregatedList]: <doc:RegionHealthSourcesClient/aggregatedList(request:)>
     public struct AggregatedListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -164,7 +164,7 @@
 
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.regionHealthSources.delete] method.
     ///
-    /// [google.cloud.compute.v1.regionHealthSources.delete]: <doc:RegionHealthSources/delete(request:)>
+    /// [google.cloud.compute.v1.regionHealthSources.delete]: <doc:RegionHealthSourcesClient/delete(request:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -221,7 +221,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.regionHealthSources.get] method.
     ///
-    /// [google.cloud.compute.v1.regionHealthSources.get]: <doc:RegionHealthSources/`get`(request:)>
+    /// [google.cloud.compute.v1.regionHealthSources.get]: <doc:RegionHealthSourcesClient/`get`(request:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -263,7 +263,7 @@
 
     /// Synthetic request message for the [getHealth()][google.cloud.compute.v1.regionHealthSources.getHealth] method.
     ///
-    /// [google.cloud.compute.v1.regionHealthSources.getHealth]: <doc:RegionHealthSources/getHealth(request:)>
+    /// [google.cloud.compute.v1.regionHealthSources.getHealth]: <doc:RegionHealthSourcesClient/getHealth(request:)>
     public struct GetHealthRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -305,7 +305,7 @@
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.regionHealthSources.insert] method.
     ///
-    /// [google.cloud.compute.v1.regionHealthSources.insert]: <doc:RegionHealthSources/insert(request:)>
+    /// [google.cloud.compute.v1.regionHealthSources.insert]: <doc:RegionHealthSourcesClient/insert(request:)>
     public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -332,7 +332,7 @@
 
       /// Synthetic request body field for the [insert()][google.cloud.compute.v1.regionHealthSources.insert] method.
       ///
-      /// [google.cloud.compute.v1.regionHealthSources.insert]: <doc:RegionHealthSources/insert(request:)>
+      /// [google.cloud.compute.v1.regionHealthSources.insert]: <doc:RegionHealthSourcesClient/insert(request:)>
       public var body: HealthSource? = nil
 
       /// Initialize a new instance of `InsertRequest`.
@@ -364,7 +364,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.regionHealthSources.list] method.
     ///
-    /// [google.cloud.compute.v1.regionHealthSources.list]: <doc:RegionHealthSources/list(request:)>
+    /// [google.cloud.compute.v1.regionHealthSources.list]: <doc:RegionHealthSourcesClient/list(request:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -496,7 +496,7 @@
 
     /// Synthetic request message for the [patch()][google.cloud.compute.v1.regionHealthSources.patch] method.
     ///
-    /// [google.cloud.compute.v1.regionHealthSources.patch]: <doc:RegionHealthSources/patch(request:)>
+    /// [google.cloud.compute.v1.regionHealthSources.patch]: <doc:RegionHealthSourcesClient/patch(request:)>
     public struct PatchRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -527,7 +527,7 @@
 
       /// Synthetic request body field for the [patch()][google.cloud.compute.v1.regionHealthSources.patch] method.
       ///
-      /// [google.cloud.compute.v1.regionHealthSources.patch]: <doc:RegionHealthSources/patch(request:)>
+      /// [google.cloud.compute.v1.regionHealthSources.patch]: <doc:RegionHealthSourcesClient/patch(request:)>
       public var body: HealthSource? = nil
 
       /// Initialize a new instance of `PatchRequest`.
@@ -559,7 +559,7 @@
 
     /// Synthetic request message for the [testIamPermissions()][google.cloud.compute.v1.regionHealthSources.testIamPermissions] method.
     ///
-    /// [google.cloud.compute.v1.regionHealthSources.testIamPermissions]: <doc:RegionHealthSources/testIamPermissions(request:)>
+    /// [google.cloud.compute.v1.regionHealthSources.testIamPermissions]: <doc:RegionHealthSourcesClient/testIamPermissions(request:)>
     public struct TestIamPermissionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -574,7 +574,7 @@
 
       /// Synthetic request body field for the [testIamPermissions()][google.cloud.compute.v1.regionHealthSources.testIamPermissions] method.
       ///
-      /// [google.cloud.compute.v1.regionHealthSources.testIamPermissions]: <doc:RegionHealthSources/testIamPermissions(request:)>
+      /// [google.cloud.compute.v1.regionHealthSources.testIamPermissions]: <doc:RegionHealthSourcesClient/testIamPermissions(request:)>
       public var body: TestPermissionsRequest? = nil
 
       /// Initialize a new instance of `TestIamPermissionsRequest`.

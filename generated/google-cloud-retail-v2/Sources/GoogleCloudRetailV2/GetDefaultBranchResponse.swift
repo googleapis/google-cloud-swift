@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Response message of
 /// [CatalogService.GetDefaultBranch][google.cloud.retail.v2.CatalogService.GetDefaultBranch].
 ///
-/// [google.cloud.retail.v2.CatalogService.GetDefaultBranch]: <doc:CatalogService/getDefaultBranch(request:)>
+/// [google.cloud.retail.v2.CatalogService.GetDefaultBranch]: <doc:CatalogServiceClient/getDefaultBranch(request:)>
 public struct GetDefaultBranchResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

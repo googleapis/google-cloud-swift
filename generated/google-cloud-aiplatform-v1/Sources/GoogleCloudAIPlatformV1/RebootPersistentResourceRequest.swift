@@ -21,7 +21,7 @@
   /// Request message for
   /// [PersistentResourceService.RebootPersistentResource][google.cloud.aiplatform.v1.PersistentResourceService.RebootPersistentResource].
   ///
-  /// [google.cloud.aiplatform.v1.PersistentResourceService.RebootPersistentResource]: <doc:PersistentResourceService/rebootPersistentResource(request:)>
+  /// [google.cloud.aiplatform.v1.PersistentResourceService.RebootPersistentResource]: <doc:PersistentResourceServiceClient/rebootPersistentResource(request:)>
   public struct RebootPersistentResourceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

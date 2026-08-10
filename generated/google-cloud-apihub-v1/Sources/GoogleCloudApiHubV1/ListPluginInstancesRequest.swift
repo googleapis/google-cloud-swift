@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [ListPluginInstances][google.cloud.apihub.v1.ApiHubPlugin.ListPluginInstances]
 /// method's request.
 ///
-/// [google.cloud.apihub.v1.ApiHubPlugin.ListPluginInstances]: <doc:ApiHubPlugin/listPluginInstances(request:)>
+/// [google.cloud.apihub.v1.ApiHubPlugin.ListPluginInstances]: <doc:ApiHubPluginClient/listPluginInstances(request:)>
 public struct ListPluginInstancesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

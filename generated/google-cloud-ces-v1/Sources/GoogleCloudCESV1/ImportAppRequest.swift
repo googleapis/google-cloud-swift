@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [AgentService.ImportApp][google.cloud.ces.v1.AgentService.ImportApp].
 ///
-/// [google.cloud.ces.v1.AgentService.ImportApp]: <doc:AgentService/importApp(request:)>
+/// [google.cloud.ces.v1.AgentService.ImportApp]: <doc:AgentServiceClient/importApp(request:)>
 public struct ImportAppRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

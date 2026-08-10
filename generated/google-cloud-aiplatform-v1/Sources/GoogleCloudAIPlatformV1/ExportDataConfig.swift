@@ -28,7 +28,7 @@
     /// is the same as in
     /// [ListAnnotations][google.cloud.aiplatform.v1.DatasetService.ListAnnotations].
     ///
-    /// [google.cloud.aiplatform.v1.DatasetService.ListAnnotations]: <doc:DatasetService/listAnnotations(request:)>
+    /// [google.cloud.aiplatform.v1.DatasetService.ListAnnotations]: <doc:DatasetServiceClient/listAnnotations(request:)>
     public var annotationsFilter: Swift.String = Swift.String()
 
     /// The ID of a SavedQuery (annotation set) under the Dataset specified by

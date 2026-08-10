@@ -21,7 +21,7 @@
   extension RegionSecurityPoliciesClient {
     /// Synthetic request message for the [addRule()][google.cloud.compute.v1.regionSecurityPolicies.addRule] method.
     ///
-    /// [google.cloud.compute.v1.regionSecurityPolicies.addRule]: <doc:RegionSecurityPolicies/addRule(request:)>
+    /// [google.cloud.compute.v1.regionSecurityPolicies.addRule]: <doc:RegionSecurityPoliciesClient/addRule(request:)>
     public struct AddRuleRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -39,7 +39,7 @@
 
       /// Synthetic request body field for the [addRule()][google.cloud.compute.v1.regionSecurityPolicies.addRule] method.
       ///
-      /// [google.cloud.compute.v1.regionSecurityPolicies.addRule]: <doc:RegionSecurityPolicies/addRule(request:)>
+      /// [google.cloud.compute.v1.regionSecurityPolicies.addRule]: <doc:RegionSecurityPoliciesClient/addRule(request:)>
       public var body: SecurityPolicyRule? = nil
 
       /// Initialize a new instance of `AddRuleRequest`.
@@ -71,7 +71,7 @@
 
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.regionSecurityPolicies.delete] method.
     ///
-    /// [google.cloud.compute.v1.regionSecurityPolicies.delete]: <doc:RegionSecurityPolicies/delete(request:)>
+    /// [google.cloud.compute.v1.regionSecurityPolicies.delete]: <doc:RegionSecurityPoliciesClient/delete(request:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -128,7 +128,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.regionSecurityPolicies.get] method.
     ///
-    /// [google.cloud.compute.v1.regionSecurityPolicies.get]: <doc:RegionSecurityPolicies/`get`(request:)>
+    /// [google.cloud.compute.v1.regionSecurityPolicies.get]: <doc:RegionSecurityPoliciesClient/`get`(request:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -170,7 +170,7 @@
 
     /// Synthetic request message for the [getRule()][google.cloud.compute.v1.regionSecurityPolicies.getRule] method.
     ///
-    /// [google.cloud.compute.v1.regionSecurityPolicies.getRule]: <doc:RegionSecurityPolicies/getRule(request:)>
+    /// [google.cloud.compute.v1.regionSecurityPolicies.getRule]: <doc:RegionSecurityPoliciesClient/getRule(request:)>
     public struct GetRuleRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -215,7 +215,7 @@
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.regionSecurityPolicies.insert] method.
     ///
-    /// [google.cloud.compute.v1.regionSecurityPolicies.insert]: <doc:RegionSecurityPolicies/insert(request:)>
+    /// [google.cloud.compute.v1.regionSecurityPolicies.insert]: <doc:RegionSecurityPoliciesClient/insert(request:)>
     public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -245,7 +245,7 @@
 
       /// Synthetic request body field for the [insert()][google.cloud.compute.v1.regionSecurityPolicies.insert] method.
       ///
-      /// [google.cloud.compute.v1.regionSecurityPolicies.insert]: <doc:RegionSecurityPolicies/insert(request:)>
+      /// [google.cloud.compute.v1.regionSecurityPolicies.insert]: <doc:RegionSecurityPoliciesClient/insert(request:)>
       public var body: SecurityPolicy? = nil
 
       /// Initialize a new instance of `InsertRequest`.
@@ -277,7 +277,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.regionSecurityPolicies.list] method.
     ///
-    /// [google.cloud.compute.v1.regionSecurityPolicies.list]: <doc:RegionSecurityPolicies/list(request:)>
+    /// [google.cloud.compute.v1.regionSecurityPolicies.list]: <doc:RegionSecurityPoliciesClient/list(request:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -409,7 +409,7 @@
 
     /// Synthetic request message for the [patch()][google.cloud.compute.v1.regionSecurityPolicies.patch] method.
     ///
-    /// [google.cloud.compute.v1.regionSecurityPolicies.patch]: <doc:RegionSecurityPolicies/patch(request:)>
+    /// [google.cloud.compute.v1.regionSecurityPolicies.patch]: <doc:RegionSecurityPoliciesClient/patch(request:)>
     public struct PatchRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -442,7 +442,7 @@
 
       /// Synthetic request body field for the [patch()][google.cloud.compute.v1.regionSecurityPolicies.patch] method.
       ///
-      /// [google.cloud.compute.v1.regionSecurityPolicies.patch]: <doc:RegionSecurityPolicies/patch(request:)>
+      /// [google.cloud.compute.v1.regionSecurityPolicies.patch]: <doc:RegionSecurityPoliciesClient/patch(request:)>
       public var body: SecurityPolicy? = nil
 
       /// Initialize a new instance of `PatchRequest`.
@@ -474,7 +474,7 @@
 
     /// Synthetic request message for the [patchRule()][google.cloud.compute.v1.regionSecurityPolicies.patchRule] method.
     ///
-    /// [google.cloud.compute.v1.regionSecurityPolicies.patchRule]: <doc:RegionSecurityPolicies/patchRule(request:)>
+    /// [google.cloud.compute.v1.regionSecurityPolicies.patchRule]: <doc:RegionSecurityPoliciesClient/patchRule(request:)>
     public struct PatchRuleRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -498,7 +498,7 @@
 
       /// Synthetic request body field for the [patchRule()][google.cloud.compute.v1.regionSecurityPolicies.patchRule] method.
       ///
-      /// [google.cloud.compute.v1.regionSecurityPolicies.patchRule]: <doc:RegionSecurityPolicies/patchRule(request:)>
+      /// [google.cloud.compute.v1.regionSecurityPolicies.patchRule]: <doc:RegionSecurityPoliciesClient/patchRule(request:)>
       public var body: SecurityPolicyRule? = nil
 
       /// Initialize a new instance of `PatchRuleRequest`.
@@ -530,7 +530,7 @@
 
     /// Synthetic request message for the [removeRule()][google.cloud.compute.v1.regionSecurityPolicies.removeRule] method.
     ///
-    /// [google.cloud.compute.v1.regionSecurityPolicies.removeRule]: <doc:RegionSecurityPolicies/removeRule(request:)>
+    /// [google.cloud.compute.v1.regionSecurityPolicies.removeRule]: <doc:RegionSecurityPoliciesClient/removeRule(request:)>
     public struct RemoveRuleRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -576,7 +576,7 @@
 
     /// Synthetic request message for the [setLabels()][google.cloud.compute.v1.regionSecurityPolicies.setLabels] method.
     ///
-    /// [google.cloud.compute.v1.regionSecurityPolicies.setLabels]: <doc:RegionSecurityPolicies/setLabels(request:)>
+    /// [google.cloud.compute.v1.regionSecurityPolicies.setLabels]: <doc:RegionSecurityPoliciesClient/setLabels(request:)>
     public struct SetLabelsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -606,7 +606,7 @@
 
       /// Synthetic request body field for the [setLabels()][google.cloud.compute.v1.regionSecurityPolicies.setLabels] method.
       ///
-      /// [google.cloud.compute.v1.regionSecurityPolicies.setLabels]: <doc:RegionSecurityPolicies/setLabels(request:)>
+      /// [google.cloud.compute.v1.regionSecurityPolicies.setLabels]: <doc:RegionSecurityPoliciesClient/setLabels(request:)>
       public var body: RegionSetLabelsRequest? = nil
 
       /// Initialize a new instance of `SetLabelsRequest`.

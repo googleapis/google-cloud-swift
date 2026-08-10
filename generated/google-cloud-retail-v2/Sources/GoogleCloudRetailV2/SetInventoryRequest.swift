@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [ProductService.SetInventory][google.cloud.retail.v2.ProductService.SetInventory]
 /// method.
 ///
-/// [google.cloud.retail.v2.ProductService.SetInventory]: <doc:ProductService/setInventory(request:)>
+/// [google.cloud.retail.v2.ProductService.SetInventory]: <doc:ProductServiceClient/setInventory(request:)>
 public struct SetInventoryRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
@@ -91,7 +91,7 @@ public struct SetInventoryRequest: Codable, Equatable, GoogleCloudWkt._AnyPackab
   /// [google.cloud.retail.v2.Product.fulfillment_info]: <doc:Product/fulfillmentInfo>
   /// [google.cloud.retail.v2.Product.name]: <doc:Product/name>
   /// [google.cloud.retail.v2.Product.price_info]: <doc:Product/priceInfo>
-  /// [google.cloud.retail.v2.ProductService.UpdateProduct]: <doc:ProductService/updateProduct(request:)>
+  /// [google.cloud.retail.v2.ProductService.UpdateProduct]: <doc:ProductServiceClient/updateProduct(request:)>
   /// [google.cloud.retail.v2.SetInventoryRequest.set_mask]: <doc:SetInventoryRequest/setMask>
   /// [google.cloud.retail.v2.SetInventoryRequest.set_time]: <doc:SetInventoryRequest/setTime>
   public var inventory: Product? = nil

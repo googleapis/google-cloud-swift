@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [ImportTaxonomies][google.cloud.datacatalog.v1.PolicyTagManagerSerialization.ImportTaxonomies].
 ///
-/// [google.cloud.datacatalog.v1.PolicyTagManagerSerialization.ImportTaxonomies]: <doc:PolicyTagManagerSerialization/importTaxonomies(request:)>
+/// [google.cloud.datacatalog.v1.PolicyTagManagerSerialization.ImportTaxonomies]: <doc:PolicyTagManagerSerializationClient/importTaxonomies(request:)>
 public struct ImportTaxonomiesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

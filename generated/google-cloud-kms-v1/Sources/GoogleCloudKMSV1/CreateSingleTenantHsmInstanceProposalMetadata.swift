@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [CreateSingleTenantHsmInstanceProposal][google.cloud.kms.v1.HsmManagement.CreateSingleTenantHsmInstanceProposal]
 /// long-running operation response.
 ///
-/// [google.cloud.kms.v1.HsmManagement.CreateSingleTenantHsmInstanceProposal]: <doc:HsmManagement/createSingleTenantHsmInstanceProposal(request:)>
+/// [google.cloud.kms.v1.HsmManagement.CreateSingleTenantHsmInstanceProposal]: <doc:HsmManagementClient/createSingleTenantHsmInstanceProposal(request:)>
 public struct CreateSingleTenantHsmInstanceProposalMetadata: Codable, Equatable, GoogleCloudWkt
     ._AnyPackable,
   Sendable

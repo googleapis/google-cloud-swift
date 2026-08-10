@@ -22,7 +22,7 @@
   /// [Intents.ExportIntents][google.cloud.dialogflow.cx.v3.Intents.ExportIntents]
   /// long running operation.
   ///
-  /// [google.cloud.dialogflow.cx.v3.Intents.ExportIntents]: <doc:Intents/exportIntents(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Intents.ExportIntents]: <doc:IntentsClient/exportIntents(request:)>
   public struct ExportIntentsMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

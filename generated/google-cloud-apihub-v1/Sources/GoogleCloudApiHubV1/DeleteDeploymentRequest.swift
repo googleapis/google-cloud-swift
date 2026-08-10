@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// The [DeleteDeployment][google.cloud.apihub.v1.ApiHub.DeleteDeployment]
 /// method's request.
 ///
-/// [google.cloud.apihub.v1.ApiHub.DeleteDeployment]: <doc:ApiHub/deleteDeployment(request:)>
+/// [google.cloud.apihub.v1.ApiHub.DeleteDeployment]: <doc:ApiHubClient/deleteDeployment(request:)>
 public struct DeleteDeploymentRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [google.bigtable.admin.v2.BigtableTableAdmin.GenerateConsistencyToken][google.bigtable.admin.v2.BigtableTableAdmin.GenerateConsistencyToken]
 ///
-/// [google.bigtable.admin.v2.BigtableTableAdmin.GenerateConsistencyToken]: <doc:BigtableTableAdmin/generateConsistencyToken(request:)>
+/// [google.bigtable.admin.v2.BigtableTableAdmin.GenerateConsistencyToken]: <doc:BigtableTableAdminClient/generateConsistencyToken(request:)>
 public struct GenerateConsistencyTokenResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [`UnlinkDataset`][google.cloud.storageinsights.v1.StorageInsights.UnlinkDataset]
 ///
-/// [google.cloud.storageinsights.v1.StorageInsights.UnlinkDataset]: <doc:StorageInsights/unlinkDataset(request:)>
+/// [google.cloud.storageinsights.v1.StorageInsights.UnlinkDataset]: <doc:StorageInsightsClient/unlinkDataset(request:)>
 public struct UnlinkDatasetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

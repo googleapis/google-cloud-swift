@@ -22,7 +22,7 @@
   /// Response message for
   /// [SessionService.ListEvents][google.cloud.aiplatform.v1.SessionService.ListEvents].
   ///
-  /// [google.cloud.aiplatform.v1.SessionService.ListEvents]: <doc:SessionService/listEvents(request:)>
+  /// [google.cloud.aiplatform.v1.SessionService.ListEvents]: <doc:SessionServiceClient/listEvents(request:)>
   public struct ListEventsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable

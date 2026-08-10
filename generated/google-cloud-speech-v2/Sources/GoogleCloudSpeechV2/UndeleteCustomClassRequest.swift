@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [UndeleteCustomClass][google.cloud.speech.v2.Speech.UndeleteCustomClass]
 /// method.
 ///
-/// [google.cloud.speech.v2.Speech.UndeleteCustomClass]: <doc:Speech/undeleteCustomClass(request:)>
+/// [google.cloud.speech.v2.Speech.UndeleteCustomClass]: <doc:SpeechClient/undeleteCustomClass(request:)>
 public struct UndeleteCustomClassRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

@@ -21,7 +21,7 @@
   /// The request message for
   /// [Experiments.StopExperiment][google.cloud.dialogflow.cx.v3.Experiments.StopExperiment].
   ///
-  /// [google.cloud.dialogflow.cx.v3.Experiments.StopExperiment]: <doc:Experiments/stopExperiment(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Experiments.StopExperiment]: <doc:ExperimentsClient/stopExperiment(request:)>
   public struct StopExperimentRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

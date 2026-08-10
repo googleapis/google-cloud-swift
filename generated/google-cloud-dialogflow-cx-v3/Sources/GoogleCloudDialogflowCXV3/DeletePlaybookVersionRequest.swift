@@ -21,7 +21,7 @@
   /// The request message for
   /// [Playbooks.DeletePlaybookVersion][google.cloud.dialogflow.cx.v3.Playbooks.DeletePlaybookVersion].
   ///
-  /// [google.cloud.dialogflow.cx.v3.Playbooks.DeletePlaybookVersion]: <doc:Playbooks/deletePlaybookVersion(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Playbooks.DeletePlaybookVersion]: <doc:PlaybooksClient/deletePlaybookVersion(request:)>
   public struct DeletePlaybookVersionRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

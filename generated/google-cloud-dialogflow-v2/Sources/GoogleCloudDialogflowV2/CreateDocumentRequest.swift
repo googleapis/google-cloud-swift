@@ -21,7 +21,7 @@
   /// Request message for
   /// [Documents.CreateDocument][google.cloud.dialogflow.v2.Documents.CreateDocument].
   ///
-  /// [google.cloud.dialogflow.v2.Documents.CreateDocument]: <doc:Documents/createDocument(request:)>
+  /// [google.cloud.dialogflow.v2.Documents.CreateDocument]: <doc:DocumentsClient/createDocument(request:)>
   public struct CreateDocumentRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

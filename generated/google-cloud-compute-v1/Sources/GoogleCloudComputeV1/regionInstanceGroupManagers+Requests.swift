@@ -21,7 +21,7 @@
   extension RegionInstanceGroupManagersClient {
     /// Synthetic request message for the [abandonInstances()][google.cloud.compute.v1.regionInstanceGroupManagers.abandonInstances] method.
     ///
-    /// [google.cloud.compute.v1.regionInstanceGroupManagers.abandonInstances]: <doc:RegionInstanceGroupManagers/abandonInstances(request:)>
+    /// [google.cloud.compute.v1.regionInstanceGroupManagers.abandonInstances]: <doc:RegionInstanceGroupManagersClient/abandonInstances(request:)>
     public struct AbandonInstancesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -51,7 +51,7 @@
 
       /// Synthetic request body field for the [abandonInstances()][google.cloud.compute.v1.regionInstanceGroupManagers.abandonInstances] method.
       ///
-      /// [google.cloud.compute.v1.regionInstanceGroupManagers.abandonInstances]: <doc:RegionInstanceGroupManagers/abandonInstances(request:)>
+      /// [google.cloud.compute.v1.regionInstanceGroupManagers.abandonInstances]: <doc:RegionInstanceGroupManagersClient/abandonInstances(request:)>
       public var body: RegionInstanceGroupManagersAbandonInstancesRequest? = nil
 
       /// Initialize a new instance of `AbandonInstancesRequest`.
@@ -84,7 +84,7 @@
 
     /// Synthetic request message for the [applyUpdatesToInstances()][google.cloud.compute.v1.regionInstanceGroupManagers.applyUpdatesToInstances] method.
     ///
-    /// [google.cloud.compute.v1.regionInstanceGroupManagers.applyUpdatesToInstances]: <doc:RegionInstanceGroupManagers/applyUpdatesToInstances(request:)>
+    /// [google.cloud.compute.v1.regionInstanceGroupManagers.applyUpdatesToInstances]: <doc:RegionInstanceGroupManagersClient/applyUpdatesToInstances(request:)>
     public struct ApplyUpdatesToInstancesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -99,7 +99,7 @@
 
       /// Synthetic request body field for the [applyUpdatesToInstances()][google.cloud.compute.v1.regionInstanceGroupManagers.applyUpdatesToInstances] method.
       ///
-      /// [google.cloud.compute.v1.regionInstanceGroupManagers.applyUpdatesToInstances]: <doc:RegionInstanceGroupManagers/applyUpdatesToInstances(request:)>
+      /// [google.cloud.compute.v1.regionInstanceGroupManagers.applyUpdatesToInstances]: <doc:RegionInstanceGroupManagersClient/applyUpdatesToInstances(request:)>
       public var body: RegionInstanceGroupManagersApplyUpdatesRequest? = nil
 
       /// Initialize a new instance of `ApplyUpdatesToInstancesRequest`.
@@ -132,7 +132,7 @@
 
     /// Synthetic request message for the [createInstances()][google.cloud.compute.v1.regionInstanceGroupManagers.createInstances] method.
     ///
-    /// [google.cloud.compute.v1.regionInstanceGroupManagers.createInstances]: <doc:RegionInstanceGroupManagers/createInstances(request:)>
+    /// [google.cloud.compute.v1.regionInstanceGroupManagers.createInstances]: <doc:RegionInstanceGroupManagersClient/createInstances(request:)>
     public struct CreateInstancesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -164,7 +164,7 @@
 
       /// Synthetic request body field for the [createInstances()][google.cloud.compute.v1.regionInstanceGroupManagers.createInstances] method.
       ///
-      /// [google.cloud.compute.v1.regionInstanceGroupManagers.createInstances]: <doc:RegionInstanceGroupManagers/createInstances(request:)>
+      /// [google.cloud.compute.v1.regionInstanceGroupManagers.createInstances]: <doc:RegionInstanceGroupManagersClient/createInstances(request:)>
       public var body: RegionInstanceGroupManagersCreateInstancesRequest? = nil
 
       /// Initialize a new instance of `CreateInstancesRequest`.
@@ -197,7 +197,7 @@
 
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.regionInstanceGroupManagers.delete] method.
     ///
-    /// [google.cloud.compute.v1.regionInstanceGroupManagers.delete]: <doc:RegionInstanceGroupManagers/delete(request:)>
+    /// [google.cloud.compute.v1.regionInstanceGroupManagers.delete]: <doc:RegionInstanceGroupManagersClient/delete(request:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -259,7 +259,7 @@
 
     /// Synthetic request message for the [deleteInstances()][google.cloud.compute.v1.regionInstanceGroupManagers.deleteInstances] method.
     ///
-    /// [google.cloud.compute.v1.regionInstanceGroupManagers.deleteInstances]: <doc:RegionInstanceGroupManagers/deleteInstances(request:)>
+    /// [google.cloud.compute.v1.regionInstanceGroupManagers.deleteInstances]: <doc:RegionInstanceGroupManagersClient/deleteInstances(request:)>
     public struct DeleteInstancesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -293,7 +293,7 @@
 
       /// Synthetic request body field for the [deleteInstances()][google.cloud.compute.v1.regionInstanceGroupManagers.deleteInstances] method.
       ///
-      /// [google.cloud.compute.v1.regionInstanceGroupManagers.deleteInstances]: <doc:RegionInstanceGroupManagers/deleteInstances(request:)>
+      /// [google.cloud.compute.v1.regionInstanceGroupManagers.deleteInstances]: <doc:RegionInstanceGroupManagersClient/deleteInstances(request:)>
       public var body: RegionInstanceGroupManagersDeleteInstancesRequest? = nil
 
       /// Initialize a new instance of `DeleteInstancesRequest`.
@@ -326,7 +326,7 @@
 
     /// Synthetic request message for the [deletePerInstanceConfigs()][google.cloud.compute.v1.regionInstanceGroupManagers.deletePerInstanceConfigs] method.
     ///
-    /// [google.cloud.compute.v1.regionInstanceGroupManagers.deletePerInstanceConfigs]: <doc:RegionInstanceGroupManagers/deletePerInstanceConfigs(request:)>
+    /// [google.cloud.compute.v1.regionInstanceGroupManagers.deletePerInstanceConfigs]: <doc:RegionInstanceGroupManagersClient/deletePerInstanceConfigs(request:)>
     public struct DeletePerInstanceConfigsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -341,7 +341,7 @@
 
       /// Synthetic request body field for the [deletePerInstanceConfigs()][google.cloud.compute.v1.regionInstanceGroupManagers.deletePerInstanceConfigs] method.
       ///
-      /// [google.cloud.compute.v1.regionInstanceGroupManagers.deletePerInstanceConfigs]: <doc:RegionInstanceGroupManagers/deletePerInstanceConfigs(request:)>
+      /// [google.cloud.compute.v1.regionInstanceGroupManagers.deletePerInstanceConfigs]: <doc:RegionInstanceGroupManagersClient/deletePerInstanceConfigs(request:)>
       public var body: RegionInstanceGroupManagerDeleteInstanceConfigReq? = nil
 
       /// Initialize a new instance of `DeletePerInstanceConfigsRequest`.
@@ -374,7 +374,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.regionInstanceGroupManagers.get] method.
     ///
-    /// [google.cloud.compute.v1.regionInstanceGroupManagers.get]: <doc:RegionInstanceGroupManagers/`get`(request:)>
+    /// [google.cloud.compute.v1.regionInstanceGroupManagers.get]: <doc:RegionInstanceGroupManagersClient/`get`(request:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -416,7 +416,7 @@
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.regionInstanceGroupManagers.insert] method.
     ///
-    /// [google.cloud.compute.v1.regionInstanceGroupManagers.insert]: <doc:RegionInstanceGroupManagers/insert(request:)>
+    /// [google.cloud.compute.v1.regionInstanceGroupManagers.insert]: <doc:RegionInstanceGroupManagersClient/insert(request:)>
     public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -443,7 +443,7 @@
 
       /// Synthetic request body field for the [insert()][google.cloud.compute.v1.regionInstanceGroupManagers.insert] method.
       ///
-      /// [google.cloud.compute.v1.regionInstanceGroupManagers.insert]: <doc:RegionInstanceGroupManagers/insert(request:)>
+      /// [google.cloud.compute.v1.regionInstanceGroupManagers.insert]: <doc:RegionInstanceGroupManagersClient/insert(request:)>
       public var body: InstanceGroupManager? = nil
 
       /// Initialize a new instance of `InsertRequest`.
@@ -476,7 +476,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.regionInstanceGroupManagers.list] method.
     ///
-    /// [google.cloud.compute.v1.regionInstanceGroupManagers.list]: <doc:RegionInstanceGroupManagers/list(request:)>
+    /// [google.cloud.compute.v1.regionInstanceGroupManagers.list]: <doc:RegionInstanceGroupManagersClient/list(request:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -608,7 +608,7 @@
 
     /// Synthetic request message for the [listErrors()][google.cloud.compute.v1.regionInstanceGroupManagers.listErrors] method.
     ///
-    /// [google.cloud.compute.v1.regionInstanceGroupManagers.listErrors]: <doc:RegionInstanceGroupManagers/listErrors(request:)>
+    /// [google.cloud.compute.v1.regionInstanceGroupManagers.listErrors]: <doc:RegionInstanceGroupManagersClient/listErrors(request:)>
     public struct ListErrorsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -748,7 +748,7 @@
 
     /// Synthetic request message for the [listManagedInstances()][google.cloud.compute.v1.regionInstanceGroupManagers.listManagedInstances] method.
     ///
-    /// [google.cloud.compute.v1.regionInstanceGroupManagers.listManagedInstances]: <doc:RegionInstanceGroupManagers/listManagedInstances(request:)>
+    /// [google.cloud.compute.v1.regionInstanceGroupManagers.listManagedInstances]: <doc:RegionInstanceGroupManagersClient/listManagedInstances(request:)>
     public struct ListManagedInstancesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -884,7 +884,7 @@
 
     /// Synthetic request message for the [listPerInstanceConfigs()][google.cloud.compute.v1.regionInstanceGroupManagers.listPerInstanceConfigs] method.
     ///
-    /// [google.cloud.compute.v1.regionInstanceGroupManagers.listPerInstanceConfigs]: <doc:RegionInstanceGroupManagers/listPerInstanceConfigs(request:)>
+    /// [google.cloud.compute.v1.regionInstanceGroupManagers.listPerInstanceConfigs]: <doc:RegionInstanceGroupManagersClient/listPerInstanceConfigs(request:)>
     public struct ListPerInstanceConfigsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -1020,7 +1020,7 @@
 
     /// Synthetic request message for the [patch()][google.cloud.compute.v1.regionInstanceGroupManagers.patch] method.
     ///
-    /// [google.cloud.compute.v1.regionInstanceGroupManagers.patch]: <doc:RegionInstanceGroupManagers/patch(request:)>
+    /// [google.cloud.compute.v1.regionInstanceGroupManagers.patch]: <doc:RegionInstanceGroupManagersClient/patch(request:)>
     public struct PatchRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -1050,7 +1050,7 @@
 
       /// Synthetic request body field for the [patch()][google.cloud.compute.v1.regionInstanceGroupManagers.patch] method.
       ///
-      /// [google.cloud.compute.v1.regionInstanceGroupManagers.patch]: <doc:RegionInstanceGroupManagers/patch(request:)>
+      /// [google.cloud.compute.v1.regionInstanceGroupManagers.patch]: <doc:RegionInstanceGroupManagersClient/patch(request:)>
       public var body: InstanceGroupManager? = nil
 
       /// Initialize a new instance of `PatchRequest`.
@@ -1083,7 +1083,7 @@
 
     /// Synthetic request message for the [patchPerInstanceConfigs()][google.cloud.compute.v1.regionInstanceGroupManagers.patchPerInstanceConfigs] method.
     ///
-    /// [google.cloud.compute.v1.regionInstanceGroupManagers.patchPerInstanceConfigs]: <doc:RegionInstanceGroupManagers/patchPerInstanceConfigs(request:)>
+    /// [google.cloud.compute.v1.regionInstanceGroupManagers.patchPerInstanceConfigs]: <doc:RegionInstanceGroupManagersClient/patchPerInstanceConfigs(request:)>
     public struct PatchPerInstanceConfigsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -1114,7 +1114,7 @@
 
       /// Synthetic request body field for the [patchPerInstanceConfigs()][google.cloud.compute.v1.regionInstanceGroupManagers.patchPerInstanceConfigs] method.
       ///
-      /// [google.cloud.compute.v1.regionInstanceGroupManagers.patchPerInstanceConfigs]: <doc:RegionInstanceGroupManagers/patchPerInstanceConfigs(request:)>
+      /// [google.cloud.compute.v1.regionInstanceGroupManagers.patchPerInstanceConfigs]: <doc:RegionInstanceGroupManagersClient/patchPerInstanceConfigs(request:)>
       public var body: RegionInstanceGroupManagerPatchInstanceConfigReq? = nil
 
       /// Initialize a new instance of `PatchPerInstanceConfigsRequest`.
@@ -1147,7 +1147,7 @@
 
     /// Synthetic request message for the [recreateInstances()][google.cloud.compute.v1.regionInstanceGroupManagers.recreateInstances] method.
     ///
-    /// [google.cloud.compute.v1.regionInstanceGroupManagers.recreateInstances]: <doc:RegionInstanceGroupManagers/recreateInstances(request:)>
+    /// [google.cloud.compute.v1.regionInstanceGroupManagers.recreateInstances]: <doc:RegionInstanceGroupManagersClient/recreateInstances(request:)>
     public struct RecreateInstancesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -1181,7 +1181,7 @@
 
       /// Synthetic request body field for the [recreateInstances()][google.cloud.compute.v1.regionInstanceGroupManagers.recreateInstances] method.
       ///
-      /// [google.cloud.compute.v1.regionInstanceGroupManagers.recreateInstances]: <doc:RegionInstanceGroupManagers/recreateInstances(request:)>
+      /// [google.cloud.compute.v1.regionInstanceGroupManagers.recreateInstances]: <doc:RegionInstanceGroupManagersClient/recreateInstances(request:)>
       public var body: RegionInstanceGroupManagersRecreateRequest? = nil
 
       /// Initialize a new instance of `RecreateInstancesRequest`.
@@ -1214,7 +1214,7 @@
 
     /// Synthetic request message for the [resize()][google.cloud.compute.v1.regionInstanceGroupManagers.resize] method.
     ///
-    /// [google.cloud.compute.v1.regionInstanceGroupManagers.resize]: <doc:RegionInstanceGroupManagers/resize(request:)>
+    /// [google.cloud.compute.v1.regionInstanceGroupManagers.resize]: <doc:RegionInstanceGroupManagersClient/resize(request:)>
     public struct ResizeRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -1276,7 +1276,7 @@
 
     /// Synthetic request message for the [resumeInstances()][google.cloud.compute.v1.regionInstanceGroupManagers.resumeInstances] method.
     ///
-    /// [google.cloud.compute.v1.regionInstanceGroupManagers.resumeInstances]: <doc:RegionInstanceGroupManagers/resumeInstances(request:)>
+    /// [google.cloud.compute.v1.regionInstanceGroupManagers.resumeInstances]: <doc:RegionInstanceGroupManagersClient/resumeInstances(request:)>
     public struct ResumeInstancesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -1306,7 +1306,7 @@
 
       /// Synthetic request body field for the [resumeInstances()][google.cloud.compute.v1.regionInstanceGroupManagers.resumeInstances] method.
       ///
-      /// [google.cloud.compute.v1.regionInstanceGroupManagers.resumeInstances]: <doc:RegionInstanceGroupManagers/resumeInstances(request:)>
+      /// [google.cloud.compute.v1.regionInstanceGroupManagers.resumeInstances]: <doc:RegionInstanceGroupManagersClient/resumeInstances(request:)>
       public var body: RegionInstanceGroupManagersResumeInstancesRequest? = nil
 
       /// Initialize a new instance of `ResumeInstancesRequest`.
@@ -1339,7 +1339,7 @@
 
     /// Synthetic request message for the [setInstanceTemplate()][google.cloud.compute.v1.regionInstanceGroupManagers.setInstanceTemplate] method.
     ///
-    /// [google.cloud.compute.v1.regionInstanceGroupManagers.setInstanceTemplate]: <doc:RegionInstanceGroupManagers/setInstanceTemplate(request:)>
+    /// [google.cloud.compute.v1.regionInstanceGroupManagers.setInstanceTemplate]: <doc:RegionInstanceGroupManagersClient/setInstanceTemplate(request:)>
     public struct SetInstanceTemplateRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -1369,7 +1369,7 @@
 
       /// Synthetic request body field for the [setInstanceTemplate()][google.cloud.compute.v1.regionInstanceGroupManagers.setInstanceTemplate] method.
       ///
-      /// [google.cloud.compute.v1.regionInstanceGroupManagers.setInstanceTemplate]: <doc:RegionInstanceGroupManagers/setInstanceTemplate(request:)>
+      /// [google.cloud.compute.v1.regionInstanceGroupManagers.setInstanceTemplate]: <doc:RegionInstanceGroupManagersClient/setInstanceTemplate(request:)>
       public var body: RegionInstanceGroupManagersSetTemplateRequest? = nil
 
       /// Initialize a new instance of `SetInstanceTemplateRequest`.
@@ -1402,7 +1402,7 @@
 
     /// Synthetic request message for the [setTargetPools()][google.cloud.compute.v1.regionInstanceGroupManagers.setTargetPools] method.
     ///
-    /// [google.cloud.compute.v1.regionInstanceGroupManagers.setTargetPools]: <doc:RegionInstanceGroupManagers/setTargetPools(request:)>
+    /// [google.cloud.compute.v1.regionInstanceGroupManagers.setTargetPools]: <doc:RegionInstanceGroupManagersClient/setTargetPools(request:)>
     public struct SetTargetPoolsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -1432,7 +1432,7 @@
 
       /// Synthetic request body field for the [setTargetPools()][google.cloud.compute.v1.regionInstanceGroupManagers.setTargetPools] method.
       ///
-      /// [google.cloud.compute.v1.regionInstanceGroupManagers.setTargetPools]: <doc:RegionInstanceGroupManagers/setTargetPools(request:)>
+      /// [google.cloud.compute.v1.regionInstanceGroupManagers.setTargetPools]: <doc:RegionInstanceGroupManagersClient/setTargetPools(request:)>
       public var body: RegionInstanceGroupManagersSetTargetPoolsRequest? = nil
 
       /// Initialize a new instance of `SetTargetPoolsRequest`.
@@ -1465,7 +1465,7 @@
 
     /// Synthetic request message for the [startInstances()][google.cloud.compute.v1.regionInstanceGroupManagers.startInstances] method.
     ///
-    /// [google.cloud.compute.v1.regionInstanceGroupManagers.startInstances]: <doc:RegionInstanceGroupManagers/startInstances(request:)>
+    /// [google.cloud.compute.v1.regionInstanceGroupManagers.startInstances]: <doc:RegionInstanceGroupManagersClient/startInstances(request:)>
     public struct StartInstancesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -1495,7 +1495,7 @@
 
       /// Synthetic request body field for the [startInstances()][google.cloud.compute.v1.regionInstanceGroupManagers.startInstances] method.
       ///
-      /// [google.cloud.compute.v1.regionInstanceGroupManagers.startInstances]: <doc:RegionInstanceGroupManagers/startInstances(request:)>
+      /// [google.cloud.compute.v1.regionInstanceGroupManagers.startInstances]: <doc:RegionInstanceGroupManagersClient/startInstances(request:)>
       public var body: RegionInstanceGroupManagersStartInstancesRequest? = nil
 
       /// Initialize a new instance of `StartInstancesRequest`.
@@ -1528,7 +1528,7 @@
 
     /// Synthetic request message for the [stopInstances()][google.cloud.compute.v1.regionInstanceGroupManagers.stopInstances] method.
     ///
-    /// [google.cloud.compute.v1.regionInstanceGroupManagers.stopInstances]: <doc:RegionInstanceGroupManagers/stopInstances(request:)>
+    /// [google.cloud.compute.v1.regionInstanceGroupManagers.stopInstances]: <doc:RegionInstanceGroupManagersClient/stopInstances(request:)>
     public struct StopInstancesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -1562,7 +1562,7 @@
 
       /// Synthetic request body field for the [stopInstances()][google.cloud.compute.v1.regionInstanceGroupManagers.stopInstances] method.
       ///
-      /// [google.cloud.compute.v1.regionInstanceGroupManagers.stopInstances]: <doc:RegionInstanceGroupManagers/stopInstances(request:)>
+      /// [google.cloud.compute.v1.regionInstanceGroupManagers.stopInstances]: <doc:RegionInstanceGroupManagersClient/stopInstances(request:)>
       public var body: RegionInstanceGroupManagersStopInstancesRequest? = nil
 
       /// Initialize a new instance of `StopInstancesRequest`.
@@ -1595,7 +1595,7 @@
 
     /// Synthetic request message for the [suspendInstances()][google.cloud.compute.v1.regionInstanceGroupManagers.suspendInstances] method.
     ///
-    /// [google.cloud.compute.v1.regionInstanceGroupManagers.suspendInstances]: <doc:RegionInstanceGroupManagers/suspendInstances(request:)>
+    /// [google.cloud.compute.v1.regionInstanceGroupManagers.suspendInstances]: <doc:RegionInstanceGroupManagersClient/suspendInstances(request:)>
     public struct SuspendInstancesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -1625,7 +1625,7 @@
 
       /// Synthetic request body field for the [suspendInstances()][google.cloud.compute.v1.regionInstanceGroupManagers.suspendInstances] method.
       ///
-      /// [google.cloud.compute.v1.regionInstanceGroupManagers.suspendInstances]: <doc:RegionInstanceGroupManagers/suspendInstances(request:)>
+      /// [google.cloud.compute.v1.regionInstanceGroupManagers.suspendInstances]: <doc:RegionInstanceGroupManagersClient/suspendInstances(request:)>
       public var body: RegionInstanceGroupManagersSuspendInstancesRequest? = nil
 
       /// Initialize a new instance of `SuspendInstancesRequest`.
@@ -1658,7 +1658,7 @@
 
     /// Synthetic request message for the [updatePerInstanceConfigs()][google.cloud.compute.v1.regionInstanceGroupManagers.updatePerInstanceConfigs] method.
     ///
-    /// [google.cloud.compute.v1.regionInstanceGroupManagers.updatePerInstanceConfigs]: <doc:RegionInstanceGroupManagers/updatePerInstanceConfigs(request:)>
+    /// [google.cloud.compute.v1.regionInstanceGroupManagers.updatePerInstanceConfigs]: <doc:RegionInstanceGroupManagersClient/updatePerInstanceConfigs(request:)>
     public struct UpdatePerInstanceConfigsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -1689,7 +1689,7 @@
 
       /// Synthetic request body field for the [updatePerInstanceConfigs()][google.cloud.compute.v1.regionInstanceGroupManagers.updatePerInstanceConfigs] method.
       ///
-      /// [google.cloud.compute.v1.regionInstanceGroupManagers.updatePerInstanceConfigs]: <doc:RegionInstanceGroupManagers/updatePerInstanceConfigs(request:)>
+      /// [google.cloud.compute.v1.regionInstanceGroupManagers.updatePerInstanceConfigs]: <doc:RegionInstanceGroupManagersClient/updatePerInstanceConfigs(request:)>
       public var body: RegionInstanceGroupManagerUpdateInstanceConfigReq? = nil
 
       /// Initialize a new instance of `UpdatePerInstanceConfigsRequest`.

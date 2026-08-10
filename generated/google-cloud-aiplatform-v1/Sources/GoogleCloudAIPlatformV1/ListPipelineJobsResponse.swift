@@ -22,7 +22,7 @@
   /// Response message for
   /// [PipelineService.ListPipelineJobs][google.cloud.aiplatform.v1.PipelineService.ListPipelineJobs]
   ///
-  /// [google.cloud.aiplatform.v1.PipelineService.ListPipelineJobs]: <doc:PipelineService/listPipelineJobs(request:)>
+  /// [google.cloud.aiplatform.v1.PipelineService.ListPipelineJobs]: <doc:PipelineServiceClient/listPipelineJobs(request:)>
   public struct ListPipelineJobsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable

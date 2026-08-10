@@ -21,7 +21,7 @@
   extension MachineTypesClient {
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.machineTypes.aggregatedList] method.
     ///
-    /// [google.cloud.compute.v1.machineTypes.aggregatedList]: <doc:MachineTypes/aggregatedList(request:)>
+    /// [google.cloud.compute.v1.machineTypes.aggregatedList]: <doc:MachineTypesClient/aggregatedList(request:)>
     public struct AggregatedListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -163,7 +163,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.machineTypes.get] method.
     ///
-    /// [google.cloud.compute.v1.machineTypes.get]: <doc:MachineTypes/`get`(request:)>
+    /// [google.cloud.compute.v1.machineTypes.get]: <doc:MachineTypesClient/`get`(request:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -205,7 +205,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.machineTypes.list] method.
     ///
-    /// [google.cloud.compute.v1.machineTypes.list]: <doc:MachineTypes/list(request:)>
+    /// [google.cloud.compute.v1.machineTypes.list]: <doc:MachineTypesClient/list(request:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {

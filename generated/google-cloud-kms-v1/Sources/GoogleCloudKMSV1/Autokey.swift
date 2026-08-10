@@ -44,8 +44,8 @@ import GoogleCloudGax
 /// a resource project's ancestor folder, see
 /// [ShowEffectiveAutokeyConfig][google.cloud.kms.v1.AutokeyAdmin.ShowEffectiveAutokeyConfig].
 ///
-/// [google.cloud.kms.v1.AutokeyAdmin.ShowEffectiveAutokeyConfig]: <doc:AutokeyAdmin/showEffectiveAutokeyConfig(request:)>
-/// [google.cloud.kms.v1.AutokeyAdmin.UpdateAutokeyConfig]: <doc:AutokeyAdmin/updateAutokeyConfig(request:)>
+/// [google.cloud.kms.v1.AutokeyAdmin.ShowEffectiveAutokeyConfig]: <doc:AutokeyAdminClient/showEffectiveAutokeyConfig(request:)>
+/// [google.cloud.kms.v1.AutokeyAdmin.UpdateAutokeyConfig]: <doc:AutokeyAdminClient/updateAutokeyConfig(request:)>
 /// [google.cloud.kms.v1.CryptoKey]: <doc:CryptoKey>
 /// [google.cloud.kms.v1.KeyHandle]: <doc:KeyHandle>
 ///
@@ -298,7 +298,7 @@ public class AutokeyClient: Clients.AutokeyProtocol {
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Autokey_GetOperation")
   func getOperation(

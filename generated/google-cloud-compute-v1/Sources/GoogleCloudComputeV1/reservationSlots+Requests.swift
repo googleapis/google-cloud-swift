@@ -21,7 +21,7 @@
   extension ReservationSlotsClient {
     /// Synthetic request message for the [get()][google.cloud.compute.v1.reservationSlots.get] method.
     ///
-    /// [google.cloud.compute.v1.reservationSlots.get]: <doc:ReservationSlots/`get`(request:)>
+    /// [google.cloud.compute.v1.reservationSlots.get]: <doc:ReservationSlotsClient/`get`(request:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -68,7 +68,7 @@
 
     /// Synthetic request message for the [getVersion()][google.cloud.compute.v1.reservationSlots.getVersion] method.
     ///
-    /// [google.cloud.compute.v1.reservationSlots.getVersion]: <doc:ReservationSlots/getVersion(request:)>
+    /// [google.cloud.compute.v1.reservationSlots.getVersion]: <doc:ReservationSlotsClient/getVersion(request:)>
     public struct GetVersionRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -103,7 +103,7 @@
 
       /// Synthetic request body field for the [getVersion()][google.cloud.compute.v1.reservationSlots.getVersion] method.
       ///
-      /// [google.cloud.compute.v1.reservationSlots.getVersion]: <doc:ReservationSlots/getVersion(request:)>
+      /// [google.cloud.compute.v1.reservationSlots.getVersion]: <doc:ReservationSlotsClient/getVersion(request:)>
       public var body: ReservationSlotsGetVersionRequest? = nil
 
       /// Initialize a new instance of `GetVersionRequest`.
@@ -135,7 +135,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.reservationSlots.list] method.
     ///
-    /// [google.cloud.compute.v1.reservationSlots.list]: <doc:ReservationSlots/list(request:)>
+    /// [google.cloud.compute.v1.reservationSlots.list]: <doc:ReservationSlotsClient/list(request:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -271,7 +271,7 @@
 
     /// Synthetic request message for the [update()][google.cloud.compute.v1.reservationSlots.update] method.
     ///
-    /// [google.cloud.compute.v1.reservationSlots.update]: <doc:ReservationSlots/update(request:)>
+    /// [google.cloud.compute.v1.reservationSlots.update]: <doc:ReservationSlotsClient/update(request:)>
     public struct UpdateRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -292,7 +292,7 @@
 
       /// Synthetic request body field for the [update()][google.cloud.compute.v1.reservationSlots.update] method.
       ///
-      /// [google.cloud.compute.v1.reservationSlots.update]: <doc:ReservationSlots/update(request:)>
+      /// [google.cloud.compute.v1.reservationSlots.update]: <doc:ReservationSlotsClient/update(request:)>
       public var body: ReservationSlot? = nil
 
       /// Initialize a new instance of `UpdateRequest`.

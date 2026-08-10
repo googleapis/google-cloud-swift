@@ -21,7 +21,7 @@
   /// Request message for
   /// [IdentityMappingStoreService.DeleteIdentityMappingStore][google.cloud.discoveryengine.v1.IdentityMappingStoreService.DeleteIdentityMappingStore]
   ///
-  /// [google.cloud.discoveryengine.v1.IdentityMappingStoreService.DeleteIdentityMappingStore]: <doc:IdentityMappingStoreService/deleteIdentityMappingStore(request:)>
+  /// [google.cloud.discoveryengine.v1.IdentityMappingStoreService.DeleteIdentityMappingStore]: <doc:IdentityMappingStoreServiceClient/deleteIdentityMappingStore(request:)>
   public struct DeleteIdentityMappingStoreRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

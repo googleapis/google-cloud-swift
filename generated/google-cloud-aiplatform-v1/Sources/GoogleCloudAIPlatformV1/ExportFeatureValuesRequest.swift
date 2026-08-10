@@ -21,7 +21,7 @@
   /// Request message for
   /// [FeaturestoreService.ExportFeatureValues][google.cloud.aiplatform.v1.FeaturestoreService.ExportFeatureValues].
   ///
-  /// [google.cloud.aiplatform.v1.FeaturestoreService.ExportFeatureValues]: <doc:FeaturestoreService/exportFeatureValues(request:)>
+  /// [google.cloud.aiplatform.v1.FeaturestoreService.ExportFeatureValues]: <doc:FeaturestoreServiceClient/exportFeatureValues(request:)>
   public struct ExportFeatureValuesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

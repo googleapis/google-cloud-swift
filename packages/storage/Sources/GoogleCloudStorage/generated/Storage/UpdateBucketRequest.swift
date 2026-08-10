@@ -19,7 +19,7 @@ import GoogleCloudWkt
 
 /// Request for [UpdateBucket][google.storage.v2.Storage.UpdateBucket] method.
 ///
-/// [google.storage.v2.Storage.UpdateBucket]: <doc:Storage/updateBucket(request:)>
+/// [google.storage.v2.Storage.UpdateBucket]: <doc:StorageClient/updateBucket(request:)>
 public struct UpdateBucketRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

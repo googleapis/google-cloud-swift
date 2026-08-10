@@ -21,7 +21,7 @@
   /// Request message for
   /// [EndpointService.ListEndpoints][google.cloud.aiplatform.v1.EndpointService.ListEndpoints].
   ///
-  /// [google.cloud.aiplatform.v1.EndpointService.ListEndpoints]: <doc:EndpointService/listEndpoints(request:)>
+  /// [google.cloud.aiplatform.v1.EndpointService.ListEndpoints]: <doc:EndpointServiceClient/listEndpoints(request:)>
   public struct ListEndpointsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {
@@ -62,7 +62,7 @@
     /// [EndpointService.ListEndpoints][google.cloud.aiplatform.v1.EndpointService.ListEndpoints]
     /// call.
     ///
-    /// [google.cloud.aiplatform.v1.EndpointService.ListEndpoints]: <doc:EndpointService/listEndpoints(request:)>
+    /// [google.cloud.aiplatform.v1.EndpointService.ListEndpoints]: <doc:EndpointServiceClient/listEndpoints(request:)>
     /// [google.cloud.aiplatform.v1.ListEndpointsResponse.next_page_token]: <doc:ListEndpointsResponse/nextPageToken>
     public var pageToken: Swift.String = Swift.String()
 

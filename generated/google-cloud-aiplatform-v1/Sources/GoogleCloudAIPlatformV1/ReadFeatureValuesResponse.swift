@@ -21,7 +21,7 @@
   /// Response message for
   /// [FeaturestoreOnlineServingService.ReadFeatureValues][google.cloud.aiplatform.v1.FeaturestoreOnlineServingService.ReadFeatureValues].
   ///
-  /// [google.cloud.aiplatform.v1.FeaturestoreOnlineServingService.ReadFeatureValues]: <doc:FeaturestoreOnlineServingService/readFeatureValues(request:)>
+  /// [google.cloud.aiplatform.v1.FeaturestoreOnlineServingService.ReadFeatureValues]: <doc:FeaturestoreOnlineServingServiceClient/readFeatureValues(request:)>
   public struct ReadFeatureValuesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

@@ -84,7 +84,7 @@
       /// [EntityTypes.GetEntityType][google.cloud.dialogflow.v2.EntityTypes.GetEntityType]
       /// on the custom entity type and merge.
       ///
-      /// [google.cloud.dialogflow.v2.EntityTypes.GetEntityType]: <doc:EntityTypes/getEntityType(request:)>
+      /// [google.cloud.dialogflow.v2.EntityTypes.GetEntityType]: <doc:EntityTypesClient/getEntityType(request:)>
       case supplement
       /// Encodes an unknown integer value.
       ///

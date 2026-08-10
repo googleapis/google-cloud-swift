@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [SearchProjects][google.cloud.resourcemanager.v3.Projects.SearchProjects]
 /// method.
 ///
-/// [google.cloud.resourcemanager.v3.Projects.SearchProjects]: <doc:Projects/searchProjects(request:)>
+/// [google.cloud.resourcemanager.v3.Projects.SearchProjects]: <doc:ProjectsClient/searchProjects(request:)>
 public struct SearchProjectsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

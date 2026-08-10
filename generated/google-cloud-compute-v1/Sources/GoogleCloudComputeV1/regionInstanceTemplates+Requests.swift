@@ -21,7 +21,7 @@
   extension RegionInstanceTemplatesClient {
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.regionInstanceTemplates.delete] method.
     ///
-    /// [google.cloud.compute.v1.regionInstanceTemplates.delete]: <doc:RegionInstanceTemplates/delete(request:)>
+    /// [google.cloud.compute.v1.regionInstanceTemplates.delete]: <doc:RegionInstanceTemplatesClient/delete(request:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -78,7 +78,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.regionInstanceTemplates.get] method.
     ///
-    /// [google.cloud.compute.v1.regionInstanceTemplates.get]: <doc:RegionInstanceTemplates/`get`(request:)>
+    /// [google.cloud.compute.v1.regionInstanceTemplates.get]: <doc:RegionInstanceTemplatesClient/`get`(request:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -120,7 +120,7 @@
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.regionInstanceTemplates.insert] method.
     ///
-    /// [google.cloud.compute.v1.regionInstanceTemplates.insert]: <doc:RegionInstanceTemplates/insert(request:)>
+    /// [google.cloud.compute.v1.regionInstanceTemplates.insert]: <doc:RegionInstanceTemplatesClient/insert(request:)>
     public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -147,7 +147,7 @@
 
       /// Synthetic request body field for the [insert()][google.cloud.compute.v1.regionInstanceTemplates.insert] method.
       ///
-      /// [google.cloud.compute.v1.regionInstanceTemplates.insert]: <doc:RegionInstanceTemplates/insert(request:)>
+      /// [google.cloud.compute.v1.regionInstanceTemplates.insert]: <doc:RegionInstanceTemplatesClient/insert(request:)>
       public var body: InstanceTemplate? = nil
 
       /// Initialize a new instance of `InsertRequest`.
@@ -179,7 +179,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.regionInstanceTemplates.list] method.
     ///
-    /// [google.cloud.compute.v1.regionInstanceTemplates.list]: <doc:RegionInstanceTemplates/list(request:)>
+    /// [google.cloud.compute.v1.regionInstanceTemplates.list]: <doc:RegionInstanceTemplatesClient/list(request:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {

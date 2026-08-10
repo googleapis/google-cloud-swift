@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [CatalogService.UpdateAttributesConfig][google.cloud.retail.v2.CatalogService.UpdateAttributesConfig]
 /// method.
 ///
-/// [google.cloud.retail.v2.CatalogService.UpdateAttributesConfig]: <doc:CatalogService/updateAttributesConfig(request:)>
+/// [google.cloud.retail.v2.CatalogService.UpdateAttributesConfig]: <doc:CatalogServiceClient/updateAttributesConfig(request:)>
 public struct UpdateAttributesConfigRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

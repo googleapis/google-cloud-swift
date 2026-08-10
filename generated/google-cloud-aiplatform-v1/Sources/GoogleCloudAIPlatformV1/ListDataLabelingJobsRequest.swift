@@ -21,7 +21,7 @@
   /// Request message for
   /// [JobService.ListDataLabelingJobs][google.cloud.aiplatform.v1.JobService.ListDataLabelingJobs].
   ///
-  /// [google.cloud.aiplatform.v1.JobService.ListDataLabelingJobs]: <doc:JobService/listDataLabelingJobs(request:)>
+  /// [google.cloud.aiplatform.v1.JobService.ListDataLabelingJobs]: <doc:JobServiceClient/listDataLabelingJobs(request:)>
   public struct ListDataLabelingJobsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

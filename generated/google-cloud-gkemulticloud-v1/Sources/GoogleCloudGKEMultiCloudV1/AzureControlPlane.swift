@@ -29,7 +29,7 @@ public struct AzureControlPlane: Codable, Equatable, GoogleCloudWkt._AnyPackable
   /// calling
   /// [GetAzureServerConfig][google.cloud.gkemulticloud.v1.AzureClusters.GetAzureServerConfig].
   ///
-  /// [google.cloud.gkemulticloud.v1.AzureClusters.GetAzureServerConfig]: <doc:AzureClusters/getAzureServerConfig(request:)>
+  /// [google.cloud.gkemulticloud.v1.AzureClusters.GetAzureServerConfig]: <doc:AzureClustersClient/getAzureServerConfig(request:)>
   public var version: Swift.String = Swift.String()
 
   /// Optional. The ARM ID of the default subnet for the control plane. The

@@ -21,7 +21,7 @@
   /// Response message for
   /// [VertexRagDataService.ImportRagFiles][google.cloud.aiplatform.v1.VertexRagDataService.ImportRagFiles].
   ///
-  /// [google.cloud.aiplatform.v1.VertexRagDataService.ImportRagFiles]: <doc:VertexRagDataService/importRagFiles(request:)>
+  /// [google.cloud.aiplatform.v1.VertexRagDataService.ImportRagFiles]: <doc:VertexRagDataServiceClient/importRagFiles(request:)>
   public struct ImportRagFilesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

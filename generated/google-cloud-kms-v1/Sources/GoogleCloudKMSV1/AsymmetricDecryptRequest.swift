@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [KeyManagementService.AsymmetricDecrypt][google.cloud.kms.v1.KeyManagementService.AsymmetricDecrypt].
 ///
-/// [google.cloud.kms.v1.KeyManagementService.AsymmetricDecrypt]: <doc:KeyManagementService/asymmetricDecrypt(request:)>
+/// [google.cloud.kms.v1.KeyManagementService.AsymmetricDecrypt]: <doc:KeyManagementServiceClient/asymmetricDecrypt(request:)>
 public struct AsymmetricDecryptRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
@@ -60,7 +60,7 @@ public struct AsymmetricDecryptRequest: Codable, Equatable, GoogleCloudWkt._AnyP
   ///
   /// [google.cloud.kms.v1.AsymmetricDecryptRequest.ciphertext]: <doc:AsymmetricDecryptRequest/ciphertext>
   /// [google.cloud.kms.v1.AsymmetricDecryptRequest.ciphertext_crc32c]: <doc:AsymmetricDecryptRequest/ciphertextCrc32C>
-  /// [google.cloud.kms.v1.KeyManagementService]: <doc:KeyManagementService>
+  /// [google.cloud.kms.v1.KeyManagementService]: <doc:KeyManagementServiceClient>
   public var ciphertextCrc32C: GoogleCloudWkt.Int64Value? = nil
 
   /// Initialize a new instance of `AsymmetricDecryptRequest`.

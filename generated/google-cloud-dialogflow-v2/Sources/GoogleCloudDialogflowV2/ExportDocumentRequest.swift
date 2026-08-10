@@ -21,7 +21,7 @@
   /// Request message for
   /// [Documents.ExportDocument][google.cloud.dialogflow.v2.Documents.ExportDocument].
   ///
-  /// [google.cloud.dialogflow.v2.Documents.ExportDocument]: <doc:Documents/exportDocument(request:)>
+  /// [google.cloud.dialogflow.v2.Documents.ExportDocument]: <doc:DocumentsClient/exportDocument(request:)>
   public struct ExportDocumentRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

@@ -21,7 +21,7 @@
   /// Request message for
   /// [EndpointService.UndeployModel][google.cloud.aiplatform.v1.EndpointService.UndeployModel].
   ///
-  /// [google.cloud.aiplatform.v1.EndpointService.UndeployModel]: <doc:EndpointService/undeployModel(request:)>
+  /// [google.cloud.aiplatform.v1.EndpointService.UndeployModel]: <doc:EndpointServiceClient/undeployModel(request:)>
   public struct UndeployModelRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

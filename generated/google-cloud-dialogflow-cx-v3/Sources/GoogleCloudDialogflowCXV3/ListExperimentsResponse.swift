@@ -22,7 +22,7 @@
   /// The response message for
   /// [Experiments.ListExperiments][google.cloud.dialogflow.cx.v3.Experiments.ListExperiments].
   ///
-  /// [google.cloud.dialogflow.cx.v3.Experiments.ListExperiments]: <doc:Experiments/listExperiments(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Experiments.ListExperiments]: <doc:ExperimentsClient/listExperiments(request:)>
   public struct ListExperimentsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable

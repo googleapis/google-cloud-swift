@@ -21,7 +21,7 @@
   /// Request message for
   /// [KnowledgeBases.DeleteKnowledgeBase][google.cloud.dialogflow.v2.KnowledgeBases.DeleteKnowledgeBase].
   ///
-  /// [google.cloud.dialogflow.v2.KnowledgeBases.DeleteKnowledgeBase]: <doc:KnowledgeBases/deleteKnowledgeBase(request:)>
+  /// [google.cloud.dialogflow.v2.KnowledgeBases.DeleteKnowledgeBase]: <doc:KnowledgeBasesClient/deleteKnowledgeBase(request:)>
   public struct DeleteKnowledgeBaseRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

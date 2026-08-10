@@ -21,7 +21,7 @@
   /// The request message for
   /// [SipTrunks.DeleteSipTrunk][google.cloud.dialogflow.v2.SipTrunks.DeleteSipTrunk].
   ///
-  /// [google.cloud.dialogflow.v2.SipTrunks.DeleteSipTrunk]: <doc:SipTrunks/deleteSipTrunk(request:)>
+  /// [google.cloud.dialogflow.v2.SipTrunks.DeleteSipTrunk]: <doc:SipTrunksClient/deleteSipTrunk(request:)>
   public struct DeleteSipTrunkRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

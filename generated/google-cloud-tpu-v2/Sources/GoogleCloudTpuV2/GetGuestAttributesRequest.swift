@@ -19,7 +19,7 @@ import GoogleCloudWkt
 
 /// Request for [GetGuestAttributes][google.cloud.tpu.v2.Tpu.GetGuestAttributes].
 ///
-/// [google.cloud.tpu.v2.Tpu.GetGuestAttributes]: <doc:Tpu/getGuestAttributes(request:)>
+/// [google.cloud.tpu.v2.Tpu.GetGuestAttributes]: <doc:TpuClient/getGuestAttributes(request:)>
 public struct GetGuestAttributesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

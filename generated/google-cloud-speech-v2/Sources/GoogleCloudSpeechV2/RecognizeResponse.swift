@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Response message for the
 /// [Recognize][google.cloud.speech.v2.Speech.Recognize] method.
 ///
-/// [google.cloud.speech.v2.Speech.Recognize]: <doc:Speech/recognize(request:)>
+/// [google.cloud.speech.v2.Speech.Recognize]: <doc:SpeechClient/recognize(request:)>
 public struct RecognizeResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

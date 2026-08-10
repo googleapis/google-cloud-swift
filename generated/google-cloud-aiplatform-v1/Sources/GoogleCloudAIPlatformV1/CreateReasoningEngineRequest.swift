@@ -21,7 +21,7 @@
   /// Request message for
   /// [ReasoningEngineService.CreateReasoningEngine][google.cloud.aiplatform.v1.ReasoningEngineService.CreateReasoningEngine].
   ///
-  /// [google.cloud.aiplatform.v1.ReasoningEngineService.CreateReasoningEngine]: <doc:ReasoningEngineService/createReasoningEngine(request:)>
+  /// [google.cloud.aiplatform.v1.ReasoningEngineService.CreateReasoningEngine]: <doc:ReasoningEngineServiceClient/createReasoningEngine(request:)>
   public struct CreateReasoningEngineRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

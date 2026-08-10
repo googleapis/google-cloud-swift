@@ -21,7 +21,7 @@
   /// The request message for
   /// [Agents.ListAgents][google.cloud.dialogflow.cx.v3.Agents.ListAgents].
   ///
-  /// [google.cloud.dialogflow.cx.v3.Agents.ListAgents]: <doc:Agents/listAgents(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Agents.ListAgents]: <doc:AgentsClient/listAgents(request:)>
   public struct ListAgentsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

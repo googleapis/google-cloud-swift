@@ -21,7 +21,7 @@
   /// The response message for
   /// [Conversations.GenerateSuggestions][google.cloud.dialogflow.v2.Conversations.GenerateSuggestions].
   ///
-  /// [google.cloud.dialogflow.v2.Conversations.GenerateSuggestions]: <doc:Conversations/generateSuggestions(request:)>
+  /// [google.cloud.dialogflow.v2.Conversations.GenerateSuggestions]: <doc:ConversationsClient/generateSuggestions(request:)>
   public struct GenerateSuggestionsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

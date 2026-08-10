@@ -85,7 +85,7 @@ public struct CompleteQueryRequest: Codable, Equatable, GoogleCloudWkt._AnyPacka
   ///   This option requires enabling auto-learning function first. See
   ///   [guidelines](https://cloud.google.com/retail/docs/completion-overview#generated-completion-dataset).
   ///
-  /// [google.cloud.retail.v2.CompletionService.ImportCompletionData]: <doc:CompletionService/importCompletionData(request:)>
+  /// [google.cloud.retail.v2.CompletionService.ImportCompletionData]: <doc:CompletionServiceClient/importCompletionData(request:)>
   public var dataset: Swift.String = Swift.String()
 
   /// Completion max suggestions. If left unset or set to 0, then will fallback

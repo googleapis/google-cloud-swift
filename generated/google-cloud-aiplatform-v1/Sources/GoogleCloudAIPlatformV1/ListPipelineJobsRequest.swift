@@ -21,7 +21,7 @@
   /// Request message for
   /// [PipelineService.ListPipelineJobs][google.cloud.aiplatform.v1.PipelineService.ListPipelineJobs].
   ///
-  /// [google.cloud.aiplatform.v1.PipelineService.ListPipelineJobs]: <doc:PipelineService/listPipelineJobs(request:)>
+  /// [google.cloud.aiplatform.v1.PipelineService.ListPipelineJobs]: <doc:PipelineServiceClient/listPipelineJobs(request:)>
   public struct ListPipelineJobsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {
@@ -76,7 +76,7 @@
     /// call.
     ///
     /// [google.cloud.aiplatform.v1.ListPipelineJobsResponse.next_page_token]: <doc:ListPipelineJobsResponse/nextPageToken>
-    /// [google.cloud.aiplatform.v1.PipelineService.ListPipelineJobs]: <doc:PipelineService/listPipelineJobs(request:)>
+    /// [google.cloud.aiplatform.v1.PipelineService.ListPipelineJobs]: <doc:PipelineServiceClient/listPipelineJobs(request:)>
     public var pageToken: Swift.String = Swift.String()
 
     /// A comma-separated list of fields to order by. The default sort order is in

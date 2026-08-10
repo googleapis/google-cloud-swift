@@ -21,7 +21,7 @@
   extension PacketMirroringsClient {
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.packetMirrorings.aggregatedList] method.
     ///
-    /// [google.cloud.compute.v1.packetMirrorings.aggregatedList]: <doc:PacketMirrorings/aggregatedList(request:)>
+    /// [google.cloud.compute.v1.packetMirrorings.aggregatedList]: <doc:PacketMirroringsClient/aggregatedList(request:)>
     public struct AggregatedListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -163,7 +163,7 @@
 
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.packetMirrorings.delete] method.
     ///
-    /// [google.cloud.compute.v1.packetMirrorings.delete]: <doc:PacketMirrorings/delete(request:)>
+    /// [google.cloud.compute.v1.packetMirrorings.delete]: <doc:PacketMirroringsClient/delete(request:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -220,7 +220,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.packetMirrorings.get] method.
     ///
-    /// [google.cloud.compute.v1.packetMirrorings.get]: <doc:PacketMirrorings/`get`(request:)>
+    /// [google.cloud.compute.v1.packetMirrorings.get]: <doc:PacketMirroringsClient/`get`(request:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -262,7 +262,7 @@
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.packetMirrorings.insert] method.
     ///
-    /// [google.cloud.compute.v1.packetMirrorings.insert]: <doc:PacketMirrorings/insert(request:)>
+    /// [google.cloud.compute.v1.packetMirrorings.insert]: <doc:PacketMirroringsClient/insert(request:)>
     public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -289,7 +289,7 @@
 
       /// Synthetic request body field for the [insert()][google.cloud.compute.v1.packetMirrorings.insert] method.
       ///
-      /// [google.cloud.compute.v1.packetMirrorings.insert]: <doc:PacketMirrorings/insert(request:)>
+      /// [google.cloud.compute.v1.packetMirrorings.insert]: <doc:PacketMirroringsClient/insert(request:)>
       public var body: PacketMirroring? = nil
 
       /// Initialize a new instance of `InsertRequest`.
@@ -321,7 +321,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.packetMirrorings.list] method.
     ///
-    /// [google.cloud.compute.v1.packetMirrorings.list]: <doc:PacketMirrorings/list(request:)>
+    /// [google.cloud.compute.v1.packetMirrorings.list]: <doc:PacketMirroringsClient/list(request:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -453,7 +453,7 @@
 
     /// Synthetic request message for the [patch()][google.cloud.compute.v1.packetMirrorings.patch] method.
     ///
-    /// [google.cloud.compute.v1.packetMirrorings.patch]: <doc:PacketMirrorings/patch(request:)>
+    /// [google.cloud.compute.v1.packetMirrorings.patch]: <doc:PacketMirroringsClient/patch(request:)>
     public struct PatchRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -483,7 +483,7 @@
 
       /// Synthetic request body field for the [patch()][google.cloud.compute.v1.packetMirrorings.patch] method.
       ///
-      /// [google.cloud.compute.v1.packetMirrorings.patch]: <doc:PacketMirrorings/patch(request:)>
+      /// [google.cloud.compute.v1.packetMirrorings.patch]: <doc:PacketMirroringsClient/patch(request:)>
       public var body: PacketMirroring? = nil
 
       /// Initialize a new instance of `PatchRequest`.
@@ -515,7 +515,7 @@
 
     /// Synthetic request message for the [testIamPermissions()][google.cloud.compute.v1.packetMirrorings.testIamPermissions] method.
     ///
-    /// [google.cloud.compute.v1.packetMirrorings.testIamPermissions]: <doc:PacketMirrorings/testIamPermissions(request:)>
+    /// [google.cloud.compute.v1.packetMirrorings.testIamPermissions]: <doc:PacketMirroringsClient/testIamPermissions(request:)>
     public struct TestIamPermissionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -530,7 +530,7 @@
 
       /// Synthetic request body field for the [testIamPermissions()][google.cloud.compute.v1.packetMirrorings.testIamPermissions] method.
       ///
-      /// [google.cloud.compute.v1.packetMirrorings.testIamPermissions]: <doc:PacketMirrorings/testIamPermissions(request:)>
+      /// [google.cloud.compute.v1.packetMirrorings.testIamPermissions]: <doc:PacketMirroringsClient/testIamPermissions(request:)>
       public var body: TestPermissionsRequest? = nil
 
       /// Initialize a new instance of `TestIamPermissionsRequest`.

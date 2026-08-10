@@ -21,7 +21,7 @@
   extension CrossSiteNetworksClient {
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.crossSiteNetworks.delete] method.
     ///
-    /// [google.cloud.compute.v1.crossSiteNetworks.delete]: <doc:CrossSiteNetworks/delete(request:)>
+    /// [google.cloud.compute.v1.crossSiteNetworks.delete]: <doc:CrossSiteNetworksClient/delete(request:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -76,7 +76,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.crossSiteNetworks.get] method.
     ///
-    /// [google.cloud.compute.v1.crossSiteNetworks.get]: <doc:CrossSiteNetworks/`get`(request:)>
+    /// [google.cloud.compute.v1.crossSiteNetworks.get]: <doc:CrossSiteNetworksClient/`get`(request:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -115,7 +115,7 @@
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.crossSiteNetworks.insert] method.
     ///
-    /// [google.cloud.compute.v1.crossSiteNetworks.insert]: <doc:CrossSiteNetworks/insert(request:)>
+    /// [google.cloud.compute.v1.crossSiteNetworks.insert]: <doc:CrossSiteNetworksClient/insert(request:)>
     public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -143,7 +143,7 @@
 
       /// Synthetic request body field for the [insert()][google.cloud.compute.v1.crossSiteNetworks.insert] method.
       ///
-      /// [google.cloud.compute.v1.crossSiteNetworks.insert]: <doc:CrossSiteNetworks/insert(request:)>
+      /// [google.cloud.compute.v1.crossSiteNetworks.insert]: <doc:CrossSiteNetworksClient/insert(request:)>
       public var body: CrossSiteNetwork? = nil
 
       /// Initialize a new instance of `InsertRequest`.
@@ -175,7 +175,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.crossSiteNetworks.list] method.
     ///
-    /// [google.cloud.compute.v1.crossSiteNetworks.list]: <doc:CrossSiteNetworks/list(request:)>
+    /// [google.cloud.compute.v1.crossSiteNetworks.list]: <doc:CrossSiteNetworksClient/list(request:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -304,7 +304,7 @@
 
     /// Synthetic request message for the [patch()][google.cloud.compute.v1.crossSiteNetworks.patch] method.
     ///
-    /// [google.cloud.compute.v1.crossSiteNetworks.patch]: <doc:CrossSiteNetworks/patch(request:)>
+    /// [google.cloud.compute.v1.crossSiteNetworks.patch]: <doc:CrossSiteNetworksClient/patch(request:)>
     public struct PatchRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -338,7 +338,7 @@
 
       /// Synthetic request body field for the [patch()][google.cloud.compute.v1.crossSiteNetworks.patch] method.
       ///
-      /// [google.cloud.compute.v1.crossSiteNetworks.patch]: <doc:CrossSiteNetworks/patch(request:)>
+      /// [google.cloud.compute.v1.crossSiteNetworks.patch]: <doc:CrossSiteNetworksClient/patch(request:)>
       public var body: CrossSiteNetwork? = nil
 
       /// Initialize a new instance of `PatchRequest`.

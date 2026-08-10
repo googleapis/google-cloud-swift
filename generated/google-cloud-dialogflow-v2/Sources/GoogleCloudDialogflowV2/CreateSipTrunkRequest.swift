@@ -21,7 +21,7 @@
   /// The request message for
   /// [SipTrunks.CreateSipTrunk][google.cloud.dialogflow.v2.SipTrunks.CreateSipTrunk].
   ///
-  /// [google.cloud.dialogflow.v2.SipTrunks.CreateSipTrunk]: <doc:SipTrunks/createSipTrunk(request:)>
+  /// [google.cloud.dialogflow.v2.SipTrunks.CreateSipTrunk]: <doc:SipTrunksClient/createSipTrunk(request:)>
   public struct CreateSipTrunkRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

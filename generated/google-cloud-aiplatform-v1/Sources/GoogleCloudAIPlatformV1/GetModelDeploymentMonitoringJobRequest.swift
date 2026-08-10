@@ -21,7 +21,7 @@
   /// Request message for
   /// [JobService.GetModelDeploymentMonitoringJob][google.cloud.aiplatform.v1.JobService.GetModelDeploymentMonitoringJob].
   ///
-  /// [google.cloud.aiplatform.v1.JobService.GetModelDeploymentMonitoringJob]: <doc:JobService/getModelDeploymentMonitoringJob(request:)>
+  /// [google.cloud.aiplatform.v1.JobService.GetModelDeploymentMonitoringJob]: <doc:JobServiceClient/getModelDeploymentMonitoringJob(request:)>
   public struct GetModelDeploymentMonitoringJobRequest: Codable, Equatable, GoogleCloudWkt
       ._AnyPackable,
     Sendable

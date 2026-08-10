@@ -37,7 +37,7 @@
     /// FilterSplit filters, then it is assigned to the first set that applies to
     /// it in the training, validation, test order.
     ///
-    /// [google.cloud.aiplatform.v1.DatasetService.ListDataItems]: <doc:DatasetService/listDataItems(request:)>
+    /// [google.cloud.aiplatform.v1.DatasetService.ListDataItems]: <doc:DatasetServiceClient/listDataItems(request:)>
     public var trainingFilter: Swift.String = Swift.String()
 
     /// Required. A filter on DataItems of the Dataset. DataItems that match
@@ -48,7 +48,7 @@
     /// FilterSplit filters, then it is assigned to the first set that applies to
     /// it in the training, validation, test order.
     ///
-    /// [google.cloud.aiplatform.v1.DatasetService.ListDataItems]: <doc:DatasetService/listDataItems(request:)>
+    /// [google.cloud.aiplatform.v1.DatasetService.ListDataItems]: <doc:DatasetServiceClient/listDataItems(request:)>
     public var validationFilter: Swift.String = Swift.String()
 
     /// Required. A filter on DataItems of the Dataset. DataItems that match
@@ -59,7 +59,7 @@
     /// FilterSplit filters, then it is assigned to the first set that applies to
     /// it in the training, validation, test order.
     ///
-    /// [google.cloud.aiplatform.v1.DatasetService.ListDataItems]: <doc:DatasetService/listDataItems(request:)>
+    /// [google.cloud.aiplatform.v1.DatasetService.ListDataItems]: <doc:DatasetServiceClient/listDataItems(request:)>
     public var testFilter: Swift.String = Swift.String()
 
     /// Initialize a new instance of `FilterSplit`.

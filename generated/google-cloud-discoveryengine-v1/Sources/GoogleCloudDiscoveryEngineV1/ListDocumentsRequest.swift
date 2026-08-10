@@ -22,7 +22,7 @@
   /// [DocumentService.ListDocuments][google.cloud.discoveryengine.v1.DocumentService.ListDocuments]
   /// method.
   ///
-  /// [google.cloud.discoveryengine.v1.DocumentService.ListDocuments]: <doc:DocumentService/listDocuments(request:)>
+  /// [google.cloud.discoveryengine.v1.DocumentService.ListDocuments]: <doc:DocumentServiceClient/listDocuments(request:)>
   public struct ListDocumentsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {
@@ -59,7 +59,7 @@
     /// must match the call that provided the page token. Otherwise, an
     /// `INVALID_ARGUMENT` error is returned.
     ///
-    /// [google.cloud.discoveryengine.v1.DocumentService.ListDocuments]: <doc:DocumentService/listDocuments(request:)>
+    /// [google.cloud.discoveryengine.v1.DocumentService.ListDocuments]: <doc:DocumentServiceClient/listDocuments(request:)>
     /// [google.cloud.discoveryengine.v1.ListDocumentsResponse.next_page_token]: <doc:ListDocumentsResponse/nextPageToken>
     public var pageToken: Swift.String = Swift.String()
 

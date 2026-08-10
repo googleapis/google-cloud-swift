@@ -19,7 +19,7 @@ import GoogleCloudWkt
 
 /// Request for [Failover][google.cloud.redis.v1.CloudRedis.FailoverInstance].
 ///
-/// [google.cloud.redis.v1.CloudRedis.FailoverInstance]: <doc:CloudRedis/failoverInstance(request:)>
+/// [google.cloud.redis.v1.CloudRedis.FailoverInstance]: <doc:CloudRedisClient/failoverInstance(request:)>
 public struct FailoverInstanceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

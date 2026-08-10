@@ -23,7 +23,7 @@
   /// operation. This will be returned by the google.longrunning.Operation.metadata
   /// field.
   ///
-  /// [google.cloud.discoveryengine.v1.DataStoreService.DeleteDataStore]: <doc:DataStoreService/deleteDataStore(request:)>
+  /// [google.cloud.discoveryengine.v1.DataStoreService.DeleteDataStore]: <doc:DataStoreServiceClient/deleteDataStore(request:)>
   public struct DeleteDataStoreMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

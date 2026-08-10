@@ -22,7 +22,7 @@
   /// Response message for
   /// [DatasetService.ListDatasetVersions][google.cloud.aiplatform.v1.DatasetService.ListDatasetVersions].
   ///
-  /// [google.cloud.aiplatform.v1.DatasetService.ListDatasetVersions]: <doc:DatasetService/listDatasetVersions(request:)>
+  /// [google.cloud.aiplatform.v1.DatasetService.ListDatasetVersions]: <doc:DatasetServiceClient/listDatasetVersions(request:)>
   public struct ListDatasetVersionsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable

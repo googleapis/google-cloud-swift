@@ -19,7 +19,7 @@ import GoogleCloudWkt
 
 /// Request message for [MoveObject][google.storage.v2.Storage.MoveObject].
 ///
-/// [google.storage.v2.Storage.MoveObject]: <doc:Storage/moveObject(request:)>
+/// [google.storage.v2.Storage.MoveObject]: <doc:StorageClient/moveObject(request:)>
 public struct MoveObjectRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

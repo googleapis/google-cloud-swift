@@ -21,7 +21,7 @@
   /// Response message for
   /// [PredictionService.StreamingRawPredict][google.cloud.aiplatform.v1.PredictionService.StreamingRawPredict].
   ///
-  /// [google.cloud.aiplatform.v1.PredictionService.StreamingRawPredict]: <doc:PredictionService/streamingRawPredict(request:)>
+  /// [google.cloud.aiplatform.v1.PredictionService.StreamingRawPredict]: <doc:PredictionServiceClient/streamingRawPredict(request:)>
   public struct StreamingRawPredictResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

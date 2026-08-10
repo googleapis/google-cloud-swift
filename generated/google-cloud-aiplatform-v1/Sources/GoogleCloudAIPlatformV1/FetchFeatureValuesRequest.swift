@@ -22,7 +22,7 @@
   /// [FeatureOnlineStoreService.FetchFeatureValues][google.cloud.aiplatform.v1.FeatureOnlineStoreService.FetchFeatureValues].
   /// All the features under the requested feature view will be returned.
   ///
-  /// [google.cloud.aiplatform.v1.FeatureOnlineStoreService.FetchFeatureValues]: <doc:FeatureOnlineStoreService/fetchFeatureValues(request:)>
+  /// [google.cloud.aiplatform.v1.FeatureOnlineStoreService.FetchFeatureValues]: <doc:FeatureOnlineStoreServiceClient/fetchFeatureValues(request:)>
   public struct FetchFeatureValuesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

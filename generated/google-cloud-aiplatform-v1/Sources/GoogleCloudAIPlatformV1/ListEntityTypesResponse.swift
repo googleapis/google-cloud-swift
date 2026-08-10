@@ -22,7 +22,7 @@
   /// Response message for
   /// [FeaturestoreService.ListEntityTypes][google.cloud.aiplatform.v1.FeaturestoreService.ListEntityTypes].
   ///
-  /// [google.cloud.aiplatform.v1.FeaturestoreService.ListEntityTypes]: <doc:FeaturestoreService/listEntityTypes(request:)>
+  /// [google.cloud.aiplatform.v1.FeaturestoreService.ListEntityTypes]: <doc:FeaturestoreServiceClient/listEntityTypes(request:)>
   public struct ListEntityTypesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable

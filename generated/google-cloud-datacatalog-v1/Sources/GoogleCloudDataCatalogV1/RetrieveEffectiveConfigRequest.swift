@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [RetrieveEffectiveConfig][google.cloud.datacatalog.v1.DataCatalog.RetrieveEffectiveConfig].
 ///
-/// [google.cloud.datacatalog.v1.DataCatalog.RetrieveEffectiveConfig]: <doc:DataCatalog/retrieveEffectiveConfig(request:)>
+/// [google.cloud.datacatalog.v1.DataCatalog.RetrieveEffectiveConfig]: <doc:DataCatalogClient/retrieveEffectiveConfig(request:)>
 public struct RetrieveEffectiveConfigRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

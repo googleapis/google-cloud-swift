@@ -22,7 +22,7 @@
   /// [UpdateGenerativeSettings][google.cloud.dialogflow.cx.v3.Agents.UpdateGenerativeSettings]
   /// RPC.
   ///
-  /// [google.cloud.dialogflow.cx.v3.Agents.UpdateGenerativeSettings]: <doc:Agents/updateGenerativeSettings(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Agents.UpdateGenerativeSettings]: <doc:AgentsClient/updateGenerativeSettings(request:)>
   public struct UpdateGenerativeSettingsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

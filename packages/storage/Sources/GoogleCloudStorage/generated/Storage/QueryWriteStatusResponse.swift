@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Response object for
 /// [QueryWriteStatus][google.storage.v2.Storage.QueryWriteStatus].
 ///
-/// [google.storage.v2.Storage.QueryWriteStatus]: <doc:Storage/queryWriteStatus(request:)>
+/// [google.storage.v2.Storage.QueryWriteStatus]: <doc:StorageClient/queryWriteStatus(request:)>
 public struct QueryWriteStatusResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

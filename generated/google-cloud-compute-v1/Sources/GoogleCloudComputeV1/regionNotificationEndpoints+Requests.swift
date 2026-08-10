@@ -21,7 +21,7 @@
   extension RegionNotificationEndpointsClient {
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.regionNotificationEndpoints.aggregatedList] method.
     ///
-    /// [google.cloud.compute.v1.regionNotificationEndpoints.aggregatedList]: <doc:RegionNotificationEndpoints/aggregatedList(request:)>
+    /// [google.cloud.compute.v1.regionNotificationEndpoints.aggregatedList]: <doc:RegionNotificationEndpointsClient/aggregatedList(request:)>
     public struct AggregatedListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -164,7 +164,7 @@
 
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.regionNotificationEndpoints.delete] method.
     ///
-    /// [google.cloud.compute.v1.regionNotificationEndpoints.delete]: <doc:RegionNotificationEndpoints/delete(request:)>
+    /// [google.cloud.compute.v1.regionNotificationEndpoints.delete]: <doc:RegionNotificationEndpointsClient/delete(request:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -222,7 +222,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.regionNotificationEndpoints.get] method.
     ///
-    /// [google.cloud.compute.v1.regionNotificationEndpoints.get]: <doc:RegionNotificationEndpoints/`get`(request:)>
+    /// [google.cloud.compute.v1.regionNotificationEndpoints.get]: <doc:RegionNotificationEndpointsClient/`get`(request:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -264,7 +264,7 @@
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.regionNotificationEndpoints.insert] method.
     ///
-    /// [google.cloud.compute.v1.regionNotificationEndpoints.insert]: <doc:RegionNotificationEndpoints/insert(request:)>
+    /// [google.cloud.compute.v1.regionNotificationEndpoints.insert]: <doc:RegionNotificationEndpointsClient/insert(request:)>
     public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -291,7 +291,7 @@
 
       /// Synthetic request body field for the [insert()][google.cloud.compute.v1.regionNotificationEndpoints.insert] method.
       ///
-      /// [google.cloud.compute.v1.regionNotificationEndpoints.insert]: <doc:RegionNotificationEndpoints/insert(request:)>
+      /// [google.cloud.compute.v1.regionNotificationEndpoints.insert]: <doc:RegionNotificationEndpointsClient/insert(request:)>
       public var body: NotificationEndpoint? = nil
 
       /// Initialize a new instance of `InsertRequest`.
@@ -324,7 +324,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.regionNotificationEndpoints.list] method.
     ///
-    /// [google.cloud.compute.v1.regionNotificationEndpoints.list]: <doc:RegionNotificationEndpoints/list(request:)>
+    /// [google.cloud.compute.v1.regionNotificationEndpoints.list]: <doc:RegionNotificationEndpointsClient/list(request:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -456,7 +456,7 @@
 
     /// Synthetic request message for the [testIamPermissions()][google.cloud.compute.v1.regionNotificationEndpoints.testIamPermissions] method.
     ///
-    /// [google.cloud.compute.v1.regionNotificationEndpoints.testIamPermissions]: <doc:RegionNotificationEndpoints/testIamPermissions(request:)>
+    /// [google.cloud.compute.v1.regionNotificationEndpoints.testIamPermissions]: <doc:RegionNotificationEndpointsClient/testIamPermissions(request:)>
     public struct TestIamPermissionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -471,7 +471,7 @@
 
       /// Synthetic request body field for the [testIamPermissions()][google.cloud.compute.v1.regionNotificationEndpoints.testIamPermissions] method.
       ///
-      /// [google.cloud.compute.v1.regionNotificationEndpoints.testIamPermissions]: <doc:RegionNotificationEndpoints/testIamPermissions(request:)>
+      /// [google.cloud.compute.v1.regionNotificationEndpoints.testIamPermissions]: <doc:RegionNotificationEndpointsClient/testIamPermissions(request:)>
       public var body: TestPermissionsRequest? = nil
 
       /// Initialize a new instance of `TestIamPermissionsRequest`.

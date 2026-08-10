@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [DeleteCluster][google.cloud.hypercomputecluster.v1.HypercomputeCluster.DeleteCluster].
 ///
-/// [google.cloud.hypercomputecluster.v1.HypercomputeCluster.DeleteCluster]: <doc:HypercomputeCluster/deleteCluster(request:)>
+/// [google.cloud.hypercomputecluster.v1.HypercomputeCluster.DeleteCluster]: <doc:HypercomputeClusterClient/deleteCluster(request:)>
 public struct DeleteClusterRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

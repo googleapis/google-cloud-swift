@@ -49,8 +49,8 @@
     /// populates the name automatically.
     /// Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`.
     ///
-    /// [google.cloud.dialogflow.cx.v3.Agents.CreateAgent]: <doc:Agents/createAgent(request:)>
-    /// [google.cloud.dialogflow.cx.v3.Agents.UpdateAgent]: <doc:Agents/updateAgent(request:)>
+    /// [google.cloud.dialogflow.cx.v3.Agents.CreateAgent]: <doc:AgentsClient/createAgent(request:)>
+    /// [google.cloud.dialogflow.cx.v3.Agents.UpdateAgent]: <doc:AgentsClient/updateAgent(request:)>
     public var name: Swift.String = Swift.String()
 
     /// Required. The human-readable name of the agent, unique within the location.
@@ -64,7 +64,7 @@
     /// [Agents.UpdateAgent][google.cloud.dialogflow.cx.v3.Agents.UpdateAgent]
     /// method.
     ///
-    /// [google.cloud.dialogflow.cx.v3.Agents.UpdateAgent]: <doc:Agents/updateAgent(request:)>
+    /// [google.cloud.dialogflow.cx.v3.Agents.UpdateAgent]: <doc:AgentsClient/updateAgent(request:)>
     public var defaultLanguageCode: Swift.String = Swift.String()
 
     /// The list of all languages supported by the agent (except for the

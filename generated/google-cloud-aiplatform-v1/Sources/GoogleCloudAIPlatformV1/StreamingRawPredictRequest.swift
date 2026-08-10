@@ -32,7 +32,7 @@
   /// [method_name][google.cloud.aiplatform.v1.StreamingRawPredictRequest.method_name]
   /// in the subsequent messages have no effect.
   ///
-  /// [google.cloud.aiplatform.v1.PredictionService.StreamingRawPredict]: <doc:PredictionService/streamingRawPredict(request:)>
+  /// [google.cloud.aiplatform.v1.PredictionService.StreamingRawPredict]: <doc:PredictionServiceClient/streamingRawPredict(request:)>
   /// [google.cloud.aiplatform.v1.StreamingRawPredictRequest.endpoint]: <doc:StreamingRawPredictRequest/endpoint>
   /// [google.cloud.aiplatform.v1.StreamingRawPredictRequest.input]: <doc:StreamingRawPredictRequest/input>
   /// [google.cloud.aiplatform.v1.StreamingRawPredictRequest.method_name]: <doc:StreamingRawPredictRequest/methodName>

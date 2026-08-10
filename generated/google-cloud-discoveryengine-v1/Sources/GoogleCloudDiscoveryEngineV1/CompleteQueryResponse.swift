@@ -22,7 +22,7 @@
   /// [CompletionService.CompleteQuery][google.cloud.discoveryengine.v1.CompletionService.CompleteQuery]
   /// method.
   ///
-  /// [google.cloud.discoveryengine.v1.CompletionService.CompleteQuery]: <doc:CompletionService/completeQuery(request:)>
+  /// [google.cloud.discoveryengine.v1.CompletionService.CompleteQuery]: <doc:CompletionServiceClient/completeQuery(request:)>
   public struct CompleteQueryResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

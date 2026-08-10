@@ -21,7 +21,7 @@
   /// Request message for
   /// [JobService.DeleteDataLabelingJob][google.cloud.aiplatform.v1.JobService.DeleteDataLabelingJob].
   ///
-  /// [google.cloud.aiplatform.v1.JobService.DeleteDataLabelingJob]: <doc:JobService/deleteDataLabelingJob(request:)>
+  /// [google.cloud.aiplatform.v1.JobService.DeleteDataLabelingJob]: <doc:JobServiceClient/deleteDataLabelingJob(request:)>
   public struct DeleteDataLabelingJobRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

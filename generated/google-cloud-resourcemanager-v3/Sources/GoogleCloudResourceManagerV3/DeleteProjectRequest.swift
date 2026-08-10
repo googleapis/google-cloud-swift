@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// [DeleteProject][google.cloud.resourcemanager.v3.Projects.DeleteProject]
 /// method.
 ///
-/// [google.cloud.resourcemanager.v3.Projects.DeleteProject]: <doc:Projects/deleteProject(request:)>
+/// [google.cloud.resourcemanager.v3.Projects.DeleteProject]: <doc:ProjectsClient/deleteProject(request:)>
 public struct DeleteProjectRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

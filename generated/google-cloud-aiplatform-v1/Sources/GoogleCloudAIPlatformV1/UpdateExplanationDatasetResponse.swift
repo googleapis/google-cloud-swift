@@ -22,7 +22,7 @@
   /// [ModelService.UpdateExplanationDataset][google.cloud.aiplatform.v1.ModelService.UpdateExplanationDataset]
   /// operation.
   ///
-  /// [google.cloud.aiplatform.v1.ModelService.UpdateExplanationDataset]: <doc:ModelService/updateExplanationDataset(request:)>
+  /// [google.cloud.aiplatform.v1.ModelService.UpdateExplanationDataset]: <doc:ModelServiceClient/updateExplanationDataset(request:)>
   public struct UpdateExplanationDatasetResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

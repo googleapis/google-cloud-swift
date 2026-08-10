@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// The [DeleteApiOperation][google.cloud.apihub.v1.ApiHub.DeleteApiOperation]
 /// method's request.
 ///
-/// [google.cloud.apihub.v1.ApiHub.DeleteApiOperation]: <doc:ApiHub/deleteApiOperation(request:)>
+/// [google.cloud.apihub.v1.ApiHub.DeleteApiOperation]: <doc:ApiHubClient/deleteApiOperation(request:)>
 public struct DeleteApiOperationRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

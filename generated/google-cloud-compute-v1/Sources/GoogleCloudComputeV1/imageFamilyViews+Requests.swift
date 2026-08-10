@@ -21,7 +21,7 @@
   extension ImageFamilyViewsClient {
     /// Synthetic request message for the [get()][google.cloud.compute.v1.imageFamilyViews.get] method.
     ///
-    /// [google.cloud.compute.v1.imageFamilyViews.get]: <doc:ImageFamilyViews/`get`(request:)>
+    /// [google.cloud.compute.v1.imageFamilyViews.get]: <doc:ImageFamilyViewsClient/`get`(request:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {

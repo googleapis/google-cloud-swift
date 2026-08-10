@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// The [DeleteExternalApi][google.cloud.apihub.v1.ApiHub.DeleteExternalApi]
 /// method's request.
 ///
-/// [google.cloud.apihub.v1.ApiHub.DeleteExternalApi]: <doc:ApiHub/deleteExternalApi(request:)>
+/// [google.cloud.apihub.v1.ApiHub.DeleteExternalApi]: <doc:ApiHubClient/deleteExternalApi(request:)>
 public struct DeleteExternalApiRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

@@ -21,7 +21,7 @@
   extension ReservationSubBlocksClient {
     /// Synthetic request message for the [get()][google.cloud.compute.v1.reservationSubBlocks.get] method.
     ///
-    /// [google.cloud.compute.v1.reservationSubBlocks.get]: <doc:ReservationSubBlocks/`get`(request:)>
+    /// [google.cloud.compute.v1.reservationSubBlocks.get]: <doc:ReservationSubBlocksClient/`get`(request:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -178,7 +178,7 @@
 
     /// Synthetic request message for the [getIamPolicy()][google.cloud.compute.v1.reservationSubBlocks.getIamPolicy] method.
     ///
-    /// [google.cloud.compute.v1.reservationSubBlocks.getIamPolicy]: <doc:ReservationSubBlocks/getIamPolicy(request:)>
+    /// [google.cloud.compute.v1.reservationSubBlocks.getIamPolicy]: <doc:ReservationSubBlocksClient/getIamPolicy(request:)>
     public struct GetIamPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -227,7 +227,7 @@
 
     /// Synthetic request message for the [getVersion()][google.cloud.compute.v1.reservationSubBlocks.getVersion] method.
     ///
-    /// [google.cloud.compute.v1.reservationSubBlocks.getVersion]: <doc:ReservationSubBlocks/getVersion(request:)>
+    /// [google.cloud.compute.v1.reservationSubBlocks.getVersion]: <doc:ReservationSubBlocksClient/getVersion(request:)>
     public struct GetVersionRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -262,7 +262,7 @@
 
       /// Synthetic request body field for the [getVersion()][google.cloud.compute.v1.reservationSubBlocks.getVersion] method.
       ///
-      /// [google.cloud.compute.v1.reservationSubBlocks.getVersion]: <doc:ReservationSubBlocks/getVersion(request:)>
+      /// [google.cloud.compute.v1.reservationSubBlocks.getVersion]: <doc:ReservationSubBlocksClient/getVersion(request:)>
       public var body: ReservationSubBlocksGetVersionRequest? = nil
 
       /// Initialize a new instance of `GetVersionRequest`.
@@ -294,7 +294,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.reservationSubBlocks.list] method.
     ///
-    /// [google.cloud.compute.v1.reservationSubBlocks.list]: <doc:ReservationSubBlocks/list(request:)>
+    /// [google.cloud.compute.v1.reservationSubBlocks.list]: <doc:ReservationSubBlocksClient/list(request:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -430,7 +430,7 @@
 
     /// Synthetic request message for the [performMaintenance()][google.cloud.compute.v1.reservationSubBlocks.performMaintenance] method.
     ///
-    /// [google.cloud.compute.v1.reservationSubBlocks.performMaintenance]: <doc:ReservationSubBlocks/performMaintenance(request:)>
+    /// [google.cloud.compute.v1.reservationSubBlocks.performMaintenance]: <doc:ReservationSubBlocksClient/performMaintenance(request:)>
     public struct PerformMaintenanceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -493,7 +493,7 @@
 
     /// Synthetic request message for the [reportFaulty()][google.cloud.compute.v1.reservationSubBlocks.reportFaulty] method.
     ///
-    /// [google.cloud.compute.v1.reservationSubBlocks.reportFaulty]: <doc:ReservationSubBlocks/reportFaulty(request:)>
+    /// [google.cloud.compute.v1.reservationSubBlocks.reportFaulty]: <doc:ReservationSubBlocksClient/reportFaulty(request:)>
     public struct ReportFaultyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -528,7 +528,7 @@
 
       /// Synthetic request body field for the [reportFaulty()][google.cloud.compute.v1.reservationSubBlocks.reportFaulty] method.
       ///
-      /// [google.cloud.compute.v1.reservationSubBlocks.reportFaulty]: <doc:ReservationSubBlocks/reportFaulty(request:)>
+      /// [google.cloud.compute.v1.reservationSubBlocks.reportFaulty]: <doc:ReservationSubBlocksClient/reportFaulty(request:)>
       public var body: ReservationSubBlocksReportFaultyRequest? = nil
 
       /// Initialize a new instance of `ReportFaultyRequest`.
@@ -561,7 +561,7 @@
 
     /// Synthetic request message for the [setIamPolicy()][google.cloud.compute.v1.reservationSubBlocks.setIamPolicy] method.
     ///
-    /// [google.cloud.compute.v1.reservationSubBlocks.setIamPolicy]: <doc:ReservationSubBlocks/setIamPolicy(request:)>
+    /// [google.cloud.compute.v1.reservationSubBlocks.setIamPolicy]: <doc:ReservationSubBlocksClient/setIamPolicy(request:)>
     public struct SetIamPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -579,7 +579,7 @@
 
       /// Synthetic request body field for the [setIamPolicy()][google.cloud.compute.v1.reservationSubBlocks.setIamPolicy] method.
       ///
-      /// [google.cloud.compute.v1.reservationSubBlocks.setIamPolicy]: <doc:ReservationSubBlocks/setIamPolicy(request:)>
+      /// [google.cloud.compute.v1.reservationSubBlocks.setIamPolicy]: <doc:ReservationSubBlocksClient/setIamPolicy(request:)>
       public var body: ZoneSetNestedPolicyRequest? = nil
 
       /// Initialize a new instance of `SetIamPolicyRequest`.
@@ -612,7 +612,7 @@
 
     /// Synthetic request message for the [testIamPermissions()][google.cloud.compute.v1.reservationSubBlocks.testIamPermissions] method.
     ///
-    /// [google.cloud.compute.v1.reservationSubBlocks.testIamPermissions]: <doc:ReservationSubBlocks/testIamPermissions(request:)>
+    /// [google.cloud.compute.v1.reservationSubBlocks.testIamPermissions]: <doc:ReservationSubBlocksClient/testIamPermissions(request:)>
     public struct TestIamPermissionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -630,7 +630,7 @@
 
       /// Synthetic request body field for the [testIamPermissions()][google.cloud.compute.v1.reservationSubBlocks.testIamPermissions] method.
       ///
-      /// [google.cloud.compute.v1.reservationSubBlocks.testIamPermissions]: <doc:ReservationSubBlocks/testIamPermissions(request:)>
+      /// [google.cloud.compute.v1.reservationSubBlocks.testIamPermissions]: <doc:ReservationSubBlocksClient/testIamPermissions(request:)>
       public var body: TestPermissionsRequest? = nil
 
       /// Initialize a new instance of `TestIamPermissionsRequest`.

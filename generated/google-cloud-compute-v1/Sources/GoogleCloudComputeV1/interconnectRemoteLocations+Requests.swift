@@ -21,7 +21,7 @@
   extension InterconnectRemoteLocationsClient {
     /// Synthetic request message for the [get()][google.cloud.compute.v1.interconnectRemoteLocations.get] method.
     ///
-    /// [google.cloud.compute.v1.interconnectRemoteLocations.get]: <doc:InterconnectRemoteLocations/`get`(request:)>
+    /// [google.cloud.compute.v1.interconnectRemoteLocations.get]: <doc:InterconnectRemoteLocationsClient/`get`(request:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -60,7 +60,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.interconnectRemoteLocations.list] method.
     ///
-    /// [google.cloud.compute.v1.interconnectRemoteLocations.list]: <doc:InterconnectRemoteLocations/list(request:)>
+    /// [google.cloud.compute.v1.interconnectRemoteLocations.list]: <doc:InterconnectRemoteLocationsClient/list(request:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {

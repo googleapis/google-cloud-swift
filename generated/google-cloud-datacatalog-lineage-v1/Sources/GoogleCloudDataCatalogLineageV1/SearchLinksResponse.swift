@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [SearchLinks][google.cloud.datacatalog.lineage.v1.Lineage.SearchLinks].
 ///
-/// [google.cloud.datacatalog.lineage.v1.Lineage.SearchLinks]: <doc:Lineage/searchLinks(request:)>
+/// [google.cloud.datacatalog.lineage.v1.Lineage.SearchLinks]: <doc:LineageClient/searchLinks(request:)>
 public struct SearchLinksResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

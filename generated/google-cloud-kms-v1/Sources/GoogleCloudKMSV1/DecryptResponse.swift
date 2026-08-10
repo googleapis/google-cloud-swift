@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [KeyManagementService.Decrypt][google.cloud.kms.v1.KeyManagementService.Decrypt].
 ///
-/// [google.cloud.kms.v1.KeyManagementService.Decrypt]: <doc:KeyManagementService/decrypt(request:)>
+/// [google.cloud.kms.v1.KeyManagementService.Decrypt]: <doc:KeyManagementServiceClient/decrypt(request:)>
 public struct DecryptResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
@@ -50,7 +50,7 @@ public struct DecryptResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   ///
   /// [google.cloud.kms.v1.DecryptRequest.ciphertext]: <doc:DecryptRequest/ciphertext>
   /// [google.cloud.kms.v1.DecryptResponse.plaintext]: <doc:DecryptResponse/plaintext>
-  /// [google.cloud.kms.v1.KeyManagementService]: <doc:KeyManagementService>
+  /// [google.cloud.kms.v1.KeyManagementService]: <doc:KeyManagementServiceClient>
   public var plaintextCrc32C: GoogleCloudWkt.Int64Value? = nil
 
   /// Whether the Decryption was performed using the primary key version.

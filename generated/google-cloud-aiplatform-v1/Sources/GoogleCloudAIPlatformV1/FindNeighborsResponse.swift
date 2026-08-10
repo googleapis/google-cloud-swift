@@ -21,7 +21,7 @@
   /// The response message for
   /// [MatchService.FindNeighbors][google.cloud.aiplatform.v1.MatchService.FindNeighbors].
   ///
-  /// [google.cloud.aiplatform.v1.MatchService.FindNeighbors]: <doc:MatchService/findNeighbors(request:)>
+  /// [google.cloud.aiplatform.v1.MatchService.FindNeighbors]: <doc:MatchServiceClient/findNeighbors(request:)>
   public struct FindNeighborsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

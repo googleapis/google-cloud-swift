@@ -21,7 +21,7 @@
   /// The request message for
   /// [Participants.SuggestFaqAnswers][google.cloud.dialogflow.v2.Participants.SuggestFaqAnswers].
   ///
-  /// [google.cloud.dialogflow.v2.Participants.SuggestFaqAnswers]: <doc:Participants/suggestFaqAnswers(request:)>
+  /// [google.cloud.dialogflow.v2.Participants.SuggestFaqAnswers]: <doc:ParticipantsClient/suggestFaqAnswers(request:)>
   public struct SuggestFaqAnswersRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

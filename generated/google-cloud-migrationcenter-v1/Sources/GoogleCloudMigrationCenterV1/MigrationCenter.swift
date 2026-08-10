@@ -1934,7 +1934,7 @@ public class MigrationCenterClient: Clients.MigrationCenterProtocol {
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "MigrationCenter_ListOperations")
   public func listOperations(
@@ -1945,7 +1945,7 @@ public class MigrationCenterClient: Clients.MigrationCenterProtocol {
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "MigrationCenter_ListOperations")
   public func listOperations(
@@ -1962,7 +1962,7 @@ public class MigrationCenterClient: Clients.MigrationCenterProtocol {
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "MigrationCenter_GetOperation")
   func getOperation(
@@ -1973,7 +1973,7 @@ public class MigrationCenterClient: Clients.MigrationCenterProtocol {
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "MigrationCenter_DeleteOperation")
   public func deleteOperation(
@@ -1984,7 +1984,7 @@ public class MigrationCenterClient: Clients.MigrationCenterProtocol {
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "MigrationCenter_CancelOperation")
   public func cancelOperation(

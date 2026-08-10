@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [AgentService.GetExample][google.cloud.ces.v1.AgentService.GetExample].
 ///
-/// [google.cloud.ces.v1.AgentService.GetExample]: <doc:AgentService/getExample(request:)>
+/// [google.cloud.ces.v1.AgentService.GetExample]: <doc:AgentServiceClient/getExample(request:)>
 public struct GetExampleRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

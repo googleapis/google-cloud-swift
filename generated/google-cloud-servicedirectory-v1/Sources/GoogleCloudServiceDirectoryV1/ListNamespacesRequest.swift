@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// The request message for
 /// [RegistrationService.ListNamespaces][google.cloud.servicedirectory.v1.RegistrationService.ListNamespaces].
 ///
-/// [google.cloud.servicedirectory.v1.RegistrationService.ListNamespaces]: <doc:RegistrationService/listNamespaces(request:)>
+/// [google.cloud.servicedirectory.v1.RegistrationService.ListNamespaces]: <doc:RegistrationServiceClient/listNamespaces(request:)>
 public struct ListNamespacesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

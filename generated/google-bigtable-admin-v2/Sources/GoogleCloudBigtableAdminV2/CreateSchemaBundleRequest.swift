@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// The request for
 /// [CreateSchemaBundle][google.bigtable.admin.v2.BigtableTableAdmin.CreateSchemaBundle].
 ///
-/// [google.bigtable.admin.v2.BigtableTableAdmin.CreateSchemaBundle]: <doc:BigtableTableAdmin/createSchemaBundle(request:)>
+/// [google.bigtable.admin.v2.BigtableTableAdmin.CreateSchemaBundle]: <doc:BigtableTableAdminClient/createSchemaBundle(request:)>
 public struct CreateSchemaBundleRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

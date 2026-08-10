@@ -163,7 +163,7 @@ public class CloudTasksClient: Clients.CloudTasksProtocol {
   /// [state][google.cloud.tasks.v2.Queue.state] is
   /// [PAUSED][google.cloud.tasks.v2.Queue.State.PAUSED].
   ///
-  /// [google.cloud.tasks.v2.CloudTasks.ResumeQueue]: <doc:CloudTasks/resumeQueue(request:)>
+  /// [google.cloud.tasks.v2.CloudTasks.ResumeQueue]: <doc:CloudTasksClient/resumeQueue(request:)>
   /// [google.cloud.tasks.v2.Queue.State.PAUSED]: <doc:Queue/State/paused>
   /// [google.cloud.tasks.v2.Queue.state]: <doc:Queue/state>
   ///
@@ -366,7 +366,7 @@ public class CloudTasksClient: Clients.CloudTasksProtocol {
   /// [NOT_FOUND][google.rpc.Code.NOT_FOUND] when it is called on a
   /// task that has already succeeded or permanently failed.
   ///
-  /// [google.cloud.tasks.v2.CloudTasks.RunTask]: <doc:CloudTasks/runTask(request:)>
+  /// [google.cloud.tasks.v2.CloudTasks.RunTask]: <doc:CloudTasksClient/runTask(request:)>
   /// [google.cloud.tasks.v2.Queue.State.PAUSED]: <doc:Queue/State/paused>
   /// [google.cloud.tasks.v2.RateLimits]: <doc:RateLimits>
   /// [google.cloud.tasks.v2.RetryConfig]: <doc:RetryConfig>

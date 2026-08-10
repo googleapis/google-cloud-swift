@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [BidiReadObject][google.storage.v2.Storage.BidiReadObject].
 ///
-/// [google.storage.v2.Storage.BidiReadObject]: <doc:Storage/bidiReadObject(request:)>
+/// [google.storage.v2.Storage.BidiReadObject]: <doc:StorageClient/bidiReadObject(request:)>
 public struct BidiReadObjectRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

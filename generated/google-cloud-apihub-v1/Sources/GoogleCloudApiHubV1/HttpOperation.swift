@@ -26,7 +26,7 @@ public struct HttpOperation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// [CreateApiOperation][google.cloud.apihub.v1.ApiHub.CreateApiOperation]
   /// API and we will fail the request if not provided.
   ///
-  /// [google.cloud.apihub.v1.ApiHub.CreateApiOperation]: <doc:ApiHub/createApiOperation(request:)>
+  /// [google.cloud.apihub.v1.ApiHub.CreateApiOperation]: <doc:ApiHubClient/createApiOperation(request:)>
   public var path: Path? = nil
 
   /// Optional. Operation method
@@ -34,7 +34,7 @@ public struct HttpOperation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// [CreateApiOperation][google.cloud.apihub.v1.ApiHub.CreateApiOperation]
   /// API and we will fail the request if not provided.
   ///
-  /// [google.cloud.apihub.v1.ApiHub.CreateApiOperation]: <doc:ApiHub/createApiOperation(request:)>
+  /// [google.cloud.apihub.v1.ApiHub.CreateApiOperation]: <doc:ApiHubClient/createApiOperation(request:)>
   public var method: HttpOperation.Method = HttpOperation.Method()
 
   /// Initialize a new instance of `HttpOperation`.

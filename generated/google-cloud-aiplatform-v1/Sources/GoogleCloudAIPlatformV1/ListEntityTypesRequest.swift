@@ -21,7 +21,7 @@
   /// Request message for
   /// [FeaturestoreService.ListEntityTypes][google.cloud.aiplatform.v1.FeaturestoreService.ListEntityTypes].
   ///
-  /// [google.cloud.aiplatform.v1.FeaturestoreService.ListEntityTypes]: <doc:FeaturestoreService/listEntityTypes(request:)>
+  /// [google.cloud.aiplatform.v1.FeaturestoreService.ListEntityTypes]: <doc:FeaturestoreServiceClient/listEntityTypes(request:)>
   public struct ListEntityTypesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {
@@ -64,7 +64,7 @@
     /// [FeaturestoreService.ListEntityTypes][google.cloud.aiplatform.v1.FeaturestoreService.ListEntityTypes]
     /// must match the call that provided the page token.
     ///
-    /// [google.cloud.aiplatform.v1.FeaturestoreService.ListEntityTypes]: <doc:FeaturestoreService/listEntityTypes(request:)>
+    /// [google.cloud.aiplatform.v1.FeaturestoreService.ListEntityTypes]: <doc:FeaturestoreServiceClient/listEntityTypes(request:)>
     public var pageToken: Swift.String = Swift.String()
 
     /// A comma-separated list of fields to order by, sorted in ascending order.

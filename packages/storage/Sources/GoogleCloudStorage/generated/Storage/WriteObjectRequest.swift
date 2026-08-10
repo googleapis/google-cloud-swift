@@ -19,7 +19,7 @@ import GoogleCloudWkt
 
 /// Request message for [WriteObject][google.storage.v2.Storage.WriteObject].
 ///
-/// [google.storage.v2.Storage.WriteObject]: <doc:Storage/writeObject(request:)>
+/// [google.storage.v2.Storage.WriteObject]: <doc:StorageClient/writeObject(request:)>
 public struct WriteObjectRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

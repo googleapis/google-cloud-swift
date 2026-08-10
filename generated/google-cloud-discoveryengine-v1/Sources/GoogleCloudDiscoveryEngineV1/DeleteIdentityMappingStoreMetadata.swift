@@ -23,7 +23,7 @@
   /// operation. This will be returned by the google.longrunning.Operation.metadata
   /// field.
   ///
-  /// [google.cloud.discoveryengine.v1.IdentityMappingStoreService.DeleteIdentityMappingStore]: <doc:IdentityMappingStoreService/deleteIdentityMappingStore(request:)>
+  /// [google.cloud.discoveryengine.v1.IdentityMappingStoreService.DeleteIdentityMappingStore]: <doc:IdentityMappingStoreServiceClient/deleteIdentityMappingStore(request:)>
   public struct DeleteIdentityMappingStoreMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

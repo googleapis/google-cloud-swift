@@ -24,8 +24,8 @@
   /// Response message for
   /// [FeatureRegistryService.ListFeatures][google.cloud.aiplatform.v1.FeatureRegistryService.ListFeatures].
   ///
-  /// [google.cloud.aiplatform.v1.FeatureRegistryService.ListFeatures]: <doc:FeatureRegistryService/listFeatures(request:)>
-  /// [google.cloud.aiplatform.v1.FeaturestoreService.ListFeatures]: <doc:FeaturestoreService/listFeatures(request:)>
+  /// [google.cloud.aiplatform.v1.FeatureRegistryService.ListFeatures]: <doc:FeatureRegistryServiceClient/listFeatures(request:)>
+  /// [google.cloud.aiplatform.v1.FeaturestoreService.ListFeatures]: <doc:FeaturestoreServiceClient/listFeatures(request:)>
   public struct ListFeaturesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable

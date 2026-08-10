@@ -19,7 +19,7 @@ import GoogleCloudWkt
 
 /// The [DeleteApi][google.cloud.apihub.v1.ApiHub.DeleteApi] method's request.
 ///
-/// [google.cloud.apihub.v1.ApiHub.DeleteApi]: <doc:ApiHub/deleteApi(request:)>
+/// [google.cloud.apihub.v1.ApiHub.DeleteApi]: <doc:ApiHubClient/deleteApi(request:)>
 public struct DeleteApiRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

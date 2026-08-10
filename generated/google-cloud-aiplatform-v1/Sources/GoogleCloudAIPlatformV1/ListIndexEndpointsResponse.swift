@@ -22,7 +22,7 @@
   /// Response message for
   /// [IndexEndpointService.ListIndexEndpoints][google.cloud.aiplatform.v1.IndexEndpointService.ListIndexEndpoints].
   ///
-  /// [google.cloud.aiplatform.v1.IndexEndpointService.ListIndexEndpoints]: <doc:IndexEndpointService/listIndexEndpoints(request:)>
+  /// [google.cloud.aiplatform.v1.IndexEndpointService.ListIndexEndpoints]: <doc:IndexEndpointServiceClient/listIndexEndpoints(request:)>
   public struct ListIndexEndpointsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable

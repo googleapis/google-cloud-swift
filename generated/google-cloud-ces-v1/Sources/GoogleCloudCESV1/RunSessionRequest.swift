@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [SessionService.RunSession][google.cloud.ces.v1.SessionService.RunSession].
 ///
-/// [google.cloud.ces.v1.SessionService.RunSession]: <doc:SessionService/runSession(request:)>
+/// [google.cloud.ces.v1.SessionService.RunSession]: <doc:SessionServiceClient/runSession(request:)>
 public struct RunSessionRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

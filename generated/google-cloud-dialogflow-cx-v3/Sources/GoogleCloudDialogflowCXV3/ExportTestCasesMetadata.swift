@@ -22,7 +22,7 @@
   /// [TestCases.ExportTestCases][google.cloud.dialogflow.cx.v3.TestCases.ExportTestCases]
   /// long running operation. This message currently has no fields.
   ///
-  /// [google.cloud.dialogflow.cx.v3.TestCases.ExportTestCases]: <doc:TestCases/exportTestCases(request:)>
+  /// [google.cloud.dialogflow.cx.v3.TestCases.ExportTestCases]: <doc:TestCasesClient/exportTestCases(request:)>
   public struct ExportTestCasesMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

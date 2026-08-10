@@ -23,7 +23,7 @@ import GoogleCloudWkt
 /// [google.longrunning.Operation.response][google.longrunning.Operation.response]
 /// in case of success.
 ///
-/// [google.cloud.talent.v4.JobService.BatchDeleteJobs]: <doc:JobService/batchDeleteJobs(request:)>
+/// [google.cloud.talent.v4.JobService.BatchDeleteJobs]: <doc:JobServiceClient/batchDeleteJobs(request:)>
 /// [google.longrunning.Operation.response]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/response
 public struct BatchDeleteJobsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable

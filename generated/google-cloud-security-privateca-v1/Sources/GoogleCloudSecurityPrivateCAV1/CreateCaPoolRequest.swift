@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [CertificateAuthorityService.CreateCaPool][google.cloud.security.privateca.v1.CertificateAuthorityService.CreateCaPool].
 ///
-/// [google.cloud.security.privateca.v1.CertificateAuthorityService.CreateCaPool]: <doc:CertificateAuthorityService/createCaPool(request:)>
+/// [google.cloud.security.privateca.v1.CertificateAuthorityService.CreateCaPool]: <doc:CertificateAuthorityServiceClient/createCaPool(request:)>
 public struct CreateCaPoolRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// The request for
 /// [google.datastore.admin.v1.DatastoreAdmin.DeleteIndex][google.datastore.admin.v1.DatastoreAdmin.DeleteIndex].
 ///
-/// [google.datastore.admin.v1.DatastoreAdmin.DeleteIndex]: <doc:DatastoreAdmin/deleteIndex(request:)>
+/// [google.datastore.admin.v1.DatastoreAdmin.DeleteIndex]: <doc:DatastoreAdminClient/deleteIndex(request:)>
 public struct DeleteIndexRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

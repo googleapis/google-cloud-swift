@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [HubService.UpdateGroup][google.cloud.networkconnectivity.v1.HubService.UpdateGroup]
 /// method.
 ///
-/// [google.cloud.networkconnectivity.v1.HubService.UpdateGroup]: <doc:HubService/updateGroup(request:)>
+/// [google.cloud.networkconnectivity.v1.HubService.UpdateGroup]: <doc:HubServiceClient/updateGroup(request:)>
 public struct UpdateGroupRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

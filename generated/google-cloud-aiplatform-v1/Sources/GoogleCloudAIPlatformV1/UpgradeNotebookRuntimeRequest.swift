@@ -21,7 +21,7 @@
   /// Request message for
   /// [NotebookService.UpgradeNotebookRuntime][google.cloud.aiplatform.v1.NotebookService.UpgradeNotebookRuntime].
   ///
-  /// [google.cloud.aiplatform.v1.NotebookService.UpgradeNotebookRuntime]: <doc:NotebookService/upgradeNotebookRuntime(request:)>
+  /// [google.cloud.aiplatform.v1.NotebookService.UpgradeNotebookRuntime]: <doc:NotebookServiceClient/upgradeNotebookRuntime(request:)>
   public struct UpgradeNotebookRuntimeRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

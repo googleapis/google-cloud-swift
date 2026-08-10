@@ -21,7 +21,7 @@
   /// Request message for
   /// [JobService.ListNasJobs][google.cloud.aiplatform.v1.JobService.ListNasJobs].
   ///
-  /// [google.cloud.aiplatform.v1.JobService.ListNasJobs]: <doc:JobService/listNasJobs(request:)>
+  /// [google.cloud.aiplatform.v1.JobService.ListNasJobs]: <doc:JobServiceClient/listNasJobs(request:)>
   public struct ListNasJobsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {
@@ -61,7 +61,7 @@
     /// [JobService.ListNasJobs][google.cloud.aiplatform.v1.JobService.ListNasJobs]
     /// call.
     ///
-    /// [google.cloud.aiplatform.v1.JobService.ListNasJobs]: <doc:JobService/listNasJobs(request:)>
+    /// [google.cloud.aiplatform.v1.JobService.ListNasJobs]: <doc:JobServiceClient/listNasJobs(request:)>
     /// [google.cloud.aiplatform.v1.ListNasJobsResponse.next_page_token]: <doc:ListNasJobsResponse/nextPageToken>
     public var pageToken: Swift.String = Swift.String()
 

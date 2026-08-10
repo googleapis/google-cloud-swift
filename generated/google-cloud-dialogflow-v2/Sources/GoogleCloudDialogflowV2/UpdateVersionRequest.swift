@@ -21,7 +21,7 @@
   /// The request message for
   /// [Versions.UpdateVersion][google.cloud.dialogflow.v2.Versions.UpdateVersion].
   ///
-  /// [google.cloud.dialogflow.v2.Versions.UpdateVersion]: <doc:Versions/updateVersion(request:)>
+  /// [google.cloud.dialogflow.v2.Versions.UpdateVersion]: <doc:VersionsClient/updateVersion(request:)>
   public struct UpdateVersionRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [DeleteWorkflow][google.cloud.workflows.v1.Workflows.DeleteWorkflow]
 /// method.
 ///
-/// [google.cloud.workflows.v1.Workflows.DeleteWorkflow]: <doc:Workflows/deleteWorkflow(request:)>
+/// [google.cloud.workflows.v1.Workflows.DeleteWorkflow]: <doc:WorkflowsClient/deleteWorkflow(request:)>
 public struct DeleteWorkflowRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

@@ -22,7 +22,7 @@
   /// [ProjectService.ProvisionProject][google.cloud.discoveryengine.v1.ProjectService.ProvisionProject]
   /// method.
   ///
-  /// [google.cloud.discoveryengine.v1.ProjectService.ProvisionProject]: <doc:ProjectService/provisionProject(request:)>
+  /// [google.cloud.discoveryengine.v1.ProjectService.ProvisionProject]: <doc:ProjectServiceClient/provisionProject(request:)>
   public struct ProvisionProjectRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

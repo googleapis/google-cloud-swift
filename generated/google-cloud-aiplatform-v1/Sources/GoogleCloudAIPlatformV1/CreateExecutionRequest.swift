@@ -21,7 +21,7 @@
   /// Request message for
   /// [MetadataService.CreateExecution][google.cloud.aiplatform.v1.MetadataService.CreateExecution].
   ///
-  /// [google.cloud.aiplatform.v1.MetadataService.CreateExecution]: <doc:MetadataService/createExecution(request:)>
+  /// [google.cloud.aiplatform.v1.MetadataService.CreateExecution]: <doc:MetadataServiceClient/createExecution(request:)>
   public struct CreateExecutionRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

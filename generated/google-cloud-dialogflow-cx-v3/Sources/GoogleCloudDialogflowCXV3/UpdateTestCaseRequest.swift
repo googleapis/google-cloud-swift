@@ -21,7 +21,7 @@
   /// The request message for
   /// [TestCases.UpdateTestCase][google.cloud.dialogflow.cx.v3.TestCases.UpdateTestCase].
   ///
-  /// [google.cloud.dialogflow.cx.v3.TestCases.UpdateTestCase]: <doc:TestCases/updateTestCase(request:)>
+  /// [google.cloud.dialogflow.cx.v3.TestCases.UpdateTestCase]: <doc:TestCasesClient/updateTestCase(request:)>
   public struct UpdateTestCaseRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

@@ -20,7 +20,7 @@ import GoogleCloudWkt
 
 /// Response for [ListInstances][google.cloud.memcache.v1.CloudMemcache.ListInstances].
 ///
-/// [google.cloud.memcache.v1.CloudMemcache.ListInstances]: <doc:CloudMemcache/listInstances(request:)>
+/// [google.cloud.memcache.v1.CloudMemcache.ListInstances]: <doc:CloudMemcacheClient/listInstances(request:)>
 public struct ListInstancesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

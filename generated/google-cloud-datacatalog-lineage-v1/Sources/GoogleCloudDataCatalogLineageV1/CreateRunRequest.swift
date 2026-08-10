@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [CreateRun][google.cloud.datacatalog.lineage.v1.Lineage.CreateRun].
 ///
-/// [google.cloud.datacatalog.lineage.v1.Lineage.CreateRun]: <doc:Lineage/createRun(request:)>
+/// [google.cloud.datacatalog.lineage.v1.Lineage.CreateRun]: <doc:LineageClient/createRun(request:)>
 public struct CreateRunRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [ListLineageEvents][google.cloud.datacatalog.lineage.v1.Lineage.ListLineageEvents].
 ///
-/// [google.cloud.datacatalog.lineage.v1.Lineage.ListLineageEvents]: <doc:Lineage/listLineageEvents(request:)>
+/// [google.cloud.datacatalog.lineage.v1.Lineage.ListLineageEvents]: <doc:LineageClient/listLineageEvents(request:)>
 public struct ListLineageEventsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

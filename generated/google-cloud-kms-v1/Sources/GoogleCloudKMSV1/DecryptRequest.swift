@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [KeyManagementService.Decrypt][google.cloud.kms.v1.KeyManagementService.Decrypt].
 ///
-/// [google.cloud.kms.v1.KeyManagementService.Decrypt]: <doc:KeyManagementService/decrypt(request:)>
+/// [google.cloud.kms.v1.KeyManagementService.Decrypt]: <doc:KeyManagementServiceClient/decrypt(request:)>
 public struct DecryptRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
@@ -65,7 +65,7 @@ public struct DecryptRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   ///
   /// [google.cloud.kms.v1.DecryptRequest.ciphertext]: <doc:DecryptRequest/ciphertext>
   /// [google.cloud.kms.v1.DecryptRequest.ciphertext_crc32c]: <doc:DecryptRequest/ciphertextCrc32C>
-  /// [google.cloud.kms.v1.KeyManagementService]: <doc:KeyManagementService>
+  /// [google.cloud.kms.v1.KeyManagementService]: <doc:KeyManagementServiceClient>
   public var ciphertextCrc32C: GoogleCloudWkt.Int64Value? = nil
 
   /// Optional. An optional CRC32C checksum of the
@@ -90,7 +90,7 @@ public struct DecryptRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   ///
   /// [google.cloud.kms.v1.DecryptRequest.additional_authenticated_data]: <doc:DecryptRequest/additionalAuthenticatedData>
   /// [google.cloud.kms.v1.DecryptRequest.additional_authenticated_data_crc32c]: <doc:DecryptRequest/additionalAuthenticatedDataCrc32C>
-  /// [google.cloud.kms.v1.KeyManagementService]: <doc:KeyManagementService>
+  /// [google.cloud.kms.v1.KeyManagementService]: <doc:KeyManagementServiceClient>
   public var additionalAuthenticatedDataCrc32C: GoogleCloudWkt.Int64Value? = nil
 
   /// Initialize a new instance of `DecryptRequest`.

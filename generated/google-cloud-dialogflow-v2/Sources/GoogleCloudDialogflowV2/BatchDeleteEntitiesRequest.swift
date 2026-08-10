@@ -21,7 +21,7 @@
   /// The request message for
   /// [EntityTypes.BatchDeleteEntities][google.cloud.dialogflow.v2.EntityTypes.BatchDeleteEntities].
   ///
-  /// [google.cloud.dialogflow.v2.EntityTypes.BatchDeleteEntities]: <doc:EntityTypes/batchDeleteEntities(request:)>
+  /// [google.cloud.dialogflow.v2.EntityTypes.BatchDeleteEntities]: <doc:EntityTypesClient/batchDeleteEntities(request:)>
   public struct BatchDeleteEntitiesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [SecretManagerService.DisableSecretVersion][google.cloud.secretmanager.v1.SecretManagerService.DisableSecretVersion].
 ///
-/// [google.cloud.secretmanager.v1.SecretManagerService.DisableSecretVersion]: <doc:SecretManagerService/disableSecretVersion(request:)>
+/// [google.cloud.secretmanager.v1.SecretManagerService.DisableSecretVersion]: <doc:SecretManagerServiceClient/disableSecretVersion(request:)>
 public struct DisableSecretVersionRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

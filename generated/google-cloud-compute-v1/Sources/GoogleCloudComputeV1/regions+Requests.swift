@@ -21,7 +21,7 @@
   extension RegionsClient {
     /// Synthetic request message for the [get()][google.cloud.compute.v1.regions.get] method.
     ///
-    /// [google.cloud.compute.v1.regions.get]: <doc:Regions/`get`(request:)>
+    /// [google.cloud.compute.v1.regions.get]: <doc:RegionsClient/`get`(request:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -60,7 +60,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.regions.list] method.
     ///
-    /// [google.cloud.compute.v1.regions.list]: <doc:Regions/list(request:)>
+    /// [google.cloud.compute.v1.regions.list]: <doc:RegionsClient/list(request:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {

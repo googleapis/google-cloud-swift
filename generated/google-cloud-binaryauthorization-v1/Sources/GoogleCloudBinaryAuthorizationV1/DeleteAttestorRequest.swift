@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [BinauthzManagementServiceV1.DeleteAttestor][google.cloud.binaryauthorization.v1.BinauthzManagementServiceV1.DeleteAttestor].
 ///
-/// [google.cloud.binaryauthorization.v1.BinauthzManagementServiceV1.DeleteAttestor]: <doc:BinauthzManagementServiceV1/deleteAttestor(request:)>
+/// [google.cloud.binaryauthorization.v1.BinauthzManagementServiceV1.DeleteAttestor]: <doc:BinauthzManagementServiceV1Client/deleteAttestor(request:)>
 public struct DeleteAttestorRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

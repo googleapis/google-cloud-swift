@@ -21,7 +21,7 @@
   /// The response message for
   /// [Playbooks.RestorePlaybookVersion][google.cloud.dialogflow.cx.v3.Playbooks.RestorePlaybookVersion].
   ///
-  /// [google.cloud.dialogflow.cx.v3.Playbooks.RestorePlaybookVersion]: <doc:Playbooks/restorePlaybookVersion(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Playbooks.RestorePlaybookVersion]: <doc:PlaybooksClient/restorePlaybookVersion(request:)>
   public struct RestorePlaybookVersionResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

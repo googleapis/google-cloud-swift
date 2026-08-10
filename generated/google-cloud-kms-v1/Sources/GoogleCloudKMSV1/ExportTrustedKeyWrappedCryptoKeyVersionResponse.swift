@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [KeyManagementService.ExportTrustedKeyWrappedCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.ExportTrustedKeyWrappedCryptoKeyVersion].
 ///
-/// [google.cloud.kms.v1.KeyManagementService.ExportTrustedKeyWrappedCryptoKeyVersion]: <doc:KeyManagementService/exportTrustedKeyWrappedCryptoKeyVersion(request:)>
+/// [google.cloud.kms.v1.KeyManagementService.ExportTrustedKeyWrappedCryptoKeyVersion]: <doc:KeyManagementServiceClient/exportTrustedKeyWrappedCryptoKeyVersion(request:)>
 public struct ExportTrustedKeyWrappedCryptoKeyVersionResponse: Codable, Equatable, GoogleCloudWkt
     ._AnyPackable,
   Sendable

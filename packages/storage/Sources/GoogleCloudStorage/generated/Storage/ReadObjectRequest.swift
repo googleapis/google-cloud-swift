@@ -19,7 +19,7 @@ import GoogleCloudWkt
 
 /// Request message for [ReadObject][google.storage.v2.Storage.ReadObject].
 ///
-/// [google.storage.v2.Storage.ReadObject]: <doc:Storage/readObject(request:)>
+/// [google.storage.v2.Storage.ReadObject]: <doc:StorageClient/readObject(request:)>
 public struct ReadObjectRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

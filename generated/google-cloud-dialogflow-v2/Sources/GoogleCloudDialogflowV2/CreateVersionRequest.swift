@@ -21,7 +21,7 @@
   /// The request message for
   /// [Versions.CreateVersion][google.cloud.dialogflow.v2.Versions.CreateVersion].
   ///
-  /// [google.cloud.dialogflow.v2.Versions.CreateVersion]: <doc:Versions/createVersion(request:)>
+  /// [google.cloud.dialogflow.v2.Versions.CreateVersion]: <doc:VersionsClient/createVersion(request:)>
   public struct CreateVersionRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

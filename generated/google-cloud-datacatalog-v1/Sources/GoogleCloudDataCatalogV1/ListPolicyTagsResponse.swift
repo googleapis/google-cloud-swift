@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [ListPolicyTags][google.cloud.datacatalog.v1.PolicyTagManager.ListPolicyTags].
 ///
-/// [google.cloud.datacatalog.v1.PolicyTagManager.ListPolicyTags]: <doc:PolicyTagManager/listPolicyTags(request:)>
+/// [google.cloud.datacatalog.v1.PolicyTagManager.ListPolicyTags]: <doc:PolicyTagManagerClient/listPolicyTags(request:)>
 public struct ListPolicyTagsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

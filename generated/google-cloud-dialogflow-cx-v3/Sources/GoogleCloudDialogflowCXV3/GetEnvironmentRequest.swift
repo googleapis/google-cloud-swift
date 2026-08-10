@@ -21,7 +21,7 @@
   /// The request message for
   /// [Environments.GetEnvironment][google.cloud.dialogflow.cx.v3.Environments.GetEnvironment].
   ///
-  /// [google.cloud.dialogflow.cx.v3.Environments.GetEnvironment]: <doc:Environments/getEnvironment(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Environments.GetEnvironment]: <doc:EnvironmentsClient/getEnvironment(request:)>
   public struct GetEnvironmentRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

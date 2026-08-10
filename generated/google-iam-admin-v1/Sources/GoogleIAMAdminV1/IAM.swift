@@ -123,7 +123,7 @@ public class IAMClient: Clients.IAMProtocol {
   ///
   /// You can update only the `display_name` field.
   ///
-  /// [google.iam.admin.v1.IAM.PatchServiceAccount]: <doc:IAM/patchServiceAccount(request:)>
+  /// [google.iam.admin.v1.IAM.PatchServiceAccount]: <doc:IAMClient/patchServiceAccount(request:)>
   /// [google.iam.admin.v1.ServiceAccount]: <doc:ServiceAccount>
   ///
   /// @Snippet(path: "IAM_UpdateServiceAccount")
@@ -160,7 +160,7 @@ public class IAMClient: Clients.IAMProtocol {
   /// consequences. If there are no unintended consequences, you can delete the
   /// service account.
   ///
-  /// [google.iam.admin.v1.IAM.DisableServiceAccount]: <doc:IAM/disableServiceAccount(request:)>
+  /// [google.iam.admin.v1.IAM.DisableServiceAccount]: <doc:IAMClient/disableServiceAccount(request:)>
   /// [google.iam.admin.v1.ServiceAccount]: <doc:ServiceAccount>
   ///
   /// @Snippet(path: "IAM_DeleteServiceAccount")
@@ -197,7 +197,7 @@ public class IAMClient: Clients.IAMProtocol {
   /// disabled the service account because it was compromised—you cannot use this
   /// method to enable the service account.
   ///
-  /// [google.iam.admin.v1.IAM.DisableServiceAccount]: <doc:IAM/disableServiceAccount(request:)>
+  /// [google.iam.admin.v1.IAM.DisableServiceAccount]: <doc:IAMClient/disableServiceAccount(request:)>
   /// [google.iam.admin.v1.ServiceAccount]: <doc:ServiceAccount>
   ///
   /// @Snippet(path: "IAM_EnableServiceAccount")
@@ -224,8 +224,8 @@ public class IAMClient: Clients.IAMProtocol {
   /// If there are no unintended consequences, you can delete the service account
   /// with [DeleteServiceAccount][google.iam.admin.v1.IAM.DeleteServiceAccount].
   ///
-  /// [google.iam.admin.v1.IAM.DeleteServiceAccount]: <doc:IAM/deleteServiceAccount(request:)>
-  /// [google.iam.admin.v1.IAM.EnableServiceAccount]: <doc:IAM/enableServiceAccount(request:)>
+  /// [google.iam.admin.v1.IAM.DeleteServiceAccount]: <doc:IAMClient/deleteServiceAccount(request:)>
+  /// [google.iam.admin.v1.IAM.EnableServiceAccount]: <doc:IAMClient/enableServiceAccount(request:)>
   /// [google.iam.admin.v1.ServiceAccount]: <doc:ServiceAccount>
   ///
   /// @Snippet(path: "IAM_DisableServiceAccount")
@@ -299,7 +299,7 @@ public class IAMClient: Clients.IAMProtocol {
   /// Disable a [ServiceAccountKey][google.iam.admin.v1.ServiceAccountKey]. A disabled service account key can be
   /// re-enabled with [EnableServiceAccountKey][google.iam.admin.v1.IAM.EnableServiceAccountKey].
   ///
-  /// [google.iam.admin.v1.IAM.EnableServiceAccountKey]: <doc:IAM/enableServiceAccountKey(request:)>
+  /// [google.iam.admin.v1.IAM.EnableServiceAccountKey]: <doc:IAMClient/enableServiceAccountKey(request:)>
   /// [google.iam.admin.v1.ServiceAccountKey]: <doc:ServiceAccountKey>
   ///
   /// @Snippet(path: "IAM_DisableServiceAccountKey")
@@ -528,7 +528,7 @@ public class IAMClient: Clients.IAMProtocol {
   /// * If an IAM policy contains a binding to the custom role, the binding is
   /// permanently removed.
   ///
-  /// [google.iam.admin.v1.IAM.ListRoles]: <doc:IAM/listRoles(request:)>
+  /// [google.iam.admin.v1.IAM.ListRoles]: <doc:IAMClient/listRoles(request:)>
   /// [google.iam.admin.v1.Role]: <doc:Role>
   /// [google.iam.v1.Policy]: https://www.google.com/search?q=Swift+google.iam.v1+GoogleIAMV1.Policy
   ///

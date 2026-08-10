@@ -24,7 +24,7 @@ import GoogleCloudWkt
 /// Router](https://cloud.google.com/logging/docs/routing/managed-encryption) for
 /// more information.
 ///
-/// [google.logging.v2.ConfigServiceV2.GetSettings]: <doc:ConfigServiceV2/getSettings(request:)>
+/// [google.logging.v2.ConfigServiceV2.GetSettings]: <doc:ConfigServiceV2Client/getSettings(request:)>
 public struct GetSettingsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

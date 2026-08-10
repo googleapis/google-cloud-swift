@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [ProductService.AddFulfillmentPlaces][google.cloud.retail.v2.ProductService.AddFulfillmentPlaces]
 /// method.
 ///
-/// [google.cloud.retail.v2.ProductService.AddFulfillmentPlaces]: <doc:ProductService/addFulfillmentPlaces(request:)>
+/// [google.cloud.retail.v2.ProductService.AddFulfillmentPlaces]: <doc:ProductServiceClient/addFulfillmentPlaces(request:)>
 public struct AddFulfillmentPlacesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

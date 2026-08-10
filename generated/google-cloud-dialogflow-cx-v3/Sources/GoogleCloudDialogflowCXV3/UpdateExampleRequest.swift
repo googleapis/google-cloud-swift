@@ -21,7 +21,7 @@
   /// The request message for
   /// [Examples.UpdateExample][google.cloud.dialogflow.cx.v3.Examples.UpdateExample].
   ///
-  /// [google.cloud.dialogflow.cx.v3.Examples.UpdateExample]: <doc:Examples/updateExample(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Examples.UpdateExample]: <doc:ExamplesClient/updateExample(request:)>
   public struct UpdateExampleRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

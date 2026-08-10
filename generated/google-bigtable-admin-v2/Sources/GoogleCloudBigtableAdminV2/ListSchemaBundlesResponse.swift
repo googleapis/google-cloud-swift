@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// The response for
 /// [ListSchemaBundles][google.bigtable.admin.v2.BigtableTableAdmin.ListSchemaBundles].
 ///
-/// [google.bigtable.admin.v2.BigtableTableAdmin.ListSchemaBundles]: <doc:BigtableTableAdmin/listSchemaBundles(request:)>
+/// [google.bigtable.admin.v2.BigtableTableAdmin.ListSchemaBundles]: <doc:BigtableTableAdminClient/listSchemaBundles(request:)>
 public struct ListSchemaBundlesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

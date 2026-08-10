@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// The [ListPlugins][google.cloud.apihub.v1.ApiHubPlugin.ListPlugins] method's
 /// request.
 ///
-/// [google.cloud.apihub.v1.ApiHubPlugin.ListPlugins]: <doc:ApiHubPlugin/listPlugins(request:)>
+/// [google.cloud.apihub.v1.ApiHubPlugin.ListPlugins]: <doc:ApiHubPluginClient/listPlugins(request:)>
 public struct ListPluginsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

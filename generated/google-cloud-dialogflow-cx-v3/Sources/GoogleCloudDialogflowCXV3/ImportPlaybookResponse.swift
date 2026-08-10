@@ -21,7 +21,7 @@
   /// The response message for
   /// [Playbooks.ImportPlaybook][google.cloud.dialogflow.cx.v3.Playbooks.ImportPlaybook].
   ///
-  /// [google.cloud.dialogflow.cx.v3.Playbooks.ImportPlaybook]: <doc:Playbooks/importPlaybook(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Playbooks.ImportPlaybook]: <doc:PlaybooksClient/importPlaybook(request:)>
   public struct ImportPlaybookResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

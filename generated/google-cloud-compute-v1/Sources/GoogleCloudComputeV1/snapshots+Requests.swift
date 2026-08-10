@@ -21,7 +21,7 @@
   extension SnapshotsClient {
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.snapshots.delete] method.
     ///
-    /// [google.cloud.compute.v1.snapshots.delete]: <doc:Snapshots/delete(request:)>
+    /// [google.cloud.compute.v1.snapshots.delete]: <doc:SnapshotsClient/delete(request:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -75,7 +75,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.snapshots.get] method.
     ///
-    /// [google.cloud.compute.v1.snapshots.get]: <doc:Snapshots/`get`(request:)>
+    /// [google.cloud.compute.v1.snapshots.get]: <doc:SnapshotsClient/`get`(request:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -114,7 +114,7 @@
 
     /// Synthetic request message for the [getIamPolicy()][google.cloud.compute.v1.snapshots.getIamPolicy] method.
     ///
-    /// [google.cloud.compute.v1.snapshots.getIamPolicy]: <doc:Snapshots/getIamPolicy(request:)>
+    /// [google.cloud.compute.v1.snapshots.getIamPolicy]: <doc:SnapshotsClient/getIamPolicy(request:)>
     public struct GetIamPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -156,7 +156,7 @@
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.snapshots.insert] method.
     ///
-    /// [google.cloud.compute.v1.snapshots.insert]: <doc:Snapshots/insert(request:)>
+    /// [google.cloud.compute.v1.snapshots.insert]: <doc:SnapshotsClient/insert(request:)>
     public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -180,7 +180,7 @@
 
       /// Synthetic request body field for the [insert()][google.cloud.compute.v1.snapshots.insert] method.
       ///
-      /// [google.cloud.compute.v1.snapshots.insert]: <doc:Snapshots/insert(request:)>
+      /// [google.cloud.compute.v1.snapshots.insert]: <doc:SnapshotsClient/insert(request:)>
       public var body: Snapshot? = nil
 
       /// Initialize a new instance of `InsertRequest`.
@@ -212,7 +212,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.snapshots.list] method.
     ///
-    /// [google.cloud.compute.v1.snapshots.list]: <doc:Snapshots/list(request:)>
+    /// [google.cloud.compute.v1.snapshots.list]: <doc:SnapshotsClient/list(request:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -341,7 +341,7 @@
 
     /// Synthetic request message for the [setIamPolicy()][google.cloud.compute.v1.snapshots.setIamPolicy] method.
     ///
-    /// [google.cloud.compute.v1.snapshots.setIamPolicy]: <doc:Snapshots/setIamPolicy(request:)>
+    /// [google.cloud.compute.v1.snapshots.setIamPolicy]: <doc:SnapshotsClient/setIamPolicy(request:)>
     public struct SetIamPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -353,7 +353,7 @@
 
       /// Synthetic request body field for the [setIamPolicy()][google.cloud.compute.v1.snapshots.setIamPolicy] method.
       ///
-      /// [google.cloud.compute.v1.snapshots.setIamPolicy]: <doc:Snapshots/setIamPolicy(request:)>
+      /// [google.cloud.compute.v1.snapshots.setIamPolicy]: <doc:SnapshotsClient/setIamPolicy(request:)>
       public var body: GlobalSetPolicyRequest? = nil
 
       /// Initialize a new instance of `SetIamPolicyRequest`.
@@ -385,7 +385,7 @@
 
     /// Synthetic request message for the [setLabels()][google.cloud.compute.v1.snapshots.setLabels] method.
     ///
-    /// [google.cloud.compute.v1.snapshots.setLabels]: <doc:Snapshots/setLabels(request:)>
+    /// [google.cloud.compute.v1.snapshots.setLabels]: <doc:SnapshotsClient/setLabels(request:)>
     public struct SetLabelsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -397,7 +397,7 @@
 
       /// Synthetic request body field for the [setLabels()][google.cloud.compute.v1.snapshots.setLabels] method.
       ///
-      /// [google.cloud.compute.v1.snapshots.setLabels]: <doc:Snapshots/setLabels(request:)>
+      /// [google.cloud.compute.v1.snapshots.setLabels]: <doc:SnapshotsClient/setLabels(request:)>
       public var body: GlobalSetLabelsRequest? = nil
 
       /// Initialize a new instance of `SetLabelsRequest`.
@@ -429,7 +429,7 @@
 
     /// Synthetic request message for the [testIamPermissions()][google.cloud.compute.v1.snapshots.testIamPermissions] method.
     ///
-    /// [google.cloud.compute.v1.snapshots.testIamPermissions]: <doc:Snapshots/testIamPermissions(request:)>
+    /// [google.cloud.compute.v1.snapshots.testIamPermissions]: <doc:SnapshotsClient/testIamPermissions(request:)>
     public struct TestIamPermissionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -441,7 +441,7 @@
 
       /// Synthetic request body field for the [testIamPermissions()][google.cloud.compute.v1.snapshots.testIamPermissions] method.
       ///
-      /// [google.cloud.compute.v1.snapshots.testIamPermissions]: <doc:Snapshots/testIamPermissions(request:)>
+      /// [google.cloud.compute.v1.snapshots.testIamPermissions]: <doc:SnapshotsClient/testIamPermissions(request:)>
       public var body: TestPermissionsRequest? = nil
 
       /// Initialize a new instance of `TestIamPermissionsRequest`.
@@ -473,7 +473,7 @@
 
     /// Synthetic request message for the [updateKmsKey()][google.cloud.compute.v1.snapshots.updateKmsKey] method.
     ///
-    /// [google.cloud.compute.v1.snapshots.updateKmsKey]: <doc:Snapshots/updateKmsKey(request:)>
+    /// [google.cloud.compute.v1.snapshots.updateKmsKey]: <doc:SnapshotsClient/updateKmsKey(request:)>
     public struct UpdateKmsKeyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -500,7 +500,7 @@
 
       /// Synthetic request body field for the [updateKmsKey()][google.cloud.compute.v1.snapshots.updateKmsKey] method.
       ///
-      /// [google.cloud.compute.v1.snapshots.updateKmsKey]: <doc:Snapshots/updateKmsKey(request:)>
+      /// [google.cloud.compute.v1.snapshots.updateKmsKey]: <doc:SnapshotsClient/updateKmsKey(request:)>
       public var body: SnapshotUpdateKmsKeyRequest? = nil
 
       /// Initialize a new instance of `UpdateKmsKeyRequest`.

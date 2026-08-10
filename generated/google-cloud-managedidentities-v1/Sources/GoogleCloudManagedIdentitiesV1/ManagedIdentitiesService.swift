@@ -589,7 +589,7 @@ public class ManagedIdentitiesServiceClient: Clients.ManagedIdentitiesServicePro
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ManagedIdentitiesService_ListOperations")
   public func listOperations(
@@ -600,7 +600,7 @@ public class ManagedIdentitiesServiceClient: Clients.ManagedIdentitiesServicePro
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ManagedIdentitiesService_ListOperations")
   public func listOperations(
@@ -617,7 +617,7 @@ public class ManagedIdentitiesServiceClient: Clients.ManagedIdentitiesServicePro
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ManagedIdentitiesService_GetOperation")
   func getOperation(
@@ -628,7 +628,7 @@ public class ManagedIdentitiesServiceClient: Clients.ManagedIdentitiesServicePro
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ManagedIdentitiesService_DeleteOperation")
   public func deleteOperation(
@@ -639,7 +639,7 @@ public class ManagedIdentitiesServiceClient: Clients.ManagedIdentitiesServicePro
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ManagedIdentitiesService_CancelOperation")
   public func cancelOperation(

@@ -21,7 +21,7 @@
   extension SnapshotSettingsClient {
     /// Synthetic request message for the [get()][google.cloud.compute.v1.snapshotSettings.get] method.
     ///
-    /// [google.cloud.compute.v1.snapshotSettings.get]: <doc:SnapshotSettings/`get`(request:)>
+    /// [google.cloud.compute.v1.snapshotSettings.get]: <doc:SnapshotSettingsClient/`get`(request:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -57,7 +57,7 @@
 
     /// Synthetic request message for the [patch()][google.cloud.compute.v1.snapshotSettings.patch] method.
     ///
-    /// [google.cloud.compute.v1.snapshotSettings.patch]: <doc:SnapshotSettings/patch(request:)>
+    /// [google.cloud.compute.v1.snapshotSettings.patch]: <doc:SnapshotSettingsClient/patch(request:)>
     public struct PatchRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -84,7 +84,7 @@
 
       /// Synthetic request body field for the [patch()][google.cloud.compute.v1.snapshotSettings.patch] method.
       ///
-      /// [google.cloud.compute.v1.snapshotSettings.patch]: <doc:SnapshotSettings/patch(request:)>
+      /// [google.cloud.compute.v1.snapshotSettings.patch]: <doc:SnapshotSettingsClient/patch(request:)>
       public var body: SnapshotSettings? = nil
 
       /// Initialize a new instance of `PatchRequest`.

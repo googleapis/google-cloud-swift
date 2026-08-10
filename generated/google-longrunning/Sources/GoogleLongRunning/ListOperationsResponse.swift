@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// The response message for
 /// [Operations.ListOperations][google.longrunning.Operations.ListOperations].
 ///
-/// [google.longrunning.Operations.ListOperations]: <doc:Operations/listOperations(request:)>
+/// [google.longrunning.Operations.ListOperations]: <doc:OperationsClient/listOperations(request:)>
 public struct ListOperationsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

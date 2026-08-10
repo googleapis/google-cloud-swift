@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [ListQueues][google.cloud.tasks.v2.CloudTasks.ListQueues].
 ///
-/// [google.cloud.tasks.v2.CloudTasks.ListQueues]: <doc:CloudTasks/listQueues(request:)>
+/// [google.cloud.tasks.v2.CloudTasks.ListQueues]: <doc:CloudTasksClient/listQueues(request:)>
 public struct ListQueuesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
@@ -64,7 +64,7 @@ public struct ListQueuesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable
   /// [filter][google.cloud.tasks.v2.ListQueuesRequest.filter] while iterating
   /// through pages.
   ///
-  /// [google.cloud.tasks.v2.CloudTasks.ListQueues]: <doc:CloudTasks/listQueues(request:)>
+  /// [google.cloud.tasks.v2.CloudTasks.ListQueues]: <doc:CloudTasksClient/listQueues(request:)>
   /// [google.cloud.tasks.v2.ListQueuesRequest.filter]: <doc:ListQueuesRequest/filter>
   /// [google.cloud.tasks.v2.ListQueuesResponse.next_page_token]: <doc:ListQueuesResponse/nextPageToken>
   public var pageToken: Swift.String = Swift.String()

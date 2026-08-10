@@ -21,7 +21,7 @@
   /// The request message for
   /// [Examples.DeleteExample][google.cloud.dialogflow.cx.v3.Examples.DeleteExample].
   ///
-  /// [google.cloud.dialogflow.cx.v3.Examples.DeleteExample]: <doc:Examples/deleteExample(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Examples.DeleteExample]: <doc:ExamplesClient/deleteExample(request:)>
   public struct DeleteExampleRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

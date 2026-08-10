@@ -319,7 +319,7 @@
     /// [training
     /// documentation](https://cloud.google.com/dialogflow/es/docs/training).
     ///
-    /// [google.cloud.dialogflow.v2.Agents.TrainAgent]: <doc:Agents/trainAgent(request:)>
+    /// [google.cloud.dialogflow.v2.Agents.TrainAgent]: <doc:AgentsClient/trainAgent(request:)>
     /// [google.cloud.dialogflow.v2.ImportAgentRequest]: <doc:ImportAgentRequest>
     ///
     /// @Snippet(path: "Agents_ImportAgent")
@@ -357,7 +357,7 @@
     /// [training
     /// documentation](https://cloud.google.com/dialogflow/es/docs/training).
     ///
-    /// [google.cloud.dialogflow.v2.Agents.TrainAgent]: <doc:Agents/trainAgent(request:)>
+    /// [google.cloud.dialogflow.v2.Agents.TrainAgent]: <doc:AgentsClient/trainAgent(request:)>
     /// [google.cloud.dialogflow.v2.ImportAgentRequest]: <doc:ImportAgentRequest>
     ///
     /// @Snippet(path: "Agents_ImportAgent")
@@ -435,7 +435,7 @@
     /// [training
     /// documentation](https://cloud.google.com/dialogflow/es/docs/training).
     ///
-    /// [google.cloud.dialogflow.v2.Agents.TrainAgent]: <doc:Agents/trainAgent(request:)>
+    /// [google.cloud.dialogflow.v2.Agents.TrainAgent]: <doc:AgentsClient/trainAgent(request:)>
     ///
     /// @Snippet(path: "Agents_RestoreAgent")
     public func restoreAgent(
@@ -470,7 +470,7 @@
     /// [training
     /// documentation](https://cloud.google.com/dialogflow/es/docs/training).
     ///
-    /// [google.cloud.dialogflow.v2.Agents.TrainAgent]: <doc:Agents/trainAgent(request:)>
+    /// [google.cloud.dialogflow.v2.Agents.TrainAgent]: <doc:AgentsClient/trainAgent(request:)>
     ///
     /// @Snippet(path: "Agents_RestoreAgent")
     public func restoreAgent(
@@ -600,7 +600,7 @@
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
     ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "Agents_ListOperations")
     public func listOperations(
@@ -611,7 +611,7 @@
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
     ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "Agents_ListOperations")
     public func listOperations(
@@ -628,7 +628,7 @@
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
     ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "Agents_GetOperation")
     func getOperation(
@@ -639,7 +639,7 @@
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
     ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "Agents_CancelOperation")
     public func cancelOperation(

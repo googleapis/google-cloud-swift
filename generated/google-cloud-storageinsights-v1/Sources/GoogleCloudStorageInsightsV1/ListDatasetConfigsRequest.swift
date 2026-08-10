@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [`ListDatasetConfigs`][google.cloud.storageinsights.v1.StorageInsights.ListDatasetConfigs]
 ///
-/// [google.cloud.storageinsights.v1.StorageInsights.ListDatasetConfigs]: <doc:StorageInsights/listDatasetConfigs(request:)>
+/// [google.cloud.storageinsights.v1.StorageInsights.ListDatasetConfigs]: <doc:StorageInsightsClient/listDatasetConfigs(request:)>
 public struct ListDatasetConfigsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

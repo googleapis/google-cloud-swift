@@ -21,7 +21,7 @@
   extension InstantSnapshotsClient {
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.instantSnapshots.aggregatedList] method.
     ///
-    /// [google.cloud.compute.v1.instantSnapshots.aggregatedList]: <doc:InstantSnapshots/aggregatedList(request:)>
+    /// [google.cloud.compute.v1.instantSnapshots.aggregatedList]: <doc:InstantSnapshotsClient/aggregatedList(request:)>
     public struct AggregatedListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -163,7 +163,7 @@
 
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.instantSnapshots.delete] method.
     ///
-    /// [google.cloud.compute.v1.instantSnapshots.delete]: <doc:InstantSnapshots/delete(request:)>
+    /// [google.cloud.compute.v1.instantSnapshots.delete]: <doc:InstantSnapshotsClient/delete(request:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -220,7 +220,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.instantSnapshots.get] method.
     ///
-    /// [google.cloud.compute.v1.instantSnapshots.get]: <doc:InstantSnapshots/`get`(request:)>
+    /// [google.cloud.compute.v1.instantSnapshots.get]: <doc:InstantSnapshotsClient/`get`(request:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -262,7 +262,7 @@
 
     /// Synthetic request message for the [getIamPolicy()][google.cloud.compute.v1.instantSnapshots.getIamPolicy] method.
     ///
-    /// [google.cloud.compute.v1.instantSnapshots.getIamPolicy]: <doc:InstantSnapshots/getIamPolicy(request:)>
+    /// [google.cloud.compute.v1.instantSnapshots.getIamPolicy]: <doc:InstantSnapshotsClient/getIamPolicy(request:)>
     public struct GetIamPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -307,7 +307,7 @@
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.instantSnapshots.insert] method.
     ///
-    /// [google.cloud.compute.v1.instantSnapshots.insert]: <doc:InstantSnapshots/insert(request:)>
+    /// [google.cloud.compute.v1.instantSnapshots.insert]: <doc:InstantSnapshotsClient/insert(request:)>
     public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -334,7 +334,7 @@
 
       /// Synthetic request body field for the [insert()][google.cloud.compute.v1.instantSnapshots.insert] method.
       ///
-      /// [google.cloud.compute.v1.instantSnapshots.insert]: <doc:InstantSnapshots/insert(request:)>
+      /// [google.cloud.compute.v1.instantSnapshots.insert]: <doc:InstantSnapshotsClient/insert(request:)>
       public var body: InstantSnapshot? = nil
 
       /// Initialize a new instance of `InsertRequest`.
@@ -366,7 +366,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.instantSnapshots.list] method.
     ///
-    /// [google.cloud.compute.v1.instantSnapshots.list]: <doc:InstantSnapshots/list(request:)>
+    /// [google.cloud.compute.v1.instantSnapshots.list]: <doc:InstantSnapshotsClient/list(request:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -498,7 +498,7 @@
 
     /// Synthetic request message for the [setIamPolicy()][google.cloud.compute.v1.instantSnapshots.setIamPolicy] method.
     ///
-    /// [google.cloud.compute.v1.instantSnapshots.setIamPolicy]: <doc:InstantSnapshots/setIamPolicy(request:)>
+    /// [google.cloud.compute.v1.instantSnapshots.setIamPolicy]: <doc:InstantSnapshotsClient/setIamPolicy(request:)>
     public struct SetIamPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -513,7 +513,7 @@
 
       /// Synthetic request body field for the [setIamPolicy()][google.cloud.compute.v1.instantSnapshots.setIamPolicy] method.
       ///
-      /// [google.cloud.compute.v1.instantSnapshots.setIamPolicy]: <doc:InstantSnapshots/setIamPolicy(request:)>
+      /// [google.cloud.compute.v1.instantSnapshots.setIamPolicy]: <doc:InstantSnapshotsClient/setIamPolicy(request:)>
       public var body: ZoneSetPolicyRequest? = nil
 
       /// Initialize a new instance of `SetIamPolicyRequest`.
@@ -545,7 +545,7 @@
 
     /// Synthetic request message for the [setLabels()][google.cloud.compute.v1.instantSnapshots.setLabels] method.
     ///
-    /// [google.cloud.compute.v1.instantSnapshots.setLabels]: <doc:InstantSnapshots/setLabels(request:)>
+    /// [google.cloud.compute.v1.instantSnapshots.setLabels]: <doc:InstantSnapshotsClient/setLabels(request:)>
     public struct SetLabelsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -575,7 +575,7 @@
 
       /// Synthetic request body field for the [setLabels()][google.cloud.compute.v1.instantSnapshots.setLabels] method.
       ///
-      /// [google.cloud.compute.v1.instantSnapshots.setLabels]: <doc:InstantSnapshots/setLabels(request:)>
+      /// [google.cloud.compute.v1.instantSnapshots.setLabels]: <doc:InstantSnapshotsClient/setLabels(request:)>
       public var body: ZoneSetLabelsRequest? = nil
 
       /// Initialize a new instance of `SetLabelsRequest`.
@@ -607,7 +607,7 @@
 
     /// Synthetic request message for the [testIamPermissions()][google.cloud.compute.v1.instantSnapshots.testIamPermissions] method.
     ///
-    /// [google.cloud.compute.v1.instantSnapshots.testIamPermissions]: <doc:InstantSnapshots/testIamPermissions(request:)>
+    /// [google.cloud.compute.v1.instantSnapshots.testIamPermissions]: <doc:InstantSnapshotsClient/testIamPermissions(request:)>
     public struct TestIamPermissionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -622,7 +622,7 @@
 
       /// Synthetic request body field for the [testIamPermissions()][google.cloud.compute.v1.instantSnapshots.testIamPermissions] method.
       ///
-      /// [google.cloud.compute.v1.instantSnapshots.testIamPermissions]: <doc:InstantSnapshots/testIamPermissions(request:)>
+      /// [google.cloud.compute.v1.instantSnapshots.testIamPermissions]: <doc:InstantSnapshotsClient/testIamPermissions(request:)>
       public var body: TestPermissionsRequest? = nil
 
       /// Initialize a new instance of `TestIamPermissionsRequest`.

@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [Autokey.CreateKeyHandle][google.cloud.kms.v1.Autokey.CreateKeyHandle].
 ///
-/// [google.cloud.kms.v1.Autokey.CreateKeyHandle]: <doc:Autokey/createKeyHandle(request:)>
+/// [google.cloud.kms.v1.Autokey.CreateKeyHandle]: <doc:AutokeyClient/createKeyHandle(request:)>
 public struct CreateKeyHandleRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

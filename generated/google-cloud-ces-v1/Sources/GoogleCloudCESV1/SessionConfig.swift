@@ -79,8 +79,8 @@ public struct SessionConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// [StreamRunSession][google.cloud.ces.v1.SessionService.StreamRunSession] or
   /// [BidiRunSession][google.cloud.ces.v1.SessionService.BidiRunSession].
   ///
-  /// [google.cloud.ces.v1.SessionService.BidiRunSession]: <doc:SessionService/bidiRunSession(request:)>
-  /// [google.cloud.ces.v1.SessionService.StreamRunSession]: <doc:SessionService/streamRunSession(request:)>
+  /// [google.cloud.ces.v1.SessionService.BidiRunSession]: <doc:SessionServiceClient/bidiRunSession(request:)>
+  /// [google.cloud.ces.v1.SessionService.StreamRunSession]: <doc:SessionServiceClient/streamRunSession(request:)>
   public var enableTextStreaming: Swift.Bool = Swift.Bool()
 
   /// Initialize a new instance of `SessionConfig`.

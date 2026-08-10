@@ -59,8 +59,8 @@ public struct Operation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// but optional when the operation is used in
   /// [ServiceController.Check][google.api.servicecontrol.v1.ServiceController.Check].
   ///
-  /// [google.api.servicecontrol.v1.ServiceController.Check]: <doc:ServiceController/check(request:)>
-  /// [google.api.servicecontrol.v1.ServiceController.Report]: <doc:ServiceController/report(request:)>
+  /// [google.api.servicecontrol.v1.ServiceController.Check]: <doc:ServiceControllerClient/check(request:)>
+  /// [google.api.servicecontrol.v1.ServiceController.Report]: <doc:ServiceControllerClient/report(request:)>
   public var endTime: GoogleCloudWkt.Timestamp? = nil
 
   /// Labels describing the operation. Only the following labels are allowed:

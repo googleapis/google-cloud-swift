@@ -21,7 +21,7 @@
   /// Details of operations that perform
   /// [MetadataService.PurgeContexts][google.cloud.aiplatform.v1.MetadataService.PurgeContexts].
   ///
-  /// [google.cloud.aiplatform.v1.MetadataService.PurgeContexts]: <doc:MetadataService/purgeContexts(request:)>
+  /// [google.cloud.aiplatform.v1.MetadataService.PurgeContexts]: <doc:MetadataServiceClient/purgeContexts(request:)>
   public struct PurgeContextsMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

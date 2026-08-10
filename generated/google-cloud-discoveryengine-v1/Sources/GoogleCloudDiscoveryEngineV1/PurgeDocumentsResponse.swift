@@ -23,7 +23,7 @@
   /// method. If the long running operation is successfully done, then this message
   /// is returned by the google.longrunning.Operations.response field.
   ///
-  /// [google.cloud.discoveryengine.v1.DocumentService.PurgeDocuments]: <doc:DocumentService/purgeDocuments(request:)>
+  /// [google.cloud.discoveryengine.v1.DocumentService.PurgeDocuments]: <doc:DocumentServiceClient/purgeDocuments(request:)>
   public struct PurgeDocumentsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

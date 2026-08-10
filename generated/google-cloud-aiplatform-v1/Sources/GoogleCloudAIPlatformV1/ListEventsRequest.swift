@@ -21,7 +21,7 @@
   /// Request message for
   /// [SessionService.ListEvents][google.cloud.aiplatform.v1.SessionService.ListEvents].
   ///
-  /// [google.cloud.aiplatform.v1.SessionService.ListEvents]: <doc:SessionService/listEvents(request:)>
+  /// [google.cloud.aiplatform.v1.SessionService.ListEvents]: <doc:SessionServiceClient/listEvents(request:)>
   public struct ListEventsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {
@@ -42,7 +42,7 @@
     /// call.
     ///
     /// [google.cloud.aiplatform.v1.ListEventsResponse.next_page_token]: <doc:ListEventsResponse/nextPageToken>
-    /// [google.cloud.aiplatform.v1.SessionService.ListEvents]: <doc:SessionService/listEvents(request:)>
+    /// [google.cloud.aiplatform.v1.SessionService.ListEvents]: <doc:SessionServiceClient/listEvents(request:)>
     public var pageToken: Swift.String = Swift.String()
 
     /// Optional. The standard list filter.

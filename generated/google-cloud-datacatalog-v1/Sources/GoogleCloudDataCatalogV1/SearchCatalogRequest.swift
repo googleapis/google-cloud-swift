@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [SearchCatalog][google.cloud.datacatalog.v1.DataCatalog.SearchCatalog].
 ///
-/// [google.cloud.datacatalog.v1.DataCatalog.SearchCatalog]: <doc:DataCatalog/searchCatalog(request:)>
+/// [google.cloud.datacatalog.v1.DataCatalog.SearchCatalog]: <doc:DataCatalogClient/searchCatalog(request:)>
 public struct SearchCatalogRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
@@ -61,7 +61,7 @@ public struct SearchCatalogRequest: Codable, Equatable, GoogleCloudWkt._AnyPacka
   /// [SearchCatalogRequest][google.cloud.datacatalog.v1.DataCatalog.SearchCatalog]
   /// call.
   ///
-  /// [google.cloud.datacatalog.v1.DataCatalog.SearchCatalog]: <doc:DataCatalog/searchCatalog(request:)>
+  /// [google.cloud.datacatalog.v1.DataCatalog.SearchCatalog]: <doc:DataCatalogClient/searchCatalog(request:)>
   /// [google.cloud.datacatalog.v1.SearchCatalogResponse.next_page_token]: <doc:SearchCatalogResponse/nextPageToken>
   public var pageToken: Swift.String = Swift.String()
 

@@ -21,7 +21,7 @@
   extension RegionUrlMapsClient {
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.regionUrlMaps.delete] method.
     ///
-    /// [google.cloud.compute.v1.regionUrlMaps.delete]: <doc:RegionUrlMaps/delete(request:)>
+    /// [google.cloud.compute.v1.regionUrlMaps.delete]: <doc:RegionUrlMapsClient/delete(request:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -67,7 +67,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.regionUrlMaps.get] method.
     ///
-    /// [google.cloud.compute.v1.regionUrlMaps.get]: <doc:RegionUrlMaps/`get`(request:)>
+    /// [google.cloud.compute.v1.regionUrlMaps.get]: <doc:RegionUrlMapsClient/`get`(request:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -109,7 +109,7 @@
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.regionUrlMaps.insert] method.
     ///
-    /// [google.cloud.compute.v1.regionUrlMaps.insert]: <doc:RegionUrlMaps/insert(request:)>
+    /// [google.cloud.compute.v1.regionUrlMaps.insert]: <doc:RegionUrlMapsClient/insert(request:)>
     public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -125,7 +125,7 @@
 
       /// Synthetic request body field for the [insert()][google.cloud.compute.v1.regionUrlMaps.insert] method.
       ///
-      /// [google.cloud.compute.v1.regionUrlMaps.insert]: <doc:RegionUrlMaps/insert(request:)>
+      /// [google.cloud.compute.v1.regionUrlMaps.insert]: <doc:RegionUrlMapsClient/insert(request:)>
       public var body: UrlMap? = nil
 
       /// Initialize a new instance of `InsertRequest`.
@@ -157,7 +157,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.regionUrlMaps.list] method.
     ///
-    /// [google.cloud.compute.v1.regionUrlMaps.list]: <doc:RegionUrlMaps/list(request:)>
+    /// [google.cloud.compute.v1.regionUrlMaps.list]: <doc:RegionUrlMapsClient/list(request:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -289,7 +289,7 @@
 
     /// Synthetic request message for the [patch()][google.cloud.compute.v1.regionUrlMaps.patch] method.
     ///
-    /// [google.cloud.compute.v1.regionUrlMaps.patch]: <doc:RegionUrlMaps/patch(request:)>
+    /// [google.cloud.compute.v1.regionUrlMaps.patch]: <doc:RegionUrlMapsClient/patch(request:)>
     public struct PatchRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -308,7 +308,7 @@
 
       /// Synthetic request body field for the [patch()][google.cloud.compute.v1.regionUrlMaps.patch] method.
       ///
-      /// [google.cloud.compute.v1.regionUrlMaps.patch]: <doc:RegionUrlMaps/patch(request:)>
+      /// [google.cloud.compute.v1.regionUrlMaps.patch]: <doc:RegionUrlMapsClient/patch(request:)>
       public var body: UrlMap? = nil
 
       /// Initialize a new instance of `PatchRequest`.
@@ -340,7 +340,7 @@
 
     /// Synthetic request message for the [update()][google.cloud.compute.v1.regionUrlMaps.update] method.
     ///
-    /// [google.cloud.compute.v1.regionUrlMaps.update]: <doc:RegionUrlMaps/update(request:)>
+    /// [google.cloud.compute.v1.regionUrlMaps.update]: <doc:RegionUrlMapsClient/update(request:)>
     public struct UpdateRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -359,7 +359,7 @@
 
       /// Synthetic request body field for the [update()][google.cloud.compute.v1.regionUrlMaps.update] method.
       ///
-      /// [google.cloud.compute.v1.regionUrlMaps.update]: <doc:RegionUrlMaps/update(request:)>
+      /// [google.cloud.compute.v1.regionUrlMaps.update]: <doc:RegionUrlMapsClient/update(request:)>
       public var body: UrlMap? = nil
 
       /// Initialize a new instance of `UpdateRequest`.
@@ -391,7 +391,7 @@
 
     /// Synthetic request message for the [validate()][google.cloud.compute.v1.regionUrlMaps.validate] method.
     ///
-    /// [google.cloud.compute.v1.regionUrlMaps.validate]: <doc:RegionUrlMaps/validate(request:)>
+    /// [google.cloud.compute.v1.regionUrlMaps.validate]: <doc:RegionUrlMapsClient/validate(request:)>
     public struct ValidateRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -406,7 +406,7 @@
 
       /// Synthetic request body field for the [validate()][google.cloud.compute.v1.regionUrlMaps.validate] method.
       ///
-      /// [google.cloud.compute.v1.regionUrlMaps.validate]: <doc:RegionUrlMaps/validate(request:)>
+      /// [google.cloud.compute.v1.regionUrlMaps.validate]: <doc:RegionUrlMapsClient/validate(request:)>
       public var body: RegionUrlMapsValidateRequest? = nil
 
       /// Initialize a new instance of `ValidateRequest`.

@@ -22,7 +22,7 @@
   /// The response message for
   /// [EntityTypes.ListEntityTypes][google.cloud.dialogflow.cx.v3.EntityTypes.ListEntityTypes].
   ///
-  /// [google.cloud.dialogflow.cx.v3.EntityTypes.ListEntityTypes]: <doc:EntityTypes/listEntityTypes(request:)>
+  /// [google.cloud.dialogflow.cx.v3.EntityTypes.ListEntityTypes]: <doc:EntityTypesClient/listEntityTypes(request:)>
   public struct ListEntityTypesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable

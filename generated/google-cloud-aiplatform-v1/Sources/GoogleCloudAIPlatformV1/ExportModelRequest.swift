@@ -21,7 +21,7 @@
   /// Request message for
   /// [ModelService.ExportModel][google.cloud.aiplatform.v1.ModelService.ExportModel].
   ///
-  /// [google.cloud.aiplatform.v1.ModelService.ExportModel]: <doc:ModelService/exportModel(request:)>
+  /// [google.cloud.aiplatform.v1.ModelService.ExportModel]: <doc:ModelServiceClient/exportModel(request:)>
   public struct ExportModelRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

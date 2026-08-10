@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [ListTaxonomies][google.cloud.datacatalog.v1.PolicyTagManager.ListTaxonomies].
 ///
-/// [google.cloud.datacatalog.v1.PolicyTagManager.ListTaxonomies]: <doc:PolicyTagManager/listTaxonomies(request:)>
+/// [google.cloud.datacatalog.v1.PolicyTagManager.ListTaxonomies]: <doc:PolicyTagManagerClient/listTaxonomies(request:)>
 public struct ListTaxonomiesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

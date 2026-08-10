@@ -21,7 +21,7 @@
   extension RegionBackendServicesClient {
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.regionBackendServices.delete] method.
     ///
-    /// [google.cloud.compute.v1.regionBackendServices.delete]: <doc:RegionBackendServices/delete(request:)>
+    /// [google.cloud.compute.v1.regionBackendServices.delete]: <doc:RegionBackendServicesClient/delete(request:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -78,7 +78,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.regionBackendServices.get] method.
     ///
-    /// [google.cloud.compute.v1.regionBackendServices.get]: <doc:RegionBackendServices/`get`(request:)>
+    /// [google.cloud.compute.v1.regionBackendServices.get]: <doc:RegionBackendServicesClient/`get`(request:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -120,7 +120,7 @@
 
     /// Synthetic request message for the [getHealth()][google.cloud.compute.v1.regionBackendServices.getHealth] method.
     ///
-    /// [google.cloud.compute.v1.regionBackendServices.getHealth]: <doc:RegionBackendServices/getHealth(request:)>
+    /// [google.cloud.compute.v1.regionBackendServices.getHealth]: <doc:RegionBackendServicesClient/getHealth(request:)>
     public struct GetHealthRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -134,7 +134,7 @@
 
       /// Synthetic request body field for the [getHealth()][google.cloud.compute.v1.regionBackendServices.getHealth] method.
       ///
-      /// [google.cloud.compute.v1.regionBackendServices.getHealth]: <doc:RegionBackendServices/getHealth(request:)>
+      /// [google.cloud.compute.v1.regionBackendServices.getHealth]: <doc:RegionBackendServicesClient/getHealth(request:)>
       public var body: ResourceGroupReference? = nil
 
       /// Initialize a new instance of `GetHealthRequest`.
@@ -166,7 +166,7 @@
 
     /// Synthetic request message for the [getIamPolicy()][google.cloud.compute.v1.regionBackendServices.getIamPolicy] method.
     ///
-    /// [google.cloud.compute.v1.regionBackendServices.getIamPolicy]: <doc:RegionBackendServices/getIamPolicy(request:)>
+    /// [google.cloud.compute.v1.regionBackendServices.getIamPolicy]: <doc:RegionBackendServicesClient/getIamPolicy(request:)>
     public struct GetIamPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -212,7 +212,7 @@
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.regionBackendServices.insert] method.
     ///
-    /// [google.cloud.compute.v1.regionBackendServices.insert]: <doc:RegionBackendServices/insert(request:)>
+    /// [google.cloud.compute.v1.regionBackendServices.insert]: <doc:RegionBackendServicesClient/insert(request:)>
     public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -239,7 +239,7 @@
 
       /// Synthetic request body field for the [insert()][google.cloud.compute.v1.regionBackendServices.insert] method.
       ///
-      /// [google.cloud.compute.v1.regionBackendServices.insert]: <doc:RegionBackendServices/insert(request:)>
+      /// [google.cloud.compute.v1.regionBackendServices.insert]: <doc:RegionBackendServicesClient/insert(request:)>
       public var body: BackendService? = nil
 
       /// Initialize a new instance of `InsertRequest`.
@@ -271,7 +271,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.regionBackendServices.list] method.
     ///
-    /// [google.cloud.compute.v1.regionBackendServices.list]: <doc:RegionBackendServices/list(request:)>
+    /// [google.cloud.compute.v1.regionBackendServices.list]: <doc:RegionBackendServicesClient/list(request:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -403,7 +403,7 @@
 
     /// Synthetic request message for the [listUsable()][google.cloud.compute.v1.regionBackendServices.listUsable] method.
     ///
-    /// [google.cloud.compute.v1.regionBackendServices.listUsable]: <doc:RegionBackendServices/listUsable(request:)>
+    /// [google.cloud.compute.v1.regionBackendServices.listUsable]: <doc:RegionBackendServicesClient/listUsable(request:)>
     public struct ListUsableRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -536,7 +536,7 @@
 
     /// Synthetic request message for the [patch()][google.cloud.compute.v1.regionBackendServices.patch] method.
     ///
-    /// [google.cloud.compute.v1.regionBackendServices.patch]: <doc:RegionBackendServices/patch(request:)>
+    /// [google.cloud.compute.v1.regionBackendServices.patch]: <doc:RegionBackendServicesClient/patch(request:)>
     public struct PatchRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -566,7 +566,7 @@
 
       /// Synthetic request body field for the [patch()][google.cloud.compute.v1.regionBackendServices.patch] method.
       ///
-      /// [google.cloud.compute.v1.regionBackendServices.patch]: <doc:RegionBackendServices/patch(request:)>
+      /// [google.cloud.compute.v1.regionBackendServices.patch]: <doc:RegionBackendServicesClient/patch(request:)>
       public var body: BackendService? = nil
 
       /// Initialize a new instance of `PatchRequest`.
@@ -598,7 +598,7 @@
 
     /// Synthetic request message for the [setIamPolicy()][google.cloud.compute.v1.regionBackendServices.setIamPolicy] method.
     ///
-    /// [google.cloud.compute.v1.regionBackendServices.setIamPolicy]: <doc:RegionBackendServices/setIamPolicy(request:)>
+    /// [google.cloud.compute.v1.regionBackendServices.setIamPolicy]: <doc:RegionBackendServicesClient/setIamPolicy(request:)>
     public struct SetIamPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -613,7 +613,7 @@
 
       /// Synthetic request body field for the [setIamPolicy()][google.cloud.compute.v1.regionBackendServices.setIamPolicy] method.
       ///
-      /// [google.cloud.compute.v1.regionBackendServices.setIamPolicy]: <doc:RegionBackendServices/setIamPolicy(request:)>
+      /// [google.cloud.compute.v1.regionBackendServices.setIamPolicy]: <doc:RegionBackendServicesClient/setIamPolicy(request:)>
       public var body: RegionSetPolicyRequest? = nil
 
       /// Initialize a new instance of `SetIamPolicyRequest`.
@@ -646,7 +646,7 @@
 
     /// Synthetic request message for the [setSecurityPolicy()][google.cloud.compute.v1.regionBackendServices.setSecurityPolicy] method.
     ///
-    /// [google.cloud.compute.v1.regionBackendServices.setSecurityPolicy]: <doc:RegionBackendServices/setSecurityPolicy(request:)>
+    /// [google.cloud.compute.v1.regionBackendServices.setSecurityPolicy]: <doc:RegionBackendServicesClient/setSecurityPolicy(request:)>
     public struct SetSecurityPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -677,7 +677,7 @@
 
       /// Synthetic request body field for the [setSecurityPolicy()][google.cloud.compute.v1.regionBackendServices.setSecurityPolicy] method.
       ///
-      /// [google.cloud.compute.v1.regionBackendServices.setSecurityPolicy]: <doc:RegionBackendServices/setSecurityPolicy(request:)>
+      /// [google.cloud.compute.v1.regionBackendServices.setSecurityPolicy]: <doc:RegionBackendServicesClient/setSecurityPolicy(request:)>
       public var body: SecurityPolicyReference? = nil
 
       /// Initialize a new instance of `SetSecurityPolicyRequest`.
@@ -710,7 +710,7 @@
 
     /// Synthetic request message for the [testIamPermissions()][google.cloud.compute.v1.regionBackendServices.testIamPermissions] method.
     ///
-    /// [google.cloud.compute.v1.regionBackendServices.testIamPermissions]: <doc:RegionBackendServices/testIamPermissions(request:)>
+    /// [google.cloud.compute.v1.regionBackendServices.testIamPermissions]: <doc:RegionBackendServicesClient/testIamPermissions(request:)>
     public struct TestIamPermissionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -725,7 +725,7 @@
 
       /// Synthetic request body field for the [testIamPermissions()][google.cloud.compute.v1.regionBackendServices.testIamPermissions] method.
       ///
-      /// [google.cloud.compute.v1.regionBackendServices.testIamPermissions]: <doc:RegionBackendServices/testIamPermissions(request:)>
+      /// [google.cloud.compute.v1.regionBackendServices.testIamPermissions]: <doc:RegionBackendServicesClient/testIamPermissions(request:)>
       public var body: TestPermissionsRequest? = nil
 
       /// Initialize a new instance of `TestIamPermissionsRequest`.
@@ -758,7 +758,7 @@
 
     /// Synthetic request message for the [update()][google.cloud.compute.v1.regionBackendServices.update] method.
     ///
-    /// [google.cloud.compute.v1.regionBackendServices.update]: <doc:RegionBackendServices/update(request:)>
+    /// [google.cloud.compute.v1.regionBackendServices.update]: <doc:RegionBackendServicesClient/update(request:)>
     public struct UpdateRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -788,7 +788,7 @@
 
       /// Synthetic request body field for the [update()][google.cloud.compute.v1.regionBackendServices.update] method.
       ///
-      /// [google.cloud.compute.v1.regionBackendServices.update]: <doc:RegionBackendServices/update(request:)>
+      /// [google.cloud.compute.v1.regionBackendServices.update]: <doc:RegionBackendServicesClient/update(request:)>
       public var body: BackendService? = nil
 
       /// Initialize a new instance of `UpdateRequest`.

@@ -22,7 +22,7 @@
   /// Response message for
   /// [PersistentResourceService.ListPersistentResources][google.cloud.aiplatform.v1.PersistentResourceService.ListPersistentResources]
   ///
-  /// [google.cloud.aiplatform.v1.PersistentResourceService.ListPersistentResources]: <doc:PersistentResourceService/listPersistentResources(request:)>
+  /// [google.cloud.aiplatform.v1.PersistentResourceService.ListPersistentResources]: <doc:PersistentResourceServiceClient/listPersistentResources(request:)>
   public struct ListPersistentResourcesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable

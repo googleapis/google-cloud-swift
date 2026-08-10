@@ -21,7 +21,7 @@
   extension RegionDiskTypesClient {
     /// Synthetic request message for the [get()][google.cloud.compute.v1.regionDiskTypes.get] method.
     ///
-    /// [google.cloud.compute.v1.regionDiskTypes.get]: <doc:RegionDiskTypes/`get`(request:)>
+    /// [google.cloud.compute.v1.regionDiskTypes.get]: <doc:RegionDiskTypesClient/`get`(request:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -63,7 +63,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.regionDiskTypes.list] method.
     ///
-    /// [google.cloud.compute.v1.regionDiskTypes.list]: <doc:RegionDiskTypes/list(request:)>
+    /// [google.cloud.compute.v1.regionDiskTypes.list]: <doc:RegionDiskTypesClient/list(request:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {

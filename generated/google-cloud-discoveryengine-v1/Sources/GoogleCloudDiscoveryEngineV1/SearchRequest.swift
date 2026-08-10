@@ -22,7 +22,7 @@
   /// [SearchService.Search][google.cloud.discoveryengine.v1.SearchService.Search]
   /// method.
   ///
-  /// [google.cloud.discoveryengine.v1.SearchService.Search]: <doc:SearchService/search(request:)>
+  /// [google.cloud.discoveryengine.v1.SearchService.Search]: <doc:SearchServiceClient/search(request:)>
   public struct SearchRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {
@@ -90,7 +90,7 @@
     /// must match the call that provided the page token. Otherwise, an
     ///  `INVALID_ARGUMENT`  error is returned.
     ///
-    /// [google.cloud.discoveryengine.v1.SearchService.Search]: <doc:SearchService/search(request:)>
+    /// [google.cloud.discoveryengine.v1.SearchService.Search]: <doc:SearchServiceClient/search(request:)>
     public var pageToken: Swift.String = Swift.String()
 
     /// A 0-indexed integer that specifies the current offset (that is, starting

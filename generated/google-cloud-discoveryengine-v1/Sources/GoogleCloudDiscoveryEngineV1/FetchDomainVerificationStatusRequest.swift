@@ -22,7 +22,7 @@
   /// [SiteSearchEngineService.FetchDomainVerificationStatus][google.cloud.discoveryengine.v1.SiteSearchEngineService.FetchDomainVerificationStatus]
   /// method.
   ///
-  /// [google.cloud.discoveryengine.v1.SiteSearchEngineService.FetchDomainVerificationStatus]: <doc:SiteSearchEngineService/fetchDomainVerificationStatus(request:)>
+  /// [google.cloud.discoveryengine.v1.SiteSearchEngineService.FetchDomainVerificationStatus]: <doc:SiteSearchEngineServiceClient/fetchDomainVerificationStatus(request:)>
   public struct FetchDomainVerificationStatusRequest: Codable, Equatable, GoogleCloudWkt
       ._AnyPackable,
     Sendable

@@ -21,7 +21,7 @@
   /// The request message for
   /// [EntityTypes.ListEntityTypes][google.cloud.dialogflow.v2.EntityTypes.ListEntityTypes].
   ///
-  /// [google.cloud.dialogflow.v2.EntityTypes.ListEntityTypes]: <doc:EntityTypes/listEntityTypes(request:)>
+  /// [google.cloud.dialogflow.v2.EntityTypes.ListEntityTypes]: <doc:EntityTypesClient/listEntityTypes(request:)>
   public struct ListEntityTypesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

@@ -21,7 +21,7 @@
   /// Runtime operation information for
   /// [IndexEndpointService.UndeployIndex][google.cloud.aiplatform.v1.IndexEndpointService.UndeployIndex].
   ///
-  /// [google.cloud.aiplatform.v1.IndexEndpointService.UndeployIndex]: <doc:IndexEndpointService/undeployIndex(request:)>
+  /// [google.cloud.aiplatform.v1.IndexEndpointService.UndeployIndex]: <doc:IndexEndpointServiceClient/undeployIndex(request:)>
   public struct UndeployIndexOperationMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

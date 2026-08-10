@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [KeyManagementService.ListCryptoKeyVersions][google.cloud.kms.v1.KeyManagementService.ListCryptoKeyVersions].
 ///
-/// [google.cloud.kms.v1.KeyManagementService.ListCryptoKeyVersions]: <doc:KeyManagementService/listCryptoKeyVersions(request:)>
+/// [google.cloud.kms.v1.KeyManagementService.ListCryptoKeyVersions]: <doc:KeyManagementServiceClient/listCryptoKeyVersions(request:)>
 public struct ListCryptoKeyVersionsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

@@ -21,7 +21,7 @@
   /// The request message for
   /// [Pages.ListPages][google.cloud.dialogflow.cx.v3.Pages.ListPages].
   ///
-  /// [google.cloud.dialogflow.cx.v3.Pages.ListPages]: <doc:Pages/listPages(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Pages.ListPages]: <doc:PagesClient/listPages(request:)>
   public struct ListPagesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

@@ -22,7 +22,7 @@
   /// Response message for
   /// [DatasetService.ListSavedQueries][google.cloud.aiplatform.v1.DatasetService.ListSavedQueries].
   ///
-  /// [google.cloud.aiplatform.v1.DatasetService.ListSavedQueries]: <doc:DatasetService/listSavedQueries(request:)>
+  /// [google.cloud.aiplatform.v1.DatasetService.ListSavedQueries]: <doc:DatasetServiceClient/listSavedQueries(request:)>
   public struct ListSavedQueriesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable

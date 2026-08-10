@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [KeyManagementService.ListRetiredResources][google.cloud.kms.v1.KeyManagementService.ListRetiredResources].
 ///
-/// [google.cloud.kms.v1.KeyManagementService.ListRetiredResources]: <doc:KeyManagementService/listRetiredResources(request:)>
+/// [google.cloud.kms.v1.KeyManagementService.ListRetiredResources]: <doc:KeyManagementServiceClient/listRetiredResources(request:)>
 public struct ListRetiredResourcesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

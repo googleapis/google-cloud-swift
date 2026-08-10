@@ -21,7 +21,7 @@
   extension InstanceSettingsClient {
     /// Synthetic request message for the [get()][google.cloud.compute.v1.instanceSettings.get] method.
     ///
-    /// [google.cloud.compute.v1.instanceSettings.get]: <doc:InstanceSettings/`get`(request:)>
+    /// [google.cloud.compute.v1.instanceSettings.get]: <doc:InstanceSettingsClient/`get`(request:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -60,7 +60,7 @@
 
     /// Synthetic request message for the [patch()][google.cloud.compute.v1.instanceSettings.patch] method.
     ///
-    /// [google.cloud.compute.v1.instanceSettings.patch]: <doc:InstanceSettings/patch(request:)>
+    /// [google.cloud.compute.v1.instanceSettings.patch]: <doc:InstanceSettingsClient/patch(request:)>
     public struct PatchRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -90,7 +90,7 @@
 
       /// Synthetic request body field for the [patch()][google.cloud.compute.v1.instanceSettings.patch] method.
       ///
-      /// [google.cloud.compute.v1.instanceSettings.patch]: <doc:InstanceSettings/patch(request:)>
+      /// [google.cloud.compute.v1.instanceSettings.patch]: <doc:InstanceSettingsClient/patch(request:)>
       public var body: InstanceSettings? = nil
 
       /// Initialize a new instance of `PatchRequest`.

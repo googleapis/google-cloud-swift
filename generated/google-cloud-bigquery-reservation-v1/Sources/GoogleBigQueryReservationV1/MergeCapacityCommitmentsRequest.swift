@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// The request for
 /// [ReservationService.MergeCapacityCommitments][google.cloud.bigquery.reservation.v1.ReservationService.MergeCapacityCommitments].
 ///
-/// [google.cloud.bigquery.reservation.v1.ReservationService.MergeCapacityCommitments]: <doc:ReservationService/mergeCapacityCommitments(request:)>
+/// [google.cloud.bigquery.reservation.v1.ReservationService.MergeCapacityCommitments]: <doc:ReservationServiceClient/mergeCapacityCommitments(request:)>
 public struct MergeCapacityCommitmentsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

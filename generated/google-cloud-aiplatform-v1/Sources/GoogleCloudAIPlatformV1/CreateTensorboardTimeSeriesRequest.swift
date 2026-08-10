@@ -21,7 +21,7 @@
   /// Request message for
   /// [TensorboardService.CreateTensorboardTimeSeries][google.cloud.aiplatform.v1.TensorboardService.CreateTensorboardTimeSeries].
   ///
-  /// [google.cloud.aiplatform.v1.TensorboardService.CreateTensorboardTimeSeries]: <doc:TensorboardService/createTensorboardTimeSeries(request:)>
+  /// [google.cloud.aiplatform.v1.TensorboardService.CreateTensorboardTimeSeries]: <doc:TensorboardServiceClient/createTensorboardTimeSeries(request:)>
   public struct CreateTensorboardTimeSeriesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

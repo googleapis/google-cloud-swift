@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [AgentService.GetToolset][google.cloud.ces.v1.AgentService.GetToolset].
 ///
-/// [google.cloud.ces.v1.AgentService.GetToolset]: <doc:AgentService/getToolset(request:)>
+/// [google.cloud.ces.v1.AgentService.GetToolset]: <doc:AgentServiceClient/getToolset(request:)>
 public struct GetToolsetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

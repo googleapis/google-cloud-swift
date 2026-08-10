@@ -21,7 +21,7 @@
   /// The request message for
   /// [Webhooks.UpdateWebhook][google.cloud.dialogflow.cx.v3.Webhooks.UpdateWebhook].
   ///
-  /// [google.cloud.dialogflow.cx.v3.Webhooks.UpdateWebhook]: <doc:Webhooks/updateWebhook(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Webhooks.UpdateWebhook]: <doc:WebhooksClient/updateWebhook(request:)>
   public struct UpdateWebhookRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

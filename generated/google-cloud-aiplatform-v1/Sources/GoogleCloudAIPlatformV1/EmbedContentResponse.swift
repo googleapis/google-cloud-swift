@@ -21,7 +21,7 @@
   /// Response message for
   /// [PredictionService.EmbedContent][google.cloud.aiplatform.v1.PredictionService.EmbedContent].
   ///
-  /// [google.cloud.aiplatform.v1.PredictionService.EmbedContent]: <doc:PredictionService/embedContent(request:)>
+  /// [google.cloud.aiplatform.v1.PredictionService.EmbedContent]: <doc:PredictionServiceClient/embedContent(request:)>
   public struct EmbedContentResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

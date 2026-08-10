@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [HsmManagement.GetSingleTenantHsmInstance][google.cloud.kms.v1.HsmManagement.GetSingleTenantHsmInstance].
 ///
-/// [google.cloud.kms.v1.HsmManagement.GetSingleTenantHsmInstance]: <doc:HsmManagement/getSingleTenantHsmInstance(request:)>
+/// [google.cloud.kms.v1.HsmManagement.GetSingleTenantHsmInstance]: <doc:HsmManagementClient/getSingleTenantHsmInstance(request:)>
 public struct GetSingleTenantHsmInstanceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

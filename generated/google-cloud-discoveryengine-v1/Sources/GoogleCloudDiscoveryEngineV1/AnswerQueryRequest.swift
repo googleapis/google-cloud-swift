@@ -22,7 +22,7 @@
   /// [ConversationalSearchService.AnswerQuery][google.cloud.discoveryengine.v1.ConversationalSearchService.AnswerQuery]
   /// method.
   ///
-  /// [google.cloud.discoveryengine.v1.ConversationalSearchService.AnswerQuery]: <doc:ConversationalSearchService/answerQuery(request:)>
+  /// [google.cloud.discoveryengine.v1.ConversationalSearchService.AnswerQuery]: <doc:ConversationalSearchServiceClient/answerQuery(request:)>
   public struct AnswerQueryRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {
@@ -76,8 +76,8 @@
     /// [ConversationalSearchService.GetSession][google.cloud.discoveryengine.v1.ConversationalSearchService.GetSession]
     /// method.
     ///
-    /// [google.cloud.discoveryengine.v1.ConversationalSearchService.GetAnswer]: <doc:ConversationalSearchService/getAnswer(request:)>
-    /// [google.cloud.discoveryengine.v1.ConversationalSearchService.GetSession]: <doc:ConversationalSearchService/getSession(request:)>
+    /// [google.cloud.discoveryengine.v1.ConversationalSearchService.GetAnswer]: <doc:ConversationalSearchServiceClient/getAnswer(request:)>
+    /// [google.cloud.discoveryengine.v1.ConversationalSearchService.GetSession]: <doc:ConversationalSearchServiceClient/getSession(request:)>
     @available(*, deprecated)
     public var asynchronousMode: Swift.Bool = Swift.Bool()
 

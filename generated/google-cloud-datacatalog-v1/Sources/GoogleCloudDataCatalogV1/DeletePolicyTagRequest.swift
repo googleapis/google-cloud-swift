@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [DeletePolicyTag][google.cloud.datacatalog.v1.PolicyTagManager.DeletePolicyTag].
 ///
-/// [google.cloud.datacatalog.v1.PolicyTagManager.DeletePolicyTag]: <doc:PolicyTagManager/deletePolicyTag(request:)>
+/// [google.cloud.datacatalog.v1.PolicyTagManager.DeletePolicyTag]: <doc:PolicyTagManagerClient/deletePolicyTag(request:)>
 public struct DeletePolicyTagRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

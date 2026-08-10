@@ -21,7 +21,7 @@
   /// The request message for
   /// [ConversationDatasets.CreateConversationDataset][google.cloud.dialogflow.v2.ConversationDatasets.CreateConversationDataset].
   ///
-  /// [google.cloud.dialogflow.v2.ConversationDatasets.CreateConversationDataset]: <doc:ConversationDatasets/createConversationDataset(request:)>
+  /// [google.cloud.dialogflow.v2.ConversationDatasets.CreateConversationDataset]: <doc:ConversationDatasetsClient/createConversationDataset(request:)>
   public struct CreateConversationDatasetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

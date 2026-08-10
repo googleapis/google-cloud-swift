@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [LicenseManagementService.Unassign][google.cloud.commerce.consumer.procurement.v1.LicenseManagementService.Unassign].
 ///
-/// [google.cloud.commerce.consumer.procurement.v1.LicenseManagementService.Unassign]: <doc:LicenseManagementService/unassign(request:)>
+/// [google.cloud.commerce.consumer.procurement.v1.LicenseManagementService.Unassign]: <doc:LicenseManagementServiceClient/unassign(request:)>
 public struct UnassignRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

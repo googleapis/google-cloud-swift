@@ -22,7 +22,7 @@
   /// Response message for
   /// [SessionService.ListSessions][google.cloud.aiplatform.v1.SessionService.ListSessions].
   ///
-  /// [google.cloud.aiplatform.v1.SessionService.ListSessions]: <doc:SessionService/listSessions(request:)>
+  /// [google.cloud.aiplatform.v1.SessionService.ListSessions]: <doc:SessionServiceClient/listSessions(request:)>
   public struct ListSessionsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable

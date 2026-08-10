@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [WidgetService.GenerateChatToken][google.cloud.ces.v1.WidgetService.GenerateChatToken].
 ///
-/// [google.cloud.ces.v1.WidgetService.GenerateChatToken]: <doc:WidgetService/generateChatToken(request:)>
+/// [google.cloud.ces.v1.WidgetService.GenerateChatToken]: <doc:WidgetServiceClient/generateChatToken(request:)>
 public struct GenerateChatTokenResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

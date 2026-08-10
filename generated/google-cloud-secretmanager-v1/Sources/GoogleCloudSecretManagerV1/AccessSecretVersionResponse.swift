@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [SecretManagerService.AccessSecretVersion][google.cloud.secretmanager.v1.SecretManagerService.AccessSecretVersion].
 ///
-/// [google.cloud.secretmanager.v1.SecretManagerService.AccessSecretVersion]: <doc:SecretManagerService/accessSecretVersion(request:)>
+/// [google.cloud.secretmanager.v1.SecretManagerService.AccessSecretVersion]: <doc:SecretManagerServiceClient/accessSecretVersion(request:)>
 public struct AccessSecretVersionResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

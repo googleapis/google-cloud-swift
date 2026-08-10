@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [ListEntries][google.cloud.datacatalog.v1.DataCatalog.ListEntries].
 ///
-/// [google.cloud.datacatalog.v1.DataCatalog.ListEntries]: <doc:DataCatalog/listEntries(request:)>
+/// [google.cloud.datacatalog.v1.DataCatalog.ListEntries]: <doc:DataCatalogClient/listEntries(request:)>
 public struct ListEntriesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

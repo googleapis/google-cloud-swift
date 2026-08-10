@@ -21,7 +21,7 @@
   /// Request message for
   /// [ModelService.CopyModel][google.cloud.aiplatform.v1.ModelService.CopyModel].
   ///
-  /// [google.cloud.aiplatform.v1.ModelService.CopyModel]: <doc:ModelService/copyModel(request:)>
+  /// [google.cloud.aiplatform.v1.ModelService.CopyModel]: <doc:ModelServiceClient/copyModel(request:)>
   public struct CopyModelRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

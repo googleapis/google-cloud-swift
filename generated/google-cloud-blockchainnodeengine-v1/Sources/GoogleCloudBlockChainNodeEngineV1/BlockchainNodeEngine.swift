@@ -311,7 +311,7 @@ public class BlockchainNodeEngineClient: Clients.BlockchainNodeEngineProtocol {
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "BlockchainNodeEngine_ListOperations")
   public func listOperations(
@@ -322,7 +322,7 @@ public class BlockchainNodeEngineClient: Clients.BlockchainNodeEngineProtocol {
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "BlockchainNodeEngine_ListOperations")
   public func listOperations(
@@ -339,7 +339,7 @@ public class BlockchainNodeEngineClient: Clients.BlockchainNodeEngineProtocol {
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "BlockchainNodeEngine_GetOperation")
   func getOperation(
@@ -350,7 +350,7 @@ public class BlockchainNodeEngineClient: Clients.BlockchainNodeEngineProtocol {
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "BlockchainNodeEngine_DeleteOperation")
   public func deleteOperation(
@@ -361,7 +361,7 @@ public class BlockchainNodeEngineClient: Clients.BlockchainNodeEngineProtocol {
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "BlockchainNodeEngine_CancelOperation")
   public func cancelOperation(

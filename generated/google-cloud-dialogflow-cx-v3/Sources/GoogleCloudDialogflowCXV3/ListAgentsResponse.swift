@@ -22,7 +22,7 @@
   /// The response message for
   /// [Agents.ListAgents][google.cloud.dialogflow.cx.v3.Agents.ListAgents].
   ///
-  /// [google.cloud.dialogflow.cx.v3.Agents.ListAgents]: <doc:Agents/listAgents(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Agents.ListAgents]: <doc:AgentsClient/listAgents(request:)>
   public struct ListAgentsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable

@@ -21,7 +21,7 @@
   /// Request message for
   /// [JobService.PauseModelDeploymentMonitoringJob][google.cloud.aiplatform.v1.JobService.PauseModelDeploymentMonitoringJob].
   ///
-  /// [google.cloud.aiplatform.v1.JobService.PauseModelDeploymentMonitoringJob]: <doc:JobService/pauseModelDeploymentMonitoringJob(request:)>
+  /// [google.cloud.aiplatform.v1.JobService.PauseModelDeploymentMonitoringJob]: <doc:JobServiceClient/pauseModelDeploymentMonitoringJob(request:)>
   public struct PauseModelDeploymentMonitoringJobRequest: Codable, Equatable, GoogleCloudWkt
       ._AnyPackable,
     Sendable

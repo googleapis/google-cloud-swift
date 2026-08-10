@@ -21,7 +21,7 @@
   /// The request message for
   /// [Environments.GetEnvironmentHistory][google.cloud.dialogflow.v2.Environments.GetEnvironmentHistory].
   ///
-  /// [google.cloud.dialogflow.v2.Environments.GetEnvironmentHistory]: <doc:Environments/getEnvironmentHistory(request:)>
+  /// [google.cloud.dialogflow.v2.Environments.GetEnvironmentHistory]: <doc:EnvironmentsClient/getEnvironmentHistory(request:)>
   public struct GetEnvironmentHistoryRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

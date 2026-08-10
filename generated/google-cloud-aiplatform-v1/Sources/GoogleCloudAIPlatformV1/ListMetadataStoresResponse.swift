@@ -22,7 +22,7 @@
   /// Response message for
   /// [MetadataService.ListMetadataStores][google.cloud.aiplatform.v1.MetadataService.ListMetadataStores].
   ///
-  /// [google.cloud.aiplatform.v1.MetadataService.ListMetadataStores]: <doc:MetadataService/listMetadataStores(request:)>
+  /// [google.cloud.aiplatform.v1.MetadataService.ListMetadataStores]: <doc:MetadataServiceClient/listMetadataStores(request:)>
   public struct ListMetadataStoresResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable

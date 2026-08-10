@@ -23,8 +23,8 @@
   /// Request message for
   /// [FeatureRegistryService.CreateFeature][google.cloud.aiplatform.v1.FeatureRegistryService.CreateFeature].
   ///
-  /// [google.cloud.aiplatform.v1.FeatureRegistryService.CreateFeature]: <doc:FeatureRegistryService/createFeature(request:)>
-  /// [google.cloud.aiplatform.v1.FeaturestoreService.CreateFeature]: <doc:FeaturestoreService/createFeature(request:)>
+  /// [google.cloud.aiplatform.v1.FeatureRegistryService.CreateFeature]: <doc:FeatureRegistryServiceClient/createFeature(request:)>
+  /// [google.cloud.aiplatform.v1.FeaturestoreService.CreateFeature]: <doc:FeaturestoreServiceClient/createFeature(request:)>
   public struct CreateFeatureRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

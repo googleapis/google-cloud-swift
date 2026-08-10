@@ -21,7 +21,7 @@
   /// Request message for
   /// [ScheduleService.ListSchedules][google.cloud.aiplatform.v1.ScheduleService.ListSchedules].
   ///
-  /// [google.cloud.aiplatform.v1.ScheduleService.ListSchedules]: <doc:ScheduleService/listSchedules(request:)>
+  /// [google.cloud.aiplatform.v1.ScheduleService.ListSchedules]: <doc:ScheduleServiceClient/listSchedules(request:)>
   public struct ListSchedulesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {
@@ -73,7 +73,7 @@
     /// call.
     ///
     /// [google.cloud.aiplatform.v1.ListSchedulesResponse.next_page_token]: <doc:ListSchedulesResponse/nextPageToken>
-    /// [google.cloud.aiplatform.v1.ScheduleService.ListSchedules]: <doc:ScheduleService/listSchedules(request:)>
+    /// [google.cloud.aiplatform.v1.ScheduleService.ListSchedules]: <doc:ScheduleServiceClient/listSchedules(request:)>
     public var pageToken: Swift.String = Swift.String()
 
     /// A comma-separated list of fields to order by. The default sort order is in

@@ -21,7 +21,7 @@ import GoogleGrafeasV1
 /// Request message for
 /// [ValidationHelperV1.ValidateAttestationOccurrence][google.cloud.binaryauthorization.v1.ValidationHelperV1.ValidateAttestationOccurrence].
 ///
-/// [google.cloud.binaryauthorization.v1.ValidationHelperV1.ValidateAttestationOccurrence]: <doc:ValidationHelperV1/validateAttestationOccurrence(request:)>
+/// [google.cloud.binaryauthorization.v1.ValidationHelperV1.ValidateAttestationOccurrence]: <doc:ValidationHelperV1Client/validateAttestationOccurrence(request:)>
 public struct ValidateAttestationOccurrenceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

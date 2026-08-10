@@ -21,7 +21,7 @@
   /// Request message for
   /// [VertexRagDataService.ListRagCorpora][google.cloud.aiplatform.v1.VertexRagDataService.ListRagCorpora].
   ///
-  /// [google.cloud.aiplatform.v1.VertexRagDataService.ListRagCorpora]: <doc:VertexRagDataService/listRagCorpora(request:)>
+  /// [google.cloud.aiplatform.v1.VertexRagDataService.ListRagCorpora]: <doc:VertexRagDataServiceClient/listRagCorpora(request:)>
   public struct ListRagCorporaRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {
@@ -40,7 +40,7 @@
     /// call.
     ///
     /// [google.cloud.aiplatform.v1.ListRagCorporaResponse.next_page_token]: <doc:ListRagCorporaResponse/nextPageToken>
-    /// [google.cloud.aiplatform.v1.VertexRagDataService.ListRagCorpora]: <doc:VertexRagDataService/listRagCorpora(request:)>
+    /// [google.cloud.aiplatform.v1.VertexRagDataService.ListRagCorpora]: <doc:VertexRagDataServiceClient/listRagCorpora(request:)>
     public var pageToken: Swift.String = Swift.String()
 
     /// Initialize a new instance of `ListRagCorporaRequest`.

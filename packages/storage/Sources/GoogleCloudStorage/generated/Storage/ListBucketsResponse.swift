@@ -20,7 +20,7 @@ import GoogleCloudWkt
 
 /// Response message for [ListBuckets][google.storage.v2.Storage.ListBuckets].
 ///
-/// [google.storage.v2.Storage.ListBuckets]: <doc:Storage/listBuckets(request:)>
+/// [google.storage.v2.Storage.ListBuckets]: <doc:StorageClient/listBuckets(request:)>
 public struct ListBucketsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

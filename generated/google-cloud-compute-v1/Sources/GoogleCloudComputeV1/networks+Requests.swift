@@ -21,7 +21,7 @@
   extension NetworksClient {
     /// Synthetic request message for the [addPeering()][google.cloud.compute.v1.networks.addPeering] method.
     ///
-    /// [google.cloud.compute.v1.networks.addPeering]: <doc:Networks/addPeering(request:)>
+    /// [google.cloud.compute.v1.networks.addPeering]: <doc:NetworksClient/addPeering(request:)>
     public struct AddPeeringRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -48,7 +48,7 @@
 
       /// Synthetic request body field for the [addPeering()][google.cloud.compute.v1.networks.addPeering] method.
       ///
-      /// [google.cloud.compute.v1.networks.addPeering]: <doc:Networks/addPeering(request:)>
+      /// [google.cloud.compute.v1.networks.addPeering]: <doc:NetworksClient/addPeering(request:)>
       public var body: NetworksAddPeeringRequest? = nil
 
       /// Initialize a new instance of `AddPeeringRequest`.
@@ -80,7 +80,7 @@
 
     /// Synthetic request message for the [cancelRequestRemovePeering()][google.cloud.compute.v1.networks.cancelRequestRemovePeering] method.
     ///
-    /// [google.cloud.compute.v1.networks.cancelRequestRemovePeering]: <doc:Networks/cancelRequestRemovePeering(request:)>
+    /// [google.cloud.compute.v1.networks.cancelRequestRemovePeering]: <doc:NetworksClient/cancelRequestRemovePeering(request:)>
     public struct CancelRequestRemovePeeringRequest: Codable, Equatable, GoogleCloudWkt
         ._AnyPackable,
       Sendable
@@ -108,7 +108,7 @@
 
       /// Synthetic request body field for the [cancelRequestRemovePeering()][google.cloud.compute.v1.networks.cancelRequestRemovePeering] method.
       ///
-      /// [google.cloud.compute.v1.networks.cancelRequestRemovePeering]: <doc:Networks/cancelRequestRemovePeering(request:)>
+      /// [google.cloud.compute.v1.networks.cancelRequestRemovePeering]: <doc:NetworksClient/cancelRequestRemovePeering(request:)>
       public var body: NetworksCancelRequestRemovePeeringRequest? = nil
 
       /// Initialize a new instance of `CancelRequestRemovePeeringRequest`.
@@ -141,7 +141,7 @@
 
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.networks.delete] method.
     ///
-    /// [google.cloud.compute.v1.networks.delete]: <doc:Networks/delete(request:)>
+    /// [google.cloud.compute.v1.networks.delete]: <doc:NetworksClient/delete(request:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -195,7 +195,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.networks.get] method.
     ///
-    /// [google.cloud.compute.v1.networks.get]: <doc:Networks/`get`(request:)>
+    /// [google.cloud.compute.v1.networks.get]: <doc:NetworksClient/`get`(request:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -234,7 +234,7 @@
 
     /// Synthetic request message for the [getEffectiveFirewalls()][google.cloud.compute.v1.networks.getEffectiveFirewalls] method.
     ///
-    /// [google.cloud.compute.v1.networks.getEffectiveFirewalls]: <doc:Networks/getEffectiveFirewalls(request:)>
+    /// [google.cloud.compute.v1.networks.getEffectiveFirewalls]: <doc:NetworksClient/getEffectiveFirewalls(request:)>
     public struct GetEffectiveFirewallsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -273,7 +273,7 @@
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.networks.insert] method.
     ///
-    /// [google.cloud.compute.v1.networks.insert]: <doc:Networks/insert(request:)>
+    /// [google.cloud.compute.v1.networks.insert]: <doc:NetworksClient/insert(request:)>
     public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -297,7 +297,7 @@
 
       /// Synthetic request body field for the [insert()][google.cloud.compute.v1.networks.insert] method.
       ///
-      /// [google.cloud.compute.v1.networks.insert]: <doc:Networks/insert(request:)>
+      /// [google.cloud.compute.v1.networks.insert]: <doc:NetworksClient/insert(request:)>
       public var body: Network? = nil
 
       /// Initialize a new instance of `InsertRequest`.
@@ -329,7 +329,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.networks.list] method.
     ///
-    /// [google.cloud.compute.v1.networks.list]: <doc:Networks/list(request:)>
+    /// [google.cloud.compute.v1.networks.list]: <doc:NetworksClient/list(request:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -458,7 +458,7 @@
 
     /// Synthetic request message for the [listPeeringRoutes()][google.cloud.compute.v1.networks.listPeeringRoutes] method.
     ///
-    /// [google.cloud.compute.v1.networks.listPeeringRoutes]: <doc:Networks/listPeeringRoutes(request:)>
+    /// [google.cloud.compute.v1.networks.listPeeringRoutes]: <doc:NetworksClient/listPeeringRoutes(request:)>
     public struct ListPeeringRoutesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -700,7 +700,7 @@
 
     /// Synthetic request message for the [patch()][google.cloud.compute.v1.networks.patch] method.
     ///
-    /// [google.cloud.compute.v1.networks.patch]: <doc:Networks/patch(request:)>
+    /// [google.cloud.compute.v1.networks.patch]: <doc:NetworksClient/patch(request:)>
     public struct PatchRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -727,7 +727,7 @@
 
       /// Synthetic request body field for the [patch()][google.cloud.compute.v1.networks.patch] method.
       ///
-      /// [google.cloud.compute.v1.networks.patch]: <doc:Networks/patch(request:)>
+      /// [google.cloud.compute.v1.networks.patch]: <doc:NetworksClient/patch(request:)>
       public var body: Network? = nil
 
       /// Initialize a new instance of `PatchRequest`.
@@ -759,7 +759,7 @@
 
     /// Synthetic request message for the [removePeering()][google.cloud.compute.v1.networks.removePeering] method.
     ///
-    /// [google.cloud.compute.v1.networks.removePeering]: <doc:Networks/removePeering(request:)>
+    /// [google.cloud.compute.v1.networks.removePeering]: <doc:NetworksClient/removePeering(request:)>
     public struct RemovePeeringRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -786,7 +786,7 @@
 
       /// Synthetic request body field for the [removePeering()][google.cloud.compute.v1.networks.removePeering] method.
       ///
-      /// [google.cloud.compute.v1.networks.removePeering]: <doc:Networks/removePeering(request:)>
+      /// [google.cloud.compute.v1.networks.removePeering]: <doc:NetworksClient/removePeering(request:)>
       public var body: NetworksRemovePeeringRequest? = nil
 
       /// Initialize a new instance of `RemovePeeringRequest`.
@@ -818,7 +818,7 @@
 
     /// Synthetic request message for the [requestRemovePeering()][google.cloud.compute.v1.networks.requestRemovePeering] method.
     ///
-    /// [google.cloud.compute.v1.networks.requestRemovePeering]: <doc:Networks/requestRemovePeering(request:)>
+    /// [google.cloud.compute.v1.networks.requestRemovePeering]: <doc:NetworksClient/requestRemovePeering(request:)>
     public struct RequestRemovePeeringRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -845,7 +845,7 @@
 
       /// Synthetic request body field for the [requestRemovePeering()][google.cloud.compute.v1.networks.requestRemovePeering] method.
       ///
-      /// [google.cloud.compute.v1.networks.requestRemovePeering]: <doc:Networks/requestRemovePeering(request:)>
+      /// [google.cloud.compute.v1.networks.requestRemovePeering]: <doc:NetworksClient/requestRemovePeering(request:)>
       public var body: NetworksRequestRemovePeeringRequest? = nil
 
       /// Initialize a new instance of `RequestRemovePeeringRequest`.
@@ -877,7 +877,7 @@
 
     /// Synthetic request message for the [switchToCustomMode()][google.cloud.compute.v1.networks.switchToCustomMode] method.
     ///
-    /// [google.cloud.compute.v1.networks.switchToCustomMode]: <doc:Networks/switchToCustomMode(request:)>
+    /// [google.cloud.compute.v1.networks.switchToCustomMode]: <doc:NetworksClient/switchToCustomMode(request:)>
     public struct SwitchToCustomModeRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -931,7 +931,7 @@
 
     /// Synthetic request message for the [updatePeering()][google.cloud.compute.v1.networks.updatePeering] method.
     ///
-    /// [google.cloud.compute.v1.networks.updatePeering]: <doc:Networks/updatePeering(request:)>
+    /// [google.cloud.compute.v1.networks.updatePeering]: <doc:NetworksClient/updatePeering(request:)>
     public struct UpdatePeeringRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -958,7 +958,7 @@
 
       /// Synthetic request body field for the [updatePeering()][google.cloud.compute.v1.networks.updatePeering] method.
       ///
-      /// [google.cloud.compute.v1.networks.updatePeering]: <doc:Networks/updatePeering(request:)>
+      /// [google.cloud.compute.v1.networks.updatePeering]: <doc:NetworksClient/updatePeering(request:)>
       public var body: NetworksUpdatePeeringRequest? = nil
 
       /// Initialize a new instance of `UpdatePeeringRequest`.

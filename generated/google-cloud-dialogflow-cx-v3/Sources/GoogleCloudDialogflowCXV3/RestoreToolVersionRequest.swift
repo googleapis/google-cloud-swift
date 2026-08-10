@@ -21,7 +21,7 @@
   /// The request message for
   /// [Tools.RestoreToolVersion][google.cloud.dialogflow.cx.v3.Tools.RestoreToolVersion].
   ///
-  /// [google.cloud.dialogflow.cx.v3.Tools.RestoreToolVersion]: <doc:Tools/restoreToolVersion(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Tools.RestoreToolVersion]: <doc:ToolsClient/restoreToolVersion(request:)>
   public struct RestoreToolVersionRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

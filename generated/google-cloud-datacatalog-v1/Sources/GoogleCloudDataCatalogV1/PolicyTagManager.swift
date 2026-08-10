@@ -207,7 +207,7 @@ public class PolicyTagManagerClient: Clients.PolicyTagManagerProtocol {
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "PolicyTagManager_ListOperations")
   public func listOperations(
@@ -218,7 +218,7 @@ public class PolicyTagManagerClient: Clients.PolicyTagManagerProtocol {
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "PolicyTagManager_ListOperations")
   public func listOperations(
@@ -235,7 +235,7 @@ public class PolicyTagManagerClient: Clients.PolicyTagManagerProtocol {
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "PolicyTagManager_GetOperation")
   func getOperation(
@@ -246,7 +246,7 @@ public class PolicyTagManagerClient: Clients.PolicyTagManagerProtocol {
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "PolicyTagManager_DeleteOperation")
   public func deleteOperation(
@@ -257,7 +257,7 @@ public class PolicyTagManagerClient: Clients.PolicyTagManagerProtocol {
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "PolicyTagManager_CancelOperation")
   public func cancelOperation(

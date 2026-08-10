@@ -351,7 +351,7 @@ public struct Plugin: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// added to API hub via
     /// [CreatePlugin][google.cloud.apihub.v1.ApiHubPlugin.CreatePlugin] method.
     ///
-    /// [google.cloud.apihub.v1.ApiHubPlugin.CreatePlugin]: <doc:ApiHubPlugin/createPlugin(request:)>
+    /// [google.cloud.apihub.v1.ApiHubPlugin.CreatePlugin]: <doc:ApiHubPluginClient/createPlugin(request:)>
     case userOwned
     /// Encodes an unknown integer value.
     ///

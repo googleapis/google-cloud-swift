@@ -21,7 +21,7 @@
   /// Runtime operation information for
   /// [GenAiTuningService.RebaseTunedModel][google.cloud.aiplatform.v1.GenAiTuningService.RebaseTunedModel].
   ///
-  /// [google.cloud.aiplatform.v1.GenAiTuningService.RebaseTunedModel]: <doc:GenAiTuningService/rebaseTunedModel(request:)>
+  /// [google.cloud.aiplatform.v1.GenAiTuningService.RebaseTunedModel]: <doc:GenAiTuningServiceClient/rebaseTunedModel(request:)>
   public struct RebaseTunedModelOperationMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

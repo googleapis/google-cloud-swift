@@ -21,7 +21,7 @@
   /// The request message for
   /// [Generators.ListGenerators][google.cloud.dialogflow.cx.v3.Generators.ListGenerators].
   ///
-  /// [google.cloud.dialogflow.cx.v3.Generators.ListGenerators]: <doc:Generators/listGenerators(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Generators.ListGenerators]: <doc:GeneratorsClient/listGenerators(request:)>
   public struct ListGeneratorsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

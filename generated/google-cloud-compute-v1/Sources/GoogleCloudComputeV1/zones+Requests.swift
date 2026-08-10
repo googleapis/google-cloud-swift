@@ -21,7 +21,7 @@
   extension ZonesClient {
     /// Synthetic request message for the [get()][google.cloud.compute.v1.zones.get] method.
     ///
-    /// [google.cloud.compute.v1.zones.get]: <doc:Zones/`get`(request:)>
+    /// [google.cloud.compute.v1.zones.get]: <doc:ZonesClient/`get`(request:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -60,7 +60,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.zones.list] method.
     ///
-    /// [google.cloud.compute.v1.zones.list]: <doc:Zones/list(request:)>
+    /// [google.cloud.compute.v1.zones.list]: <doc:ZonesClient/list(request:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {

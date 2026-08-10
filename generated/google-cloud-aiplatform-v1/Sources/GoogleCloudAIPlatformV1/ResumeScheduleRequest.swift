@@ -21,7 +21,7 @@
   /// Request message for
   /// [ScheduleService.ResumeSchedule][google.cloud.aiplatform.v1.ScheduleService.ResumeSchedule].
   ///
-  /// [google.cloud.aiplatform.v1.ScheduleService.ResumeSchedule]: <doc:ScheduleService/resumeSchedule(request:)>
+  /// [google.cloud.aiplatform.v1.ScheduleService.ResumeSchedule]: <doc:ScheduleServiceClient/resumeSchedule(request:)>
   public struct ResumeScheduleRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

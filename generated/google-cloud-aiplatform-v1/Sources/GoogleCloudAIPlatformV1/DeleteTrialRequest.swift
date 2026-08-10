@@ -21,7 +21,7 @@
   /// Request message for
   /// [VizierService.DeleteTrial][google.cloud.aiplatform.v1.VizierService.DeleteTrial].
   ///
-  /// [google.cloud.aiplatform.v1.VizierService.DeleteTrial]: <doc:VizierService/deleteTrial(request:)>
+  /// [google.cloud.aiplatform.v1.VizierService.DeleteTrial]: <doc:VizierServiceClient/deleteTrial(request:)>
   public struct DeleteTrialRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

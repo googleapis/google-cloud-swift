@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [CreatePluginInstance][google.cloud.apihub.v1.ApiHubPlugin.CreatePluginInstance]
 /// method's request.
 ///
-/// [google.cloud.apihub.v1.ApiHubPlugin.CreatePluginInstance]: <doc:ApiHubPlugin/createPluginInstance(request:)>
+/// [google.cloud.apihub.v1.ApiHubPlugin.CreatePluginInstance]: <doc:ApiHubPluginClient/createPluginInstance(request:)>
 public struct CreatePluginInstanceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

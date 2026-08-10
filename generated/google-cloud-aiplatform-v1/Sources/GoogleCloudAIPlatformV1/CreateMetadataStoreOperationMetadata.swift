@@ -21,7 +21,7 @@
   /// Details of operations that perform
   /// [MetadataService.CreateMetadataStore][google.cloud.aiplatform.v1.MetadataService.CreateMetadataStore].
   ///
-  /// [google.cloud.aiplatform.v1.MetadataService.CreateMetadataStore]: <doc:MetadataService/createMetadataStore(request:)>
+  /// [google.cloud.aiplatform.v1.MetadataService.CreateMetadataStore]: <doc:MetadataServiceClient/createMetadataStore(request:)>
   public struct CreateMetadataStoreOperationMetadata: Codable, Equatable, GoogleCloudWkt
       ._AnyPackable,
     Sendable

@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [DeleteDependency][google.cloud.apihub.v1.ApiHubDependencies.DeleteDependency]
 /// method's request.
 ///
-/// [google.cloud.apihub.v1.ApiHubDependencies.DeleteDependency]: <doc:ApiHubDependencies/deleteDependency(request:)>
+/// [google.cloud.apihub.v1.ApiHubDependencies.DeleteDependency]: <doc:ApiHubDependenciesClient/deleteDependency(request:)>
 public struct DeleteDependencyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

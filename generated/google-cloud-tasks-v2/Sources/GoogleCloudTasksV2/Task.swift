@@ -43,7 +43,7 @@ public struct Task: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// * `TASK_ID` can contain only letters ([A-Za-z]), numbers ([0-9]),
   ///   hyphens (-), or underscores (_). The maximum length is 500 characters.
   ///
-  /// [google.cloud.tasks.v2.CloudTasks.CreateTask]: <doc:CloudTasks/createTask(request:)>
+  /// [google.cloud.tasks.v2.CloudTasks.CreateTask]: <doc:CloudTasksClient/createTask(request:)>
   public var name: Swift.String = Swift.String()
 
   /// The time when the task is scheduled to be attempted or retried.

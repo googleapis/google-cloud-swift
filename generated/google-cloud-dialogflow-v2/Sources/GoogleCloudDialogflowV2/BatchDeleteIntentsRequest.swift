@@ -21,7 +21,7 @@
   /// The request message for
   /// [Intents.BatchDeleteIntents][google.cloud.dialogflow.v2.Intents.BatchDeleteIntents].
   ///
-  /// [google.cloud.dialogflow.v2.Intents.BatchDeleteIntents]: <doc:Intents/batchDeleteIntents(request:)>
+  /// [google.cloud.dialogflow.v2.Intents.BatchDeleteIntents]: <doc:IntentsClient/batchDeleteIntents(request:)>
   public struct BatchDeleteIntentsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

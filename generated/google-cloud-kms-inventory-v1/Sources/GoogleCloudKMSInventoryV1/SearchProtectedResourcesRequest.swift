@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [KeyTrackingService.SearchProtectedResources][google.cloud.kms.inventory.v1.KeyTrackingService.SearchProtectedResources].
 ///
-/// [google.cloud.kms.inventory.v1.KeyTrackingService.SearchProtectedResources]: <doc:KeyTrackingService/searchProtectedResources(request:)>
+/// [google.cloud.kms.inventory.v1.KeyTrackingService.SearchProtectedResources]: <doc:KeyTrackingServiceClient/searchProtectedResources(request:)>
 public struct SearchProtectedResourcesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
@@ -54,7 +54,7 @@ public struct SearchProtectedResourcesRequest: Codable, Equatable, GoogleCloudWk
   /// [KeyTrackingService.SearchProtectedResources][google.cloud.kms.inventory.v1.KeyTrackingService.SearchProtectedResources]
   /// must match the call that provided the page token.
   ///
-  /// [google.cloud.kms.inventory.v1.KeyTrackingService.SearchProtectedResources]: <doc:KeyTrackingService/searchProtectedResources(request:)>
+  /// [google.cloud.kms.inventory.v1.KeyTrackingService.SearchProtectedResources]: <doc:KeyTrackingServiceClient/searchProtectedResources(request:)>
   public var pageToken: Swift.String = Swift.String()
 
   /// Optional. A list of resource types that this request searches for. If

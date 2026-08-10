@@ -21,7 +21,7 @@
   /// Request message for
   /// [JobService.CreateCustomJob][google.cloud.aiplatform.v1.JobService.CreateCustomJob].
   ///
-  /// [google.cloud.aiplatform.v1.JobService.CreateCustomJob]: <doc:JobService/createCustomJob(request:)>
+  /// [google.cloud.aiplatform.v1.JobService.CreateCustomJob]: <doc:JobServiceClient/createCustomJob(request:)>
   public struct CreateCustomJobRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

@@ -21,7 +21,7 @@
   /// Request message for
   /// [JobService.ListBatchPredictionJobs][google.cloud.aiplatform.v1.JobService.ListBatchPredictionJobs].
   ///
-  /// [google.cloud.aiplatform.v1.JobService.ListBatchPredictionJobs]: <doc:JobService/listBatchPredictionJobs(request:)>
+  /// [google.cloud.aiplatform.v1.JobService.ListBatchPredictionJobs]: <doc:JobServiceClient/listBatchPredictionJobs(request:)>
   public struct ListBatchPredictionJobsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {
@@ -62,7 +62,7 @@
     /// [JobService.ListBatchPredictionJobs][google.cloud.aiplatform.v1.JobService.ListBatchPredictionJobs]
     /// call.
     ///
-    /// [google.cloud.aiplatform.v1.JobService.ListBatchPredictionJobs]: <doc:JobService/listBatchPredictionJobs(request:)>
+    /// [google.cloud.aiplatform.v1.JobService.ListBatchPredictionJobs]: <doc:JobServiceClient/listBatchPredictionJobs(request:)>
     /// [google.cloud.aiplatform.v1.ListBatchPredictionJobsResponse.next_page_token]: <doc:ListBatchPredictionJobsResponse/nextPageToken>
     public var pageToken: Swift.String = Swift.String()
 

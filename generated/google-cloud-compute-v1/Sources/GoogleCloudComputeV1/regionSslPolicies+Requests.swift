@@ -21,7 +21,7 @@
   extension RegionSslPoliciesClient {
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.regionSslPolicies.delete] method.
     ///
-    /// [google.cloud.compute.v1.regionSslPolicies.delete]: <doc:RegionSslPolicies/delete(request:)>
+    /// [google.cloud.compute.v1.regionSslPolicies.delete]: <doc:RegionSslPoliciesClient/delete(request:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -79,7 +79,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.regionSslPolicies.get] method.
     ///
-    /// [google.cloud.compute.v1.regionSslPolicies.get]: <doc:RegionSslPolicies/`get`(request:)>
+    /// [google.cloud.compute.v1.regionSslPolicies.get]: <doc:RegionSslPoliciesClient/`get`(request:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -122,7 +122,7 @@
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.regionSslPolicies.insert] method.
     ///
-    /// [google.cloud.compute.v1.regionSslPolicies.insert]: <doc:RegionSslPolicies/insert(request:)>
+    /// [google.cloud.compute.v1.regionSslPolicies.insert]: <doc:RegionSslPoliciesClient/insert(request:)>
     public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -149,7 +149,7 @@
 
       /// Synthetic request body field for the [insert()][google.cloud.compute.v1.regionSslPolicies.insert] method.
       ///
-      /// [google.cloud.compute.v1.regionSslPolicies.insert]: <doc:RegionSslPolicies/insert(request:)>
+      /// [google.cloud.compute.v1.regionSslPolicies.insert]: <doc:RegionSslPoliciesClient/insert(request:)>
       public var body: SslPolicy? = nil
 
       /// Initialize a new instance of `InsertRequest`.
@@ -181,7 +181,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.regionSslPolicies.list] method.
     ///
-    /// [google.cloud.compute.v1.regionSslPolicies.list]: <doc:RegionSslPolicies/list(request:)>
+    /// [google.cloud.compute.v1.regionSslPolicies.list]: <doc:RegionSslPoliciesClient/list(request:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -313,7 +313,7 @@
 
     /// Synthetic request message for the [listAvailableFeatures()][google.cloud.compute.v1.regionSslPolicies.listAvailableFeatures] method.
     ///
-    /// [google.cloud.compute.v1.regionSslPolicies.listAvailableFeatures]: <doc:RegionSslPolicies/listAvailableFeatures(request:)>
+    /// [google.cloud.compute.v1.regionSslPolicies.listAvailableFeatures]: <doc:RegionSslPoliciesClient/listAvailableFeatures(request:)>
     public struct ListAvailableFeaturesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -446,7 +446,7 @@
 
     /// Synthetic request message for the [patch()][google.cloud.compute.v1.regionSslPolicies.patch] method.
     ///
-    /// [google.cloud.compute.v1.regionSslPolicies.patch]: <doc:RegionSslPolicies/patch(request:)>
+    /// [google.cloud.compute.v1.regionSslPolicies.patch]: <doc:RegionSslPoliciesClient/patch(request:)>
     public struct PatchRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -477,7 +477,7 @@
 
       /// Synthetic request body field for the [patch()][google.cloud.compute.v1.regionSslPolicies.patch] method.
       ///
-      /// [google.cloud.compute.v1.regionSslPolicies.patch]: <doc:RegionSslPolicies/patch(request:)>
+      /// [google.cloud.compute.v1.regionSslPolicies.patch]: <doc:RegionSslPoliciesClient/patch(request:)>
       public var body: SslPolicy? = nil
 
       /// Initialize a new instance of `PatchRequest`.

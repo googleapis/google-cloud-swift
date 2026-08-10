@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [ConsumerProcurementService.ListOrders][google.cloud.commerce.consumer.procurement.v1.ConsumerProcurementService.ListOrders].
 ///
-/// [google.cloud.commerce.consumer.procurement.v1.ConsumerProcurementService.ListOrders]: <doc:ConsumerProcurementService/listOrders(request:)>
+/// [google.cloud.commerce.consumer.procurement.v1.ConsumerProcurementService.ListOrders]: <doc:ConsumerProcurementServiceClient/listOrders(request:)>
 public struct ListOrdersResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

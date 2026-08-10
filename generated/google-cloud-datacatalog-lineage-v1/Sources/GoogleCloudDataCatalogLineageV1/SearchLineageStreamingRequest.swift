@@ -21,7 +21,7 @@ import GoogleType
 /// Request message for
 /// [SearchLineageStreaming][google.cloud.datacatalog.lineage.v1.Lineage.SearchLineageStreaming].
 ///
-/// [google.cloud.datacatalog.lineage.v1.Lineage.SearchLineageStreaming]: <doc:Lineage/searchLineageStreaming(request:)>
+/// [google.cloud.datacatalog.lineage.v1.Lineage.SearchLineageStreaming]: <doc:LineageClient/searchLineageStreaming(request:)>
 public struct SearchLineageStreamingRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

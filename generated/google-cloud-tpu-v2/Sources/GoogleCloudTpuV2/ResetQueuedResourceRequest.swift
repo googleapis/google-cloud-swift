@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request for
 /// [ResetQueuedResource][google.cloud.tpu.v2.Tpu.ResetQueuedResource].
 ///
-/// [google.cloud.tpu.v2.Tpu.ResetQueuedResource]: <doc:Tpu/resetQueuedResource(request:)>
+/// [google.cloud.tpu.v2.Tpu.ResetQueuedResource]: <doc:TpuClient/resetQueuedResource(request:)>
 public struct ResetQueuedResourceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

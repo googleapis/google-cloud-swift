@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// The response for
 /// [ReservationService.SearchAllAssignments][google.cloud.bigquery.reservation.v1.ReservationService.SearchAllAssignments].
 ///
-/// [google.cloud.bigquery.reservation.v1.ReservationService.SearchAllAssignments]: <doc:ReservationService/searchAllAssignments(request:)>
+/// [google.cloud.bigquery.reservation.v1.ReservationService.SearchAllAssignments]: <doc:ReservationServiceClient/searchAllAssignments(request:)>
 public struct SearchAllAssignmentsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

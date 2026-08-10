@@ -112,9 +112,9 @@
     ///
     /// [google.cloud.discoveryengine.v1.DataStore]: <doc:DataStore>
     /// [google.cloud.discoveryengine.v1.Document]: <doc:Document>
-    /// [google.cloud.discoveryengine.v1.DocumentService.GetDocument]: <doc:DocumentService/getDocument(request:)>
-    /// [google.cloud.discoveryengine.v1.DocumentService.ImportDocuments]: <doc:DocumentService/importDocuments(request:)>
-    /// [google.cloud.discoveryengine.v1.DocumentService.ListDocuments]: <doc:DocumentService/listDocuments(request:)>
+    /// [google.cloud.discoveryengine.v1.DocumentService.GetDocument]: <doc:DocumentServiceClient/getDocument(request:)>
+    /// [google.cloud.discoveryengine.v1.DocumentService.ImportDocuments]: <doc:DocumentServiceClient/importDocuments(request:)>
+    /// [google.cloud.discoveryengine.v1.DocumentService.ListDocuments]: <doc:DocumentServiceClient/listDocuments(request:)>
     public var aclEnabled: Swift.Bool = Swift.Bool()
 
     /// Config to store data store type configuration for workspace data. This
@@ -149,8 +149,8 @@
     /// doc](https://cloud.google.com/generative-ai-app-builder/docs/provide-schema).
     ///
     /// [google.cloud.discoveryengine.v1.DataStore]: <doc:DataStore>
-    /// [google.cloud.discoveryengine.v1.DataStoreService.CreateDataStore]: <doc:DataStoreService/createDataStore(request:)>
-    /// [google.cloud.discoveryengine.v1.SchemaService.GetSchema]: <doc:SchemaService/getSchema(request:)>
+    /// [google.cloud.discoveryengine.v1.DataStoreService.CreateDataStore]: <doc:DataStoreServiceClient/createDataStore(request:)>
+    /// [google.cloud.discoveryengine.v1.SchemaService.GetSchema]: <doc:SchemaServiceClient/getSchema(request:)>
     public var startingSchema: Schema? = nil
 
     /// Optional. Configuration for `HEALTHCARE_FHIR` vertical.

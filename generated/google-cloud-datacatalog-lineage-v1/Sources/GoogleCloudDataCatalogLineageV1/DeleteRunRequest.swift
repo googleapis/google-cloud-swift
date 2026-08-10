@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [DeleteRun][google.cloud.datacatalog.lineage.v1.Lineage.DeleteRun].
 ///
-/// [google.cloud.datacatalog.lineage.v1.Lineage.DeleteRun]: <doc:Lineage/deleteRun(request:)>
+/// [google.cloud.datacatalog.lineage.v1.Lineage.DeleteRun]: <doc:LineageClient/deleteRun(request:)>
 public struct DeleteRunRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

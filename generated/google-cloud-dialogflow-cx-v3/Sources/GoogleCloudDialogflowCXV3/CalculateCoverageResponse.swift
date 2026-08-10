@@ -21,7 +21,7 @@
   /// The response message for
   /// [TestCases.CalculateCoverage][google.cloud.dialogflow.cx.v3.TestCases.CalculateCoverage].
   ///
-  /// [google.cloud.dialogflow.cx.v3.TestCases.CalculateCoverage]: <doc:TestCases/calculateCoverage(request:)>
+  /// [google.cloud.dialogflow.cx.v3.TestCases.CalculateCoverage]: <doc:TestCasesClient/calculateCoverage(request:)>
   public struct CalculateCoverageResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

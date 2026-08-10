@@ -21,7 +21,7 @@
   /// Request message for
   /// [JobService.DeleteModelDeploymentMonitoringJob][google.cloud.aiplatform.v1.JobService.DeleteModelDeploymentMonitoringJob].
   ///
-  /// [google.cloud.aiplatform.v1.JobService.DeleteModelDeploymentMonitoringJob]: <doc:JobService/deleteModelDeploymentMonitoringJob(request:)>
+  /// [google.cloud.aiplatform.v1.JobService.DeleteModelDeploymentMonitoringJob]: <doc:JobServiceClient/deleteModelDeploymentMonitoringJob(request:)>
   public struct DeleteModelDeploymentMonitoringJobRequest: Codable, Equatable, GoogleCloudWkt
       ._AnyPackable,
     Sendable

@@ -21,7 +21,7 @@
   /// The request message for
   /// [Agents.ValidateAgent][google.cloud.dialogflow.cx.v3.Agents.ValidateAgent].
   ///
-  /// [google.cloud.dialogflow.cx.v3.Agents.ValidateAgent]: <doc:Agents/validateAgent(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Agents.ValidateAgent]: <doc:AgentsClient/validateAgent(request:)>
   public struct ValidateAgentRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

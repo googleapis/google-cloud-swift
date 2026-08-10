@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [StarEntry][google.cloud.datacatalog.v1.DataCatalog.StarEntry].
 /// Empty for now
 ///
-/// [google.cloud.datacatalog.v1.DataCatalog.StarEntry]: <doc:DataCatalog/starEntry(request:)>
+/// [google.cloud.datacatalog.v1.DataCatalog.StarEntry]: <doc:DataCatalogClient/starEntry(request:)>
 public struct StarEntryResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

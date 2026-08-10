@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// The request message for
 /// [RegistrationService.UpdateEndpoint][google.cloud.servicedirectory.v1.RegistrationService.UpdateEndpoint].
 ///
-/// [google.cloud.servicedirectory.v1.RegistrationService.UpdateEndpoint]: <doc:RegistrationService/updateEndpoint(request:)>
+/// [google.cloud.servicedirectory.v1.RegistrationService.UpdateEndpoint]: <doc:RegistrationServiceClient/updateEndpoint(request:)>
 public struct UpdateEndpointRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

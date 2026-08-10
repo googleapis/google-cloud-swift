@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// The [SearchResources][google.cloud.apihub.v1.ApiHub.SearchResources] method's
 /// request.
 ///
-/// [google.cloud.apihub.v1.ApiHub.SearchResources]: <doc:ApiHub/searchResources(request:)>
+/// [google.cloud.apihub.v1.ApiHub.SearchResources]: <doc:ApiHubClient/searchResources(request:)>
 public struct SearchResourcesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

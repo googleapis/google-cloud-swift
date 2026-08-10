@@ -21,7 +21,7 @@
   /// Request message for
   /// [FeaturestoreService.CreateEntityType][google.cloud.aiplatform.v1.FeaturestoreService.CreateEntityType].
   ///
-  /// [google.cloud.aiplatform.v1.FeaturestoreService.CreateEntityType]: <doc:FeaturestoreService/createEntityType(request:)>
+  /// [google.cloud.aiplatform.v1.FeaturestoreService.CreateEntityType]: <doc:FeaturestoreServiceClient/createEntityType(request:)>
   public struct CreateEntityTypeRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

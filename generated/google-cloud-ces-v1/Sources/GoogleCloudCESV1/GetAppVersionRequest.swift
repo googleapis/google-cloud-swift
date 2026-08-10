@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [AgentService.GetAppVersion][google.cloud.ces.v1.AgentService.GetAppVersion].
 ///
-/// [google.cloud.ces.v1.AgentService.GetAppVersion]: <doc:AgentService/getAppVersion(request:)>
+/// [google.cloud.ces.v1.AgentService.GetAppVersion]: <doc:AgentServiceClient/getAppVersion(request:)>
 public struct GetAppVersionRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

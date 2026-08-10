@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [KeyManagementService.RawDecrypt][google.cloud.kms.v1.KeyManagementService.RawDecrypt].
 ///
-/// [google.cloud.kms.v1.KeyManagementService.RawDecrypt]: <doc:KeyManagementService/rawDecrypt(request:)>
+/// [google.cloud.kms.v1.KeyManagementService.RawDecrypt]: <doc:KeyManagementServiceClient/rawDecrypt(request:)>
 public struct RawDecryptRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
@@ -70,7 +70,7 @@ public struct RawDecryptRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable
   /// will never exceed 2^32-1, and can be safely downconverted to uint32 in
   /// languages that support this type.
   ///
-  /// [google.cloud.kms.v1.KeyManagementService]: <doc:KeyManagementService>
+  /// [google.cloud.kms.v1.KeyManagementService]: <doc:KeyManagementServiceClient>
   /// [google.cloud.kms.v1.RawDecryptRequest.ciphertext]: <doc:RawDecryptRequest/ciphertext>
   public var ciphertextCrc32C: GoogleCloudWkt.Int64Value? = nil
 
@@ -92,7 +92,7 @@ public struct RawDecryptRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable
   /// never exceed 2^32-1, and can be safely downconverted to uint32 in languages
   /// that support this type.
   ///
-  /// [google.cloud.kms.v1.KeyManagementService]: <doc:KeyManagementService>
+  /// [google.cloud.kms.v1.KeyManagementService]: <doc:KeyManagementServiceClient>
   /// [google.cloud.kms.v1.RawDecryptRequest.additional_authenticated_data]: <doc:RawDecryptRequest/additionalAuthenticatedData>
   public var additionalAuthenticatedDataCrc32C: GoogleCloudWkt.Int64Value? = nil
 
@@ -112,7 +112,7 @@ public struct RawDecryptRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable
   /// never exceed 2^32-1, and can be safely downconverted to uint32 in languages
   /// that support this type.
   ///
-  /// [google.cloud.kms.v1.KeyManagementService]: <doc:KeyManagementService>
+  /// [google.cloud.kms.v1.KeyManagementService]: <doc:KeyManagementServiceClient>
   /// [google.cloud.kms.v1.RawDecryptRequest.initialization_vector]: <doc:RawDecryptRequest/initializationVector>
   public var initializationVectorCrc32C: GoogleCloudWkt.Int64Value? = nil
 

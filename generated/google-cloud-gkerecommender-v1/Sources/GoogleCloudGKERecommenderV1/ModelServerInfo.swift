@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// be found using
 /// [GkeInferenceQuickstart.FetchProfiles][google.cloud.gkerecommender.v1.GkeInferenceQuickstart.FetchProfiles].
 ///
-/// [google.cloud.gkerecommender.v1.GkeInferenceQuickstart.FetchProfiles]: <doc:GkeInferenceQuickstart/fetchProfiles(request:)>
+/// [google.cloud.gkerecommender.v1.GkeInferenceQuickstart.FetchProfiles]: <doc:GkeInferenceQuickstartClient/fetchProfiles(request:)>
 public struct ModelServerInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
@@ -30,7 +30,7 @@ public struct ModelServerInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// [GkeInferenceQuickstart.FetchModels][google.cloud.gkerecommender.v1.GkeInferenceQuickstart.FetchModels]
   /// to find available models.
   ///
-  /// [google.cloud.gkerecommender.v1.GkeInferenceQuickstart.FetchModels]: <doc:GkeInferenceQuickstart/fetchModels(request:)>
+  /// [google.cloud.gkerecommender.v1.GkeInferenceQuickstart.FetchModels]: <doc:GkeInferenceQuickstartClient/fetchModels(request:)>
   public var model: Swift.String = Swift.String()
 
   /// Required. The model server. Open-source model servers use simplified,
@@ -38,7 +38,7 @@ public struct ModelServerInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// [GkeInferenceQuickstart.FetchModelServers][google.cloud.gkerecommender.v1.GkeInferenceQuickstart.FetchModelServers]
   /// to find available servers.
   ///
-  /// [google.cloud.gkerecommender.v1.GkeInferenceQuickstart.FetchModelServers]: <doc:GkeInferenceQuickstart/fetchModelServers(request:)>
+  /// [google.cloud.gkerecommender.v1.GkeInferenceQuickstart.FetchModelServers]: <doc:GkeInferenceQuickstartClient/fetchModelServers(request:)>
   public var modelServer: Swift.String = Swift.String()
 
   /// Optional. The model server version. Use
@@ -46,7 +46,7 @@ public struct ModelServerInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// to find available versions. If not provided, the latest available version
   /// is used.
   ///
-  /// [google.cloud.gkerecommender.v1.GkeInferenceQuickstart.FetchModelServerVersions]: <doc:GkeInferenceQuickstart/fetchModelServerVersions(request:)>
+  /// [google.cloud.gkerecommender.v1.GkeInferenceQuickstart.FetchModelServerVersions]: <doc:GkeInferenceQuickstartClient/fetchModelServerVersions(request:)>
   public var modelServerVersion: Swift.String = Swift.String()
 
   /// Initialize a new instance of `ModelServerInfo`.

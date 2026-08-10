@@ -21,7 +21,7 @@
   /// Runtime operation information for
   /// [IndexEndpointService.DeployIndex][google.cloud.aiplatform.v1.IndexEndpointService.DeployIndex].
   ///
-  /// [google.cloud.aiplatform.v1.IndexEndpointService.DeployIndex]: <doc:IndexEndpointService/deployIndex(request:)>
+  /// [google.cloud.aiplatform.v1.IndexEndpointService.DeployIndex]: <doc:IndexEndpointServiceClient/deployIndex(request:)>
   public struct DeployIndexOperationMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

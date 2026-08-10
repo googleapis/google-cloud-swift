@@ -21,7 +21,7 @@
   /// Request message for
   /// [JobService.GetNasJob][google.cloud.aiplatform.v1.JobService.GetNasJob].
   ///
-  /// [google.cloud.aiplatform.v1.JobService.GetNasJob]: <doc:JobService/getNasJob(request:)>
+  /// [google.cloud.aiplatform.v1.JobService.GetNasJob]: <doc:JobServiceClient/getNasJob(request:)>
   public struct GetNasJobRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

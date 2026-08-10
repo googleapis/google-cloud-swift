@@ -42,7 +42,7 @@
     ///
     /// [google.cloud.dialogflow.cx.v3.Agent.text_to_speech_settings]: <doc:Agent/textToSpeechSettings>
     /// [google.cloud.dialogflow.cx.v3.OutputAudioConfig.synthesize_speech_config]: <doc:OutputAudioConfig/synthesizeSpeechConfig>
-    /// [google.cloud.dialogflow.cx.v3.Sessions]: <doc:Sessions>
+    /// [google.cloud.dialogflow.cx.v3.Sessions]: <doc:SessionsClient>
     public var synthesizeSpeechConfigs: [Swift.String: SynthesizeSpeechConfig] = [:]
 
     /// Initialize a new instance of `TextToSpeechSettings`.

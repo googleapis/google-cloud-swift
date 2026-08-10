@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [google.bigtable.admin.v2.BigtableTableAdmin.GetTable][google.bigtable.admin.v2.BigtableTableAdmin.GetTable]
 ///
-/// [google.bigtable.admin.v2.BigtableTableAdmin.GetTable]: <doc:BigtableTableAdmin/getTable(request:)>
+/// [google.bigtable.admin.v2.BigtableTableAdmin.GetTable]: <doc:BigtableTableAdminClient/getTable(request:)>
 public struct GetTableRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

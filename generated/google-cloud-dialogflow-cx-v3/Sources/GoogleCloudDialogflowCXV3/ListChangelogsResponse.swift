@@ -22,7 +22,7 @@
   /// The response message for
   /// [Changelogs.ListChangelogs][google.cloud.dialogflow.cx.v3.Changelogs.ListChangelogs].
   ///
-  /// [google.cloud.dialogflow.cx.v3.Changelogs.ListChangelogs]: <doc:Changelogs/listChangelogs(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Changelogs.ListChangelogs]: <doc:ChangelogsClient/listChangelogs(request:)>
   public struct ListChangelogsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable

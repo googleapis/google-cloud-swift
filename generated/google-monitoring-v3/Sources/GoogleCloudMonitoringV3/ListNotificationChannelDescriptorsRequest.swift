@@ -34,7 +34,7 @@ public struct ListNotificationChannelDescriptorsRequest: Codable, Equatable, Goo
   /// [GetNotificationChannelDescriptor][google.monitoring.v3.NotificationChannelService.GetNotificationChannelDescriptor]
   /// operation, instead.
   ///
-  /// [google.monitoring.v3.NotificationChannelService.GetNotificationChannelDescriptor]: <doc:NotificationChannelService/getNotificationChannelDescriptor(request:)>
+  /// [google.monitoring.v3.NotificationChannelService.GetNotificationChannelDescriptor]: <doc:NotificationChannelServiceClient/getNotificationChannelDescriptor(request:)>
   public var name: Swift.String = Swift.String()
 
   /// The maximum number of results to return in a single response. If

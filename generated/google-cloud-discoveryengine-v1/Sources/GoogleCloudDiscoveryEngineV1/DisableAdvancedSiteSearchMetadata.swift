@@ -23,7 +23,7 @@
   /// operation. This will be returned by the google.longrunning.Operation.metadata
   /// field.
   ///
-  /// [google.cloud.discoveryengine.v1.SiteSearchEngineService.DisableAdvancedSiteSearch]: <doc:SiteSearchEngineService/disableAdvancedSiteSearch(request:)>
+  /// [google.cloud.discoveryengine.v1.SiteSearchEngineService.DisableAdvancedSiteSearch]: <doc:SiteSearchEngineServiceClient/disableAdvancedSiteSearch(request:)>
   public struct DisableAdvancedSiteSearchMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

@@ -34,7 +34,7 @@ import GoogleCloudGax
 /// for charging for the procured item.
 ///
 ///
-/// [google.cloud.commerce.consumer.procurement.v1.ConsumerProcurementService]: <doc:ConsumerProcurementService>
+/// [google.cloud.commerce.consumer.procurement.v1.ConsumerProcurementService]: <doc:ConsumerProcurementServiceClient>
 ///
 /// @Snippet(path: "ConsumerProcurementServiceQuickstart")
 public class ConsumerProcurementServiceClient: Clients.ConsumerProcurementServiceProtocol {
@@ -342,7 +342,7 @@ public class ConsumerProcurementServiceClient: Clients.ConsumerProcurementServic
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ConsumerProcurementService_GetOperation")
   func getOperation(

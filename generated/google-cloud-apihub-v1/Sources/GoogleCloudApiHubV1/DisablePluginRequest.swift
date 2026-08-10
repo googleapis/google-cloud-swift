@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// The [DisablePlugin][google.cloud.apihub.v1.ApiHubPlugin.DisablePlugin]
 /// method's request.
 ///
-/// [google.cloud.apihub.v1.ApiHubPlugin.DisablePlugin]: <doc:ApiHubPlugin/disablePlugin(request:)>
+/// [google.cloud.apihub.v1.ApiHubPlugin.DisablePlugin]: <doc:ApiHubPluginClient/disablePlugin(request:)>
 public struct DisablePluginRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

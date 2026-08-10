@@ -21,7 +21,7 @@
   /// The request message for
   /// [Environments.CreateEnvironment][google.cloud.dialogflow.cx.v3.Environments.CreateEnvironment].
   ///
-  /// [google.cloud.dialogflow.cx.v3.Environments.CreateEnvironment]: <doc:Environments/createEnvironment(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Environments.CreateEnvironment]: <doc:EnvironmentsClient/createEnvironment(request:)>
   public struct CreateEnvironmentRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

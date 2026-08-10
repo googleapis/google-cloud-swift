@@ -21,7 +21,7 @@
   /// Request message for
   /// [VizierService.GetTrial][google.cloud.aiplatform.v1.VizierService.GetTrial].
   ///
-  /// [google.cloud.aiplatform.v1.VizierService.GetTrial]: <doc:VizierService/getTrial(request:)>
+  /// [google.cloud.aiplatform.v1.VizierService.GetTrial]: <doc:VizierServiceClient/getTrial(request:)>
   public struct GetTrialRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

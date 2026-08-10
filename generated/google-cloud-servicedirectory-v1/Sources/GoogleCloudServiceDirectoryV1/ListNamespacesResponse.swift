@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// The response message for
 /// [RegistrationService.ListNamespaces][google.cloud.servicedirectory.v1.RegistrationService.ListNamespaces].
 ///
-/// [google.cloud.servicedirectory.v1.RegistrationService.ListNamespaces]: <doc:RegistrationService/listNamespaces(request:)>
+/// [google.cloud.servicedirectory.v1.RegistrationService.ListNamespaces]: <doc:RegistrationServiceClient/listNamespaces(request:)>
 public struct ListNamespacesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

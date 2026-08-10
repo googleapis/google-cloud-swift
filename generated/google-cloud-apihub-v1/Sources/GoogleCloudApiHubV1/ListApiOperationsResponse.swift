@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// The [ListApiOperations][google.cloud.apihub.v1.ApiHub.ListApiOperations]
 /// method's response.
 ///
-/// [google.cloud.apihub.v1.ApiHub.ListApiOperations]: <doc:ApiHub/listApiOperations(request:)>
+/// [google.cloud.apihub.v1.ApiHub.ListApiOperations]: <doc:ApiHubClient/listApiOperations(request:)>
 public struct ListApiOperationsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

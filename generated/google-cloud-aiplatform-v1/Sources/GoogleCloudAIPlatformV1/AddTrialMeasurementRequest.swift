@@ -21,7 +21,7 @@
   /// Request message for
   /// [VizierService.AddTrialMeasurement][google.cloud.aiplatform.v1.VizierService.AddTrialMeasurement].
   ///
-  /// [google.cloud.aiplatform.v1.VizierService.AddTrialMeasurement]: <doc:VizierService/addTrialMeasurement(request:)>
+  /// [google.cloud.aiplatform.v1.VizierService.AddTrialMeasurement]: <doc:VizierServiceClient/addTrialMeasurement(request:)>
   public struct AddTrialMeasurementRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

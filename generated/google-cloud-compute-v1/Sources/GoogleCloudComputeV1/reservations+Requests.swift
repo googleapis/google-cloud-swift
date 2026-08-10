@@ -21,7 +21,7 @@
   extension ReservationsClient {
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.reservations.aggregatedList] method.
     ///
-    /// [google.cloud.compute.v1.reservations.aggregatedList]: <doc:Reservations/aggregatedList(request:)>
+    /// [google.cloud.compute.v1.reservations.aggregatedList]: <doc:ReservationsClient/aggregatedList(request:)>
     public struct AggregatedListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -163,7 +163,7 @@
 
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.reservations.delete] method.
     ///
-    /// [google.cloud.compute.v1.reservations.delete]: <doc:Reservations/delete(request:)>
+    /// [google.cloud.compute.v1.reservations.delete]: <doc:ReservationsClient/delete(request:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -220,7 +220,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.reservations.get] method.
     ///
-    /// [google.cloud.compute.v1.reservations.get]: <doc:Reservations/`get`(request:)>
+    /// [google.cloud.compute.v1.reservations.get]: <doc:ReservationsClient/`get`(request:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -262,7 +262,7 @@
 
     /// Synthetic request message for the [getIamPolicy()][google.cloud.compute.v1.reservations.getIamPolicy] method.
     ///
-    /// [google.cloud.compute.v1.reservations.getIamPolicy]: <doc:Reservations/getIamPolicy(request:)>
+    /// [google.cloud.compute.v1.reservations.getIamPolicy]: <doc:ReservationsClient/getIamPolicy(request:)>
     public struct GetIamPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -307,7 +307,7 @@
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.reservations.insert] method.
     ///
-    /// [google.cloud.compute.v1.reservations.insert]: <doc:Reservations/insert(request:)>
+    /// [google.cloud.compute.v1.reservations.insert]: <doc:ReservationsClient/insert(request:)>
     public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -334,7 +334,7 @@
 
       /// Synthetic request body field for the [insert()][google.cloud.compute.v1.reservations.insert] method.
       ///
-      /// [google.cloud.compute.v1.reservations.insert]: <doc:Reservations/insert(request:)>
+      /// [google.cloud.compute.v1.reservations.insert]: <doc:ReservationsClient/insert(request:)>
       public var body: Reservation? = nil
 
       /// Initialize a new instance of `InsertRequest`.
@@ -366,7 +366,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.reservations.list] method.
     ///
-    /// [google.cloud.compute.v1.reservations.list]: <doc:Reservations/list(request:)>
+    /// [google.cloud.compute.v1.reservations.list]: <doc:ReservationsClient/list(request:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -498,7 +498,7 @@
 
     /// Synthetic request message for the [performMaintenance()][google.cloud.compute.v1.reservations.performMaintenance] method.
     ///
-    /// [google.cloud.compute.v1.reservations.performMaintenance]: <doc:Reservations/performMaintenance(request:)>
+    /// [google.cloud.compute.v1.reservations.performMaintenance]: <doc:ReservationsClient/performMaintenance(request:)>
     public struct PerformMaintenanceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -529,7 +529,7 @@
 
       /// Synthetic request body field for the [performMaintenance()][google.cloud.compute.v1.reservations.performMaintenance] method.
       ///
-      /// [google.cloud.compute.v1.reservations.performMaintenance]: <doc:Reservations/performMaintenance(request:)>
+      /// [google.cloud.compute.v1.reservations.performMaintenance]: <doc:ReservationsClient/performMaintenance(request:)>
       public var body: ReservationsPerformMaintenanceRequest? = nil
 
       /// Initialize a new instance of `PerformMaintenanceRequest`.
@@ -561,7 +561,7 @@
 
     /// Synthetic request message for the [resize()][google.cloud.compute.v1.reservations.resize] method.
     ///
-    /// [google.cloud.compute.v1.reservations.resize]: <doc:Reservations/resize(request:)>
+    /// [google.cloud.compute.v1.reservations.resize]: <doc:ReservationsClient/resize(request:)>
     public struct ResizeRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -591,7 +591,7 @@
 
       /// Synthetic request body field for the [resize()][google.cloud.compute.v1.reservations.resize] method.
       ///
-      /// [google.cloud.compute.v1.reservations.resize]: <doc:Reservations/resize(request:)>
+      /// [google.cloud.compute.v1.reservations.resize]: <doc:ReservationsClient/resize(request:)>
       public var body: ReservationsResizeRequest? = nil
 
       /// Initialize a new instance of `ResizeRequest`.
@@ -623,7 +623,7 @@
 
     /// Synthetic request message for the [setIamPolicy()][google.cloud.compute.v1.reservations.setIamPolicy] method.
     ///
-    /// [google.cloud.compute.v1.reservations.setIamPolicy]: <doc:Reservations/setIamPolicy(request:)>
+    /// [google.cloud.compute.v1.reservations.setIamPolicy]: <doc:ReservationsClient/setIamPolicy(request:)>
     public struct SetIamPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -638,7 +638,7 @@
 
       /// Synthetic request body field for the [setIamPolicy()][google.cloud.compute.v1.reservations.setIamPolicy] method.
       ///
-      /// [google.cloud.compute.v1.reservations.setIamPolicy]: <doc:Reservations/setIamPolicy(request:)>
+      /// [google.cloud.compute.v1.reservations.setIamPolicy]: <doc:ReservationsClient/setIamPolicy(request:)>
       public var body: ZoneSetPolicyRequest? = nil
 
       /// Initialize a new instance of `SetIamPolicyRequest`.
@@ -670,7 +670,7 @@
 
     /// Synthetic request message for the [testIamPermissions()][google.cloud.compute.v1.reservations.testIamPermissions] method.
     ///
-    /// [google.cloud.compute.v1.reservations.testIamPermissions]: <doc:Reservations/testIamPermissions(request:)>
+    /// [google.cloud.compute.v1.reservations.testIamPermissions]: <doc:ReservationsClient/testIamPermissions(request:)>
     public struct TestIamPermissionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -685,7 +685,7 @@
 
       /// Synthetic request body field for the [testIamPermissions()][google.cloud.compute.v1.reservations.testIamPermissions] method.
       ///
-      /// [google.cloud.compute.v1.reservations.testIamPermissions]: <doc:Reservations/testIamPermissions(request:)>
+      /// [google.cloud.compute.v1.reservations.testIamPermissions]: <doc:ReservationsClient/testIamPermissions(request:)>
       public var body: TestPermissionsRequest? = nil
 
       /// Initialize a new instance of `TestIamPermissionsRequest`.
@@ -717,7 +717,7 @@
 
     /// Synthetic request message for the [update()][google.cloud.compute.v1.reservations.update] method.
     ///
-    /// [google.cloud.compute.v1.reservations.update]: <doc:Reservations/update(request:)>
+    /// [google.cloud.compute.v1.reservations.update]: <doc:ReservationsClient/update(request:)>
     public struct UpdateRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -752,7 +752,7 @@
 
       /// Synthetic request body field for the [update()][google.cloud.compute.v1.reservations.update] method.
       ///
-      /// [google.cloud.compute.v1.reservations.update]: <doc:Reservations/update(request:)>
+      /// [google.cloud.compute.v1.reservations.update]: <doc:ReservationsClient/update(request:)>
       public var body: Reservation? = nil
 
       /// Initialize a new instance of `UpdateRequest`.

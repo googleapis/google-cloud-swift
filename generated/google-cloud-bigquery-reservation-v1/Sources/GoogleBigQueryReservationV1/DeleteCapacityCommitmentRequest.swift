@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// The request for
 /// [ReservationService.DeleteCapacityCommitment][google.cloud.bigquery.reservation.v1.ReservationService.DeleteCapacityCommitment].
 ///
-/// [google.cloud.bigquery.reservation.v1.ReservationService.DeleteCapacityCommitment]: <doc:ReservationService/deleteCapacityCommitment(request:)>
+/// [google.cloud.bigquery.reservation.v1.ReservationService.DeleteCapacityCommitment]: <doc:ReservationServiceClient/deleteCapacityCommitment(request:)>
 public struct DeleteCapacityCommitmentRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

@@ -59,7 +59,7 @@
     /// See [Versions and
     /// environments](https://cloud.google.com/dialogflow/es/docs/agents-versions).
     ///
-    /// [google.cloud.dialogflow.v2.Participants.AnalyzeContent]: <doc:Participants/analyzeContent(request:)>
+    /// [google.cloud.dialogflow.v2.Participants.AnalyzeContent]: <doc:ParticipantsClient/analyzeContent(request:)>
     ///
     /// @Snippet(path: "Sessions_DetectIntent")
     public func detectIntent(
@@ -137,7 +137,7 @@
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
     ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "Sessions_ListOperations")
     public func listOperations(
@@ -148,7 +148,7 @@
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
     ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "Sessions_ListOperations")
     public func listOperations(
@@ -165,7 +165,7 @@
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
     ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "Sessions_GetOperation")
     func getOperation(
@@ -176,7 +176,7 @@
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
     ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "Sessions_CancelOperation")
     public func cancelOperation(

@@ -22,7 +22,7 @@
   /// Response message for
   /// [VertexRagDataService.ListRagFiles][google.cloud.aiplatform.v1.VertexRagDataService.ListRagFiles].
   ///
-  /// [google.cloud.aiplatform.v1.VertexRagDataService.ListRagFiles]: <doc:VertexRagDataService/listRagFiles(request:)>
+  /// [google.cloud.aiplatform.v1.VertexRagDataService.ListRagFiles]: <doc:VertexRagDataServiceClient/listRagFiles(request:)>
   public struct ListRagFilesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable

@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [KeyDashboardService.ListCryptoKeys][google.cloud.kms.inventory.v1.KeyDashboardService.ListCryptoKeys].
 ///
-/// [google.cloud.kms.inventory.v1.KeyDashboardService.ListCryptoKeys]: <doc:KeyDashboardService/listCryptoKeys(request:)>
+/// [google.cloud.kms.inventory.v1.KeyDashboardService.ListCryptoKeys]: <doc:KeyDashboardServiceClient/listCryptoKeys(request:)>
 public struct ListCryptoKeysRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

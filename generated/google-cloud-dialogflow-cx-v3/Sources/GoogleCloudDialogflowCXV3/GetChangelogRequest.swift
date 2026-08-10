@@ -21,7 +21,7 @@
   /// The request message for
   /// [Changelogs.GetChangelog][google.cloud.dialogflow.cx.v3.Changelogs.GetChangelog].
   ///
-  /// [google.cloud.dialogflow.cx.v3.Changelogs.GetChangelog]: <doc:Changelogs/getChangelog(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Changelogs.GetChangelog]: <doc:ChangelogsClient/getChangelog(request:)>
   public struct GetChangelogRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

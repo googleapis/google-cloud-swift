@@ -21,7 +21,7 @@
   /// Response message for
   /// [TensorboardService.ReadTensorboardSize][google.cloud.aiplatform.v1.TensorboardService.ReadTensorboardSize].
   ///
-  /// [google.cloud.aiplatform.v1.TensorboardService.ReadTensorboardSize]: <doc:TensorboardService/readTensorboardSize(request:)>
+  /// [google.cloud.aiplatform.v1.TensorboardService.ReadTensorboardSize]: <doc:TensorboardServiceClient/readTensorboardSize(request:)>
   public struct ReadTensorboardSizeResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

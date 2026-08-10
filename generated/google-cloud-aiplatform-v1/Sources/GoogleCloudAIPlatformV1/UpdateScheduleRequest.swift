@@ -21,7 +21,7 @@
   /// Request message for
   /// [ScheduleService.UpdateSchedule][google.cloud.aiplatform.v1.ScheduleService.UpdateSchedule].
   ///
-  /// [google.cloud.aiplatform.v1.ScheduleService.UpdateSchedule]: <doc:ScheduleService/updateSchedule(request:)>
+  /// [google.cloud.aiplatform.v1.ScheduleService.UpdateSchedule]: <doc:ScheduleServiceClient/updateSchedule(request:)>
   public struct UpdateScheduleRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

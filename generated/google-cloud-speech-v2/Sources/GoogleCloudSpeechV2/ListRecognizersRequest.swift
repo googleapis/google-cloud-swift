@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for the
 /// [ListRecognizers][google.cloud.speech.v2.Speech.ListRecognizers] method.
 ///
-/// [google.cloud.speech.v2.Speech.ListRecognizers]: <doc:Speech/listRecognizers(request:)>
+/// [google.cloud.speech.v2.Speech.ListRecognizers]: <doc:SpeechClient/listRecognizers(request:)>
 public struct ListRecognizersRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
@@ -41,7 +41,7 @@ public struct ListRecognizersRequest: Codable, Equatable, GoogleCloudWkt._AnyPac
   /// [ListRecognizers][google.cloud.speech.v2.Speech.ListRecognizers] must match
   /// the call that provided the page token.
   ///
-  /// [google.cloud.speech.v2.Speech.ListRecognizers]: <doc:Speech/listRecognizers(request:)>
+  /// [google.cloud.speech.v2.Speech.ListRecognizers]: <doc:SpeechClient/listRecognizers(request:)>
   public var pageToken: Swift.String = Swift.String()
 
   /// Whether, or not, to show resources that have been deleted.

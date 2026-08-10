@@ -21,7 +21,7 @@
   /// The response message for
   /// [Flows.ImportFlow][google.cloud.dialogflow.cx.v3.Flows.ImportFlow].
   ///
-  /// [google.cloud.dialogflow.cx.v3.Flows.ImportFlow]: <doc:Flows/importFlow(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Flows.ImportFlow]: <doc:FlowsClient/importFlow(request:)>
   public struct ImportFlowResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

@@ -21,7 +21,7 @@
   /// Runtime operation information for
   /// [ModelGardenService.Deploy][google.cloud.aiplatform.v1.ModelGardenService.Deploy].
   ///
-  /// [google.cloud.aiplatform.v1.ModelGardenService.Deploy]: <doc:ModelGardenService/deploy(request:)>
+  /// [google.cloud.aiplatform.v1.ModelGardenService.Deploy]: <doc:ModelGardenServiceClient/deploy(request:)>
   public struct DeployOperationMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

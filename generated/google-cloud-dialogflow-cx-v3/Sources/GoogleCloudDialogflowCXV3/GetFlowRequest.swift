@@ -21,7 +21,7 @@
   /// The response message for
   /// [Flows.GetFlow][google.cloud.dialogflow.cx.v3.Flows.GetFlow].
   ///
-  /// [google.cloud.dialogflow.cx.v3.Flows.GetFlow]: <doc:Flows/getFlow(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Flows.GetFlow]: <doc:FlowsClient/getFlow(request:)>
   public struct GetFlowRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

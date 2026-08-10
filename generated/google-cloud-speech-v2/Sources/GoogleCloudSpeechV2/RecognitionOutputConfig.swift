@@ -102,7 +102,7 @@ public struct RecognitionOutputConfig: Codable, Equatable, GoogleCloudWkt._AnyPa
     /// with just one audio file.
     ///
     /// [google.cloud.speech.v2.BatchRecognizeResponse]: <doc:BatchRecognizeResponse>
-    /// [google.cloud.speech.v2.Speech.BatchRecognize]: <doc:Speech/batchRecognize(request:)>
+    /// [google.cloud.speech.v2.Speech.BatchRecognize]: <doc:SpeechClient/batchRecognize(request:)>
     indirect case inlineResponseConfig(InlineOutputConfig?)
   }
 

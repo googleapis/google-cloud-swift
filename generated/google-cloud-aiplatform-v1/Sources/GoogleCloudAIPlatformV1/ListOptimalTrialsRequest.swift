@@ -21,7 +21,7 @@
   /// Request message for
   /// [VizierService.ListOptimalTrials][google.cloud.aiplatform.v1.VizierService.ListOptimalTrials].
   ///
-  /// [google.cloud.aiplatform.v1.VizierService.ListOptimalTrials]: <doc:VizierService/listOptimalTrials(request:)>
+  /// [google.cloud.aiplatform.v1.VizierService.ListOptimalTrials]: <doc:VizierServiceClient/listOptimalTrials(request:)>
   public struct ListOptimalTrialsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

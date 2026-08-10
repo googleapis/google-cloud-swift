@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [KeyManagementService.Decapsulate][google.cloud.kms.v1.KeyManagementService.Decapsulate].
 ///
-/// [google.cloud.kms.v1.KeyManagementService.Decapsulate]: <doc:KeyManagementService/decapsulate(request:)>
+/// [google.cloud.kms.v1.KeyManagementService.Decapsulate]: <doc:KeyManagementServiceClient/decapsulate(request:)>
 public struct DecapsulateResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
@@ -56,7 +56,7 @@ public struct DecapsulateResponse: Codable, Equatable, GoogleCloudWkt._AnyPackab
   ///
   /// [google.cloud.kms.v1.DecapsulateRequest.ciphertext]: <doc:DecapsulateRequest/ciphertext>
   /// [google.cloud.kms.v1.DecapsulateResponse.shared_secret]: <doc:DecapsulateResponse/sharedSecret>
-  /// [google.cloud.kms.v1.KeyManagementService]: <doc:KeyManagementService>
+  /// [google.cloud.kms.v1.KeyManagementService]: <doc:KeyManagementServiceClient>
   public var sharedSecretCrc32C: Swift.Int64? = nil
 
   /// Integrity verification field. A flag indicating whether
@@ -76,7 +76,7 @@ public struct DecapsulateResponse: Codable, Equatable, GoogleCloudWkt._AnyPackab
   ///
   /// [google.cloud.kms.v1.DecapsulateRequest.ciphertext]: <doc:DecapsulateRequest/ciphertext>
   /// [google.cloud.kms.v1.DecapsulateRequest.ciphertext_crc32c]: <doc:DecapsulateRequest/ciphertextCrc32C>
-  /// [google.cloud.kms.v1.KeyManagementService]: <doc:KeyManagementService>
+  /// [google.cloud.kms.v1.KeyManagementService]: <doc:KeyManagementServiceClient>
   public var verifiedCiphertextCrc32C: Swift.Bool = Swift.Bool()
 
   /// The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] of the

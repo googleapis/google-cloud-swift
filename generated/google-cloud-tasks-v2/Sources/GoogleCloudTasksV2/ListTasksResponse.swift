@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// Response message for listing tasks using
 /// [ListTasks][google.cloud.tasks.v2.CloudTasks.ListTasks].
 ///
-/// [google.cloud.tasks.v2.CloudTasks.ListTasks]: <doc:CloudTasks/listTasks(request:)>
+/// [google.cloud.tasks.v2.CloudTasks.ListTasks]: <doc:CloudTasksClient/listTasks(request:)>
 public struct ListTasksResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable
@@ -37,7 +37,7 @@ public struct ListTasksResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable
   ///
   /// If the next_page_token is empty, there are no more results.
   ///
-  /// [google.cloud.tasks.v2.CloudTasks.ListTasks]: <doc:CloudTasks/listTasks(request:)>
+  /// [google.cloud.tasks.v2.CloudTasks.ListTasks]: <doc:CloudTasksClient/listTasks(request:)>
   /// [google.cloud.tasks.v2.ListTasksRequest.page_token]: <doc:ListTasksRequest/pageToken>
   public var nextPageToken: Swift.String = Swift.String()
 

@@ -21,7 +21,7 @@
   extension FutureReservationsClient {
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.futureReservations.aggregatedList] method.
     ///
-    /// [google.cloud.compute.v1.futureReservations.aggregatedList]: <doc:FutureReservations/aggregatedList(request:)>
+    /// [google.cloud.compute.v1.futureReservations.aggregatedList]: <doc:FutureReservationsClient/aggregatedList(request:)>
     public struct AggregatedListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -164,7 +164,7 @@
 
     /// Synthetic request message for the [cancel()][google.cloud.compute.v1.futureReservations.cancel] method.
     ///
-    /// [google.cloud.compute.v1.futureReservations.cancel]: <doc:FutureReservations/cancel(request:)>
+    /// [google.cloud.compute.v1.futureReservations.cancel]: <doc:FutureReservationsClient/cancel(request:)>
     public struct CancelRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -221,7 +221,7 @@
 
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.futureReservations.delete] method.
     ///
-    /// [google.cloud.compute.v1.futureReservations.delete]: <doc:FutureReservations/delete(request:)>
+    /// [google.cloud.compute.v1.futureReservations.delete]: <doc:FutureReservationsClient/delete(request:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -278,7 +278,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.futureReservations.get] method.
     ///
-    /// [google.cloud.compute.v1.futureReservations.get]: <doc:FutureReservations/`get`(request:)>
+    /// [google.cloud.compute.v1.futureReservations.get]: <doc:FutureReservationsClient/`get`(request:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -320,7 +320,7 @@
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.futureReservations.insert] method.
     ///
-    /// [google.cloud.compute.v1.futureReservations.insert]: <doc:FutureReservations/insert(request:)>
+    /// [google.cloud.compute.v1.futureReservations.insert]: <doc:FutureReservationsClient/insert(request:)>
     public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -347,7 +347,7 @@
 
       /// Synthetic request body field for the [insert()][google.cloud.compute.v1.futureReservations.insert] method.
       ///
-      /// [google.cloud.compute.v1.futureReservations.insert]: <doc:FutureReservations/insert(request:)>
+      /// [google.cloud.compute.v1.futureReservations.insert]: <doc:FutureReservationsClient/insert(request:)>
       public var body: FutureReservation? = nil
 
       /// Initialize a new instance of `InsertRequest`.
@@ -379,7 +379,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.futureReservations.list] method.
     ///
-    /// [google.cloud.compute.v1.futureReservations.list]: <doc:FutureReservations/list(request:)>
+    /// [google.cloud.compute.v1.futureReservations.list]: <doc:FutureReservationsClient/list(request:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -511,7 +511,7 @@
 
     /// Synthetic request message for the [update()][google.cloud.compute.v1.futureReservations.update] method.
     ///
-    /// [google.cloud.compute.v1.futureReservations.update]: <doc:FutureReservations/update(request:)>
+    /// [google.cloud.compute.v1.futureReservations.update]: <doc:FutureReservationsClient/update(request:)>
     public struct UpdateRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -544,7 +544,7 @@
 
       /// Synthetic request body field for the [update()][google.cloud.compute.v1.futureReservations.update] method.
       ///
-      /// [google.cloud.compute.v1.futureReservations.update]: <doc:FutureReservations/update(request:)>
+      /// [google.cloud.compute.v1.futureReservations.update]: <doc:FutureReservationsClient/update(request:)>
       public var body: FutureReservation? = nil
 
       /// Initialize a new instance of `UpdateRequest`.

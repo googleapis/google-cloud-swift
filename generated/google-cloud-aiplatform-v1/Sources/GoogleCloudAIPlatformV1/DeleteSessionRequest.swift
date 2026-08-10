@@ -21,7 +21,7 @@
   /// Request message for
   /// [SessionService.DeleteSession][google.cloud.aiplatform.v1.SessionService.DeleteSession].
   ///
-  /// [google.cloud.aiplatform.v1.SessionService.DeleteSession]: <doc:SessionService/deleteSession(request:)>
+  /// [google.cloud.aiplatform.v1.SessionService.DeleteSession]: <doc:SessionServiceClient/deleteSession(request:)>
   public struct DeleteSessionRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

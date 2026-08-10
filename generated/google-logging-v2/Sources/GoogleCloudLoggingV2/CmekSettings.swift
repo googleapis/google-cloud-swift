@@ -95,7 +95,7 @@ public struct CmekSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// Router](https://cloud.google.com/logging/docs/routing/managed-encryption)
   /// for more information.
   ///
-  /// [google.logging.v2.ConfigServiceV2.GetCmekSettings]: <doc:ConfigServiceV2/getCmekSettings(request:)>
+  /// [google.logging.v2.ConfigServiceV2.GetCmekSettings]: <doc:ConfigServiceV2Client/getCmekSettings(request:)>
   public var serviceAccountId: Swift.String = Swift.String()
 
   /// Initialize a new instance of `CmekSettings`.

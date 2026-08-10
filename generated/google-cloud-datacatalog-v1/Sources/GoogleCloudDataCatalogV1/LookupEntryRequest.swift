@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [LookupEntry][google.cloud.datacatalog.v1.DataCatalog.LookupEntry].
 ///
-/// [google.cloud.datacatalog.v1.DataCatalog.LookupEntry]: <doc:DataCatalog/lookupEntry(request:)>
+/// [google.cloud.datacatalog.v1.DataCatalog.LookupEntry]: <doc:DataCatalogClient/lookupEntry(request:)>
 public struct LookupEntryRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

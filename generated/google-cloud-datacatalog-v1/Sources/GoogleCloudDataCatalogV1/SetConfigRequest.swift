@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [SetConfig][google.cloud.datacatalog.v1.DataCatalog.SetConfig].
 ///
-/// [google.cloud.datacatalog.v1.DataCatalog.SetConfig]: <doc:DataCatalog/setConfig(request:)>
+/// [google.cloud.datacatalog.v1.DataCatalog.SetConfig]: <doc:DataCatalogClient/setConfig(request:)>
 public struct SetConfigRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

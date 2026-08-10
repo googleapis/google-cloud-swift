@@ -22,7 +22,7 @@
   /// [DocumentService.UpdateDocument][google.cloud.discoveryengine.v1.DocumentService.UpdateDocument]
   /// method.
   ///
-  /// [google.cloud.discoveryengine.v1.DocumentService.UpdateDocument]: <doc:DocumentService/updateDocument(request:)>
+  /// [google.cloud.discoveryengine.v1.DocumentService.UpdateDocument]: <doc:DocumentServiceClient/updateDocument(request:)>
   public struct UpdateDocumentRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

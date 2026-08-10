@@ -23,7 +23,7 @@
   /// [SearchService.Search][google.cloud.discoveryengine.v1.SearchService.Search]
   /// method.
   ///
-  /// [google.cloud.discoveryengine.v1.SearchService.Search]: <doc:SearchService/search(request:)>
+  /// [google.cloud.discoveryengine.v1.SearchService.Search]: <doc:SearchServiceClient/search(request:)>
   public struct SearchResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable

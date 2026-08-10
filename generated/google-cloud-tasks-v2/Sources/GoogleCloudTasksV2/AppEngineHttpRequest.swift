@@ -168,7 +168,7 @@ public struct AppEngineHttpRequest: Codable, Equatable, GoogleCloudWkt._AnyPacka
   /// [CreateTask][google.cloud.tasks.v2.CloudTasks.CreateTask] documentation.
   ///
   /// [google.cloud.tasks.v2.AppEngineHttpRequest.body]: <doc:AppEngineHttpRequest/body>
-  /// [google.cloud.tasks.v2.CloudTasks.CreateTask]: <doc:CloudTasks/createTask(request:)>
+  /// [google.cloud.tasks.v2.CloudTasks.CreateTask]: <doc:CloudTasksClient/createTask(request:)>
   /// [google.cloud.tasks.v2.Task]: <doc:Task>
   public var headers: [Swift.String: Swift.String] = [:]
 

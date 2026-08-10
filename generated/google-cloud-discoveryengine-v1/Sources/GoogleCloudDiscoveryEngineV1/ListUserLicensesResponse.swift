@@ -22,7 +22,7 @@
   /// Response message for
   /// [UserLicenseService.ListUserLicenses][google.cloud.discoveryengine.v1.UserLicenseService.ListUserLicenses].
   ///
-  /// [google.cloud.discoveryengine.v1.UserLicenseService.ListUserLicenses]: <doc:UserLicenseService/listUserLicenses(request:)>
+  /// [google.cloud.discoveryengine.v1.UserLicenseService.ListUserLicenses]: <doc:UserLicenseServiceClient/listUserLicenses(request:)>
   public struct ListUserLicensesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable

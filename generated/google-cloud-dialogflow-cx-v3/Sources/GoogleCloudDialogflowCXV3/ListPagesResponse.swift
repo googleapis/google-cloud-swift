@@ -22,7 +22,7 @@
   /// The response message for
   /// [Pages.ListPages][google.cloud.dialogflow.cx.v3.Pages.ListPages].
   ///
-  /// [google.cloud.dialogflow.cx.v3.Pages.ListPages]: <doc:Pages/listPages(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Pages.ListPages]: <doc:PagesClient/listPages(request:)>
   public struct ListPagesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable

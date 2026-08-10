@@ -22,7 +22,7 @@
   /// Request message for
   /// [PredictionService.StreamRawPredict][google.cloud.aiplatform.v1.PredictionService.StreamRawPredict].
   ///
-  /// [google.cloud.aiplatform.v1.PredictionService.StreamRawPredict]: <doc:PredictionService/streamRawPredict(request:)>
+  /// [google.cloud.aiplatform.v1.PredictionService.StreamRawPredict]: <doc:PredictionServiceClient/streamRawPredict(request:)>
   public struct StreamRawPredictRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [ProductService.DeleteProduct][google.cloud.retail.v2.ProductService.DeleteProduct]
 /// method.
 ///
-/// [google.cloud.retail.v2.ProductService.DeleteProduct]: <doc:ProductService/deleteProduct(request:)>
+/// [google.cloud.retail.v2.ProductService.DeleteProduct]: <doc:ProductServiceClient/deleteProduct(request:)>
 public struct DeleteProductRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

@@ -395,7 +395,7 @@ public class LineageClient: Clients.LineageProtocol {
   /// have the `datalineage.events.get` permission. The project provided in the
   /// URL is used for Billing and Quota.
   ///
-  /// [google.cloud.datacatalog.lineage.v1.Lineage.SearchLinks]: <doc:Lineage/searchLinks(request:)>
+  /// [google.cloud.datacatalog.lineage.v1.Lineage.SearchLinks]: <doc:LineageClient/searchLinks(request:)>
   ///
   /// @Snippet(path: "Lineage_BatchSearchLinkProcesses")
   public func batchSearchLinkProcesses(
@@ -419,7 +419,7 @@ public class LineageClient: Clients.LineageProtocol {
   /// have the `datalineage.events.get` permission. The project provided in the
   /// URL is used for Billing and Quota.
   ///
-  /// [google.cloud.datacatalog.lineage.v1.Lineage.SearchLinks]: <doc:Lineage/searchLinks(request:)>
+  /// [google.cloud.datacatalog.lineage.v1.Lineage.SearchLinks]: <doc:LineageClient/searchLinks(request:)>
   ///
   /// @Snippet(path: "Lineage_BatchSearchLinkProcesses")
   public func batchSearchLinkProcesses(
@@ -470,7 +470,7 @@ public class LineageClient: Clients.LineageProtocol {
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Lineage_ListOperations")
   public func listOperations(
@@ -481,7 +481,7 @@ public class LineageClient: Clients.LineageProtocol {
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Lineage_ListOperations")
   public func listOperations(
@@ -498,7 +498,7 @@ public class LineageClient: Clients.LineageProtocol {
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Lineage_GetOperation")
   func getOperation(
@@ -509,7 +509,7 @@ public class LineageClient: Clients.LineageProtocol {
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Lineage_DeleteOperation")
   public func deleteOperation(
@@ -520,7 +520,7 @@ public class LineageClient: Clients.LineageProtocol {
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Lineage_CancelOperation")
   public func cancelOperation(

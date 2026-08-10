@@ -21,7 +21,7 @@
   /// The request message for
   /// [Tools.DeleteToolVersion][google.cloud.dialogflow.cx.v3.Tools.DeleteToolVersion].
   ///
-  /// [google.cloud.dialogflow.cx.v3.Tools.DeleteToolVersion]: <doc:Tools/deleteToolVersion(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Tools.DeleteToolVersion]: <doc:ToolsClient/deleteToolVersion(request:)>
   public struct DeleteToolVersionRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

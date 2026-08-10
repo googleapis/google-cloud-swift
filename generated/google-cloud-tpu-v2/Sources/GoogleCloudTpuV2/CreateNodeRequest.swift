@@ -19,7 +19,7 @@ import GoogleCloudWkt
 
 /// Request for [CreateNode][google.cloud.tpu.v2.Tpu.CreateNode].
 ///
-/// [google.cloud.tpu.v2.Tpu.CreateNode]: <doc:Tpu/createNode(request:)>
+/// [google.cloud.tpu.v2.Tpu.CreateNode]: <doc:TpuClient/createNode(request:)>
 public struct CreateNodeRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

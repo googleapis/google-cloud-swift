@@ -19,7 +19,7 @@ import GoogleCloudWkt
 
 /// Request for [UpdateNode][google.cloud.tpu.v2.Tpu.UpdateNode].
 ///
-/// [google.cloud.tpu.v2.Tpu.UpdateNode]: <doc:Tpu/updateNode(request:)>
+/// [google.cloud.tpu.v2.Tpu.UpdateNode]: <doc:TpuClient/updateNode(request:)>
 public struct UpdateNodeRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request for
 /// [RescheduleMaintenance][google.cloud.redis.v1.CloudRedis.RescheduleMaintenance].
 ///
-/// [google.cloud.redis.v1.CloudRedis.RescheduleMaintenance]: <doc:CloudRedis/rescheduleMaintenance(request:)>
+/// [google.cloud.redis.v1.CloudRedis.RescheduleMaintenance]: <doc:CloudRedisClient/rescheduleMaintenance(request:)>
 public struct RescheduleMaintenanceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

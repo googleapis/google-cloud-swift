@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [UpdateTaxonomy][google.cloud.datacatalog.v1.PolicyTagManager.UpdateTaxonomy].
 ///
-/// [google.cloud.datacatalog.v1.PolicyTagManager.UpdateTaxonomy]: <doc:PolicyTagManager/updateTaxonomy(request:)>
+/// [google.cloud.datacatalog.v1.PolicyTagManager.UpdateTaxonomy]: <doc:PolicyTagManagerClient/updateTaxonomy(request:)>
 public struct UpdateTaxonomyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

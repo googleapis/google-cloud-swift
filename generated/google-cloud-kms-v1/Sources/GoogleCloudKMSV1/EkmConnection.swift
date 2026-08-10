@@ -202,7 +202,7 @@ public struct EkmConnection: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// [google.cloud.kms.v1.CryptoKey]: <doc:CryptoKey>
     /// [google.cloud.kms.v1.CryptoKeyVersion]: <doc:CryptoKeyVersion>
     /// [google.cloud.kms.v1.EkmConnection]: <doc:EkmConnection>
-    /// [google.cloud.kms.v1.KeyManagementService.DestroyCryptoKeyVersion]: <doc:KeyManagementService/destroyCryptoKeyVersion(request:)>
+    /// [google.cloud.kms.v1.KeyManagementService.DestroyCryptoKeyVersion]: <doc:KeyManagementServiceClient/destroyCryptoKeyVersion(request:)>
     case cloudKms
     /// Encodes an unknown integer value.
     ///

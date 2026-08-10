@@ -19,7 +19,7 @@ import GoogleCloudWkt
 
 /// The [CreateSpec][google.cloud.apihub.v1.ApiHub.CreateSpec] method's request.
 ///
-/// [google.cloud.apihub.v1.ApiHub.CreateSpec]: <doc:ApiHub/createSpec(request:)>
+/// [google.cloud.apihub.v1.ApiHub.CreateSpec]: <doc:ApiHubClient/createSpec(request:)>
 public struct CreateSpecRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

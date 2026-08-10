@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for listing jobs using
 /// [ListJobs][google.cloud.scheduler.v1.CloudScheduler.ListJobs].
 ///
-/// [google.cloud.scheduler.v1.CloudScheduler.ListJobs]: <doc:CloudScheduler/listJobs(request:)>
+/// [google.cloud.scheduler.v1.CloudScheduler.ListJobs]: <doc:CloudSchedulerClient/listJobs(request:)>
 public struct ListJobsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
@@ -43,7 +43,7 @@ public struct ListJobsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// returned from the previous call to
   /// [ListJobs][google.cloud.scheduler.v1.CloudScheduler.ListJobs].
   ///
-  /// [google.cloud.scheduler.v1.CloudScheduler.ListJobs]: <doc:CloudScheduler/listJobs(request:)>
+  /// [google.cloud.scheduler.v1.CloudScheduler.ListJobs]: <doc:CloudSchedulerClient/listJobs(request:)>
   /// [google.cloud.scheduler.v1.ListJobsResponse.next_page_token]: <doc:ListJobsResponse/nextPageToken>
   public var pageToken: Swift.String = Swift.String()
 

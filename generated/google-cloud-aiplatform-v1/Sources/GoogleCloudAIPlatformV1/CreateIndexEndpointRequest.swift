@@ -21,7 +21,7 @@
   /// Request message for
   /// [IndexEndpointService.CreateIndexEndpoint][google.cloud.aiplatform.v1.IndexEndpointService.CreateIndexEndpoint].
   ///
-  /// [google.cloud.aiplatform.v1.IndexEndpointService.CreateIndexEndpoint]: <doc:IndexEndpointService/createIndexEndpoint(request:)>
+  /// [google.cloud.aiplatform.v1.IndexEndpointService.CreateIndexEndpoint]: <doc:IndexEndpointServiceClient/createIndexEndpoint(request:)>
   public struct CreateIndexEndpointRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

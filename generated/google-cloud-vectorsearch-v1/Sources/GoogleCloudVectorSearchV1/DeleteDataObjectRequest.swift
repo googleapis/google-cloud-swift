@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [DataObjectService.DeleteDataObject][google.cloud.vectorsearch.v1.DataObjectService.DeleteDataObject].
 ///
-/// [google.cloud.vectorsearch.v1.DataObjectService.DeleteDataObject]: <doc:DataObjectService/deleteDataObject(request:)>
+/// [google.cloud.vectorsearch.v1.DataObjectService.DeleteDataObject]: <doc:DataObjectServiceClient/deleteDataObject(request:)>
 public struct DeleteDataObjectRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

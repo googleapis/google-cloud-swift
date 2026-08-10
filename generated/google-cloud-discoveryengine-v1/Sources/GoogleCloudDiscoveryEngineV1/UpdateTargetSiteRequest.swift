@@ -22,7 +22,7 @@
   /// [SiteSearchEngineService.UpdateTargetSite][google.cloud.discoveryengine.v1.SiteSearchEngineService.UpdateTargetSite]
   /// method.
   ///
-  /// [google.cloud.discoveryengine.v1.SiteSearchEngineService.UpdateTargetSite]: <doc:SiteSearchEngineService/updateTargetSite(request:)>
+  /// [google.cloud.discoveryengine.v1.SiteSearchEngineService.UpdateTargetSite]: <doc:SiteSearchEngineServiceClient/updateTargetSite(request:)>
   public struct UpdateTargetSiteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

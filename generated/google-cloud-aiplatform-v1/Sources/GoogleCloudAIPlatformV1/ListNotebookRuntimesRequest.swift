@@ -21,7 +21,7 @@
   /// Request message for
   /// [NotebookService.ListNotebookRuntimes][google.cloud.aiplatform.v1.NotebookService.ListNotebookRuntimes].
   ///
-  /// [google.cloud.aiplatform.v1.NotebookService.ListNotebookRuntimes]: <doc:NotebookService/listNotebookRuntimes(request:)>
+  /// [google.cloud.aiplatform.v1.NotebookService.ListNotebookRuntimes]: <doc:NotebookServiceClient/listNotebookRuntimes(request:)>
   public struct ListNotebookRuntimesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {
@@ -82,7 +82,7 @@
     /// call.
     ///
     /// [google.cloud.aiplatform.v1.ListNotebookRuntimesResponse.next_page_token]: <doc:ListNotebookRuntimesResponse/nextPageToken>
-    /// [google.cloud.aiplatform.v1.NotebookService.ListNotebookRuntimes]: <doc:NotebookService/listNotebookRuntimes(request:)>
+    /// [google.cloud.aiplatform.v1.NotebookService.ListNotebookRuntimes]: <doc:NotebookServiceClient/listNotebookRuntimes(request:)>
     public var pageToken: Swift.String = Swift.String()
 
     /// Optional. Mask specifying which fields to read.

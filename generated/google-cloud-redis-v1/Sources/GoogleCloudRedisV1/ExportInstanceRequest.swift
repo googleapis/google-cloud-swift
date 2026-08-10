@@ -19,7 +19,7 @@ import GoogleCloudWkt
 
 /// Request for [Export][google.cloud.redis.v1.CloudRedis.ExportInstance].
 ///
-/// [google.cloud.redis.v1.CloudRedis.ExportInstance]: <doc:CloudRedis/exportInstance(request:)>
+/// [google.cloud.redis.v1.CloudRedis.ExportInstance]: <doc:CloudRedisClient/exportInstance(request:)>
 public struct ExportInstanceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

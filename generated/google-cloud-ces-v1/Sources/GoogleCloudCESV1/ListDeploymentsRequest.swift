@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [AgentService.ListDeployments][google.cloud.ces.v1.AgentService.ListDeployments].
 ///
-/// [google.cloud.ces.v1.AgentService.ListDeployments]: <doc:AgentService/listDeployments(request:)>
+/// [google.cloud.ces.v1.AgentService.ListDeployments]: <doc:AgentServiceClient/listDeployments(request:)>
 public struct ListDeploymentsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

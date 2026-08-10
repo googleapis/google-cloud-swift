@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [KeyManagementService.ImportTrustedKeyWrappedCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.ImportTrustedKeyWrappedCryptoKeyVersion].
 ///
-/// [google.cloud.kms.v1.KeyManagementService.ImportTrustedKeyWrappedCryptoKeyVersion]: <doc:KeyManagementService/importTrustedKeyWrappedCryptoKeyVersion(request:)>
+/// [google.cloud.kms.v1.KeyManagementService.ImportTrustedKeyWrappedCryptoKeyVersion]: <doc:KeyManagementServiceClient/importTrustedKeyWrappedCryptoKeyVersion(request:)>
 public struct ImportTrustedKeyWrappedCryptoKeyVersionRequest: Codable, Equatable, GoogleCloudWkt
     ._AnyPackable,
   Sendable
@@ -64,7 +64,7 @@ public struct ImportTrustedKeyWrappedCryptoKeyVersionRequest: Codable, Equatable
   /// [google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.IMPORT_FAILED]: <doc:CryptoKeyVersion/CryptoKeyVersionState/importFailed>
   /// [google.cloud.kms.v1.CryptoKeyVersion.name]: <doc:CryptoKeyVersion/name>
   /// [google.cloud.kms.v1.ImportTrustedKeyWrappedCryptoKeyVersionRequest.parent]: <doc:ImportTrustedKeyWrappedCryptoKeyVersionRequest/parent>
-  /// [google.cloud.kms.v1.KeyManagementService.ImportTrustedKeyWrappedCryptoKeyVersion]: <doc:KeyManagementService/importTrustedKeyWrappedCryptoKeyVersion(request:)>
+  /// [google.cloud.kms.v1.KeyManagementService.ImportTrustedKeyWrappedCryptoKeyVersion]: <doc:KeyManagementServiceClient/importTrustedKeyWrappedCryptoKeyVersion(request:)>
   public var cryptoKeyVersion: Swift.String = Swift.String()
 
   /// Required. The target key pre-wrapped on premises.

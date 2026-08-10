@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [HsmManagement.DeleteSingleTenantHsmInstanceProposal][google.cloud.kms.v1.HsmManagement.DeleteSingleTenantHsmInstanceProposal].
 ///
-/// [google.cloud.kms.v1.HsmManagement.DeleteSingleTenantHsmInstanceProposal]: <doc:HsmManagement/deleteSingleTenantHsmInstanceProposal(request:)>
+/// [google.cloud.kms.v1.HsmManagement.DeleteSingleTenantHsmInstanceProposal]: <doc:HsmManagementClient/deleteSingleTenantHsmInstanceProposal(request:)>
 public struct DeleteSingleTenantHsmInstanceProposalRequest: Codable, Equatable, GoogleCloudWkt
     ._AnyPackable,
   Sendable

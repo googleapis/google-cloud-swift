@@ -248,7 +248,7 @@ public class NodeGroupControllerClient: Clients.NodeGroupControllerProtocol {
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "NodeGroupController_ListOperations")
   public func listOperations(
@@ -259,7 +259,7 @@ public class NodeGroupControllerClient: Clients.NodeGroupControllerProtocol {
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "NodeGroupController_ListOperations")
   public func listOperations(
@@ -276,7 +276,7 @@ public class NodeGroupControllerClient: Clients.NodeGroupControllerProtocol {
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "NodeGroupController_GetOperation")
   func getOperation(
@@ -287,7 +287,7 @@ public class NodeGroupControllerClient: Clients.NodeGroupControllerProtocol {
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "NodeGroupController_DeleteOperation")
   public func deleteOperation(
@@ -298,7 +298,7 @@ public class NodeGroupControllerClient: Clients.NodeGroupControllerProtocol {
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "NodeGroupController_CancelOperation")
   public func cancelOperation(

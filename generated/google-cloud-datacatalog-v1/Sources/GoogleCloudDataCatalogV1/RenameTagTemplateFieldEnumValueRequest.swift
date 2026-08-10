@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [RenameTagTemplateFieldEnumValue][google.cloud.datacatalog.v1.DataCatalog.RenameTagTemplateFieldEnumValue].
 ///
-/// [google.cloud.datacatalog.v1.DataCatalog.RenameTagTemplateFieldEnumValue]: <doc:DataCatalog/renameTagTemplateFieldEnumValue(request:)>
+/// [google.cloud.datacatalog.v1.DataCatalog.RenameTagTemplateFieldEnumValue]: <doc:DataCatalogClient/renameTagTemplateFieldEnumValue(request:)>
 public struct RenameTagTemplateFieldEnumValueRequest: Codable, Equatable, GoogleCloudWkt
     ._AnyPackable,
   Sendable

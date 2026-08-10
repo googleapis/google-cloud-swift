@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [PauseJob][google.cloud.scheduler.v1.CloudScheduler.PauseJob].
 ///
-/// [google.cloud.scheduler.v1.CloudScheduler.PauseJob]: <doc:CloudScheduler/pauseJob(request:)>
+/// [google.cloud.scheduler.v1.CloudScheduler.PauseJob]: <doc:CloudSchedulerClient/pauseJob(request:)>
 public struct PauseJobRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

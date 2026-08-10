@@ -21,7 +21,7 @@
   /// Request message for
   /// [DatasetService.ImportData][google.cloud.aiplatform.v1.DatasetService.ImportData].
   ///
-  /// [google.cloud.aiplatform.v1.DatasetService.ImportData]: <doc:DatasetService/importData(request:)>
+  /// [google.cloud.aiplatform.v1.DatasetService.ImportData]: <doc:DatasetServiceClient/importData(request:)>
   public struct ImportDataRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

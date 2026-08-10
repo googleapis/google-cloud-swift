@@ -22,7 +22,7 @@
   /// Response message for
   /// [NotebookService.ListNotebookRuntimes][google.cloud.aiplatform.v1.NotebookService.ListNotebookRuntimes].
   ///
-  /// [google.cloud.aiplatform.v1.NotebookService.ListNotebookRuntimes]: <doc:NotebookService/listNotebookRuntimes(request:)>
+  /// [google.cloud.aiplatform.v1.NotebookService.ListNotebookRuntimes]: <doc:NotebookServiceClient/listNotebookRuntimes(request:)>
   public struct ListNotebookRuntimesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable

@@ -22,7 +22,7 @@
   /// [CompletionService.ImportCompletionSuggestions][google.cloud.discoveryengine.v1.CompletionService.ImportCompletionSuggestions]
   /// method.
   ///
-  /// [google.cloud.discoveryengine.v1.CompletionService.ImportCompletionSuggestions]: <doc:CompletionService/importCompletionSuggestions(request:)>
+  /// [google.cloud.discoveryengine.v1.CompletionService.ImportCompletionSuggestions]: <doc:CompletionServiceClient/importCompletionSuggestions(request:)>
   public struct ImportCompletionSuggestionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

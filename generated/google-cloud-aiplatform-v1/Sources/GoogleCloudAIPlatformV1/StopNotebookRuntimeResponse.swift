@@ -21,7 +21,7 @@
   /// Response message for
   /// [NotebookService.StopNotebookRuntime][google.cloud.aiplatform.v1.NotebookService.StopNotebookRuntime].
   ///
-  /// [google.cloud.aiplatform.v1.NotebookService.StopNotebookRuntime]: <doc:NotebookService/stopNotebookRuntime(request:)>
+  /// [google.cloud.aiplatform.v1.NotebookService.StopNotebookRuntime]: <doc:NotebookServiceClient/stopNotebookRuntime(request:)>
   public struct StopNotebookRuntimeResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

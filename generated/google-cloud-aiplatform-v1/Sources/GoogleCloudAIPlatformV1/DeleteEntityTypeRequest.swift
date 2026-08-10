@@ -21,7 +21,7 @@
   /// Request message for
   /// [FeaturestoreService.DeleteEntityType][google.cloud.aiplatform.v1.FeaturestoreService.DeleteEntityType].
   ///
-  /// [google.cloud.aiplatform.v1.FeaturestoreService.DeleteEntityType]: <doc:FeaturestoreService/deleteEntityType(request:)>
+  /// [google.cloud.aiplatform.v1.FeaturestoreService.DeleteEntityType]: <doc:FeaturestoreServiceClient/deleteEntityType(request:)>
   public struct DeleteEntityTypeRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

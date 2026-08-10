@@ -21,7 +21,7 @@
   /// Request message for
   /// [EndpointService.UpdateEndpoint][google.cloud.aiplatform.v1.EndpointService.UpdateEndpoint].
   ///
-  /// [google.cloud.aiplatform.v1.EndpointService.UpdateEndpoint]: <doc:EndpointService/updateEndpoint(request:)>
+  /// [google.cloud.aiplatform.v1.EndpointService.UpdateEndpoint]: <doc:EndpointServiceClient/updateEndpoint(request:)>
   public struct UpdateEndpointRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

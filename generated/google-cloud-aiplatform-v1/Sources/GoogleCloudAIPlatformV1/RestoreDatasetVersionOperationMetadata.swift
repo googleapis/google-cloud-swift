@@ -21,7 +21,7 @@
   /// Runtime operation information for
   /// [DatasetService.RestoreDatasetVersion][google.cloud.aiplatform.v1.DatasetService.RestoreDatasetVersion].
   ///
-  /// [google.cloud.aiplatform.v1.DatasetService.RestoreDatasetVersion]: <doc:DatasetService/restoreDatasetVersion(request:)>
+  /// [google.cloud.aiplatform.v1.DatasetService.RestoreDatasetVersion]: <doc:DatasetServiceClient/restoreDatasetVersion(request:)>
   public struct RestoreDatasetVersionOperationMetadata: Codable, Equatable, GoogleCloudWkt
       ._AnyPackable,
     Sendable
