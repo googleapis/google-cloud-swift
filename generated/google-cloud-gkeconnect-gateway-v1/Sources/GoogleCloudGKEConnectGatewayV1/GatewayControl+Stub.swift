@@ -15,9 +15,6 @@
 // limitations under the License.
 
 import Foundation
-#if canImport(FoundationNetworking)
-  import FoundationNetworking
-#endif
 import GoogleCloudWkt
 import GoogleCloudGax
 
@@ -26,41 +23,5 @@ extension Clients {
     func generateCredentials(
       request: GenerateCredentialsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudGKEConnectGatewayV1.GenerateCredentialsResponse
-  }
-
-  class GatewayControlTransport: GatewayControlStub {
-    let inner: GoogleCloudGax.HTTPClient
-
-    public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {
-      self.inner = try GoogleCloudGax.HTTPClient(
-        from: options, withDefaultEndpoint: "https://connectgateway.googleapis.com")
-    }
-
-    public func generateCredentials(
-      request: GenerateCredentialsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudGKEConnectGatewayV1.GenerateCredentialsResponse {
-      let path = try { () throws -> Swift.String in
-        guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
-          throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
-        }
-        return "/v1/\(pathVariable0):generateCredentials"
-      }()
-      var query = [
-        URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
-      ]
-      let encoder = GoogleCloudGax.QueryParameterEncoder()
-      query.append(contentsOf: try encoder.encode(request.forceUseAgent, prefix: "forceUseAgent"))
-      query.append(contentsOf: try encoder.encode(request.version, prefix: "version"))
-      query.append(
-        contentsOf: try encoder.encode(request.kubernetesNamespace, prefix: "kubernetesNamespace"))
-      query.append(
-        contentsOf: try encoder.encode(request.operatingSystem, prefix: "operatingSystem"))
-      var req = try await self.inner.Request(path: path, query: query)
-      req.httpMethod = "GET"
-      req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-      let (data, _) = try await self.inner.rpc(for: req).get()
-      return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudGKEConnectGatewayV1.GenerateCredentialsResponse.self, from: data)
-    }
   }
 }
