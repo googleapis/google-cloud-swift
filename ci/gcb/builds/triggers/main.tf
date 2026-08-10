@@ -39,6 +39,10 @@ locals {
       script  = "full"
       pool_id = "swift-sdk-pool-large"
     }
+    docs = {
+      config  = "scripted.yaml"
+      script  = "docs"
+    }
   }
 
   # These are builds that only run during Pull Requests.
