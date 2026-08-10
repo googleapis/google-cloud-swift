@@ -19,6 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudWkt
+import GoogleIAMV1
 import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
@@ -150,6 +151,243 @@ extension Clients {
         })
     }
 
+    public func createManagedFolder(
+      request: CreateManagedFolderRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> ManagedFolder {
+      try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: CreateManagedFolderRequest, o: GoogleCloudGax.RequestOptions) async throws
+            -> ManagedFolder
+          in
+          return try await self.inner.createManagedFolder(request: r, options: o)
+        })
+    }
+
+    public func deleteManagedFolder(
+      request: DeleteManagedFolderRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws {
+      try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: DeleteManagedFolderRequest, o: GoogleCloudGax.RequestOptions) async throws -> Void in
+          return try await self.inner.deleteManagedFolder(request: r, options: o)
+        })
+    }
+
+    public func getManagedFolder(
+      request: GetManagedFolderRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> ManagedFolder {
+      try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: GetManagedFolderRequest, o: GoogleCloudGax.RequestOptions) async throws
+            -> ManagedFolder
+          in
+          return try await self.inner.getManagedFolder(request: r, options: o)
+        })
+    }
+
+    public func listManagedFolders(
+      request: ListManagedFoldersRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> ListManagedFoldersResponse {
+      try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: ListManagedFoldersRequest, o: GoogleCloudGax.RequestOptions) async throws
+            -> ListManagedFoldersResponse
+          in
+          return try await self.inner.listManagedFolders(request: r, options: o)
+        })
+    }
+
+    public func updateManagedFolder(
+      request: UpdateManagedFolderRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> ManagedFolder {
+      try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: UpdateManagedFolderRequest, o: GoogleCloudGax.RequestOptions) async throws
+            -> ManagedFolder
+          in
+          return try await self.inner.updateManagedFolder(request: r, options: o)
+        })
+    }
+
+    public func createAnywhereCache(
+      request: CreateAnywhereCacheRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
+      try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: CreateAnywhereCacheRequest, o: GoogleCloudGax.RequestOptions) async throws
+            -> GoogleLongRunning.Operation
+          in
+          return try await self.inner.createAnywhereCache(request: r, options: o)
+        })
+    }
+
+    public func updateAnywhereCache(
+      request: UpdateAnywhereCacheRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
+      try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: UpdateAnywhereCacheRequest, o: GoogleCloudGax.RequestOptions) async throws
+            -> GoogleLongRunning.Operation
+          in
+          return try await self.inner.updateAnywhereCache(request: r, options: o)
+        })
+    }
+
+    public func disableAnywhereCache(
+      request: DisableAnywhereCacheRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> AnywhereCache {
+      try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: DisableAnywhereCacheRequest, o: GoogleCloudGax.RequestOptions) async throws
+            -> AnywhereCache
+          in
+          return try await self.inner.disableAnywhereCache(request: r, options: o)
+        })
+    }
+
+    public func pauseAnywhereCache(
+      request: PauseAnywhereCacheRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> AnywhereCache {
+      try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: PauseAnywhereCacheRequest, o: GoogleCloudGax.RequestOptions) async throws
+            -> AnywhereCache
+          in
+          return try await self.inner.pauseAnywhereCache(request: r, options: o)
+        })
+    }
+
+    public func resumeAnywhereCache(
+      request: ResumeAnywhereCacheRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> AnywhereCache {
+      try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: ResumeAnywhereCacheRequest, o: GoogleCloudGax.RequestOptions) async throws
+            -> AnywhereCache
+          in
+          return try await self.inner.resumeAnywhereCache(request: r, options: o)
+        })
+    }
+
+    public func getAnywhereCache(
+      request: GetAnywhereCacheRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> AnywhereCache {
+      try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: GetAnywhereCacheRequest, o: GoogleCloudGax.RequestOptions) async throws
+            -> AnywhereCache
+          in
+          return try await self.inner.getAnywhereCache(request: r, options: o)
+        })
+    }
+
+    public func listAnywhereCaches(
+      request: ListAnywhereCachesRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> ListAnywhereCachesResponse {
+      try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: ListAnywhereCachesRequest, o: GoogleCloudGax.RequestOptions) async throws
+            -> ListAnywhereCachesResponse
+          in
+          return try await self.inner.listAnywhereCaches(request: r, options: o)
+        })
+    }
+
+    public func createRapidCache(
+      request: CreateRapidCacheRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
+      try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: CreateRapidCacheRequest, o: GoogleCloudGax.RequestOptions) async throws
+            -> GoogleLongRunning.Operation
+          in
+          return try await self.inner.createRapidCache(request: r, options: o)
+        })
+    }
+
+    public func updateRapidCache(
+      request: UpdateRapidCacheRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
+      try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: UpdateRapidCacheRequest, o: GoogleCloudGax.RequestOptions) async throws
+            -> GoogleLongRunning.Operation
+          in
+          return try await self.inner.updateRapidCache(request: r, options: o)
+        })
+    }
+
+    public func getRapidCache(
+      request: GetRapidCacheRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> RapidCache {
+      try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: GetRapidCacheRequest, o: GoogleCloudGax.RequestOptions) async throws -> RapidCache
+          in
+          return try await self.inner.getRapidCache(request: r, options: o)
+        })
+    }
+
+    public func listRapidCaches(
+      request: ListRapidCachesRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> ListRapidCachesResponse {
+      try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: ListRapidCachesRequest, o: GoogleCloudGax.RequestOptions) async throws
+            -> ListRapidCachesResponse
+          in
+          return try await self.inner.listRapidCaches(request: r, options: o)
+        })
+    }
+
     public func getProjectIntelligenceConfig(
       request: GetProjectIntelligenceConfigRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> IntelligenceConfig {
@@ -237,6 +475,51 @@ extension Clients {
             async throws -> IntelligenceConfig
           in
           return try await self.inner.updateOrganizationIntelligenceConfig(request: r, options: o)
+        })
+    }
+
+    public func getIamPolicy(
+      request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleIAMV1.Policy {
+      try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: GoogleIAMV1.GetIamPolicyRequest, o: GoogleCloudGax.RequestOptions) async throws
+            -> GoogleIAMV1.Policy
+          in
+          return try await self.inner.getIamPolicy(request: r, options: o)
+        })
+    }
+
+    public func setIamPolicy(
+      request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleIAMV1.Policy {
+      try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: GoogleIAMV1.SetIamPolicyRequest, o: GoogleCloudGax.RequestOptions) async throws
+            -> GoogleIAMV1.Policy
+          in
+          return try await self.inner.setIamPolicy(request: r, options: o)
+        })
+    }
+
+    public func testIamPermissions(
+      request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
+      try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: GoogleIAMV1.TestIamPermissionsRequest, o: GoogleCloudGax.RequestOptions) async throws
+            -> GoogleIAMV1.TestIamPermissionsResponse
+          in
+          return try await self.inner.testIamPermissions(request: r, options: o)
         })
     }
 

@@ -51,7 +51,7 @@ extension Clients {
       query.append(contentsOf: try encoder.encode(request.languageCode, prefix: "languageCode"))
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.GET)
-      req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
+      req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudAdvisoryNotificationsV1.ListNotificationsResponse.self,
         timeout: options.attemptTimeout
@@ -74,7 +74,7 @@ extension Clients {
       query.append(contentsOf: try encoder.encode(request.languageCode, prefix: "languageCode"))
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.GET)
-      req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
+      req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudAdvisoryNotificationsV1.Notification.self, timeout: options.attemptTimeout
       ).get()
@@ -94,7 +94,7 @@ extension Clients {
       ]
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.GET)
-      req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
+      req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudAdvisoryNotificationsV1.Settings.self, timeout: options.attemptTimeout
       ).get()
@@ -115,7 +115,7 @@ extension Clients {
       ]
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.PATCH)
-      req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
+      req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.settings {
         req.setBody(data: try JSONEncoder().encode(body), ofContentType: "application/json")
       }

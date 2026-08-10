@@ -53,7 +53,7 @@ extension Clients {
         contentsOf: try encoder.encode(request.operatingSystem, prefix: "operatingSystem"))
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.GET)
-      req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
+      req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudGKEConnectGatewayV1.GenerateCredentialsResponse.self,
         timeout: options.attemptTimeout

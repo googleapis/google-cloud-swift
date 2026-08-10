@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 language: swift
-version: v0.35.1-0.20260810232549-23f3754b4d81
+version: v0.37.1-0.20260813183231-681ad7177ec5
 repo: googleapis/google-cloud-swift
 sources:
   conformance:
@@ -1000,7 +1000,8 @@ libraries:
         - output: packages/storage/Sources/GoogleCloudStorage/generated/StorageControl
           service_config: google/storage/control/v2/storage_v2.yaml
           api_path: google/storage/control/v2
-          module_type: default
+          module_type: grpc-client
+          module_path: StorageControlProtos
         - output: packages/storage/Sources/GoogleCloudStorage/generated/StorageControl/Convert/StorageControl
           api_path: google/storage/control/v2
           module_type: convert-swift
@@ -1010,6 +1011,7 @@ libraries:
           module_type: convert-swift
           include_list:
             - interval.proto
+            - expr.proto
           module_path: StorageControlProtos
         - output: packages/storage/Sources/generated/StorageProtos
           api_path: google/storage/v2
@@ -1032,6 +1034,20 @@ libraries:
           module_type: convert-swift
           include_list:
             - status.proto
+          module_path: StorageControlProtos
+        - output: packages/storage/Sources/GoogleCloudStorage/generated/StorageControl/Convert/GoogleLongRunning
+          api_path: google/longrunning
+          module_type: convert-swift
+          include_list:
+            - operations.proto
+          module_path: StorageControlProtos
+        - output: packages/storage/Sources/GoogleCloudStorage/generated/StorageControl/Convert/GoogleIAMV1
+          api_path: google/iam/v1
+          module_type: convert-swift
+          include_list:
+            - iam_policy.proto
+            - policy.proto
+            - options.proto
           module_path: StorageControlProtos
   - name: google-cloud-storagebatchoperations-v1
     version: 0.0.0-preview
