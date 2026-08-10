@@ -139,7 +139,7 @@ import NIOHTTP1
       Issue.record("expected a successful RPC")
       return
     }
-    #expect(response == ResponseType(name: "test-name", value:"test-value"))
+    #expect(response == ResponseType(name: "test-name", value: "test-value"))
   }
 
   @Test func getErrorDetails() async throws {
@@ -309,7 +309,8 @@ import NIOHTTP1
     req.setMethod(.GET)
     req.addHeader(name: "X-Goog-Api-Client", value: clientHeader)
     let response = try await req.rpc(ResponseType.self).get()
-    #expect(response == ResponseType(name: "projects/p/things/test-only-thing-id",value:"test-value"))
+    #expect(
+      response == ResponseType(name: "projects/p/things/test-only-thing-id", value: "test-value"))
   }
 
   @Test("verify the client when used as GAPICs do for Delete-like operations")
