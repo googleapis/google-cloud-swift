@@ -18,6 +18,7 @@ import struct Logging.Logger
 @_spi(GoogleCloudInternal) @testable import GoogleCloudGax
 import GoogleCloudAuth
 import GoogleRpc
+import struct GoogleCloudWkt.Empty
 import AsyncHTTPClient
 import NIOCore
 import NIOHTTP1
@@ -122,7 +123,7 @@ import NIOHTTP1
       return HTTPClientResponse(
         version: .http1_1,
         status: .ok,
-        body: .bytes(.init(string: "{}"))
+        body: .bytes(.init(string: #"{"name":"test-name", "value":"test-value"}"#))
       )
     }
 
@@ -134,13 +135,11 @@ import NIOHTTP1
       query: [URLQueryItem(name: "$alt", value: "json")],
     )
     request.setMethod(.GET)
-    guard case .success(let response) = await request.rpc() else {
+    guard case .success(let response) = await request.rpc(ResponseType.self) else {
       Issue.record("expected a successful RPC")
       return
     }
-    #expect(response.status == .ok)
-    let data = try await response.data(upTo: 1024)
-    #expect(data == .init("{}".utf8))
+    #expect(response == ResponseType(name: "test-name", value:"test-value"))
   }
 
   @Test func getErrorDetails() async throws {
@@ -163,7 +162,7 @@ import NIOHTTP1
     let client = try _HTTPClient(mock, endpoint: endpoint)
     let request = try await client.newRequest(
       path: path, query: [URLQueryItem(name: "$alt", value: "json")])
-    let response = await request.rpc(timeout: .seconds(1))
+    let response = await request.rpc(ResponseType.self, timeout: .seconds(1))
     guard case let .failure(.service(serviceError)) = response else {
       Issue.record("expected an service error response, got=\(response)")
       return
@@ -194,7 +193,7 @@ import NIOHTTP1
     let request = try await client.newRequest(
       path: path, query: [URLQueryItem(name: "$alt", value: "json")])
 
-    let response = await request.rpc()
+    let response = await request.rpc(ResponseType.self)
     guard case let .failure(.http(httpError)) = response else {
       Issue.record("expected an http error response, got=\(response)")
       return
@@ -257,9 +256,8 @@ import NIOHTTP1
     req.setMethod(.POST)
     req.addHeader(name: "X-Goog-Api-Client", value: clientHeader)
     req.setBody(data: requestBody, ofContentType: "application/json")
-    let response = try await req.rpc().get()
-    let data = try await response.data(upTo: 1024)
-    #expect(data == Data(responseBody.utf8))
+    let response = try await req.rpc(ResponseType.self).get()
+    #expect(response == ResponseType(name: "projects/p/things/test-only-thing-id", value: ""))
   }
 
   @Test("verify the client when used as GAPICs do for Get-like operations")
@@ -273,7 +271,7 @@ import NIOHTTP1
       URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
     ]
     let wantURLString = wantURL.url?.absoluteString
-    let responseBody = #"{"name":"projects/p/things/test-only-thing-id"}"#
+    let responseBody = #"{"name":"projects/p/things/test-only-thing-id","value":"test-value"}"#
 
     let mockCredentials = MockCredentials([
       {
@@ -310,9 +308,8 @@ import NIOHTTP1
     var req = try await client.newRequest(path: path, query: query)
     req.setMethod(.GET)
     req.addHeader(name: "X-Goog-Api-Client", value: clientHeader)
-    let response = try await req.rpc().get()
-    let data = try await response.data(upTo: 1024)
-    #expect(data == Data(responseBody.utf8))
+    let response = try await req.rpc(ResponseType.self).get()
+    #expect(response == ResponseType(name: "projects/p/things/test-only-thing-id",value:"test-value"))
   }
 
   @Test("verify the client when used as GAPICs do for Delete-like operations")
@@ -348,6 +345,7 @@ import NIOHTTP1
         version: .http2,
         status: .ok,
         headers: .init([("Content-Type", "application/json; charset=UTF-8")]),
+        body: .bytes(.init(string: "{}")),
       )
     }
 
@@ -361,7 +359,7 @@ import NIOHTTP1
     var req = try await client.newRequest(path: path, query: query)
     req.setMethod(.GET)
     req.addHeader(name: "X-Goog-Api-Client", value: clientHeader)
-    _ = try await req.rpc().get()
+    _ = try await req.rpc(GoogleCloudWkt.Empty.self).get()
   }
 
   @Test("verify the client when used as GAPICs do for Delete-like operations")
@@ -412,7 +410,7 @@ import NIOHTTP1
     req.setMethod(.GET)
     req.addHeader(name: "X-Goog-Api-Client", value: clientHeader)
     let e = await #expect(throws: GoogleCloudGax.RequestError.self) {
-      _ = try (await req.rpc()).get()
+      _ = try (await req.rpc(GoogleCloudWkt.Empty.self)).get()
     }
     guard case .service(let serviceError) = e else {
       Issue.record("expected service error , got \(e)")
@@ -475,7 +473,7 @@ import NIOHTTP1
     req.setMethod(.GET)
     req.addHeader(name: "X-Goog-Api-Client", value: clientHeader)
     let e = await #expect(throws: GoogleCloudGax.RequestError.self) {
-      _ = try (await req.rpc()).get()
+      _ = try (await req.rpc(GoogleCloudWkt.Empty.self)).get()
     }
     guard case .http(let httpError) = e else {
       Issue.record("expected service error , got \(e)")
@@ -484,6 +482,12 @@ import NIOHTTP1
     #expect(httpError.http_status_code == HTTPResponseStatus.forbidden.code)
     #expect(httpError.payload == Data(responsePayload.utf8))
     #expect(httpError.headers["x-goog-test-only"] == "test-header")
+  }
+
+  /// A test response type.
+  struct ResponseType: Codable, Equatable, Sendable {
+    public let name: String
+    public let value: String
   }
 }
 

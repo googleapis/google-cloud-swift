@@ -33,11 +33,6 @@ import struct Logging.Logger
   // expectation is that any RPC that takes this long or longer should be an LRO.
   static let defaultTimeout: Duration = .seconds(60)
 
-  // Limit the maximum error response size. Note that most gRPC client libraries limit response
-  // sizes to 4 MiB, including successful value responses. Setting a limit that is 8 times as large
-  // seems fine.
-  static let maximumErrorSize: Int = 32 * 1024 * 1024
-
   init(_ client: HTTPClientProtocol, url: URLComponents) {
     self.client = client
     self.components = url
@@ -73,41 +68,19 @@ import struct Logging.Logger
     return _HTTPClientResponse(response)
   }
 
-  public consuming func rpc(timeout: Duration? = nil) async
-    -> Result<_HTTPClientResponse, RequestError>
+  public consuming func rpc<R>(_ type: R.Type, timeout: Duration? = nil) async
+    -> Result<R, RequestError> where R: Decodable
   {
     do {
       let response = try await self.execute(timeout: timeout ?? Self.defaultTimeout)
-      if !(200..<300).contains(response.status.code) {
-        let data = try await response.data(upTo: Self.maximumErrorSize)
-        return .failure(Self.parseError(data: data, response: response))
+      if response.isError() {
+        return .failure(await response.decodeError())
       }
-      return .success(response)
+      return try await response.decode(type)
     } catch let e as RequestError {
       return .failure(e)
     } catch let e {
       return .failure(.io(e))
     }
-  }
-
-  static func parseError(data: Data, response: _HTTPClientResponse) -> RequestError {
-    let values = response.headers["Content-Type"]
-    if values.contains(where: { $0.contains("application/json") }) {
-      if let w = ErrorWrapper(data: data) {
-        return RequestError.service(ServiceError(wrapper: w))
-      }
-    }
-    let headers = Dictionary(
-      grouping: response.headers,
-      by: { $0.name }
-    )
-    .mapValues { values in values.map { $0.value } }
-    .mapValues { values in values.joined(separator: ";") }
-    return GoogleCloudGax.RequestError.http(
-      GoogleCloudGax.HTTPDetails(
-        http_status_code: Int(response.status.code),
-        headers: headers,
-        payload: data,
-      ))
   }
 }
