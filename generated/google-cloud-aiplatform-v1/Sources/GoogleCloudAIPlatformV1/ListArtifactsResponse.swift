@@ -22,7 +22,7 @@
   /// Response message for
   /// [MetadataService.ListArtifacts][google.cloud.aiplatform.v1.MetadataService.ListArtifacts].
   ///
-  /// [google.cloud.aiplatform.v1.MetadataService.ListArtifacts]: <doc:MetadataService/listArtifacts(request:)>
+  /// [google.cloud.aiplatform.v1.MetadataService.ListArtifacts]: <doc:MetadataServiceClient/listArtifacts(request:)>
   public struct ListArtifactsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable

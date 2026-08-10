@@ -23,7 +23,7 @@
   /// operation. This will be returned by the google.longrunning.Operation.metadata
   /// field.
   ///
-  /// [google.cloud.discoveryengine.v1.EngineService.DeleteEngine]: <doc:EngineService/deleteEngine(request:)>
+  /// [google.cloud.discoveryengine.v1.EngineService.DeleteEngine]: <doc:EngineServiceClient/deleteEngine(request:)>
   public struct DeleteEngineMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

@@ -21,7 +21,7 @@
   /// The request message for
   /// [Conversations.GenerateSuggestions][google.cloud.dialogflow.v2.Conversations.GenerateSuggestions].
   ///
-  /// [google.cloud.dialogflow.v2.Conversations.GenerateSuggestions]: <doc:Conversations/generateSuggestions(request:)>
+  /// [google.cloud.dialogflow.v2.Conversations.GenerateSuggestions]: <doc:ConversationsClient/generateSuggestions(request:)>
   public struct GenerateSuggestionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

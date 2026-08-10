@@ -19,15 +19,17 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudWkt
-import GoogleCloudGax
+@_spi(GoogleCloudInternal) import GoogleCloudGax
 
 extension Clients {
   class WebSecurityScannerTransport: WebSecurityScannerStub {
-    let inner: GoogleCloudGax.HTTPClient
+    let inner: GoogleCloudGax._HTTPClient
 
     public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {
-      self.inner = try GoogleCloudGax.HTTPClient(
-        from: options, withDefaultEndpoint: "https://websecurityscanner.googleapis.com")
+      self.inner = try GoogleCloudGax._HTTPClient(
+        from: options,
+        withDefaultEndpoint: "https://websecurityscanner.googleapis.com",
+      )
     }
 
     public func createScanConfig(
@@ -42,16 +44,15 @@ extension Clients {
       let query = [
         URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
       ]
-      var req = try await self.inner.Request(path: path, query: query)
-      req.httpMethod = "POST"
-      req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
+      var req = try await self.inner.newRequest(path: path, query: query)
+      req.setMethod(.POST)
+      req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
       if let body = request.scanConfig {
-        req.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        req.httpBody = try JSONEncoder().encode(body)
+        req.setBody(data: try JSONEncoder().encode(body), ofContentType: "application/json")
       }
-      let (data, _) = try await self.inner.rpc(for: req).get()
-      return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudWebSecurityScannerV1.ScanConfig.self, from: data)
+      return try await req.rpc(
+        GoogleCloudWebSecurityScannerV1.ScanConfig.self, timeout: options.attemptTimeout
+      ).get()
     }
 
     public func deleteScanConfig(
@@ -66,10 +67,12 @@ extension Clients {
       let query = [
         URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
       ]
-      var req = try await self.inner.Request(path: path, query: query)
-      req.httpMethod = "DELETE"
-      req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-      _ = try await self.inner.rpc(for: req).get()
+      var req = try await self.inner.newRequest(path: path, query: query)
+      req.setMethod(.DELETE)
+      req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
+      _ = try await req.rpc(
+        GoogleCloudWkt.Empty.self, timeout: options.attemptTimeout
+      ).get()
     }
 
     public func getScanConfig(
@@ -84,12 +87,12 @@ extension Clients {
       let query = [
         URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
       ]
-      var req = try await self.inner.Request(path: path, query: query)
-      req.httpMethod = "GET"
-      req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-      let (data, _) = try await self.inner.rpc(for: req).get()
-      return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudWebSecurityScannerV1.ScanConfig.self, from: data)
+      var req = try await self.inner.newRequest(path: path, query: query)
+      req.setMethod(.GET)
+      req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
+      return try await req.rpc(
+        GoogleCloudWebSecurityScannerV1.ScanConfig.self, timeout: options.attemptTimeout
+      ).get()
     }
 
     public func listScanConfigs(
@@ -107,12 +110,13 @@ extension Clients {
       let encoder = GoogleCloudGax.QueryParameterEncoder()
       query.append(contentsOf: try encoder.encode(request.pageToken, prefix: "pageToken"))
       query.append(contentsOf: try encoder.encode(request.pageSize, prefix: "pageSize"))
-      var req = try await self.inner.Request(path: path, query: query)
-      req.httpMethod = "GET"
-      req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-      let (data, _) = try await self.inner.rpc(for: req).get()
-      return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudWebSecurityScannerV1.ListScanConfigsResponse.self, from: data)
+      var req = try await self.inner.newRequest(path: path, query: query)
+      req.setMethod(.GET)
+      req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
+      return try await req.rpc(
+        GoogleCloudWebSecurityScannerV1.ListScanConfigsResponse.self,
+        timeout: options.attemptTimeout
+      ).get()
     }
 
     public func updateScanConfig(
@@ -130,16 +134,15 @@ extension Clients {
       ]
       let encoder = GoogleCloudGax.QueryParameterEncoder()
       query.append(contentsOf: try encoder.encode(request.updateMask, prefix: "updateMask"))
-      var req = try await self.inner.Request(path: path, query: query)
-      req.httpMethod = "PATCH"
-      req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
+      var req = try await self.inner.newRequest(path: path, query: query)
+      req.setMethod(.PATCH)
+      req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
       if let body = request.scanConfig {
-        req.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        req.httpBody = try JSONEncoder().encode(body)
+        req.setBody(data: try JSONEncoder().encode(body), ofContentType: "application/json")
       }
-      let (data, _) = try await self.inner.rpc(for: req).get()
-      return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudWebSecurityScannerV1.ScanConfig.self, from: data)
+      return try await req.rpc(
+        GoogleCloudWebSecurityScannerV1.ScanConfig.self, timeout: options.attemptTimeout
+      ).get()
     }
 
     public func startScanRun(
@@ -154,14 +157,13 @@ extension Clients {
       let query = [
         URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
       ]
-      var req = try await self.inner.Request(path: path, query: query)
-      req.httpMethod = "POST"
-      req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-      req.setValue("application/json", forHTTPHeaderField: "Content-Type")
-      req.httpBody = try JSONEncoder().encode(request)
-      let (data, _) = try await self.inner.rpc(for: req).get()
-      return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudWebSecurityScannerV1.ScanRun.self, from: data)
+      var req = try await self.inner.newRequest(path: path, query: query)
+      req.setMethod(.POST)
+      req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
+      req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
+      return try await req.rpc(
+        GoogleCloudWebSecurityScannerV1.ScanRun.self, timeout: options.attemptTimeout
+      ).get()
     }
 
     public func getScanRun(
@@ -176,12 +178,12 @@ extension Clients {
       let query = [
         URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
       ]
-      var req = try await self.inner.Request(path: path, query: query)
-      req.httpMethod = "GET"
-      req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-      let (data, _) = try await self.inner.rpc(for: req).get()
-      return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudWebSecurityScannerV1.ScanRun.self, from: data)
+      var req = try await self.inner.newRequest(path: path, query: query)
+      req.setMethod(.GET)
+      req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
+      return try await req.rpc(
+        GoogleCloudWebSecurityScannerV1.ScanRun.self, timeout: options.attemptTimeout
+      ).get()
     }
 
     public func listScanRuns(
@@ -199,12 +201,12 @@ extension Clients {
       let encoder = GoogleCloudGax.QueryParameterEncoder()
       query.append(contentsOf: try encoder.encode(request.pageToken, prefix: "pageToken"))
       query.append(contentsOf: try encoder.encode(request.pageSize, prefix: "pageSize"))
-      var req = try await self.inner.Request(path: path, query: query)
-      req.httpMethod = "GET"
-      req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-      let (data, _) = try await self.inner.rpc(for: req).get()
-      return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudWebSecurityScannerV1.ListScanRunsResponse.self, from: data)
+      var req = try await self.inner.newRequest(path: path, query: query)
+      req.setMethod(.GET)
+      req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
+      return try await req.rpc(
+        GoogleCloudWebSecurityScannerV1.ListScanRunsResponse.self, timeout: options.attemptTimeout
+      ).get()
     }
 
     public func stopScanRun(
@@ -219,14 +221,13 @@ extension Clients {
       let query = [
         URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
       ]
-      var req = try await self.inner.Request(path: path, query: query)
-      req.httpMethod = "POST"
-      req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-      req.setValue("application/json", forHTTPHeaderField: "Content-Type")
-      req.httpBody = try JSONEncoder().encode(request)
-      let (data, _) = try await self.inner.rpc(for: req).get()
-      return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudWebSecurityScannerV1.ScanRun.self, from: data)
+      var req = try await self.inner.newRequest(path: path, query: query)
+      req.setMethod(.POST)
+      req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
+      req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
+      return try await req.rpc(
+        GoogleCloudWebSecurityScannerV1.ScanRun.self, timeout: options.attemptTimeout
+      ).get()
     }
 
     public func listCrawledUrls(
@@ -244,12 +245,13 @@ extension Clients {
       let encoder = GoogleCloudGax.QueryParameterEncoder()
       query.append(contentsOf: try encoder.encode(request.pageToken, prefix: "pageToken"))
       query.append(contentsOf: try encoder.encode(request.pageSize, prefix: "pageSize"))
-      var req = try await self.inner.Request(path: path, query: query)
-      req.httpMethod = "GET"
-      req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-      let (data, _) = try await self.inner.rpc(for: req).get()
-      return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudWebSecurityScannerV1.ListCrawledUrlsResponse.self, from: data)
+      var req = try await self.inner.newRequest(path: path, query: query)
+      req.setMethod(.GET)
+      req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
+      return try await req.rpc(
+        GoogleCloudWebSecurityScannerV1.ListCrawledUrlsResponse.self,
+        timeout: options.attemptTimeout
+      ).get()
     }
 
     public func getFinding(
@@ -264,12 +266,12 @@ extension Clients {
       let query = [
         URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
       ]
-      var req = try await self.inner.Request(path: path, query: query)
-      req.httpMethod = "GET"
-      req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-      let (data, _) = try await self.inner.rpc(for: req).get()
-      return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudWebSecurityScannerV1.Finding.self, from: data)
+      var req = try await self.inner.newRequest(path: path, query: query)
+      req.setMethod(.GET)
+      req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
+      return try await req.rpc(
+        GoogleCloudWebSecurityScannerV1.Finding.self, timeout: options.attemptTimeout
+      ).get()
     }
 
     public func listFindings(
@@ -288,12 +290,12 @@ extension Clients {
       query.append(contentsOf: try encoder.encode(request.filter, prefix: "filter"))
       query.append(contentsOf: try encoder.encode(request.pageToken, prefix: "pageToken"))
       query.append(contentsOf: try encoder.encode(request.pageSize, prefix: "pageSize"))
-      var req = try await self.inner.Request(path: path, query: query)
-      req.httpMethod = "GET"
-      req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-      let (data, _) = try await self.inner.rpc(for: req).get()
-      return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudWebSecurityScannerV1.ListFindingsResponse.self, from: data)
+      var req = try await self.inner.newRequest(path: path, query: query)
+      req.setMethod(.GET)
+      req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
+      return try await req.rpc(
+        GoogleCloudWebSecurityScannerV1.ListFindingsResponse.self, timeout: options.attemptTimeout
+      ).get()
     }
 
     public func listFindingTypeStats(
@@ -308,12 +310,13 @@ extension Clients {
       let query = [
         URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
       ]
-      var req = try await self.inner.Request(path: path, query: query)
-      req.httpMethod = "GET"
-      req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-      let (data, _) = try await self.inner.rpc(for: req).get()
-      return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudWebSecurityScannerV1.ListFindingTypeStatsResponse.self, from: data)
+      var req = try await self.inner.newRequest(path: path, query: query)
+      req.setMethod(.GET)
+      req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
+      return try await req.rpc(
+        GoogleCloudWebSecurityScannerV1.ListFindingTypeStatsResponse.self,
+        timeout: options.attemptTimeout
+      ).get()
     }
   }
 }

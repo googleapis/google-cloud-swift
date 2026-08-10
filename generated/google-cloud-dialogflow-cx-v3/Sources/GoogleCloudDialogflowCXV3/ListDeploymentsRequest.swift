@@ -21,7 +21,7 @@
   /// The request message for
   /// [Deployments.ListDeployments][google.cloud.dialogflow.cx.v3.Deployments.ListDeployments].
   ///
-  /// [google.cloud.dialogflow.cx.v3.Deployments.ListDeployments]: <doc:Deployments/listDeployments(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Deployments.ListDeployments]: <doc:DeploymentsClient/listDeployments(request:)>
   public struct ListDeploymentsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

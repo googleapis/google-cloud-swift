@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// The [CreateVersion][google.cloud.apihub.v1.ApiHub.CreateVersion] method's
 /// request.
 ///
-/// [google.cloud.apihub.v1.ApiHub.CreateVersion]: <doc:ApiHub/createVersion(request:)>
+/// [google.cloud.apihub.v1.ApiHub.CreateVersion]: <doc:ApiHubClient/createVersion(request:)>
 public struct CreateVersionRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

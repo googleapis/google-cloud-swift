@@ -21,7 +21,7 @@
   extension TargetInstancesClient {
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.targetInstances.aggregatedList] method.
     ///
-    /// [google.cloud.compute.v1.targetInstances.aggregatedList]: <doc:TargetInstances/aggregatedList(request:)>
+    /// [google.cloud.compute.v1.targetInstances.aggregatedList]: <doc:TargetInstancesClient/aggregatedList(request:)>
     public struct AggregatedListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -163,7 +163,7 @@
 
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.targetInstances.delete] method.
     ///
-    /// [google.cloud.compute.v1.targetInstances.delete]: <doc:TargetInstances/delete(request:)>
+    /// [google.cloud.compute.v1.targetInstances.delete]: <doc:TargetInstancesClient/delete(request:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -220,7 +220,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.targetInstances.get] method.
     ///
-    /// [google.cloud.compute.v1.targetInstances.get]: <doc:TargetInstances/`get`(request:)>
+    /// [google.cloud.compute.v1.targetInstances.get]: <doc:TargetInstancesClient/`get`(request:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -262,7 +262,7 @@
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.targetInstances.insert] method.
     ///
-    /// [google.cloud.compute.v1.targetInstances.insert]: <doc:TargetInstances/insert(request:)>
+    /// [google.cloud.compute.v1.targetInstances.insert]: <doc:TargetInstancesClient/insert(request:)>
     public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -289,7 +289,7 @@
 
       /// Synthetic request body field for the [insert()][google.cloud.compute.v1.targetInstances.insert] method.
       ///
-      /// [google.cloud.compute.v1.targetInstances.insert]: <doc:TargetInstances/insert(request:)>
+      /// [google.cloud.compute.v1.targetInstances.insert]: <doc:TargetInstancesClient/insert(request:)>
       public var body: TargetInstance? = nil
 
       /// Initialize a new instance of `InsertRequest`.
@@ -321,7 +321,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.targetInstances.list] method.
     ///
-    /// [google.cloud.compute.v1.targetInstances.list]: <doc:TargetInstances/list(request:)>
+    /// [google.cloud.compute.v1.targetInstances.list]: <doc:TargetInstancesClient/list(request:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -453,7 +453,7 @@
 
     /// Synthetic request message for the [setSecurityPolicy()][google.cloud.compute.v1.targetInstances.setSecurityPolicy] method.
     ///
-    /// [google.cloud.compute.v1.targetInstances.setSecurityPolicy]: <doc:TargetInstances/setSecurityPolicy(request:)>
+    /// [google.cloud.compute.v1.targetInstances.setSecurityPolicy]: <doc:TargetInstancesClient/setSecurityPolicy(request:)>
     public struct SetSecurityPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -484,7 +484,7 @@
 
       /// Synthetic request body field for the [setSecurityPolicy()][google.cloud.compute.v1.targetInstances.setSecurityPolicy] method.
       ///
-      /// [google.cloud.compute.v1.targetInstances.setSecurityPolicy]: <doc:TargetInstances/setSecurityPolicy(request:)>
+      /// [google.cloud.compute.v1.targetInstances.setSecurityPolicy]: <doc:TargetInstancesClient/setSecurityPolicy(request:)>
       public var body: SecurityPolicyReference? = nil
 
       /// Initialize a new instance of `SetSecurityPolicyRequest`.
@@ -517,7 +517,7 @@
 
     /// Synthetic request message for the [testIamPermissions()][google.cloud.compute.v1.targetInstances.testIamPermissions] method.
     ///
-    /// [google.cloud.compute.v1.targetInstances.testIamPermissions]: <doc:TargetInstances/testIamPermissions(request:)>
+    /// [google.cloud.compute.v1.targetInstances.testIamPermissions]: <doc:TargetInstancesClient/testIamPermissions(request:)>
     public struct TestIamPermissionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -532,7 +532,7 @@
 
       /// Synthetic request body field for the [testIamPermissions()][google.cloud.compute.v1.targetInstances.testIamPermissions] method.
       ///
-      /// [google.cloud.compute.v1.targetInstances.testIamPermissions]: <doc:TargetInstances/testIamPermissions(request:)>
+      /// [google.cloud.compute.v1.targetInstances.testIamPermissions]: <doc:TargetInstancesClient/testIamPermissions(request:)>
       public var body: TestPermissionsRequest? = nil
 
       /// Initialize a new instance of `TestIamPermissionsRequest`.

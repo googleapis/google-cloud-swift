@@ -22,7 +22,7 @@
   /// Response message for
   /// [FeaturestoreService.ListFeaturestores][google.cloud.aiplatform.v1.FeaturestoreService.ListFeaturestores].
   ///
-  /// [google.cloud.aiplatform.v1.FeaturestoreService.ListFeaturestores]: <doc:FeaturestoreService/listFeaturestores(request:)>
+  /// [google.cloud.aiplatform.v1.FeaturestoreService.ListFeaturestores]: <doc:FeaturestoreServiceClient/listFeaturestores(request:)>
   public struct ListFeaturestoresResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable

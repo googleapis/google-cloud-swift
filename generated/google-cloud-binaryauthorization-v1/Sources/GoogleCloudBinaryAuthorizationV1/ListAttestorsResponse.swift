@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [BinauthzManagementServiceV1.ListAttestors][google.cloud.binaryauthorization.v1.BinauthzManagementServiceV1.ListAttestors].
 ///
-/// [google.cloud.binaryauthorization.v1.BinauthzManagementServiceV1.ListAttestors]: <doc:BinauthzManagementServiceV1/listAttestors(request:)>
+/// [google.cloud.binaryauthorization.v1.BinauthzManagementServiceV1.ListAttestors]: <doc:BinauthzManagementServiceV1Client/listAttestors(request:)>
 public struct ListAttestorsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

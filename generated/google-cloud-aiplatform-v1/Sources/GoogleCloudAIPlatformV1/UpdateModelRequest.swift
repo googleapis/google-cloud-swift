@@ -21,7 +21,7 @@
   /// Request message for
   /// [ModelService.UpdateModel][google.cloud.aiplatform.v1.ModelService.UpdateModel].
   ///
-  /// [google.cloud.aiplatform.v1.ModelService.UpdateModel]: <doc:ModelService/updateModel(request:)>
+  /// [google.cloud.aiplatform.v1.ModelService.UpdateModel]: <doc:ModelServiceClient/updateModel(request:)>
   public struct UpdateModelRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

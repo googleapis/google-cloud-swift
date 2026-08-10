@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [EnterpriseKnowledgeGraphService.Lookup][google.cloud.enterpriseknowledgegraph.v1.EnterpriseKnowledgeGraphService.Lookup].
 ///
-/// [google.cloud.enterpriseknowledgegraph.v1.EnterpriseKnowledgeGraphService.Lookup]: <doc:EnterpriseKnowledgeGraphService/lookup(request:)>
+/// [google.cloud.enterpriseknowledgegraph.v1.EnterpriseKnowledgeGraphService.Lookup]: <doc:EnterpriseKnowledgeGraphServiceClient/lookup(request:)>
 public struct LookupResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

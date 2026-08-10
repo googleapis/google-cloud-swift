@@ -22,7 +22,7 @@
   /// Response message for
   /// [VizierService.ListTrials][google.cloud.aiplatform.v1.VizierService.ListTrials].
   ///
-  /// [google.cloud.aiplatform.v1.VizierService.ListTrials]: <doc:VizierService/listTrials(request:)>
+  /// [google.cloud.aiplatform.v1.VizierService.ListTrials]: <doc:VizierServiceClient/listTrials(request:)>
   public struct ListTrialsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable

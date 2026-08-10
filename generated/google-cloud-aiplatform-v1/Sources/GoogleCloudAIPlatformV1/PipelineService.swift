@@ -167,7 +167,7 @@
     /// [TrainingPipeline.state][google.cloud.aiplatform.v1.TrainingPipeline.state]
     /// is set to `CANCELLED`.
     ///
-    /// [google.cloud.aiplatform.v1.PipelineService.GetTrainingPipeline]: <doc:PipelineService/getTrainingPipeline(request:)>
+    /// [google.cloud.aiplatform.v1.PipelineService.GetTrainingPipeline]: <doc:PipelineServiceClient/getTrainingPipeline(request:)>
     /// [google.cloud.aiplatform.v1.TrainingPipeline.error]: <doc:TrainingPipeline/error>
     /// [google.cloud.aiplatform.v1.TrainingPipeline.state]: <doc:TrainingPipeline/state>
     /// [google.rpc.Status.code]: https://www.google.com/search?q=Swift+google.rpc+GoogleRpc.Status/code
@@ -371,7 +371,7 @@
     ///
     /// [google.cloud.aiplatform.v1.PipelineJob.error]: <doc:PipelineJob/error>
     /// [google.cloud.aiplatform.v1.PipelineJob.state]: <doc:PipelineJob/state>
-    /// [google.cloud.aiplatform.v1.PipelineService.GetPipelineJob]: <doc:PipelineService/getPipelineJob(request:)>
+    /// [google.cloud.aiplatform.v1.PipelineService.GetPipelineJob]: <doc:PipelineServiceClient/getPipelineJob(request:)>
     /// [google.rpc.Status.code]: https://www.google.com/search?q=Swift+google.rpc+GoogleRpc.Status/code
     ///
     /// @Snippet(path: "PipelineService_CancelPipelineJob")
@@ -536,7 +536,7 @@
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
     ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "PipelineService_ListOperations")
     public func listOperations(
@@ -547,7 +547,7 @@
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
     ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "PipelineService_ListOperations")
     public func listOperations(
@@ -564,7 +564,7 @@
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
     ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "PipelineService_GetOperation")
     func getOperation(
@@ -575,7 +575,7 @@
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
     ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "PipelineService_DeleteOperation")
     public func deleteOperation(
@@ -586,7 +586,7 @@
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
     ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "PipelineService_CancelOperation")
     public func cancelOperation(
@@ -597,7 +597,7 @@
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
     ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "PipelineService_WaitOperation")
     public func waitOperation(

@@ -22,7 +22,7 @@
   /// [SiteSearchEngineService.BatchVerifyTargetSites][google.cloud.discoveryengine.v1.SiteSearchEngineService.BatchVerifyTargetSites]
   /// method.
   ///
-  /// [google.cloud.discoveryengine.v1.SiteSearchEngineService.BatchVerifyTargetSites]: <doc:SiteSearchEngineService/batchVerifyTargetSites(request:)>
+  /// [google.cloud.discoveryengine.v1.SiteSearchEngineService.BatchVerifyTargetSites]: <doc:SiteSearchEngineServiceClient/batchVerifyTargetSites(request:)>
   public struct BatchVerifyTargetSitesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

@@ -21,7 +21,7 @@
   /// The response message for
   /// [TestCases.RunTestCase][google.cloud.dialogflow.cx.v3.TestCases.RunTestCase].
   ///
-  /// [google.cloud.dialogflow.cx.v3.TestCases.RunTestCase]: <doc:TestCases/runTestCase(request:)>
+  /// [google.cloud.dialogflow.cx.v3.TestCases.RunTestCase]: <doc:TestCasesClient/runTestCase(request:)>
   public struct RunTestCaseResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

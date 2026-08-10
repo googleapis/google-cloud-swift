@@ -56,7 +56,7 @@
     /// predictions and explanations as given and returned via
     /// [PredictionService.Predict][google.cloud.aiplatform.v1.PredictionService.Predict].
     ///
-    /// [google.cloud.aiplatform.v1.PredictionService.Predict]: <doc:PredictionService/predict(request:)>
+    /// [google.cloud.aiplatform.v1.PredictionService.Predict]: <doc:PredictionServiceClient/predict(request:)>
     public var predictSchemata: PredictSchemata? = nil
 
     /// Initialize a new instance of `PublisherModel`.

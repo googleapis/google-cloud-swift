@@ -21,7 +21,7 @@
   extension GlobalForwardingRulesClient {
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.globalForwardingRules.delete] method.
     ///
-    /// [google.cloud.compute.v1.globalForwardingRules.delete]: <doc:GlobalForwardingRules/delete(request:)>
+    /// [google.cloud.compute.v1.globalForwardingRules.delete]: <doc:GlobalForwardingRulesClient/delete(request:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -75,7 +75,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.globalForwardingRules.get] method.
     ///
-    /// [google.cloud.compute.v1.globalForwardingRules.get]: <doc:GlobalForwardingRules/`get`(request:)>
+    /// [google.cloud.compute.v1.globalForwardingRules.get]: <doc:GlobalForwardingRulesClient/`get`(request:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -216,7 +216,7 @@
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.globalForwardingRules.insert] method.
     ///
-    /// [google.cloud.compute.v1.globalForwardingRules.insert]: <doc:GlobalForwardingRules/insert(request:)>
+    /// [google.cloud.compute.v1.globalForwardingRules.insert]: <doc:GlobalForwardingRulesClient/insert(request:)>
     public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -240,7 +240,7 @@
 
       /// Synthetic request body field for the [insert()][google.cloud.compute.v1.globalForwardingRules.insert] method.
       ///
-      /// [google.cloud.compute.v1.globalForwardingRules.insert]: <doc:GlobalForwardingRules/insert(request:)>
+      /// [google.cloud.compute.v1.globalForwardingRules.insert]: <doc:GlobalForwardingRulesClient/insert(request:)>
       public var body: ForwardingRule? = nil
 
       /// Initialize a new instance of `InsertRequest`.
@@ -272,7 +272,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.globalForwardingRules.list] method.
     ///
-    /// [google.cloud.compute.v1.globalForwardingRules.list]: <doc:GlobalForwardingRules/list(request:)>
+    /// [google.cloud.compute.v1.globalForwardingRules.list]: <doc:GlobalForwardingRulesClient/list(request:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -401,7 +401,7 @@
 
     /// Synthetic request message for the [patch()][google.cloud.compute.v1.globalForwardingRules.patch] method.
     ///
-    /// [google.cloud.compute.v1.globalForwardingRules.patch]: <doc:GlobalForwardingRules/patch(request:)>
+    /// [google.cloud.compute.v1.globalForwardingRules.patch]: <doc:GlobalForwardingRulesClient/patch(request:)>
     public struct PatchRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -428,7 +428,7 @@
 
       /// Synthetic request body field for the [patch()][google.cloud.compute.v1.globalForwardingRules.patch] method.
       ///
-      /// [google.cloud.compute.v1.globalForwardingRules.patch]: <doc:GlobalForwardingRules/patch(request:)>
+      /// [google.cloud.compute.v1.globalForwardingRules.patch]: <doc:GlobalForwardingRulesClient/patch(request:)>
       public var body: ForwardingRule? = nil
 
       /// Initialize a new instance of `PatchRequest`.
@@ -460,7 +460,7 @@
 
     /// Synthetic request message for the [setLabels()][google.cloud.compute.v1.globalForwardingRules.setLabels] method.
     ///
-    /// [google.cloud.compute.v1.globalForwardingRules.setLabels]: <doc:GlobalForwardingRules/setLabels(request:)>
+    /// [google.cloud.compute.v1.globalForwardingRules.setLabels]: <doc:GlobalForwardingRulesClient/setLabels(request:)>
     public struct SetLabelsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -472,7 +472,7 @@
 
       /// Synthetic request body field for the [setLabels()][google.cloud.compute.v1.globalForwardingRules.setLabels] method.
       ///
-      /// [google.cloud.compute.v1.globalForwardingRules.setLabels]: <doc:GlobalForwardingRules/setLabels(request:)>
+      /// [google.cloud.compute.v1.globalForwardingRules.setLabels]: <doc:GlobalForwardingRulesClient/setLabels(request:)>
       public var body: GlobalSetLabelsRequest? = nil
 
       /// Initialize a new instance of `SetLabelsRequest`.
@@ -504,7 +504,7 @@
 
     /// Synthetic request message for the [setTarget()][google.cloud.compute.v1.globalForwardingRules.setTarget] method.
     ///
-    /// [google.cloud.compute.v1.globalForwardingRules.setTarget]: <doc:GlobalForwardingRules/setTarget(request:)>
+    /// [google.cloud.compute.v1.globalForwardingRules.setTarget]: <doc:GlobalForwardingRulesClient/setTarget(request:)>
     public struct SetTargetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -531,7 +531,7 @@
 
       /// Synthetic request body field for the [setTarget()][google.cloud.compute.v1.globalForwardingRules.setTarget] method.
       ///
-      /// [google.cloud.compute.v1.globalForwardingRules.setTarget]: <doc:GlobalForwardingRules/setTarget(request:)>
+      /// [google.cloud.compute.v1.globalForwardingRules.setTarget]: <doc:GlobalForwardingRulesClient/setTarget(request:)>
       public var body: TargetReference? = nil
 
       /// Initialize a new instance of `SetTargetRequest`.

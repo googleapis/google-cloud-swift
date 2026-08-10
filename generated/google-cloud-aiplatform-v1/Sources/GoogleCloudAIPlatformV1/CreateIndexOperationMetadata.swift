@@ -21,7 +21,7 @@
   /// Runtime operation information for
   /// [IndexService.CreateIndex][google.cloud.aiplatform.v1.IndexService.CreateIndex].
   ///
-  /// [google.cloud.aiplatform.v1.IndexService.CreateIndex]: <doc:IndexService/createIndex(request:)>
+  /// [google.cloud.aiplatform.v1.IndexService.CreateIndex]: <doc:IndexServiceClient/createIndex(request:)>
   public struct CreateIndexOperationMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

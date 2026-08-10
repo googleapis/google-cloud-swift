@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [DeleteTaxonomy][google.cloud.datacatalog.v1.PolicyTagManager.DeleteTaxonomy].
 ///
-/// [google.cloud.datacatalog.v1.PolicyTagManager.DeleteTaxonomy]: <doc:PolicyTagManager/deleteTaxonomy(request:)>
+/// [google.cloud.datacatalog.v1.PolicyTagManager.DeleteTaxonomy]: <doc:PolicyTagManagerClient/deleteTaxonomy(request:)>
 public struct DeleteTaxonomyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

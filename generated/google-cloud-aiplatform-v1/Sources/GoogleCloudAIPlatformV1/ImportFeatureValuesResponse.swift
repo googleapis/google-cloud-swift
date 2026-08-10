@@ -21,7 +21,7 @@
   /// Response message for
   /// [FeaturestoreService.ImportFeatureValues][google.cloud.aiplatform.v1.FeaturestoreService.ImportFeatureValues].
   ///
-  /// [google.cloud.aiplatform.v1.FeaturestoreService.ImportFeatureValues]: <doc:FeaturestoreService/importFeatureValues(request:)>
+  /// [google.cloud.aiplatform.v1.FeaturestoreService.ImportFeatureValues]: <doc:FeaturestoreServiceClient/importFeatureValues(request:)>
   public struct ImportFeatureValuesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

@@ -307,7 +307,7 @@
       /// it's guaranteed that no more than K entities of the same crowding
       /// attribute are returned in the response.
       ///
-      /// [google.cloud.aiplatform.v1.FeatureOnlineStoreService.SearchNearestEntities]: <doc:FeatureOnlineStoreService/searchNearestEntities(request:)>
+      /// [google.cloud.aiplatform.v1.FeatureOnlineStoreService.SearchNearestEntities]: <doc:FeatureOnlineStoreServiceClient/searchNearestEntities(request:)>
       /// [google.cloud.aiplatform.v1.NearestNeighborQuery.per_crowding_attribute_neighbor_count]: <doc:NearestNeighborQuery/perCrowdingAttributeNeighborCount>
       /// [google.cloud.aiplatform.v1.SearchNearestEntitiesRequest]: <doc:SearchNearestEntitiesRequest>
       public var crowdingColumn: Swift.String = Swift.String()

@@ -34,7 +34,7 @@ public struct ListNotificationChannelsRequest: Codable, Equatable, GoogleCloudWk
   /// [`GetNotificationChannel`][google.monitoring.v3.NotificationChannelService.GetNotificationChannel]
   /// operation.
   ///
-  /// [google.monitoring.v3.NotificationChannelService.GetNotificationChannel]: <doc:NotificationChannelService/getNotificationChannel(request:)>
+  /// [google.monitoring.v3.NotificationChannelService.GetNotificationChannel]: <doc:NotificationChannelServiceClient/getNotificationChannel(request:)>
   public var name: Swift.String = Swift.String()
 
   /// Optional. If provided, this field specifies the criteria that must be met

@@ -21,7 +21,7 @@
   extension SslPoliciesClient {
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.sslPolicies.aggregatedList] method.
     ///
-    /// [google.cloud.compute.v1.sslPolicies.aggregatedList]: <doc:SslPolicies/aggregatedList(request:)>
+    /// [google.cloud.compute.v1.sslPolicies.aggregatedList]: <doc:SslPoliciesClient/aggregatedList(request:)>
     public struct AggregatedListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -163,7 +163,7 @@
 
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.sslPolicies.delete] method.
     ///
-    /// [google.cloud.compute.v1.sslPolicies.delete]: <doc:SslPolicies/delete(request:)>
+    /// [google.cloud.compute.v1.sslPolicies.delete]: <doc:SslPoliciesClient/delete(request:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -218,7 +218,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.sslPolicies.get] method.
     ///
-    /// [google.cloud.compute.v1.sslPolicies.get]: <doc:SslPolicies/`get`(request:)>
+    /// [google.cloud.compute.v1.sslPolicies.get]: <doc:SslPoliciesClient/`get`(request:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -258,7 +258,7 @@
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.sslPolicies.insert] method.
     ///
-    /// [google.cloud.compute.v1.sslPolicies.insert]: <doc:SslPolicies/insert(request:)>
+    /// [google.cloud.compute.v1.sslPolicies.insert]: <doc:SslPoliciesClient/insert(request:)>
     public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -282,7 +282,7 @@
 
       /// Synthetic request body field for the [insert()][google.cloud.compute.v1.sslPolicies.insert] method.
       ///
-      /// [google.cloud.compute.v1.sslPolicies.insert]: <doc:SslPolicies/insert(request:)>
+      /// [google.cloud.compute.v1.sslPolicies.insert]: <doc:SslPoliciesClient/insert(request:)>
       public var body: SslPolicy? = nil
 
       /// Initialize a new instance of `InsertRequest`.
@@ -314,7 +314,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.sslPolicies.list] method.
     ///
-    /// [google.cloud.compute.v1.sslPolicies.list]: <doc:SslPolicies/list(request:)>
+    /// [google.cloud.compute.v1.sslPolicies.list]: <doc:SslPoliciesClient/list(request:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -443,7 +443,7 @@
 
     /// Synthetic request message for the [listAvailableFeatures()][google.cloud.compute.v1.sslPolicies.listAvailableFeatures] method.
     ///
-    /// [google.cloud.compute.v1.sslPolicies.listAvailableFeatures]: <doc:SslPolicies/listAvailableFeatures(request:)>
+    /// [google.cloud.compute.v1.sslPolicies.listAvailableFeatures]: <doc:SslPoliciesClient/listAvailableFeatures(request:)>
     public struct ListAvailableFeaturesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -573,7 +573,7 @@
 
     /// Synthetic request message for the [patch()][google.cloud.compute.v1.sslPolicies.patch] method.
     ///
-    /// [google.cloud.compute.v1.sslPolicies.patch]: <doc:SslPolicies/patch(request:)>
+    /// [google.cloud.compute.v1.sslPolicies.patch]: <doc:SslPoliciesClient/patch(request:)>
     public struct PatchRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -601,7 +601,7 @@
 
       /// Synthetic request body field for the [patch()][google.cloud.compute.v1.sslPolicies.patch] method.
       ///
-      /// [google.cloud.compute.v1.sslPolicies.patch]: <doc:SslPolicies/patch(request:)>
+      /// [google.cloud.compute.v1.sslPolicies.patch]: <doc:SslPoliciesClient/patch(request:)>
       public var body: SslPolicy? = nil
 
       /// Initialize a new instance of `PatchRequest`.

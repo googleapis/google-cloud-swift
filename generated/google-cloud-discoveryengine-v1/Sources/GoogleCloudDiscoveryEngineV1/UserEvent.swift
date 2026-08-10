@@ -114,7 +114,7 @@
     /// [UserEventService.ImportUserEvents][google.cloud.discoveryengine.v1.UserEventService.ImportUserEvents]
     /// method. Timestamp of when the user event happened.
     ///
-    /// [google.cloud.discoveryengine.v1.UserEventService.ImportUserEvents]: <doc:UserEventService/importUserEvents(request:)>
+    /// [google.cloud.discoveryengine.v1.UserEventService.ImportUserEvents]: <doc:UserEventServiceClient/importUserEvents(request:)>
     public var eventTime: GoogleCloudWkt.Timestamp? = nil
 
     /// Information about the end user.
@@ -132,7 +132,7 @@
     /// This should not be set when using the JavaScript tag in
     /// [UserEventService.CollectUserEvent][google.cloud.discoveryengine.v1.UserEventService.CollectUserEvent].
     ///
-    /// [google.cloud.discoveryengine.v1.UserEventService.CollectUserEvent]: <doc:UserEventService/collectUserEvent(request:)>
+    /// [google.cloud.discoveryengine.v1.UserEventService.CollectUserEvent]: <doc:UserEventServiceClient/collectUserEvent(request:)>
     /// [google.cloud.discoveryengine.v1.UserInfo.user_agent]: <doc:UserInfo/userAgent>
     public var directUserRequest: Swift.Bool = Swift.Bool()
 
@@ -179,9 +179,9 @@
     /// to this field.
     ///
     /// [google.cloud.discoveryengine.v1.RecommendResponse.attribution_token]: <doc:RecommendResponse/attributionToken>
-    /// [google.cloud.discoveryengine.v1.RecommendationService.Recommend]: <doc:RecommendationService/recommend(request:)>
+    /// [google.cloud.discoveryengine.v1.RecommendationService.Recommend]: <doc:RecommendationServiceClient/recommend(request:)>
     /// [google.cloud.discoveryengine.v1.SearchResponse.attribution_token]: <doc:SearchResponse/attributionToken>
-    /// [google.cloud.discoveryengine.v1.SearchService.Search]: <doc:SearchService/search(request:)>
+    /// [google.cloud.discoveryengine.v1.SearchService.Search]: <doc:SearchServiceClient/search(request:)>
     public var attributionToken: Swift.String = Swift.String()
 
     /// The filter syntax consists of an expression language for constructing a
@@ -239,7 +239,7 @@
     ///
     /// This field should be set for `search` event.
     ///
-    /// [google.cloud.discoveryengine.v1.SearchService.Search]: <doc:SearchService/search(request:)>
+    /// [google.cloud.discoveryengine.v1.SearchService.Search]: <doc:SearchServiceClient/search(request:)>
     public var searchInfo: SearchInfo? = nil
 
     /// [CompletionService.CompleteQuery][google.cloud.discoveryengine.v1.CompletionService.CompleteQuery]
@@ -248,7 +248,7 @@
     /// This field should be set for `search` event when autocomplete function is
     /// enabled and the user clicks a suggestion for search.
     ///
-    /// [google.cloud.discoveryengine.v1.CompletionService.CompleteQuery]: <doc:CompletionService/completeQuery(request:)>
+    /// [google.cloud.discoveryengine.v1.CompletionService.CompleteQuery]: <doc:CompletionServiceClient/completeQuery(request:)>
     public var completionInfo: CompletionInfo? = nil
 
     /// The transaction metadata (if any) associated with this user event.

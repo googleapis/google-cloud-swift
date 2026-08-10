@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// The request for
 /// [UpdateAuthorizedView][google.bigtable.admin.v2.BigtableTableAdmin.UpdateAuthorizedView].
 ///
-/// [google.bigtable.admin.v2.BigtableTableAdmin.UpdateAuthorizedView]: <doc:BigtableTableAdmin/updateAuthorizedView(request:)>
+/// [google.bigtable.admin.v2.BigtableTableAdmin.UpdateAuthorizedView]: <doc:BigtableTableAdminClient/updateAuthorizedView(request:)>
 public struct UpdateAuthorizedViewRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

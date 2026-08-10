@@ -19,7 +19,7 @@ import GoogleCloudWkt
 
 /// Request for [ListInstances][google.cloud.memcache.v1.CloudMemcache.ListInstances].
 ///
-/// [google.cloud.memcache.v1.CloudMemcache.ListInstances]: <doc:CloudMemcache/listInstances(request:)>
+/// [google.cloud.memcache.v1.CloudMemcache.ListInstances]: <doc:CloudMemcacheClient/listInstances(request:)>
 public struct ListInstancesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

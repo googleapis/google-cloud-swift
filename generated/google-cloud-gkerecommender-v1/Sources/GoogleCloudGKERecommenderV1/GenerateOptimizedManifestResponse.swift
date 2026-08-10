@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [GkeInferenceQuickstart.GenerateOptimizedManifest][google.cloud.gkerecommender.v1.GkeInferenceQuickstart.GenerateOptimizedManifest].
 ///
-/// [google.cloud.gkerecommender.v1.GkeInferenceQuickstart.GenerateOptimizedManifest]: <doc:GkeInferenceQuickstart/generateOptimizedManifest(request:)>
+/// [google.cloud.gkerecommender.v1.GkeInferenceQuickstart.GenerateOptimizedManifest]: <doc:GkeInferenceQuickstartClient/generateOptimizedManifest(request:)>
 public struct GenerateOptimizedManifestResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

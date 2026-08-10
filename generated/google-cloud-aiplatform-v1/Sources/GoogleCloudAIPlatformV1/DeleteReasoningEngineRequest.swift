@@ -21,7 +21,7 @@
   /// Request message for
   /// [ReasoningEngineService.DeleteReasoningEngine][google.cloud.aiplatform.v1.ReasoningEngineService.DeleteReasoningEngine].
   ///
-  /// [google.cloud.aiplatform.v1.ReasoningEngineService.DeleteReasoningEngine]: <doc:ReasoningEngineService/deleteReasoningEngine(request:)>
+  /// [google.cloud.aiplatform.v1.ReasoningEngineService.DeleteReasoningEngine]: <doc:ReasoningEngineServiceClient/deleteReasoningEngine(request:)>
   public struct DeleteReasoningEngineRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

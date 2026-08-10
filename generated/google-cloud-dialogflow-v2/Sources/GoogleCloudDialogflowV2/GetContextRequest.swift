@@ -21,7 +21,7 @@
   /// The request message for
   /// [Contexts.GetContext][google.cloud.dialogflow.v2.Contexts.GetContext].
   ///
-  /// [google.cloud.dialogflow.v2.Contexts.GetContext]: <doc:Contexts/getContext(request:)>
+  /// [google.cloud.dialogflow.v2.Contexts.GetContext]: <doc:ContextsClient/getContext(request:)>
   public struct GetContextRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

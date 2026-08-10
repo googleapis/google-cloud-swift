@@ -21,7 +21,7 @@
   /// Request message for
   /// [EndpointService.DeployModel][google.cloud.aiplatform.v1.EndpointService.DeployModel].
   ///
-  /// [google.cloud.aiplatform.v1.EndpointService.DeployModel]: <doc:EndpointService/deployModel(request:)>
+  /// [google.cloud.aiplatform.v1.EndpointService.DeployModel]: <doc:EndpointServiceClient/deployModel(request:)>
   public struct DeployModelRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {
@@ -37,7 +37,7 @@
     /// [EndpointService.UpdateEndpoint][google.cloud.aiplatform.v1.EndpointService.UpdateEndpoint].
     ///
     /// [google.cloud.aiplatform.v1.Endpoint.traffic_split]: <doc:Endpoint/trafficSplit>
-    /// [google.cloud.aiplatform.v1.EndpointService.UpdateEndpoint]: <doc:EndpointService/updateEndpoint(request:)>
+    /// [google.cloud.aiplatform.v1.EndpointService.UpdateEndpoint]: <doc:EndpointServiceClient/updateEndpoint(request:)>
     public var deployedModel: DeployedModel? = nil
 
     /// A map from a DeployedModel's ID to the percentage of this Endpoint's

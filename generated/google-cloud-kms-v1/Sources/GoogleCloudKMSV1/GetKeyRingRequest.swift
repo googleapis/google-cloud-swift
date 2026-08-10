@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [KeyManagementService.GetKeyRing][google.cloud.kms.v1.KeyManagementService.GetKeyRing].
 ///
-/// [google.cloud.kms.v1.KeyManagementService.GetKeyRing]: <doc:KeyManagementService/getKeyRing(request:)>
+/// [google.cloud.kms.v1.KeyManagementService.GetKeyRing]: <doc:KeyManagementServiceClient/getKeyRing(request:)>
 public struct GetKeyRingRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

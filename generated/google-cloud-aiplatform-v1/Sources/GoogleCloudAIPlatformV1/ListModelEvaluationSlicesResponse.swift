@@ -22,7 +22,7 @@
   /// Response message for
   /// [ModelService.ListModelEvaluationSlices][google.cloud.aiplatform.v1.ModelService.ListModelEvaluationSlices].
   ///
-  /// [google.cloud.aiplatform.v1.ModelService.ListModelEvaluationSlices]: <doc:ModelService/listModelEvaluationSlices(request:)>
+  /// [google.cloud.aiplatform.v1.ModelService.ListModelEvaluationSlices]: <doc:ModelServiceClient/listModelEvaluationSlices(request:)>
   public struct ListModelEvaluationSlicesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable

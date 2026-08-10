@@ -21,7 +21,7 @@
   /// Request message for
   /// [MetadataService.DeleteExecution][google.cloud.aiplatform.v1.MetadataService.DeleteExecution].
   ///
-  /// [google.cloud.aiplatform.v1.MetadataService.DeleteExecution]: <doc:MetadataService/deleteExecution(request:)>
+  /// [google.cloud.aiplatform.v1.MetadataService.DeleteExecution]: <doc:MetadataServiceClient/deleteExecution(request:)>
   public struct DeleteExecutionRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

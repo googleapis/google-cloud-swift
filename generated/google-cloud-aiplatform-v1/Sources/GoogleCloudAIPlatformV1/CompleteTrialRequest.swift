@@ -21,7 +21,7 @@
   /// Request message for
   /// [VizierService.CompleteTrial][google.cloud.aiplatform.v1.VizierService.CompleteTrial].
   ///
-  /// [google.cloud.aiplatform.v1.VizierService.CompleteTrial]: <doc:VizierService/completeTrial(request:)>
+  /// [google.cloud.aiplatform.v1.VizierService.CompleteTrial]: <doc:VizierServiceClient/completeTrial(request:)>
   public struct CompleteTrialRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

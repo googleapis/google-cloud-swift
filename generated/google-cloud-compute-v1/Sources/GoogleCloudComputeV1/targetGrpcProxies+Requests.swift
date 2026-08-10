@@ -21,7 +21,7 @@
   extension TargetGrpcProxiesClient {
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.targetGrpcProxies.delete] method.
     ///
-    /// [google.cloud.compute.v1.targetGrpcProxies.delete]: <doc:TargetGrpcProxies/delete(request:)>
+    /// [google.cloud.compute.v1.targetGrpcProxies.delete]: <doc:TargetGrpcProxiesClient/delete(request:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -75,7 +75,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.targetGrpcProxies.get] method.
     ///
-    /// [google.cloud.compute.v1.targetGrpcProxies.get]: <doc:TargetGrpcProxies/`get`(request:)>
+    /// [google.cloud.compute.v1.targetGrpcProxies.get]: <doc:TargetGrpcProxiesClient/`get`(request:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -114,7 +114,7 @@
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.targetGrpcProxies.insert] method.
     ///
-    /// [google.cloud.compute.v1.targetGrpcProxies.insert]: <doc:TargetGrpcProxies/insert(request:)>
+    /// [google.cloud.compute.v1.targetGrpcProxies.insert]: <doc:TargetGrpcProxiesClient/insert(request:)>
     public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -138,7 +138,7 @@
 
       /// Synthetic request body field for the [insert()][google.cloud.compute.v1.targetGrpcProxies.insert] method.
       ///
-      /// [google.cloud.compute.v1.targetGrpcProxies.insert]: <doc:TargetGrpcProxies/insert(request:)>
+      /// [google.cloud.compute.v1.targetGrpcProxies.insert]: <doc:TargetGrpcProxiesClient/insert(request:)>
       public var body: TargetGrpcProxy? = nil
 
       /// Initialize a new instance of `InsertRequest`.
@@ -170,7 +170,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.targetGrpcProxies.list] method.
     ///
-    /// [google.cloud.compute.v1.targetGrpcProxies.list]: <doc:TargetGrpcProxies/list(request:)>
+    /// [google.cloud.compute.v1.targetGrpcProxies.list]: <doc:TargetGrpcProxiesClient/list(request:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -299,7 +299,7 @@
 
     /// Synthetic request message for the [patch()][google.cloud.compute.v1.targetGrpcProxies.patch] method.
     ///
-    /// [google.cloud.compute.v1.targetGrpcProxies.patch]: <doc:TargetGrpcProxies/patch(request:)>
+    /// [google.cloud.compute.v1.targetGrpcProxies.patch]: <doc:TargetGrpcProxiesClient/patch(request:)>
     public struct PatchRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -326,7 +326,7 @@
 
       /// Synthetic request body field for the [patch()][google.cloud.compute.v1.targetGrpcProxies.patch] method.
       ///
-      /// [google.cloud.compute.v1.targetGrpcProxies.patch]: <doc:TargetGrpcProxies/patch(request:)>
+      /// [google.cloud.compute.v1.targetGrpcProxies.patch]: <doc:TargetGrpcProxiesClient/patch(request:)>
       public var body: TargetGrpcProxy? = nil
 
       /// Initialize a new instance of `PatchRequest`.

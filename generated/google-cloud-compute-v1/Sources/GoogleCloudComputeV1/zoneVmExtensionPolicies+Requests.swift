@@ -21,7 +21,7 @@
   extension ZoneVmExtensionPoliciesClient {
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.zoneVmExtensionPolicies.delete] method.
     ///
-    /// [google.cloud.compute.v1.zoneVmExtensionPolicies.delete]: <doc:ZoneVmExtensionPolicies/delete(request:)>
+    /// [google.cloud.compute.v1.zoneVmExtensionPolicies.delete]: <doc:ZoneVmExtensionPoliciesClient/delete(request:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -78,7 +78,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.zoneVmExtensionPolicies.get] method.
     ///
-    /// [google.cloud.compute.v1.zoneVmExtensionPolicies.get]: <doc:ZoneVmExtensionPolicies/`get`(request:)>
+    /// [google.cloud.compute.v1.zoneVmExtensionPolicies.get]: <doc:ZoneVmExtensionPoliciesClient/`get`(request:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -120,7 +120,7 @@
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.zoneVmExtensionPolicies.insert] method.
     ///
-    /// [google.cloud.compute.v1.zoneVmExtensionPolicies.insert]: <doc:ZoneVmExtensionPolicies/insert(request:)>
+    /// [google.cloud.compute.v1.zoneVmExtensionPolicies.insert]: <doc:ZoneVmExtensionPoliciesClient/insert(request:)>
     public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -147,7 +147,7 @@
 
       /// Synthetic request body field for the [insert()][google.cloud.compute.v1.zoneVmExtensionPolicies.insert] method.
       ///
-      /// [google.cloud.compute.v1.zoneVmExtensionPolicies.insert]: <doc:ZoneVmExtensionPolicies/insert(request:)>
+      /// [google.cloud.compute.v1.zoneVmExtensionPolicies.insert]: <doc:ZoneVmExtensionPoliciesClient/insert(request:)>
       public var body: VmExtensionPolicy? = nil
 
       /// Initialize a new instance of `InsertRequest`.
@@ -179,7 +179,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.zoneVmExtensionPolicies.list] method.
     ///
-    /// [google.cloud.compute.v1.zoneVmExtensionPolicies.list]: <doc:ZoneVmExtensionPolicies/list(request:)>
+    /// [google.cloud.compute.v1.zoneVmExtensionPolicies.list]: <doc:ZoneVmExtensionPoliciesClient/list(request:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -311,7 +311,7 @@
 
     /// Synthetic request message for the [update()][google.cloud.compute.v1.zoneVmExtensionPolicies.update] method.
     ///
-    /// [google.cloud.compute.v1.zoneVmExtensionPolicies.update]: <doc:ZoneVmExtensionPolicies/update(request:)>
+    /// [google.cloud.compute.v1.zoneVmExtensionPolicies.update]: <doc:ZoneVmExtensionPoliciesClient/update(request:)>
     public struct UpdateRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -341,7 +341,7 @@
 
       /// Synthetic request body field for the [update()][google.cloud.compute.v1.zoneVmExtensionPolicies.update] method.
       ///
-      /// [google.cloud.compute.v1.zoneVmExtensionPolicies.update]: <doc:ZoneVmExtensionPolicies/update(request:)>
+      /// [google.cloud.compute.v1.zoneVmExtensionPolicies.update]: <doc:ZoneVmExtensionPoliciesClient/update(request:)>
       public var body: VmExtensionPolicy? = nil
 
       /// Initialize a new instance of `UpdateRequest`.

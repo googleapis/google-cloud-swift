@@ -23,7 +23,7 @@
   /// operation. This will be returned by the google.longrunning.Operation.metadata
   /// field.
   ///
-  /// [google.cloud.discoveryengine.v1.DataStoreService.CreateDataStore]: <doc:DataStoreService/createDataStore(request:)>
+  /// [google.cloud.discoveryengine.v1.DataStoreService.CreateDataStore]: <doc:DataStoreServiceClient/createDataStore(request:)>
   public struct CreateDataStoreMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

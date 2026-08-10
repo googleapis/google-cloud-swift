@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// The request for
 /// [HubService.DeleteHub][google.cloud.networkconnectivity.v1.HubService.DeleteHub].
 ///
-/// [google.cloud.networkconnectivity.v1.HubService.DeleteHub]: <doc:HubService/deleteHub(request:)>
+/// [google.cloud.networkconnectivity.v1.HubService.DeleteHub]: <doc:HubServiceClient/deleteHub(request:)>
 public struct DeleteHubRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [`CreateDatasetConfig`][google.cloud.storageinsights.v1.StorageInsights.CreateDatasetConfig]
 ///
-/// [google.cloud.storageinsights.v1.StorageInsights.CreateDatasetConfig]: <doc:StorageInsights/createDatasetConfig(request:)>
+/// [google.cloud.storageinsights.v1.StorageInsights.CreateDatasetConfig]: <doc:StorageInsightsClient/createDatasetConfig(request:)>
 public struct CreateDatasetConfigRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

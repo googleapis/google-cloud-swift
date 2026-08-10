@@ -21,7 +21,7 @@
   /// Request message for
   /// [DatasetService.UpdateDataset][google.cloud.aiplatform.v1.DatasetService.UpdateDataset].
   ///
-  /// [google.cloud.aiplatform.v1.DatasetService.UpdateDataset]: <doc:DatasetService/updateDataset(request:)>
+  /// [google.cloud.aiplatform.v1.DatasetService.UpdateDataset]: <doc:DatasetServiceClient/updateDataset(request:)>
   public struct UpdateDatasetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

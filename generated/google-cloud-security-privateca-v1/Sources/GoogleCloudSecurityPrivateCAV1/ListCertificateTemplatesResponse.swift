@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [CertificateAuthorityService.ListCertificateTemplates][google.cloud.security.privateca.v1.CertificateAuthorityService.ListCertificateTemplates].
 ///
-/// [google.cloud.security.privateca.v1.CertificateAuthorityService.ListCertificateTemplates]: <doc:CertificateAuthorityService/listCertificateTemplates(request:)>
+/// [google.cloud.security.privateca.v1.CertificateAuthorityService.ListCertificateTemplates]: <doc:CertificateAuthorityServiceClient/listCertificateTemplates(request:)>
 public struct ListCertificateTemplatesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

@@ -222,8 +222,8 @@
     /// to false.
     ///
     /// [google.cloud.discoveryengine.v1.Document]: <doc:Document>
-    /// [google.cloud.discoveryengine.v1.DocumentService.GetDocument]: <doc:DocumentService/getDocument(request:)>
-    /// [google.cloud.discoveryengine.v1.DocumentService.ListDocuments]: <doc:DocumentService/listDocuments(request:)>
+    /// [google.cloud.discoveryengine.v1.DocumentService.GetDocument]: <doc:DocumentServiceClient/getDocument(request:)>
+    /// [google.cloud.discoveryengine.v1.DocumentService.ListDocuments]: <doc:DocumentServiceClient/listDocuments(request:)>
     /// [google.cloud.discoveryengine.v1.PurgeDocumentsRequest.force]: <doc:PurgeDocumentsRequest/force>
     ///
     /// @Snippet(path: "DocumentService_PurgeDocuments")
@@ -251,8 +251,8 @@
     /// to false.
     ///
     /// [google.cloud.discoveryengine.v1.Document]: <doc:Document>
-    /// [google.cloud.discoveryengine.v1.DocumentService.GetDocument]: <doc:DocumentService/getDocument(request:)>
-    /// [google.cloud.discoveryengine.v1.DocumentService.ListDocuments]: <doc:DocumentService/listDocuments(request:)>
+    /// [google.cloud.discoveryengine.v1.DocumentService.GetDocument]: <doc:DocumentServiceClient/getDocument(request:)>
+    /// [google.cloud.discoveryengine.v1.DocumentService.ListDocuments]: <doc:DocumentServiceClient/listDocuments(request:)>
     /// [google.cloud.discoveryengine.v1.PurgeDocumentsRequest.force]: <doc:PurgeDocumentsRequest/force>
     ///
     /// @Snippet(path: "DocumentService_PurgeDocuments")
@@ -328,7 +328,7 @@
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
     ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "DocumentService_ListOperations")
     public func listOperations(
@@ -339,7 +339,7 @@
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
     ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "DocumentService_ListOperations")
     public func listOperations(
@@ -356,7 +356,7 @@
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
     ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "DocumentService_GetOperation")
     func getOperation(
@@ -367,7 +367,7 @@
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
     ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "DocumentService_CancelOperation")
     public func cancelOperation(

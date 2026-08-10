@@ -22,7 +22,7 @@
   /// [SiteSearchEngineService.BatchCreateTargetSites][google.cloud.discoveryengine.v1.SiteSearchEngineService.BatchCreateTargetSites]
   /// method.
   ///
-  /// [google.cloud.discoveryengine.v1.SiteSearchEngineService.BatchCreateTargetSites]: <doc:SiteSearchEngineService/batchCreateTargetSites(request:)>
+  /// [google.cloud.discoveryengine.v1.SiteSearchEngineService.BatchCreateTargetSites]: <doc:SiteSearchEngineServiceClient/batchCreateTargetSites(request:)>
   public struct BatchCreateTargetSitesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

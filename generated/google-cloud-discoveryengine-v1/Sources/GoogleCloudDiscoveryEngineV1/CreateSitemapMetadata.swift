@@ -23,7 +23,7 @@
   /// operation. This will be returned by the google.longrunning.Operation.metadata
   /// field.
   ///
-  /// [google.cloud.discoveryengine.v1.SiteSearchEngineService.CreateSitemap]: <doc:SiteSearchEngineService/createSitemap(request:)>
+  /// [google.cloud.discoveryengine.v1.SiteSearchEngineService.CreateSitemap]: <doc:SiteSearchEngineServiceClient/createSitemap(request:)>
   public struct CreateSitemapMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

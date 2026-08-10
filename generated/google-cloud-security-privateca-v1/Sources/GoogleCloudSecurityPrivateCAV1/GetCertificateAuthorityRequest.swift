@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [CertificateAuthorityService.GetCertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthorityService.GetCertificateAuthority].
 ///
-/// [google.cloud.security.privateca.v1.CertificateAuthorityService.GetCertificateAuthority]: <doc:CertificateAuthorityService/getCertificateAuthority(request:)>
+/// [google.cloud.security.privateca.v1.CertificateAuthorityService.GetCertificateAuthority]: <doc:CertificateAuthorityServiceClient/getCertificateAuthority(request:)>
 public struct GetCertificateAuthorityRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

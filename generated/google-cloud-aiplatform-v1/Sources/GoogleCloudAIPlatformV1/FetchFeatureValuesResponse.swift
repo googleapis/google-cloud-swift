@@ -21,7 +21,7 @@
   /// Response message for
   /// [FeatureOnlineStoreService.FetchFeatureValues][google.cloud.aiplatform.v1.FeatureOnlineStoreService.FetchFeatureValues]
   ///
-  /// [google.cloud.aiplatform.v1.FeatureOnlineStoreService.FetchFeatureValues]: <doc:FeatureOnlineStoreService/fetchFeatureValues(request:)>
+  /// [google.cloud.aiplatform.v1.FeatureOnlineStoreService.FetchFeatureValues]: <doc:FeatureOnlineStoreServiceClient/fetchFeatureValues(request:)>
   public struct FetchFeatureValuesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

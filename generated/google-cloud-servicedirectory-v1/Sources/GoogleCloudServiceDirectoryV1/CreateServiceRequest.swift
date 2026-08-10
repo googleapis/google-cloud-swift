@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// The request message for
 /// [RegistrationService.CreateService][google.cloud.servicedirectory.v1.RegistrationService.CreateService].
 ///
-/// [google.cloud.servicedirectory.v1.RegistrationService.CreateService]: <doc:RegistrationService/createService(request:)>
+/// [google.cloud.servicedirectory.v1.RegistrationService.CreateService]: <doc:RegistrationServiceClient/createService(request:)>
 public struct CreateServiceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

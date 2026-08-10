@@ -21,7 +21,7 @@
   extension RegionSnapshotSettingsClient {
     /// Synthetic request message for the [get()][google.cloud.compute.v1.regionSnapshotSettings.get] method.
     ///
-    /// [google.cloud.compute.v1.regionSnapshotSettings.get]: <doc:RegionSnapshotSettings/`get`(request:)>
+    /// [google.cloud.compute.v1.regionSnapshotSettings.get]: <doc:RegionSnapshotSettingsClient/`get`(request:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -60,7 +60,7 @@
 
     /// Synthetic request message for the [patch()][google.cloud.compute.v1.regionSnapshotSettings.patch] method.
     ///
-    /// [google.cloud.compute.v1.regionSnapshotSettings.patch]: <doc:RegionSnapshotSettings/patch(request:)>
+    /// [google.cloud.compute.v1.regionSnapshotSettings.patch]: <doc:RegionSnapshotSettingsClient/patch(request:)>
     public struct PatchRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -90,7 +90,7 @@
 
       /// Synthetic request body field for the [patch()][google.cloud.compute.v1.regionSnapshotSettings.patch] method.
       ///
-      /// [google.cloud.compute.v1.regionSnapshotSettings.patch]: <doc:RegionSnapshotSettings/patch(request:)>
+      /// [google.cloud.compute.v1.regionSnapshotSettings.patch]: <doc:RegionSnapshotSettingsClient/patch(request:)>
       public var body: SnapshotSettings? = nil
 
       /// Initialize a new instance of `PatchRequest`.

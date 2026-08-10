@@ -21,7 +21,7 @@
   extension RegionHealthChecksClient {
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.regionHealthChecks.delete] method.
     ///
-    /// [google.cloud.compute.v1.regionHealthChecks.delete]: <doc:RegionHealthChecks/delete(request:)>
+    /// [google.cloud.compute.v1.regionHealthChecks.delete]: <doc:RegionHealthChecksClient/delete(request:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -78,7 +78,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.regionHealthChecks.get] method.
     ///
-    /// [google.cloud.compute.v1.regionHealthChecks.get]: <doc:RegionHealthChecks/`get`(request:)>
+    /// [google.cloud.compute.v1.regionHealthChecks.get]: <doc:RegionHealthChecksClient/`get`(request:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -120,7 +120,7 @@
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.regionHealthChecks.insert] method.
     ///
-    /// [google.cloud.compute.v1.regionHealthChecks.insert]: <doc:RegionHealthChecks/insert(request:)>
+    /// [google.cloud.compute.v1.regionHealthChecks.insert]: <doc:RegionHealthChecksClient/insert(request:)>
     public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -147,7 +147,7 @@
 
       /// Synthetic request body field for the [insert()][google.cloud.compute.v1.regionHealthChecks.insert] method.
       ///
-      /// [google.cloud.compute.v1.regionHealthChecks.insert]: <doc:RegionHealthChecks/insert(request:)>
+      /// [google.cloud.compute.v1.regionHealthChecks.insert]: <doc:RegionHealthChecksClient/insert(request:)>
       public var body: HealthCheck? = nil
 
       /// Initialize a new instance of `InsertRequest`.
@@ -179,7 +179,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.regionHealthChecks.list] method.
     ///
-    /// [google.cloud.compute.v1.regionHealthChecks.list]: <doc:RegionHealthChecks/list(request:)>
+    /// [google.cloud.compute.v1.regionHealthChecks.list]: <doc:RegionHealthChecksClient/list(request:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -311,7 +311,7 @@
 
     /// Synthetic request message for the [patch()][google.cloud.compute.v1.regionHealthChecks.patch] method.
     ///
-    /// [google.cloud.compute.v1.regionHealthChecks.patch]: <doc:RegionHealthChecks/patch(request:)>
+    /// [google.cloud.compute.v1.regionHealthChecks.patch]: <doc:RegionHealthChecksClient/patch(request:)>
     public struct PatchRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -341,7 +341,7 @@
 
       /// Synthetic request body field for the [patch()][google.cloud.compute.v1.regionHealthChecks.patch] method.
       ///
-      /// [google.cloud.compute.v1.regionHealthChecks.patch]: <doc:RegionHealthChecks/patch(request:)>
+      /// [google.cloud.compute.v1.regionHealthChecks.patch]: <doc:RegionHealthChecksClient/patch(request:)>
       public var body: HealthCheck? = nil
 
       /// Initialize a new instance of `PatchRequest`.
@@ -373,7 +373,7 @@
 
     /// Synthetic request message for the [testIamPermissions()][google.cloud.compute.v1.regionHealthChecks.testIamPermissions] method.
     ///
-    /// [google.cloud.compute.v1.regionHealthChecks.testIamPermissions]: <doc:RegionHealthChecks/testIamPermissions(request:)>
+    /// [google.cloud.compute.v1.regionHealthChecks.testIamPermissions]: <doc:RegionHealthChecksClient/testIamPermissions(request:)>
     public struct TestIamPermissionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -388,7 +388,7 @@
 
       /// Synthetic request body field for the [testIamPermissions()][google.cloud.compute.v1.regionHealthChecks.testIamPermissions] method.
       ///
-      /// [google.cloud.compute.v1.regionHealthChecks.testIamPermissions]: <doc:RegionHealthChecks/testIamPermissions(request:)>
+      /// [google.cloud.compute.v1.regionHealthChecks.testIamPermissions]: <doc:RegionHealthChecksClient/testIamPermissions(request:)>
       public var body: TestPermissionsRequest? = nil
 
       /// Initialize a new instance of `TestIamPermissionsRequest`.
@@ -421,7 +421,7 @@
 
     /// Synthetic request message for the [update()][google.cloud.compute.v1.regionHealthChecks.update] method.
     ///
-    /// [google.cloud.compute.v1.regionHealthChecks.update]: <doc:RegionHealthChecks/update(request:)>
+    /// [google.cloud.compute.v1.regionHealthChecks.update]: <doc:RegionHealthChecksClient/update(request:)>
     public struct UpdateRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -451,7 +451,7 @@
 
       /// Synthetic request body field for the [update()][google.cloud.compute.v1.regionHealthChecks.update] method.
       ///
-      /// [google.cloud.compute.v1.regionHealthChecks.update]: <doc:RegionHealthChecks/update(request:)>
+      /// [google.cloud.compute.v1.regionHealthChecks.update]: <doc:RegionHealthChecksClient/update(request:)>
       public var body: HealthCheck? = nil
 
       /// Initialize a new instance of `UpdateRequest`.

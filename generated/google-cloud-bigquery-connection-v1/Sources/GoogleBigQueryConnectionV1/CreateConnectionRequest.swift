@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// The request for
 /// [ConnectionService.CreateConnection][google.cloud.bigquery.connection.v1.ConnectionService.CreateConnection].
 ///
-/// [google.cloud.bigquery.connection.v1.ConnectionService.CreateConnection]: <doc:ConnectionService/createConnection(request:)>
+/// [google.cloud.bigquery.connection.v1.ConnectionService.CreateConnection]: <doc:ConnectionServiceClient/createConnection(request:)>
 public struct CreateConnectionRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

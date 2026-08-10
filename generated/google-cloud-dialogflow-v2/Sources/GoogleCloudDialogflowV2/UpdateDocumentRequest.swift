@@ -21,7 +21,7 @@
   /// Request message for
   /// [Documents.UpdateDocument][google.cloud.dialogflow.v2.Documents.UpdateDocument].
   ///
-  /// [google.cloud.dialogflow.v2.Documents.UpdateDocument]: <doc:Documents/updateDocument(request:)>
+  /// [google.cloud.dialogflow.v2.Documents.UpdateDocument]: <doc:DocumentsClient/updateDocument(request:)>
   public struct UpdateDocumentRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

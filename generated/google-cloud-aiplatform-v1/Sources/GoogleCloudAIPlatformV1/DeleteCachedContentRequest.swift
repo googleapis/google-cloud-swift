@@ -21,7 +21,7 @@
   /// Request message for
   /// [GenAiCacheService.DeleteCachedContent][google.cloud.aiplatform.v1.GenAiCacheService.DeleteCachedContent].
   ///
-  /// [google.cloud.aiplatform.v1.GenAiCacheService.DeleteCachedContent]: <doc:GenAiCacheService/deleteCachedContent(request:)>
+  /// [google.cloud.aiplatform.v1.GenAiCacheService.DeleteCachedContent]: <doc:GenAiCacheServiceClient/deleteCachedContent(request:)>
   public struct DeleteCachedContentRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

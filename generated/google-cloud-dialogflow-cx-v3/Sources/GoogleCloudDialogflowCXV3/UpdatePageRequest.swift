@@ -21,7 +21,7 @@
   /// The request message for
   /// [Pages.UpdatePage][google.cloud.dialogflow.cx.v3.Pages.UpdatePage].
   ///
-  /// [google.cloud.dialogflow.cx.v3.Pages.UpdatePage]: <doc:Pages/updatePage(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Pages.UpdatePage]: <doc:PagesClient/updatePage(request:)>
   public struct UpdatePageRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

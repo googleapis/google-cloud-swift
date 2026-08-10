@@ -21,7 +21,7 @@
   /// The response message for
   /// [Conversations.GenerateStatelessSummary][google.cloud.dialogflow.v2.Conversations.GenerateStatelessSummary].
   ///
-  /// [google.cloud.dialogflow.v2.Conversations.GenerateStatelessSummary]: <doc:Conversations/generateStatelessSummary(request:)>
+  /// [google.cloud.dialogflow.v2.Conversations.GenerateStatelessSummary]: <doc:ConversationsClient/generateStatelessSummary(request:)>
   public struct GenerateStatelessSummaryResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

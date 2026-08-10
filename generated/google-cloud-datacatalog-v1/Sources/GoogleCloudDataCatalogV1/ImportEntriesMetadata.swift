@@ -22,7 +22,7 @@ import GoogleRpc
 /// returned by the
 /// [ImportEntries][google.cloud.datacatalog.v1.DataCatalog.ImportEntries].
 ///
-/// [google.cloud.datacatalog.v1.DataCatalog.ImportEntries]: <doc:DataCatalog/importEntries(request:)>
+/// [google.cloud.datacatalog.v1.DataCatalog.ImportEntries]: <doc:DataCatalogClient/importEntries(request:)>
 /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
 public struct ImportEntriesMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable

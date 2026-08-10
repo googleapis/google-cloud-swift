@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [ProductService.RemoveFulfillmentPlaces][google.cloud.retail.v2.ProductService.RemoveFulfillmentPlaces]
 /// method.
 ///
-/// [google.cloud.retail.v2.ProductService.RemoveFulfillmentPlaces]: <doc:ProductService/removeFulfillmentPlaces(request:)>
+/// [google.cloud.retail.v2.ProductService.RemoveFulfillmentPlaces]: <doc:ProductServiceClient/removeFulfillmentPlaces(request:)>
 public struct RemoveFulfillmentPlacesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

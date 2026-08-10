@@ -19,15 +19,17 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudWkt
-import GoogleCloudGax
+@_spi(GoogleCloudInternal) import GoogleCloudGax
 
 extension Clients {
   class GatewayControlTransport: GatewayControlStub {
-    let inner: GoogleCloudGax.HTTPClient
+    let inner: GoogleCloudGax._HTTPClient
 
     public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {
-      self.inner = try GoogleCloudGax.HTTPClient(
-        from: options, withDefaultEndpoint: "https://connectgateway.googleapis.com")
+      self.inner = try GoogleCloudGax._HTTPClient(
+        from: options,
+        withDefaultEndpoint: "https://connectgateway.googleapis.com",
+      )
     }
 
     public func generateCredentials(
@@ -49,12 +51,13 @@ extension Clients {
         contentsOf: try encoder.encode(request.kubernetesNamespace, prefix: "kubernetesNamespace"))
       query.append(
         contentsOf: try encoder.encode(request.operatingSystem, prefix: "operatingSystem"))
-      var req = try await self.inner.Request(path: path, query: query)
-      req.httpMethod = "GET"
-      req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-      let (data, _) = try await self.inner.rpc(for: req).get()
-      return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudGKEConnectGatewayV1.GenerateCredentialsResponse.self, from: data)
+      var req = try await self.inner.newRequest(path: path, query: query)
+      req.setMethod(.GET)
+      req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
+      return try await req.rpc(
+        GoogleCloudGKEConnectGatewayV1.GenerateCredentialsResponse.self,
+        timeout: options.attemptTimeout
+      ).get()
     }
   }
 }

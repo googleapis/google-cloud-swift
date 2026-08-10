@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// The response message for
 /// [LookupService.ResolveService][google.cloud.servicedirectory.v1.LookupService.ResolveService].
 ///
-/// [google.cloud.servicedirectory.v1.LookupService.ResolveService]: <doc:LookupService/resolveService(request:)>
+/// [google.cloud.servicedirectory.v1.LookupService.ResolveService]: <doc:LookupServiceClient/resolveService(request:)>
 public struct ResolveServiceResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

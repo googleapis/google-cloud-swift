@@ -21,7 +21,7 @@
   /// The response message for
   /// [Intents.BatchUpdateIntents][google.cloud.dialogflow.v2.Intents.BatchUpdateIntents].
   ///
-  /// [google.cloud.dialogflow.v2.Intents.BatchUpdateIntents]: <doc:Intents/batchUpdateIntents(request:)>
+  /// [google.cloud.dialogflow.v2.Intents.BatchUpdateIntents]: <doc:IntentsClient/batchUpdateIntents(request:)>
   public struct BatchUpdateIntentsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

@@ -21,7 +21,7 @@
   /// Request message for
   /// [PipelineService.ListTrainingPipelines][google.cloud.aiplatform.v1.PipelineService.ListTrainingPipelines].
   ///
-  /// [google.cloud.aiplatform.v1.PipelineService.ListTrainingPipelines]: <doc:PipelineService/listTrainingPipelines(request:)>
+  /// [google.cloud.aiplatform.v1.PipelineService.ListTrainingPipelines]: <doc:PipelineServiceClient/listTrainingPipelines(request:)>
   public struct ListTrainingPipelinesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {
@@ -62,7 +62,7 @@
     /// call.
     ///
     /// [google.cloud.aiplatform.v1.ListTrainingPipelinesResponse.next_page_token]: <doc:ListTrainingPipelinesResponse/nextPageToken>
-    /// [google.cloud.aiplatform.v1.PipelineService.ListTrainingPipelines]: <doc:PipelineService/listTrainingPipelines(request:)>
+    /// [google.cloud.aiplatform.v1.PipelineService.ListTrainingPipelines]: <doc:PipelineServiceClient/listTrainingPipelines(request:)>
     public var pageToken: Swift.String = Swift.String()
 
     /// Mask specifying which fields to read.

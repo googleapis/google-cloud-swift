@@ -21,7 +21,7 @@
   /// The request message for
   /// [Webhooks.DeleteWebhook][google.cloud.dialogflow.cx.v3.Webhooks.DeleteWebhook].
   ///
-  /// [google.cloud.dialogflow.cx.v3.Webhooks.DeleteWebhook]: <doc:Webhooks/deleteWebhook(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Webhooks.DeleteWebhook]: <doc:WebhooksClient/deleteWebhook(request:)>
   public struct DeleteWebhookRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

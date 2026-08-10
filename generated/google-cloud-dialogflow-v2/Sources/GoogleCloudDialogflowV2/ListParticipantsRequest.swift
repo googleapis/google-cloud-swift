@@ -21,7 +21,7 @@
   /// The request message for
   /// [Participants.ListParticipants][google.cloud.dialogflow.v2.Participants.ListParticipants].
   ///
-  /// [google.cloud.dialogflow.v2.Participants.ListParticipants]: <doc:Participants/listParticipants(request:)>
+  /// [google.cloud.dialogflow.v2.Participants.ListParticipants]: <doc:ParticipantsClient/listParticipants(request:)>
   public struct ListParticipantsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// The request message for
 /// [RegistrationService.DeleteEndpoint][google.cloud.servicedirectory.v1.RegistrationService.DeleteEndpoint].
 ///
-/// [google.cloud.servicedirectory.v1.RegistrationService.DeleteEndpoint]: <doc:RegistrationService/deleteEndpoint(request:)>
+/// [google.cloud.servicedirectory.v1.RegistrationService.DeleteEndpoint]: <doc:RegistrationServiceClient/deleteEndpoint(request:)>
 public struct DeleteEndpointRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

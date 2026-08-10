@@ -21,7 +21,7 @@
   /// The request message for
   /// [Participants.CreateParticipant][google.cloud.dialogflow.v2.Participants.CreateParticipant].
   ///
-  /// [google.cloud.dialogflow.v2.Participants.CreateParticipant]: <doc:Participants/createParticipant(request:)>
+  /// [google.cloud.dialogflow.v2.Participants.CreateParticipant]: <doc:ParticipantsClient/createParticipant(request:)>
   public struct CreateParticipantRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

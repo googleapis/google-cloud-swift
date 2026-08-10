@@ -137,8 +137,8 @@ public class ProductServiceClient: Clients.ProductServiceProtocol {
   /// to false.
   ///
   /// [google.cloud.retail.v2.Product]: <doc:Product>
-  /// [google.cloud.retail.v2.ProductService.GetProduct]: <doc:ProductService/getProduct(request:)>
-  /// [google.cloud.retail.v2.ProductService.ListProducts]: <doc:ProductService/listProducts(request:)>
+  /// [google.cloud.retail.v2.ProductService.GetProduct]: <doc:ProductServiceClient/getProduct(request:)>
+  /// [google.cloud.retail.v2.ProductService.ListProducts]: <doc:ProductServiceClient/listProducts(request:)>
   /// [google.cloud.retail.v2.PurgeProductsRequest.force]: <doc:PurgeProductsRequest/force>
   ///
   /// @Snippet(path: "ProductService_PurgeProducts")
@@ -167,8 +167,8 @@ public class ProductServiceClient: Clients.ProductServiceProtocol {
   /// to false.
   ///
   /// [google.cloud.retail.v2.Product]: <doc:Product>
-  /// [google.cloud.retail.v2.ProductService.GetProduct]: <doc:ProductService/getProduct(request:)>
-  /// [google.cloud.retail.v2.ProductService.ListProducts]: <doc:ProductService/listProducts(request:)>
+  /// [google.cloud.retail.v2.ProductService.GetProduct]: <doc:ProductServiceClient/getProduct(request:)>
+  /// [google.cloud.retail.v2.ProductService.ListProducts]: <doc:ProductServiceClient/listProducts(request:)>
   /// [google.cloud.retail.v2.PurgeProductsRequest.force]: <doc:PurgeProductsRequest/force>
   ///
   /// @Snippet(path: "ProductService_PurgeProducts")
@@ -366,13 +366,13 @@ public class ProductServiceClient: Clients.ProductServiceProtocol {
   ///
   /// [google.cloud.retail.v2.CreateProductRequest.product]: <doc:CreateProductRequest/product>
   /// [google.cloud.retail.v2.Product]: <doc:Product>
-  /// [google.cloud.retail.v2.ProductService.AddFulfillmentPlaces]: <doc:ProductService/addFulfillmentPlaces(request:)>
-  /// [google.cloud.retail.v2.ProductService.CreateProduct]: <doc:ProductService/createProduct(request:)>
-  /// [google.cloud.retail.v2.ProductService.GetProduct]: <doc:ProductService/getProduct(request:)>
-  /// [google.cloud.retail.v2.ProductService.ListProducts]: <doc:ProductService/listProducts(request:)>
-  /// [google.cloud.retail.v2.ProductService.RemoveFulfillmentPlaces]: <doc:ProductService/removeFulfillmentPlaces(request:)>
-  /// [google.cloud.retail.v2.ProductService.SetInventory]: <doc:ProductService/setInventory(request:)>
-  /// [google.cloud.retail.v2.ProductService.UpdateProduct]: <doc:ProductService/updateProduct(request:)>
+  /// [google.cloud.retail.v2.ProductService.AddFulfillmentPlaces]: <doc:ProductServiceClient/addFulfillmentPlaces(request:)>
+  /// [google.cloud.retail.v2.ProductService.CreateProduct]: <doc:ProductServiceClient/createProduct(request:)>
+  /// [google.cloud.retail.v2.ProductService.GetProduct]: <doc:ProductServiceClient/getProduct(request:)>
+  /// [google.cloud.retail.v2.ProductService.ListProducts]: <doc:ProductServiceClient/listProducts(request:)>
+  /// [google.cloud.retail.v2.ProductService.RemoveFulfillmentPlaces]: <doc:ProductServiceClient/removeFulfillmentPlaces(request:)>
+  /// [google.cloud.retail.v2.ProductService.SetInventory]: <doc:ProductServiceClient/setInventory(request:)>
+  /// [google.cloud.retail.v2.ProductService.UpdateProduct]: <doc:ProductServiceClient/updateProduct(request:)>
   /// [google.cloud.retail.v2.SetInventoryRequest.set_mask]: <doc:SetInventoryRequest/setMask>
   /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   /// [google.longrunning.Operation.done]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/done
@@ -436,13 +436,13 @@ public class ProductServiceClient: Clients.ProductServiceProtocol {
   ///
   /// [google.cloud.retail.v2.CreateProductRequest.product]: <doc:CreateProductRequest/product>
   /// [google.cloud.retail.v2.Product]: <doc:Product>
-  /// [google.cloud.retail.v2.ProductService.AddFulfillmentPlaces]: <doc:ProductService/addFulfillmentPlaces(request:)>
-  /// [google.cloud.retail.v2.ProductService.CreateProduct]: <doc:ProductService/createProduct(request:)>
-  /// [google.cloud.retail.v2.ProductService.GetProduct]: <doc:ProductService/getProduct(request:)>
-  /// [google.cloud.retail.v2.ProductService.ListProducts]: <doc:ProductService/listProducts(request:)>
-  /// [google.cloud.retail.v2.ProductService.RemoveFulfillmentPlaces]: <doc:ProductService/removeFulfillmentPlaces(request:)>
-  /// [google.cloud.retail.v2.ProductService.SetInventory]: <doc:ProductService/setInventory(request:)>
-  /// [google.cloud.retail.v2.ProductService.UpdateProduct]: <doc:ProductService/updateProduct(request:)>
+  /// [google.cloud.retail.v2.ProductService.AddFulfillmentPlaces]: <doc:ProductServiceClient/addFulfillmentPlaces(request:)>
+  /// [google.cloud.retail.v2.ProductService.CreateProduct]: <doc:ProductServiceClient/createProduct(request:)>
+  /// [google.cloud.retail.v2.ProductService.GetProduct]: <doc:ProductServiceClient/getProduct(request:)>
+  /// [google.cloud.retail.v2.ProductService.ListProducts]: <doc:ProductServiceClient/listProducts(request:)>
+  /// [google.cloud.retail.v2.ProductService.RemoveFulfillmentPlaces]: <doc:ProductServiceClient/removeFulfillmentPlaces(request:)>
+  /// [google.cloud.retail.v2.ProductService.SetInventory]: <doc:ProductServiceClient/setInventory(request:)>
+  /// [google.cloud.retail.v2.ProductService.UpdateProduct]: <doc:ProductServiceClient/updateProduct(request:)>
   /// [google.cloud.retail.v2.SetInventoryRequest.set_mask]: <doc:SetInventoryRequest/setMask>
   /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   /// [google.longrunning.Operation.done]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/done
@@ -538,10 +538,10 @@ public class ProductServiceClient: Clients.ProductServiceProtocol {
   ///
   /// [google.cloud.retail.v2.FulfillmentInfo.place_ids]: <doc:FulfillmentInfo/placeIds>
   /// [google.cloud.retail.v2.Product]: <doc:Product>
-  /// [google.cloud.retail.v2.ProductService.AddFulfillmentPlaces]: <doc:ProductService/addFulfillmentPlaces(request:)>
-  /// [google.cloud.retail.v2.ProductService.AddLocalInventories]: <doc:ProductService/addLocalInventories(request:)>
-  /// [google.cloud.retail.v2.ProductService.GetProduct]: <doc:ProductService/getProduct(request:)>
-  /// [google.cloud.retail.v2.ProductService.ListProducts]: <doc:ProductService/listProducts(request:)>
+  /// [google.cloud.retail.v2.ProductService.AddFulfillmentPlaces]: <doc:ProductServiceClient/addFulfillmentPlaces(request:)>
+  /// [google.cloud.retail.v2.ProductService.AddLocalInventories]: <doc:ProductServiceClient/addLocalInventories(request:)>
+  /// [google.cloud.retail.v2.ProductService.GetProduct]: <doc:ProductServiceClient/getProduct(request:)>
+  /// [google.cloud.retail.v2.ProductService.ListProducts]: <doc:ProductServiceClient/listProducts(request:)>
   /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   /// [google.longrunning.Operation.done]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/done
   ///
@@ -585,10 +585,10 @@ public class ProductServiceClient: Clients.ProductServiceProtocol {
   ///
   /// [google.cloud.retail.v2.FulfillmentInfo.place_ids]: <doc:FulfillmentInfo/placeIds>
   /// [google.cloud.retail.v2.Product]: <doc:Product>
-  /// [google.cloud.retail.v2.ProductService.AddFulfillmentPlaces]: <doc:ProductService/addFulfillmentPlaces(request:)>
-  /// [google.cloud.retail.v2.ProductService.AddLocalInventories]: <doc:ProductService/addLocalInventories(request:)>
-  /// [google.cloud.retail.v2.ProductService.GetProduct]: <doc:ProductService/getProduct(request:)>
-  /// [google.cloud.retail.v2.ProductService.ListProducts]: <doc:ProductService/listProducts(request:)>
+  /// [google.cloud.retail.v2.ProductService.AddFulfillmentPlaces]: <doc:ProductServiceClient/addFulfillmentPlaces(request:)>
+  /// [google.cloud.retail.v2.ProductService.AddLocalInventories]: <doc:ProductServiceClient/addLocalInventories(request:)>
+  /// [google.cloud.retail.v2.ProductService.GetProduct]: <doc:ProductServiceClient/getProduct(request:)>
+  /// [google.cloud.retail.v2.ProductService.ListProducts]: <doc:ProductServiceClient/listProducts(request:)>
   /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   /// [google.longrunning.Operation.done]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/done
   ///
@@ -684,10 +684,10 @@ public class ProductServiceClient: Clients.ProductServiceProtocol {
   ///
   /// [google.cloud.retail.v2.FulfillmentInfo.place_ids]: <doc:FulfillmentInfo/placeIds>
   /// [google.cloud.retail.v2.Product]: <doc:Product>
-  /// [google.cloud.retail.v2.ProductService.GetProduct]: <doc:ProductService/getProduct(request:)>
-  /// [google.cloud.retail.v2.ProductService.ListProducts]: <doc:ProductService/listProducts(request:)>
-  /// [google.cloud.retail.v2.ProductService.RemoveFulfillmentPlaces]: <doc:ProductService/removeFulfillmentPlaces(request:)>
-  /// [google.cloud.retail.v2.ProductService.RemoveLocalInventories]: <doc:ProductService/removeLocalInventories(request:)>
+  /// [google.cloud.retail.v2.ProductService.GetProduct]: <doc:ProductServiceClient/getProduct(request:)>
+  /// [google.cloud.retail.v2.ProductService.ListProducts]: <doc:ProductServiceClient/listProducts(request:)>
+  /// [google.cloud.retail.v2.ProductService.RemoveFulfillmentPlaces]: <doc:ProductServiceClient/removeFulfillmentPlaces(request:)>
+  /// [google.cloud.retail.v2.ProductService.RemoveLocalInventories]: <doc:ProductServiceClient/removeLocalInventories(request:)>
   /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   /// [google.longrunning.Operation.done]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/done
   ///
@@ -731,10 +731,10 @@ public class ProductServiceClient: Clients.ProductServiceProtocol {
   ///
   /// [google.cloud.retail.v2.FulfillmentInfo.place_ids]: <doc:FulfillmentInfo/placeIds>
   /// [google.cloud.retail.v2.Product]: <doc:Product>
-  /// [google.cloud.retail.v2.ProductService.GetProduct]: <doc:ProductService/getProduct(request:)>
-  /// [google.cloud.retail.v2.ProductService.ListProducts]: <doc:ProductService/listProducts(request:)>
-  /// [google.cloud.retail.v2.ProductService.RemoveFulfillmentPlaces]: <doc:ProductService/removeFulfillmentPlaces(request:)>
-  /// [google.cloud.retail.v2.ProductService.RemoveLocalInventories]: <doc:ProductService/removeLocalInventories(request:)>
+  /// [google.cloud.retail.v2.ProductService.GetProduct]: <doc:ProductServiceClient/getProduct(request:)>
+  /// [google.cloud.retail.v2.ProductService.ListProducts]: <doc:ProductServiceClient/listProducts(request:)>
+  /// [google.cloud.retail.v2.ProductService.RemoveFulfillmentPlaces]: <doc:ProductServiceClient/removeFulfillmentPlaces(request:)>
+  /// [google.cloud.retail.v2.ProductService.RemoveLocalInventories]: <doc:ProductServiceClient/removeLocalInventories(request:)>
   /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   /// [google.longrunning.Operation.done]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/done
   ///
@@ -827,10 +827,10 @@ public class ProductServiceClient: Clients.ProductServiceProtocol {
   /// until being obsolete.
   ///
   /// [google.cloud.retail.v2.Product]: <doc:Product>
-  /// [google.cloud.retail.v2.ProductService.CreateProduct]: <doc:ProductService/createProduct(request:)>
-  /// [google.cloud.retail.v2.ProductService.GetProduct]: <doc:ProductService/getProduct(request:)>
-  /// [google.cloud.retail.v2.ProductService.ListProducts]: <doc:ProductService/listProducts(request:)>
-  /// [google.cloud.retail.v2.ProductService.UpdateProduct]: <doc:ProductService/updateProduct(request:)>
+  /// [google.cloud.retail.v2.ProductService.CreateProduct]: <doc:ProductServiceClient/createProduct(request:)>
+  /// [google.cloud.retail.v2.ProductService.GetProduct]: <doc:ProductServiceClient/getProduct(request:)>
+  /// [google.cloud.retail.v2.ProductService.ListProducts]: <doc:ProductServiceClient/listProducts(request:)>
+  /// [google.cloud.retail.v2.ProductService.UpdateProduct]: <doc:ProductServiceClient/updateProduct(request:)>
   /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   /// [google.longrunning.Operation.done]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/done
   ///
@@ -871,10 +871,10 @@ public class ProductServiceClient: Clients.ProductServiceProtocol {
   /// until being obsolete.
   ///
   /// [google.cloud.retail.v2.Product]: <doc:Product>
-  /// [google.cloud.retail.v2.ProductService.CreateProduct]: <doc:ProductService/createProduct(request:)>
-  /// [google.cloud.retail.v2.ProductService.GetProduct]: <doc:ProductService/getProduct(request:)>
-  /// [google.cloud.retail.v2.ProductService.ListProducts]: <doc:ProductService/listProducts(request:)>
-  /// [google.cloud.retail.v2.ProductService.UpdateProduct]: <doc:ProductService/updateProduct(request:)>
+  /// [google.cloud.retail.v2.ProductService.CreateProduct]: <doc:ProductServiceClient/createProduct(request:)>
+  /// [google.cloud.retail.v2.ProductService.GetProduct]: <doc:ProductServiceClient/getProduct(request:)>
+  /// [google.cloud.retail.v2.ProductService.ListProducts]: <doc:ProductServiceClient/listProducts(request:)>
+  /// [google.cloud.retail.v2.ProductService.UpdateProduct]: <doc:ProductServiceClient/updateProduct(request:)>
   /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   /// [google.longrunning.Operation.done]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/done
   ///
@@ -964,10 +964,10 @@ public class ProductServiceClient: Clients.ProductServiceProtocol {
   /// until being obsolete.
   ///
   /// [google.cloud.retail.v2.Product]: <doc:Product>
-  /// [google.cloud.retail.v2.ProductService.CreateProduct]: <doc:ProductService/createProduct(request:)>
-  /// [google.cloud.retail.v2.ProductService.GetProduct]: <doc:ProductService/getProduct(request:)>
-  /// [google.cloud.retail.v2.ProductService.ListProducts]: <doc:ProductService/listProducts(request:)>
-  /// [google.cloud.retail.v2.ProductService.UpdateProduct]: <doc:ProductService/updateProduct(request:)>
+  /// [google.cloud.retail.v2.ProductService.CreateProduct]: <doc:ProductServiceClient/createProduct(request:)>
+  /// [google.cloud.retail.v2.ProductService.GetProduct]: <doc:ProductServiceClient/getProduct(request:)>
+  /// [google.cloud.retail.v2.ProductService.ListProducts]: <doc:ProductServiceClient/listProducts(request:)>
+  /// [google.cloud.retail.v2.ProductService.UpdateProduct]: <doc:ProductServiceClient/updateProduct(request:)>
   /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   /// [google.longrunning.Operation.done]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/done
   ///
@@ -1006,10 +1006,10 @@ public class ProductServiceClient: Clients.ProductServiceProtocol {
   /// until being obsolete.
   ///
   /// [google.cloud.retail.v2.Product]: <doc:Product>
-  /// [google.cloud.retail.v2.ProductService.CreateProduct]: <doc:ProductService/createProduct(request:)>
-  /// [google.cloud.retail.v2.ProductService.GetProduct]: <doc:ProductService/getProduct(request:)>
-  /// [google.cloud.retail.v2.ProductService.ListProducts]: <doc:ProductService/listProducts(request:)>
-  /// [google.cloud.retail.v2.ProductService.UpdateProduct]: <doc:ProductService/updateProduct(request:)>
+  /// [google.cloud.retail.v2.ProductService.CreateProduct]: <doc:ProductServiceClient/createProduct(request:)>
+  /// [google.cloud.retail.v2.ProductService.GetProduct]: <doc:ProductServiceClient/getProduct(request:)>
+  /// [google.cloud.retail.v2.ProductService.ListProducts]: <doc:ProductServiceClient/listProducts(request:)>
+  /// [google.cloud.retail.v2.ProductService.UpdateProduct]: <doc:ProductServiceClient/updateProduct(request:)>
   /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   /// [google.longrunning.Operation.done]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/done
   ///
@@ -1074,7 +1074,7 @@ public class ProductServiceClient: Clients.ProductServiceProtocol {
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ProductService_ListOperations")
   public func listOperations(
@@ -1085,7 +1085,7 @@ public class ProductServiceClient: Clients.ProductServiceProtocol {
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ProductService_ListOperations")
   public func listOperations(
@@ -1102,7 +1102,7 @@ public class ProductServiceClient: Clients.ProductServiceProtocol {
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ProductService_GetOperation")
   func getOperation(

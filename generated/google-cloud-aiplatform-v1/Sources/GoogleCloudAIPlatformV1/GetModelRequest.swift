@@ -21,7 +21,7 @@
   /// Request message for
   /// [ModelService.GetModel][google.cloud.aiplatform.v1.ModelService.GetModel].
   ///
-  /// [google.cloud.aiplatform.v1.ModelService.GetModel]: <doc:ModelService/getModel(request:)>
+  /// [google.cloud.aiplatform.v1.ModelService.GetModel]: <doc:ModelServiceClient/getModel(request:)>
   public struct GetModelRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

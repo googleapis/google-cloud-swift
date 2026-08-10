@@ -22,7 +22,7 @@
   /// Response message for
   /// [GenAiTuningService.ListTuningJobs][google.cloud.aiplatform.v1.GenAiTuningService.ListTuningJobs]
   ///
-  /// [google.cloud.aiplatform.v1.GenAiTuningService.ListTuningJobs]: <doc:GenAiTuningService/listTuningJobs(request:)>
+  /// [google.cloud.aiplatform.v1.GenAiTuningService.ListTuningJobs]: <doc:GenAiTuningServiceClient/listTuningJobs(request:)>
   public struct ListTuningJobsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable

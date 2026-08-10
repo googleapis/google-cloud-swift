@@ -52,7 +52,7 @@ public struct UserInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// is set.
   ///
   /// [google.cloud.retail.v2.SearchRequest.user_info]: <doc:SearchRequest/userInfo>
-  /// [google.cloud.retail.v2.UserEventService.CollectUserEvent]: <doc:UserEventService/collectUserEvent(request:)>
+  /// [google.cloud.retail.v2.UserEventService.CollectUserEvent]: <doc:UserEventServiceClient/collectUserEvent(request:)>
   /// [google.cloud.retail.v2.UserInfo.direct_user_request]: <doc:UserInfo/directUserRequest>
   public var ipAddress: Swift.String = Swift.String()
 
@@ -67,7 +67,7 @@ public struct UserInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// [direct_user_request][google.cloud.retail.v2.UserInfo.direct_user_request]
   /// is set.
   ///
-  /// [google.cloud.retail.v2.UserEventService.CollectUserEvent]: <doc:UserEventService/collectUserEvent(request:)>
+  /// [google.cloud.retail.v2.UserEventService.CollectUserEvent]: <doc:UserEventServiceClient/collectUserEvent(request:)>
   /// [google.cloud.retail.v2.UserInfo.direct_user_request]: <doc:UserInfo/directUserRequest>
   public var userAgent: Swift.String = Swift.String()
 
@@ -81,7 +81,7 @@ public struct UserInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// This should not be set when using the JavaScript tag in
   /// [UserEventService.CollectUserEvent][google.cloud.retail.v2.UserEventService.CollectUserEvent].
   ///
-  /// [google.cloud.retail.v2.UserEventService.CollectUserEvent]: <doc:UserEventService/collectUserEvent(request:)>
+  /// [google.cloud.retail.v2.UserEventService.CollectUserEvent]: <doc:UserEventServiceClient/collectUserEvent(request:)>
   /// [google.cloud.retail.v2.UserInfo.ip_address]: <doc:UserInfo/ipAddress>
   /// [google.cloud.retail.v2.UserInfo.user_agent]: <doc:UserInfo/userAgent>
   public var directUserRequest: Swift.Bool = Swift.Bool()

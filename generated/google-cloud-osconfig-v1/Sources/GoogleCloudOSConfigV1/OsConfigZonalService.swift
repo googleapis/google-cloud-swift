@@ -473,7 +473,7 @@ public class OsConfigZonalServiceClient: Clients.OsConfigZonalServiceProtocol {
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "OsConfigZonalService_GetOperation")
   func getOperation(
@@ -484,7 +484,7 @@ public class OsConfigZonalServiceClient: Clients.OsConfigZonalServiceProtocol {
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "OsConfigZonalService_CancelOperation")
   public func cancelOperation(

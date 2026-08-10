@@ -50,7 +50,7 @@ public struct UpdateSinkRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable
   /// +   It is an error if the old value is true and the new value is
   ///     set to false or defaulted to false.
   ///
-  /// [google.logging.v2.ConfigServiceV2.CreateSink]: <doc:ConfigServiceV2/createSink(request:)>
+  /// [google.logging.v2.ConfigServiceV2.CreateSink]: <doc:ConfigServiceV2Client/createSink(request:)>
   public var uniqueWriterIdentity: Swift.Bool = Swift.Bool()
 
   /// Optional. Field mask that specifies the fields in `sink` that need

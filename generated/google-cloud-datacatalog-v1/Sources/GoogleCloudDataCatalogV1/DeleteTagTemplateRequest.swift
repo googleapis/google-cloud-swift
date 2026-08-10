@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [DeleteTagTemplate][google.cloud.datacatalog.v1.DataCatalog.DeleteTagTemplate].
 ///
-/// [google.cloud.datacatalog.v1.DataCatalog.DeleteTagTemplate]: <doc:DataCatalog/deleteTagTemplate(request:)>
+/// [google.cloud.datacatalog.v1.DataCatalog.DeleteTagTemplate]: <doc:DataCatalogClient/deleteTagTemplate(request:)>
 public struct DeleteTagTemplateRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

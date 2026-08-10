@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [BatchSearchLinkProcesses][google.cloud.datacatalog.lineage.v1.Lineage.BatchSearchLinkProcesses].
 ///
-/// [google.cloud.datacatalog.lineage.v1.Lineage.BatchSearchLinkProcesses]: <doc:Lineage/batchSearchLinkProcesses(request:)>
+/// [google.cloud.datacatalog.lineage.v1.Lineage.BatchSearchLinkProcesses]: <doc:LineageClient/batchSearchLinkProcesses(request:)>
 public struct BatchSearchLinkProcessesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

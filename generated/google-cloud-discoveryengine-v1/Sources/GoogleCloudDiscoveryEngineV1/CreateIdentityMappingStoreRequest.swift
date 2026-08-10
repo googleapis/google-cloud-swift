@@ -21,7 +21,7 @@
   /// Request message for
   /// [IdentityMappingStoreService.CreateIdentityMappingStore][google.cloud.discoveryengine.v1.IdentityMappingStoreService.CreateIdentityMappingStore]
   ///
-  /// [google.cloud.discoveryengine.v1.IdentityMappingStoreService.CreateIdentityMappingStore]: <doc:IdentityMappingStoreService/createIdentityMappingStore(request:)>
+  /// [google.cloud.discoveryengine.v1.IdentityMappingStoreService.CreateIdentityMappingStore]: <doc:IdentityMappingStoreServiceClient/createIdentityMappingStore(request:)>
   public struct CreateIdentityMappingStoreRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

@@ -22,7 +22,7 @@ import GoogleCloudWkt
 /// Note: "bigquery.reservationAssignments.delete" permission is required on the
 /// related assignee.
 ///
-/// [google.cloud.bigquery.reservation.v1.ReservationService.DeleteAssignment]: <doc:ReservationService/deleteAssignment(request:)>
+/// [google.cloud.bigquery.reservation.v1.ReservationService.DeleteAssignment]: <doc:ReservationServiceClient/deleteAssignment(request:)>
 public struct DeleteAssignmentRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

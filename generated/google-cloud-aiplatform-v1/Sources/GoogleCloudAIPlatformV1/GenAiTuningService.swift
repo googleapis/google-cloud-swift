@@ -103,7 +103,7 @@
     /// [TuningJob.state][google.cloud.aiplatform.v1.TuningJob.state] is set to
     /// `CANCELLED`.
     ///
-    /// [google.cloud.aiplatform.v1.GenAiTuningService.GetTuningJob]: <doc:GenAiTuningService/getTuningJob(request:)>
+    /// [google.cloud.aiplatform.v1.GenAiTuningService.GetTuningJob]: <doc:GenAiTuningServiceClient/getTuningJob(request:)>
     /// [google.cloud.aiplatform.v1.TuningJob.error]: <doc:TuningJob/error>
     /// [google.cloud.aiplatform.v1.TuningJob.state]: <doc:TuningJob/state>
     /// [google.rpc.Status.code]: https://www.google.com/search?q=Swift+google.rpc+GoogleRpc.Status/code
@@ -256,7 +256,7 @@
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
     ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "GenAiTuningService_ListOperations")
     public func listOperations(
@@ -267,7 +267,7 @@
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
     ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "GenAiTuningService_ListOperations")
     public func listOperations(
@@ -284,7 +284,7 @@
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
     ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "GenAiTuningService_GetOperation")
     func getOperation(
@@ -295,7 +295,7 @@
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
     ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "GenAiTuningService_DeleteOperation")
     public func deleteOperation(
@@ -306,7 +306,7 @@
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
     ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "GenAiTuningService_CancelOperation")
     public func cancelOperation(
@@ -317,7 +317,7 @@
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
     ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "GenAiTuningService_WaitOperation")
     public func waitOperation(

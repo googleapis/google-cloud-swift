@@ -199,9 +199,9 @@ public class WorkflowTemplateServiceClient: Clients.WorkflowTemplateServiceProto
   /// [Operation.response][google.longrunning.Operation.response] will be
   /// [Empty][google.protobuf.Empty].
   ///
-  /// [google.cloud.dataproc.v1.WorkflowTemplateService.CreateWorkflowTemplate]: <doc:WorkflowTemplateService/createWorkflowTemplate(request:)>
-  /// [google.cloud.dataproc.v1.WorkflowTemplateService.DeleteWorkflowTemplate]: <doc:WorkflowTemplateService/deleteWorkflowTemplate(request:)>
-  /// [google.cloud.dataproc.v1.WorkflowTemplateService.InstantiateWorkflowTemplate]: <doc:WorkflowTemplateService/instantiateWorkflowTemplate(request:)>
+  /// [google.cloud.dataproc.v1.WorkflowTemplateService.CreateWorkflowTemplate]: <doc:WorkflowTemplateServiceClient/createWorkflowTemplate(request:)>
+  /// [google.cloud.dataproc.v1.WorkflowTemplateService.DeleteWorkflowTemplate]: <doc:WorkflowTemplateServiceClient/deleteWorkflowTemplate(request:)>
+  /// [google.cloud.dataproc.v1.WorkflowTemplateService.InstantiateWorkflowTemplate]: <doc:WorkflowTemplateServiceClient/instantiateWorkflowTemplate(request:)>
   /// [google.longrunning.Operation.metadata]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/metadata
   /// [google.longrunning.Operation.response]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/response
   /// [google.protobuf.Empty]: https://www.google.com/search?q=Swift+google.protobuf+GoogleCloudWkt.Empty
@@ -239,9 +239,9 @@ public class WorkflowTemplateServiceClient: Clients.WorkflowTemplateServiceProto
   /// [Operation.response][google.longrunning.Operation.response] will be
   /// [Empty][google.protobuf.Empty].
   ///
-  /// [google.cloud.dataproc.v1.WorkflowTemplateService.CreateWorkflowTemplate]: <doc:WorkflowTemplateService/createWorkflowTemplate(request:)>
-  /// [google.cloud.dataproc.v1.WorkflowTemplateService.DeleteWorkflowTemplate]: <doc:WorkflowTemplateService/deleteWorkflowTemplate(request:)>
-  /// [google.cloud.dataproc.v1.WorkflowTemplateService.InstantiateWorkflowTemplate]: <doc:WorkflowTemplateService/instantiateWorkflowTemplate(request:)>
+  /// [google.cloud.dataproc.v1.WorkflowTemplateService.CreateWorkflowTemplate]: <doc:WorkflowTemplateServiceClient/createWorkflowTemplate(request:)>
+  /// [google.cloud.dataproc.v1.WorkflowTemplateService.DeleteWorkflowTemplate]: <doc:WorkflowTemplateServiceClient/deleteWorkflowTemplate(request:)>
+  /// [google.cloud.dataproc.v1.WorkflowTemplateService.InstantiateWorkflowTemplate]: <doc:WorkflowTemplateServiceClient/instantiateWorkflowTemplate(request:)>
   /// [google.longrunning.Operation.metadata]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/metadata
   /// [google.longrunning.Operation.response]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/response
   /// [google.protobuf.Empty]: https://www.google.com/search?q=Swift+google.protobuf+GoogleCloudWkt.Empty
@@ -379,7 +379,7 @@ public class WorkflowTemplateServiceClient: Clients.WorkflowTemplateServiceProto
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "WorkflowTemplateService_ListOperations")
   public func listOperations(
@@ -390,7 +390,7 @@ public class WorkflowTemplateServiceClient: Clients.WorkflowTemplateServiceProto
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "WorkflowTemplateService_ListOperations")
   public func listOperations(
@@ -407,7 +407,7 @@ public class WorkflowTemplateServiceClient: Clients.WorkflowTemplateServiceProto
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "WorkflowTemplateService_GetOperation")
   func getOperation(
@@ -418,7 +418,7 @@ public class WorkflowTemplateServiceClient: Clients.WorkflowTemplateServiceProto
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "WorkflowTemplateService_DeleteOperation")
   public func deleteOperation(
@@ -429,7 +429,7 @@ public class WorkflowTemplateServiceClient: Clients.WorkflowTemplateServiceProto
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "WorkflowTemplateService_CancelOperation")
   public func cancelOperation(

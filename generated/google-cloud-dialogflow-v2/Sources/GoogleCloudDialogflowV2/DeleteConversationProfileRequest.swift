@@ -24,7 +24,7 @@
   /// This operation fails if the conversation profile is still referenced from
   /// a phone number.
   ///
-  /// [google.cloud.dialogflow.v2.ConversationProfiles.DeleteConversationProfile]: <doc:ConversationProfiles/deleteConversationProfile(request:)>
+  /// [google.cloud.dialogflow.v2.ConversationProfiles.DeleteConversationProfile]: <doc:ConversationProfilesClient/deleteConversationProfile(request:)>
   public struct DeleteConversationProfileRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

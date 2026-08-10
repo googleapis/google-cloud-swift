@@ -19,7 +19,7 @@ import GoogleCloudWkt
 
 /// Request message for [DeleteBucket][google.storage.v2.Storage.DeleteBucket].
 ///
-/// [google.storage.v2.Storage.DeleteBucket]: <doc:Storage/deleteBucket(request:)>
+/// [google.storage.v2.Storage.DeleteBucket]: <doc:StorageClient/deleteBucket(request:)>
 public struct DeleteBucketRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

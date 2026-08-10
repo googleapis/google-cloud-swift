@@ -45,7 +45,7 @@ public struct AwsCluster: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// [GetAwsServerConfig][google.cloud.gkemulticloud.v1.AwsClusters.GetAwsServerConfig]
   /// to list all supported AWS regions within a given Google Cloud region.
   ///
-  /// [google.cloud.gkemulticloud.v1.AwsClusters.GetAwsServerConfig]: <doc:AwsClusters/getAwsServerConfig(request:)>
+  /// [google.cloud.gkemulticloud.v1.AwsClusters.GetAwsServerConfig]: <doc:AwsClustersClient/getAwsServerConfig(request:)>
   public var awsRegion: Swift.String = Swift.String()
 
   /// Required. Configuration related to the cluster control plane.

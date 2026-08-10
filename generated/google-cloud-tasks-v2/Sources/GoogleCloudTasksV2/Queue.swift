@@ -44,7 +44,7 @@ public struct Queue: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// * `QUEUE_ID` can contain letters ([A-Za-z]), numbers ([0-9]), or
   ///   hyphens (-). The maximum length is 100 characters.
   ///
-  /// [google.cloud.tasks.v2.CloudTasks.CreateQueue]: <doc:CloudTasks/createQueue(request:)>
+  /// [google.cloud.tasks.v2.CloudTasks.CreateQueue]: <doc:CloudTasksClient/createQueue(request:)>
   public var name: Swift.String = Swift.String()
 
   /// Overrides for
@@ -119,9 +119,9 @@ public struct Queue: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// [UpdateQueue][google.cloud.tasks.v2.CloudTasks.UpdateQueue] cannot be used
   /// to change `state`.
   ///
-  /// [google.cloud.tasks.v2.CloudTasks.PauseQueue]: <doc:CloudTasks/pauseQueue(request:)>
-  /// [google.cloud.tasks.v2.CloudTasks.ResumeQueue]: <doc:CloudTasks/resumeQueue(request:)>
-  /// [google.cloud.tasks.v2.CloudTasks.UpdateQueue]: <doc:CloudTasks/updateQueue(request:)>
+  /// [google.cloud.tasks.v2.CloudTasks.PauseQueue]: <doc:CloudTasksClient/pauseQueue(request:)>
+  /// [google.cloud.tasks.v2.CloudTasks.ResumeQueue]: <doc:CloudTasksClient/resumeQueue(request:)>
+  /// [google.cloud.tasks.v2.CloudTasks.UpdateQueue]: <doc:CloudTasksClient/updateQueue(request:)>
   public var state: Queue.State = Queue.State()
 
   /// Output only. The last time this queue was purged.
@@ -137,7 +137,7 @@ public struct Queue: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// Purge time will be truncated to the nearest microsecond. Purge
   /// time will be unset if the queue has never been purged.
   ///
-  /// [google.cloud.tasks.v2.CloudTasks.PurgeQueue]: <doc:CloudTasks/purgeQueue(request:)>
+  /// [google.cloud.tasks.v2.CloudTasks.PurgeQueue]: <doc:CloudTasksClient/purgeQueue(request:)>
   /// [google.cloud.tasks.v2.Task.create_time]: <doc:Task/createTime>
   public var purgeTime: GoogleCloudWkt.Timestamp? = nil
 
@@ -194,7 +194,7 @@ public struct Queue: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// To permanently delete this queue and all of its tasks, call
     /// [DeleteQueue][google.cloud.tasks.v2.CloudTasks.DeleteQueue].
     ///
-    /// [google.cloud.tasks.v2.CloudTasks.DeleteQueue]: <doc:CloudTasks/deleteQueue(request:)>
+    /// [google.cloud.tasks.v2.CloudTasks.DeleteQueue]: <doc:CloudTasksClient/deleteQueue(request:)>
     case disabled
     /// Encodes an unknown integer value.
     ///

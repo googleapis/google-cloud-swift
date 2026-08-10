@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [KeyManagementService.Encrypt][google.cloud.kms.v1.KeyManagementService.Encrypt].
 ///
-/// [google.cloud.kms.v1.KeyManagementService.Encrypt]: <doc:KeyManagementService/encrypt(request:)>
+/// [google.cloud.kms.v1.KeyManagementService.Encrypt]: <doc:KeyManagementServiceClient/encrypt(request:)>
 public struct EncryptResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
@@ -69,7 +69,7 @@ public struct EncryptResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   ///
   /// [google.cloud.kms.v1.EncryptRequest.plaintext]: <doc:EncryptRequest/plaintext>
   /// [google.cloud.kms.v1.EncryptRequest.plaintext_crc32c]: <doc:EncryptRequest/plaintextCrc32C>
-  /// [google.cloud.kms.v1.KeyManagementService]: <doc:KeyManagementService>
+  /// [google.cloud.kms.v1.KeyManagementService]: <doc:KeyManagementServiceClient>
   public var verifiedPlaintextCrc32C: Swift.Bool = Swift.Bool()
 
   /// Integrity verification field. A flag indicating whether
@@ -89,7 +89,7 @@ public struct EncryptResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   ///
   /// [google.cloud.kms.v1.EncryptRequest.additional_authenticated_data]: <doc:EncryptRequest/additionalAuthenticatedData>
   /// [google.cloud.kms.v1.EncryptRequest.additional_authenticated_data_crc32c]: <doc:EncryptRequest/additionalAuthenticatedDataCrc32C>
-  /// [google.cloud.kms.v1.KeyManagementService]: <doc:KeyManagementService>
+  /// [google.cloud.kms.v1.KeyManagementService]: <doc:KeyManagementServiceClient>
   public var verifiedAdditionalAuthenticatedDataCrc32C: Swift.Bool = Swift.Bool()
 
   /// The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] of the

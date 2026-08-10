@@ -19,7 +19,7 @@ import GoogleCloudWkt
 
 /// Request for [RescheduleMaintenance][google.cloud.memcache.v1.CloudMemcache.RescheduleMaintenance].
 ///
-/// [google.cloud.memcache.v1.CloudMemcache.RescheduleMaintenance]: <doc:CloudMemcache/rescheduleMaintenance(request:)>
+/// [google.cloud.memcache.v1.CloudMemcache.RescheduleMaintenance]: <doc:CloudMemcacheClient/rescheduleMaintenance(request:)>
 public struct RescheduleMaintenanceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

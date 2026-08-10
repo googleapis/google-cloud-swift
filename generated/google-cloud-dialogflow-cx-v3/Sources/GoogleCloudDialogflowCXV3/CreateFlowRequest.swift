@@ -21,7 +21,7 @@
   /// The request message for
   /// [Flows.CreateFlow][google.cloud.dialogflow.cx.v3.Flows.CreateFlow].
   ///
-  /// [google.cloud.dialogflow.cx.v3.Flows.CreateFlow]: <doc:Flows/createFlow(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Flows.CreateFlow]: <doc:FlowsClient/createFlow(request:)>
   public struct CreateFlowRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

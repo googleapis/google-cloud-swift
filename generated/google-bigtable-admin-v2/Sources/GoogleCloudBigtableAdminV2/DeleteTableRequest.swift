@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [google.bigtable.admin.v2.BigtableTableAdmin.DeleteTable][google.bigtable.admin.v2.BigtableTableAdmin.DeleteTable]
 ///
-/// [google.bigtable.admin.v2.BigtableTableAdmin.DeleteTable]: <doc:BigtableTableAdmin/deleteTable(request:)>
+/// [google.bigtable.admin.v2.BigtableTableAdmin.DeleteTable]: <doc:BigtableTableAdminClient/deleteTable(request:)>
 public struct DeleteTableRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

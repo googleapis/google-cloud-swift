@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// The [ListAttributes][google.cloud.apihub.v1.ApiHub.ListAttributes] method's
 /// request.
 ///
-/// [google.cloud.apihub.v1.ApiHub.ListAttributes]: <doc:ApiHub/listAttributes(request:)>
+/// [google.cloud.apihub.v1.ApiHub.ListAttributes]: <doc:ApiHubClient/listAttributes(request:)>
 public struct ListAttributesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

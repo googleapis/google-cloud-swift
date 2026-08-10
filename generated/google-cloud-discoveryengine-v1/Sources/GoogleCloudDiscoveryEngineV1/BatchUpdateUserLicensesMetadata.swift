@@ -23,7 +23,7 @@
   /// operation. This will be returned by the google.longrunning.Operation.metadata
   /// field.
   ///
-  /// [google.cloud.discoveryengine.v1.UserLicenseService.BatchUpdateUserLicenses]: <doc:UserLicenseService/batchUpdateUserLicenses(request:)>
+  /// [google.cloud.discoveryengine.v1.UserLicenseService.BatchUpdateUserLicenses]: <doc:UserLicenseServiceClient/batchUpdateUserLicenses(request:)>
   public struct BatchUpdateUserLicensesMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

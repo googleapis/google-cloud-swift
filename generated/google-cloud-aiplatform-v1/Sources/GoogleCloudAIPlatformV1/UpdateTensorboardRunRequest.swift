@@ -21,7 +21,7 @@
   /// Request message for
   /// [TensorboardService.UpdateTensorboardRun][google.cloud.aiplatform.v1.TensorboardService.UpdateTensorboardRun].
   ///
-  /// [google.cloud.aiplatform.v1.TensorboardService.UpdateTensorboardRun]: <doc:TensorboardService/updateTensorboardRun(request:)>
+  /// [google.cloud.aiplatform.v1.TensorboardService.UpdateTensorboardRun]: <doc:TensorboardServiceClient/updateTensorboardRun(request:)>
   public struct UpdateTensorboardRunRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

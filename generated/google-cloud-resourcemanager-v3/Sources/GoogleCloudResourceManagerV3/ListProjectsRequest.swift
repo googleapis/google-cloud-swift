@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [ListProjects][google.cloud.resourcemanager.v3.Projects.ListProjects]
 /// method.
 ///
-/// [google.cloud.resourcemanager.v3.Projects.ListProjects]: <doc:Projects/listProjects(request:)>
+/// [google.cloud.resourcemanager.v3.Projects.ListProjects]: <doc:ProjectsClient/listProjects(request:)>
 public struct ListProjectsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

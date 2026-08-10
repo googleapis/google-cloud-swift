@@ -20,7 +20,7 @@ import GoogleCloudWkt
 
 /// Response for [ListInstances][google.cloud.redis.v1.CloudRedis.ListInstances].
 ///
-/// [google.cloud.redis.v1.CloudRedis.ListInstances]: <doc:CloudRedis/listInstances(request:)>
+/// [google.cloud.redis.v1.CloudRedis.ListInstances]: <doc:CloudRedisClient/listInstances(request:)>
 public struct ListInstancesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

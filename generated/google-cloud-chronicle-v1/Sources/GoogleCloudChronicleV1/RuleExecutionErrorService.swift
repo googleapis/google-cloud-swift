@@ -67,7 +67,7 @@ public class RuleExecutionErrorServiceClient: Clients.RuleExecutionErrorServiceP
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "RuleExecutionErrorService_ListOperations")
   public func listOperations(
@@ -78,7 +78,7 @@ public class RuleExecutionErrorServiceClient: Clients.RuleExecutionErrorServiceP
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "RuleExecutionErrorService_ListOperations")
   public func listOperations(
@@ -95,7 +95,7 @@ public class RuleExecutionErrorServiceClient: Clients.RuleExecutionErrorServiceP
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "RuleExecutionErrorService_GetOperation")
   func getOperation(
@@ -106,7 +106,7 @@ public class RuleExecutionErrorServiceClient: Clients.RuleExecutionErrorServiceP
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "RuleExecutionErrorService_DeleteOperation")
   public func deleteOperation(
@@ -117,7 +117,7 @@ public class RuleExecutionErrorServiceClient: Clients.RuleExecutionErrorServiceP
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "RuleExecutionErrorService_CancelOperation")
   public func cancelOperation(

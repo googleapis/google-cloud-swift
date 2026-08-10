@@ -22,7 +22,7 @@
   /// [SearchTuningService.ListCustomModels][google.cloud.discoveryengine.v1.SearchTuningService.ListCustomModels]
   /// method.
   ///
-  /// [google.cloud.discoveryengine.v1.SearchTuningService.ListCustomModels]: <doc:SearchTuningService/listCustomModels(request:)>
+  /// [google.cloud.discoveryengine.v1.SearchTuningService.ListCustomModels]: <doc:SearchTuningServiceClient/listCustomModels(request:)>
   public struct ListCustomModelsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

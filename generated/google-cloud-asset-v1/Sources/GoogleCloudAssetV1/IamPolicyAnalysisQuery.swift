@@ -303,7 +303,7 @@ public struct IamPolicyAnalysisQuery: Codable, Equatable, GoogleCloudWkt._AnyPac
     /// Default is false.
     ///
     /// [google.cloud.asset.v1.AnalyzeIamPolicyResponse.service_account_impersonation_analysis]: <doc:AnalyzeIamPolicyResponse/serviceAccountImpersonationAnalysis>
-    /// [google.cloud.asset.v1.AssetService.AnalyzeIamPolicyLongrunning]: <doc:AssetService/analyzeIamPolicyLongrunning(request:)>
+    /// [google.cloud.asset.v1.AssetService.AnalyzeIamPolicyLongrunning]: <doc:AssetServiceClient/analyzeIamPolicyLongrunning(request:)>
     public var analyzeServiceAccountImpersonation: Swift.Bool = Swift.Bool()
 
     /// Initialize a new instance of `Options`.

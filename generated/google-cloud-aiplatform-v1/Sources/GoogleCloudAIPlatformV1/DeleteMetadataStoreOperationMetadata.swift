@@ -21,7 +21,7 @@
   /// Details of operations that perform
   /// [MetadataService.DeleteMetadataStore][google.cloud.aiplatform.v1.MetadataService.DeleteMetadataStore].
   ///
-  /// [google.cloud.aiplatform.v1.MetadataService.DeleteMetadataStore]: <doc:MetadataService/deleteMetadataStore(request:)>
+  /// [google.cloud.aiplatform.v1.MetadataService.DeleteMetadataStore]: <doc:MetadataServiceClient/deleteMetadataStore(request:)>
   public struct DeleteMetadataStoreOperationMetadata: Codable, Equatable, GoogleCloudWkt
       ._AnyPackable,
     Sendable

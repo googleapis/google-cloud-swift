@@ -29,7 +29,7 @@
   /// [DetectIntent][google.cloud.dialogflow.cx.v3.Sessions.DetectIntent] method to
   /// determine user intent and respond.
   ///
-  /// [google.cloud.dialogflow.cx.v3.Sessions.DetectIntent]: <doc:Sessions/detectIntent(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Sessions.DetectIntent]: <doc:SessionsClient/detectIntent(request:)>
   ///
   /// @Snippet(path: "SessionsQuickstart")
   public class SessionsClient: Clients.SessionsProtocol {
@@ -93,7 +93,7 @@
     /// Otherwise, the behavior is undefined.
     ///
     /// [google.cloud.dialogflow.cx.v3.MatchIntentResponse]: <doc:MatchIntentResponse>
-    /// [google.cloud.dialogflow.cx.v3.Sessions.MatchIntent]: <doc:Sessions/matchIntent(request:)>
+    /// [google.cloud.dialogflow.cx.v3.Sessions.MatchIntent]: <doc:SessionsClient/matchIntent(request:)>
     ///
     /// @Snippet(path: "Sessions_FulfillIntent")
     public func fulfillIntent(
@@ -181,7 +181,7 @@
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
     ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "Sessions_ListOperations")
     public func listOperations(
@@ -192,7 +192,7 @@
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
     ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "Sessions_ListOperations")
     public func listOperations(
@@ -209,7 +209,7 @@
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
     ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "Sessions_GetOperation")
     func getOperation(
@@ -220,7 +220,7 @@
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
     ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "Sessions_CancelOperation")
     public func cancelOperation(

@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [HubService.ListHubs][google.cloud.networkconnectivity.v1.HubService.ListHubs]
 /// method.
 ///
-/// [google.cloud.networkconnectivity.v1.HubService.ListHubs]: <doc:HubService/listHubs(request:)>
+/// [google.cloud.networkconnectivity.v1.HubService.ListHubs]: <doc:HubServiceClient/listHubs(request:)>
 public struct ListHubsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

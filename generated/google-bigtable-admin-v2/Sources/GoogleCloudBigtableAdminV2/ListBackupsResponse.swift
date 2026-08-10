@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// The response for
 /// [ListBackups][google.bigtable.admin.v2.BigtableTableAdmin.ListBackups].
 ///
-/// [google.bigtable.admin.v2.BigtableTableAdmin.ListBackups]: <doc:BigtableTableAdmin/listBackups(request:)>
+/// [google.bigtable.admin.v2.BigtableTableAdmin.ListBackups]: <doc:BigtableTableAdminClient/listBackups(request:)>
 public struct ListBackupsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable
@@ -33,7 +33,7 @@ public struct ListBackupsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackab
   /// [ListBackups][google.bigtable.admin.v2.BigtableTableAdmin.ListBackups] call
   /// to fetch more of the matching backups.
   ///
-  /// [google.bigtable.admin.v2.BigtableTableAdmin.ListBackups]: <doc:BigtableTableAdmin/listBackups(request:)>
+  /// [google.bigtable.admin.v2.BigtableTableAdmin.ListBackups]: <doc:BigtableTableAdminClient/listBackups(request:)>
   public var nextPageToken: Swift.String = Swift.String()
 
   /// Initialize a new instance of `ListBackupsResponse`.

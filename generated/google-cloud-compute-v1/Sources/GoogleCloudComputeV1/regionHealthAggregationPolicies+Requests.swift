@@ -21,7 +21,7 @@
   extension RegionHealthAggregationPoliciesClient {
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.regionHealthAggregationPolicies.aggregatedList] method.
     ///
-    /// [google.cloud.compute.v1.regionHealthAggregationPolicies.aggregatedList]: <doc:RegionHealthAggregationPolicies/aggregatedList(request:)>
+    /// [google.cloud.compute.v1.regionHealthAggregationPolicies.aggregatedList]: <doc:RegionHealthAggregationPoliciesClient/aggregatedList(request:)>
     public struct AggregatedListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -164,7 +164,7 @@
 
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.regionHealthAggregationPolicies.delete] method.
     ///
-    /// [google.cloud.compute.v1.regionHealthAggregationPolicies.delete]: <doc:RegionHealthAggregationPolicies/delete(request:)>
+    /// [google.cloud.compute.v1.regionHealthAggregationPolicies.delete]: <doc:RegionHealthAggregationPoliciesClient/delete(request:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -222,7 +222,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.regionHealthAggregationPolicies.get] method.
     ///
-    /// [google.cloud.compute.v1.regionHealthAggregationPolicies.get]: <doc:RegionHealthAggregationPolicies/`get`(request:)>
+    /// [google.cloud.compute.v1.regionHealthAggregationPolicies.get]: <doc:RegionHealthAggregationPoliciesClient/`get`(request:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -265,7 +265,7 @@
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.regionHealthAggregationPolicies.insert] method.
     ///
-    /// [google.cloud.compute.v1.regionHealthAggregationPolicies.insert]: <doc:RegionHealthAggregationPolicies/insert(request:)>
+    /// [google.cloud.compute.v1.regionHealthAggregationPolicies.insert]: <doc:RegionHealthAggregationPoliciesClient/insert(request:)>
     public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -292,7 +292,7 @@
 
       /// Synthetic request body field for the [insert()][google.cloud.compute.v1.regionHealthAggregationPolicies.insert] method.
       ///
-      /// [google.cloud.compute.v1.regionHealthAggregationPolicies.insert]: <doc:RegionHealthAggregationPolicies/insert(request:)>
+      /// [google.cloud.compute.v1.regionHealthAggregationPolicies.insert]: <doc:RegionHealthAggregationPoliciesClient/insert(request:)>
       public var body: HealthAggregationPolicy? = nil
 
       /// Initialize a new instance of `InsertRequest`.
@@ -325,7 +325,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.regionHealthAggregationPolicies.list] method.
     ///
-    /// [google.cloud.compute.v1.regionHealthAggregationPolicies.list]: <doc:RegionHealthAggregationPolicies/list(request:)>
+    /// [google.cloud.compute.v1.regionHealthAggregationPolicies.list]: <doc:RegionHealthAggregationPoliciesClient/list(request:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -458,7 +458,7 @@
 
     /// Synthetic request message for the [patch()][google.cloud.compute.v1.regionHealthAggregationPolicies.patch] method.
     ///
-    /// [google.cloud.compute.v1.regionHealthAggregationPolicies.patch]: <doc:RegionHealthAggregationPolicies/patch(request:)>
+    /// [google.cloud.compute.v1.regionHealthAggregationPolicies.patch]: <doc:RegionHealthAggregationPoliciesClient/patch(request:)>
     public struct PatchRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -489,7 +489,7 @@
 
       /// Synthetic request body field for the [patch()][google.cloud.compute.v1.regionHealthAggregationPolicies.patch] method.
       ///
-      /// [google.cloud.compute.v1.regionHealthAggregationPolicies.patch]: <doc:RegionHealthAggregationPolicies/patch(request:)>
+      /// [google.cloud.compute.v1.regionHealthAggregationPolicies.patch]: <doc:RegionHealthAggregationPoliciesClient/patch(request:)>
       public var body: HealthAggregationPolicy? = nil
 
       /// Initialize a new instance of `PatchRequest`.
@@ -522,7 +522,7 @@
 
     /// Synthetic request message for the [testIamPermissions()][google.cloud.compute.v1.regionHealthAggregationPolicies.testIamPermissions] method.
     ///
-    /// [google.cloud.compute.v1.regionHealthAggregationPolicies.testIamPermissions]: <doc:RegionHealthAggregationPolicies/testIamPermissions(request:)>
+    /// [google.cloud.compute.v1.regionHealthAggregationPolicies.testIamPermissions]: <doc:RegionHealthAggregationPoliciesClient/testIamPermissions(request:)>
     public struct TestIamPermissionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -537,7 +537,7 @@
 
       /// Synthetic request body field for the [testIamPermissions()][google.cloud.compute.v1.regionHealthAggregationPolicies.testIamPermissions] method.
       ///
-      /// [google.cloud.compute.v1.regionHealthAggregationPolicies.testIamPermissions]: <doc:RegionHealthAggregationPolicies/testIamPermissions(request:)>
+      /// [google.cloud.compute.v1.regionHealthAggregationPolicies.testIamPermissions]: <doc:RegionHealthAggregationPoliciesClient/testIamPermissions(request:)>
       public var body: TestPermissionsRequest? = nil
 
       /// Initialize a new instance of `TestIamPermissionsRequest`.

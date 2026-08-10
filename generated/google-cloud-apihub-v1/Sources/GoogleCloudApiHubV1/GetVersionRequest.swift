@@ -19,7 +19,7 @@ import GoogleCloudWkt
 
 /// The [GetVersion][google.cloud.apihub.v1.ApiHub.GetVersion] method's request.
 ///
-/// [google.cloud.apihub.v1.ApiHub.GetVersion]: <doc:ApiHub/getVersion(request:)>
+/// [google.cloud.apihub.v1.ApiHub.GetVersion]: <doc:ApiHubClient/getVersion(request:)>
 public struct GetVersionRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

@@ -21,7 +21,7 @@
   /// Request message for
   /// [IndexService.UpdateIndex][google.cloud.aiplatform.v1.IndexService.UpdateIndex].
   ///
-  /// [google.cloud.aiplatform.v1.IndexService.UpdateIndex]: <doc:IndexService/updateIndex(request:)>
+  /// [google.cloud.aiplatform.v1.IndexService.UpdateIndex]: <doc:IndexServiceClient/updateIndex(request:)>
   public struct UpdateIndexRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

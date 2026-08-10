@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [CertificateAuthorityService.FetchCaCerts][google.cloud.security.privateca.v1.CertificateAuthorityService.FetchCaCerts].
 ///
-/// [google.cloud.security.privateca.v1.CertificateAuthorityService.FetchCaCerts]: <doc:CertificateAuthorityService/fetchCaCerts(request:)>
+/// [google.cloud.security.privateca.v1.CertificateAuthorityService.FetchCaCerts]: <doc:CertificateAuthorityServiceClient/fetchCaCerts(request:)>
 public struct FetchCaCertsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

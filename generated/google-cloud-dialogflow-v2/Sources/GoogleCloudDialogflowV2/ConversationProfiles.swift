@@ -94,7 +94,7 @@
     ///
     /// [google.cloud.dialogflow.v2.ConversationProfile.create_time]: <doc:ConversationProfile/createTime>
     /// [google.cloud.dialogflow.v2.ConversationProfile.update_time]: <doc:ConversationProfile/updateTime>
-    /// [google.cloud.dialogflow.v2.ConversationProfiles.GetConversationProfile]: <doc:ConversationProfiles/getConversationProfile(request:)>
+    /// [google.cloud.dialogflow.v2.ConversationProfiles.GetConversationProfile]: <doc:ConversationProfilesClient/getConversationProfile(request:)>
     ///
     /// @Snippet(path: "ConversationProfiles_CreateConversationProfile")
     public func createConversationProfile(
@@ -114,7 +114,7 @@
     ///
     /// [google.cloud.dialogflow.v2.ConversationProfile.create_time]: <doc:ConversationProfile/createTime>
     /// [google.cloud.dialogflow.v2.ConversationProfile.update_time]: <doc:ConversationProfile/updateTime>
-    /// [google.cloud.dialogflow.v2.ConversationProfiles.GetConversationProfile]: <doc:ConversationProfiles/getConversationProfile(request:)>
+    /// [google.cloud.dialogflow.v2.ConversationProfiles.GetConversationProfile]: <doc:ConversationProfilesClient/getConversationProfile(request:)>
     ///
     /// @Snippet(path: "ConversationProfiles_UpdateConversationProfile")
     public func updateConversationProfile(
@@ -406,7 +406,7 @@
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
     ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "ConversationProfiles_ListOperations")
     public func listOperations(
@@ -417,7 +417,7 @@
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
     ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "ConversationProfiles_ListOperations")
     public func listOperations(
@@ -434,7 +434,7 @@
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
     ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "ConversationProfiles_GetOperation")
     func getOperation(
@@ -445,7 +445,7 @@
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
     ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "ConversationProfiles_CancelOperation")
     public func cancelOperation(

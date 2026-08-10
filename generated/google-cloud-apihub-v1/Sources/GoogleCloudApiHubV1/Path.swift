@@ -26,7 +26,7 @@ public struct Path: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// [CreateApiOperation][google.cloud.apihub.v1.ApiHub.CreateApiOperation]
   /// API and we will fail the request if not provided.
   ///
-  /// [google.cloud.apihub.v1.ApiHub.CreateApiOperation]: <doc:ApiHub/createApiOperation(request:)>
+  /// [google.cloud.apihub.v1.ApiHub.CreateApiOperation]: <doc:ApiHubClient/createApiOperation(request:)>
   public var path: Swift.String = Swift.String()
 
   /// Optional. A short description for the path applicable to all operations.

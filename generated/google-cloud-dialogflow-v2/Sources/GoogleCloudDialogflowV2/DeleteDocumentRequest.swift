@@ -21,7 +21,7 @@
   /// Request message for
   /// [Documents.DeleteDocument][google.cloud.dialogflow.v2.Documents.DeleteDocument].
   ///
-  /// [google.cloud.dialogflow.v2.Documents.DeleteDocument]: <doc:Documents/deleteDocument(request:)>
+  /// [google.cloud.dialogflow.v2.Documents.DeleteDocument]: <doc:DocumentsClient/deleteDocument(request:)>
   public struct DeleteDocumentRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

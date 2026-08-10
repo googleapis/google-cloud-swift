@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [DataObjectSearchService.QueryDataObjects][google.cloud.vectorsearch.v1.DataObjectSearchService.QueryDataObjects].
 ///
-/// [google.cloud.vectorsearch.v1.DataObjectSearchService.QueryDataObjects]: <doc:DataObjectSearchService/queryDataObjects(request:)>
+/// [google.cloud.vectorsearch.v1.DataObjectSearchService.QueryDataObjects]: <doc:DataObjectSearchServiceClient/queryDataObjects(request:)>
 public struct QueryDataObjectsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

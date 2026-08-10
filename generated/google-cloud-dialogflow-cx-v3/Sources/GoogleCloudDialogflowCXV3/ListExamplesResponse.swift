@@ -22,7 +22,7 @@
   /// The response message for
   /// [Examples.ListExamples][google.cloud.dialogflow.cx.v3.Examples.ListExamples].
   ///
-  /// [google.cloud.dialogflow.cx.v3.Examples.ListExamples]: <doc:Examples/listExamples(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Examples.ListExamples]: <doc:ExamplesClient/listExamples(request:)>
   public struct ListExamplesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable

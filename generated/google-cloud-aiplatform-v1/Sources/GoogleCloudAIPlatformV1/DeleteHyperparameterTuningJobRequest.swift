@@ -21,7 +21,7 @@
   /// Request message for
   /// [JobService.DeleteHyperparameterTuningJob][google.cloud.aiplatform.v1.JobService.DeleteHyperparameterTuningJob].
   ///
-  /// [google.cloud.aiplatform.v1.JobService.DeleteHyperparameterTuningJob]: <doc:JobService/deleteHyperparameterTuningJob(request:)>
+  /// [google.cloud.aiplatform.v1.JobService.DeleteHyperparameterTuningJob]: <doc:JobServiceClient/deleteHyperparameterTuningJob(request:)>
   public struct DeleteHyperparameterTuningJobRequest: Codable, Equatable, GoogleCloudWkt
       ._AnyPackable,
     Sendable

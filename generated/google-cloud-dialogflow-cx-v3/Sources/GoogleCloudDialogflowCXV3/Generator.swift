@@ -32,7 +32,7 @@
     /// Format:
     /// `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/generators/<GeneratorID>`.
     ///
-    /// [google.cloud.dialogflow.cx.v3.Generators.UpdateGenerator]: <doc:Generators/updateGenerator(request:)>
+    /// [google.cloud.dialogflow.cx.v3.Generators.UpdateGenerator]: <doc:GeneratorsClient/updateGenerator(request:)>
     public var name: Swift.String = Swift.String()
 
     /// Required. The human-readable name of the generator, unique within the

@@ -21,7 +21,7 @@
   extension RolloutPlansClient {
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.rolloutPlans.delete] method.
     ///
-    /// [google.cloud.compute.v1.rolloutPlans.delete]: <doc:RolloutPlans/delete(request:)>
+    /// [google.cloud.compute.v1.rolloutPlans.delete]: <doc:RolloutPlansClient/delete(request:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -75,7 +75,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.rolloutPlans.get] method.
     ///
-    /// [google.cloud.compute.v1.rolloutPlans.get]: <doc:RolloutPlans/`get`(request:)>
+    /// [google.cloud.compute.v1.rolloutPlans.get]: <doc:RolloutPlansClient/`get`(request:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -114,7 +114,7 @@
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.rolloutPlans.insert] method.
     ///
-    /// [google.cloud.compute.v1.rolloutPlans.insert]: <doc:RolloutPlans/insert(request:)>
+    /// [google.cloud.compute.v1.rolloutPlans.insert]: <doc:RolloutPlansClient/insert(request:)>
     public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -138,7 +138,7 @@
 
       /// Synthetic request body field for the [insert()][google.cloud.compute.v1.rolloutPlans.insert] method.
       ///
-      /// [google.cloud.compute.v1.rolloutPlans.insert]: <doc:RolloutPlans/insert(request:)>
+      /// [google.cloud.compute.v1.rolloutPlans.insert]: <doc:RolloutPlansClient/insert(request:)>
       public var body: RolloutPlan? = nil
 
       /// Initialize a new instance of `InsertRequest`.
@@ -170,7 +170,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.rolloutPlans.list] method.
     ///
-    /// [google.cloud.compute.v1.rolloutPlans.list]: <doc:RolloutPlans/list(request:)>
+    /// [google.cloud.compute.v1.rolloutPlans.list]: <doc:RolloutPlansClient/list(request:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {

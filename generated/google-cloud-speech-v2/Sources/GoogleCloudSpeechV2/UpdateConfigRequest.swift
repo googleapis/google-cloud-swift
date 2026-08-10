@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for the
 /// [UpdateConfig][google.cloud.speech.v2.Speech.UpdateConfig] method.
 ///
-/// [google.cloud.speech.v2.Speech.UpdateConfig]: <doc:Speech/updateConfig(request:)>
+/// [google.cloud.speech.v2.Speech.UpdateConfig]: <doc:SpeechClient/updateConfig(request:)>
 public struct UpdateConfigRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

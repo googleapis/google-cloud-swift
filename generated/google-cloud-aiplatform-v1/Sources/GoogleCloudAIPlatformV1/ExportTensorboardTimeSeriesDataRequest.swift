@@ -21,7 +21,7 @@
   /// Request message for
   /// [TensorboardService.ExportTensorboardTimeSeriesData][google.cloud.aiplatform.v1.TensorboardService.ExportTensorboardTimeSeriesData].
   ///
-  /// [google.cloud.aiplatform.v1.TensorboardService.ExportTensorboardTimeSeriesData]: <doc:TensorboardService/exportTensorboardTimeSeriesData(request:)>
+  /// [google.cloud.aiplatform.v1.TensorboardService.ExportTensorboardTimeSeriesData]: <doc:TensorboardServiceClient/exportTensorboardTimeSeriesData(request:)>
   public struct ExportTensorboardTimeSeriesDataRequest: Codable, Equatable, GoogleCloudWkt
       ._AnyPackable,
     Sendable
@@ -47,7 +47,7 @@
     /// [ExportTensorboardTimeSeriesData][google.cloud.aiplatform.v1.TensorboardService.ExportTensorboardTimeSeriesData]
     /// must match the call that provided the page token.
     ///
-    /// [google.cloud.aiplatform.v1.TensorboardService.ExportTensorboardTimeSeriesData]: <doc:TensorboardService/exportTensorboardTimeSeriesData(request:)>
+    /// [google.cloud.aiplatform.v1.TensorboardService.ExportTensorboardTimeSeriesData]: <doc:TensorboardServiceClient/exportTensorboardTimeSeriesData(request:)>
     public var pageToken: Swift.String = Swift.String()
 
     /// Field to use to sort the TensorboardTimeSeries' data.

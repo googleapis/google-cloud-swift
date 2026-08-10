@@ -165,7 +165,7 @@
     ///
     /// [google.cloud.aiplatform.v1.CustomJob.error]: <doc:CustomJob/error>
     /// [google.cloud.aiplatform.v1.CustomJob.state]: <doc:CustomJob/state>
-    /// [google.cloud.aiplatform.v1.JobService.GetCustomJob]: <doc:JobService/getCustomJob(request:)>
+    /// [google.cloud.aiplatform.v1.JobService.GetCustomJob]: <doc:JobServiceClient/getCustomJob(request:)>
     /// [google.rpc.Status.code]: https://www.google.com/search?q=Swift+google.rpc+GoogleRpc.Status/code
     ///
     /// @Snippet(path: "JobService_CancelCustomJob")
@@ -408,7 +408,7 @@
     ///
     /// [google.cloud.aiplatform.v1.HyperparameterTuningJob.error]: <doc:HyperparameterTuningJob/error>
     /// [google.cloud.aiplatform.v1.HyperparameterTuningJob.state]: <doc:HyperparameterTuningJob/state>
-    /// [google.cloud.aiplatform.v1.JobService.GetHyperparameterTuningJob]: <doc:JobService/getHyperparameterTuningJob(request:)>
+    /// [google.cloud.aiplatform.v1.JobService.GetHyperparameterTuningJob]: <doc:JobServiceClient/getHyperparameterTuningJob(request:)>
     /// [google.rpc.Status.code]: https://www.google.com/search?q=Swift+google.rpc+GoogleRpc.Status/code
     ///
     /// @Snippet(path: "JobService_CancelHyperparameterTuningJob")
@@ -534,7 +534,7 @@
     /// [NasJob.state][google.cloud.aiplatform.v1.NasJob.state] is set to
     /// `CANCELLED`.
     ///
-    /// [google.cloud.aiplatform.v1.JobService.GetNasJob]: <doc:JobService/getNasJob(request:)>
+    /// [google.cloud.aiplatform.v1.JobService.GetNasJob]: <doc:JobServiceClient/getNasJob(request:)>
     /// [google.cloud.aiplatform.v1.NasJob.error]: <doc:NasJob/error>
     /// [google.cloud.aiplatform.v1.NasJob.state]: <doc:NasJob/state>
     /// [google.rpc.Status.code]: https://www.google.com/search?q=Swift+google.rpc+GoogleRpc.Status/code
@@ -699,7 +699,7 @@
     /// deleted.
     ///
     /// [google.cloud.aiplatform.v1.BatchPredictionJob.state]: <doc:BatchPredictionJob/state>
-    /// [google.cloud.aiplatform.v1.JobService.GetBatchPredictionJob]: <doc:JobService/getBatchPredictionJob(request:)>
+    /// [google.cloud.aiplatform.v1.JobService.GetBatchPredictionJob]: <doc:JobServiceClient/getBatchPredictionJob(request:)>
     ///
     /// @Snippet(path: "JobService_CancelBatchPredictionJob")
     public func cancelBatchPredictionJob(
@@ -1012,7 +1012,7 @@
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
     ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "JobService_ListOperations")
     public func listOperations(
@@ -1023,7 +1023,7 @@
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
     ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "JobService_ListOperations")
     public func listOperations(
@@ -1040,7 +1040,7 @@
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
     ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "JobService_GetOperation")
     func getOperation(
@@ -1051,7 +1051,7 @@
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
     ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "JobService_DeleteOperation")
     public func deleteOperation(
@@ -1062,7 +1062,7 @@
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
     ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "JobService_CancelOperation")
     public func cancelOperation(
@@ -1073,7 +1073,7 @@
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
     ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "JobService_WaitOperation")
     public func waitOperation(

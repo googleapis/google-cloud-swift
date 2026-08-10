@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [UpdateQueue][google.cloud.tasks.v2.CloudTasks.UpdateQueue].
 ///
-/// [google.cloud.tasks.v2.CloudTasks.UpdateQueue]: <doc:CloudTasks/updateQueue(request:)>
+/// [google.cloud.tasks.v2.CloudTasks.UpdateQueue]: <doc:CloudTasksClient/updateQueue(request:)>
 public struct UpdateQueueRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

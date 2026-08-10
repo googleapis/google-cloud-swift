@@ -20,15 +20,17 @@
     import FoundationNetworking
   #endif
   import GoogleCloudWkt
-  import GoogleCloudGax
+  @_spi(GoogleCloudInternal) import GoogleCloudGax
 
   extension Clients {
     class SqlRegionsServiceTransport: SqlRegionsServiceStub {
-      let inner: GoogleCloudGax.HTTPClient
+      let inner: GoogleCloudGax._HTTPClient
 
       public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {
-        self.inner = try GoogleCloudGax.HTTPClient(
-          from: options, withDefaultEndpoint: "https://sqladmin.googleapis.com")
+        self.inner = try GoogleCloudGax._HTTPClient(
+          from: options,
+          withDefaultEndpoint: "https://sqladmin.googleapis.com",
+        )
       }
     }
   }

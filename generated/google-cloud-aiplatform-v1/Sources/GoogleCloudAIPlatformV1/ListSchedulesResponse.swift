@@ -22,7 +22,7 @@
   /// Response message for
   /// [ScheduleService.ListSchedules][google.cloud.aiplatform.v1.ScheduleService.ListSchedules]
   ///
-  /// [google.cloud.aiplatform.v1.ScheduleService.ListSchedules]: <doc:ScheduleService/listSchedules(request:)>
+  /// [google.cloud.aiplatform.v1.ScheduleService.ListSchedules]: <doc:ScheduleServiceClient/listSchedules(request:)>
   public struct ListSchedulesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable

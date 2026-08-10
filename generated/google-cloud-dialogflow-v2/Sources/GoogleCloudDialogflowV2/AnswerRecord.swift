@@ -49,7 +49,7 @@
   ///    wrong.
   ///
   /// [google.cloud.dialogflow.v2.AnswerRecord.name]: <doc:AnswerRecord/name>
-  /// [google.cloud.dialogflow.v2.AnswerRecords.UpdateAnswerRecord]: <doc:AnswerRecords/updateAnswerRecord(request:)>
+  /// [google.cloud.dialogflow.v2.AnswerRecords.UpdateAnswerRecord]: <doc:AnswerRecordsClient/updateAnswerRecord(request:)>
   public struct AnswerRecord: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {
@@ -62,7 +62,7 @@
     /// [AnswerRecords.UpdateAnswerRecord][google.cloud.dialogflow.v2.AnswerRecords.UpdateAnswerRecord]
     /// in order to give us feedback about this answer.
     ///
-    /// [google.cloud.dialogflow.v2.AnswerRecords.UpdateAnswerRecord]: <doc:AnswerRecords/updateAnswerRecord(request:)>
+    /// [google.cloud.dialogflow.v2.AnswerRecords.UpdateAnswerRecord]: <doc:AnswerRecordsClient/updateAnswerRecord(request:)>
     public var answerFeedback: AnswerFeedback? = nil
 
     /// The record for this answer.

@@ -23,8 +23,8 @@ import GoogleCloudWkt
 /// [SetConfig][google.cloud.datacatalog.v1.DataCatalog.SetConfig] and
 /// [RetrieveEffectiveConfig][google.cloud.datacatalog.v1.DataCatalog.RetrieveEffectiveConfig].
 ///
-/// [google.cloud.datacatalog.v1.DataCatalog.RetrieveEffectiveConfig]: <doc:DataCatalog/retrieveEffectiveConfig(request:)>
-/// [google.cloud.datacatalog.v1.DataCatalog.SetConfig]: <doc:DataCatalog/setConfig(request:)>
+/// [google.cloud.datacatalog.v1.DataCatalog.RetrieveEffectiveConfig]: <doc:DataCatalogClient/retrieveEffectiveConfig(request:)>
+/// [google.cloud.datacatalog.v1.DataCatalog.SetConfig]: <doc:DataCatalogClient/setConfig(request:)>
 public struct MigrationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

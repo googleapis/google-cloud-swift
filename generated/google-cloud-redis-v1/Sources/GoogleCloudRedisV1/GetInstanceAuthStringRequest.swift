@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request for
 /// [GetInstanceAuthString][google.cloud.redis.v1.CloudRedis.GetInstanceAuthString].
 ///
-/// [google.cloud.redis.v1.CloudRedis.GetInstanceAuthString]: <doc:CloudRedis/getInstanceAuthString(request:)>
+/// [google.cloud.redis.v1.CloudRedis.GetInstanceAuthString]: <doc:CloudRedisClient/getInstanceAuthString(request:)>
 public struct GetInstanceAuthStringRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

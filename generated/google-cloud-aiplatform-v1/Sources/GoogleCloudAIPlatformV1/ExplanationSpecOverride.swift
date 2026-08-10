@@ -23,7 +23,7 @@
   /// explanation][google.cloud.aiplatform.v1.PredictionService.Explain] time.
   ///
   /// [google.cloud.aiplatform.v1.ExplanationSpec]: <doc:ExplanationSpec>
-  /// [google.cloud.aiplatform.v1.PredictionService.Explain]: <doc:PredictionService/explain(request:)>
+  /// [google.cloud.aiplatform.v1.PredictionService.Explain]: <doc:PredictionServiceClient/explain(request:)>
   public struct ExplanationSpecOverride: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

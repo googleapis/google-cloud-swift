@@ -21,7 +21,7 @@
   extension ImagesClient {
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.images.delete] method.
     ///
-    /// [google.cloud.compute.v1.images.delete]: <doc:Images/delete(request:)>
+    /// [google.cloud.compute.v1.images.delete]: <doc:ImagesClient/delete(request:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -75,7 +75,7 @@
 
     /// Synthetic request message for the [deprecate()][google.cloud.compute.v1.images.deprecate] method.
     ///
-    /// [google.cloud.compute.v1.images.deprecate]: <doc:Images/deprecate(request:)>
+    /// [google.cloud.compute.v1.images.deprecate]: <doc:ImagesClient/deprecate(request:)>
     public struct DeprecateRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -102,7 +102,7 @@
 
       /// Synthetic request body field for the [deprecate()][google.cloud.compute.v1.images.deprecate] method.
       ///
-      /// [google.cloud.compute.v1.images.deprecate]: <doc:Images/deprecate(request:)>
+      /// [google.cloud.compute.v1.images.deprecate]: <doc:ImagesClient/deprecate(request:)>
       public var body: DeprecationStatus? = nil
 
       /// Initialize a new instance of `DeprecateRequest`.
@@ -134,7 +134,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.images.get] method.
     ///
-    /// [google.cloud.compute.v1.images.get]: <doc:Images/`get`(request:)>
+    /// [google.cloud.compute.v1.images.get]: <doc:ImagesClient/`get`(request:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -173,7 +173,7 @@
 
     /// Synthetic request message for the [getFromFamily()][google.cloud.compute.v1.images.getFromFamily] method.
     ///
-    /// [google.cloud.compute.v1.images.getFromFamily]: <doc:Images/getFromFamily(request:)>
+    /// [google.cloud.compute.v1.images.getFromFamily]: <doc:ImagesClient/getFromFamily(request:)>
     public struct GetFromFamilyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -213,7 +213,7 @@
 
     /// Synthetic request message for the [getIamPolicy()][google.cloud.compute.v1.images.getIamPolicy] method.
     ///
-    /// [google.cloud.compute.v1.images.getIamPolicy]: <doc:Images/getIamPolicy(request:)>
+    /// [google.cloud.compute.v1.images.getIamPolicy]: <doc:ImagesClient/getIamPolicy(request:)>
     public struct GetIamPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -255,7 +255,7 @@
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.images.insert] method.
     ///
-    /// [google.cloud.compute.v1.images.insert]: <doc:Images/insert(request:)>
+    /// [google.cloud.compute.v1.images.insert]: <doc:ImagesClient/insert(request:)>
     public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -282,7 +282,7 @@
 
       /// Synthetic request body field for the [insert()][google.cloud.compute.v1.images.insert] method.
       ///
-      /// [google.cloud.compute.v1.images.insert]: <doc:Images/insert(request:)>
+      /// [google.cloud.compute.v1.images.insert]: <doc:ImagesClient/insert(request:)>
       public var body: Image? = nil
 
       /// Initialize a new instance of `InsertRequest`.
@@ -314,7 +314,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.images.list] method.
     ///
-    /// [google.cloud.compute.v1.images.list]: <doc:Images/list(request:)>
+    /// [google.cloud.compute.v1.images.list]: <doc:ImagesClient/list(request:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -443,7 +443,7 @@
 
     /// Synthetic request message for the [patch()][google.cloud.compute.v1.images.patch] method.
     ///
-    /// [google.cloud.compute.v1.images.patch]: <doc:Images/patch(request:)>
+    /// [google.cloud.compute.v1.images.patch]: <doc:ImagesClient/patch(request:)>
     public struct PatchRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -470,7 +470,7 @@
 
       /// Synthetic request body field for the [patch()][google.cloud.compute.v1.images.patch] method.
       ///
-      /// [google.cloud.compute.v1.images.patch]: <doc:Images/patch(request:)>
+      /// [google.cloud.compute.v1.images.patch]: <doc:ImagesClient/patch(request:)>
       public var body: Image? = nil
 
       /// Initialize a new instance of `PatchRequest`.
@@ -502,7 +502,7 @@
 
     /// Synthetic request message for the [setIamPolicy()][google.cloud.compute.v1.images.setIamPolicy] method.
     ///
-    /// [google.cloud.compute.v1.images.setIamPolicy]: <doc:Images/setIamPolicy(request:)>
+    /// [google.cloud.compute.v1.images.setIamPolicy]: <doc:ImagesClient/setIamPolicy(request:)>
     public struct SetIamPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -514,7 +514,7 @@
 
       /// Synthetic request body field for the [setIamPolicy()][google.cloud.compute.v1.images.setIamPolicy] method.
       ///
-      /// [google.cloud.compute.v1.images.setIamPolicy]: <doc:Images/setIamPolicy(request:)>
+      /// [google.cloud.compute.v1.images.setIamPolicy]: <doc:ImagesClient/setIamPolicy(request:)>
       public var body: GlobalSetPolicyRequest? = nil
 
       /// Initialize a new instance of `SetIamPolicyRequest`.
@@ -546,7 +546,7 @@
 
     /// Synthetic request message for the [setLabels()][google.cloud.compute.v1.images.setLabels] method.
     ///
-    /// [google.cloud.compute.v1.images.setLabels]: <doc:Images/setLabels(request:)>
+    /// [google.cloud.compute.v1.images.setLabels]: <doc:ImagesClient/setLabels(request:)>
     public struct SetLabelsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -558,7 +558,7 @@
 
       /// Synthetic request body field for the [setLabels()][google.cloud.compute.v1.images.setLabels] method.
       ///
-      /// [google.cloud.compute.v1.images.setLabels]: <doc:Images/setLabels(request:)>
+      /// [google.cloud.compute.v1.images.setLabels]: <doc:ImagesClient/setLabels(request:)>
       public var body: GlobalSetLabelsRequest? = nil
 
       /// Initialize a new instance of `SetLabelsRequest`.
@@ -590,7 +590,7 @@
 
     /// Synthetic request message for the [testIamPermissions()][google.cloud.compute.v1.images.testIamPermissions] method.
     ///
-    /// [google.cloud.compute.v1.images.testIamPermissions]: <doc:Images/testIamPermissions(request:)>
+    /// [google.cloud.compute.v1.images.testIamPermissions]: <doc:ImagesClient/testIamPermissions(request:)>
     public struct TestIamPermissionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -602,7 +602,7 @@
 
       /// Synthetic request body field for the [testIamPermissions()][google.cloud.compute.v1.images.testIamPermissions] method.
       ///
-      /// [google.cloud.compute.v1.images.testIamPermissions]: <doc:Images/testIamPermissions(request:)>
+      /// [google.cloud.compute.v1.images.testIamPermissions]: <doc:ImagesClient/testIamPermissions(request:)>
       public var body: TestPermissionsRequest? = nil
 
       /// Initialize a new instance of `TestIamPermissionsRequest`.

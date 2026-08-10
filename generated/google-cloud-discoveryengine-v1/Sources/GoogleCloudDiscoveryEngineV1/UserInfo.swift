@@ -48,7 +48,7 @@
     /// is set.
     ///
     /// [google.cloud.discoveryengine.v1.UserEvent.direct_user_request]: <doc:UserEvent/directUserRequest>
-    /// [google.cloud.discoveryengine.v1.UserEventService.CollectUserEvent]: <doc:UserEventService/collectUserEvent(request:)>
+    /// [google.cloud.discoveryengine.v1.UserEventService.CollectUserEvent]: <doc:UserEventServiceClient/collectUserEvent(request:)>
     public var userAgent: Swift.String = Swift.String()
 
     /// Optional. IANA time zone, e.g. Europe/Budapest.

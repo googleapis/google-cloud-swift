@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [CreateKeyHandle][google.cloud.kms.v1.Autokey.CreateKeyHandle] long-running
 /// operation response.
 ///
-/// [google.cloud.kms.v1.Autokey.CreateKeyHandle]: <doc:Autokey/createKeyHandle(request:)>
+/// [google.cloud.kms.v1.Autokey.CreateKeyHandle]: <doc:AutokeyClient/createKeyHandle(request:)>
 public struct CreateKeyHandleMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

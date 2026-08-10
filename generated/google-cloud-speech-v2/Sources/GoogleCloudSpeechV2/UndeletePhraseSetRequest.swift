@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [UndeletePhraseSet][google.cloud.speech.v2.Speech.UndeletePhraseSet]
 /// method.
 ///
-/// [google.cloud.speech.v2.Speech.UndeletePhraseSet]: <doc:Speech/undeletePhraseSet(request:)>
+/// [google.cloud.speech.v2.Speech.UndeletePhraseSet]: <doc:SpeechClient/undeletePhraseSet(request:)>
 public struct UndeletePhraseSetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

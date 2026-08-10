@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [PurgeQueue][google.cloud.tasks.v2.CloudTasks.PurgeQueue].
 ///
-/// [google.cloud.tasks.v2.CloudTasks.PurgeQueue]: <doc:CloudTasks/purgeQueue(request:)>
+/// [google.cloud.tasks.v2.CloudTasks.PurgeQueue]: <doc:CloudTasksClient/purgeQueue(request:)>
 public struct PurgeQueueRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

@@ -21,7 +21,7 @@
   /// The request message for
   /// [TransitionRouteGroups.DeleteTransitionRouteGroup][google.cloud.dialogflow.cx.v3.TransitionRouteGroups.DeleteTransitionRouteGroup].
   ///
-  /// [google.cloud.dialogflow.cx.v3.TransitionRouteGroups.DeleteTransitionRouteGroup]: <doc:TransitionRouteGroups/deleteTransitionRouteGroup(request:)>
+  /// [google.cloud.dialogflow.cx.v3.TransitionRouteGroups.DeleteTransitionRouteGroup]: <doc:TransitionRouteGroupsClient/deleteTransitionRouteGroup(request:)>
   public struct DeleteTransitionRouteGroupRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

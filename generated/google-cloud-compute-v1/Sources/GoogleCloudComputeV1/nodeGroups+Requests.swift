@@ -21,7 +21,7 @@
   extension NodeGroupsClient {
     /// Synthetic request message for the [addNodes()][google.cloud.compute.v1.nodeGroups.addNodes] method.
     ///
-    /// [google.cloud.compute.v1.nodeGroups.addNodes]: <doc:NodeGroups/addNodes(request:)>
+    /// [google.cloud.compute.v1.nodeGroups.addNodes]: <doc:NodeGroupsClient/addNodes(request:)>
     public struct AddNodesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -51,7 +51,7 @@
 
       /// Synthetic request body field for the [addNodes()][google.cloud.compute.v1.nodeGroups.addNodes] method.
       ///
-      /// [google.cloud.compute.v1.nodeGroups.addNodes]: <doc:NodeGroups/addNodes(request:)>
+      /// [google.cloud.compute.v1.nodeGroups.addNodes]: <doc:NodeGroupsClient/addNodes(request:)>
       public var body: NodeGroupsAddNodesRequest? = nil
 
       /// Initialize a new instance of `AddNodesRequest`.
@@ -83,7 +83,7 @@
 
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.nodeGroups.aggregatedList] method.
     ///
-    /// [google.cloud.compute.v1.nodeGroups.aggregatedList]: <doc:NodeGroups/aggregatedList(request:)>
+    /// [google.cloud.compute.v1.nodeGroups.aggregatedList]: <doc:NodeGroupsClient/aggregatedList(request:)>
     public struct AggregatedListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -225,7 +225,7 @@
 
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.nodeGroups.delete] method.
     ///
-    /// [google.cloud.compute.v1.nodeGroups.delete]: <doc:NodeGroups/delete(request:)>
+    /// [google.cloud.compute.v1.nodeGroups.delete]: <doc:NodeGroupsClient/delete(request:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -282,7 +282,7 @@
 
     /// Synthetic request message for the [deleteNodes()][google.cloud.compute.v1.nodeGroups.deleteNodes] method.
     ///
-    /// [google.cloud.compute.v1.nodeGroups.deleteNodes]: <doc:NodeGroups/deleteNodes(request:)>
+    /// [google.cloud.compute.v1.nodeGroups.deleteNodes]: <doc:NodeGroupsClient/deleteNodes(request:)>
     public struct DeleteNodesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -312,7 +312,7 @@
 
       /// Synthetic request body field for the [deleteNodes()][google.cloud.compute.v1.nodeGroups.deleteNodes] method.
       ///
-      /// [google.cloud.compute.v1.nodeGroups.deleteNodes]: <doc:NodeGroups/deleteNodes(request:)>
+      /// [google.cloud.compute.v1.nodeGroups.deleteNodes]: <doc:NodeGroupsClient/deleteNodes(request:)>
       public var body: NodeGroupsDeleteNodesRequest? = nil
 
       /// Initialize a new instance of `DeleteNodesRequest`.
@@ -344,7 +344,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.nodeGroups.get] method.
     ///
-    /// [google.cloud.compute.v1.nodeGroups.get]: <doc:NodeGroups/`get`(request:)>
+    /// [google.cloud.compute.v1.nodeGroups.get]: <doc:NodeGroupsClient/`get`(request:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -386,7 +386,7 @@
 
     /// Synthetic request message for the [getIamPolicy()][google.cloud.compute.v1.nodeGroups.getIamPolicy] method.
     ///
-    /// [google.cloud.compute.v1.nodeGroups.getIamPolicy]: <doc:NodeGroups/getIamPolicy(request:)>
+    /// [google.cloud.compute.v1.nodeGroups.getIamPolicy]: <doc:NodeGroupsClient/getIamPolicy(request:)>
     public struct GetIamPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -431,7 +431,7 @@
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.nodeGroups.insert] method.
     ///
-    /// [google.cloud.compute.v1.nodeGroups.insert]: <doc:NodeGroups/insert(request:)>
+    /// [google.cloud.compute.v1.nodeGroups.insert]: <doc:NodeGroupsClient/insert(request:)>
     public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -461,7 +461,7 @@
 
       /// Synthetic request body field for the [insert()][google.cloud.compute.v1.nodeGroups.insert] method.
       ///
-      /// [google.cloud.compute.v1.nodeGroups.insert]: <doc:NodeGroups/insert(request:)>
+      /// [google.cloud.compute.v1.nodeGroups.insert]: <doc:NodeGroupsClient/insert(request:)>
       public var body: NodeGroup? = nil
 
       /// Initialize a new instance of `InsertRequest`.
@@ -493,7 +493,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.nodeGroups.list] method.
     ///
-    /// [google.cloud.compute.v1.nodeGroups.list]: <doc:NodeGroups/list(request:)>
+    /// [google.cloud.compute.v1.nodeGroups.list]: <doc:NodeGroupsClient/list(request:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -625,7 +625,7 @@
 
     /// Synthetic request message for the [listNodes()][google.cloud.compute.v1.nodeGroups.listNodes] method.
     ///
-    /// [google.cloud.compute.v1.nodeGroups.listNodes]: <doc:NodeGroups/listNodes(request:)>
+    /// [google.cloud.compute.v1.nodeGroups.listNodes]: <doc:NodeGroupsClient/listNodes(request:)>
     public struct ListNodesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -760,7 +760,7 @@
 
     /// Synthetic request message for the [patch()][google.cloud.compute.v1.nodeGroups.patch] method.
     ///
-    /// [google.cloud.compute.v1.nodeGroups.patch]: <doc:NodeGroups/patch(request:)>
+    /// [google.cloud.compute.v1.nodeGroups.patch]: <doc:NodeGroupsClient/patch(request:)>
     public struct PatchRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -790,7 +790,7 @@
 
       /// Synthetic request body field for the [patch()][google.cloud.compute.v1.nodeGroups.patch] method.
       ///
-      /// [google.cloud.compute.v1.nodeGroups.patch]: <doc:NodeGroups/patch(request:)>
+      /// [google.cloud.compute.v1.nodeGroups.patch]: <doc:NodeGroupsClient/patch(request:)>
       public var body: NodeGroup? = nil
 
       /// Initialize a new instance of `PatchRequest`.
@@ -822,7 +822,7 @@
 
     /// Synthetic request message for the [performMaintenance()][google.cloud.compute.v1.nodeGroups.performMaintenance] method.
     ///
-    /// [google.cloud.compute.v1.nodeGroups.performMaintenance]: <doc:NodeGroups/performMaintenance(request:)>
+    /// [google.cloud.compute.v1.nodeGroups.performMaintenance]: <doc:NodeGroupsClient/performMaintenance(request:)>
     public struct PerformMaintenanceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -852,7 +852,7 @@
 
       /// Synthetic request body field for the [performMaintenance()][google.cloud.compute.v1.nodeGroups.performMaintenance] method.
       ///
-      /// [google.cloud.compute.v1.nodeGroups.performMaintenance]: <doc:NodeGroups/performMaintenance(request:)>
+      /// [google.cloud.compute.v1.nodeGroups.performMaintenance]: <doc:NodeGroupsClient/performMaintenance(request:)>
       public var body: NodeGroupsPerformMaintenanceRequest? = nil
 
       /// Initialize a new instance of `PerformMaintenanceRequest`.
@@ -884,7 +884,7 @@
 
     /// Synthetic request message for the [setIamPolicy()][google.cloud.compute.v1.nodeGroups.setIamPolicy] method.
     ///
-    /// [google.cloud.compute.v1.nodeGroups.setIamPolicy]: <doc:NodeGroups/setIamPolicy(request:)>
+    /// [google.cloud.compute.v1.nodeGroups.setIamPolicy]: <doc:NodeGroupsClient/setIamPolicy(request:)>
     public struct SetIamPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -899,7 +899,7 @@
 
       /// Synthetic request body field for the [setIamPolicy()][google.cloud.compute.v1.nodeGroups.setIamPolicy] method.
       ///
-      /// [google.cloud.compute.v1.nodeGroups.setIamPolicy]: <doc:NodeGroups/setIamPolicy(request:)>
+      /// [google.cloud.compute.v1.nodeGroups.setIamPolicy]: <doc:NodeGroupsClient/setIamPolicy(request:)>
       public var body: ZoneSetPolicyRequest? = nil
 
       /// Initialize a new instance of `SetIamPolicyRequest`.
@@ -931,7 +931,7 @@
 
     /// Synthetic request message for the [setNodeTemplate()][google.cloud.compute.v1.nodeGroups.setNodeTemplate] method.
     ///
-    /// [google.cloud.compute.v1.nodeGroups.setNodeTemplate]: <doc:NodeGroups/setNodeTemplate(request:)>
+    /// [google.cloud.compute.v1.nodeGroups.setNodeTemplate]: <doc:NodeGroupsClient/setNodeTemplate(request:)>
     public struct SetNodeTemplateRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -961,7 +961,7 @@
 
       /// Synthetic request body field for the [setNodeTemplate()][google.cloud.compute.v1.nodeGroups.setNodeTemplate] method.
       ///
-      /// [google.cloud.compute.v1.nodeGroups.setNodeTemplate]: <doc:NodeGroups/setNodeTemplate(request:)>
+      /// [google.cloud.compute.v1.nodeGroups.setNodeTemplate]: <doc:NodeGroupsClient/setNodeTemplate(request:)>
       public var body: NodeGroupsSetNodeTemplateRequest? = nil
 
       /// Initialize a new instance of `SetNodeTemplateRequest`.
@@ -993,7 +993,7 @@
 
     /// Synthetic request message for the [simulateMaintenanceEvent()][google.cloud.compute.v1.nodeGroups.simulateMaintenanceEvent] method.
     ///
-    /// [google.cloud.compute.v1.nodeGroups.simulateMaintenanceEvent]: <doc:NodeGroups/simulateMaintenanceEvent(request:)>
+    /// [google.cloud.compute.v1.nodeGroups.simulateMaintenanceEvent]: <doc:NodeGroupsClient/simulateMaintenanceEvent(request:)>
     public struct SimulateMaintenanceEventRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -1024,7 +1024,7 @@
 
       /// Synthetic request body field for the [simulateMaintenanceEvent()][google.cloud.compute.v1.nodeGroups.simulateMaintenanceEvent] method.
       ///
-      /// [google.cloud.compute.v1.nodeGroups.simulateMaintenanceEvent]: <doc:NodeGroups/simulateMaintenanceEvent(request:)>
+      /// [google.cloud.compute.v1.nodeGroups.simulateMaintenanceEvent]: <doc:NodeGroupsClient/simulateMaintenanceEvent(request:)>
       public var body: NodeGroupsSimulateMaintenanceEventRequest? = nil
 
       /// Initialize a new instance of `SimulateMaintenanceEventRequest`.
@@ -1057,7 +1057,7 @@
 
     /// Synthetic request message for the [testIamPermissions()][google.cloud.compute.v1.nodeGroups.testIamPermissions] method.
     ///
-    /// [google.cloud.compute.v1.nodeGroups.testIamPermissions]: <doc:NodeGroups/testIamPermissions(request:)>
+    /// [google.cloud.compute.v1.nodeGroups.testIamPermissions]: <doc:NodeGroupsClient/testIamPermissions(request:)>
     public struct TestIamPermissionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -1072,7 +1072,7 @@
 
       /// Synthetic request body field for the [testIamPermissions()][google.cloud.compute.v1.nodeGroups.testIamPermissions] method.
       ///
-      /// [google.cloud.compute.v1.nodeGroups.testIamPermissions]: <doc:NodeGroups/testIamPermissions(request:)>
+      /// [google.cloud.compute.v1.nodeGroups.testIamPermissions]: <doc:NodeGroupsClient/testIamPermissions(request:)>
       public var body: TestPermissionsRequest? = nil
 
       /// Initialize a new instance of `TestIamPermissionsRequest`.

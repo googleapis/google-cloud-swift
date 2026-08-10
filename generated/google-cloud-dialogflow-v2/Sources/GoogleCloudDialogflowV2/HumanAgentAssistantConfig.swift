@@ -954,10 +954,10 @@
       ///
       /// [google.cloud.dialogflow.v2.AnalyzeContentResponse.message]: <doc:AnalyzeContentResponse/message>
       /// [google.cloud.dialogflow.v2.ConversationEvent.new_message_payload]: <doc:ConversationEvent/newMessagePayload>
-      /// [google.cloud.dialogflow.v2.Conversations.ListMessages]: <doc:Conversations/listMessages(request:)>
+      /// [google.cloud.dialogflow.v2.Conversations.ListMessages]: <doc:ConversationsClient/listMessages(request:)>
       /// [google.cloud.dialogflow.v2.ListMessagesResponse.messages]: <doc:ListMessagesResponse/messages>
-      /// [google.cloud.dialogflow.v2.Participants.AnalyzeContent]: <doc:Participants/analyzeContent(request:)>
-      /// [google.cloud.dialogflow.v2.Participants.StreamingAnalyzeContent]: <doc:Participants/streamingAnalyzeContent(request:)>
+      /// [google.cloud.dialogflow.v2.Participants.AnalyzeContent]: <doc:ParticipantsClient/analyzeContent(request:)>
+      /// [google.cloud.dialogflow.v2.Participants.StreamingAnalyzeContent]: <doc:ParticipantsClient/streamingAnalyzeContent(request:)>
       /// [google.cloud.dialogflow.v2.StreamingAnalyzeContentResponse.message]: <doc:StreamingAnalyzeContentResponse/message>
       public var enableSentimentAnalysis: Swift.Bool = Swift.Bool()
 
@@ -986,10 +986,10 @@
       ///
       /// [google.cloud.dialogflow.v2.AnalyzeContentResponse.message]: <doc:AnalyzeContentResponse/message>
       /// [google.cloud.dialogflow.v2.ConversationEvent.new_message_payload]: <doc:ConversationEvent/newMessagePayload>
-      /// [google.cloud.dialogflow.v2.Conversations.ListMessages]: <doc:Conversations/listMessages(request:)>
+      /// [google.cloud.dialogflow.v2.Conversations.ListMessages]: <doc:ConversationsClient/listMessages(request:)>
       /// [google.cloud.dialogflow.v2.ListMessagesResponse.messages]: <doc:ListMessagesResponse/messages>
-      /// [google.cloud.dialogflow.v2.Participants.AnalyzeContent]: <doc:Participants/analyzeContent(request:)>
-      /// [google.cloud.dialogflow.v2.Participants.StreamingAnalyzeContent]: <doc:Participants/streamingAnalyzeContent(request:)>
+      /// [google.cloud.dialogflow.v2.Participants.AnalyzeContent]: <doc:ParticipantsClient/analyzeContent(request:)>
+      /// [google.cloud.dialogflow.v2.Participants.StreamingAnalyzeContent]: <doc:ParticipantsClient/streamingAnalyzeContent(request:)>
       /// [google.cloud.dialogflow.v2.StreamingAnalyzeContentResponse.message]: <doc:StreamingAnalyzeContentResponse/message>
       public var enableSentimentAnalysisV3: Swift.Bool = Swift.Bool()
 

@@ -22,7 +22,7 @@ import GoogleCloudWkt
 /// [PolicyBasedRoutingService.ListPolicyBasedRoutes][google.cloud.networkconnectivity.v1.PolicyBasedRoutingService.ListPolicyBasedRoutes]
 /// method.
 ///
-/// [google.cloud.networkconnectivity.v1.PolicyBasedRoutingService.ListPolicyBasedRoutes]: <doc:PolicyBasedRoutingService/listPolicyBasedRoutes(request:)>
+/// [google.cloud.networkconnectivity.v1.PolicyBasedRoutingService.ListPolicyBasedRoutes]: <doc:PolicyBasedRoutingServiceClient/listPolicyBasedRoutes(request:)>
 public struct ListPolicyBasedRoutesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [AgentService.ExportApp][google.cloud.ces.v1.AgentService.ExportApp].
 ///
-/// [google.cloud.ces.v1.AgentService.ExportApp]: <doc:AgentService/exportApp(request:)>
+/// [google.cloud.ces.v1.AgentService.ExportApp]: <doc:AgentServiceClient/exportApp(request:)>
 public struct ExportAppRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

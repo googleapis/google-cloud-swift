@@ -32,8 +32,8 @@
     /// populates the name automatically. Format:
     /// `projects/<ProjectID>/locations/<LocationID>/securitySettings/<SecuritySettingsID>`.
     ///
-    /// [google.cloud.dialogflow.cx.v3.SecuritySettingsService.CreateSecuritySettings]: <doc:SecuritySettingsService/createSecuritySettings(request:)>
-    /// [google.cloud.dialogflow.cx.v3.SecuritySettingsService.UpdateSecuritySettings]: <doc:SecuritySettingsService/updateSecuritySettings(request:)>
+    /// [google.cloud.dialogflow.cx.v3.SecuritySettingsService.CreateSecuritySettings]: <doc:SecuritySettingsServiceClient/createSecuritySettings(request:)>
+    /// [google.cloud.dialogflow.cx.v3.SecuritySettingsService.UpdateSecuritySettings]: <doc:SecuritySettingsServiceClient/updateSecuritySettings(request:)>
     public var name: Swift.String = Swift.String()
 
     /// Required. The human-readable name of the security settings, unique within
@@ -109,8 +109,8 @@
     /// [Sessions.StreamingDetectIntent][google.cloud.dialogflow.cx.v3.Sessions.StreamingDetectIntent].
     ///
     /// [google.cloud.dialogflow.cx.v3.SecuritySettings.retention_strategy]: <doc:SecuritySettings/retentionStrategy>
-    /// [google.cloud.dialogflow.cx.v3.Sessions.DetectIntent]: <doc:Sessions/detectIntent(request:)>
-    /// [google.cloud.dialogflow.cx.v3.Sessions.StreamingDetectIntent]: <doc:Sessions/streamingDetectIntent(request:)>
+    /// [google.cloud.dialogflow.cx.v3.Sessions.DetectIntent]: <doc:SessionsClient/detectIntent(request:)>
+    /// [google.cloud.dialogflow.cx.v3.Sessions.StreamingDetectIntent]: <doc:SessionsClient/streamingDetectIntent(request:)>
     public var audioExportSettings: SecuritySettings.AudioExportSettings? = nil
 
     /// Controls conversation exporting settings to Insights after conversation is

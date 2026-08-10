@@ -21,7 +21,7 @@
   /// Request message for
   /// [VizierService.CreateStudy][google.cloud.aiplatform.v1.VizierService.CreateStudy].
   ///
-  /// [google.cloud.aiplatform.v1.VizierService.CreateStudy]: <doc:VizierService/createStudy(request:)>
+  /// [google.cloud.aiplatform.v1.VizierService.CreateStudy]: <doc:VizierServiceClient/createStudy(request:)>
   public struct CreateStudyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

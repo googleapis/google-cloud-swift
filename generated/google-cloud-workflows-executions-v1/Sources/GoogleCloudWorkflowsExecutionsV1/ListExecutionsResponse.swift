@@ -22,7 +22,7 @@ import GoogleCloudWkt
 /// [ListExecutions][google.cloud.workflows.executions.v1.Executions.ListExecutions]
 /// method.
 ///
-/// [google.cloud.workflows.executions.v1.Executions.ListExecutions]: <doc:Executions/listExecutions(request:)>
+/// [google.cloud.workflows.executions.v1.Executions.ListExecutions]: <doc:ExecutionsClient/listExecutions(request:)>
 public struct ListExecutionsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

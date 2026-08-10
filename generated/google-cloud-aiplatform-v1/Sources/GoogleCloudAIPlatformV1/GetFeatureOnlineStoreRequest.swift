@@ -21,7 +21,7 @@
   /// Request message for
   /// [FeatureOnlineStoreAdminService.GetFeatureOnlineStore][google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService.GetFeatureOnlineStore].
   ///
-  /// [google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService.GetFeatureOnlineStore]: <doc:FeatureOnlineStoreAdminService/getFeatureOnlineStore(request:)>
+  /// [google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService.GetFeatureOnlineStore]: <doc:FeatureOnlineStoreAdminServiceClient/getFeatureOnlineStore(request:)>
   public struct GetFeatureOnlineStoreRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

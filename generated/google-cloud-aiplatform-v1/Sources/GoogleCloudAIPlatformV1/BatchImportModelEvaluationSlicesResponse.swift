@@ -21,7 +21,7 @@
   /// Response message for
   /// [ModelService.BatchImportModelEvaluationSlices][google.cloud.aiplatform.v1.ModelService.BatchImportModelEvaluationSlices]
   ///
-  /// [google.cloud.aiplatform.v1.ModelService.BatchImportModelEvaluationSlices]: <doc:ModelService/batchImportModelEvaluationSlices(request:)>
+  /// [google.cloud.aiplatform.v1.ModelService.BatchImportModelEvaluationSlices]: <doc:ModelServiceClient/batchImportModelEvaluationSlices(request:)>
   public struct BatchImportModelEvaluationSlicesResponse: Codable, Equatable, GoogleCloudWkt
       ._AnyPackable,
     Sendable

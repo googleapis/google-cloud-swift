@@ -21,7 +21,7 @@
   extension PreviewFeaturesClient {
     /// Synthetic request message for the [get()][google.cloud.compute.v1.previewFeatures.get] method.
     ///
-    /// [google.cloud.compute.v1.previewFeatures.get]: <doc:PreviewFeatures/`get`(request:)>
+    /// [google.cloud.compute.v1.previewFeatures.get]: <doc:PreviewFeaturesClient/`get`(request:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -60,7 +60,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.previewFeatures.list] method.
     ///
-    /// [google.cloud.compute.v1.previewFeatures.list]: <doc:PreviewFeatures/list(request:)>
+    /// [google.cloud.compute.v1.previewFeatures.list]: <doc:PreviewFeaturesClient/list(request:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -189,7 +189,7 @@
 
     /// Synthetic request message for the [update()][google.cloud.compute.v1.previewFeatures.update] method.
     ///
-    /// [google.cloud.compute.v1.previewFeatures.update]: <doc:PreviewFeatures/update(request:)>
+    /// [google.cloud.compute.v1.previewFeatures.update]: <doc:PreviewFeaturesClient/update(request:)>
     public struct UpdateRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -216,7 +216,7 @@
 
       /// Synthetic request body field for the [update()][google.cloud.compute.v1.previewFeatures.update] method.
       ///
-      /// [google.cloud.compute.v1.previewFeatures.update]: <doc:PreviewFeatures/update(request:)>
+      /// [google.cloud.compute.v1.previewFeatures.update]: <doc:PreviewFeaturesClient/update(request:)>
       public var body: PreviewFeature? = nil
 
       /// Initialize a new instance of `UpdateRequest`.

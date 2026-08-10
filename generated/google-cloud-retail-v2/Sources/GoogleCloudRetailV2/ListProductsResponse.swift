@@ -22,7 +22,7 @@ import GoogleCloudWkt
 /// [ProductService.ListProducts][google.cloud.retail.v2.ProductService.ListProducts]
 /// method.
 ///
-/// [google.cloud.retail.v2.ProductService.ListProducts]: <doc:ProductService/listProducts(request:)>
+/// [google.cloud.retail.v2.ProductService.ListProducts]: <doc:ProductServiceClient/listProducts(request:)>
 public struct ListProductsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

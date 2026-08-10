@@ -42,7 +42,7 @@ public struct Job: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// * `JOB_ID` can contain only letters ([A-Za-z]), numbers ([0-9]),
   ///    hyphens (-), or underscores (_). The maximum length is 500 characters.
   ///
-  /// [google.cloud.scheduler.v1.CloudScheduler.CreateJob]: <doc:CloudScheduler/createJob(request:)>
+  /// [google.cloud.scheduler.v1.CloudScheduler.CreateJob]: <doc:CloudSchedulerClient/createJob(request:)>
   public var name: Swift.String = Swift.String()
 
   /// Optionally caller-specified in
@@ -52,8 +52,8 @@ public struct Job: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// A human-readable description for the job. This string must not contain
   /// more than 500 characters.
   ///
-  /// [google.cloud.scheduler.v1.CloudScheduler.CreateJob]: <doc:CloudScheduler/createJob(request:)>
-  /// [google.cloud.scheduler.v1.CloudScheduler.UpdateJob]: <doc:CloudScheduler/updateJob(request:)>
+  /// [google.cloud.scheduler.v1.CloudScheduler.CreateJob]: <doc:CloudSchedulerClient/createJob(request:)>
+  /// [google.cloud.scheduler.v1.CloudScheduler.UpdateJob]: <doc:CloudSchedulerClient/updateJob(request:)>
   public var description: Swift.String = Swift.String()
 
   /// Required, except when used with
@@ -85,7 +85,7 @@ public struct Job: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// Setting retry_count to 0 does not prevent failed jobs from running
   /// according to schedule after the failure.
   ///
-  /// [google.cloud.scheduler.v1.CloudScheduler.UpdateJob]: <doc:CloudScheduler/updateJob(request:)>
+  /// [google.cloud.scheduler.v1.CloudScheduler.UpdateJob]: <doc:CloudSchedulerClient/updateJob(request:)>
   /// [google.cloud.scheduler.v1.RetryConfig.retry_count]: <doc:RetryConfig/retryCount>
   public var schedule: Swift.String = Swift.String()
 
@@ -279,7 +279,7 @@ public struct Job: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// [CloudScheduler.UpdateJob][google.cloud.scheduler.v1.CloudScheduler.UpdateJob]
     /// until a successful response is received.
     ///
-    /// [google.cloud.scheduler.v1.CloudScheduler.UpdateJob]: <doc:CloudScheduler/updateJob(request:)>
+    /// [google.cloud.scheduler.v1.CloudScheduler.UpdateJob]: <doc:CloudSchedulerClient/updateJob(request:)>
     case updateFailed
     /// Encodes an unknown integer value.
     ///

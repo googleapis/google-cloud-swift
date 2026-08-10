@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// The request for
 /// [UpdateTable][google.bigtable.admin.v2.BigtableTableAdmin.UpdateTable].
 ///
-/// [google.bigtable.admin.v2.BigtableTableAdmin.UpdateTable]: <doc:BigtableTableAdmin/updateTable(request:)>
+/// [google.bigtable.admin.v2.BigtableTableAdmin.UpdateTable]: <doc:BigtableTableAdminClient/updateTable(request:)>
 public struct UpdateTableRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

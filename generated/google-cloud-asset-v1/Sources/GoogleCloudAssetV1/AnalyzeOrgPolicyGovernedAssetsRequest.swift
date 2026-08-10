@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// A request message for
 /// [AssetService.AnalyzeOrgPolicyGovernedAssets][google.cloud.asset.v1.AssetService.AnalyzeOrgPolicyGovernedAssets].
 ///
-/// [google.cloud.asset.v1.AssetService.AnalyzeOrgPolicyGovernedAssets]: <doc:AssetService/analyzeOrgPolicyGovernedAssets(request:)>
+/// [google.cloud.asset.v1.AssetService.AnalyzeOrgPolicyGovernedAssets]: <doc:AssetServiceClient/analyzeOrgPolicyGovernedAssets(request:)>
 public struct AnalyzeOrgPolicyGovernedAssetsRequest: Codable, Equatable, GoogleCloudWkt
     ._AnyPackable,
   Sendable

@@ -67,7 +67,7 @@ public struct InspectConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// of findings that Cloud DLP returns can be multiple times higher than these
   /// maximum values.
   ///
-  /// [google.privacy.dlp.v2.DlpService.RedactImage]: <doc:DlpService/redactImage(request:)>
+  /// [google.privacy.dlp.v2.DlpService.RedactImage]: <doc:DlpServiceClient/redactImage(request:)>
   /// [google.privacy.dlp.v2.InspectJobConfig]: <doc:InspectJobConfig>
   public var limits: InspectConfig.FindingLimits? = nil
 
@@ -166,7 +166,7 @@ public struct InspectConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// [RedactImage][google.privacy.dlp.v2.DlpService.RedactImage]
   /// requests. Otherwise, Cloud DLP returns an error.
   ///
-  /// [google.privacy.dlp.v2.DlpService.RedactImage]: <doc:DlpService/redactImage(request:)>
+  /// [google.privacy.dlp.v2.DlpService.RedactImage]: <doc:DlpServiceClient/redactImage(request:)>
   public struct FindingLimits: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [StartResumableWrite][google.storage.v2.Storage.StartResumableWrite].
 ///
-/// [google.storage.v2.Storage.StartResumableWrite]: <doc:Storage/startResumableWrite(request:)>
+/// [google.storage.v2.Storage.StartResumableWrite]: <doc:StorageClient/startResumableWrite(request:)>
 public struct StartResumableWriteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

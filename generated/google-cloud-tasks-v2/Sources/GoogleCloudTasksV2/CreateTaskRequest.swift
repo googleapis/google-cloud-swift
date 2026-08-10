@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [CreateTask][google.cloud.tasks.v2.CloudTasks.CreateTask].
 ///
-/// [google.cloud.tasks.v2.CloudTasks.CreateTask]: <doc:CloudTasks/createTask(request:)>
+/// [google.cloud.tasks.v2.CloudTasks.CreateTask]: <doc:CloudTasksClient/createTask(request:)>
 public struct CreateTaskRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
@@ -64,7 +64,7 @@ public struct CreateTaskRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable
   /// uniform distribution of task ids to store and serve tasks
   /// efficiently.
   ///
-  /// [google.cloud.tasks.v2.CloudTasks.CreateTask]: <doc:CloudTasks/createTask(request:)>
+  /// [google.cloud.tasks.v2.CloudTasks.CreateTask]: <doc:CloudTasksClient/createTask(request:)>
   /// [google.cloud.tasks.v2.Task.name]: <doc:Task/name>
   /// [google.cloud.tasks.v2.Task.schedule_time]: <doc:Task/scheduleTime>
   public var task: Task? = nil

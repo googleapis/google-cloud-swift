@@ -22,7 +22,7 @@
   /// [TestCases.ImportTestCases][google.cloud.dialogflow.cx.v3.TestCases.ImportTestCases]
   /// long running operation.
   ///
-  /// [google.cloud.dialogflow.cx.v3.TestCases.ImportTestCases]: <doc:TestCases/importTestCases(request:)>
+  /// [google.cloud.dialogflow.cx.v3.TestCases.ImportTestCases]: <doc:TestCasesClient/importTestCases(request:)>
   public struct ImportTestCasesMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

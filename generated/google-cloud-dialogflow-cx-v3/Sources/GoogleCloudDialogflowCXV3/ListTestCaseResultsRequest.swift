@@ -21,7 +21,7 @@
   /// The request message for
   /// [TestCases.ListTestCaseResults][google.cloud.dialogflow.cx.v3.TestCases.ListTestCaseResults].
   ///
-  /// [google.cloud.dialogflow.cx.v3.TestCases.ListTestCaseResults]: <doc:TestCases/listTestCaseResults(request:)>
+  /// [google.cloud.dialogflow.cx.v3.TestCases.ListTestCaseResults]: <doc:TestCasesClient/listTestCaseResults(request:)>
   public struct ListTestCaseResultsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

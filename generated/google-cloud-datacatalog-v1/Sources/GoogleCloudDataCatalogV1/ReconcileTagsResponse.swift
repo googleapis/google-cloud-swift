@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// response message returned by
 /// [ReconcileTags][google.cloud.datacatalog.v1.DataCatalog.ReconcileTags].
 ///
-/// [google.cloud.datacatalog.v1.DataCatalog.ReconcileTags]: <doc:DataCatalog/reconcileTags(request:)>
+/// [google.cloud.datacatalog.v1.DataCatalog.ReconcileTags]: <doc:DataCatalogClient/reconcileTags(request:)>
 /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
 public struct ReconcileTagsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable

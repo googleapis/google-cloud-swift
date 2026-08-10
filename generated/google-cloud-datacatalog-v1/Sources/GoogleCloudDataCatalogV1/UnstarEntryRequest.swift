@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [UnstarEntry][google.cloud.datacatalog.v1.DataCatalog.UnstarEntry].
 ///
-/// [google.cloud.datacatalog.v1.DataCatalog.UnstarEntry]: <doc:DataCatalog/unstarEntry(request:)>
+/// [google.cloud.datacatalog.v1.DataCatalog.UnstarEntry]: <doc:DataCatalogClient/unstarEntry(request:)>
 public struct UnstarEntryRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

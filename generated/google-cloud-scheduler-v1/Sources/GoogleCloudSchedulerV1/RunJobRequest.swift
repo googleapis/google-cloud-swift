@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for forcing a job to run now using
 /// [RunJob][google.cloud.scheduler.v1.CloudScheduler.RunJob].
 ///
-/// [google.cloud.scheduler.v1.CloudScheduler.RunJob]: <doc:CloudScheduler/runJob(request:)>
+/// [google.cloud.scheduler.v1.CloudScheduler.RunJob]: <doc:CloudSchedulerClient/runJob(request:)>
 public struct RunJobRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

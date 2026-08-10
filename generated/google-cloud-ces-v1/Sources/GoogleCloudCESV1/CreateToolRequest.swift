@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [AgentService.CreateTool][google.cloud.ces.v1.AgentService.CreateTool].
 ///
-/// [google.cloud.ces.v1.AgentService.CreateTool]: <doc:AgentService/createTool(request:)>
+/// [google.cloud.ces.v1.AgentService.CreateTool]: <doc:AgentServiceClient/createTool(request:)>
 public struct CreateToolRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

@@ -23,7 +23,7 @@
   /// [SiteSearchEngineService.ListTargetSites][google.cloud.discoveryengine.v1.SiteSearchEngineService.ListTargetSites]
   /// method.
   ///
-  /// [google.cloud.discoveryengine.v1.SiteSearchEngineService.ListTargetSites]: <doc:SiteSearchEngineService/listTargetSites(request:)>
+  /// [google.cloud.discoveryengine.v1.SiteSearchEngineService.ListTargetSites]: <doc:SiteSearchEngineServiceClient/listTargetSites(request:)>
   public struct ListTargetSitesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable

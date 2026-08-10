@@ -21,7 +21,7 @@
   /// The request message for
   /// [Agents.CreateAgent][google.cloud.dialogflow.cx.v3.Agents.CreateAgent].
   ///
-  /// [google.cloud.dialogflow.cx.v3.Agents.CreateAgent]: <doc:Agents/createAgent(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Agents.CreateAgent]: <doc:AgentsClient/createAgent(request:)>
   public struct CreateAgentRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

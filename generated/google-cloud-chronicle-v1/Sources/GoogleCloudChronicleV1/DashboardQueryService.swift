@@ -59,7 +59,7 @@ public class DashboardQueryServiceClient: Clients.DashboardQueryServiceProtocol 
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DashboardQueryService_ListOperations")
   public func listOperations(
@@ -70,7 +70,7 @@ public class DashboardQueryServiceClient: Clients.DashboardQueryServiceProtocol 
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DashboardQueryService_ListOperations")
   public func listOperations(
@@ -87,7 +87,7 @@ public class DashboardQueryServiceClient: Clients.DashboardQueryServiceProtocol 
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DashboardQueryService_GetOperation")
   func getOperation(
@@ -98,7 +98,7 @@ public class DashboardQueryServiceClient: Clients.DashboardQueryServiceProtocol 
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DashboardQueryService_DeleteOperation")
   public func deleteOperation(
@@ -109,7 +109,7 @@ public class DashboardQueryServiceClient: Clients.DashboardQueryServiceProtocol 
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DashboardQueryService_CancelOperation")
   public func cancelOperation(

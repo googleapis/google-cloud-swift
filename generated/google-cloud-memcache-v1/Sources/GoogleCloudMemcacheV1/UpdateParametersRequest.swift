@@ -19,7 +19,7 @@ import GoogleCloudWkt
 
 /// Request for [UpdateParameters][google.cloud.memcache.v1.CloudMemcache.UpdateParameters].
 ///
-/// [google.cloud.memcache.v1.CloudMemcache.UpdateParameters]: <doc:CloudMemcache/updateParameters(request:)>
+/// [google.cloud.memcache.v1.CloudMemcache.UpdateParameters]: <doc:CloudMemcacheClient/updateParameters(request:)>
 public struct UpdateParametersRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

@@ -21,7 +21,7 @@
   extension RegionTargetTcpProxiesClient {
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.regionTargetTcpProxies.delete] method.
     ///
-    /// [google.cloud.compute.v1.regionTargetTcpProxies.delete]: <doc:RegionTargetTcpProxies/delete(request:)>
+    /// [google.cloud.compute.v1.regionTargetTcpProxies.delete]: <doc:RegionTargetTcpProxiesClient/delete(request:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -78,7 +78,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.regionTargetTcpProxies.get] method.
     ///
-    /// [google.cloud.compute.v1.regionTargetTcpProxies.get]: <doc:RegionTargetTcpProxies/`get`(request:)>
+    /// [google.cloud.compute.v1.regionTargetTcpProxies.get]: <doc:RegionTargetTcpProxiesClient/`get`(request:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -120,7 +120,7 @@
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.regionTargetTcpProxies.insert] method.
     ///
-    /// [google.cloud.compute.v1.regionTargetTcpProxies.insert]: <doc:RegionTargetTcpProxies/insert(request:)>
+    /// [google.cloud.compute.v1.regionTargetTcpProxies.insert]: <doc:RegionTargetTcpProxiesClient/insert(request:)>
     public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -147,7 +147,7 @@
 
       /// Synthetic request body field for the [insert()][google.cloud.compute.v1.regionTargetTcpProxies.insert] method.
       ///
-      /// [google.cloud.compute.v1.regionTargetTcpProxies.insert]: <doc:RegionTargetTcpProxies/insert(request:)>
+      /// [google.cloud.compute.v1.regionTargetTcpProxies.insert]: <doc:RegionTargetTcpProxiesClient/insert(request:)>
       public var body: TargetTcpProxy? = nil
 
       /// Initialize a new instance of `InsertRequest`.
@@ -179,7 +179,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.regionTargetTcpProxies.list] method.
     ///
-    /// [google.cloud.compute.v1.regionTargetTcpProxies.list]: <doc:RegionTargetTcpProxies/list(request:)>
+    /// [google.cloud.compute.v1.regionTargetTcpProxies.list]: <doc:RegionTargetTcpProxiesClient/list(request:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {

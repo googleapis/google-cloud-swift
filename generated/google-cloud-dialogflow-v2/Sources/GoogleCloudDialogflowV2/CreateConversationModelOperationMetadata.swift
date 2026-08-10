@@ -22,7 +22,7 @@
   /// [ConversationModels.CreateConversationModel][google.cloud.dialogflow.v2.ConversationModels.CreateConversationModel]
   /// operation.
   ///
-  /// [google.cloud.dialogflow.v2.ConversationModels.CreateConversationModel]: <doc:ConversationModels/createConversationModel(request:)>
+  /// [google.cloud.dialogflow.v2.ConversationModels.CreateConversationModel]: <doc:ConversationModelsClient/createConversationModel(request:)>
   public struct CreateConversationModelOperationMetadata: Codable, Equatable, GoogleCloudWkt
       ._AnyPackable,
     Sendable

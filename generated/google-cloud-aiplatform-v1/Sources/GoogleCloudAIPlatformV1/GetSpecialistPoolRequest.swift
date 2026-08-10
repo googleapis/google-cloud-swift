@@ -21,7 +21,7 @@
   /// Request message for
   /// [SpecialistPoolService.GetSpecialistPool][google.cloud.aiplatform.v1.SpecialistPoolService.GetSpecialistPool].
   ///
-  /// [google.cloud.aiplatform.v1.SpecialistPoolService.GetSpecialistPool]: <doc:SpecialistPoolService/getSpecialistPool(request:)>
+  /// [google.cloud.aiplatform.v1.SpecialistPoolService.GetSpecialistPool]: <doc:SpecialistPoolServiceClient/getSpecialistPool(request:)>
   public struct GetSpecialistPoolRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

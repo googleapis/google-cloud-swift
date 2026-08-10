@@ -21,7 +21,7 @@
   /// The request message for
   /// [Conversations.ListConversations][google.cloud.dialogflow.v2.Conversations.ListConversations].
   ///
-  /// [google.cloud.dialogflow.v2.Conversations.ListConversations]: <doc:Conversations/listConversations(request:)>
+  /// [google.cloud.dialogflow.v2.Conversations.ListConversations]: <doc:ConversationsClient/listConversations(request:)>
   public struct ListConversationsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

@@ -55,7 +55,7 @@
   /// [google.cloud.dialogflow.cx.v3.AudioInput.audio]: <doc:AudioInput/audio>
   /// [google.cloud.dialogflow.cx.v3.AudioInput.config]: <doc:AudioInput/config>
   /// [google.cloud.dialogflow.cx.v3.QueryInput.text]: <doc:QueryInput/text>
-  /// [google.cloud.dialogflow.cx.v3.Sessions.StreamingDetectIntent]: <doc:Sessions/streamingDetectIntent(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Sessions.StreamingDetectIntent]: <doc:SessionsClient/streamingDetectIntent(request:)>
   /// [google.cloud.dialogflow.cx.v3.StreamingDetectIntentRequest.output_audio_config]: <doc:StreamingDetectIntentRequest/outputAudioConfig>
   /// [google.cloud.dialogflow.cx.v3.StreamingDetectIntentRequest.query_input]: <doc:StreamingDetectIntentRequest/queryInput>
   /// [google.cloud.dialogflow.cx.v3.StreamingDetectIntentRequest.query_params]: <doc:StreamingDetectIntentRequest/queryParams>

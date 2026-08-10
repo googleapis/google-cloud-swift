@@ -21,7 +21,7 @@
   /// The request message for
   /// [EntityTypes.BatchCreateEntities][google.cloud.dialogflow.v2.EntityTypes.BatchCreateEntities].
   ///
-  /// [google.cloud.dialogflow.v2.EntityTypes.BatchCreateEntities]: <doc:EntityTypes/batchCreateEntities(request:)>
+  /// [google.cloud.dialogflow.v2.EntityTypes.BatchCreateEntities]: <doc:EntityTypesClient/batchCreateEntities(request:)>
   public struct BatchCreateEntitiesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

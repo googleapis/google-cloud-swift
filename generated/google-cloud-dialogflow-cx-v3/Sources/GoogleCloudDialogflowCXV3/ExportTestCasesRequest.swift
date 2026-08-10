@@ -21,7 +21,7 @@
   /// The request message for
   /// [TestCases.ExportTestCases][google.cloud.dialogflow.cx.v3.TestCases.ExportTestCases].
   ///
-  /// [google.cloud.dialogflow.cx.v3.TestCases.ExportTestCases]: <doc:TestCases/exportTestCases(request:)>
+  /// [google.cloud.dialogflow.cx.v3.TestCases.ExportTestCases]: <doc:TestCasesClient/exportTestCases(request:)>
   public struct ExportTestCasesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

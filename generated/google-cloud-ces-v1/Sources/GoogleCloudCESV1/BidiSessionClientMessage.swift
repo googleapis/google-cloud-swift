@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [SessionService.BidiRunSession][google.cloud.ces.v1.SessionService.BidiRunSession]
 /// method.
 ///
-/// [google.cloud.ces.v1.SessionService.BidiRunSession]: <doc:SessionService/bidiRunSession(request:)>
+/// [google.cloud.ces.v1.SessionService.BidiRunSession]: <doc:SessionServiceClient/bidiRunSession(request:)>
 public struct BidiSessionClientMessage: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

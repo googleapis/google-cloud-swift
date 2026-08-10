@@ -21,7 +21,7 @@
   extension RegionSslCertificatesClient {
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.regionSslCertificates.delete] method.
     ///
-    /// [google.cloud.compute.v1.regionSslCertificates.delete]: <doc:RegionSslCertificates/delete(request:)>
+    /// [google.cloud.compute.v1.regionSslCertificates.delete]: <doc:RegionSslCertificatesClient/delete(request:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -78,7 +78,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.regionSslCertificates.get] method.
     ///
-    /// [google.cloud.compute.v1.regionSslCertificates.get]: <doc:RegionSslCertificates/`get`(request:)>
+    /// [google.cloud.compute.v1.regionSslCertificates.get]: <doc:RegionSslCertificatesClient/`get`(request:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -120,7 +120,7 @@
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.regionSslCertificates.insert] method.
     ///
-    /// [google.cloud.compute.v1.regionSslCertificates.insert]: <doc:RegionSslCertificates/insert(request:)>
+    /// [google.cloud.compute.v1.regionSslCertificates.insert]: <doc:RegionSslCertificatesClient/insert(request:)>
     public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -147,7 +147,7 @@
 
       /// Synthetic request body field for the [insert()][google.cloud.compute.v1.regionSslCertificates.insert] method.
       ///
-      /// [google.cloud.compute.v1.regionSslCertificates.insert]: <doc:RegionSslCertificates/insert(request:)>
+      /// [google.cloud.compute.v1.regionSslCertificates.insert]: <doc:RegionSslCertificatesClient/insert(request:)>
       public var body: SslCertificate? = nil
 
       /// Initialize a new instance of `InsertRequest`.
@@ -179,7 +179,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.regionSslCertificates.list] method.
     ///
-    /// [google.cloud.compute.v1.regionSslCertificates.list]: <doc:RegionSslCertificates/list(request:)>
+    /// [google.cloud.compute.v1.regionSslCertificates.list]: <doc:RegionSslCertificatesClient/list(request:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {

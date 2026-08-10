@@ -22,7 +22,7 @@
   /// The response message for
   /// [Flows.ListFlows][google.cloud.dialogflow.cx.v3.Flows.ListFlows].
   ///
-  /// [google.cloud.dialogflow.cx.v3.Flows.ListFlows]: <doc:Flows/listFlows(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Flows.ListFlows]: <doc:FlowsClient/listFlows(request:)>
   public struct ListFlowsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable

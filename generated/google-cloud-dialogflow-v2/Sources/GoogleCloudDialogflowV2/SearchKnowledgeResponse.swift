@@ -21,7 +21,7 @@
   /// The response message for
   /// [Conversations.SearchKnowledge][google.cloud.dialogflow.v2.Conversations.SearchKnowledge].
   ///
-  /// [google.cloud.dialogflow.v2.Conversations.SearchKnowledge]: <doc:Conversations/searchKnowledge(request:)>
+  /// [google.cloud.dialogflow.v2.Conversations.SearchKnowledge]: <doc:ConversationsClient/searchKnowledge(request:)>
   public struct SearchKnowledgeResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

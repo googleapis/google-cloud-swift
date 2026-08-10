@@ -21,7 +21,7 @@
   /// Request message for
   /// [ScheduleService.GetSchedule][google.cloud.aiplatform.v1.ScheduleService.GetSchedule].
   ///
-  /// [google.cloud.aiplatform.v1.ScheduleService.GetSchedule]: <doc:ScheduleService/getSchedule(request:)>
+  /// [google.cloud.aiplatform.v1.ScheduleService.GetSchedule]: <doc:ScheduleServiceClient/getSchedule(request:)>
   public struct GetScheduleRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

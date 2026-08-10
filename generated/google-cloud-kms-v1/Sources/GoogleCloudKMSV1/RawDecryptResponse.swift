@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [KeyManagementService.RawDecrypt][google.cloud.kms.v1.KeyManagementService.RawDecrypt].
 ///
-/// [google.cloud.kms.v1.KeyManagementService.RawDecrypt]: <doc:KeyManagementService/rawDecrypt(request:)>
+/// [google.cloud.kms.v1.KeyManagementService.RawDecrypt]: <doc:KeyManagementServiceClient/rawDecrypt(request:)>
 public struct RawDecryptResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
@@ -43,7 +43,7 @@ public struct RawDecryptResponse: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   /// never exceed 2^32-1, and can be safely downconverted to uint32 in languages
   /// that support this type.
   ///
-  /// [google.cloud.kms.v1.KeyManagementService]: <doc:KeyManagementService>
+  /// [google.cloud.kms.v1.KeyManagementService]: <doc:KeyManagementServiceClient>
   /// [google.cloud.kms.v1.RawDecryptRequest.ciphertext]: <doc:RawDecryptRequest/ciphertext>
   /// [google.cloud.kms.v1.RawDecryptResponse.plaintext]: <doc:RawDecryptResponse/plaintext>
   public var plaintextCrc32C: GoogleCloudWkt.Int64Value? = nil
@@ -70,7 +70,7 @@ public struct RawDecryptResponse: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   /// but this field is still false, discard the response and perform a limited
   /// number of retries.
   ///
-  /// [google.cloud.kms.v1.KeyManagementService]: <doc:KeyManagementService>
+  /// [google.cloud.kms.v1.KeyManagementService]: <doc:KeyManagementServiceClient>
   /// [google.cloud.kms.v1.RawDecryptRequest.ciphertext_crc32c]: <doc:RawDecryptRequest/ciphertextCrc32C>
   public var verifiedCiphertextCrc32C: Swift.Bool = Swift.Bool()
 
@@ -88,7 +88,7 @@ public struct RawDecryptResponse: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   /// but this field is still false, discard the response and perform a limited
   /// number of retries.
   ///
-  /// [google.cloud.kms.v1.KeyManagementService]: <doc:KeyManagementService>
+  /// [google.cloud.kms.v1.KeyManagementService]: <doc:KeyManagementServiceClient>
   /// [google.cloud.kms.v1.RawDecryptRequest.additional_authenticated_data_crc32c]: <doc:RawDecryptRequest/additionalAuthenticatedDataCrc32C>
   public var verifiedAdditionalAuthenticatedDataCrc32C: Swift.Bool = Swift.Bool()
 
@@ -106,7 +106,7 @@ public struct RawDecryptResponse: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   /// but this field is still false, discard the response and perform a limited
   /// number of retries.
   ///
-  /// [google.cloud.kms.v1.KeyManagementService]: <doc:KeyManagementService>
+  /// [google.cloud.kms.v1.KeyManagementService]: <doc:KeyManagementServiceClient>
   /// [google.cloud.kms.v1.RawDecryptRequest.initialization_vector_crc32c]: <doc:RawDecryptRequest/initializationVectorCrc32C>
   public var verifiedInitializationVectorCrc32C: Swift.Bool = Swift.Bool()
 

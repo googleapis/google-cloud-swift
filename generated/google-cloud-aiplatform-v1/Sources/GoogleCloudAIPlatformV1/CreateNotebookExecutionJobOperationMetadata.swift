@@ -21,7 +21,7 @@
   /// Metadata information for
   /// [NotebookService.CreateNotebookExecutionJob][google.cloud.aiplatform.v1.NotebookService.CreateNotebookExecutionJob].
   ///
-  /// [google.cloud.aiplatform.v1.NotebookService.CreateNotebookExecutionJob]: <doc:NotebookService/createNotebookExecutionJob(request:)>
+  /// [google.cloud.aiplatform.v1.NotebookService.CreateNotebookExecutionJob]: <doc:NotebookServiceClient/createNotebookExecutionJob(request:)>
   public struct CreateNotebookExecutionJobOperationMetadata: Codable, Equatable, GoogleCloudWkt
       ._AnyPackable,
     Sendable

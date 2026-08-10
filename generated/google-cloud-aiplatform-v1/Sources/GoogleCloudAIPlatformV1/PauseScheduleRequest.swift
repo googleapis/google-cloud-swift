@@ -21,7 +21,7 @@
   /// Request message for
   /// [ScheduleService.PauseSchedule][google.cloud.aiplatform.v1.ScheduleService.PauseSchedule].
   ///
-  /// [google.cloud.aiplatform.v1.ScheduleService.PauseSchedule]: <doc:ScheduleService/pauseSchedule(request:)>
+  /// [google.cloud.aiplatform.v1.ScheduleService.PauseSchedule]: <doc:ScheduleServiceClient/pauseSchedule(request:)>
   public struct PauseScheduleRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

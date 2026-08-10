@@ -21,7 +21,7 @@
   /// Response message for
   /// [PipelineService.BatchDeletePipelineJobs][google.cloud.aiplatform.v1.PipelineService.BatchDeletePipelineJobs].
   ///
-  /// [google.cloud.aiplatform.v1.PipelineService.BatchDeletePipelineJobs]: <doc:PipelineService/batchDeletePipelineJobs(request:)>
+  /// [google.cloud.aiplatform.v1.PipelineService.BatchDeletePipelineJobs]: <doc:PipelineServiceClient/batchDeletePipelineJobs(request:)>
   public struct BatchDeletePipelineJobsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

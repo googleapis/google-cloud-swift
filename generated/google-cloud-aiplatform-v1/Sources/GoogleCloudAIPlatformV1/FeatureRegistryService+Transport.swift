@@ -24,15 +24,17 @@
   import GoogleIAMV1
   import GoogleLongRunning
   import GoogleRpc
-  import GoogleCloudGax
+  @_spi(GoogleCloudInternal) import GoogleCloudGax
 
   extension Clients {
     class FeatureRegistryServiceTransport: FeatureRegistryServiceStub {
-      let inner: GoogleCloudGax.HTTPClient
+      let inner: GoogleCloudGax._HTTPClient
 
       public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {
-        self.inner = try GoogleCloudGax.HTTPClient(
-          from: options, withDefaultEndpoint: "https://aiplatform.googleapis.com")
+        self.inner = try GoogleCloudGax._HTTPClient(
+          from: options,
+          withDefaultEndpoint: "https://aiplatform.googleapis.com",
+        )
       }
 
       public func createFeatureGroup(
@@ -50,16 +52,15 @@
         let encoder = GoogleCloudGax.QueryParameterEncoder()
         query.append(
           contentsOf: try encoder.encode(request.featureGroupId, prefix: "featureGroupId"))
-        var req = try await self.inner.Request(path: path, query: query)
-        req.httpMethod = "POST"
-        req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
+        var req = try await self.inner.newRequest(path: path, query: query)
+        req.setMethod(.POST)
+        req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
         if let body = request.featureGroup {
-          req.setValue("application/json", forHTTPHeaderField: "Content-Type")
-          req.httpBody = try JSONEncoder().encode(body)
+          req.setBody(data: try JSONEncoder().encode(body), ofContentType: "application/json")
         }
-        let (data, _) = try await self.inner.rpc(for: req).get()
-        return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleLongRunning.Operation.self, from: data)
+        return try await req.rpc(
+          GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
+        ).get()
       }
 
       public func getFeatureGroup(
@@ -74,12 +75,12 @@
         let query = [
           URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
         ]
-        var req = try await self.inner.Request(path: path, query: query)
-        req.httpMethod = "GET"
-        req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-        let (data, _) = try await self.inner.rpc(for: req).get()
-        return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleCloudAIPlatformV1.FeatureGroup.self, from: data)
+        var req = try await self.inner.newRequest(path: path, query: query)
+        req.setMethod(.GET)
+        req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
+        return try await req.rpc(
+          GoogleCloudAIPlatformV1.FeatureGroup.self, timeout: options.attemptTimeout
+        ).get()
       }
 
       public func listFeatureGroups(
@@ -99,12 +100,12 @@
         query.append(contentsOf: try encoder.encode(request.pageSize, prefix: "pageSize"))
         query.append(contentsOf: try encoder.encode(request.pageToken, prefix: "pageToken"))
         query.append(contentsOf: try encoder.encode(request.orderBy, prefix: "orderBy"))
-        var req = try await self.inner.Request(path: path, query: query)
-        req.httpMethod = "GET"
-        req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-        let (data, _) = try await self.inner.rpc(for: req).get()
-        return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleCloudAIPlatformV1.ListFeatureGroupsResponse.self, from: data)
+        var req = try await self.inner.newRequest(path: path, query: query)
+        req.setMethod(.GET)
+        req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
+        return try await req.rpc(
+          GoogleCloudAIPlatformV1.ListFeatureGroupsResponse.self, timeout: options.attemptTimeout
+        ).get()
       }
 
       public func updateFeatureGroup(
@@ -123,16 +124,15 @@
         ]
         let encoder = GoogleCloudGax.QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.updateMask, prefix: "updateMask"))
-        var req = try await self.inner.Request(path: path, query: query)
-        req.httpMethod = "PATCH"
-        req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
+        var req = try await self.inner.newRequest(path: path, query: query)
+        req.setMethod(.PATCH)
+        req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
         if let body = request.featureGroup {
-          req.setValue("application/json", forHTTPHeaderField: "Content-Type")
-          req.httpBody = try JSONEncoder().encode(body)
+          req.setBody(data: try JSONEncoder().encode(body), ofContentType: "application/json")
         }
-        let (data, _) = try await self.inner.rpc(for: req).get()
-        return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleLongRunning.Operation.self, from: data)
+        return try await req.rpc(
+          GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
+        ).get()
       }
 
       public func deleteFeatureGroup(
@@ -149,12 +149,12 @@
         ]
         let encoder = GoogleCloudGax.QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.force, prefix: "force"))
-        var req = try await self.inner.Request(path: path, query: query)
-        req.httpMethod = "DELETE"
-        req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-        let (data, _) = try await self.inner.rpc(for: req).get()
-        return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleLongRunning.Operation.self, from: data)
+        var req = try await self.inner.newRequest(path: path, query: query)
+        req.setMethod(.DELETE)
+        req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
+        return try await req.rpc(
+          GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
+        ).get()
       }
 
       public func createFeature(
@@ -171,16 +171,15 @@
         ]
         let encoder = GoogleCloudGax.QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.featureId, prefix: "featureId"))
-        var req = try await self.inner.Request(path: path, query: query)
-        req.httpMethod = "POST"
-        req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
+        var req = try await self.inner.newRequest(path: path, query: query)
+        req.setMethod(.POST)
+        req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
         if let body = request.feature {
-          req.setValue("application/json", forHTTPHeaderField: "Content-Type")
-          req.httpBody = try JSONEncoder().encode(body)
+          req.setBody(data: try JSONEncoder().encode(body), ofContentType: "application/json")
         }
-        let (data, _) = try await self.inner.rpc(for: req).get()
-        return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleLongRunning.Operation.self, from: data)
+        return try await req.rpc(
+          GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
+        ).get()
       }
 
       public func batchCreateFeatures(
@@ -195,14 +194,13 @@
         let query = [
           URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
         ]
-        var req = try await self.inner.Request(path: path, query: query)
-        req.httpMethod = "POST"
-        req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-        req.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        req.httpBody = try JSONEncoder().encode(request)
-        let (data, _) = try await self.inner.rpc(for: req).get()
-        return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleLongRunning.Operation.self, from: data)
+        var req = try await self.inner.newRequest(path: path, query: query)
+        req.setMethod(.POST)
+        req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
+        req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
+        return try await req.rpc(
+          GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
+        ).get()
       }
 
       public func getFeature(
@@ -217,12 +215,12 @@
         let query = [
           URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
         ]
-        var req = try await self.inner.Request(path: path, query: query)
-        req.httpMethod = "GET"
-        req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-        let (data, _) = try await self.inner.rpc(for: req).get()
-        return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleCloudAIPlatformV1.Feature.self, from: data)
+        var req = try await self.inner.newRequest(path: path, query: query)
+        req.setMethod(.GET)
+        req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
+        return try await req.rpc(
+          GoogleCloudAIPlatformV1.Feature.self, timeout: options.attemptTimeout
+        ).get()
       }
 
       public func listFeatures(
@@ -245,12 +243,12 @@
         query.append(contentsOf: try encoder.encode(request.readMask, prefix: "readMask"))
         query.append(
           contentsOf: try encoder.encode(request.latestStatsCount, prefix: "latestStatsCount"))
-        var req = try await self.inner.Request(path: path, query: query)
-        req.httpMethod = "GET"
-        req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-        let (data, _) = try await self.inner.rpc(for: req).get()
-        return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleCloudAIPlatformV1.ListFeaturesResponse.self, from: data)
+        var req = try await self.inner.newRequest(path: path, query: query)
+        req.setMethod(.GET)
+        req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
+        return try await req.rpc(
+          GoogleCloudAIPlatformV1.ListFeaturesResponse.self, timeout: options.attemptTimeout
+        ).get()
       }
 
       public func updateFeature(
@@ -268,16 +266,15 @@
         ]
         let encoder = GoogleCloudGax.QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.updateMask, prefix: "updateMask"))
-        var req = try await self.inner.Request(path: path, query: query)
-        req.httpMethod = "PATCH"
-        req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
+        var req = try await self.inner.newRequest(path: path, query: query)
+        req.setMethod(.PATCH)
+        req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
         if let body = request.feature {
-          req.setValue("application/json", forHTTPHeaderField: "Content-Type")
-          req.httpBody = try JSONEncoder().encode(body)
+          req.setBody(data: try JSONEncoder().encode(body), ofContentType: "application/json")
         }
-        let (data, _) = try await self.inner.rpc(for: req).get()
-        return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleLongRunning.Operation.self, from: data)
+        return try await req.rpc(
+          GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
+        ).get()
       }
 
       public func deleteFeature(
@@ -292,12 +289,12 @@
         let query = [
           URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
         ]
-        var req = try await self.inner.Request(path: path, query: query)
-        req.httpMethod = "DELETE"
-        req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-        let (data, _) = try await self.inner.rpc(for: req).get()
-        return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleLongRunning.Operation.self, from: data)
+        var req = try await self.inner.newRequest(path: path, query: query)
+        req.setMethod(.DELETE)
+        req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
+        return try await req.rpc(
+          GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
+        ).get()
       }
 
       public func listLocations(
@@ -316,12 +313,12 @@
         query.append(contentsOf: try encoder.encode(request.filter, prefix: "filter"))
         query.append(contentsOf: try encoder.encode(request.pageSize, prefix: "pageSize"))
         query.append(contentsOf: try encoder.encode(request.pageToken, prefix: "pageToken"))
-        var req = try await self.inner.Request(path: path, query: query)
-        req.httpMethod = "GET"
-        req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-        let (data, _) = try await self.inner.rpc(for: req).get()
-        return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleCloudLocation.ListLocationsResponse.self, from: data)
+        var req = try await self.inner.newRequest(path: path, query: query)
+        req.setMethod(.GET)
+        req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
+        return try await req.rpc(
+          GoogleCloudLocation.ListLocationsResponse.self, timeout: options.attemptTimeout
+        ).get()
       }
 
       public func getLocation(
@@ -336,12 +333,12 @@
         let query = [
           URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
         ]
-        var req = try await self.inner.Request(path: path, query: query)
-        req.httpMethod = "GET"
-        req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-        let (data, _) = try await self.inner.rpc(for: req).get()
-        return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleCloudLocation.Location.self, from: data)
+        var req = try await self.inner.newRequest(path: path, query: query)
+        req.setMethod(.GET)
+        req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
+        return try await req.rpc(
+          GoogleCloudLocation.Location.self, timeout: options.attemptTimeout
+        ).get()
       }
 
       public func setIamPolicy(
@@ -356,14 +353,13 @@
         let query = [
           URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
         ]
-        var req = try await self.inner.Request(path: path, query: query)
-        req.httpMethod = "POST"
-        req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-        req.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        req.httpBody = try JSONEncoder().encode(request)
-        let (data, _) = try await self.inner.rpc(for: req).get()
-        return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleIAMV1.Policy.self, from: data)
+        var req = try await self.inner.newRequest(path: path, query: query)
+        req.setMethod(.POST)
+        req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
+        req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
+        return try await req.rpc(
+          GoogleIAMV1.Policy.self, timeout: options.attemptTimeout
+        ).get()
       }
 
       public func getIamPolicy(
@@ -380,12 +376,12 @@
         ]
         let encoder = GoogleCloudGax.QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.options, prefix: "options"))
-        var req = try await self.inner.Request(path: path, query: query)
-        req.httpMethod = "POST"
-        req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-        let (data, _) = try await self.inner.rpc(for: req).get()
-        return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleIAMV1.Policy.self, from: data)
+        var req = try await self.inner.newRequest(path: path, query: query)
+        req.setMethod(.POST)
+        req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
+        return try await req.rpc(
+          GoogleIAMV1.Policy.self, timeout: options.attemptTimeout
+        ).get()
       }
 
       public func testIamPermissions(
@@ -402,12 +398,12 @@
         ]
         let encoder = GoogleCloudGax.QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.permissions, prefix: "permissions"))
-        var req = try await self.inner.Request(path: path, query: query)
-        req.httpMethod = "POST"
-        req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-        let (data, _) = try await self.inner.rpc(for: req).get()
-        return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleIAMV1.TestIamPermissionsResponse.self, from: data)
+        var req = try await self.inner.newRequest(path: path, query: query)
+        req.setMethod(.POST)
+        req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
+        return try await req.rpc(
+          GoogleIAMV1.TestIamPermissionsResponse.self, timeout: options.attemptTimeout
+        ).get()
       }
 
       public func listOperations(
@@ -429,12 +425,12 @@
         query.append(
           contentsOf: try encoder.encode(
             request.returnPartialSuccess, prefix: "returnPartialSuccess"))
-        var req = try await self.inner.Request(path: path, query: query)
-        req.httpMethod = "GET"
-        req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-        let (data, _) = try await self.inner.rpc(for: req).get()
-        return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleLongRunning.ListOperationsResponse.self, from: data)
+        var req = try await self.inner.newRequest(path: path, query: query)
+        req.setMethod(.GET)
+        req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
+        return try await req.rpc(
+          GoogleLongRunning.ListOperationsResponse.self, timeout: options.attemptTimeout
+        ).get()
       }
 
       public func getOperation(
@@ -449,12 +445,12 @@
         let query = [
           URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
         ]
-        var req = try await self.inner.Request(path: path, query: query)
-        req.httpMethod = "GET"
-        req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-        let (data, _) = try await self.inner.rpc(for: req).get()
-        return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleLongRunning.Operation.self, from: data)
+        var req = try await self.inner.newRequest(path: path, query: query)
+        req.setMethod(.GET)
+        req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
+        return try await req.rpc(
+          GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
+        ).get()
       }
 
       public func deleteOperation(
@@ -469,10 +465,12 @@
         let query = [
           URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
         ]
-        var req = try await self.inner.Request(path: path, query: query)
-        req.httpMethod = "DELETE"
-        req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-        _ = try await self.inner.rpc(for: req).get()
+        var req = try await self.inner.newRequest(path: path, query: query)
+        req.setMethod(.DELETE)
+        req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
+        _ = try await req.rpc(
+          GoogleCloudWkt.Empty.self, timeout: options.attemptTimeout
+        ).get()
       }
 
       public func cancelOperation(
@@ -487,10 +485,12 @@
         let query = [
           URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
         ]
-        var req = try await self.inner.Request(path: path, query: query)
-        req.httpMethod = "POST"
-        req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-        _ = try await self.inner.rpc(for: req).get()
+        var req = try await self.inner.newRequest(path: path, query: query)
+        req.setMethod(.POST)
+        req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
+        _ = try await req.rpc(
+          GoogleCloudWkt.Empty.self, timeout: options.attemptTimeout
+        ).get()
       }
 
       public func waitOperation(
@@ -507,12 +507,12 @@
         ]
         let encoder = GoogleCloudGax.QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.timeout, prefix: "timeout"))
-        var req = try await self.inner.Request(path: path, query: query)
-        req.httpMethod = "POST"
-        req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-        let (data, _) = try await self.inner.rpc(for: req).get()
-        return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-          GoogleLongRunning.Operation.self, from: data)
+        var req = try await self.inner.newRequest(path: path, query: query)
+        req.setMethod(.POST)
+        req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
+        return try await req.rpc(
+          GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
+        ).get()
       }
     }
   }

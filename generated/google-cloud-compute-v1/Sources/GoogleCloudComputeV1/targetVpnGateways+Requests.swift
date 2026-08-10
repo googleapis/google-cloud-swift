@@ -21,7 +21,7 @@
   extension TargetVpnGatewaysClient {
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.targetVpnGateways.aggregatedList] method.
     ///
-    /// [google.cloud.compute.v1.targetVpnGateways.aggregatedList]: <doc:TargetVpnGateways/aggregatedList(request:)>
+    /// [google.cloud.compute.v1.targetVpnGateways.aggregatedList]: <doc:TargetVpnGatewaysClient/aggregatedList(request:)>
     public struct AggregatedListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -163,7 +163,7 @@
 
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.targetVpnGateways.delete] method.
     ///
-    /// [google.cloud.compute.v1.targetVpnGateways.delete]: <doc:TargetVpnGateways/delete(request:)>
+    /// [google.cloud.compute.v1.targetVpnGateways.delete]: <doc:TargetVpnGatewaysClient/delete(request:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -220,7 +220,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.targetVpnGateways.get] method.
     ///
-    /// [google.cloud.compute.v1.targetVpnGateways.get]: <doc:TargetVpnGateways/`get`(request:)>
+    /// [google.cloud.compute.v1.targetVpnGateways.get]: <doc:TargetVpnGatewaysClient/`get`(request:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -262,7 +262,7 @@
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.targetVpnGateways.insert] method.
     ///
-    /// [google.cloud.compute.v1.targetVpnGateways.insert]: <doc:TargetVpnGateways/insert(request:)>
+    /// [google.cloud.compute.v1.targetVpnGateways.insert]: <doc:TargetVpnGatewaysClient/insert(request:)>
     public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -289,7 +289,7 @@
 
       /// Synthetic request body field for the [insert()][google.cloud.compute.v1.targetVpnGateways.insert] method.
       ///
-      /// [google.cloud.compute.v1.targetVpnGateways.insert]: <doc:TargetVpnGateways/insert(request:)>
+      /// [google.cloud.compute.v1.targetVpnGateways.insert]: <doc:TargetVpnGatewaysClient/insert(request:)>
       public var body: TargetVpnGateway? = nil
 
       /// Initialize a new instance of `InsertRequest`.
@@ -321,7 +321,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.targetVpnGateways.list] method.
     ///
-    /// [google.cloud.compute.v1.targetVpnGateways.list]: <doc:TargetVpnGateways/list(request:)>
+    /// [google.cloud.compute.v1.targetVpnGateways.list]: <doc:TargetVpnGatewaysClient/list(request:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -453,7 +453,7 @@
 
     /// Synthetic request message for the [setLabels()][google.cloud.compute.v1.targetVpnGateways.setLabels] method.
     ///
-    /// [google.cloud.compute.v1.targetVpnGateways.setLabels]: <doc:TargetVpnGateways/setLabels(request:)>
+    /// [google.cloud.compute.v1.targetVpnGateways.setLabels]: <doc:TargetVpnGatewaysClient/setLabels(request:)>
     public struct SetLabelsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -483,7 +483,7 @@
 
       /// Synthetic request body field for the [setLabels()][google.cloud.compute.v1.targetVpnGateways.setLabels] method.
       ///
-      /// [google.cloud.compute.v1.targetVpnGateways.setLabels]: <doc:TargetVpnGateways/setLabels(request:)>
+      /// [google.cloud.compute.v1.targetVpnGateways.setLabels]: <doc:TargetVpnGatewaysClient/setLabels(request:)>
       public var body: RegionSetLabelsRequest? = nil
 
       /// Initialize a new instance of `SetLabelsRequest`.

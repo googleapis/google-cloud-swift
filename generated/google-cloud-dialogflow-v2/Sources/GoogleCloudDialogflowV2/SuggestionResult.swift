@@ -28,7 +28,7 @@
   /// [HumanAgentAssistantEvent][google.cloud.dialogflow.v2.HumanAgentAssistantEvent].
   ///
   /// [google.cloud.dialogflow.v2.HumanAgentAssistantEvent]: <doc:HumanAgentAssistantEvent>
-  /// [google.cloud.dialogflow.v2.Participants.AnalyzeContent]: <doc:Participants/analyzeContent(request:)>
+  /// [google.cloud.dialogflow.v2.Participants.AnalyzeContent]: <doc:ParticipantsClient/analyzeContent(request:)>
   public struct SuggestionResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

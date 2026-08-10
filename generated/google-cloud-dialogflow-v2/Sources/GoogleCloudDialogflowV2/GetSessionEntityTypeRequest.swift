@@ -21,7 +21,7 @@
   /// The request message for
   /// [SessionEntityTypes.GetSessionEntityType][google.cloud.dialogflow.v2.SessionEntityTypes.GetSessionEntityType].
   ///
-  /// [google.cloud.dialogflow.v2.SessionEntityTypes.GetSessionEntityType]: <doc:SessionEntityTypes/getSessionEntityType(request:)>
+  /// [google.cloud.dialogflow.v2.SessionEntityTypes.GetSessionEntityType]: <doc:SessionEntityTypesClient/getSessionEntityType(request:)>
   public struct GetSessionEntityTypeRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

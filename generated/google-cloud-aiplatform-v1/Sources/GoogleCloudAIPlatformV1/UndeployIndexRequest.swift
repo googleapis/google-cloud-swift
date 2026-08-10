@@ -21,7 +21,7 @@
   /// Request message for
   /// [IndexEndpointService.UndeployIndex][google.cloud.aiplatform.v1.IndexEndpointService.UndeployIndex].
   ///
-  /// [google.cloud.aiplatform.v1.IndexEndpointService.UndeployIndex]: <doc:IndexEndpointService/undeployIndex(request:)>
+  /// [google.cloud.aiplatform.v1.IndexEndpointService.UndeployIndex]: <doc:IndexEndpointServiceClient/undeployIndex(request:)>
   public struct UndeployIndexRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

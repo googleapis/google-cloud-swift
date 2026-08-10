@@ -21,7 +21,7 @@
   /// Request message for
   /// [FeaturestoreService.BatchReadFeatureValues][google.cloud.aiplatform.v1.FeaturestoreService.BatchReadFeatureValues].
   ///
-  /// [google.cloud.aiplatform.v1.FeaturestoreService.BatchReadFeatureValues]: <doc:FeaturestoreService/batchReadFeatureValues(request:)>
+  /// [google.cloud.aiplatform.v1.FeaturestoreService.BatchReadFeatureValues]: <doc:FeaturestoreServiceClient/batchReadFeatureValues(request:)>
   public struct BatchReadFeatureValuesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

@@ -29,7 +29,7 @@ import GoogleCloudGax
 /// Service][google.cloud.security.privateca.v1.CertificateAuthorityService]
 /// manages private certificate authorities and issued certificates.
 ///
-/// [google.cloud.security.privateca.v1.CertificateAuthorityService]: <doc:CertificateAuthorityService>
+/// [google.cloud.security.privateca.v1.CertificateAuthorityService]: <doc:CertificateAuthorityServiceClient>
 ///
 /// @Snippet(path: "CertificateAuthorityServiceQuickstart")
 public class CertificateAuthorityServiceClient: Clients.CertificateAuthorityServiceProtocol {
@@ -143,7 +143,7 @@ public class CertificateAuthorityServiceClient: Clients.CertificateAuthorityServ
   /// [google.cloud.security.privateca.v1.CertificateAuthority]: <doc:CertificateAuthority>
   /// [google.cloud.security.privateca.v1.CertificateAuthority.State.AWAITING_USER_ACTIVATION]: <doc:CertificateAuthority/State/awaitingUserActivation>
   /// [google.cloud.security.privateca.v1.CertificateAuthority.Type.SUBORDINATE]: <doc:CertificateAuthority/Type_/subordinate>
-  /// [google.cloud.security.privateca.v1.CertificateAuthorityService.FetchCertificateAuthorityCsr]: <doc:CertificateAuthorityService/fetchCertificateAuthorityCsr(request:)>
+  /// [google.cloud.security.privateca.v1.CertificateAuthorityService.FetchCertificateAuthorityCsr]: <doc:CertificateAuthorityServiceClient/fetchCertificateAuthorityCsr(request:)>
   ///
   /// @Snippet(path: "CertificateAuthorityService_ActivateCertificateAuthority")
   public func activateCertificateAuthority(
@@ -166,7 +166,7 @@ public class CertificateAuthorityServiceClient: Clients.CertificateAuthorityServ
   /// [google.cloud.security.privateca.v1.CertificateAuthority]: <doc:CertificateAuthority>
   /// [google.cloud.security.privateca.v1.CertificateAuthority.State.AWAITING_USER_ACTIVATION]: <doc:CertificateAuthority/State/awaitingUserActivation>
   /// [google.cloud.security.privateca.v1.CertificateAuthority.Type.SUBORDINATE]: <doc:CertificateAuthority/Type_/subordinate>
-  /// [google.cloud.security.privateca.v1.CertificateAuthorityService.FetchCertificateAuthorityCsr]: <doc:CertificateAuthorityService/fetchCertificateAuthorityCsr(request:)>
+  /// [google.cloud.security.privateca.v1.CertificateAuthorityService.FetchCertificateAuthorityCsr]: <doc:CertificateAuthorityServiceClient/fetchCertificateAuthorityCsr(request:)>
   ///
   /// @Snippet(path: "CertificateAuthorityService_ActivateCertificateAuthority")
   public func activateCertificateAuthority(
@@ -468,7 +468,7 @@ public class CertificateAuthorityServiceClient: Clients.CertificateAuthorityServ
   /// [google.cloud.security.privateca.v1.CertificateAuthority]: <doc:CertificateAuthority>
   /// [google.cloud.security.privateca.v1.CertificateAuthority.State.AWAITING_USER_ACTIVATION]: <doc:CertificateAuthority/State/awaitingUserActivation>
   /// [google.cloud.security.privateca.v1.CertificateAuthority.Type.SUBORDINATE]: <doc:CertificateAuthority/Type_/subordinate>
-  /// [google.cloud.security.privateca.v1.CertificateAuthorityService.ActivateCertificateAuthority]: <doc:CertificateAuthorityService/activateCertificateAuthority(request:)>
+  /// [google.cloud.security.privateca.v1.CertificateAuthorityService.ActivateCertificateAuthority]: <doc:CertificateAuthorityServiceClient/activateCertificateAuthority(request:)>
   ///
   /// @Snippet(path: "CertificateAuthorityService_FetchCertificateAuthorityCsr")
   public func fetchCertificateAuthorityCsr(
@@ -1495,7 +1495,7 @@ public class CertificateAuthorityServiceClient: Clients.CertificateAuthorityServ
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "CertificateAuthorityService_ListOperations")
   public func listOperations(
@@ -1506,7 +1506,7 @@ public class CertificateAuthorityServiceClient: Clients.CertificateAuthorityServ
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "CertificateAuthorityService_ListOperations")
   public func listOperations(
@@ -1523,7 +1523,7 @@ public class CertificateAuthorityServiceClient: Clients.CertificateAuthorityServ
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "CertificateAuthorityService_GetOperation")
   func getOperation(
@@ -1534,7 +1534,7 @@ public class CertificateAuthorityServiceClient: Clients.CertificateAuthorityServ
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "CertificateAuthorityService_DeleteOperation")
   public func deleteOperation(
@@ -1545,7 +1545,7 @@ public class CertificateAuthorityServiceClient: Clients.CertificateAuthorityServ
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "CertificateAuthorityService_CancelOperation")
   public func cancelOperation(

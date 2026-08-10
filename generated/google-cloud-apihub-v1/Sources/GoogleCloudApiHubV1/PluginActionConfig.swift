@@ -59,7 +59,7 @@ public struct PluginActionConfig: Codable, Equatable, GoogleCloudWkt._AnyPackabl
     /// API with the given action id. To support this, the plugin hosting service
     /// should handle this action id as part of execute call.
     ///
-    /// [google.cloud.apihub.v1.ApiHubPlugin.ExecutePluginInstanceAction]: <doc:ApiHubPlugin/executePluginInstanceAction(request:)>
+    /// [google.cloud.apihub.v1.ApiHubPlugin.ExecutePluginInstanceAction]: <doc:ApiHubPluginClient/executePluginInstanceAction(request:)>
     case apiHubOnDemandTrigger
     /// This action will be executed on schedule by invoking
     /// [ExecutePluginInstanceAction][google.cloud.apihub.v1.ApiHubPlugin.ExecutePluginInstanceAction]
@@ -71,7 +71,7 @@ public struct PluginActionConfig: Codable, Equatable, GoogleCloudWkt._AnyPackabl
     /// Note, on demand execution will be supported by default in this trigger
     /// mode.
     ///
-    /// [google.cloud.apihub.v1.ApiHubPlugin.ExecutePluginInstanceAction]: <doc:ApiHubPlugin/executePluginInstanceAction(request:)>
+    /// [google.cloud.apihub.v1.ApiHubPlugin.ExecutePluginInstanceAction]: <doc:ApiHubPluginClient/executePluginInstanceAction(request:)>
     case apiHubScheduleTrigger
     /// The execution of this plugin is not handled by API hub. In this case,
     /// the plugin hosting service need not handle this action id as part of

@@ -22,7 +22,7 @@
   /// [Environments.DeployFlow][google.cloud.dialogflow.cx.v3.Environments.DeployFlow]
   /// long running operation.
   ///
-  /// [google.cloud.dialogflow.cx.v3.Environments.DeployFlow]: <doc:Environments/deployFlow(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Environments.DeployFlow]: <doc:EnvironmentsClient/deployFlow(request:)>
   public struct DeployFlowMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

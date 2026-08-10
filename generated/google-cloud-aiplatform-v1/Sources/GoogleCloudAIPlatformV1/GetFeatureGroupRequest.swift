@@ -21,7 +21,7 @@
   /// Request message for
   /// [FeatureRegistryService.GetFeatureGroup][google.cloud.aiplatform.v1.FeatureRegistryService.GetFeatureGroup].
   ///
-  /// [google.cloud.aiplatform.v1.FeatureRegistryService.GetFeatureGroup]: <doc:FeatureRegistryService/getFeatureGroup(request:)>
+  /// [google.cloud.aiplatform.v1.FeatureRegistryService.GetFeatureGroup]: <doc:FeatureRegistryServiceClient/getFeatureGroup(request:)>
   public struct GetFeatureGroupRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

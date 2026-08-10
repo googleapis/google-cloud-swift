@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [CertificateAuthorityService.GetCertificateRevocationList][google.cloud.security.privateca.v1.CertificateAuthorityService.GetCertificateRevocationList].
 ///
-/// [google.cloud.security.privateca.v1.CertificateAuthorityService.GetCertificateRevocationList]: <doc:CertificateAuthorityService/getCertificateRevocationList(request:)>
+/// [google.cloud.security.privateca.v1.CertificateAuthorityService.GetCertificateRevocationList]: <doc:CertificateAuthorityServiceClient/getCertificateRevocationList(request:)>
 public struct GetCertificateRevocationListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

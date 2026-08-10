@@ -22,7 +22,7 @@
   /// The response message for
   /// [ConversationModels.ListConversationModels][google.cloud.dialogflow.v2.ConversationModels.ListConversationModels]
   ///
-  /// [google.cloud.dialogflow.v2.ConversationModels.ListConversationModels]: <doc:ConversationModels/listConversationModels(request:)>
+  /// [google.cloud.dialogflow.v2.ConversationModels.ListConversationModels]: <doc:ConversationModelsClient/listConversationModels(request:)>
   public struct ListConversationModelsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable

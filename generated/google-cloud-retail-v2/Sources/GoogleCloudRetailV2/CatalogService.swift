@@ -114,10 +114,10 @@ public class CatalogServiceClient: Clients.CatalogServiceProtocol {
   /// * UserEventService will only join events with products from branch
   ///   {newBranch}.
   ///
-  /// [google.cloud.retail.v2.ProductService.GetProduct]: <doc:ProductService/getProduct(request:)>
-  /// [google.cloud.retail.v2.ProductService.ListProducts]: <doc:ProductService/listProducts(request:)>
+  /// [google.cloud.retail.v2.ProductService.GetProduct]: <doc:ProductServiceClient/getProduct(request:)>
+  /// [google.cloud.retail.v2.ProductService.ListProducts]: <doc:ProductServiceClient/listProducts(request:)>
   /// [google.cloud.retail.v2.SearchRequest.branch]: <doc:SearchRequest/branch>
-  /// [google.cloud.retail.v2.SearchService.Search]: <doc:SearchService/search(request:)>
+  /// [google.cloud.retail.v2.SearchService.Search]: <doc:SearchServiceClient/search(request:)>
   ///
   /// @Snippet(path: "CatalogService_SetDefaultBranch")
   public func setDefaultBranch(
@@ -130,7 +130,7 @@ public class CatalogServiceClient: Clients.CatalogServiceProtocol {
   /// [CatalogService.SetDefaultBranch][google.cloud.retail.v2.CatalogService.SetDefaultBranch]
   /// method under a specified parent catalog.
   ///
-  /// [google.cloud.retail.v2.CatalogService.SetDefaultBranch]: <doc:CatalogService/setDefaultBranch(request:)>
+  /// [google.cloud.retail.v2.CatalogService.SetDefaultBranch]: <doc:CatalogServiceClient/setDefaultBranch(request:)>
   ///
   /// @Snippet(path: "CatalogService_GetDefaultBranch")
   public func getDefaultBranch(
@@ -246,7 +246,7 @@ public class CatalogServiceClient: Clients.CatalogServiceProtocol {
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "CatalogService_ListOperations")
   public func listOperations(
@@ -257,7 +257,7 @@ public class CatalogServiceClient: Clients.CatalogServiceProtocol {
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "CatalogService_ListOperations")
   public func listOperations(
@@ -274,7 +274,7 @@ public class CatalogServiceClient: Clients.CatalogServiceProtocol {
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "CatalogService_GetOperation")
   func getOperation(

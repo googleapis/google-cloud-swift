@@ -278,7 +278,7 @@ public struct Operation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// configuration](https://cloud.google.com/kubernetes-engine/docs/concepts/node-pool-upgrade-strategies).
     /// The nodes are generally still usable during this operation.
     ///
-    /// [google.container.v1.ClusterManager.CancelOperation]: <doc:ClusterManager/cancelOperation(request:)>
+    /// [google.container.v1.ClusterManager.CancelOperation]: <doc:ClusterManagerClient/cancelOperation(request:)>
     /// [google.container.v1.Operation.progress]: <doc:Operation/progress>
     case upgradeNodes
     /// A problem has been detected with the control plane and is being repaired.

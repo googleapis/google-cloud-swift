@@ -21,7 +21,7 @@
   /// Request message for
   /// [IdentityMappingStoreService.PurgeIdentityMappings][google.cloud.discoveryengine.v1.IdentityMappingStoreService.PurgeIdentityMappings]
   ///
-  /// [google.cloud.discoveryengine.v1.IdentityMappingStoreService.PurgeIdentityMappings]: <doc:IdentityMappingStoreService/purgeIdentityMappings(request:)>
+  /// [google.cloud.discoveryengine.v1.IdentityMappingStoreService.PurgeIdentityMappings]: <doc:IdentityMappingStoreServiceClient/purgeIdentityMappings(request:)>
   public struct PurgeIdentityMappingsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

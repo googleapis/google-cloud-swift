@@ -22,7 +22,7 @@
   /// The response message for
   /// [Intents.ListIntents][google.cloud.dialogflow.cx.v3.Intents.ListIntents].
   ///
-  /// [google.cloud.dialogflow.cx.v3.Intents.ListIntents]: <doc:Intents/listIntents(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Intents.ListIntents]: <doc:IntentsClient/listIntents(request:)>
   public struct ListIntentsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable

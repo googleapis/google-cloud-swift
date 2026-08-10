@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [CreateExecution][google.cloud.workflows.executions.v1.Executions.CreateExecution]
 /// method.
 ///
-/// [google.cloud.workflows.executions.v1.Executions.CreateExecution]: <doc:Executions/createExecution(request:)>
+/// [google.cloud.workflows.executions.v1.Executions.CreateExecution]: <doc:ExecutionsClient/createExecution(request:)>
 public struct CreateExecutionRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

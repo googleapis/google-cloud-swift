@@ -21,7 +21,7 @@
   extension SubnetworksClient {
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.subnetworks.aggregatedList] method.
     ///
-    /// [google.cloud.compute.v1.subnetworks.aggregatedList]: <doc:Subnetworks/aggregatedList(request:)>
+    /// [google.cloud.compute.v1.subnetworks.aggregatedList]: <doc:SubnetworksClient/aggregatedList(request:)>
     public struct AggregatedListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -269,7 +269,7 @@
 
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.subnetworks.delete] method.
     ///
-    /// [google.cloud.compute.v1.subnetworks.delete]: <doc:Subnetworks/delete(request:)>
+    /// [google.cloud.compute.v1.subnetworks.delete]: <doc:SubnetworksClient/delete(request:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -326,7 +326,7 @@
 
     /// Synthetic request message for the [expandIpCidrRange()][google.cloud.compute.v1.subnetworks.expandIpCidrRange] method.
     ///
-    /// [google.cloud.compute.v1.subnetworks.expandIpCidrRange]: <doc:Subnetworks/expandIpCidrRange(request:)>
+    /// [google.cloud.compute.v1.subnetworks.expandIpCidrRange]: <doc:SubnetworksClient/expandIpCidrRange(request:)>
     public struct ExpandIpCidrRangeRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -356,7 +356,7 @@
 
       /// Synthetic request body field for the [expandIpCidrRange()][google.cloud.compute.v1.subnetworks.expandIpCidrRange] method.
       ///
-      /// [google.cloud.compute.v1.subnetworks.expandIpCidrRange]: <doc:Subnetworks/expandIpCidrRange(request:)>
+      /// [google.cloud.compute.v1.subnetworks.expandIpCidrRange]: <doc:SubnetworksClient/expandIpCidrRange(request:)>
       public var body: SubnetworksExpandIpCidrRangeRequest? = nil
 
       /// Initialize a new instance of `ExpandIpCidrRangeRequest`.
@@ -388,7 +388,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.subnetworks.get] method.
     ///
-    /// [google.cloud.compute.v1.subnetworks.get]: <doc:Subnetworks/`get`(request:)>
+    /// [google.cloud.compute.v1.subnetworks.get]: <doc:SubnetworksClient/`get`(request:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -536,7 +536,7 @@
 
     /// Synthetic request message for the [getIamPolicy()][google.cloud.compute.v1.subnetworks.getIamPolicy] method.
     ///
-    /// [google.cloud.compute.v1.subnetworks.getIamPolicy]: <doc:Subnetworks/getIamPolicy(request:)>
+    /// [google.cloud.compute.v1.subnetworks.getIamPolicy]: <doc:SubnetworksClient/getIamPolicy(request:)>
     public struct GetIamPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -581,7 +581,7 @@
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.subnetworks.insert] method.
     ///
-    /// [google.cloud.compute.v1.subnetworks.insert]: <doc:Subnetworks/insert(request:)>
+    /// [google.cloud.compute.v1.subnetworks.insert]: <doc:SubnetworksClient/insert(request:)>
     public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -608,7 +608,7 @@
 
       /// Synthetic request body field for the [insert()][google.cloud.compute.v1.subnetworks.insert] method.
       ///
-      /// [google.cloud.compute.v1.subnetworks.insert]: <doc:Subnetworks/insert(request:)>
+      /// [google.cloud.compute.v1.subnetworks.insert]: <doc:SubnetworksClient/insert(request:)>
       public var body: Subnetwork? = nil
 
       /// Initialize a new instance of `InsertRequest`.
@@ -640,7 +640,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.subnetworks.list] method.
     ///
-    /// [google.cloud.compute.v1.subnetworks.list]: <doc:Subnetworks/list(request:)>
+    /// [google.cloud.compute.v1.subnetworks.list]: <doc:SubnetworksClient/list(request:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -878,7 +878,7 @@
 
     /// Synthetic request message for the [listUsable()][google.cloud.compute.v1.subnetworks.listUsable] method.
     ///
-    /// [google.cloud.compute.v1.subnetworks.listUsable]: <doc:Subnetworks/listUsable(request:)>
+    /// [google.cloud.compute.v1.subnetworks.listUsable]: <doc:SubnetworksClient/listUsable(request:)>
     public struct ListUsableRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -1012,7 +1012,7 @@
 
     /// Synthetic request message for the [patch()][google.cloud.compute.v1.subnetworks.patch] method.
     ///
-    /// [google.cloud.compute.v1.subnetworks.patch]: <doc:Subnetworks/patch(request:)>
+    /// [google.cloud.compute.v1.subnetworks.patch]: <doc:SubnetworksClient/patch(request:)>
     public struct PatchRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -1053,7 +1053,7 @@
 
       /// Synthetic request body field for the [patch()][google.cloud.compute.v1.subnetworks.patch] method.
       ///
-      /// [google.cloud.compute.v1.subnetworks.patch]: <doc:Subnetworks/patch(request:)>
+      /// [google.cloud.compute.v1.subnetworks.patch]: <doc:SubnetworksClient/patch(request:)>
       public var body: Subnetwork? = nil
 
       /// Initialize a new instance of `PatchRequest`.
@@ -1085,7 +1085,7 @@
 
     /// Synthetic request message for the [setIamPolicy()][google.cloud.compute.v1.subnetworks.setIamPolicy] method.
     ///
-    /// [google.cloud.compute.v1.subnetworks.setIamPolicy]: <doc:Subnetworks/setIamPolicy(request:)>
+    /// [google.cloud.compute.v1.subnetworks.setIamPolicy]: <doc:SubnetworksClient/setIamPolicy(request:)>
     public struct SetIamPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -1100,7 +1100,7 @@
 
       /// Synthetic request body field for the [setIamPolicy()][google.cloud.compute.v1.subnetworks.setIamPolicy] method.
       ///
-      /// [google.cloud.compute.v1.subnetworks.setIamPolicy]: <doc:Subnetworks/setIamPolicy(request:)>
+      /// [google.cloud.compute.v1.subnetworks.setIamPolicy]: <doc:SubnetworksClient/setIamPolicy(request:)>
       public var body: RegionSetPolicyRequest? = nil
 
       /// Initialize a new instance of `SetIamPolicyRequest`.
@@ -1132,7 +1132,7 @@
 
     /// Synthetic request message for the [setPrivateIpGoogleAccess()][google.cloud.compute.v1.subnetworks.setPrivateIpGoogleAccess] method.
     ///
-    /// [google.cloud.compute.v1.subnetworks.setPrivateIpGoogleAccess]: <doc:Subnetworks/setPrivateIpGoogleAccess(request:)>
+    /// [google.cloud.compute.v1.subnetworks.setPrivateIpGoogleAccess]: <doc:SubnetworksClient/setPrivateIpGoogleAccess(request:)>
     public struct SetPrivateIpGoogleAccessRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -1162,7 +1162,7 @@
 
       /// Synthetic request body field for the [setPrivateIpGoogleAccess()][google.cloud.compute.v1.subnetworks.setPrivateIpGoogleAccess] method.
       ///
-      /// [google.cloud.compute.v1.subnetworks.setPrivateIpGoogleAccess]: <doc:Subnetworks/setPrivateIpGoogleAccess(request:)>
+      /// [google.cloud.compute.v1.subnetworks.setPrivateIpGoogleAccess]: <doc:SubnetworksClient/setPrivateIpGoogleAccess(request:)>
       public var body: SubnetworksSetPrivateIpGoogleAccessRequest? = nil
 
       /// Initialize a new instance of `SetPrivateIpGoogleAccessRequest`.
@@ -1195,7 +1195,7 @@
 
     /// Synthetic request message for the [testIamPermissions()][google.cloud.compute.v1.subnetworks.testIamPermissions] method.
     ///
-    /// [google.cloud.compute.v1.subnetworks.testIamPermissions]: <doc:Subnetworks/testIamPermissions(request:)>
+    /// [google.cloud.compute.v1.subnetworks.testIamPermissions]: <doc:SubnetworksClient/testIamPermissions(request:)>
     public struct TestIamPermissionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -1210,7 +1210,7 @@
 
       /// Synthetic request body field for the [testIamPermissions()][google.cloud.compute.v1.subnetworks.testIamPermissions] method.
       ///
-      /// [google.cloud.compute.v1.subnetworks.testIamPermissions]: <doc:Subnetworks/testIamPermissions(request:)>
+      /// [google.cloud.compute.v1.subnetworks.testIamPermissions]: <doc:SubnetworksClient/testIamPermissions(request:)>
       public var body: TestPermissionsRequest? = nil
 
       /// Initialize a new instance of `TestIamPermissionsRequest`.

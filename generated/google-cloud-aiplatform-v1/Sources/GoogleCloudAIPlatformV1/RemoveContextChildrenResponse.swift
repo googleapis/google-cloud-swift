@@ -21,7 +21,7 @@
   /// Response message for
   /// [MetadataService.RemoveContextChildren][google.cloud.aiplatform.v1.MetadataService.RemoveContextChildren].
   ///
-  /// [google.cloud.aiplatform.v1.MetadataService.RemoveContextChildren]: <doc:MetadataService/removeContextChildren(request:)>
+  /// [google.cloud.aiplatform.v1.MetadataService.RemoveContextChildren]: <doc:MetadataServiceClient/removeContextChildren(request:)>
   public struct RemoveContextChildrenResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

@@ -22,7 +22,7 @@
   /// [TestCases.RunTestCase][google.cloud.dialogflow.cx.v3.TestCases.RunTestCase]
   /// long running operation. This message currently has no fields.
   ///
-  /// [google.cloud.dialogflow.cx.v3.TestCases.RunTestCase]: <doc:TestCases/runTestCase(request:)>
+  /// [google.cloud.dialogflow.cx.v3.TestCases.RunTestCase]: <doc:TestCasesClient/runTestCase(request:)>
   public struct RunTestCaseMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

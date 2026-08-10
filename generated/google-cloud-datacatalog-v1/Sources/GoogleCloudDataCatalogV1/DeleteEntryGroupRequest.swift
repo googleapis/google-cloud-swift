@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [DeleteEntryGroup][google.cloud.datacatalog.v1.DataCatalog.DeleteEntryGroup].
 ///
-/// [google.cloud.datacatalog.v1.DataCatalog.DeleteEntryGroup]: <doc:DataCatalog/deleteEntryGroup(request:)>
+/// [google.cloud.datacatalog.v1.DataCatalog.DeleteEntryGroup]: <doc:DataCatalogClient/deleteEntryGroup(request:)>
 public struct DeleteEntryGroupRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

@@ -21,7 +21,7 @@
   /// Request message for
   /// [PersistentResourceService.GetPersistentResource][google.cloud.aiplatform.v1.PersistentResourceService.GetPersistentResource].
   ///
-  /// [google.cloud.aiplatform.v1.PersistentResourceService.GetPersistentResource]: <doc:PersistentResourceService/getPersistentResource(request:)>
+  /// [google.cloud.aiplatform.v1.PersistentResourceService.GetPersistentResource]: <doc:PersistentResourceServiceClient/getPersistentResource(request:)>
   public struct GetPersistentResourceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [CreateTag][google.cloud.datacatalog.v1.DataCatalog.CreateTag].
 ///
-/// [google.cloud.datacatalog.v1.DataCatalog.CreateTag]: <doc:DataCatalog/createTag(request:)>
+/// [google.cloud.datacatalog.v1.DataCatalog.CreateTag]: <doc:DataCatalogClient/createTag(request:)>
 public struct CreateTagRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

@@ -21,7 +21,7 @@
   extension SecurityPoliciesClient {
     /// Synthetic request message for the [addRule()][google.cloud.compute.v1.securityPolicies.addRule] method.
     ///
-    /// [google.cloud.compute.v1.securityPolicies.addRule]: <doc:SecurityPolicies/addRule(request:)>
+    /// [google.cloud.compute.v1.securityPolicies.addRule]: <doc:SecurityPoliciesClient/addRule(request:)>
     public struct AddRuleRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -36,7 +36,7 @@
 
       /// Synthetic request body field for the [addRule()][google.cloud.compute.v1.securityPolicies.addRule] method.
       ///
-      /// [google.cloud.compute.v1.securityPolicies.addRule]: <doc:SecurityPolicies/addRule(request:)>
+      /// [google.cloud.compute.v1.securityPolicies.addRule]: <doc:SecurityPoliciesClient/addRule(request:)>
       public var body: SecurityPolicyRule? = nil
 
       /// Initialize a new instance of `AddRuleRequest`.
@@ -68,7 +68,7 @@
 
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.securityPolicies.aggregatedList] method.
     ///
-    /// [google.cloud.compute.v1.securityPolicies.aggregatedList]: <doc:SecurityPolicies/aggregatedList(request:)>
+    /// [google.cloud.compute.v1.securityPolicies.aggregatedList]: <doc:SecurityPoliciesClient/aggregatedList(request:)>
     public struct AggregatedListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -210,7 +210,7 @@
 
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.securityPolicies.delete] method.
     ///
-    /// [google.cloud.compute.v1.securityPolicies.delete]: <doc:SecurityPolicies/delete(request:)>
+    /// [google.cloud.compute.v1.securityPolicies.delete]: <doc:SecurityPoliciesClient/delete(request:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -264,7 +264,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.securityPolicies.get] method.
     ///
-    /// [google.cloud.compute.v1.securityPolicies.get]: <doc:SecurityPolicies/`get`(request:)>
+    /// [google.cloud.compute.v1.securityPolicies.get]: <doc:SecurityPoliciesClient/`get`(request:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -303,7 +303,7 @@
 
     /// Synthetic request message for the [getRule()][google.cloud.compute.v1.securityPolicies.getRule] method.
     ///
-    /// [google.cloud.compute.v1.securityPolicies.getRule]: <doc:SecurityPolicies/getRule(request:)>
+    /// [google.cloud.compute.v1.securityPolicies.getRule]: <doc:SecurityPoliciesClient/getRule(request:)>
     public struct GetRuleRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -345,7 +345,7 @@
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.securityPolicies.insert] method.
     ///
-    /// [google.cloud.compute.v1.securityPolicies.insert]: <doc:SecurityPolicies/insert(request:)>
+    /// [google.cloud.compute.v1.securityPolicies.insert]: <doc:SecurityPoliciesClient/insert(request:)>
     public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -372,7 +372,7 @@
 
       /// Synthetic request body field for the [insert()][google.cloud.compute.v1.securityPolicies.insert] method.
       ///
-      /// [google.cloud.compute.v1.securityPolicies.insert]: <doc:SecurityPolicies/insert(request:)>
+      /// [google.cloud.compute.v1.securityPolicies.insert]: <doc:SecurityPoliciesClient/insert(request:)>
       public var body: SecurityPolicy? = nil
 
       /// Initialize a new instance of `InsertRequest`.
@@ -404,7 +404,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.securityPolicies.list] method.
     ///
-    /// [google.cloud.compute.v1.securityPolicies.list]: <doc:SecurityPolicies/list(request:)>
+    /// [google.cloud.compute.v1.securityPolicies.list]: <doc:SecurityPoliciesClient/list(request:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -533,7 +533,7 @@
 
     /// Synthetic request message for the [listPreconfiguredExpressionSets()][google.cloud.compute.v1.securityPolicies.listPreconfiguredExpressionSets] method.
     ///
-    /// [google.cloud.compute.v1.securityPolicies.listPreconfiguredExpressionSets]: <doc:SecurityPolicies/listPreconfiguredExpressionSets(request:)>
+    /// [google.cloud.compute.v1.securityPolicies.listPreconfiguredExpressionSets]: <doc:SecurityPoliciesClient/listPreconfiguredExpressionSets(request:)>
     public struct ListPreconfiguredExpressionSetsRequest: Codable, Equatable, GoogleCloudWkt
         ._AnyPackable,
       Sendable
@@ -664,7 +664,7 @@
 
     /// Synthetic request message for the [patch()][google.cloud.compute.v1.securityPolicies.patch] method.
     ///
-    /// [google.cloud.compute.v1.securityPolicies.patch]: <doc:SecurityPolicies/patch(request:)>
+    /// [google.cloud.compute.v1.securityPolicies.patch]: <doc:SecurityPoliciesClient/patch(request:)>
     public struct PatchRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -694,7 +694,7 @@
 
       /// Synthetic request body field for the [patch()][google.cloud.compute.v1.securityPolicies.patch] method.
       ///
-      /// [google.cloud.compute.v1.securityPolicies.patch]: <doc:SecurityPolicies/patch(request:)>
+      /// [google.cloud.compute.v1.securityPolicies.patch]: <doc:SecurityPoliciesClient/patch(request:)>
       public var body: SecurityPolicy? = nil
 
       /// Initialize a new instance of `PatchRequest`.
@@ -726,7 +726,7 @@
 
     /// Synthetic request message for the [patchRule()][google.cloud.compute.v1.securityPolicies.patchRule] method.
     ///
-    /// [google.cloud.compute.v1.securityPolicies.patchRule]: <doc:SecurityPolicies/patchRule(request:)>
+    /// [google.cloud.compute.v1.securityPolicies.patchRule]: <doc:SecurityPoliciesClient/patchRule(request:)>
     public struct PatchRuleRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -747,7 +747,7 @@
 
       /// Synthetic request body field for the [patchRule()][google.cloud.compute.v1.securityPolicies.patchRule] method.
       ///
-      /// [google.cloud.compute.v1.securityPolicies.patchRule]: <doc:SecurityPolicies/patchRule(request:)>
+      /// [google.cloud.compute.v1.securityPolicies.patchRule]: <doc:SecurityPoliciesClient/patchRule(request:)>
       public var body: SecurityPolicyRule? = nil
 
       /// Initialize a new instance of `PatchRuleRequest`.
@@ -779,7 +779,7 @@
 
     /// Synthetic request message for the [removeRule()][google.cloud.compute.v1.securityPolicies.removeRule] method.
     ///
-    /// [google.cloud.compute.v1.securityPolicies.removeRule]: <doc:SecurityPolicies/removeRule(request:)>
+    /// [google.cloud.compute.v1.securityPolicies.removeRule]: <doc:SecurityPoliciesClient/removeRule(request:)>
     public struct RemoveRuleRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -821,7 +821,7 @@
 
     /// Synthetic request message for the [setLabels()][google.cloud.compute.v1.securityPolicies.setLabels] method.
     ///
-    /// [google.cloud.compute.v1.securityPolicies.setLabels]: <doc:SecurityPolicies/setLabels(request:)>
+    /// [google.cloud.compute.v1.securityPolicies.setLabels]: <doc:SecurityPoliciesClient/setLabels(request:)>
     public struct SetLabelsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -833,7 +833,7 @@
 
       /// Synthetic request body field for the [setLabels()][google.cloud.compute.v1.securityPolicies.setLabels] method.
       ///
-      /// [google.cloud.compute.v1.securityPolicies.setLabels]: <doc:SecurityPolicies/setLabels(request:)>
+      /// [google.cloud.compute.v1.securityPolicies.setLabels]: <doc:SecurityPoliciesClient/setLabels(request:)>
       public var body: GlobalSetLabelsRequest? = nil
 
       /// Initialize a new instance of `SetLabelsRequest`.

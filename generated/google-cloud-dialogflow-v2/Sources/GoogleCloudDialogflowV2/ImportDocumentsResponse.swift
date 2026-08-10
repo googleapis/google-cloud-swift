@@ -22,7 +22,7 @@
   /// Response message for
   /// [Documents.ImportDocuments][google.cloud.dialogflow.v2.Documents.ImportDocuments].
   ///
-  /// [google.cloud.dialogflow.v2.Documents.ImportDocuments]: <doc:Documents/importDocuments(request:)>
+  /// [google.cloud.dialogflow.v2.Documents.ImportDocuments]: <doc:DocumentsClient/importDocuments(request:)>
   public struct ImportDocumentsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

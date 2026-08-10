@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// The [DeleteAttribute][google.cloud.apihub.v1.ApiHub.DeleteAttribute] method's
 /// request.
 ///
-/// [google.cloud.apihub.v1.ApiHub.DeleteAttribute]: <doc:ApiHub/deleteAttribute(request:)>
+/// [google.cloud.apihub.v1.ApiHub.DeleteAttribute]: <doc:ApiHubClient/deleteAttribute(request:)>
 public struct DeleteAttributeRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

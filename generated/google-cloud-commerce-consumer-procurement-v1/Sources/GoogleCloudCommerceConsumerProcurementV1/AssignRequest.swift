@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [LicenseManagementService.Assign][google.cloud.commerce.consumer.procurement.v1.LicenseManagementService.Assign].
 ///
-/// [google.cloud.commerce.consumer.procurement.v1.LicenseManagementService.Assign]: <doc:LicenseManagementService/assign(request:)>
+/// [google.cloud.commerce.consumer.procurement.v1.LicenseManagementService.Assign]: <doc:LicenseManagementServiceClient/assign(request:)>
 public struct AssignRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Metadata for the google.longrunning.Operation returned by
 /// [UpdateAuthorizedView][google.bigtable.admin.v2.BigtableTableAdmin.UpdateAuthorizedView].
 ///
-/// [google.bigtable.admin.v2.BigtableTableAdmin.UpdateAuthorizedView]: <doc:BigtableTableAdmin/updateAuthorizedView(request:)>
+/// [google.bigtable.admin.v2.BigtableTableAdmin.UpdateAuthorizedView]: <doc:BigtableTableAdminClient/updateAuthorizedView(request:)>
 public struct UpdateAuthorizedViewMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

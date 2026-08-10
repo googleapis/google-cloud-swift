@@ -19,7 +19,7 @@ import GoogleCloudWkt
 
 /// Request for [GetInstance][google.cloud.redis.v1.CloudRedis.GetInstance].
 ///
-/// [google.cloud.redis.v1.CloudRedis.GetInstance]: <doc:CloudRedis/getInstance(request:)>
+/// [google.cloud.redis.v1.CloudRedis.GetInstance]: <doc:CloudRedisClient/getInstance(request:)>
 public struct GetInstanceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

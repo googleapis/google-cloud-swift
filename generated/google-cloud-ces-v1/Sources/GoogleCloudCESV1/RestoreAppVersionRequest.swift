@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [AgentService.RestoreAppVersion][google.cloud.ces.v1.AgentService.RestoreAppVersion]
 ///
-/// [google.cloud.ces.v1.AgentService.RestoreAppVersion]: <doc:AgentService/restoreAppVersion(request:)>
+/// [google.cloud.ces.v1.AgentService.RestoreAppVersion]: <doc:AgentServiceClient/restoreAppVersion(request:)>
 public struct RestoreAppVersionRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

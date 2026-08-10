@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [AgentService.ListGuardrails][google.cloud.ces.v1.AgentService.ListGuardrails].
 ///
-/// [google.cloud.ces.v1.AgentService.ListGuardrails]: <doc:AgentService/listGuardrails(request:)>
+/// [google.cloud.ces.v1.AgentService.ListGuardrails]: <doc:AgentServiceClient/listGuardrails(request:)>
 public struct ListGuardrailsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

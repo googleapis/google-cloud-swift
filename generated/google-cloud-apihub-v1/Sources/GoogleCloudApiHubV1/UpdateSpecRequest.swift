@@ -19,7 +19,7 @@ import GoogleCloudWkt
 
 /// The [UpdateSpec][google.cloud.apihub.v1.ApiHub.UpdateSpec] method's request.
 ///
-/// [google.cloud.apihub.v1.ApiHub.UpdateSpec]: <doc:ApiHub/updateSpec(request:)>
+/// [google.cloud.apihub.v1.ApiHub.UpdateSpec]: <doc:ApiHubClient/updateSpec(request:)>
 public struct UpdateSpecRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [KeyTrackingService.GetProtectedResourcesSummary][google.cloud.kms.inventory.v1.KeyTrackingService.GetProtectedResourcesSummary].
 ///
-/// [google.cloud.kms.inventory.v1.KeyTrackingService.GetProtectedResourcesSummary]: <doc:KeyTrackingService/getProtectedResourcesSummary(request:)>
+/// [google.cloud.kms.inventory.v1.KeyTrackingService.GetProtectedResourcesSummary]: <doc:KeyTrackingServiceClient/getProtectedResourcesSummary(request:)>
 public struct GetProtectedResourcesSummaryRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

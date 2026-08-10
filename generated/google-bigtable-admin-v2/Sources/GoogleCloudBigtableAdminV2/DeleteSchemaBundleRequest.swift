@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// The request for
 /// [DeleteSchemaBundle][google.bigtable.admin.v2.BigtableTableAdmin.DeleteSchemaBundle].
 ///
-/// [google.bigtable.admin.v2.BigtableTableAdmin.DeleteSchemaBundle]: <doc:BigtableTableAdmin/deleteSchemaBundle(request:)>
+/// [google.bigtable.admin.v2.BigtableTableAdmin.DeleteSchemaBundle]: <doc:BigtableTableAdminClient/deleteSchemaBundle(request:)>
 public struct DeleteSchemaBundleRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

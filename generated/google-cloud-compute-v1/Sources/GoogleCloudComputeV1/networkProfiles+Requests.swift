@@ -21,7 +21,7 @@
   extension NetworkProfilesClient {
     /// Synthetic request message for the [get()][google.cloud.compute.v1.networkProfiles.get] method.
     ///
-    /// [google.cloud.compute.v1.networkProfiles.get]: <doc:NetworkProfiles/`get`(request:)>
+    /// [google.cloud.compute.v1.networkProfiles.get]: <doc:NetworkProfilesClient/`get`(request:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -60,7 +60,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.networkProfiles.list] method.
     ///
-    /// [google.cloud.compute.v1.networkProfiles.list]: <doc:NetworkProfiles/list(request:)>
+    /// [google.cloud.compute.v1.networkProfiles.list]: <doc:NetworkProfilesClient/list(request:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {

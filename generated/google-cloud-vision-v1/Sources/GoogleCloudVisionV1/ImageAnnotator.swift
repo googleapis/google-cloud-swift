@@ -237,7 +237,7 @@ public class ImageAnnotatorClient: Clients.ImageAnnotatorProtocol {
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ImageAnnotator_GetOperation")
   func getOperation(

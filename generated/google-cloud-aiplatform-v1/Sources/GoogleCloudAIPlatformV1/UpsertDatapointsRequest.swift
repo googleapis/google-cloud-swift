@@ -21,7 +21,7 @@
   /// Request message for
   /// [IndexService.UpsertDatapoints][google.cloud.aiplatform.v1.IndexService.UpsertDatapoints]
   ///
-  /// [google.cloud.aiplatform.v1.IndexService.UpsertDatapoints]: <doc:IndexService/upsertDatapoints(request:)>
+  /// [google.cloud.aiplatform.v1.IndexService.UpsertDatapoints]: <doc:IndexServiceClient/upsertDatapoints(request:)>
   public struct UpsertDatapointsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

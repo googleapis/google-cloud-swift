@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [KeyManagementService.RawEncrypt][google.cloud.kms.v1.KeyManagementService.RawEncrypt].
 ///
-/// [google.cloud.kms.v1.KeyManagementService.RawEncrypt]: <doc:KeyManagementService/rawEncrypt(request:)>
+/// [google.cloud.kms.v1.KeyManagementService.RawEncrypt]: <doc:KeyManagementServiceClient/rawEncrypt(request:)>
 public struct RawEncryptResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
@@ -85,7 +85,7 @@ public struct RawEncryptResponse: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   /// but this field is still false, discard the response and perform a limited
   /// number of retries.
   ///
-  /// [google.cloud.kms.v1.KeyManagementService]: <doc:KeyManagementService>
+  /// [google.cloud.kms.v1.KeyManagementService]: <doc:KeyManagementServiceClient>
   /// [google.cloud.kms.v1.RawEncryptRequest.plaintext_crc32c]: <doc:RawEncryptRequest/plaintextCrc32C>
   public var verifiedPlaintextCrc32C: Swift.Bool = Swift.Bool()
 
@@ -103,7 +103,7 @@ public struct RawEncryptResponse: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   /// but this field is still false, discard the response and perform a limited
   /// number of retries.
   ///
-  /// [google.cloud.kms.v1.KeyManagementService]: <doc:KeyManagementService>
+  /// [google.cloud.kms.v1.KeyManagementService]: <doc:KeyManagementServiceClient>
   /// [google.cloud.kms.v1.RawEncryptRequest.additional_authenticated_data_crc32c]: <doc:RawEncryptRequest/additionalAuthenticatedDataCrc32C>
   public var verifiedAdditionalAuthenticatedDataCrc32C: Swift.Bool = Swift.Bool()
 
@@ -121,7 +121,7 @@ public struct RawEncryptResponse: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   /// but this field is still false, discard the response and perform a limited
   /// number of retries.
   ///
-  /// [google.cloud.kms.v1.KeyManagementService]: <doc:KeyManagementService>
+  /// [google.cloud.kms.v1.KeyManagementService]: <doc:KeyManagementServiceClient>
   /// [google.cloud.kms.v1.RawEncryptRequest.initialization_vector_crc32c]: <doc:RawEncryptRequest/initializationVectorCrc32C>
   public var verifiedInitializationVectorCrc32C: Swift.Bool = Swift.Bool()
 

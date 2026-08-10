@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [DeleteRuntimeProjectAttachment][google.cloud.apihub.v1.RuntimeProjectAttachmentService.DeleteRuntimeProjectAttachment]
 /// method's request.
 ///
-/// [google.cloud.apihub.v1.RuntimeProjectAttachmentService.DeleteRuntimeProjectAttachment]: <doc:RuntimeProjectAttachmentService/deleteRuntimeProjectAttachment(request:)>
+/// [google.cloud.apihub.v1.RuntimeProjectAttachmentService.DeleteRuntimeProjectAttachment]: <doc:RuntimeProjectAttachmentServiceClient/deleteRuntimeProjectAttachment(request:)>
 public struct DeleteRuntimeProjectAttachmentRequest: Codable, Equatable, GoogleCloudWkt
     ._AnyPackable,
   Sendable

@@ -19,7 +19,7 @@ import GoogleCloudWkt
 
 /// Request message for [CreateBucket][google.storage.v2.Storage.CreateBucket].
 ///
-/// [google.storage.v2.Storage.CreateBucket]: <doc:Storage/createBucket(request:)>
+/// [google.storage.v2.Storage.CreateBucket]: <doc:StorageClient/createBucket(request:)>
 public struct CreateBucketRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

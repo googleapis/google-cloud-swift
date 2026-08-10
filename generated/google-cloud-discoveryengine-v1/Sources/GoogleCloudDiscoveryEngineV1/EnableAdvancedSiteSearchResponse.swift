@@ -22,7 +22,7 @@
   /// [SiteSearchEngineService.EnableAdvancedSiteSearch][google.cloud.discoveryengine.v1.SiteSearchEngineService.EnableAdvancedSiteSearch]
   /// method.
   ///
-  /// [google.cloud.discoveryengine.v1.SiteSearchEngineService.EnableAdvancedSiteSearch]: <doc:SiteSearchEngineService/enableAdvancedSiteSearch(request:)>
+  /// [google.cloud.discoveryengine.v1.SiteSearchEngineService.EnableAdvancedSiteSearch]: <doc:SiteSearchEngineServiceClient/enableAdvancedSiteSearch(request:)>
   public struct EnableAdvancedSiteSearchResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

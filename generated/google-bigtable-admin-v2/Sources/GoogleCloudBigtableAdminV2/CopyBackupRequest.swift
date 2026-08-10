@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// The request for
 /// [CopyBackup][google.bigtable.admin.v2.BigtableTableAdmin.CopyBackup].
 ///
-/// [google.bigtable.admin.v2.BigtableTableAdmin.CopyBackup]: <doc:BigtableTableAdmin/copyBackup(request:)>
+/// [google.bigtable.admin.v2.BigtableTableAdmin.CopyBackup]: <doc:BigtableTableAdminClient/copyBackup(request:)>
 public struct CopyBackupRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

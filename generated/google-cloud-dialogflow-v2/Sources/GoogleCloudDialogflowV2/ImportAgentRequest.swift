@@ -21,7 +21,7 @@
   /// The request message for
   /// [Agents.ImportAgent][google.cloud.dialogflow.v2.Agents.ImportAgent].
   ///
-  /// [google.cloud.dialogflow.v2.Agents.ImportAgent]: <doc:Agents/importAgent(request:)>
+  /// [google.cloud.dialogflow.v2.Agents.ImportAgent]: <doc:AgentsClient/importAgent(request:)>
   public struct ImportAgentRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

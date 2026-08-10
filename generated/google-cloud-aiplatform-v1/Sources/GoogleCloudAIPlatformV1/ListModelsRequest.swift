@@ -21,7 +21,7 @@
   /// Request message for
   /// [ModelService.ListModels][google.cloud.aiplatform.v1.ModelService.ListModels].
   ///
-  /// [google.cloud.aiplatform.v1.ModelService.ListModels]: <doc:ModelService/listModels(request:)>
+  /// [google.cloud.aiplatform.v1.ModelService.ListModels]: <doc:ModelServiceClient/listModels(request:)>
   public struct ListModelsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {
@@ -63,7 +63,7 @@
     /// call.
     ///
     /// [google.cloud.aiplatform.v1.ListModelsResponse.next_page_token]: <doc:ListModelsResponse/nextPageToken>
-    /// [google.cloud.aiplatform.v1.ModelService.ListModels]: <doc:ModelService/listModels(request:)>
+    /// [google.cloud.aiplatform.v1.ModelService.ListModels]: <doc:ModelServiceClient/listModels(request:)>
     public var pageToken: Swift.String = Swift.String()
 
     /// Mask specifying which fields to read.

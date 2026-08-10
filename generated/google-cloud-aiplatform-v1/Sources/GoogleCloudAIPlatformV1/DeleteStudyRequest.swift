@@ -21,7 +21,7 @@
   /// Request message for
   /// [VizierService.DeleteStudy][google.cloud.aiplatform.v1.VizierService.DeleteStudy].
   ///
-  /// [google.cloud.aiplatform.v1.VizierService.DeleteStudy]: <doc:VizierService/deleteStudy(request:)>
+  /// [google.cloud.aiplatform.v1.VizierService.DeleteStudy]: <doc:VizierServiceClient/deleteStudy(request:)>
   public struct DeleteStudyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

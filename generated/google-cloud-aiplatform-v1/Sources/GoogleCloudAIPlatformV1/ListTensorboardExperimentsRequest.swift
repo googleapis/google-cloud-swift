@@ -21,7 +21,7 @@
   /// Request message for
   /// [TensorboardService.ListTensorboardExperiments][google.cloud.aiplatform.v1.TensorboardService.ListTensorboardExperiments].
   ///
-  /// [google.cloud.aiplatform.v1.TensorboardService.ListTensorboardExperiments]: <doc:TensorboardService/listTensorboardExperiments(request:)>
+  /// [google.cloud.aiplatform.v1.TensorboardService.ListTensorboardExperiments]: <doc:TensorboardServiceClient/listTensorboardExperiments(request:)>
   public struct ListTensorboardExperimentsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {
@@ -47,7 +47,7 @@
     /// [TensorboardService.ListTensorboardExperiments][google.cloud.aiplatform.v1.TensorboardService.ListTensorboardExperiments]
     /// must match the call that provided the page token.
     ///
-    /// [google.cloud.aiplatform.v1.TensorboardService.ListTensorboardExperiments]: <doc:TensorboardService/listTensorboardExperiments(request:)>
+    /// [google.cloud.aiplatform.v1.TensorboardService.ListTensorboardExperiments]: <doc:TensorboardServiceClient/listTensorboardExperiments(request:)>
     public var pageToken: Swift.String = Swift.String()
 
     /// Field to use to sort the list.

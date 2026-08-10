@@ -77,7 +77,7 @@
     /// [SearchService.Search][google.cloud.discoveryengine.v1.SearchService.Search]
     /// instead with required OAuth and IAM checks to provide better data security.
     ///
-    /// [google.cloud.discoveryengine.v1.SearchService.Search]: <doc:SearchService/search(request:)>
+    /// [google.cloud.discoveryengine.v1.SearchService.Search]: <doc:SearchServiceClient/search(request:)>
     ///
     /// @Snippet(path: "SearchService_SearchLite")
     public func searchLite(
@@ -100,7 +100,7 @@
     /// [SearchService.Search][google.cloud.discoveryengine.v1.SearchService.Search]
     /// instead with required OAuth and IAM checks to provide better data security.
     ///
-    /// [google.cloud.discoveryengine.v1.SearchService.Search]: <doc:SearchService/search(request:)>
+    /// [google.cloud.discoveryengine.v1.SearchService.Search]: <doc:SearchServiceClient/search(request:)>
     ///
     /// @Snippet(path: "SearchService_SearchLite")
     public func searchLite(
@@ -117,7 +117,7 @@
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
     ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "SearchService_ListOperations")
     public func listOperations(
@@ -128,7 +128,7 @@
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
     ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "SearchService_ListOperations")
     public func listOperations(
@@ -145,7 +145,7 @@
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
     ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "SearchService_GetOperation")
     func getOperation(
@@ -156,7 +156,7 @@
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
     ///
-    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "SearchService_CancelOperation")
     public func cancelOperation(

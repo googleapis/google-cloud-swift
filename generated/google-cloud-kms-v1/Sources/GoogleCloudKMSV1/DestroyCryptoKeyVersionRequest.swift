@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [KeyManagementService.DestroyCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.DestroyCryptoKeyVersion].
 ///
-/// [google.cloud.kms.v1.KeyManagementService.DestroyCryptoKeyVersion]: <doc:KeyManagementService/destroyCryptoKeyVersion(request:)>
+/// [google.cloud.kms.v1.KeyManagementService.DestroyCryptoKeyVersion]: <doc:KeyManagementServiceClient/destroyCryptoKeyVersion(request:)>
 public struct DestroyCryptoKeyVersionRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

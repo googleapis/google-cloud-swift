@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [AgentService.ListApps][google.cloud.ces.v1.AgentService.ListApps].
 ///
-/// [google.cloud.ces.v1.AgentService.ListApps]: <doc:AgentService/listApps(request:)>
+/// [google.cloud.ces.v1.AgentService.ListApps]: <doc:AgentServiceClient/listApps(request:)>
 public struct ListAppsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

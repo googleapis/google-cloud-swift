@@ -67,7 +67,7 @@ public struct Settings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// Router](https://cloud.google.com/logging/docs/routing/managed-encryption)
   /// for more information.
   ///
-  /// [google.logging.v2.ConfigServiceV2.GetSettings]: <doc:ConfigServiceV2/getSettings(request:)>
+  /// [google.logging.v2.ConfigServiceV2.GetSettings]: <doc:ConfigServiceV2Client/getSettings(request:)>
   public var kmsServiceAccountId: Swift.String = Swift.String()
 
   /// Optional. The Cloud region that will be used for _Default and _Required log

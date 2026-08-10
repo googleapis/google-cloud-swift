@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [KeyManagementService.CreateImportJob][google.cloud.kms.v1.KeyManagementService.CreateImportJob].
 ///
-/// [google.cloud.kms.v1.KeyManagementService.CreateImportJob]: <doc:KeyManagementService/createImportJob(request:)>
+/// [google.cloud.kms.v1.KeyManagementService.CreateImportJob]: <doc:KeyManagementServiceClient/createImportJob(request:)>
 public struct CreateImportJobRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

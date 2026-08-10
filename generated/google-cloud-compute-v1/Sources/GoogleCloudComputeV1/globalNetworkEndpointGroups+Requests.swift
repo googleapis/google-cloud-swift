@@ -21,7 +21,7 @@
   extension GlobalNetworkEndpointGroupsClient {
     /// Synthetic request message for the [attachNetworkEndpoints()][google.cloud.compute.v1.globalNetworkEndpointGroups.attachNetworkEndpoints] method.
     ///
-    /// [google.cloud.compute.v1.globalNetworkEndpointGroups.attachNetworkEndpoints]: <doc:GlobalNetworkEndpointGroups/attachNetworkEndpoints(request:)>
+    /// [google.cloud.compute.v1.globalNetworkEndpointGroups.attachNetworkEndpoints]: <doc:GlobalNetworkEndpointGroupsClient/attachNetworkEndpoints(request:)>
     public struct AttachNetworkEndpointsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -49,7 +49,7 @@
 
       /// Synthetic request body field for the [attachNetworkEndpoints()][google.cloud.compute.v1.globalNetworkEndpointGroups.attachNetworkEndpoints] method.
       ///
-      /// [google.cloud.compute.v1.globalNetworkEndpointGroups.attachNetworkEndpoints]: <doc:GlobalNetworkEndpointGroups/attachNetworkEndpoints(request:)>
+      /// [google.cloud.compute.v1.globalNetworkEndpointGroups.attachNetworkEndpoints]: <doc:GlobalNetworkEndpointGroupsClient/attachNetworkEndpoints(request:)>
       public var body: GlobalNetworkEndpointGroupsAttachEndpointsRequest? = nil
 
       /// Initialize a new instance of `AttachNetworkEndpointsRequest`.
@@ -82,7 +82,7 @@
 
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.globalNetworkEndpointGroups.delete] method.
     ///
-    /// [google.cloud.compute.v1.globalNetworkEndpointGroups.delete]: <doc:GlobalNetworkEndpointGroups/delete(request:)>
+    /// [google.cloud.compute.v1.globalNetworkEndpointGroups.delete]: <doc:GlobalNetworkEndpointGroupsClient/delete(request:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -138,7 +138,7 @@
 
     /// Synthetic request message for the [detachNetworkEndpoints()][google.cloud.compute.v1.globalNetworkEndpointGroups.detachNetworkEndpoints] method.
     ///
-    /// [google.cloud.compute.v1.globalNetworkEndpointGroups.detachNetworkEndpoints]: <doc:GlobalNetworkEndpointGroups/detachNetworkEndpoints(request:)>
+    /// [google.cloud.compute.v1.globalNetworkEndpointGroups.detachNetworkEndpoints]: <doc:GlobalNetworkEndpointGroupsClient/detachNetworkEndpoints(request:)>
     public struct DetachNetworkEndpointsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -166,7 +166,7 @@
 
       /// Synthetic request body field for the [detachNetworkEndpoints()][google.cloud.compute.v1.globalNetworkEndpointGroups.detachNetworkEndpoints] method.
       ///
-      /// [google.cloud.compute.v1.globalNetworkEndpointGroups.detachNetworkEndpoints]: <doc:GlobalNetworkEndpointGroups/detachNetworkEndpoints(request:)>
+      /// [google.cloud.compute.v1.globalNetworkEndpointGroups.detachNetworkEndpoints]: <doc:GlobalNetworkEndpointGroupsClient/detachNetworkEndpoints(request:)>
       public var body: GlobalNetworkEndpointGroupsDetachEndpointsRequest? = nil
 
       /// Initialize a new instance of `DetachNetworkEndpointsRequest`.
@@ -199,7 +199,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.globalNetworkEndpointGroups.get] method.
     ///
-    /// [google.cloud.compute.v1.globalNetworkEndpointGroups.get]: <doc:GlobalNetworkEndpointGroups/`get`(request:)>
+    /// [google.cloud.compute.v1.globalNetworkEndpointGroups.get]: <doc:GlobalNetworkEndpointGroupsClient/`get`(request:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -238,7 +238,7 @@
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.globalNetworkEndpointGroups.insert] method.
     ///
-    /// [google.cloud.compute.v1.globalNetworkEndpointGroups.insert]: <doc:GlobalNetworkEndpointGroups/insert(request:)>
+    /// [google.cloud.compute.v1.globalNetworkEndpointGroups.insert]: <doc:GlobalNetworkEndpointGroupsClient/insert(request:)>
     public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -262,7 +262,7 @@
 
       /// Synthetic request body field for the [insert()][google.cloud.compute.v1.globalNetworkEndpointGroups.insert] method.
       ///
-      /// [google.cloud.compute.v1.globalNetworkEndpointGroups.insert]: <doc:GlobalNetworkEndpointGroups/insert(request:)>
+      /// [google.cloud.compute.v1.globalNetworkEndpointGroups.insert]: <doc:GlobalNetworkEndpointGroupsClient/insert(request:)>
       public var body: NetworkEndpointGroup? = nil
 
       /// Initialize a new instance of `InsertRequest`.
@@ -295,7 +295,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.globalNetworkEndpointGroups.list] method.
     ///
-    /// [google.cloud.compute.v1.globalNetworkEndpointGroups.list]: <doc:GlobalNetworkEndpointGroups/list(request:)>
+    /// [google.cloud.compute.v1.globalNetworkEndpointGroups.list]: <doc:GlobalNetworkEndpointGroupsClient/list(request:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -424,7 +424,7 @@
 
     /// Synthetic request message for the [listNetworkEndpoints()][google.cloud.compute.v1.globalNetworkEndpointGroups.listNetworkEndpoints] method.
     ///
-    /// [google.cloud.compute.v1.globalNetworkEndpointGroups.listNetworkEndpoints]: <doc:GlobalNetworkEndpointGroups/listNetworkEndpoints(request:)>
+    /// [google.cloud.compute.v1.globalNetworkEndpointGroups.listNetworkEndpoints]: <doc:GlobalNetworkEndpointGroupsClient/listNetworkEndpoints(request:)>
     public struct ListNetworkEndpointsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {

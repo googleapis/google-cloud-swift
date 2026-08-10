@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// The request for
 /// [ConnectionService.ListConnections][google.cloud.bigquery.connection.v1.ConnectionService.ListConnections].
 ///
-/// [google.cloud.bigquery.connection.v1.ConnectionService.ListConnections]: <doc:ConnectionService/listConnections(request:)>
+/// [google.cloud.bigquery.connection.v1.ConnectionService.ListConnections]: <doc:ConnectionServiceClient/listConnections(request:)>
 public struct ListConnectionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

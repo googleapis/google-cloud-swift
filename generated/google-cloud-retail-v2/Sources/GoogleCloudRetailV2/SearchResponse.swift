@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [SearchService.Search][google.cloud.retail.v2.SearchService.Search] method.
 ///
-/// [google.cloud.retail.v2.SearchService.Search]: <doc:SearchService/search(request:)>
+/// [google.cloud.retail.v2.SearchService.Search]: <doc:SearchServiceClient/search(request:)>
 public struct SearchResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

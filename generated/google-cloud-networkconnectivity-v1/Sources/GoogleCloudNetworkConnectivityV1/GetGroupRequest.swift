@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// The request for
 /// [HubService.GetGroup][google.cloud.networkconnectivity.v1.HubService.GetGroup].
 ///
-/// [google.cloud.networkconnectivity.v1.HubService.GetGroup]: <doc:HubService/getGroup(request:)>
+/// [google.cloud.networkconnectivity.v1.HubService.GetGroup]: <doc:HubServiceClient/getGroup(request:)>
 public struct GetGroupRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

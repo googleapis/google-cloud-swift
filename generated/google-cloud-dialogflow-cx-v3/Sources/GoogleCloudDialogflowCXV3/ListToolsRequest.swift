@@ -21,7 +21,7 @@
   /// The request message for
   /// [Tools.ListTools][google.cloud.dialogflow.cx.v3.Tools.ListTools].
   ///
-  /// [google.cloud.dialogflow.cx.v3.Tools.ListTools]: <doc:Tools/listTools(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Tools.ListTools]: <doc:ToolsClient/listTools(request:)>
   public struct ListToolsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

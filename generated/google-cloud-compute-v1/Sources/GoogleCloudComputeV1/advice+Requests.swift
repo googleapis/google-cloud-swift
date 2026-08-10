@@ -21,7 +21,7 @@
   extension AdviceClient {
     /// Synthetic request message for the [calendarMode()][google.cloud.compute.v1.advice.calendarMode] method.
     ///
-    /// [google.cloud.compute.v1.advice.calendarMode]: <doc:Advice/calendarMode(request:)>
+    /// [google.cloud.compute.v1.advice.calendarMode]: <doc:AdviceClient/calendarMode(request:)>
     public struct CalendarModeRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -33,7 +33,7 @@
 
       /// Synthetic request body field for the [calendarMode()][google.cloud.compute.v1.advice.calendarMode] method.
       ///
-      /// [google.cloud.compute.v1.advice.calendarMode]: <doc:Advice/calendarMode(request:)>
+      /// [google.cloud.compute.v1.advice.calendarMode]: <doc:AdviceClient/calendarMode(request:)>
       public var body: CalendarModeAdviceRequest? = nil
 
       /// Initialize a new instance of `CalendarModeRequest`.

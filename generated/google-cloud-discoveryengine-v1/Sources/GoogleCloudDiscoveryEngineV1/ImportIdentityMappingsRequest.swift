@@ -21,7 +21,7 @@
   /// Request message for
   /// [IdentityMappingStoreService.ImportIdentityMappings][google.cloud.discoveryengine.v1.IdentityMappingStoreService.ImportIdentityMappings]
   ///
-  /// [google.cloud.discoveryengine.v1.IdentityMappingStoreService.ImportIdentityMappings]: <doc:IdentityMappingStoreService/importIdentityMappings(request:)>
+  /// [google.cloud.discoveryengine.v1.IdentityMappingStoreService.ImportIdentityMappings]: <doc:IdentityMappingStoreServiceClient/importIdentityMappings(request:)>
   public struct ImportIdentityMappingsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [KeyTrackingService.SearchProtectedResources][google.cloud.kms.inventory.v1.KeyTrackingService.SearchProtectedResources].
 ///
-/// [google.cloud.kms.inventory.v1.KeyTrackingService.SearchProtectedResources]: <doc:KeyTrackingService/searchProtectedResources(request:)>
+/// [google.cloud.kms.inventory.v1.KeyTrackingService.SearchProtectedResources]: <doc:KeyTrackingServiceClient/searchProtectedResources(request:)>
 public struct SearchProtectedResourcesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

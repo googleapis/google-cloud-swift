@@ -21,7 +21,7 @@
   /// The request message for
   /// [SecuritySettingsService.UpdateSecuritySettings][google.cloud.dialogflow.cx.v3.SecuritySettingsService.UpdateSecuritySettings].
   ///
-  /// [google.cloud.dialogflow.cx.v3.SecuritySettingsService.UpdateSecuritySettings]: <doc:SecuritySettingsService/updateSecuritySettings(request:)>
+  /// [google.cloud.dialogflow.cx.v3.SecuritySettingsService.UpdateSecuritySettings]: <doc:SecuritySettingsServiceClient/updateSecuritySettings(request:)>
   public struct UpdateSecuritySettingsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

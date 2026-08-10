@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [EkmService.VerifyConnectivity][google.cloud.kms.v1.EkmService.VerifyConnectivity].
 ///
-/// [google.cloud.kms.v1.EkmService.VerifyConnectivity]: <doc:EkmService/verifyConnectivity(request:)>
+/// [google.cloud.kms.v1.EkmService.VerifyConnectivity]: <doc:EkmServiceClient/verifyConnectivity(request:)>
 public struct VerifyConnectivityRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

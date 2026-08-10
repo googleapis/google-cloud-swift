@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [RestoreObject][google.storage.v2.Storage.RestoreObject].
 /// `bucket`, `object`, and `generation` **must** be set.
 ///
-/// [google.storage.v2.Storage.RestoreObject]: <doc:Storage/restoreObject(request:)>
+/// [google.storage.v2.Storage.RestoreObject]: <doc:StorageClient/restoreObject(request:)>
 public struct RestoreObjectRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

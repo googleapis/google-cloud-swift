@@ -145,7 +145,7 @@ public class AutoscalingPolicyServiceClient: Clients.AutoscalingPolicyServicePro
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "AutoscalingPolicyService_ListOperations")
   public func listOperations(
@@ -156,7 +156,7 @@ public class AutoscalingPolicyServiceClient: Clients.AutoscalingPolicyServicePro
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "AutoscalingPolicyService_ListOperations")
   public func listOperations(
@@ -173,7 +173,7 @@ public class AutoscalingPolicyServiceClient: Clients.AutoscalingPolicyServicePro
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "AutoscalingPolicyService_GetOperation")
   func getOperation(
@@ -184,7 +184,7 @@ public class AutoscalingPolicyServiceClient: Clients.AutoscalingPolicyServicePro
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "AutoscalingPolicyService_DeleteOperation")
   public func deleteOperation(
@@ -195,7 +195,7 @@ public class AutoscalingPolicyServiceClient: Clients.AutoscalingPolicyServicePro
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "AutoscalingPolicyService_CancelOperation")
   public func cancelOperation(

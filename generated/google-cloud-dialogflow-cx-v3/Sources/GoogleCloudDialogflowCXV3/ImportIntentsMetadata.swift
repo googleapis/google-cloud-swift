@@ -22,7 +22,7 @@
   /// [Intents.ImportIntents][google.cloud.dialogflow.cx.v3.Intents.ImportIntents]
   /// long running operation.
   ///
-  /// [google.cloud.dialogflow.cx.v3.Intents.ImportIntents]: <doc:Intents/importIntents(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Intents.ImportIntents]: <doc:IntentsClient/importIntents(request:)>
   public struct ImportIntentsMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

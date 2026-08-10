@@ -23,7 +23,7 @@
   /// [CompletionService.PurgeCompletionSuggestions][google.cloud.discoveryengine.v1.CompletionService.PurgeCompletionSuggestions]
   /// method.
   ///
-  /// [google.cloud.discoveryengine.v1.CompletionService.PurgeCompletionSuggestions]: <doc:CompletionService/purgeCompletionSuggestions(request:)>
+  /// [google.cloud.discoveryengine.v1.CompletionService.PurgeCompletionSuggestions]: <doc:CompletionServiceClient/purgeCompletionSuggestions(request:)>
   public struct PurgeCompletionSuggestionsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

@@ -21,7 +21,7 @@
   /// The request message for
   /// [Environments.ListContinuousTestResults][google.cloud.dialogflow.cx.v3.Environments.ListContinuousTestResults].
   ///
-  /// [google.cloud.dialogflow.cx.v3.Environments.ListContinuousTestResults]: <doc:Environments/listContinuousTestResults(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Environments.ListContinuousTestResults]: <doc:EnvironmentsClient/listContinuousTestResults(request:)>
   public struct ListContinuousTestResultsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [SecretManagerService.DeleteSecret][google.cloud.secretmanager.v1.SecretManagerService.DeleteSecret].
 ///
-/// [google.cloud.secretmanager.v1.SecretManagerService.DeleteSecret]: <doc:SecretManagerService/deleteSecret(request:)>
+/// [google.cloud.secretmanager.v1.SecretManagerService.DeleteSecret]: <doc:SecretManagerServiceClient/deleteSecret(request:)>
 public struct DeleteSecretRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

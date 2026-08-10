@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// Response for
 /// [ListRuntimeVersions][google.cloud.tpu.v2.Tpu.ListRuntimeVersions].
 ///
-/// [google.cloud.tpu.v2.Tpu.ListRuntimeVersions]: <doc:Tpu/listRuntimeVersions(request:)>
+/// [google.cloud.tpu.v2.Tpu.ListRuntimeVersions]: <doc:TpuClient/listRuntimeVersions(request:)>
 public struct ListRuntimeVersionsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

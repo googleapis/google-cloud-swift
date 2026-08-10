@@ -19,7 +19,7 @@ import GoogleCloudWkt
 
 /// Request for [ListInstances][google.cloud.redis.v1.CloudRedis.ListInstances].
 ///
-/// [google.cloud.redis.v1.CloudRedis.ListInstances]: <doc:CloudRedis/listInstances(request:)>
+/// [google.cloud.redis.v1.CloudRedis.ListInstances]: <doc:CloudRedisClient/listInstances(request:)>
 public struct ListInstancesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
@@ -43,7 +43,7 @@ public struct ListInstancesRequest: Codable, Equatable, GoogleCloudWkt._AnyPacka
   /// [ListInstances][google.cloud.redis.v1.CloudRedis.ListInstances] request, if
   /// any.
   ///
-  /// [google.cloud.redis.v1.CloudRedis.ListInstances]: <doc:CloudRedis/listInstances(request:)>
+  /// [google.cloud.redis.v1.CloudRedis.ListInstances]: <doc:CloudRedisClient/listInstances(request:)>
   public var pageToken: Swift.String = Swift.String()
 
   /// Initialize a new instance of `ListInstancesRequest`.

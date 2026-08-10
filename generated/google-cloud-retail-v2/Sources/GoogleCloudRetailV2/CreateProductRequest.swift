@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [ProductService.CreateProduct][google.cloud.retail.v2.ProductService.CreateProduct]
 /// method.
 ///
-/// [google.cloud.retail.v2.ProductService.CreateProduct]: <doc:ProductService/createProduct(request:)>
+/// [google.cloud.retail.v2.ProductService.CreateProduct]: <doc:ProductServiceClient/createProduct(request:)>
 public struct CreateProductRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

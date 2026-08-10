@@ -22,7 +22,7 @@
   /// Response message for
   /// [JobService.ListHyperparameterTuningJobs][google.cloud.aiplatform.v1.JobService.ListHyperparameterTuningJobs]
   ///
-  /// [google.cloud.aiplatform.v1.JobService.ListHyperparameterTuningJobs]: <doc:JobService/listHyperparameterTuningJobs(request:)>
+  /// [google.cloud.aiplatform.v1.JobService.ListHyperparameterTuningJobs]: <doc:JobServiceClient/listHyperparameterTuningJobs(request:)>
   public struct ListHyperparameterTuningJobsResponse: Codable, Equatable, GoogleCloudWkt
       ._AnyPackable,
     GoogleCloudGax._PaginatedResponse,

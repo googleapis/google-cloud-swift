@@ -21,7 +21,7 @@ import GoogleIAMV1
 /// A response message for
 /// [AssetService.BatchGetEffectiveIamPolicies][google.cloud.asset.v1.AssetService.BatchGetEffectiveIamPolicies].
 ///
-/// [google.cloud.asset.v1.AssetService.BatchGetEffectiveIamPolicies]: <doc:AssetService/batchGetEffectiveIamPolicies(request:)>
+/// [google.cloud.asset.v1.AssetService.BatchGetEffectiveIamPolicies]: <doc:AssetServiceClient/batchGetEffectiveIamPolicies(request:)>
 public struct BatchGetEffectiveIamPoliciesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

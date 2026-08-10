@@ -22,7 +22,7 @@
   /// [DataStoreService.CreateDataStore][google.cloud.discoveryengine.v1.DataStoreService.CreateDataStore]
   /// method.
   ///
-  /// [google.cloud.discoveryengine.v1.DataStoreService.CreateDataStore]: <doc:DataStoreService/createDataStore(request:)>
+  /// [google.cloud.discoveryengine.v1.DataStoreService.CreateDataStore]: <doc:DataStoreServiceClient/createDataStore(request:)>
   public struct CreateDataStoreRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

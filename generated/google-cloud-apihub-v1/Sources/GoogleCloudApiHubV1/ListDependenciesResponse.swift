@@ -22,7 +22,7 @@ import GoogleCloudWkt
 /// [ListDependencies][google.cloud.apihub.v1.ApiHubDependencies.ListDependencies]
 /// method's response.
 ///
-/// [google.cloud.apihub.v1.ApiHubDependencies.ListDependencies]: <doc:ApiHubDependencies/listDependencies(request:)>
+/// [google.cloud.apihub.v1.ApiHubDependencies.ListDependencies]: <doc:ApiHubDependenciesClient/listDependencies(request:)>
 public struct ListDependenciesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

@@ -121,7 +121,7 @@ public class CloudSchedulerClient: Clients.CloudSchedulerProtocol {
   /// be in [Job.State.ENABLED][google.cloud.scheduler.v1.Job.State.ENABLED] to
   /// be paused.
   ///
-  /// [google.cloud.scheduler.v1.CloudScheduler.ResumeJob]: <doc:CloudScheduler/resumeJob(request:)>
+  /// [google.cloud.scheduler.v1.CloudScheduler.ResumeJob]: <doc:CloudSchedulerClient/resumeJob(request:)>
   /// [google.cloud.scheduler.v1.Job.State.ENABLED]: <doc:Job/State/enabled>
   /// [google.cloud.scheduler.v1.Job.State.PAUSED]: <doc:Job/State/paused>
   /// [google.cloud.scheduler.v1.Job.state]: <doc:Job/state>

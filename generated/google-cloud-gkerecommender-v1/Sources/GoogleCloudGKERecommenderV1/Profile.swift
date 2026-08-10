@@ -25,7 +25,7 @@ public struct Profile: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// [GkeInferenceQuickstart.FetchProfiles][google.cloud.gkerecommender.v1.GkeInferenceQuickstart.FetchProfiles]
   /// to find valid configurations.
   ///
-  /// [google.cloud.gkerecommender.v1.GkeInferenceQuickstart.FetchProfiles]: <doc:GkeInferenceQuickstart/fetchProfiles(request:)>
+  /// [google.cloud.gkerecommender.v1.GkeInferenceQuickstart.FetchProfiles]: <doc:GkeInferenceQuickstartClient/fetchProfiles(request:)>
   public var modelServerInfo: ModelServerInfo? = nil
 
   /// Output only. The accelerator type. Expected format: `nvidia-h100-80gb`.

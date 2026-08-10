@@ -22,7 +22,7 @@
   /// Response message for
   /// [TensorboardService.ListTensorboardTimeSeries][google.cloud.aiplatform.v1.TensorboardService.ListTensorboardTimeSeries].
   ///
-  /// [google.cloud.aiplatform.v1.TensorboardService.ListTensorboardTimeSeries]: <doc:TensorboardService/listTensorboardTimeSeries(request:)>
+  /// [google.cloud.aiplatform.v1.TensorboardService.ListTensorboardTimeSeries]: <doc:TensorboardServiceClient/listTensorboardTimeSeries(request:)>
   public struct ListTensorboardTimeSeriesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable

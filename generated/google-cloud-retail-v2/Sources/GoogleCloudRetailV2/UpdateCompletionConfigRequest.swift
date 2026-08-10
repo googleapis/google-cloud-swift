@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [CatalogService.UpdateCompletionConfig][google.cloud.retail.v2.CatalogService.UpdateCompletionConfig]
 /// method.
 ///
-/// [google.cloud.retail.v2.CatalogService.UpdateCompletionConfig]: <doc:CatalogService/updateCompletionConfig(request:)>
+/// [google.cloud.retail.v2.CatalogService.UpdateCompletionConfig]: <doc:CatalogServiceClient/updateCompletionConfig(request:)>
 public struct UpdateCompletionConfigRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

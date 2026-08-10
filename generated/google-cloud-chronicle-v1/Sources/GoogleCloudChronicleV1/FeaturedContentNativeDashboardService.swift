@@ -87,7 +87,7 @@ public class FeaturedContentNativeDashboardServiceClient: Clients
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "FeaturedContentNativeDashboardService_ListOperations")
   public func listOperations(
@@ -98,7 +98,7 @@ public class FeaturedContentNativeDashboardServiceClient: Clients
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "FeaturedContentNativeDashboardService_ListOperations")
   public func listOperations(
@@ -115,7 +115,7 @@ public class FeaturedContentNativeDashboardServiceClient: Clients
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "FeaturedContentNativeDashboardService_GetOperation")
   func getOperation(
@@ -126,7 +126,7 @@ public class FeaturedContentNativeDashboardServiceClient: Clients
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "FeaturedContentNativeDashboardService_DeleteOperation")
   public func deleteOperation(
@@ -137,7 +137,7 @@ public class FeaturedContentNativeDashboardServiceClient: Clients
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "FeaturedContentNativeDashboardService_CancelOperation")
   public func cancelOperation(

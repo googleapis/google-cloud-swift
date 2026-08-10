@@ -21,7 +21,7 @@
   /// Request message for
   /// [EndpointService.CreateEndpoint][google.cloud.aiplatform.v1.EndpointService.CreateEndpoint].
   ///
-  /// [google.cloud.aiplatform.v1.EndpointService.CreateEndpoint]: <doc:EndpointService/createEndpoint(request:)>
+  /// [google.cloud.aiplatform.v1.EndpointService.CreateEndpoint]: <doc:EndpointServiceClient/createEndpoint(request:)>
   public struct CreateEndpointRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

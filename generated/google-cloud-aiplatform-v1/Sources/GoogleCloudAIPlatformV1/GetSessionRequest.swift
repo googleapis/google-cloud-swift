@@ -21,7 +21,7 @@
   /// Request message for
   /// [SessionService.GetSession][google.cloud.aiplatform.v1.SessionService.GetSession].
   ///
-  /// [google.cloud.aiplatform.v1.SessionService.GetSession]: <doc:SessionService/getSession(request:)>
+  /// [google.cloud.aiplatform.v1.SessionService.GetSession]: <doc:SessionServiceClient/getSession(request:)>
   public struct GetSessionRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

@@ -670,7 +670,7 @@ public class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol {
   /// Router](https://cloud.google.com/logging/docs/routing/managed-encryption)
   /// for more information.
   ///
-  /// [google.logging.v2.ConfigServiceV2.UpdateCmekSettings]: <doc:ConfigServiceV2/updateCmekSettings(request:)>
+  /// [google.logging.v2.ConfigServiceV2.UpdateCmekSettings]: <doc:ConfigServiceV2Client/updateCmekSettings(request:)>
   ///
   /// @Snippet(path: "ConfigServiceV2_UpdateCmekSettings")
   public func updateCmekSettings(
@@ -714,7 +714,7 @@ public class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol {
   /// Router](https://cloud.google.com/logging/docs/routing/managed-encryption)
   /// for more information.
   ///
-  /// [google.logging.v2.ConfigServiceV2.UpdateSettings]: <doc:ConfigServiceV2/updateSettings(request:)>
+  /// [google.logging.v2.ConfigServiceV2.UpdateSettings]: <doc:ConfigServiceV2Client/updateSettings(request:)>
   ///
   /// @Snippet(path: "ConfigServiceV2_UpdateSettings")
   public func updateSettings(
@@ -794,7 +794,7 @@ public class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol {
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ConfigServiceV2_ListOperations")
   public func listOperations(
@@ -805,7 +805,7 @@ public class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol {
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ConfigServiceV2_ListOperations")
   public func listOperations(
@@ -822,7 +822,7 @@ public class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol {
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ConfigServiceV2_GetOperation")
   func getOperation(
@@ -833,7 +833,7 @@ public class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol {
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ConfigServiceV2_CancelOperation")
   public func cancelOperation(

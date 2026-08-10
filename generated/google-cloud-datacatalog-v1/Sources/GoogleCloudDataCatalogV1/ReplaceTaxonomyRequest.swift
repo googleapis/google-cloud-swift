@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [ReplaceTaxonomy][google.cloud.datacatalog.v1.PolicyTagManagerSerialization.ReplaceTaxonomy].
 ///
-/// [google.cloud.datacatalog.v1.PolicyTagManagerSerialization.ReplaceTaxonomy]: <doc:PolicyTagManagerSerialization/replaceTaxonomy(request:)>
+/// [google.cloud.datacatalog.v1.PolicyTagManagerSerialization.ReplaceTaxonomy]: <doc:PolicyTagManagerSerializationClient/replaceTaxonomy(request:)>
 public struct ReplaceTaxonomyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

@@ -21,7 +21,7 @@
   /// Request message for
   /// [ModelService.GetModelEvaluation][google.cloud.aiplatform.v1.ModelService.GetModelEvaluation].
   ///
-  /// [google.cloud.aiplatform.v1.ModelService.GetModelEvaluation]: <doc:ModelService/getModelEvaluation(request:)>
+  /// [google.cloud.aiplatform.v1.ModelService.GetModelEvaluation]: <doc:ModelServiceClient/getModelEvaluation(request:)>
   public struct GetModelEvaluationRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

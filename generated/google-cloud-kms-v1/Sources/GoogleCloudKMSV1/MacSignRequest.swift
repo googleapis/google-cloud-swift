@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [KeyManagementService.MacSign][google.cloud.kms.v1.KeyManagementService.MacSign].
 ///
-/// [google.cloud.kms.v1.KeyManagementService.MacSign]: <doc:KeyManagementService/macSign(request:)>
+/// [google.cloud.kms.v1.KeyManagementService.MacSign]: <doc:KeyManagementServiceClient/macSign(request:)>
 public struct MacSignRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
@@ -53,7 +53,7 @@ public struct MacSignRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// 2^32-1, and can be safely downconverted to uint32 in languages that support
   /// this type.
   ///
-  /// [google.cloud.kms.v1.KeyManagementService]: <doc:KeyManagementService>
+  /// [google.cloud.kms.v1.KeyManagementService]: <doc:KeyManagementServiceClient>
   /// [google.cloud.kms.v1.MacSignRequest.data]: <doc:MacSignRequest/data>
   /// [google.cloud.kms.v1.MacSignRequest.data_crc32c]: <doc:MacSignRequest/dataCrc32C>
   public var dataCrc32C: GoogleCloudWkt.Int64Value? = nil

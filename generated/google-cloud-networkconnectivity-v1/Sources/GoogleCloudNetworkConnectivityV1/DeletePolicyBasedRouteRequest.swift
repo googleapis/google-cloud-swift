@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [PolicyBasedRoutingService.DeletePolicyBasedRoute][google.cloud.networkconnectivity.v1.PolicyBasedRoutingService.DeletePolicyBasedRoute]
 /// method.
 ///
-/// [google.cloud.networkconnectivity.v1.PolicyBasedRoutingService.DeletePolicyBasedRoute]: <doc:PolicyBasedRoutingService/deletePolicyBasedRoute(request:)>
+/// [google.cloud.networkconnectivity.v1.PolicyBasedRoutingService.DeletePolicyBasedRoute]: <doc:PolicyBasedRoutingServiceClient/deletePolicyBasedRoute(request:)>
 public struct DeletePolicyBasedRouteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

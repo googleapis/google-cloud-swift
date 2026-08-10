@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// Response for the
 /// [SearchResources][google.cloud.apihub.v1.ApiHub.SearchResources] method.
 ///
-/// [google.cloud.apihub.v1.ApiHub.SearchResources]: <doc:ApiHub/searchResources(request:)>
+/// [google.cloud.apihub.v1.ApiHub.SearchResources]: <doc:ApiHubClient/searchResources(request:)>
 public struct SearchResourcesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

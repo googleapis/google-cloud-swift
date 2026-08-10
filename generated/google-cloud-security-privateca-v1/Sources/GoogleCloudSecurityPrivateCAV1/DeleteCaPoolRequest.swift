@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [CertificateAuthorityService.DeleteCaPool][google.cloud.security.privateca.v1.CertificateAuthorityService.DeleteCaPool].
 ///
-/// [google.cloud.security.privateca.v1.CertificateAuthorityService.DeleteCaPool]: <doc:CertificateAuthorityService/deleteCaPool(request:)>
+/// [google.cloud.security.privateca.v1.CertificateAuthorityService.DeleteCaPool]: <doc:CertificateAuthorityServiceClient/deleteCaPool(request:)>
 public struct DeleteCaPoolRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

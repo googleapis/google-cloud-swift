@@ -22,7 +22,7 @@
   /// Response message for
   /// [SpecialistPoolService.ListSpecialistPools][google.cloud.aiplatform.v1.SpecialistPoolService.ListSpecialistPools].
   ///
-  /// [google.cloud.aiplatform.v1.SpecialistPoolService.ListSpecialistPools]: <doc:SpecialistPoolService/listSpecialistPools(request:)>
+  /// [google.cloud.aiplatform.v1.SpecialistPoolService.ListSpecialistPools]: <doc:SpecialistPoolServiceClient/listSpecialistPools(request:)>
   public struct ListSpecialistPoolsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable

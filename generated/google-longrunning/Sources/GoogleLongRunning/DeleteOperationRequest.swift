@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// The request message for
 /// [Operations.DeleteOperation][google.longrunning.Operations.DeleteOperation].
 ///
-/// [google.longrunning.Operations.DeleteOperation]: <doc:Operations/deleteOperation(request:)>
+/// [google.longrunning.Operations.DeleteOperation]: <doc:OperationsClient/deleteOperation(request:)>
 public struct DeleteOperationRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

@@ -21,7 +21,7 @@
   /// The request message for
   /// [SipTrunks.ListSipTrunks][google.cloud.dialogflow.v2.SipTrunks.ListSipTrunks].
   ///
-  /// [google.cloud.dialogflow.v2.SipTrunks.ListSipTrunks]: <doc:SipTrunks/listSipTrunks(request:)>
+  /// [google.cloud.dialogflow.v2.SipTrunks.ListSipTrunks]: <doc:SipTrunksClient/listSipTrunks(request:)>
   public struct ListSipTrunksRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

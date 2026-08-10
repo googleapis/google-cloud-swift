@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [SearchLinks][google.cloud.datacatalog.lineage.v1.Lineage.SearchLinks].
 ///
-/// [google.cloud.datacatalog.lineage.v1.Lineage.SearchLinks]: <doc:Lineage/searchLinks(request:)>
+/// [google.cloud.datacatalog.lineage.v1.Lineage.SearchLinks]: <doc:LineageClient/searchLinks(request:)>
 public struct SearchLinksRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

@@ -21,7 +21,7 @@
   /// Response message for
   /// [MetadataService.AddContextArtifactsAndExecutions][google.cloud.aiplatform.v1.MetadataService.AddContextArtifactsAndExecutions].
   ///
-  /// [google.cloud.aiplatform.v1.MetadataService.AddContextArtifactsAndExecutions]: <doc:MetadataService/addContextArtifactsAndExecutions(request:)>
+  /// [google.cloud.aiplatform.v1.MetadataService.AddContextArtifactsAndExecutions]: <doc:MetadataServiceClient/addContextArtifactsAndExecutions(request:)>
   public struct AddContextArtifactsAndExecutionsResponse: Codable, Equatable, GoogleCloudWkt
       ._AnyPackable,
     Sendable

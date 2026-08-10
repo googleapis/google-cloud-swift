@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [CancelResumableWrite][google.storage.v2.Storage.CancelResumableWrite].
 ///
-/// [google.storage.v2.Storage.CancelResumableWrite]: <doc:Storage/cancelResumableWrite(request:)>
+/// [google.storage.v2.Storage.CancelResumableWrite]: <doc:StorageClient/cancelResumableWrite(request:)>
 public struct CancelResumableWriteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

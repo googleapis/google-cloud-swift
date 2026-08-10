@@ -59,7 +59,7 @@ public struct Backup: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// request is received).  The row data in this backup will be no older than
   /// this timestamp.
   ///
-  /// [google.bigtable.admin.v2.BigtableTableAdmin.CreateBackup]: <doc:BigtableTableAdmin/createBackup(request:)>
+  /// [google.bigtable.admin.v2.BigtableTableAdmin.CreateBackup]: <doc:BigtableTableAdminClient/createBackup(request:)>
   public var startTime: GoogleCloudWkt.Timestamp? = nil
 
   /// Output only. `end_time` is the time that the backup was finished. The row

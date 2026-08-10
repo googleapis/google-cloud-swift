@@ -21,7 +21,7 @@
   /// Request message for
   /// [DatasetService.SearchDataItems][google.cloud.aiplatform.v1.DatasetService.SearchDataItems].
   ///
-  /// [google.cloud.aiplatform.v1.DatasetService.SearchDataItems]: <doc:DatasetService/searchDataItems(request:)>
+  /// [google.cloud.aiplatform.v1.DatasetService.SearchDataItems]: <doc:DatasetServiceClient/searchDataItems(request:)>
   public struct SearchDataItemsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {
@@ -98,7 +98,7 @@
     /// [DatasetService.SearchDataItems][google.cloud.aiplatform.v1.DatasetService.SearchDataItems]
     /// call.
     ///
-    /// [google.cloud.aiplatform.v1.DatasetService.SearchDataItems]: <doc:DatasetService/searchDataItems(request:)>
+    /// [google.cloud.aiplatform.v1.DatasetService.SearchDataItems]: <doc:DatasetServiceClient/searchDataItems(request:)>
     /// [google.cloud.aiplatform.v1.SearchDataItemsResponse.next_page_token]: <doc:SearchDataItemsResponse/nextPageToken>
     public var pageToken: Swift.String = Swift.String()
 

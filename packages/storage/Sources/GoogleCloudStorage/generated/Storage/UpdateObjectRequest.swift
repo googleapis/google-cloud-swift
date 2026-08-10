@@ -19,7 +19,7 @@ import GoogleCloudWkt
 
 /// Request message for [UpdateObject][google.storage.v2.Storage.UpdateObject].
 ///
-/// [google.storage.v2.Storage.UpdateObject]: <doc:Storage/updateObject(request:)>
+/// [google.storage.v2.Storage.UpdateObject]: <doc:StorageClient/updateObject(request:)>
 public struct UpdateObjectRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [KeyManagementService.ImportCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.ImportCryptoKeyVersion].
 ///
-/// [google.cloud.kms.v1.KeyManagementService.ImportCryptoKeyVersion]: <doc:KeyManagementService/importCryptoKeyVersion(request:)>
+/// [google.cloud.kms.v1.KeyManagementService.ImportCryptoKeyVersion]: <doc:KeyManagementServiceClient/importCryptoKeyVersion(request:)>
 public struct ImportCryptoKeyVersionRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
@@ -63,7 +63,7 @@ public struct ImportCryptoKeyVersionRequest: Codable, Equatable, GoogleCloudWkt.
   /// [google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.IMPORT_FAILED]: <doc:CryptoKeyVersion/CryptoKeyVersionState/importFailed>
   /// [google.cloud.kms.v1.CryptoKeyVersion.name]: <doc:CryptoKeyVersion/name>
   /// [google.cloud.kms.v1.ImportCryptoKeyVersionRequest.parent]: <doc:ImportCryptoKeyVersionRequest/parent>
-  /// [google.cloud.kms.v1.KeyManagementService.ImportCryptoKeyVersion]: <doc:KeyManagementService/importCryptoKeyVersion(request:)>
+  /// [google.cloud.kms.v1.KeyManagementService.ImportCryptoKeyVersion]: <doc:KeyManagementServiceClient/importCryptoKeyVersion(request:)>
   public var cryptoKeyVersion: Swift.String = Swift.String()
 
   /// Required. The

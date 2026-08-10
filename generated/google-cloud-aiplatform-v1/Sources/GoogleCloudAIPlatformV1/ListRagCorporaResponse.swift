@@ -22,7 +22,7 @@
   /// Response message for
   /// [VertexRagDataService.ListRagCorpora][google.cloud.aiplatform.v1.VertexRagDataService.ListRagCorpora].
   ///
-  /// [google.cloud.aiplatform.v1.VertexRagDataService.ListRagCorpora]: <doc:VertexRagDataService/listRagCorpora(request:)>
+  /// [google.cloud.aiplatform.v1.VertexRagDataService.ListRagCorpora]: <doc:VertexRagDataServiceClient/listRagCorpora(request:)>
   public struct ListRagCorporaResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable

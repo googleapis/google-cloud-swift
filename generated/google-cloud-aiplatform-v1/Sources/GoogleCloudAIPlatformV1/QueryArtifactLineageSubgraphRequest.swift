@@ -21,7 +21,7 @@
   /// Request message for
   /// [MetadataService.QueryArtifactLineageSubgraph][google.cloud.aiplatform.v1.MetadataService.QueryArtifactLineageSubgraph].
   ///
-  /// [google.cloud.aiplatform.v1.MetadataService.QueryArtifactLineageSubgraph]: <doc:MetadataService/queryArtifactLineageSubgraph(request:)>
+  /// [google.cloud.aiplatform.v1.MetadataService.QueryArtifactLineageSubgraph]: <doc:MetadataServiceClient/queryArtifactLineageSubgraph(request:)>
   public struct QueryArtifactLineageSubgraphRequest: Codable, Equatable, GoogleCloudWkt
       ._AnyPackable,
     Sendable

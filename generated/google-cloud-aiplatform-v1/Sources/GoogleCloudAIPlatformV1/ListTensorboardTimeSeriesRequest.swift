@@ -21,7 +21,7 @@
   /// Request message for
   /// [TensorboardService.ListTensorboardTimeSeries][google.cloud.aiplatform.v1.TensorboardService.ListTensorboardTimeSeries].
   ///
-  /// [google.cloud.aiplatform.v1.TensorboardService.ListTensorboardTimeSeries]: <doc:TensorboardService/listTensorboardTimeSeries(request:)>
+  /// [google.cloud.aiplatform.v1.TensorboardService.ListTensorboardTimeSeries]: <doc:TensorboardServiceClient/listTensorboardTimeSeries(request:)>
   public struct ListTensorboardTimeSeriesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {
@@ -47,7 +47,7 @@
     /// [TensorboardService.ListTensorboardTimeSeries][google.cloud.aiplatform.v1.TensorboardService.ListTensorboardTimeSeries]
     /// must match the call that provided the page token.
     ///
-    /// [google.cloud.aiplatform.v1.TensorboardService.ListTensorboardTimeSeries]: <doc:TensorboardService/listTensorboardTimeSeries(request:)>
+    /// [google.cloud.aiplatform.v1.TensorboardService.ListTensorboardTimeSeries]: <doc:TensorboardServiceClient/listTensorboardTimeSeries(request:)>
     public var pageToken: Swift.String = Swift.String()
 
     /// Field to use to sort the list.

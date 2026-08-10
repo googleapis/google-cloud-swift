@@ -21,7 +21,7 @@
   /// Request message for
   /// [SpecialistPoolService.DeleteSpecialistPool][google.cloud.aiplatform.v1.SpecialistPoolService.DeleteSpecialistPool].
   ///
-  /// [google.cloud.aiplatform.v1.SpecialistPoolService.DeleteSpecialistPool]: <doc:SpecialistPoolService/deleteSpecialistPool(request:)>
+  /// [google.cloud.aiplatform.v1.SpecialistPoolService.DeleteSpecialistPool]: <doc:SpecialistPoolServiceClient/deleteSpecialistPool(request:)>
   public struct DeleteSpecialistPoolRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

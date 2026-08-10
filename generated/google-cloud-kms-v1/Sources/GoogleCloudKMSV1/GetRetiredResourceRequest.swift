@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [KeyManagementService.GetRetiredResource][google.cloud.kms.v1.KeyManagementService.GetRetiredResource].
 ///
-/// [google.cloud.kms.v1.KeyManagementService.GetRetiredResource]: <doc:KeyManagementService/getRetiredResource(request:)>
+/// [google.cloud.kms.v1.KeyManagementService.GetRetiredResource]: <doc:KeyManagementServiceClient/getRetiredResource(request:)>
 public struct GetRetiredResourceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

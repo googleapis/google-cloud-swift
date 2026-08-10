@@ -21,7 +21,7 @@
   /// Runtime operation information for
   /// [EndpointService.UndeployModel][google.cloud.aiplatform.v1.EndpointService.UndeployModel].
   ///
-  /// [google.cloud.aiplatform.v1.EndpointService.UndeployModel]: <doc:EndpointService/undeployModel(request:)>
+  /// [google.cloud.aiplatform.v1.EndpointService.UndeployModel]: <doc:EndpointServiceClient/undeployModel(request:)>
   public struct UndeployModelOperationMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

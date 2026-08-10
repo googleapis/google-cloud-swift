@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for the
 /// [UpdateCustomClass][google.cloud.speech.v2.Speech.UpdateCustomClass] method.
 ///
-/// [google.cloud.speech.v2.Speech.UpdateCustomClass]: <doc:Speech/updateCustomClass(request:)>
+/// [google.cloud.speech.v2.Speech.UpdateCustomClass]: <doc:SpeechClient/updateCustomClass(request:)>
 public struct UpdateCustomClassRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

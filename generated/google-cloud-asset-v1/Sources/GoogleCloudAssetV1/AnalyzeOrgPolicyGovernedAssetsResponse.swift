@@ -22,7 +22,7 @@ import GoogleIAMV1
 /// The response message for
 /// [AssetService.AnalyzeOrgPolicyGovernedAssets][google.cloud.asset.v1.AssetService.AnalyzeOrgPolicyGovernedAssets].
 ///
-/// [google.cloud.asset.v1.AssetService.AnalyzeOrgPolicyGovernedAssets]: <doc:AssetService/analyzeOrgPolicyGovernedAssets(request:)>
+/// [google.cloud.asset.v1.AssetService.AnalyzeOrgPolicyGovernedAssets]: <doc:AssetServiceClient/analyzeOrgPolicyGovernedAssets(request:)>
 public struct AnalyzeOrgPolicyGovernedAssetsResponse: Codable, Equatable, GoogleCloudWkt
     ._AnyPackable,
   GoogleCloudGax._PaginatedResponse,

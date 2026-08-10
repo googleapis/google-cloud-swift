@@ -21,7 +21,7 @@
   /// Request message for
   /// [MetadataService.DeleteArtifact][google.cloud.aiplatform.v1.MetadataService.DeleteArtifact].
   ///
-  /// [google.cloud.aiplatform.v1.MetadataService.DeleteArtifact]: <doc:MetadataService/deleteArtifact(request:)>
+  /// [google.cloud.aiplatform.v1.MetadataService.DeleteArtifact]: <doc:MetadataServiceClient/deleteArtifact(request:)>
   public struct DeleteArtifactRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

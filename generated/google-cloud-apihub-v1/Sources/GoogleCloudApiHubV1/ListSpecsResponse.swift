@@ -20,7 +20,7 @@ import GoogleCloudWkt
 
 /// The [ListSpecs][google.cloud.apihub.v1.ApiHub.ListSpecs] method's response.
 ///
-/// [google.cloud.apihub.v1.ApiHub.ListSpecs]: <doc:ApiHub/listSpecs(request:)>
+/// [google.cloud.apihub.v1.ApiHub.ListSpecs]: <doc:ApiHubClient/listSpecs(request:)>
 public struct ListSpecsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

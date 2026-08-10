@@ -346,7 +346,7 @@ public class KeyManagementServiceClient: Clients.KeyManagementServiceProtocol {
   ///
   /// [google.cloud.kms.v1.CryptoKey]: <doc:CryptoKey>
   /// [google.cloud.kms.v1.CryptoKeyVersion]: <doc:CryptoKeyVersion>
-  /// [google.cloud.kms.v1.KeyManagementService.DeleteCryptoKeyVersion]: <doc:KeyManagementService/deleteCryptoKeyVersion(request:)>
+  /// [google.cloud.kms.v1.KeyManagementService.DeleteCryptoKeyVersion]: <doc:KeyManagementServiceClient/deleteCryptoKeyVersion(request:)>
   ///
   /// @Snippet(path: "KeyManagementService_DeleteCryptoKey")
   public func deleteCryptoKey(
@@ -364,7 +364,7 @@ public class KeyManagementServiceClient: Clients.KeyManagementServiceProtocol {
   ///
   /// [google.cloud.kms.v1.CryptoKey]: <doc:CryptoKey>
   /// [google.cloud.kms.v1.CryptoKeyVersion]: <doc:CryptoKeyVersion>
-  /// [google.cloud.kms.v1.KeyManagementService.DeleteCryptoKeyVersion]: <doc:KeyManagementService/deleteCryptoKeyVersion(request:)>
+  /// [google.cloud.kms.v1.KeyManagementService.DeleteCryptoKeyVersion]: <doc:KeyManagementServiceClient/deleteCryptoKeyVersion(request:)>
   ///
   /// @Snippet(path: "KeyManagementService_DeleteCryptoKey")
   public func deleteCryptoKey(
@@ -611,8 +611,8 @@ public class KeyManagementServiceClient: Clients.KeyManagementServiceProtocol {
   /// [google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DISABLED]: <doc:CryptoKeyVersion/CryptoKeyVersionState/disabled>
   /// [google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.ENABLED]: <doc:CryptoKeyVersion/CryptoKeyVersionState/enabled>
   /// [google.cloud.kms.v1.CryptoKeyVersion.state]: <doc:CryptoKeyVersion/state>
-  /// [google.cloud.kms.v1.KeyManagementService.DestroyCryptoKeyVersion]: <doc:KeyManagementService/destroyCryptoKeyVersion(request:)>
-  /// [google.cloud.kms.v1.KeyManagementService.RestoreCryptoKeyVersion]: <doc:KeyManagementService/restoreCryptoKeyVersion(request:)>
+  /// [google.cloud.kms.v1.KeyManagementService.DestroyCryptoKeyVersion]: <doc:KeyManagementServiceClient/destroyCryptoKeyVersion(request:)>
+  /// [google.cloud.kms.v1.KeyManagementService.RestoreCryptoKeyVersion]: <doc:KeyManagementServiceClient/restoreCryptoKeyVersion(request:)>
   ///
   /// @Snippet(path: "KeyManagementService_UpdateCryptoKeyVersion")
   public func updateCryptoKeyVersion(
@@ -630,7 +630,7 @@ public class KeyManagementServiceClient: Clients.KeyManagementServiceProtocol {
   ///
   /// [google.cloud.kms.v1.CryptoKey]: <doc:CryptoKey>
   /// [google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT]: <doc:CryptoKey/CryptoKeyPurpose/encryptDecrypt>
-  /// [google.cloud.kms.v1.KeyManagementService.Encrypt]: <doc:KeyManagementService/encrypt(request:)>
+  /// [google.cloud.kms.v1.KeyManagementService.Encrypt]: <doc:KeyManagementServiceClient/encrypt(request:)>
   ///
   /// @Snippet(path: "KeyManagementService_UpdateCryptoKeyPrimaryVersion")
   public func updateCryptoKeyPrimaryVersion(
@@ -667,7 +667,7 @@ public class KeyManagementServiceClient: Clients.KeyManagementServiceProtocol {
   /// [google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DESTROY_SCHEDULED]: <doc:CryptoKeyVersion/CryptoKeyVersionState/destroyScheduled>
   /// [google.cloud.kms.v1.CryptoKeyVersion.destroy_time]: <doc:CryptoKeyVersion/destroyTime>
   /// [google.cloud.kms.v1.CryptoKeyVersion.state]: <doc:CryptoKeyVersion/state>
-  /// [google.cloud.kms.v1.KeyManagementService.RestoreCryptoKeyVersion]: <doc:KeyManagementService/restoreCryptoKeyVersion(request:)>
+  /// [google.cloud.kms.v1.KeyManagementService.RestoreCryptoKeyVersion]: <doc:KeyManagementServiceClient/restoreCryptoKeyVersion(request:)>
   ///
   /// @Snippet(path: "KeyManagementService_DestroyCryptoKeyVersion")
   public func destroyCryptoKeyVersion(
@@ -706,7 +706,7 @@ public class KeyManagementServiceClient: Clients.KeyManagementServiceProtocol {
   ///
   /// [google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT]: <doc:CryptoKey/CryptoKeyPurpose/encryptDecrypt>
   /// [google.cloud.kms.v1.CryptoKey.purpose]: <doc:CryptoKey/purpose>
-  /// [google.cloud.kms.v1.KeyManagementService.Decrypt]: <doc:KeyManagementService/decrypt(request:)>
+  /// [google.cloud.kms.v1.KeyManagementService.Decrypt]: <doc:KeyManagementServiceClient/decrypt(request:)>
   ///
   /// @Snippet(path: "KeyManagementService_Encrypt")
   public func encrypt(
@@ -722,7 +722,7 @@ public class KeyManagementServiceClient: Clients.KeyManagementServiceProtocol {
   ///
   /// [google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT]: <doc:CryptoKey/CryptoKeyPurpose/encryptDecrypt>
   /// [google.cloud.kms.v1.CryptoKey.purpose]: <doc:CryptoKey/purpose>
-  /// [google.cloud.kms.v1.KeyManagementService.Encrypt]: <doc:KeyManagementService/encrypt(request:)>
+  /// [google.cloud.kms.v1.KeyManagementService.Encrypt]: <doc:KeyManagementServiceClient/encrypt(request:)>
   ///
   /// @Snippet(path: "KeyManagementService_Decrypt")
   public func decrypt(
@@ -740,8 +740,8 @@ public class KeyManagementServiceClient: Clients.KeyManagementServiceProtocol {
   ///
   /// [google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.RAW_ENCRYPT_DECRYPT]: <doc:CryptoKey/CryptoKeyPurpose/rawEncryptDecrypt>
   /// [google.cloud.kms.v1.CryptoKey.purpose]: <doc:CryptoKey/purpose>
-  /// [google.cloud.kms.v1.KeyManagementService.Decrypt]: <doc:KeyManagementService/decrypt(request:)>
-  /// [google.cloud.kms.v1.KeyManagementService.Encrypt]: <doc:KeyManagementService/encrypt(request:)>
+  /// [google.cloud.kms.v1.KeyManagementService.Decrypt]: <doc:KeyManagementServiceClient/decrypt(request:)>
+  /// [google.cloud.kms.v1.KeyManagementService.Encrypt]: <doc:KeyManagementServiceClient/encrypt(request:)>
   ///
   /// @Snippet(path: "KeyManagementService_RawEncrypt")
   public func rawEncrypt(
@@ -773,7 +773,7 @@ public class KeyManagementServiceClient: Clients.KeyManagementServiceProtocol {
   ///
   /// [google.cloud.kms.v1.CryptoKey.purpose]: <doc:CryptoKey/purpose>
   /// [google.cloud.kms.v1.CryptoKeyVersion]: <doc:CryptoKeyVersion>
-  /// [google.cloud.kms.v1.KeyManagementService.GetPublicKey]: <doc:KeyManagementService/getPublicKey(request:)>
+  /// [google.cloud.kms.v1.KeyManagementService.GetPublicKey]: <doc:KeyManagementServiceClient/getPublicKey(request:)>
   ///
   /// @Snippet(path: "KeyManagementService_AsymmetricSign")
   public func asymmetricSign(
@@ -790,7 +790,7 @@ public class KeyManagementServiceClient: Clients.KeyManagementServiceProtocol {
   ///
   /// [google.cloud.kms.v1.CryptoKey.purpose]: <doc:CryptoKey/purpose>
   /// [google.cloud.kms.v1.CryptoKeyVersion]: <doc:CryptoKeyVersion>
-  /// [google.cloud.kms.v1.KeyManagementService.GetPublicKey]: <doc:KeyManagementService/getPublicKey(request:)>
+  /// [google.cloud.kms.v1.KeyManagementService.GetPublicKey]: <doc:KeyManagementServiceClient/getPublicKey(request:)>
   ///
   /// @Snippet(path: "KeyManagementService_AsymmetricDecrypt")
   public func asymmetricDecrypt(
@@ -836,7 +836,7 @@ public class KeyManagementServiceClient: Clients.KeyManagementServiceProtocol {
   ///
   /// [google.cloud.kms.v1.CryptoKey.purpose]: <doc:CryptoKey/purpose>
   /// [google.cloud.kms.v1.CryptoKeyVersion]: <doc:CryptoKeyVersion>
-  /// [google.cloud.kms.v1.KeyManagementService.GetPublicKey]: <doc:KeyManagementService/getPublicKey(request:)>
+  /// [google.cloud.kms.v1.KeyManagementService.GetPublicKey]: <doc:KeyManagementServiceClient/getPublicKey(request:)>
   ///
   /// @Snippet(path: "KeyManagementService_Decapsulate")
   public func decapsulate(
@@ -962,7 +962,7 @@ public class KeyManagementServiceClient: Clients.KeyManagementServiceProtocol {
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "KeyManagementService_GetOperation")
   func getOperation(

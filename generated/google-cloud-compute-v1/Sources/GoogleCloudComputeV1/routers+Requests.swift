@@ -21,7 +21,7 @@
   extension RoutersClient {
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.routers.aggregatedList] method.
     ///
-    /// [google.cloud.compute.v1.routers.aggregatedList]: <doc:Routers/aggregatedList(request:)>
+    /// [google.cloud.compute.v1.routers.aggregatedList]: <doc:RoutersClient/aggregatedList(request:)>
     public struct AggregatedListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -163,7 +163,7 @@
 
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.routers.delete] method.
     ///
-    /// [google.cloud.compute.v1.routers.delete]: <doc:Routers/delete(request:)>
+    /// [google.cloud.compute.v1.routers.delete]: <doc:RoutersClient/delete(request:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -220,7 +220,7 @@
 
     /// Synthetic request message for the [deleteNamedSet()][google.cloud.compute.v1.routers.deleteNamedSet] method.
     ///
-    /// [google.cloud.compute.v1.routers.deleteNamedSet]: <doc:Routers/deleteNamedSet(request:)>
+    /// [google.cloud.compute.v1.routers.deleteNamedSet]: <doc:RoutersClient/deleteNamedSet(request:)>
     public struct DeleteNamedSetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -280,7 +280,7 @@
 
     /// Synthetic request message for the [deleteRoutePolicy()][google.cloud.compute.v1.routers.deleteRoutePolicy] method.
     ///
-    /// [google.cloud.compute.v1.routers.deleteRoutePolicy]: <doc:Routers/deleteRoutePolicy(request:)>
+    /// [google.cloud.compute.v1.routers.deleteRoutePolicy]: <doc:RoutersClient/deleteRoutePolicy(request:)>
     public struct DeleteRoutePolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -340,7 +340,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.routers.get] method.
     ///
-    /// [google.cloud.compute.v1.routers.get]: <doc:Routers/`get`(request:)>
+    /// [google.cloud.compute.v1.routers.get]: <doc:RoutersClient/`get`(request:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -382,7 +382,7 @@
 
     /// Synthetic request message for the [getNamedSet()][google.cloud.compute.v1.routers.getNamedSet] method.
     ///
-    /// [google.cloud.compute.v1.routers.getNamedSet]: <doc:Routers/getNamedSet(request:)>
+    /// [google.cloud.compute.v1.routers.getNamedSet]: <doc:RoutersClient/getNamedSet(request:)>
     public struct GetNamedSetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -428,7 +428,7 @@
 
     /// Synthetic request message for the [getNatIpInfo()][google.cloud.compute.v1.routers.getNatIpInfo] method.
     ///
-    /// [google.cloud.compute.v1.routers.getNatIpInfo]: <doc:Routers/getNatIpInfo(request:)>
+    /// [google.cloud.compute.v1.routers.getNatIpInfo]: <doc:RoutersClient/getNatIpInfo(request:)>
     public struct GetNatIpInfoRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -476,7 +476,7 @@
 
     /// Synthetic request message for the [getNatMappingInfo()][google.cloud.compute.v1.routers.getNatMappingInfo] method.
     ///
-    /// [google.cloud.compute.v1.routers.getNatMappingInfo]: <doc:Routers/getNatMappingInfo(request:)>
+    /// [google.cloud.compute.v1.routers.getNatMappingInfo]: <doc:RoutersClient/getNatMappingInfo(request:)>
     public struct GetNatMappingInfoRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -617,7 +617,7 @@
 
     /// Synthetic request message for the [getRoutePolicy()][google.cloud.compute.v1.routers.getRoutePolicy] method.
     ///
-    /// [google.cloud.compute.v1.routers.getRoutePolicy]: <doc:Routers/getRoutePolicy(request:)>
+    /// [google.cloud.compute.v1.routers.getRoutePolicy]: <doc:RoutersClient/getRoutePolicy(request:)>
     public struct GetRoutePolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -663,7 +663,7 @@
 
     /// Synthetic request message for the [getRouterStatus()][google.cloud.compute.v1.routers.getRouterStatus] method.
     ///
-    /// [google.cloud.compute.v1.routers.getRouterStatus]: <doc:Routers/getRouterStatus(request:)>
+    /// [google.cloud.compute.v1.routers.getRouterStatus]: <doc:RoutersClient/getRouterStatus(request:)>
     public struct GetRouterStatusRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -705,7 +705,7 @@
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.routers.insert] method.
     ///
-    /// [google.cloud.compute.v1.routers.insert]: <doc:Routers/insert(request:)>
+    /// [google.cloud.compute.v1.routers.insert]: <doc:RoutersClient/insert(request:)>
     public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -732,7 +732,7 @@
 
       /// Synthetic request body field for the [insert()][google.cloud.compute.v1.routers.insert] method.
       ///
-      /// [google.cloud.compute.v1.routers.insert]: <doc:Routers/insert(request:)>
+      /// [google.cloud.compute.v1.routers.insert]: <doc:RoutersClient/insert(request:)>
       public var body: Router? = nil
 
       /// Initialize a new instance of `InsertRequest`.
@@ -764,7 +764,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.routers.list] method.
     ///
-    /// [google.cloud.compute.v1.routers.list]: <doc:Routers/list(request:)>
+    /// [google.cloud.compute.v1.routers.list]: <doc:RoutersClient/list(request:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -896,7 +896,7 @@
 
     /// Synthetic request message for the [listBgpRoutes()][google.cloud.compute.v1.routers.listBgpRoutes] method.
     ///
-    /// [google.cloud.compute.v1.routers.listBgpRoutes]: <doc:Routers/listBgpRoutes(request:)>
+    /// [google.cloud.compute.v1.routers.listBgpRoutes]: <doc:RoutersClient/listBgpRoutes(request:)>
     public struct ListBgpRoutesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -1258,7 +1258,7 @@
 
     /// Synthetic request message for the [listNamedSets()][google.cloud.compute.v1.routers.listNamedSets] method.
     ///
-    /// [google.cloud.compute.v1.routers.listNamedSets]: <doc:Routers/listNamedSets(request:)>
+    /// [google.cloud.compute.v1.routers.listNamedSets]: <doc:RoutersClient/listNamedSets(request:)>
     public struct ListNamedSetsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -1394,7 +1394,7 @@
 
     /// Synthetic request message for the [listRoutePolicies()][google.cloud.compute.v1.routers.listRoutePolicies] method.
     ///
-    /// [google.cloud.compute.v1.routers.listRoutePolicies]: <doc:Routers/listRoutePolicies(request:)>
+    /// [google.cloud.compute.v1.routers.listRoutePolicies]: <doc:RoutersClient/listRoutePolicies(request:)>
     public struct ListRoutePoliciesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -1530,7 +1530,7 @@
 
     /// Synthetic request message for the [patch()][google.cloud.compute.v1.routers.patch] method.
     ///
-    /// [google.cloud.compute.v1.routers.patch]: <doc:Routers/patch(request:)>
+    /// [google.cloud.compute.v1.routers.patch]: <doc:RoutersClient/patch(request:)>
     public struct PatchRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -1560,7 +1560,7 @@
 
       /// Synthetic request body field for the [patch()][google.cloud.compute.v1.routers.patch] method.
       ///
-      /// [google.cloud.compute.v1.routers.patch]: <doc:Routers/patch(request:)>
+      /// [google.cloud.compute.v1.routers.patch]: <doc:RoutersClient/patch(request:)>
       public var body: Router? = nil
 
       /// Initialize a new instance of `PatchRequest`.
@@ -1592,7 +1592,7 @@
 
     /// Synthetic request message for the [patchNamedSet()][google.cloud.compute.v1.routers.patchNamedSet] method.
     ///
-    /// [google.cloud.compute.v1.routers.patchNamedSet]: <doc:Routers/patchNamedSet(request:)>
+    /// [google.cloud.compute.v1.routers.patchNamedSet]: <doc:RoutersClient/patchNamedSet(request:)>
     public struct PatchNamedSetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -1622,7 +1622,7 @@
 
       /// Synthetic request body field for the [patchNamedSet()][google.cloud.compute.v1.routers.patchNamedSet] method.
       ///
-      /// [google.cloud.compute.v1.routers.patchNamedSet]: <doc:Routers/patchNamedSet(request:)>
+      /// [google.cloud.compute.v1.routers.patchNamedSet]: <doc:RoutersClient/patchNamedSet(request:)>
       public var body: NamedSet? = nil
 
       /// Initialize a new instance of `PatchNamedSetRequest`.
@@ -1654,7 +1654,7 @@
 
     /// Synthetic request message for the [patchRoutePolicy()][google.cloud.compute.v1.routers.patchRoutePolicy] method.
     ///
-    /// [google.cloud.compute.v1.routers.patchRoutePolicy]: <doc:Routers/patchRoutePolicy(request:)>
+    /// [google.cloud.compute.v1.routers.patchRoutePolicy]: <doc:RoutersClient/patchRoutePolicy(request:)>
     public struct PatchRoutePolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -1684,7 +1684,7 @@
 
       /// Synthetic request body field for the [patchRoutePolicy()][google.cloud.compute.v1.routers.patchRoutePolicy] method.
       ///
-      /// [google.cloud.compute.v1.routers.patchRoutePolicy]: <doc:Routers/patchRoutePolicy(request:)>
+      /// [google.cloud.compute.v1.routers.patchRoutePolicy]: <doc:RoutersClient/patchRoutePolicy(request:)>
       public var body: RoutePolicy? = nil
 
       /// Initialize a new instance of `PatchRoutePolicyRequest`.
@@ -1716,7 +1716,7 @@
 
     /// Synthetic request message for the [preview()][google.cloud.compute.v1.routers.preview] method.
     ///
-    /// [google.cloud.compute.v1.routers.preview]: <doc:Routers/preview(request:)>
+    /// [google.cloud.compute.v1.routers.preview]: <doc:RoutersClient/preview(request:)>
     public struct PreviewRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -1731,7 +1731,7 @@
 
       /// Synthetic request body field for the [preview()][google.cloud.compute.v1.routers.preview] method.
       ///
-      /// [google.cloud.compute.v1.routers.preview]: <doc:Routers/preview(request:)>
+      /// [google.cloud.compute.v1.routers.preview]: <doc:RoutersClient/preview(request:)>
       public var body: Router? = nil
 
       /// Initialize a new instance of `PreviewRequest`.
@@ -1763,7 +1763,7 @@
 
     /// Synthetic request message for the [update()][google.cloud.compute.v1.routers.update] method.
     ///
-    /// [google.cloud.compute.v1.routers.update]: <doc:Routers/update(request:)>
+    /// [google.cloud.compute.v1.routers.update]: <doc:RoutersClient/update(request:)>
     public struct UpdateRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -1793,7 +1793,7 @@
 
       /// Synthetic request body field for the [update()][google.cloud.compute.v1.routers.update] method.
       ///
-      /// [google.cloud.compute.v1.routers.update]: <doc:Routers/update(request:)>
+      /// [google.cloud.compute.v1.routers.update]: <doc:RoutersClient/update(request:)>
       public var body: Router? = nil
 
       /// Initialize a new instance of `UpdateRequest`.
@@ -1825,7 +1825,7 @@
 
     /// Synthetic request message for the [updateNamedSet()][google.cloud.compute.v1.routers.updateNamedSet] method.
     ///
-    /// [google.cloud.compute.v1.routers.updateNamedSet]: <doc:Routers/updateNamedSet(request:)>
+    /// [google.cloud.compute.v1.routers.updateNamedSet]: <doc:RoutersClient/updateNamedSet(request:)>
     public struct UpdateNamedSetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -1855,7 +1855,7 @@
 
       /// Synthetic request body field for the [updateNamedSet()][google.cloud.compute.v1.routers.updateNamedSet] method.
       ///
-      /// [google.cloud.compute.v1.routers.updateNamedSet]: <doc:Routers/updateNamedSet(request:)>
+      /// [google.cloud.compute.v1.routers.updateNamedSet]: <doc:RoutersClient/updateNamedSet(request:)>
       public var body: NamedSet? = nil
 
       /// Initialize a new instance of `UpdateNamedSetRequest`.
@@ -1887,7 +1887,7 @@
 
     /// Synthetic request message for the [updateRoutePolicy()][google.cloud.compute.v1.routers.updateRoutePolicy] method.
     ///
-    /// [google.cloud.compute.v1.routers.updateRoutePolicy]: <doc:Routers/updateRoutePolicy(request:)>
+    /// [google.cloud.compute.v1.routers.updateRoutePolicy]: <doc:RoutersClient/updateRoutePolicy(request:)>
     public struct UpdateRoutePolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -1917,7 +1917,7 @@
 
       /// Synthetic request body field for the [updateRoutePolicy()][google.cloud.compute.v1.routers.updateRoutePolicy] method.
       ///
-      /// [google.cloud.compute.v1.routers.updateRoutePolicy]: <doc:Routers/updateRoutePolicy(request:)>
+      /// [google.cloud.compute.v1.routers.updateRoutePolicy]: <doc:RoutersClient/updateRoutePolicy(request:)>
       public var body: RoutePolicy? = nil
 
       /// Initialize a new instance of `UpdateRoutePolicyRequest`.

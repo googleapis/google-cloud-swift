@@ -22,7 +22,7 @@
   /// Response message for
   /// [MigrationService.SearchMigratableResources][google.cloud.aiplatform.v1.MigrationService.SearchMigratableResources].
   ///
-  /// [google.cloud.aiplatform.v1.MigrationService.SearchMigratableResources]: <doc:MigrationService/searchMigratableResources(request:)>
+  /// [google.cloud.aiplatform.v1.MigrationService.SearchMigratableResources]: <doc:MigrationServiceClient/searchMigratableResources(request:)>
   public struct SearchMigratableResourcesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable

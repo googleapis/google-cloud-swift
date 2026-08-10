@@ -180,8 +180,8 @@ public struct CryptoKeyVersion: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// [ImportCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.ImportCryptoKeyVersion].
   ///
   /// [google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT]: <doc:CryptoKey/CryptoKeyPurpose/encryptDecrypt>
-  /// [google.cloud.kms.v1.KeyManagementService.CreateCryptoKeyVersion]: <doc:KeyManagementService/createCryptoKeyVersion(request:)>
-  /// [google.cloud.kms.v1.KeyManagementService.ImportCryptoKeyVersion]: <doc:KeyManagementService/importCryptoKeyVersion(request:)>
+  /// [google.cloud.kms.v1.KeyManagementService.CreateCryptoKeyVersion]: <doc:KeyManagementServiceClient/createCryptoKeyVersion(request:)>
+  /// [google.cloud.kms.v1.KeyManagementService.ImportCryptoKeyVersion]: <doc:KeyManagementServiceClient/importCryptoKeyVersion(request:)>
   /// [google.cloud.kms.v1.ProtectionLevel.HSM_SINGLE_TENANT]: <doc:ProtectionLevel/hsmSingleTenant>
   public var trustedWrappingEnabled: Swift.Bool = Swift.Bool()
 
@@ -731,7 +731,7 @@ public struct CryptoKeyVersion: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     ///
     /// [google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.ENABLED]: <doc:CryptoKeyVersion/CryptoKeyVersionState/enabled>
     /// [google.cloud.kms.v1.CryptoKeyVersion.reimport_eligible]: <doc:CryptoKeyVersion/reimportEligible>
-    /// [google.cloud.kms.v1.KeyManagementService.ImportCryptoKeyVersion]: <doc:KeyManagementService/importCryptoKeyVersion(request:)>
+    /// [google.cloud.kms.v1.KeyManagementService.ImportCryptoKeyVersion]: <doc:KeyManagementServiceClient/importCryptoKeyVersion(request:)>
     case destroyed
     /// This version is scheduled for destruction, and will be destroyed soon.
     /// Call
@@ -741,7 +741,7 @@ public struct CryptoKeyVersion: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// state.
     ///
     /// [google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DISABLED]: <doc:CryptoKeyVersion/CryptoKeyVersionState/disabled>
-    /// [google.cloud.kms.v1.KeyManagementService.RestoreCryptoKeyVersion]: <doc:KeyManagementService/restoreCryptoKeyVersion(request:)>
+    /// [google.cloud.kms.v1.KeyManagementService.RestoreCryptoKeyVersion]: <doc:KeyManagementServiceClient/restoreCryptoKeyVersion(request:)>
     case destroyScheduled
     /// This version is still being generated. It may not be used, enabled,
     /// disabled, or destroyed yet. Cloud KMS will automatically mark this
@@ -929,8 +929,8 @@ public struct CryptoKeyVersion: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// [KeyManagementService.ListCryptoKeys][google.cloud.kms.v1.KeyManagementService.ListCryptoKeys].
   ///
   /// [google.cloud.kms.v1.CryptoKeyVersion]: <doc:CryptoKeyVersion>
-  /// [google.cloud.kms.v1.KeyManagementService.ListCryptoKeyVersions]: <doc:KeyManagementService/listCryptoKeyVersions(request:)>
-  /// [google.cloud.kms.v1.KeyManagementService.ListCryptoKeys]: <doc:KeyManagementService/listCryptoKeys(request:)>
+  /// [google.cloud.kms.v1.KeyManagementService.ListCryptoKeyVersions]: <doc:KeyManagementServiceClient/listCryptoKeyVersions(request:)>
+  /// [google.cloud.kms.v1.KeyManagementService.ListCryptoKeys]: <doc:KeyManagementServiceClient/listCryptoKeys(request:)>
   public enum CryptoKeyVersionView: Codable, Equatable, Sendable {
     /// Default view for each
     /// [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]. Does not

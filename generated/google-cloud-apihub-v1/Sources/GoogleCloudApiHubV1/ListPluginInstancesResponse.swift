@@ -22,7 +22,7 @@ import GoogleCloudWkt
 /// [ListPluginInstances][google.cloud.apihub.v1.ApiHubPlugin.ListPluginInstances]
 /// method's response.
 ///
-/// [google.cloud.apihub.v1.ApiHubPlugin.ListPluginInstances]: <doc:ApiHubPlugin/listPluginInstances(request:)>
+/// [google.cloud.apihub.v1.ApiHubPlugin.ListPluginInstances]: <doc:ApiHubPluginClient/listPluginInstances(request:)>
 public struct ListPluginInstancesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

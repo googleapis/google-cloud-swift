@@ -21,7 +21,7 @@
   /// Request message for
   /// [ModelService.MergeVersionAliases][google.cloud.aiplatform.v1.ModelService.MergeVersionAliases].
   ///
-  /// [google.cloud.aiplatform.v1.ModelService.MergeVersionAliases]: <doc:ModelService/mergeVersionAliases(request:)>
+  /// [google.cloud.aiplatform.v1.ModelService.MergeVersionAliases]: <doc:ModelServiceClient/mergeVersionAliases(request:)>
   public struct MergeVersionAliasesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

@@ -163,7 +163,7 @@ public class PoliciesClient: Clients.PoliciesProtocol {
   ///
   /// This pattern helps prevent conflicts between concurrent updates.
   ///
-  /// [google.iam.v2.Policies.GetPolicy]: <doc:Policies/getPolicy(request:)>
+  /// [google.iam.v2.Policies.GetPolicy]: <doc:PoliciesClient/getPolicy(request:)>
   ///
   /// @Snippet(path: "Policies_UpdatePolicy")
   public func updatePolicy(
@@ -184,7 +184,7 @@ public class PoliciesClient: Clients.PoliciesProtocol {
   ///
   /// This pattern helps prevent conflicts between concurrent updates.
   ///
-  /// [google.iam.v2.Policies.GetPolicy]: <doc:Policies/getPolicy(request:)>
+  /// [google.iam.v2.Policies.GetPolicy]: <doc:PoliciesClient/getPolicy(request:)>
   ///
   /// @Snippet(path: "Policies_UpdatePolicy")
   public func updatePolicy(
@@ -313,7 +313,7 @@ public class PoliciesClient: Clients.PoliciesProtocol {
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Policies_GetOperation")
   func getOperation(

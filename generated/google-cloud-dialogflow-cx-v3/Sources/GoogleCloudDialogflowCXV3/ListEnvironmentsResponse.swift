@@ -22,7 +22,7 @@
   /// The response message for
   /// [Environments.ListEnvironments][google.cloud.dialogflow.cx.v3.Environments.ListEnvironments].
   ///
-  /// [google.cloud.dialogflow.cx.v3.Environments.ListEnvironments]: <doc:Environments/listEnvironments(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Environments.ListEnvironments]: <doc:EnvironmentsClient/listEnvironments(request:)>
   public struct ListEnvironmentsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable

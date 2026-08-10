@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [KeyManagementService.MacVerify][google.cloud.kms.v1.KeyManagementService.MacVerify].
 ///
-/// [google.cloud.kms.v1.KeyManagementService.MacVerify]: <doc:KeyManagementService/macVerify(request:)>
+/// [google.cloud.kms.v1.KeyManagementService.MacVerify]: <doc:KeyManagementServiceClient/macVerify(request:)>
 public struct MacVerifyResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
@@ -56,7 +56,7 @@ public struct MacVerifyResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable
   /// but this field is still false, discard the response and perform a limited
   /// number of retries.
   ///
-  /// [google.cloud.kms.v1.KeyManagementService]: <doc:KeyManagementService>
+  /// [google.cloud.kms.v1.KeyManagementService]: <doc:KeyManagementServiceClient>
   /// [google.cloud.kms.v1.MacVerifyRequest.data]: <doc:MacVerifyRequest/data>
   /// [google.cloud.kms.v1.MacVerifyRequest.data_crc32c]: <doc:MacVerifyRequest/dataCrc32C>
   public var verifiedDataCrc32C: Swift.Bool = Swift.Bool()
@@ -76,7 +76,7 @@ public struct MacVerifyResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable
   /// but this field is still false, discard the response and perform a limited
   /// number of retries.
   ///
-  /// [google.cloud.kms.v1.KeyManagementService]: <doc:KeyManagementService>
+  /// [google.cloud.kms.v1.KeyManagementService]: <doc:KeyManagementServiceClient>
   /// [google.cloud.kms.v1.MacVerifyRequest.mac]: <doc:MacVerifyRequest/mac>
   /// [google.cloud.kms.v1.MacVerifyRequest.mac_crc32c]: <doc:MacVerifyRequest/macCrc32C>
   public var verifiedMacCrc32C: Swift.Bool = Swift.Bool()

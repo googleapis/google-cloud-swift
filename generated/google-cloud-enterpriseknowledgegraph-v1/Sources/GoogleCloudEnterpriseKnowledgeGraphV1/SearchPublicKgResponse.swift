@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [EnterpriseKnowledgeGraphService.Search][google.cloud.enterpriseknowledgegraph.v1.EnterpriseKnowledgeGraphService.Search].
 ///
-/// [google.cloud.enterpriseknowledgegraph.v1.EnterpriseKnowledgeGraphService.Search]: <doc:EnterpriseKnowledgeGraphService/search(request:)>
+/// [google.cloud.enterpriseknowledgegraph.v1.EnterpriseKnowledgeGraphService.Search]: <doc:EnterpriseKnowledgeGraphServiceClient/search(request:)>
 public struct SearchPublicKgResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

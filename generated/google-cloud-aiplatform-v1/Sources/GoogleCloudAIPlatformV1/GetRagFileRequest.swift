@@ -21,7 +21,7 @@
   /// Request message for
   /// [VertexRagDataService.GetRagFile][google.cloud.aiplatform.v1.VertexRagDataService.GetRagFile]
   ///
-  /// [google.cloud.aiplatform.v1.VertexRagDataService.GetRagFile]: <doc:VertexRagDataService/getRagFile(request:)>
+  /// [google.cloud.aiplatform.v1.VertexRagDataService.GetRagFile]: <doc:VertexRagDataServiceClient/getRagFile(request:)>
   public struct GetRagFileRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

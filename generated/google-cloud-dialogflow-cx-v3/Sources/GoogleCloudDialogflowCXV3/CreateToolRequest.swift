@@ -21,7 +21,7 @@
   /// The request message for
   /// [Tools.CreateTool][google.cloud.dialogflow.cx.v3.Tools.CreateTool].
   ///
-  /// [google.cloud.dialogflow.cx.v3.Tools.CreateTool]: <doc:Tools/createTool(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Tools.CreateTool]: <doc:ToolsClient/createTool(request:)>
   public struct CreateToolRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

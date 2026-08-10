@@ -21,7 +21,7 @@
   extension PublicAdvertisedPrefixesClient {
     /// Synthetic request message for the [announce()][google.cloud.compute.v1.publicAdvertisedPrefixes.announce] method.
     ///
-    /// [google.cloud.compute.v1.publicAdvertisedPrefixes.announce]: <doc:PublicAdvertisedPrefixes/announce(request:)>
+    /// [google.cloud.compute.v1.publicAdvertisedPrefixes.announce]: <doc:PublicAdvertisedPrefixesClient/announce(request:)>
     public struct AnnounceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -76,7 +76,7 @@
 
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.publicAdvertisedPrefixes.delete] method.
     ///
-    /// [google.cloud.compute.v1.publicAdvertisedPrefixes.delete]: <doc:PublicAdvertisedPrefixes/delete(request:)>
+    /// [google.cloud.compute.v1.publicAdvertisedPrefixes.delete]: <doc:PublicAdvertisedPrefixesClient/delete(request:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -130,7 +130,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.publicAdvertisedPrefixes.get] method.
     ///
-    /// [google.cloud.compute.v1.publicAdvertisedPrefixes.get]: <doc:PublicAdvertisedPrefixes/`get`(request:)>
+    /// [google.cloud.compute.v1.publicAdvertisedPrefixes.get]: <doc:PublicAdvertisedPrefixesClient/`get`(request:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -169,7 +169,7 @@
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.publicAdvertisedPrefixes.insert] method.
     ///
-    /// [google.cloud.compute.v1.publicAdvertisedPrefixes.insert]: <doc:PublicAdvertisedPrefixes/insert(request:)>
+    /// [google.cloud.compute.v1.publicAdvertisedPrefixes.insert]: <doc:PublicAdvertisedPrefixesClient/insert(request:)>
     public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -193,7 +193,7 @@
 
       /// Synthetic request body field for the [insert()][google.cloud.compute.v1.publicAdvertisedPrefixes.insert] method.
       ///
-      /// [google.cloud.compute.v1.publicAdvertisedPrefixes.insert]: <doc:PublicAdvertisedPrefixes/insert(request:)>
+      /// [google.cloud.compute.v1.publicAdvertisedPrefixes.insert]: <doc:PublicAdvertisedPrefixesClient/insert(request:)>
       public var body: PublicAdvertisedPrefix? = nil
 
       /// Initialize a new instance of `InsertRequest`.
@@ -225,7 +225,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.publicAdvertisedPrefixes.list] method.
     ///
-    /// [google.cloud.compute.v1.publicAdvertisedPrefixes.list]: <doc:PublicAdvertisedPrefixes/list(request:)>
+    /// [google.cloud.compute.v1.publicAdvertisedPrefixes.list]: <doc:PublicAdvertisedPrefixesClient/list(request:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -354,7 +354,7 @@
 
     /// Synthetic request message for the [patch()][google.cloud.compute.v1.publicAdvertisedPrefixes.patch] method.
     ///
-    /// [google.cloud.compute.v1.publicAdvertisedPrefixes.patch]: <doc:PublicAdvertisedPrefixes/patch(request:)>
+    /// [google.cloud.compute.v1.publicAdvertisedPrefixes.patch]: <doc:PublicAdvertisedPrefixesClient/patch(request:)>
     public struct PatchRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -381,7 +381,7 @@
 
       /// Synthetic request body field for the [patch()][google.cloud.compute.v1.publicAdvertisedPrefixes.patch] method.
       ///
-      /// [google.cloud.compute.v1.publicAdvertisedPrefixes.patch]: <doc:PublicAdvertisedPrefixes/patch(request:)>
+      /// [google.cloud.compute.v1.publicAdvertisedPrefixes.patch]: <doc:PublicAdvertisedPrefixesClient/patch(request:)>
       public var body: PublicAdvertisedPrefix? = nil
 
       /// Initialize a new instance of `PatchRequest`.
@@ -413,7 +413,7 @@
 
     /// Synthetic request message for the [withdraw()][google.cloud.compute.v1.publicAdvertisedPrefixes.withdraw] method.
     ///
-    /// [google.cloud.compute.v1.publicAdvertisedPrefixes.withdraw]: <doc:PublicAdvertisedPrefixes/withdraw(request:)>
+    /// [google.cloud.compute.v1.publicAdvertisedPrefixes.withdraw]: <doc:PublicAdvertisedPrefixesClient/withdraw(request:)>
     public struct WithdrawRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {

@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [Autokey.ListKeyHandles][google.cloud.kms.v1.Autokey.ListKeyHandles].
 ///
-/// [google.cloud.kms.v1.Autokey.ListKeyHandles]: <doc:Autokey/listKeyHandles(request:)>
+/// [google.cloud.kms.v1.Autokey.ListKeyHandles]: <doc:AutokeyClient/listKeyHandles(request:)>
 public struct ListKeyHandlesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

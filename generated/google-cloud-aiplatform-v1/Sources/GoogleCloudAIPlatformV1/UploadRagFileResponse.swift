@@ -22,7 +22,7 @@
   /// Response message for
   /// [VertexRagDataService.UploadRagFile][google.cloud.aiplatform.v1.VertexRagDataService.UploadRagFile].
   ///
-  /// [google.cloud.aiplatform.v1.VertexRagDataService.UploadRagFile]: <doc:VertexRagDataService/uploadRagFile(request:)>
+  /// [google.cloud.aiplatform.v1.VertexRagDataService.UploadRagFile]: <doc:VertexRagDataServiceClient/uploadRagFile(request:)>
   public struct UploadRagFileResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

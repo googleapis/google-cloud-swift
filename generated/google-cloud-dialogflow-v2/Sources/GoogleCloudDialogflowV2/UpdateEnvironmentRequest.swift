@@ -21,7 +21,7 @@
   /// The request message for
   /// [Environments.UpdateEnvironment][google.cloud.dialogflow.v2.Environments.UpdateEnvironment].
   ///
-  /// [google.cloud.dialogflow.v2.Environments.UpdateEnvironment]: <doc:Environments/updateEnvironment(request:)>
+  /// [google.cloud.dialogflow.v2.Environments.UpdateEnvironment]: <doc:EnvironmentsClient/updateEnvironment(request:)>
   public struct UpdateEnvironmentRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

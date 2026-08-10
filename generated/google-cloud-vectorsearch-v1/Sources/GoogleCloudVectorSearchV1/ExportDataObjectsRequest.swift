@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [VectorSearchService.ExportDataObjects][google.cloud.vectorsearch.v1.VectorSearchService.ExportDataObjects].
 ///
-/// [google.cloud.vectorsearch.v1.VectorSearchService.ExportDataObjects]: <doc:VectorSearchService/exportDataObjects(request:)>
+/// [google.cloud.vectorsearch.v1.VectorSearchService.ExportDataObjects]: <doc:VectorSearchServiceClient/exportDataObjects(request:)>
 public struct ExportDataObjectsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

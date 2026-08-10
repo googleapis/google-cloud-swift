@@ -21,7 +21,7 @@
   extension LicenseCodesClient {
     /// Synthetic request message for the [get()][google.cloud.compute.v1.licenseCodes.get] method.
     ///
-    /// [google.cloud.compute.v1.licenseCodes.get]: <doc:LicenseCodes/`get`(request:)>
+    /// [google.cloud.compute.v1.licenseCodes.get]: <doc:LicenseCodesClient/`get`(request:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -60,7 +60,7 @@
 
     /// Synthetic request message for the [getIamPolicy()][google.cloud.compute.v1.licenseCodes.getIamPolicy] method.
     ///
-    /// [google.cloud.compute.v1.licenseCodes.getIamPolicy]: <doc:LicenseCodes/getIamPolicy(request:)>
+    /// [google.cloud.compute.v1.licenseCodes.getIamPolicy]: <doc:LicenseCodesClient/getIamPolicy(request:)>
     public struct GetIamPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -102,7 +102,7 @@
 
     /// Synthetic request message for the [setIamPolicy()][google.cloud.compute.v1.licenseCodes.setIamPolicy] method.
     ///
-    /// [google.cloud.compute.v1.licenseCodes.setIamPolicy]: <doc:LicenseCodes/setIamPolicy(request:)>
+    /// [google.cloud.compute.v1.licenseCodes.setIamPolicy]: <doc:LicenseCodesClient/setIamPolicy(request:)>
     public struct SetIamPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -114,7 +114,7 @@
 
       /// Synthetic request body field for the [setIamPolicy()][google.cloud.compute.v1.licenseCodes.setIamPolicy] method.
       ///
-      /// [google.cloud.compute.v1.licenseCodes.setIamPolicy]: <doc:LicenseCodes/setIamPolicy(request:)>
+      /// [google.cloud.compute.v1.licenseCodes.setIamPolicy]: <doc:LicenseCodesClient/setIamPolicy(request:)>
       public var body: GlobalSetPolicyRequest? = nil
 
       /// Initialize a new instance of `SetIamPolicyRequest`.
@@ -146,7 +146,7 @@
 
     /// Synthetic request message for the [testIamPermissions()][google.cloud.compute.v1.licenseCodes.testIamPermissions] method.
     ///
-    /// [google.cloud.compute.v1.licenseCodes.testIamPermissions]: <doc:LicenseCodes/testIamPermissions(request:)>
+    /// [google.cloud.compute.v1.licenseCodes.testIamPermissions]: <doc:LicenseCodesClient/testIamPermissions(request:)>
     public struct TestIamPermissionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -158,7 +158,7 @@
 
       /// Synthetic request body field for the [testIamPermissions()][google.cloud.compute.v1.licenseCodes.testIamPermissions] method.
       ///
-      /// [google.cloud.compute.v1.licenseCodes.testIamPermissions]: <doc:LicenseCodes/testIamPermissions(request:)>
+      /// [google.cloud.compute.v1.licenseCodes.testIamPermissions]: <doc:LicenseCodesClient/testIamPermissions(request:)>
       public var body: TestPermissionsRequest? = nil
 
       /// Initialize a new instance of `TestIamPermissionsRequest`.

@@ -40,7 +40,7 @@ public struct ApiOperation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// Note:The name of the spec will be empty if the operation is created via
   /// [CreateApiOperation][google.cloud.apihub.v1.ApiHub.CreateApiOperation] API.
   ///
-  /// [google.cloud.apihub.v1.ApiHub.CreateApiOperation]: <doc:ApiHub/createApiOperation(request:)>
+  /// [google.cloud.apihub.v1.ApiHub.CreateApiOperation]: <doc:ApiHubClient/createApiOperation(request:)>
   public var spec: Swift.String = Swift.String()
 
   /// Optional. Operation details.
@@ -48,7 +48,7 @@ public struct ApiOperation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// [CreateApiOperation][google.cloud.apihub.v1.ApiHub.CreateApiOperation]
   /// API and we will fail the request if not provided.
   ///
-  /// [google.cloud.apihub.v1.ApiHub.CreateApiOperation]: <doc:ApiHub/createApiOperation(request:)>
+  /// [google.cloud.apihub.v1.ApiHub.CreateApiOperation]: <doc:ApiHubClient/createApiOperation(request:)>
   public var details: OperationDetails? = nil
 
   /// Output only. The time at which the operation was created.

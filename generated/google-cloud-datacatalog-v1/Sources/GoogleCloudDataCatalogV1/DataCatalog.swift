@@ -250,7 +250,7 @@ public class DataCatalogClient: Clients.DataCatalogProtocol {
   /// resource
   /// project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).
   ///
-  /// [google.cloud.datacatalog.v1.DataCatalog.CreateEntry]: <doc:DataCatalog/createEntry(request:)>
+  /// [google.cloud.datacatalog.v1.DataCatalog.CreateEntry]: <doc:DataCatalogClient/createEntry(request:)>
   ///
   /// @Snippet(path: "DataCatalog_DeleteEntry")
   @available(*, deprecated)
@@ -288,7 +288,7 @@ public class DataCatalogClient: Clients.DataCatalogProtocol {
   /// To get a list of both custom and automatically created entries, use
   /// [SearchCatalog][google.cloud.datacatalog.v1.DataCatalog.SearchCatalog].
   ///
-  /// [google.cloud.datacatalog.v1.DataCatalog.SearchCatalog]: <doc:DataCatalog/searchCatalog(request:)>
+  /// [google.cloud.datacatalog.v1.DataCatalog.SearchCatalog]: <doc:DataCatalogClient/searchCatalog(request:)>
   ///
   /// @Snippet(path: "DataCatalog_ListEntries")
   @available(*, deprecated)
@@ -304,7 +304,7 @@ public class DataCatalogClient: Clients.DataCatalogProtocol {
   /// To get a list of both custom and automatically created entries, use
   /// [SearchCatalog][google.cloud.datacatalog.v1.DataCatalog.SearchCatalog].
   ///
-  /// [google.cloud.datacatalog.v1.DataCatalog.SearchCatalog]: <doc:DataCatalog/searchCatalog(request:)>
+  /// [google.cloud.datacatalog.v1.DataCatalog.SearchCatalog]: <doc:DataCatalogClient/searchCatalog(request:)>
   ///
   /// @Snippet(path: "DataCatalog_ListEntries")
   @available(*, deprecated)
@@ -917,7 +917,7 @@ public class DataCatalogClient: Clients.DataCatalogProtocol {
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DataCatalog_ListOperations")
   public func listOperations(
@@ -928,7 +928,7 @@ public class DataCatalogClient: Clients.DataCatalogProtocol {
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DataCatalog_ListOperations")
   public func listOperations(
@@ -945,7 +945,7 @@ public class DataCatalogClient: Clients.DataCatalogProtocol {
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DataCatalog_GetOperation")
   func getOperation(
@@ -956,7 +956,7 @@ public class DataCatalogClient: Clients.DataCatalogProtocol {
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DataCatalog_DeleteOperation")
   public func deleteOperation(
@@ -967,7 +967,7 @@ public class DataCatalogClient: Clients.DataCatalogProtocol {
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DataCatalog_CancelOperation")
   public func cancelOperation(

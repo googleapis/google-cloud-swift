@@ -22,7 +22,7 @@
   /// [SiteSearchEngineService.RecrawlUris][google.cloud.discoveryengine.v1.SiteSearchEngineService.RecrawlUris]
   /// method.
   ///
-  /// [google.cloud.discoveryengine.v1.SiteSearchEngineService.RecrawlUris]: <doc:SiteSearchEngineService/recrawlUris(request:)>
+  /// [google.cloud.discoveryengine.v1.SiteSearchEngineService.RecrawlUris]: <doc:SiteSearchEngineServiceClient/recrawlUris(request:)>
   public struct RecrawlUrisResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [AgentService.ListChangelogs][google.cloud.ces.v1.AgentService.ListChangelogs].
 ///
-/// [google.cloud.ces.v1.AgentService.ListChangelogs]: <doc:AgentService/listChangelogs(request:)>
+/// [google.cloud.ces.v1.AgentService.ListChangelogs]: <doc:AgentServiceClient/listChangelogs(request:)>
 public struct ListChangelogsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

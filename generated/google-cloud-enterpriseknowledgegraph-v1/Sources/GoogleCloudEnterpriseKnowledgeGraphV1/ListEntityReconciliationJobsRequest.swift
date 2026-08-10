@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [EnterpriseKnowledgeGraphService.ListEntityReconciliationJobs][google.cloud.enterpriseknowledgegraph.v1.EnterpriseKnowledgeGraphService.ListEntityReconciliationJobs].
 ///
-/// [google.cloud.enterpriseknowledgegraph.v1.EnterpriseKnowledgeGraphService.ListEntityReconciliationJobs]: <doc:EnterpriseKnowledgeGraphService/listEntityReconciliationJobs(request:)>
+/// [google.cloud.enterpriseknowledgegraph.v1.EnterpriseKnowledgeGraphService.ListEntityReconciliationJobs]: <doc:EnterpriseKnowledgeGraphServiceClient/listEntityReconciliationJobs(request:)>
 public struct ListEntityReconciliationJobsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [KeyManagementService.MacSign][google.cloud.kms.v1.KeyManagementService.MacSign].
 ///
-/// [google.cloud.kms.v1.KeyManagementService.MacSign]: <doc:KeyManagementService/macSign(request:)>
+/// [google.cloud.kms.v1.KeyManagementService.MacSign]: <doc:KeyManagementServiceClient/macSign(request:)>
 public struct MacSignResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
@@ -66,7 +66,7 @@ public struct MacSignResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// but this field is still false, discard the response and perform a limited
   /// number of retries.
   ///
-  /// [google.cloud.kms.v1.KeyManagementService]: <doc:KeyManagementService>
+  /// [google.cloud.kms.v1.KeyManagementService]: <doc:KeyManagementServiceClient>
   /// [google.cloud.kms.v1.MacSignRequest.data]: <doc:MacSignRequest/data>
   /// [google.cloud.kms.v1.MacSignRequest.data_crc32c]: <doc:MacSignRequest/dataCrc32C>
   public var verifiedDataCrc32C: Swift.Bool = Swift.Bool()

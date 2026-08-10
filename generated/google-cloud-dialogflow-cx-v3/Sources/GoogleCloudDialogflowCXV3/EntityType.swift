@@ -58,7 +58,7 @@
     /// Format:
     /// `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/entityTypes/<EntityTypeID>`.
     ///
-    /// [google.cloud.dialogflow.cx.v3.EntityTypes.UpdateEntityType]: <doc:EntityTypes/updateEntityType(request:)>
+    /// [google.cloud.dialogflow.cx.v3.EntityTypes.UpdateEntityType]: <doc:EntityTypesClient/updateEntityType(request:)>
     public var name: Swift.String = Swift.String()
 
     /// Required. The human-readable name of the entity type, unique within the

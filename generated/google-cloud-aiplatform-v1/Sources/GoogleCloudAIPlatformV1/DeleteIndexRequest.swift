@@ -21,7 +21,7 @@
   /// Request message for
   /// [IndexService.DeleteIndex][google.cloud.aiplatform.v1.IndexService.DeleteIndex].
   ///
-  /// [google.cloud.aiplatform.v1.IndexService.DeleteIndex]: <doc:IndexService/deleteIndex(request:)>
+  /// [google.cloud.aiplatform.v1.IndexService.DeleteIndex]: <doc:IndexServiceClient/deleteIndex(request:)>
   public struct DeleteIndexRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [AgentService.ListToolsets][google.cloud.ces.v1.AgentService.ListToolsets].
 ///
-/// [google.cloud.ces.v1.AgentService.ListToolsets]: <doc:AgentService/listToolsets(request:)>
+/// [google.cloud.ces.v1.AgentService.ListToolsets]: <doc:AgentServiceClient/listToolsets(request:)>
 public struct ListToolsetsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

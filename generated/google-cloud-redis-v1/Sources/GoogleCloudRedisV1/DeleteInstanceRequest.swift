@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request for
 /// [DeleteInstance][google.cloud.redis.v1.CloudRedis.DeleteInstance].
 ///
-/// [google.cloud.redis.v1.CloudRedis.DeleteInstance]: <doc:CloudRedis/deleteInstance(request:)>
+/// [google.cloud.redis.v1.CloudRedis.DeleteInstance]: <doc:CloudRedisClient/deleteInstance(request:)>
 public struct DeleteInstanceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

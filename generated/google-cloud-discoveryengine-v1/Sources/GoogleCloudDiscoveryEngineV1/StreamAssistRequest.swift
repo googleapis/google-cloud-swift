@@ -22,7 +22,7 @@
   /// [AssistantService.StreamAssist][google.cloud.discoveryengine.v1.AssistantService.StreamAssist]
   /// method.
   ///
-  /// [google.cloud.discoveryengine.v1.AssistantService.StreamAssist]: <doc:AssistantService/streamAssist(request:)>
+  /// [google.cloud.discoveryengine.v1.AssistantService.StreamAssist]: <doc:AssistantServiceClient/streamAssist(request:)>
   public struct StreamAssistRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

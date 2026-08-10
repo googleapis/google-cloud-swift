@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// A response message for
 /// [AssetService.AnalyzeIamPolicyLongrunning][google.cloud.asset.v1.AssetService.AnalyzeIamPolicyLongrunning].
 ///
-/// [google.cloud.asset.v1.AssetService.AnalyzeIamPolicyLongrunning]: <doc:AssetService/analyzeIamPolicyLongrunning(request:)>
+/// [google.cloud.asset.v1.AssetService.AnalyzeIamPolicyLongrunning]: <doc:AssetServiceClient/analyzeIamPolicyLongrunning(request:)>
 public struct AnalyzeIamPolicyLongrunningResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

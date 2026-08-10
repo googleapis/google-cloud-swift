@@ -22,7 +22,7 @@
   /// Response message for
   /// [MetadataService.ListContexts][google.cloud.aiplatform.v1.MetadataService.ListContexts].
   ///
-  /// [google.cloud.aiplatform.v1.MetadataService.ListContexts]: <doc:MetadataService/listContexts(request:)>
+  /// [google.cloud.aiplatform.v1.MetadataService.ListContexts]: <doc:MetadataServiceClient/listContexts(request:)>
   public struct ListContextsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable

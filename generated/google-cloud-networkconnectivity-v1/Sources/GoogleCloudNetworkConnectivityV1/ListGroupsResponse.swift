@@ -22,7 +22,7 @@ import GoogleCloudWkt
 /// [HubService.ListGroups][google.cloud.networkconnectivity.v1.HubService.ListGroups]
 /// method.
 ///
-/// [google.cloud.networkconnectivity.v1.HubService.ListGroups]: <doc:HubService/listGroups(request:)>
+/// [google.cloud.networkconnectivity.v1.HubService.ListGroups]: <doc:HubServiceClient/listGroups(request:)>
 public struct ListGroupsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

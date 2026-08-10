@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [PolicyBasedRoutingService.GetPolicyBasedRoute][google.cloud.networkconnectivity.v1.PolicyBasedRoutingService.GetPolicyBasedRoute]
 /// method.
 ///
-/// [google.cloud.networkconnectivity.v1.PolicyBasedRoutingService.GetPolicyBasedRoute]: <doc:PolicyBasedRoutingService/getPolicyBasedRoute(request:)>
+/// [google.cloud.networkconnectivity.v1.PolicyBasedRoutingService.GetPolicyBasedRoute]: <doc:PolicyBasedRoutingServiceClient/getPolicyBasedRoute(request:)>
 public struct GetPolicyBasedRouteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

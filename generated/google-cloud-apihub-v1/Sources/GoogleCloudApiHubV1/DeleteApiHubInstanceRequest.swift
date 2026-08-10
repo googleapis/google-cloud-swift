@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [DeleteApiHubInstance][google.cloud.apihub.v1.Provisioning.DeleteApiHubInstance]
 /// method's request.
 ///
-/// [google.cloud.apihub.v1.Provisioning.DeleteApiHubInstance]: <doc:Provisioning/deleteApiHubInstance(request:)>
+/// [google.cloud.apihub.v1.Provisioning.DeleteApiHubInstance]: <doc:ProvisioningClient/deleteApiHubInstance(request:)>
 public struct DeleteApiHubInstanceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

@@ -147,7 +147,7 @@ public class AlloyDBCSQLAdminClient: Clients.AlloyDBCSQLAdminProtocol {
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "AlloyDBCSQLAdmin_ListOperations")
   public func listOperations(
@@ -158,7 +158,7 @@ public class AlloyDBCSQLAdminClient: Clients.AlloyDBCSQLAdminProtocol {
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "AlloyDBCSQLAdmin_ListOperations")
   public func listOperations(
@@ -175,7 +175,7 @@ public class AlloyDBCSQLAdminClient: Clients.AlloyDBCSQLAdminProtocol {
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "AlloyDBCSQLAdmin_GetOperation")
   func getOperation(
@@ -186,7 +186,7 @@ public class AlloyDBCSQLAdminClient: Clients.AlloyDBCSQLAdminProtocol {
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "AlloyDBCSQLAdmin_DeleteOperation")
   public func deleteOperation(
@@ -197,7 +197,7 @@ public class AlloyDBCSQLAdminClient: Clients.AlloyDBCSQLAdminProtocol {
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
-  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+Operations
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "AlloyDBCSQLAdmin_CancelOperation")
   public func cancelOperation(

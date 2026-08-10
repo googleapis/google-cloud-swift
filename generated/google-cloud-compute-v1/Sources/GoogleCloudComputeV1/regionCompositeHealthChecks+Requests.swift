@@ -21,7 +21,7 @@
   extension RegionCompositeHealthChecksClient {
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.regionCompositeHealthChecks.aggregatedList] method.
     ///
-    /// [google.cloud.compute.v1.regionCompositeHealthChecks.aggregatedList]: <doc:RegionCompositeHealthChecks/aggregatedList(request:)>
+    /// [google.cloud.compute.v1.regionCompositeHealthChecks.aggregatedList]: <doc:RegionCompositeHealthChecksClient/aggregatedList(request:)>
     public struct AggregatedListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -164,7 +164,7 @@
 
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.regionCompositeHealthChecks.delete] method.
     ///
-    /// [google.cloud.compute.v1.regionCompositeHealthChecks.delete]: <doc:RegionCompositeHealthChecks/delete(request:)>
+    /// [google.cloud.compute.v1.regionCompositeHealthChecks.delete]: <doc:RegionCompositeHealthChecksClient/delete(request:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -222,7 +222,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.regionCompositeHealthChecks.get] method.
     ///
-    /// [google.cloud.compute.v1.regionCompositeHealthChecks.get]: <doc:RegionCompositeHealthChecks/`get`(request:)>
+    /// [google.cloud.compute.v1.regionCompositeHealthChecks.get]: <doc:RegionCompositeHealthChecksClient/`get`(request:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -264,7 +264,7 @@
 
     /// Synthetic request message for the [getHealth()][google.cloud.compute.v1.regionCompositeHealthChecks.getHealth] method.
     ///
-    /// [google.cloud.compute.v1.regionCompositeHealthChecks.getHealth]: <doc:RegionCompositeHealthChecks/getHealth(request:)>
+    /// [google.cloud.compute.v1.regionCompositeHealthChecks.getHealth]: <doc:RegionCompositeHealthChecksClient/getHealth(request:)>
     public struct GetHealthRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -307,7 +307,7 @@
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.regionCompositeHealthChecks.insert] method.
     ///
-    /// [google.cloud.compute.v1.regionCompositeHealthChecks.insert]: <doc:RegionCompositeHealthChecks/insert(request:)>
+    /// [google.cloud.compute.v1.regionCompositeHealthChecks.insert]: <doc:RegionCompositeHealthChecksClient/insert(request:)>
     public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -334,7 +334,7 @@
 
       /// Synthetic request body field for the [insert()][google.cloud.compute.v1.regionCompositeHealthChecks.insert] method.
       ///
-      /// [google.cloud.compute.v1.regionCompositeHealthChecks.insert]: <doc:RegionCompositeHealthChecks/insert(request:)>
+      /// [google.cloud.compute.v1.regionCompositeHealthChecks.insert]: <doc:RegionCompositeHealthChecksClient/insert(request:)>
       public var body: CompositeHealthCheck? = nil
 
       /// Initialize a new instance of `InsertRequest`.
@@ -367,7 +367,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.regionCompositeHealthChecks.list] method.
     ///
-    /// [google.cloud.compute.v1.regionCompositeHealthChecks.list]: <doc:RegionCompositeHealthChecks/list(request:)>
+    /// [google.cloud.compute.v1.regionCompositeHealthChecks.list]: <doc:RegionCompositeHealthChecksClient/list(request:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -499,7 +499,7 @@
 
     /// Synthetic request message for the [patch()][google.cloud.compute.v1.regionCompositeHealthChecks.patch] method.
     ///
-    /// [google.cloud.compute.v1.regionCompositeHealthChecks.patch]: <doc:RegionCompositeHealthChecks/patch(request:)>
+    /// [google.cloud.compute.v1.regionCompositeHealthChecks.patch]: <doc:RegionCompositeHealthChecksClient/patch(request:)>
     public struct PatchRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -530,7 +530,7 @@
 
       /// Synthetic request body field for the [patch()][google.cloud.compute.v1.regionCompositeHealthChecks.patch] method.
       ///
-      /// [google.cloud.compute.v1.regionCompositeHealthChecks.patch]: <doc:RegionCompositeHealthChecks/patch(request:)>
+      /// [google.cloud.compute.v1.regionCompositeHealthChecks.patch]: <doc:RegionCompositeHealthChecksClient/patch(request:)>
       public var body: CompositeHealthCheck? = nil
 
       /// Initialize a new instance of `PatchRequest`.
@@ -563,7 +563,7 @@
 
     /// Synthetic request message for the [testIamPermissions()][google.cloud.compute.v1.regionCompositeHealthChecks.testIamPermissions] method.
     ///
-    /// [google.cloud.compute.v1.regionCompositeHealthChecks.testIamPermissions]: <doc:RegionCompositeHealthChecks/testIamPermissions(request:)>
+    /// [google.cloud.compute.v1.regionCompositeHealthChecks.testIamPermissions]: <doc:RegionCompositeHealthChecksClient/testIamPermissions(request:)>
     public struct TestIamPermissionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -578,7 +578,7 @@
 
       /// Synthetic request body field for the [testIamPermissions()][google.cloud.compute.v1.regionCompositeHealthChecks.testIamPermissions] method.
       ///
-      /// [google.cloud.compute.v1.regionCompositeHealthChecks.testIamPermissions]: <doc:RegionCompositeHealthChecks/testIamPermissions(request:)>
+      /// [google.cloud.compute.v1.regionCompositeHealthChecks.testIamPermissions]: <doc:RegionCompositeHealthChecksClient/testIamPermissions(request:)>
       public var body: TestPermissionsRequest? = nil
 
       /// Initialize a new instance of `TestIamPermissionsRequest`.

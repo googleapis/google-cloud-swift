@@ -30,7 +30,7 @@ public struct Folder: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// Updates to the folder's parent must be performed using
   /// [MoveFolder][google.cloud.resourcemanager.v3.Folders.MoveFolder].
   ///
-  /// [google.cloud.resourcemanager.v3.Folders.MoveFolder]: <doc:Folders/moveFolder(request:)>
+  /// [google.cloud.resourcemanager.v3.Folders.MoveFolder]: <doc:FoldersClient/moveFolder(request:)>
   public var parent: Swift.String = Swift.String()
 
   /// The folder's display name.
@@ -47,8 +47,8 @@ public struct Folder: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// [DeleteFolder][google.cloud.resourcemanager.v3.Folders.DeleteFolder] and
   /// [UndeleteFolder][google.cloud.resourcemanager.v3.Folders.UndeleteFolder].
   ///
-  /// [google.cloud.resourcemanager.v3.Folders.DeleteFolder]: <doc:Folders/deleteFolder(request:)>
-  /// [google.cloud.resourcemanager.v3.Folders.UndeleteFolder]: <doc:Folders/undeleteFolder(request:)>
+  /// [google.cloud.resourcemanager.v3.Folders.DeleteFolder]: <doc:FoldersClient/deleteFolder(request:)>
+  /// [google.cloud.resourcemanager.v3.Folders.UndeleteFolder]: <doc:FoldersClient/undeleteFolder(request:)>
   public var state: Folder.State = Folder.State()
 
   /// Output only. Timestamp when the folder was created.

@@ -21,7 +21,7 @@
   extension FirewallsClient {
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.firewalls.delete] method.
     ///
-    /// [google.cloud.compute.v1.firewalls.delete]: <doc:Firewalls/delete(request:)>
+    /// [google.cloud.compute.v1.firewalls.delete]: <doc:FirewallsClient/delete(request:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -75,7 +75,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.firewalls.get] method.
     ///
-    /// [google.cloud.compute.v1.firewalls.get]: <doc:Firewalls/`get`(request:)>
+    /// [google.cloud.compute.v1.firewalls.get]: <doc:FirewallsClient/`get`(request:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -114,7 +114,7 @@
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.firewalls.insert] method.
     ///
-    /// [google.cloud.compute.v1.firewalls.insert]: <doc:Firewalls/insert(request:)>
+    /// [google.cloud.compute.v1.firewalls.insert]: <doc:FirewallsClient/insert(request:)>
     public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -138,7 +138,7 @@
 
       /// Synthetic request body field for the [insert()][google.cloud.compute.v1.firewalls.insert] method.
       ///
-      /// [google.cloud.compute.v1.firewalls.insert]: <doc:Firewalls/insert(request:)>
+      /// [google.cloud.compute.v1.firewalls.insert]: <doc:FirewallsClient/insert(request:)>
       public var body: Firewall? = nil
 
       /// Initialize a new instance of `InsertRequest`.
@@ -170,7 +170,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.firewalls.list] method.
     ///
-    /// [google.cloud.compute.v1.firewalls.list]: <doc:Firewalls/list(request:)>
+    /// [google.cloud.compute.v1.firewalls.list]: <doc:FirewallsClient/list(request:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -299,7 +299,7 @@
 
     /// Synthetic request message for the [patch()][google.cloud.compute.v1.firewalls.patch] method.
     ///
-    /// [google.cloud.compute.v1.firewalls.patch]: <doc:Firewalls/patch(request:)>
+    /// [google.cloud.compute.v1.firewalls.patch]: <doc:FirewallsClient/patch(request:)>
     public struct PatchRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -326,7 +326,7 @@
 
       /// Synthetic request body field for the [patch()][google.cloud.compute.v1.firewalls.patch] method.
       ///
-      /// [google.cloud.compute.v1.firewalls.patch]: <doc:Firewalls/patch(request:)>
+      /// [google.cloud.compute.v1.firewalls.patch]: <doc:FirewallsClient/patch(request:)>
       public var body: Firewall? = nil
 
       /// Initialize a new instance of `PatchRequest`.
@@ -358,7 +358,7 @@
 
     /// Synthetic request message for the [testIamPermissions()][google.cloud.compute.v1.firewalls.testIamPermissions] method.
     ///
-    /// [google.cloud.compute.v1.firewalls.testIamPermissions]: <doc:Firewalls/testIamPermissions(request:)>
+    /// [google.cloud.compute.v1.firewalls.testIamPermissions]: <doc:FirewallsClient/testIamPermissions(request:)>
     public struct TestIamPermissionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -370,7 +370,7 @@
 
       /// Synthetic request body field for the [testIamPermissions()][google.cloud.compute.v1.firewalls.testIamPermissions] method.
       ///
-      /// [google.cloud.compute.v1.firewalls.testIamPermissions]: <doc:Firewalls/testIamPermissions(request:)>
+      /// [google.cloud.compute.v1.firewalls.testIamPermissions]: <doc:FirewallsClient/testIamPermissions(request:)>
       public var body: TestPermissionsRequest? = nil
 
       /// Initialize a new instance of `TestIamPermissionsRequest`.
@@ -402,7 +402,7 @@
 
     /// Synthetic request message for the [update()][google.cloud.compute.v1.firewalls.update] method.
     ///
-    /// [google.cloud.compute.v1.firewalls.update]: <doc:Firewalls/update(request:)>
+    /// [google.cloud.compute.v1.firewalls.update]: <doc:FirewallsClient/update(request:)>
     public struct UpdateRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -429,7 +429,7 @@
 
       /// Synthetic request body field for the [update()][google.cloud.compute.v1.firewalls.update] method.
       ///
-      /// [google.cloud.compute.v1.firewalls.update]: <doc:Firewalls/update(request:)>
+      /// [google.cloud.compute.v1.firewalls.update]: <doc:FirewallsClient/update(request:)>
       public var body: Firewall? = nil
 
       /// Initialize a new instance of `UpdateRequest`.

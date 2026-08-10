@@ -22,7 +22,7 @@
   /// [EntityTypes.ExportEntityTypes][google.cloud.dialogflow.cx.v3.EntityTypes.ExportEntityTypes]
   /// long running operation.
   ///
-  /// [google.cloud.dialogflow.cx.v3.EntityTypes.ExportEntityTypes]: <doc:EntityTypes/exportEntityTypes(request:)>
+  /// [google.cloud.dialogflow.cx.v3.EntityTypes.ExportEntityTypes]: <doc:EntityTypesClient/exportEntityTypes(request:)>
   public struct ExportEntityTypesMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

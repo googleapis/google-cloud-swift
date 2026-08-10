@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [DataObjectService.BatchUpdateDataObjects][google.cloud.vectorsearch.v1.DataObjectService.BatchUpdateDataObjects].
 ///
-/// [google.cloud.vectorsearch.v1.DataObjectService.BatchUpdateDataObjects]: <doc:DataObjectService/batchUpdateDataObjects(request:)>
+/// [google.cloud.vectorsearch.v1.DataObjectService.BatchUpdateDataObjects]: <doc:DataObjectServiceClient/batchUpdateDataObjects(request:)>
 public struct BatchUpdateDataObjectsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

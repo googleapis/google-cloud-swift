@@ -21,7 +21,7 @@
   /// Request message for
   /// [FeatureRegistryService.DeleteFeatureGroup][google.cloud.aiplatform.v1.FeatureRegistryService.DeleteFeatureGroup].
   ///
-  /// [google.cloud.aiplatform.v1.FeatureRegistryService.DeleteFeatureGroup]: <doc:FeatureRegistryService/deleteFeatureGroup(request:)>
+  /// [google.cloud.aiplatform.v1.FeatureRegistryService.DeleteFeatureGroup]: <doc:FeatureRegistryServiceClient/deleteFeatureGroup(request:)>
   public struct DeleteFeatureGroupRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

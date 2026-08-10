@@ -19,7 +19,7 @@ import GoogleCloudWkt
 
 /// Request message for [GetKeyHandle][google.cloud.kms.v1.Autokey.GetKeyHandle].
 ///
-/// [google.cloud.kms.v1.Autokey.GetKeyHandle]: <doc:Autokey/getKeyHandle(request:)>
+/// [google.cloud.kms.v1.Autokey.GetKeyHandle]: <doc:AutokeyClient/getKeyHandle(request:)>
 public struct GetKeyHandleRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

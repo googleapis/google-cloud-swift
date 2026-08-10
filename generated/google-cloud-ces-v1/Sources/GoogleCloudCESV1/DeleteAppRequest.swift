@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [AgentService.DeleteApp][google.cloud.ces.v1.AgentService.DeleteApp].
 ///
-/// [google.cloud.ces.v1.AgentService.DeleteApp]: <doc:AgentService/deleteApp(request:)>
+/// [google.cloud.ces.v1.AgentService.DeleteApp]: <doc:AgentServiceClient/deleteApp(request:)>
 public struct DeleteAppRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

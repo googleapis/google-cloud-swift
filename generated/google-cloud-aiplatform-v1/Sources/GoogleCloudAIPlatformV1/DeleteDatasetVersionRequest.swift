@@ -21,7 +21,7 @@
   /// Request message for
   /// [DatasetService.DeleteDatasetVersion][google.cloud.aiplatform.v1.DatasetService.DeleteDatasetVersion].
   ///
-  /// [google.cloud.aiplatform.v1.DatasetService.DeleteDatasetVersion]: <doc:DatasetService/deleteDatasetVersion(request:)>
+  /// [google.cloud.aiplatform.v1.DatasetService.DeleteDatasetVersion]: <doc:DatasetServiceClient/deleteDatasetVersion(request:)>
   public struct DeleteDatasetVersionRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

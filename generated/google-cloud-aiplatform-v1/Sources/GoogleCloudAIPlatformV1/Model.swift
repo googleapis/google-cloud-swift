@@ -68,8 +68,8 @@
     /// and
     /// [PredictionService.Explain][google.cloud.aiplatform.v1.PredictionService.Explain].
     ///
-    /// [google.cloud.aiplatform.v1.PredictionService.Explain]: <doc:PredictionService/explain(request:)>
-    /// [google.cloud.aiplatform.v1.PredictionService.Predict]: <doc:PredictionService/predict(request:)>
+    /// [google.cloud.aiplatform.v1.PredictionService.Explain]: <doc:PredictionServiceClient/explain(request:)>
+    /// [google.cloud.aiplatform.v1.PredictionService.Predict]: <doc:PredictionServiceClient/predict(request:)>
     public var predictSchemata: PredictSchemata? = nil
 
     /// Immutable. Points to a YAML file stored on Google Cloud Storage describing
@@ -110,7 +110,7 @@
     /// and all binaries it contains are copied and stored internally by Vertex AI.
     /// Not required for AutoML Models.
     ///
-    /// [google.cloud.aiplatform.v1.ModelService.UploadModel]: <doc:ModelService/uploadModel(request:)>
+    /// [google.cloud.aiplatform.v1.ModelService.UploadModel]: <doc:ModelServiceClient/uploadModel(request:)>
     public var containerSpec: ModelContainerSpec? = nil
 
     /// Immutable. The path to the directory containing the Model artifact and any
@@ -140,8 +140,8 @@
     /// [google.cloud.aiplatform.v1.Endpoint.deployed_models]: <doc:Endpoint/deployedModels>
     /// [google.cloud.aiplatform.v1.Model.supported_input_storage_formats]: <doc:Model/supportedInputStorageFormats>
     /// [google.cloud.aiplatform.v1.Model.supported_output_storage_formats]: <doc:Model/supportedOutputStorageFormats>
-    /// [google.cloud.aiplatform.v1.PredictionService.Explain]: <doc:PredictionService/explain(request:)>
-    /// [google.cloud.aiplatform.v1.PredictionService.Predict]: <doc:PredictionService/predict(request:)>
+    /// [google.cloud.aiplatform.v1.PredictionService.Explain]: <doc:PredictionServiceClient/explain(request:)>
+    /// [google.cloud.aiplatform.v1.PredictionService.Predict]: <doc:PredictionServiceClient/predict(request:)>
     public var supportedDeploymentResourcesTypes: [Model.DeploymentResourcesType] = []
 
     /// Output only. The formats this Model supports in
@@ -199,8 +199,8 @@
     /// [google.cloud.aiplatform.v1.BatchPredictionJob.input_config]: <doc:BatchPredictionJob/inputConfig>
     /// [google.cloud.aiplatform.v1.Model.supported_deployment_resources_types]: <doc:Model/supportedDeploymentResourcesTypes>
     /// [google.cloud.aiplatform.v1.PredictSchemata.instance_schema_uri]: <doc:PredictSchemata/instanceSchemaUri>
-    /// [google.cloud.aiplatform.v1.PredictionService.Explain]: <doc:PredictionService/explain(request:)>
-    /// [google.cloud.aiplatform.v1.PredictionService.Predict]: <doc:PredictionService/predict(request:)>
+    /// [google.cloud.aiplatform.v1.PredictionService.Explain]: <doc:PredictionServiceClient/explain(request:)>
+    /// [google.cloud.aiplatform.v1.PredictionService.Predict]: <doc:PredictionServiceClient/predict(request:)>
     public var supportedInputStorageFormats: [Swift.String] = []
 
     /// Output only. The formats this Model supports in
@@ -248,8 +248,8 @@
     /// [google.cloud.aiplatform.v1.Model.supported_deployment_resources_types]: <doc:Model/supportedDeploymentResourcesTypes>
     /// [google.cloud.aiplatform.v1.PredictSchemata.instance_schema_uri]: <doc:PredictSchemata/instanceSchemaUri>
     /// [google.cloud.aiplatform.v1.PredictSchemata.prediction_schema_uri]: <doc:PredictSchemata/predictionSchemaUri>
-    /// [google.cloud.aiplatform.v1.PredictionService.Explain]: <doc:PredictionService/explain(request:)>
-    /// [google.cloud.aiplatform.v1.PredictionService.Predict]: <doc:PredictionService/predict(request:)>
+    /// [google.cloud.aiplatform.v1.PredictionService.Explain]: <doc:PredictionServiceClient/explain(request:)>
+    /// [google.cloud.aiplatform.v1.PredictionService.Predict]: <doc:PredictionServiceClient/predict(request:)>
     public var supportedOutputStorageFormats: [Swift.String] = []
 
     /// Output only. Timestamp when this Model was uploaded into Vertex AI.
@@ -299,8 +299,8 @@
     /// [google.cloud.aiplatform.v1.BatchPredictionJob.generate_explanation]: <doc:BatchPredictionJob/generateExplanation>
     /// [google.cloud.aiplatform.v1.DeployModelRequest.deployed_model]: <doc:DeployModelRequest/deployedModel>
     /// [google.cloud.aiplatform.v1.DeployedModel.explanation_spec]: <doc:DeployedModel/explanationSpec>
-    /// [google.cloud.aiplatform.v1.EndpointService.DeployModel]: <doc:EndpointService/deployModel(request:)>
-    /// [google.cloud.aiplatform.v1.PredictionService.Explain]: <doc:PredictionService/explain(request:)>
+    /// [google.cloud.aiplatform.v1.EndpointService.DeployModel]: <doc:EndpointServiceClient/deployModel(request:)>
+    /// [google.cloud.aiplatform.v1.PredictionService.Explain]: <doc:PredictionServiceClient/explain(request:)>
     public var explanationSpec: ExplanationSpec? = nil
 
     /// Used to perform consistent read-modify-write updates. If not set, a blind

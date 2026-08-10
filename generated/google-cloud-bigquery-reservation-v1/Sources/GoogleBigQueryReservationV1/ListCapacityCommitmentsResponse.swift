@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// The response for
 /// [ReservationService.ListCapacityCommitments][google.cloud.bigquery.reservation.v1.ReservationService.ListCapacityCommitments].
 ///
-/// [google.cloud.bigquery.reservation.v1.ReservationService.ListCapacityCommitments]: <doc:ReservationService/listCapacityCommitments(request:)>
+/// [google.cloud.bigquery.reservation.v1.ReservationService.ListCapacityCommitments]: <doc:ReservationServiceClient/listCapacityCommitments(request:)>
 public struct ListCapacityCommitmentsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

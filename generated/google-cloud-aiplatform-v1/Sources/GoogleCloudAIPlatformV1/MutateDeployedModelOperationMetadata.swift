@@ -21,7 +21,7 @@
   /// Runtime operation information for
   /// [EndpointService.MutateDeployedModel][google.cloud.aiplatform.v1.EndpointService.MutateDeployedModel].
   ///
-  /// [google.cloud.aiplatform.v1.EndpointService.MutateDeployedModel]: <doc:EndpointService/mutateDeployedModel(request:)>
+  /// [google.cloud.aiplatform.v1.EndpointService.MutateDeployedModel]: <doc:EndpointServiceClient/mutateDeployedModel(request:)>
   public struct MutateDeployedModelOperationMetadata: Codable, Equatable, GoogleCloudWkt
       ._AnyPackable,
     Sendable

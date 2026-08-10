@@ -21,7 +21,7 @@
   /// Request message for
   /// [DatasetService.GetAnnotationSpec][google.cloud.aiplatform.v1.DatasetService.GetAnnotationSpec].
   ///
-  /// [google.cloud.aiplatform.v1.DatasetService.GetAnnotationSpec]: <doc:DatasetService/getAnnotationSpec(request:)>
+  /// [google.cloud.aiplatform.v1.DatasetService.GetAnnotationSpec]: <doc:DatasetServiceClient/getAnnotationSpec(request:)>
   public struct GetAnnotationSpecRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

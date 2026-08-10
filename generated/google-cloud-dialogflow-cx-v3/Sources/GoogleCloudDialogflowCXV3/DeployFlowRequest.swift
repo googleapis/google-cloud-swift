@@ -21,7 +21,7 @@
   /// The request message for
   /// [Environments.DeployFlow][google.cloud.dialogflow.cx.v3.Environments.DeployFlow].
   ///
-  /// [google.cloud.dialogflow.cx.v3.Environments.DeployFlow]: <doc:Environments/deployFlow(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Environments.DeployFlow]: <doc:EnvironmentsClient/deployFlow(request:)>
   public struct DeployFlowRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

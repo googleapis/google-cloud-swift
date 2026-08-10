@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [ProductService.AddLocalInventories][google.cloud.retail.v2.ProductService.AddLocalInventories]
 /// method.
 ///
-/// [google.cloud.retail.v2.ProductService.AddLocalInventories]: <doc:ProductService/addLocalInventories(request:)>
+/// [google.cloud.retail.v2.ProductService.AddLocalInventories]: <doc:ProductServiceClient/addLocalInventories(request:)>
 public struct AddLocalInventoriesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

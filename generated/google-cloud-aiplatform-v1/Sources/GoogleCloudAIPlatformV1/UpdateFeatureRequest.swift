@@ -23,8 +23,8 @@
   /// Request message for
   /// [FeatureRegistryService.UpdateFeature][google.cloud.aiplatform.v1.FeatureRegistryService.UpdateFeature].
   ///
-  /// [google.cloud.aiplatform.v1.FeatureRegistryService.UpdateFeature]: <doc:FeatureRegistryService/updateFeature(request:)>
-  /// [google.cloud.aiplatform.v1.FeaturestoreService.UpdateFeature]: <doc:FeaturestoreService/updateFeature(request:)>
+  /// [google.cloud.aiplatform.v1.FeatureRegistryService.UpdateFeature]: <doc:FeatureRegistryServiceClient/updateFeature(request:)>
+  /// [google.cloud.aiplatform.v1.FeaturestoreService.UpdateFeature]: <doc:FeaturestoreServiceClient/updateFeature(request:)>
   public struct UpdateFeatureRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

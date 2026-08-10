@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [google.bigtable.admin.v2.BigtableTableAdmin.CreateTable][google.bigtable.admin.v2.BigtableTableAdmin.CreateTable]
 ///
-/// [google.bigtable.admin.v2.BigtableTableAdmin.CreateTable]: <doc:BigtableTableAdmin/createTable(request:)>
+/// [google.bigtable.admin.v2.BigtableTableAdmin.CreateTable]: <doc:BigtableTableAdminClient/createTable(request:)>
 public struct CreateTableRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

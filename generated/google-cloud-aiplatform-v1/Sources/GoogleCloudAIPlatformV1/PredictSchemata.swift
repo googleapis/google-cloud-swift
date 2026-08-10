@@ -24,8 +24,8 @@
   /// and [BatchPredictionJob][google.cloud.aiplatform.v1.BatchPredictionJob].
   ///
   /// [google.cloud.aiplatform.v1.BatchPredictionJob]: <doc:BatchPredictionJob>
-  /// [google.cloud.aiplatform.v1.PredictionService.Explain]: <doc:PredictionService/explain(request:)>
-  /// [google.cloud.aiplatform.v1.PredictionService.Predict]: <doc:PredictionService/predict(request:)>
+  /// [google.cloud.aiplatform.v1.PredictionService.Explain]: <doc:PredictionServiceClient/explain(request:)>
+  /// [google.cloud.aiplatform.v1.PredictionService.Predict]: <doc:PredictionServiceClient/predict(request:)>
   public struct PredictSchemata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

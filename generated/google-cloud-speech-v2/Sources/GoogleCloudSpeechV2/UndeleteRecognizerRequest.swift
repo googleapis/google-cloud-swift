@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [UndeleteRecognizer][google.cloud.speech.v2.Speech.UndeleteRecognizer]
 /// method.
 ///
-/// [google.cloud.speech.v2.Speech.UndeleteRecognizer]: <doc:Speech/undeleteRecognizer(request:)>
+/// [google.cloud.speech.v2.Speech.UndeleteRecognizer]: <doc:SpeechClient/undeleteRecognizer(request:)>
 public struct UndeleteRecognizerRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

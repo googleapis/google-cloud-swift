@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for the
 /// [DeleteRecognizer][google.cloud.speech.v2.Speech.DeleteRecognizer] method.
 ///
-/// [google.cloud.speech.v2.Speech.DeleteRecognizer]: <doc:Speech/deleteRecognizer(request:)>
+/// [google.cloud.speech.v2.Speech.DeleteRecognizer]: <doc:SpeechClient/deleteRecognizer(request:)>
 public struct DeleteRecognizerRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

@@ -21,7 +21,7 @@
   /// The response message for
   /// [Participants.AnalyzeContent][google.cloud.dialogflow.v2.Participants.AnalyzeContent].
   ///
-  /// [google.cloud.dialogflow.v2.Participants.AnalyzeContent]: <doc:Participants/analyzeContent(request:)>
+  /// [google.cloud.dialogflow.v2.Participants.AnalyzeContent]: <doc:ParticipantsClient/analyzeContent(request:)>
   public struct AnalyzeContentResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

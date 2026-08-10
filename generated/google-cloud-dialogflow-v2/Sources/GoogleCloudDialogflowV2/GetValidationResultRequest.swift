@@ -21,7 +21,7 @@
   /// The request message for
   /// [Agents.GetValidationResult][google.cloud.dialogflow.v2.Agents.GetValidationResult].
   ///
-  /// [google.cloud.dialogflow.v2.Agents.GetValidationResult]: <doc:Agents/getValidationResult(request:)>
+  /// [google.cloud.dialogflow.v2.Agents.GetValidationResult]: <doc:AgentsClient/getValidationResult(request:)>
   public struct GetValidationResultRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

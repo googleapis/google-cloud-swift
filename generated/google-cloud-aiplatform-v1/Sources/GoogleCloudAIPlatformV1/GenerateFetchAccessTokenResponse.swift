@@ -21,7 +21,7 @@
   /// Response message for
   /// [FeatureOnlineStoreService.GenerateFetchAccessToken][google.cloud.aiplatform.v1.FeatureOnlineStoreService.GenerateFetchAccessToken].
   ///
-  /// [google.cloud.aiplatform.v1.FeatureOnlineStoreService.GenerateFetchAccessToken]: <doc:FeatureOnlineStoreService/generateFetchAccessToken(request:)>
+  /// [google.cloud.aiplatform.v1.FeatureOnlineStoreService.GenerateFetchAccessToken]: <doc:FeatureOnlineStoreServiceClient/generateFetchAccessToken(request:)>
   public struct GenerateFetchAccessTokenResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

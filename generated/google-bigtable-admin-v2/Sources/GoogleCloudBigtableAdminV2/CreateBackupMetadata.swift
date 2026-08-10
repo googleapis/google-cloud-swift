@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Metadata type for the operation returned by
 /// [CreateBackup][google.bigtable.admin.v2.BigtableTableAdmin.CreateBackup].
 ///
-/// [google.bigtable.admin.v2.BigtableTableAdmin.CreateBackup]: <doc:BigtableTableAdmin/createBackup(request:)>
+/// [google.bigtable.admin.v2.BigtableTableAdmin.CreateBackup]: <doc:BigtableTableAdminClient/createBackup(request:)>
 public struct CreateBackupMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
