@@ -105,7 +105,7 @@ public final class ExponentialBackoff: BackoffPolicy, Sendable {
     self.initialDelay = min(max(config.initialDelay, minInitial), self.maximumDelay)
   }
 
-  public func backoffDelay(for state: RetryState) -> Duration {
+  public func backoffDelayFor(_ state: RetryState) -> Duration {
     let d = delay(attemptCount: state.attemptCount)
     return Duration(attoseconds: Int128.random(in: 0...d.attoseconds))
   }

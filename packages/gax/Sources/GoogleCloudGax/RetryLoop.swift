@@ -107,7 +107,7 @@ public struct _RetryLoop: Sendable {
             throw e
           case .retry(let e):
             lastError = e
-            nextDelay = backoffPolicy.backoffDelay(for: state)
+            nextDelay = backoffPolicy.backoffDelayFor(state)
             continue
           }
         }
@@ -125,7 +125,7 @@ public struct _RetryLoop: Sendable {
           throw error
         }
         let flow = retryPolicy.onError(state: state, error: requestError)
-        nextDelay = backoffPolicy.backoffDelay(for: state)
+        nextDelay = backoffPolicy.backoffDelayFor(state)
         retryThrottler.onRetryFailure(flow: flow)
 
         switch flow {

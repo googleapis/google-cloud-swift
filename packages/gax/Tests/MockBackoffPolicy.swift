@@ -17,5 +17,5 @@ import GoogleCloudGax
 
 struct MockBackoff: BackoffPolicy {
   var delay: Duration = .zero
-  func backoffDelay(for: RetryState) -> Duration { delay }
+  func backoffDelayFor(_ state: RetryState) -> Duration { delay }
 }

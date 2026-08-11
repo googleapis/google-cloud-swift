@@ -116,7 +116,7 @@ public final class _PollableOperationImpl<ResponseType>: PollableOperation {
     var pollingState = PollingState()
     while !state.done {
       try pollingPolicy.onInProgress(state: pollingState)
-      let delay = backoffPolicy.backoffDelay(for: pollingState.asRetryState())
+      let delay = backoffPolicy.backoffDelayFor(pollingState.asRetryState())
       try await sleep(delay)
       pollingState.attemptCount += 1
       do {

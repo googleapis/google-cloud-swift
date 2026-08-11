@@ -247,7 +247,7 @@ import Testing
     struct SeqBackoff: BackoffPolicy {
       let delays: [Duration]
       let index: AtomicCounter
-      func backoffDelay(for: RetryState) -> Duration {
+      func backoffDelayFor(_ state: RetryState) -> Duration {
         let i = index.increment()
         return i < delays.count ? delays[i] : .zero
       }

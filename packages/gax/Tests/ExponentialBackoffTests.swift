@@ -98,7 +98,7 @@ import Testing
     let backoff = ExponentialBackoff()
     let state = RetryState().with { $0.attemptCount = 1 }
     for _ in 0..<100 {
-      let d = backoff.backoffDelay(for: state)
+      let d = backoff.backoffDelayFor(state)
       #expect(d >= .seconds(0) && d <= .seconds(1))
     }
   }

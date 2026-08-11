@@ -26,7 +26,7 @@ public final class LinearBackoffPolicy: BackoffPolicy, Sendable {
     self.delay = delay
   }
 
-  public func backoffDelay(for _: RetryState) -> Duration {
+  public func backoffDelayFor(_ state: RetryState) -> Duration {
     return self.delay
   }
 }
