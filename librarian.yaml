@@ -35,6 +35,9 @@ default:
       - name: GoogleApi
         path: generated/google-api
         api_package: google.api
+      - name: GoogleAppsScriptType
+        path: generated/google-apps-script-type
+        api_package: google.apps.script.type
       - name: GoogleCloudAuth
         path: packages/auth
         required_by_services: true
@@ -151,6 +154,9 @@ libraries:
     swift:
       library_name_override: GoogleAppEngineV1
   - name: google-apps-script-type
+    version: 0.0.0-preview
+    copyright_year: "2026"
+  - name: google-apps-script-type-drive
     version: 0.0.0-preview
     copyright_year: "2026"
   - name: google-bigtable-admin-v2
