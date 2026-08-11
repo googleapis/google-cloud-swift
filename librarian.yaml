@@ -1023,6 +1023,11 @@ libraries:
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudVectorSearchV1
+  - name: google-cloud-video-livestream-v1
+    version: 0.0.0-preview
+    copyright_year: "2026"
+    swift:
+      library_name_override: GoogleCloudVideoLiveStreamV1
   - name: google-cloud-video-stitcher-v1
     version: 0.0.0-preview
     copyright_year: "2026"
