@@ -895,6 +895,11 @@ libraries:
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudSecurityCenterV2
+  - name: google-cloud-securitycentermanagement-v1
+    version: 0.0.0-preview
+    copyright_year: "2026"
+    swift:
+      library_name_override: GoogleCloudSecurityCenterManagementV1
   - name: google-cloud-securityposture-v1
     version: 0.0.0-preview
     copyright_year: "2026"
