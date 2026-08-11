@@ -1,0 +1,14 @@
+{
+    "api_description": "Manages Apache Airflow environments on Google Cloud Platform.",
+    "api_id": "composer.googleapis.com",
+    "api_shortname": "composer",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/google-cloud-orchestration-airflow-service-v1/documentation",
+    "distribution_name": "google-cloud-orchestration-airflow-service-v1",
+    "language": "swift",
+    "library_type": "GAPIC_AUTO",
+    "name": "composer",
+    "name_pretty": "Cloud Composer",
+    "product_documentation": "https://cloud.google.com/composer/",
+    "release_level": "preview",
+    "repo": "googleapis/google-cloud-swift"
+}
