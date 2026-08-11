@@ -965,6 +965,11 @@ libraries:
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudArtifactRegistryV1
+  - name: google-devtools-cloudbuild-v1
+    version: 0.0.0-preview
+    copyright_year: "2026"
+    swift:
+      library_name_override: GoogleCloudBuildV1
   - name: google-devtools-cloudbuild-v2
     version: 0.0.0-preview
     copyright_year: "2026"
