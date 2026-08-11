@@ -233,11 +233,28 @@ GOOGLE_CLOUD_PROJECT="$(gcloud config get project)"
 gcloud iam service-accounts disable swift-sdk-test@${GOOGLE_CLOUD_PROJECT}.iam.gserviceaccount.com
 ```
 
-### Running tests
+### Create a test bucket
+
+We suggest a name related to the project id, but you can use any bucket name you
+like, just remember to change the name below:
+
+```bash
+gcloud storage mb gs://${GOOGLE_CLOUD_PROJECT}-bucket
+```
+
+### Running the integration tests
 
 ```bash
 P_ID="$(gcloud config get project)"
-env GOOGLE_CLOUD_PROJECT=${P_ID} GOOGLE_CLOUD_SWIFT_TEST_SERVICE_ACCOUNT=swift-sdk-test@${P_ID}.iam.gserviceaccount.com swift test --traits IntegrationTests
+env GOOGLE_CLOUD_PROJECT=${P_ID} \
+  GOOGLE_CLOUD_SWIFT_TEST_BUCKET="${P_ID}-bucket" \
+  GOOGLE_CLOUD_SWIFT_TEST_SERVICE_ACCOUNT=swift-sdk-test@${P_ID}.iam.gserviceaccount.com \
+  swift test --traits IntegrationTests
+
+env GOOGLE_CLOUD_PROJECT=${P_ID} \
+  GOOGLE_CLOUD_SWIFT_TEST_BUCKET="${P_ID}-bucket" \
+  GOOGLE_CLOUD_SWIFT_TEST_SERVICE_ACCOUNT=swift-sdk-test@${P_ID}.iam.gserviceaccount.com \
+  swift test --traits IntegrationTests --package-path packages/storage
 ```
 
 ## Preview Documentation
