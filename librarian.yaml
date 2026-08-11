@@ -533,6 +533,11 @@ libraries:
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudDeveloperConnectV1
+  - name: google-cloud-devicestreaming-v1
+    version: 0.0.0-preview
+    copyright_year: "2026"
+    swift:
+      library_name_override: GoogleCloudDeviceStreamingV1
   - name: google-cloud-dialogflow-cx-v3
     version: 0.1.0-preview
     copyright_year: "2026"
