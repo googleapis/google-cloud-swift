@@ -24,9 +24,7 @@ also install the `protoc` plugins for Swift. Follow the instructions in
 Make sure your workstation has up-to-date versions of Swift and Go. Follow the
 instructions in [Set Up Development Environment].
 
-## Generate new library
-
-### Generate
+## Onboard new library
 
 In this example we will use `google/cloud/kms/v1`. Change the pattern as needed.
 
@@ -55,34 +53,7 @@ git commit -m "feat(kms/v1): generate library"
 
 ### Troubleshooting
 
-**Note:** Ensure you are verifying against the version of `librarian` used in
-Swift (you can check the version in [librarian.yaml]).
-
-`librarian` uses an allowlist configured in [sdk.yaml] to manage libraries.
-Cloud APIs are automatically allowed for all languages except the ones in
-[sdk.yaml].
-
-**❌ If you get a "library is not allowed" error:**
-
-Check the [sdk.yaml] file:
-
--   **If the library is missing and it is not a Cloud API:** Add it, but enable
-    it *only* for Swift.
--   **If the library is already there:** Verify that Swift is included in the
-    accepted languages for that specific library.
-
-If you still have issues, please contact librarian team.
-
-#### How to update an unlisted language:
-
-1.  Send a PR adding the language to the [sdk.yaml] in librarian and merge it.
-1.  Get latest librarian version
-
-    ```bash
-    go list -m -json github.com/googleapis/librarian@main | jq -r '.Version'
-    ```
-
-1.  Send a PR to update the version field in [librarian.yaml].
+See the [playbook](librarian-playbook.md).
 
 ## Update the code generation sources
 
@@ -103,30 +74,28 @@ Then send a PR with whatever changed.
 Alternatively you can run `librarian update --all` to update all sources at
 once. Note that this includes `showcase` and `protojson-conformance`, though.
 
-## Refreshing the code
+### Troubleshooting
 
-### All libraries
+See the [playbook](librarian-playbook.md).
 
-Run:
+## Update librarian
+
+First get the latest version and update `librarian.yaml`:
 
 ```bash
-V=$(go run github.com/googleapis/librarian/cmd/librarian@latest config get version)
+git checkout -b chore-update-librarian-circa-$(date +%Y-%m-%d)
+V=$(GOPROXY=direct go list -m -f '{{.Version}}' github.com/googleapis/librarian@main)
+go run github.com/googleapis/librarian/cmd/librarian@${V} config set version ${V}
 go run github.com/googleapis/librarian/cmd/librarian@${V} generate --all
+git add .
+git commit -m"chore: update librarian circa $(date +%Y-%m-%d)" .
 ```
 
-Then run the unit tests and send a PR with whatever changed.
+Send the PR for review.
 
-### Single library
+### Troubleshooting
 
-When iterating, it can be useful to regenerate the code of a single library. Get
-the library name from librarian.yaml.
-
-Run:
-
-```bash
-V=$(go run github.com/googleapis/librarian/cmd/librarian@latest config get version)
-go run github.com/googleapis/librarian/cmd/librarian@${V} generate google-cloud-secretmanager-v1
-```
+See the [playbook](librarian-playbook.md).
 
 ## Formatting librarian.yaml
 
@@ -139,9 +108,11 @@ V=$(go run github.com/googleapis/librarian/cmd/librarian@latest config get versi
 go run github.com/googleapis/librarian/cmd/librarian@${V} tidy
 ```
 
-## Special cases
+### Troubleshooting
 
-### Making changes to `librarian`
+Open a bug in the librarian repository.
+
+## Making changes to `librarian`
 
 Clone the `librarian` directory:
 
@@ -164,22 +135,7 @@ go -C ../librarian/cmd/librarian build && ../librarian/cmd/librarian/librarian g
 Once the changes work then send a PR in the librarian repo to make your changes.
 Wait for the PR to be approved and merged.
 
-Then finish your PR in `google-cloud-swift`.
-
-1.  Update the librarian version in `librarian.yaml`:
-
-    ```bash
-    V=$(GOPROXY=direct go list -m -f '{{.Version}}' github.com/googleapis/librarian@main)
-    go run github.com/googleapis/librarian/cmd/librarian@${V} config set version ${V}
-    ```
-
-1.  Update the generated code:
-
-    ```bash
-    go run github.com/googleapis/librarian/cmd/librarian@${V} generate --all
-    ```
-
-Use a single PR to update the librarian version and any generated code.
+The follow the instructions in the [Update librarian](#update-librarian) section.
 
 ### Testing library generation for an existing library
 
@@ -192,6 +148,7 @@ existing library:
 
 ```shell
 git rm -fr generated/google-cloud-secretmanager-v1
+# Remove the library from `librarian.yaml`
 git commit -m"Remove for testing" generated/google-cloud-secretmanager-v1
 ```
 
