@@ -837,6 +837,11 @@ libraries:
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudPolicyTroubleshooterV1
+  - name: google-cloud-privilegedaccessmanager-v1
+    version: 0.0.0-preview
+    copyright_year: "2026"
+    swift:
+      library_name_override: GoogleCloudPrivilegedAccessManagerV1
   - name: google-cloud-rapidmigrationassessment-v1
     version: 0.0.0-preview
     copyright_year: "2026"
