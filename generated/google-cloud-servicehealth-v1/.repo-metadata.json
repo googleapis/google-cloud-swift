@@ -1,0 +1,15 @@
+{
+    "api_description": "Personalized Service Health helps you gain visibility into disruptive\nevents impacting Google Cloud products.",
+    "api_id": "servicehealth.googleapis.com",
+    "api_shortname": "servicehealth",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/google-cloud-servicehealth-v1/documentation",
+    "distribution_name": "google-cloud-servicehealth-v1",
+    "issue_tracker": "https://issuetracker.google.com/issues/new?component=1466723\u0026template=1161103",
+    "language": "swift",
+    "library_type": "GAPIC_AUTO",
+    "name": "servicehealth",
+    "name_pretty": "Service Health",
+    "product_documentation": "https://cloud.google.com/service-health/",
+    "release_level": "preview",
+    "repo": "googleapis/google-cloud-swift"
+}
