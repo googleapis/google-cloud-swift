@@ -55,12 +55,11 @@ import Testing
     let options = StorageClientOptions().with {
       $0.client = .init().with {
         $0.endpoint = registry.endpoint
-        $0._testSession = session
         $0.credentials = try! Credentials(configuration: .anonymous)
       }
     }
 
-    let client = try StorageClient(options)
+    let client = try StorageClient(options, testSession: session)
     let task = client.upload(source, to: bucket, as: objectName)
     let object = try await task.value
 
@@ -84,12 +83,11 @@ import Testing
     let options = StorageClientOptions().with {
       $0.client = .init().with {
         $0.endpoint = registry.endpoint
-        $0._testSession = session
         $0.credentials = try! Credentials(configuration: .anonymous)
       }
     }
 
-    let client = try StorageClient(options)
+    let client = try StorageClient(options, testSession: session)
     let task = client.upload(source, to: bucket, as: objectName)
 
     await expectError(DummyError.self) {
@@ -119,13 +117,12 @@ import Testing
     let options = StorageClientOptions().with {
       $0.client = .init().with {
         $0.endpoint = registry.endpoint
-        $0._testSession = session
         $0.credentials = try! Credentials(configuration: .anonymous)
         $0.retryPolicy = NeverRetry()
       }
     }
 
-    let client = try StorageClient(options)
+    let client = try StorageClient(options, testSession: session)
     let task = client.upload(source, to: bucket, as: objectName)
 
     let error = await expectError(RequestError.self) {
@@ -162,12 +159,11 @@ import Testing
     let options = StorageClientOptions().with {
       $0.client = .init().with {
         $0.endpoint = registry.endpoint
-        $0._testSession = session
         $0.credentials = try! Credentials(configuration: .anonymous)
       }
     }
 
-    let client = try StorageClient(options)
+    let client = try StorageClient(options, testSession: session)
     let task = client.upload(source, to: bucket, as: objectName)
 
     let error = await expectUploadError {
@@ -205,12 +201,11 @@ import Testing
     let options = StorageClientOptions().with {
       $0.client = .init().with {
         $0.endpoint = registry.endpoint
-        $0._testSession = session
         $0.credentials = try! Credentials(configuration: .anonymous)
       }
     }
 
-    let client = try StorageClient(options)
+    let client = try StorageClient(options, testSession: session)
     let task = client.upload(source, to: bucket, as: objectName)
 
     let error = await expectError(DecodingError.self) {
@@ -233,12 +228,11 @@ import Testing
     let options = StorageClientOptions().with {
       $0.client = .init().with {
         $0.endpoint = registry.endpoint
-        $0._testSession = session
         $0.credentials = try! Credentials(configuration: .anonymous)
       }
     }
 
-    let client = try StorageClient(options)
+    let client = try StorageClient(options, testSession: session)
     let task = client.upload(source, to: bucket, as: objectName)
 
     let error = await expectUploadError {
@@ -290,12 +284,11 @@ import Testing
     let options = StorageClientOptions().with {
       $0.client = .init().with {
         $0.endpoint = registry.endpoint
-        $0._testSession = session
         $0.credentials = try! Credentials(configuration: .anonymous)
       }
     }
 
-    let client = try StorageClient(options)
+    let client = try StorageClient(options, testSession: session)
     let uploadOptions = UploadOptions().with { $0.customerEncryptionKey = csek }
     let task = client.upload(source, to: bucket, as: objectName, options: uploadOptions)
     let object = try await task.value

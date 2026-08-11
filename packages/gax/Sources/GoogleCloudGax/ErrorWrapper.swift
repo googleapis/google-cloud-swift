@@ -21,15 +21,8 @@ import GoogleCloudWkt
 import GoogleRpc
 
 /// The services send errors using this structure.
-struct ErrorWrapper: Decodable {
-  init?(data: Data, response: HTTPURLResponse) {
-    let decoder = GoogleCloudWkt._ProtoJSONDecoder()
-    guard let w = try? decoder.decode(Self.self, from: data) else {
-      return nil
-    }
-    self = w
-  }
-  init?(data: Data) {
+@_spi(GoogleCloudInternal) public struct _ErrorWrapper: Decodable {
+  public init?(data: Data) {
     let decoder = GoogleCloudWkt._ProtoJSONDecoder()
     guard let w = try? decoder.decode(Self.self, from: data) else {
       return nil
@@ -51,10 +44,10 @@ struct ErrorWrapper: Decodable {
   }
 }
 
-extension ServiceError {
+@_spi(GoogleCloudInternal) extension ServiceError {
   /// Create a a new `ServiceDetails`.
-  init(
-    wrapper: ErrorWrapper,
+  public init(
+    wrapper: _ErrorWrapper,
   ) {
     if let s = wrapper.error.status {
       self.code = GoogleRpc.Code.init(stringValue: s)

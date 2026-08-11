@@ -17,7 +17,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import Testing
-@testable import GoogleCloudGax
+@_spi(GoogleCloudInternal) import GoogleCloudGax
 import GoogleRpc
 
 @Suite struct ErrorWrapperTests {
@@ -34,10 +34,7 @@ import GoogleRpc
       }
       """.utf8)
 
-    let response = HTTPURLResponse(
-      url: URL(string: "http://example.com")!, statusCode: 400, httpVersion: nil, headerFields: nil)!
-
-    guard let wrapper = ErrorWrapper(data: json, response: response) else {
+    guard let wrapper = _ErrorWrapper(data: json) else {
       Issue.record("Failed to decode ErrorWrapper")
       return
     }
@@ -59,10 +56,7 @@ import GoogleRpc
       }
       """.utf8)
 
-    let response = HTTPURLResponse(
-      url: URL(string: "http://example.com")!, statusCode: 500, httpVersion: nil, headerFields: nil)!
-
-    guard let wrapper = ErrorWrapper(data: json, response: response) else {
+    guard let wrapper = _ErrorWrapper(data: json) else {
       Issue.record("Failed to decode ErrorWrapper")
       return
     }
@@ -85,10 +79,7 @@ import GoogleRpc
       }
       """.utf8)
 
-    let response = HTTPURLResponse(
-      url: URL(string: "http://example.com")!, statusCode: 500, httpVersion: nil, headerFields: nil)!
-
-    guard let wrapper = ErrorWrapper(data: json, response: response) else {
+    guard let wrapper = _ErrorWrapper(data: json) else {
       Issue.record("Failed to decode ErrorWrapper")
       return
     }
@@ -110,10 +101,7 @@ import GoogleRpc
       }
       """.utf8)
 
-    let response = HTTPURLResponse(
-      url: URL(string: "http://example.com")!, statusCode: 400, httpVersion: nil, headerFields: nil)!
-
-    guard let wrapper = ErrorWrapper(data: json, response: response) else {
+    guard let wrapper = _ErrorWrapper(data: json) else {
       Issue.record("Failed to decode ErrorWrapper")
       return
     }
@@ -147,10 +135,7 @@ import GoogleRpc
       }
       """.utf8)
 
-    let response = HTTPURLResponse(
-      url: URL(string: "http://example.com")!, statusCode: 400, httpVersion: nil, headerFields: nil)!
-
-    guard let wrapper = ErrorWrapper(data: json, response: response) else {
+    guard let wrapper = _ErrorWrapper(data: json) else {
       Issue.record("Failed to decode ErrorWrapper")
       return
     }

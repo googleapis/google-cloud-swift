@@ -99,12 +99,11 @@ import Testing
     let options = StorageClientOptions().with {
       $0.client = .init().with {
         $0.endpoint = registry.endpoint
-        $0._testSession = session
         $0.credentials = try! Credentials(configuration: .anonymous)
       }
     }
 
-    let client = try StorageClient(options)
+    let client = try StorageClient(options, testSession: session)
     let uploadOptions = UploadOptions().with { $0.validation = .crc32c }
     let task = client.upload(source, to: bucket, as: objectName, options: uploadOptions)
 
@@ -148,12 +147,11 @@ import Testing
     let options = StorageClientOptions().with {
       $0.client = .init().with {
         $0.endpoint = registry.endpoint
-        $0._testSession = session
         $0.credentials = try! Credentials(configuration: .anonymous)
       }
     }
 
-    let client = try StorageClient(options)
+    let client = try StorageClient(options, testSession: session)
     let uploadOptions = UploadOptions().with { $0.validation = .md5 }
     let task = client.upload(source, to: bucket, as: objectName, options: uploadOptions)
 

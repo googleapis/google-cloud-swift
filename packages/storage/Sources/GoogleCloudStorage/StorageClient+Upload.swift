@@ -54,9 +54,8 @@ extension StorageClient {
       retryThrottler: clientOptions.retryThrottler,
       idempotent: true
     )
+    let httpClient = self.inner
     return UploadTask.create { continuation in
-      let httpClient = try HTTPClient(
-        from: clientOptions, withDefaultEndpoint: StorageClient.defaultEndpoint)
       var source = source
       let totalSize = source.totalSize
 
@@ -114,9 +113,8 @@ extension StorageClient {
       retryThrottler: clientOptions.retryThrottler,
       idempotent: true
     )
+    let httpClient = self.inner
     return UploadTask.create { continuation in
-      let httpClient = try HTTPClient(
-        from: clientOptions, withDefaultEndpoint: StorageClient.defaultEndpoint)
       var source = source
       let totalSize = source.totalSize
 
@@ -590,9 +588,8 @@ extension StorageClient {
       retryThrottler: clientOptions.retryThrottler,
       idempotent: true
     )
+    let httpClient = self.inner
     return UploadTask.create { continuation in
-      let httpClient = try HTTPClient(
-        from: clientOptions, withDefaultEndpoint: Self.defaultEndpoint)
       var source = source
       let totalSize = source.totalSize
 

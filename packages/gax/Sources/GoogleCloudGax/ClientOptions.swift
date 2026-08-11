@@ -13,11 +13,7 @@
 // limitations under the License.
 
 import Foundation
-#if canImport(FoundationNetworking)
-  import FoundationNetworking
-#endif
 import Logging
-
 import GoogleCloudAuth
 
 /// The configuration for a new client.
@@ -61,9 +57,6 @@ public struct ClientOptions: Sendable {
   ///
   /// [Application Default Credentials]: https://docs.cloud.google.com/docs/authentication/client-libraries
   public var credentials: Credentials? = nil
-
-  /// Overrides the URLSession used by the client for testing purposes.
-  public var _testSession: URLSession? = nil
 
   /// Enables logging and sets the logger.
   ///

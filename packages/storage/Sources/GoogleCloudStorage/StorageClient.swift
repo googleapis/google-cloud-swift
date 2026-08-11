@@ -16,9 +16,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-
 import GoogleCloudAuth
-import GoogleCloudGax
 
 /// A client for the [Cloud Storage] data-plane operations.
 ///
@@ -28,12 +26,19 @@ import GoogleCloudGax
 public final class StorageClient: StorageClientProtocol {
   public static let defaultEndpoint = "https://storage.googleapis.com"
 
-  public let inner: GoogleCloudGax.HTTPClient
-  public let options: StorageClientOptions
+  let inner: HTTPClient
+  let options: StorageClientOptions
 
   public init(_ options: StorageClientOptions = .init()) throws {
     self.options = options
-    self.inner = try GoogleCloudGax.HTTPClient(
+    self.inner = try HTTPClient(
       from: options.client, withDefaultEndpoint: Self.defaultEndpoint)
+  }
+
+  init(_ options: StorageClientOptions, testSession: URLSession) throws {
+    let endpoint = options.client.endpoint ?? Self.defaultEndpoint
+    self.options = options
+    self.inner = try .init(
+      testSession: testSession, endpoint: endpoint, credentials: options.client.credentials)
   }
 }

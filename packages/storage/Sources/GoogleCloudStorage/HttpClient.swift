@@ -17,10 +17,12 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
+import GoogleCloudWkt
 import GoogleCloudAuth
+@_spi(GoogleCloudInternal) import GoogleCloudGax
 
 /// Implements a HTTP-only client for the Swift SDK client libraries.
-public struct HTTPClient {
+struct HTTPClient: Sendable {
   private static let sharedSession = URLSession(configuration: .ephemeral)
 
   let baseURL: URLComponents
@@ -32,11 +34,13 @@ public struct HTTPClient {
     self.credentials = try from.credentials ?? GoogleCloudAuth.Credentials()
     let endpoint = from.endpoint ?? withDefaultEndpoint
     self.baseURL = try Self.validateEndpoint(endpoint)
-    self.inner = from._testSession ?? Self.sharedSession
+    self.inner = Self.sharedSession
   }
 
   // Creates a new testing client.
-  init(testSession: URLSession, endpoint: String, credentials: Credentials? = nil) throws {
+  @_spi(GoogleCloudInternal) public init(
+    testSession: URLSession, endpoint: String, credentials: Credentials? = nil
+  ) throws {
     self.baseURL = try Self.validateEndpoint(endpoint)
     self.credentials = try credentials ?? GoogleCloudAuth.Credentials(configuration: .anonymous)
     self.inner = testSession
@@ -90,7 +94,7 @@ public struct HTTPClient {
     return request
   }
 
-  public func rpc(for request: URLRequest) async -> Result<(Data, HTTPURLResponse), RequestError> {
+  func rpc(for request: URLRequest) async -> Result<(Data, HTTPURLResponse), RequestError> {
     do {
       let (data, response) = try await self.data(for: request)
       if !(200..<300).contains(response.statusCode) {
@@ -114,7 +118,7 @@ public struct HTTPClient {
 
   public static func parseError(data: Data, response: HTTPURLResponse) -> RequestError {
     if let s = response.value(forHTTPHeaderField: "Content-Type"), s.contains("application/json") {
-      if let w = ErrorWrapper(data: data, response: response) {
+      if let w = GoogleCloudGax._ErrorWrapper(data: data) {
         return RequestError.service(ServiceError(wrapper: w))
       }
     }

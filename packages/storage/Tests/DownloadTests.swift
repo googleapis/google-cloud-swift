@@ -38,11 +38,10 @@ import Testing
     let options = StorageClientOptions().with {
       $0.client = .init().with {
         $0.endpoint = endpoint
-        $0._testSession = session
         $0.credentials = try! Credentials(configuration: .anonymous)
       }
     }
-    return try StorageClient(options)
+    return try StorageClient(options, testSession: session)
   }
 
   @Test func downloadObjectSuccess() async throws {

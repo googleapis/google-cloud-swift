@@ -122,12 +122,11 @@ import Testing
     let options = StorageClientOptions().with {
       $0.client = .init().with {
         $0.endpoint = registry.endpoint
-        $0._testSession = session
         $0.credentials = try! Credentials(configuration: .anonymous)
       }
     }
 
-    let client = try StorageClient(options)
+    let client = try StorageClient(options, testSession: session)
     let uploadMetadata = UploadMetadata().with {
       $0.contentType = "text/plain"
       $0.contentEncoding = "gzip"
@@ -202,12 +201,11 @@ import Testing
     let clientOptions = StorageClientOptions().with {
       $0.client = .init().with {
         $0.endpoint = registry.endpoint
-        $0._testSession = session
         $0.credentials = try! Credentials(configuration: .anonymous)
       }
     }
 
-    let client = try StorageClient(clientOptions)
+    let client = try StorageClient(clientOptions, testSession: session)
     let metadata = UploadMetadata().with {
       $0.contentType = "image/png"
       $0.customMetadata = ["resolution": "1080p"]
@@ -389,12 +387,11 @@ import Testing
     let clientOptions = StorageClientOptions().with {
       $0.client = .init().with {
         $0.endpoint = registry.endpoint
-        $0._testSession = session
         $0.credentials = try! Credentials(configuration: .anonymous)
       }
     }
 
-    let client = try StorageClient(clientOptions)
+    let client = try StorageClient(clientOptions, testSession: session)
     let uploadOptions = UploadOptions().with {
       $0.metadata = UploadMetadata().with {
         $0.contexts = ObjectContexts(customValues: [
@@ -468,12 +465,11 @@ import Testing
     let clientOptions = StorageClientOptions().with {
       $0.client = .init().with {
         $0.endpoint = registry.endpoint
-        $0._testSession = session
         $0.credentials = try! Credentials(configuration: .anonymous)
       }
     }
 
-    let client = try StorageClient(clientOptions)
+    let client = try StorageClient(clientOptions, testSession: session)
     let uploadOptions = UploadOptions().with {
       $0.metadata = UploadMetadata().with {
         $0.contexts = ObjectContexts(customValues: ["batch_id": "2026_Q3"])

@@ -17,9 +17,10 @@ import Foundation
   import FoundationNetworking
 #endif
 import Testing
-@testable import GoogleCloudGax
 import GoogleCloudAuth
+import GoogleCloudGax
 import GoogleRpc
+@_spi(GoogleCloudInternal) @testable import GoogleCloudStorage
 
 @Suite(.serialized) struct HttpClientTest {
   // Custom URLProtocol to mock responses
