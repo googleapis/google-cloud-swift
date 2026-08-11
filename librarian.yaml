@@ -510,6 +510,11 @@ libraries:
       default_traits:
         - SearchService
         - RecommendationService
+  - name: google-cloud-documentai-v1
+    version: 0.0.0-preview
+    copyright_year: "2026"
+    swift:
+      library_name_override: GoogleCloudDocumentAIV1
   - name: google-cloud-domains-v1
     version: 0.1.0-preview
     copyright_year: "2026"
