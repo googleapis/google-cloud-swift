@@ -1,0 +1,15 @@
+{
+    "api_description": "Vertex AI Vision is an AI-powered platform to ingest, analyze and store video data.",
+    "api_id": "visionai.googleapis.com",
+    "api_shortname": "visionai",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/google-cloud-visionai-v1/documentation",
+    "distribution_name": "google-cloud-visionai-v1",
+    "issue_tracker": "https://issuetracker.google.com/issues/new?component=187174\u0026template=1161261",
+    "language": "swift",
+    "library_type": "GAPIC_AUTO",
+    "name": "visionai",
+    "name_pretty": "Vision AI",
+    "product_documentation": "https://cloud.google.com/vision-ai/docs",
+    "release_level": "preview",
+    "repo": "googleapis/google-cloud-swift"
+}
