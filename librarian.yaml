@@ -83,6 +83,9 @@ default:
       - name: GoogleIAMV1
         path: generated/google-iam-v1
         api_package: google.iam.v1
+      - name: GoogleIAMV2
+        path: generated/google-iam-v2
+        api_package: google.iam.v2
       - name: GoogleIdentityAccessContextManagerType
         path: generated/google-identity-accesscontextmanager-type
         api_package: google.identity.accesscontextmanager.type
@@ -718,6 +721,11 @@ libraries:
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudPolicySimulatorV1
+  - name: google-cloud-policytroubleshooter-iam-v3
+    version: 0.0.0-preview
+    copyright_year: "2026"
+    swift:
+      library_name_override: GoogleCloudPolicyTroubleshooterIAMV3
   - name: google-cloud-policytroubleshooter-v1
     version: 0.0.0-preview
     copyright_year: "2026"
