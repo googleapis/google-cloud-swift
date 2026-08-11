@@ -1,0 +1,14 @@
+{
+    "api_id": "networksecurity.googleapis.com",
+    "api_shortname": "networksecurity",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/google-cloud-networksecurity-v1/documentation",
+    "distribution_name": "google-cloud-networksecurity-v1",
+    "issue_tracker": "https://issuetracker.google.com/issues/new?component=1132189\u0026template=1639113",
+    "language": "swift",
+    "library_type": "GAPIC_AUTO",
+    "name": "networksecurity",
+    "name_pretty": "Network Security",
+    "product_documentation": "https://cloud.google.com/traffic-director/",
+    "release_level": "preview",
+    "repo": "googleapis/google-cloud-swift"
+}
