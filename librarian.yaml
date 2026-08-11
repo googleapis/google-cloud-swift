@@ -849,6 +849,11 @@ libraries:
           include_list:
             - status.proto
           module_path: StorageControlProtos
+  - name: google-cloud-storagebatchoperations-v1
+    version: 0.0.0-preview
+    copyright_year: "2026"
+    swift:
+      library_name_override: GoogleCloudStorageBatchOperationsV1
   - name: google-cloud-storageinsights-v1
     version: 0.1.0-preview
     copyright_year: "2026"
