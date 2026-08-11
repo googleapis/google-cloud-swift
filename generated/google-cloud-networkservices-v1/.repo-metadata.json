@@ -1,0 +1,14 @@
+{
+    "api_id": "networkservices.googleapis.com",
+    "api_shortname": "networkservices",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/google-cloud-networkservices-v1/documentation",
+    "distribution_name": "google-cloud-networkservices-v1",
+    "issue_tracker": "https://issuetracker.google.com/issues/new?component=1132189\u0026template=1639113",
+    "language": "swift",
+    "library_type": "GAPIC_AUTO",
+    "name": "networkservices",
+    "name_pretty": "Network Services",
+    "product_documentation": "https://cloud.google.com/products/networking",
+    "release_level": "preview",
+    "repo": "googleapis/google-cloud-swift"
+}

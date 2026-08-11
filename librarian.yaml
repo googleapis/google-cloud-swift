@@ -705,6 +705,11 @@ libraries:
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudNetworkSecurityV1
+  - name: google-cloud-networkservices-v1
+    version: 0.0.0-preview
+    copyright_year: "2026"
+    swift:
+      library_name_override: GoogleCloudNetworkServicesV1
   - name: google-cloud-notebooks-v2
     version: 0.1.0-preview
     copyright_year: "2026"
