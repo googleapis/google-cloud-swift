@@ -137,7 +137,10 @@ let package = Package(
 // A generated package description.
 //
 // This is just enough information to populate the `Package` data structure. It needs both the
-// package path and its
+// package path, its product [^1], and any (optional) traits that we enable for the tests in
+// `Tests/`.
+//
+// [^1]: in general, packages have many products, but our packages in `generated/*` only have one.
 struct Generated {
   public let name: String
   public let module: String
@@ -150,6 +153,7 @@ struct Generated {
   }
 }
 
+/// Finds the generated packages used for the build.
 func selectGeneratedPackages() -> [Generated] {
   let fullBuild = ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_FULL_BUILD"] == "true"
   if fullBuild {
@@ -158,6 +162,11 @@ func selectGeneratedPackages() -> [Generated] {
   return generatedPackagesStatic()
 }
 
+/// The packages required to build `Tests/`.
+///
+/// The tests, particularly the integration tests, use a relatively small set of packages. To find
+/// out how we picked which APIs and packages to use in the integration tests, see the README files
+/// for each test.
 func generatedPackagesStatic() -> [Generated] {
   return [
     .init(name: "google-cloud-location", module: "GoogleCloudLocation"),
@@ -171,6 +180,9 @@ func generatedPackagesStatic() -> [Generated] {
   ]
 }
 
+/// Finds all the packages available in the generated/ subdirectory.
+///
+/// These roughly corresponds to GAPICs, but also include type-only packages.
 func generatedPackagesFull() -> [Generated] {
   let prefix = "  name: \""
   let suffix = "\","
