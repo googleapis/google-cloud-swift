@@ -95,6 +95,9 @@ default:
       - name: GoogleCloudOrgPolicyV2
         path: generated/google-cloud-orgpolicy-v2
         api_package: google.cloud.orgpolicy.v2
+      - name: GoogleCloudRecommenderV1
+        path: generated/google-cloud-recommender-v1
+        api_package: google.cloud.recommender.v1
       - name: GoogleCloudWkt
         path: packages/wkt
         api_package: google.protobuf
@@ -847,6 +850,9 @@ libraries:
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudRecaptchaEnterpriseV1
+  - name: google-cloud-recommender-logging-v1
+    version: 0.0.0-preview
+    copyright_year: "2026"
   - name: google-cloud-recommender-v1
     version: 0.0.0-preview
     copyright_year: "2026"
