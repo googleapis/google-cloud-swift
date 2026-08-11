@@ -38,6 +38,24 @@ default:
       - name: GoogleAppsScriptType
         path: generated/google-apps-script-type
         api_package: google.apps.script.type
+      - name: GoogleAppsScriptTypeCalendar
+        path: generated/google-apps-script-type-calendar
+        api_package: google.apps.script.type.calendar
+      - name: GoogleAppsScriptTypeDocs
+        path: generated/google-apps-script-type-docs
+        api_package: google.apps.script.type.docs
+      - name: GoogleAppsScriptTypeDrive
+        path: generated/google-apps-script-type-drive
+        api_package: google.apps.script.type.drive
+      - name: GoogleAppsScriptTypeGmail
+        path: generated/google-apps-script-type-gmail
+        api_package: google.apps.script.type.gmail
+      - name: GoogleAppsScriptTypeSheets
+        path: generated/google-apps-script-type-sheets
+        api_package: google.apps.script.type.sheets
+      - name: GoogleAppsScriptTypeSlides
+        path: generated/google-apps-script-type-slides
+        api_package: google.apps.script.type.slides
       - name: GoogleCloudAuth
         path: packages/auth
         required_by_services: true
@@ -159,7 +177,22 @@ libraries:
   - name: google-apps-script-type
     version: 0.0.0-preview
     copyright_year: "2026"
+  - name: google-apps-script-type-calendar
+    version: 0.0.0-preview
+    copyright_year: "2026"
+  - name: google-apps-script-type-docs
+    version: 0.0.0-preview
+    copyright_year: "2026"
   - name: google-apps-script-type-drive
+    version: 0.0.0-preview
+    copyright_year: "2026"
+  - name: google-apps-script-type-gmail
+    version: 0.0.0-preview
+    copyright_year: "2026"
+  - name: google-apps-script-type-sheets
+    version: 0.0.0-preview
+    copyright_year: "2026"
+  - name: google-apps-script-type-slides
     version: 0.0.0-preview
     copyright_year: "2026"
   - name: google-bigtable-admin-v2
@@ -619,6 +652,11 @@ libraries:
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudGKERecommenderV1
+  - name: google-cloud-gsuiteaddons-v1
+    version: 0.0.0-preview
+    copyright_year: "2026"
+    swift:
+      library_name_override: GoogleCloudGSuiteAddOnsV1
   - name: google-cloud-hypercomputecluster-v1
     version: 0.0.0-preview
     copyright_year: "2026"

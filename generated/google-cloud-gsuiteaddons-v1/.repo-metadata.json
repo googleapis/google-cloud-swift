@@ -1,0 +1,14 @@
+{
+    "api_description": "Add-ons are customized applications that extend Google Workspace applications.",
+    "api_id": "gsuiteaddons.googleapis.com",
+    "api_shortname": "gsuiteaddons",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/google-cloud-gsuiteaddons-v1/documentation",
+    "distribution_name": "google-cloud-gsuiteaddons-v1",
+    "language": "swift",
+    "library_type": "GAPIC_AUTO",
+    "name": "gsuiteaddons",
+    "name_pretty": "Google Workspace add-ons",
+    "product_documentation": "https://developers.google.com/workspace/add-ons/overview",
+    "release_level": "preview",
+    "repo": "googleapis/google-cloud-swift"
+}
