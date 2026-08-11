@@ -55,12 +55,12 @@ done
 # TODO(https://github.com/googleapis/google-cloud-swift/issues/308) - the xref links need fixing
 # after that we can merge this to the main loop
 echo; echo "================ Building GoogleCloudStorage ================"
+count=$((count + 1))
 if swift package generate-documentation  --target "GoogleCloudStorage"; then
     echo "✓ GoogleCloudStorage built successfully"
 else
     echo; echo "✗ GoogleCloudStorage failed to build"
     errors=$((errors + 1))
-    continue
 fi
 
 echo; echo; echo "${count} local targets(s) built, ${errors} failure(s)."
