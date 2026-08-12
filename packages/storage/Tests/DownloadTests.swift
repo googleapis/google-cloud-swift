@@ -23,10 +23,12 @@ import GoogleCloudGax
 import Testing
 
 @Suite struct DownloadTests {
-  private func sampleKey() -> CustomerEncryptionKeyOptions {
+  private static func sampleKey() -> CustomerEncryptionKeyOptions {
     let keyData = Data(repeating: 0x42, count: 32)
     return try! CustomerEncryptionKeyOptions(key: keyData)
   }
+
+  private static let sampleCsek = sampleKey()
 
   private func makeClient(endpoint: String) throws -> StorageClient {
     let config = URLSessionConfiguration.ephemeral
@@ -89,15 +91,79 @@ import Testing
     #expect(downloaded == payload)
   }
 
-  @Test func downloadObjectWithOptions() async throws {
+  @Test(arguments: [
+    (
+      ReadObjectOptions().with { $0.generation = 999 },
+      "generation=999",
+      [:] as [String: String]
+    ),
+    (
+      ReadObjectOptions().with {
+        $0.preconditions = StoragePreconditions().with { $0.ifGenerationMatch = 888 }
+      },
+      "ifGenerationMatch=888",
+      [:] as [String: String]
+    ),
+    (
+      ReadObjectOptions().with {
+        $0.preconditions = StoragePreconditions().with { $0.ifGenerationNotMatch = 777 }
+      },
+      "ifGenerationNotMatch=777",
+      [:] as [String: String]
+    ),
+    (
+      ReadObjectOptions().with {
+        $0.preconditions = StoragePreconditions().with { $0.ifMetagenerationMatch = 666 }
+      },
+      "ifMetagenerationMatch=666",
+      [:] as [String: String]
+    ),
+    (
+      ReadObjectOptions().with {
+        $0.preconditions = StoragePreconditions().with { $0.ifMetagenerationNotMatch = 555 }
+      },
+      "ifMetagenerationNotMatch=555",
+      [:] as [String: String]
+    ),
+    (
+      ReadObjectOptions().with {
+        $0.generation = 999
+        $0.preconditions = StoragePreconditions().with { $0.ifGenerationMatch = 888 }
+        $0.customerEncryptionKey = sampleCsek
+      },
+      "generation=999&ifGenerationMatch=888",
+      [
+        "x-goog-encryption-algorithm": "AES256",
+        "x-goog-encryption-key": sampleCsek.keyBase64,
+        "x-goog-encryption-key-sha256": sampleCsek.keyHashBase64,
+      ] as [String: String]
+    ),
+    (
+      ReadObjectOptions().with {
+        $0.generation = 12345
+        $0.preconditions = StoragePreconditions().with {
+          $0.ifGenerationMatch = 12345
+          $0.ifGenerationNotMatch = 11111
+          $0.ifMetagenerationMatch = 2
+          $0.ifMetagenerationNotMatch = 1
+        }
+      },
+      "generation=12345&ifGenerationMatch=12345&ifGenerationNotMatch=11111&ifMetagenerationMatch=2&ifMetagenerationNotMatch=1",
+      [:] as [String: String]
+    ),
+  ])
+  func downloadObjectWithOptions(
+    options: ReadObjectOptions,
+    expectedQuery: String,
+    expectedHeaders: [String: String]
+  ) async throws {
     let registry = MockRegistry.create()
     let bucket = "test-bucket"
     let objectName = "encrypted.bin"
-    let csek = sampleKey()
     let payload = Data([0xDE, 0xAD, 0xBE, 0xEF])
 
     let downloadUrl = registry.url(
-      "/storage/v1/b/\(bucket)/o/\(objectName)?alt=media&generation=999&ifGenerationMatch=888"
+      "/storage/v1/b/\(bucket)/o/\(objectName)?alt=media&\(expectedQuery)"
     )
 
     registry.register(
@@ -106,61 +172,15 @@ import Testing
     )
 
     let client = try makeClient(endpoint: registry.endpoint)
-    let options = ReadObjectOptions().with {
-      $0.generation = 999
-      $0.preconditions = StoragePreconditions().with { $0.ifGenerationMatch = 888 }
-      $0.customerEncryptionKey = csek
-    }
-
     let result = try await client.readObject(from: bucket, object: objectName, options: options)
     #expect(result.metadata.size == 4)
 
     let lastReq = registry.lastRequest(for: downloadUrl)
     #expect(lastReq != nil)
-    #expect(lastReq?.value(forHTTPHeaderField: "x-goog-encryption-algorithm") == "AES256")
-    #expect(lastReq?.value(forHTTPHeaderField: "x-goog-encryption-key") == csek.keyBase64)
-    #expect(
-      lastReq?.value(forHTTPHeaderField: "x-goog-encryption-key-sha256") == csek.keyHashBase64)
 
-    var downloaded = Data()
-    for try await chunk in result.body {
-      downloaded.append(chunk)
+    for (header, expectedValue) in expectedHeaders {
+      #expect(lastReq?.value(forHTTPHeaderField: header) == expectedValue)
     }
-    #expect(downloaded == payload)
-  }
-
-  @Test func downloadObjectWithPreconditionsAndGeneration() async throws {
-    let registry = MockRegistry.create()
-    let bucket = "test-bucket"
-    let objectName = "data.bin"
-    let payload = Data("preconditioned data".utf8)
-
-    let downloadUrl = registry.url(
-      "/storage/v1/b/\(bucket)/o/\(objectName)?alt=media&generation=12345&ifGenerationMatch=12345&ifGenerationNotMatch=11111&ifMetagenerationMatch=2&ifMetagenerationNotMatch=1"
-    )
-
-    registry.register(
-      response: .success(
-        statusCode: 200, data: payload, headers: ["Content-Length": String(payload.count)]),
-      for: downloadUrl
-    )
-
-    let client = try makeClient(endpoint: registry.endpoint)
-    let options = ReadObjectOptions().with {
-      $0.generation = 12345
-      $0.preconditions = StoragePreconditions().with {
-        $0.ifGenerationMatch = 12345
-        $0.ifGenerationNotMatch = 11111
-        $0.ifMetagenerationMatch = 2
-        $0.ifMetagenerationNotMatch = 1
-      }
-    }
-
-    let result = try await client.readObject(from: bucket, object: objectName, options: options)
-    #expect(result.metadata.size == UInt64(payload.count))
-
-    let lastReq = registry.lastRequest(for: downloadUrl)
-    #expect(lastReq != nil)
 
     var downloaded = Data()
     for try await chunk in result.body {
