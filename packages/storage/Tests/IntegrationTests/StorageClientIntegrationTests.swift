@@ -85,6 +85,36 @@ import Testing
       print("File download integration test successful: \(result.metadata)")
     }
 
+    @Test func testFailedDownloadPrecondition() async throws {
+      let objectName = "test-precondition-failed-\(UUID().uuidString).txt"
+      let content = "Hello GCS precondition failure integration test!"
+      let data = Data(content.utf8)
+
+      let storage = try StorageClient()
+
+      let uploadTask = storage.upload(data, to: bucketName, as: objectName)
+      let uploadedObject = try await uploadTask.value
+      #expect(uploadedObject.bucket == bucketName)
+      #expect(uploadedObject.name == objectName)
+
+      let mismatchedGeneration = uploadedObject.generation + 1
+      let options = ReadObjectOptions().with {
+        $0.preconditions = StoragePreconditions().with {
+          $0.ifGenerationMatch = mismatchedGeneration
+        }
+      }
+
+      do {
+        _ = try await storage.readObject(from: bucketName, object: objectName, options: options)
+        Issue.record("Expected download to fail with 412 Precondition Failed, but it succeeded")
+      } catch DownloadError.unexpectedServerResponse(let statusCode, let message) {
+        #expect(statusCode == 412)
+        print("GCS correctly returned 412 Precondition Failed: \(message)")
+      } catch {
+        Issue.record("Expected DownloadError.unexpectedServerResponse(412), got \(error)")
+      }
+    }
+
     @Test(arguments: [
       "folder/subfolder/file.json",
       "file with spaces.txt",
