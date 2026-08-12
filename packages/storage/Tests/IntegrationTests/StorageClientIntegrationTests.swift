@@ -85,91 +85,6 @@ import Testing
     }
 
     @Test(arguments: [
-      (ReadObjectRange.bounded(start: 10, end: 19), "abcdefghij"),
-      (ReadObjectRange.fromOffset(36), "ABCDEFGHIJKLMNOPQRSTUVWXYZ"),
-      (ReadObjectRange.prefix(10), "0123456789"),
-      (ReadObjectRange.suffix(10), "QRSTUVWXYZ"),
-      (ReadObjectRange(5...15), "56789abcdef"),
-      (ReadObjectRange.entire, "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"),
-    ])
-    func testRangedDownload(range: ReadObjectRange, expectedContent: String) async throws {
-      let bucketName =
-        ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_BUCKET"] ?? "test-bucket"
-      let objectName = "test-ranged-download-\(UUID().uuidString).txt"
-      let content = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-      let data = Data(content.utf8)
-      let totalSize = UInt64(data.count)
-
-      let storage = try StorageClient()
-
-      let uploadTask = storage.upload(data, to: bucketName, as: objectName)
-      let uploadedObject = try await uploadTask.value
-      #expect(uploadedObject.bucket == bucketName)
-      #expect(uploadedObject.name == objectName)
-
-      let options = ReadObjectOptions().with {
-        $0.range = range
-      }
-      let result = try await storage.readObject(
-        from: bucketName, object: objectName, options: options)
-
-      #expect(result.metadata.size == totalSize)
-      #expect(result.metadata.generation == UInt64(uploadedObject.generation))
-
-      var downloadedData = Data()
-      for try await chunk in result.body {
-        downloadedData.append(chunk)
-      }
-      let downloadedString = String(data: downloadedData, encoding: .utf8) ?? ""
-      #expect(downloadedString == expectedContent)
-    }
-
-    @Test func testRangedDownloadZeroPrefix() async throws {
-      let bucketName =
-        ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_BUCKET"] ?? "test-bucket"
-      let objectName = "test-ranged-zero-prefix-\(UUID().uuidString).txt"
-      let content = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-      let data = Data(content.utf8)
-      let totalSize = UInt64(data.count)
-
-      let storage = try StorageClient()
-
-      let uploadTask = storage.upload(data, to: bucketName, as: objectName)
-      let uploadedObject = try await uploadTask.value
-      #expect(uploadedObject.bucket == bucketName)
-      #expect(uploadedObject.name == objectName)
-
-      let options = ReadObjectOptions().with {
-        $0.range = .prefix(0)
-      }
-      let result = try await storage.readObject(
-        from: bucketName, object: objectName, options: options)
-
-      #expect(result.metadata.size == totalSize)
-      #expect(result.metadata.generation == UInt64(uploadedObject.generation))
-
-      var downloadedData = Data()
-      for try await chunk in result.body {
-        downloadedData.append(chunk)
-      }
-      #expect(downloadedData.isEmpty)
-
-      // Verify reading 0 bytes on a non-existent object still executes the request and throws 404
-      do {
-        _ = try await storage.readObject(
-          from: bucketName,
-          object: "non-existent-\(UUID().uuidString).txt",
-          options: options
-        )
-        Issue.record("Expected reading non-existent object to throw 404")
-      } catch DownloadError.unexpectedServerResponse(let statusCode, _) {
-        #expect(statusCode == 404)
-      } catch {
-        Issue.record("Expected DownloadError.unexpectedServerResponse, got \(error)")
-      }
-    }
-
-    @Test(arguments: [
       "folder/subfolder/file.json",
       "file with spaces.txt",
       "file&with&ampersands.txt",
@@ -735,6 +650,98 @@ import Testing
       #expect(object.size == expectedTotalSize)
 
       print("Dynamic source with last chunk empty upload successful: \(object)")
+    }
+  }
+
+  @Suite(.enabled(if: ProcessInfo.processInfo.environment["GOOGLE_CLOUD_PROJECT"] != nil))
+  struct StorageClientRangedDownloadIntegrationTests {
+    struct FixtureState: Sendable {
+      let bucketName: String
+      let objectName: String
+      let totalSize: UInt64
+      let uploadedObject: Object
+    }
+
+    static let sharedFixture = Task<FixtureState, any Error> {
+      let bucket =
+        ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_BUCKET"] ?? "test-bucket"
+      let objName = "test-ranged-download-\(UUID().uuidString).txt"
+      let content = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+      let data = Data(content.utf8)
+
+      let storageClient = try StorageClient()
+      let uploadTask = storageClient.upload(data, to: bucket, as: objName)
+      let obj = try await uploadTask.value
+      #expect(obj.bucket == bucket)
+      #expect(obj.name == objName)
+
+      return FixtureState(
+        bucketName: bucket,
+        objectName: objName,
+        totalSize: UInt64(data.count),
+        uploadedObject: obj
+      )
+    }
+
+    @Test(arguments: [
+      (ReadObjectRange.bounded(start: 10, end: 19), "abcdefghij"),
+      (ReadObjectRange.fromOffset(36), "ABCDEFGHIJKLMNOPQRSTUVWXYZ"),
+      (ReadObjectRange.prefix(10), "0123456789"),
+      (ReadObjectRange.suffix(10), "QRSTUVWXYZ"),
+      (ReadObjectRange(5...15), "56789abcdef"),
+      (ReadObjectRange.entire, "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"),
+    ])
+    func testRangedDownload(range: ReadObjectRange, expectedContent: String) async throws {
+      let fixture = try await Self.sharedFixture.value
+      let storage = try StorageClient()
+      let options = ReadObjectOptions().with {
+        $0.range = range
+      }
+      let result = try await storage.readObject(
+        from: fixture.bucketName, object: fixture.objectName, options: options)
+
+      #expect(result.metadata.size == fixture.totalSize)
+      #expect(result.metadata.generation == UInt64(fixture.uploadedObject.generation))
+
+      var downloadedData = Data()
+      for try await chunk in result.body {
+        downloadedData.append(chunk)
+      }
+      let downloadedString = String(data: downloadedData, encoding: .utf8) ?? ""
+      #expect(downloadedString == expectedContent)
+    }
+
+    @Test func testRangedDownloadZeroPrefix() async throws {
+      let fixture = try await Self.sharedFixture.value
+      let storage = try StorageClient()
+      let options = ReadObjectOptions().with {
+        $0.range = .prefix(0)
+      }
+      let result = try await storage.readObject(
+        from: fixture.bucketName, object: fixture.objectName, options: options)
+
+      #expect(result.metadata.size == fixture.totalSize)
+      #expect(result.metadata.generation == UInt64(fixture.uploadedObject.generation))
+
+      var downloadedData = Data()
+      for try await chunk in result.body {
+        downloadedData.append(chunk)
+      }
+      #expect(downloadedData.isEmpty)
+
+      // Verify reading 0 bytes on a non-existent object still executes the request and throws 404
+      do {
+        _ = try await storage.readObject(
+          from: fixture.bucketName,
+          object: "non-existent-\(UUID().uuidString).txt",
+          options: options
+        )
+        Issue.record("Expected reading non-existent object to throw 404")
+      } catch DownloadError.unexpectedServerResponse(let statusCode, _) {
+        #expect(statusCode == 404)
+      } catch {
+        Issue.record("Expected DownloadError.unexpectedServerResponse, got \(error)")
+      }
     }
   }
 
