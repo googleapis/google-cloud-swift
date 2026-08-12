@@ -129,6 +129,77 @@ import Testing
     #expect(downloaded == payload)
   }
 
+  @Test func downloadObjectWithPreconditionsAndGeneration() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "data.bin"
+    let payload = Data("preconditioned data".utf8)
+
+    let downloadUrl = registry.url(
+      "/storage/v1/b/\(bucket)/o/\(objectName)?alt=media&generation=12345&ifGenerationMatch=12345&ifGenerationNotMatch=11111&ifMetagenerationMatch=2&ifMetagenerationNotMatch=1"
+    )
+
+    registry.register(
+      response: .success(
+        statusCode: 200, data: payload, headers: ["Content-Length": String(payload.count)]),
+      for: downloadUrl
+    )
+
+    let client = try makeClient(endpoint: registry.endpoint)
+    let options = ReadObjectOptions().with {
+      $0.generation = 12345
+      $0.preconditions = StoragePreconditions().with {
+        $0.ifGenerationMatch = 12345
+        $0.ifGenerationNotMatch = 11111
+        $0.ifMetagenerationMatch = 2
+        $0.ifMetagenerationNotMatch = 1
+      }
+    }
+
+    let result = try await client.readObject(from: bucket, object: objectName, options: options)
+    #expect(result.metadata.size == UInt64(payload.count))
+
+    let lastReq = registry.lastRequest(for: downloadUrl)
+    #expect(lastReq != nil)
+
+    var downloaded = Data()
+    for try await chunk in result.body {
+      downloaded.append(chunk)
+    }
+    #expect(downloaded == payload)
+  }
+
+  @Test func downloadObjectPreconditionFailed() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "data.bin"
+
+    let downloadUrl = registry.url(
+      "/storage/v1/b/\(bucket)/o/\(objectName)?alt=media&ifGenerationMatch=999"
+    )
+
+    registry.register(
+      response: .success(statusCode: 412, data: Data("Precondition Failed".utf8), headers: nil),
+      for: downloadUrl
+    )
+
+    let client = try makeClient(endpoint: registry.endpoint)
+    let options = ReadObjectOptions().with {
+      $0.preconditions = StoragePreconditions().with { $0.ifGenerationMatch = 999 }
+    }
+
+    let err = await expectError(DownloadError.self) {
+      try await client.readObject(from: bucket, object: objectName, options: options)
+    }
+
+    if case .unexpectedServerResponse(let statusCode, let message) = err {
+      #expect(statusCode == 412)
+      #expect(message == "Precondition Failed")
+    } else {
+      Issue.record("Expected unexpectedServerResponse with 412 status code")
+    }
+  }
+
   @Test(arguments: [
     ("folder/subfolder/file.json", "folder%2Fsubfolder%2Ffile.json"),
     ("file with spaces.txt", "file%20with%20spaces.txt"),
