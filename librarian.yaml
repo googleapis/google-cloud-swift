@@ -982,7 +982,6 @@ libraries:
     version: 0.0.0-preview
     copyright_year: "2026"
     output: packages/storage/Sources/generated/StorageControlProtos
-    skip_generate: true
     swift:
       library_name_override: GoogleCloudStorage
       modules:
