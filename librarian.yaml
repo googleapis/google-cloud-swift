@@ -1202,6 +1202,11 @@ libraries:
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudTraceV2
+  - name: google-devtools-containeranalysis-v1
+    version: 0.0.0-preview
+    copyright_year: "2026"
+    swift:
+      library_name_override: GoogleCloudContainerAnalysisV1
   - name: google-devtools-source-v1
     version: 0.0.0-preview
     copyright_year: "2026"
