@@ -18,12 +18,9 @@ import Testing
 
 #if IntegrationTests
 
-  @Suite struct StorageClientIntegrationTests {
+  @Suite(.enabled(if: ProcessInfo.processInfo.environment["GOOGLE_CLOUD_PROJECT"] != nil))
+  struct StorageClientIntegrationTests {
     @Test func testFileUpload() async throws {
-      guard ProcessInfo.processInfo.environment["GOOGLE_CLOUD_PROJECT"] != nil else {
-        Issue.record("GOOGLE_CLOUD_PROJECT environment variable not set")
-        return
-      }
       let bucketName =
         ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_BUCKET"] ?? "test-bucket"
       let objectName = "test-upload-\(UUID().uuidString).txt"
@@ -57,10 +54,6 @@ import Testing
     }
 
     @Test func testFileDownload() async throws {
-      guard ProcessInfo.processInfo.environment["GOOGLE_CLOUD_PROJECT"] != nil else {
-        Issue.record("GOOGLE_CLOUD_PROJECT environment variable not set")
-        return
-      }
       let bucketName =
         ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_BUCKET"] ?? "test-bucket"
       let objectName = "test-download-\(UUID().uuidString).txt"
@@ -100,10 +93,6 @@ import Testing
       (ReadObjectRange.entire, "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"),
     ])
     func testRangedDownload(range: ReadObjectRange, expectedContent: String) async throws {
-      guard ProcessInfo.processInfo.environment["GOOGLE_CLOUD_PROJECT"] != nil else {
-        Issue.record("GOOGLE_CLOUD_PROJECT environment variable not set")
-        return
-      }
       let bucketName =
         ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_BUCKET"] ?? "test-bucket"
       let objectName = "test-ranged-download-\(UUID().uuidString).txt"
@@ -136,10 +125,6 @@ import Testing
     }
 
     @Test func testRangedDownloadZeroPrefix() async throws {
-      guard ProcessInfo.processInfo.environment["GOOGLE_CLOUD_PROJECT"] != nil else {
-        Issue.record("GOOGLE_CLOUD_PROJECT environment variable not set")
-        return
-      }
       let bucketName =
         ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_BUCKET"] ?? "test-bucket"
       let objectName = "test-ranged-zero-prefix-\(UUID().uuidString).txt"
@@ -193,10 +178,6 @@ import Testing
       "folder/subfolder/file with & and ? and #.json",
     ])
     func testUploadAndDownloadSpecialCharacters(pathSuffix: String) async throws {
-      guard ProcessInfo.processInfo.environment["GOOGLE_CLOUD_PROJECT"] != nil else {
-        Issue.record("GOOGLE_CLOUD_PROJECT environment variable not set")
-        return
-      }
       let bucketName =
         ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_BUCKET"] ?? "test-bucket"
       let uniqueId = UUID().uuidString
@@ -228,10 +209,6 @@ import Testing
     }
 
     @Test func testLargeFileUpload() async throws {
-      guard ProcessInfo.processInfo.environment["GOOGLE_CLOUD_PROJECT"] != nil else {
-        Issue.record("GOOGLE_CLOUD_PROJECT environment variable not set")
-        return
-      }
       let bucketName =
         ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_BUCKET"] ?? "test-bucket"
       let objectName = "test-large-upload-\(UUID().uuidString).bin"
@@ -271,10 +248,6 @@ import Testing
     }
 
     @Test func testFailedResumableUploadAndResume() async throws {
-      guard ProcessInfo.processInfo.environment["GOOGLE_CLOUD_PROJECT"] != nil else {
-        Issue.record("GOOGLE_CLOUD_PROJECT environment variable not set")
-        return
-      }
       let bucketName =
         ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_BUCKET"] ?? "test-bucket"
       let objectName = "test-failed-resumable-\(UUID().uuidString).bin"
@@ -357,10 +330,6 @@ import Testing
     }
 
     @Test func testResumedFailedUploadWithChecksumValidation() async throws {
-      guard ProcessInfo.processInfo.environment["GOOGLE_CLOUD_PROJECT"] != nil else {
-        Issue.record("GOOGLE_CLOUD_PROJECT environment variable not set")
-        return
-      }
       let bucketName =
         ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_BUCKET"] ?? "test-bucket"
       let objectName = "test-resumed-checksum-\(UUID().uuidString).bin"
@@ -422,10 +391,6 @@ import Testing
     }
 
     @Test func testResumedFailedUploadWithNewSourceInstance() async throws {
-      guard ProcessInfo.processInfo.environment["GOOGLE_CLOUD_PROJECT"] != nil else {
-        Issue.record("GOOGLE_CLOUD_PROJECT environment variable not set")
-        return
-      }
       let bucketName =
         ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_BUCKET"] ?? "test-bucket"
       let objectName = "test-resumed-new-source-\(UUID().uuidString).bin"
@@ -484,10 +449,6 @@ import Testing
     }
 
     @Test func testSimpleUploadWithChecksumValidation() async throws {
-      guard ProcessInfo.processInfo.environment["GOOGLE_CLOUD_PROJECT"] != nil else {
-        Issue.record("GOOGLE_CLOUD_PROJECT environment variable not set")
-        return
-      }
       let bucketName =
         ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_BUCKET"] ?? "test-bucket"
 
@@ -515,10 +476,6 @@ import Testing
     }
 
     @Test func testResumableUploadWithChecksumValidation() async throws {
-      guard ProcessInfo.processInfo.environment["GOOGLE_CLOUD_PROJECT"] != nil else {
-        Issue.record("GOOGLE_CLOUD_PROJECT environment variable not set")
-        return
-      }
       let bucketName =
         ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_BUCKET"] ?? "test-bucket"
 
@@ -550,10 +507,6 @@ import Testing
     }
 
     @Test func testMultipleChecksumsUpload() async throws {
-      guard ProcessInfo.processInfo.environment["GOOGLE_CLOUD_PROJECT"] != nil else {
-        Issue.record("GOOGLE_CLOUD_PROJECT environment variable not set")
-        return
-      }
       let bucketName =
         ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_BUCKET"] ?? "test-bucket"
       let objectName = "test-multiple-checksums-\(UUID().uuidString).txt"
@@ -580,10 +533,6 @@ import Testing
     }
 
     @Test func testBadChecksumUploadRejection() async throws {
-      guard ProcessInfo.processInfo.environment["GOOGLE_CLOUD_PROJECT"] != nil else {
-        Issue.record("GOOGLE_CLOUD_PROJECT environment variable not set")
-        return
-      }
       let bucketName =
         ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_BUCKET"] ?? "test-bucket"
       let objectName = "test-bad-checksum-\(UUID().uuidString).bin"
@@ -616,10 +565,6 @@ import Testing
     }
 
     @Test func testCSEKSimpleUpload() async throws {
-      guard ProcessInfo.processInfo.environment["GOOGLE_CLOUD_PROJECT"] != nil else {
-        Issue.record("GOOGLE_CLOUD_PROJECT environment variable not set")
-        return
-      }
       let bucketName =
         ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_BUCKET"] ?? "test-bucket"
       let objectName = "test-csek-simple-\(UUID().uuidString).txt"
@@ -650,10 +595,6 @@ import Testing
     }
 
     @Test func testCSEKResumableUpload() async throws {
-      guard ProcessInfo.processInfo.environment["GOOGLE_CLOUD_PROJECT"] != nil else {
-        Issue.record("GOOGLE_CLOUD_PROJECT environment variable not set")
-        return
-      }
       let bucketName =
         ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_BUCKET"] ?? "test-bucket"
       let objectName = "test-csek-resumable-\(UUID().uuidString).bin"
@@ -685,10 +626,6 @@ import Testing
     }
 
     @Test func testUploadWithMetadata() async throws {
-      guard ProcessInfo.processInfo.environment["GOOGLE_CLOUD_PROJECT"] != nil else {
-        Issue.record("GOOGLE_CLOUD_PROJECT environment variable not set")
-        return
-      }
       let bucketName =
         ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_BUCKET"] ?? "test-bucket"
       let objectName = "test-metadata-\(UUID().uuidString).txt"
@@ -726,10 +663,6 @@ import Testing
     }
 
     @Test func testUploadWithObjectContexts() async throws {
-      guard ProcessInfo.processInfo.environment["GOOGLE_CLOUD_PROJECT"] != nil else {
-        Issue.record("GOOGLE_CLOUD_PROJECT environment variable not set")
-        return
-      }
       let bucketName =
         ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_BUCKET"] ?? "test-bucket"
       let objectName = "test-contexts-\(UUID().uuidString).txt"
@@ -762,10 +695,6 @@ import Testing
     }
 
     @Test func testDynamicSourceCompletelyEmptyUpload() async throws {
-      guard ProcessInfo.processInfo.environment["GOOGLE_CLOUD_PROJECT"] != nil else {
-        Issue.record("GOOGLE_CLOUD_PROJECT environment variable not set")
-        return
-      }
       let bucketName =
         ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_BUCKET"] ?? "test-bucket"
       let objectName = "test-dynamic-empty-\(UUID().uuidString).bin"
@@ -785,10 +714,6 @@ import Testing
     }
 
     @Test func testDynamicSourceLastChunkEmptyUpload() async throws {
-      guard ProcessInfo.processInfo.environment["GOOGLE_CLOUD_PROJECT"] != nil else {
-        Issue.record("GOOGLE_CLOUD_PROJECT environment variable not set")
-        return
-      }
       let bucketName =
         ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_BUCKET"] ?? "test-bucket"
       let objectName = "test-dynamic-last-chunk-empty-\(UUID().uuidString).bin"
