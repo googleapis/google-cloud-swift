@@ -89,6 +89,54 @@ import Testing
     #expect(downloaded == payload)
   }
 
+  @Test func downloadObjectWithCustomerSuppliedEncryptionKey() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "csek-bucket"
+    let objectName = "secret-file.dat"
+    let rawKey = Data((0..<32).map { UInt8($0) })
+    let csek = try CustomerEncryptionKeyOptions(key: rawKey)
+    let payload = Data("encrypted secret content".utf8)
+
+    let downloadUrl = registry.url("/storage/v1/b/\(bucket)/o/\(objectName)?alt=media")
+
+    registry.register(
+      response: .success(
+        statusCode: 200,
+        data: payload,
+        headers: [
+          "Content-Length": String(payload.count),
+          "Content-Type": "application/octet-stream",
+          "x-goog-generation": "42",
+        ]
+      ),
+      for: downloadUrl
+    )
+
+    let client = try makeClient(endpoint: registry.endpoint)
+    let options = ReadObjectOptions().with {
+      $0.customerEncryptionKey = csek
+    }
+
+    let result = try await client.readObject(from: bucket, object: objectName, options: options)
+    #expect(result.metadata.bucket == bucket)
+    #expect(result.metadata.object == objectName)
+    #expect(result.metadata.size == UInt64(payload.count))
+    #expect(result.metadata.generation == 42)
+
+    let lastReq = registry.lastRequest(for: downloadUrl)
+    #expect(lastReq != nil)
+    #expect(lastReq?.value(forHTTPHeaderField: "x-goog-encryption-algorithm") == "AES256")
+    #expect(lastReq?.value(forHTTPHeaderField: "x-goog-encryption-key") == csek.keyBase64)
+    #expect(
+      lastReq?.value(forHTTPHeaderField: "x-goog-encryption-key-sha256") == csek.keyHashBase64)
+
+    var downloaded = Data()
+    for try await chunk in result.body {
+      downloaded.append(chunk)
+    }
+    #expect(downloaded == payload)
+  }
+
   @Test func downloadObjectWithOptions() async throws {
     let registry = MockRegistry.create()
     let bucket = "test-bucket"

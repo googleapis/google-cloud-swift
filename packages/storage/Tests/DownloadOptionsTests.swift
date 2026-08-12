@@ -28,7 +28,7 @@ import Testing
     #expect(ReadObjectRange(10...50) == ReadObjectRange.bounded(start: 10, end: 50))
   }
 
-  @Test func readObjectOptionsDefaultsAndWithBuilder() throws {
+  @Test func readObjectOptionsDefaults() throws {
     let defaultOptions = ReadObjectOptions.default
     #expect(defaultOptions.generation == nil)
     #expect(defaultOptions.preconditions == nil)
@@ -37,13 +37,17 @@ import Testing
     #expect(defaultOptions.enableDecompressiveTranscoding == true)
     #expect(defaultOptions.checksums == .default)
     #expect(defaultOptions.autoResume == true)
+  }
 
+  @Test func readObjectOptionsWithBuilder() throws {
     let preconditions = StoragePreconditions().with {
       $0.ifGenerationMatch = 123
     }
+    let csek = try CustomerEncryptionKeyOptions(key: Data(repeating: 0x42, count: 32))
     let options = ReadObjectOptions().with {
       $0.generation = 456
       $0.preconditions = preconditions
+      $0.customerEncryptionKey = csek
       $0.range = .bounded(start: 0, end: 1024)
       $0.enableDecompressiveTranscoding = false
       $0.checksums = .none
@@ -52,6 +56,7 @@ import Testing
 
     #expect(options.generation == 456)
     #expect(options.preconditions?.ifGenerationMatch == 123)
+    #expect(options.customerEncryptionKey == csek)
     #expect(options.range == .bounded(start: 0, end: 1024))
     #expect(options.enableDecompressiveTranscoding == false)
     #expect(options.checksums == .none)

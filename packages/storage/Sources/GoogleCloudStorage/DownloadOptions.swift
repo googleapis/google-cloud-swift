@@ -100,6 +100,58 @@ struct HttpContentRange: Sendable, Hashable, Equatable {
 }
 
 /// Configuration options for object download (`readObject`) requests.
+///
+/// Use `ReadObjectOptions` to customize download behaviors when calling `StorageClient.readObject(...)`.
+/// Options include specifying byte ranges for partial reads, object generation revisions, preconditions,
+/// Customer-Supplied Encryption Keys (CSEK), checksum validation, decompressive transcoding, and auto-resumption.
+///
+/// ## Configuration Styles
+///
+/// Configure `ReadObjectOptions` using the `.with` closure builder.
+///
+/// ```swift
+/// let options = ReadObjectOptions().with {
+///   $0.range = .bounded(start: 0, end: 1024)
+///   $0.autoResume = true
+/// }
+/// ```
+///
+/// ## Key Configuration Features
+///
+/// ### Customer-Supplied Encryption Keys (CSEK)
+///
+/// Download objects encrypted with a Customer-Supplied Encryption Key (CSEK) by providing `CustomerEncryptionKeyOptions`:
+///
+/// ```swift
+/// let csek = try CustomerEncryptionKeyOptions(keyBase64: "your-base64-encoded-256bit-key==")
+/// let options = ReadObjectOptions().with {
+///   $0.customerEncryptionKey = csek
+/// }
+///
+/// let response = try await client.readObject(from: "my-bucket", object: "encrypted.bin", options: options)
+/// ```
+///
+/// ### Ranged Reads
+///
+/// Read specific byte ranges using `ReadObjectRange`:
+///
+/// ```swift
+/// let options = ReadObjectOptions().with {
+///   $0.range = .fromOffset(1024) // Read from byte 1024 to the end
+/// }
+/// ```
+///
+/// ### Preconditions
+///
+/// Apply preconditions to the download operation:
+///
+/// ```swift
+/// let options = ReadObjectOptions().with {
+///   $0.preconditions = StoragePreconditions().with {
+///     $0.ifGenerationMatch = 12345
+///   }
+/// }
+/// ```
 public struct ReadObjectOptions: Sendable {
   /// Object generation (`UInt64?`) to read a specific revision of an object.
   public var generation: UInt64?
