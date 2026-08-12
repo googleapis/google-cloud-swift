@@ -21,7 +21,8 @@ import GoogleCloudAuth
   @Test func defaultEndpoint() throws {
     let credentials = try Credentials(configuration: .anonymous)
     let options = ClientOptions().with { $0.credentials = credentials }
-    let client = try _GRPCClient(from: options, withDefaultEndpoint: "https://storage.googleapis.com")
+    let client = try _GRPCClient(
+      from: options, withDefaultEndpoint: "https://storage.googleapis.com")
     _ = client.connection.close()
   }
 
@@ -33,7 +34,8 @@ import GoogleCloudAuth
       $0.credentials = credentials
       $0.endpoint = "https://custom.endpoint.com:443"
     }
-    let secureClient = try _GRPCClient(from: secureOptions, withDefaultEndpoint: "https://storage.googleapis.com")
+    let secureClient = try _GRPCClient(
+      from: secureOptions, withDefaultEndpoint: "https://storage.googleapis.com")
     _ = secureClient.connection.close()
 
     // With explicit http (insecure emulator)
@@ -41,7 +43,8 @@ import GoogleCloudAuth
       $0.credentials = credentials
       $0.endpoint = "http://127.0.0.1:8080"
     }
-    let insecureClient = try _GRPCClient(from: insecureOptions, withDefaultEndpoint: "https://storage.googleapis.com")
+    let insecureClient = try _GRPCClient(
+      from: insecureOptions, withDefaultEndpoint: "https://storage.googleapis.com")
     _ = insecureClient.connection.close()
 
     // Without scheme (auto https)
@@ -49,7 +52,8 @@ import GoogleCloudAuth
       $0.credentials = credentials
       $0.endpoint = "custom.endpoint.com:443"
     }
-    let bareClient = try _GRPCClient(from: bareOptions, withDefaultEndpoint: "https://storage.googleapis.com")
+    let bareClient = try _GRPCClient(
+      from: bareOptions, withDefaultEndpoint: "https://storage.googleapis.com")
     _ = bareClient.connection.close()
   }
 
@@ -64,7 +68,8 @@ import GoogleCloudAuth
       $0.endpoint = input
     }
     #expect(throws: ClientError.self) {
-      let client = try _GRPCClient(from: options, withDefaultEndpoint: "https://storage.googleapis.com")
+      let client = try _GRPCClient(
+        from: options, withDefaultEndpoint: "https://storage.googleapis.com")
       _ = client.connection.close()
     }
   }
