@@ -568,6 +568,25 @@ libraries:
       default_traits:
         - SearchService
         - RecommendationService
+  - name: google-cloud-dns-v1
+    version: 0.0.0-preview
+    apis:
+      - path: discoveries/dns.v1.json
+    copyright_year: "2026"
+    keep:
+      - Sources/GoogleCloudDNSV1/Operation+Additions.swift
+    output: generated/google-cloud-dns-v1
+    roots:
+      - discovery
+      - googleapis
+    specification_format: discovery
+    swift:
+      library_name_override: GoogleCloudDNSV1
+      discovery:
+        operation_id: ..Operation
+        pollers:
+          - prefix: dns/v1/projects/{project}/managedZones/{managedZone}
+            method_id: ..managedZoneOperations.get
   - name: google-cloud-documentai-v1
     version: 0.0.0-preview
     copyright_year: "2026"

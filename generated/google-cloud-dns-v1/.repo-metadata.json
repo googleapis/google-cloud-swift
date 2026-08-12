@@ -1,0 +1,12 @@
+{
+    "api_id": "dns.googleapis.com",
+    "api_shortname": "dns",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/google-cloud-dns-v1/documentation",
+    "distribution_name": "google-cloud-dns-v1",
+    "language": "swift",
+    "library_type": "GAPIC_AUTO",
+    "name": "dns",
+    "name_pretty": "Cloud DNS",
+    "release_level": "preview",
+    "repo": "googleapis/google-cloud-swift"
+}
