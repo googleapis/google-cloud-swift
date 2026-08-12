@@ -1065,6 +1065,9 @@ libraries:
   - name: google-cloud-video-stitcher-v1
     version: 0.0.0-preview
     copyright_year: "2026"
+  - name: google-cloud-video-transcoder-v1
+    version: 0.0.0-preview
+    copyright_year: "2026"
   - name: google-cloud-videointelligence-v1
     version: 0.0.0-preview
     copyright_year: "2026"
