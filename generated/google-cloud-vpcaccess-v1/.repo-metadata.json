@@ -1,0 +1,14 @@
+{
+    "api_description": "API for managing VPC access connectors.",
+    "api_id": "vpcaccess.googleapis.com",
+    "api_shortname": "vpcaccess",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/google-cloud-vpcaccess-v1/documentation",
+    "distribution_name": "google-cloud-vpcaccess-v1",
+    "language": "swift",
+    "library_type": "GAPIC_AUTO",
+    "name": "vpcaccess",
+    "name_pretty": "Serverless VPC Access",
+    "product_documentation": "https://cloud.google.com/vpc/",
+    "release_level": "preview",
+    "repo": "googleapis/google-cloud-swift"
+}

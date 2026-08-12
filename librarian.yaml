@@ -1075,6 +1075,11 @@ libraries:
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudVMwareEngineV1
+  - name: google-cloud-vpcaccess-v1
+    version: 0.0.0-preview
+    copyright_year: "2026"
+    swift:
+      library_name_override: GoogleCloudVPCAccessV1
   - name: google-cloud-webrisk-v1
     version: 0.0.0-preview
     copyright_year: "2026"
