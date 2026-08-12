@@ -18,12 +18,14 @@ import Testing
 
 #if IntegrationTests
 
-  @Suite(.enabled(if: ProcessInfo.processInfo.environment["GOOGLE_CLOUD_PROJECT"] != nil &&
-  ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_BUCKET"] != nil` ?))
+  @Suite(
+    .enabled(
+      if: ProcessInfo.processInfo.environment["GOOGLE_CLOUD_PROJECT"] != nil
+        && ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_BUCKET"] != nil))
   struct StorageClientIntegrationTests {
+    let bucketName = ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_BUCKET"]!
+
     @Test func testFileUpload() async throws {
-      let bucketName =
-        ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_BUCKET"] ?? "test-bucket"
       let objectName = "test-upload-\(UUID().uuidString).txt"
 
       let content = "Hello Google Cloud Storage from Swift!"
@@ -55,8 +57,6 @@ import Testing
     }
 
     @Test func testFileDownload() async throws {
-      let bucketName =
-        ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_BUCKET"] ?? "test-bucket"
       let objectName = "test-download-\(UUID().uuidString).txt"
       let content = "Hello Google Cloud Storage file download integration test!"
       let data = Data(content.utf8)
@@ -94,8 +94,6 @@ import Testing
       "folder/subfolder/file with & and ? and #.json",
     ])
     func testUploadAndDownloadSpecialCharacters(pathSuffix: String) async throws {
-      let bucketName =
-        ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_BUCKET"] ?? "test-bucket"
       let uniqueId = UUID().uuidString
       let objectName = "test-special-\(uniqueId)/\(pathSuffix)"
       let content = "Integration test payload for special characters: \(pathSuffix)"
@@ -125,8 +123,6 @@ import Testing
     }
 
     @Test func testLargeFileUpload() async throws {
-      let bucketName =
-        ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_BUCKET"] ?? "test-bucket"
       let objectName = "test-large-upload-\(UUID().uuidString).bin"
 
       // 10MB file to trigger resumable upload (threshold is 8MB)
@@ -164,8 +160,6 @@ import Testing
     }
 
     @Test func testFailedResumableUploadAndResume() async throws {
-      let bucketName =
-        ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_BUCKET"] ?? "test-bucket"
       let objectName = "test-failed-resumable-\(UUID().uuidString).bin"
 
       let fileSize = 10 * 1024 * 1024  // 10MB
@@ -246,8 +240,6 @@ import Testing
     }
 
     @Test func testResumedFailedUploadWithChecksumValidation() async throws {
-      let bucketName =
-        ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_BUCKET"] ?? "test-bucket"
       let objectName = "test-resumed-checksum-\(UUID().uuidString).bin"
 
       let fileSize = 10 * 1024 * 1024  // 10MB payload
@@ -307,8 +299,6 @@ import Testing
     }
 
     @Test func testResumedFailedUploadWithNewSourceInstance() async throws {
-      let bucketName =
-        ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_BUCKET"] ?? "test-bucket"
       let objectName = "test-resumed-new-source-\(UUID().uuidString).bin"
 
       let fileSize = 10 * 1024 * 1024  // 10MB payload
@@ -365,9 +355,6 @@ import Testing
     }
 
     @Test func testSimpleUploadWithChecksumValidation() async throws {
-      let bucketName =
-        ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_BUCKET"] ?? "test-bucket"
-
       let storage = try StorageClient()
 
       for validation in [ChecksumValidation.crc32c, ChecksumValidation.md5] {
@@ -392,9 +379,6 @@ import Testing
     }
 
     @Test func testResumableUploadWithChecksumValidation() async throws {
-      let bucketName =
-        ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_BUCKET"] ?? "test-bucket"
-
       let storage = try StorageClient()
 
       for validation in [ChecksumValidation.crc32c, ChecksumValidation.md5] {
@@ -423,8 +407,6 @@ import Testing
     }
 
     @Test func testMultipleChecksumsUpload() async throws {
-      let bucketName =
-        ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_BUCKET"] ?? "test-bucket"
       let objectName = "test-multiple-checksums-\(UUID().uuidString).txt"
 
       let content = "Hello Google Cloud Storage with multiple checksums!"
@@ -449,8 +431,6 @@ import Testing
     }
 
     @Test func testBadChecksumUploadRejection() async throws {
-      let bucketName =
-        ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_BUCKET"] ?? "test-bucket"
       let objectName = "test-bad-checksum-\(UUID().uuidString).bin"
 
       // 10MB file to trigger resumable upload where x-goog-hash is validated by GCS
@@ -481,8 +461,6 @@ import Testing
     }
 
     @Test func testCSEKSimpleUpload() async throws {
-      let bucketName =
-        ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_BUCKET"] ?? "test-bucket"
       let objectName = "test-csek-simple-\(UUID().uuidString).txt"
 
       let content = "Hello Google Cloud Storage CSEK simple upload!"
@@ -511,8 +489,6 @@ import Testing
     }
 
     @Test func testCSEKResumableUpload() async throws {
-      let bucketName =
-        ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_BUCKET"] ?? "test-bucket"
       let objectName = "test-csek-resumable-\(UUID().uuidString).bin"
 
       let fileSize = 10 * 1024 * 1024  // 10MB to trigger resumable upload
@@ -542,8 +518,6 @@ import Testing
     }
 
     @Test func testUploadWithMetadata() async throws {
-      let bucketName =
-        ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_BUCKET"] ?? "test-bucket"
       let objectName = "test-metadata-\(UUID().uuidString).txt"
 
       let content = "Hello Google Cloud Storage metadata upload!"
@@ -579,8 +553,6 @@ import Testing
     }
 
     @Test func testUploadWithObjectContexts() async throws {
-      let bucketName =
-        ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_BUCKET"] ?? "test-bucket"
       let objectName = "test-contexts-\(UUID().uuidString).txt"
 
       let content = "Hello Google Cloud Storage object contexts upload!"
@@ -611,8 +583,6 @@ import Testing
     }
 
     @Test func testDynamicSourceCompletelyEmptyUpload() async throws {
-      let bucketName =
-        ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_BUCKET"] ?? "test-bucket"
       let objectName = "test-dynamic-empty-\(UUID().uuidString).bin"
 
       let source = IntegrationDynamicSource(
@@ -630,8 +600,6 @@ import Testing
     }
 
     @Test func testDynamicSourceLastChunkEmptyUpload() async throws {
-      let bucketName =
-        ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_BUCKET"] ?? "test-bucket"
       let objectName = "test-dynamic-last-chunk-empty-\(UUID().uuidString).bin"
 
       let chunkSize = 5 * 1024 * 1024  // 5MB chunks
@@ -654,7 +622,10 @@ import Testing
     }
   }
 
-  @Suite(.enabled(if: ProcessInfo.processInfo.environment["GOOGLE_CLOUD_PROJECT"] != nil))
+  @Suite(
+    .enabled(
+      if: ProcessInfo.processInfo.environment["GOOGLE_CLOUD_PROJECT"] != nil
+        && ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_BUCKET"] != nil))
   struct StorageClientRangedDownloadIntegrationTests {
     struct FixtureState: Sendable {
       let bucketName: String
@@ -663,9 +634,11 @@ import Testing
       let uploadedObject: Object
     }
 
+    let bucketName = ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_BUCKET"]!
+
     static let sharedFixture = Task<FixtureState, any Error> {
       let bucket =
-        ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_BUCKET"] ?? "test-bucket"
+        ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_BUCKET"]!
       let objName = "test-ranged-download-\(UUID().uuidString).txt"
       let content = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
       let data = Data(content.utf8)
@@ -712,11 +685,15 @@ import Testing
       #expect(downloadedString == expectedContent)
     }
 
-    @Test func testRangedDownloadZeroCount() async throws {
+    @Test(arguments: [
+      ReadObjectRange.prefix(0),
+      ReadObjectRange.suffix(0),
+    ])
+    func testRangedDownloadZeroCount(range: ReadObjectRange) async throws {
       let fixture = try await Self.sharedFixture.value
       let storage = try StorageClient()
       let options = ReadObjectOptions().with {
-        $0.range = .prefix(0)
+        $0.range = range
       }
       let result = try await storage.readObject(
         from: fixture.bucketName, object: fixture.objectName, options: options)
@@ -741,8 +718,6 @@ import Testing
       ReadObjectRange.entire,
     ])
     func testRangedDownloadNonExistentObject(range: ReadObjectRange) async throws {
-      let bucketName =
-        ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_BUCKET"] ?? "test-bucket"
       let storage = try StorageClient()
       let options = ReadObjectOptions().with {
         $0.range = range
