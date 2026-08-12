@@ -33,6 +33,7 @@ extension StorageLayout {
       proto.hasCustomPlacementConfig ? try .init(proto: proto.customPlacementConfig) : nil
     self.hierarchicalNamespace =
       proto.hasHierarchicalNamespace ? try .init(proto: proto.hierarchicalNamespace) : nil
+    self.rapidCacheInfo = proto.hasRapidCacheInfo ? try .init(proto: proto.rapidCacheInfo) : nil
   }
 
   internal func toProto() throws -> ProtoType {
@@ -45,6 +46,9 @@ extension StorageLayout {
     }
     if let hierarchicalNamespace = self.hierarchicalNamespace {
       proto.hierarchicalNamespace = try hierarchicalNamespace.toProto()
+    }
+    if let rapidCacheInfo = self.rapidCacheInfo {
+      proto.rapidCacheInfo = try rapidCacheInfo.toProto()
     }
     return proto
   }
@@ -78,6 +82,22 @@ extension StorageLayout.HierarchicalNamespace {
   internal func toProto() throws -> ProtoType {
     var proto = ProtoType()
     proto.enabled = self.enabled
+    return proto
+  }
+}
+
+extension StorageLayout.RapidCacheInfo {
+  internal typealias ProtoType = StorageControlProtos.Google_Storage_Control_V2_StorageLayout
+    .RapidCacheInfo
+
+  internal init(proto: ProtoType) throws {
+    self.init()
+    self.cacheType = proto.cacheType
+  }
+
+  internal func toProto() throws -> ProtoType {
+    var proto = ProtoType()
+    proto.cacheType = self.cacheType
     return proto
   }
 }

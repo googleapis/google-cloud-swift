@@ -17,10 +17,11 @@
 import Foundation
 import GoogleCloudWkt
 
-/// The locations where the generated reports are saved.
+/// Cloud Storage bucket where the audit report is uploaded to.
 public struct DestinationDetails: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
+  /// The specific destination where the audit report and evidence are stored.
   public var destination: OneOf_Destination? = nil
 
   /// Initialize a new instance of `DestinationDetails`.
@@ -73,8 +74,10 @@ public struct DestinationDetails: Codable, Equatable, GoogleCloudWkt._AnyPackabl
     }
   }
 
+  /// The specific destination where the audit report and evidence are stored.
   public enum OneOf_Destination: Codable, Equatable, Sendable {
-    /// The Cloud Storage bucket where the audit report is/will be uploaded.
+    /// URI for the Cloud Storage bucket, in the format
+    /// `gs://{bucket_name}`.
     case gcsBucketUri(Swift.String)
   }
 

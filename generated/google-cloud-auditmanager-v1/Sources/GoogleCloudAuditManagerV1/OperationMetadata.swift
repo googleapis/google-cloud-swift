@@ -17,33 +17,37 @@
 import Foundation
 import GoogleCloudWkt
 
-/// The metadata of the long-running operation.
+/// Metadata for the long-running operation.
 public struct OperationMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
-  /// Output only. The time the operation was created.
+  /// Output only. Time that the operation was created.
   public var createTime: GoogleCloudWkt.Timestamp? = nil
 
-  /// Output only. The time the operation finished running.
+  /// Output only. Time that the operation finished running.
   public var endTime: GoogleCloudWkt.Timestamp? = nil
 
-  /// Output only. Server-defined resource path for the target of the operation.
+  /// Output only. A server-defined resource path for the target of the
+  /// operation.
   public var target: Swift.String = Swift.String()
 
-  /// Output only. Name of the verb executed by the operation.
+  /// Output only. The name of the verb that was executed by the operation.
   public var verb: Swift.String = Swift.String()
 
-  /// Output only. Human-readable status of the operation, if any.
+  /// Output only. A human-readable status of the operation, if any.
   public var statusMessage: Swift.String = Swift.String()
 
-  /// Output only. Identifies whether the user has requested cancellation
-  /// of the operation. Operations that have been cancelled successfully
-  /// have [Operation.error][] value with a
-  /// [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to
-  /// `Code.CANCELLED`.
+  /// Output only. Whether you requested that the operation be cancelled.
+  /// Operations that were cancelled successfully have an
+  /// [Operation.error][google.longrunning.Operation.error]
+  /// value with a status code
+  /// [Code.CANCELLED][google.rpc.Status.code.CANCELLED].
+  ///
+  /// [google.longrunning.Operation.error]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/error
   public var requestedCancellation: Swift.Bool = Swift.Bool()
 
-  /// Output only. API version used to start the operation.
+  /// Output only. The API version used to start the operation. For example,
+  /// `v1`.
   public var apiVersion: Swift.String = Swift.String()
 
   /// Initialize a new instance of `OperationMetadata`.

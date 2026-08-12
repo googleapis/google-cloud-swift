@@ -18,15 +18,20 @@ import Foundation
 import GoogleCloudGax
 import GoogleCloudWkt
 
-/// Response message with all the controls for a compliance standard.
+/// Response message for
+/// [ListControls][google.cloud.auditmanager.v1.AuditManager.ListControls].
+///
+/// [google.cloud.auditmanager.v1.AuditManager.ListControls]: <doc:AuditManagerClient/listControls(request:)>
 public struct ListControlsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable
 {
-  /// Output only. The controls for the compliance standard.
+  /// Output only. Controls for a given regulatory standard.
   public var controls: [Control] = []
 
-  /// Output only. The token to retrieve the next page of results.
+  /// Output only. A token that you can send as the `page_token` in a subsequent
+  /// request to retrieve the next page of results. If this field is empty, there
+  /// are no subsequent pages.
   public var nextPageToken: Swift.String = Swift.String()
 
   /// Initialize a new instance of `ListControlsResponse`.

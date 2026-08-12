@@ -71,7 +71,7 @@
       ///   {
       ///    "key": "scope",
       ///    "value": "zones/us-east1-d"
-      ///   }
+      ///   }]
       public var data: [RegionInstanceGroupManagersListInstanceConfigsResp.Warning.Data] = []
 
       /// [Output Only] A human-readable description of the warning code.

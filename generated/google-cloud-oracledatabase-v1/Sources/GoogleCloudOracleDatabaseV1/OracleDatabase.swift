@@ -1329,6 +1329,84 @@ public class OracleDatabaseClient: Clients.OracleDatabaseProtocol {
     )
   }
 
+  /// Refreshes the refreshable clone of an Autonomous Database.
+  ///
+  /// @Snippet(path: "OracleDatabase_RefreshAutonomousDatabase")
+  public func refreshAutonomousDatabase(
+    request: RefreshAutonomousDatabaseRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.inner.refreshAutonomousDatabase(request: request, options: options)
+  }
+
+  /// Refreshes the refreshable clone of an Autonomous Database.
+  ///
+  /// @Snippet(path: "OracleDatabase_RefreshAutonomousDatabase")
+  public func refreshAutonomousDatabase(
+    withPolling: RefreshAutonomousDatabaseRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> any GoogleCloudGax.PollableOperation<AutonomousDatabase> {
+    let extractStatus = {
+      (op: GoogleLongRunning.Operation) throws
+        -> GoogleCloudGax._PollableOperationImpl<AutonomousDatabase>.State in
+      guard op.done else {
+        return .init(done: false, result: nil)
+      }
+
+      switch op.result {
+      case .response(let anyValue):
+        guard let anyValueUnwrapped = anyValue else {
+          return .init(
+            done: true,
+            result: .failure(
+              GoogleCloudGax.RequestError.binding(
+                "Operation completed but response value was missing")))
+        }
+        let response = try AutonomousDatabase(fromAny: anyValueUnwrapped)
+        return .init(done: true, result: .success(response))
+      case .error(let status):
+        guard let statusUnwrapped = status else {
+          return .init(
+            done: true,
+            result: .failure(
+              GoogleCloudGax.RequestError.binding("Operation completed but error value was missing")
+            ))
+        }
+        let error = GoogleCloudGax.RequestError.service(
+          GoogleCloudGax.ServiceError(
+            code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
+            message: statusUnwrapped.message))
+        return .init(done: true, result: .failure(error))
+      case .none:
+        return .init(
+          done: true,
+          result: .failure(
+            GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
+      }
+    }
+    let rawOp = try await self.refreshAutonomousDatabase(request: withPolling, options: options)
+    let initialState = try extractStatus(rawOp)
+    let poll = {
+      () async throws -> GoogleCloudGax._PollableOperationImpl<AutonomousDatabase>.State in
+      let op = try await self.getOperation(
+        request: .init().with { $0.name = rawOp.name }, options: options)
+      return try extractStatus(op)
+    }
+    return GoogleCloudGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
+  }
+
+  /// Gets the refreshable clones for a given Autonomous Database.
+  ///
+  /// @Snippet(path: "OracleDatabase_GetAutonomousDatabaseRefreshableClones")
+  public func getAutonomousDatabaseRefreshableClones(
+    request: GetAutonomousDatabaseRefreshableClonesRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleCloudOracleDatabaseV1.AutonomousDatabaseRefreshableClones {
+    try await self.inner.getAutonomousDatabaseRefreshableClones(request: request, options: options)
+  }
+
   /// Lists the ODB Networks in a given project and location.
   ///
   /// @Snippet(path: "OracleDatabase_ListOdbNetworks")
@@ -3704,6 +3782,30 @@ extension Clients {
       peerAutonomousDatabase: Swift.String,
     ) async throws -> any GoogleCloudGax.PollableOperation<AutonomousDatabase>
 
+    /// See `OracleDatabaseClient.refreshAutonomousDatabase`.
+    func refreshAutonomousDatabase(request: RefreshAutonomousDatabaseRequest) async throws
+      -> GoogleLongRunning.Operation
+
+    /// See `OracleDatabaseClient.refreshAutonomousDatabase`.
+    func refreshAutonomousDatabase(withPolling: RefreshAutonomousDatabaseRequest) async throws
+      -> any GoogleCloudGax.PollableOperation<AutonomousDatabase>
+
+    /// See `OracleDatabaseClient.refreshAutonomousDatabase`.
+    func refreshAutonomousDatabase(
+      name: Swift.String,
+      refreshCutoffTime: GoogleCloudWkt.Timestamp?,
+    ) async throws -> any GoogleCloudGax.PollableOperation<AutonomousDatabase>
+
+    /// See `OracleDatabaseClient.getAutonomousDatabaseRefreshableClones`.
+    func getAutonomousDatabaseRefreshableClones(
+      request: GetAutonomousDatabaseRefreshableClonesRequest
+    ) async throws -> GoogleCloudOracleDatabaseV1.AutonomousDatabaseRefreshableClones
+
+    /// See `OracleDatabaseClient.getAutonomousDatabaseRefreshableClones`.
+    func getAutonomousDatabaseRefreshableClones(
+      name: Swift.String,
+    ) async throws -> GoogleCloudOracleDatabaseV1.AutonomousDatabaseRefreshableClones
+
     /// See `OracleDatabaseClient.listOdbNetworks`.
     func listOdbNetworks(request: ListOdbNetworksRequest) async throws
       -> GoogleCloudOracleDatabaseV1.ListOdbNetworksResponse
@@ -4644,6 +4746,21 @@ extension Clients {
     func failoverAutonomousDatabase(
       withPolling: FailoverAutonomousDatabaseRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> any GoogleCloudGax.PollableOperation<AutonomousDatabase>
+
+    /// See `OracleDatabaseClient.refreshAutonomousDatabase`.
+    func refreshAutonomousDatabase(
+      request: RefreshAutonomousDatabaseRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    /// See `OracleDatabaseClient.refreshAutonomousDatabase`.
+    func refreshAutonomousDatabase(
+      withPolling: RefreshAutonomousDatabaseRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> any GoogleCloudGax.PollableOperation<AutonomousDatabase>
+
+    /// See `OracleDatabaseClient.getAutonomousDatabaseRefreshableClones`.
+    func getAutonomousDatabaseRefreshableClones(
+      request: GetAutonomousDatabaseRefreshableClonesRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleCloudOracleDatabaseV1.AutonomousDatabaseRefreshableClones
 
     /// See `OracleDatabaseClient.listOdbNetworks`.
     func listOdbNetworks(
@@ -6203,6 +6320,67 @@ extension Clients.OracleDatabaseProtocol {
       $0.peerAutonomousDatabase = peerAutonomousDatabase
     }
     return try await self.failoverAutonomousDatabase(withPolling: request)
+  }
+
+  public func refreshAutonomousDatabase(request: RefreshAutonomousDatabaseRequest) async throws
+    -> GoogleLongRunning.Operation
+  {
+    try await self.refreshAutonomousDatabase(request: request, options: .init())
+  }
+
+  public func refreshAutonomousDatabase(
+    request: RefreshAutonomousDatabaseRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func refreshAutonomousDatabase(withPolling: RefreshAutonomousDatabaseRequest) async throws
+    -> any GoogleCloudGax.PollableOperation<AutonomousDatabase>
+  {
+    try await self.refreshAutonomousDatabase(withPolling: withPolling, options: .init())
+  }
+
+  public func refreshAutonomousDatabase(
+    withPolling: RefreshAutonomousDatabaseRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> any GoogleCloudGax.PollableOperation<AutonomousDatabase> {
+    let poll = {
+      () async throws -> GoogleCloudGax._PollableOperationImpl<AutonomousDatabase>.State in
+      throw GoogleCloudGax.RequestError.unimplemented
+    }
+    return GoogleCloudGax._PollableOperationImpl(
+      initialState: .init(done: false, result: nil), poll: poll)
+  }
+
+  public func refreshAutonomousDatabase(
+    name: Swift.String,
+    refreshCutoffTime: GoogleCloudWkt.Timestamp?,
+  ) async throws -> any GoogleCloudGax.PollableOperation<AutonomousDatabase> {
+    let request = RefreshAutonomousDatabaseRequest().with {
+      $0.name = name
+      $0.refreshCutoffTime = refreshCutoffTime
+    }
+    return try await self.refreshAutonomousDatabase(withPolling: request)
+  }
+
+  public func getAutonomousDatabaseRefreshableClones(
+    request: GetAutonomousDatabaseRefreshableClonesRequest
+  ) async throws -> GoogleCloudOracleDatabaseV1.AutonomousDatabaseRefreshableClones {
+    try await self.getAutonomousDatabaseRefreshableClones(request: request, options: .init())
+  }
+
+  public func getAutonomousDatabaseRefreshableClones(
+    request: GetAutonomousDatabaseRefreshableClonesRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleCloudOracleDatabaseV1.AutonomousDatabaseRefreshableClones {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func getAutonomousDatabaseRefreshableClones(
+    name: Swift.String,
+  ) async throws -> GoogleCloudOracleDatabaseV1.AutonomousDatabaseRefreshableClones {
+    let request = GetAutonomousDatabaseRefreshableClonesRequest().with {
+      $0.name = name
+    }
+    return try await self.getAutonomousDatabaseRefreshableClones(request: request)
   }
 
   public func listOdbNetworks(request: ListOdbNetworksRequest) async throws

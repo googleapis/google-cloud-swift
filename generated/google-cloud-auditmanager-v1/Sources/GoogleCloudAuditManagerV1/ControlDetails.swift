@@ -17,17 +17,18 @@
 import Foundation
 import GoogleCloudWkt
 
-/// The evaluation details for a control.
+/// Evaluation details for a control.
 public struct ControlDetails: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
-  /// The control for which the findings are being reported.
+  /// Control that the findings are being reported for.
   public var control: Control? = nil
 
   /// Output only. Overall status of the findings for the control.
   public var complianceState: ComplianceState = ComplianceState()
 
-  /// Report summary with compliance, violation counts etc.
+  /// A control report summary that provides a high-level overview of the
+  /// compliance controls and the assessment status.
   public var controlReportSummary: ReportSummary? = nil
 
   /// Initialize a new instance of `ControlDetails`.

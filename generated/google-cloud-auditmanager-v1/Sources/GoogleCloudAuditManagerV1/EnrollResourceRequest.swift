@@ -17,24 +17,29 @@
 import Foundation
 import GoogleCloudWkt
 
-/// Request message to subscribe the Audit Manager service for given resource.
+/// Request message for
+/// [EnrollResource][google.cloud.auditmanager.v1.AuditManager.EnrollResource].
+///
+/// [google.cloud.auditmanager.v1.AuditManager.EnrollResource]: <doc:AuditManagerClient/enrollResource(request:)>
 public struct EnrollResourceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
-  /// Required. The resource to be enrolled to the audit manager. Scope format
-  /// should be resource_type/resource_identifier Eg:
-  /// projects/{project}/locations/{location},
-  /// folders/{folder}/locations/{location}
-  /// organizations/{organization}/locations/{location}
+  /// Required. Organization, folder, or project to enroll in Audit Manager, in
+  /// one of the following formats:
+  ///
+  /// * `projects/{project}/locations/{location}`
+  /// * `folders/{folder}/locations/{location}`
+  /// * `organizations/{organization}/locations/{location}`
   public var scope: Swift.String = Swift.String()
 
-  /// Required. List of destination among which customer can choose to upload
-  /// their reports during the audit process. While enrolling at a
-  /// organization/folder level, customer can choose Cloud storage bucket in any
-  /// project. If the audit is triggered at project level using the service agent
-  /// at organization/folder level, all the destination options associated with
-  /// respective organization/folder level service agent will be available to
-  /// auditing projects.
+  /// Required. Cloud Storage buckets that you can upload your audit reports to
+  /// during the audit process.
+  ///
+  /// When you enroll an organization or folder, you can choose a Cloud Storage
+  /// bucket from any project in the organization or folder. If you run an audit
+  /// at the project level using the service agent at the organization or folder
+  /// level, all the buckets that are associated with the service agent are
+  /// available.
   public var destinations: [EnrollResourceRequest.EligibleDestination] = []
 
   /// Initialize a new instance of `EnrollResourceRequest`.
@@ -53,11 +58,11 @@ public struct EnrollResourceRequest: Codable, Equatable, GoogleCloudWkt._AnyPack
     return copy
   }
 
-  /// The destination details where the audit report must be uploaded.
+  /// Details about the bucket where you want to upload the audit report.
   public struct EligibleDestination: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {
-    /// The options for the report destination location.
+    /// Available Cloud Storage buckets.
     public var eligibleDestinations: OneOf_EligibleDestinations? = nil
 
     /// Initialize a new instance of `EligibleDestination`.
@@ -112,10 +117,14 @@ public struct EnrollResourceRequest: Codable, Equatable, GoogleCloudWkt._AnyPack
       }
     }
 
-    /// The options for the report destination location.
+    /// Available Cloud Storage buckets.
     public enum OneOf_EligibleDestinations: Codable, Equatable, Sendable {
-      /// The Cloud Storage bucket location where the audit report and evidences
-      /// can be uploaded during the `GenerateAuditReport` API call.
+      /// The location of the Cloud Storage bucket where you want to upload the
+      /// audit report and evidence during the
+      /// [GenerateAuditReport][google.cloud.auditmanager.v1.AuditManager.GenerateAuditReport]
+      /// API call.
+      ///
+      /// [google.cloud.auditmanager.v1.AuditManager.GenerateAuditReport]: <doc:AuditManagerClient/generateAuditReport(request:)>
       case eligibleGcsBucket(Swift.String)
     }
 

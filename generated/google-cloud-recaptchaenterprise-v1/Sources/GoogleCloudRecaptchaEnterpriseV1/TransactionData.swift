@@ -148,8 +148,8 @@ public struct TransactionData: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public struct User: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {
-    /// Optional. Unique account identifier for this user. If using account
-    /// defender, this should match the hashed_account_id field. Otherwise, a
+    /// Optional. Unique account identifier for this user. If using Account
+    /// defense, this should match the hashed_account_id field. Otherwise, a
     /// unique and persistent identifier for this account.
     public var accountId: Swift.String = Swift.String()
 

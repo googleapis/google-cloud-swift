@@ -445,6 +445,8 @@ public struct Table: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     case unspecified
     /// The table keeps data versioned at a granularity of 1ms.
     case millis
+    /// The table keeps data versioned at a granularity of 1us.
+    case micros
     /// Encodes an unknown integer value.
     ///
     /// The most common cause for an unknown values is for the service to send
@@ -469,6 +471,7 @@ public struct Table: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       switch self {
       case .unspecified: return 0
       case .millis: return 1
+      case .micros: return 2
       case .unknownIntValue(let v): return v
       case .unknownStringValue: return nil
       }
@@ -481,6 +484,7 @@ public struct Table: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       switch self {
       case .unspecified: return "TIMESTAMP_GRANULARITY_UNSPECIFIED"
       case .millis: return "MILLIS"
+      case .micros: return "MICROS"
       case .unknownIntValue: return nil
       case .unknownStringValue(let v): return v
       }
@@ -493,6 +497,7 @@ public struct Table: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       switch stringValue {
       case "TIMESTAMP_GRANULARITY_UNSPECIFIED": self = .unspecified
       case "MILLIS": self = .millis
+      case "MICROS": self = .micros
       default: self = .unknownStringValue(stringValue)
       }
     }
@@ -504,6 +509,7 @@ public struct Table: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       switch intValue {
       case 0: self = .unspecified
       case 1: self = .millis
+      case 2: self = .micros
       default: self = .unknownIntValue(intValue)
       }
     }
@@ -531,6 +537,7 @@ public struct Table: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       switch self {
       case .unspecified: return try container.encode(0)
       case .millis: return try container.encode(1)
+      case .micros: return try container.encode(2)
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

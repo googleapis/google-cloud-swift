@@ -241,6 +241,36 @@ extension Clients {
         })
     }
 
+    public func getPolicy(
+      request: GetPolicyRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleCloudRecaptchaEnterpriseV1.Policy {
+      try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: true,
+        action: {
+          (r: GetPolicyRequest, o: GoogleCloudGax.RequestOptions) async throws
+            -> GoogleCloudRecaptchaEnterpriseV1.Policy
+          in
+          return try await self.inner.getPolicy(request: r, options: o)
+        })
+    }
+
+    public func updatePolicy(
+      request: UpdatePolicyRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleCloudRecaptchaEnterpriseV1.Policy {
+      try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: UpdatePolicyRequest, o: GoogleCloudGax.RequestOptions) async throws
+            -> GoogleCloudRecaptchaEnterpriseV1.Policy
+          in
+          return try await self.inner.updatePolicy(request: r, options: o)
+        })
+    }
+
     public func createFirewallPolicy(
       request: CreateFirewallPolicyRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudRecaptchaEnterpriseV1.FirewallPolicy {

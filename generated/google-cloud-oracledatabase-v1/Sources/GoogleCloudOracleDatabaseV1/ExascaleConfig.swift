@@ -27,6 +27,12 @@ public struct ExascaleConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// Output only. Available storage size for Exascale in GBs.
   public var availableStorageSizeGb: Swift.Int32 = Swift.Int32()
 
+  /// Output only. Storage size needed for VM storage on Exascale in GBs.
+  public var totalVmStorageSizeGb: Swift.Int32 = Swift.Int32()
+
+  /// Output only. Available storage size for VM storage on Exascale in GBs.
+  public var availableVmStorageSizeGb: Swift.Int32 = Swift.Int32()
+
   /// Initialize a new instance of `ExascaleConfig`.
   public init() {}
 

@@ -471,6 +471,29 @@ extension Clients {
       ).get()
     }
 
+    public func viewObjectFullContext(
+      request: ViewObjectFullContextRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> ObjectFullContext {
+      let path = try { () throws -> Swift.String in
+        guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
+          throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
+        }
+        return "/v2/\(pathVariable0):viewFullContext"
+      }()
+      var query = [
+        URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+      ]
+      let encoder = GoogleCloudGax.QueryParameterEncoder()
+      query.append(contentsOf: try encoder.encode(request.generation, prefix: "generation"))
+      query.append(contentsOf: try encoder.encode(request.contextKey, prefix: "contextKey"))
+      var req = try await self.inner.newRequest(path: path, query: query)
+      req.setMethod(.GET)
+      req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
+      return try await req.rpc(
+        ObjectFullContext.self, timeout: options.attemptTimeout
+      ).get()
+    }
+
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {

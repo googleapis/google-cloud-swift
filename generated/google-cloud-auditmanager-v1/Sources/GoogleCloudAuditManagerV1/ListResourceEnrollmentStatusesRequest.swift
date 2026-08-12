@@ -17,21 +17,29 @@
 import Foundation
 import GoogleCloudWkt
 
-/// Message for listing all the descendent resources under parent with
-/// enrollment.
+/// Request message for
+/// [ListResourceEnrollmentStatuses][google.cloud.auditmanager.v1.AuditManager.ListResourceEnrollmentStatuses].
+///
+/// [google.cloud.auditmanager.v1.AuditManager.ListResourceEnrollmentStatuses]: <doc:AuditManagerClient/listResourceEnrollmentStatuses(request:)>
 public struct ListResourceEnrollmentStatusesRequest: Codable, Equatable, GoogleCloudWkt
     ._AnyPackable,
   Sendable
 {
-  /// Required. The parent scope for which the list of resources with enrollments
-  /// are required.
+  /// Required. Parent organization or folder to list enrollment statuses for,
+  /// in one of the following formats:
+  ///
+  /// * `folders/{folder}/locations/{location}`
+  /// * `organizations/{organization}/locations/{location}`
   public var parent: Swift.String = Swift.String()
 
-  /// Optional. The maximum number of resources to return.
+  /// Optional. Maximum number of items to return in a single page. The service
+  /// might return fewer items than this value. If unspecified, the service picks
+  /// an appropriate default. The maximum value is 100; values above 100 are
+  /// reduced to 100.
   public var pageSize: Swift.Int32 = Swift.Int32()
 
-  /// Optional. The next_page_token value returned from a previous List request,
-  /// if any.
+  /// Optional. A page token, received from a previous call, to retrieve the next
+  /// page of results.
   public var pageToken: Swift.String = Swift.String()
 
   /// Initialize a new instance of `ListResourceEnrollmentStatusesRequest`.

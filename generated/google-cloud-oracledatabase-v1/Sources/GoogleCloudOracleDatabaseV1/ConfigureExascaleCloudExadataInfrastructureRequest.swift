@@ -30,6 +30,9 @@ public struct ConfigureExascaleCloudExadataInfrastructureRequest: Codable, Equat
   /// Required. The total storage to be allocated to Exascale in GBs.
   public var totalStorageSizeGb: Swift.Int32 = Swift.Int32()
 
+  /// Optional. Storage size needed for VM storage on Exascale in GBs.
+  public var totalVmStorageSizeGb: Swift.Int32 = Swift.Int32()
+
   /// Optional. An optional ID to identify the request.
   public var requestId: Swift.String = Swift.String()
 

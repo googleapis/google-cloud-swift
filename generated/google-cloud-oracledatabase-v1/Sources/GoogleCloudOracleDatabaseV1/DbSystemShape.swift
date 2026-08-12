@@ -59,6 +59,15 @@ public struct DbSystemShape: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// Optional. Minimum node storage per database server in gigabytes.
   public var minDbNodeStoragePerNodeGb: Swift.Int32 = Swift.Int32()
 
+  /// Optional. Minimum core count per node.
+  public var minimumCoreCount: Swift.Int32 = Swift.Int32()
+
+  /// Optional. Available core count.
+  public var availableCoreCount: Swift.Int32 = Swift.Int32()
+
+  /// Optional. Core count increment.
+  public var coreCountIncrement: Swift.Int32 = Swift.Int32()
+
   /// Initialize a new instance of `DbSystemShape`.
   public init() {}
 

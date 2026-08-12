@@ -17,28 +17,40 @@
 import Foundation
 import GoogleCloudWkt
 
-/// Message for requesting the Audit Report.
+/// Request message for
+/// [GenerateAuditReport][google.cloud.auditmanager.v1.AuditManager.GenerateAuditReport].
+///
+/// [google.cloud.auditmanager.v1.AuditManager.GenerateAuditReport]: <doc:AuditManagerClient/generateAuditReport(request:)>
 public struct GenerateAuditReportRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
-  /// Required. Scope for which the AuditScopeReport is required. Must be of
-  /// format resource_type/resource_identifier Eg:
-  /// projects/{project}/locations/{location},
-  /// folders/{folder}/locations/{location}
+  /// Required. Organization, folder, or project that the audit applies to, in
+  /// one of the following formats:
+  ///
+  /// * `projects/{project}/locations/{location}`
+  /// * `folders/{folder}/locations/{location}`
+  /// * `organizations/{organization}/locations/{location}`
   public var scope: Swift.String = Swift.String()
 
-  /// Required. Compliance Standard against which the Scope Report must be
-  /// generated. Eg: FEDRAMP_MODERATE
+  /// Optional. Deprecated. Compliance standard for the audit report.
+  ///
+  /// Use the `compliance_framework` field instead.
+  @available(*, deprecated)
   public var complianceStandard: Swift.String = Swift.String()
 
-  /// Required. The format in which the audit report should be created.
+  /// Required. Format for the audit report.
   public var reportFormat: GenerateAuditReportRequest.AuditReportFormat =
     GenerateAuditReportRequest.AuditReportFormat()
 
-  /// Required. Compliance framework against which the Report must be generated.
+  /// Required. The framework that's used for the audit report. For example,
+  /// `NIST_800_53`.
   public var complianceFramework: Swift.String = Swift.String()
 
-  /// Set of options for the report destination location.
+  /// Optional. If `true`, only validate the request and don't generate the audit
+  /// report.
+  public var validateOnly: Swift.Bool = Swift.Bool()
+
+  /// Options for the report destination location.
   public var destination: OneOf_Destination? = nil
 
   /// Initialize a new instance of `GenerateAuditReportRequest`.
@@ -63,6 +75,7 @@ public struct GenerateAuditReportRequest: Codable, Equatable, GoogleCloudWkt._An
     case complianceStandard = "complianceStandard"
     case reportFormat = "reportFormat"
     case complianceFramework = "complianceFramework"
+    case validateOnly = "validateOnly"
   }
 
   public init(from decoder: Decoder) throws {
@@ -72,6 +85,7 @@ public struct GenerateAuditReportRequest: Codable, Equatable, GoogleCloudWkt._An
     self.reportFormat = try container.decode(
       GenerateAuditReportRequest.AuditReportFormat.self, forKey: .reportFormat)
     self.complianceFramework = try container.decode(Swift.String.self, forKey: .complianceFramework)
+    self.validateOnly = try container.decode(Swift.Bool.self, forKey: .validateOnly)
 
     var destination: OneOf_Destination? = nil
     let destinationCheckAndSet = {
@@ -95,6 +109,7 @@ public struct GenerateAuditReportRequest: Codable, Equatable, GoogleCloudWkt._An
     try container.encode(self.complianceStandard, forKey: .complianceStandard)
     try container.encode(self.reportFormat, forKey: .reportFormat)
     try container.encode(self.complianceFramework, forKey: .complianceFramework)
+    try container.encode(self.validateOnly, forKey: .validateOnly)
 
     if let choice = self.destination {
       switch choice {
@@ -104,11 +119,11 @@ public struct GenerateAuditReportRequest: Codable, Equatable, GoogleCloudWkt._An
     }
   }
 
-  /// The options for the audit report format.
+  /// Format for the audit report.
   public enum AuditReportFormat: Codable, Equatable, Sendable {
-    /// Unspecified. Invalid state.
+    /// Default value. This value is unused.
     case unspecified
-    /// Audit Report creation format is Open Document.
+    /// Open Document format.
     case odf
     /// Encodes an unknown integer value.
     ///
@@ -202,11 +217,11 @@ public struct GenerateAuditReportRequest: Codable, Equatable, GoogleCloudWkt._An
     }
   }
 
-  /// Set of options for the report destination location.
+  /// Options for the report destination location.
   public enum OneOf_Destination: Codable, Equatable, Sendable {
-    /// Destination Cloud storage bucket where report and evidence must be
-    /// uploaded. The Cloud storage bucket provided here must be selected among
-    /// the buckets entered during the enrollment process.
+    /// URL for the Cloud Storage bucket where the report and evidence is
+    /// uploaded. You must select a bucket that was provided during the
+    /// enrollment process.
     case gcsUri(Swift.String)
   }
 

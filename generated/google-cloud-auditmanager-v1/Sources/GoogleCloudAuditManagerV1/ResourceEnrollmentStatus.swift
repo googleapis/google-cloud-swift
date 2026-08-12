@@ -17,25 +17,31 @@
 import Foundation
 import GoogleCloudWkt
 
-/// A resource with its enrollment status.
+/// An organization, folder, or project with its enrollment status.
 public struct ResourceEnrollmentStatus: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
-  /// Identifier. The name of this resource.
+  /// Identifier. Name of the resource enrollment status, in one of the following
+  /// formats:
+  ///
+  /// * `folders/{folder}/locations/{location}/resourceEnrollmentStatuses/{resource_enrollment_status}`
+  /// * `projects/{project}/locations/{location}/resourceEnrollmentStatuses/{resource_enrollment_status}`
+  /// * `organizations/{organization}/locations/{location}/resourceEnrollmentStatuses/{resource_enrollment_status}`
   public var name: Swift.String = Swift.String()
 
-  /// Output only. Enrollment which contains enrolled destination details for a
-  /// resource
+  /// Output only. Enrolled destination details for the organization, folder, or
+  /// project.
   public var enrollment: Enrollment? = nil
 
-  /// Output only. Is resource enrolled.
+  /// Output only. Deprecated. Whether the organization, folder, or project is
+  /// enrolled. Use `enrollment_state` instead.
   @available(*, deprecated)
   public var enrolled: Swift.Bool = Swift.Bool()
 
-  /// Output only. Display name of the project/folder/organization.
+  /// Output only. Display name for the organization, folder, or project.
   public var displayName: Swift.String = Swift.String()
 
-  /// Output only. Enrollment state of the resource.
+  /// Output only. Enrollment state of the organization, folder, or project.
   public var enrollmentState: ResourceEnrollmentStatus.ResourceEnrollmentState =
     ResourceEnrollmentStatus.ResourceEnrollmentState()
 
@@ -55,15 +61,15 @@ public struct ResourceEnrollmentStatus: Codable, Equatable, GoogleCloudWkt._AnyP
     return copy
   }
 
-  /// The different enrollment states of a resource.
+  /// Different enrollment states of the resource and its parent.
   public enum ResourceEnrollmentState: Codable, Equatable, Sendable {
-    /// Unspecified. Invalid state.
+    /// Default value. This value is unused.
     case unspecified
-    /// Not enrolled.
+    /// The resource isn't enrolled.
     case notEnrolled
-    /// Resource is not enrolled but the parent is enrolled.
+    /// The resource isn't enrolled but the parent is enrolled.
     case inherited
-    /// Enrolled.
+    /// The resource is enrolled.
     case enrolled
     /// Encodes an unknown integer value.
     ///

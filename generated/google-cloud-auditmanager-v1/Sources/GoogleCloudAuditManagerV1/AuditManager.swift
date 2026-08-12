@@ -44,11 +44,11 @@ public class AuditManagerClient: Clients.AuditManagerProtocol {
     self.pollingBackoffPolicy = options.pollingBackoffPolicy
   }
 
-  /// Enrolls the customer resource(folder/project/organization) to the audit
-  /// manager service by creating the audit managers Service Agent in customers
-  /// workload and granting required permissions to the Service Agent. Please
-  /// note that if enrollment request is made on the already enrolled workload
-  /// then enrollment is executed overriding the existing set of destinations.
+  /// Adds your project, folder, or organization to Audit
+  /// Manager. This method creates the Audit Manager service agent in your
+  /// workload and grants required permissions to the service agent.
+  /// If you make this request on a workload that's already enrolled,
+  /// then this method overrides the existing set of destinations.
   ///
   /// @Snippet(path: "AuditManager_EnrollResource")
   public func enrollResource(
@@ -57,9 +57,14 @@ public class AuditManagerClient: Clients.AuditManagerProtocol {
     try await self.inner.enrollResource(request: request, options: options)
   }
 
-  /// Generates a demo report highlighting different responsibilities
-  /// (Google/Customer/ shared) required to be fulfilled for the customer's
-  /// workload to be compliant with the given standard.
+  /// Generates an audit scope report for the given standard.
+  ///
+  /// The report includes the following:
+  ///
+  /// * The technical attributes and constraints that Audit Manager uses to
+  ///   verify your compliance with a framework.
+  /// * A list of Google Cloud services and resources that are within the
+  ///   scope of the framework.
   ///
   /// @Snippet(path: "AuditManager_GenerateAuditScopeReport")
   public func generateAuditScopeReport(
@@ -68,8 +73,9 @@ public class AuditManagerClient: Clients.AuditManagerProtocol {
     try await self.inner.generateAuditScopeReport(request: request, options: options)
   }
 
-  /// Register the Audit Report generation requests and returns the OperationId
-  /// using which the customer can track the report generation progress.
+  /// Registers audit report generation requests. This method returns the
+  /// operation identifier that you can use to track the report generation
+  /// progress.
   ///
   /// @Snippet(path: "AuditManager_GenerateAuditReport")
   public func generateAuditReport(
@@ -78,8 +84,9 @@ public class AuditManagerClient: Clients.AuditManagerProtocol {
     try await self.inner.generateAuditReport(request: request, options: options)
   }
 
-  /// Register the Audit Report generation requests and returns the OperationId
-  /// using which the customer can track the report generation progress.
+  /// Registers audit report generation requests. This method returns the
+  /// operation identifier that you can use to track the report generation
+  /// progress.
   ///
   /// @Snippet(path: "AuditManager_GenerateAuditReport")
   public func generateAuditReport(
@@ -138,7 +145,8 @@ public class AuditManagerClient: Clients.AuditManagerProtocol {
     )
   }
 
-  /// Lists audit reports in the selected parent scope
+  /// Lists the audit reports for the organization, folder, or project that you
+  /// specify as the parent scope.
   ///
   /// @Snippet(path: "AuditManager_ListAuditReports")
   public func listAuditReports(
@@ -147,7 +155,8 @@ public class AuditManagerClient: Clients.AuditManagerProtocol {
     try await self.inner.listAuditReports(request: request, options: options)
   }
 
-  /// Lists audit reports in the selected parent scope
+  /// Lists the audit reports for the organization, folder, or project that you
+  /// specify as the parent scope.
   ///
   /// @Snippet(path: "AuditManager_ListAuditReports")
   public func listAuditReports(
@@ -162,7 +171,7 @@ public class AuditManagerClient: Clients.AuditManagerProtocol {
     return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  /// Get the overall audit report
+  /// Gets the full metadata and findings for an audit report.
   ///
   /// @Snippet(path: "AuditManager_GetAuditReport")
   public func getAuditReport(
@@ -171,7 +180,7 @@ public class AuditManagerClient: Clients.AuditManagerProtocol {
     try await self.inner.getAuditReport(request: request, options: options)
   }
 
-  /// Get a resource along with its enrollment status.
+  /// Gets a resource and its enrollment status.
   ///
   /// @Snippet(path: "AuditManager_GetResourceEnrollmentStatus")
   public func getResourceEnrollmentStatus(
@@ -180,7 +189,8 @@ public class AuditManagerClient: Clients.AuditManagerProtocol {
     try await self.inner.getResourceEnrollmentStatus(request: request, options: options)
   }
 
-  /// Fetches all resources under the parent along with their enrollment.
+  /// Lists all the folders and projects in an organization or folder, along with
+  /// their enrollments.
   ///
   /// @Snippet(path: "AuditManager_ListResourceEnrollmentStatuses")
   public func listResourceEnrollmentStatuses(
@@ -189,7 +199,8 @@ public class AuditManagerClient: Clients.AuditManagerProtocol {
     try await self.inner.listResourceEnrollmentStatuses(request: request, options: options)
   }
 
-  /// Fetches all resources under the parent along with their enrollment.
+  /// Lists all the folders and projects in an organization or folder, along with
+  /// their enrollments.
   ///
   /// @Snippet(path: "AuditManager_ListResourceEnrollmentStatuses")
   public func listResourceEnrollmentStatuses(
@@ -205,7 +216,8 @@ public class AuditManagerClient: Clients.AuditManagerProtocol {
     return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  /// Gets controls needed to be implemented to be compliant to a standard.
+  /// Lists the controls that you must implement to become compliant to a
+  /// regulatory standard.
   ///
   /// @Snippet(path: "AuditManager_ListControls")
   public func listControls(
@@ -214,7 +226,8 @@ public class AuditManagerClient: Clients.AuditManagerProtocol {
     try await self.inner.listControls(request: request, options: options)
   }
 
-  /// Gets controls needed to be implemented to be compliant to a standard.
+  /// Lists the controls that you must implement to become compliant to a
+  /// regulatory standard.
   ///
   /// @Snippet(path: "AuditManager_ListControls")
   public func listControls(
@@ -230,13 +243,23 @@ public class AuditManagerClient: Clients.AuditManagerProtocol {
   }
 
   /// Lists information about the supported locations for this service.
-  /// This method can be called in two ways:
   ///
-  /// *   **List all public locations:** Use the path `GET /v1/locations`.
-  /// *   **List project-visible locations:** Use the path
-  /// `GET /v1/projects/{project_id}/locations`. This may include public
-  /// locations as well as private or other locations specifically visible
-  /// to the project.
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "AuditManager_ListLocations")
   public func listLocations(
@@ -246,13 +269,23 @@ public class AuditManagerClient: Clients.AuditManagerProtocol {
   }
 
   /// Lists information about the supported locations for this service.
-  /// This method can be called in two ways:
   ///
-  /// *   **List all public locations:** Use the path `GET /v1/locations`.
-  /// *   **List project-visible locations:** Use the path
-  /// `GET /v1/projects/{project_id}/locations`. This may include public
-  /// locations as well as private or other locations specifically visible
-  /// to the project.
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "AuditManager_ListLocations")
   public func listLocations(

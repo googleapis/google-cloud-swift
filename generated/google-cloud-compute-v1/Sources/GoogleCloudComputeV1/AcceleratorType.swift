@@ -48,6 +48,13 @@
     /// [Output Only] Name of the resource.
     public var name: Swift.String? = nil
 
+    /// Output only. Contains standard resource metadata for an AcceleratorType
+    /// resource. It is populated for each instance of the AcceleratorType
+    /// resource, and includes the api_version the
+    /// instance was retrieved through, and its canonical
+    /// resource_type name.
+    public var resourceMetadata: ResourceMetadata? = nil
+
     /// Output only. [Output Only] Server-defined, fully qualified URL for this resource.
     public var selfLink: Swift.String? = nil
 

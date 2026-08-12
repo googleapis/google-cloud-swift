@@ -503,6 +503,36 @@ extension Clients {
         })
     }
 
+    public func refreshAutonomousDatabase(
+      request: RefreshAutonomousDatabaseRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
+      try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: RefreshAutonomousDatabaseRequest, o: GoogleCloudGax.RequestOptions) async throws
+            -> GoogleLongRunning.Operation
+          in
+          return try await self.inner.refreshAutonomousDatabase(request: r, options: o)
+        })
+    }
+
+    public func getAutonomousDatabaseRefreshableClones(
+      request: GetAutonomousDatabaseRefreshableClonesRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleCloudOracleDatabaseV1.AutonomousDatabaseRefreshableClones {
+      try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: true,
+        action: {
+          (r: GetAutonomousDatabaseRefreshableClonesRequest, o: GoogleCloudGax.RequestOptions)
+            async throws -> GoogleCloudOracleDatabaseV1.AutonomousDatabaseRefreshableClones
+          in
+          return try await self.inner.getAutonomousDatabaseRefreshableClones(request: r, options: o)
+        })
+    }
+
     public func listOdbNetworks(
       request: ListOdbNetworksRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudOracleDatabaseV1.ListOdbNetworksResponse {

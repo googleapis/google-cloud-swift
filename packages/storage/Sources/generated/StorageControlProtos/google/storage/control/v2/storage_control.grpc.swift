@@ -202,6 +202,11 @@ public protocol Google_Storage_Control_V2_StorageControlClientProtocol: GRPCClie
     _ request: Google_Storage_Control_V2_ListIntelligenceFindingRevisionsRequest,
     callOptions: CallOptions?
   ) -> UnaryCall<Google_Storage_Control_V2_ListIntelligenceFindingRevisionsRequest, Google_Storage_Control_V2_ListIntelligenceFindingRevisionsResponse>
+
+  func viewObjectFullContext(
+    _ request: Google_Storage_Control_V2_ViewObjectFullContextRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Google_Storage_Control_V2_ViewObjectFullContextRequest, Google_Storage_Control_V2_ObjectFullContext>
 }
 
 extension Google_Storage_Control_V2_StorageControlClientProtocol {
@@ -902,6 +907,32 @@ extension Google_Storage_Control_V2_StorageControlClientProtocol {
       interceptors: self.interceptors?.makeListIntelligenceFindingRevisionsInterceptors() ?? []
     )
   }
+
+  /// Retrieves the full content of an object context, including its key, value,
+  /// and any associated extended data for a given context key.
+  ///
+  /// Object contexts can optionally contain extended data. If an object context
+  /// contains extended data, the metadata payload structure will contain only
+  /// its type URL. To retrieve the full extended data, call this method.
+  ///
+  /// Returns the complete representation of the context as an
+  /// [`ObjectFullContext`][google.storage.control.v2.ObjectFullContext].
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to ViewObjectFullContext.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  public func viewObjectFullContext(
+    _ request: Google_Storage_Control_V2_ViewObjectFullContextRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Google_Storage_Control_V2_ViewObjectFullContextRequest, Google_Storage_Control_V2_ObjectFullContext> {
+    return self.makeUnaryCall(
+      path: Google_Storage_Control_V2_StorageControlClientMetadata.Methods.viewObjectFullContext.path,
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeViewObjectFullContextInterceptors() ?? []
+    )
+  }
 }
 
 @available(*, deprecated)
@@ -1151,6 +1182,11 @@ public protocol Google_Storage_Control_V2_StorageControlAsyncClientProtocol: GRP
     _ request: Google_Storage_Control_V2_ListIntelligenceFindingRevisionsRequest,
     callOptions: CallOptions?
   ) -> GRPCAsyncUnaryCall<Google_Storage_Control_V2_ListIntelligenceFindingRevisionsRequest, Google_Storage_Control_V2_ListIntelligenceFindingRevisionsResponse>
+
+  func makeViewObjectFullContextCall(
+    _ request: Google_Storage_Control_V2_ViewObjectFullContextRequest,
+    callOptions: CallOptions?
+  ) -> GRPCAsyncUnaryCall<Google_Storage_Control_V2_ViewObjectFullContextRequest, Google_Storage_Control_V2_ObjectFullContext>
 }
 
 @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
@@ -1606,6 +1642,18 @@ extension Google_Storage_Control_V2_StorageControlAsyncClientProtocol {
       interceptors: self.interceptors?.makeListIntelligenceFindingRevisionsInterceptors() ?? []
     )
   }
+
+  public func makeViewObjectFullContextCall(
+    _ request: Google_Storage_Control_V2_ViewObjectFullContextRequest,
+    callOptions: CallOptions? = nil
+  ) -> GRPCAsyncUnaryCall<Google_Storage_Control_V2_ViewObjectFullContextRequest, Google_Storage_Control_V2_ObjectFullContext> {
+    return self.makeAsyncUnaryCall(
+      path: Google_Storage_Control_V2_StorageControlClientMetadata.Methods.viewObjectFullContext.path,
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeViewObjectFullContextInterceptors() ?? []
+    )
+  }
 }
 
 @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
@@ -2053,6 +2101,18 @@ extension Google_Storage_Control_V2_StorageControlAsyncClientProtocol {
       interceptors: self.interceptors?.makeListIntelligenceFindingRevisionsInterceptors() ?? []
     )
   }
+
+  public func viewObjectFullContext(
+    _ request: Google_Storage_Control_V2_ViewObjectFullContextRequest,
+    callOptions: CallOptions? = nil
+  ) async throws -> Google_Storage_Control_V2_ObjectFullContext {
+    return try await self.performAsyncUnaryCall(
+      path: Google_Storage_Control_V2_StorageControlClientMetadata.Methods.viewObjectFullContext.path,
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeViewObjectFullContextInterceptors() ?? []
+    )
+  }
 }
 
 @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
@@ -2184,6 +2244,9 @@ public protocol Google_Storage_Control_V2_StorageControlClientInterceptorFactory
 
   /// - Returns: Interceptors to use when invoking 'listIntelligenceFindingRevisions'.
   func makeListIntelligenceFindingRevisionsInterceptors() -> [ClientInterceptor<Google_Storage_Control_V2_ListIntelligenceFindingRevisionsRequest, Google_Storage_Control_V2_ListIntelligenceFindingRevisionsResponse>]
+
+  /// - Returns: Interceptors to use when invoking 'viewObjectFullContext'.
+  func makeViewObjectFullContextInterceptors() -> [ClientInterceptor<Google_Storage_Control_V2_ViewObjectFullContextRequest, Google_Storage_Control_V2_ObjectFullContext>]
 }
 
 public enum Google_Storage_Control_V2_StorageControlClientMetadata {
@@ -2228,6 +2291,7 @@ public enum Google_Storage_Control_V2_StorageControlClientMetadata {
       Google_Storage_Control_V2_StorageControlClientMetadata.Methods.summarizeIntelligenceFindings,
       Google_Storage_Control_V2_StorageControlClientMetadata.Methods.getIntelligenceFindingRevision,
       Google_Storage_Control_V2_StorageControlClientMetadata.Methods.listIntelligenceFindingRevisions,
+      Google_Storage_Control_V2_StorageControlClientMetadata.Methods.viewObjectFullContext,
     ]
   )
 
@@ -2453,6 +2517,12 @@ public enum Google_Storage_Control_V2_StorageControlClientMetadata {
       path: "/google.storage.control.v2.StorageControl/ListIntelligenceFindingRevisions",
       type: GRPCCallType.unary
     )
+
+    public static let viewObjectFullContext = GRPCMethodDescriptor(
+      name: "ViewObjectFullContext",
+      path: "/google.storage.control.v2.StorageControl/ViewObjectFullContext",
+      type: GRPCCallType.unary
+    )
   }
 }
 
@@ -2600,6 +2670,17 @@ public protocol Google_Storage_Control_V2_StorageControlProvider: CallHandlerPro
 
   /// Lists all the revisions of an `IntelligenceFinding` resource.
   func listIntelligenceFindingRevisions(request: Google_Storage_Control_V2_ListIntelligenceFindingRevisionsRequest, context: StatusOnlyCallContext) -> EventLoopFuture<Google_Storage_Control_V2_ListIntelligenceFindingRevisionsResponse>
+
+  /// Retrieves the full content of an object context, including its key, value,
+  /// and any associated extended data for a given context key.
+  ///
+  /// Object contexts can optionally contain extended data. If an object context
+  /// contains extended data, the metadata payload structure will contain only
+  /// its type URL. To retrieve the full extended data, call this method.
+  ///
+  /// Returns the complete representation of the context as an
+  /// [`ObjectFullContext`][google.storage.control.v2.ObjectFullContext].
+  func viewObjectFullContext(request: Google_Storage_Control_V2_ViewObjectFullContextRequest, context: StatusOnlyCallContext) -> EventLoopFuture<Google_Storage_Control_V2_ObjectFullContext>
 }
 
 extension Google_Storage_Control_V2_StorageControlProvider {
@@ -2947,6 +3028,15 @@ extension Google_Storage_Control_V2_StorageControlProvider {
         userFunction: self.listIntelligenceFindingRevisions(request:context:)
       )
 
+    case "ViewObjectFullContext":
+      return UnaryServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Google_Storage_Control_V2_ViewObjectFullContextRequest>(),
+        responseSerializer: ProtobufSerializer<Google_Storage_Control_V2_ObjectFullContext>(),
+        interceptors: self.interceptors?.makeViewObjectFullContextInterceptors() ?? [],
+        userFunction: self.viewObjectFullContext(request:context:)
+      )
+
     default:
       return nil
     }
@@ -3210,6 +3300,20 @@ public protocol Google_Storage_Control_V2_StorageControlAsyncProvider: CallHandl
     request: Google_Storage_Control_V2_ListIntelligenceFindingRevisionsRequest,
     context: GRPCAsyncServerCallContext
   ) async throws -> Google_Storage_Control_V2_ListIntelligenceFindingRevisionsResponse
+
+  /// Retrieves the full content of an object context, including its key, value,
+  /// and any associated extended data for a given context key.
+  ///
+  /// Object contexts can optionally contain extended data. If an object context
+  /// contains extended data, the metadata payload structure will contain only
+  /// its type URL. To retrieve the full extended data, call this method.
+  ///
+  /// Returns the complete representation of the context as an
+  /// [`ObjectFullContext`][google.storage.control.v2.ObjectFullContext].
+  func viewObjectFullContext(
+    request: Google_Storage_Control_V2_ViewObjectFullContextRequest,
+    context: GRPCAsyncServerCallContext
+  ) async throws -> Google_Storage_Control_V2_ObjectFullContext
 }
 
 @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
@@ -3564,6 +3668,15 @@ extension Google_Storage_Control_V2_StorageControlAsyncProvider {
         wrapping: { try await self.listIntelligenceFindingRevisions(request: $0, context: $1) }
       )
 
+    case "ViewObjectFullContext":
+      return GRPCAsyncServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Google_Storage_Control_V2_ViewObjectFullContextRequest>(),
+        responseSerializer: ProtobufSerializer<Google_Storage_Control_V2_ObjectFullContext>(),
+        interceptors: self.interceptors?.makeViewObjectFullContextInterceptors() ?? [],
+        wrapping: { try await self.viewObjectFullContext(request: $0, context: $1) }
+      )
+
     default:
       return nil
     }
@@ -3719,6 +3832,10 @@ public protocol Google_Storage_Control_V2_StorageControlServerInterceptorFactory
   /// - Returns: Interceptors to use when handling 'listIntelligenceFindingRevisions'.
   ///   Defaults to calling `self.makeInterceptors()`.
   func makeListIntelligenceFindingRevisionsInterceptors() -> [ServerInterceptor<Google_Storage_Control_V2_ListIntelligenceFindingRevisionsRequest, Google_Storage_Control_V2_ListIntelligenceFindingRevisionsResponse>]
+
+  /// - Returns: Interceptors to use when handling 'viewObjectFullContext'.
+  ///   Defaults to calling `self.makeInterceptors()`.
+  func makeViewObjectFullContextInterceptors() -> [ServerInterceptor<Google_Storage_Control_V2_ViewObjectFullContextRequest, Google_Storage_Control_V2_ObjectFullContext>]
 }
 
 public enum Google_Storage_Control_V2_StorageControlServerMetadata {
@@ -3763,6 +3880,7 @@ public enum Google_Storage_Control_V2_StorageControlServerMetadata {
       Google_Storage_Control_V2_StorageControlServerMetadata.Methods.summarizeIntelligenceFindings,
       Google_Storage_Control_V2_StorageControlServerMetadata.Methods.getIntelligenceFindingRevision,
       Google_Storage_Control_V2_StorageControlServerMetadata.Methods.listIntelligenceFindingRevisions,
+      Google_Storage_Control_V2_StorageControlServerMetadata.Methods.viewObjectFullContext,
     ]
   )
 
@@ -3986,6 +4104,12 @@ public enum Google_Storage_Control_V2_StorageControlServerMetadata {
     public static let listIntelligenceFindingRevisions = GRPCMethodDescriptor(
       name: "ListIntelligenceFindingRevisions",
       path: "/google.storage.control.v2.StorageControl/ListIntelligenceFindingRevisions",
+      type: GRPCCallType.unary
+    )
+
+    public static let viewObjectFullContext = GRPCMethodDescriptor(
+      name: "ViewObjectFullContext",
+      path: "/google.storage.control.v2.StorageControl/ViewObjectFullContext",
       type: GRPCCallType.unary
     )
   }

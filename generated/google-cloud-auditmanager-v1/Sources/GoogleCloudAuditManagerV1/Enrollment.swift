@@ -17,15 +17,19 @@
 import Foundation
 import GoogleCloudWkt
 
-/// The enrollment resource.
+/// Organization, folder, or project to enroll for audit reports.
 public struct Enrollment: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
-  /// Identifier. The name of this Enrollment, in the format of scope given in
-  /// request.
+  /// Identifier. Name of the enrollment, in one of the following formats:
+  ///
+  /// * `projects/{project}/locations/{location}/enrollments/{enrollment}`
+  /// * `folders/{folder}/locations/{location}/enrollments/{enrollment}`
+  /// * `organizations/{organization}/locations/{location}/enrollments/{enrollment}`
   public var name: Swift.String = Swift.String()
 
-  /// Output only. The locations where the generated reports can be uploaded.
+  /// Output only. Cloud Storage buckets where you want to upload the audit
+  /// reports.
   public var destinationDetails: [DestinationDetails] = []
 
   /// Initialize a new instance of `Enrollment`.

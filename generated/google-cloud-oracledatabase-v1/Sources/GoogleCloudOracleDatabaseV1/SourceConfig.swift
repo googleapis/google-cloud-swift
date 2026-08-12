@@ -29,6 +29,45 @@ public struct SourceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// enabled when creating a Data Guard.
   public var automaticBackupsReplicationEnabled: Swift.Bool = Swift.Bool()
 
+  /// Optional. The source type of the Autonomous Database.
+  public var sourceType: SourceConfig.SourceType = SourceConfig.SourceType()
+
+  /// Optional. The clone type of the Autonomous Database. This field is only
+  /// applicable in case of cloning
+  public var cloneType: SourceConfig.CloneType = SourceConfig.CloneType()
+
+  /// Optional. The refresh mode of the clone.
+  public var refreshableMode: SourceConfig.RefreshableMode = SourceConfig.RefreshableMode()
+
+  /// Optional. The frequency in seconds a refreshable clone is refreshed after
+  /// auto-refresh is enabled.
+  public var autoRefreshFrequencySeconds: Swift.Int32 = Swift.Int32()
+
+  /// Optional. The time, in seconds, the data of the automatic refreshable clone
+  /// lags the primary database at the point of refresh.
+  public var autoRefreshPointLagSeconds: Swift.Int32? = nil
+
+  /// Optional. The date and time that auto-refreshing will begin for an
+  /// Autonomous Database refreshable clone. This value controls only the start
+  /// time for the first refresh operation.
+  public var autoRefreshStartTime: GoogleCloudWkt.Timestamp? = nil
+
+  /// Optional. The name of the Autonomous Database Backup resource with the
+  /// format:
+  /// projects/{project}/locations/{region}/autonomousDatabaseBackups/{autonomous_database_backup}
+  /// Required when source_type is BACKUP_FROM_ID.
+  public var autonomousDatabaseBackup: Swift.String = Swift.String()
+
+  /// Optional. The timestamp specified for the point-in-time clone of the source
+  /// Autonomous Database. This field is only applicable
+  /// in case of BACKUP_FROM_TIMESTAMP source type and when
+  /// use_latest_available_backup is false.
+  public var backupTime: GoogleCloudWkt.Timestamp? = nil
+
+  /// Optional. Clone from latest available backup timestamp. This field is only
+  /// applicable in case of BACKUP_FROM_TIMESTAMP source type.
+  public var useLatestAvailableBackup: Swift.Bool = Swift.Bool()
+
   /// Initialize a new instance of `SourceConfig`.
   public init() {}
 
@@ -43,6 +82,350 @@ public struct SourceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  /// The refresh mode of a refreshable clone.
+  public enum RefreshableMode: Codable, Equatable, Sendable {
+    /// Default unspecified value.
+    case unspecified
+    /// Automatic refresh.
+    case automatic
+    /// Manual refresh.
+    case manual
+    /// Encodes an unknown integer value.
+    ///
+    /// The most common cause for an unknown values is for the service to send
+    /// a value unknown to the library. We recommend you update your library to
+    /// the latest version.
+    case unknownIntValue(Int)
+    /// Encodes an unknown string value.
+    ///
+    /// The most common cause for an unknown values is for the service to send
+    /// a value unknown to the library. We recommend you update your library to
+    /// the latest version.
+    case unknownStringValue(String)
+
+    public init() {
+      self = .unspecified
+    }
+
+    /// Returns the integer value associated with the enumeration.
+    ///
+    /// If the enumeration was initialized with an unknown string value, this returns `nil`.
+    public var intValue: Int? {
+      switch self {
+      case .unspecified: return 0
+      case .automatic: return 1
+      case .manual: return 2
+      case .unknownIntValue(let v): return v
+      case .unknownStringValue: return nil
+      }
+    }
+
+    /// Returns the string value (or name) associated with the enumeration.
+    ///
+    /// If the enumeration was initialized with an unknown integer value, this returns `nil`.
+    public var stringValue: Swift.String? {
+      switch self {
+      case .unspecified: return "REFRESHABLE_MODE_UNSPECIFIED"
+      case .automatic: return "AUTOMATIC"
+      case .manual: return "MANUAL"
+      case .unknownIntValue: return nil
+      case .unknownStringValue(let v): return v
+      }
+    }
+
+    /// Initialize from a string value.
+    ///
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:RefreshableMode/unknownStringValue(_:)).
+    public init(stringValue: Swift.String) {
+      switch stringValue {
+      case "REFRESHABLE_MODE_UNSPECIFIED": self = .unspecified
+      case "AUTOMATIC": self = .automatic
+      case "MANUAL": self = .manual
+      default: self = .unknownStringValue(stringValue)
+      }
+    }
+
+    /// Initialize from an integer value.
+    ///
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:RefreshableMode/unknownIntValue(_:)).
+    public init(intValue: Int) {
+      switch intValue {
+      case 0: self = .unspecified
+      case 1: self = .automatic
+      case 2: self = .manual
+      default: self = .unknownIntValue(intValue)
+      }
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.singleValueContainer()
+      if let v = try? container.decode(Int.self) {
+        self.init(intValue: v)
+        return
+      }
+      if let s = try? container.decode(String.self) {
+        if let v = Int(s) {
+          self.init(intValue: v)
+        } else {
+          self.init(stringValue: s)
+        }
+        return
+      }
+      throw DecodingError.dataCorruptedError(
+        in: container, debugDescription: "Expected enum value, must be integer or string.")
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.singleValueContainer()
+      switch self {
+      case .unspecified: return try container.encode(0)
+      case .automatic: return try container.encode(1)
+      case .manual: return try container.encode(2)
+      case .unknownIntValue(let v): return try container.encode(v)
+      case .unknownStringValue(let v): return try container.encode(v)
+      }
+    }
+  }
+
+  /// Specifies the source of the database. For example, a clone or peer from an
+  /// existing database.
+  /// This enum may be expanded to include other source types in the future.
+  public enum SourceType: Codable, Equatable, Sendable {
+    /// Default unspecified value.
+    case unspecified
+    /// Clone database from an existing database specified in
+    /// autonomous_database field.
+    case cloneDatabase
+    /// Create a cross-region disaster recovery peer adb from an existing adb.
+    case crossRegionDisasterRecovery
+    /// Create a refreshable clone from an existing database specified in
+    /// autonomous_database field.
+    case cloneToRefreshable
+    /// Create clone from the backup resource.
+    case backupFromId
+    /// Create clone from backup specified by backup_time
+    /// field, or use latest available backup if use_latest_available_backup is
+    /// true. The autonomous_database field must specify the source database
+    /// to clone from.
+    case backupFromTimestamp
+    /// Encodes an unknown integer value.
+    ///
+    /// The most common cause for an unknown values is for the service to send
+    /// a value unknown to the library. We recommend you update your library to
+    /// the latest version.
+    case unknownIntValue(Int)
+    /// Encodes an unknown string value.
+    ///
+    /// The most common cause for an unknown values is for the service to send
+    /// a value unknown to the library. We recommend you update your library to
+    /// the latest version.
+    case unknownStringValue(String)
+
+    public init() {
+      self = .unspecified
+    }
+
+    /// Returns the integer value associated with the enumeration.
+    ///
+    /// If the enumeration was initialized with an unknown string value, this returns `nil`.
+    public var intValue: Int? {
+      switch self {
+      case .unspecified: return 0
+      case .cloneDatabase: return 1
+      case .crossRegionDisasterRecovery: return 2
+      case .cloneToRefreshable: return 3
+      case .backupFromId: return 4
+      case .backupFromTimestamp: return 5
+      case .unknownIntValue(let v): return v
+      case .unknownStringValue: return nil
+      }
+    }
+
+    /// Returns the string value (or name) associated with the enumeration.
+    ///
+    /// If the enumeration was initialized with an unknown integer value, this returns `nil`.
+    public var stringValue: Swift.String? {
+      switch self {
+      case .unspecified: return "SOURCE_TYPE_UNSPECIFIED"
+      case .cloneDatabase: return "CLONE_DATABASE"
+      case .crossRegionDisasterRecovery: return "CROSS_REGION_DISASTER_RECOVERY"
+      case .cloneToRefreshable: return "CLONE_TO_REFRESHABLE"
+      case .backupFromId: return "BACKUP_FROM_ID"
+      case .backupFromTimestamp: return "BACKUP_FROM_TIMESTAMP"
+      case .unknownIntValue: return nil
+      case .unknownStringValue(let v): return v
+      }
+    }
+
+    /// Initialize from a string value.
+    ///
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:SourceType/unknownStringValue(_:)).
+    public init(stringValue: Swift.String) {
+      switch stringValue {
+      case "SOURCE_TYPE_UNSPECIFIED": self = .unspecified
+      case "CLONE_DATABASE": self = .cloneDatabase
+      case "CROSS_REGION_DISASTER_RECOVERY": self = .crossRegionDisasterRecovery
+      case "CLONE_TO_REFRESHABLE": self = .cloneToRefreshable
+      case "BACKUP_FROM_ID": self = .backupFromId
+      case "BACKUP_FROM_TIMESTAMP": self = .backupFromTimestamp
+      default: self = .unknownStringValue(stringValue)
+      }
+    }
+
+    /// Initialize from an integer value.
+    ///
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:SourceType/unknownIntValue(_:)).
+    public init(intValue: Int) {
+      switch intValue {
+      case 0: self = .unspecified
+      case 1: self = .cloneDatabase
+      case 2: self = .crossRegionDisasterRecovery
+      case 3: self = .cloneToRefreshable
+      case 4: self = .backupFromId
+      case 5: self = .backupFromTimestamp
+      default: self = .unknownIntValue(intValue)
+      }
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.singleValueContainer()
+      if let v = try? container.decode(Int.self) {
+        self.init(intValue: v)
+        return
+      }
+      if let s = try? container.decode(String.self) {
+        if let v = Int(s) {
+          self.init(intValue: v)
+        } else {
+          self.init(stringValue: s)
+        }
+        return
+      }
+      throw DecodingError.dataCorruptedError(
+        in: container, debugDescription: "Expected enum value, must be integer or string.")
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.singleValueContainer()
+      switch self {
+      case .unspecified: return try container.encode(0)
+      case .cloneDatabase: return try container.encode(1)
+      case .crossRegionDisasterRecovery: return try container.encode(2)
+      case .cloneToRefreshable: return try container.encode(3)
+      case .backupFromId: return try container.encode(4)
+      case .backupFromTimestamp: return try container.encode(5)
+      case .unknownIntValue(let v): return try container.encode(v)
+      case .unknownStringValue(let v): return try container.encode(v)
+      }
+    }
+  }
+
+  /// The clone type of the Autonomous Database.
+  public enum CloneType: Codable, Equatable, Sendable {
+    /// Default unspecified value.
+    case unspecified
+    /// Creates a new database with the source database's data and metadata.
+    case full
+    /// Creates a new database that includes all the source database schema
+    /// metadata, but none of the source database data.
+    case metadata
+    /// Encodes an unknown integer value.
+    ///
+    /// The most common cause for an unknown values is for the service to send
+    /// a value unknown to the library. We recommend you update your library to
+    /// the latest version.
+    case unknownIntValue(Int)
+    /// Encodes an unknown string value.
+    ///
+    /// The most common cause for an unknown values is for the service to send
+    /// a value unknown to the library. We recommend you update your library to
+    /// the latest version.
+    case unknownStringValue(String)
+
+    public init() {
+      self = .unspecified
+    }
+
+    /// Returns the integer value associated with the enumeration.
+    ///
+    /// If the enumeration was initialized with an unknown string value, this returns `nil`.
+    public var intValue: Int? {
+      switch self {
+      case .unspecified: return 0
+      case .full: return 1
+      case .metadata: return 2
+      case .unknownIntValue(let v): return v
+      case .unknownStringValue: return nil
+      }
+    }
+
+    /// Returns the string value (or name) associated with the enumeration.
+    ///
+    /// If the enumeration was initialized with an unknown integer value, this returns `nil`.
+    public var stringValue: Swift.String? {
+      switch self {
+      case .unspecified: return "CLONE_TYPE_UNSPECIFIED"
+      case .full: return "FULL"
+      case .metadata: return "METADATA"
+      case .unknownIntValue: return nil
+      case .unknownStringValue(let v): return v
+      }
+    }
+
+    /// Initialize from a string value.
+    ///
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:CloneType/unknownStringValue(_:)).
+    public init(stringValue: Swift.String) {
+      switch stringValue {
+      case "CLONE_TYPE_UNSPECIFIED": self = .unspecified
+      case "FULL": self = .full
+      case "METADATA": self = .metadata
+      default: self = .unknownStringValue(stringValue)
+      }
+    }
+
+    /// Initialize from an integer value.
+    ///
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:CloneType/unknownIntValue(_:)).
+    public init(intValue: Int) {
+      switch intValue {
+      case 0: self = .unspecified
+      case 1: self = .full
+      case 2: self = .metadata
+      default: self = .unknownIntValue(intValue)
+      }
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.singleValueContainer()
+      if let v = try? container.decode(Int.self) {
+        self.init(intValue: v)
+        return
+      }
+      if let s = try? container.decode(String.self) {
+        if let v = Int(s) {
+          self.init(intValue: v)
+        } else {
+          self.init(stringValue: s)
+        }
+        return
+      }
+      throw DecodingError.dataCorruptedError(
+        in: container, debugDescription: "Expected enum value, must be integer or string.")
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.singleValueContainer()
+      switch self {
+      case .unspecified: return try container.encode(0)
+      case .full: return try container.encode(1)
+      case .metadata: return try container.encode(2)
+      case .unknownIntValue(let v): return try container.encode(v)
+      case .unknownStringValue(let v): return try container.encode(v)
+      }
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -16,6 +16,7 @@
 
 import Foundation
 import GoogleCloudWkt
+import GoogleType
 
 /// An assignment allows a project to submit jobs
 /// of a certain type using slots from the specified reservation.
@@ -71,6 +72,20 @@ public struct Assignment: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   ///   cannot be read from the user info service, for example deleted users.
   public var principal: Swift.String = Swift.String()
 
+  /// Optional. Specifies the priority precedence for this assignment. Used to
+  /// resolve ambiguity when multiple assignments match a single job. Higher
+  /// numerical values represent higher priority (e.g., 20 is higher than 10). If
+  /// unspecified, it defaults to 0. Multiple assignments can share the same
+  /// precedence, but it is recommended to use unique precedence values for
+  /// assignments within the same assignee scope.
+  public var `precedence`: Swift.Int64 = Swift.Int64()
+
+  /// Optional. Common Expression Language (CEL) condition that defines the
+  /// matching criteria for this assignment.
+  /// The condition must resolve to a boolean value.
+  /// Supported variables will be added later.
+  public var condition: GoogleType.Expr? = nil
+
   /// Initialize a new instance of `Assignment`.
   public init() {}
 
@@ -85,6 +100,46 @@ public struct Assignment: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private enum CodingKeys: Swift.String, CodingKey {
+    case name = "name"
+    case assignee = "assignee"
+    case jobType = "jobType"
+    case state = "state"
+    case enableGeminiInBigquery = "enableGeminiInBigquery"
+    case schedulingPolicy = "schedulingPolicy"
+    case principal = "principal"
+    case `precedence` = "precedence"
+    case condition = "condition"
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.name = try container.decode(Swift.String.self, forKey: .name)
+    self.assignee = try container.decode(Swift.String.self, forKey: .assignee)
+    self.jobType = try container.decode(Assignment.JobType.self, forKey: .jobType)
+    self.state = try container.decode(Assignment.State.self, forKey: .state)
+    self.enableGeminiInBigquery = try container.decode(
+      Swift.Bool.self, forKey: .enableGeminiInBigquery)
+    self.schedulingPolicy = try container.decodeIfPresent(
+      SchedulingPolicy.self, forKey: .schedulingPolicy)
+    self.principal = try container.decode(Swift.String.self, forKey: .principal)
+    self.`precedence` = try container.decode(Swift.Int64.self, forKey: .`precedence`)
+    self.condition = try container.decodeIfPresent(GoogleType.Expr.self, forKey: .condition)
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.assignee, forKey: .assignee)
+    try container.encode(self.jobType, forKey: .jobType)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.enableGeminiInBigquery, forKey: .enableGeminiInBigquery)
+    try container.encode(self.schedulingPolicy, forKey: .schedulingPolicy)
+    try container.encode(self.principal, forKey: .principal)
+    try container.encode(self.`precedence`, forKey: .`precedence`)
+    try container.encode(self.condition, forKey: .condition)
   }
 
   /// Types of job, which could be specified when using the reservation.

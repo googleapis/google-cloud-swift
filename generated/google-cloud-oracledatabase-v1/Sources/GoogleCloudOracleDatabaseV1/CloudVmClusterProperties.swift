@@ -131,6 +131,16 @@ public struct CloudVmClusterProperties: Codable, Equatable, GoogleCloudWkt._AnyP
   public var storageManagementType: CloudVmClusterProperties.StorageManagementType =
     CloudVmClusterProperties.StorageManagementType()
 
+  /// Optional. Specifies whether VM file system storage / VM images are stored
+  /// on local DB server storage or Exascale storage.
+  public var vmFileSystemStorageType: CloudVmClusterProperties.VmFileSystemStorageType =
+    CloudVmClusterProperties.VmFileSystemStorageType()
+
+  /// Optional. Specifies whether VM backups are stored on local DB server
+  /// storage or Exascale storage.
+  public var vmBackupStorageType: CloudVmClusterProperties.VmBackupStorageType =
+    CloudVmClusterProperties.VmBackupStorageType()
+
   /// Initialize a new instance of `CloudVmClusterProperties`.
   public init() {}
 
@@ -595,6 +605,216 @@ public struct CloudVmClusterProperties: Codable, Equatable, GoogleCloudWkt._AnyP
       switch self {
       case .unspecified: return try container.encode(0)
       case .asm: return try container.encode(1)
+      case .exascale: return try container.encode(2)
+      case .unknownIntValue(let v): return try container.encode(v)
+      case .unknownStringValue(let v): return try container.encode(v)
+      }
+    }
+  }
+
+  /// Storage types for VM File System.
+  public enum VmFileSystemStorageType: Codable, Equatable, Sendable {
+    /// Unspecified storage type.
+    case unspecified
+    /// Local DB server storage.
+    case local
+    /// Exascale storage.
+    case exascale
+    /// Encodes an unknown integer value.
+    ///
+    /// The most common cause for an unknown values is for the service to send
+    /// a value unknown to the library. We recommend you update your library to
+    /// the latest version.
+    case unknownIntValue(Int)
+    /// Encodes an unknown string value.
+    ///
+    /// The most common cause for an unknown values is for the service to send
+    /// a value unknown to the library. We recommend you update your library to
+    /// the latest version.
+    case unknownStringValue(String)
+
+    public init() {
+      self = .unspecified
+    }
+
+    /// Returns the integer value associated with the enumeration.
+    ///
+    /// If the enumeration was initialized with an unknown string value, this returns `nil`.
+    public var intValue: Int? {
+      switch self {
+      case .unspecified: return 0
+      case .local: return 1
+      case .exascale: return 2
+      case .unknownIntValue(let v): return v
+      case .unknownStringValue: return nil
+      }
+    }
+
+    /// Returns the string value (or name) associated with the enumeration.
+    ///
+    /// If the enumeration was initialized with an unknown integer value, this returns `nil`.
+    public var stringValue: Swift.String? {
+      switch self {
+      case .unspecified: return "VM_FILE_SYSTEM_STORAGE_TYPE_UNSPECIFIED"
+      case .local: return "VM_FILE_SYSTEM_STORAGE_TYPE_LOCAL"
+      case .exascale: return "VM_FILE_SYSTEM_STORAGE_TYPE_EXASCALE"
+      case .unknownIntValue: return nil
+      case .unknownStringValue(let v): return v
+      }
+    }
+
+    /// Initialize from a string value.
+    ///
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:VmFileSystemStorageType/unknownStringValue(_:)).
+    public init(stringValue: Swift.String) {
+      switch stringValue {
+      case "VM_FILE_SYSTEM_STORAGE_TYPE_UNSPECIFIED": self = .unspecified
+      case "VM_FILE_SYSTEM_STORAGE_TYPE_LOCAL": self = .local
+      case "VM_FILE_SYSTEM_STORAGE_TYPE_EXASCALE": self = .exascale
+      default: self = .unknownStringValue(stringValue)
+      }
+    }
+
+    /// Initialize from an integer value.
+    ///
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:VmFileSystemStorageType/unknownIntValue(_:)).
+    public init(intValue: Int) {
+      switch intValue {
+      case 0: self = .unspecified
+      case 1: self = .local
+      case 2: self = .exascale
+      default: self = .unknownIntValue(intValue)
+      }
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.singleValueContainer()
+      if let v = try? container.decode(Int.self) {
+        self.init(intValue: v)
+        return
+      }
+      if let s = try? container.decode(String.self) {
+        if let v = Int(s) {
+          self.init(intValue: v)
+        } else {
+          self.init(stringValue: s)
+        }
+        return
+      }
+      throw DecodingError.dataCorruptedError(
+        in: container, debugDescription: "Expected enum value, must be integer or string.")
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.singleValueContainer()
+      switch self {
+      case .unspecified: return try container.encode(0)
+      case .local: return try container.encode(1)
+      case .exascale: return try container.encode(2)
+      case .unknownIntValue(let v): return try container.encode(v)
+      case .unknownStringValue(let v): return try container.encode(v)
+      }
+    }
+  }
+
+  /// Storage types for VM Backup.
+  public enum VmBackupStorageType: Codable, Equatable, Sendable {
+    /// Unspecified storage type.
+    case unspecified
+    /// Local DB server storage.
+    case local
+    /// Exascale storage.
+    case exascale
+    /// Encodes an unknown integer value.
+    ///
+    /// The most common cause for an unknown values is for the service to send
+    /// a value unknown to the library. We recommend you update your library to
+    /// the latest version.
+    case unknownIntValue(Int)
+    /// Encodes an unknown string value.
+    ///
+    /// The most common cause for an unknown values is for the service to send
+    /// a value unknown to the library. We recommend you update your library to
+    /// the latest version.
+    case unknownStringValue(String)
+
+    public init() {
+      self = .unspecified
+    }
+
+    /// Returns the integer value associated with the enumeration.
+    ///
+    /// If the enumeration was initialized with an unknown string value, this returns `nil`.
+    public var intValue: Int? {
+      switch self {
+      case .unspecified: return 0
+      case .local: return 1
+      case .exascale: return 2
+      case .unknownIntValue(let v): return v
+      case .unknownStringValue: return nil
+      }
+    }
+
+    /// Returns the string value (or name) associated with the enumeration.
+    ///
+    /// If the enumeration was initialized with an unknown integer value, this returns `nil`.
+    public var stringValue: Swift.String? {
+      switch self {
+      case .unspecified: return "VM_BACKUP_STORAGE_TYPE_UNSPECIFIED"
+      case .local: return "VM_BACKUP_STORAGE_TYPE_LOCAL"
+      case .exascale: return "VM_BACKUP_STORAGE_TYPE_EXASCALE"
+      case .unknownIntValue: return nil
+      case .unknownStringValue(let v): return v
+      }
+    }
+
+    /// Initialize from a string value.
+    ///
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:VmBackupStorageType/unknownStringValue(_:)).
+    public init(stringValue: Swift.String) {
+      switch stringValue {
+      case "VM_BACKUP_STORAGE_TYPE_UNSPECIFIED": self = .unspecified
+      case "VM_BACKUP_STORAGE_TYPE_LOCAL": self = .local
+      case "VM_BACKUP_STORAGE_TYPE_EXASCALE": self = .exascale
+      default: self = .unknownStringValue(stringValue)
+      }
+    }
+
+    /// Initialize from an integer value.
+    ///
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:VmBackupStorageType/unknownIntValue(_:)).
+    public init(intValue: Int) {
+      switch intValue {
+      case 0: self = .unspecified
+      case 1: self = .local
+      case 2: self = .exascale
+      default: self = .unknownIntValue(intValue)
+      }
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.singleValueContainer()
+      if let v = try? container.decode(Int.self) {
+        self.init(intValue: v)
+        return
+      }
+      if let s = try? container.decode(String.self) {
+        if let v = Int(s) {
+          self.init(intValue: v)
+        } else {
+          self.init(stringValue: s)
+        }
+        return
+      }
+      throw DecodingError.dataCorruptedError(
+        in: container, debugDescription: "Expected enum value, must be integer or string.")
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.singleValueContainer()
+      switch self {
+      case .unspecified: return try container.encode(0)
+      case .local: return try container.encode(1)
       case .exascale: return try container.encode(2)
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)

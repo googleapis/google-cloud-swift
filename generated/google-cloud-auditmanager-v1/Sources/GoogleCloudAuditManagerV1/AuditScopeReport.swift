@@ -17,15 +17,19 @@
 import Foundation
 import GoogleCloudWkt
 
-/// The audit scope report.
+/// Audit scope report.
 public struct AuditScopeReport: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
-  /// Identifier. The name of this Audit Report, in the format of scope given in
-  /// request.
+  /// Identifier. Name for the audit scope report, in one of the following
+  /// formats:
+  ///
+  /// * `projects/{project}/locations/{location}/auditScopeReports/{audit_scope_report}`
+  /// * `folders/{folder}/locations/{location}/auditScopeReports/{audit_scope_report}`
+  /// * `organizations/{organization}/locations/{location}/auditScopeReports/{audit_scope_report}`
   public var name: Swift.String = Swift.String()
 
-  /// The options in which the audit scope report is exported.
+  /// Specific format or delivery method for the exported audit scope report.
   public var auditReport: OneOf_AuditReport? = nil
 
   /// Initialize a new instance of `AuditScopeReport`.
@@ -83,9 +87,9 @@ public struct AuditScopeReport: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     }
   }
 
-  /// The options in which the audit scope report is exported.
+  /// Specific format or delivery method for the exported audit scope report.
   public enum OneOf_AuditReport: Codable, Equatable, Sendable {
-    /// The audit scope report content in byte format.
+    /// Audit scope report content in byte format.
     case scopeReportContents(Foundation.Data)
   }
 

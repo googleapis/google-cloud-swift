@@ -39,7 +39,7 @@ public struct Event: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// Optional. The expected action for this type of event. This should be the
   /// same action provided at token generation time on client-side platforms
-  /// already integrated with recaptcha enterprise.
+  /// already integrated with recaptcha enterprise. Required for Universal keys.
   public var expectedAction: Swift.String = Swift.String()
 
   /// Optional. Deprecated: use `user_info.account_id` instead.

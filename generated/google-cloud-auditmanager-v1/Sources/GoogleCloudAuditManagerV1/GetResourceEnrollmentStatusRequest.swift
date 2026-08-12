@@ -17,14 +17,19 @@
 import Foundation
 import GoogleCloudWkt
 
-/// Message for getting the enrollment status of a resource.
+/// Request message for
+/// [GetResourceEnrollmentStatus][google.cloud.auditmanager.v1.AuditManager.GetResourceEnrollmentStatus].
+///
+/// [google.cloud.auditmanager.v1.AuditManager.GetResourceEnrollmentStatus]: <doc:AuditManagerClient/getResourceEnrollmentStatus(request:)>
 public struct GetResourceEnrollmentStatusRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
-  /// Required. Format
-  /// folders/{folder}/locations/{location}/resourceEnrollmentStatuses/{resource_enrollment_status},
-  /// projects/{project}/locations/{location}/resourceEnrollmentStatuses/{resource_enrollment_status},
-  /// organizations/{organization}/locations/{location}/resourceEnrollmentStatuses/{resource_enrollment_status}
+  /// Required. Name of the resource enrollment status, in one of the following
+  /// formats:
+  ///
+  /// * `folders/{folder}/locations/{location}/resourceEnrollmentStatuses/{resource_enrollment_status}`
+  /// * `projects/{project}/locations/{location}/resourceEnrollmentStatuses/{resource_enrollment_status}`
+  /// * `organizations/{organization}/locations/{location}/resourceEnrollmentStatuses/{resource_enrollment_status}`
   public var name: Swift.String = Swift.String()
 
   /// Initialize a new instance of `GetResourceEnrollmentStatusRequest`.

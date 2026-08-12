@@ -17,45 +17,36 @@
 import Foundation
 import GoogleCloudWkt
 
-/// The `ReportGenerationProgress` is part of
-/// [google.longrunning.Operation][google.longrunning.Operation] returned to the
-/// client for every `GetOperation` request.
-///
-/// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
+/// Details about the current status of the report-generation process.
 public struct ReportGenerationProgress: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
-  /// Output only. The current state of execution for report generation.
+  /// Output only. Current state of execution for report generation.
   public var state: OperationState = OperationState()
 
-  /// Output only. States the reason of failure during the audit report
-  /// generation process. This field is set only if the state attribute is
-  /// OPERATION_STATE_FAILED.
+  /// Output only. Reason for failure during the audit report generation process.
+  /// This field is set only if the `OperationState` attribute is
+  /// `OPERATION_STATE_FAILED`.
   public var failureReason: Swift.String = Swift.String()
 
-  /// Shows the progress of the CESS service evaluation process. The progress is
-  /// defined in terms of percentage complete and is being fetched from the CESS
-  /// service.
+  /// Progress of the evaluation process. The progress is
+  /// defined in terms of percentage complete.
   public var evaluationPercentComplete: Swift.Double = Swift.Double()
 
-  /// Shows the report generation progress of the CESS Result Processor Service.
-  /// The // progress is defined in terms of percentage complete and is being
-  /// fetched from the CESS service. If report_generation_in_progress is non zero
-  /// then evaluation_percent_complete will be 100%.
+  /// Report generation progress, defined in terms of percentage complete.
+  /// Until evaluation is complete, this value is always `0`.
   public var reportGenerationPercentComplete: Swift.Double = Swift.Double()
 
-  /// Shows the report uploading progress of the CESS Result Processor Service.
-  /// The progress is defined in terms of percentage complete and is being
-  /// fetched from the CESS service. If report_uploading_in_progress is non zero
-  /// then evaluation_percent_complete and report_generation_percent_complete
-  /// will be 100%.
+  /// Report uploading progress, defined in terms of percentage complete.
+  /// Until evaluation and report generation are complete, this value is always
+  /// `0`.
   public var reportUploadingPercentComplete: Swift.Double = Swift.Double()
 
-  /// Output only. The Cloud Storage bucket where the audit report will be
-  /// uploaded once the evaluation process is completed.
+  /// Output only. Cloud Storage bucket where the audit report is uploaded to
+  /// after the evaluation process is completed.
   public var destinationGcsBucket: Swift.String = Swift.String()
 
-  /// Output only. The name of the audit report.
+  /// Output only. Name of the audit report.
   public var auditReport: Swift.String = Swift.String()
 
   /// Initialize a new instance of `ReportGenerationProgress`.

@@ -94,6 +94,10 @@ extension Clients {
       request: ListIntelligenceFindingRevisionsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> ListIntelligenceFindingRevisionsResponse
 
+    func viewObjectFullContext(
+      request: ViewObjectFullContextRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> ObjectFullContext
+
     func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

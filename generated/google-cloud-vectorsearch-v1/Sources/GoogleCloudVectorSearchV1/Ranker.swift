@@ -24,6 +24,10 @@ public struct Ranker: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// The ranking method to use.
   public var ranker: OneOf_Ranker? = nil
 
+  /// The reranker to use for final ranking of the results combined by the
+  /// ranker.
+  public var reranker: OneOf_Reranker? = nil
+
   /// Initialize a new instance of `Ranker`.
   public init() {}
 
@@ -42,6 +46,7 @@ public struct Ranker: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   private enum CodingKeys: Swift.String, CodingKey {
     case rrf = "rrf"
+    case vertexRanker = "vertexRanker"
   }
 
   public init(from decoder: Decoder) throws {
@@ -61,6 +66,21 @@ public struct Ranker: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       try rankerCheckAndSet(.rrf(rrf))
     }
     self.ranker = ranker
+
+    var reranker: OneOf_Reranker? = nil
+    let rerankerCheckAndSet = {
+      if reranker != nil {
+        throw DecodingError.dataCorrupted(
+          DecodingError.Context(
+            codingPath: decoder.codingPath,
+            debugDescription: "Multiple values set for oneof 'reranker'"))
+      }
+      reranker = $0
+    }
+    if let vertexRanker = try container.decodeIfPresent(VertexRanker?.self, forKey: .vertexRanker) {
+      try rerankerCheckAndSet(.vertexRanker(vertexRanker))
+    }
+    self.reranker = reranker
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -72,12 +92,26 @@ public struct Ranker: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         try container.encode(value, forKey: .rrf)
       }
     }
+
+    if let choice = self.reranker {
+      switch choice {
+      case .vertexRanker(let value):
+        try container.encode(value, forKey: .vertexRanker)
+      }
+    }
   }
 
   /// The ranking method to use.
   public enum OneOf_Ranker: Codable, Equatable, Sendable {
     /// Reciprocal Rank Fusion ranking.
     indirect case rrf(ReciprocalRankFusion?)
+  }
+
+  /// The reranker to use for final ranking of the results combined by the
+  /// ranker.
+  public enum OneOf_Reranker: Codable, Equatable, Sendable {
+    /// Optional. Vertex AI ranking.
+    indirect case vertexRanker(VertexRanker?)
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -17,12 +17,15 @@
 import Foundation
 import GoogleCloudWkt
 
-/// Account defender risk assessment.
+/// Account defense risk assessment.
 public struct AccountDefenderAssessment: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
   /// Output only. Labels for this request.
   public var labels: [AccountDefenderAssessment.AccountDefenderLabel] = []
+
+  /// Output only. Account takeover risk assessment for this request.
+  public var accountTakeoverVerdict: AccountDefenderAssessment.AccountTakeoverVerdict? = nil
 
   /// Initialize a new instance of `AccountDefenderAssessment`.
   public init() {}
@@ -40,12 +43,381 @@ public struct AccountDefenderAssessment: Codable, Equatable, GoogleCloudWkt._Any
     return copy
   }
 
-  /// Labels returned by account defender for this request.
+  /// Account takeover risk assessment.
+  public struct AccountTakeoverVerdict: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    Sendable
+  {
+    /// Output only. Account takeover attempt probability.
+    /// Values are from 0.0 (lowest risk) to 1.0 (highest risk).
+    public var risk: Swift.Float = Swift.Float()
+
+    /// Output only. Unordered list. Reasons why the request appears risky. Risk
+    /// reasons can be returned even if the risk is low, as trustworthy requests
+    /// can still have some risk signals.
+    public var riskReasons: [AccountDefenderAssessment.AccountRiskReason] = []
+
+    /// Output only. Unordered list. Reasons why the request appears trustworthy.
+    /// Trust reasons can be returned even if the risk is high, as risky requests
+    /// can still have some trust signals.
+    public var trustReasons: [AccountDefenderAssessment.AccountTrustReason] = []
+
+    /// Initialize a new instance of `AccountTakeoverVerdict`.
+    public init() {}
+
+    /// Use `config` to return a new instance of this object, with some fields updated.
+    ///
+    /// Commonly used to initialize the value, for example:
+    ///
+    /// ```
+    /// let value = AccountTakeoverVerdict().with { $0.risk = ... }
+    /// ```
+    public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+      var copy = self
+      try config(&copy)
+      return copy
+    }
+
+    public static var _anyTypeUrl: Swift.String {
+      return
+        "type.googleapis.com/google.cloud.recaptchaenterprise.v1.AccountDefenderAssessment.AccountTakeoverVerdict"
+    }
+    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
+      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    }
+    public func _pack() throws -> GoogleCloudWkt.Struct {
+      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    }
+  }
+
+  /// Risk explainability reasons for Account defense.
+  public struct AccountRiskReason: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    Sendable
+  {
+    /// Output only. A risk reason associated with this request.
+    public var reason: AccountDefenderAssessment.AccountRiskReason.RiskReason =
+      AccountDefenderAssessment.AccountRiskReason.RiskReason()
+
+    /// Initialize a new instance of `AccountRiskReason`.
+    public init() {}
+
+    /// Use `config` to return a new instance of this object, with some fields updated.
+    ///
+    /// Commonly used to initialize the value, for example:
+    ///
+    /// ```
+    /// let value = AccountRiskReason().with { $0.reason = ... }
+    /// ```
+    public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+      var copy = self
+      try config(&copy)
+      return copy
+    }
+
+    /// Risk explainability reasons for Account defense.
+    /// Ensure that applications can handle values not explicitly listed.
+    public enum RiskReason: Codable, Equatable, Sendable {
+      /// Default unspecified type.
+      case unspecified
+      /// The client has been observed sending bot-like traffic to this site in
+      /// the past. This reason incorporates historical reputation and indicates
+      /// that the client is known to use bots, even if the current request is
+      /// being made by a human.
+      case clientHistoricalBotActivity
+      /// The account is part of a large group of related accounts, indicating
+      /// that it may be part of a fraudulent network. Related accounts are
+      /// identified based on having similar traffic patterns and request
+      /// characteristics.
+      case accountInLargeRelatedGroup
+      /// The client has been observed accessing many accounts on this site.
+      case clientAccessedManyAccounts
+      /// This email domain is a suspected provider of disposable email
+      /// addresses.
+      case disposableEmailDomain
+      /// Encodes an unknown integer value.
+      ///
+      /// The most common cause for an unknown values is for the service to send
+      /// a value unknown to the library. We recommend you update your library to
+      /// the latest version.
+      case unknownIntValue(Int)
+      /// Encodes an unknown string value.
+      ///
+      /// The most common cause for an unknown values is for the service to send
+      /// a value unknown to the library. We recommend you update your library to
+      /// the latest version.
+      case unknownStringValue(String)
+
+      public init() {
+        self = .unspecified
+      }
+
+      /// Returns the integer value associated with the enumeration.
+      ///
+      /// If the enumeration was initialized with an unknown string value, this returns `nil`.
+      public var intValue: Int? {
+        switch self {
+        case .unspecified: return 0
+        case .clientHistoricalBotActivity: return 1
+        case .accountInLargeRelatedGroup: return 2
+        case .clientAccessedManyAccounts: return 3
+        case .disposableEmailDomain: return 4
+        case .unknownIntValue(let v): return v
+        case .unknownStringValue: return nil
+        }
+      }
+
+      /// Returns the string value (or name) associated with the enumeration.
+      ///
+      /// If the enumeration was initialized with an unknown integer value, this returns `nil`.
+      public var stringValue: Swift.String? {
+        switch self {
+        case .unspecified: return "RISK_REASON_UNSPECIFIED"
+        case .clientHistoricalBotActivity: return "CLIENT_HISTORICAL_BOT_ACTIVITY"
+        case .accountInLargeRelatedGroup: return "ACCOUNT_IN_LARGE_RELATED_GROUP"
+        case .clientAccessedManyAccounts: return "CLIENT_ACCESSED_MANY_ACCOUNTS"
+        case .disposableEmailDomain: return "DISPOSABLE_EMAIL_DOMAIN"
+        case .unknownIntValue: return nil
+        case .unknownStringValue(let v): return v
+        }
+      }
+
+      /// Initialize from a string value.
+      ///
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:RiskReason/unknownStringValue(_:)).
+      public init(stringValue: Swift.String) {
+        switch stringValue {
+        case "RISK_REASON_UNSPECIFIED": self = .unspecified
+        case "CLIENT_HISTORICAL_BOT_ACTIVITY": self = .clientHistoricalBotActivity
+        case "ACCOUNT_IN_LARGE_RELATED_GROUP": self = .accountInLargeRelatedGroup
+        case "CLIENT_ACCESSED_MANY_ACCOUNTS": self = .clientAccessedManyAccounts
+        case "DISPOSABLE_EMAIL_DOMAIN": self = .disposableEmailDomain
+        default: self = .unknownStringValue(stringValue)
+        }
+      }
+
+      /// Initialize from an integer value.
+      ///
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:RiskReason/unknownIntValue(_:)).
+      public init(intValue: Int) {
+        switch intValue {
+        case 0: self = .unspecified
+        case 1: self = .clientHistoricalBotActivity
+        case 2: self = .accountInLargeRelatedGroup
+        case 3: self = .clientAccessedManyAccounts
+        case 4: self = .disposableEmailDomain
+        default: self = .unknownIntValue(intValue)
+        }
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        if let v = try? container.decode(Int.self) {
+          self.init(intValue: v)
+          return
+        }
+        if let s = try? container.decode(String.self) {
+          if let v = Int(s) {
+            self.init(intValue: v)
+          } else {
+            self.init(stringValue: s)
+          }
+          return
+        }
+        throw DecodingError.dataCorruptedError(
+          in: container, debugDescription: "Expected enum value, must be integer or string.")
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        switch self {
+        case .unspecified: return try container.encode(0)
+        case .clientHistoricalBotActivity: return try container.encode(1)
+        case .accountInLargeRelatedGroup: return try container.encode(2)
+        case .clientAccessedManyAccounts: return try container.encode(3)
+        case .disposableEmailDomain: return try container.encode(4)
+        case .unknownIntValue(let v): return try container.encode(v)
+        case .unknownStringValue(let v): return try container.encode(v)
+        }
+      }
+    }
+
+    public static var _anyTypeUrl: Swift.String {
+      return
+        "type.googleapis.com/google.cloud.recaptchaenterprise.v1.AccountDefenderAssessment.AccountRiskReason"
+    }
+    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
+      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    }
+    public func _pack() throws -> GoogleCloudWkt.Struct {
+      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    }
+  }
+
+  /// Trust explainability reasons for Account defense.
+  public struct AccountTrustReason: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    Sendable
+  {
+    /// Output only. A trust reason associated with this request.
+    public var reason: AccountDefenderAssessment.AccountTrustReason.TrustReason =
+      AccountDefenderAssessment.AccountTrustReason.TrustReason()
+
+    /// Initialize a new instance of `AccountTrustReason`.
+    public init() {}
+
+    /// Use `config` to return a new instance of this object, with some fields updated.
+    ///
+    /// Commonly used to initialize the value, for example:
+    ///
+    /// ```
+    /// let value = AccountTrustReason().with { $0.reason = ... }
+    /// ```
+    public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+      var copy = self
+      try config(&copy)
+      return copy
+    }
+
+    /// Trust explainability reasons for Account defense.
+    /// Ensure that applications can handle values not explicitly listed.
+    public enum TrustReason: Codable, Equatable, Sendable {
+      /// Default unspecified type.
+      case unspecified
+      /// The request matches a trusted profile associated with this account.
+      /// Equivalent to `AccountDefenderLabel.PROFILE_MATCH`.
+      case profileMatch
+      /// The account's historical activity is reputable. It is unlikely that the
+      /// account has been compromised in the past.
+      case accountHistoryReputable
+      /// The identity shows a global pattern of reputable activity based on
+      /// `userInfo` and associated identifiers.
+      case identityGlobalActivityReputable
+      /// The identity shows a long-standing history of reputable activity based
+      /// on `userInfo` and associated identifiers.
+      case identityHistoryReputable
+      /// Encodes an unknown integer value.
+      ///
+      /// The most common cause for an unknown values is for the service to send
+      /// a value unknown to the library. We recommend you update your library to
+      /// the latest version.
+      case unknownIntValue(Int)
+      /// Encodes an unknown string value.
+      ///
+      /// The most common cause for an unknown values is for the service to send
+      /// a value unknown to the library. We recommend you update your library to
+      /// the latest version.
+      case unknownStringValue(String)
+
+      public init() {
+        self = .unspecified
+      }
+
+      /// Returns the integer value associated with the enumeration.
+      ///
+      /// If the enumeration was initialized with an unknown string value, this returns `nil`.
+      public var intValue: Int? {
+        switch self {
+        case .unspecified: return 0
+        case .profileMatch: return 1
+        case .accountHistoryReputable: return 2
+        case .identityGlobalActivityReputable: return 3
+        case .identityHistoryReputable: return 4
+        case .unknownIntValue(let v): return v
+        case .unknownStringValue: return nil
+        }
+      }
+
+      /// Returns the string value (or name) associated with the enumeration.
+      ///
+      /// If the enumeration was initialized with an unknown integer value, this returns `nil`.
+      public var stringValue: Swift.String? {
+        switch self {
+        case .unspecified: return "TRUST_REASON_UNSPECIFIED"
+        case .profileMatch: return "PROFILE_MATCH"
+        case .accountHistoryReputable: return "ACCOUNT_HISTORY_REPUTABLE"
+        case .identityGlobalActivityReputable: return "IDENTITY_GLOBAL_ACTIVITY_REPUTABLE"
+        case .identityHistoryReputable: return "IDENTITY_HISTORY_REPUTABLE"
+        case .unknownIntValue: return nil
+        case .unknownStringValue(let v): return v
+        }
+      }
+
+      /// Initialize from a string value.
+      ///
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:TrustReason/unknownStringValue(_:)).
+      public init(stringValue: Swift.String) {
+        switch stringValue {
+        case "TRUST_REASON_UNSPECIFIED": self = .unspecified
+        case "PROFILE_MATCH": self = .profileMatch
+        case "ACCOUNT_HISTORY_REPUTABLE": self = .accountHistoryReputable
+        case "IDENTITY_GLOBAL_ACTIVITY_REPUTABLE": self = .identityGlobalActivityReputable
+        case "IDENTITY_HISTORY_REPUTABLE": self = .identityHistoryReputable
+        default: self = .unknownStringValue(stringValue)
+        }
+      }
+
+      /// Initialize from an integer value.
+      ///
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:TrustReason/unknownIntValue(_:)).
+      public init(intValue: Int) {
+        switch intValue {
+        case 0: self = .unspecified
+        case 1: self = .profileMatch
+        case 2: self = .accountHistoryReputable
+        case 3: self = .identityGlobalActivityReputable
+        case 4: self = .identityHistoryReputable
+        default: self = .unknownIntValue(intValue)
+        }
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        if let v = try? container.decode(Int.self) {
+          self.init(intValue: v)
+          return
+        }
+        if let s = try? container.decode(String.self) {
+          if let v = Int(s) {
+            self.init(intValue: v)
+          } else {
+            self.init(stringValue: s)
+          }
+          return
+        }
+        throw DecodingError.dataCorruptedError(
+          in: container, debugDescription: "Expected enum value, must be integer or string.")
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        switch self {
+        case .unspecified: return try container.encode(0)
+        case .profileMatch: return try container.encode(1)
+        case .accountHistoryReputable: return try container.encode(2)
+        case .identityGlobalActivityReputable: return try container.encode(3)
+        case .identityHistoryReputable: return try container.encode(4)
+        case .unknownIntValue(let v): return try container.encode(v)
+        case .unknownStringValue(let v): return try container.encode(v)
+        }
+      }
+    }
+
+    public static var _anyTypeUrl: Swift.String {
+      return
+        "type.googleapis.com/google.cloud.recaptchaenterprise.v1.AccountDefenderAssessment.AccountTrustReason"
+    }
+    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
+      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    }
+    public func _pack() throws -> GoogleCloudWkt.Struct {
+      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    }
+  }
+
+  /// Labels returned by Account defense for this request.
   /// Ensure that applications can handle values not explicitly listed.
   public enum AccountDefenderLabel: Codable, Equatable, Sendable {
     /// Default unspecified type.
     case unspecified
-    /// The request matches a known good profile for the user.
+    /// The request matches a trusted profile associated with this account.
     case profileMatch
     /// The request is potentially a suspicious login event and must be further
     /// verified either through multi-factor authentication or another system.

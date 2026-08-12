@@ -21,39 +21,37 @@ import GoogleCloudWkt
 public struct Control: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
-  /// Output only. The control identifier used to fetch the findings. This is
-  /// same as the control report name.
+  /// Output only. Control identifier that's used to fetch the findings. The
+  /// identifier is the same as the control report name.
   public var id: Swift.String = Swift.String()
 
   /// Output only. Display name of the control.
   public var displayName: Swift.String = Swift.String()
 
-  /// Output only. Group where the control belongs. E.g. Access Control.
+  /// Output only. Category that the control belongs to.
   public var family: Control.Family = Control.Family()
 
-  /// Output only. Regulatory Family of the control E.g. Access Control
+  /// Output only. Regulatory family of the control.
   public var controlFamily: ControlFamily? = nil
 
-  /// Output only. Regulatory control ask of the control
+  /// Output only. Description of the control.
   public var description: Swift.String = Swift.String()
 
-  /// Output only. The type of responsibility for implementing this control. It
-  /// can be google, customer or shared.
+  /// Output only. Who is responsible for implementing this control. Set to one
+  /// of the following values: `GOOGLE`, `CUSTOMER`, or `SHARED`.
   public var responsibilityType: Swift.String = Swift.String()
 
-  /// Output only. Description of the google responsibility for implementing this
-  /// control.
+  /// Output only. A description of Google's responsibility for this control.
   public var googleResponsibilityDescription: Swift.String = Swift.String()
 
-  /// Output only. Implementation of the google responsibility for implementing
+  /// Output only. A description of how Google implements its responsibility for
   /// this control.
   public var googleResponsibilityImplementation: Swift.String = Swift.String()
 
-  /// Output only. Description of the customer responsibility for implementing
-  /// this control.
+  /// Output only. A description of your responsibility for this control.
   public var customerResponsibilityDescription: Swift.String = Swift.String()
 
-  /// Output only. Implementation of the customer responsibility for implementing
+  /// Output only. A description of how you can implement your responsibility for
   /// this control.
   public var customerResponsibilityImplementation: Swift.String = Swift.String()
 
@@ -73,45 +71,45 @@ public struct Control: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     return copy
   }
 
-  /// The family of the control. For example, Access Control.
+  /// Category of the control.
   public enum Family: Codable, Equatable, Sendable {
-    /// Unspecified. Invalid state.
+    /// Default value. This value is unused.
     case unspecified
-    /// Access Control
+    /// Access control.
     case ac
-    /// Awareness and Training
+    /// Awareness and training.
     case at
-    /// Audit and Accountability
+    /// Audit and accountability.
     case au
-    /// Certification, Accreditation and Security Assessments
+    /// Certification, accreditation and security assessments.
     case ca
-    /// Configuration Management
+    /// Configuration management and change control.
     case cm
-    /// Contingency Planning
+    /// Contingency planning and disaster recovery.
     case cp
-    /// Identification and Authentication
+    /// Identification and authentication.
     case ia
-    /// Incident Response
+    /// Incident response.
     case ir
-    /// Maintenance
+    /// Maintenance.
     case ma
-    /// Media Protection
+    /// Media protection.
     case mp
-    /// Physical and Environmental Protection
+    /// Physical and environmental protection.
     case pe
-    /// Security Planning
+    /// Security planning.
     case pl
-    /// Personnel Security
+    /// Personnel security.
     case ps
-    /// Risk Assessment
+    /// Risk assessment.
     case ra
-    /// System Services and Acquisition
+    /// System services and acquisition.
     case sa
-    /// System and Communications Protection
+    /// System and communications protection.
     case sc
-    /// System and Information Integrity
+    /// System and information integrity.
     case si
-    /// Supply Chain Risk Management
+    /// Supply chain risk management.
     case sr
     /// Encodes an unknown integer value.
     ///

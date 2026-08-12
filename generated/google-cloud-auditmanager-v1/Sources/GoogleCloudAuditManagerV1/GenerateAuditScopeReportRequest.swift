@@ -17,26 +17,34 @@
 import Foundation
 import GoogleCloudWkt
 
-/// Message for requesting audit scope report.
+/// Request message for
+/// [GenerateAuditScopeReport][google.cloud.auditmanager.v1.AuditManager.GenerateAuditScopeReport].
+///
+/// [google.cloud.auditmanager.v1.AuditManager.GenerateAuditScopeReport]: <doc:AuditManagerClient/generateAuditScopeReport(request:)>
 public struct GenerateAuditScopeReportRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
-  /// Required. Scope for which the AuditScopeReport is required. Must be of
-  /// format resource_type/resource_identifier Eg:
-  /// projects/{project}/locations/{location},
-  /// folders/{folder}/locations/{location}
+  /// Required. Project or folder that the audit scope report is generated for,
+  /// in one of the following formats:
+  ///
+  /// * `projects/{project}/locations/{location}`
+  /// * `folders/{folder}/locations/{location}`
+  /// * `organizations/{organization}/locations/{location}`
   public var scope: Swift.String = Swift.String()
 
-  /// Required. Compliance Standard against which the Scope Report must be
-  /// generated. Eg: FEDRAMP_MODERATE
+  /// Optional. Deprecated. The standard (industry or regulatory requirements)
+  /// that the audit scope report is run against.
+  ///
+  /// Use the `compliance_framework` field instead.
+  @available(*, deprecated)
   public var complianceStandard: Swift.String = Swift.String()
 
-  /// Required. The format in which the Scope report bytes should be returned.
+  /// Required. Format for the audit scope report.
   public var reportFormat: GenerateAuditScopeReportRequest.AuditScopeReportFormat =
     GenerateAuditScopeReportRequest.AuditScopeReportFormat()
 
-  /// Required. Compliance framework against which the Scope Report must be
-  /// generated.
+  /// Required. Framework (set of controls) that the audit scope report is
+  /// generated against. For example, `NIST_800_53`.
   public var complianceFramework: Swift.String = Swift.String()
 
   /// Initialize a new instance of `GenerateAuditScopeReportRequest`.
@@ -55,11 +63,11 @@ public struct GenerateAuditScopeReportRequest: Codable, Equatable, GoogleCloudWk
     return copy
   }
 
-  /// The options for the audit scope report format.
+  /// Format for the audit scope report.
   public enum AuditScopeReportFormat: Codable, Equatable, Sendable {
-    /// Unspecified. Invalid format.
+    /// Default value. This value is unused.
     case unspecified
-    /// Audit Scope Report creation format is Open Document.
+    /// Open Document format.
     case odf
     /// Encodes an unknown integer value.
     ///

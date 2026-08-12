@@ -40,6 +40,9 @@ public struct StorageLayout: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// no configuration, the hierarchical namespace is disabled.
   public var hierarchicalNamespace: StorageLayout.HierarchicalNamespace? = nil
 
+  /// Output only. The Rapid Cache configuration for the bucket.
+  public var rapidCacheInfo: StorageLayout.RapidCacheInfo? = nil
+
   /// Initialize a new instance of `StorageLayout`.
   public init() {}
 
@@ -117,6 +120,41 @@ public struct StorageLayout: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.storage.control.v2.StorageLayout.HierarchicalNamespace"
+    }
+    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
+      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    }
+    public func _pack() throws -> GoogleCloudWkt.Struct {
+      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    }
+  }
+
+  /// The Rapid Cache configuration for the bucket.
+  public struct RapidCacheInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    Sendable
+  {
+    /// Output only. The type of cache in the bucket. Set to `rapid-cache` or
+    /// `rapid-cache-ultra`, only if there is a cache present.
+    public var cacheType: Swift.String = Swift.String()
+
+    /// Initialize a new instance of `RapidCacheInfo`.
+    public init() {}
+
+    /// Use `config` to return a new instance of this object, with some fields updated.
+    ///
+    /// Commonly used to initialize the value, for example:
+    ///
+    /// ```
+    /// let value = RapidCacheInfo().with { $0.cacheType = ... }
+    /// ```
+    public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+      var copy = self
+      try config(&copy)
+      return copy
+    }
+
+    public static var _anyTypeUrl: Swift.String {
+      return "type.googleapis.com/google.storage.control.v2.StorageLayout.RapidCacheInfo"
     }
     public init(fromAny any: GoogleCloudWkt.`Any`) throws {
       self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)

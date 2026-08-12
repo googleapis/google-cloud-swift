@@ -17,11 +17,12 @@
 import Foundation
 import GoogleCloudWkt
 
-/// The additional information for an audit operation.
+/// Additional information about the number of checks that were made during an
+/// audit operation.
 public struct ReportSummary: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
-  /// Total number of checks.
+  /// Total number of evaluated checks.
   public var totalCount: Swift.Int32 = Swift.Int32()
 
   /// Number of compliant checks.
@@ -30,10 +31,10 @@ public struct ReportSummary: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// Number of checks with violations.
   public var violationCount: Swift.Int32 = Swift.Int32()
 
-  /// Number of checks with "manual review needed" status.
+  /// Number of checks that require a manual review.
   public var manualReviewNeededCount: Swift.Int32 = Swift.Int32()
 
-  /// Number of checks that could not be performed due to errors.
+  /// Number of checks that can't be performed due to errors.
   public var errorCount: Swift.Int32 = Swift.Int32()
 
   /// Initialize a new instance of `ReportSummary`.

@@ -100,6 +100,13 @@
     /// will not be shared with Google Cloud managed services.
     public var reservationSharingPolicy: AllocationReservationSharingPolicy? = nil
 
+    /// Output only. [Output Only] Contains standard resource metadata for an Allocation
+    /// resource. It is populated for each instance of the Allocation
+    /// resource, and includes the api_version the
+    /// instance was retrieved through, and its canonical
+    /// resource_type name.
+    public var resourceMetadata: ResourceMetadata? = nil
+
     /// Resource policies to be added to this reservation. The key is defined by
     /// user, and the value is resource policy url. This is to define placement
     /// policy with reservation.

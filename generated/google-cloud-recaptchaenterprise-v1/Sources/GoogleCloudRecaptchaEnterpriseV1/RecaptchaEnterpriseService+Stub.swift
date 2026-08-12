@@ -72,6 +72,14 @@ extension Clients {
       request: GetMetricsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudRecaptchaEnterpriseV1.Metrics
 
+    func getPolicy(
+      request: GetPolicyRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleCloudRecaptchaEnterpriseV1.Policy
+
+    func updatePolicy(
+      request: UpdatePolicyRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleCloudRecaptchaEnterpriseV1.Policy
+
     func createFirewallPolicy(
       request: CreateFirewallPolicyRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudRecaptchaEnterpriseV1.FirewallPolicy

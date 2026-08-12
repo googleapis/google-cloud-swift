@@ -17,13 +17,18 @@
 import Foundation
 import GoogleCloudWkt
 
-/// Message for requesting the overall audit report for an audit report name.
+/// Request message for
+/// [GetAuditReport][google.cloud.auditmanager.v1.AuditManager.GetAuditReport].
+///
+/// [google.cloud.auditmanager.v1.AuditManager.GetAuditReport]: <doc:AuditManagerClient/getAuditReport(request:)>
 public struct GetAuditReportRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
-  /// Required. Format
-  /// projects/{project}/locations/{location}/auditReports/{audit_report},
-  /// folders/{folder}/locations/{location}/auditReports/{audit_report}
+  /// Required. Name of the audit report, in one of the following formats:
+  ///
+  /// * `projects/{project}/locations/{location}/auditReports/{audit_report}`
+  /// * `folders/{folder}/locations/{location}/auditReports/{audit_report}`
+  /// * `organizations/{organization}/locations/{location}/auditReports/{audit_report}`
   public var name: Swift.String = Swift.String()
 
   /// Initialize a new instance of `GetAuditReportRequest`.
