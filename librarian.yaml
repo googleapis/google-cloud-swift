@@ -62,6 +62,9 @@ default:
       - name: GoogleCloudCommon
         path: generated/google-cloud-common
         api_package: google.cloud.common
+      - name: GoogleCloudDocumentAIV1
+        path: generated/google-cloud-documentai-v1
+        api_package: google.cloud.documentai.v1
       - name: GoogleCloudGKEHubConfigManagementV1
         path: generated/google-cloud-gkehub-configmanagement-v1
         api_package: google.cloud.gkehub.configmanagement.v1
@@ -497,6 +500,11 @@ libraries:
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudContactCenterInsightsV1
+  - name: google-cloud-contentwarehouse-v1
+    version: 0.0.0-preview
+    copyright_year: "2026"
+    swift:
+      library_name_override: GoogleCloudContentWarehouseV1
   - name: google-cloud-datacatalog-lineage-v1
     version: 0.0.0-preview
     copyright_year: "2026"
