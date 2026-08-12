@@ -460,6 +460,59 @@ import Testing
       }
     }
 
+    @Test func testCSEKUploadAndDownload() async throws {
+      let objectName = "test-csek-upload-download-\(UUID().uuidString).txt"
+      let content = "Hello Google Cloud Storage CSEK upload and download integration test!"
+      let data = Data(content.utf8)
+
+      let keyBytes: [UInt8] = (0..<32).map { UInt8(($0 * 17 + 23) % 256) }
+      let csek = try CustomerEncryptionKeyOptions(keyBytes: keyBytes)
+
+      let storage = try StorageClient()
+
+      // 1. Upload object encrypted with CSEK
+      let uploadOptions = UploadOptions().with {
+        $0.customerEncryptionKey = csek
+      }
+      let uploadTask = storage.upload(data, to: bucketName, as: objectName, options: uploadOptions)
+      let uploadedObject = try await uploadTask.value
+      #expect(uploadedObject.bucket == bucketName)
+      #expect(uploadedObject.name == objectName)
+      #expect(uploadedObject.size == Int64(data.count))
+      #expect(uploadedObject.customerEncryption?.keySha256 == csek.keyHashBase64)
+
+      // 2. Attempt download without CSEK key (GCS rejects with 400 Bad Request)
+      do {
+        _ = try await storage.readObject(from: bucketName, object: objectName)
+        Issue.record("Expected download without CSEK key to fail")
+      } catch DownloadError.unexpectedServerResponse(let statusCode, _) {
+        #expect(statusCode == 400)
+      } catch {
+        Issue.record("Expected DownloadError.unexpectedServerResponse, got \(error)")
+      }
+
+      // 3. Download object with matching CSEK key
+      let downloadOptions = ReadObjectOptions().with {
+        $0.customerEncryptionKey = csek
+      }
+      let result = try await storage.readObject(
+        from: bucketName, object: objectName, options: downloadOptions)
+      #expect(result.metadata.bucket == bucketName)
+      #expect(result.metadata.object == objectName)
+      #expect(result.metadata.size == UInt64(data.count))
+      #expect(result.metadata.generation == UInt64(uploadedObject.generation))
+
+      var downloadedData = Data()
+      for try await chunk in result.body {
+        downloadedData.append(chunk)
+      }
+      #expect(downloadedData == data)
+      let downloadedString = String(data: downloadedData, encoding: .utf8)
+      #expect(downloadedString == content)
+
+      print("CSEK upload and download successful: \(result.metadata)")
+    }
+
     @Test func testCSEKSimpleUpload() async throws {
       let objectName = "test-csek-simple-\(UUID().uuidString).txt"
 
@@ -514,7 +567,21 @@ import Testing
       #expect(object.size == Int64(fileSize))
       #expect(object.customerEncryption?.keySha256 == csek.keyHashBase64)
 
-      print("CSEK resumable upload successful: \(object)")
+      // Verify download of large CSEK-encrypted file
+      let downloadOptions = ReadObjectOptions().with {
+        $0.customerEncryptionKey = csek
+      }
+      let result = try await storage.readObject(
+        from: bucketName, object: objectName, options: downloadOptions)
+      #expect(result.metadata.size == UInt64(fileSize))
+
+      var downloadedData = Data()
+      for try await chunk in result.body {
+        downloadedData.append(chunk)
+      }
+      #expect(downloadedData == data)
+
+      print("CSEK resumable upload and download successful: \(object)")
     }
 
     @Test func testUploadWithMetadata() async throws {
