@@ -711,11 +711,15 @@ import Testing
       #expect(downloadedString == expectedContent)
     }
 
-    @Test func testRangedDownloadZeroPrefix() async throws {
+    @Test(arguments: [
+      ReadObjectRange.prefix(0),
+      ReadObjectRange.suffix(0),
+    ])
+    func testRangedDownloadZeroCount(range: ReadObjectRange) async throws {
       let fixture = try await Self.sharedFixture.value
       let storage = try StorageClient()
       let options = ReadObjectOptions().with {
-        $0.range = .prefix(0)
+        $0.range = range
       }
       let result = try await storage.readObject(
         from: fixture.bucketName, object: fixture.objectName, options: options)
@@ -728,11 +732,27 @@ import Testing
         downloadedData.append(chunk)
       }
       #expect(downloadedData.isEmpty)
+    }
 
-      // Verify reading 0 bytes on a non-existent object still executes the request and throws 404
+    @Test(arguments: [
+      ReadObjectRange.prefix(0),
+      ReadObjectRange.suffix(0),
+      ReadObjectRange.bounded(start: 10, end: 19),
+      ReadObjectRange.fromOffset(36),
+      ReadObjectRange.prefix(10),
+      ReadObjectRange.suffix(10),
+      ReadObjectRange.entire,
+    ])
+    func testRangedDownloadNonExistentObject(range: ReadObjectRange) async throws {
+      let bucketName =
+        ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_BUCKET"] ?? "test-bucket"
+      let storage = try StorageClient()
+      let options = ReadObjectOptions().with {
+        $0.range = range
+      }
       do {
         _ = try await storage.readObject(
-          from: fixture.bucketName,
+          from: bucketName,
           object: "non-existent-\(UUID().uuidString).txt",
           options: options
         )
