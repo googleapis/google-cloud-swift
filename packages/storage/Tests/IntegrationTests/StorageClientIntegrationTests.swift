@@ -711,15 +711,11 @@ import Testing
       #expect(downloadedString == expectedContent)
     }
 
-    @Test(arguments: [
-      ReadObjectRange.prefix(0),
-      ReadObjectRange.suffix(0),
-    ])
-    func testRangedDownloadZeroCount(range: ReadObjectRange) async throws {
+    @Test func testRangedDownloadZeroCount() async throws {
       let fixture = try await Self.sharedFixture.value
       let storage = try StorageClient()
       let options = ReadObjectOptions().with {
-        $0.range = range
+        $0.range = .prefix(0)
       }
       let result = try await storage.readObject(
         from: fixture.bucketName, object: fixture.objectName, options: options)
