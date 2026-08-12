@@ -33,6 +33,8 @@ let package = Package(
     .package(url: "https://github.com/apple/swift-log", from: "1.14.0"),
     .package(url: "https://github.com/apple/swift-collections", from: "1.6.0"),
     .package(url: "https://github.com/apple/swift-nio", from: "2.101.0"),
+    .package(url: "https://github.com/apple/swift-protobuf.git", from: "1.28.2"),
+    .package(url: "https://github.com/grpc/grpc-swift.git", from: "1.23.0"),
     .package(url: "https://github.com/swift-server/async-http-client.git", from: "1.36.0"),
   ],
   targets: [
@@ -42,9 +44,11 @@ let package = Package(
         .product(name: "AsyncHTTPClient", package: "async-http-client"),
         .product(name: "GoogleCloudAuth", package: "auth"),
         .product(name: "GoogleRpc", package: "google-rpc"),
+        .product(name: "GRPC", package: "grpc-swift"),
         .product(name: "Logging", package: "swift-log"),
         .product(name: "NIOCore", package: "swift-nio"),
         .product(name: "NIOFoundationCompat", package: "swift-nio"),
+        .product(name: "SwiftProtobuf", package: "swift-protobuf"),
       ]
     ),
     .testTarget(
