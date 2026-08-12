@@ -18,7 +18,8 @@ import Testing
 
 #if IntegrationTests
 
-  @Suite(.enabled(if: ProcessInfo.processInfo.environment["GOOGLE_CLOUD_PROJECT"] != nil))
+  @Suite(.enabled(if: ProcessInfo.processInfo.environment["GOOGLE_CLOUD_PROJECT"] != nil &&
+  ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_BUCKET"] != nil` ?))
   struct StorageClientIntegrationTests {
     @Test func testFileUpload() async throws {
       let bucketName =
