@@ -74,10 +74,10 @@ public struct _GRPCClient: Sendable {
       callOptions.customMetadata.add(name: key, value: value)
     }
 
-    callOptions.customMetadata.add(name: HeaderNames.apiClient, value: clientHeader)
+    callOptions.customMetadata.add(name: _HeaderNames.apiClient, value: clientHeader)
     if !routingParams.isEmpty {
       callOptions.customMetadata.add(
-        name: HeaderNames.requestParams,
+        name: _HeaderNames.requestParams,
         value: routingParams.joined(separator: "&")
       )
     }

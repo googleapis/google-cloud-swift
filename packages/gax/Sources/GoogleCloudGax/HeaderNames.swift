@@ -16,7 +16,7 @@ import Foundation
 
 /// Common Google header names used across HTTP and gRPC transports.
 @_spi(GoogleCloudInternal)
-public enum HeaderNames {
+public enum _HeaderNames {
   public static let apiClient = "x-goog-api-client"
   public static let requestParams = "x-goog-request-params"
 }
