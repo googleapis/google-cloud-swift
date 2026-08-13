@@ -13,8 +13,9 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudGax
-@testable import GoogleCloudStorage
+import GoogleCloudAuth
+@_spi(GoogleCloudInternal) import GoogleCloudGax
+@_spi(GoogleCloudInternal) @testable import GoogleCloudStorage
 import Testing
 
 @Suite struct StorageClientTests {
@@ -22,6 +23,7 @@ import Testing
     let options = StorageClientOptions().with {
       $0.client = .init().with {
         $0.endpoint = "https://override.googleapis.com"
+        $0.credentials = try! Credentials(configuration: .anonymous)
       }
     }
 

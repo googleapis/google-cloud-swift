@@ -14,12 +14,9 @@
 
 import Crypto
 import Foundation
-#if canImport(FoundationNetworking)
-  import FoundationNetworking
-#endif
 import GoogleCloudAuth
-import GoogleCloudGax
-@testable import GoogleCloudStorage
+@_spi(GoogleCloudInternal) import GoogleCloudGax
+@_spi(GoogleCloudInternal) @testable import GoogleCloudStorage
 import Testing
 
 @Suite struct DownloadTests {
@@ -30,18 +27,14 @@ import Testing
 
   private static let sampleCsek = sampleKey()
 
-  private func makeClient(endpoint: String) throws -> StorageClient {
-    let config = URLSessionConfiguration.ephemeral
-    config.protocolClasses = [MockURLProtocol.self]
-    let session = URLSession(configuration: config)
-
+  private func makeClient(registry: MockRegistry) throws -> StorageClient {
     let options = StorageClientOptions().with {
       $0.client = .init().with {
-        $0.endpoint = endpoint
+        $0.endpoint = registry.endpoint
         $0.credentials = try! Credentials(configuration: .anonymous)
       }
     }
-    return try StorageClient(options, testSession: session)
+    return try StorageClient(options, mock: registry)
   }
 
   @Test func downloadObjectSuccess() async throws {
@@ -68,7 +61,7 @@ import Testing
       for: downloadUrl
     )
 
-    let client = try makeClient(endpoint: registry.endpoint)
+    let client = try makeClient(registry: registry)
     let result = try await client.readObject(from: bucket, object: objectName)
 
     #expect(result.metadata.bucket == bucket)
@@ -113,7 +106,7 @@ import Testing
       for: downloadUrl
     )
 
-    let client = try makeClient(endpoint: registry.endpoint)
+    let client = try makeClient(registry: registry)
     let options = ReadObjectOptions().with {
       $0.customerEncryptionKey = csek
     }
@@ -218,7 +211,7 @@ import Testing
       for: downloadUrl
     )
 
-    let client = try makeClient(endpoint: registry.endpoint)
+    let client = try makeClient(registry: registry)
     let result = try await client.readObject(from: bucket, object: objectName, options: options)
     #expect(result.metadata.size == 4)
 
@@ -250,7 +243,7 @@ import Testing
       for: downloadUrl
     )
 
-    let client = try makeClient(endpoint: registry.endpoint)
+    let client = try makeClient(registry: registry)
     let options = ReadObjectOptions().with {
       $0.preconditions = StoragePreconditions().with { $0.ifGenerationMatch = 999 }
     }
@@ -292,7 +285,7 @@ import Testing
       for: downloadUrl
     )
 
-    let client = try makeClient(endpoint: registry.endpoint)
+    let client = try makeClient(registry: registry)
     let result = try await client.readObject(from: bucket, object: objectName)
 
     #expect(result.metadata.bucket == bucket)
@@ -317,7 +310,7 @@ import Testing
       for: downloadUrl
     )
 
-    let client = try makeClient(endpoint: registry.endpoint)
+    let client = try makeClient(registry: registry)
 
     let err = await expectError(DownloadError.self) {
       try await client.readObject(from: bucket, object: objectName)
@@ -353,7 +346,7 @@ import Testing
       for: downloadUrl
     )
 
-    let client = try makeClient(endpoint: registry.endpoint)
+    let client = try makeClient(registry: registry)
     let options = ReadObjectOptions().with {
       $0.range = .fromOffset(10)
     }
@@ -394,7 +387,7 @@ import Testing
       for: downloadUrl
     )
 
-    let client = try makeClient(endpoint: registry.endpoint)
+    let client = try makeClient(registry: registry)
     let options = ReadObjectOptions().with {
       $0.range = .prefix(20)
     }
@@ -434,7 +427,7 @@ import Testing
       for: downloadUrl
     )
 
-    let client = try makeClient(endpoint: registry.endpoint)
+    let client = try makeClient(registry: registry)
     let options = ReadObjectOptions().with {
       $0.range = .suffix(15)
     }
@@ -474,7 +467,7 @@ import Testing
       for: downloadUrl
     )
 
-    let client = try makeClient(endpoint: registry.endpoint)
+    let client = try makeClient(registry: registry)
     let options = ReadObjectOptions().with {
       $0.range = .bounded(start: 10, end: 29)
     }
@@ -499,7 +492,7 @@ import Testing
     let payload = Data("0123456789".utf8)
 
     let downloadUrl = registry.url("/storage/v1/b/\(bucket)/o/\(objectName)?alt=media")
-    let client = try makeClient(endpoint: registry.endpoint)
+    let client = try makeClient(registry: registry)
 
     registry.register(
       response: .success(
@@ -519,7 +512,7 @@ import Testing
 
   @Test func rangedDownloadInvalidRangeThrows() async throws {
     let registry = MockRegistry.create()
-    let client = try makeClient(endpoint: registry.endpoint)
+    let client = try makeClient(registry: registry)
     let options = ReadObjectOptions().with {
       $0.range = .bounded(start: 30, end: 10)
     }
@@ -538,7 +531,7 @@ import Testing
   @Test func rangedDownloadZeroCountRanges() async throws {
     let registry = MockRegistry.create()
     let bucket = "test-bucket"
-    let client = try makeClient(endpoint: registry.endpoint)
+    let client = try makeClient(registry: registry)
 
     // Prefix 0
     let prefixObject = "test-prefix.txt"

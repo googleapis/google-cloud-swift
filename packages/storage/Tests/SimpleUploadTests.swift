@@ -14,12 +14,9 @@
 
 import Crypto
 import Foundation
-#if canImport(FoundationNetworking)
-  import FoundationNetworking
-#endif
 import GoogleCloudAuth
-import GoogleCloudGax
-@testable import GoogleCloudStorage
+@_spi(GoogleCloudInternal) import GoogleCloudGax
+@_spi(GoogleCloudInternal) @testable import GoogleCloudStorage
 import Testing
 
 @Suite struct SimpleUploadTests {
@@ -29,6 +26,21 @@ import Testing
     let sha256Digest = SHA256.hash(data: keyData)
     let keyHashBase64 = Data(sha256Digest).base64EncodedString()
     return (keyData, keyBase64, keyHashBase64)
+  }
+
+  private func makeClient(registry: MockRegistry, retryPolicy: (any RetryPolicy)? = nil) throws
+    -> StorageClient
+  {
+    let options = StorageClientOptions().with {
+      $0.client = .init().with {
+        $0.endpoint = registry.endpoint
+        $0.credentials = try! Credentials(configuration: .anonymous)
+        if let retryPolicy {
+          $0.retryPolicy = retryPolicy
+        }
+      }
+    }
+    return try StorageClient(options, mock: registry)
   }
 
   /// Tests a successful simple (single-part) upload for payloads smaller than the 8MB resumable threshold.
@@ -48,18 +60,7 @@ import Testing
         headers: nil),
       for: simpleUploadUrl)
 
-    let config = URLSessionConfiguration.ephemeral
-    config.protocolClasses = [MockURLProtocol.self]
-    let session = URLSession(configuration: config)
-
-    let options = StorageClientOptions().with {
-      $0.client = .init().with {
-        $0.endpoint = registry.endpoint
-        $0.credentials = try! Credentials(configuration: .anonymous)
-      }
-    }
-
-    let client = try StorageClient(options, testSession: session)
+    let client = try makeClient(registry: registry)
     let task = client.upload(source, to: bucket, as: objectName)
     let object = try await task.value
 
@@ -76,18 +77,7 @@ import Testing
     struct DummyError: Error {}
     let source = MockUploadSource(data: data, readError: DummyError())
 
-    let config = URLSessionConfiguration.ephemeral
-    config.protocolClasses = [MockURLProtocol.self]
-    let session = URLSession(configuration: config)
-
-    let options = StorageClientOptions().with {
-      $0.client = .init().with {
-        $0.endpoint = registry.endpoint
-        $0.credentials = try! Credentials(configuration: .anonymous)
-      }
-    }
-
-    let client = try StorageClient(options, testSession: session)
+    let client = try makeClient(registry: registry)
     let task = client.upload(source, to: bucket, as: objectName)
 
     await expectError(DummyError.self) {
@@ -110,19 +100,7 @@ import Testing
       response: .failure(URLError(.cannotConnectToHost)),
       for: simpleUploadUrl)
 
-    let config = URLSessionConfiguration.ephemeral
-    config.protocolClasses = [MockURLProtocol.self]
-    let session = URLSession(configuration: config)
-
-    let options = StorageClientOptions().with {
-      $0.client = .init().with {
-        $0.endpoint = registry.endpoint
-        $0.credentials = try! Credentials(configuration: .anonymous)
-        $0.retryPolicy = NeverRetry()
-      }
-    }
-
-    let client = try StorageClient(options, testSession: session)
+    let client = try makeClient(registry: registry, retryPolicy: NeverRetry())
     let task = client.upload(source, to: bucket, as: objectName)
 
     let error = await expectError(RequestError.self) {
@@ -152,18 +130,7 @@ import Testing
         headers: nil),
       for: simpleUploadUrl)
 
-    let config = URLSessionConfiguration.ephemeral
-    config.protocolClasses = [MockURLProtocol.self]
-    let session = URLSession(configuration: config)
-
-    let options = StorageClientOptions().with {
-      $0.client = .init().with {
-        $0.endpoint = registry.endpoint
-        $0.credentials = try! Credentials(configuration: .anonymous)
-      }
-    }
-
-    let client = try StorageClient(options, testSession: session)
+    let client = try makeClient(registry: registry)
     let task = client.upload(source, to: bucket, as: objectName)
 
     let error = await expectUploadError {
@@ -194,18 +161,7 @@ import Testing
         headers: nil),
       for: simpleUploadUrl)
 
-    let config = URLSessionConfiguration.ephemeral
-    config.protocolClasses = [MockURLProtocol.self]
-    let session = URLSession(configuration: config)
-
-    let options = StorageClientOptions().with {
-      $0.client = .init().with {
-        $0.endpoint = registry.endpoint
-        $0.credentials = try! Credentials(configuration: .anonymous)
-      }
-    }
-
-    let client = try StorageClient(options, testSession: session)
+    let client = try makeClient(registry: registry)
     let task = client.upload(source, to: bucket, as: objectName)
 
     let error = await expectError(DecodingError.self) {
@@ -221,18 +177,7 @@ import Testing
     let objectName = "test-object"
     let source = MockUploadSource(data: Data(), totalSize: 1024)
 
-    let config = URLSessionConfiguration.ephemeral
-    config.protocolClasses = [MockURLProtocol.self]
-    let session = URLSession(configuration: config)
-
-    let options = StorageClientOptions().with {
-      $0.client = .init().with {
-        $0.endpoint = registry.endpoint
-        $0.credentials = try! Credentials(configuration: .anonymous)
-      }
-    }
-
-    let client = try StorageClient(options, testSession: session)
+    let client = try makeClient(registry: registry)
     let task = client.upload(source, to: bucket, as: objectName)
 
     let error = await expectUploadError {
@@ -277,18 +222,7 @@ import Testing
         headers: nil),
       for: simpleUploadUrl)
 
-    let config = URLSessionConfiguration.ephemeral
-    config.protocolClasses = [MockURLProtocol.self]
-    let session = URLSession(configuration: config)
-
-    let options = StorageClientOptions().with {
-      $0.client = .init().with {
-        $0.endpoint = registry.endpoint
-        $0.credentials = try! Credentials(configuration: .anonymous)
-      }
-    }
-
-    let client = try StorageClient(options, testSession: session)
+    let client = try makeClient(registry: registry)
     let uploadOptions = UploadOptions().with { $0.customerEncryptionKey = csek }
     let task = client.upload(source, to: bucket, as: objectName, options: uploadOptions)
     let object = try await task.value

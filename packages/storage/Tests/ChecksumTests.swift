@@ -13,12 +13,9 @@
 // limitations under the License.
 
 import Foundation
-#if canImport(FoundationNetworking)
-  import FoundationNetworking
-#endif
 import GoogleCloudAuth
-import GoogleCloudGax
-@testable import GoogleCloudStorage
+@_spi(GoogleCloudInternal) import GoogleCloudGax
+@_spi(GoogleCloudInternal) @testable import GoogleCloudStorage
 import Testing
 
 @Suite struct ChecksumTests {
@@ -92,10 +89,6 @@ import Testing
         headers: nil),
       for: uploadUrl)
 
-    let config = URLSessionConfiguration.ephemeral
-    config.protocolClasses = [MockURLProtocol.self]
-    let session = URLSession(configuration: config)
-
     let options = StorageClientOptions().with {
       $0.client = .init().with {
         $0.endpoint = registry.endpoint
@@ -103,7 +96,7 @@ import Testing
       }
     }
 
-    let client = try StorageClient(options, testSession: session)
+    let client = try StorageClient(options, mock: registry)
     let uploadOptions = UploadOptions().with { $0.validation = .crc32c }
     let task = client.upload(source, to: bucket, as: objectName, options: uploadOptions)
 
@@ -140,10 +133,6 @@ import Testing
         headers: nil),
       for: chunkUrl)
 
-    let config = URLSessionConfiguration.ephemeral
-    config.protocolClasses = [MockURLProtocol.self]
-    let session = URLSession(configuration: config)
-
     let options = StorageClientOptions().with {
       $0.client = .init().with {
         $0.endpoint = registry.endpoint
@@ -151,7 +140,7 @@ import Testing
       }
     }
 
-    let client = try StorageClient(options, testSession: session)
+    let client = try StorageClient(options, mock: registry)
     let uploadOptions = UploadOptions().with { $0.validation = .md5 }
     let task = client.upload(source, to: bucket, as: objectName, options: uploadOptions)
 

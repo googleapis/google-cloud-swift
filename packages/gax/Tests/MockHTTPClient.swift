@@ -12,15 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Synchronization
-import Testing
-import struct Logging.Logger
-import struct DequeModule.Deque
-import GoogleCloudAuth
 import struct AsyncHTTPClient.HTTPClientRequest
 import struct AsyncHTTPClient.HTTPClientResponse
 @_spi(GoogleCloudInternal) @testable import GoogleCloudGax
 
+/// A mock implementation of `HTTPClientProtocol`.
 final class MockHTTPClient: HTTPClientProtocol, Sendable {
   typealias Handler =
     @Sendable (HTTPClientRequest, Duration) async throws -> HTTPClientResponse
@@ -30,7 +26,9 @@ final class MockHTTPClient: HTTPClientProtocol, Sendable {
     self.handler = handler
   }
 
-  func execute(request: HTTPClientRequest, timeout: Duration) async throws -> HTTPClientResponse {
+  func execute(request: HTTPClientRequest, timeout: Duration) async throws
+    -> HTTPClientResponse
+  {
     try await handler(request, timeout)
   }
 }

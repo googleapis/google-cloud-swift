@@ -44,6 +44,46 @@ import NIOHTTP1
   }
 
   @Test(arguments: [
+    // Pre-encoded characters like %2F, %20, %3F are preserved without re-encoding
+    (
+      "/path/to/folder%2Ffile.json",
+      "http://localhost:1234/path/to/folder%2Ffile.json?$alt=json"
+    ),
+    (
+      "/path%20with%20spaces/item",
+      "http://localhost:1234/path%20with%20spaces/item?$alt=json"
+    ),
+    (
+      "/path%3Fname=value",
+      "http://localhost:1234/path%3Fname=value?$alt=json"
+    ),
+  ]) func percentEncodedPath(
+    inputPath: String, wantURL: String
+  ) async throws {
+    let endpoint = "http://localhost:1234"
+    let credentials = try Credentials(configuration: .anonymous)
+    let options = ClientOptions().with { $0.credentials = credentials }
+    let client = try _HTTPClient(from: options, withDefaultEndpoint: endpoint)
+    let query = [URLQueryItem(name: "$alt", value: "json")]
+    let request = try await client.newRequest(percentEncodedPath: inputPath, query: query)
+    #expect(request.components.url?.absoluteString == wantURL)
+  }
+
+  @Test func requestFromURI() async throws {
+    let endpoint = "http://localhost:1234"
+    let credentials = try Credentials(configuration: .anonymous)
+    let options = ClientOptions().with { $0.credentials = credentials }
+    let client = try _HTTPClient(from: options, withDefaultEndpoint: endpoint)
+    let uri = "https://storage.googleapis.com/upload/storage/v1/b/my-bucket/o?upload_id=12345"
+    var request = try await client.newRequest(uri: uri)
+    request.setHeader(name: "X-Test-Header", value: "TestValue")
+    request.setBody(data: Data("test".utf8))
+    #expect(request.components.url?.absoluteString == uri)
+    #expect(request.headers["X-Test-Header"] == ["TestValue"])
+    #expect(request.body == Data("test".utf8))
+  }
+
+  @Test(arguments: [
     "bad-bad-bad",
     "htt://localhost:1",
     "file:///etc/passwd",

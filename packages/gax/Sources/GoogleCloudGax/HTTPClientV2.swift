@@ -20,7 +20,7 @@ import struct AsyncHTTPClient.HTTPClientResponse
 import struct Logging.Logger
 
 /// Implements a HTTP-only client for the Swift SDK client libraries.
-@_spi(GoogleCloudInternal) public struct _HTTPClient {
+@_spi(GoogleCloudInternal) public struct _HTTPClient: Sendable {
   let baseURL: URLComponents
   let credentials: any CredentialsProtocol
   let logger: Logger?
@@ -36,7 +36,7 @@ import struct Logging.Logger
   }
 
   // Creates a new testing client.
-  init(
+  @_spi(GoogleCloudInternal) public init(
     _ inner: any HTTPClientProtocol, endpoint: String,
     credentials: (any CredentialsProtocol)? = nil,
     logger: Logging.Logger? = nil,
@@ -47,7 +47,9 @@ import struct Logging.Logger
     self.inner = inner
   }
 
-  static func validateEndpoint(_ endpoint: String) throws -> URLComponents {
+  @_spi(GoogleCloudInternal) public static func validateEndpoint(_ endpoint: String) throws
+    -> URLComponents
+  {
     guard var parsed = URLComponents(string: endpoint) else {
       throw ClientError.invalidEndpoint(endpoint)
     }
@@ -72,5 +74,37 @@ import struct Logging.Logger
       request.addHeader(name: key, value: value)
     }
     return request
+  }
+
+  public func newRequest(percentEncodedPath: String, query: [URLQueryItem]) async throws
+    -> _HTTPClientRequest
+  {
+    var components = self.baseURL
+    if !query.isEmpty {
+      components.queryItems = query
+    }
+    components.percentEncodedPath = percentEncodedPath
+    var request = _HTTPClientRequest(self.inner, url: components)
+    let headers = try await self.credentials.headers()
+    for (key, value) in headers {
+      request.addHeader(name: key, value: value)
+    }
+    return request
+  }
+
+  public func newRequest(urlComponents: URLComponents) async throws -> _HTTPClientRequest {
+    var request = _HTTPClientRequest(self.inner, url: urlComponents)
+    let headers = try await self.credentials.headers()
+    for (key, value) in headers {
+      request.addHeader(name: key, value: value)
+    }
+    return request
+  }
+
+  public func newRequest(uri: String) async throws -> _HTTPClientRequest {
+    guard let components = URLComponents(string: uri) else {
+      throw RequestError.binding("bad URL for uri=\(uri)")
+    }
+    return try await newRequest(urlComponents: components)
   }
 }

@@ -13,10 +13,8 @@
 // limitations under the License.
 
 import Foundation
-#if canImport(FoundationNetworking)
-  import FoundationNetworking
-#endif
-import GoogleCloudGax
+@_spi(GoogleCloudInternal) import GoogleCloudGax
+import NIOHTTP1
 
 extension StorageClient {
   /// Reads (downloads) an object from Cloud Storage as an async sequence of Data chunks.
@@ -40,16 +38,18 @@ extension StorageClient {
 
     let request = try await inner.buildReadObjectRequest(
       bucket: bucket, object: object, options: options)
-    let (data, response) = try await inner.data(for: request)
+    let response = try await request.execute()
+    let statusCode = Int(response.status.code)
+    let data = try await response.data()
 
-    guard (200..<300).contains(response.statusCode) else {
+    guard (200..<300).contains(statusCode) else {
       let message = String(data: data, encoding: .utf8) ?? ""
       throw DownloadError.unexpectedServerResponse(
-        statusCode: response.statusCode, message: message)
+        statusCode: statusCode, message: message)
     }
 
     let metadata = try Self.parseReadObjectMetadata(
-      from: response, bucket: bucket, object: object)
+      from: response.headers, bucket: bucket, object: object)
 
     let stream = AsyncThrowingStream<Data, Error> { continuation in
       if case .prefix(0) = options.range {
@@ -75,7 +75,7 @@ extension StorageClient {
   }
 
   fileprivate static func parseReadObjectMetadata(
-    from response: HTTPURLResponse,
+    from headers: NIOHTTP1.HTTPHeaders,
     bucket: String,
     object: String
   ) throws -> ReadObjectMetadata {
@@ -83,50 +83,50 @@ extension StorageClient {
     metadata.bucket = bucket
     metadata.object = object
 
-    if let contentRangeHeader = response.value(forHTTPHeaderField: "Content-Range") {
+    if let contentRangeHeader = headers.first(name: "Content-Range") {
       let contentRange = try HttpContentRange.parse(contentRangeHeader)
       if let total = contentRange.totalSize {
         metadata.size = total
       }
-    } else if let sizeStr = response.value(forHTTPHeaderField: "x-goog-stored-content-length")
-      ?? response.value(forHTTPHeaderField: "Content-Length"),
+    } else if let sizeStr = headers.first(name: "x-goog-stored-content-length")
+      ?? headers.first(name: "Content-Length"),
       let size = UInt64(sizeStr)
     {
       metadata.size = size
     }
 
-    if let genStr = response.value(forHTTPHeaderField: "x-goog-generation"),
+    if let genStr = headers.first(name: "x-goog-generation"),
       let gen = UInt64(genStr)
     {
       metadata.generation = gen
     }
 
-    if let metaGenStr = response.value(forHTTPHeaderField: "x-goog-metageneration"),
+    if let metaGenStr = headers.first(name: "x-goog-metageneration"),
       let metaGen = UInt64(metaGenStr)
     {
       metadata.metageneration = metaGen
     }
 
-    metadata.etag = response.value(forHTTPHeaderField: "ETag")
-    metadata.contentType = response.value(forHTTPHeaderField: "Content-Type")
-    metadata.contentEncoding = response.value(forHTTPHeaderField: "Content-Encoding")
-    metadata.contentDisposition = response.value(forHTTPHeaderField: "Content-Disposition")
-    metadata.storageClass = response.value(forHTTPHeaderField: "x-goog-storage-class")
+    metadata.etag = headers.first(name: "ETag")
+    metadata.contentType = headers.first(name: "Content-Type")
+    metadata.contentEncoding = headers.first(name: "Content-Encoding")
+    metadata.contentDisposition = headers.first(name: "Content-Disposition")
+    metadata.storageClass = headers.first(name: "x-goog-storage-class")
 
-    if let hashHeader = response.value(forHTTPHeaderField: "x-goog-hash") {
+    if let hashHeader = headers.first(name: "x-goog-hash") {
       let (crc, md5) = parseGoogHash(hashHeader)
       metadata.crc32c = crc
       metadata.md5Hash = md5
     }
     if metadata.md5Hash == nil,
-      let contentMd5 = response.value(forHTTPHeaderField: "Content-MD5")
+      let contentMd5 = headers.first(name: "Content-MD5")
     {
       metadata.md5Hash = contentMd5
     }
 
-    if let dateStr = response.value(forHTTPHeaderField: "Last-Modified")
-      ?? response.value(forHTTPHeaderField: "Date")
-      ?? response.value(forHTTPHeaderField: "x-goog-date")
+    if let dateStr = headers.first(name: "Last-Modified")
+      ?? headers.first(name: "Date")
+      ?? headers.first(name: "x-goog-date")
     {
       metadata.updated = parseHTTPDate(dateStr)
     }
@@ -168,12 +168,12 @@ extension StorageClient {
   }
 }
 
-extension HTTPClient {
+extension GoogleCloudGax._HTTPClient {
   fileprivate func buildReadObjectRequest(
     bucket: String,
     object: String,
     options: ReadObjectOptions
-  ) async throws -> URLRequest {
+  ) async throws -> GoogleCloudGax._HTTPClientRequest {
     var queryItems = [URLQueryItem(name: "alt", value: "media")]
 
     if let generation = options.generation {
@@ -189,16 +189,27 @@ extension HTTPClient {
       object.addingPercentEncoding(withAllowedCharacters: allowedObjectCharacters) ?? object
     let encodedBucket =
       bucket.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? bucket
-    var request = try await self.Request(
+    var request = try await self.newRequest(
       percentEncodedPath: "/storage/v1/b/\(encodedBucket)/o/\(encodedObject)", query: queryItems)
-    request.httpMethod = "GET"
+    request.setMethod(.GET)
 
     if let rangeHeader = options.range.headerValue {
-      request.setValue(rangeHeader, forHTTPHeaderField: "Range")
+      request.setHeader(name: "Range", value: rangeHeader)
     }
 
     request.applyCustomerSuppliedEncryptionHeaders(options.customerEncryptionKey)
 
     return request
+  }
+}
+
+extension GoogleCloudGax._HTTPClientRequest {
+  package mutating func applyCustomerSuppliedEncryptionHeaders(
+    _ key: CustomerEncryptionKeyOptions?
+  ) {
+    guard let key else { return }
+    setHeader(name: "x-goog-encryption-algorithm", value: key.algorithm.rawValue)
+    setHeader(name: "x-goog-encryption-key", value: key.keyBase64)
+    setHeader(name: "x-goog-encryption-key-sha256", value: key.keyHashBase64)
   }
 }

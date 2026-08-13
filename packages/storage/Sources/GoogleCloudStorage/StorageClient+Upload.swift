@@ -20,6 +20,8 @@ import GoogleCloudGax
 import GoogleCloudWkt
 @_spi(GoogleCloudInternal) import struct GoogleCloudGax._CRC32C
 import Crypto
+@_spi(GoogleCloudInternal) import GoogleCloudGax
+import NIOHTTP1
 
 package enum ResumableUploadStatus: Sendable {
   case unknown
@@ -94,7 +96,14 @@ extension StorageClient {
     }
   }
 
-  /// Upload method accepting any seekable upload source.
+  /// Upload method specialized for seekable upload sources.
+  ///
+  /// - Parameters:
+  ///   - source: The seekable upload source containing the data.
+  ///   - bucket: The destination GCS bucket name.
+  ///   - objectName: The destination GCS object name.
+  ///   - options: Configuration options for the upload.
+  /// - Returns: An `UploadTask` to monitor and control the upload.
   public func upload(
     _ source: some SeekableUploadSource,
     to bucket: String,
@@ -154,7 +163,7 @@ extension StorageClient {
   }
 
   fileprivate static func performSimpleUpload(
-    httpClient: HTTPClient,
+    httpClient: GoogleCloudGax._HTTPClient,
     source: inout some UploadSource,
     bucket: String,
     objectName: String,
@@ -168,7 +177,8 @@ extension StorageClient {
       throw UploadError.internalError("Failed to read data from source")
     }
     let checksum = try computeSimpleChecksum(data, options: options.checksums)
-    let request = try await httpClient.buildSimpleUploadRequest(
+    let request = try await buildSimpleUploadRequest(
+      httpClient: httpClient,
       bucket: bucket,
       objectName: objectName,
       data: data,
@@ -178,16 +188,16 @@ extension StorageClient {
     )
 
     return try await retryLoop.run { _ in
-      let (responseData, response): (Data, HTTPURLResponse)
+      let response: _HTTPClientResponse
       do {
-        (responseData, response) = try await httpClient.data(for: request)
+        response = try await request.execute()
       } catch {
         throw RequestError.io(error)
       }
-      if response.statusCode == 503 {
-        throw HTTPClient.parseError(data: responseData, response: response)
+      if response.status.code == 503 {
+        throw await response.decodeError()
       }
-      let object = try httpClient.handleObjectResponse(data: responseData, response: response)
+      let object = try await handleObjectResponse(response: response)
       continuation.yield(
         UploadStatus(
           bytesUploaded: Int64(data.count), totalBytes: totalSize))
@@ -196,64 +206,69 @@ extension StorageClient {
   }
 
   fileprivate static func startResumableSession(
-    httpClient: HTTPClient,
+    httpClient: GoogleCloudGax._HTTPClient,
     bucket: String,
     objectName: String,
     metadata: UploadMetadata?,
     options: UploadOptions
   ) async throws -> String {
-    let startRequest = try await httpClient.buildStartResumableUploadRequest(
-      bucket: bucket, objectName: objectName, metadata: metadata, options: options)
-    let (startData, startResponse): (Data, HTTPURLResponse)
+    let startRequest = try await buildStartResumableUploadRequest(
+      httpClient: httpClient, bucket: bucket, objectName: objectName, metadata: metadata,
+      options: options)
+    let startResponse: _HTTPClientResponse
     do {
-      (startData, startResponse) = try await httpClient.data(for: startRequest)
+      startResponse = try await startRequest.execute()
     } catch {
       throw RequestError.io(error)
     }
-    guard startResponse.statusCode == 200,
-      let location = startResponse.value(forHTTPHeaderField: "Location")
+    let statusCode = Int(startResponse.status.code)
+    guard statusCode == 200,
+      let location = startResponse.headers.first(name: "Location")
     else {
-      if startResponse.statusCode == 503 {
-        throw HTTPClient.parseError(data: startData, response: startResponse)
+      if statusCode == 503 {
+        throw await startResponse.decodeError()
       }
+      let startData = try await startResponse.data()
       throw UploadError.unexpectedServerResponse(
-        statusCode: startResponse.statusCode,
+        statusCode: statusCode,
         message: String(data: startData, encoding: .utf8) ?? "")
     }
     return location
   }
 
   fileprivate static func queryUploadStatus(
-    httpClient: HTTPClient,
+    httpClient: GoogleCloudGax._HTTPClient,
     uploadId: String,
     options: UploadOptions
   ) async throws -> (status: ResumableUploadStatus, crc32cSeed: UInt32?) {
-    let queryRequest = try await httpClient.buildQueryResumableUploadRequest(
-      uploadId: uploadId, options: options)
-    let (queryData, queryResponse): (Data, HTTPURLResponse)
+    let queryRequest = try await buildQueryResumableUploadRequest(
+      httpClient: httpClient, uploadId: uploadId, options: options)
+    let queryResponse: _HTTPClientResponse
     do {
-      (queryData, queryResponse) = try await httpClient.data(for: queryRequest)
+      queryResponse = try await queryRequest.execute()
     } catch {
       throw RequestError.io(error)
     }
 
-    if queryResponse.statusCode == 200 || queryResponse.statusCode == 201 {
-      let object = try httpClient.handleObjectResponse(data: queryData, response: queryResponse)
+    let statusCode = Int(queryResponse.status.code)
+    if statusCode == 200 || statusCode == 201 {
+      let object = try await handleObjectResponse(response: queryResponse)
       return (.done(object), nil)
-    } else if queryResponse.statusCode == 308 {
-      let queryStatus = try httpClient.parseResumableUploadQueryStatus(from: queryResponse)
+    } else if statusCode == 308 {
+      let queryStatus = try parseResumableUploadQueryStatus(from: queryResponse.headers)
       return (.inprogress(UInt64(queryStatus.nextOffset)), queryStatus.crc32cSeed)
-    } else if queryResponse.statusCode == 503 {
-      throw HTTPClient.parseError(data: queryData, response: queryResponse)
+    } else if statusCode == 503 {
+      throw await queryResponse.decodeError()
     } else {
+      let queryData = try await queryResponse.data()
       throw UploadError.unexpectedServerResponse(
-        statusCode: queryResponse.statusCode,
+        statusCode: statusCode,
         message: String(data: queryData, encoding: .utf8) ?? "")
     }
   }
 
   fileprivate static func sendNextChunk<S: UploadSource>(
-    httpClient: HTTPClient,
+    httpClient: GoogleCloudGax._HTTPClient,
     checksummedSource: inout ChecksummedSource<S>,
     uploadId: String,
     committedBytes: UInt64,
@@ -279,7 +294,8 @@ extension StorageClient {
       checksum = checksummedSource.finalizeChecksum()
     }
 
-    let uploadRequest = try await httpClient.buildUploadChunkRequest(
+    let uploadRequest = try await buildUploadChunkRequest(
+      httpClient: httpClient,
       uploadId: uploadId,
       data: chunk,
       offset: Int64(committedBytes),
@@ -288,15 +304,16 @@ extension StorageClient {
       checksum: checksum
     )
 
-    let (uploadData, uploadResponse): (Data, HTTPURLResponse)
+    let uploadResponse: _HTTPClientResponse
     do {
-      (uploadData, uploadResponse) = try await httpClient.data(for: uploadRequest)
+      uploadResponse = try await uploadRequest.execute()
     } catch {
       throw RequestError.io(error)
     }
 
-    if uploadResponse.statusCode == 200 || uploadResponse.statusCode == 201 {
-      let object = try httpClient.handleObjectResponse(data: uploadData, response: uploadResponse)
+    let statusCode = Int(uploadResponse.status.code)
+    if statusCode == 200 || statusCode == 201 {
+      let object = try await handleObjectResponse(response: uploadResponse)
       continuation.yield(
         UploadStatus(
           bytesUploaded: Int64(committedBytes) + Int64(chunk.count),
@@ -305,16 +322,16 @@ extension StorageClient {
         )
       )
       return (.done(object), nil)
-    } else if uploadResponse.statusCode == 308 {
+    } else if statusCode == 308 {
       let nextOffset: Int64
-      if let rangeHeader = uploadResponse.value(forHTTPHeaderField: "Range") {
+      if let rangeHeader = uploadResponse.headers.first(name: "Range") {
         nextOffset = Int64(try HttpRange.parseNextRangeStart(rangeHeader))
       } else {
         nextOffset = Int64(committedBytes) + Int64(chunk.count)
       }
       var crc32cSeed: UInt32? = nil
-      if let runningHashHeader = uploadResponse.value(forHTTPHeaderField: "x-goog-running-hash") {
-        crc32cSeed = httpClient.parseCRC32CFromRunningHash(runningHashHeader)
+      if let runningHashHeader = uploadResponse.headers.first(name: "x-goog-running-hash") {
+        crc32cSeed = parseCRC32CFromRunningHash(runningHashHeader)
       }
       continuation.yield(
         UploadStatus(
@@ -324,19 +341,19 @@ extension StorageClient {
         )
       )
       return (.inprogress(UInt64(nextOffset)), crc32cSeed)
-    } else if uploadResponse.statusCode == 503 {
-      throw HTTPClient.parseError(data: uploadData, response: uploadResponse)
+    } else if statusCode == 503 {
+      throw await uploadResponse.decodeError()
     } else {
-      _ = try httpClient.handleObjectResponse(data: uploadData, response: uploadResponse)
+      let uploadData = try await uploadResponse.data()
       throw UploadError.unexpectedServerResponse(
-        statusCode: uploadResponse.statusCode,
+        statusCode: statusCode,
         message: String(data: uploadData, encoding: .utf8) ?? ""
       )
     }
   }
 
   fileprivate static func continueStreamingUpload<S: UploadSource>(
-    httpClient: HTTPClient,
+    httpClient: GoogleCloudGax._HTTPClient,
     source: inout S,
     bucket: String? = nil,
     objectName: String? = nil,
@@ -447,7 +464,7 @@ extension StorageClient {
   }
 
   fileprivate static func continueResumableSeekableUpload<S: SeekableUploadSource>(
-    httpClient: HTTPClient,
+    httpClient: GoogleCloudGax._HTTPClient,
     source: inout S,
     bucket: String? = nil,
     objectName: String? = nil,
@@ -643,15 +660,16 @@ struct ResumableUploadQueryStatus: Sendable {
   let crc32cSeed: UInt32?
 }
 
-extension HTTPClient {
-  fileprivate func buildSimpleUploadRequest(
+extension StorageClient {
+  fileprivate static func buildSimpleUploadRequest(
+    httpClient: GoogleCloudGax._HTTPClient,
     bucket: String,
     objectName: String,
     data: Data,
     metadata: UploadMetadata?,
     options: UploadOptions,
     checksum: String? = nil
-  ) async throws -> URLRequest {
+  ) async throws -> GoogleCloudGax._HTTPClientRequest {
     var queryItems = [URLQueryItem(name: "uploadType", value: "multipart")]
     queryItems.append(URLQueryItem(name: "name", value: objectName))
 
@@ -665,18 +683,18 @@ extension HTTPClient {
       queryItems.append(contentsOf: preconditions.queryItems)
     }
 
-    var request = try await self.Request(
+    var request = try await httpClient.newRequest(
       path: "/upload/storage/v1/b/\(bucket)/o", query: queryItems)
-    request.httpMethod = "POST"
+    request.setMethod(.POST)
 
     if let checksum = checksum {
-      request.setValue(checksum, forHTTPHeaderField: "x-goog-hash")
+      request.setHeader(name: "x-goog-hash", value: checksum)
     }
 
     request.applyCustomerSuppliedEncryptionHeaders(options.customerEncryptionKey)
 
     let boundary = "Boundary-\(UUID().uuidString)"
-    request.setValue("multipart/related; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+    request.setHeader(name: "Content-Type", value: "multipart/related; boundary=\(boundary)")
 
     var body = Data()
     body.append(Data("--\(boundary)\r\n".utf8))
@@ -693,16 +711,17 @@ extension HTTPClient {
 
     body.append(Data("--\(boundary)--\r\n".utf8))
 
-    request.httpBody = body
+    request.setBody(data: body)
     return request
   }
 
-  fileprivate func buildStartResumableUploadRequest(
+  fileprivate static func buildStartResumableUploadRequest(
+    httpClient: GoogleCloudGax._HTTPClient,
     bucket: String,
     objectName: String,
     metadata: UploadMetadata?,
     options: UploadOptions
-  ) async throws -> URLRequest {
+  ) async throws -> GoogleCloudGax._HTTPClientRequest {
     var queryItems = [URLQueryItem(name: "uploadType", value: "resumable")]
     queryItems.append(URLQueryItem(name: "name", value: objectName))
 
@@ -716,92 +735,81 @@ extension HTTPClient {
       queryItems.append(contentsOf: preconditions.queryItems)
     }
 
-    var request = try await self.Request(
+    var request = try await httpClient.newRequest(
       path: "/upload/storage/v1/b/\(bucket)/o", query: queryItems)
-    request.httpMethod = "POST"
-    request.setValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
+    request.setMethod(.POST)
+    request.setHeader(name: "Content-Type", value: "application/json; charset=UTF-8")
 
     request.applyCustomerSuppliedEncryptionHeaders(options.customerEncryptionKey)
 
     let metadataJson = try JSONEncoder().encode(metadata ?? UploadMetadata())
-    request.httpBody = metadataJson
+    request.setBody(data: metadataJson)
     return request
   }
 
-  fileprivate func buildQueryResumableUploadRequest(
+  fileprivate static func buildQueryResumableUploadRequest(
+    httpClient: GoogleCloudGax._HTTPClient,
     uploadId: String,
     options: UploadOptions? = nil
-  ) async throws -> URLRequest {
-    guard let url = URL(string: uploadId),
-      let components = URLComponents(url: url, resolvingAgainstBaseURL: false)
-    else {
-      throw UploadError.internalError("Invalid upload ID: \(uploadId)")
-    }
-    let queryItems = components.queryItems ?? []
-    var request = try await self.Request(
-      path: components.path, query: queryItems)
-    request.httpMethod = "PUT"
-    request.setValue("application/octet-stream", forHTTPHeaderField: "Content-Type")
-    request.setValue("bytes */*", forHTTPHeaderField: "Content-Range")
-    request.setValue("0", forHTTPHeaderField: "Content-Length")
+  ) async throws -> GoogleCloudGax._HTTPClientRequest {
+    var request = try await httpClient.newRequest(uri: uploadId)
+    request.setMethod(.PUT)
+    request.setHeader(name: "Content-Type", value: "application/octet-stream")
+    request.setHeader(name: "Content-Range", value: "bytes */*")
+    request.setHeader(name: "Content-Length", value: "0")
 
     request.applyCustomerSuppliedEncryptionHeaders(options?.customerEncryptionKey)
 
     return request
   }
 
-  fileprivate func buildUploadChunkRequest(
+  fileprivate static func buildUploadChunkRequest(
+    httpClient: GoogleCloudGax._HTTPClient,
     uploadId: String,
     data: Data,
     offset: Int64,
     totalSize: Int64?,
     options: UploadOptions,
     checksum: String? = nil
-  ) async throws -> URLRequest {
-    guard let url = URL(string: uploadId),
-      let components = URLComponents(url: url, resolvingAgainstBaseURL: false)
-    else {
-      throw UploadError.internalError("Invalid upload ID: \(uploadId)")
-    }
-    var request = try await self.Request(
-      path: components.path, query: components.queryItems ?? [])
-    request.httpMethod = "PUT"
-    request.setValue("application/octet-stream", forHTTPHeaderField: "Content-Type")
+  ) async throws -> GoogleCloudGax._HTTPClientRequest {
+    var request = try await httpClient.newRequest(uri: uploadId)
+    request.setMethod(.PUT)
+    request.setHeader(name: "Content-Type", value: "application/octet-stream")
 
     if let checksum = checksum {
-      request.setValue(checksum, forHTTPHeaderField: "x-goog-hash")
+      request.setHeader(name: "x-goog-hash", value: checksum)
     }
 
     request.applyCustomerSuppliedEncryptionHeaders(options.customerEncryptionKey)
 
     let totalStr = totalSize.map { String($0) } ?? "*"
     if data.isEmpty {
-      request.setValue("bytes */\(totalStr)", forHTTPHeaderField: "Content-Range")
+      request.setHeader(name: "Content-Range", value: "bytes */\(totalStr)")
     } else {
       let end = offset + Int64(data.count) - 1
-      request.setValue("bytes \(offset)-\(end)/\(totalStr)", forHTTPHeaderField: "Content-Range")
+      request.setHeader(name: "Content-Range", value: "bytes \(offset)-\(end)/\(totalStr)")
     }
-    request.httpBody = data
+    request.setBody(data: data)
     return request
   }
 
-  internal func parseResumableUploadQueryStatus(from response: HTTPURLResponse) throws
+  internal static func parseResumableUploadQueryStatus(from headers: NIOHTTP1.HTTPHeaders) throws
     -> ResumableUploadQueryStatus
   {
     var nextOffset: Int64 = 0
-    if let rangeHeader = response.value(forHTTPHeaderField: "Range") {
+    if let rangeHeader = headers.first(name: "Range") {
       nextOffset = Int64(try HttpRange.parseNextRangeStart(rangeHeader))
     }
 
     var crc32cSeed: UInt32? = nil
-    if let runningHashHeader = response.value(forHTTPHeaderField: "x-goog-running-hash") {
+    if let runningHashHeader = headers.first(name: "x-goog-running-hash") {
       crc32cSeed = parseCRC32CFromRunningHash(runningHashHeader)
     }
 
     return ResumableUploadQueryStatus(nextOffset: nextOffset, crc32cSeed: crc32cSeed)
   }
 
-  internal func parseCRC32CFromRunningHash(_ headerValue: String) -> UInt32? {
+  internal static func parseCRC32CFromRunningHash(_ headerValue: String) -> UInt32? {
     let parts = headerValue.split(separator: ",")
     for part in parts {
       let trimmed = part.trimmingCharacters(in: .whitespaces)
@@ -815,21 +823,22 @@ extension HTTPClient {
     return nil
   }
 
-  fileprivate func handleObjectResponse(data: Data, response: HTTPURLResponse) throws
+  fileprivate static func handleObjectResponse(response: GoogleCloudGax._HTTPClientResponse)
+    async throws
     -> Object
   {
-    guard (200..<300).contains(response.statusCode) else {
+    let statusCode = Int(response.status.code)
+    let data = try await response.data()
+    guard (200..<300).contains(statusCode) else {
       let message = String(data: data, encoding: .utf8) ?? ""
       throw UploadError.unexpectedServerResponse(
-        statusCode: response.statusCode, message: message)
+        statusCode: statusCode, message: message)
     }
     let decoder = GoogleCloudWkt._ProtoJSONDecoder()
     let v1Object = try decoder.decode(ObjectV1Response.self, from: data)
     return v1Object.toObject()
   }
-}
 
-extension StorageClient {
   fileprivate static func computeSimpleChecksum(_ data: Data, options: ChecksumOptions) throws
     -> String?
   {
@@ -863,16 +872,5 @@ extension StorageClient {
     }
 
     return parts.isEmpty ? nil : parts.joined(separator: ", ")
-  }
-}
-
-extension URLRequest {
-  package mutating func applyCustomerSuppliedEncryptionHeaders(
-    _ key: CustomerEncryptionKeyOptions?
-  ) {
-    guard let key else { return }
-    setValue(key.algorithm.rawValue, forHTTPHeaderField: "x-goog-encryption-algorithm")
-    setValue(key.keyBase64, forHTTPHeaderField: "x-goog-encryption-key")
-    setValue(key.keyHashBase64, forHTTPHeaderField: "x-goog-encryption-key-sha256")
   }
 }

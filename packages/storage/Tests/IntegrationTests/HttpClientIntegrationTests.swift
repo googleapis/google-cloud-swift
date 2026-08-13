@@ -14,8 +14,8 @@
 
 import Foundation
 import GoogleCloudAuth
-import GoogleCloudGax
-@testable import GoogleCloudStorage
+@_spi(GoogleCloudInternal) import GoogleCloudGax
+@_spi(GoogleCloudInternal) @testable import GoogleCloudStorage
 import Testing
 
 #if IntegrationTests
@@ -27,10 +27,10 @@ import Testing
           let options = ClientOptions().with {
             $0.credentials = try? Credentials(configuration: .anonymous)
           }
-          let client = try HTTPClient(from: options, withDefaultEndpoint: "https://www.google.com")
-          let request = try await client.Request(path: "", query: [])
-          let (_, response) = try await client.data(for: request)
-          #expect(response.statusCode == 200)
+          let client = try _HTTPClient(from: options, withDefaultEndpoint: "https://www.google.com")
+          let request = try await client.newRequest(percentEncodedPath: "", query: [])
+          let response = try await request.execute()
+          #expect(response.status.code == 200)
         } catch {
           Issue.record("Request failed: \(error)")
         }

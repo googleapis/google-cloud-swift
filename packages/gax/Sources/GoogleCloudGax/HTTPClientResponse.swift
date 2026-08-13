@@ -24,14 +24,11 @@ import struct NIOCore.ByteBuffer
 /// The generated code uses this type directly. It exposes the methods we
 /// need, and nothing else.
 @_spi(GoogleCloudInternal) public struct _HTTPClientResponse {
-  // A default value for the maximum response size. Note that most gRPC client libraries limit
-  // response sizes to 4 MiB, including successful value responses. Setting a limit that is 8 times
-  // as large seems fine.
-  static let defaultMaximumResponseSize = 32 * 1024 * 1024
+  public static let defaultMaximumResponseSize = 32 * 1024 * 1024
 
   let response: AsyncHTTPClient.HTTPClientResponse
 
-  init(_ response: AsyncHTTPClient.HTTPClientResponse) {
+  public init(_ response: AsyncHTTPClient.HTTPClientResponse) {
     self.response = response
   }
 
@@ -43,16 +40,16 @@ import struct NIOCore.ByteBuffer
     self.response.headers
   }
 
-  public func data(upTo: Int) async throws -> Data {
+  public func data(upTo: Int = defaultMaximumResponseSize) async throws -> Data {
     let buffer = try await self.response.body.collect(upTo: upTo)
     return Data(buffer: buffer)
   }
 
-  func isError() -> Bool {
+  public func isError() -> Bool {
     !(200...300).contains(self.response.status.code)
   }
 
-  consuming func decodeError() async -> RequestError {
+  public consuming func decodeError() async -> RequestError {
     let data: Data
     do {
       let buffer = try await self.response.body.collect(upTo: Self.defaultMaximumResponseSize)
@@ -80,7 +77,7 @@ import struct NIOCore.ByteBuffer
       ))
   }
 
-  func decode<R>(_ type: R.Type) async throws -> Result<R, RequestError> where R: Decodable {
+  public func decode<R>(_ type: R.Type) async throws -> Result<R, RequestError> where R: Decodable {
     let buffer: NIOCore.ByteBuffer
     do {
       buffer = try await self.response.body.collect(upTo: Self.defaultMaximumResponseSize)

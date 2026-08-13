@@ -13,16 +13,23 @@
 // limitations under the License.
 
 import Foundation
-#if canImport(FoundationNetworking)
-  import FoundationNetworking
-#endif
 import GoogleCloudAuth
-import GoogleCloudGax
+@_spi(GoogleCloudInternal) import GoogleCloudGax
 import GoogleCloudWkt
-@testable import GoogleCloudStorage
+@_spi(GoogleCloudInternal) @testable import GoogleCloudStorage
 import Testing
 
 @Suite struct UploadMetadataTests {
+  private func makeClient(registry: MockRegistry) throws -> StorageClient {
+    let options = StorageClientOptions().with {
+      $0.client = .init().with {
+        $0.endpoint = registry.endpoint
+        $0.credentials = try! Credentials(configuration: .anonymous)
+      }
+    }
+    return try StorageClient(options, mock: registry)
+  }
+
   @Test func uploadMetadataEncodingAndDecoding() throws {
     let customTime = try GoogleCloudWkt.Timestamp(seconds: 1_700_000_000, nanos: 0)
     let aclEntry = ObjectAccessControl().with {
@@ -115,18 +122,7 @@ import Testing
         statusCode: 200, data: Data(responseJson.utf8), headers: nil),
       for: simpleUploadUrl)
 
-    let config = URLSessionConfiguration.ephemeral
-    config.protocolClasses = [MockURLProtocol.self]
-    let session = URLSession(configuration: config)
-
-    let options = StorageClientOptions().with {
-      $0.client = .init().with {
-        $0.endpoint = registry.endpoint
-        $0.credentials = try! Credentials(configuration: .anonymous)
-      }
-    }
-
-    let client = try StorageClient(options, testSession: session)
+    let client = try makeClient(registry: registry)
     let uploadMetadata = UploadMetadata().with {
       $0.contentType = "text/plain"
       $0.contentEncoding = "gzip"
@@ -194,18 +190,7 @@ import Testing
         statusCode: 200, data: Data(finalObjectJson.utf8), headers: nil),
       for: sessionUrl)
 
-    let config = URLSessionConfiguration.ephemeral
-    config.protocolClasses = [MockURLProtocol.self]
-    let session = URLSession(configuration: config)
-
-    let clientOptions = StorageClientOptions().with {
-      $0.client = .init().with {
-        $0.endpoint = registry.endpoint
-        $0.credentials = try! Credentials(configuration: .anonymous)
-      }
-    }
-
-    let client = try StorageClient(clientOptions, testSession: session)
+    let client = try makeClient(registry: registry)
     let metadata = UploadMetadata().with {
       $0.contentType = "image/png"
       $0.customMetadata = ["resolution": "1080p"]
@@ -380,18 +365,7 @@ import Testing
         statusCode: 200, data: Data(responseJson.utf8), headers: nil),
       for: simpleUploadUrl)
 
-    let config = URLSessionConfiguration.ephemeral
-    config.protocolClasses = [MockURLProtocol.self]
-    let session = URLSession(configuration: config)
-
-    let clientOptions = StorageClientOptions().with {
-      $0.client = .init().with {
-        $0.endpoint = registry.endpoint
-        $0.credentials = try! Credentials(configuration: .anonymous)
-      }
-    }
-
-    let client = try StorageClient(clientOptions, testSession: session)
+    let client = try makeClient(registry: registry)
     let uploadOptions = UploadOptions().with {
       $0.metadata = UploadMetadata().with {
         $0.contexts = ObjectContexts(customValues: [
@@ -458,18 +432,7 @@ import Testing
         statusCode: 200, data: Data(finalObjectJson.utf8), headers: nil),
       for: sessionUrl)
 
-    let config = URLSessionConfiguration.ephemeral
-    config.protocolClasses = [MockURLProtocol.self]
-    let session = URLSession(configuration: config)
-
-    let clientOptions = StorageClientOptions().with {
-      $0.client = .init().with {
-        $0.endpoint = registry.endpoint
-        $0.credentials = try! Credentials(configuration: .anonymous)
-      }
-    }
-
-    let client = try StorageClient(clientOptions, testSession: session)
+    let client = try makeClient(registry: registry)
     let uploadOptions = UploadOptions().with {
       $0.metadata = UploadMetadata().with {
         $0.contexts = ObjectContexts(customValues: ["batch_id": "2026_Q3"])

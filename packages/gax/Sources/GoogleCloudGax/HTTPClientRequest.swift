@@ -29,11 +29,9 @@ import struct Logging.Logger
   var method: NIOHTTP1.HTTPMethod = .GET
   var body: Data? = nil
 
-  // If the application and retry policy does not set a limit for each attempt we use this. The
-  // expectation is that any RPC that takes this long or longer should be an LRO.
-  static let defaultTimeout: Duration = .seconds(60)
+  public static let defaultTimeout: Duration = .seconds(60)
 
-  init(_ client: HTTPClientProtocol, url: URLComponents) {
+  init(_ client: any HTTPClientProtocol, url: URLComponents) {
     self.client = client
     self.components = url
     self.headers = NIOHTTP1.HTTPHeaders()
@@ -47,12 +45,20 @@ import struct Logging.Logger
     self.headers.add(name: name, value: value)
   }
 
-  public mutating func setBody(data: Data, ofContentType: String) {
-    self.body = data
-    self.headers.add(name: "Content-Type", value: ofContentType)
+  public mutating func setHeader(name: String, value: String) {
+    self.headers.replaceOrAdd(name: name, value: value)
   }
 
-  consuming func execute(timeout: Duration) async throws
+  public mutating func setBody(data: Data) {
+    self.body = data
+  }
+
+  public mutating func setBody(data: Data, ofContentType: String) {
+    self.body = data
+    self.headers.replaceOrAdd(name: "Content-Type", value: ofContentType)
+  }
+
+  public consuming func execute(timeout: Duration = defaultTimeout) async throws
     -> _HTTPClientResponse
   {
     guard let url = self.components.url else {

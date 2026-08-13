@@ -16,9 +16,9 @@ import Synchronization
 import Testing
 import struct DequeModule.Deque
 import GoogleCloudAuth
-@testable import GoogleCloudGax
+@_spi(GoogleCloudInternal) @testable import GoogleCloudGax
 
-final class MockCredentials: GoogleCloudGax.CredentialsProtocol {
+final class MockCredentials: GoogleCloudGax.CredentialsProtocol, @unchecked Sendable {
   typealias Handler = @Sendable () async throws -> GoogleCloudAuth.AuthHeaders
   enum MockError: Error, Sendable {
     case empty
