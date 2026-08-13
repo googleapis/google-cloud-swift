@@ -45,6 +45,7 @@ let package = Package(
       dependencies: [
         .product(name: "GoogleCloudAuth", package: "auth"),
         .product(name: "GoogleCloudGax", package: "gax"),
+        .product(name: "GoogleCloudGaxGRPC", package: "gax"),
         .product(name: "GoogleCloudWkt", package: "wkt"),
         .product(name: "GoogleCloudWktConvert", package: "wkt"),
         .product(name: "GoogleLongRunning", package: "google-longrunning"),

@@ -15,6 +15,7 @@
 import Foundation
 import Testing
 @_spi(GoogleCloudInternal) @testable import GoogleCloudGax
+@_spi(GoogleCloudInternal) @testable import GoogleCloudGaxGRPC
 import GoogleCloudAuth
 
 @Suite struct GRPCClientTests {

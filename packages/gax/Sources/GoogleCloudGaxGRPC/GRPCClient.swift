@@ -15,6 +15,7 @@
 import Foundation
 import GRPC
 import GoogleCloudAuth
+@_spi(GoogleCloudInternal) import GoogleCloudGax
 import NIO
 import SwiftProtobuf
 

@@ -22,7 +22,8 @@ let package = Package(
     .macOS(.v15)
   ],
   products: [
-    .library(name: "GoogleCloudGax", targets: ["GoogleCloudGax"])
+    .library(name: "GoogleCloudGax", targets: ["GoogleCloudGax"]),
+    .library(name: "GoogleCloudGaxGRPC", targets: ["GoogleCloudGaxGRPC"]),
   ],
   traits: [
     "IntegrationTests"
@@ -44,10 +45,18 @@ let package = Package(
         .product(name: "AsyncHTTPClient", package: "async-http-client"),
         .product(name: "GoogleCloudAuth", package: "auth"),
         .product(name: "GoogleRpc", package: "google-rpc"),
-        .product(name: "GRPC", package: "grpc-swift"),
         .product(name: "Logging", package: "swift-log"),
         .product(name: "NIOCore", package: "swift-nio"),
         .product(name: "NIOFoundationCompat", package: "swift-nio"),
+      ]
+    ),
+    .target(
+      name: "GoogleCloudGaxGRPC",
+      dependencies: [
+        "GoogleCloudGax",
+        .product(name: "GoogleCloudAuth", package: "auth"),
+        .product(name: "GRPC", package: "grpc-swift"),
+        .product(name: "NIOCore", package: "swift-nio"),
         .product(name: "SwiftProtobuf", package: "swift-protobuf"),
       ]
     ),
@@ -55,6 +64,7 @@ let package = Package(
       name: "GoogleCloudGaxTests",
       dependencies: [
         "GoogleCloudGax",
+        "GoogleCloudGaxGRPC",
         .product(name: "DequeModule", package: "swift-collections"),
         .product(name: "GoogleRpc", package: "google-rpc"),
       ],
