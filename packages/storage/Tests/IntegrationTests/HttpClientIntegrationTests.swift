@@ -15,6 +15,7 @@
 import Foundation
 import GoogleCloudAuth
 import GoogleCloudGax
+@testable import GoogleCloudStorage
 import Testing
 
 #if IntegrationTests
