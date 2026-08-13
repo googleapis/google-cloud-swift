@@ -48,7 +48,7 @@
         query.append(contentsOf: try encoder.encode(request.flagScope, prefix: "flagScope"))
         var req = try await self.inner.newRequest(path: path, query: query)
         req.setMethod(.GET)
-        req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
+        req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
         return try await req.rpc(
           GoogleCloudSqlV1.FlagsListResponse.self, timeout: options.attemptTimeout
         ).get()

@@ -55,7 +55,7 @@ extension Clients {
       query.append(contentsOf: try encoder.encode(request.orderBy, prefix: "orderBy"))
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.GET)
-      req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
+      req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudNetworkServicesV1.ListLbTrafficExtensionsResponse.self,
         timeout: options.attemptTimeout
@@ -76,7 +76,7 @@ extension Clients {
       ]
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.GET)
-      req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
+      req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudNetworkServicesV1.LbTrafficExtension.self, timeout: options.attemptTimeout
       ).get()
@@ -101,7 +101,7 @@ extension Clients {
       query.append(contentsOf: try encoder.encode(request.requestId, prefix: "requestId"))
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.POST)
-      req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
+      req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.lbTrafficExtension {
         req.setBody(data: try JSONEncoder().encode(body), ofContentType: "application/json")
       }
@@ -130,7 +130,7 @@ extension Clients {
       query.append(contentsOf: try encoder.encode(request.requestId, prefix: "requestId"))
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.PATCH)
-      req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
+      req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.lbTrafficExtension {
         req.setBody(data: try JSONEncoder().encode(body), ofContentType: "application/json")
       }
@@ -155,7 +155,7 @@ extension Clients {
       query.append(contentsOf: try encoder.encode(request.requestId, prefix: "requestId"))
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.DELETE)
-      req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
+      req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
       ).get()
@@ -180,7 +180,7 @@ extension Clients {
       query.append(contentsOf: try encoder.encode(request.orderBy, prefix: "orderBy"))
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.GET)
-      req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
+      req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudNetworkServicesV1.ListLbRouteExtensionsResponse.self,
         timeout: options.attemptTimeout
@@ -201,7 +201,7 @@ extension Clients {
       ]
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.GET)
-      req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
+      req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudNetworkServicesV1.LbRouteExtension.self, timeout: options.attemptTimeout
       ).get()
@@ -225,7 +225,7 @@ extension Clients {
       query.append(contentsOf: try encoder.encode(request.requestId, prefix: "requestId"))
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.POST)
-      req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
+      req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.lbRouteExtension {
         req.setBody(data: try JSONEncoder().encode(body), ofContentType: "application/json")
       }
@@ -253,7 +253,7 @@ extension Clients {
       query.append(contentsOf: try encoder.encode(request.requestId, prefix: "requestId"))
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.PATCH)
-      req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
+      req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.lbRouteExtension {
         req.setBody(data: try JSONEncoder().encode(body), ofContentType: "application/json")
       }
@@ -278,7 +278,7 @@ extension Clients {
       query.append(contentsOf: try encoder.encode(request.requestId, prefix: "requestId"))
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.DELETE)
-      req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
+      req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
       ).get()
@@ -303,7 +303,7 @@ extension Clients {
       query.append(contentsOf: try encoder.encode(request.orderBy, prefix: "orderBy"))
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.GET)
-      req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
+      req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudNetworkServicesV1.ListLbEdgeExtensionsResponse.self,
         timeout: options.attemptTimeout
@@ -324,7 +324,7 @@ extension Clients {
       ]
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.GET)
-      req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
+      req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudNetworkServicesV1.LbEdgeExtension.self, timeout: options.attemptTimeout
       ).get()
@@ -348,7 +348,7 @@ extension Clients {
       query.append(contentsOf: try encoder.encode(request.requestId, prefix: "requestId"))
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.POST)
-      req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
+      req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.lbEdgeExtension {
         req.setBody(data: try JSONEncoder().encode(body), ofContentType: "application/json")
       }
@@ -376,7 +376,7 @@ extension Clients {
       query.append(contentsOf: try encoder.encode(request.requestId, prefix: "requestId"))
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.PATCH)
-      req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
+      req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.lbEdgeExtension {
         req.setBody(data: try JSONEncoder().encode(body), ofContentType: "application/json")
       }
@@ -401,7 +401,7 @@ extension Clients {
       query.append(contentsOf: try encoder.encode(request.requestId, prefix: "requestId"))
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.DELETE)
-      req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
+      req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
       ).get()
@@ -426,7 +426,7 @@ extension Clients {
       query.append(contentsOf: try encoder.encode(request.orderBy, prefix: "orderBy"))
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.GET)
-      req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
+      req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudNetworkServicesV1.ListAuthzExtensionsResponse.self,
         timeout: options.attemptTimeout
@@ -447,7 +447,7 @@ extension Clients {
       ]
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.GET)
-      req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
+      req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudNetworkServicesV1.AuthzExtension.self, timeout: options.attemptTimeout
       ).get()
@@ -471,7 +471,7 @@ extension Clients {
       query.append(contentsOf: try encoder.encode(request.requestId, prefix: "requestId"))
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.POST)
-      req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
+      req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.authzExtension {
         req.setBody(data: try JSONEncoder().encode(body), ofContentType: "application/json")
       }
@@ -499,7 +499,7 @@ extension Clients {
       query.append(contentsOf: try encoder.encode(request.requestId, prefix: "requestId"))
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.PATCH)
-      req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
+      req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.authzExtension {
         req.setBody(data: try JSONEncoder().encode(body), ofContentType: "application/json")
       }
@@ -524,7 +524,7 @@ extension Clients {
       query.append(contentsOf: try encoder.encode(request.requestId, prefix: "requestId"))
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.DELETE)
-      req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
+      req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
       ).get()
@@ -548,7 +548,7 @@ extension Clients {
       query.append(contentsOf: try encoder.encode(request.pageToken, prefix: "pageToken"))
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.GET)
-      req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
+      req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudLocation.ListLocationsResponse.self, timeout: options.attemptTimeout
       ).get()
@@ -568,7 +568,7 @@ extension Clients {
       ]
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.GET)
-      req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
+      req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudLocation.Location.self, timeout: options.attemptTimeout
       ).get()
@@ -588,7 +588,7 @@ extension Clients {
       ]
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.POST)
-      req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
+      req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
       return try await req.rpc(
         GoogleIAMV1.Policy.self, timeout: options.attemptTimeout
@@ -611,7 +611,7 @@ extension Clients {
       query.append(contentsOf: try encoder.encode(request.options, prefix: "options"))
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.GET)
-      req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
+      req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleIAMV1.Policy.self, timeout: options.attemptTimeout
       ).get()
@@ -631,7 +631,7 @@ extension Clients {
       ]
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.POST)
-      req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
+      req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
       return try await req.rpc(
         GoogleIAMV1.TestIamPermissionsResponse.self, timeout: options.attemptTimeout
@@ -659,7 +659,7 @@ extension Clients {
       )
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.GET)
-      req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
+      req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleLongRunning.ListOperationsResponse.self, timeout: options.attemptTimeout
       ).get()
@@ -679,7 +679,7 @@ extension Clients {
       ]
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.GET)
-      req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
+      req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
       ).get()
@@ -699,7 +699,7 @@ extension Clients {
       ]
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.DELETE)
-      req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
+      req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       _ = try await req.rpc(
         GoogleCloudWkt.Empty.self, timeout: options.attemptTimeout
       ).get()
@@ -719,7 +719,7 @@ extension Clients {
       ]
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.POST)
-      req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
+      req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
       _ = try await req.rpc(
         GoogleCloudWkt.Empty.self, timeout: options.attemptTimeout

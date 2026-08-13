@@ -61,7 +61,7 @@
             request.serviceProjectNumber, prefix: "serviceProjectNumber"))
         var req = try await self.inner.newRequest(path: path, query: query)
         req.setMethod(.GET)
-        req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
+        req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
         return try await req.rpc(
           GoogleCloudComputeV1.StoragePoolTypeAggregatedList.self, timeout: options.attemptTimeout
         ).get()
@@ -90,7 +90,7 @@
         ]
         var req = try await self.inner.newRequest(path: path, query: query)
         req.setMethod(.GET)
-        req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
+        req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
         return try await req.rpc(
           GoogleCloudComputeV1.StoragePoolType.self, timeout: options.attemptTimeout
         ).get()
@@ -121,7 +121,7 @@
             request.returnPartialSuccess, prefix: "returnPartialSuccess"))
         var req = try await self.inner.newRequest(path: path, query: query)
         req.setMethod(.GET)
-        req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
+        req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
         return try await req.rpc(
           GoogleCloudComputeV1.StoragePoolTypeList.self, timeout: options.attemptTimeout
         ).get()

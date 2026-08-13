@@ -16,6 +16,7 @@
 
 import Foundation
 import GoogleCloudWkt
+import GoogleIAMV1
 import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
@@ -50,6 +51,70 @@ extension Clients {
       request: GetStorageLayoutRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> StorageLayout
 
+    func createManagedFolder(
+      request: CreateManagedFolderRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> ManagedFolder
+
+    func deleteManagedFolder(
+      request: DeleteManagedFolderRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws
+
+    func getManagedFolder(
+      request: GetManagedFolderRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> ManagedFolder
+
+    func listManagedFolders(
+      request: ListManagedFoldersRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> ListManagedFoldersResponse
+
+    func updateManagedFolder(
+      request: UpdateManagedFolderRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> ManagedFolder
+
+    func createAnywhereCache(
+      request: CreateAnywhereCacheRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    func updateAnywhereCache(
+      request: UpdateAnywhereCacheRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    func disableAnywhereCache(
+      request: DisableAnywhereCacheRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> AnywhereCache
+
+    func pauseAnywhereCache(
+      request: PauseAnywhereCacheRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> AnywhereCache
+
+    func resumeAnywhereCache(
+      request: ResumeAnywhereCacheRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> AnywhereCache
+
+    func getAnywhereCache(
+      request: GetAnywhereCacheRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> AnywhereCache
+
+    func listAnywhereCaches(
+      request: ListAnywhereCachesRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> ListAnywhereCachesResponse
+
+    func createRapidCache(
+      request: CreateRapidCacheRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    func updateRapidCache(
+      request: UpdateRapidCacheRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    func getRapidCache(
+      request: GetRapidCacheRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> RapidCache
+
+    func listRapidCaches(
+      request: ListRapidCachesRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> ListRapidCachesResponse
+
     func getProjectIntelligenceConfig(
       request: GetProjectIntelligenceConfigRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> IntelligenceConfig
@@ -73,6 +138,18 @@ extension Clients {
     func updateOrganizationIntelligenceConfig(
       request: UpdateOrganizationIntelligenceConfigRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> IntelligenceConfig
+
+    func getIamPolicy(
+      request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleIAMV1.Policy
+
+    func setIamPolicy(
+      request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleIAMV1.Policy
+
+    func testIamPermissions(
+      request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleIAMV1.TestIamPermissionsResponse
 
     func getIntelligenceFinding(
       request: GetIntelligenceFindingRequest, options: GoogleCloudGax.RequestOptions

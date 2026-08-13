@@ -57,7 +57,7 @@ extension Clients {
         contentsOf: try encoder.encode(request.clientOperationId, prefix: "clientOperationId"))
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.GET)
-      req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
+      req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         Operation.self, timeout: options.attemptTimeout
       ).get()
@@ -85,7 +85,7 @@ extension Clients {
       query.append(contentsOf: try encoder.encode(request.sortBy, prefix: "sortBy"))
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.GET)
-      req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
+      req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         ManagedZoneOperationsListResponse.self, timeout: options.attemptTimeout
       ).get()

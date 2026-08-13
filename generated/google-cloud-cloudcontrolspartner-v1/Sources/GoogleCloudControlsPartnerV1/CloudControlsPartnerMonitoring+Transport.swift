@@ -52,7 +52,7 @@ extension Clients {
       query.append(contentsOf: try encoder.encode(request.interval, prefix: "interval"))
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.GET)
-      req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
+      req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudControlsPartnerV1.ListViolationsResponse.self, timeout: options.attemptTimeout
       ).get()
@@ -72,7 +72,7 @@ extension Clients {
       ]
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.GET)
-      req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
+      req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudControlsPartnerV1.Violation.self, timeout: options.attemptTimeout
       ).get()

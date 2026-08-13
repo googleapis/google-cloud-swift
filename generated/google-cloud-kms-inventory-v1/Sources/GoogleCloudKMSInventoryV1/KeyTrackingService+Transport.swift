@@ -48,7 +48,7 @@ extension Clients {
       query.append(contentsOf: try encoder.encode(request.fallbackScope, prefix: "fallbackScope"))
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.GET)
-      req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
+      req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudKMSInventoryV1.ProtectedResourcesSummary.self, timeout: options.attemptTimeout
       ).get()
@@ -73,7 +73,7 @@ extension Clients {
       query.append(contentsOf: try encoder.encode(request.resourceTypes, prefix: "resourceTypes"))
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.GET)
-      req.addHeader(name: "X-Goog-Api-Client", value: Clients.clientHeader)
+      req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudKMSInventoryV1.SearchProtectedResourcesResponse.self,
         timeout: options.attemptTimeout
