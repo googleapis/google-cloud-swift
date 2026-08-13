@@ -24,6 +24,9 @@ import struct NIOCore.ByteBuffer
 /// The generated code uses this type directly. It exposes the methods we
 /// need, and nothing else.
 @_spi(GoogleCloudInternal) public struct _HTTPClientResponse {
+  // A default value for the maximum response size. Note that most gRPC client libraries limit
+  // response sizes to 4 MiB, including successful value responses. Setting a limit that is 8 times
+  // as large seems fine.
   public static let defaultMaximumResponseSize = 32 * 1024 * 1024
 
   let response: AsyncHTTPClient.HTTPClientResponse

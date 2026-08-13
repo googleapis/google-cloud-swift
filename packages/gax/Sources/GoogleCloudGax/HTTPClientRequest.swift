@@ -23,12 +23,14 @@ import struct Logging.Logger
 /// The generated code uses this type directly. It exposes the methods we
 /// need, and nothing else.
 @_spi(GoogleCloudInternal) public struct _HTTPClientRequest {
-  let client: any HTTPClientProtocol
+  let client: any _HTTPClientProtocol
   var components: URLComponents
   var headers: NIOHTTP1.HTTPHeaders
   var method: NIOHTTP1.HTTPMethod = .GET
   var body: Data? = nil
 
+  // If the application and retry policy does not set a limit for each attempt we use this. The
+  // expectation is that any RPC that takes this long or longer should be an LRO.
   public static let defaultTimeout: Duration = .seconds(60)
 
   init(_ client: any _HTTPClientProtocol, url: URLComponents) {

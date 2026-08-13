@@ -17,6 +17,8 @@ import struct AsyncHTTPClient.HTTPClientResponse
 import struct Logging.Logger
 
 /// A protocol to mock `AsyncHTTPClient.HTTPClient`.
+///
+/// The tests for `GoogleCloudGax.HttpClient`
 @_spi(GoogleCloudInternal) public protocol _HTTPClientProtocol: Sendable {
   func execute(request: HTTPClientRequest, timeout: Duration) async throws -> HTTPClientResponse
 }
