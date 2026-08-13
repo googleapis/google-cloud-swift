@@ -31,7 +31,7 @@ import struct Logging.Logger
 
   public static let defaultTimeout: Duration = .seconds(60)
 
-  init(_ client: any HTTPClientProtocol, url: URLComponents) {
+  init(_ client: any _HTTPClientProtocol, url: URLComponents) {
     self.client = client
     self.components = url
     self.headers = NIOHTTP1.HTTPHeaders()

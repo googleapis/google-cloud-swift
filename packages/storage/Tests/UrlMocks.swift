@@ -138,7 +138,7 @@ func expectUploadError(
 }
 
 /// A thread-safe registry to store mocks for a specific test run
-final class MockRegistry: HTTPClientProtocol, @unchecked Sendable {
+final class MockRegistry: _HTTPClientProtocol, @unchecked Sendable {
   let id: String
   private let lock = NSLock()
   private var mocks: [String: [MockResponse]] = [:]

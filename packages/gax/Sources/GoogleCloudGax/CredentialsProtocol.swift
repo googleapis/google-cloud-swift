@@ -19,8 +19,8 @@ import struct GoogleCloudAuth.Credentials
 /// Dependency injection for `_HTTPClient`.
 ///
 /// Allow testing `_HTTPClient` with mock credentials.
-public protocol CredentialsProtocol: Sendable {
+@_spi(GoogleCloudInternal) public protocol _CredentialsProtocol: Sendable {
   func headers() async throws -> GoogleCloudAuth.AuthHeaders
 }
 
-extension GoogleCloudAuth.Credentials: CredentialsProtocol {}
+@_spi(GoogleCloudInternal) extension GoogleCloudAuth.Credentials: _CredentialsProtocol {}

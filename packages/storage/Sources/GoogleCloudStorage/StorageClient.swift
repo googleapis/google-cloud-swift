@@ -35,7 +35,7 @@ public final class StorageClient: StorageClientProtocol {
 
   @_spi(GoogleCloudInternal) public init(
     _ options: StorageClientOptions = .init(),
-    mock: any HTTPClientProtocol
+    mock: any _HTTPClientProtocol
   ) throws {
     let endpoint = options.client.endpoint ?? Self.defaultEndpoint
     self.options = options

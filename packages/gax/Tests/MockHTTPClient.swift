@@ -16,8 +16,8 @@ import struct AsyncHTTPClient.HTTPClientRequest
 import struct AsyncHTTPClient.HTTPClientResponse
 @_spi(GoogleCloudInternal) @testable import GoogleCloudGax
 
-/// A mock implementation of `HTTPClientProtocol`.
-final class MockHTTPClient: HTTPClientProtocol, Sendable {
+/// A mock implementation of `_HTTPClientProtocol`.
+final class MockHTTPClient: _HTTPClientProtocol, Sendable {
   typealias Handler =
     @Sendable (HTTPClientRequest, Duration) async throws -> HTTPClientResponse
   private let handler: Handler

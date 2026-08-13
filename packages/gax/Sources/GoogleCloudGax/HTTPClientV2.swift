@@ -22,9 +22,9 @@ import struct Logging.Logger
 /// Implements a HTTP-only client for the Swift SDK client libraries.
 @_spi(GoogleCloudInternal) public struct _HTTPClient: Sendable {
   let baseURL: URLComponents
-  let credentials: any CredentialsProtocol
+  let credentials: any _CredentialsProtocol
   let logger: Logger?
-  let inner: any HTTPClientProtocol
+  let inner: any _HTTPClientProtocol
 
   // Creates a new client.
   public init(from: ClientOptions, withDefaultEndpoint: String) throws {
@@ -37,8 +37,8 @@ import struct Logging.Logger
 
   // Creates a new testing client.
   @_spi(GoogleCloudInternal) public init(
-    _ inner: any HTTPClientProtocol, endpoint: String,
-    credentials: (any CredentialsProtocol)? = nil,
+    _ inner: any _HTTPClientProtocol, endpoint: String,
+    credentials: (any _CredentialsProtocol)? = nil,
     logger: Logging.Logger? = nil,
   ) throws {
     self.baseURL = try Self.validateEndpoint(endpoint)
