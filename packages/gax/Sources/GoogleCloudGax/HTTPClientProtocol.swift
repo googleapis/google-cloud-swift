@@ -22,5 +22,3 @@ import struct Logging.Logger
 @_spi(GoogleCloudInternal) public protocol _HTTPClientProtocol: Sendable {
   func execute(request: HTTPClientRequest, timeout: Duration) async throws -> HTTPClientResponse
 }
-
-typealias HTTPClientProtocol = _HTTPClientProtocol
