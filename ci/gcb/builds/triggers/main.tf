@@ -105,7 +105,8 @@ resource "google_cloudbuild_trigger" "pull-request" {
   }
 
   substitutions = {
-    _SCRIPT = lookup(each.value, "script", "")
+    _SCRIPT  = lookup(each.value, "script", "")
+    _POOL_ID = lookup(each.value, "pool_id", null)
   }
 }
 
@@ -115,7 +116,7 @@ resource "google_cloudbuild_trigger" "post-merge" {
     for k, v in local.pm_builds : k => {
       config         = v.config,
       script         = try(v.script, "")
-      pool_id        = try(v.pool_id, "")
+      pool_id        = try(v.pool_id, null)
       flags          = try(v.flags, "")
       swift_version  = try(v.swift_version, null)
       included_files = try(v.included_files, [])
