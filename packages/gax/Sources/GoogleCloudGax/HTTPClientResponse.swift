@@ -27,7 +27,7 @@ import struct NIOCore.ByteBuffer
   // A default value for the maximum response size. Note that most gRPC client libraries limit
   // response sizes to 4 MiB, including successful value responses. Setting a limit that is 8 times
   // as large seems fine.
-  public static let defaultMaximumResponseSize = 32 * 1024 * 1024
+  static let defaultMaximumResponseSize = 32 * 1024 * 1024
 
   let response: AsyncHTTPClient.HTTPClientResponse
 
@@ -43,9 +43,13 @@ import struct NIOCore.ByteBuffer
     self.response.headers
   }
 
-  public func data(upTo: Int = defaultMaximumResponseSize) async throws -> Data {
+  public func data(upTo: Int) async throws -> Data {
     let buffer = try await self.response.body.collect(upTo: upTo)
     return Data(buffer: buffer)
+  }
+
+  public func data() async throws -> Data {
+    try await data(upTo: Self.defaultMaximumResponseSize)
   }
 
   public func isError() -> Bool {

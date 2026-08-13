@@ -31,7 +31,7 @@ import struct Logging.Logger
 
   // If the application and retry policy does not set a limit for each attempt we use this. The
   // expectation is that any RPC that takes this long or longer should be an LRO.
-  public static let defaultTimeout: Duration = .seconds(60)
+  static let defaultTimeout: Duration = .seconds(60)
 
   init(_ client: any _HTTPClientProtocol, url: URLComponents) {
     self.client = client
@@ -60,7 +60,7 @@ import struct Logging.Logger
     self.headers.replaceOrAdd(name: "Content-Type", value: ofContentType)
   }
 
-  public consuming func execute(timeout: Duration = defaultTimeout) async throws
+  public consuming func execute(timeout: Duration) async throws
     -> _HTTPClientResponse
   {
     guard let url = self.components.url else {
@@ -74,6 +74,10 @@ import struct Logging.Logger
     }
     let response = try await self.client.execute(request: request, timeout: timeout)
     return _HTTPClientResponse(response)
+  }
+
+  public consuming func execute() async throws -> _HTTPClientResponse {
+    try await execute(timeout: Self.defaultTimeout)
   }
 
   public consuming func rpc<R>(_ type: R.Type, timeout: Duration? = nil) async
