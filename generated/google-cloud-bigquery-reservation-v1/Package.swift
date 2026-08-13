@@ -29,6 +29,7 @@ let package = Package(
     .package(path: "../../packages/wkt"),
     .package(path: "../../generated/google-iam-v1"),
     .package(path: "../../generated/google-rpc"),
+    .package(path: "../../generated/google-type"),
     .package(url: "https://github.com/apple/swift-log", from: "1.12.0"),
   ],
   targets: [
@@ -40,6 +41,7 @@ let package = Package(
         .product(name: "GoogleCloudWkt", package: "wkt"),
         .product(name: "GoogleIAMV1", package: "google-iam-v1"),
         .product(name: "GoogleRpc", package: "google-rpc"),
+        .product(name: "GoogleType", package: "google-type"),
         .product(name: "Logging", package: "swift-log"),
       ],
     )

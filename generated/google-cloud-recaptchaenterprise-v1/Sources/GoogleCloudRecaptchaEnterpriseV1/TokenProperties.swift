@@ -21,11 +21,9 @@ import GoogleCloudWkt
 public struct TokenProperties: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
-  /// Output only. Whether the provided user response token is valid. When valid
-  /// = false, the reason could be specified in invalid_reason or it could also
-  /// be due to a user failing to solve a challenge or a sitekey mismatch (i.e
-  /// the sitekey used to generate the token was different than the one specified
-  /// in the assessment).
+  /// Output only. Indicates whether the provided user response token is valid.
+  /// If `false`, the token is invalid, either because the user failed the
+  /// challenge or for a reason provided in the `invalid_reason` field.
   public var valid: Swift.Bool = Swift.Bool()
 
   /// Output only. Reason associated with the response when valid = false.
@@ -92,6 +90,11 @@ public struct TokenProperties: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     ///   - you set an action score threshold higher than 0.0
     ///   - you provided a non-empty `expected_action`
     case unexpectedAction
+    /// The key used to generate the token does not match the `site_key`.
+    case keyMismatch
+    /// The domain of the page on which the token was generated does not match
+    /// the `allowed_domains` configured in the `site_key`.
+    case domainMismatch
     /// Encodes an unknown integer value.
     ///
     /// The most common cause for an unknown values is for the service to send
@@ -122,6 +125,8 @@ public struct TokenProperties: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       case .missing: return 5
       case .browserError: return 6
       case .unexpectedAction: return 7
+      case .keyMismatch: return 8
+      case .domainMismatch: return 9
       case .unknownIntValue(let v): return v
       case .unknownStringValue: return nil
       }
@@ -140,6 +145,8 @@ public struct TokenProperties: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       case .missing: return "MISSING"
       case .browserError: return "BROWSER_ERROR"
       case .unexpectedAction: return "UNEXPECTED_ACTION"
+      case .keyMismatch: return "KEY_MISMATCH"
+      case .domainMismatch: return "DOMAIN_MISMATCH"
       case .unknownIntValue: return nil
       case .unknownStringValue(let v): return v
       }
@@ -158,6 +165,8 @@ public struct TokenProperties: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       case "MISSING": self = .missing
       case "BROWSER_ERROR": self = .browserError
       case "UNEXPECTED_ACTION": self = .unexpectedAction
+      case "KEY_MISMATCH": self = .keyMismatch
+      case "DOMAIN_MISMATCH": self = .domainMismatch
       default: self = .unknownStringValue(stringValue)
       }
     }
@@ -175,6 +184,8 @@ public struct TokenProperties: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       case 5: self = .missing
       case 6: self = .browserError
       case 7: self = .unexpectedAction
+      case 8: self = .keyMismatch
+      case 9: self = .domainMismatch
       default: self = .unknownIntValue(intValue)
       }
     }
@@ -208,6 +219,8 @@ public struct TokenProperties: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       case .missing: return try container.encode(5)
       case .browserError: return try container.encode(6)
       case .unexpectedAction: return try container.encode(7)
+      case .keyMismatch: return try container.encode(8)
+      case .domainMismatch: return try container.encode(9)
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

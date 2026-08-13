@@ -283,6 +283,11 @@ public struct AutonomousDatabaseProperties: Codable, Equatable, GoogleCloudWkt._
   /// Autonomous Database, in seconds.
   public var localAdgAutoFailoverMaxDataLossLimitDuration: Swift.Int32? = nil
 
+  /// Optional. Indicates if the Autonomous Database is a refreshable clone. This
+  /// field is used in update flow to connect / disconnect a refreshable clone
+  /// from its source database.
+  public var refreshableClone: Swift.Bool? = nil
+
   /// Initialize a new instance of `AutonomousDatabaseProperties`.
   public init() {}
 

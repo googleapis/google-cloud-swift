@@ -16,27 +16,25 @@
 
 import Foundation
 
-/// The different execution states of the Audit Manager service.
+/// Different execution states of the Audit Manager service.
 public enum OperationState: Codable, Equatable, Sendable {
-  /// Unspecified. Invalid state.
+  /// Default value. This value is unused.
   case unspecified
-  /// Audit report generation process has not started.
+  /// Audit generation process hasn't started.
   case notStarted
-  /// Audit Manager is currently evaluating the workloads against specific
-  /// standard.
+  /// Evaluation process is in progress.
   case evaluationInProgress
-  /// Audit Manager has completed Evaluation for the workload.
+  /// Evaluation process is completed.
   case evaluationDone
-  /// Audit Manager is creating audit report from the evaluated data.
+  /// Report generation process is in progress.
   case evidenceReportGenerationInProgress
-  /// Audit Manager has completed generation of the audit report.
+  /// Report generation process is completed.
   case evidenceReportGenerationDone
-  /// Audit Manager is uploading the audit report and evidences to the customer
-  /// provided destination.
+  /// The audit report and evidence are being uploaded to your bucket.
   case evidenceUploadInProgress
-  /// Audit report generation process is completed.
+  /// The audit report and evidence are uploaded to your bucket.
   case done
-  /// Audit report generation process has failed.
+  /// Audit report generation process failed.
   case failed
   /// Encodes an unknown integer value.
   ///

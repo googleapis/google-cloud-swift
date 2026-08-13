@@ -716,6 +716,29 @@ extension Clients {
       return try ListIntelligenceFindingRevisionsResponse(proto: protoResponse)
     }
 
+    public func viewObjectFullContext(
+      request: ViewObjectFullContextRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> ObjectFullContext {
+      var routingParams: [String] = []
+      if let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty {
+        let encoded =
+          pathVariable0.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)
+          ?? pathVariable0
+        routingParams.append("name=\(encoded)")
+      }
+
+      let protoRequest = try request.toProto()
+      let protoResponse: StorageControlProtos.Google_Storage_Control_V2_ObjectFullContext =
+        try await self.inner.execute(
+          path: "/google.storage.control.v2.StorageControl/ViewObjectFullContext",
+          request: protoRequest,
+          options: options,
+          clientHeader: Clients.clientHeader,
+          routingParams: routingParams
+        )
+      return try ObjectFullContext(proto: protoResponse)
+    }
+
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {

@@ -17,14 +17,19 @@
 import Foundation
 import GoogleCloudWkt
 
-/// The regulatory family of the control.
+/// Regulatory family of the control.
 public struct ControlFamily: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
-  /// The ID of the regulatory control family.
+  /// ID of the regulatory control family. To find the list of supported
+  /// control families, use the
+  /// [ListControls][google.cloud.auditmanager.v1.AuditManager.ListControls]
+  /// method and review the `control_family` field in the response.
+  ///
+  /// [google.cloud.auditmanager.v1.AuditManager.ListControls]: <doc:AuditManagerClient/listControls(request:)>
   public var familyId: Swift.String = Swift.String()
 
-  /// The display name of the regulatory control family.
+  /// Display name of the regulatory control family.
   public var displayName: Swift.String = Swift.String()
 
   /// Initialize a new instance of `ControlFamily`.

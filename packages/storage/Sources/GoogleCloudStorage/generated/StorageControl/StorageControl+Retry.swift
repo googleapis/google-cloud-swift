@@ -598,6 +598,21 @@ extension Clients {
         })
     }
 
+    public func viewObjectFullContext(
+      request: ViewObjectFullContextRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> ObjectFullContext {
+      try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: true,
+        action: {
+          (r: ViewObjectFullContextRequest, o: GoogleCloudGax.RequestOptions) async throws
+            -> ObjectFullContext
+          in
+          return try await self.inner.viewObjectFullContext(request: r, options: o)
+        })
+    }
+
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {

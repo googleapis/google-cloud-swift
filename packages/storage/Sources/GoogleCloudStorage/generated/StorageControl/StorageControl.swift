@@ -857,6 +857,25 @@ public class StorageControlClient: Clients.StorageControlProtocol {
     return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
+  /// Retrieves the full content of an object context, including its key, value,
+  /// and any associated extended data for a given context key.
+  ///
+  /// Object contexts can optionally contain extended data. If an object context
+  /// contains extended data, the metadata payload structure will contain only
+  /// its type URL. To retrieve the full extended data, call this method.
+  ///
+  /// Returns the complete representation of the context as an
+  /// [`ObjectFullContext`][google.storage.control.v2.ObjectFullContext].
+  ///
+  /// [google.storage.control.v2.ObjectFullContext]: <doc:ObjectFullContext>
+  ///
+  /// @Snippet(path: "StorageControl_ViewObjectFullContext")
+  public func viewObjectFullContext(
+    request: ViewObjectFullContextRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> ObjectFullContext {
+    try await self.inner.viewObjectFullContext(request: request, options: options)
+  }
+
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
@@ -1265,6 +1284,23 @@ extension Clients {
       parent: Swift.String,
     ) throws -> any AsyncSequence<IntelligenceFindingRevision, Swift.Error>
 
+    /// See `StorageControlClient.viewObjectFullContext`.
+    func viewObjectFullContext(request: ViewObjectFullContextRequest) async throws
+      -> ObjectFullContext
+
+    /// See `StorageControlClient.viewObjectFullContext`.
+    func viewObjectFullContext(
+      name: Swift.String,
+      contextKey: Swift.String,
+    ) async throws -> ObjectFullContext
+
+    /// See `StorageControlClient.viewObjectFullContext`.
+    func viewObjectFullContext(
+      name: Swift.String,
+      generation: Swift.Int64,
+      contextKey: Swift.String,
+    ) async throws -> ObjectFullContext
+
     /// See `StorageControlClient.createFolder`.
     func createFolder(
       request: CreateFolderRequest, options: GoogleCloudGax.RequestOptions
@@ -1514,6 +1550,11 @@ extension Clients {
     func listIntelligenceFindingRevisions(
       byItem: ListIntelligenceFindingRevisionsRequest, options: GoogleCloudGax.RequestOptions
     ) throws -> any AsyncSequence<IntelligenceFindingRevision, Swift.Error>
+
+    /// See `StorageControlClient.viewObjectFullContext`.
+    func viewObjectFullContext(
+      request: ViewObjectFullContextRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> ObjectFullContext
   }
 }
 
@@ -2502,6 +2543,42 @@ extension Clients.StorageControlProtocol {
       $0.parent = parent
     }
     return try self.listIntelligenceFindingRevisions(byItem: request)
+  }
+
+  public func viewObjectFullContext(request: ViewObjectFullContextRequest) async throws
+    -> ObjectFullContext
+  {
+    try await self.viewObjectFullContext(request: request, options: .init())
+  }
+
+  public func viewObjectFullContext(
+    request: ViewObjectFullContextRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> ObjectFullContext {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func viewObjectFullContext(
+    name: Swift.String,
+    contextKey: Swift.String,
+  ) async throws -> ObjectFullContext {
+    let request = ViewObjectFullContextRequest().with {
+      $0.name = name
+      $0.contextKey = contextKey
+    }
+    return try await self.viewObjectFullContext(request: request)
+  }
+
+  public func viewObjectFullContext(
+    name: Swift.String,
+    generation: Swift.Int64,
+    contextKey: Swift.String,
+  ) async throws -> ObjectFullContext {
+    let request = ViewObjectFullContextRequest().with {
+      $0.name = name
+      $0.generation = generation
+      $0.contextKey = contextKey
+    }
+    return try await self.viewObjectFullContext(request: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

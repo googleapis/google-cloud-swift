@@ -737,6 +737,48 @@ extension Clients {
       ).get()
     }
 
+    public func refreshAutonomousDatabase(
+      request: RefreshAutonomousDatabaseRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
+      let path = try { () throws -> Swift.String in
+        guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
+          throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
+        }
+        return "/v1/\(pathVariable0):refresh"
+      }()
+      let query = [
+        URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+      ]
+      var req = try await self.inner.newRequest(path: path, query: query)
+      req.setMethod(.POST)
+      req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
+      req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
+      return try await req.rpc(
+        GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
+      ).get()
+    }
+
+    public func getAutonomousDatabaseRefreshableClones(
+      request: GetAutonomousDatabaseRefreshableClonesRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleCloudOracleDatabaseV1.AutonomousDatabaseRefreshableClones {
+      let path = try { () throws -> Swift.String in
+        guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
+          throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
+        }
+        return "/v1/\(pathVariable0):getRefreshableClones"
+      }()
+      let query = [
+        URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+      ]
+      var req = try await self.inner.newRequest(path: path, query: query)
+      req.setMethod(.GET)
+      req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
+      return try await req.rpc(
+        GoogleCloudOracleDatabaseV1.AutonomousDatabaseRefreshableClones.self,
+        timeout: options.attemptTimeout
+      ).get()
+    }
+
     public func listOdbNetworks(
       request: ListOdbNetworksRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudOracleDatabaseV1.ListOdbNetworksResponse {

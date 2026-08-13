@@ -103,6 +103,12 @@ public struct Dependency: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// Required. Where should the files be placed on the worker.
     public var destPath: Swift.String = Swift.String()
 
+    /// Optional. True if remote tags should be fetched too (default false).
+    /// Note: when depth is 1 (default), git fetch only retrieves tags pointing
+    /// to commits within the shallow boundary. Set depth to -1 to fetch all
+    /// historical tags.
+    public var fetchTags: Swift.Bool = Swift.Bool()
+
     /// Initialize a new instance of `GitSourceDependency`.
     public init() {}
 

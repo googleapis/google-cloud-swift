@@ -55,6 +55,9 @@
     /// used.
     public var identityType: ReasoningEngineSpec.IdentityType = ReasoningEngineSpec.IdentityType()
 
+    /// Optional. Configuration for building container image.
+    public var buildSpec: ReasoningEngineSpec.BuildSpec? = nil
+
     /// Defines the source for the deployment.
     /// The `package_spec` field should not be set if `deployment_source` is
     /// specified.
@@ -85,6 +88,7 @@
       case classMethods = "classMethods"
       case agentFramework = "agentFramework"
       case identityType = "identityType"
+      case buildSpec = "buildSpec"
     }
 
     public init(from decoder: Decoder) throws {
@@ -99,6 +103,8 @@
       self.agentFramework = try container.decode(Swift.String.self, forKey: .agentFramework)
       self.identityType = try container.decode(
         ReasoningEngineSpec.IdentityType.self, forKey: .identityType)
+      self.buildSpec = try container.decodeIfPresent(
+        ReasoningEngineSpec.BuildSpec.self, forKey: .buildSpec)
 
       var deploymentSource: OneOf_DeploymentSource? = nil
       let deploymentSourceCheckAndSet = {
@@ -131,6 +137,7 @@
       try container.encode(self.classMethods, forKey: .classMethods)
       try container.encode(self.agentFramework, forKey: .agentFramework)
       try container.encode(self.identityType, forKey: .identityType)
+      try container.encode(self.buildSpec, forKey: .buildSpec)
 
       if let choice = self.deploymentSource {
         switch choice {
@@ -631,6 +638,53 @@
 
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.ReasoningEngineSpec.ContainerSpec"
+      }
+      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
+        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      }
+      public func _pack() throws -> GoogleCloudWkt.Struct {
+        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      }
+    }
+
+    /// Specification for building container image.
+    public struct BuildSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      Sendable
+    {
+      /// Optional. The resource name of the Cloud Build WorkerPool to use for
+      /// the build.
+      /// Format:
+      /// `projects/{project}/locations/{location}/workerPools/{worker_pool}`
+      public var workerPool: Swift.String = Swift.String()
+
+      /// Optional. The service account that Cloud Build uses to run the build.
+      ///
+      /// This field is only applicable when `worker_pool` is specified (i.e., for
+      /// custom worker pools). If `worker_pool` is not specified, this field is
+      /// ignored and the build runs using the Google-managed service agent.
+      ///
+      /// Format: `projects/{project}/serviceAccounts/{service_account}` or
+      /// `{service_account}@{project}.iam.gserviceaccount.com`
+      public var serviceAccount: Swift.String = Swift.String()
+
+      /// Initialize a new instance of `BuildSpec`.
+      public init() {}
+
+      /// Use `config` to return a new instance of this object, with some fields updated.
+      ///
+      /// Commonly used to initialize the value, for example:
+      ///
+      /// ```
+      /// let value = BuildSpec().with { $0.workerPool = ... }
+      /// ```
+      public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+        var copy = self
+        try config(&copy)
+        return copy
+      }
+
+      public static var _anyTypeUrl: Swift.String {
+        return "type.googleapis.com/google.cloud.aiplatform.v1.ReasoningEngineSpec.BuildSpec"
       }
       public init(fromAny any: GoogleCloudWkt.`Any`) throws {
         self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)

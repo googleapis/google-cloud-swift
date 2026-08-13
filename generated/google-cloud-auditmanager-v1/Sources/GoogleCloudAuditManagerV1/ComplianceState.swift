@@ -16,19 +16,20 @@
 
 import Foundation
 
-/// The compliance state after evaluation.
+/// Compliance state after evaluation.
 public enum ComplianceState: Codable, Equatable, Sendable {
-  /// Unspecified. Invalid state.
+  /// Default value. This value is unused.
   case unspecified
-  /// Compliant.
+  /// The resource is compliant.
   case compliant
-  /// Violation.
+  /// The resource isn't compliant.
   case violation
-  /// MANUAL_REVIEW_NEEDED, requires manual review
+  /// You must complete a manual review.
   case manualReviewNeeded
-  /// Error while computing status.
+  /// An error was encountered during the evaluation or evidence gathering
+  /// process.
   case error
-  /// Cannot be audited
+  /// The resource can't be audited.
   case auditNotSupported
   /// Encodes an unknown integer value.
   ///

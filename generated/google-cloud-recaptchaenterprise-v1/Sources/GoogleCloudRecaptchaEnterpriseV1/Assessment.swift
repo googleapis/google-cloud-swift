@@ -38,7 +38,7 @@ public struct Assessment: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// assessment event must include a token and site key to use this feature.
   public var accountVerification: AccountVerificationInfo? = nil
 
-  /// Output only. Assessment returned by account defender when an account
+  /// Output only. Assessment returned by Account defense when an account
   /// identifier is provided.
   public var accountDefenderAssessment: AccountDefenderAssessment? = nil
 
@@ -60,14 +60,17 @@ public struct Assessment: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var fraudSignals: FraudSignals? = nil
 
   /// Output only. Assessment returned when a site key, a token, and a phone
-  /// number as `user_id` are provided. Account defender and SMS toll fraud
-  /// protection need to be enabled.
+  /// number as `user_id` are provided. SMS defense needs to be enabled.
   public var phoneFraudAssessment: PhoneFraudAssessment? = nil
 
   /// Optional. The environment creating the assessment. This describes your
   /// environment (the system invoking CreateAssessment), NOT the environment of
   /// your user.
   public var assessmentEnvironment: AssessmentEnvironment? = nil
+
+  /// Output only. Provides information about the policy evaluation for this
+  /// assessment.
+  public var policyEvaluation: PolicyEvaluation? = nil
 
   /// Initialize a new instance of `Assessment`.
   public init() {}

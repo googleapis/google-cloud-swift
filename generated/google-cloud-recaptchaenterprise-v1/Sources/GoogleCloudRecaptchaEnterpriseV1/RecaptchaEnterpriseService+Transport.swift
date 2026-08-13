@@ -317,6 +317,51 @@ extension Clients {
       ).get()
     }
 
+    public func getPolicy(
+      request: GetPolicyRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleCloudRecaptchaEnterpriseV1.Policy {
+      let path = try { () throws -> Swift.String in
+        guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
+          throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
+        }
+        return "/v1/\(pathVariable0)"
+      }()
+      let query = [
+        URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+      ]
+      var req = try await self.inner.newRequest(path: path, query: query)
+      req.setMethod(.GET)
+      req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
+      return try await req.rpc(
+        GoogleCloudRecaptchaEnterpriseV1.Policy.self, timeout: options.attemptTimeout
+      ).get()
+    }
+
+    public func updatePolicy(
+      request: UpdatePolicyRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleCloudRecaptchaEnterpriseV1.Policy {
+      let path = try { () throws -> Swift.String in
+        guard let pathVariable0 = request.policy.map({ $0.name }), !pathVariable0.isEmpty else {
+          throw GoogleCloudGax.RequestError.binding("'request.policy.name' is not set or is empty")
+        }
+        return "/v1/\(pathVariable0)"
+      }()
+      var query = [
+        URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+      ]
+      let encoder = GoogleCloudGax.QueryParameterEncoder()
+      query.append(contentsOf: try encoder.encode(request.updateMask, prefix: "updateMask"))
+      var req = try await self.inner.newRequest(path: path, query: query)
+      req.setMethod(.PATCH)
+      req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
+      if let body = request.policy {
+        req.setBody(data: try JSONEncoder().encode(body), ofContentType: "application/json")
+      }
+      return try await req.rpc(
+        GoogleCloudRecaptchaEnterpriseV1.Policy.self, timeout: options.attemptTimeout
+      ).get()
+    }
+
     public func createFirewallPolicy(
       request: CreateFirewallPolicyRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudRecaptchaEnterpriseV1.FirewallPolicy {

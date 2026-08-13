@@ -69,6 +69,7 @@ public struct Key: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     case androidSettings = "androidSettings"
     case iosSettings = "iosSettings"
     case expressSettings = "expressSettings"
+    case universalSettings = "universalSettings"
     case labels = "labels"
     case createTime = "createTime"
     case testingOptions = "testingOptions"
@@ -112,6 +113,11 @@ public struct Key: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     {
       try platformSettingsCheckAndSet(.expressSettings(expressSettings))
     }
+    if let universalSettings = try container.decodeIfPresent(
+      UniversalKeySettings?.self, forKey: .universalSettings)
+    {
+      try platformSettingsCheckAndSet(.universalSettings(universalSettings))
+    }
     self.platformSettings = platformSettings
   }
 
@@ -134,6 +140,8 @@ public struct Key: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         try container.encode(value, forKey: .iosSettings)
       case .expressSettings(let value):
         try container.encode(value, forKey: .expressSettings)
+      case .universalSettings(let value):
+        try container.encode(value, forKey: .universalSettings)
       }
     }
   }
@@ -149,6 +157,8 @@ public struct Key: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     indirect case iosSettings(IOSKeySettings?)
     /// Settings for keys that can be used by reCAPTCHA Express.
     indirect case expressSettings(ExpressKeySettings?)
+    /// Settings for keys that are configured through their Policy.
+    indirect case universalSettings(UniversalKeySettings?)
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -29,12 +29,19 @@ public struct RiskAnalysis: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// Output only. Reasons contributing to the risk analysis verdict.
   public var reasons: [RiskAnalysis.ClassificationReason] = []
 
-  /// Output only. Extended verdict reasons to be used for experimentation only.
-  /// The set of possible reasons is subject to change.
+  /// Output only. Additional reasons contributing to the risk analysis verdict.
+  /// These reasons are available to Enterprise tier projects only. Contact sales
+  /// for more information.
+  /// The set of reasons is subject to change.
   public var extendedVerdictReasons: [Swift.String] = []
 
-  /// Output only. Challenge information for POLICY_BASED_CHALLENGE and INVISIBLE
-  /// keys.
+  /// Output only. Type of the last challenge presented to the user for
+  /// Universal, `POLICY_BASED_CHALLENGE` and `INVISIBLE` keys. The field is only
+  /// set when a challenge was presented to the user.
+  public var lastChallengeType: ChallengeType = ChallengeType()
+
+  /// Output only. Challenge information for Universal, `POLICY_BASED_CHALLENGE`
+  /// and `INVISIBLE` keys.
   public var challenge: RiskAnalysis.Challenge = RiskAnalysis.Challenge()
 
   /// Output only. Bots with identities that have been verified by reCAPTCHA and
@@ -74,9 +81,25 @@ public struct RiskAnalysis: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// Too little traffic has been received from this site thus far to generate
     /// quality risk analysis.
     case lowConfidenceScore
-    /// The request matches behavioral characteristics of a carding attack.
+    /// Deprecated: Use
+    /// [FraudPreventionAssessment.transaction_risk][google.cloud.recaptchaenterprise.v1.FraudPreventionAssessment.transaction_risk]
+    /// and
+    /// [FraudPreventionAssessment.RiskReason.Reason.EXCESSIVE_ENUMERATION_PATTERN][google.cloud.recaptchaenterprise.v1.FraudPreventionAssessment.RiskReason.Reason.EXCESSIVE_ENUMERATION_PATTERN]
+    /// instead.
+    ///
+    /// [google.cloud.recaptchaenterprise.v1.FraudPreventionAssessment.RiskReason.Reason.EXCESSIVE_ENUMERATION_PATTERN]: <doc:FraudPreventionAssessment/RiskReason/Reason/excessiveEnumerationPattern>
+    /// [google.cloud.recaptchaenterprise.v1.FraudPreventionAssessment.transaction_risk]: <doc:FraudPreventionAssessment/transactionRisk>
+    @available(*, deprecated)
     case suspectedCarding
-    /// The request matches behavioral characteristics of chargebacks for fraud.
+    /// Deprecated: Use
+    /// [FraudPreventionAssessment.transaction_risk][google.cloud.recaptchaenterprise.v1.FraudPreventionAssessment.transaction_risk]
+    /// and
+    /// [FraudPreventionAssessment.RiskReason.Reason.ASSOCIATED_WITH_FRAUD_CLUSTER][google.cloud.recaptchaenterprise.v1.FraudPreventionAssessment.RiskReason.Reason.ASSOCIATED_WITH_FRAUD_CLUSTER]
+    /// instead.
+    ///
+    /// [google.cloud.recaptchaenterprise.v1.FraudPreventionAssessment.RiskReason.Reason.ASSOCIATED_WITH_FRAUD_CLUSTER]: <doc:FraudPreventionAssessment/RiskReason/Reason/associatedWithFraudCluster>
+    /// [google.cloud.recaptchaenterprise.v1.FraudPreventionAssessment.transaction_risk]: <doc:FraudPreventionAssessment/transactionRisk>
+    @available(*, deprecated)
     case suspectedChargeback
     /// Encodes an unknown integer value.
     ///
@@ -200,8 +223,9 @@ public struct RiskAnalysis: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     }
   }
 
-  /// Challenge information for POLICY_BASED_CHALLENGE and INVISIBLE keys.
-  /// Ensure that applications can handle values not explicitly listed.
+  /// Challenge information for Universal, `POLICY_BASED_CHALLENGE` and
+  /// `INVISIBLE` keys. Ensure that applications can handle values not explicitly
+  /// listed.
   public enum Challenge: Codable, Equatable, Sendable {
     /// Default unspecified type.
     case unspecified

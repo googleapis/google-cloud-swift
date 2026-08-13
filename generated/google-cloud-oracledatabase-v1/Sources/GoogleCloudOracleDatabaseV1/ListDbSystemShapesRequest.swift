@@ -33,9 +33,11 @@ public struct ListDbSystemShapesRequest: Codable, Equatable, GoogleCloudWkt._Any
   /// Optional. A token identifying a page of results the server should return.
   public var pageToken: Swift.String = Swift.String()
 
-  /// Optional. An expression for filtering the results of the request. Only the
-  /// gcp_oracle_zone_id field is supported in this format:
-  /// `gcp_oracle_zone_id="{gcp_oracle_zone_id}"`.
+  /// Optional. An expression for filtering the results of the request. The
+  /// `gcp_oracle_zone_id`, `shape_family`, and `database_edition` fields
+  /// are supported in the following format:
+  /// `gcp_oracle_zone_id="{gcp_oracle_zone_id}" AND
+  /// shape_family="{shape_family}" AND database_edition="{database_edition}"`.
   public var filter: Swift.String = Swift.String()
 
   /// Initialize a new instance of `ListDbSystemShapesRequest`.

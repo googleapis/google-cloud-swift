@@ -117,10 +117,10 @@ public struct CloudExadataInfrastructureProperties: Codable, Equatable, GoogleCl
   /// Output only. The compute model of the Exadata Infrastructure.
   public var computeModel: ComputeModel = ComputeModel()
 
-  /// Output only. The database server type of the Exadata Infrastructure.
+  /// Optional. The database server type of the Exadata Infrastructure.
   public var databaseServerType: Swift.String = Swift.String()
 
-  /// Output only. The storage server type of the Exadata Infrastructure.
+  /// Optional. The storage server type of the Exadata Infrastructure.
   public var storageServerType: Swift.String = Swift.String()
 
   /// Output only. The Exascale configuration for the Exadata Infrastructure.

@@ -66,23 +66,28 @@ public struct DbSystemProperties: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   /// Output only. OCID of the DbSystem.
   public var ocid: Swift.String = Swift.String()
 
-  /// Optional. The memory size in GB.
+  /// Optional. The memory size in GB. This value can not be set and is
+  /// automatically calculated based on the number of ECPUs allocated to the
+  /// DbSystem.
   public var memorySizeGb: Swift.Int32 = Swift.Int32()
 
   /// Optional. The compute model of the DbSystem.
   public var computeModel: DbSystemProperties.ComputeModel = DbSystemProperties.ComputeModel()
 
   /// Optional. The data storage size in GB that is currently available to
-  /// DbSystems.
+  /// DbSystems. The value is same as initial_data_storage_size_gb. This can be
+  /// modified from OCI console.
   public var dataStorageSizeGb: Swift.Int32 = Swift.Int32()
 
-  /// Optional. The reco/redo storage size in GB.
+  /// Optional. The reco/redo storage size in GB. The value for recovery storage
+  /// size is based on the available data storage size.
   public var recoStorageSizeGb: Swift.Int32 = Swift.Int32()
 
   /// Optional. The host domain name of the DbSystem.
   public var domain: Swift.String = Swift.String()
 
-  /// Optional. The number of nodes in the DbSystem.
+  /// Optional. The number of nodes to launch for a virtual machine DbSystem. By
+  /// default this will be set to 1.
   public var nodeCount: Swift.Int32 = Swift.Int32()
 
   /// Optional. The options for the DbSystem.
@@ -488,7 +493,9 @@ public struct DbSystemProperties: Codable, Equatable, GoogleCloudWkt._AnyPackabl
     case unspecified
     /// The compute model is virtual.
     case ecpu
+    /// Deprecated: This option is not supported. Please use ECPU instead.
     /// The compute model is physical.
+    @available(*, deprecated)
     case ocpu
     /// Encodes an unknown integer value.
     ///

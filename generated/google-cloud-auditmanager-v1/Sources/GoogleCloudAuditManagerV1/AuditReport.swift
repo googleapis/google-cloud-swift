@@ -21,40 +21,53 @@ import GoogleCloudWkt
 public struct AuditReport: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
-  /// Identifier. The name of this Audit Report, in the format of scope given in
-  /// request.
+  /// Identifier. Name of the audit report, in one of the following formats:
+  ///
+  /// * `projects/{project}/locations/{location}/auditReports/{audit_report}`
+  /// * `folders/{folder}/locations/{location}/auditReports/{audit_report}`
+  /// * `organizations/{organization}/locations/{location}/auditReports/{audit_report}`
   public var name: Swift.String = Swift.String()
 
-  /// Output only. Report summary with compliance, violation counts etc.
+  /// Output only. Report summary that includes information about compliance and
+  /// violation counts.
   public var reportSummary: ReportSummary? = nil
 
-  /// Output only. ClientOperationId
+  /// Output only. Client operation ID for the audit report.
   public var operationId: Swift.String = Swift.String()
 
-  /// Output only. The location where the generated report will be uploaded.
+  /// Output only. Cloud Storage bucket where the audit report is uploaded to.
   public var destinationDetails: DestinationDetails? = nil
 
-  /// Output only. Compliance Standard.
+  /// Output only. Deprecated. Compliance standard to be audited against.
+  ///
+  /// Use the `compliance_framework` field instead.
+  @available(*, deprecated)
   public var complianceStandard: Swift.String = Swift.String()
 
-  /// Output only. The parent scope on which the report was generated.
+  /// Output only. Organization, folder, or project that the report is generated
+  /// for, in one of the following formats:
+  ///
+  /// * `projects/{project}/locations/{location}`
+  /// * `folders/{folder}/locations/{location}`
+  /// * `organizations/{organization}/locations/{location}`
   public var scope: Swift.String = Swift.String()
 
   /// Output only. Creation time of the audit report.
   public var createTime: GoogleCloudWkt.Timestamp? = nil
 
-  /// Output only. The overall status of controls
+  /// Output only. Overall status of the controls.
   public var controlDetails: [ControlDetails] = []
 
-  /// Output only. The state of Audit Report Generation.
+  /// Output only. State of audit report generation.
   public var reportGenerationState: AuditReport.ReportGenerationState =
     AuditReport.ReportGenerationState()
 
-  /// Output only. Compliance Framework of Audit Report
+  /// Output only. Compliance framework to use for the audit report. For example,
+  /// `CIS_GCP_FOUNDATIONS_V1_2_0`.
   public var complianceFramework: Swift.String = Swift.String()
 
-  /// Output only. The ID/ Number for the scope on which the audit report was
-  /// generated.
+  /// Output only. Project number, folder ID, or organization ID that the audit
+  /// report was generated for.
   public var scopeId: Swift.String = Swift.String()
 
   /// Initialize a new instance of `AuditReport`.
@@ -73,21 +86,21 @@ public struct AuditReport: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     return copy
   }
 
-  /// The different states of the Audit Manager report generation.
+  /// Different states of report generation.
   public enum ReportGenerationState: Codable, Equatable, Sendable {
-    /// Unspecified. Invalid state.
+    /// Default value. This value is unused.
     case unspecified
-    /// Audit report generation process is in progress, ie. operation state is
-    /// neither OPERATION_STATE_DONE nor OPERATION_STATE_FAILED.
+    /// The process is in progress. The operation can have any state
+    /// except for `OPERATION_STATE_DONE` or `OPERATION_STATE_FAILED`.
     case inProgress
-    /// Audit report generation process is completed. Operation state is
-    /// OPERATION_STATE_DONE.
+    /// The process is completed. The operation state is
+    /// `OPERATION_STATE_DONE`.
     case completed
-    /// Audit report generation process has failed. Operation state is
-    /// OPERATION_STATE_FAILED.
+    /// The process has failed. The operation state is
+    /// `OPERATION_STATE_FAILED`.
     case failed
-    /// Audit report generation process has completed. But report summary is
-    /// unknown. This is valid for older reports.
+    /// The process completed, but the report summary's status is unknown. This
+    /// state isn't used for new reports.
     case summaryUnknown
     /// Encodes an unknown integer value.
     ///

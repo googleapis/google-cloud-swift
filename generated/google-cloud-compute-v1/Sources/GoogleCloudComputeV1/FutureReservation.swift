@@ -107,6 +107,13 @@
     /// reservation_name or a name_prefix.
     public var reservationName: Swift.String? = nil
 
+    /// Output only. Contains standard resource metadata for an FutureReservation
+    /// resource. It is populated for each instance of the FutureReservation
+    /// resource, and includes the api_version the
+    /// instance was retrieved through, and its canonical
+    /// resource_type name.
+    public var resourceMetadata: ResourceMetadata? = nil
+
     /// Maintenance information for this reservation
     public var schedulingType: FutureReservation.SchedulingType? = nil
 

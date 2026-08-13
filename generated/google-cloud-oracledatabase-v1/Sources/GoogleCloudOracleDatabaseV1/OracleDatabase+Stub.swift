@@ -144,6 +144,14 @@ extension Clients {
       request: FailoverAutonomousDatabaseRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation
 
+    func refreshAutonomousDatabase(
+      request: RefreshAutonomousDatabaseRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    func getAutonomousDatabaseRefreshableClones(
+      request: GetAutonomousDatabaseRefreshableClonesRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleCloudOracleDatabaseV1.AutonomousDatabaseRefreshableClones
+
     func listOdbNetworks(
       request: ListOdbNetworksRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudOracleDatabaseV1.ListOdbNetworksResponse

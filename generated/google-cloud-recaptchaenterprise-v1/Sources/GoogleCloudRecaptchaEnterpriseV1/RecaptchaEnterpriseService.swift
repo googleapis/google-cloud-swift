@@ -202,6 +202,24 @@ public class RecaptchaEnterpriseServiceClient: Clients.RecaptchaEnterpriseServic
     try await self.inner.getMetrics(request: request, options: options)
   }
 
+  /// Get the policy for a key.
+  ///
+  /// @Snippet(path: "RecaptchaEnterpriseService_GetPolicy")
+  public func getPolicy(
+    request: GetPolicyRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleCloudRecaptchaEnterpriseV1.Policy {
+    try await self.inner.getPolicy(request: request, options: options)
+  }
+
+  /// Updates the policy for a key.
+  ///
+  /// @Snippet(path: "RecaptchaEnterpriseService_UpdatePolicy")
+  public func updatePolicy(
+    request: UpdatePolicyRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleCloudRecaptchaEnterpriseV1.Policy {
+    try await self.inner.updatePolicy(request: request, options: options)
+  }
+
   /// Creates a new FirewallPolicy, specifying conditions at which reCAPTCHA
   /// Enterprise actions can be executed.
   /// A project may have a maximum of 1000 policies.
@@ -480,6 +498,25 @@ extension Clients {
       name: Swift.String,
     ) async throws -> GoogleCloudRecaptchaEnterpriseV1.Metrics
 
+    /// See `RecaptchaEnterpriseServiceClient.getPolicy`.
+    func getPolicy(request: GetPolicyRequest) async throws
+      -> GoogleCloudRecaptchaEnterpriseV1.Policy
+
+    /// See `RecaptchaEnterpriseServiceClient.getPolicy`.
+    func getPolicy(
+      name: Swift.String,
+    ) async throws -> GoogleCloudRecaptchaEnterpriseV1.Policy
+
+    /// See `RecaptchaEnterpriseServiceClient.updatePolicy`.
+    func updatePolicy(request: UpdatePolicyRequest) async throws
+      -> GoogleCloudRecaptchaEnterpriseV1.Policy
+
+    /// See `RecaptchaEnterpriseServiceClient.updatePolicy`.
+    func updatePolicy(
+      policy: Policy?,
+      updateMask: GoogleCloudWkt.FieldMask?,
+    ) async throws -> GoogleCloudRecaptchaEnterpriseV1.Policy
+
     /// See `RecaptchaEnterpriseServiceClient.createFirewallPolicy`.
     func createFirewallPolicy(request: CreateFirewallPolicyRequest) async throws
       -> GoogleCloudRecaptchaEnterpriseV1.FirewallPolicy
@@ -658,6 +695,16 @@ extension Clients {
     func getMetrics(
       request: GetMetricsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudRecaptchaEnterpriseV1.Metrics
+
+    /// See `RecaptchaEnterpriseServiceClient.getPolicy`.
+    func getPolicy(
+      request: GetPolicyRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleCloudRecaptchaEnterpriseV1.Policy
+
+    /// See `RecaptchaEnterpriseServiceClient.updatePolicy`.
+    func updatePolicy(
+      request: UpdatePolicyRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleCloudRecaptchaEnterpriseV1.Policy
 
     /// See `RecaptchaEnterpriseServiceClient.createFirewallPolicy`.
     func createFirewallPolicy(
@@ -1031,6 +1078,50 @@ extension Clients.RecaptchaEnterpriseServiceProtocol {
       $0.name = name
     }
     return try await self.getMetrics(request: request)
+  }
+
+  public func getPolicy(request: GetPolicyRequest) async throws
+    -> GoogleCloudRecaptchaEnterpriseV1.Policy
+  {
+    try await self.getPolicy(request: request, options: .init())
+  }
+
+  public func getPolicy(
+    request: GetPolicyRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleCloudRecaptchaEnterpriseV1.Policy {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func getPolicy(
+    name: Swift.String,
+  ) async throws -> GoogleCloudRecaptchaEnterpriseV1.Policy {
+    let request = GetPolicyRequest().with {
+      $0.name = name
+    }
+    return try await self.getPolicy(request: request)
+  }
+
+  public func updatePolicy(request: UpdatePolicyRequest) async throws
+    -> GoogleCloudRecaptchaEnterpriseV1.Policy
+  {
+    try await self.updatePolicy(request: request, options: .init())
+  }
+
+  public func updatePolicy(
+    request: UpdatePolicyRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleCloudRecaptchaEnterpriseV1.Policy {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func updatePolicy(
+    policy: Policy?,
+    updateMask: GoogleCloudWkt.FieldMask?,
+  ) async throws -> GoogleCloudRecaptchaEnterpriseV1.Policy {
+    let request = UpdatePolicyRequest().with {
+      $0.policy = policy
+      $0.updateMask = updateMask
+    }
+    return try await self.updatePolicy(request: request)
   }
 
   public func createFirewallPolicy(request: CreateFirewallPolicyRequest) async throws

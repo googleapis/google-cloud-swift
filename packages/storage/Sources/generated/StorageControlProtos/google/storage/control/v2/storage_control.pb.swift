@@ -699,6 +699,16 @@ public nonisolated struct Google_Storage_Control_V2_StorageLayout: Sendable {
   /// Clears the value of `hierarchicalNamespace`. Subsequent reads from it will return its default value.
   public mutating func clearHierarchicalNamespace() {self._hierarchicalNamespace = nil}
 
+  /// Output only. The Rapid Cache configuration for the bucket.
+  public var rapidCacheInfo: Google_Storage_Control_V2_StorageLayout.RapidCacheInfo {
+    get {_rapidCacheInfo ?? Google_Storage_Control_V2_StorageLayout.RapidCacheInfo()}
+    set {_rapidCacheInfo = newValue}
+  }
+  /// Returns true if `rapidCacheInfo` has been explicitly set.
+  public var hasRapidCacheInfo: Bool {self._rapidCacheInfo != nil}
+  /// Clears the value of `rapidCacheInfo`. Subsequent reads from it will return its default value.
+  public mutating func clearRapidCacheInfo() {self._rapidCacheInfo = nil}
+
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   /// Configuration for Custom Dual Regions.  It should specify precisely two
@@ -731,10 +741,26 @@ public nonisolated struct Google_Storage_Control_V2_StorageLayout: Sendable {
     public init() {}
   }
 
+  /// The Rapid Cache configuration for the bucket.
+  public nonisolated struct RapidCacheInfo: Sendable {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
+
+    /// Output only. The type of cache in the bucket. Set to `rapid-cache` or
+    /// `rapid-cache-ultra`, only if there is a cache present.
+    public var cacheType: String = String()
+
+    public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+    public init() {}
+  }
+
   public init() {}
 
   fileprivate var _customPlacementConfig: Google_Storage_Control_V2_StorageLayout.CustomPlacementConfig? = nil
   fileprivate var _hierarchicalNamespace: Google_Storage_Control_V2_StorageLayout.HierarchicalNamespace? = nil
+  fileprivate var _rapidCacheInfo: Google_Storage_Control_V2_StorageLayout.RapidCacheInfo? = nil
 }
 
 /// Request message for GetStorageLayout.
@@ -3556,6 +3582,127 @@ public nonisolated struct Google_Storage_Control_V2_FindingSummary: Sendable {
   fileprivate var _updateTime: SwiftProtobuf.Google_Protobuf_Timestamp? = nil
 }
 
+/// A full representation of an object context.
+public nonisolated struct Google_Storage_Control_V2_ObjectFullContext: Sendable {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  /// The type of the object context.
+  public var type: Google_Storage_Control_V2_ObjectFullContext.TypeEnum = .unspecified
+
+  /// The key of the object context, which is unique among contexts of an object.
+  public var key: String = String()
+
+  /// The value of the object context.
+  public var value: String = String()
+
+  /// The time at which the object context was created.
+  public var createTime: SwiftProtobuf.Google_Protobuf_Timestamp {
+    get {_createTime ?? SwiftProtobuf.Google_Protobuf_Timestamp()}
+    set {_createTime = newValue}
+  }
+  /// Returns true if `createTime` has been explicitly set.
+  public var hasCreateTime: Bool {self._createTime != nil}
+  /// Clears the value of `createTime`. Subsequent reads from it will return its default value.
+  public mutating func clearCreateTime() {self._createTime = nil}
+
+  /// The time at which the object context was updated.
+  public var updateTime: SwiftProtobuf.Google_Protobuf_Timestamp {
+    get {_updateTime ?? SwiftProtobuf.Google_Protobuf_Timestamp()}
+    set {_updateTime = newValue}
+  }
+  /// Returns true if `updateTime` has been explicitly set.
+  public var hasUpdateTime: Bool {self._updateTime != nil}
+  /// Clears the value of `updateTime`. Subsequent reads from it will return its default value.
+  public mutating func clearUpdateTime() {self._updateTime = nil}
+
+  /// The extended data of the object context.
+  public var extendedData: SwiftProtobuf.Google_Protobuf_Any {
+    get {_extendedData ?? SwiftProtobuf.Google_Protobuf_Any()}
+    set {_extendedData = newValue}
+  }
+  /// Returns true if `extendedData` has been explicitly set.
+  public var hasExtendedData: Bool {self._extendedData != nil}
+  /// Clears the value of `extendedData`. Subsequent reads from it will return its default value.
+  public mutating func clearExtendedData() {self._extendedData = nil}
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  /// Types of object contexts.
+  public nonisolated enum TypeEnum: SwiftProtobuf.Enum, Swift.CaseIterable {
+    public typealias RawValue = Int
+
+    /// The type is not specified.
+    case unspecified // = 0
+
+    /// Custom context.
+    case custom // = 1
+
+    /// Google context.
+    case google // = 2
+    case UNRECOGNIZED(Int)
+
+    public init() {
+      self = .unspecified
+    }
+
+    public init?(rawValue: Int) {
+      switch rawValue {
+      case 0: self = .unspecified
+      case 1: self = .custom
+      case 2: self = .google
+      default: self = .UNRECOGNIZED(rawValue)
+      }
+    }
+
+    public var rawValue: Int {
+      switch self {
+      case .unspecified: return 0
+      case .custom: return 1
+      case .google: return 2
+      case .UNRECOGNIZED(let i): return i
+      }
+    }
+
+    // The compiler won't synthesize support with the UNRECOGNIZED case.
+    public static let allCases: [Google_Storage_Control_V2_ObjectFullContext.TypeEnum] = [
+      .unspecified,
+      .custom,
+      .google,
+    ]
+
+  }
+
+  public init() {}
+
+  fileprivate var _createTime: SwiftProtobuf.Google_Protobuf_Timestamp? = nil
+  fileprivate var _updateTime: SwiftProtobuf.Google_Protobuf_Timestamp? = nil
+  fileprivate var _extendedData: SwiftProtobuf.Google_Protobuf_Any? = nil
+}
+
+/// Request message for ViewObjectFullContext.
+public nonisolated struct Google_Storage_Control_V2_ViewObjectFullContextRequest: Sendable {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  /// Optional. If present, selects a specific revision of this object (as
+  /// opposed to the latest version, the default).
+  public var generation: Int64 = 0
+
+  /// Required. The key of the object context to retrieve.
+  public var contextKey: String = String()
+
+  /// Required. The name of the object.
+  /// Format: `projects/{project}/buckets/{bucket}/objects/{object}`
+  public var name: String = String()
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
 fileprivate nonisolated let _protobuf_package = "google.storage.control.v2"
@@ -4155,7 +4302,7 @@ nonisolated extension Google_Storage_Control_V2_DeleteFolderRecursiveMetadata: S
 
 nonisolated extension Google_Storage_Control_V2_StorageLayout: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".StorageLayout"
-  public static let _protobuf_nameMap = SwiftProtobuf._NameMap(bytecode: "\0\u{1}name\0\u{1}location\0\u{3}location_type\0\u{3}custom_placement_config\0\u{3}hierarchical_namespace\0")
+  public static let _protobuf_nameMap = SwiftProtobuf._NameMap(bytecode: "\0\u{1}name\0\u{1}location\0\u{3}location_type\0\u{3}custom_placement_config\0\u{3}hierarchical_namespace\0\u{3}rapid_cache_info\0")
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
@@ -4168,6 +4315,7 @@ nonisolated extension Google_Storage_Control_V2_StorageLayout: SwiftProtobuf.Mes
       case 3: try { try decoder.decodeSingularStringField(value: &self.locationType) }()
       case 4: try { try decoder.decodeSingularMessageField(value: &self._customPlacementConfig) }()
       case 5: try { try decoder.decodeSingularMessageField(value: &self._hierarchicalNamespace) }()
+      case 6: try { try decoder.decodeSingularMessageField(value: &self._rapidCacheInfo) }()
       default: break
       }
     }
@@ -4193,6 +4341,9 @@ nonisolated extension Google_Storage_Control_V2_StorageLayout: SwiftProtobuf.Mes
     try { if let v = self._hierarchicalNamespace {
       try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
     } }()
+    try { if let v = self._rapidCacheInfo {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
+    } }()
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -4202,6 +4353,7 @@ nonisolated extension Google_Storage_Control_V2_StorageLayout: SwiftProtobuf.Mes
     if lhs.locationType != rhs.locationType {return false}
     if lhs._customPlacementConfig != rhs._customPlacementConfig {return false}
     if lhs._hierarchicalNamespace != rhs._hierarchicalNamespace {return false}
+    if lhs._rapidCacheInfo != rhs._rapidCacheInfo {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -4262,6 +4414,36 @@ nonisolated extension Google_Storage_Control_V2_StorageLayout.HierarchicalNamesp
 
   public static func ==(lhs: Google_Storage_Control_V2_StorageLayout.HierarchicalNamespace, rhs: Google_Storage_Control_V2_StorageLayout.HierarchicalNamespace) -> Bool {
     if lhs.enabled != rhs.enabled {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+nonisolated extension Google_Storage_Control_V2_StorageLayout.RapidCacheInfo: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Google_Storage_Control_V2_StorageLayout.protoMessageName + ".RapidCacheInfo"
+  public static let _protobuf_nameMap = SwiftProtobuf._NameMap(bytecode: "\0\u{3}cache_type\0")
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
+      switch fieldNumber {
+      case 1: try { try decoder.decodeSingularStringField(value: &self.cacheType) }()
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.cacheType.isEmpty {
+      try visitor.visitSingularStringField(value: self.cacheType, fieldNumber: 1)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Google_Storage_Control_V2_StorageLayout.RapidCacheInfo, rhs: Google_Storage_Control_V2_StorageLayout.RapidCacheInfo) -> Bool {
+    if lhs.cacheType != rhs.cacheType {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -7514,4 +7696,107 @@ nonisolated extension Google_Storage_Control_V2_FindingSummary.SummaryDetails: S
 
 nonisolated extension Google_Storage_Control_V2_FindingSummary.SummaryDetails.ResourceType: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap(bytecode: "\0\u{2}\0RESOURCE_TYPE_UNSPECIFIED\0\u{1}PROJECT\0\u{1}BUCKET\0")
+}
+
+nonisolated extension Google_Storage_Control_V2_ObjectFullContext: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".ObjectFullContext"
+  public static let _protobuf_nameMap = SwiftProtobuf._NameMap(bytecode: "\0\u{1}type\0\u{1}key\0\u{1}value\0\u{3}create_time\0\u{3}update_time\0\u{3}extended_data\0")
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
+      switch fieldNumber {
+      case 1: try { try decoder.decodeSingularEnumField(value: &self.type) }()
+      case 2: try { try decoder.decodeSingularStringField(value: &self.key) }()
+      case 3: try { try decoder.decodeSingularStringField(value: &self.value) }()
+      case 4: try { try decoder.decodeSingularMessageField(value: &self._createTime) }()
+      case 5: try { try decoder.decodeSingularMessageField(value: &self._updateTime) }()
+      case 6: try { try decoder.decodeSingularMessageField(value: &self._extendedData) }()
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    // The use of inline closures is to circumvent an issue where the compiler
+    // allocates stack space for every if/case branch local when no optimizations
+    // are enabled. https://github.com/apple/swift-protobuf/issues/1034 and
+    // https://github.com/apple/swift-protobuf/issues/1182
+    if self.type != .unspecified {
+      try visitor.visitSingularEnumField(value: self.type, fieldNumber: 1)
+    }
+    if !self.key.isEmpty {
+      try visitor.visitSingularStringField(value: self.key, fieldNumber: 2)
+    }
+    if !self.value.isEmpty {
+      try visitor.visitSingularStringField(value: self.value, fieldNumber: 3)
+    }
+    try { if let v = self._createTime {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
+    } }()
+    try { if let v = self._updateTime {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
+    } }()
+    try { if let v = self._extendedData {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
+    } }()
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Google_Storage_Control_V2_ObjectFullContext, rhs: Google_Storage_Control_V2_ObjectFullContext) -> Bool {
+    if lhs.type != rhs.type {return false}
+    if lhs.key != rhs.key {return false}
+    if lhs.value != rhs.value {return false}
+    if lhs._createTime != rhs._createTime {return false}
+    if lhs._updateTime != rhs._updateTime {return false}
+    if lhs._extendedData != rhs._extendedData {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+nonisolated extension Google_Storage_Control_V2_ObjectFullContext.TypeEnum: SwiftProtobuf._ProtoNameProviding {
+  public static let _protobuf_nameMap = SwiftProtobuf._NameMap(bytecode: "\0\u{2}\0TYPE_UNSPECIFIED\0\u{1}CUSTOM\0\u{1}GOOGLE\0")
+}
+
+nonisolated extension Google_Storage_Control_V2_ViewObjectFullContextRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".ViewObjectFullContextRequest"
+  public static let _protobuf_nameMap = SwiftProtobuf._NameMap(bytecode: "\0\u{2}\u{3}generation\0\u{3}context_key\0\u{1}name\0")
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
+      switch fieldNumber {
+      case 3: try { try decoder.decodeSingularInt64Field(value: &self.generation) }()
+      case 4: try { try decoder.decodeSingularStringField(value: &self.contextKey) }()
+      case 5: try { try decoder.decodeSingularStringField(value: &self.name) }()
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.generation != 0 {
+      try visitor.visitSingularInt64Field(value: self.generation, fieldNumber: 3)
+    }
+    if !self.contextKey.isEmpty {
+      try visitor.visitSingularStringField(value: self.contextKey, fieldNumber: 4)
+    }
+    if !self.name.isEmpty {
+      try visitor.visitSingularStringField(value: self.name, fieldNumber: 5)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Google_Storage_Control_V2_ViewObjectFullContextRequest, rhs: Google_Storage_Control_V2_ViewObjectFullContextRequest) -> Bool {
+    if lhs.generation != rhs.generation {return false}
+    if lhs.contextKey != rhs.contextKey {return false}
+    if lhs.name != rhs.name {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
 }

@@ -68,6 +68,10 @@ public struct ExadbVmCluster: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// ExadbVmCluster.
   public var entitlementId: Swift.String = Swift.String()
 
+  /// Output only. The identity connector details which will allow OCI to
+  /// securely access the resources in the customer project.
+  public var identityConnector: IdentityConnector? = nil
+
   /// Initialize a new instance of `ExadbVmCluster`.
   public init() {}
 
