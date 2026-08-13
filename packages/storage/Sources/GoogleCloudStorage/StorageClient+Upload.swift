@@ -194,7 +194,7 @@ extension StorageClient {
       } catch {
         throw RequestError.io(error)
       }
-      if response.status.code == 503 {
+      if response.status == .serviceUnavailable {
         throw await response.decodeError()
       }
       let object = try await handleObjectResponse(response: response)
