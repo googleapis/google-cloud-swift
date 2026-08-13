@@ -57,6 +57,7 @@ let package = Package(
         .product(name: "GoogleType", package: "google-type"),
         .product(name: "Logging", package: "swift-log"),
         "StorageControlProtos",
+        "StorageProtos",
         .product(name: "GRPC", package: "grpc-swift"),
         .product(name: "SwiftProtobuf", package: "swift-protobuf"),
         .product(name: "Crypto", package: "swift-crypto"),
@@ -71,6 +72,7 @@ let package = Package(
       dependencies: [
         "GoogleCloudStorage",
         "StorageControlProtos",
+        "StorageProtos",
         .product(name: "AsyncHTTPClient", package: "async-http-client"),
         .product(name: "GRPC", package: "grpc-swift"),
         .product(name: "NIOCore", package: "swift-nio"),
@@ -93,6 +95,14 @@ let package = Package(
         .product(name: "GRPC", package: "grpc-swift"),
       ],
       path: "Sources/generated/StorageControlProtos"
+    ),
+    .target(
+      name: "StorageProtos",
+      dependencies: [
+        .product(name: "SwiftProtobuf", package: "swift-protobuf"),
+        .product(name: "GRPC", package: "grpc-swift"),
+      ],
+      path: "Sources/generated/StorageProtos"
     ),
   ]
 )

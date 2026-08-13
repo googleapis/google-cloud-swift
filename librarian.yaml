@@ -1029,6 +1029,31 @@ libraries:
           module_type: default
           skipped_ids:
             - .google.storage.v2.Storage
+        - output: packages/storage/Sources/GoogleCloudStorage/generated/Storage/Convert/Storage
+          api_path: google/storage/v2
+          module_type: convert-swift
+          module_path: StorageProtos
+          included_ids:
+            - .google.storage.v2.Storage.DeleteBucket
+            - .google.storage.v2.Storage.GetBucket
+            - .google.storage.v2.Storage.CreateBucket
+            - .google.storage.v2.Storage.ListBuckets
+            - .google.storage.v2.Storage.LockBucketRetentionPolicy
+            - .google.storage.v2.Storage.UpdateBucket
+            - .google.storage.v2.Storage.ComposeObject
+            - .google.storage.v2.Storage.DeleteObject
+            - .google.storage.v2.Storage.RestoreObject
+            - .google.storage.v2.Storage.GetObject
+            - .google.storage.v2.Storage.UpdateObject
+            - .google.storage.v2.Storage.ListObjects
+            - .google.storage.v2.Storage.RewriteObject
+            - .google.storage.v2.Storage.MoveObject
+        - output: packages/storage/Sources/GoogleCloudStorage/generated/Storage/Convert/GoogleType
+          api_path: google/type
+          module_type: convert-swift
+          include_list:
+            - date.proto
+          module_path: StorageProtos
         - output: packages/storage/Sources/GoogleCloudStorage/generated/StorageControl/Convert/GoogleRpc
           api_path: google/rpc
           module_type: convert-swift
