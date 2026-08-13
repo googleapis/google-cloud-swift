@@ -48,6 +48,14 @@ public struct _GRPCClient: Sendable {
   }
 
   /// Executes a generic unary gRPC request.
+  ///
+  /// - Parameters:
+  ///   - path: The gRPC method path (e.g. `"/google.storage.control.v2.StorageControl/CreateFolder"`).
+  ///   - request: The protobuf request message.
+  ///   - options: Request-level options (such as attempt timeout).
+  ///   - clientHeader: The `x-goog-api-client` header value.
+  ///   - routingParams: Pre-formatted `key=value` routing parameters (conforming to AIP-4222) to send in the `x-goog-request-params` header.
+  /// - Returns: The protobuf response message.
   public func execute<Req: SwiftProtobuf.Message, Resp: SwiftProtobuf.Message>(
     path: String,
     request: Req,
