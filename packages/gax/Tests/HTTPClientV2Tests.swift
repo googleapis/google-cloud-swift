@@ -227,7 +227,7 @@ import NIOHTTP1
     let mock = MockHTTPClient { @Sendable (request, _) in
       #expect(request.method == .POST)
       #expect(request.url == wantURLString)
-      #expect(request.headers["x-goog-api-client"] == [clientHeader])
+      #expect(request.headers[HeaderNames.apiClient] == [clientHeader])
       #expect(request.headers["authorization"] == ["test-only-auth"])
       #expect(request.headers["x-goog-auth"] == ["test-only-auth2"])
       #expect(request.headers["content-type"] == ["application/json"])
@@ -254,7 +254,7 @@ import NIOHTTP1
     query.append(contentsOf: try encoder.encode("test-only-thing-id", prefix: "thingId"))
     var req = try await client.newRequest(path: path, query: query)
     req.setMethod(.POST)
-    req.addHeader(name: "X-Goog-Api-Client", value: clientHeader)
+    req.addHeader(name: HeaderNames.apiClient, value: clientHeader)
     req.setBody(data: requestBody, ofContentType: "application/json")
     let response = try await req.rpc(ResponseType.self).get()
     #expect(response == ResponseType(name: "projects/p/things/test-only-thing-id", value: ""))
@@ -284,7 +284,7 @@ import NIOHTTP1
     let mock = MockHTTPClient { @Sendable (request, _) in
       #expect(request.method == .GET)
       #expect(request.url == wantURLString)
-      #expect(request.headers["x-goog-api-client"] == [clientHeader])
+      #expect(request.headers[HeaderNames.apiClient] == [clientHeader])
       #expect(request.headers["authorization"] == ["test-only-auth"])
       #expect(request.headers["x-goog-auth"] == ["test-only-auth2"])
       #expect(request.headers["content-type"] == [])
@@ -307,7 +307,7 @@ import NIOHTTP1
     ]
     var req = try await client.newRequest(path: path, query: query)
     req.setMethod(.GET)
-    req.addHeader(name: "X-Goog-Api-Client", value: clientHeader)
+    req.addHeader(name: HeaderNames.apiClient, value: clientHeader)
     let response = try await req.rpc(ResponseType.self).get()
     #expect(
       response == ResponseType(name: "projects/p/things/test-only-thing-id", value: "test-value"))
@@ -336,7 +336,7 @@ import NIOHTTP1
     let mock = MockHTTPClient { @Sendable (request, _) in
       #expect(request.method == .GET)
       #expect(request.url == wantURLString)
-      #expect(request.headers["x-goog-api-client"] == [clientHeader])
+      #expect(request.headers[HeaderNames.apiClient] == [clientHeader])
       #expect(request.headers["authorization"] == ["test-only-auth"])
       #expect(request.headers["x-goog-auth"] == ["test-only-auth2"])
       #expect(request.headers["content-type"] == [])
@@ -359,7 +359,7 @@ import NIOHTTP1
     ]
     var req = try await client.newRequest(path: path, query: query)
     req.setMethod(.GET)
-    req.addHeader(name: "X-Goog-Api-Client", value: clientHeader)
+    req.addHeader(name: HeaderNames.apiClient, value: clientHeader)
     _ = try await req.rpc(GoogleCloudWkt.Empty.self).get()
   }
 
@@ -386,7 +386,7 @@ import NIOHTTP1
     let mock = MockHTTPClient { @Sendable (request, _) in
       #expect(request.method == .GET)
       #expect(request.url == wantURLString)
-      #expect(request.headers["x-goog-api-client"] == [clientHeader])
+      #expect(request.headers[HeaderNames.apiClient] == [clientHeader])
       #expect(request.headers["authorization"] == ["test-only-auth"])
       #expect(request.headers["x-goog-auth"] == ["test-only-auth2"])
       #expect(request.headers["content-type"] == [])
@@ -409,7 +409,7 @@ import NIOHTTP1
     ]
     var req = try await client.newRequest(path: path, query: query)
     req.setMethod(.GET)
-    req.addHeader(name: "X-Goog-Api-Client", value: clientHeader)
+    req.addHeader(name: HeaderNames.apiClient, value: clientHeader)
     let e = await #expect(throws: GoogleCloudGax.RequestError.self) {
       _ = try (await req.rpc(GoogleCloudWkt.Empty.self)).get()
     }
@@ -446,7 +446,7 @@ import NIOHTTP1
     let mock = MockHTTPClient { @Sendable (request, _) in
       #expect(request.method == .GET)
       #expect(request.url == wantURLString)
-      #expect(request.headers["x-goog-api-client"] == [clientHeader])
+      #expect(request.headers[HeaderNames.apiClient] == [clientHeader])
       #expect(request.headers["authorization"] == ["test-only-auth"])
       #expect(request.headers["x-goog-auth"] == ["test-only-auth2"])
       #expect(request.headers["content-type"] == [])
@@ -472,7 +472,7 @@ import NIOHTTP1
     ]
     var req = try await client.newRequest(path: path, query: query)
     req.setMethod(.GET)
-    req.addHeader(name: "X-Goog-Api-Client", value: clientHeader)
+    req.addHeader(name: HeaderNames.apiClient, value: clientHeader)
     let e = await #expect(throws: GoogleCloudGax.RequestError.self) {
       _ = try (await req.rpc(GoogleCloudWkt.Empty.self)).get()
     }

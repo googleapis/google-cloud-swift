@@ -21,8 +21,8 @@ import SwiftProtobuf
 /// Implements a generic gRPC client for the Swift SDK client libraries.
 @_spi(GoogleCloudInternal)
 public struct _GRPCClient: Sendable {
-  public let connection: ClientConnection
-  public let credentials: GoogleCloudAuth.Credentials
+  let connection: ClientConnection
+  let credentials: GoogleCloudAuth.Credentials
 
   public init(from options: ClientOptions, withDefaultEndpoint defaultEndpoint: String) throws {
     self.credentials = try options.credentials ?? GoogleCloudAuth.Credentials()
@@ -65,10 +65,10 @@ public struct _GRPCClient: Sendable {
       callOptions.customMetadata.add(name: key, value: value)
     }
 
-    callOptions.customMetadata.add(name: "x-goog-api-client", value: clientHeader)
+    callOptions.customMetadata.add(name: HeaderNames.apiClient, value: clientHeader)
     if !routingParams.isEmpty {
       callOptions.customMetadata.add(
-        name: "x-goog-request-params",
+        name: HeaderNames.requestParams,
         value: routingParams.joined(separator: "&")
       )
     }
