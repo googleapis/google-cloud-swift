@@ -1032,7 +1032,6 @@ libraries:
         - output: packages/storage/Sources/GoogleCloudStorage/generated/Storage/Convert/Storage
           api_path: google/storage/v2
           module_type: convert-swift
-          module_path: StorageProtos
           included_ids:
             - .google.storage.v2.Storage.DeleteBucket
             - .google.storage.v2.Storage.GetBucket
@@ -1048,6 +1047,7 @@ libraries:
             - .google.storage.v2.Storage.ListObjects
             - .google.storage.v2.Storage.RewriteObject
             - .google.storage.v2.Storage.MoveObject
+          module_path: StorageProtos
         - output: packages/storage/Sources/GoogleCloudStorage/generated/Storage/Convert/GoogleType
           api_path: google/type
           module_type: convert-swift
