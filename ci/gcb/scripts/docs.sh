@@ -29,37 +29,52 @@ echo
 errors=0
 count=0
 
-flags=(
+clean_flags=(
     --warnings-as-errors
 )
-targets=(
+clean_targets=(
     GoogleCloudWkt
     GoogleCloudAuth
     GoogleCloudGax
     GoogleCloudSecretManagerV1
 )
-echo "--- Building ${#targets[@]} targets"
-for target in "${targets[@]}"; do
+echo "--- Building ${#clean_targets[@]} targets with warnings as errors"
+for target in "${clean_targets[@]}"; do
     count=$((count + 1))
 
     echo; echo "================ Building ${target} ================"
-    if swift package generate-documentation "${flags[@]}" --target "${target}"; then
+    if swift package generate-documentation "${clean_flags[@]}" --target "${target}" >"${target}.docs.log" 2>&1; then
         echo "✓ ${target} built successfully"
     else
         echo; echo "✗ ${target} failed to build"
+        cat "${target}.docs.log"
         errors=$((errors + 1))
         continue
     fi
 done
 
-# TODO(https://github.com/googleapis/google-cloud-swift/issues/308) - the xref links need fixing
-# after that we can merge this to the main loop
-echo; echo "================ Building GoogleCloudStorage ================"
+targets=(
+    # TODO(https://github.com/googleapis/google-cloud-swift/issues/308) - the xref links need fixing
+    # after that we can merge this to the main loop
+    GoogleCloudStorage
+)
+# On post-merge builds build all the things.
+if [[ "${GCB_TRIGGER_NAME:-}" == gcb-pm-* ]]; then
+    export GOOGLE_CLOUD_SWIFT_FULL_BUILD=true
+    mapfile -t generated < <(sed -n 's/^  name: "\([^"]*\)",/\1/p' generated/*/Package.swift)
+    targets+=("${generated[@]}")
+fi
+
+echo; echo; echo "--- Building ${#targets[@]} targets"
 count=$((count + 1))
-if swift package generate-documentation  --target "GoogleCloudStorage"; then
-    echo "✓ GoogleCloudStorage built successfully"
+args=()
+for target in "${targets[@]}"; do
+    args+=(--target "${target}")
+done
+if swift package generate-documentation --enable-experimental-combined-documentation "${args[@]}"; then
+    echo "✓ ${target} built successfully"
 else
-    echo; echo "✗ GoogleCloudStorage failed to build"
+    echo; echo "✗ ${target} failed to build"
     errors=$((errors + 1))
 fi
 
