@@ -26,51 +26,14 @@ swiftly update
 The code generator is implemented in [Go](https://go.dev). Follow the
 [Download and install][golang-install] guide to install Golang.
 
-## Installing Protobuf Compiler Plugins
+## Installing tools
 
-You need to install `swift-protobuf` plugins to generate protobuf code (e.g. for
-libraries using `swift-protobuf`).
-
-Follow these instructions to install `protoc-gen-swift` (version 1.38.1) and
-`protoc-gen-grpc-swift` (version 1.23.0). These must be built from source and
-placed in your `PATH` (e.g., in `~/.local/bin` or `/usr/local/bin`).
-
-Run the following commands to build and install them:
+To install the generator dependencies use `librarian install`:
 
 ```bash
-# Create local bin directory if it doesn't exist
-mkdir -p "${HOME}/.local/bin"
-
-# 1. Build and install protoc-gen-swift
-BUILD_DIR=$(mktemp -d)
-git clone --depth 1 --branch "1.38.1" https://github.com/apple/swift-protobuf.git "${BUILD_DIR}/swift-protobuf"
-cd "${BUILD_DIR}/swift-protobuf"
-swift build -c release
-cp .build/release/protoc-gen-swift "${HOME}/.local/bin/"
-
-# 2. Build and install protoc-gen-grpc-swift
-git clone --depth 1 --branch "1.23.0" https://github.com/grpc/grpc-swift.git "${BUILD_DIR}/grpc-swift"
-cd "${BUILD_DIR}/grpc-swift"
-swift build -c release --product protoc-gen-grpc-swift
-cp .build/release/protoc-gen-grpc-swift "${HOME}/.local/bin/"
-
-# Clean up build directory
-rm -rf "${BUILD_DIR}"
-```
-
-Finally, ensure that `${HOME}/.local/bin` is added to your environment `PATH`.
-For example, in your `~/.bashrc` or `~/.zshrc`:
-
-```bash
-export PATH="${HOME}/.local/bin:${PATH}"
-```
-
-Verify the installations by running:
-
-```bash
-protoc --version
-protoc-gen-swift --version
-protoc-gen-grpc-swift --version
+V=$(go run github.com/googleapis/librarian/cmd/librarian@latest config get version)
+# Relatively slow, use `librarian -v` to get progress reports.
+go run github.com/googleapis/librarian/cmd/librarian@${V} -v install
 ```
 
 ## IDE Recommendations
@@ -85,7 +48,7 @@ swift build
 ```
 
 > [!NOTE] If you encounter an error like `fatal: cannot use bare repository
-> '...' (safe.bareRepository is 'explicit')` when SwiftPM tries to fetch or
+'...' (safe.bareRepository is 'explicit')` when SwiftPM tries to fetch or
 > update dependencies, you may need to update your global git configuration:
 >
 > ```bash
@@ -140,10 +103,10 @@ stest --package-path generated/google-cloud-secretmanager-v1
 
 You can customize these aliases even further. Consider
 
--   Add `-Xswiftc -warnings-as-errors` to catch build problems earlier
-    -   You may need to suppress some warnings too, with
-        `-Xswiftc -Wwarning -Xswiftc DeprecatedDeclaration`
--   Add `--quiet` to `stest` to reduce the noise and only see test failures
+- Add `-Xswiftc -warnings-as-errors` to catch build problems earlier
+  - You may need to suppress some warnings too, with
+    `-Xswiftc -Wwarning -Xswiftc DeprecatedDeclaration`
+- Add `--quiet` to `stest` to reduce the noise and only see test failures
 
 ## Exhaustive builds and tests
 
@@ -214,9 +177,9 @@ It is fine if the list is empty, you just don't want an error.
 The integration tests need a service account (SA) in your project. This service
 account is used to:
 
--   Run tests that perform IAM operations, temporarily granting this service
-    account some permissions.
--   Configure the service account used for test workflows.
+- Run tests that perform IAM operations, temporarily granting this service
+  account some permissions.
+- Configure the service account used for test workflows.
 
 For a test project, just create the SA using the CLI:
 

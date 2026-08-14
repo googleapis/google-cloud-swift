@@ -7,22 +7,20 @@ when the generator changes.
 
 ## Prerequisites
 
-The generator and its unit tests use `protoc`, the Protobuf compiler. Ensure you
-have `protoc >= v23.0` installed and it is found via your `$PATH`.
+Make sure your workstation has up-to-date versions of Swift and Go. Follow the
+instructions in [Set Up Development Environment].
+
+To install the generator dependencies use `librarian install`:
 
 ```bash
-protoc --version
+V=$(go run github.com/googleapis/librarian/cmd/librarian@latest config get version)
+# Relatively slow, use `librarian -v` to get progress reports.
+go run github.com/googleapis/librarian/cmd/librarian@${V} -v install
 ```
-
-If not, follow the steps in [Protocol Buffer Compiler Installation] to download
-a suitable version.
 
 If you are generating Swift protobufs (e.g. `swift-protobuf` modules), you must
 also install the `protoc` plugins for Swift. Follow the instructions in
 [Installing Protobuf Compiler & Plugins].
-
-Make sure your workstation has up-to-date versions of Swift and Go. Follow the
-instructions in [Set Up Development Environment].
 
 ## Onboard new library
 
@@ -163,7 +161,6 @@ go run github.com/googleapis/librarian/cmd/librarian@${V} generate google-cloud-
 [add new dependency]: #add-new-dependency
 [generate new library]: #generate-new-library
 [librarian.yaml]: https://github.com/googleapis/google-cloud-swift/blob/main/librarian.yaml
-[protocol buffer compiler installation]: https://protobuf.dev/installation/
 [sdk.yaml]: https://github.com/googleapis/librarian/blob/main/internal/serviceconfig/sdk.yaml
 [set up development environment]: /doc/contributor/howto-guide-set-up-development-environment.md
 [Installing Protobuf Compiler & Plugins]: /doc/contributor/howto-guide-set-up-development-environment.md#installing-protobuf-compiler-plugins

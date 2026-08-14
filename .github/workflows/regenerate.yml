@@ -32,17 +32,21 @@ jobs:
         with:
           go-version: "1.26"
           cache: false
-      - name: Set up protoc
-        uses: ./.github/actions/install-protoc
-      - name: Install Swift Protobuf Plugins
-        uses: ./.github/actions/install-protobuf-plugins
       - name: Re-generate
         run: |
           set -e
           # Make three attempts to avoid download flakes.
-          go run github.com/googleapis/librarian/cmd/librarian@latest config get version || \
-          go run github.com/googleapis/librarian/cmd/librarian@latest config get version || \
-          go run github.com/googleapis/librarian/cmd/librarian@latest config get version
+          # Normally we recommend `librarian config get version` but that requires
+          # downloading two copies of librarian.
+          version=$(sed -n 's/^version: *//p' librarian.yaml)
+          # Make multiple download attempts to avoid download-induced flakes.
+          go install github.com/googleapis/librarian/cmd/librarian@${version} ||
+            (sleep 5 && go install github.com/googleapis/librarian/cmd/librarian@${version}) ||
+            (sleep 10 && go install github.com/googleapis/librarian/cmd/librarian@${version})
+          # Make multiple attempts as installing the tools may require downloads.
+          go run github.com/googleapis/librarian/cmd/librarian@${version} -v install ||
+            (sleep 5 && go run github.com/googleapis/librarian/cmd/librarian@${version} -v install) ||
+            (sleep 10 && go run github.com/googleapis/librarian/cmd/librarian@${version} -v install)
           # Now get the version and regenerate the code.
           V=$(go run github.com/googleapis/librarian/cmd/librarian@latest config get version)
           go run github.com/googleapis/librarian/cmd/librarian@${V} version || \

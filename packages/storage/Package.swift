@@ -36,7 +36,7 @@ let package = Package(
     .package(path: "../../generated/google-longrunning"),
     .package(path: "../../generated/google-type"),
     .package(url: "https://github.com/apple/swift-log", from: "1.12.0"),
-    .package(url: "https://github.com/apple/swift-protobuf.git", from: "1.28.2"),
+    .package(url: "https://github.com/apple/swift-protobuf.git", from: "1.38.1"),
     .package(url: "https://github.com/grpc/grpc-swift.git", from: "1.23.0"),
     .package(url: "https://github.com/apple/swift-crypto.git", from: "4.0.0"),
     .package(url: "https://github.com/apple/swift-nio", from: "2.101.0"),
