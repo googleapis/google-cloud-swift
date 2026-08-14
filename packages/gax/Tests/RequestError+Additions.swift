@@ -19,7 +19,6 @@ extension RequestError: Equatable {
   public static func == (lhs: RequestError, rhs: RequestError) -> Bool {
     switch (lhs, rhs) {
     case (.binding(let l), .binding(let r)): return l == r
-    case (.badResponseType, .badResponseType): return true
     case (.http(let l), .http(let r)): return l == r
     case (.io(let l), .io(let r)):
       if let el = l as? RequestError, let er = r as? RequestError {

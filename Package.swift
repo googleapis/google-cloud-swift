@@ -67,12 +67,6 @@ let package = Package(
   ] + generatedDependencies,
   targets: [
     .testTarget(
-      name: "IntegrationTests",
-      dependencies: [
-        .product(name: "GoogleCloudAuth", package: "auth")
-      ],
-    ),
-    .testTarget(
       name: "AllModules",
       dependencies: [.product(name: "UserGuide", package: "guide")] + generatedModules,
     ),

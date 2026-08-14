@@ -32,15 +32,6 @@ public enum RequestError: Error {
   /// and request, but the most common are `parent`, and `name`.
   case binding(String)
 
-  /// The HTTP transport returned an unexpected response type.
-  ///
-  /// ## Troubleshooting
-  ///
-  /// The client libraries expect `HTTPURLResponse` as responses from the `URLSession` calls. The
-  /// most common cause for this error is using an `ftp`, or `file` endpoint that just happens to
-  /// work.
-  case badResponseType
-
   /// The request failed with some type of I/O error, before getting a status code.
   ///
   /// ## Troubleshooting
