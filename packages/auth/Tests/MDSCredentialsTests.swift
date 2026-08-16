@@ -413,6 +413,77 @@ import Testing
     }
   }
 
+  @Test func retriesOnConnectionReset() async throws {
+    struct MockResponse: Encodable {
+      let accessToken: String; let expiresIn: Int; let tokenType: String
+    }
+    let encodedData = try JSONEncoder().encode(
+      MockResponse(accessToken: "mock-token", expiresIn: 3600, tokenType: "Bearer"))
+
+    let connectionReset = { @Sendable (request: HTTPClientRequest) throws -> HTTPClientResponse in
+      Self.checkRequest(request)
+      throw URLError(.networkConnectionLost)
+    }
+    let success = { @Sendable (request: HTTPClientRequest) throws in
+      Self.checkRequest(request)
+      return HTTPClientResponse(
+        version: .http2,
+        status: .ok,
+        headers: .init([("Content-Type", "application/json")]),
+        body: .bytes(.init(data: encodedData)),
+      )
+    }
+
+    let mock = MockHTTPClient([connectionReset, success])
+
+    let retryConfig = RetryConfiguration(
+      maxAttempts: 2, initialDelay: .milliseconds(1), multiplier: 1.0, maxDelay: .milliseconds(1))
+    let client = AuthHTTPClient(mock: mock)
+    let provider = MDSCredentials(
+      retryConfiguration: retryConfig, client: client, fromADC: false, environment: [:])
+    let headers = try await provider.headers()
+
+    #expect(
+      headers.contains { $0.0 == "Authorization" && $0.1 == "Bearer mock-token" },
+      "Missing authorization header in \(headers)"
+    )
+  }
+
+  @Test func retriesOnIncompleteMessage() async throws {
+    struct MockResponse: Encodable {
+      let accessToken: String; let expiresIn: Int; let tokenType: String
+    }
+    let encodedData = try JSONEncoder().encode(
+      MockResponse(accessToken: "mock-token", expiresIn: 3600, tokenType: "Bearer"))
+
+    let incompleteMessage = { @Sendable (request: HTTPClientRequest) throws -> HTTPClientResponse in
+      Self.checkRequest(request)
+      throw HTTPClientError.remoteConnectionClosed
+    }
+    let success = { @Sendable (request: HTTPClientRequest) throws in
+      Self.checkRequest(request)
+      return HTTPClientResponse(
+        version: .http2,
+        status: .ok,
+        headers: .init([("Content-Type", "application/json")]),
+        body: .bytes(.init(data: encodedData)),
+      )
+    }
+    let mock = MockHTTPClient([incompleteMessage, success])
+
+    let retryConfig = RetryConfiguration(
+      maxAttempts: 2, initialDelay: .milliseconds(1), multiplier: 1.0, maxDelay: .milliseconds(1))
+    let client = AuthHTTPClient(mock: mock)
+    let provider = MDSCredentials(
+      retryConfiguration: retryConfig, client: client, fromADC: false, environment: [:])
+    let headers = try await provider.headers()
+
+    #expect(
+      headers.contains { $0.0 == "Authorization" && $0.1 == "Bearer mock-token" },
+      "Missing authorization header in \(headers)"
+    )
+  }
+
   static func checkRequest(
     _ request: HTTPClientRequest, sourceLocation: SourceLocation = #_sourceLocation
   ) {
