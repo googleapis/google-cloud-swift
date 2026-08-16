@@ -14,6 +14,7 @@
 
 import Foundation
 import AsyncHTTPClient
+import NIOHTTP1
 import Testing
 @testable import GoogleCloudAuth
 
@@ -340,6 +341,76 @@ import Testing
       headers.contains { $0.0 == "Authorization" && $0.1 == "Bearer mock-token" },
       "Missing authorization header in \(headers)"
     )
+  }
+
+  @Test(arguments: [
+    HTTPResponseStatus.internalServerError,  // 500
+    .notImplemented,  // 501
+    .badGateway,  // 502
+    .serviceUnavailable,  // 503
+    .gatewayTimeout,  // 504
+    .httpVersionNotSupported,  // 505
+    .requestTimeout,  // 408
+    .tooManyRequests,  // 429
+  ])
+  func retriesOnSpecificTransientStatusCodes(status: HTTPResponseStatus) async throws {
+    struct MockResponse: Encodable {
+      let accessToken: String; let expiresIn: Int; let tokenType: String
+    }
+    let mockPayload = MockResponse(accessToken: "mock-token", expiresIn: 3600, tokenType: "Bearer")
+    let encodedData = try JSONEncoder().encode(mockPayload)
+
+    let failure = { @Sendable (_ request: HTTPClientRequest) in
+      Self.checkRequest(request)
+      return HTTPClientResponse(version: .http2, status: status)
+    }
+    let success = { @Sendable (request: HTTPClientRequest) in
+      Self.checkRequest(request)
+      return HTTPClientResponse(
+        version: .http2,
+        status: .ok,
+        headers: .init([("Content-Type", "application/json")]),
+        body: .bytes(.init(data: encodedData)),
+      )
+    }
+
+    let mock = MockHTTPClient([failure, success])
+
+    let retryConfig = RetryConfiguration(
+      maxAttempts: 2, initialDelay: .milliseconds(1), multiplier: 1.0, maxDelay: .milliseconds(1))
+    let client = AuthHTTPClient(mock: mock)
+    let provider = MDSCredentials(
+      retryConfiguration: retryConfig, client: client, fromADC: false, environment: [:])
+    let headers = try await provider.headers()
+
+    #expect(
+      headers.contains { $0.0 == "Authorization" && $0.1 == "Bearer mock-token" },
+      "Missing authorization header in \(headers)"
+    )
+  }
+
+  @Test(arguments: [
+    HTTPResponseStatus.badRequest,  // 400
+    .unauthorized,  // 401
+    .forbidden,  // 403
+    .notFound,  // 404
+  ])
+  func doesNotRetryOnSpecificNonTransientStatusCodes(status: HTTPResponseStatus) async throws {
+    let failure = { @Sendable (_ request: HTTPClientRequest) in
+      Self.checkRequest(request)
+      return HTTPClientResponse(version: .http2, status: status)
+    }
+    let mock = MockHTTPClient([failure])
+
+    let retryConfig = RetryConfiguration(
+      maxAttempts: 2, initialDelay: .milliseconds(1), multiplier: 1.0, maxDelay: .milliseconds(1))
+    let client = AuthHTTPClient(mock: mock)
+    let provider = MDSCredentials(
+      retryConfiguration: retryConfig, client: client, fromADC: false, environment: [:])
+
+    await #expect(throws: Error.self) {
+      _ = try await provider.headers()
+    }
   }
 
   static func checkRequest(
