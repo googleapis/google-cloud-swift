@@ -530,7 +530,7 @@ public class DataCatalogClient: Clients.DataCatalogProtocol {
   /// lowercased.
   ///
   /// [google.cloud.datacatalog.v1.Entry]: <doc:Entry>
-  /// [google.cloud.datacatalog.v1.Tag.column]: <doc:Tag/column>
+  /// [google.cloud.datacatalog.v1.Tag.column]: <doc:Tag/OneOf_Scope/column(_:)>
   ///
   /// @Snippet(path: "DataCatalog_ListTags")
   @available(*, deprecated)
@@ -545,7 +545,7 @@ public class DataCatalogClient: Clients.DataCatalogProtocol {
   /// lowercased.
   ///
   /// [google.cloud.datacatalog.v1.Entry]: <doc:Entry>
-  /// [google.cloud.datacatalog.v1.Tag.column]: <doc:Tag/column>
+  /// [google.cloud.datacatalog.v1.Tag.column]: <doc:Tag/OneOf_Scope/column(_:)>
   ///
   /// @Snippet(path: "DataCatalog_ListTags")
   @available(*, deprecated)

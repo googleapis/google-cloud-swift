@@ -47,7 +47,7 @@
     /// Flow`][Agent.start_flow] in the agent. Otherwise, an error will be
     /// returned.
     ///
-    /// [Agent.start_flow]: <doc:Agent/startFlow>
+    /// [Agent.start_flow]: <doc:Agent/OneOf_SessionEntryResource/startFlow(_:)>
     public var versionConfigs: [Environment.VersionConfig] = []
 
     /// Output only. Update time of this environment.
@@ -175,8 +175,8 @@
       /// and
       /// [`service_directory`][google.cloud.dialogflow.cx.v3.Webhook.service_directory].
       ///
-      /// [google.cloud.dialogflow.cx.v3.Webhook.generic_web_service]: <doc:Webhook/genericWebService>
-      /// [google.cloud.dialogflow.cx.v3.Webhook.service_directory]: <doc:Webhook/serviceDirectory>
+      /// [google.cloud.dialogflow.cx.v3.Webhook.generic_web_service]: <doc:Webhook/OneOf_Webhook/genericWebService(_:)>
+      /// [google.cloud.dialogflow.cx.v3.Webhook.service_directory]: <doc:Webhook/OneOf_Webhook/serviceDirectory(_:)>
       public var webhookOverrides: [Webhook] = []
 
       /// Initialize a new instance of `WebhookConfig`.

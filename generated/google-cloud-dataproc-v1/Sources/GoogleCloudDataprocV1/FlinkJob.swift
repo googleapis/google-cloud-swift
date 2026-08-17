@@ -51,7 +51,7 @@ public struct FlinkJob: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// [mainClass][google.cloud.dataproc.v1.FlinkJob.main_class].
   ///
   /// [google.cloud.dataproc.v1.FlinkJob.jar_file_uris]: <doc:FlinkJob/jarFileUris>
-  /// [google.cloud.dataproc.v1.FlinkJob.main_class]: <doc:FlinkJob/mainClass>
+  /// [google.cloud.dataproc.v1.FlinkJob.main_class]: <doc:FlinkJob/OneOf_Driver/mainClass(_:)>
   public var driver: OneOf_Driver? = nil
 
   /// Initialize a new instance of `FlinkJob`.
@@ -135,7 +135,7 @@ public struct FlinkJob: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// [mainClass][google.cloud.dataproc.v1.FlinkJob.main_class].
   ///
   /// [google.cloud.dataproc.v1.FlinkJob.jar_file_uris]: <doc:FlinkJob/jarFileUris>
-  /// [google.cloud.dataproc.v1.FlinkJob.main_class]: <doc:FlinkJob/mainClass>
+  /// [google.cloud.dataproc.v1.FlinkJob.main_class]: <doc:FlinkJob/OneOf_Driver/mainClass(_:)>
   public enum OneOf_Driver: Codable, Equatable, Sendable {
     /// The HCFS URI of the jar file that contains the main class.
     case mainJarFileUri(Swift.String)

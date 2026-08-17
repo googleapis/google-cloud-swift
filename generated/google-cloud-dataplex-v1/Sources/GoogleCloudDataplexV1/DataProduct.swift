@@ -123,7 +123,7 @@ public struct DataProduct: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public var serviceAccount: Swift.String? = nil
 
     /// The type of the principal entity.
-    public var type: OneOf_Type_? = nil
+    public var type: OneOf_Type? = nil
 
     /// Initialize a new instance of `Principal`.
     public init() {}
@@ -151,7 +151,7 @@ public struct DataProduct: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       self.serviceAccount = try container.decodeIfPresent(
         Swift.String.self, forKey: .serviceAccount)
 
-      var type: OneOf_Type_? = nil
+      var type: OneOf_Type? = nil
       let typeCheckAndSet = {
         if type != nil {
           throw DecodingError.dataCorrupted(
@@ -180,7 +180,7 @@ public struct DataProduct: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     }
 
     /// The type of the principal entity.
-    public enum OneOf_Type_: Codable, Equatable, Sendable {
+    public enum OneOf_Type: Codable, Equatable, Sendable {
       /// Optional. Email of the Google Group, as per
       /// https://cloud.google.com/iam/docs/principals-overview#google-group.
       case googleGroup(Swift.String)

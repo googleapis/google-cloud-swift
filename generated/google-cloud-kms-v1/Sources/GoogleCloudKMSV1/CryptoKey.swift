@@ -463,7 +463,7 @@ public struct CryptoKey: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// [google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT]: <doc:CryptoKey/CryptoKeyPurpose/encryptDecrypt>
     /// [google.cloud.kms.v1.CryptoKey.next_rotation_time]: <doc:CryptoKey/nextRotationTime>
     /// [google.cloud.kms.v1.CryptoKey.purpose]: <doc:CryptoKey/purpose>
-    /// [google.cloud.kms.v1.CryptoKey.rotation_period]: <doc:CryptoKey/rotationPeriod>
+    /// [google.cloud.kms.v1.CryptoKey.rotation_period]: <doc:CryptoKey/OneOf_RotationSchedule/rotationPeriod(_:)>
     indirect case rotationPeriod(GoogleCloudWkt.Duration?)
   }
 

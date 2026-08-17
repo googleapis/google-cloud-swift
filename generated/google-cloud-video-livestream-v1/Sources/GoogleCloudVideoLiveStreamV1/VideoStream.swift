@@ -145,7 +145,7 @@ public struct VideoStream: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// [gop_frame_count][google.cloud.video.livestream.v1.VideoStream.H264CodecSettings.gop_frame_count]
     /// if set. The default is 0.
     ///
-    /// [google.cloud.video.livestream.v1.VideoStream.H264CodecSettings.gop_frame_count]: <doc:VideoStream/H264CodecSettings/gopFrameCount>
+    /// [google.cloud.video.livestream.v1.VideoStream.H264CodecSettings.gop_frame_count]: <doc:VideoStream/H264CodecSettings/OneOf_GopMode/gopFrameCount(_:)>
     public var bFrameCount: Swift.Int32 = Swift.Int32()
 
     /// Specify the intensity of the adaptive quantizer (AQ). Must be between 0
@@ -369,7 +369,7 @@ public struct VideoStream: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// [gop_frame_count][google.cloud.video.livestream.v1.VideoStream.H265CodecSettings.gop_frame_count]
     /// if set. The default is 0.
     ///
-    /// [google.cloud.video.livestream.v1.VideoStream.H265CodecSettings.gop_frame_count]: <doc:VideoStream/H265CodecSettings/gopFrameCount>
+    /// [google.cloud.video.livestream.v1.VideoStream.H265CodecSettings.gop_frame_count]: <doc:VideoStream/H265CodecSettings/OneOf_GopMode/gopFrameCount(_:)>
     public var bFrameCount: Swift.Int32 = Swift.Int32()
 
     /// Optional. Specify the intensity of the adaptive quantizer (AQ). Must be

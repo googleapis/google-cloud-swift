@@ -163,7 +163,7 @@ public struct RecordCondition: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       .Expressions.LogicalOperator()
 
     /// Expression types.
-    public var type: OneOf_Type_? = nil
+    public var type: OneOf_Type? = nil
 
     /// Initialize a new instance of `Expressions`.
     public init() {}
@@ -191,7 +191,7 @@ public struct RecordCondition: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       self.logicalOperator = try container.decode(
         RecordCondition.Expressions.LogicalOperator.self, forKey: .logicalOperator)
 
-      var type: OneOf_Type_? = nil
+      var type: OneOf_Type? = nil
       let typeCheckAndSet = {
         if type != nil {
           throw DecodingError.dataCorrupted(
@@ -320,7 +320,7 @@ public struct RecordCondition: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     }
 
     /// Expression types.
-    public enum OneOf_Type_: Codable, Equatable, Sendable {
+    public enum OneOf_Type: Codable, Equatable, Sendable {
       /// Conditions to apply to the expression.
       indirect case conditions(RecordCondition.Conditions?)
     }

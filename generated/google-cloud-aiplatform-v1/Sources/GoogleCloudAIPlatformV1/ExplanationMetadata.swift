@@ -170,8 +170,8 @@
       /// An encoded tensor is generated if the input tensor is encoded by a lookup
       /// table.
       ///
-      /// [google.cloud.aiplatform.v1.ExplanationParameters.integrated_gradients_attribution]: <doc:ExplanationParameters/integratedGradientsAttribution>
-      /// [google.cloud.aiplatform.v1.ExplanationParameters.xrai_attribution]: <doc:ExplanationParameters/xraiAttribution>
+      /// [google.cloud.aiplatform.v1.ExplanationParameters.integrated_gradients_attribution]: <doc:ExplanationParameters/OneOf_Method/integratedGradientsAttribution(_:)>
+      /// [google.cloud.aiplatform.v1.ExplanationParameters.xrai_attribution]: <doc:ExplanationParameters/OneOf_Method/xraiAttribution(_:)>
       public var encodedTensorName: Swift.String = Swift.String()
 
       /// A list of baselines for the encoded tensor.
@@ -275,7 +275,7 @@
         /// OUTLINES shows regions of attribution, while PIXELS shows per-pixel
         /// attribution. Defaults to OUTLINES.
         ///
-        /// [google.cloud.aiplatform.v1.ExplanationParameters.integrated_gradients_attribution]: <doc:ExplanationParameters/integratedGradientsAttribution>
+        /// [google.cloud.aiplatform.v1.ExplanationParameters.integrated_gradients_attribution]: <doc:ExplanationParameters/OneOf_Method/integratedGradientsAttribution(_:)>
         public var type: ExplanationMetadata.InputMetadata.Visualization.Type_ = ExplanationMetadata
           .InputMetadata.Visualization.Type_()
 
@@ -297,8 +297,8 @@
         /// which highlights the most influential regions in yellow and the least
         /// influential in blue.
         ///
-        /// [google.cloud.aiplatform.v1.ExplanationParameters.integrated_gradients_attribution]: <doc:ExplanationParameters/integratedGradientsAttribution>
-        /// [google.cloud.aiplatform.v1.ExplanationParameters.xrai_attribution]: <doc:ExplanationParameters/xraiAttribution>
+        /// [google.cloud.aiplatform.v1.ExplanationParameters.integrated_gradients_attribution]: <doc:ExplanationParameters/OneOf_Method/integratedGradientsAttribution(_:)>
+        /// [google.cloud.aiplatform.v1.ExplanationParameters.xrai_attribution]: <doc:ExplanationParameters/OneOf_Method/xraiAttribution(_:)>
         public var colorMap: ExplanationMetadata.InputMetadata.Visualization.ColorMap =
           ExplanationMetadata.InputMetadata.Visualization.ColorMap()
 
@@ -339,7 +339,7 @@
         /// [Integrated Gradients
         /// attribution][google.cloud.aiplatform.v1.ExplanationParameters.integrated_gradients_attribution].
         ///
-        /// [google.cloud.aiplatform.v1.ExplanationParameters.integrated_gradients_attribution]: <doc:ExplanationParameters/integratedGradientsAttribution>
+        /// [google.cloud.aiplatform.v1.ExplanationParameters.integrated_gradients_attribution]: <doc:ExplanationParameters/OneOf_Method/integratedGradientsAttribution(_:)>
         public enum Type_: Codable, Equatable, Sendable {
           /// Should not be used.
           case unspecified

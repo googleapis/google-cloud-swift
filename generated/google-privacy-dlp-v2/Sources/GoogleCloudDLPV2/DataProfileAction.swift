@@ -510,7 +510,7 @@ public struct DataProfileAction: Codable, Equatable, GoogleCloudWkt._AnyPackable
       public var tag: DataProfileAction.TagResources.TagValue? = nil
 
       /// The type of condition on which attaching the tag will be predicated.
-      public var type: OneOf_Type_? = nil
+      public var type: OneOf_Type? = nil
 
       /// Initialize a new instance of `TagCondition`.
       public init() {}
@@ -538,7 +538,7 @@ public struct DataProfileAction: Codable, Equatable, GoogleCloudWkt._AnyPackable
         self.tag = try container.decodeIfPresent(
           DataProfileAction.TagResources.TagValue.self, forKey: .tag)
 
-        var type: OneOf_Type_? = nil
+        var type: OneOf_Type? = nil
         let typeCheckAndSet = {
           if type != nil {
             throw DecodingError.dataCorrupted(
@@ -569,7 +569,7 @@ public struct DataProfileAction: Codable, Equatable, GoogleCloudWkt._AnyPackable
       }
 
       /// The type of condition on which attaching the tag will be predicated.
-      public enum OneOf_Type_: Codable, Equatable, Sendable {
+      public enum OneOf_Type: Codable, Equatable, Sendable {
         /// Conditions attaching the tag to a resource on its profile having this
         /// sensitivity score.
         indirect case sensitivityScore(SensitivityScore?)

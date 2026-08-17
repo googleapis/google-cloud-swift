@@ -194,8 +194,8 @@
     ///
     /// [google.cloud.aiplatform.v1.BatchPredictionJob]: <doc:BatchPredictionJob>
     /// [google.cloud.aiplatform.v1.BatchPredictionJob.InputConfig]: <doc:BatchPredictionJob/InputConfig>
-    /// [google.cloud.aiplatform.v1.BatchPredictionJob.InputConfig.bigquery_source]: <doc:BatchPredictionJob/InputConfig/bigquerySource>
-    /// [google.cloud.aiplatform.v1.BatchPredictionJob.InputConfig.gcs_source]: <doc:BatchPredictionJob/InputConfig/gcsSource>
+    /// [google.cloud.aiplatform.v1.BatchPredictionJob.InputConfig.bigquery_source]: <doc:BatchPredictionJob/InputConfig/OneOf_Source/bigquerySource(_:)>
+    /// [google.cloud.aiplatform.v1.BatchPredictionJob.InputConfig.gcs_source]: <doc:BatchPredictionJob/InputConfig/OneOf_Source/gcsSource(_:)>
     /// [google.cloud.aiplatform.v1.BatchPredictionJob.input_config]: <doc:BatchPredictionJob/inputConfig>
     /// [google.cloud.aiplatform.v1.Model.supported_deployment_resources_types]: <doc:Model/supportedDeploymentResourcesTypes>
     /// [google.cloud.aiplatform.v1.PredictSchemata.instance_schema_uri]: <doc:PredictSchemata/instanceSchemaUri>
@@ -242,8 +242,8 @@
     /// [PredictionService.Explain][google.cloud.aiplatform.v1.PredictionService.Explain].
     ///
     /// [google.cloud.aiplatform.v1.BatchPredictionJob]: <doc:BatchPredictionJob>
-    /// [google.cloud.aiplatform.v1.BatchPredictionJob.OutputConfig.bigquery_destination]: <doc:BatchPredictionJob/OutputConfig/bigqueryDestination>
-    /// [google.cloud.aiplatform.v1.BatchPredictionJob.OutputConfig.gcs_destination]: <doc:BatchPredictionJob/OutputConfig/gcsDestination>
+    /// [google.cloud.aiplatform.v1.BatchPredictionJob.OutputConfig.bigquery_destination]: <doc:BatchPredictionJob/OutputConfig/OneOf_Destination/bigqueryDestination(_:)>
+    /// [google.cloud.aiplatform.v1.BatchPredictionJob.OutputConfig.gcs_destination]: <doc:BatchPredictionJob/OutputConfig/OneOf_Destination/gcsDestination(_:)>
     /// [google.cloud.aiplatform.v1.BatchPredictionJob.output_config]: <doc:BatchPredictionJob/outputConfig>
     /// [google.cloud.aiplatform.v1.Model.supported_deployment_resources_types]: <doc:Model/supportedDeploymentResourcesTypes>
     /// [google.cloud.aiplatform.v1.PredictSchemata.instance_schema_uri]: <doc:PredictSchemata/instanceSchemaUri>

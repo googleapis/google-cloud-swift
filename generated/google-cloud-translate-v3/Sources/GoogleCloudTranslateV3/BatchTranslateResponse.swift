@@ -22,7 +22,7 @@ import GoogleCloudWkt
 /// field returned by BatchTranslateText if at least one sentence is translated
 /// successfully.
 ///
-/// [google.longrunning.Operation.response]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/response
+/// [google.longrunning.Operation.response]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/OneOf_Result/response(_:)
 public struct BatchTranslateResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

@@ -53,7 +53,7 @@ public struct Note: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var relatedNoteNames: [Swift.String] = []
 
   /// Required. Immutable. The type of analysis this note represents.
-  public var type: OneOf_Type_? = nil
+  public var type: OneOf_Type? = nil
 
   /// Initialize a new instance of `Note`.
   public init() {}
@@ -111,7 +111,7 @@ public struct Note: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       GoogleCloudWkt.Timestamp.self, forKey: .updateTime)
     self.relatedNoteNames = try container.decode([Swift.String].self, forKey: .relatedNoteNames)
 
-    var type: OneOf_Type_? = nil
+    var type: OneOf_Type? = nil
     let typeCheckAndSet = {
       if type != nil {
         throw DecodingError.dataCorrupted(
@@ -217,7 +217,7 @@ public struct Note: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Required. Immutable. The type of analysis this note represents.
-  public enum OneOf_Type_: Codable, Equatable, Sendable {
+  public enum OneOf_Type: Codable, Equatable, Sendable {
     /// A note describing a package vulnerability.
     indirect case vulnerability(VulnerabilityNote?)
     /// A note describing build provenance for a verifiable build.

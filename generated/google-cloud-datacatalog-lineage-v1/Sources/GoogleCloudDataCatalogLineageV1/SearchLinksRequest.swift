@@ -140,7 +140,7 @@ public struct SearchLinksRequest: Codable, Equatable, GoogleCloudWkt._AnyPackabl
     /// All entities within the `MultipleEntityReference` must have the same
     /// `fully_qualified_name`.
     ///
-    /// [google.cloud.datacatalog.lineage.v1.SearchLinksRequest.source]: <doc:SearchLinksRequest/source>
+    /// [google.cloud.datacatalog.lineage.v1.SearchLinksRequest.source]: <doc:SearchLinksRequest/OneOf_Criteria/source(_:)>
     indirect case sources(MultipleEntityReference?)
     /// Optional. Send a list of asset information in the **targets** field to
     /// retrieve all links that lead from upstream assets to the specified
@@ -150,7 +150,7 @@ public struct SearchLinksRequest: Codable, Equatable, GoogleCloudWkt._AnyPackabl
     /// All entities within the `MultipleEntityReference` must have the same
     /// `fully_qualified_name`.
     ///
-    /// [google.cloud.datacatalog.lineage.v1.SearchLinksRequest.target]: <doc:SearchLinksRequest/target>
+    /// [google.cloud.datacatalog.lineage.v1.SearchLinksRequest.target]: <doc:SearchLinksRequest/OneOf_Criteria/target(_:)>
     indirect case targets(MultipleEntityReference?)
   }
 

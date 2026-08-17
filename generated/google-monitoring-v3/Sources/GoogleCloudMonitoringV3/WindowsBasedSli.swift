@@ -120,7 +120,7 @@ public struct WindowsBasedSli: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// The means, either a request-based SLI or a basic SLI, by which to compute
     /// performance over a window.
-    public var type: OneOf_Type_? = nil
+    public var type: OneOf_Type? = nil
 
     /// Initialize a new instance of `PerformanceThreshold`.
     public init() {}
@@ -148,7 +148,7 @@ public struct WindowsBasedSli: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.threshold = try container.decode(Swift.Double.self, forKey: .threshold)
 
-      var type: OneOf_Type_? = nil
+      var type: OneOf_Type? = nil
       let typeCheckAndSet = {
         if type != nil {
           throw DecodingError.dataCorrupted(
@@ -187,7 +187,7 @@ public struct WindowsBasedSli: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// The means, either a request-based SLI or a basic SLI, by which to compute
     /// performance over a window.
-    public enum OneOf_Type_: Codable, Equatable, Sendable {
+    public enum OneOf_Type: Codable, Equatable, Sendable {
       /// `RequestBasedSli` to evaluate to judge window quality.
       indirect case performance(RequestBasedSli?)
       /// `BasicSli` to evaluate to judge window quality.

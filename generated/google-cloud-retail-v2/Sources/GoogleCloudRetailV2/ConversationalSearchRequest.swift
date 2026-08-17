@@ -203,7 +203,7 @@ public struct ConversationalSearchRequest: Codable, Equatable, GoogleCloudWkt._A
     Sendable
   {
     /// This field specifies the type of user answer.
-    public var type: OneOf_Type_? = nil
+    public var type: OneOf_Type? = nil
 
     /// Initialize a new instance of `UserAnswer`.
     public init() {}
@@ -229,7 +229,7 @@ public struct ConversationalSearchRequest: Codable, Equatable, GoogleCloudWkt._A
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var type: OneOf_Type_? = nil
+      var type: OneOf_Type? = nil
       let typeCheckAndSet = {
         if type != nil {
           throw DecodingError.dataCorrupted(
@@ -301,7 +301,7 @@ public struct ConversationalSearchRequest: Codable, Equatable, GoogleCloudWkt._A
     }
 
     /// This field specifies the type of user answer.
-    public enum OneOf_Type_: Codable, Equatable, Sendable {
+    public enum OneOf_Type: Codable, Equatable, Sendable {
       /// This field specifies the incremental input text from the user during
       /// the conversational search.
       case textAnswer(Swift.String)

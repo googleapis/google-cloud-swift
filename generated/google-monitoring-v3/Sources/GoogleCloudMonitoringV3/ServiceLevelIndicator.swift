@@ -36,7 +36,7 @@ public struct ServiceLevelIndicator: Codable, Equatable, GoogleCloudWkt._AnyPack
   /// Service level indicators can be grouped by whether the "unit" of service
   /// being measured is based on counts of good requests or on counts of good
   /// time windows
-  public var type: OneOf_Type_? = nil
+  public var type: OneOf_Type? = nil
 
   /// Initialize a new instance of `ServiceLevelIndicator`.
   public init() {}
@@ -63,7 +63,7 @@ public struct ServiceLevelIndicator: Codable, Equatable, GoogleCloudWkt._AnyPack
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var type: OneOf_Type_? = nil
+    var type: OneOf_Type? = nil
     let typeCheckAndSet = {
       if type != nil {
         throw DecodingError.dataCorrupted(
@@ -107,7 +107,7 @@ public struct ServiceLevelIndicator: Codable, Equatable, GoogleCloudWkt._AnyPack
   /// Service level indicators can be grouped by whether the "unit" of service
   /// being measured is based on counts of good requests or on counts of good
   /// time windows
-  public enum OneOf_Type_: Codable, Equatable, Sendable {
+  public enum OneOf_Type: Codable, Equatable, Sendable {
     /// Basic SLI on a well-known service type.
     indirect case basicSli(BasicSli?)
     /// Request-based SLIs

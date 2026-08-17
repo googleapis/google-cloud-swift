@@ -103,7 +103,7 @@ public struct AnalyzerOrgPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable
     ///
     /// [google.cloud.asset.v1.AnalyzeOrgPolicyGovernedAssetsResponse.GovernedAsset]: <doc:AnalyzeOrgPolicyGovernedAssetsResponse/GovernedAsset>
     /// [google.cloud.asset.v1.AnalyzeOrgPolicyGovernedAssetsResponse.GovernedAsset.consolidated_policy]: <doc:AnalyzeOrgPolicyGovernedAssetsResponse/GovernedAsset/consolidatedPolicy>
-    /// [google.cloud.asset.v1.AnalyzeOrgPolicyGovernedAssetsResponse.GovernedAsset.governed_resource]: <doc:AnalyzeOrgPolicyGovernedAssetsResponse/GovernedAsset/governedResource>
+    /// [google.cloud.asset.v1.AnalyzeOrgPolicyGovernedAssetsResponse.GovernedAsset.governed_resource]: <doc:AnalyzeOrgPolicyGovernedAssetsResponse/GovernedAsset/OneOf_GovernedAsset/governedResource(_:)>
     /// [google.cloud.asset.v1.AnalyzeOrgPolicyGovernedContainersResponse.GovernedContainer.consolidated_policy]: <doc:AnalyzeOrgPolicyGovernedContainersResponse/GovernedContainer/consolidatedPolicy>
     /// [google.cloud.asset.v1.AnalyzerOrgPolicy.Rule.condition]: <doc:AnalyzerOrgPolicy/Rule/condition>
     public var conditionEvaluation: ConditionEvaluation? = nil

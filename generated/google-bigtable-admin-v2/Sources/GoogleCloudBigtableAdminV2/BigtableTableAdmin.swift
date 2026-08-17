@@ -705,7 +705,7 @@ public class BigtableTableAdminClient: Clients.BigtableTableAdminProtocol {
   /// [google.bigtable.admin.v2.CreateBackupMetadata]: <doc:CreateBackupMetadata>
   /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   /// [google.longrunning.Operation.metadata]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/metadata
-  /// [google.longrunning.Operation.response]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/response
+  /// [google.longrunning.Operation.response]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/OneOf_Result/response(_:)
   ///
   /// @Snippet(path: "BigtableTableAdmin_CreateBackup")
   public func createBackup(
@@ -727,7 +727,7 @@ public class BigtableTableAdminClient: Clients.BigtableTableAdminProtocol {
   /// [google.bigtable.admin.v2.CreateBackupMetadata]: <doc:CreateBackupMetadata>
   /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   /// [google.longrunning.Operation.metadata]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/metadata
-  /// [google.longrunning.Operation.response]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/response
+  /// [google.longrunning.Operation.response]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/OneOf_Result/response(_:)
   ///
   /// @Snippet(path: "BigtableTableAdmin_CreateBackup")
   public func createBackup(
@@ -851,7 +851,7 @@ public class BigtableTableAdminClient: Clients.BigtableTableAdminProtocol {
   /// [google.bigtable.admin.v2.Table]: <doc:Table>
   /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   /// [google.longrunning.Operation.metadata]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/metadata
-  /// [google.longrunning.Operation.response]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/response
+  /// [google.longrunning.Operation.response]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/OneOf_Result/response(_:)
   ///
   /// @Snippet(path: "BigtableTableAdmin_RestoreTable")
   public func restoreTable(
@@ -872,7 +872,7 @@ public class BigtableTableAdminClient: Clients.BigtableTableAdminProtocol {
   /// [google.bigtable.admin.v2.Table]: <doc:Table>
   /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   /// [google.longrunning.Operation.metadata]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/metadata
-  /// [google.longrunning.Operation.response]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/response
+  /// [google.longrunning.Operation.response]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/OneOf_Result/response(_:)
   ///
   /// @Snippet(path: "BigtableTableAdmin_RestoreTable")
   public func restoreTable(

@@ -59,15 +59,15 @@
   ///  After you sent all input, you must half-close or abort the request stream.
   ///
   /// [google.cloud.dialogflow.v2.Participants.StreamingAnalyzeContent]: <doc:ParticipantsClient/streamingAnalyzeContent(request:)>
-  /// [google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest.audio_config]: <doc:StreamingAnalyzeContentRequest/audioConfig>
-  /// [google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest.config]: <doc:StreamingAnalyzeContentRequest/config>
-  /// [google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest.input]: <doc:StreamingAnalyzeContentRequest/input>
-  /// [google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest.input_audio]: <doc:StreamingAnalyzeContentRequest/inputAudio>
-  /// [google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest.input_text]: <doc:StreamingAnalyzeContentRequest/inputText>
+  /// [google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest.audio_config]: <doc:StreamingAnalyzeContentRequest/OneOf_Config/audioConfig(_:)>
+  /// [google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest.config]: <doc:StreamingAnalyzeContentRequest/OneOf_Config>
+  /// [google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest.input]: <doc:StreamingAnalyzeContentRequest/OneOf_Input>
+  /// [google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest.input_audio]: <doc:StreamingAnalyzeContentRequest/OneOf_Input/inputAudio(_:)>
+  /// [google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest.input_text]: <doc:StreamingAnalyzeContentRequest/OneOf_Input/inputText(_:)>
   /// [google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest.participant]: <doc:StreamingAnalyzeContentRequest/participant>
   /// [google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest.query_params]: <doc:StreamingAnalyzeContentRequest/queryParams>
   /// [google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest.reply_audio_config]: <doc:StreamingAnalyzeContentRequest/replyAudioConfig>
-  /// [google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest.text_config]: <doc:StreamingAnalyzeContentRequest/textConfig>
+  /// [google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest.text_config]: <doc:StreamingAnalyzeContentRequest/OneOf_Config/textConfig(_:)>
   public struct StreamingAnalyzeContentRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

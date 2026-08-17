@@ -63,8 +63,8 @@
     ///
     /// [google.cloud.discoveryengine.v1.Document]: <doc:Document>
     /// [google.cloud.discoveryengine.v1.Document.id]: <doc:Document/id>
-    /// [google.cloud.discoveryengine.v1.Document.json_data]: <doc:Document/jsonData>
-    /// [google.cloud.discoveryengine.v1.Document.struct_data]: <doc:Document/structData>
+    /// [google.cloud.discoveryengine.v1.Document.json_data]: <doc:Document/OneOf_Data/jsonData(_:)>
+    /// [google.cloud.discoveryengine.v1.Document.struct_data]: <doc:Document/OneOf_Data/structData(_:)>
     /// [google.cloud.discoveryengine.v1.Schema]: <doc:Schema>
     /// [google.cloud.discoveryengine.v1.UserEvent]: <doc:UserEvent>
     public var dataSchema: Swift.String = Swift.String()

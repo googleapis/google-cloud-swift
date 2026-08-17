@@ -28,7 +28,7 @@ public struct Value: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
   /// Value types
-  public var type: OneOf_Type_? = nil
+  public var type: OneOf_Type? = nil
 
   /// Initialize a new instance of `Value`.
   public init() {}
@@ -60,7 +60,7 @@ public struct Value: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var type: OneOf_Type_? = nil
+    var type: OneOf_Type? = nil
     let typeCheckAndSet = {
       if type != nil {
         throw DecodingError.dataCorrupted(
@@ -128,7 +128,7 @@ public struct Value: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Value types
-  public enum OneOf_Type_: Codable, Equatable, Sendable {
+  public enum OneOf_Type: Codable, Equatable, Sendable {
     /// integer
     case integerValue(Swift.Int64)
     /// float

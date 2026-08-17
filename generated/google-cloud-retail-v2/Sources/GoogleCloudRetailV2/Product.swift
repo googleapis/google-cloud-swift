@@ -1000,7 +1000,7 @@ public struct Product: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// [google.cloud.retail.v2.Product.Type.PRIMARY]: <doc:Product/Type_/primary>
     /// [google.cloud.retail.v2.Product.Type.VARIANT]: <doc:Product/Type_/variant>
     /// [google.cloud.retail.v2.Product.available_time]: <doc:Product/availableTime>
-    /// [google.cloud.retail.v2.Product.expire_time]: <doc:Product/expireTime>
+    /// [google.cloud.retail.v2.Product.expire_time]: <doc:Product/OneOf_Expiration/expireTime(_:)>
     /// [google.cloud.retail.v2.Product.publish_time]: <doc:Product/publishTime>
     indirect case expireTime(GoogleCloudWkt.Timestamp?)
     /// Input only. The TTL (time to live) of the product. Note that this is only
@@ -1030,8 +1030,8 @@ public struct Product: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// [google.cloud.retail.v2.Product.Type.COLLECTION]: <doc:Product/Type_/collection>
     /// [google.cloud.retail.v2.Product.Type.PRIMARY]: <doc:Product/Type_/primary>
     /// [google.cloud.retail.v2.Product.Type.VARIANT]: <doc:Product/Type_/variant>
-    /// [google.cloud.retail.v2.Product.expire_time]: <doc:Product/expireTime>
-    /// [google.cloud.retail.v2.Product.ttl]: <doc:Product/ttl>
+    /// [google.cloud.retail.v2.Product.expire_time]: <doc:Product/OneOf_Expiration/expireTime(_:)>
+    /// [google.cloud.retail.v2.Product.ttl]: <doc:Product/OneOf_Expiration/ttl(_:)>
     /// [google.cloud.retail.v2.ProductService.GetProduct]: <doc:ProductServiceClient/getProduct(request:)>
     /// [google.cloud.retail.v2.ProductService.ListProducts]: <doc:ProductServiceClient/listProducts(request:)>
     /// [google.cloud.retail.v2.SearchService.Search]: <doc:SearchServiceClient/search(request:)>

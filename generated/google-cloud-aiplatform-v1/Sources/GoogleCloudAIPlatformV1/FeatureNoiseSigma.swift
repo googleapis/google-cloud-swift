@@ -60,7 +60,7 @@
       /// to [noise_sigma][google.cloud.aiplatform.v1.SmoothGradConfig.noise_sigma]
       /// but represents the noise added to the current feature. Defaults to 0.1.
       ///
-      /// [google.cloud.aiplatform.v1.SmoothGradConfig.noise_sigma]: <doc:SmoothGradConfig/noiseSigma>
+      /// [google.cloud.aiplatform.v1.SmoothGradConfig.noise_sigma]: <doc:SmoothGradConfig/OneOf_GradientNoiseSigma/noiseSigma(_:)>
       public var sigma: Swift.Float = Swift.Float()
 
       /// Initialize a new instance of `NoiseSigmaForFeature`.

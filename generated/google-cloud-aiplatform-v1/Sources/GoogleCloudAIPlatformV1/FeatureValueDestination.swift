@@ -100,7 +100,7 @@
       /// must refer to a table.
       ///
       /// [google.cloud.aiplatform.v1.BigQueryDestination.output_uri]: <doc:BigQueryDestination/outputUri>
-      /// [google.cloud.aiplatform.v1.FeatureValueDestination.bigquery_destination]: <doc:FeatureValueDestination/bigqueryDestination>
+      /// [google.cloud.aiplatform.v1.FeatureValueDestination.bigquery_destination]: <doc:FeatureValueDestination/OneOf_Destination/bigqueryDestination(_:)>
       indirect case bigqueryDestination(BigQueryDestination?)
       /// Output in TFRecord format.
       ///

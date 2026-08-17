@@ -23,7 +23,7 @@ public struct ValidationCA: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
   /// The type of certificate provider which provides the CA certificate.
-  public var type: OneOf_Type_? = nil
+  public var type: OneOf_Type? = nil
 
   /// Initialize a new instance of `ValidationCA`.
   public init() {}
@@ -49,7 +49,7 @@ public struct ValidationCA: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var type: OneOf_Type_? = nil
+    var type: OneOf_Type? = nil
     let typeCheckAndSet = {
       if type != nil {
         throw DecodingError.dataCorrupted(
@@ -84,7 +84,7 @@ public struct ValidationCA: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// The type of certificate provider which provides the CA certificate.
-  public enum OneOf_Type_: Codable, Equatable, Sendable {
+  public enum OneOf_Type: Codable, Equatable, Sendable {
     /// gRPC specific configuration to access the gRPC server to
     /// obtain the CA certificate.
     indirect case grpcEndpoint(GrpcEndpoint?)

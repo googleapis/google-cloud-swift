@@ -23,7 +23,7 @@ public struct ImageContainmentType: Codable, Equatable, GoogleCloudWkt._AnyPacka
 {
   /// The type of relationship to check between the target finding and the
   /// context finding.
-  public var type: OneOf_Type_? = nil
+  public var type: OneOf_Type? = nil
 
   /// Initialize a new instance of `ImageContainmentType`.
   public init() {}
@@ -50,7 +50,7 @@ public struct ImageContainmentType: Codable, Equatable, GoogleCloudWkt._AnyPacka
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var type: OneOf_Type_? = nil
+    var type: OneOf_Type? = nil
     let typeCheckAndSet = {
       if type != nil {
         throw DecodingError.dataCorrupted(
@@ -89,7 +89,7 @@ public struct ImageContainmentType: Codable, Equatable, GoogleCloudWkt._AnyPacka
 
   /// The type of relationship to check between the target finding and the
   /// context finding.
-  public enum OneOf_Type_: Codable, Equatable, Sendable {
+  public enum OneOf_Type: Codable, Equatable, Sendable {
     /// The context finding's bounding box must fully contain the target
     /// finding's bounding box.
     indirect case encloses(Encloses?)

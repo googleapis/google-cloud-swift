@@ -41,9 +41,9 @@ import GoogleCloudWkt
 /// [google.cloud.speech.v2.Recognizer]: <doc:Recognizer>
 /// [google.cloud.speech.v2.Speech.StreamingRecognize]: <doc:SpeechClient/streamingRecognize(request:)>
 /// [google.cloud.speech.v2.StreamingRecognizeRequest]: <doc:StreamingRecognizeRequest>
-/// [google.cloud.speech.v2.StreamingRecognizeRequest.audio]: <doc:StreamingRecognizeRequest/audio>
+/// [google.cloud.speech.v2.StreamingRecognizeRequest.audio]: <doc:StreamingRecognizeRequest/OneOf_StreamingRequest/audio(_:)>
 /// [google.cloud.speech.v2.StreamingRecognizeRequest.recognizer]: <doc:StreamingRecognizeRequest/recognizer>
-/// [google.cloud.speech.v2.StreamingRecognizeRequest.streaming_config]: <doc:StreamingRecognizeRequest/streamingConfig>
+/// [google.cloud.speech.v2.StreamingRecognizeRequest.streaming_config]: <doc:StreamingRecognizeRequest/OneOf_StreamingRequest/streamingConfig(_:)>
 public struct StreamingRecognizeRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

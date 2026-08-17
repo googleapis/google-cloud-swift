@@ -146,9 +146,9 @@ public struct Job: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// * For [Pub/Sub targets][google.cloud.scheduler.v1.Job.pubsub_target], this
   /// field is ignored.
   ///
-  /// [google.cloud.scheduler.v1.Job.app_engine_http_target]: <doc:Job/appEngineHttpTarget>
-  /// [google.cloud.scheduler.v1.Job.http_target]: <doc:Job/httpTarget>
-  /// [google.cloud.scheduler.v1.Job.pubsub_target]: <doc:Job/pubsubTarget>
+  /// [google.cloud.scheduler.v1.Job.app_engine_http_target]: <doc:Job/OneOf_Target/appEngineHttpTarget(_:)>
+  /// [google.cloud.scheduler.v1.Job.http_target]: <doc:Job/OneOf_Target/httpTarget(_:)>
+  /// [google.cloud.scheduler.v1.Job.pubsub_target]: <doc:Job/OneOf_Target/pubsubTarget(_:)>
   /// [google.cloud.scheduler.v1.RetryConfig]: <doc:RetryConfig>
   public var attemptDeadline: GoogleCloudWkt.Duration? = nil
 

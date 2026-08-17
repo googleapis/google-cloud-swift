@@ -184,7 +184,7 @@ public struct Backup: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// [backup_scope][google.cloud.gkebackup.v1.BackupPlan.BackupConfig.backup_scope]
   /// value.
   ///
-  /// [google.cloud.gkebackup.v1.BackupPlan.BackupConfig.backup_scope]: <doc:BackupPlan/BackupConfig/backupScope>
+  /// [google.cloud.gkebackup.v1.BackupPlan.BackupConfig.backup_scope]: <doc:BackupPlan/BackupConfig/OneOf_BackupScope>
   public var backupScope: OneOf_BackupScope? = nil
 
   /// Initialize a new instance of `Backup`.
@@ -589,7 +589,7 @@ public struct Backup: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// [backup_scope][google.cloud.gkebackup.v1.BackupPlan.BackupConfig.backup_scope]
   /// value.
   ///
-  /// [google.cloud.gkebackup.v1.BackupPlan.BackupConfig.backup_scope]: <doc:BackupPlan/BackupConfig/backupScope>
+  /// [google.cloud.gkebackup.v1.BackupPlan.BackupConfig.backup_scope]: <doc:BackupPlan/BackupConfig/OneOf_BackupScope>
   public enum OneOf_BackupScope: Codable, Equatable, Sendable {
     /// Output only. If True, all namespaces were included in the Backup.
     case allNamespaces(Swift.Bool)

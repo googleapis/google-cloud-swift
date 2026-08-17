@@ -80,8 +80,8 @@ public struct ThresholdRule: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// It cannot be set in combination with
     /// [Filter.custom_period][google.cloud.billing.budgets.v1.Filter.custom_period].
     ///
-    /// [google.cloud.billing.budgets.v1.Filter.calendar_period]: <doc:Filter/calendarPeriod>
-    /// [google.cloud.billing.budgets.v1.Filter.custom_period]: <doc:Filter/customPeriod>
+    /// [google.cloud.billing.budgets.v1.Filter.calendar_period]: <doc:Filter/OneOf_UsagePeriod/calendarPeriod(_:)>
+    /// [google.cloud.billing.budgets.v1.Filter.custom_period]: <doc:Filter/OneOf_UsagePeriod/customPeriod(_:)>
     case forecastedSpend
     /// Encodes an unknown integer value.
     ///

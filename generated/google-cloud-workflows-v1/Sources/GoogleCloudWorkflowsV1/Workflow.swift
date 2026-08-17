@@ -47,7 +47,7 @@ public struct Workflow: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// three hexadecimal random characters.
   ///
   /// [google.cloud.workflows.v1.Workflow.service_account]: <doc:Workflow/serviceAccount>
-  /// [google.cloud.workflows.v1.Workflow.source_contents]: <doc:Workflow/sourceContents>
+  /// [google.cloud.workflows.v1.Workflow.source_contents]: <doc:Workflow/OneOf_SourceCode/sourceContents(_:)>
   public var revisionId: Swift.String = Swift.String()
 
   /// Output only. The timestamp for when the workflow was created.

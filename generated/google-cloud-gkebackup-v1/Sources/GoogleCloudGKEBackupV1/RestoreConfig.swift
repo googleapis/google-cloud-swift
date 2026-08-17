@@ -81,7 +81,7 @@ public struct RestoreConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// [all_namespaces][google.cloud.gkebackup.v1.RestoreConfig.all_namespaces] is
   /// selected. Listing them explicitly will result in an error.
   ///
-  /// [google.cloud.gkebackup.v1.RestoreConfig.all_namespaces]: <doc:RestoreConfig/allNamespaces>
+  /// [google.cloud.gkebackup.v1.RestoreConfig.all_namespaces]: <doc:RestoreConfig/OneOf_NamespacedResourceRestoreScope/allNamespaces(_:)>
   public var namespacedResourceRestoreScope: OneOf_NamespacedResourceRestoreScope? = nil
 
   /// Initialize a new instance of `RestoreConfig`.
@@ -1242,7 +1242,7 @@ public struct RestoreConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// [all_namespaces][google.cloud.gkebackup.v1.RestoreConfig.all_namespaces] is
   /// selected. Listing them explicitly will result in an error.
   ///
-  /// [google.cloud.gkebackup.v1.RestoreConfig.all_namespaces]: <doc:RestoreConfig/allNamespaces>
+  /// [google.cloud.gkebackup.v1.RestoreConfig.all_namespaces]: <doc:RestoreConfig/OneOf_NamespacedResourceRestoreScope/allNamespaces(_:)>
   public enum OneOf_NamespacedResourceRestoreScope: Codable, Equatable, Sendable {
     /// Restore all namespaced resources in the Backup if set to "True".
     /// Specifying this field to "False" is an error.

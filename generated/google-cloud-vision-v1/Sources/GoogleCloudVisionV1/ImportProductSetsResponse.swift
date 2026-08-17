@@ -26,7 +26,7 @@ import GoogleRpc
 /// [google.longrunning.Operation.response][google.longrunning.Operation.response]
 /// field.
 ///
-/// [google.longrunning.Operation.response]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/response
+/// [google.longrunning.Operation.response]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/OneOf_Result/response(_:)
 public struct ImportProductSetsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

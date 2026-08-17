@@ -43,7 +43,7 @@
     /// imported entity type will be added to the target entity type.
     ///
     /// [google.cloud.dialogflow.cx.v3.EntityType.entities]: <doc:EntityType/entities>
-    /// [google.cloud.dialogflow.cx.v3.ImportEntityTypesRequest.entity_types]: <doc:ImportEntityTypesRequest/entityTypes>
+    /// [google.cloud.dialogflow.cx.v3.ImportEntityTypesRequest.entity_types]: <doc:ImportEntityTypesRequest/OneOf_EntityTypes>
     public var targetEntityType: Swift.String = Swift.String()
 
     /// Required. The entity types to import.

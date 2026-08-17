@@ -52,7 +52,7 @@ public struct Certificate: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// Immutable. The scope of the certificate.
   public var scope: Certificate.Scope = Certificate.Scope()
 
-  public var type: OneOf_Type_? = nil
+  public var type: OneOf_Type? = nil
 
   /// Initialize a new instance of `Certificate`.
   public init() {}
@@ -99,7 +99,7 @@ public struct Certificate: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       GoogleCloudWkt.Timestamp.self, forKey: .expireTime)
     self.scope = try container.decode(Certificate.Scope.self, forKey: .scope)
 
-    var type: OneOf_Type_? = nil
+    var type: OneOf_Type? = nil
     let typeCheckAndSet = {
       if type != nil {
         throw DecodingError.dataCorrupted(
@@ -908,7 +908,7 @@ public struct Certificate: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     }
   }
 
-  public enum OneOf_Type_: Codable, Equatable, Sendable {
+  public enum OneOf_Type: Codable, Equatable, Sendable {
     /// If set, defines data of a self-managed certificate.
     indirect case selfManaged(Certificate.SelfManagedCertificate?)
     /// If set, contains configuration and state of a managed certificate.

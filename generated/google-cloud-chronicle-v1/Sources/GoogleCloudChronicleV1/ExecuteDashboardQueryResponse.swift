@@ -256,7 +256,7 @@ public struct ExecuteDashboardQueryResponse: Codable, Equatable, GoogleCloudWkt.
   public struct ColumnType: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {
-    public var type: OneOf_Type_? = nil
+    public var type: OneOf_Type? = nil
 
     /// Initialize a new instance of `ColumnType`.
     public init() {}
@@ -282,7 +282,7 @@ public struct ExecuteDashboardQueryResponse: Codable, Equatable, GoogleCloudWkt.
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var type: OneOf_Type_? = nil
+      var type: OneOf_Type? = nil
       let typeCheckAndSet = {
         if type != nil {
           throw DecodingError.dataCorrupted(
@@ -352,7 +352,7 @@ public struct ExecuteDashboardQueryResponse: Codable, Equatable, GoogleCloudWkt.
       }
     }
 
-    public enum OneOf_Type_: Codable, Equatable, Sendable {
+    public enum OneOf_Type: Codable, Equatable, Sendable {
       /// Single value in a column.
       indirect case value(ExecuteDashboardQueryResponse.ColumnValue?)
       /// List of values in a column e.g. IPs

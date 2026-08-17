@@ -36,8 +36,8 @@
   /// specified flow.
   ///
   /// [google.cloud.dialogflow.cx.v3.Intent]: <doc:Intent>
-  /// [google.cloud.dialogflow.cx.v3.TransitionRoute.target_flow]: <doc:TransitionRoute/targetFlow>
-  /// [google.cloud.dialogflow.cx.v3.TransitionRoute.target_page]: <doc:TransitionRoute/targetPage>
+  /// [google.cloud.dialogflow.cx.v3.TransitionRoute.target_flow]: <doc:TransitionRoute/OneOf_Target/targetFlow(_:)>
+  /// [google.cloud.dialogflow.cx.v3.TransitionRoute.target_page]: <doc:TransitionRoute/OneOf_Target/targetPage(_:)>
   /// [google.cloud.dialogflow.cx.v3.TransitionRoute.trigger_fulfillment]: <doc:TransitionRoute/triggerFulfillment>
   public struct TransitionRoute: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable

@@ -22,7 +22,7 @@ public struct StoredInfoTypeStats: Codable, Equatable, GoogleCloudWkt._AnyPackab
   Sendable
 {
   /// Stat types
-  public var type: OneOf_Type_? = nil
+  public var type: OneOf_Type? = nil
 
   /// Initialize a new instance of `StoredInfoTypeStats`.
   public init() {}
@@ -47,7 +47,7 @@ public struct StoredInfoTypeStats: Codable, Equatable, GoogleCloudWkt._AnyPackab
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var type: OneOf_Type_? = nil
+    var type: OneOf_Type? = nil
     let typeCheckAndSet = {
       if type != nil {
         throw DecodingError.dataCorrupted(
@@ -77,7 +77,7 @@ public struct StoredInfoTypeStats: Codable, Equatable, GoogleCloudWkt._AnyPackab
   }
 
   /// Stat types
-  public enum OneOf_Type_: Codable, Equatable, Sendable {
+  public enum OneOf_Type: Codable, Equatable, Sendable {
     /// StoredInfoType where findings are defined by a dictionary of phrases.
     indirect case largeCustomDictionary(LargeCustomDictionaryStats?)
   }

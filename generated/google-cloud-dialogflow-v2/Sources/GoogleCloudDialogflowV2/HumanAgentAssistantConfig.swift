@@ -953,7 +953,7 @@
       /// [ConversationEvent.new_message_payload.SentimentAnalysisResult][google.cloud.dialogflow.v2.ConversationEvent.new_message_payload].
       ///
       /// [google.cloud.dialogflow.v2.AnalyzeContentResponse.message]: <doc:AnalyzeContentResponse/message>
-      /// [google.cloud.dialogflow.v2.ConversationEvent.new_message_payload]: <doc:ConversationEvent/newMessagePayload>
+      /// [google.cloud.dialogflow.v2.ConversationEvent.new_message_payload]: <doc:ConversationEvent/OneOf_Payload/newMessagePayload(_:)>
       /// [google.cloud.dialogflow.v2.Conversations.ListMessages]: <doc:ConversationsClient/listMessages(request:)>
       /// [google.cloud.dialogflow.v2.ListMessagesResponse.messages]: <doc:ListMessagesResponse/messages>
       /// [google.cloud.dialogflow.v2.Participants.AnalyzeContent]: <doc:ParticipantsClient/analyzeContent(request:)>
@@ -985,7 +985,7 @@
       /// [ConversationEvent.new_message_payload.SentimentAnalysisResult][google.cloud.dialogflow.v2.ConversationEvent.new_message_payload].
       ///
       /// [google.cloud.dialogflow.v2.AnalyzeContentResponse.message]: <doc:AnalyzeContentResponse/message>
-      /// [google.cloud.dialogflow.v2.ConversationEvent.new_message_payload]: <doc:ConversationEvent/newMessagePayload>
+      /// [google.cloud.dialogflow.v2.ConversationEvent.new_message_payload]: <doc:ConversationEvent/OneOf_Payload/newMessagePayload(_:)>
       /// [google.cloud.dialogflow.v2.Conversations.ListMessages]: <doc:ConversationsClient/listMessages(request:)>
       /// [google.cloud.dialogflow.v2.ListMessagesResponse.messages]: <doc:ListMessagesResponse/messages>
       /// [google.cloud.dialogflow.v2.Participants.AnalyzeContent]: <doc:ParticipantsClient/analyzeContent(request:)>

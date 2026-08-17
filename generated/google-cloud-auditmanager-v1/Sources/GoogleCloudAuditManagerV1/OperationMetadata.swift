@@ -43,7 +43,7 @@ public struct OperationMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable
   /// value with a status code
   /// [Code.CANCELLED][google.rpc.Status.code.CANCELLED].
   ///
-  /// [google.longrunning.Operation.error]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/error
+  /// [google.longrunning.Operation.error]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/OneOf_Result/error(_:)
   public var requestedCancellation: Swift.Bool = Swift.Bool()
 
   /// Output only. The API version used to start the operation. For example,

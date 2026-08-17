@@ -224,7 +224,7 @@ public struct OSPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       public var allowInsecure: Swift.Bool = Swift.Bool()
 
       /// A specific type of file.
-      public var type: OneOf_Type_? = nil
+      public var type: OneOf_Type? = nil
 
       /// Initialize a new instance of `File`.
       public init() {}
@@ -253,7 +253,7 @@ public struct OSPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.allowInsecure = try container.decode(Swift.Bool.self, forKey: .allowInsecure)
 
-        var type: OneOf_Type_? = nil
+        var type: OneOf_Type? = nil
         let typeCheckAndSet = {
           if type != nil {
             throw DecodingError.dataCorrupted(
@@ -372,7 +372,7 @@ public struct OSPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       }
 
       /// A specific type of file.
-      public enum OneOf_Type_: Codable, Equatable, Sendable {
+      public enum OneOf_Type: Codable, Equatable, Sendable {
         /// A generic remote file.
         indirect case remote(OSPolicy.Resource.File.Remote?)
         /// A Cloud Storage object.

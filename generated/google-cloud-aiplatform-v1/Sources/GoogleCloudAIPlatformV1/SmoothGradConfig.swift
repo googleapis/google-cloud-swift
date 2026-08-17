@@ -117,7 +117,7 @@
       /// [feature_noise_sigma][google.cloud.aiplatform.v1.SmoothGradConfig.feature_noise_sigma]
       /// instead for each feature.
       ///
-      /// [google.cloud.aiplatform.v1.SmoothGradConfig.feature_noise_sigma]: <doc:SmoothGradConfig/featureNoiseSigma>
+      /// [google.cloud.aiplatform.v1.SmoothGradConfig.feature_noise_sigma]: <doc:SmoothGradConfig/OneOf_GradientNoiseSigma/featureNoiseSigma(_:)>
       case noiseSigma(Swift.Float)
       /// This is similar to
       /// [noise_sigma][google.cloud.aiplatform.v1.SmoothGradConfig.noise_sigma],
@@ -128,7 +128,7 @@
       /// [noise_sigma][google.cloud.aiplatform.v1.SmoothGradConfig.noise_sigma]
       /// will be used for all features.
       ///
-      /// [google.cloud.aiplatform.v1.SmoothGradConfig.noise_sigma]: <doc:SmoothGradConfig/noiseSigma>
+      /// [google.cloud.aiplatform.v1.SmoothGradConfig.noise_sigma]: <doc:SmoothGradConfig/OneOf_GradientNoiseSigma/noiseSigma(_:)>
       indirect case featureNoiseSigma(FeatureNoiseSigma?)
     }
 

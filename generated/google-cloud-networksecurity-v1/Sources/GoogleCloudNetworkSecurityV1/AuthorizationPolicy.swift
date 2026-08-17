@@ -198,7 +198,7 @@ public struct AuthorizationPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackab
         /// request's method, use the headerName ":method".
         public var headerName: Swift.String = Swift.String()
 
-        public var type: OneOf_Type_? = nil
+        public var type: OneOf_Type? = nil
 
         /// Initialize a new instance of `HttpHeaderMatch`.
         public init() {}
@@ -225,7 +225,7 @@ public struct AuthorizationPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackab
           let container = try decoder.container(keyedBy: CodingKeys.self)
           self.headerName = try container.decode(Swift.String.self, forKey: .headerName)
 
-          var type: OneOf_Type_? = nil
+          var type: OneOf_Type? = nil
           let typeCheckAndSet = {
             if type != nil {
               throw DecodingError.dataCorrupted(
@@ -254,7 +254,7 @@ public struct AuthorizationPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackab
           }
         }
 
-        public enum OneOf_Type_: Codable, Equatable, Sendable {
+        public enum OneOf_Type: Codable, Equatable, Sendable {
           /// Required. The value of the header must match the regular expression
           /// specified in regexMatch. For regular expression grammar,
           /// please see: en.cppreference.com/w/cpp/regex/ecmascript

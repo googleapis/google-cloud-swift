@@ -22,7 +22,7 @@ public struct ReplaceDictionaryConfig: Codable, Equatable, GoogleCloudWkt._AnyPa
   Sendable
 {
   /// Type of dictionary.
-  public var type: OneOf_Type_? = nil
+  public var type: OneOf_Type? = nil
 
   /// Initialize a new instance of `ReplaceDictionaryConfig`.
   public init() {}
@@ -47,7 +47,7 @@ public struct ReplaceDictionaryConfig: Codable, Equatable, GoogleCloudWkt._AnyPa
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var type: OneOf_Type_? = nil
+    var type: OneOf_Type? = nil
     let typeCheckAndSet = {
       if type != nil {
         throw DecodingError.dataCorrupted(
@@ -77,7 +77,7 @@ public struct ReplaceDictionaryConfig: Codable, Equatable, GoogleCloudWkt._AnyPa
   }
 
   /// Type of dictionary.
-  public enum OneOf_Type_: Codable, Equatable, Sendable {
+  public enum OneOf_Type: Codable, Equatable, Sendable {
     /// A list of words to select from for random replacement. The
     /// [limits](https://cloud.google.com/sensitive-data-protection/limits) page
     /// contains details about the size limits of dictionaries.

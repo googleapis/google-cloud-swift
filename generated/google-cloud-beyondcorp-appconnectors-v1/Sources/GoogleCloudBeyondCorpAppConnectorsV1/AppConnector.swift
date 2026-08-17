@@ -75,7 +75,7 @@ public struct AppConnector: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public struct PrincipalInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {
-    public var type: OneOf_Type_? = nil
+    public var type: OneOf_Type? = nil
 
     /// Initialize a new instance of `PrincipalInfo`.
     public init() {}
@@ -100,7 +100,7 @@ public struct AppConnector: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var type: OneOf_Type_? = nil
+      var type: OneOf_Type? = nil
       let typeCheckAndSet = {
         if type != nil {
           throw DecodingError.dataCorrupted(
@@ -164,7 +164,7 @@ public struct AppConnector: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       }
     }
 
-    public enum OneOf_Type_: Codable, Equatable, Sendable {
+    public enum OneOf_Type: Codable, Equatable, Sendable {
       /// A GCP service account.
       indirect case serviceAccount(AppConnector.PrincipalInfo.ServiceAccount?)
     }

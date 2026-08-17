@@ -756,7 +756,7 @@
         ///
         /// [google.cloud.discoveryengine.v1.SearchRequest.FacetSpec.FacetKey.intervals]: <doc:SearchRequest/FacetSpec/FacetKey/intervals>
         /// [google.cloud.discoveryengine.v1.SearchResponse.Facet.FacetValue.count]: <doc:SearchResponse/Facet/FacetValue/count>
-        /// [google.cloud.discoveryengine.v1.SearchResponse.Facet.FacetValue.value]: <doc:SearchResponse/Facet/FacetValue/value>
+        /// [google.cloud.discoveryengine.v1.SearchResponse.Facet.FacetValue.value]: <doc:SearchResponse/Facet/FacetValue/OneOf_FacetValue/value(_:)>
         public var orderBy: Swift.String = Swift.String()
 
         /// Initialize a new instance of `FacetKey`.

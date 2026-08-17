@@ -69,7 +69,7 @@
     /// The threshold can be changed by user, so this one might be different from
     /// [ThresholdConfig.value][google.cloud.aiplatform.v1.ThresholdConfig.value].
     ///
-    /// [google.cloud.aiplatform.v1.ThresholdConfig.value]: <doc:ThresholdConfig/value>
+    /// [google.cloud.aiplatform.v1.ThresholdConfig.value]: <doc:ThresholdConfig/OneOf_Threshold/value(_:)>
     public var anomalyDetectionThreshold: Swift.Double = Swift.Double()
 
     /// The start timestamp of window where stats were generated.

@@ -108,7 +108,7 @@
     /// or
     /// [Sessions.StreamingDetectIntent][google.cloud.dialogflow.cx.v3.Sessions.StreamingDetectIntent].
     ///
-    /// [google.cloud.dialogflow.cx.v3.SecuritySettings.retention_strategy]: <doc:SecuritySettings/retentionStrategy>
+    /// [google.cloud.dialogflow.cx.v3.SecuritySettings.retention_strategy]: <doc:SecuritySettings/OneOf_DataRetention/retentionStrategy(_:)>
     /// [google.cloud.dialogflow.cx.v3.Sessions.DetectIntent]: <doc:SessionsClient/detectIntent(request:)>
     /// [google.cloud.dialogflow.cx.v3.Sessions.StreamingDetectIntent]: <doc:SessionsClient/streamingDetectIntent(request:)>
     public var audioExportSettings: SecuritySettings.AudioExportSettings? = nil
@@ -121,7 +121,7 @@
     /// is set to REMOVE_AFTER_CONVERSATION, Insights export is disabled no matter
     /// what you configure here.
     ///
-    /// [google.cloud.dialogflow.cx.v3.SecuritySettings.retention_strategy]: <doc:SecuritySettings/retentionStrategy>
+    /// [google.cloud.dialogflow.cx.v3.SecuritySettings.retention_strategy]: <doc:SecuritySettings/OneOf_DataRetention/retentionStrategy(_:)>
     public var insightsExportSettings: SecuritySettings.InsightsExportSettings? = nil
 
     /// Specifies how data is retained. Note that even if the data is

@@ -41,8 +41,8 @@
     ///    page][TransitionRoute.target_page] in transition routes that point to
     ///    this page will be cleared).
     ///
-    /// [EventHandler.target_page]: <doc:EventHandler/targetPage>
-    /// [TransitionRoute.target_page]: <doc:TransitionRoute/targetPage>
+    /// [EventHandler.target_page]: <doc:EventHandler/OneOf_Target/targetPage(_:)>
+    /// [TransitionRoute.target_page]: <doc:TransitionRoute/OneOf_Target/targetPage(_:)>
     public var force: Swift.Bool = Swift.Bool()
 
     /// Initialize a new instance of `DeletePageRequest`.

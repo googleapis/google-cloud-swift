@@ -36,8 +36,8 @@
   /// flow.
   ///
   /// [google.cloud.dialogflow.cx.v3.EventHandler.event]: <doc:EventHandler/event>
-  /// [google.cloud.dialogflow.cx.v3.EventHandler.target_flow]: <doc:EventHandler/targetFlow>
-  /// [google.cloud.dialogflow.cx.v3.EventHandler.target_page]: <doc:EventHandler/targetPage>
+  /// [google.cloud.dialogflow.cx.v3.EventHandler.target_flow]: <doc:EventHandler/OneOf_Target/targetFlow(_:)>
+  /// [google.cloud.dialogflow.cx.v3.EventHandler.target_page]: <doc:EventHandler/OneOf_Target/targetPage(_:)>
   /// [google.cloud.dialogflow.cx.v3.EventHandler.trigger_fulfillment]: <doc:EventHandler/triggerFulfillment>
   public struct EventHandler: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable

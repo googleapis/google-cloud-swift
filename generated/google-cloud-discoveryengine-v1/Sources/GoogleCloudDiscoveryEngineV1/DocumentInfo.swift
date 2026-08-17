@@ -66,8 +66,8 @@
     /// `{branch_id}` are used when annotating with the stored Document.
     ///
     /// [google.cloud.discoveryengine.v1.Document]: <doc:Document>
-    /// [google.cloud.discoveryengine.v1.DocumentInfo.id]: <doc:DocumentInfo/id>
-    /// [google.cloud.discoveryengine.v1.DocumentInfo.name]: <doc:DocumentInfo/name>
+    /// [google.cloud.discoveryengine.v1.DocumentInfo.id]: <doc:DocumentInfo/OneOf_DocumentDescriptor/id(_:)>
+    /// [google.cloud.discoveryengine.v1.DocumentInfo.name]: <doc:DocumentInfo/OneOf_DocumentDescriptor/name(_:)>
     public var documentDescriptor: OneOf_DocumentDescriptor? = nil
 
     /// Initialize a new instance of `DocumentInfo`.
@@ -159,8 +159,8 @@
     /// `{branch_id}` are used when annotating with the stored Document.
     ///
     /// [google.cloud.discoveryengine.v1.Document]: <doc:Document>
-    /// [google.cloud.discoveryengine.v1.DocumentInfo.id]: <doc:DocumentInfo/id>
-    /// [google.cloud.discoveryengine.v1.DocumentInfo.name]: <doc:DocumentInfo/name>
+    /// [google.cloud.discoveryengine.v1.DocumentInfo.id]: <doc:DocumentInfo/OneOf_DocumentDescriptor/id(_:)>
+    /// [google.cloud.discoveryengine.v1.DocumentInfo.name]: <doc:DocumentInfo/OneOf_DocumentDescriptor/name(_:)>
     public enum OneOf_DocumentDescriptor: Codable, Equatable, Sendable {
       /// The [Document][google.cloud.discoveryengine.v1.Document] resource ID.
       ///

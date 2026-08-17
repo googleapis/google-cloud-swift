@@ -407,7 +407,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
       /// A type of trigger.
-      public var type: OneOf_Type_? = nil
+      public var type: OneOf_Type? = nil
 
       /// Initialize a new instance of `Trigger`.
       public init() {}
@@ -433,7 +433,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        var type: OneOf_Type_? = nil
+        var type: OneOf_Type? = nil
         let typeCheckAndSet = {
           if type != nil {
             throw DecodingError.dataCorrupted(
@@ -466,7 +466,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       }
 
       /// A type of trigger.
-      public enum OneOf_Type_: Codable, Equatable, Sendable {
+      public enum OneOf_Type: Codable, Equatable, Sendable {
         /// The absolute number of time series that must fail
         /// the predicate for the condition to be triggered.
         case count(Swift.Int32)

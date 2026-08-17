@@ -224,7 +224,7 @@ public struct RepricingConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// instead.
     ///
     /// [google.cloud.channel.v1.ChannelPartnerRepricingConfig]: <doc:ChannelPartnerRepricingConfig>
-    /// [google.cloud.channel.v1.RepricingConfig.entitlement_granularity]: <doc:RepricingConfig/entitlementGranularity>
+    /// [google.cloud.channel.v1.RepricingConfig.entitlement_granularity]: <doc:RepricingConfig/OneOf_Granularity/entitlementGranularity(_:)>
     @available(*, deprecated)
     indirect case channelPartnerGranularity(RepricingConfig.ChannelPartnerGranularity?)
   }

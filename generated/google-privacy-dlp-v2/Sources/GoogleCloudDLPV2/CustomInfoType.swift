@@ -53,7 +53,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var sensitivityScore: SensitivityScore? = nil
 
   /// Type of custom detector.
-  public var type: OneOf_Type_? = nil
+  public var type: OneOf_Type? = nil
 
   /// Initialize a new instance of `CustomInfoType`.
   public init() {}
@@ -95,7 +95,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     self.sensitivityScore = try container.decodeIfPresent(
       SensitivityScore.self, forKey: .sensitivityScore)
 
-    var type: OneOf_Type_? = nil
+    var type: OneOf_Type? = nil
     let typeCheckAndSet = {
       if type != nil {
         throw DecodingError.dataCorrupted(
@@ -423,7 +423,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {
     /// Type of hotword rule.
-    public var type: OneOf_Type_? = nil
+    public var type: OneOf_Type? = nil
 
     /// Initialize a new instance of `DetectionRule`.
     public init() {}
@@ -448,7 +448,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var type: OneOf_Type_? = nil
+      var type: OneOf_Type? = nil
       let typeCheckAndSet = {
         if type != nil {
           throw DecodingError.dataCorrupted(
@@ -668,7 +668,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     }
 
     /// Type of hotword rule.
-    public enum OneOf_Type_: Codable, Equatable, Sendable {
+    public enum OneOf_Type: Codable, Equatable, Sendable {
       /// Hotword-based detection rule.
       indirect case hotwordRule(CustomInfoType.DetectionRule.HotwordRule?)
     }
@@ -784,7 +784,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Type of custom detector.
-  public enum OneOf_Type_: Codable, Equatable, Sendable {
+  public enum OneOf_Type: Codable, Equatable, Sendable {
     /// A list of phrases to detect as a CustomInfoType.
     indirect case dictionary(CustomInfoType.Dictionary?)
     /// Regular expression based CustomInfoType.

@@ -24,7 +24,7 @@ import GoogleCloudWkt
 /// in case of success.
 ///
 /// [google.cloud.talent.v4.JobService.BatchUpdateJobs]: <doc:JobServiceClient/batchUpdateJobs(request:)>
-/// [google.longrunning.Operation.response]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/response
+/// [google.longrunning.Operation.response]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/OneOf_Result/response(_:)
 public struct BatchUpdateJobsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

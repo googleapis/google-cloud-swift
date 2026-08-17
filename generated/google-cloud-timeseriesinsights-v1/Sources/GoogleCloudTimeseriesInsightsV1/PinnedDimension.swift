@@ -98,13 +98,13 @@ public struct PinnedDimension: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// have their value field set to [string_val][google.cloud.timeseriesinsights.v1.EventDimension.string_val].
     ///
     /// [google.cloud.timeseriesinsights.v1.EventDimension]: <doc:EventDimension>
-    /// [google.cloud.timeseriesinsights.v1.EventDimension.string_val]: <doc:EventDimension/stringVal>
+    /// [google.cloud.timeseriesinsights.v1.EventDimension.string_val]: <doc:EventDimension/OneOf_Value/stringVal(_:)>
     case stringVal(Swift.String)
     /// A bool value. This can be used for [dimensions][google.cloud.timeseriesinsights.v1.EventDimension], which
     /// have their value field set to [bool_val][google.cloud.timeseriesinsights.v1.EventDimension.bool_val].
     ///
     /// [google.cloud.timeseriesinsights.v1.EventDimension]: <doc:EventDimension>
-    /// [google.cloud.timeseriesinsights.v1.EventDimension.bool_val]: <doc:EventDimension/boolVal>
+    /// [google.cloud.timeseriesinsights.v1.EventDimension.bool_val]: <doc:EventDimension/OneOf_Value/boolVal(_:)>
     case boolVal(Swift.Bool)
   }
 

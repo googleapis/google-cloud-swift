@@ -41,8 +41,8 @@
     ///    flow][TransitionRoute.target_flow] in transition routes that point to
     ///    this flow will be cleared).
     ///
-    /// [EventHandler.target_flow]: <doc:EventHandler/targetFlow>
-    /// [TransitionRoute.target_flow]: <doc:TransitionRoute/targetFlow>
+    /// [EventHandler.target_flow]: <doc:EventHandler/OneOf_Target/targetFlow(_:)>
+    /// [TransitionRoute.target_flow]: <doc:TransitionRoute/OneOf_Target/targetFlow(_:)>
     public var force: Swift.Bool = Swift.Bool()
 
     /// Initialize a new instance of `DeleteFlowRequest`.

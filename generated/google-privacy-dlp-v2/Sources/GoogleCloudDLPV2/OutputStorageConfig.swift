@@ -35,7 +35,7 @@ public struct OutputStorageConfig: Codable, Equatable, GoogleCloudWkt._AnyPackab
 
   /// Output storage types.
   /// *
-  public var type: OneOf_Type_? = nil
+  public var type: OneOf_Type? = nil
 
   /// Initialize a new instance of `OutputStorageConfig`.
   public init() {}
@@ -64,7 +64,7 @@ public struct OutputStorageConfig: Codable, Equatable, GoogleCloudWkt._AnyPackab
     self.outputSchema = try container.decode(
       OutputStorageConfig.OutputSchema.self, forKey: .outputSchema)
 
-    var type: OneOf_Type_? = nil
+    var type: OneOf_Type? = nil
     let typeCheckAndSet = {
       if type != nil {
         throw DecodingError.dataCorrupted(
@@ -228,7 +228,7 @@ public struct OutputStorageConfig: Codable, Equatable, GoogleCloudWkt._AnyPackab
 
   /// Output storage types.
   /// *
-  public enum OneOf_Type_: Codable, Equatable, Sendable {
+  public enum OneOf_Type: Codable, Equatable, Sendable {
     /// Store findings in an existing table or a new table in an existing
     /// dataset. If table_id is not set a new one will be generated
     /// for you with the following format:

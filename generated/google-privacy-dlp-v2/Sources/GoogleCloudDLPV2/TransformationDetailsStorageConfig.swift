@@ -22,7 +22,7 @@ public struct TransformationDetailsStorageConfig: Codable, Equatable, GoogleClou
   Sendable
 {
   /// Location to store the transformation summary.
-  public var type: OneOf_Type_? = nil
+  public var type: OneOf_Type? = nil
 
   /// Initialize a new instance of `TransformationDetailsStorageConfig`.
   public init() {}
@@ -47,7 +47,7 @@ public struct TransformationDetailsStorageConfig: Codable, Equatable, GoogleClou
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var type: OneOf_Type_? = nil
+    var type: OneOf_Type? = nil
     let typeCheckAndSet = {
       if type != nil {
         throw DecodingError.dataCorrupted(
@@ -75,7 +75,7 @@ public struct TransformationDetailsStorageConfig: Codable, Equatable, GoogleClou
   }
 
   /// Location to store the transformation summary.
-  public enum OneOf_Type_: Codable, Equatable, Sendable {
+  public enum OneOf_Type: Codable, Equatable, Sendable {
     /// The BigQuery table in which to store the output. This may be an existing
     /// table or in a new table in an existing dataset.
     /// If table_id is not set a new one will be generated for you with the

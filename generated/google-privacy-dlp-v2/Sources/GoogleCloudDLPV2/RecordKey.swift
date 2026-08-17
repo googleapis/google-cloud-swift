@@ -26,7 +26,7 @@ public struct RecordKey: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var idValues: [Swift.String] = []
 
   /// Type of key
-  public var type: OneOf_Type_? = nil
+  public var type: OneOf_Type? = nil
 
   /// Initialize a new instance of `RecordKey`.
   public init() {}
@@ -54,7 +54,7 @@ public struct RecordKey: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.idValues = try container.decode([Swift.String].self, forKey: .idValues)
 
-    var type: OneOf_Type_? = nil
+    var type: OneOf_Type? = nil
     let typeCheckAndSet = {
       if type != nil {
         throw DecodingError.dataCorrupted(
@@ -88,7 +88,7 @@ public struct RecordKey: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Type of key
-  public enum OneOf_Type_: Codable, Equatable, Sendable {
+  public enum OneOf_Type: Codable, Equatable, Sendable {
     /// BigQuery key
     indirect case datastoreKey(DatastoreKey?)
     /// Datastore key

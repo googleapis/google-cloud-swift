@@ -25,8 +25,8 @@ import GoogleCloudWkt
 /// a
 /// [Filter.custom_period][google.cloud.billing.budgets.v1.Filter.custom_period].
 ///
-/// [google.cloud.billing.budgets.v1.Filter.calendar_period]: <doc:Filter/calendarPeriod>
-/// [google.cloud.billing.budgets.v1.Filter.custom_period]: <doc:Filter/customPeriod>
+/// [google.cloud.billing.budgets.v1.Filter.calendar_period]: <doc:Filter/OneOf_UsagePeriod/calendarPeriod(_:)>
+/// [google.cloud.billing.budgets.v1.Filter.custom_period]: <doc:Filter/OneOf_UsagePeriod/customPeriod(_:)>
 public struct LastPeriodAmount: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

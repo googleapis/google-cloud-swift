@@ -26,7 +26,7 @@ public struct ExclusionRule: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var matchingType: MatchingType = MatchingType()
 
   /// Exclusion rule types.
-  public var type: OneOf_Type_? = nil
+  public var type: OneOf_Type? = nil
 
   /// Initialize a new instance of `ExclusionRule`.
   public init() {}
@@ -57,7 +57,7 @@ public struct ExclusionRule: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.matchingType = try container.decode(MatchingType.self, forKey: .matchingType)
 
-    var type: OneOf_Type_? = nil
+    var type: OneOf_Type? = nil
     let typeCheckAndSet = {
       if type != nil {
         throw DecodingError.dataCorrupted(
@@ -114,7 +114,7 @@ public struct ExclusionRule: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Exclusion rule types.
-  public enum OneOf_Type_: Codable, Equatable, Sendable {
+  public enum OneOf_Type: Codable, Equatable, Sendable {
     /// Dictionary which defines the rule.
     indirect case dictionary(CustomInfoType.Dictionary?)
     /// Regular expression which defines the rule.

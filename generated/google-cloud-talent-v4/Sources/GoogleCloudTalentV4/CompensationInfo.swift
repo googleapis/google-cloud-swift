@@ -42,7 +42,7 @@ public struct CompensationInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// for explanation on compensation annualization.
   ///
   /// [google.cloud.talent.v4.CompensationInfo.CompensationEntry]: <doc:CompensationInfo/CompensationEntry>
-  /// [google.cloud.talent.v4.CompensationInfo.CompensationEntry.amount]: <doc:CompensationInfo/CompensationEntry/amount>
+  /// [google.cloud.talent.v4.CompensationInfo.CompensationEntry.amount]: <doc:CompensationInfo/CompensationEntry/OneOf_CompensationAmount/amount(_:)>
   /// [google.cloud.talent.v4.CompensationInfo.CompensationEntry.expected_units_per_year]: <doc:CompensationInfo/CompensationEntry/expectedUnitsPerYear>
   public var annualizedBaseCompensationRange: CompensationInfo.CompensationRange? = nil
 
@@ -57,7 +57,7 @@ public struct CompensationInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// for explanation on compensation annualization.
   ///
   /// [google.cloud.talent.v4.CompensationInfo.CompensationEntry]: <doc:CompensationInfo/CompensationEntry>
-  /// [google.cloud.talent.v4.CompensationInfo.CompensationEntry.amount]: <doc:CompensationInfo/CompensationEntry/amount>
+  /// [google.cloud.talent.v4.CompensationInfo.CompensationEntry.amount]: <doc:CompensationInfo/CompensationEntry/OneOf_CompensationAmount/amount(_:)>
   /// [google.cloud.talent.v4.CompensationInfo.CompensationEntry.expected_units_per_year]: <doc:CompensationInfo/CompensationEntry/expectedUnitsPerYear>
   public var annualizedTotalCompensationRange: CompensationInfo.CompensationRange? = nil
 
@@ -94,9 +94,9 @@ public struct CompensationInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// times
   /// [expected_units_per_year][google.cloud.talent.v4.CompensationInfo.CompensationEntry.expected_units_per_year].
   ///
-  /// [google.cloud.talent.v4.CompensationInfo.CompensationEntry.amount]: <doc:CompensationInfo/CompensationEntry/amount>
+  /// [google.cloud.talent.v4.CompensationInfo.CompensationEntry.amount]: <doc:CompensationInfo/CompensationEntry/OneOf_CompensationAmount/amount(_:)>
   /// [google.cloud.talent.v4.CompensationInfo.CompensationEntry.expected_units_per_year]: <doc:CompensationInfo/CompensationEntry/expectedUnitsPerYear>
-  /// [google.cloud.talent.v4.CompensationInfo.CompensationEntry.range]: <doc:CompensationInfo/CompensationEntry/range>
+  /// [google.cloud.talent.v4.CompensationInfo.CompensationEntry.range]: <doc:CompensationInfo/CompensationEntry/OneOf_CompensationAmount/range(_:)>
   public struct CompensationEntry: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {
@@ -303,9 +303,9 @@ public struct CompensationInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// [CompensationEntry.description][google.cloud.talent.v4.CompensationInfo.CompensationEntry.description]
   /// field.
   ///
-  /// [google.cloud.talent.v4.CompensationInfo.CompensationEntry.amount]: <doc:CompensationInfo/CompensationEntry/amount>
+  /// [google.cloud.talent.v4.CompensationInfo.CompensationEntry.amount]: <doc:CompensationInfo/CompensationEntry/OneOf_CompensationAmount/amount(_:)>
   /// [google.cloud.talent.v4.CompensationInfo.CompensationEntry.description]: <doc:CompensationInfo/CompensationEntry/description>
-  /// [google.cloud.talent.v4.CompensationInfo.CompensationEntry.range]: <doc:CompensationInfo/CompensationEntry/range>
+  /// [google.cloud.talent.v4.CompensationInfo.CompensationEntry.range]: <doc:CompensationInfo/CompensationEntry/OneOf_CompensationAmount/range(_:)>
   /// [google.cloud.talent.v4.CompensationInfo.CompensationUnit.COMPENSATION_UNIT_UNSPECIFIED]: <doc:CompensationInfo/CompensationUnit/unspecified>
   public enum CompensationType: Codable, Equatable, Sendable {
     /// Default value.

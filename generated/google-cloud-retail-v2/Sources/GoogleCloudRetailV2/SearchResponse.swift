@@ -314,7 +314,7 @@ public struct SearchResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       /// is true.
       ///
       /// [google.cloud.retail.v2.SearchRequest.FacetSpec.FacetKey.return_min_max]: <doc:SearchRequest/FacetSpec/FacetKey/returnMinMax>
-      /// [google.cloud.retail.v2.SearchResponse.Facet.FacetValue.interval]: <doc:SearchResponse/Facet/FacetValue/interval>
+      /// [google.cloud.retail.v2.SearchResponse.Facet.FacetValue.interval]: <doc:SearchResponse/Facet/FacetValue/OneOf_FacetValue/interval(_:)>
       public var minValue: Swift.Double = Swift.Double()
 
       /// The maximum value in the
@@ -324,7 +324,7 @@ public struct SearchResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       /// is true.
       ///
       /// [google.cloud.retail.v2.SearchRequest.FacetSpec.FacetKey.return_min_max]: <doc:SearchRequest/FacetSpec/FacetKey/returnMinMax>
-      /// [google.cloud.retail.v2.SearchResponse.Facet.FacetValue.interval]: <doc:SearchResponse/Facet/FacetValue/interval>
+      /// [google.cloud.retail.v2.SearchResponse.Facet.FacetValue.interval]: <doc:SearchResponse/Facet/FacetValue/OneOf_FacetValue/interval(_:)>
       public var maxValue: Swift.Double = Swift.Double()
 
       /// A facet value which contains values.
@@ -491,7 +491,7 @@ public struct SearchResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// is `red color`, which does not match any product attribute value filters,
     /// the refined query will be `dress, red color`.
     ///
-    /// [google.cloud.retail.v2.SearchRequest.ConversationalSearchSpec.UserAnswer.text_answer]: <doc:SearchRequest/ConversationalSearchSpec/UserAnswer/textAnswer>
+    /// [google.cloud.retail.v2.SearchRequest.ConversationalSearchSpec.UserAnswer.text_answer]: <doc:SearchRequest/ConversationalSearchSpec/UserAnswer/OneOf_Type/textAnswer(_:)>
     /// [google.cloud.retail.v2.SearchRequest.query]: <doc:SearchRequest/query>
     public var refinedQuery: Swift.String = Swift.String()
 

@@ -24,7 +24,7 @@ public struct CertificateProvider: Codable, Equatable, GoogleCloudWkt._AnyPackab
 {
   /// The type of certificate provider which provides the certificates and
   /// private keys.
-  public var type: OneOf_Type_? = nil
+  public var type: OneOf_Type? = nil
 
   /// Initialize a new instance of `CertificateProvider`.
   public init() {}
@@ -50,7 +50,7 @@ public struct CertificateProvider: Codable, Equatable, GoogleCloudWkt._AnyPackab
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var type: OneOf_Type_? = nil
+    var type: OneOf_Type? = nil
     let typeCheckAndSet = {
       if type != nil {
         throw DecodingError.dataCorrupted(
@@ -86,7 +86,7 @@ public struct CertificateProvider: Codable, Equatable, GoogleCloudWkt._AnyPackab
 
   /// The type of certificate provider which provides the certificates and
   /// private keys.
-  public enum OneOf_Type_: Codable, Equatable, Sendable {
+  public enum OneOf_Type: Codable, Equatable, Sendable {
     /// gRPC specific configuration to access the gRPC server to
     /// obtain the cert and private key.
     indirect case grpcEndpoint(GrpcEndpoint?)

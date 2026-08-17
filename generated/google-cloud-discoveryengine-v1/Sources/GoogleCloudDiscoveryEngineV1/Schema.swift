@@ -34,8 +34,8 @@
     /// [json_schema][google.cloud.discoveryengine.v1.Schema.json_schema] should be
     /// provided otherwise an `INVALID_ARGUMENT` error is thrown.
     ///
-    /// [google.cloud.discoveryengine.v1.Schema.json_schema]: <doc:Schema/jsonSchema>
-    /// [google.cloud.discoveryengine.v1.Schema.struct_schema]: <doc:Schema/structSchema>
+    /// [google.cloud.discoveryengine.v1.Schema.json_schema]: <doc:Schema/OneOf_Schema/jsonSchema(_:)>
+    /// [google.cloud.discoveryengine.v1.Schema.struct_schema]: <doc:Schema/OneOf_Schema/structSchema(_:)>
     public var schema: OneOf_Schema? = nil
 
     /// Initialize a new instance of `Schema`.
@@ -104,8 +104,8 @@
     /// [json_schema][google.cloud.discoveryengine.v1.Schema.json_schema] should be
     /// provided otherwise an `INVALID_ARGUMENT` error is thrown.
     ///
-    /// [google.cloud.discoveryengine.v1.Schema.json_schema]: <doc:Schema/jsonSchema>
-    /// [google.cloud.discoveryengine.v1.Schema.struct_schema]: <doc:Schema/structSchema>
+    /// [google.cloud.discoveryengine.v1.Schema.json_schema]: <doc:Schema/OneOf_Schema/jsonSchema(_:)>
+    /// [google.cloud.discoveryengine.v1.Schema.struct_schema]: <doc:Schema/OneOf_Schema/structSchema(_:)>
     public enum OneOf_Schema: Codable, Equatable, Sendable {
       /// The structured representation of the schema.
       indirect case structSchema(GoogleCloudWkt.Struct?)

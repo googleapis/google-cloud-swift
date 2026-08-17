@@ -80,8 +80,8 @@
     /// [json_data][google.cloud.discoveryengine.v1.Document.json_data] should be
     /// provided otherwise an `INVALID_ARGUMENT` error is thrown.
     ///
-    /// [google.cloud.discoveryengine.v1.Document.json_data]: <doc:Document/jsonData>
-    /// [google.cloud.discoveryengine.v1.Document.struct_data]: <doc:Document/structData>
+    /// [google.cloud.discoveryengine.v1.Document.json_data]: <doc:Document/OneOf_Data/jsonData(_:)>
+    /// [google.cloud.discoveryengine.v1.Document.struct_data]: <doc:Document/OneOf_Data/structData(_:)>
     public var data: OneOf_Data? = nil
 
     /// Initialize a new instance of `Document`.
@@ -469,8 +469,8 @@
     /// [json_data][google.cloud.discoveryengine.v1.Document.json_data] should be
     /// provided otherwise an `INVALID_ARGUMENT` error is thrown.
     ///
-    /// [google.cloud.discoveryengine.v1.Document.json_data]: <doc:Document/jsonData>
-    /// [google.cloud.discoveryengine.v1.Document.struct_data]: <doc:Document/structData>
+    /// [google.cloud.discoveryengine.v1.Document.json_data]: <doc:Document/OneOf_Data/jsonData(_:)>
+    /// [google.cloud.discoveryengine.v1.Document.struct_data]: <doc:Document/OneOf_Data/structData(_:)>
     public enum OneOf_Data: Codable, Equatable, Sendable {
       /// The structured JSON data for the document. It should conform to the
       /// registered [Schema][google.cloud.discoveryengine.v1.Schema] or an

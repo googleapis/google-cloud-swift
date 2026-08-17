@@ -86,7 +86,7 @@ public struct Membership: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var monitoringConfig: MonitoringConfig? = nil
 
   /// Type of resource represented by this Membership
-  public var type: OneOf_Type_? = nil
+  public var type: OneOf_Type? = nil
 
   /// Initialize a new instance of `Membership`.
   public init() {}
@@ -140,7 +140,7 @@ public struct Membership: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     self.monitoringConfig = try container.decodeIfPresent(
       MonitoringConfig.self, forKey: .monitoringConfig)
 
-    var type: OneOf_Type_? = nil
+    var type: OneOf_Type? = nil
     let typeCheckAndSet = {
       if type != nil {
         throw DecodingError.dataCorrupted(
@@ -180,7 +180,7 @@ public struct Membership: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Type of resource represented by this Membership
-  public enum OneOf_Type_: Codable, Equatable, Sendable {
+  public enum OneOf_Type: Codable, Equatable, Sendable {
     /// Optional. Endpoint information to reach this member.
     indirect case endpoint(MembershipEndpoint?)
   }

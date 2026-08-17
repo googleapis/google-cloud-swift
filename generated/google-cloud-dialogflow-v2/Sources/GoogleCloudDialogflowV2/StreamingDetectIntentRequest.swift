@@ -53,7 +53,7 @@
   /// After you sent all input, you must half-close or abort the request stream.
   ///
   /// [google.cloud.dialogflow.v2.InputAudioConfig]: <doc:InputAudioConfig>
-  /// [google.cloud.dialogflow.v2.QueryInput.text]: <doc:QueryInput/text>
+  /// [google.cloud.dialogflow.v2.QueryInput.text]: <doc:QueryInput/OneOf_Input/text(_:)>
   /// [google.cloud.dialogflow.v2.StreamingDetectIntentRequest.input_audio]: <doc:StreamingDetectIntentRequest/inputAudio>
   /// [google.cloud.dialogflow.v2.StreamingDetectIntentRequest.output_audio_config]: <doc:StreamingDetectIntentRequest/outputAudioConfig>
   /// [google.cloud.dialogflow.v2.StreamingDetectIntentRequest.query_input]: <doc:StreamingDetectIntentRequest/queryInput>

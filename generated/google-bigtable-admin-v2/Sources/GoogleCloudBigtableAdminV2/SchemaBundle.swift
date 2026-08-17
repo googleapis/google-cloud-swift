@@ -34,7 +34,7 @@ public struct SchemaBundle: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// The type of this schema bundle. The oneof case cannot change after
   /// creation.
-  public var type: OneOf_Type_? = nil
+  public var type: OneOf_Type? = nil
 
   /// Initialize a new instance of `SchemaBundle`.
   public init() {}
@@ -63,7 +63,7 @@ public struct SchemaBundle: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     self.name = try container.decode(Swift.String.self, forKey: .name)
     self.etag = try container.decode(Swift.String.self, forKey: .etag)
 
-    var type: OneOf_Type_? = nil
+    var type: OneOf_Type? = nil
     let typeCheckAndSet = {
       if type != nil {
         throw DecodingError.dataCorrupted(
@@ -94,7 +94,7 @@ public struct SchemaBundle: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// The type of this schema bundle. The oneof case cannot change after
   /// creation.
-  public enum OneOf_Type_: Codable, Equatable, Sendable {
+  public enum OneOf_Type: Codable, Equatable, Sendable {
     /// Schema for Protobufs.
     indirect case protoSchema(ProtoSchema?)
   }

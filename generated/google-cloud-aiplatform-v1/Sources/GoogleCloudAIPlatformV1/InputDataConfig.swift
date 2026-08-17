@@ -111,7 +111,7 @@
     /// [fraction_split][google.cloud.aiplatform.v1.InputDataConfig.fraction_split]
     /// is used by default.
     ///
-    /// [google.cloud.aiplatform.v1.InputDataConfig.fraction_split]: <doc:InputDataConfig/fractionSplit>
+    /// [google.cloud.aiplatform.v1.InputDataConfig.fraction_split]: <doc:InputDataConfig/OneOf_Split/fractionSplit(_:)>
     public var split: OneOf_Split? = nil
 
     /// Only applicable to Custom and Hyperparameter Tuning TrainingPipelines.
@@ -269,7 +269,7 @@
     /// [fraction_split][google.cloud.aiplatform.v1.InputDataConfig.fraction_split]
     /// is used by default.
     ///
-    /// [google.cloud.aiplatform.v1.InputDataConfig.fraction_split]: <doc:InputDataConfig/fractionSplit>
+    /// [google.cloud.aiplatform.v1.InputDataConfig.fraction_split]: <doc:InputDataConfig/OneOf_Split/fractionSplit(_:)>
     public enum OneOf_Split: Codable, Equatable, Sendable {
       /// Split based on fractions defining the size of each set.
       indirect case fractionSplit(FractionSplit?)
