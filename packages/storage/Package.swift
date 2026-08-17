@@ -84,7 +84,10 @@ let package = Package(
     .testTarget(
       name: "GoogleCloudStorageIntegrationTests",
       dependencies: [
-        "GoogleCloudStorage"
+        "GoogleCloudStorage",
+        .product(name: "GoogleCloudAuth", package: "auth"),
+        .product(name: "GoogleCloudGax", package: "gax"),
+        .product(name: "NIOCore", package: "swift-nio"),
       ],
       path: "Tests/IntegrationTests"
     ),
