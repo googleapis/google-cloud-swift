@@ -1082,6 +1082,9 @@ libraries:
             - .google.storage.v2.Storage.RewriteObject
             - .google.storage.v2.Storage.MoveObject
           module_path: StorageProtos
+        - output: packages/storage/Sources/GoogleCloudStorage/generated/StorageControl
+          api_path: google/storage/v2
+          module_type: storage
         - output: packages/storage/Sources/GoogleCloudStorage/generated/Storage/Convert/GoogleType
           api_path: google/type
           module_type: convert-swift
