@@ -194,7 +194,7 @@ extension StorageClient {
       } catch {
         throw RequestError.io(error)
       }
-      if response.status == .serviceUnavailable {
+      if response.isError() {
         throw await response.decodeError()
       }
       let object = try await handleObjectResponse(response: response)
@@ -225,7 +225,7 @@ extension StorageClient {
     guard statusCode == 200,
       let location = startResponse.headers.first(name: "Location")
     else {
-      if statusCode == 503 {
+      if startResponse.isError() {
         throw await startResponse.decodeError()
       }
       let startData = try await startResponse.data()
@@ -257,7 +257,7 @@ extension StorageClient {
     } else if statusCode == 308 {
       let queryStatus = try parseResumableUploadQueryStatus(from: queryResponse.headers)
       return (.inprogress(UInt64(queryStatus.nextOffset)), queryStatus.crc32cSeed)
-    } else if statusCode == 503 {
+    } else if queryResponse.isError() {
       throw await queryResponse.decodeError()
     } else {
       let queryData = try await queryResponse.data()
@@ -341,7 +341,7 @@ extension StorageClient {
         )
       )
       return (.inprogress(UInt64(nextOffset)), crc32cSeed)
-    } else if statusCode == 503 {
+    } else if uploadResponse.isError() {
       throw await uploadResponse.decodeError()
     } else {
       let uploadData = try await uploadResponse.data()
@@ -827,13 +827,10 @@ extension StorageClient {
     async throws
     -> Object
   {
-    let statusCode = Int(response.status.code)
-    let data = try await response.data()
-    guard (200..<300).contains(statusCode) else {
-      let message = String(data: data, encoding: .utf8) ?? ""
-      throw UploadError.unexpectedServerResponse(
-        statusCode: statusCode, message: message)
+    if response.isError() {
+      throw await response.decodeError()
     }
+    let data = try await response.data()
     let decoder = GoogleCloudWkt._ProtoJSONDecoder()
     let v1Object = try decoder.decode(ObjectV1Response.self, from: data)
     return v1Object.toObject()

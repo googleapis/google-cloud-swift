@@ -100,12 +100,14 @@ import Testing
     let uploadOptions = UploadOptions().with { $0.validation = .crc32c }
     let task = client.upload(source, to: bucket, as: objectName, options: uploadOptions)
 
-    do {
-      _ = try await task.value
-      Issue.record("Expected upload to fail with unexpected server response")
-    } catch UploadError.unexpectedServerResponse(let statusCode, let message) {
-      #expect(statusCode == 400)
-      #expect(message == errorMessage)
+    let error = await expectError(RequestError.self) {
+      try await task.value
+    }
+    if case .http(let details) = error {
+      #expect(details.http_status_code == 400)
+      #expect(String(data: details.payload ?? Data(), encoding: .utf8) == errorMessage)
+    } else {
+      Issue.record("Expected .http RequestError, got \(String(describing: error))")
     }
   }
 
@@ -144,12 +146,14 @@ import Testing
     let uploadOptions = UploadOptions().with { $0.validation = .md5 }
     let task = client.upload(source, to: bucket, as: objectName, options: uploadOptions)
 
-    do {
-      _ = try await task.value
-      Issue.record("Expected upload to fail with unexpected server response")
-    } catch UploadError.unexpectedServerResponse(let statusCode, let message) {
-      #expect(statusCode == 400)
-      #expect(message == errorMessage)
+    let error = await expectError(RequestError.self) {
+      try await task.value
+    }
+    if case .http(let details) = error {
+      #expect(details.http_status_code == 400)
+      #expect(String(data: details.payload ?? Data(), encoding: .utf8) == errorMessage)
+    } else {
+      Issue.record("Expected .http RequestError, got \(String(describing: error))")
     }
   }
 

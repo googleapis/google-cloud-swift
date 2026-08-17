@@ -133,14 +133,13 @@ import Testing
     let client = try makeClient(registry: registry)
     let task = client.upload(source, to: bucket, as: objectName)
 
-    let error = await expectUploadError {
+    let error = await expectError(RequestError.self) {
       try await task.value
     }
-    if case .unexpectedServerResponse(let statusCode, let message) = error {
-      #expect(statusCode == 500)
-      #expect(message == "Internal Server Error")
+    if case .http(let details) = error {
+      #expect(details.http_status_code == 500)
     } else {
-      Issue.record("Expected .unexpectedServerResponse, got \(String(describing: error))")
+      Issue.record("Expected .http RequestError, got \(String(describing: error))")
     }
   }
 
@@ -241,5 +240,104 @@ import Testing
     #expect(uploadReq?.value(forHTTPHeaderField: "x-goog-encryption-key") == sample.keyBase64)
     #expect(
       uploadReq?.value(forHTTPHeaderField: "x-goog-encryption-key-sha256") == sample.keyHashBase64)
+  }
+
+  /// Tests that a 503 (unavailable) response during simple upload is retryable and automatically handled by the retry loop.
+  @Test func simpleUploadTransientFailureRetriesAndSucceeds() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "test-simple-retry"
+    let data = Data(repeating: 0x42, count: 1024)
+    let source = BytesSource(data: data)
+
+    let simpleUploadUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?uploadType=multipart&name=\(objectName)")
+
+    // 1. First attempt fails with 503 Service Unavailable
+    registry.register(
+      response: .success(
+        statusCode: 503, data: Data("Service Unavailable".utf8),
+        headers: nil),
+      for: simpleUploadUrl)
+
+    // 2. Retry attempt succeeds with 200 OK
+    registry.register(
+      response: .success(
+        statusCode: 200, data: makeObjectJSON(name: objectName, bucket: bucket, size: data.count),
+        headers: nil),
+      for: simpleUploadUrl)
+
+    let client = try makeClient(
+      registry: registry,
+      retryPolicy: BaseRetryPolicy().withAttemptLimit(3)
+    )
+    let task = client.upload(source, to: bucket, as: objectName)
+    let object = try await task.value
+
+    #expect(object.name == objectName)
+    #expect(object.bucket == bucket)
+    #expect(object.size == Int64(data.count))
+
+    let requests = registry.recordedRequests()
+    #expect(requests.count == 2)
+  }
+
+  /// Tests that a 503 error with NeverRetry policy throws immediately without retrying.
+  @Test func simpleUploadTransientFailureWithNeverRetryFails() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "test-simple-never-retry"
+    let data = Data(repeating: 0x42, count: 1024)
+    let source = BytesSource(data: data)
+
+    let simpleUploadUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?uploadType=multipart&name=\(objectName)")
+
+    registry.register(
+      response: .success(
+        statusCode: 503, data: Data("Service Unavailable".utf8),
+        headers: nil),
+      for: simpleUploadUrl)
+
+    let client = try makeClient(registry: registry, retryPolicy: NeverRetry())
+    let task = client.upload(source, to: bucket, as: objectName)
+
+    let error = await expectError(RequestError.self) {
+      try await task.value
+    }
+    #expect(error != nil)
+    let requests = registry.recordedRequests()
+    #expect(requests.count == 1)
+  }
+
+  /// Tests that configuring retryPolicy on UploadOptions overrides client-level retry policy for simple uploads.
+  @Test func simpleUploadWithCustomUploadOptionsRetryPolicyOverridesClient() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "test-simple-override-retry"
+    let data = Data(repeating: 0x42, count: 1024)
+    let source = BytesSource(data: data)
+
+    let simpleUploadUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?uploadType=multipart&name=\(objectName)")
+
+    registry.register(
+      response: .success(
+        statusCode: 503, data: Data("Service Unavailable".utf8),
+        headers: nil),
+      for: simpleUploadUrl)
+
+    let client = try makeClient(registry: registry)
+    let uploadOptions = UploadOptions().with {
+      $0.retryPolicy = NeverRetry()
+    }
+    let task = client.upload(source, to: bucket, as: objectName, options: uploadOptions)
+
+    let error = await expectError(RequestError.self) {
+      try await task.value
+    }
+    #expect(error != nil)
+    let requests = registry.recordedRequests()
+    #expect(requests.count == 1)
   }
 }

@@ -173,14 +173,13 @@ import Testing
     let client = try makeClient(registry: registry)
     let task = client.upload(source, to: bucket, as: objectName)
 
-    let error = await expectUploadError {
+    let error = await expectError(RequestError.self) {
       try await task.value
     }
-    if case .unexpectedServerResponse(let statusCode, let message) = error {
-      #expect(statusCode == 500)
-      #expect(message == "Internal Server Error")
+    if case .http(let details) = error {
+      #expect(details.http_status_code == 500)
     } else {
-      Issue.record("Expected .unexpectedServerResponse, got \(String(describing: error))")
+      Issue.record("Expected .http RequestError, got \(String(describing: error))")
     }
   }
 
@@ -437,14 +436,13 @@ import Testing
     let client = try makeClient(registry: registry)
     let task = client.resumeUpload(source, uploadId: queryUrl.absoluteString)
 
-    let error = await expectUploadError {
+    let error = await expectError(RequestError.self) {
       try await task.value
     }
-    if case .unexpectedServerResponse(let statusCode, let message) = error {
-      #expect(statusCode == 404)
-      #expect(message == "Upload session expired")
+    if case .http(let details) = error {
+      #expect(details.http_status_code == 404)
     } else {
-      Issue.record("Expected .unexpectedServerResponse, got \(error)")
+      Issue.record("Expected .http RequestError, got \(String(describing: error))")
     }
   }
 
@@ -497,14 +495,13 @@ import Testing
     let client = try makeClient(registry: registry)
     let task = client.resumeUpload(source, uploadId: queryUrl.absoluteString)
 
-    let error = await expectUploadError {
+    let error = await expectError(RequestError.self) {
       try await task.value
     }
-    if case .unexpectedServerResponse(let statusCode, let message) = error {
-      #expect(statusCode == 499)
-      #expect(message == "Client Closed Request")
+    if case .http(let details) = error {
+      #expect(details.http_status_code == 499)
     } else {
-      Issue.record("Expected .unexpectedServerResponse, got \(String(describing: error))")
+      Issue.record("Expected .http RequestError, got \(String(describing: error))")
     }
   }
 
