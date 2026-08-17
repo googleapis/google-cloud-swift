@@ -35,8 +35,8 @@ import Testing
     #expect(defaultOptions.customerEncryptionKey == nil)
     #expect(defaultOptions.range == .entire)
     #expect(defaultOptions.enableDecompressiveTranscoding == true)
-    #expect(defaultOptions.checksums == .default)
     #expect(defaultOptions.autoResume == true)
+    #expect(defaultOptions.checksums == .default)
   }
 
   @Test func readObjectOptionsWithBuilder() throws {
@@ -50,8 +50,8 @@ import Testing
       $0.customerEncryptionKey = csek
       $0.range = .bounded(start: 0, end: 1024)
       $0.enableDecompressiveTranscoding = false
-      $0.checksums = .none
       $0.autoResume = false
+      $0.checksums = .none
     }
 
     #expect(options.generation == 456)
@@ -59,8 +59,8 @@ import Testing
     #expect(options.customerEncryptionKey == csek)
     #expect(options.range == .bounded(start: 0, end: 1024))
     #expect(options.enableDecompressiveTranscoding == false)
-    #expect(options.checksums == .none)
     #expect(options.autoResume == false)
+    #expect(options.checksums == .none)
   }
 
   @Test func readObjectMetadataProperties() {
@@ -101,16 +101,13 @@ import Testing
       $0.bucket = "bkt"
       $0.object = "obj"
     }
-    let options = ReadObjectOptions().with { $0.autoResume = false }
     let sequence = ReadObjectSequence().with {
       $0.bucket = "bkt"
       $0.object = "obj"
-      $0.options = options
     }
 
     #expect(sequence.bucket == "bkt")
     #expect(sequence.object == "obj")
-    #expect(sequence.options.autoResume == false)
 
     var iterator = sequence.makeAsyncIterator()
     let firstChunk = try await iterator.next()

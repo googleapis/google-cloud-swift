@@ -51,7 +51,7 @@ import Testing
       "x-goog-generation": "17123456789",
       "x-goog-metageneration": "3",
       "ETag": "\"CPv1234\"",
-      "x-goog-hash": "crc32c=mcw+ng==, md5=N1YvABC==",
+      "x-goog-hash": "crc32c=AdiAvw==, md5=N1YvABC==",
       "x-goog-storage-class": "STANDARD",
       "Last-Modified": "Fri, 07 Aug 2026 01:00:00 GMT",
     ]
@@ -70,7 +70,7 @@ import Testing
     #expect(result.metadata.generation == 17123456789)
     #expect(result.metadata.metageneration == 3)
     #expect(result.metadata.etag == "\"CPv1234\"")
-    #expect(result.metadata.crc32c == "mcw+ng==")
+    #expect(result.metadata.crc32c == "AdiAvw==")
     #expect(result.metadata.md5Hash == "N1YvABC==")
     #expect(result.metadata.contentType == "text/plain; charset=utf-8")
     #expect(result.metadata.storageClass == "STANDARD")
@@ -713,5 +713,47 @@ import Testing
       downloaded.append(chunk)
     }
     #expect(downloaded == payload)
+  }
+
+  @Test func downloadObjectStreaming() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "stream-object.bin"
+    let chunk1 = Data("Chunk-1-".utf8)
+    let chunk2 = Data("Chunk-2-".utf8)
+    let chunk3 = Data("Chunk-3".utf8)
+    let fullPayload = chunk1 + chunk2 + chunk3
+    let computedCrc = _CRC32C.compute(fullPayload)
+    let crcBase64 = withUnsafeBytes(of: computedCrc.bigEndian) { Data($0).base64EncodedString() }
+
+    let downloadUrl = registry.url("/storage/v1/b/\(bucket)/o/\(objectName)?alt=media")
+    let headers = [
+      "Content-Type": "application/octet-stream",
+      "Content-Length": String(fullPayload.count),
+      "x-goog-generation": "999",
+      "x-goog-hash": "crc32c=\(crcBase64)",
+    ]
+
+    registry.register(
+      response: .stream(statusCode: 200, chunks: [chunk1, chunk2, chunk3], headers: headers),
+      for: downloadUrl
+    )
+
+    let client = try makeClient(registry: registry)
+    let result = try await client.readObject(from: bucket, object: objectName)
+
+    #expect(result.metadata.size == UInt64(fullPayload.count))
+    #expect(result.metadata.generation == 999)
+
+    var receivedChunks: [Data] = []
+    for try await chunk in result.body {
+      receivedChunks.append(chunk)
+    }
+
+    #expect(receivedChunks.count == 3)
+    #expect(receivedChunks[0] == chunk1)
+    #expect(receivedChunks[1] == chunk2)
+    #expect(receivedChunks[2] == chunk3)
+    #expect(receivedChunks.reduce(Data(), +) == fullPayload)
   }
 }

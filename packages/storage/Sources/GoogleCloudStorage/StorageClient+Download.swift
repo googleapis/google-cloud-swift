@@ -40,9 +40,9 @@ extension StorageClient {
       bucket: bucket, object: object, options: options)
     let response = try await request.execute()
     let statusCode = Int(response.status.code)
-    let data = try await response.data()
 
     guard (200..<300).contains(statusCode) else {
+      let data = try await response.data()
       let message = String(data: data, encoding: .utf8) ?? ""
       throw DownloadError.unexpectedServerResponse(
         statusCode: statusCode, message: message)
@@ -51,22 +51,12 @@ extension StorageClient {
     let metadata = try Self.parseReadObjectMetadata(
       from: response.headers, bucket: bucket, object: object)
 
-    let stream = AsyncThrowingStream<Data, Error> { continuation in
-      if case .prefix(0) = options.range {
-        // Requested 0 bytes
-      } else if case .suffix(0) = options.range {
-        // Requested 0 bytes
-      } else if !data.isEmpty {
-        continuation.yield(data)
-      }
-      continuation.finish()
-    }
-
     let sequence = ReadObjectSequence().with {
       $0.bucket = bucket
       $0.object = object
       $0.options = options
-      $0.stream = stream
+      $0.metadata = metadata
+      $0.initialBody = response.body
     }
     return ReadObjectResult().with {
       $0.metadata = metadata
@@ -169,7 +159,7 @@ extension StorageClient {
 }
 
 extension GoogleCloudGax._HTTPClient {
-  fileprivate func buildReadObjectRequest(
+  package func buildReadObjectRequest(
     bucket: String,
     object: String,
     options: ReadObjectOptions

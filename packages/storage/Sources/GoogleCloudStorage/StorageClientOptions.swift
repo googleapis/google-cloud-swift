@@ -22,12 +22,17 @@ public struct StorageClientOptions: Sendable {
   /// Default configuration inherited by data-plane operations (e.g., Uploads).
   public var upload: UploadOptions
 
+  /// Default configuration inherited by data-plane download operations (e.g., ReadObject).
+  public var download: ReadObjectOptions
+
   public init(
     client: GoogleCloudGax.ClientOptions = .init(),
-    upload: UploadOptions = .default
+    upload: UploadOptions = .default,
+    download: ReadObjectOptions = .default
   ) {
     self.client = client
     self.upload = upload
+    self.download = download
   }
 
   /// Override specific values using closure modification.

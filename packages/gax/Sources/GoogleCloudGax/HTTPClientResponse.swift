@@ -19,6 +19,34 @@ import struct NIOHTTP1.HTTPHeaders
 import enum NIOHTTP1.HTTPResponseStatus
 import struct NIOCore.ByteBuffer
 
+/// An asynchronous sequence of response body chunks.
+@_spi(GoogleCloudInternal) public struct _HTTPResponseBody: AsyncSequence, Sendable {
+  public typealias Element = Data
+
+  let body: AsyncHTTPClient.HTTPClientResponse.Body
+
+  public init(_ body: AsyncHTTPClient.HTTPClientResponse.Body) {
+    self.body = body
+  }
+
+  public struct AsyncIterator: AsyncIteratorProtocol {
+    var iterator: AsyncHTTPClient.HTTPClientResponse.Body.AsyncIterator
+
+    public init(_ iterator: AsyncHTTPClient.HTTPClientResponse.Body.AsyncIterator) {
+      self.iterator = iterator
+    }
+
+    public mutating func next() async throws -> Data? {
+      guard let buffer = try await self.iterator.next() else { return nil }
+      return Data(buffer: buffer)
+    }
+  }
+
+  public func makeAsyncIterator() -> AsyncIterator {
+    AsyncIterator(self.body.makeAsyncIterator())
+  }
+}
+
 /// Represents an HTTP response.
 ///
 /// The generated code uses this type directly. It exposes the methods we
@@ -41,6 +69,10 @@ import struct NIOCore.ByteBuffer
 
   public var headers: NIOHTTP1.HTTPHeaders {
     self.response.headers
+  }
+
+  public var body: _HTTPResponseBody {
+    _HTTPResponseBody(self.response.body)
   }
 
   public func data(upTo: Int) async throws -> Data {

@@ -20,11 +20,14 @@ import Testing
 @_spi(GoogleCloudInternal) @testable import GoogleCloudGax
 @_spi(GoogleCloudInternal) @testable import GoogleCloudStorage
 
-/// Defines what a mock response should return
 enum MockResponse: Sendable {
   case success(statusCode: Int, data: Data, headers: [String: String]? = nil)
+  case stream(
+    statusCode: Int, chunks: [Data], error: (any Error)? = nil, headers: [String: String]? = nil)
   case failure(any Error)
 }
+
+struct MockNetworkError: Error, Sendable, Equatable {}
 
 /// Recorded HTTP request during testing
 struct RecordedRequest: Sendable {
@@ -240,6 +243,29 @@ final class MockRegistry: _HTTPClientProtocol, @unchecked Sendable {
         status: NIOHTTP1.HTTPResponseStatus(statusCode: statusCode),
         headers: nioHeaders,
         body: .bytes(NIOCore.ByteBuffer(data: data))
+      )
+    case .stream(let statusCode, let chunks, let error, let headers):
+      var nioHeaders = NIOHTTP1.HTTPHeaders()
+      if let headers {
+        for (key, value) in headers {
+          nioHeaders.add(name: key, value: value)
+        }
+      }
+      let stream = AsyncThrowingStream<NIOCore.ByteBuffer, any Error> { continuation in
+        for chunk in chunks {
+          continuation.yield(NIOCore.ByteBuffer(data: chunk))
+        }
+        if let error {
+          continuation.finish(throwing: error)
+        } else {
+          continuation.finish()
+        }
+      }
+      return AsyncHTTPClient.HTTPClientResponse(
+        version: .http1_1,
+        status: NIOHTTP1.HTTPResponseStatus(statusCode: statusCode),
+        headers: nioHeaders,
+        body: .stream(stream)
       )
     case .failure(let error):
       throw error
