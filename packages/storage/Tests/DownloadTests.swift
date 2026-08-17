@@ -614,4 +614,104 @@ import Testing
       Issue.record("Expected unexpectedServerResponse, got \(error)")
     }
   }
+
+  @Test func downloadObjectWithDecompressiveTranscodingDisabledSendsAcceptEncodingGzip()
+    async throws
+  {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "compressed-file.txt.gz"
+    let payload = Data([
+      0x1F, 0x8B, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xFF, 0x55, 0x8C, 0xB1, 0x0D, 0x02,
+      0x41, 0x0C, 0x04, 0x5B, 0x59, 0x1A, 0xA0, 0x09, 0x02, 0xC8, 0xA1, 0x01, 0xF3, 0xE7, 0x3F,
+      0x2C, 0x1D, 0xDE, 0x93, 0x6D, 0x5E, 0x82, 0xEA, 0xE1, 0x43, 0x92, 0x49, 0x46, 0x33, 0x17,
+      0x1D, 0x83, 0x38, 0x93, 0x7D, 0x28, 0x4E, 0x83, 0xAF, 0x86, 0x6B, 0x31, 0xA4, 0x2B, 0x9A,
+      0x2E, 0x7C, 0xCE, 0xD0, 0x4C, 0xDB, 0x14, 0x15, 0xE2, 0xB9, 0xB0, 0x99, 0x77, 0x98, 0x97,
+      0xF6, 0x90, 0x32, 0x3A, 0x4A, 0xB3, 0x0E, 0xB8, 0xFD, 0xB8, 0x9B, 0xFE, 0xB1, 0x89, 0x29,
+      0xEF, 0x41, 0x69, 0x10, 0x6F, 0x7F, 0xD9, 0x5D, 0x1F, 0xB2, 0x19, 0x03, 0xB2, 0x04, 0x33,
+      0xD1, 0x6C, 0x5D, 0x35, 0xD4, 0x0B, 0x9C, 0xFB, 0x2B, 0x8F, 0x5F, 0xA4, 0x83, 0xBE, 0x71,
+      0x8E, 0x00, 0x00, 0x00,
+    ])
+
+    let downloadUrl = registry.url("/storage/v1/b/\(bucket)/o/\(objectName)?alt=media")
+
+    let headers = [
+      "Content-Type": "text/plain",
+      "Content-Encoding": "gzip",
+      "Content-Length": String(payload.count),
+      "x-goog-generation": "12345",
+      "x-goog-metageneration": "1",
+    ]
+
+    registry.register(
+      response: .success(statusCode: 200, data: payload, headers: headers),
+      for: downloadUrl
+    )
+
+    let client = try makeClient(registry: registry)
+    let options = ReadObjectOptions().with {
+      $0.enableDecompressiveTranscoding = false
+    }
+
+    let result = try await client.readObject(from: bucket, object: objectName, options: options)
+
+    #expect(result.metadata.bucket == bucket)
+    #expect(result.metadata.object == objectName)
+    #expect(result.metadata.contentEncoding == "gzip")
+    #expect(result.metadata.size == UInt64(payload.count))
+
+    let lastReq = registry.lastRequest(for: downloadUrl)
+    #expect(lastReq != nil)
+    #expect(lastReq?.value(forHTTPHeaderField: "Accept-Encoding") == "gzip")
+
+    var downloaded = Data()
+    for try await chunk in result.body {
+      downloaded.append(chunk)
+    }
+    #expect(downloaded == payload)
+  }
+
+  @Test func downloadObjectWithDecompressiveTranscodingEnabledDoesNotSendAcceptEncoding()
+    async throws
+  {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "uncompressed-file.txt"
+    let payload = Data("Hello, uncompressed content!".utf8)
+
+    let downloadUrl = registry.url("/storage/v1/b/\(bucket)/o/\(objectName)?alt=media")
+
+    let headers = [
+      "Content-Type": "text/plain; charset=utf-8",
+      "Content-Length": String(payload.count),
+      "x-goog-generation": "12345",
+      "x-goog-metageneration": "1",
+    ]
+
+    registry.register(
+      response: .success(statusCode: 200, data: payload, headers: headers),
+      for: downloadUrl
+    )
+
+    let client = try makeClient(registry: registry)
+    let options = ReadObjectOptions().with {
+      $0.enableDecompressiveTranscoding = true
+    }
+
+    let result = try await client.readObject(from: bucket, object: objectName, options: options)
+
+    #expect(result.metadata.bucket == bucket)
+    #expect(result.metadata.object == objectName)
+    #expect(result.metadata.size == UInt64(payload.count))
+
+    let lastReq = registry.lastRequest(for: downloadUrl)
+    #expect(lastReq != nil)
+    #expect(lastReq?.value(forHTTPHeaderField: "Accept-Encoding") == nil)
+
+    var downloaded = Data()
+    for try await chunk in result.body {
+      downloaded.append(chunk)
+    }
+    #expect(downloaded == payload)
+  }
 }

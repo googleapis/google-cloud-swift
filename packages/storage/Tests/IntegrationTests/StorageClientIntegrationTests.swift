@@ -723,6 +723,151 @@ import Testing
     .enabled(
       if: ProcessInfo.processInfo.environment["GOOGLE_CLOUD_PROJECT"] != nil
         && ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_BUCKET"] != nil))
+  struct StorageClientGzipDownloadIntegrationTests {
+    let bucketName = ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_BUCKET"]!
+
+    private static let rawGzipContent =
+      "Hello Google Cloud Storage decompressive transcoding integration test! Testing gzip payload and transcoding behavior across different options."
+    private static let rawGzipData = Data(rawGzipContent.utf8)
+    private static let compressedGzipData = Data([
+      0x1F, 0x8B, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xFF, 0x55, 0x8C, 0xB1, 0x0D, 0x02,
+      0x41, 0x0C, 0x04, 0x5B, 0x59, 0x1A, 0xA0, 0x09, 0x02, 0xC8, 0xA1, 0x01, 0xF3, 0xE7, 0x3F,
+      0x2C, 0x1D, 0xDE, 0x93, 0x6D, 0x5E, 0x82, 0xEA, 0xE1, 0x43, 0x92, 0x49, 0x46, 0x33, 0x17,
+      0x1D, 0x83, 0x38, 0x93, 0x7D, 0x28, 0x4E, 0x83, 0xAF, 0x86, 0x6B, 0x31, 0xA4, 0x2B, 0x9A,
+      0x2E, 0x7C, 0xCE, 0xD0, 0x4C, 0xDB, 0x14, 0x15, 0xE2, 0xB9, 0xB0, 0x99, 0x77, 0x98, 0x97,
+      0xF6, 0x90, 0x32, 0x3A, 0x4A, 0xB3, 0x0E, 0xB8, 0xFD, 0xB8, 0x9B, 0xFE, 0xB1, 0x89, 0x29,
+      0xEF, 0x41, 0x69, 0x10, 0x6F, 0x7F, 0xD9, 0x5D, 0x1F, 0xB2, 0x19, 0x03, 0xB2, 0x04, 0x33,
+      0xD1, 0x6C, 0x5D, 0x35, 0xD4, 0x0B, 0x9C, 0xFB, 0x2B, 0x8F, 0x5F, 0xA4, 0x83, 0xBE, 0x71,
+      0x8E, 0x00, 0x00, 0x00,
+    ])
+
+    @Test func testDownloadGzipAllowDecompressiveTranscoding() async throws {
+      let objectName = "test-gzip-transcode-\(UUID().uuidString).txt"
+      let storage = try StorageClient()
+
+      let uploadMetadata = UploadMetadata().with {
+        $0.contentEncoding = "gzip"
+        $0.contentType = "text/plain"
+      }
+      let uploadOptions = UploadOptions().with {
+        $0.metadata = uploadMetadata
+      }
+
+      let uploadTask = storage.upload(
+        Self.compressedGzipData, to: bucketName, as: objectName, options: uploadOptions)
+      let uploadedObject = try await uploadTask.value
+      #expect(uploadedObject.bucket == bucketName)
+      #expect(uploadedObject.name == objectName)
+      #expect(uploadedObject.contentEncoding == "gzip")
+
+      // Standard download request (decompressive transcoding allowed)
+      let downloadOptions = ReadObjectOptions().with {
+        $0.enableDecompressiveTranscoding = true
+      }
+      let result = try await storage.readObject(
+        from: bucketName, object: objectName, options: downloadOptions)
+      #expect(result.metadata.bucket == bucketName)
+      #expect(result.metadata.object == objectName)
+
+      var downloadedData = Data()
+      for try await chunk in result.body {
+        downloadedData.append(chunk)
+      }
+      // GCS serves uncompressed raw content
+      #expect(downloadedData == Self.rawGzipData)
+      let downloadedString = String(data: downloadedData, encoding: .utf8)
+      #expect(downloadedString == Self.rawGzipContent)
+
+      print("Gzip allow decompressive transcoding integration test successful: \(result.metadata)")
+    }
+
+    @Test func testDownloadGzipPreventTranscodingViaRequestHeader() async throws {
+      let objectName = "test-gzip-no-transcode-header-\(UUID().uuidString).txt"
+      let storage = try StorageClient()
+
+      let uploadMetadata = UploadMetadata().with {
+        $0.contentEncoding = "gzip"
+        $0.contentType = "text/plain"
+      }
+      let uploadOptions = UploadOptions().with {
+        $0.metadata = uploadMetadata
+      }
+
+      let uploadTask = storage.upload(
+        Self.compressedGzipData, to: bucketName, as: objectName, options: uploadOptions)
+      let uploadedObject = try await uploadTask.value
+      #expect(uploadedObject.bucket == bucketName)
+      #expect(uploadedObject.name == objectName)
+      #expect(uploadedObject.contentEncoding == "gzip")
+
+      // Prevent transcoding via request header (enableDecompressiveTranscoding = false)
+      let downloadOptions = ReadObjectOptions().with {
+        $0.enableDecompressiveTranscoding = false
+      }
+      let result = try await storage.readObject(
+        from: bucketName, object: objectName, options: downloadOptions)
+      #expect(result.metadata.bucket == bucketName)
+      #expect(result.metadata.object == objectName)
+      #expect(result.metadata.contentEncoding == "gzip")
+
+      var downloadedData = Data()
+      for try await chunk in result.body {
+        downloadedData.append(chunk)
+      }
+      // Downloader receives the original gzip-compressed file
+      #expect(downloadedData == Self.compressedGzipData)
+      #expect(result.metadata.size == UInt64(Self.compressedGzipData.count))
+
+      print(
+        "Gzip prevent transcoding via request header integration test successful: \(result.metadata)"
+      )
+    }
+
+    @Test func testDownloadGzipPreventTranscodingViaCacheControlNoTransform() async throws {
+      let objectName = "test-gzip-cache-control-no-transform-\(UUID().uuidString).txt"
+      let storage = try StorageClient()
+
+      let uploadMetadata = UploadMetadata().with {
+        $0.contentEncoding = "gzip"
+        $0.cacheControl = "no-transform"
+        $0.contentType = "text/plain"
+      }
+      let uploadOptions = UploadOptions().with {
+        $0.metadata = uploadMetadata
+      }
+
+      let uploadTask = storage.upload(
+        Self.compressedGzipData, to: bucketName, as: objectName, options: uploadOptions)
+      let uploadedObject = try await uploadTask.value
+      #expect(uploadedObject.bucket == bucketName)
+      #expect(uploadedObject.name == objectName)
+      #expect(uploadedObject.contentEncoding == "gzip")
+      #expect(uploadedObject.cacheControl == "no-transform")
+
+      // Standard download request without special options
+      let result = try await storage.readObject(from: bucketName, object: objectName)
+      #expect(result.metadata.bucket == bucketName)
+      #expect(result.metadata.object == objectName)
+      #expect(result.metadata.contentEncoding == "gzip")
+
+      var downloadedData = Data()
+      for try await chunk in result.body {
+        downloadedData.append(chunk)
+      }
+      // Downloader receives the original gzip-compressed file because of Cache-Control: no-transform
+      #expect(downloadedData == Self.compressedGzipData)
+      #expect(result.metadata.size == UInt64(Self.compressedGzipData.count))
+
+      print(
+        "Gzip prevent transcoding via Cache-Control no-transform integration test successful: \(result.metadata)"
+      )
+    }
+  }
+
+  @Suite(
+    .enabled(
+      if: ProcessInfo.processInfo.environment["GOOGLE_CLOUD_PROJECT"] != nil
+        && ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_BUCKET"] != nil))
   struct StorageClientRangedDownloadIntegrationTests {
     struct FixtureState: Sendable {
       let bucketName: String
