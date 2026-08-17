@@ -1289,6 +1289,188 @@ import Testing
       requests[4].value(forHTTPHeaderField: "Content-Range") == "bytes 8388608-16777215/16777216")
   }
 
+  /// Tests that when a chunk fails with 503 and the status query indicates partial data was committed by GCS,
+  /// the upload automatically seeks and resumes from the latest committed byte.
+  @Test func resumableUploadPartialChunkCommittedOn503ResumesFromLatestByte() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "partial-chunk-recovery"
+    let chunkSize = 8 * 1024 * 1024  // 8MiB
+    let totalSize = 16 * 1024 * 1024  // 16MiB (2 chunks)
+    let partialCommitted = 12 * 1024 * 1024  // 12MiB (8MiB from chunk 1 + 4MiB from chunk 2)
+    let data = Data((0..<totalSize).map { UInt8($0 % 251) })
+    let source = BytesSource(data: data)
+
+    let startUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?uploadType=resumable&name=\(objectName)")
+    let sessionUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?upload_id=partial-commit-session-id")
+
+    // 1. Session start succeeds -> 200 OK with Location
+    registry.register(
+      response: .success(
+        statusCode: 200, data: Data(),
+        headers: ["Location": sessionUrl.absoluteString]),
+      for: startUrl)
+
+    // 2. First chunk (0..8MB) succeeds -> 308 Range 0-8388607
+    registry.register(
+      response: .success(
+        statusCode: 308, data: Data(),
+        headers: ["Range": "bytes=0-\(chunkSize - 1)"]),
+      for: sessionUrl)
+
+    // 3. Second chunk (8MB..16MB) fails transiently with 503
+    registry.register(
+      response: .success(
+        statusCode: 503, data: Data("Service Unavailable".utf8),
+        headers: [:]),
+      for: sessionUrl)
+
+    // 4. Status query returns 308 showing 12MB committed (partial 4MB of chunk 2 was received by GCS before failure)
+    registry.register(
+      response: .success(
+        statusCode: 308, data: Data(),
+        headers: ["Range": "bytes=0-\(partialCommitted - 1)"]),
+      for: sessionUrl)
+
+    // 5. Resumed upload from latest byte (12MB..16MB) succeeds -> 200 OK
+    registry.register(
+      response: .success(
+        statusCode: 200,
+        data: makeObjectJSON(name: objectName, bucket: bucket, size: totalSize),
+        headers: nil),
+      for: sessionUrl)
+
+    let client = try makeClient(
+      registry: registry,
+      clientRetryPolicy: BaseRetryPolicy().withAttemptLimit(3)
+    )
+    let uploadOptions = UploadOptions().with {
+      $0.chunkSize = chunkSize
+    }
+    let task = client.upload(source, to: bucket, as: objectName, options: uploadOptions)
+
+    var statuses: [UploadStatus] = []
+    for await status in task.makeStatusStream() {
+      statuses.append(status)
+    }
+
+    let object = try await task.value
+
+    #expect(object.name == objectName)
+    #expect(object.bucket == bucket)
+    #expect(object.size == Int64(totalSize))
+
+    let requests = registry.recordedRequests()
+    #expect(requests.count == 5)
+    // 0: Start request
+    #expect(requests[0].httpMethod == "POST")
+    // 1: Chunk 1 (0-8MB)
+    #expect(
+      requests[1].value(forHTTPHeaderField: "Content-Range")
+        == "bytes 0-\(chunkSize - 1)/\(totalSize)")
+    // 2: Chunk 2 first attempt (8MB-16MB) - fails with 503
+    #expect(
+      requests[2].value(forHTTPHeaderField: "Content-Range")
+        == "bytes \(chunkSize)-\(totalSize - 1)/\(totalSize)")
+    // 3: Status query after transient failure
+    #expect(requests[3].value(forHTTPHeaderField: "Content-Range") == "bytes */*")
+    // 4: Resumed chunk starting from latest committed byte (12MB-16MB)
+    #expect(
+      requests[4].value(forHTTPHeaderField: "Content-Range")
+        == "bytes \(partialCommitted)-\(totalSize - 1)/\(totalSize)")
+    // Verify exact data payload sent in the resumed chunk
+    #expect(requests[4].httpBody == data.subdata(in: partialCommitted..<totalSize))
+
+    // Status stream should emit: 0 (start), 8MB (chunk 1), 12MB (after status query recovery), 16MB (completion)
+    #expect(
+      statuses.map(\.bytesUploaded) == [
+        0, Int64(chunkSize), Int64(partialCommitted), Int64(totalSize),
+      ])
+  }
+
+  /// Tests that when the first chunk upload fails with 503 and partial data was committed by GCS,
+  /// the retry loop seeks the source and resumes from the latest committed byte.
+  @Test func resumableUploadPartialFirstChunkCommittedOn503ResumesFromLatestByte() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "partial-first-chunk-recovery"
+    let chunkSize = 8 * 1024 * 1024  // 8MiB
+    let totalSize = 10 * 1024 * 1024  // 10MiB
+    let partialCommitted = 3 * 1024 * 1024  // 3MiB committed during first chunk before 503
+    let data = Data((0..<totalSize).map { UInt8($0 % 199) })
+    let source = BytesSource(data: data)
+
+    let startUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?uploadType=resumable&name=\(objectName)")
+    let sessionUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?upload_id=partial-first-chunk-session-id")
+
+    // 1. Session start succeeds
+    registry.register(
+      response: .success(
+        statusCode: 200, data: Data(),
+        headers: ["Location": sessionUrl.absoluteString]),
+      for: startUrl)
+
+    // 2. First chunk (0..8MB) fails with 503
+    registry.register(
+      response: .success(
+        statusCode: 503, data: Data("Service Unavailable".utf8),
+        headers: [:]),
+      for: sessionUrl)
+
+    // 3. Status query returns 308 with 3MB committed
+    registry.register(
+      response: .success(
+        statusCode: 308, data: Data(),
+        headers: ["Range": "bytes=0-\(partialCommitted - 1)"]),
+      for: sessionUrl)
+
+    // 4. Chunk 2 sends remaining from 3MB..10MB (7MB) and succeeds -> 200 OK
+    registry.register(
+      response: .success(
+        statusCode: 200,
+        data: makeObjectJSON(name: objectName, bucket: bucket, size: totalSize),
+        headers: nil),
+      for: sessionUrl)
+
+    let client = try makeClient(
+      registry: registry,
+      clientRetryPolicy: BaseRetryPolicy().withAttemptLimit(3)
+    )
+    let uploadOptions = UploadOptions().with {
+      $0.chunkSize = chunkSize
+    }
+    let task = client.upload(source, to: bucket, as: objectName, options: uploadOptions)
+
+    var statuses: [UploadStatus] = []
+    for await status in task.makeStatusStream() {
+      statuses.append(status)
+    }
+
+    let object = try await task.value
+
+    #expect(object.name == objectName)
+    #expect(object.bucket == bucket)
+    #expect(object.size == Int64(totalSize))
+
+    let requests = registry.recordedRequests()
+    #expect(requests.count == 4)
+    #expect(requests[0].httpMethod == "POST")
+    #expect(
+      requests[1].value(forHTTPHeaderField: "Content-Range")
+        == "bytes 0-\(chunkSize - 1)/\(totalSize)")
+    #expect(requests[2].value(forHTTPHeaderField: "Content-Range") == "bytes */*")
+    #expect(
+      requests[3].value(forHTTPHeaderField: "Content-Range")
+        == "bytes \(partialCommitted)-\(totalSize - 1)/\(totalSize)")
+    #expect(requests[3].httpBody == data.subdata(in: partialCommitted..<totalSize))
+
+    #expect(statuses.map(\.bytesUploaded) == [0, Int64(partialCommitted), Int64(totalSize)])
+  }
+
   /// Tests that a transient error during `resumeUpload` status query is retried by `_RetryLoop`.
   @Test func resumeUploadTransientFailureOnStatusQueryRetriesAndSucceeds() async throws {
     let registry = MockRegistry.create()
