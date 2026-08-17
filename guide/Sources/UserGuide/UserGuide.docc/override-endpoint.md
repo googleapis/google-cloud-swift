@@ -46,6 +46,7 @@ services that support them.
 
 ## Next steps
 
-<!-- TODO(https://github.com/googleapis/google-cloud-swift/issues/137) - lint the credentials override guide -->
+* [Override the default credentials](override-credentials.md) describes how to
+  change the default credentials used by the Swift client libraries.
 <!-- TODO(https://github.com/googleapis/google-cloud-swift/issues/144) - lint the retry policy override guide -->
 <!-- TODO(https://github.com/googleapis/google-cloud-swift/issues/145) - lint the polling policy override guide -->
