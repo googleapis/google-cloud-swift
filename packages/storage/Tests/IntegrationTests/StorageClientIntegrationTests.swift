@@ -13,6 +13,7 @@
 // limitations under the License.
 
 import Foundation
+import GoogleCloudGax
 @testable import GoogleCloudStorage
 import Testing
 
@@ -482,11 +483,16 @@ import Testing
       do {
         _ = try await task.value
         Issue.record("Expected GCS to reject upload with bad checksum, but it succeeded")
-      } catch UploadError.unexpectedServerResponse(let statusCode, let message) {
-        #expect(statusCode == 400)
-        print("GCS correctly rejected bad checksum: \(message)")
+      } catch RequestError.service(let serviceError) {
+        #expect(serviceError.message.contains("doesn't match"))
+        print("GCS correctly rejected bad checksum: \(serviceError.message)")
+      } catch RequestError.http(let details) {
+        #expect(details.http_status_code == 400)
+        print(
+          "GCS correctly rejected bad checksum: \(String(data: details.payload, encoding: .utf8) ?? "")"
+        )
       } catch {
-        Issue.record("Expected UploadError.unexpectedServerResponse, but got \(error)")
+        Issue.record("Expected RequestError, but got \(error)")
       }
     }
 
