@@ -22,7 +22,7 @@ import Testing
     let description = String(reflecting: credentials)
 
     #expect(!description.contains("super-secret-api-key"))
-    #expect(description.contains("[censored]"))
+    #expect(description.contains("[redacted]"))
   }
 
   @Test func headersProducesExpectedApiKeyHeader() async throws {

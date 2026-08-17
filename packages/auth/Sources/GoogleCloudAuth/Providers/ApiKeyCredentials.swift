@@ -45,6 +45,6 @@ struct ApiKeyCredentials: CredentialsProvider, Sendable, CustomDebugStringConver
   // MARK: - CustomDebugStringConvertible
 
   var debugDescription: String {
-    return "ApiKeyCredentials(apiKey: \"[censored]\")"
+    return "ApiKeyCredentials(apiKey: \"[redacted]\")"
   }
 }
