@@ -14,7 +14,7 @@
 
 import Foundation
 import Testing
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 // Verify the generated code can deserialize `bytes` as url-safe base64 encoded strings.
 //

@@ -33,6 +33,9 @@ public protocol PollableOperation<ResponseType> {
 ///
 /// This class implements a generic polling loop with a backoff policy to avoid overloading the
 /// server with status requests.
+///
+/// The class cannot be marked as `@_spi()` because it is the returned type
+/// for public methods.
 public final class _PollableOperationImpl<ResponseType>: PollableOperation {
   /// Represents the current state of the long-running operation.
   public struct State {

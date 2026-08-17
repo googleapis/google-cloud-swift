@@ -17,7 +17,7 @@ import struct AsyncHTTPClient.HTTPClientResponse
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 import GoogleRpc
 
 /// The services send errors using this structure.

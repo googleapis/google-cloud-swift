@@ -14,7 +14,7 @@
 
 import Foundation
 import Testing
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 @Suite struct FieldsNullValue {
   typealias T = MessageWithNullValue

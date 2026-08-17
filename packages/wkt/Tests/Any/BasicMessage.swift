@@ -13,8 +13,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
 import Testing
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 extension AnyTests {
   struct BasicMessage: Codable, Equatable, Sendable {

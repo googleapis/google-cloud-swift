@@ -22,7 +22,7 @@ private import ExtrasBase64
 ///   <https://datatracker.ietf.org/doc/html/rfc4648#section-5>
 ///
 /// We use an external dependency because, on macOS < 26, Swift does not support url-safe encoding.
-public enum _DiscoveryBase64 {
+@_spi(GoogleCloudInternal) public enum _DiscoveryBase64 {
   /// Encodes `input` into a base64url string.
   public static func encode(_ input: Data) -> String {
     return String(

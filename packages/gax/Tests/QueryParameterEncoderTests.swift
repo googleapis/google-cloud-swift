@@ -14,7 +14,7 @@
 
 import Foundation
 import Testing
-@testable import GoogleCloudGax
+@_spi(GoogleCloudInternal) @testable import GoogleCloudGax
 
 @Suite struct QueryParameterEncoderTests {
   @Test func encodeSimpleTypes() throws {

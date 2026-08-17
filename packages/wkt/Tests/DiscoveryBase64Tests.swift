@@ -13,8 +13,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
 import Testing
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 @Suite struct Base64Tests {
   @Test(arguments: [

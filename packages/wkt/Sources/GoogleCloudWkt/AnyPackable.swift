@@ -15,6 +15,12 @@
 import Foundation
 
 /// A type conforming to the `_AnyPackable` protocol can be packed into and unpacked from ``Any``.
+///
+/// This protocol is an implementation detail of the Google Cloud client libraries for Swift.
+/// Do not use it directly.
+///
+/// For `google-cloud-swift` developers: while it would be desirable to make this type `@_spi()` we
+/// cannot because then normal types like ``Api`` cannot use it.
 public protocol _AnyPackable {
   static var _anyTypeUrl: String { get }
   init(fromAny any: `Any`) throws
@@ -22,6 +28,7 @@ public protocol _AnyPackable {
 }
 
 // Deserializes a message of type `M` from an `Any`.
+@_spi(GoogleCloudInternal)
 public func _slowAnyDeserialize<M: Decodable & _AnyPackable>(
   _ type: M.Type, from: `Any`
 ) throws -> M {
@@ -36,6 +43,7 @@ public func _slowAnyDeserialize<M: Decodable & _AnyPackable>(
 }
 
 // Serializes a message of type `M` into an `Any`.
+@_spi(GoogleCloudInternal)
 public func _slowAnySerialize<M: Encodable>(message: M) throws -> Struct {
   let encoder = JSONEncoder()
   encoder.outputFormatting = [.withoutEscapingSlashes]

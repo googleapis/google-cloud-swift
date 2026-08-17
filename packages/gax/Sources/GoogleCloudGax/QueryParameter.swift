@@ -22,7 +22,7 @@ import Foundation
 ///     <https://github.com/googleapis/googleapis/blob/16b4737e7b870914e0c384b87f0e50ed388aa225/google/api/http.proto#L87-L118>
 ///
 /// This type implements the rules for any encodable type, including well-known types.
-public class QueryParameterEncoder {
+@_spi(GoogleCloudInternal) public class QueryParameterEncoder {
   public init() {}
 
   /// Encodes `value` as an array of query parameters with `prefix` as the base name.

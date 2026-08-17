@@ -17,7 +17,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudGax
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 @_spi(GoogleCloudInternal) import struct GoogleCloudGax._CRC32C
 import Crypto
 @_spi(GoogleCloudInternal) import GoogleCloudGax

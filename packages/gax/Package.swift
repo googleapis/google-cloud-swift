@@ -69,7 +69,6 @@ let package = Package(
         .product(name: "GoogleRpc", package: "google-rpc"),
       ],
       path: "Tests",
-      exclude: ["IntegrationTests"]
     ),
   ]
 )
