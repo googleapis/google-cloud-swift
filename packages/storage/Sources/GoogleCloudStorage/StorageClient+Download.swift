@@ -197,6 +197,10 @@ extension GoogleCloudGax._HTTPClient {
       request.setHeader(name: "Range", value: rangeHeader)
     }
 
+    if !options.enableDecompressiveTranscoding {
+      request.setHeader(name: "Accept-Encoding", value: "gzip")
+    }
+
     request.applyCustomerSuppliedEncryptionHeaders(options.customerEncryptionKey)
 
     return request
