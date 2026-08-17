@@ -105,7 +105,7 @@ import Testing
     }
     if case .http(let details) = error {
       #expect(details.http_status_code == 400)
-      #expect(String(data: details.payload ?? Data(), encoding: .utf8) == errorMessage)
+      #expect(String(data: details.payload, encoding: .utf8) == errorMessage)
     } else {
       Issue.record("Expected .http RequestError, got \(String(describing: error))")
     }
@@ -151,7 +151,7 @@ import Testing
     }
     if case .http(let details) = error {
       #expect(details.http_status_code == 400)
-      #expect(String(data: details.payload ?? Data(), encoding: .utf8) == errorMessage)
+      #expect(String(data: details.payload, encoding: .utf8) == errorMessage)
     } else {
       Issue.record("Expected .http RequestError, got \(String(describing: error))")
     }
