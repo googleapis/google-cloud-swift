@@ -1395,6 +1395,268 @@ import Testing
     #expect(requests[2].value(forHTTPHeaderField: "Content-Range") == "bytes 0-8388607/8388608")
   }
 
+  /// Tests that multiple 503 errors occurring across different chunks during a multi-chunk resumable upload
+  /// are each retried and recovered by `_RetryLoop`.
+  @Test func resumableUploadMultiple503ErrorsAcrossChunksRetriesAndRecovers() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "multi-503-chunk-recovery"
+    let chunkSize = 8 * 1024 * 1024
+    let totalSize = 24 * 1024 * 1024  // 24MiB (3 chunks of 8MiB)
+    let data = Data(repeating: 0x77, count: totalSize)
+    let source = BytesSource(data: data)
+
+    let startUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?uploadType=resumable&name=\(objectName)")
+    let sessionUrl = registry.url("/upload/storage/v1/b/\(bucket)/o?upload_id=multi-503-session-id")
+
+    // 1. Session start succeeds -> 200 OK with Location
+    registry.register(
+      response: .success(
+        statusCode: 200, data: Data(),
+        headers: ["Location": sessionUrl.absoluteString]),
+      for: startUrl)
+
+    // 2. Chunk 1 (0..8MB) succeeds -> 308 Range 0-8MB
+    registry.register(
+      response: .success(
+        statusCode: 308, data: Data(),
+        headers: ["Range": "bytes=0-\(chunkSize - 1)"]),
+      for: sessionUrl)
+
+    // 3. Chunk 2 (8MB..16MB) attempt 1 fails with 503
+    registry.register(
+      response: .success(
+        statusCode: 503, data: Data("Service Unavailable".utf8),
+        headers: [:]),
+      for: sessionUrl)
+
+    // 4. Status query for Chunk 2 recovery -> 308 Range 0-8MB
+    registry.register(
+      response: .success(
+        statusCode: 308, data: Data(),
+        headers: ["Range": "bytes=0-\(chunkSize - 1)"]),
+      for: sessionUrl)
+
+    // 5. Chunk 2 (8MB..16MB) attempt 2 succeeds -> 308 Range 0-16MB
+    registry.register(
+      response: .success(
+        statusCode: 308, data: Data(),
+        headers: ["Range": "bytes=0-\(2 * chunkSize - 1)"]),
+      for: sessionUrl)
+
+    // 6. Chunk 3 (16MB..24MB) attempt 1 fails with 503
+    registry.register(
+      response: .success(
+        statusCode: 503, data: Data("Service Unavailable".utf8),
+        headers: [:]),
+      for: sessionUrl)
+
+    // 7. Status query for Chunk 3 recovery -> 308 Range 0-16MB
+    registry.register(
+      response: .success(
+        statusCode: 308, data: Data(),
+        headers: ["Range": "bytes=0-\(2 * chunkSize - 1)"]),
+      for: sessionUrl)
+
+    // 8. Chunk 3 (16MB..24MB) attempt 2 succeeds -> 200 OK
+    registry.register(
+      response: .success(
+        statusCode: 200,
+        data: makeObjectJSON(name: objectName, bucket: bucket, size: totalSize),
+        headers: nil),
+      for: sessionUrl)
+
+    let client = try makeClient(
+      registry: registry,
+      clientRetryPolicy: BaseRetryPolicy().withAttemptLimit(5)
+    )
+    let uploadOptions = UploadOptions().with {
+      $0.chunkSize = chunkSize
+    }
+    let task = client.upload(source, to: bucket, as: objectName, options: uploadOptions)
+    let object = try await task.value
+
+    #expect(object.name == objectName)
+    #expect(object.bucket == bucket)
+    #expect(object.size == Int64(totalSize))
+
+    let requests = registry.recordedRequests()
+    #expect(requests.count == 8)
+    // 0: Start request
+    #expect(requests[0].httpMethod == "POST")
+    // 1: Chunk 1 (0-8MB)
+    #expect(
+      requests[1].value(forHTTPHeaderField: "Content-Range")
+        == "bytes 0-\(chunkSize - 1)/\(totalSize)")
+    // 2: Chunk 2 first attempt (8MB-16MB) - fails with 503
+    #expect(
+      requests[2].value(forHTTPHeaderField: "Content-Range")
+        == "bytes \(chunkSize)-\(2 * chunkSize - 1)/\(totalSize)")
+    // 3: Status query after Chunk 2 transient failure
+    #expect(requests[3].value(forHTTPHeaderField: "Content-Range") == "bytes */*")
+    // 4: Chunk 2 second attempt (8MB-16MB) - succeeds
+    #expect(
+      requests[4].value(forHTTPHeaderField: "Content-Range")
+        == "bytes \(chunkSize)-\(2 * chunkSize - 1)/\(totalSize)")
+    // 5: Chunk 3 first attempt (16MB-24MB) - fails with 503
+    #expect(
+      requests[5].value(forHTTPHeaderField: "Content-Range")
+        == "bytes \(2 * chunkSize)-\(totalSize - 1)/\(totalSize)")
+    // 6: Status query after Chunk 3 transient failure
+    #expect(requests[6].value(forHTTPHeaderField: "Content-Range") == "bytes */*")
+    // 7: Chunk 3 second attempt (16MB-24MB) - succeeds
+    #expect(
+      requests[7].value(forHTTPHeaderField: "Content-Range")
+        == "bytes \(2 * chunkSize)-\(totalSize - 1)/\(totalSize)")
+  }
+
+  /// Tests that consecutive 503 errors on the same chunk upload are retried with backoff until succeeding.
+  @Test func resumableUploadConsecutive503ErrorsOnChunkRetriesAndRecovers() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "consecutive-503-recovery"
+    let data = Data(repeating: 0x88, count: 8 * 1024 * 1024)
+    let source = BytesSource(data: data)
+
+    let startUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?uploadType=resumable&name=\(objectName)")
+    let sessionUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?upload_id=consecutive-session-id")
+
+    // 1. Session start succeeds
+    registry.register(
+      response: .success(
+        statusCode: 200, data: Data(),
+        headers: ["Location": sessionUrl.absoluteString]),
+      for: startUrl)
+
+    // 2. Chunk attempt 1 fails with 503
+    registry.register(
+      response: .success(
+        statusCode: 503, data: Data("Service Unavailable 1".utf8),
+        headers: [:]),
+      for: sessionUrl)
+
+    // 3. Status query 1 -> 308 (0 bytes committed)
+    registry.register(
+      response: .success(
+        statusCode: 308, data: Data(),
+        headers: [:]),
+      for: sessionUrl)
+
+    // 4. Chunk attempt 2 fails with 503
+    registry.register(
+      response: .success(
+        statusCode: 503, data: Data("Service Unavailable 2".utf8),
+        headers: [:]),
+      for: sessionUrl)
+
+    // 5. Status query 2 -> 308 (0 bytes committed)
+    registry.register(
+      response: .success(
+        statusCode: 308, data: Data(),
+        headers: [:]),
+      for: sessionUrl)
+
+    // 6. Chunk attempt 3 succeeds -> 200 OK
+    registry.register(
+      response: .success(
+        statusCode: 200,
+        data: makeObjectJSON(name: objectName, bucket: bucket, size: data.count),
+        headers: nil),
+      for: sessionUrl)
+
+    let client = try makeClient(
+      registry: registry,
+      clientRetryPolicy: BaseRetryPolicy().withAttemptLimit(4)
+    )
+    let task = client.upload(source, to: bucket, as: objectName)
+    let object = try await task.value
+
+    #expect(object.name == objectName)
+    #expect(object.bucket == bucket)
+    #expect(object.size == Int64(data.count))
+
+    let requests = registry.recordedRequests()
+    #expect(requests.count == 6)
+    #expect(requests[0].httpMethod == "POST")
+    #expect(requests[1].value(forHTTPHeaderField: "Content-Range") == "bytes 0-8388607/8388608")
+    #expect(requests[2].value(forHTTPHeaderField: "Content-Range") == "bytes */*")
+    #expect(requests[3].value(forHTTPHeaderField: "Content-Range") == "bytes 0-8388607/8388608")
+    #expect(requests[4].value(forHTTPHeaderField: "Content-Range") == "bytes */*")
+    #expect(requests[5].value(forHTTPHeaderField: "Content-Range") == "bytes 0-8388607/8388608")
+  }
+
+  /// Tests that a 503 error during status query recovery after a chunk 503 is also retried and succeeds.
+  @Test func resumableUpload503ErrorDuringStatusQueryRecovery() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "status-query-503-recovery"
+    let data = Data(repeating: 0x99, count: 8 * 1024 * 1024)
+    let source = BytesSource(data: data)
+
+    let startUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?uploadType=resumable&name=\(objectName)")
+    let sessionUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?upload_id=status-query-503-session-id")
+
+    // 1. Session start succeeds
+    registry.register(
+      response: .success(
+        statusCode: 200, data: Data(),
+        headers: ["Location": sessionUrl.absoluteString]),
+      for: startUrl)
+
+    // 2. Chunk attempt fails with 503
+    registry.register(
+      response: .success(
+        statusCode: 503, data: Data("Chunk Service Unavailable".utf8),
+        headers: [:]),
+      for: sessionUrl)
+
+    // 3. Status query attempt 1 also fails with 503
+    registry.register(
+      response: .success(
+        statusCode: 503, data: Data("Query Service Unavailable".utf8),
+        headers: [:]),
+      for: sessionUrl)
+
+    // 4. Status query attempt 2 succeeds -> 308 (0 bytes committed)
+    registry.register(
+      response: .success(
+        statusCode: 308, data: Data(),
+        headers: [:]),
+      for: sessionUrl)
+
+    // 5. Chunk retry attempt succeeds -> 200 OK
+    registry.register(
+      response: .success(
+        statusCode: 200,
+        data: makeObjectJSON(name: objectName, bucket: bucket, size: data.count),
+        headers: nil),
+      for: sessionUrl)
+
+    let client = try makeClient(
+      registry: registry,
+      clientRetryPolicy: BaseRetryPolicy().withAttemptLimit(4)
+    )
+    let task = client.upload(source, to: bucket, as: objectName)
+    let object = try await task.value
+
+    #expect(object.name == objectName)
+    #expect(object.bucket == bucket)
+    #expect(object.size == Int64(data.count))
+
+    let requests = registry.recordedRequests()
+    #expect(requests.count == 5)
+    #expect(requests[0].httpMethod == "POST")
+    #expect(requests[1].value(forHTTPHeaderField: "Content-Range") == "bytes 0-8388607/8388608")
+    #expect(requests[2].value(forHTTPHeaderField: "Content-Range") == "bytes */*")
+    #expect(requests[3].value(forHTTPHeaderField: "Content-Range") == "bytes */*")
+    #expect(requests[4].value(forHTTPHeaderField: "Content-Range") == "bytes 0-8388607/8388608")
+  }
+
   /// Tests that configuring `retryPolicy` on `UploadOptions` overrides client-level retry policy.
   @Test func resumableUploadWithCustomUploadOptionsRetryPolicyOverridesClient() async throws {
     let registry = MockRegistry.create()
