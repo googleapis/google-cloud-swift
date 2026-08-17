@@ -85,4 +85,22 @@ import Testing
     let ud = await credentials.universeDomain()
     #expect(ud == "my-universe.com")
   }
+
+  @Test func resolveProviderForApiKey() async throws {
+    let credentials = try Credentials(configuration: .apiKey("test-api-key"))
+
+    #expect(
+      String(describing: type(of: credentials.credentialsProvider)).contains("ApiKeyCredentials")
+    )
+
+    let headers = try await credentials.headers()
+    #expect(headers.count == 1)
+    #expect(
+      headers.contains { $0.0 == "x-goog-api-key" && $0.1 == "test-api-key" },
+      "Missing x-goog-api-key header in \(headers)"
+    )
+
+    let ud = await credentials.universeDomain()
+    #expect(ud == nil)
+  }
 }

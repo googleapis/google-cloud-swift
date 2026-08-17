@@ -140,6 +140,15 @@ public enum CredentialsConfiguration: Sendable {
 
   /// Programmatic credentials configuration for Workforce Identity Federation (OIDC / Apple WIF).
   case programmaticExternalAccount(ExternalAccountConfig)
+
+  /// An API key credential that associates requests with a Google Cloud project.
+  ///
+  /// Note that only some Cloud APIs support API keys. Consult the documentation for the API you intend to use
+  /// before trying to use API keys.
+  ///
+  /// - Parameters:
+  ///   - apiKey: The API key string.
+  case apiKey(String)
 }
 
 /// Configuration options for external account credentials.
@@ -283,6 +292,8 @@ public struct Credentials: Sendable {
         scopes: config.scopes,
         universeDomain: config.universeDomain
       )
+    case let .apiKey(apiKey):
+      return ApiKeyCredentials(apiKey: apiKey)
     }
   }
 }
