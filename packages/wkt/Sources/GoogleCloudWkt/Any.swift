@@ -94,33 +94,3 @@ extension `Any`: _AnyPackable {
   // The JSON field used to store types with custom encoding.
   static internal let valueField = "value"
 }
-
-/// A type conforming to the `_AnyPackable` protocol can be packed into and unpacked from ``Any``.
-public protocol _AnyPackable {
-  static var _anyTypeUrl: String { get }
-  init(fromAny any: `Any`) throws
-  func _pack() throws -> Struct
-}
-
-// Deserializes a message of type `M` from an `Any`.
-public func _slowAnyDeserialize<M: Decodable & _AnyPackable>(
-  _ type: M.Type, from: `Any`
-) throws -> M {
-  if M._anyTypeUrl != from._type {
-    throw AnyError.mismatchedTypeUrl
-  }
-  let encoder = JSONEncoder();
-  encoder.outputFormatting = [.withoutEscapingSlashes]
-  let data = try encoder.encode(from.fields)
-  let decoder = _ProtoJSONDecoder()
-  return try decoder.decode(M.self, from: data)
-}
-
-// Serializes a message of type `M` into an `Any`.
-public func _slowAnySerialize<M: Encodable>(message: M) throws -> Struct {
-  let encoder = JSONEncoder()
-  encoder.outputFormatting = [.withoutEscapingSlashes]
-  let data = try encoder.encode(message)
-  let decoder = _ProtoJSONDecoder()
-  return try decoder.decode(Struct.self, from: data)
-}
