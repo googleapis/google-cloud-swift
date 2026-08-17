@@ -78,7 +78,7 @@ import Testing
 
     var downloaded = Data()
     for try await chunk in result.body {
-      downloaded.append(chunk)
+      downloaded.append(contentsOf: chunk.readableBytesView)
     }
     #expect(downloaded == payload)
   }
@@ -126,7 +126,7 @@ import Testing
 
     var downloaded = Data()
     for try await chunk in result.body {
-      downloaded.append(chunk)
+      downloaded.append(contentsOf: chunk.readableBytesView)
     }
     #expect(downloaded == payload)
   }
@@ -224,7 +224,7 @@ import Testing
 
     var downloaded = Data()
     for try await chunk in result.body {
-      downloaded.append(chunk)
+      downloaded.append(contentsOf: chunk.readableBytesView)
     }
     #expect(downloaded == payload)
   }
@@ -293,7 +293,7 @@ import Testing
 
     var downloaded = Data()
     for try await chunk in result.body {
-      downloaded.append(chunk)
+      downloaded.append(contentsOf: chunk.readableBytesView)
     }
     #expect(downloaded == payload)
   }
@@ -360,7 +360,7 @@ import Testing
 
     var downloaded = Data()
     for try await chunk in result.body {
-      downloaded.append(chunk)
+      downloaded.append(contentsOf: chunk.readableBytesView)
     }
     #expect(downloaded == rangePayload)
   }
@@ -400,7 +400,7 @@ import Testing
 
     var downloaded = Data()
     for try await chunk in result.body {
-      downloaded.append(chunk)
+      downloaded.append(contentsOf: chunk.readableBytesView)
     }
     #expect(downloaded == rangePayload)
   }
@@ -440,7 +440,7 @@ import Testing
 
     var downloaded = Data()
     for try await chunk in result.body {
-      downloaded.append(chunk)
+      downloaded.append(contentsOf: chunk.readableBytesView)
     }
     #expect(downloaded == rangePayload)
   }
@@ -480,7 +480,7 @@ import Testing
 
     var downloaded = Data()
     for try await chunk in result.body {
-      downloaded.append(chunk)
+      downloaded.append(contentsOf: chunk.readableBytesView)
     }
     #expect(downloaded == rangePayload)
   }
@@ -560,7 +560,7 @@ import Testing
 
     var prefixData = Data()
     for try await chunk in prefixResult.body {
-      prefixData.append(chunk)
+      prefixData.append(contentsOf: chunk.readableBytesView)
     }
     #expect(prefixData.isEmpty)
 
@@ -591,7 +591,7 @@ import Testing
 
     var suffixData = Data()
     for try await chunk in suffixResult.body {
-      suffixData.append(chunk)
+      suffixData.append(contentsOf: chunk.readableBytesView)
     }
     #expect(suffixData.isEmpty)
 
@@ -666,7 +666,7 @@ import Testing
 
     var downloaded = Data()
     for try await chunk in result.body {
-      downloaded.append(chunk)
+      downloaded.append(contentsOf: chunk.readableBytesView)
     }
     #expect(downloaded == payload)
   }
@@ -710,7 +710,7 @@ import Testing
 
     var downloaded = Data()
     for try await chunk in result.body {
-      downloaded.append(chunk)
+      downloaded.append(contentsOf: chunk.readableBytesView)
     }
     #expect(downloaded == payload)
   }
@@ -747,7 +747,7 @@ import Testing
 
     var receivedChunks: [Data] = []
     for try await chunk in result.body {
-      receivedChunks.append(chunk)
+      receivedChunks.append(Data(buffer: chunk))
     }
 
     #expect(receivedChunks.count == 3)

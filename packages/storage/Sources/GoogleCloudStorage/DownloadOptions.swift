@@ -14,6 +14,7 @@
 
 import Foundation
 @_spi(GoogleCloudInternal) import GoogleCloudGax
+import struct NIOCore.ByteBuffer
 
 /// Specifies a byte range for ranged reads.
 public enum ReadObjectRange: Sendable, Hashable, Equatable {
@@ -241,9 +242,9 @@ public struct ReadObjectMetadata: Sendable, Hashable, Equatable {
   }
 }
 
-/// An asynchronous sequence of `Data` chunks representing an object payload being downloaded.
+/// An asynchronous sequence of `ByteBuffer` chunks representing an object payload being downloaded.
 public struct ReadObjectSequence: AsyncSequence, Sendable {
-  public typealias Element = Data
+  public typealias Element = NIOCore.ByteBuffer
 
   /// Name of the bucket containing the object being read.
   public var bucket: String = ""
@@ -258,7 +259,7 @@ public struct ReadObjectSequence: AsyncSequence, Sendable {
   public var metadata: ReadObjectMetadata = .init()
 
   package var initialBody: _HTTPResponseBody?
-  package var stream: AsyncThrowingStream<Data, Error>?
+  package var stream: AsyncThrowingStream<NIOCore.ByteBuffer, Error>?
 
   /// Creates a new `ReadObjectSequence` instance.
   public init() {}
@@ -272,25 +273,25 @@ public struct ReadObjectSequence: AsyncSequence, Sendable {
 
   /// An asynchronous iterator for iterating over chunks of downloaded object payload data.
   public struct AsyncIterator: AsyncIteratorProtocol, Sendable {
-    public typealias Element = Data
+    public typealias Element = NIOCore.ByteBuffer
 
     package final class Storage: @unchecked Sendable {
       let options: ReadObjectOptions
       var bodyIterator: _HTTPResponseBody.AsyncIterator?
-      var streamIterator: AsyncThrowingStream<Data, Error>.AsyncIterator?
+      var streamIterator: AsyncThrowingStream<NIOCore.ByteBuffer, Error>.AsyncIterator?
       var isFinished: Bool = false
 
       init(
         options: ReadObjectOptions,
         initialBody: _HTTPResponseBody?,
-        stream: AsyncThrowingStream<Data, Error>?
+        stream: AsyncThrowingStream<NIOCore.ByteBuffer, Error>?
       ) {
         self.options = options
         self.bodyIterator = initialBody?.makeAsyncIterator()
         self.streamIterator = stream?.makeAsyncIterator()
       }
 
-      func next() async throws -> Data? {
+      func next() async throws -> NIOCore.ByteBuffer? {
         guard !isFinished else { return nil }
 
         if case .prefix(0) = options.range {
@@ -329,8 +330,8 @@ public struct ReadObjectSequence: AsyncSequence, Sendable {
       self.storage = storage
     }
 
-    /// Advances to the next `Data` chunk in the downloaded object payload stream.
-    public mutating func next() async throws -> Data? {
+    /// Advances to the next `ByteBuffer` chunk in the downloaded object payload stream.
+    public mutating func next() async throws -> NIOCore.ByteBuffer? {
       try await storage.next()
     }
   }

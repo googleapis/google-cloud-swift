@@ -12,12 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
 import struct AsyncHTTPClient.HTTPClientResponse
+import struct NIOCore.ByteBuffer
 
 /// An asynchronous sequence of response body chunks.
 @_spi(GoogleCloudInternal) public struct _HTTPResponseBody: AsyncSequence, Sendable {
-  public typealias Element = Data
+  public typealias Element = NIOCore.ByteBuffer
 
   let body: AsyncHTTPClient.HTTPClientResponse.Body
 
@@ -32,9 +32,8 @@ import struct AsyncHTTPClient.HTTPClientResponse
       self.iterator = iterator
     }
 
-    public mutating func next() async throws -> Data? {
-      guard let buffer = try await self.iterator.next() else { return nil }
-      return Data(buffer: buffer)
+    public mutating func next() async throws -> NIOCore.ByteBuffer? {
+      try await self.iterator.next()
     }
   }
 
