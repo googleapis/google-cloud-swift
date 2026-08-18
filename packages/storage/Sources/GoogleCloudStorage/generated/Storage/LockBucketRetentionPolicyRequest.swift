@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [LockBucketRetentionPolicy][google.storage.v2.Storage.LockBucketRetentionPolicy].
 ///
-/// [google.storage.v2.Storage.LockBucketRetentionPolicy]: <doc:StorageControlClient/lockBucketRetentionPolicy(request:)>
+/// [google.storage.v2.Storage.LockBucketRetentionPolicy]: <doc:StorageControlClient/lockBucketRetentionPolicy(request:options:)>
 public struct LockBucketRetentionPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

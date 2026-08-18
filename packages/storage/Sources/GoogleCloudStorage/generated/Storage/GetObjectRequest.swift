@@ -19,7 +19,7 @@ import GoogleCloudWkt
 
 /// Request message for [GetObject][google.storage.v2.Storage.GetObject].
 ///
-/// [google.storage.v2.Storage.GetObject]: <doc:StorageControlClient/getObject(request:)>
+/// [google.storage.v2.Storage.GetObject]: <doc:StorageControlClient/getObject(request:options:)>
 public struct GetObjectRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

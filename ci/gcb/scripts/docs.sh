@@ -37,6 +37,7 @@ clean_targets=(
     GoogleCloudAuth
     GoogleCloudGax
     GoogleCloudSecretManagerV1
+    GoogleCloudStorage
 )
 echo "--- Building ${#clean_targets[@]} targets with warnings as errors"
 for target in "${clean_targets[@]}"; do
@@ -53,11 +54,7 @@ for target in "${clean_targets[@]}"; do
     fi
 done
 
-targets=(
-    # TODO(https://github.com/googleapis/google-cloud-swift/issues/308) - the xref links need fixing
-    # after that we can merge this to the main loop
-    GoogleCloudStorage
-)
+targets=()
 # On post-merge builds build all the things.
 if [[ "${GCB_TRIGGER_NAME:-}" == gcb-pm-* ]]; then
     export GOOGLE_CLOUD_SWIFT_FULL_BUILD=true
@@ -65,17 +62,19 @@ if [[ "${GCB_TRIGGER_NAME:-}" == gcb-pm-* ]]; then
     targets+=("${generated[@]}")
 fi
 
-echo; echo; echo "--- Building ${#targets[@]} targets"
-count=$((count + 1))
-args=()
-for target in "${targets[@]}"; do
-    args+=(--target "${target}")
-done
-if swift package generate-documentation --enable-experimental-combined-documentation "${args[@]}"; then
-    echo "✓ ${target} built successfully"
-else
-    echo; echo "✗ ${target} failed to build"
-    errors=$((errors + 1))
+if [[ ${#targets[@]} -gt 0 ]]; then
+    echo; echo; echo "--- Building ${#targets[@]} targets"
+    count=$((count + 1))
+    args=()
+    for target in "${targets[@]}"; do
+        args+=(--target "${target}")
+    done
+    if swift package generate-documentation --enable-experimental-combined-documentation "${args[@]}"; then
+        echo "✓ combined documentation built successfully"
+    else
+        echo; echo "✗ combined documentation failed to build"
+        errors=$((errors + 1))
+    fi
 fi
 
 echo; echo; echo "${count} local targets(s) built, ${errors} failure(s)."

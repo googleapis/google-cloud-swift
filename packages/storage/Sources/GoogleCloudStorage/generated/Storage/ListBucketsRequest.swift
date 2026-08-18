@@ -19,7 +19,7 @@ import GoogleCloudWkt
 
 /// Request message for [ListBuckets][google.storage.v2.Storage.ListBuckets].
 ///
-/// [google.storage.v2.Storage.ListBuckets]: <doc:StorageControlClient/listBuckets(request:)>
+/// [google.storage.v2.Storage.ListBuckets]: <doc:StorageControlClient/listBuckets(request:options:)>
 public struct ListBucketsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
