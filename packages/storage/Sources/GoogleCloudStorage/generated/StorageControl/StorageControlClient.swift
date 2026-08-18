@@ -242,7 +242,7 @@ public class StorageControlClient: StorageControlProtocol {
   ///
   /// Requires `storage.objects.delete` IAM permission on the bucket.
   ///
-  /// [google.storage.v2.Storage.RestoreObject]: <doc:StorageClient/restoreObject(request:)>
+  /// [google.storage.v2.Storage.RestoreObject]: <doc:StorageControlClient/restoreObject(request:)>
   public func deleteObject(
     request: DeleteObjectRequest, options: GoogleCloudGax.RequestOptions
   ) async throws {

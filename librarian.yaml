@@ -1003,6 +1003,7 @@ libraries:
     output: packages/storage/Sources/generated/StorageControlProtos
     swift:
       library_name_override: GoogleCloudStorage
+      name_overrides: .google.storage.v2.Storage=StorageControl
       modules:
         - output: packages/storage/Sources/generated/StorageControlProtos
           api_path: google/storage/control/v2
