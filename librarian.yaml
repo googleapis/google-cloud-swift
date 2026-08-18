@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 language: swift
-version: v0.37.1-0.20260818164449-1ea77db57690
+version: v0.37.1-0.20260818165642-858b4d49dc61
 repo: googleapis/google-cloud-swift
 sources:
   conformance:
@@ -1044,10 +1044,25 @@ libraries:
             - ../../type/date.proto
             - ../../type/expr.proto
         - output: packages/storage/Sources/GoogleCloudStorage/generated/Storage
+          service_config: google/storage/v2/storage_v2.yaml
           api_path: google/storage/v2
-          module_type: default
-          skipped_ids:
-            - .google.storage.v2.Storage
+          module_type: grpc-client
+          included_ids:
+            - .google.storage.v2.Storage.DeleteBucket
+            - .google.storage.v2.Storage.GetBucket
+            - .google.storage.v2.Storage.CreateBucket
+            - .google.storage.v2.Storage.ListBuckets
+            - .google.storage.v2.Storage.LockBucketRetentionPolicy
+            - .google.storage.v2.Storage.UpdateBucket
+            - .google.storage.v2.Storage.ComposeObject
+            - .google.storage.v2.Storage.DeleteObject
+            - .google.storage.v2.Storage.RestoreObject
+            - .google.storage.v2.Storage.GetObject
+            - .google.storage.v2.Storage.UpdateObject
+            - .google.storage.v2.Storage.ListObjects
+            - .google.storage.v2.Storage.RewriteObject
+            - .google.storage.v2.Storage.MoveObject
+          module_path: StorageProtos
         - output: packages/storage/Sources/GoogleCloudStorage/generated/Storage/Convert/Storage
           api_path: google/storage/v2
           module_type: convert-swift

@@ -38,6 +38,10 @@ extension Clients {
       )
     }
 
+    public init(_ inner: GoogleCloudGaxGRPC._GRPCClient) {
+      self.inner = inner
+    }
+
     public func createFolder(
       request: CreateFolderRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> Folder {
