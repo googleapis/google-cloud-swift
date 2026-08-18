@@ -96,38 +96,58 @@ import Testing
     #expect(metadata.updated == now)
   }
 
-  @Test func readObjectSequenceAndResponse() async throws {
-    let metadata = ReadObjectMetadata().with {
-      $0.bucket = "bkt"
-      $0.object = "obj"
-    }
-    let sequence = ReadObjectSequence().with {
-      $0.bucket = "bkt"
-      $0.object = "obj"
-    }
+  @Test func calculateResumeRangeScenarios() {
+    // Entire
+    #expect(
+      calculateResumeRange(originalRange: .entire, bytesReceived: 0, totalSize: 1000)
+        == .fromOffset(0))
+    #expect(
+      calculateResumeRange(originalRange: .entire, bytesReceived: 500, totalSize: 1000)
+        == .fromOffset(500))
 
-    #expect(sequence.bucket == "bkt")
-    #expect(sequence.object == "obj")
+    // From offset
+    #expect(
+      calculateResumeRange(originalRange: .fromOffset(100), bytesReceived: 50, totalSize: 1000)
+        == .fromOffset(150))
 
-    var iterator = sequence.makeAsyncIterator()
-    let firstChunk = try await iterator.next()
-    #expect(firstChunk == nil)
+    // Prefix
+    #expect(
+      calculateResumeRange(originalRange: .prefix(100), bytesReceived: 40, totalSize: 1000)
+        == .bounded(start: 40, end: 99))
+    #expect(
+      calculateResumeRange(originalRange: .prefix(100), bytesReceived: 100, totalSize: 1000) == nil)
+    #expect(
+      calculateResumeRange(originalRange: .prefix(100), bytesReceived: 120, totalSize: 1000) == nil)
 
-    let response = ReadObjectResult().with {
-      $0.metadata = metadata
-      $0.body = sequence
-    }
-    #expect(response.metadata.bucket == "bkt")
-    #expect(response.metadata.object == "obj")
-    #expect(response.body.bucket == "bkt")
+    // Bounded
+    #expect(
+      calculateResumeRange(
+        originalRange: .bounded(start: 10, end: 50), bytesReceived: 20, totalSize: 1000)
+        == .bounded(start: 30, end: 50))
+    #expect(
+      calculateResumeRange(
+        originalRange: .bounded(start: 10, end: 50), bytesReceived: 41, totalSize: 1000) == nil)
+
+    // Suffix
+    #expect(
+      calculateResumeRange(originalRange: .suffix(50), bytesReceived: 10, totalSize: 200)
+        == .bounded(start: 160, end: 199))
+    #expect(
+      calculateResumeRange(originalRange: .suffix(50), bytesReceived: 50, totalSize: 200) == nil)
+    #expect(
+      calculateResumeRange(originalRange: .suffix(50), bytesReceived: 10, totalSize: nil)
+        == .fromOffset(10))
   }
 
   @Test func downloadErrorEquality() {
     let err1 = DownloadError.checksumMismatch(expected: "a", actual: "b", algorithm: "crc32c")
     let err2 = DownloadError.checksumMismatch(expected: "a", actual: "b", algorithm: "crc32c")
     let err3 = DownloadError.invalidRangeHeader("bytes=1-0")
+    let err4 = DownloadError.resumeFailed(bytesReceived: 100, message: "failed")
+    let err5 = DownloadError.resumeFailed(bytesReceived: 100, message: "failed")
 
     #expect(err1 == err2)
     #expect(err1 != err3)
+    #expect(err4 == err5)
   }
 }

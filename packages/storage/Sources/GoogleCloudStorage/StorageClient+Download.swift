@@ -23,48 +23,36 @@ extension StorageClient {
   ///   - bucket: The GCS bucket name.
   ///   - object: The GCS object name.
   ///   - options: Configuration options for the read operation.
-  /// - Returns: A `ReadObjectResult` containing initial object metadata and streaming body sequence.
+  /// - Returns: A `ReadObjectTask` containing initial object metadata and streaming body sequence.
   public func readObject(
     from bucket: String,
     object: String,
     options: ReadObjectOptions = .init()
-  ) async throws -> ReadObjectResult {
-    // TODO(#219): validate range upon construction
-    if case .bounded(let start, let end) = options.range {
-      guard start <= end else {
-        throw DownloadError.invalidRangeHeader("Range start (\(start)) must be <= end (\(end)).")
-      }
-    }
+  ) -> ReadObjectTask {
+    let clientOptions = self.options.client
+    let effectiveRetryPolicy =
+      options.retryPolicy ?? self.options.download.retryPolicy
+      ?? clientOptions.retryPolicy
+    let effectiveBackoffPolicy =
+      options.backoffPolicy ?? self.options.download.backoffPolicy ?? clientOptions.backoffPolicy
+    let retryLoop = _RetryLoop(
+      retryPolicy: effectiveRetryPolicy,
+      backoffPolicy: effectiveBackoffPolicy,
+      retryThrottler: clientOptions.retryThrottler,
+      idempotent: true
+    )
 
-    let request = try await inner.buildReadObjectRequest(
-      bucket: bucket, object: object, options: options)
-    let response = try await request.execute()
-    let statusCode = Int(response.status.code)
-
-    guard (200..<300).contains(statusCode) else {
-      let data = try await response.data()
-      let message = String(data: data, encoding: .utf8) ?? ""
-      throw DownloadError.unexpectedServerResponse(
-        statusCode: statusCode, message: message)
-    }
-
-    let metadata = try Self.parseReadObjectMetadata(
-      from: response.headers, bucket: bucket, object: object)
-
-    let sequence = ReadObjectSequence().with {
-      $0.bucket = bucket
-      $0.object = object
-      $0.options = options
-      $0.metadata = metadata
-      $0.initialBody = response.body
-    }
-    return ReadObjectResult().with {
-      $0.metadata = metadata
-      $0.body = sequence
-    }
+    let coordinator = ReadObjectCoordinator(
+      bucket: bucket,
+      object: object,
+      options: options,
+      httpClient: inner,
+      retryLoop: retryLoop
+    )
+    return ReadObjectTask(coordinator: coordinator)
   }
 
-  fileprivate static func parseReadObjectMetadata(
+  package static func parseReadObjectMetadata(
     from headers: NIOHTTP1.HTTPHeaders,
     bucket: String,
     object: String

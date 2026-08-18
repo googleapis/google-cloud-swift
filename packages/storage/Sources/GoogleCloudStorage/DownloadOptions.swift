@@ -176,6 +176,12 @@ public struct ReadObjectOptions: Sendable {
   /// Flag to enable transparent auto-resumption on transient network failures. Defaults to `true`.
   public var autoResume: Bool = true
 
+  /// Overrides the retry policy for this download.
+  public var retryPolicy: (any RetryPolicy)? = nil
+
+  /// Overrides the backoff policy for this download.
+  public var backoffPolicy: (any BackoffPolicy)? = nil
+
   /// Default configuration options.
   public static var `default`: ReadObjectOptions { ReadObjectOptions() }
 
@@ -187,6 +193,41 @@ public struct ReadObjectOptions: Sendable {
     var copy = self
     config(&copy)
     return copy
+  }
+}
+
+/// Calculates the remaining range to request when resuming an interrupted download.
+///
+/// - Parameters:
+///   - originalRange: The range requested in the original download operation.
+///   - bytesReceived: The number of bytes successfully received and yielded so far.
+///   - totalSize: The total size of the object if known from metadata or headers.
+/// - Returns: The adjusted `ReadObjectRange` to request, or `nil` if all requested bytes have been received.
+package func calculateResumeRange(
+  originalRange: ReadObjectRange,
+  bytesReceived: UInt64,
+  totalSize: UInt64?
+) -> ReadObjectRange? {
+  switch originalRange {
+  case .entire:
+    return .fromOffset(bytesReceived)
+  case .fromOffset(let offset):
+    return .fromOffset(offset + bytesReceived)
+  case .prefix(let count):
+    guard count > bytesReceived else { return nil }
+    return .bounded(start: bytesReceived, end: count - 1)
+  case .bounded(let start, let end):
+    let newStart = start + bytesReceived
+    guard newStart <= end else { return nil }
+    return .bounded(start: newStart, end: end)
+  case .suffix(let count):
+    guard let totalSize = totalSize, totalSize > 0 else {
+      return .fromOffset(bytesReceived)
+    }
+    let startOffset = totalSize > count ? (totalSize - count) : 0
+    let newStart = startOffset + bytesReceived
+    guard newStart < totalSize else { return nil }
+    return .bounded(start: newStart, end: totalSize - 1)
   }
 }
 
@@ -246,122 +287,298 @@ public struct ReadObjectMetadata: Sendable, Hashable, Equatable {
 public struct ReadObjectSequence: AsyncSequence, Sendable {
   public typealias Element = NIOCore.ByteBuffer
 
-  /// Name of the bucket containing the object being read.
-  public var bucket: String = ""
+  private let coordinator: ReadObjectCoordinator
 
-  /// Name of the object being read.
-  public var object: String = ""
-
-  /// Configuration options used for this object download.
-  public var options: ReadObjectOptions = .init()
-
-  /// Object metadata extracted from initial HTTP response headers.
-  public var metadata: ReadObjectMetadata = .init()
-
-  package var initialBody: _HTTPResponseBody?
-  package var stream: AsyncThrowingStream<NIOCore.ByteBuffer, Error>?
-
-  /// Creates a new `ReadObjectSequence` instance.
-  public init() {}
-
-  /// Builder pattern helper to modify configuration in place.
-  public func with(_ config: (inout Self) -> Void) -> Self {
-    var copy = self
-    config(&copy)
-    return copy
+  package init(coordinator: ReadObjectCoordinator) {
+    self.coordinator = coordinator
   }
 
   /// An asynchronous iterator for iterating over chunks of downloaded object payload data.
-  public struct AsyncIterator: AsyncIteratorProtocol, Sendable {
+  public struct AsyncIterator: AsyncIteratorProtocol {
     public typealias Element = NIOCore.ByteBuffer
 
-    package final class Storage: @unchecked Sendable {
-      let options: ReadObjectOptions
-      var bodyIterator: _HTTPResponseBody.AsyncIterator?
-      var streamIterator: AsyncThrowingStream<NIOCore.ByteBuffer, Error>.AsyncIterator?
-      var isFinished: Bool = false
+    private let coordinator: ReadObjectCoordinator
 
-      init(
-        options: ReadObjectOptions,
-        initialBody: _HTTPResponseBody?,
-        stream: AsyncThrowingStream<NIOCore.ByteBuffer, Error>?
-      ) {
-        self.options = options
-        self.bodyIterator = initialBody?.makeAsyncIterator()
-        self.streamIterator = stream?.makeAsyncIterator()
-      }
-
-      func next() async throws -> NIOCore.ByteBuffer? {
-        guard !isFinished else { return nil }
-
-        if case .prefix(0) = options.range {
-          isFinished = true
-          return nil
-        }
-        if case .suffix(0) = options.range {
-          isFinished = true
-          return nil
-        }
-
-        if var it = streamIterator {
-          let chunk = try await it.next()
-          self.streamIterator = it
-          if chunk == nil {
-            isFinished = true
-          }
-          return chunk
-        } else if var it = bodyIterator {
-          let chunk = try await it.next()
-          self.bodyIterator = it
-          if chunk == nil {
-            isFinished = true
-          }
-          return chunk
-        } else {
-          isFinished = true
-          return nil
-        }
-      }
-    }
-
-    package var storage: Storage
-
-    package init(storage: Storage) {
-      self.storage = storage
+    package init(coordinator: ReadObjectCoordinator) {
+      self.coordinator = coordinator
     }
 
     /// Advances to the next `ByteBuffer` chunk in the downloaded object payload stream.
     public mutating func next() async throws -> NIOCore.ByteBuffer? {
-      try await storage.next()
+      try await coordinator.nextChunk()
     }
   }
 
   /// Creates an asynchronous iterator for iterating over object payload chunks.
   public func makeAsyncIterator() -> AsyncIterator {
-    let storage = AsyncIterator.Storage(
-      options: options,
-      initialBody: initialBody,
-      stream: stream
-    )
-    return AsyncIterator(storage: storage)
+    AsyncIterator(coordinator: coordinator)
+  }
+}
+
+/// Coordinates the deferred initial request, metadata resolution, and streaming body consumption.
+package final class ReadObjectCoordinator: @unchecked Sendable {
+  let bucket: String
+  let object: String
+  let options: ReadObjectOptions
+  let httpClient: GoogleCloudGax._HTTPClient
+  let retryLoop: _RetryLoop
+
+  private let lock = NSLock()
+  private var isInitialFetched: Bool = false
+  private var initialFetchTask: Task<ReadObjectMetadata, Error>?
+  private var metadata: ReadObjectMetadata?
+  private var bodyIterator: _HTTPResponseBody.AsyncIterator?
+  private var streamIterator: AsyncThrowingStream<NIOCore.ByteBuffer, Error>.AsyncIterator?
+  private var bytesReceived: UInt64 = 0
+  private var isFinished: Bool = false
+  private var isCancelled: Bool = false
+
+  package init(
+    bucket: String,
+    object: String,
+    options: ReadObjectOptions,
+    httpClient: GoogleCloudGax._HTTPClient,
+    retryLoop: _RetryLoop
+  ) {
+    self.bucket = bucket
+    self.object = object
+    self.options = options
+    self.httpClient = httpClient
+    self.retryLoop = retryLoop
+  }
+
+  private func ensureInitialFetch() async throws -> ReadObjectMetadata {
+    if isCancelled {
+      throw CancellationError()
+    }
+    let task = lock.withLock {
+      if let existingTask = initialFetchTask {
+        return existingTask
+      }
+      let newTask = Task { () -> ReadObjectMetadata in
+        let (response, metadata) = try await Self.fetchInitial(
+          httpClient: self.httpClient,
+          bucket: self.bucket,
+          object: self.object,
+          options: self.options,
+          retryLoop: self.retryLoop
+        )
+        self.lock.withLock {
+          self.metadata = metadata
+          self.bodyIterator = response.body.makeAsyncIterator()
+          self.isInitialFetched = true
+        }
+        return metadata
+      }
+      self.initialFetchTask = newTask
+      return newTask
+    }
+    return try await task.value
+  }
+
+  package func getMetadata() async throws -> ReadObjectMetadata {
+    if isCancelled {
+      throw CancellationError()
+    }
+    return try await ensureInitialFetch()
+  }
+
+  package func nextChunk() async throws -> NIOCore.ByteBuffer? {
+    guard !isFinished && !isCancelled else { return nil }
+
+    if case .prefix(0) = options.range {
+      isFinished = true
+      return nil
+    }
+    if case .suffix(0) = options.range {
+      isFinished = true
+      return nil
+    }
+
+    _ = try await ensureInitialFetch()
+
+    while !isFinished && !isCancelled {
+      do {
+        if var it = streamIterator {
+          let chunk = try await it.next()
+          self.streamIterator = it
+          if let chunk {
+            bytesReceived += UInt64(chunk.readableBytes)
+            return chunk
+          } else {
+            isFinished = true
+            return nil
+          }
+        } else if var it = bodyIterator {
+          let chunk = try await it.next()
+          self.bodyIterator = it
+          if let chunk {
+            bytesReceived += UInt64(chunk.readableBytes)
+            return chunk
+          } else {
+            isFinished = true
+            return nil
+          }
+        } else {
+          isFinished = true
+          return nil
+        }
+      } catch {
+        guard options.autoResume else {
+          isFinished = true
+          throw error
+        }
+
+        try await resumeDownload(underlyingError: error)
+      }
+    }
+
+    return nil
+  }
+
+  private func resumeDownload(underlyingError: Error) async throws {
+    let currentMetadata = self.metadata ?? ReadObjectMetadata()
+    guard
+      let resumeRange = calculateResumeRange(
+        originalRange: options.range,
+        bytesReceived: bytesReceived,
+        totalSize: currentMetadata.size > 0 ? currentMetadata.size : nil
+      )
+    else {
+      isFinished = true
+      return
+    }
+
+    var resumeOptions = options
+    resumeOptions.range = resumeRange
+    if resumeOptions.generation == nil && currentMetadata.generation > 0 {
+      resumeOptions.generation = currentMetadata.generation
+    }
+
+    let httpClient = self.httpClient
+    let bucket = self.bucket
+    let object = self.object
+
+    do {
+      let response = try await retryLoop.run { _ in
+        let request = try await httpClient.buildReadObjectRequest(
+          bucket: bucket, object: object, options: resumeOptions)
+        let resp: _HTTPClientResponse
+        do {
+          resp = try await request.execute()
+        } catch {
+          throw RequestError.io(error)
+        }
+        let statusCode = Int(resp.status.code)
+        if (200..<300).contains(statusCode) {
+          return resp
+        }
+        if resp.isError() {
+          throw await resp.decodeError()
+        }
+        let data = try await resp.data()
+        let message = String(data: data, encoding: .utf8) ?? ""
+        throw DownloadError.unexpectedServerResponse(
+          statusCode: statusCode, message: message)
+      }
+      self.bodyIterator = response.body.makeAsyncIterator()
+      self.streamIterator = nil
+    } catch {
+      isFinished = true
+      if let downloadError = error as? DownloadError {
+        throw downloadError
+      }
+      if let reqError = error as? RequestError {
+        if case .http(let details) = reqError {
+          let message = String(data: details.payload, encoding: .utf8) ?? ""
+          throw DownloadError.unexpectedServerResponse(
+            statusCode: details.http_status_code, message: message)
+        }
+      }
+      throw DownloadError.resumeFailed(
+        bytesReceived: bytesReceived, message: error.localizedDescription)
+    }
+  }
+
+  package func cancel() {
+    isCancelled = true
+    isFinished = true
+    initialFetchTask?.cancel()
+  }
+
+  fileprivate static func fetchInitial(
+    httpClient: GoogleCloudGax._HTTPClient,
+    bucket: String,
+    object: String,
+    options: ReadObjectOptions,
+    retryLoop: _RetryLoop
+  ) async throws -> (_HTTPClientResponse, ReadObjectMetadata) {
+    if case .bounded(let start, let end) = options.range {
+      guard start <= end else {
+        throw DownloadError.invalidRangeHeader("Range start (\(start)) must be <= end (\(end)).")
+      }
+    }
+    do {
+      return try await retryLoop.run { _ in
+        let request = try await httpClient.buildReadObjectRequest(
+          bucket: bucket, object: object, options: options)
+        let response: _HTTPClientResponse
+        do {
+          response = try await request.execute()
+        } catch {
+          throw RequestError.io(error)
+        }
+        let statusCode = Int(response.status.code)
+        if (200..<300).contains(statusCode) {
+          let metadata = try StorageClient.parseReadObjectMetadata(
+            from: response.headers, bucket: bucket, object: object)
+          return (response, metadata)
+        }
+        if response.isError() {
+          throw await response.decodeError()
+        }
+        let data = try await response.data()
+        let message = String(data: data, encoding: .utf8) ?? ""
+        throw DownloadError.unexpectedServerResponse(
+          statusCode: statusCode, message: message)
+      }
+    } catch let error as RequestError {
+      if case .http(let details) = error {
+        let message = String(data: details.payload, encoding: .utf8) ?? ""
+        throw DownloadError.unexpectedServerResponse(
+          statusCode: details.http_status_code, message: message)
+      } else if case .service(let details) = error {
+        throw DownloadError.unexpectedServerResponse(
+          statusCode: 500, message: details.message)
+      } else {
+        throw error
+      }
+    }
   }
 }
 
 /// Container object returned by `readObject` containing metadata and the streaming body sequence.
-public struct ReadObjectResult: Sendable {
+public struct ReadObjectTask: Sendable {
+  private let coordinator: ReadObjectCoordinator
+
+  package init(coordinator: ReadObjectCoordinator) {
+    self.coordinator = coordinator
+  }
+
   /// Object metadata extracted from initial HTTP response headers.
-  public var metadata: ReadObjectMetadata = .init()
+  public var metadata: ReadObjectMetadata {
+    get async throws {
+      try await coordinator.getMetadata()
+    }
+  }
 
   /// Asynchronous sequence yielding chunks of binary data payload.
-  public var body: ReadObjectSequence = .init()
+  public var body: ReadObjectSequence {
+    ReadObjectSequence(coordinator: coordinator)
+  }
 
-  /// Creates a new `ReadObjectResult` instance.
-  public init() {}
-
-  /// Builder pattern helper to modify configuration in place.
-  public func with(_ config: (inout Self) -> Void) -> Self {
-    var copy = self
-    config(&copy)
-    return copy
+  /// Cancels the ongoing download.
+  public func cancel() {
+    coordinator.cancel()
   }
 }

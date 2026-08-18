@@ -20,17 +20,20 @@ func readObject(
   from bucket: String,
   object: String,
   options: ReadObjectOptions = .init()
-) async throws -> ReadObjectResult
+) -> ReadObjectTask
 ```
 
-- **Return Container Struct (`ReadObjectResult`):** `readObject` is an `async throws` function that performs the initial HTTP handshake and returns a container struct holding both the object metadata and the streaming body:
+- **Return Task Struct (`ReadObjectTask`):** `readObject` returns immediately with a `ReadObjectTask` struct holding both the object metadata and the streaming body:
   ```swift
-  public struct ReadObjectResult: Sendable {
+  public struct ReadObjectTask: Sendable {
     /// Object metadata populated from response headers upon request initiation.
-    public let metadata: ReadObjectMetadata
+    public var metadata: ReadObjectMetadata { get async throws }
 
-    /// An asynchronous sequence of `Data` chunks for the object payload.
-    public let body: ReadObjectSequence
+    /// An asynchronous sequence of `ByteBuffer` chunks for the object payload.
+    public var body: ReadObjectSequence { get }
+
+    /// Cancels the ongoing download.
+    public func cancel()
   }
   ```
 
@@ -297,12 +300,15 @@ public struct ReadObjectSequence: AsyncSequence, Sendable {
 }
 
 /// Container object returned by `readObject` containing metadata and the streaming body sequence.
-public struct ReadObjectResult: Sendable {
+public struct ReadObjectTask: Sendable {
   /// Object metadata extracted from initial HTTP response headers.
-  public let metadata: ReadObjectMetadata
+  public var metadata: ReadObjectMetadata { get async throws }
 
   /// Asynchronous sequence yielding chunks of binary data payload.
-  public let body: ReadObjectSequence
+  public var body: ReadObjectSequence { get }
+
+  /// Cancels the ongoing download.
+  public func cancel()
 }
 ```
 
@@ -314,15 +320,15 @@ public protocol StorageClientProtocol {
     from bucket: String,
     object: String,
     options: ReadObjectOptions
-  ) async throws -> ReadObjectResult
+  ) -> ReadObjectTask
 }
 
 extension StorageClientProtocol {
   public func readObject(
     from bucket: String,
     object: String
-  ) async throws -> ReadObjectResult {
-    try await readObject(from: bucket, object: object, options: .init())
+  ) -> ReadObjectTask {
+    readObject(from: bucket, object: object, options: .init())
   }
 }
 
@@ -331,10 +337,8 @@ extension StorageClient {
     from bucket: String,
     object: String,
     options: ReadObjectOptions = .init()
-  ) async throws -> ReadObjectResult {
-    // 1. Send initial GET request header handshake
-    // 2. Parse response headers into ReadObjectMetadata
-    // 3. Construct and return ReadObjectResult(metadata: metadata, body: sequence)
+  ) -> ReadObjectTask {
+    // Return ReadObjectTask backed by coordinator
   }
 }
 ```

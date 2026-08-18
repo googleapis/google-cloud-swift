@@ -52,5 +52,5 @@ public protocol StorageClientProtocol {
     from bucket: String,
     object: String,
     options: ReadObjectOptions
-  ) async throws -> ReadObjectResult
+  ) -> ReadObjectTask
 }

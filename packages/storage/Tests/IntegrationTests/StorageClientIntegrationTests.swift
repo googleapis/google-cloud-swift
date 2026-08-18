@@ -70,11 +70,12 @@ import Testing
       #expect(uploadedObject.bucket == bucketName)
       #expect(uploadedObject.name == objectName)
 
-      let result = try await storage.readObject(from: bucketName, object: objectName)
-      #expect(result.metadata.bucket == bucketName)
-      #expect(result.metadata.object == objectName)
-      #expect(result.metadata.size == UInt64(data.count))
-      #expect(result.metadata.generation == UInt64(uploadedObject.generation))
+      let result = storage.readObject(from: bucketName, object: objectName)
+      let metadata = try await result.metadata
+      #expect(metadata.bucket == bucketName)
+      #expect(metadata.object == objectName)
+      #expect(metadata.size == UInt64(data.count))
+      #expect(metadata.generation == UInt64(uploadedObject.generation))
 
       var downloadedData = Data()
       for try await chunk in result.body {
@@ -84,7 +85,7 @@ import Testing
       let downloadedString = String(data: downloadedData, encoding: .utf8)
       #expect(downloadedString == content)
 
-      print("File download integration test successful: \(result.metadata)")
+      print("File download integration test successful: \(metadata)")
     }
 
     @Test func testFailedDownloadPrecondition() async throws {
@@ -108,6 +109,7 @@ import Testing
 
       do {
         _ = try await storage.readObject(from: bucketName, object: objectName, options: options)
+          .metadata
         Issue.record("Expected download to fail with 412 Precondition Failed, but it succeeded")
       } catch DownloadError.unexpectedServerResponse(let statusCode, let message) {
         #expect(statusCode == 412)
@@ -139,11 +141,12 @@ import Testing
       #expect(uploadedObject.name == objectName)
       #expect(uploadedObject.size == Int64(data.count))
 
-      let result = try await storage.readObject(from: bucketName, object: objectName)
-      #expect(result.metadata.bucket == bucketName)
-      #expect(result.metadata.object == objectName)
-      #expect(result.metadata.size == UInt64(data.count))
-      #expect(result.metadata.generation == UInt64(uploadedObject.generation))
+      let result = storage.readObject(from: bucketName, object: objectName)
+      let metadata = try await result.metadata
+      #expect(metadata.bucket == bucketName)
+      #expect(metadata.object == objectName)
+      #expect(metadata.size == UInt64(data.count))
+      #expect(metadata.generation == UInt64(uploadedObject.generation))
 
       var downloadedData = Data()
       for try await chunk in result.body {

@@ -27,11 +27,21 @@ import Testing
 
   private static let sampleCsek = sampleKey()
 
-  private func makeClient(registry: MockRegistry) throws -> StorageClient {
+  private func makeClient(
+    registry: MockRegistry,
+    retryPolicy: (any RetryPolicy)? = nil,
+    downloadOptions: ReadObjectOptions? = nil
+  ) throws -> StorageClient {
     let options = StorageClientOptions().with {
       $0.client = .init().with {
         $0.endpoint = registry.endpoint
         $0.credentials = try! Credentials(configuration: .anonymous)
+        if let retryPolicy {
+          $0.retryPolicy = retryPolicy
+        }
+      }
+      if let downloadOptions {
+        $0.download = downloadOptions
       }
     }
     return try StorageClient(options, mock: registry)
@@ -62,19 +72,20 @@ import Testing
     )
 
     let client = try makeClient(registry: registry)
-    let result = try await client.readObject(from: bucket, object: objectName)
+    let result = client.readObject(from: bucket, object: objectName)
+    let metadata = try await result.metadata
 
-    #expect(result.metadata.bucket == bucket)
-    #expect(result.metadata.object == objectName)
-    #expect(result.metadata.size == UInt64(payload.count))
-    #expect(result.metadata.generation == 17123456789)
-    #expect(result.metadata.metageneration == 3)
-    #expect(result.metadata.etag == "\"CPv1234\"")
-    #expect(result.metadata.crc32c == "AdiAvw==")
-    #expect(result.metadata.md5Hash == "N1YvABC==")
-    #expect(result.metadata.contentType == "text/plain; charset=utf-8")
-    #expect(result.metadata.storageClass == "STANDARD")
-    #expect(result.metadata.updated != nil)
+    #expect(metadata.bucket == bucket)
+    #expect(metadata.object == objectName)
+    #expect(metadata.size == UInt64(payload.count))
+    #expect(metadata.generation == 17123456789)
+    #expect(metadata.metageneration == 3)
+    #expect(metadata.etag == "\"CPv1234\"")
+    #expect(metadata.crc32c == "AdiAvw==")
+    #expect(metadata.md5Hash == "N1YvABC==")
+    #expect(metadata.contentType == "text/plain; charset=utf-8")
+    #expect(metadata.storageClass == "STANDARD")
+    #expect(metadata.updated != nil)
 
     var downloaded = Data()
     for try await chunk in result.body {
@@ -111,11 +122,12 @@ import Testing
       $0.customerEncryptionKey = csek
     }
 
-    let result = try await client.readObject(from: bucket, object: objectName, options: options)
-    #expect(result.metadata.bucket == bucket)
-    #expect(result.metadata.object == objectName)
-    #expect(result.metadata.size == UInt64(payload.count))
-    #expect(result.metadata.generation == 42)
+    let result = client.readObject(from: bucket, object: objectName, options: options)
+    let metadata = try await result.metadata
+    #expect(metadata.bucket == bucket)
+    #expect(metadata.object == objectName)
+    #expect(metadata.size == UInt64(payload.count))
+    #expect(metadata.generation == 42)
 
     let lastReq = registry.lastRequest(for: downloadUrl)
     #expect(lastReq != nil)
@@ -212,8 +224,9 @@ import Testing
     )
 
     let client = try makeClient(registry: registry)
-    let result = try await client.readObject(from: bucket, object: objectName, options: options)
-    #expect(result.metadata.size == 4)
+    let result = client.readObject(from: bucket, object: objectName, options: options)
+    let metadata = try await result.metadata
+    #expect(metadata.size == 4)
 
     let lastReq = registry.lastRequest(for: downloadUrl)
     #expect(lastReq != nil)
@@ -249,7 +262,7 @@ import Testing
     }
 
     let err = await expectError(DownloadError.self) {
-      try await client.readObject(from: bucket, object: objectName, options: options)
+      try await client.readObject(from: bucket, object: objectName, options: options).metadata
     }
 
     if case .unexpectedServerResponse(let statusCode, let message) = err {
@@ -286,10 +299,11 @@ import Testing
     )
 
     let client = try makeClient(registry: registry)
-    let result = try await client.readObject(from: bucket, object: objectName)
+    let result = client.readObject(from: bucket, object: objectName)
+    let metadata = try await result.metadata
 
-    #expect(result.metadata.bucket == bucket)
-    #expect(result.metadata.object == objectName)
+    #expect(metadata.bucket == bucket)
+    #expect(metadata.object == objectName)
 
     var downloaded = Data()
     for try await chunk in result.body {
@@ -313,7 +327,7 @@ import Testing
     let client = try makeClient(registry: registry)
 
     let err = await expectError(DownloadError.self) {
-      try await client.readObject(from: bucket, object: objectName)
+      try await client.readObject(from: bucket, object: objectName).metadata
     }
 
     if case .unexpectedServerResponse(let statusCode, let message) = err {
@@ -351,9 +365,10 @@ import Testing
       $0.range = .fromOffset(10)
     }
 
-    let result = try await client.readObject(from: bucket, object: objectName, options: options)
-    #expect(result.metadata.size == 50)
-    #expect(result.metadata.generation == 123)
+    let result = client.readObject(from: bucket, object: objectName, options: options)
+    let metadata = try await result.metadata
+    #expect(metadata.size == 50)
+    #expect(metadata.generation == 123)
 
     let lastReq = registry.lastRequest(for: downloadUrl)
     #expect(lastReq?.value(forHTTPHeaderField: "Range") == "bytes=10-")
@@ -392,8 +407,9 @@ import Testing
       $0.range = .prefix(20)
     }
 
-    let result = try await client.readObject(from: bucket, object: objectName, options: options)
-    #expect(result.metadata.size == 50)
+    let result = client.readObject(from: bucket, object: objectName, options: options)
+    let metadata = try await result.metadata
+    #expect(metadata.size == 50)
 
     let lastReq = registry.lastRequest(for: downloadUrl)
     #expect(lastReq?.value(forHTTPHeaderField: "Range") == "bytes=0-19")
@@ -432,8 +448,9 @@ import Testing
       $0.range = .suffix(15)
     }
 
-    let result = try await client.readObject(from: bucket, object: objectName, options: options)
-    #expect(result.metadata.size == 50)
+    let result = client.readObject(from: bucket, object: objectName, options: options)
+    let metadata = try await result.metadata
+    #expect(metadata.size == 50)
 
     let lastReq = registry.lastRequest(for: downloadUrl)
     #expect(lastReq?.value(forHTTPHeaderField: "Range") == "bytes=-15")
@@ -472,8 +489,9 @@ import Testing
       $0.range = .bounded(start: 10, end: 29)
     }
 
-    let result = try await client.readObject(from: bucket, object: objectName, options: options)
-    #expect(result.metadata.size == 50)
+    let result = client.readObject(from: bucket, object: objectName, options: options)
+    let metadata = try await result.metadata
+    #expect(metadata.size == 50)
 
     let lastReq = registry.lastRequest(for: downloadUrl)
     #expect(lastReq?.value(forHTTPHeaderField: "Range") == "bytes=10-29")
@@ -505,7 +523,8 @@ import Testing
 
     _ = try await client.readObject(
       from: bucket, object: objectName,
-      options: ReadObjectOptions().with { $0.range = ReadObjectRange(10...29) })
+      options: ReadObjectOptions().with { $0.range = ReadObjectRange(10...29) }
+    ).metadata
     #expect(
       registry.lastRequest(for: downloadUrl)?.value(forHTTPHeaderField: "Range") == "bytes=10-29")
   }
@@ -519,6 +538,7 @@ import Testing
 
     do {
       _ = try await client.readObject(from: "test-bucket", object: "test.txt", options: options)
+        .metadata
       Issue.record("Expected invalidRangeHeader error to be thrown")
     } catch let DownloadError.invalidRangeHeader(msg) {
       #expect(msg.contains("30"))
@@ -548,13 +568,14 @@ import Testing
       for: prefixUrl
     )
 
-    let prefixResult = try await client.readObject(
+    let prefixResult = client.readObject(
       from: bucket,
       object: prefixObject,
       options: ReadObjectOptions().with { $0.range = .prefix(0) }
     )
-    #expect(prefixResult.metadata.size == 50)
-    #expect(prefixResult.metadata.generation == 123)
+    let prefixMeta = try await prefixResult.metadata
+    #expect(prefixMeta.size == 50)
+    #expect(prefixMeta.generation == 123)
     #expect(
       registry.lastRequest(for: prefixUrl)?.value(forHTTPHeaderField: "Range") == "bytes=0-0")
 
@@ -579,13 +600,14 @@ import Testing
       for: suffixUrl
     )
 
-    let suffixResult = try await client.readObject(
+    let suffixResult = client.readObject(
       from: bucket,
       object: suffixObject,
       options: ReadObjectOptions().with { $0.range = .suffix(0) }
     )
-    #expect(suffixResult.metadata.size == 50)
-    #expect(suffixResult.metadata.generation == 123)
+    let suffixMeta = try await suffixResult.metadata
+    #expect(suffixMeta.size == 50)
+    #expect(suffixMeta.generation == 123)
     #expect(
       registry.lastRequest(for: suffixUrl)?.value(forHTTPHeaderField: "Range") == "bytes=-0")
 
@@ -606,7 +628,7 @@ import Testing
         from: bucket,
         object: "nonexistent.txt",
         options: ReadObjectOptions().with { $0.range = .prefix(0) }
-      )
+      ).metadata
       Issue.record("Expected unexpectedServerResponse error to be thrown for 404")
     } catch DownloadError.unexpectedServerResponse(let statusCode, _) {
       #expect(statusCode == 404)
@@ -653,12 +675,13 @@ import Testing
       $0.enableDecompressiveTranscoding = false
     }
 
-    let result = try await client.readObject(from: bucket, object: objectName, options: options)
+    let result = client.readObject(from: bucket, object: objectName, options: options)
+    let metadata = try await result.metadata
 
-    #expect(result.metadata.bucket == bucket)
-    #expect(result.metadata.object == objectName)
-    #expect(result.metadata.contentEncoding == "gzip")
-    #expect(result.metadata.size == UInt64(payload.count))
+    #expect(metadata.bucket == bucket)
+    #expect(metadata.object == objectName)
+    #expect(metadata.contentEncoding == "gzip")
+    #expect(metadata.size == UInt64(payload.count))
 
     let lastReq = registry.lastRequest(for: downloadUrl)
     #expect(lastReq != nil)
@@ -698,11 +721,12 @@ import Testing
       $0.enableDecompressiveTranscoding = true
     }
 
-    let result = try await client.readObject(from: bucket, object: objectName, options: options)
+    let result = client.readObject(from: bucket, object: objectName, options: options)
+    let metadata = try await result.metadata
 
-    #expect(result.metadata.bucket == bucket)
-    #expect(result.metadata.object == objectName)
-    #expect(result.metadata.size == UInt64(payload.count))
+    #expect(metadata.bucket == bucket)
+    #expect(metadata.object == objectName)
+    #expect(metadata.size == UInt64(payload.count))
 
     let lastReq = registry.lastRequest(for: downloadUrl)
     #expect(lastReq != nil)
@@ -740,10 +764,11 @@ import Testing
     )
 
     let client = try makeClient(registry: registry)
-    let result = try await client.readObject(from: bucket, object: objectName)
+    let result = client.readObject(from: bucket, object: objectName)
+    let metadata = try await result.metadata
 
-    #expect(result.metadata.size == UInt64(fullPayload.count))
-    #expect(result.metadata.generation == 999)
+    #expect(metadata.size == UInt64(fullPayload.count))
+    #expect(metadata.generation == 999)
 
     var receivedChunks: [Data] = []
     for try await chunk in result.body {
@@ -755,5 +780,519 @@ import Testing
     #expect(receivedChunks[1] == chunk2)
     #expect(receivedChunks[2] == chunk3)
     #expect(receivedChunks.reduce(Data(), +) == fullPayload)
+  }
+
+  @Test func downloadObjectTransientFailureRetriesAndSucceeds() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "test-retry.txt"
+    let payload = Data("Download retry success payload".utf8)
+
+    let downloadUrl = registry.url("/storage/v1/b/\(bucket)/o/\(objectName)?alt=media")
+
+    registry.register(
+      response: .success(statusCode: 503, data: Data("Service Unavailable".utf8), headers: nil),
+      for: downloadUrl
+    )
+    registry.register(
+      response: .success(
+        statusCode: 200,
+        data: payload,
+        headers: [
+          "Content-Length": String(payload.count),
+          "x-goog-generation": "100",
+        ]
+      ),
+      for: downloadUrl
+    )
+
+    let client = try makeClient(
+      registry: registry, retryPolicy: BaseRetryPolicy().withAttemptLimit(3))
+    let result = client.readObject(from: bucket, object: objectName)
+    let metadata = try await result.metadata
+
+    #expect(metadata.generation == 100)
+    var downloaded = Data()
+    for try await chunk in result.body {
+      downloaded.append(contentsOf: chunk.readableBytesView)
+    }
+    #expect(downloaded == payload)
+
+    let requests = registry.recordedRequests()
+    #expect(requests.count == 2)
+  }
+
+  @Test func downloadObjectTransientFailureWithNeverRetryFails() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "test-never-retry.txt"
+
+    let downloadUrl = registry.url("/storage/v1/b/\(bucket)/o/\(objectName)?alt=media")
+
+    registry.register(
+      response: .success(statusCode: 503, data: Data("Service Unavailable".utf8), headers: nil),
+      for: downloadUrl
+    )
+
+    let client = try makeClient(registry: registry, retryPolicy: NeverRetry())
+
+    let err = await expectError(DownloadError.self) {
+      try await client.readObject(from: bucket, object: objectName).metadata
+    }
+    #expect(err != nil)
+
+    let requests = registry.recordedRequests()
+    #expect(requests.count == 1)
+  }
+
+  @Test func downloadObjectWithCustomReadObjectOptionsRetryPolicyOverridesClient() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "test-override-retry.txt"
+
+    let downloadUrl = registry.url("/storage/v1/b/\(bucket)/o/\(objectName)?alt=media")
+
+    registry.register(
+      response: .success(statusCode: 503, data: Data("Service Unavailable".utf8), headers: nil),
+      for: downloadUrl
+    )
+
+    let client = try makeClient(registry: registry)
+    let options = ReadObjectOptions().with {
+      $0.retryPolicy = NeverRetry()
+    }
+
+    let err = await expectError(DownloadError.self) {
+      try await client.readObject(from: bucket, object: objectName, options: options).metadata
+    }
+    #expect(err != nil)
+
+    let requests = registry.recordedRequests()
+    #expect(requests.count == 1)
+  }
+
+  @Test func downloadObjectWithClientDownloadOptionsRetryPolicyOverridesDefault() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "test-client-override.txt"
+
+    let downloadUrl = registry.url("/storage/v1/b/\(bucket)/o/\(objectName)?alt=media")
+
+    registry.register(
+      response: .success(statusCode: 503, data: Data("Service Unavailable".utf8), headers: nil),
+      for: downloadUrl
+    )
+
+    let client = try makeClient(
+      registry: registry,
+      downloadOptions: ReadObjectOptions().with { $0.retryPolicy = NeverRetry() }
+    )
+
+    let err = await expectError(DownloadError.self) {
+      try await client.readObject(from: bucket, object: objectName).metadata
+    }
+    #expect(err != nil)
+
+    let requests = registry.recordedRequests()
+    #expect(requests.count == 1)
+  }
+
+  @Test func downloadObjectStreamingTransientFailureResumesFromLatestByte() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "streaming-resume.bin"
+    let chunk1 = Data("FirstPart-".utf8)
+    let chunk2 = Data("SecondPart".utf8)
+    let fullPayload = chunk1 + chunk2
+
+    let initialUrl = registry.url("/storage/v1/b/\(bucket)/o/\(objectName)?alt=media")
+    let resumeUrl = registry.url(
+      "/storage/v1/b/\(bucket)/o/\(objectName)?alt=media&generation=888")
+
+    registry.register(
+      response: .stream(
+        statusCode: 200,
+        chunks: [chunk1],
+        error: MockNetworkError(),
+        headers: [
+          "Content-Length": String(fullPayload.count),
+          "x-goog-generation": "888",
+        ]
+      ),
+      for: initialUrl
+    )
+
+    registry.register(
+      response: .stream(
+        statusCode: 206,
+        chunks: [chunk2],
+        headers: [
+          "Content-Range": "bytes \(chunk1.count)-\(fullPayload.count - 1)/\(fullPayload.count)",
+          "Content-Length": String(chunk2.count),
+          "x-goog-generation": "888",
+        ]
+      ),
+      for: resumeUrl
+    )
+
+    let client = try makeClient(registry: registry)
+    let result = client.readObject(from: bucket, object: objectName)
+    let metadata = try await result.metadata
+
+    #expect(metadata.size == UInt64(fullPayload.count))
+    #expect(metadata.generation == 888)
+
+    var receivedData = Data()
+    for try await chunk in result.body {
+      receivedData.append(contentsOf: chunk.readableBytesView)
+    }
+
+    #expect(receivedData == fullPayload)
+
+    let requests = registry.recordedRequests()
+    #expect(requests.count == 2)
+    #expect(requests[0].value(forHTTPHeaderField: "Range") == nil)
+    #expect(requests[1].value(forHTTPHeaderField: "Range") == "bytes=\(chunk1.count)-")
+  }
+
+  @Test func downloadObjectStreamingMultipleTransientFailuresResumesAndRecovers() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "multi-resume.bin"
+    let chunk1 = Data("1111111111".utf8)
+    let chunk2 = Data("2222222222".utf8)
+    let chunk3 = Data("3333333333".utf8)
+    let fullPayload = chunk1 + chunk2 + chunk3
+
+    let initialUrl = registry.url("/storage/v1/b/\(bucket)/o/\(objectName)?alt=media")
+    let resumeUrl = registry.url(
+      "/storage/v1/b/\(bucket)/o/\(objectName)?alt=media&generation=777")
+
+    // Attempt 1: Yields chunk1, then network fails
+    registry.register(
+      response: .stream(
+        statusCode: 200,
+        chunks: [chunk1],
+        error: MockNetworkError(),
+        headers: [
+          "Content-Length": String(fullPayload.count),
+          "x-goog-generation": "777",
+        ]
+      ),
+      for: initialUrl
+    )
+
+    // Attempt 2 (Resume at 10): Yields chunk2, then network fails again
+    registry.register(
+      response: .stream(
+        statusCode: 206,
+        chunks: [chunk2],
+        error: MockNetworkError(),
+        headers: [
+          "Content-Range": "bytes 10-\(fullPayload.count - 1)/\(fullPayload.count)",
+          "Content-Length": String(chunk2.count + chunk3.count),
+          "x-goog-generation": "777",
+        ]
+      ),
+      for: resumeUrl
+    )
+
+    // Attempt 3 (Resume at 20): Yields chunk3 and finishes cleanly
+    registry.register(
+      response: .stream(
+        statusCode: 206,
+        chunks: [chunk3],
+        headers: [
+          "Content-Range": "bytes 20-\(fullPayload.count - 1)/\(fullPayload.count)",
+          "Content-Length": String(chunk3.count),
+          "x-goog-generation": "777",
+        ]
+      ),
+      for: resumeUrl
+    )
+
+    let client = try makeClient(registry: registry)
+    let result = client.readObject(from: bucket, object: objectName)
+
+    var receivedData = Data()
+    for try await chunk in result.body {
+      receivedData.append(contentsOf: chunk.readableBytesView)
+    }
+
+    #expect(receivedData == fullPayload)
+
+    let requests = registry.recordedRequests()
+    #expect(requests.count == 3)
+    #expect(requests[0].value(forHTTPHeaderField: "Range") == nil)
+    #expect(requests[1].value(forHTTPHeaderField: "Range") == "bytes=10-")
+    #expect(requests[2].value(forHTTPHeaderField: "Range") == "bytes=20-")
+  }
+
+  @Test func downloadObjectStreamingWithBoundedRangeResumesFromOffset() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "bounded-resume.bin"
+    let chunk1 = Data("0123456789".utf8)
+    let chunk2 = Data("abcdefghij".utf8)
+    let expectedPayload = chunk1 + chunk2
+
+    let initialUrl = registry.url("/storage/v1/b/\(bucket)/o/\(objectName)?alt=media")
+    let resumeUrl = registry.url(
+      "/storage/v1/b/\(bucket)/o/\(objectName)?alt=media&generation=555")
+
+    registry.register(
+      response: .stream(
+        statusCode: 206,
+        chunks: [chunk1],
+        error: MockNetworkError(),
+        headers: [
+          "Content-Range": "bytes 10-29/100",
+          "Content-Length": "20",
+          "x-goog-generation": "555",
+        ]
+      ),
+      for: initialUrl
+    )
+
+    registry.register(
+      response: .stream(
+        statusCode: 206,
+        chunks: [chunk2],
+        headers: [
+          "Content-Range": "bytes 20-29/100",
+          "Content-Length": "10",
+          "x-goog-generation": "555",
+        ]
+      ),
+      for: resumeUrl
+    )
+
+    let client = try makeClient(registry: registry)
+    let options = ReadObjectOptions().with {
+      $0.range = .bounded(start: 10, end: 29)
+    }
+
+    let result = client.readObject(from: bucket, object: objectName, options: options)
+
+    var receivedData = Data()
+    for try await chunk in result.body {
+      receivedData.append(contentsOf: chunk.readableBytesView)
+    }
+
+    #expect(receivedData == expectedPayload)
+
+    let requests = registry.recordedRequests()
+    #expect(requests.count == 2)
+    #expect(requests[0].value(forHTTPHeaderField: "Range") == "bytes=10-29")
+    #expect(requests[1].value(forHTTPHeaderField: "Range") == "bytes=20-29")
+  }
+
+  @Test func downloadObjectStreamingWithAutoResumeDisabledThrowsOnStreamInterruption() async throws
+  {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "no-resume.bin"
+    let chunk1 = Data("FirstPart-".utf8)
+
+    let initialUrl = registry.url("/storage/v1/b/\(bucket)/o/\(objectName)?alt=media")
+
+    registry.register(
+      response: .stream(
+        statusCode: 200,
+        chunks: [chunk1],
+        error: MockNetworkError(),
+        headers: [
+          "Content-Length": "100",
+          "x-goog-generation": "333",
+        ]
+      ),
+      for: initialUrl
+    )
+
+    let client = try makeClient(registry: registry)
+    let options = ReadObjectOptions().with {
+      $0.autoResume = false
+    }
+
+    let result = client.readObject(from: bucket, object: objectName, options: options)
+
+    do {
+      for try await _ in result.body {}
+      Issue.record("Expected error to be thrown when autoResume is false")
+    } catch is MockNetworkError {
+      // Expected
+    } catch {
+      Issue.record("Expected MockNetworkError, but got \(error)")
+    }
+
+    let requests = registry.recordedRequests()
+    #expect(requests.count == 1)
+  }
+
+  @Test func downloadObjectStreamingResumePermanentErrorThrows() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "resume-404.bin"
+    let chunk1 = Data("InitialData".utf8)
+
+    let initialUrl = registry.url("/storage/v1/b/\(bucket)/o/\(objectName)?alt=media")
+    let resumeUrl = registry.url(
+      "/storage/v1/b/\(bucket)/o/\(objectName)?alt=media&generation=222")
+
+    registry.register(
+      response: .stream(
+        statusCode: 200,
+        chunks: [chunk1],
+        error: MockNetworkError(),
+        headers: [
+          "Content-Length": "50",
+          "x-goog-generation": "222",
+        ]
+      ),
+      for: initialUrl
+    )
+
+    registry.register(
+      response: .success(statusCode: 404, data: Data("Object deleted".utf8), headers: nil),
+      for: resumeUrl
+    )
+
+    let client = try makeClient(registry: registry)
+    let result = client.readObject(from: bucket, object: objectName)
+
+    do {
+      for try await _ in result.body {}
+      Issue.record("Expected error when resume fails with 404")
+    } catch DownloadError.unexpectedServerResponse(let statusCode, let message) {
+      #expect(statusCode == 404)
+      #expect(message == "Object deleted")
+    } catch {
+      Issue.record("Expected unexpectedServerResponse 404, got \(error)")
+    }
+  }
+
+  @Test func downloadObjectStreamingWithCustomerSuppliedEncryptionKeyPreservesHeadersOnResume()
+    async throws
+  {
+    let registry = MockRegistry.create()
+    let bucket = "csek-bucket"
+    let objectName = "csek-resume.bin"
+    let chunk1 = Data("encrypted-part1".utf8)
+    let chunk2 = Data("encrypted-part2".utf8)
+    let fullPayload = chunk1 + chunk2
+    let csek = Self.sampleCsek
+
+    let initialUrl = registry.url("/storage/v1/b/\(bucket)/o/\(objectName)?alt=media")
+    let resumeUrl = registry.url(
+      "/storage/v1/b/\(bucket)/o/\(objectName)?alt=media&generation=111")
+
+    registry.register(
+      response: .stream(
+        statusCode: 200,
+        chunks: [chunk1],
+        error: MockNetworkError(),
+        headers: [
+          "Content-Length": String(fullPayload.count),
+          "x-goog-generation": "111",
+        ]
+      ),
+      for: initialUrl
+    )
+
+    registry.register(
+      response: .stream(
+        statusCode: 206,
+        chunks: [chunk2],
+        headers: [
+          "Content-Range": "bytes \(chunk1.count)-\(fullPayload.count - 1)/\(fullPayload.count)",
+          "Content-Length": String(chunk2.count),
+          "x-goog-generation": "111",
+        ]
+      ),
+      for: resumeUrl
+    )
+
+    let client = try makeClient(registry: registry)
+    let options = ReadObjectOptions().with {
+      $0.customerEncryptionKey = csek
+    }
+
+    let result = client.readObject(from: bucket, object: objectName, options: options)
+
+    var receivedData = Data()
+    for try await chunk in result.body {
+      receivedData.append(contentsOf: chunk.readableBytesView)
+    }
+
+    #expect(receivedData == fullPayload)
+
+    let requests = registry.recordedRequests()
+    #expect(requests.count == 2)
+    #expect(requests[1].value(forHTTPHeaderField: "x-goog-encryption-algorithm") == "AES256")
+    #expect(requests[1].value(forHTTPHeaderField: "x-goog-encryption-key") == csek.keyBase64)
+    #expect(
+      requests[1].value(forHTTPHeaderField: "x-goog-encryption-key-sha256") == csek.keyHashBase64)
+  }
+
+  @Test func downloadObjectDeferredExecutionOnlyAwaitsMetadata() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "meta-only.txt"
+    let payload = Data("Only read metadata".utf8)
+
+    let downloadUrl = registry.url("/storage/v1/b/\(bucket)/o/\(objectName)?alt=media")
+
+    registry.register(
+      response: .success(
+        statusCode: 200,
+        data: payload,
+        headers: [
+          "Content-Length": String(payload.count),
+          "x-goog-generation": "999",
+        ]
+      ),
+      for: downloadUrl
+    )
+
+    let client = try makeClient(registry: registry)
+    let result = client.readObject(from: bucket, object: objectName)
+    let metadata = try await result.metadata
+
+    #expect(metadata.size == UInt64(payload.count))
+    #expect(metadata.generation == 999)
+
+    // Result body was never consumed, download finishes or cancels cleanly
+    result.cancel()
+  }
+
+  @Test func downloadObjectDeferredExecutionOnlyConsumesBody() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "body-only.txt"
+    let payload = Data("Direct stream consumption without metadata read".utf8)
+
+    let downloadUrl = registry.url("/storage/v1/b/\(bucket)/o/\(objectName)?alt=media")
+
+    registry.register(
+      response: .success(
+        statusCode: 200,
+        data: payload,
+        headers: [
+          "Content-Length": String(payload.count),
+          "x-goog-generation": "888",
+        ]
+      ),
+      for: downloadUrl
+    )
+
+    let client = try makeClient(registry: registry)
+    let result = client.readObject(from: bucket, object: objectName)
+
+    var receivedData = Data()
+    for try await chunk in result.body {
+      receivedData.append(contentsOf: chunk.readableBytesView)
+    }
+
+    #expect(receivedData == payload)
   }
 }
