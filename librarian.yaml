@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 language: swift
-version: v0.38.1-0.20260819173406-7637cf65fd25
+version: v0.38.1-0.20260819184450-a20d753f8dab
 repo: googleapis/google-cloud-swift
 sources:
   conformance:
@@ -96,6 +96,7 @@ default:
       - name: GoogleCloudGax
         path: packages/gax
         required_by_services: true
+        spi: GoogleCloudInternal
       - name: GoogleCloudKMSV1
         path: generated/google-cloud-kms-v1
         api_package: google.cloud.kms.v1
@@ -123,6 +124,7 @@ default:
       - name: GoogleCloudWkt
         path: packages/wkt
         api_package: google.protobuf
+        spi: GoogleCloudInternal
       - name: GoogleGrafeasV1
         path: generated/grafeas-v1
         api_package: grafeas.v1
