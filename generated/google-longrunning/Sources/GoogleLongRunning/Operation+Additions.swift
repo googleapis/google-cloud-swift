@@ -45,7 +45,8 @@ extension Operation {
   }
 
   public func _extractStatusEmpty() throws
-    -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State {
+    -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State
+  {
     guard self.done else {
       return .init(done: false, result: nil)
     }
@@ -60,7 +61,9 @@ extension Operation {
     }
   }
 
-  static func _extractError<T>(_ type: T.Type, status: GoogleRpc.Status?) -> GoogleCloudGax._PollableOperationImpl<T>.State {
+  static func _extractError<T>(_ type: T.Type, status: GoogleRpc.Status?)
+    -> GoogleCloudGax._PollableOperationImpl<T>.State
+  {
     guard let statusUnwrapped = status else {
       return .init(
         done: true,
