@@ -54,6 +54,9 @@ import Testing
     let payload = Data("Hello, Cloud Storage download!".utf8)
 
     let downloadUrl = registry.url("/storage/v1/b/\(bucket)/o/\(objectName)?alt=media")
+    let computedCrc = _CRC32C.compute(payload)
+    let crcBase64 = withUnsafeBytes(of: computedCrc.bigEndian) { Data($0).base64EncodedString() }
+    let md5Base64 = Data(Insecure.MD5.hash(data: payload)).base64EncodedString()
 
     let headers = [
       "Content-Type": "text/plain; charset=utf-8",
@@ -61,7 +64,7 @@ import Testing
       "x-goog-generation": "17123456789",
       "x-goog-metageneration": "3",
       "ETag": "\"CPv1234\"",
-      "x-goog-hash": "crc32c=AdiAvw==, md5=N1YvABC==",
+      "x-goog-hash": "crc32c=\(crcBase64), md5=\(md5Base64)",
       "x-goog-storage-class": "STANDARD",
       "Last-Modified": "Fri, 07 Aug 2026 01:00:00 GMT",
     ]
@@ -81,8 +84,8 @@ import Testing
     #expect(metadata.generation == 17123456789)
     #expect(metadata.metageneration == 3)
     #expect(metadata.etag == "\"CPv1234\"")
-    #expect(metadata.crc32c == "AdiAvw==")
-    #expect(metadata.md5Hash == "N1YvABC==")
+    #expect(metadata.crc32c == crcBase64)
+    #expect(metadata.md5Hash == md5Base64)
     #expect(metadata.contentType == "text/plain; charset=utf-8")
     #expect(metadata.storageClass == "STANDARD")
     #expect(metadata.updated != nil)

@@ -839,35 +839,11 @@ extension StorageClient {
   fileprivate static func computeSimpleChecksum(_ data: Data, options: ChecksumOptions) throws
     -> String?
   {
-    var parts = [String]()
-
-    if let crcOption = options.crc32c {
-      switch crcOption {
-      case .auto:
-        let crc = _CRC32C.compute(data)
-        let bigEndian = crc.bigEndian
-        var bytes = [UInt8]()
-        withUnsafeBytes(of: bigEndian) {
-          bytes = Array($0)
-        }
-        parts.append("crc32c=" + Data(bytes).base64EncodedString())
-      case .value(let val):
-        let formatted = val.hasPrefix("crc32c=") ? val : "crc32c=" + val
-        parts.append(formatted)
-      }
+    var calculators = options.makeUploadCalculators()
+    guard !calculators.isEmpty else { return nil }
+    for i in calculators.indices {
+      calculators[i].update(data)
     }
-
-    if let md5Option = options.md5 {
-      switch md5Option {
-      case .auto:
-        let digest = Insecure.MD5.hash(data: data)
-        parts.append("md5=" + Data(digest).base64EncodedString())
-      case .value(let val):
-        let formatted = val.hasPrefix("md5=") ? val : "md5=" + val
-        parts.append(formatted)
-      }
-    }
-
-    return parts.isEmpty ? nil : parts.joined(separator: ", ")
+    return calculators.map { "\($0.algorithmName)=\($0.finalize())" }.joined(separator: ", ")
   }
 }

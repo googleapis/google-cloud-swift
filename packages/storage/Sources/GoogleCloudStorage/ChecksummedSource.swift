@@ -12,9 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Crypto
 import Foundation
-@_spi(GoogleCloudInternal) import struct GoogleCloudGax._CRC32C
 
 struct ChunkInfo: Sendable {
   let data: Data
@@ -25,8 +23,7 @@ struct ChunkInfo: Sendable {
 struct ChecksummedSource<S: UploadSource> {
   var source: S
   let options: ChecksumOptions
-  private var md5 = Insecure.MD5()
-  private var crc32c = _CRC32C()
+  private var calculators: [any ChecksumCalculator] = []
   private var nextChunk: Data? = nil
   private var isInitialized = false
   private var isFinished = false
@@ -36,6 +33,7 @@ struct ChecksummedSource<S: UploadSource> {
   init(source: S, options: ChecksumOptions) {
     self.source = source
     self.options = options
+    self.calculators = options.makeUploadCalculators()
   }
 
   init(source: S, validation: ChecksumValidation) {
@@ -48,19 +46,18 @@ struct ChecksummedSource<S: UploadSource> {
     case .md5:
       self.options = ChecksumOptions(crc32c: nil, md5: .auto)
     }
+    self.calculators = self.options.makeUploadCalculators()
   }
 
   mutating func seedCRC32C(seed: UInt32, bytesHashed: Int64) {
-    if options.crc32c == .auto {
-      self.crc32c = _CRC32C(seed: seed)
+    if let idx = calculators.firstIndex(where: { $0 is CRC32CCalculator }) {
+      calculators[idx] = CRC32CCalculator(seed: seed)
       self.bytesHashed = bytesHashed
     }
   }
 
   private mutating func updateChecksums(data: Data, startOffset: Int64) {
-    let needCRC32C = (options.crc32c == .auto)
-    let needMD5 = (options.md5 == .auto)
-    guard needCRC32C || needMD5 else { return }
+    guard !calculators.isEmpty else { return }
 
     let endOffset = startOffset + Int64(data.count)
     guard endOffset > bytesHashed else { return }
@@ -73,11 +70,8 @@ struct ChecksummedSource<S: UploadSource> {
       unhashedData = data.subdata(in: offsetInChunk..<data.count)
     }
 
-    if needCRC32C {
-      crc32c.update(unhashedData)
-    }
-    if needMD5 {
-      md5.update(data: unhashedData)
+    for i in calculators.indices {
+      calculators[i].update(unhashedData)
     }
 
     bytesHashed = endOffset
@@ -112,35 +106,8 @@ struct ChecksummedSource<S: UploadSource> {
   mutating func finalizeChecksum() -> String? {
     guard !isFinished else { return nil }
     isFinished = true
-    var parts = [String]()
-
-    if let crcOption = options.crc32c {
-      switch crcOption {
-      case .auto:
-        let bigEndian = crc32c.finalize().bigEndian
-        var bytes = [UInt8]()
-        withUnsafeBytes(of: bigEndian) {
-          bytes = Array($0)
-        }
-        parts.append("crc32c=" + Data(bytes).base64EncodedString())
-      case .value(let val):
-        let formatted = val.hasPrefix("crc32c=") ? val : "crc32c=" + val
-        parts.append(formatted)
-      }
-    }
-
-    if let md5Option = options.md5 {
-      switch md5Option {
-      case .auto:
-        let digest = md5.finalize()
-        parts.append("md5=" + Data(digest).base64EncodedString())
-      case .value(let val):
-        let formatted = val.hasPrefix("md5=") ? val : "md5=" + val
-        parts.append(formatted)
-      }
-    }
-
-    return parts.isEmpty ? nil : parts.joined(separator: ", ")
+    guard !calculators.isEmpty else { return nil }
+    return calculators.map { "\($0.algorithmName)=\($0.finalize())" }.joined(separator: ", ")
   }
 }
 
@@ -151,10 +118,7 @@ extension ChecksummedSource where S: SeekableUploadSource {
     isFinished = false
     nextChunkOffset = offset
 
-    let needCRC32C = (options.crc32c == .auto)
-    let needMD5 = (options.md5 == .auto)
-
-    guard offset > bytesHashed && (needCRC32C || needMD5) else {
+    guard offset > bytesHashed && !calculators.isEmpty else {
       try await source.seek(to: offset)
       return
     }

@@ -41,6 +41,13 @@ import Foundation
     }
   }
 
+  public mutating func update(_ buffer: UnsafeRawBufferPointer) {
+    for byte in buffer {
+      let index = Int(UInt8(value & 0xFF) ^ byte)
+      value = (value >> 8) ^ Self.table[index]
+    }
+  }
+
   public func finalize() -> UInt32 {
     return value ^ 0xFFFF_FFFF
   }
@@ -48,6 +55,12 @@ import Foundation
   public static func compute(_ data: Data) -> UInt32 {
     var crc = Self()
     crc.update(data)
+    return crc.finalize()
+  }
+
+  public static func compute(_ buffer: UnsafeRawBufferPointer) -> UInt32 {
+    var crc = Self()
+    crc.update(buffer)
     return crc.finalize()
   }
 }

@@ -12,6 +12,7 @@
 // See the License for theing specific language governing permissions and
 // limitations under the License.
 
+import Crypto
 import Foundation
 import GoogleCloudAuth
 @_spi(GoogleCloudInternal) import GoogleCloudGax
@@ -288,5 +289,65 @@ import Testing
 
     #expect(remainingData == Data("World!".utf8))
     #expect(finalChecksum == "crc32c=TVUQaA==")
+  }
+
+  @Test func testCRC32CCalculator() {
+    var calculator = CRC32CCalculator()
+    #expect(calculator.algorithmName == "crc32c")
+
+    let data1 = Data("Hello, ".utf8)
+    let data2 = Data("World!".utf8)
+    calculator.update(data1)
+    calculator.update(data2)
+    #expect(calculator.finalize() == "TVUQaA==")
+  }
+
+  @Test func testCRC32CCalculatorSeeded() {
+    let part1 = Data("Hello, ".utf8)
+    let part2 = Data("World!".utf8)
+    let seed = _CRC32C.compute(part1)
+
+    var calc = CRC32CCalculator(seed: seed)
+    calc.update(part2)
+    #expect(calc.finalize() == "TVUQaA==")
+  }
+
+  @Test func testMD5Calculator() {
+    var calculator = MD5Calculator()
+    #expect(calculator.algorithmName == "md5")
+
+    let data1 = Data("Hello, ".utf8)
+    let data2 = Data("World!".utf8)
+    calculator.update(data1)
+    calculator.update(data2)
+    #expect(calculator.finalize() == "ZajifYh5KDgxtmS9i38K1A==")
+  }
+
+  @Test func testProvidedChecksumCalculator() {
+    var rawCalc = ProvidedChecksumCalculator(algorithmName: "crc32c", value: "TVUQaA==")
+    #expect(rawCalc.algorithmName == "crc32c")
+    rawCalc.update(Data("ignored data".utf8))
+    #expect(rawCalc.finalize() == "TVUQaA==")
+
+    // Prefixed value gets cleaned
+    let prefixedCalc = ProvidedChecksumCalculator(algorithmName: "md5", value: "md5=custom_md5==")
+    #expect(prefixedCalc.algorithmName == "md5")
+    #expect(prefixedCalc.finalize() == "custom_md5==")
+  }
+
+  @Test func testMakeUploadCalculators() {
+    let options = ChecksumOptions(crc32c: .auto, md5: .value("user_md5=="))
+    var calcs = options.makeUploadCalculators()
+    #expect(calcs.count == 2)
+    #expect(calcs[0] is CRC32CCalculator)
+    #expect(calcs[1] is ProvidedChecksumCalculator)
+
+    let testData = Data("Hello, World!".utf8)
+    for i in calcs.indices {
+      calcs[i].update(testData)
+    }
+
+    let header = calcs.map { "\($0.algorithmName)=\($0.finalize())" }.joined(separator: ", ")
+    #expect(header == "crc32c=TVUQaA==, md5=user_md5==")
   }
 }

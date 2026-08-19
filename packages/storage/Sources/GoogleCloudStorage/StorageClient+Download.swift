@@ -73,6 +73,12 @@ extension StorageClient {
       metadata.size = size
     }
 
+    if let storedLengthStr = headers.first(name: "x-goog-stored-content-length"),
+      let storedLength = UInt64(storedLengthStr)
+    {
+      metadata.storedContentLength = storedLength
+    }
+
     if let genStr = headers.first(name: "x-goog-generation"),
       let gen = UInt64(genStr)
     {
