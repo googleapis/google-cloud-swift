@@ -26,7 +26,9 @@ import Testing
 
     // Slashes and other reserved/special characters must be encoded
     #expect(_RoutingMatcher.encode("foo/bar") == "foo%2Fbar")
-    #expect(_RoutingMatcher.encode("projects/_/buckets/my-bucket") == "projects%2F_%2Fbuckets%2Fmy-bucket")
+    #expect(
+      _RoutingMatcher.encode("projects/_/buckets/my-bucket") == "projects%2F_%2Fbuckets%2Fmy-bucket"
+    )
     #expect(_RoutingMatcher.encode("foo=bar&baz=qux") == "foo%3Dbar%26baz%3Dqux")
     #expect(_RoutingMatcher.encode("hello world") == "hello%20world")
   }
@@ -49,10 +51,11 @@ import Testing
       ("source_bucket", "projects/_/buckets/s"),
       ("blank", ""),
     ])
-    #expect(params == [
-      "bucket=projects%2F_%2Fbuckets%2Fd",
-      "source_bucket=projects%2F_%2Fbuckets%2Fs",
-    ])
+    #expect(
+      params == [
+        "bucket=projects%2F_%2Fbuckets%2Fd",
+        "source_bucket=projects%2F_%2Fbuckets%2Fs",
+      ])
   }
 
   @Test func matchEntireMultiWildcard() {
@@ -164,14 +167,16 @@ import Testing
     let reqName: String? = "invalid-name"
     let reqParent: String? = "projects/p/buckets/b"
 
-    let extracted = _RoutingMatcher.value(
-      reqName,
-      prefix: [.literal("projects/"), .singleWildcard, .literal("/locations/")],
-      matching: [.singleWildcard]
-    ) ?? _RoutingMatcher.value(
-      reqParent,
-      matching: [.multiWildcard]
-    )
+    let extracted =
+      _RoutingMatcher.value(
+        reqName,
+        prefix: [.literal("projects/"), .singleWildcard, .literal("/locations/")],
+        matching: [.singleWildcard]
+      )
+      ?? _RoutingMatcher.value(
+        reqParent,
+        matching: [.multiWildcard]
+      )
 
     #expect(extracted == "projects/p/buckets/b")
   }
