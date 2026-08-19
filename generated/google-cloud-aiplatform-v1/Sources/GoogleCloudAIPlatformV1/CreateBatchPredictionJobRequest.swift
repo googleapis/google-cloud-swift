@@ -21,7 +21,7 @@
   /// Request message for
   /// [JobService.CreateBatchPredictionJob][google.cloud.aiplatform.v1.JobService.CreateBatchPredictionJob].
   ///
-  /// [google.cloud.aiplatform.v1.JobService.CreateBatchPredictionJob]: <doc:JobServiceClient/createBatchPredictionJob(request:)>
+  /// [google.cloud.aiplatform.v1.JobService.CreateBatchPredictionJob]: <doc:JobServiceClient/createBatchPredictionJob(request:options:)>
   public struct CreateBatchPredictionJobRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

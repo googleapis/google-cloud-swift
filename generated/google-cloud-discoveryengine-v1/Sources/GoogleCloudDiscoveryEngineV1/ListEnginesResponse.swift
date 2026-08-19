@@ -23,7 +23,7 @@
   /// [EngineService.ListEngines][google.cloud.discoveryengine.v1.EngineService.ListEngines]
   /// method.
   ///
-  /// [google.cloud.discoveryengine.v1.EngineService.ListEngines]: <doc:EngineServiceClient/listEngines(request:)>
+  /// [google.cloud.discoveryengine.v1.EngineService.ListEngines]: <doc:EngineServiceClient/listEngines(request:options:)>
   public struct ListEnginesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable

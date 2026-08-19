@@ -2141,7 +2141,7 @@ public class CloudChannelServiceClient: Clients.CloudChannelServiceProtocol {
   /// [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
   /// resource, otherwise returns an error.
   ///
-  /// [google.cloud.channel.v1.CloudChannelService.CreateCustomerRepricingConfig]: <doc:CloudChannelServiceClient/createCustomerRepricingConfig(request:)>
+  /// [google.cloud.channel.v1.CloudChannelService.CreateCustomerRepricingConfig]: <doc:CloudChannelServiceClient/createCustomerRepricingConfig(request:options:)>
   /// [google.cloud.channel.v1.CustomerRepricingConfig]: <doc:CustomerRepricingConfig>
   /// [google.cloud.channel.v1.RepricingConfig.effective_invoice_month]: <doc:RepricingConfig/effectiveInvoiceMonth>
   ///
@@ -2376,7 +2376,7 @@ public class CloudChannelServiceClient: Clients.CloudChannelServiceProtocol {
   /// resource, otherwise returns an error.
   ///
   /// [google.cloud.channel.v1.ChannelPartnerRepricingConfig]: <doc:ChannelPartnerRepricingConfig>
-  /// [google.cloud.channel.v1.CloudChannelService.CreateChannelPartnerRepricingConfig]: <doc:CloudChannelServiceClient/createChannelPartnerRepricingConfig(request:)>
+  /// [google.cloud.channel.v1.CloudChannelService.CreateChannelPartnerRepricingConfig]: <doc:CloudChannelServiceClient/createChannelPartnerRepricingConfig(request:options:)>
   /// [google.cloud.channel.v1.RepricingConfig.effective_invoice_month]: <doc:RepricingConfig/effectiveInvoiceMonth>
   ///
   /// @Snippet(path: "CloudChannelService_UpdateChannelPartnerRepricingConfig")

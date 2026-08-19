@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [CloudChannelService.GetCustomer][google.cloud.channel.v1.CloudChannelService.GetCustomer].
 ///
-/// [google.cloud.channel.v1.CloudChannelService.GetCustomer]: <doc:CloudChannelServiceClient/getCustomer(request:)>
+/// [google.cloud.channel.v1.CloudChannelService.GetCustomer]: <doc:CloudChannelServiceClient/getCustomer(request:options:)>
 public struct GetCustomerRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

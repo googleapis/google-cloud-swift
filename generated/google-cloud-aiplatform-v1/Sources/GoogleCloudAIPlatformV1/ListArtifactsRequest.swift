@@ -21,7 +21,7 @@
   /// Request message for
   /// [MetadataService.ListArtifacts][google.cloud.aiplatform.v1.MetadataService.ListArtifacts].
   ///
-  /// [google.cloud.aiplatform.v1.MetadataService.ListArtifacts]: <doc:MetadataServiceClient/listArtifacts(request:)>
+  /// [google.cloud.aiplatform.v1.MetadataService.ListArtifacts]: <doc:MetadataServiceClient/listArtifacts(request:options:)>
   public struct ListArtifactsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {
@@ -42,7 +42,7 @@
     /// provided the page token. (Otherwise the request will fail with
     /// INVALID_ARGUMENT error.)
     ///
-    /// [google.cloud.aiplatform.v1.MetadataService.ListArtifacts]: <doc:MetadataServiceClient/listArtifacts(request:)>
+    /// [google.cloud.aiplatform.v1.MetadataService.ListArtifacts]: <doc:MetadataServiceClient/listArtifacts(request:options:)>
     public var pageToken: Swift.String = Swift.String()
 
     /// Filter specifying the boolean condition for the Artifacts to satisfy in

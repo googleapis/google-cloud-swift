@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [VmwareEngine.FetchNetworkPolicyExternalAddresses][google.cloud.vmwareengine.v1.VmwareEngine.FetchNetworkPolicyExternalAddresses]
 ///
-/// [google.cloud.vmwareengine.v1.VmwareEngine.FetchNetworkPolicyExternalAddresses]: <doc:VmwareEngineClient/fetchNetworkPolicyExternalAddresses(request:)>
+/// [google.cloud.vmwareengine.v1.VmwareEngine.FetchNetworkPolicyExternalAddresses]: <doc:VmwareEngineClient/fetchNetworkPolicyExternalAddresses(request:options:)>
 public struct FetchNetworkPolicyExternalAddressesRequest: Codable, Equatable, GoogleCloudWkt
     ._AnyPackable,
   Sendable

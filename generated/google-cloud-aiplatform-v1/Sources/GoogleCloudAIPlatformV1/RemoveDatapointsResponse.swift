@@ -21,7 +21,7 @@
   /// Response message for
   /// [IndexService.RemoveDatapoints][google.cloud.aiplatform.v1.IndexService.RemoveDatapoints]
   ///
-  /// [google.cloud.aiplatform.v1.IndexService.RemoveDatapoints]: <doc:IndexServiceClient/removeDatapoints(request:)>
+  /// [google.cloud.aiplatform.v1.IndexService.RemoveDatapoints]: <doc:IndexServiceClient/removeDatapoints(request:options:)>
   public struct RemoveDatapointsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

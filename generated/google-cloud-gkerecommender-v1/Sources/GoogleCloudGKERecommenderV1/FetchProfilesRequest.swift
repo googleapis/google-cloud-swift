@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [GkeInferenceQuickstart.FetchProfiles][google.cloud.gkerecommender.v1.GkeInferenceQuickstart.FetchProfiles].
 ///
-/// [google.cloud.gkerecommender.v1.GkeInferenceQuickstart.FetchProfiles]: <doc:GkeInferenceQuickstartClient/fetchProfiles(request:)>
+/// [google.cloud.gkerecommender.v1.GkeInferenceQuickstart.FetchProfiles]: <doc:GkeInferenceQuickstartClient/fetchProfiles(request:options:)>
 public struct FetchProfilesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
@@ -30,7 +30,7 @@ public struct FetchProfilesRequest: Codable, Equatable, GoogleCloudWkt._AnyPacka
   /// [GkeInferenceQuickstart.FetchModels][google.cloud.gkerecommender.v1.GkeInferenceQuickstart.FetchModels]
   /// to find available models.
   ///
-  /// [google.cloud.gkerecommender.v1.GkeInferenceQuickstart.FetchModels]: <doc:GkeInferenceQuickstartClient/fetchModels(request:)>
+  /// [google.cloud.gkerecommender.v1.GkeInferenceQuickstart.FetchModels]: <doc:GkeInferenceQuickstartClient/fetchModels(request:options:)>
   public var model: Swift.String = Swift.String()
 
   /// Optional. The model server to filter profiles by. If not provided, all
@@ -38,7 +38,7 @@ public struct FetchProfilesRequest: Codable, Equatable, GoogleCloudWkt._AnyPacka
   /// [GkeInferenceQuickstart.FetchModelServers][google.cloud.gkerecommender.v1.GkeInferenceQuickstart.FetchModelServers]
   /// to find available model servers for a given model.
   ///
-  /// [google.cloud.gkerecommender.v1.GkeInferenceQuickstart.FetchModelServers]: <doc:GkeInferenceQuickstartClient/fetchModelServers(request:)>
+  /// [google.cloud.gkerecommender.v1.GkeInferenceQuickstart.FetchModelServers]: <doc:GkeInferenceQuickstartClient/fetchModelServers(request:options:)>
   public var modelServer: Swift.String = Swift.String()
 
   /// Optional. The model server version to filter profiles by. If not provided,
@@ -46,7 +46,7 @@ public struct FetchProfilesRequest: Codable, Equatable, GoogleCloudWkt._AnyPacka
   /// [GkeInferenceQuickstart.FetchModelServerVersions][google.cloud.gkerecommender.v1.GkeInferenceQuickstart.FetchModelServerVersions]
   /// to find available versions for a given model and server.
   ///
-  /// [google.cloud.gkerecommender.v1.GkeInferenceQuickstart.FetchModelServerVersions]: <doc:GkeInferenceQuickstartClient/fetchModelServerVersions(request:)>
+  /// [google.cloud.gkerecommender.v1.GkeInferenceQuickstart.FetchModelServerVersions]: <doc:GkeInferenceQuickstartClient/fetchModelServerVersions(request:options:)>
   public var modelServerVersion: Swift.String = Swift.String()
 
   /// Optional. The performance requirements to filter profiles. Profiles that do

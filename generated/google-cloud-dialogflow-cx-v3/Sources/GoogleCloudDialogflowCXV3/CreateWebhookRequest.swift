@@ -21,7 +21,7 @@
   /// The request message for
   /// [Webhooks.CreateWebhook][google.cloud.dialogflow.cx.v3.Webhooks.CreateWebhook].
   ///
-  /// [google.cloud.dialogflow.cx.v3.Webhooks.CreateWebhook]: <doc:WebhooksClient/createWebhook(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Webhooks.CreateWebhook]: <doc:WebhooksClient/createWebhook(request:options:)>
   public struct CreateWebhookRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

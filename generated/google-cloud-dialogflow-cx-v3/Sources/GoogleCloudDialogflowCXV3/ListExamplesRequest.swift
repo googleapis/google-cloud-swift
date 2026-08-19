@@ -21,7 +21,7 @@
   /// The request message for
   /// [Examples.ListExamples][google.cloud.dialogflow.cx.v3.Examples.ListExamples].
   ///
-  /// [google.cloud.dialogflow.cx.v3.Examples.ListExamples]: <doc:ExamplesClient/listExamples(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Examples.ListExamples]: <doc:ExamplesClient/listExamples(request:options:)>
   public struct ListExamplesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

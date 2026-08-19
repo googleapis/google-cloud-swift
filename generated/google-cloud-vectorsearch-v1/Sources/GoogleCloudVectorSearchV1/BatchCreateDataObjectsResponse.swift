@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [DataObjectService.BatchCreateDataObjects][google.cloud.vectorsearch.v1.DataObjectService.BatchCreateDataObjects].
 ///
-/// [google.cloud.vectorsearch.v1.DataObjectService.BatchCreateDataObjects]: <doc:DataObjectServiceClient/batchCreateDataObjects(request:)>
+/// [google.cloud.vectorsearch.v1.DataObjectService.BatchCreateDataObjects]: <doc:DataObjectServiceClient/batchCreateDataObjects(request:options:)>
 public struct BatchCreateDataObjectsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

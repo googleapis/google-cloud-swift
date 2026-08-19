@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [ConversationalSearchService.ConversationalSearch][google.cloud.retail.v2.ConversationalSearchService.ConversationalSearch]
 /// method.
 ///
-/// [google.cloud.retail.v2.ConversationalSearchService.ConversationalSearch]: <doc:ConversationalSearchServiceClient/conversationalSearch(request:)>
+/// [google.cloud.retail.v2.ConversationalSearchService.ConversationalSearch]: <doc:ConversationalSearchServiceClient/conversationalSearch(request:options:)>
 public struct ConversationalSearchResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [GetHostProjectRegistration][google.cloud.apihub.v1.HostProjectRegistrationService.GetHostProjectRegistration]
 /// method's request.
 ///
-/// [google.cloud.apihub.v1.HostProjectRegistrationService.GetHostProjectRegistration]: <doc:HostProjectRegistrationServiceClient/getHostProjectRegistration(request:)>
+/// [google.cloud.apihub.v1.HostProjectRegistrationService.GetHostProjectRegistration]: <doc:HostProjectRegistrationServiceClient/getHostProjectRegistration(request:options:)>
 public struct GetHostProjectRegistrationRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [SetDefaultProcessorVersion][google.cloud.documentai.v1.DocumentProcessorService.SetDefaultProcessorVersion]
 /// method.
 ///
-/// [google.cloud.documentai.v1.DocumentProcessorService.SetDefaultProcessorVersion]: <doc:DocumentProcessorServiceClient/setDefaultProcessorVersion(request:)>
+/// [google.cloud.documentai.v1.DocumentProcessorService.SetDefaultProcessorVersion]: <doc:DocumentProcessorServiceClient/setDefaultProcessorVersion(request:options:)>
 public struct SetDefaultProcessorVersionMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

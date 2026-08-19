@@ -22,7 +22,7 @@
   /// Response message for
   /// [ModelService.ListModelVersions][google.cloud.aiplatform.v1.ModelService.ListModelVersions]
   ///
-  /// [google.cloud.aiplatform.v1.ModelService.ListModelVersions]: <doc:ModelServiceClient/listModelVersions(request:)>
+  /// [google.cloud.aiplatform.v1.ModelService.ListModelVersions]: <doc:ModelServiceClient/listModelVersions(request:options:)>
   public struct ListModelVersionsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable

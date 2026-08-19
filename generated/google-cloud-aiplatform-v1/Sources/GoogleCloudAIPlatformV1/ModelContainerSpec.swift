@@ -43,7 +43,7 @@
     /// prediction](https://cloud.google.com/vertex-ai/docs/predictions/pre-built-containers)
     /// in this field.
     ///
-    /// [google.cloud.aiplatform.v1.ModelService.UploadModel]: <doc:ModelServiceClient/uploadModel(request:)>
+    /// [google.cloud.aiplatform.v1.ModelService.UploadModel]: <doc:ModelServiceClient/uploadModel(request:options:)>
     public var imageUri: Swift.String = Swift.String()
 
     /// Immutable. Specifies the command that runs when the container starts. This
@@ -215,9 +215,9 @@
     ///   variable](https://cloud.google.com/vertex-ai/docs/predictions/custom-container-requirements#aip-variables).)
     ///
     /// [google.cloud.aiplatform.v1.DeployedModel.id]: <doc:DeployedModel/id>
-    /// [google.cloud.aiplatform.v1.EndpointService.DeployModel]: <doc:EndpointServiceClient/deployModel(request:)>
+    /// [google.cloud.aiplatform.v1.EndpointService.DeployModel]: <doc:EndpointServiceClient/deployModel(request:options:)>
     /// [google.cloud.aiplatform.v1.ModelContainerSpec.ports]: <doc:ModelContainerSpec/ports>
-    /// [google.cloud.aiplatform.v1.PredictionService.Predict]: <doc:PredictionServiceClient/predict(request:)>
+    /// [google.cloud.aiplatform.v1.PredictionService.Predict]: <doc:PredictionServiceClient/predict(request:options:)>
     public var predictRoute: Swift.String = Swift.String()
 
     /// Immutable. HTTP path on the container to send health checks to. Vertex AI
@@ -251,7 +251,7 @@
     ///   variable](https://cloud.google.com/vertex-ai/docs/predictions/custom-container-requirements#aip-variables).)
     ///
     /// [google.cloud.aiplatform.v1.DeployedModel.id]: <doc:DeployedModel/id>
-    /// [google.cloud.aiplatform.v1.EndpointService.DeployModel]: <doc:EndpointServiceClient/deployModel(request:)>
+    /// [google.cloud.aiplatform.v1.EndpointService.DeployModel]: <doc:EndpointServiceClient/deployModel(request:options:)>
     /// [google.cloud.aiplatform.v1.ModelContainerSpec.ports]: <doc:ModelContainerSpec/ports>
     public var healthRoute: Swift.String = Swift.String()
 

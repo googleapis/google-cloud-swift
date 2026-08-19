@@ -21,7 +21,7 @@
   extension NodeTypesClient {
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.nodeTypes.aggregatedList] method.
     ///
-    /// [google.cloud.compute.v1.nodeTypes.aggregatedList]: <doc:NodeTypesClient/aggregatedList(request:)>
+    /// [google.cloud.compute.v1.nodeTypes.aggregatedList]: <doc:NodeTypesClient/aggregatedList(request:options:)>
     public struct AggregatedListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -163,7 +163,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.nodeTypes.get] method.
     ///
-    /// [google.cloud.compute.v1.nodeTypes.get]: <doc:NodeTypesClient/`get`(request:)>
+    /// [google.cloud.compute.v1.nodeTypes.get]: <doc:NodeTypesClient/`get`(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -205,7 +205,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.nodeTypes.list] method.
     ///
-    /// [google.cloud.compute.v1.nodeTypes.list]: <doc:NodeTypesClient/list(request:)>
+    /// [google.cloud.compute.v1.nodeTypes.list]: <doc:NodeTypesClient/list(request:options:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {

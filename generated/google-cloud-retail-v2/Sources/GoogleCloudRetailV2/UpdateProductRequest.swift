@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [ProductService.UpdateProduct][google.cloud.retail.v2.ProductService.UpdateProduct]
 /// method.
 ///
-/// [google.cloud.retail.v2.ProductService.UpdateProduct]: <doc:ProductServiceClient/updateProduct(request:)>
+/// [google.cloud.retail.v2.ProductService.UpdateProduct]: <doc:ProductServiceClient/updateProduct(request:options:)>
 public struct UpdateProductRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

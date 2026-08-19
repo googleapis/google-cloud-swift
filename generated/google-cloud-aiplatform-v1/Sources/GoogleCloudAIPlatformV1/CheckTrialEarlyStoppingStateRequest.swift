@@ -21,7 +21,7 @@
   /// Request message for
   /// [VizierService.CheckTrialEarlyStoppingState][google.cloud.aiplatform.v1.VizierService.CheckTrialEarlyStoppingState].
   ///
-  /// [google.cloud.aiplatform.v1.VizierService.CheckTrialEarlyStoppingState]: <doc:VizierServiceClient/checkTrialEarlyStoppingState(request:)>
+  /// [google.cloud.aiplatform.v1.VizierService.CheckTrialEarlyStoppingState]: <doc:VizierServiceClient/checkTrialEarlyStoppingState(request:options:)>
   public struct CheckTrialEarlyStoppingStateRequest: Codable, Equatable, GoogleCloudWkt
       ._AnyPackable,
     Sendable

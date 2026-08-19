@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [google.bigtable.admin.v2.BigtableTableAdmin.ListAuthorizedViews][google.bigtable.admin.v2.BigtableTableAdmin.ListAuthorizedViews]
 ///
-/// [google.bigtable.admin.v2.BigtableTableAdmin.ListAuthorizedViews]: <doc:BigtableTableAdminClient/listAuthorizedViews(request:)>
+/// [google.bigtable.admin.v2.BigtableTableAdmin.ListAuthorizedViews]: <doc:BigtableTableAdminClient/listAuthorizedViews(request:options:)>
 public struct ListAuthorizedViewsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

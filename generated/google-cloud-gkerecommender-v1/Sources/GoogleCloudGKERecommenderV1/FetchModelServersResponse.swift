@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [GkeInferenceQuickstart.FetchModelServers][google.cloud.gkerecommender.v1.GkeInferenceQuickstart.FetchModelServers].
 ///
-/// [google.cloud.gkerecommender.v1.GkeInferenceQuickstart.FetchModelServers]: <doc:GkeInferenceQuickstartClient/fetchModelServers(request:)>
+/// [google.cloud.gkerecommender.v1.GkeInferenceQuickstart.FetchModelServers]: <doc:GkeInferenceQuickstartClient/fetchModelServers(request:options:)>
 public struct FetchModelServersResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

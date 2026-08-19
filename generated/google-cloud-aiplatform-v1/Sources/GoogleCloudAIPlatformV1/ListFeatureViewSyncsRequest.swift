@@ -21,7 +21,7 @@
   /// Request message for
   /// [FeatureOnlineStoreAdminService.ListFeatureViewSyncs][google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService.ListFeatureViewSyncs].
   ///
-  /// [google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService.ListFeatureViewSyncs]: <doc:FeatureOnlineStoreAdminServiceClient/listFeatureViewSyncs(request:)>
+  /// [google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService.ListFeatureViewSyncs]: <doc:FeatureOnlineStoreAdminServiceClient/listFeatureViewSyncs(request:options:)>
   public struct ListFeatureViewSyncsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {
@@ -56,7 +56,7 @@
     /// [FeatureOnlineStoreAdminService.ListFeatureViewSyncs][google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService.ListFeatureViewSyncs]
     /// must match the call that provided the page token.
     ///
-    /// [google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService.ListFeatureViewSyncs]: <doc:FeatureOnlineStoreAdminServiceClient/listFeatureViewSyncs(request:)>
+    /// [google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService.ListFeatureViewSyncs]: <doc:FeatureOnlineStoreAdminServiceClient/listFeatureViewSyncs(request:options:)>
     public var pageToken: Swift.String = Swift.String()
 
     /// A comma-separated list of fields to order by, sorted in ascending order.

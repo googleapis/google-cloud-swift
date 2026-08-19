@@ -21,7 +21,7 @@
   /// The request message for
   /// [TestCases.ImportTestCases][google.cloud.dialogflow.cx.v3.TestCases.ImportTestCases].
   ///
-  /// [google.cloud.dialogflow.cx.v3.TestCases.ImportTestCases]: <doc:TestCasesClient/importTestCases(request:)>
+  /// [google.cloud.dialogflow.cx.v3.TestCases.ImportTestCases]: <doc:TestCasesClient/importTestCases(request:options:)>
   public struct ImportTestCasesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

@@ -37,7 +37,7 @@ public struct ListSkuGroupBillableSkusRequest: Codable, Equatable, GoogleCloudWk
   /// [CloudChannelService.ListSkuGroupBillableSkus][google.cloud.channel.v1.CloudChannelService.ListSkuGroupBillableSkus]
   /// call.
   ///
-  /// [google.cloud.channel.v1.CloudChannelService.ListSkuGroupBillableSkus]: <doc:CloudChannelServiceClient/listSkuGroupBillableSkus(request:)>
+  /// [google.cloud.channel.v1.CloudChannelService.ListSkuGroupBillableSkus]: <doc:CloudChannelServiceClient/listSkuGroupBillableSkus(request:options:)>
   /// [google.cloud.channel.v1.ListSkuGroupBillableSkusResponse.next_page_token]: <doc:ListSkuGroupBillableSkusResponse/nextPageToken>
   public var pageToken: Swift.String = Swift.String()
 

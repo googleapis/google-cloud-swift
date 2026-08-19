@@ -22,7 +22,7 @@
   /// Response message for
   /// [DatasetService.ListAnnotations][google.cloud.aiplatform.v1.DatasetService.ListAnnotations].
   ///
-  /// [google.cloud.aiplatform.v1.DatasetService.ListAnnotations]: <doc:DatasetServiceClient/listAnnotations(request:)>
+  /// [google.cloud.aiplatform.v1.DatasetService.ListAnnotations]: <doc:DatasetServiceClient/listAnnotations(request:options:)>
   public struct ListAnnotationsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable

@@ -21,7 +21,7 @@
   extension RegionZonesClient {
     /// Synthetic request message for the [list()][google.cloud.compute.v1.regionZones.list] method.
     ///
-    /// [google.cloud.compute.v1.regionZones.list]: <doc:RegionZonesClient/list(request:)>
+    /// [google.cloud.compute.v1.regionZones.list]: <doc:RegionZonesClient/list(request:options:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {

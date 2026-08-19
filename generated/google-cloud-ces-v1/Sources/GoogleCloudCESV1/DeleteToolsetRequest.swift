@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [AgentService.DeleteToolset][google.cloud.ces.v1.AgentService.DeleteToolset].
 ///
-/// [google.cloud.ces.v1.AgentService.DeleteToolset]: <doc:AgentServiceClient/deleteToolset(request:)>
+/// [google.cloud.ces.v1.AgentService.DeleteToolset]: <doc:AgentServiceClient/deleteToolset(request:options:)>
 public struct DeleteToolsetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

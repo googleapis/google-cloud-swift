@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [CreateRuntimeProjectAttachment][google.cloud.apihub.v1.RuntimeProjectAttachmentService.CreateRuntimeProjectAttachment]
 /// method's request.
 ///
-/// [google.cloud.apihub.v1.RuntimeProjectAttachmentService.CreateRuntimeProjectAttachment]: <doc:RuntimeProjectAttachmentServiceClient/createRuntimeProjectAttachment(request:)>
+/// [google.cloud.apihub.v1.RuntimeProjectAttachmentService.CreateRuntimeProjectAttachment]: <doc:RuntimeProjectAttachmentServiceClient/createRuntimeProjectAttachment(request:options:)>
 public struct CreateRuntimeProjectAttachmentRequest: Codable, Equatable, GoogleCloudWkt
     ._AnyPackable,
   Sendable

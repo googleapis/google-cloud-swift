@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// The request message for
 /// [RegistrationService.GetNamespace][google.cloud.servicedirectory.v1.RegistrationService.GetNamespace].
 ///
-/// [google.cloud.servicedirectory.v1.RegistrationService.GetNamespace]: <doc:RegistrationServiceClient/getNamespace(request:)>
+/// [google.cloud.servicedirectory.v1.RegistrationService.GetNamespace]: <doc:RegistrationServiceClient/getNamespace(request:options:)>
 public struct GetNamespaceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

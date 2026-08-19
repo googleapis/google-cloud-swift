@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// The request for
 /// [RestoreTable][google.bigtable.admin.v2.BigtableTableAdmin.RestoreTable].
 ///
-/// [google.bigtable.admin.v2.BigtableTableAdmin.RestoreTable]: <doc:BigtableTableAdminClient/restoreTable(request:)>
+/// [google.bigtable.admin.v2.BigtableTableAdmin.RestoreTable]: <doc:BigtableTableAdminClient/restoreTable(request:options:)>
 public struct RestoreTableRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

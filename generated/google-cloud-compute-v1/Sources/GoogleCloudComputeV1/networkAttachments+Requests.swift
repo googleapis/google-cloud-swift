@@ -21,7 +21,7 @@
   extension NetworkAttachmentsClient {
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.networkAttachments.aggregatedList] method.
     ///
-    /// [google.cloud.compute.v1.networkAttachments.aggregatedList]: <doc:NetworkAttachmentsClient/aggregatedList(request:)>
+    /// [google.cloud.compute.v1.networkAttachments.aggregatedList]: <doc:NetworkAttachmentsClient/aggregatedList(request:options:)>
     public struct AggregatedListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -164,7 +164,7 @@
 
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.networkAttachments.delete] method.
     ///
-    /// [google.cloud.compute.v1.networkAttachments.delete]: <doc:NetworkAttachmentsClient/delete(request:)>
+    /// [google.cloud.compute.v1.networkAttachments.delete]: <doc:NetworkAttachmentsClient/delete(request:options:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -222,7 +222,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.networkAttachments.get] method.
     ///
-    /// [google.cloud.compute.v1.networkAttachments.get]: <doc:NetworkAttachmentsClient/`get`(request:)>
+    /// [google.cloud.compute.v1.networkAttachments.get]: <doc:NetworkAttachmentsClient/`get`(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -264,7 +264,7 @@
 
     /// Synthetic request message for the [getIamPolicy()][google.cloud.compute.v1.networkAttachments.getIamPolicy] method.
     ///
-    /// [google.cloud.compute.v1.networkAttachments.getIamPolicy]: <doc:NetworkAttachmentsClient/getIamPolicy(request:)>
+    /// [google.cloud.compute.v1.networkAttachments.getIamPolicy]: <doc:NetworkAttachmentsClient/getIamPolicy(request:options:)>
     public struct GetIamPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -309,7 +309,7 @@
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.networkAttachments.insert] method.
     ///
-    /// [google.cloud.compute.v1.networkAttachments.insert]: <doc:NetworkAttachmentsClient/insert(request:)>
+    /// [google.cloud.compute.v1.networkAttachments.insert]: <doc:NetworkAttachmentsClient/insert(request:options:)>
     public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -337,7 +337,7 @@
 
       /// Synthetic request body field for the [insert()][google.cloud.compute.v1.networkAttachments.insert] method.
       ///
-      /// [google.cloud.compute.v1.networkAttachments.insert]: <doc:NetworkAttachmentsClient/insert(request:)>
+      /// [google.cloud.compute.v1.networkAttachments.insert]: <doc:NetworkAttachmentsClient/insert(request:options:)>
       public var body: NetworkAttachment? = nil
 
       /// Initialize a new instance of `InsertRequest`.
@@ -369,7 +369,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.networkAttachments.list] method.
     ///
-    /// [google.cloud.compute.v1.networkAttachments.list]: <doc:NetworkAttachmentsClient/list(request:)>
+    /// [google.cloud.compute.v1.networkAttachments.list]: <doc:NetworkAttachmentsClient/list(request:options:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -501,7 +501,7 @@
 
     /// Synthetic request message for the [patch()][google.cloud.compute.v1.networkAttachments.patch] method.
     ///
-    /// [google.cloud.compute.v1.networkAttachments.patch]: <doc:NetworkAttachmentsClient/patch(request:)>
+    /// [google.cloud.compute.v1.networkAttachments.patch]: <doc:NetworkAttachmentsClient/patch(request:options:)>
     public struct PatchRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -532,7 +532,7 @@
 
       /// Synthetic request body field for the [patch()][google.cloud.compute.v1.networkAttachments.patch] method.
       ///
-      /// [google.cloud.compute.v1.networkAttachments.patch]: <doc:NetworkAttachmentsClient/patch(request:)>
+      /// [google.cloud.compute.v1.networkAttachments.patch]: <doc:NetworkAttachmentsClient/patch(request:options:)>
       public var body: NetworkAttachment? = nil
 
       /// Initialize a new instance of `PatchRequest`.
@@ -564,7 +564,7 @@
 
     /// Synthetic request message for the [setIamPolicy()][google.cloud.compute.v1.networkAttachments.setIamPolicy] method.
     ///
-    /// [google.cloud.compute.v1.networkAttachments.setIamPolicy]: <doc:NetworkAttachmentsClient/setIamPolicy(request:)>
+    /// [google.cloud.compute.v1.networkAttachments.setIamPolicy]: <doc:NetworkAttachmentsClient/setIamPolicy(request:options:)>
     public struct SetIamPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -579,7 +579,7 @@
 
       /// Synthetic request body field for the [setIamPolicy()][google.cloud.compute.v1.networkAttachments.setIamPolicy] method.
       ///
-      /// [google.cloud.compute.v1.networkAttachments.setIamPolicy]: <doc:NetworkAttachmentsClient/setIamPolicy(request:)>
+      /// [google.cloud.compute.v1.networkAttachments.setIamPolicy]: <doc:NetworkAttachmentsClient/setIamPolicy(request:options:)>
       public var body: RegionSetPolicyRequest? = nil
 
       /// Initialize a new instance of `SetIamPolicyRequest`.
@@ -611,7 +611,7 @@
 
     /// Synthetic request message for the [testIamPermissions()][google.cloud.compute.v1.networkAttachments.testIamPermissions] method.
     ///
-    /// [google.cloud.compute.v1.networkAttachments.testIamPermissions]: <doc:NetworkAttachmentsClient/testIamPermissions(request:)>
+    /// [google.cloud.compute.v1.networkAttachments.testIamPermissions]: <doc:NetworkAttachmentsClient/testIamPermissions(request:options:)>
     public struct TestIamPermissionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -626,7 +626,7 @@
 
       /// Synthetic request body field for the [testIamPermissions()][google.cloud.compute.v1.networkAttachments.testIamPermissions] method.
       ///
-      /// [google.cloud.compute.v1.networkAttachments.testIamPermissions]: <doc:NetworkAttachmentsClient/testIamPermissions(request:)>
+      /// [google.cloud.compute.v1.networkAttachments.testIamPermissions]: <doc:NetworkAttachmentsClient/testIamPermissions(request:options:)>
       public var body: TestPermissionsRequest? = nil
 
       /// Initialize a new instance of `TestIamPermissionsRequest`.

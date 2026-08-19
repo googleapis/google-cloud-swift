@@ -21,7 +21,7 @@
   /// Request message for
   /// [GenAiTuningService.ListTuningJobs][google.cloud.aiplatform.v1.GenAiTuningService.ListTuningJobs].
   ///
-  /// [google.cloud.aiplatform.v1.GenAiTuningService.ListTuningJobs]: <doc:GenAiTuningServiceClient/listTuningJobs(request:)>
+  /// [google.cloud.aiplatform.v1.GenAiTuningService.ListTuningJobs]: <doc:GenAiTuningServiceClient/listTuningJobs(request:options:)>
   public struct ListTuningJobsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

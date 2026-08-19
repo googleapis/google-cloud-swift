@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [VmwareEngine.CreateExternalAccessRule][google.cloud.vmwareengine.v1.VmwareEngine.CreateExternalAccessRule]
 ///
-/// [google.cloud.vmwareengine.v1.VmwareEngine.CreateExternalAccessRule]: <doc:VmwareEngineClient/createExternalAccessRule(request:)>
+/// [google.cloud.vmwareengine.v1.VmwareEngine.CreateExternalAccessRule]: <doc:VmwareEngineClient/createExternalAccessRule(request:options:)>
 public struct CreateExternalAccessRuleRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

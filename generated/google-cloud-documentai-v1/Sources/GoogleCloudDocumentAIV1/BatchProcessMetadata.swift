@@ -21,7 +21,7 @@ import GoogleRpc
 /// The long-running operation metadata for
 /// [BatchProcessDocuments][google.cloud.documentai.v1.DocumentProcessorService.BatchProcessDocuments].
 ///
-/// [google.cloud.documentai.v1.DocumentProcessorService.BatchProcessDocuments]: <doc:DocumentProcessorServiceClient/batchProcessDocuments(request:)>
+/// [google.cloud.documentai.v1.DocumentProcessorService.BatchProcessDocuments]: <doc:DocumentProcessorServiceClient/batchProcessDocuments(request:options:)>
 public struct BatchProcessMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

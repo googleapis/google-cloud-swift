@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [GkeInferenceQuickstart.FetchBenchmarkingData][google.cloud.gkerecommender.v1.GkeInferenceQuickstart.FetchBenchmarkingData].
 ///
-/// [google.cloud.gkerecommender.v1.GkeInferenceQuickstart.FetchBenchmarkingData]: <doc:GkeInferenceQuickstartClient/fetchBenchmarkingData(request:)>
+/// [google.cloud.gkerecommender.v1.GkeInferenceQuickstart.FetchBenchmarkingData]: <doc:GkeInferenceQuickstartClient/fetchBenchmarkingData(request:options:)>
 public struct FetchBenchmarkingDataRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
@@ -28,7 +28,7 @@ public struct FetchBenchmarkingDataRequest: Codable, Equatable, GoogleCloudWkt._
   /// [GkeInferenceQuickstart.FetchProfiles][google.cloud.gkerecommender.v1.GkeInferenceQuickstart.FetchProfiles]
   /// to find valid configurations.
   ///
-  /// [google.cloud.gkerecommender.v1.GkeInferenceQuickstart.FetchProfiles]: <doc:GkeInferenceQuickstartClient/fetchProfiles(request:)>
+  /// [google.cloud.gkerecommender.v1.GkeInferenceQuickstart.FetchProfiles]: <doc:GkeInferenceQuickstartClient/fetchProfiles(request:options:)>
   public var modelServerInfo: ModelServerInfo? = nil
 
   /// Optional. The instance type to filter benchmarking data. Instance types are
@@ -37,7 +37,7 @@ public struct FetchBenchmarkingDataRequest: Codable, Equatable, GoogleCloudWkt._
   /// [GkeInferenceQuickstart.FetchProfiles][google.cloud.gkerecommender.v1.GkeInferenceQuickstart.FetchProfiles]
   /// to find available instance types.
   ///
-  /// [google.cloud.gkerecommender.v1.GkeInferenceQuickstart.FetchProfiles]: <doc:GkeInferenceQuickstartClient/fetchProfiles(request:)>
+  /// [google.cloud.gkerecommender.v1.GkeInferenceQuickstart.FetchProfiles]: <doc:GkeInferenceQuickstartClient/fetchProfiles(request:options:)>
   public var instanceType: Swift.String = Swift.String()
 
   /// Optional. The pricing model to use for the benchmarking data. Defaults to

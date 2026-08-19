@@ -21,7 +21,7 @@
   extension RegionDisksClient {
     /// Synthetic request message for the [addResourcePolicies()][google.cloud.compute.v1.regionDisks.addResourcePolicies] method.
     ///
-    /// [google.cloud.compute.v1.regionDisks.addResourcePolicies]: <doc:RegionDisksClient/addResourcePolicies(request:)>
+    /// [google.cloud.compute.v1.regionDisks.addResourcePolicies]: <doc:RegionDisksClient/addResourcePolicies(request:options:)>
     public struct AddResourcePoliciesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -51,7 +51,7 @@
 
       /// Synthetic request body field for the [addResourcePolicies()][google.cloud.compute.v1.regionDisks.addResourcePolicies] method.
       ///
-      /// [google.cloud.compute.v1.regionDisks.addResourcePolicies]: <doc:RegionDisksClient/addResourcePolicies(request:)>
+      /// [google.cloud.compute.v1.regionDisks.addResourcePolicies]: <doc:RegionDisksClient/addResourcePolicies(request:options:)>
       public var body: RegionDisksAddResourcePoliciesRequest? = nil
 
       /// Initialize a new instance of `AddResourcePoliciesRequest`.
@@ -83,7 +83,7 @@
 
     /// Synthetic request message for the [bulkInsert()][google.cloud.compute.v1.regionDisks.bulkInsert] method.
     ///
-    /// [google.cloud.compute.v1.regionDisks.bulkInsert]: <doc:RegionDisksClient/bulkInsert(request:)>
+    /// [google.cloud.compute.v1.regionDisks.bulkInsert]: <doc:RegionDisksClient/bulkInsert(request:options:)>
     public struct BulkInsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -110,7 +110,7 @@
 
       /// Synthetic request body field for the [bulkInsert()][google.cloud.compute.v1.regionDisks.bulkInsert] method.
       ///
-      /// [google.cloud.compute.v1.regionDisks.bulkInsert]: <doc:RegionDisksClient/bulkInsert(request:)>
+      /// [google.cloud.compute.v1.regionDisks.bulkInsert]: <doc:RegionDisksClient/bulkInsert(request:options:)>
       public var body: BulkInsertDiskResource? = nil
 
       /// Initialize a new instance of `BulkInsertRequest`.
@@ -142,7 +142,7 @@
 
     /// Synthetic request message for the [createSnapshot()][google.cloud.compute.v1.regionDisks.createSnapshot] method.
     ///
-    /// [google.cloud.compute.v1.regionDisks.createSnapshot]: <doc:RegionDisksClient/createSnapshot(request:)>
+    /// [google.cloud.compute.v1.regionDisks.createSnapshot]: <doc:RegionDisksClient/createSnapshot(request:options:)>
     public struct CreateSnapshotRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -172,7 +172,7 @@
 
       /// Synthetic request body field for the [createSnapshot()][google.cloud.compute.v1.regionDisks.createSnapshot] method.
       ///
-      /// [google.cloud.compute.v1.regionDisks.createSnapshot]: <doc:RegionDisksClient/createSnapshot(request:)>
+      /// [google.cloud.compute.v1.regionDisks.createSnapshot]: <doc:RegionDisksClient/createSnapshot(request:options:)>
       public var body: Snapshot? = nil
 
       /// Initialize a new instance of `CreateSnapshotRequest`.
@@ -204,7 +204,7 @@
 
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.regionDisks.delete] method.
     ///
-    /// [google.cloud.compute.v1.regionDisks.delete]: <doc:RegionDisksClient/delete(request:)>
+    /// [google.cloud.compute.v1.regionDisks.delete]: <doc:RegionDisksClient/delete(request:options:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -261,7 +261,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.regionDisks.get] method.
     ///
-    /// [google.cloud.compute.v1.regionDisks.get]: <doc:RegionDisksClient/`get`(request:)>
+    /// [google.cloud.compute.v1.regionDisks.get]: <doc:RegionDisksClient/`get`(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -303,7 +303,7 @@
 
     /// Synthetic request message for the [getIamPolicy()][google.cloud.compute.v1.regionDisks.getIamPolicy] method.
     ///
-    /// [google.cloud.compute.v1.regionDisks.getIamPolicy]: <doc:RegionDisksClient/getIamPolicy(request:)>
+    /// [google.cloud.compute.v1.regionDisks.getIamPolicy]: <doc:RegionDisksClient/getIamPolicy(request:options:)>
     public struct GetIamPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -348,7 +348,7 @@
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.regionDisks.insert] method.
     ///
-    /// [google.cloud.compute.v1.regionDisks.insert]: <doc:RegionDisksClient/insert(request:)>
+    /// [google.cloud.compute.v1.regionDisks.insert]: <doc:RegionDisksClient/insert(request:options:)>
     public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -378,7 +378,7 @@
 
       /// Synthetic request body field for the [insert()][google.cloud.compute.v1.regionDisks.insert] method.
       ///
-      /// [google.cloud.compute.v1.regionDisks.insert]: <doc:RegionDisksClient/insert(request:)>
+      /// [google.cloud.compute.v1.regionDisks.insert]: <doc:RegionDisksClient/insert(request:options:)>
       public var body: Disk? = nil
 
       /// Initialize a new instance of `InsertRequest`.
@@ -410,7 +410,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.regionDisks.list] method.
     ///
-    /// [google.cloud.compute.v1.regionDisks.list]: <doc:RegionDisksClient/list(request:)>
+    /// [google.cloud.compute.v1.regionDisks.list]: <doc:RegionDisksClient/list(request:options:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -542,7 +542,7 @@
 
     /// Synthetic request message for the [removeResourcePolicies()][google.cloud.compute.v1.regionDisks.removeResourcePolicies] method.
     ///
-    /// [google.cloud.compute.v1.regionDisks.removeResourcePolicies]: <doc:RegionDisksClient/removeResourcePolicies(request:)>
+    /// [google.cloud.compute.v1.regionDisks.removeResourcePolicies]: <doc:RegionDisksClient/removeResourcePolicies(request:options:)>
     public struct RemoveResourcePoliciesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -572,7 +572,7 @@
 
       /// Synthetic request body field for the [removeResourcePolicies()][google.cloud.compute.v1.regionDisks.removeResourcePolicies] method.
       ///
-      /// [google.cloud.compute.v1.regionDisks.removeResourcePolicies]: <doc:RegionDisksClient/removeResourcePolicies(request:)>
+      /// [google.cloud.compute.v1.regionDisks.removeResourcePolicies]: <doc:RegionDisksClient/removeResourcePolicies(request:options:)>
       public var body: RegionDisksRemoveResourcePoliciesRequest? = nil
 
       /// Initialize a new instance of `RemoveResourcePoliciesRequest`.
@@ -605,7 +605,7 @@
 
     /// Synthetic request message for the [resize()][google.cloud.compute.v1.regionDisks.resize] method.
     ///
-    /// [google.cloud.compute.v1.regionDisks.resize]: <doc:RegionDisksClient/resize(request:)>
+    /// [google.cloud.compute.v1.regionDisks.resize]: <doc:RegionDisksClient/resize(request:options:)>
     public struct ResizeRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -635,7 +635,7 @@
 
       /// Synthetic request body field for the [resize()][google.cloud.compute.v1.regionDisks.resize] method.
       ///
-      /// [google.cloud.compute.v1.regionDisks.resize]: <doc:RegionDisksClient/resize(request:)>
+      /// [google.cloud.compute.v1.regionDisks.resize]: <doc:RegionDisksClient/resize(request:options:)>
       public var body: RegionDisksResizeRequest? = nil
 
       /// Initialize a new instance of `ResizeRequest`.
@@ -667,7 +667,7 @@
 
     /// Synthetic request message for the [setIamPolicy()][google.cloud.compute.v1.regionDisks.setIamPolicy] method.
     ///
-    /// [google.cloud.compute.v1.regionDisks.setIamPolicy]: <doc:RegionDisksClient/setIamPolicy(request:)>
+    /// [google.cloud.compute.v1.regionDisks.setIamPolicy]: <doc:RegionDisksClient/setIamPolicy(request:options:)>
     public struct SetIamPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -682,7 +682,7 @@
 
       /// Synthetic request body field for the [setIamPolicy()][google.cloud.compute.v1.regionDisks.setIamPolicy] method.
       ///
-      /// [google.cloud.compute.v1.regionDisks.setIamPolicy]: <doc:RegionDisksClient/setIamPolicy(request:)>
+      /// [google.cloud.compute.v1.regionDisks.setIamPolicy]: <doc:RegionDisksClient/setIamPolicy(request:options:)>
       public var body: RegionSetPolicyRequest? = nil
 
       /// Initialize a new instance of `SetIamPolicyRequest`.
@@ -714,7 +714,7 @@
 
     /// Synthetic request message for the [setLabels()][google.cloud.compute.v1.regionDisks.setLabels] method.
     ///
-    /// [google.cloud.compute.v1.regionDisks.setLabels]: <doc:RegionDisksClient/setLabels(request:)>
+    /// [google.cloud.compute.v1.regionDisks.setLabels]: <doc:RegionDisksClient/setLabels(request:options:)>
     public struct SetLabelsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -744,7 +744,7 @@
 
       /// Synthetic request body field for the [setLabels()][google.cloud.compute.v1.regionDisks.setLabels] method.
       ///
-      /// [google.cloud.compute.v1.regionDisks.setLabels]: <doc:RegionDisksClient/setLabels(request:)>
+      /// [google.cloud.compute.v1.regionDisks.setLabels]: <doc:RegionDisksClient/setLabels(request:options:)>
       public var body: RegionSetLabelsRequest? = nil
 
       /// Initialize a new instance of `SetLabelsRequest`.
@@ -776,7 +776,7 @@
 
     /// Synthetic request message for the [startAsyncReplication()][google.cloud.compute.v1.regionDisks.startAsyncReplication] method.
     ///
-    /// [google.cloud.compute.v1.regionDisks.startAsyncReplication]: <doc:RegionDisksClient/startAsyncReplication(request:)>
+    /// [google.cloud.compute.v1.regionDisks.startAsyncReplication]: <doc:RegionDisksClient/startAsyncReplication(request:options:)>
     public struct StartAsyncReplicationRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -806,7 +806,7 @@
 
       /// Synthetic request body field for the [startAsyncReplication()][google.cloud.compute.v1.regionDisks.startAsyncReplication] method.
       ///
-      /// [google.cloud.compute.v1.regionDisks.startAsyncReplication]: <doc:RegionDisksClient/startAsyncReplication(request:)>
+      /// [google.cloud.compute.v1.regionDisks.startAsyncReplication]: <doc:RegionDisksClient/startAsyncReplication(request:options:)>
       public var body: RegionDisksStartAsyncReplicationRequest? = nil
 
       /// Initialize a new instance of `StartAsyncReplicationRequest`.
@@ -839,7 +839,7 @@
 
     /// Synthetic request message for the [stopAsyncReplication()][google.cloud.compute.v1.regionDisks.stopAsyncReplication] method.
     ///
-    /// [google.cloud.compute.v1.regionDisks.stopAsyncReplication]: <doc:RegionDisksClient/stopAsyncReplication(request:)>
+    /// [google.cloud.compute.v1.regionDisks.stopAsyncReplication]: <doc:RegionDisksClient/stopAsyncReplication(request:options:)>
     public struct StopAsyncReplicationRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -896,7 +896,7 @@
 
     /// Synthetic request message for the [stopGroupAsyncReplication()][google.cloud.compute.v1.regionDisks.stopGroupAsyncReplication] method.
     ///
-    /// [google.cloud.compute.v1.regionDisks.stopGroupAsyncReplication]: <doc:RegionDisksClient/stopGroupAsyncReplication(request:)>
+    /// [google.cloud.compute.v1.regionDisks.stopGroupAsyncReplication]: <doc:RegionDisksClient/stopGroupAsyncReplication(request:options:)>
     public struct StopGroupAsyncReplicationRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -924,7 +924,7 @@
 
       /// Synthetic request body field for the [stopGroupAsyncReplication()][google.cloud.compute.v1.regionDisks.stopGroupAsyncReplication] method.
       ///
-      /// [google.cloud.compute.v1.regionDisks.stopGroupAsyncReplication]: <doc:RegionDisksClient/stopGroupAsyncReplication(request:)>
+      /// [google.cloud.compute.v1.regionDisks.stopGroupAsyncReplication]: <doc:RegionDisksClient/stopGroupAsyncReplication(request:options:)>
       public var body: DisksStopGroupAsyncReplicationResource? = nil
 
       /// Initialize a new instance of `StopGroupAsyncReplicationRequest`.
@@ -957,7 +957,7 @@
 
     /// Synthetic request message for the [testIamPermissions()][google.cloud.compute.v1.regionDisks.testIamPermissions] method.
     ///
-    /// [google.cloud.compute.v1.regionDisks.testIamPermissions]: <doc:RegionDisksClient/testIamPermissions(request:)>
+    /// [google.cloud.compute.v1.regionDisks.testIamPermissions]: <doc:RegionDisksClient/testIamPermissions(request:options:)>
     public struct TestIamPermissionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -972,7 +972,7 @@
 
       /// Synthetic request body field for the [testIamPermissions()][google.cloud.compute.v1.regionDisks.testIamPermissions] method.
       ///
-      /// [google.cloud.compute.v1.regionDisks.testIamPermissions]: <doc:RegionDisksClient/testIamPermissions(request:)>
+      /// [google.cloud.compute.v1.regionDisks.testIamPermissions]: <doc:RegionDisksClient/testIamPermissions(request:options:)>
       public var body: TestPermissionsRequest? = nil
 
       /// Initialize a new instance of `TestIamPermissionsRequest`.
@@ -1004,7 +1004,7 @@
 
     /// Synthetic request message for the [update()][google.cloud.compute.v1.regionDisks.update] method.
     ///
-    /// [google.cloud.compute.v1.regionDisks.update]: <doc:RegionDisksClient/update(request:)>
+    /// [google.cloud.compute.v1.regionDisks.update]: <doc:RegionDisksClient/update(request:options:)>
     public struct UpdateRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -1039,7 +1039,7 @@
 
       /// Synthetic request body field for the [update()][google.cloud.compute.v1.regionDisks.update] method.
       ///
-      /// [google.cloud.compute.v1.regionDisks.update]: <doc:RegionDisksClient/update(request:)>
+      /// [google.cloud.compute.v1.regionDisks.update]: <doc:RegionDisksClient/update(request:options:)>
       public var body: Disk? = nil
 
       /// Initialize a new instance of `UpdateRequest`.
@@ -1071,7 +1071,7 @@
 
     /// Synthetic request message for the [updateKmsKey()][google.cloud.compute.v1.regionDisks.updateKmsKey] method.
     ///
-    /// [google.cloud.compute.v1.regionDisks.updateKmsKey]: <doc:RegionDisksClient/updateKmsKey(request:)>
+    /// [google.cloud.compute.v1.regionDisks.updateKmsKey]: <doc:RegionDisksClient/updateKmsKey(request:options:)>
     public struct UpdateKmsKeyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -1101,7 +1101,7 @@
 
       /// Synthetic request body field for the [updateKmsKey()][google.cloud.compute.v1.regionDisks.updateKmsKey] method.
       ///
-      /// [google.cloud.compute.v1.regionDisks.updateKmsKey]: <doc:RegionDisksClient/updateKmsKey(request:)>
+      /// [google.cloud.compute.v1.regionDisks.updateKmsKey]: <doc:RegionDisksClient/updateKmsKey(request:options:)>
       public var body: RegionDiskUpdateKmsKeyRequest? = nil
 
       /// Initialize a new instance of `UpdateKmsKeyRequest`.

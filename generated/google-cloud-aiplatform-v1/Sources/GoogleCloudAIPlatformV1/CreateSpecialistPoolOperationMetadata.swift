@@ -21,7 +21,7 @@
   /// Runtime operation information for
   /// [SpecialistPoolService.CreateSpecialistPool][google.cloud.aiplatform.v1.SpecialistPoolService.CreateSpecialistPool].
   ///
-  /// [google.cloud.aiplatform.v1.SpecialistPoolService.CreateSpecialistPool]: <doc:SpecialistPoolServiceClient/createSpecialistPool(request:)>
+  /// [google.cloud.aiplatform.v1.SpecialistPoolService.CreateSpecialistPool]: <doc:SpecialistPoolServiceClient/createSpecialistPool(request:options:)>
   public struct CreateSpecialistPoolOperationMetadata: Codable, Equatable, GoogleCloudWkt
       ._AnyPackable,
     Sendable

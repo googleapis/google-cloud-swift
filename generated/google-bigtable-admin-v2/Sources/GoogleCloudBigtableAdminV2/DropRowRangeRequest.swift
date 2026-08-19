@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [google.bigtable.admin.v2.BigtableTableAdmin.DropRowRange][google.bigtable.admin.v2.BigtableTableAdmin.DropRowRange]
 ///
-/// [google.bigtable.admin.v2.BigtableTableAdmin.DropRowRange]: <doc:BigtableTableAdminClient/dropRowRange(request:)>
+/// [google.bigtable.admin.v2.BigtableTableAdmin.DropRowRange]: <doc:BigtableTableAdminClient/dropRowRange(request:options:)>
 public struct DropRowRangeRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

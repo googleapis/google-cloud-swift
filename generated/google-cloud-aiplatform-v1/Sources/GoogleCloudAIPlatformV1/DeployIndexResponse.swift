@@ -21,7 +21,7 @@
   /// Response message for
   /// [IndexEndpointService.DeployIndex][google.cloud.aiplatform.v1.IndexEndpointService.DeployIndex].
   ///
-  /// [google.cloud.aiplatform.v1.IndexEndpointService.DeployIndex]: <doc:IndexEndpointServiceClient/deployIndex(request:)>
+  /// [google.cloud.aiplatform.v1.IndexEndpointService.DeployIndex]: <doc:IndexEndpointServiceClient/deployIndex(request:options:)>
   public struct DeployIndexResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

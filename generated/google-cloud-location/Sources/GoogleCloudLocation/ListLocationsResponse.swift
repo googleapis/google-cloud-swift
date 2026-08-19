@@ -20,7 +20,7 @@ import GoogleCloudWkt
 
 /// The response message for [Locations.ListLocations][google.cloud.location.Locations.ListLocations].
 ///
-/// [google.cloud.location.Locations.ListLocations]: <doc:LocationsClient/listLocations(request:)>
+/// [google.cloud.location.Locations.ListLocations]: <doc:LocationsClient/listLocations(request:options:)>
 public struct ListLocationsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// The request for
 /// [google.datastore.admin.v1.DatastoreAdmin.ListIndexes][google.datastore.admin.v1.DatastoreAdmin.ListIndexes].
 ///
-/// [google.datastore.admin.v1.DatastoreAdmin.ListIndexes]: <doc:DatastoreAdminClient/listIndexes(request:)>
+/// [google.datastore.admin.v1.DatastoreAdmin.ListIndexes]: <doc:DatastoreAdminClient/listIndexes(request:options:)>
 public struct ListIndexesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

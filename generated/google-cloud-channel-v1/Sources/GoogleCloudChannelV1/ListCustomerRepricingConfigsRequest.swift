@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [CloudChannelService.ListCustomerRepricingConfigs][google.cloud.channel.v1.CloudChannelService.ListCustomerRepricingConfigs].
 ///
-/// [google.cloud.channel.v1.CloudChannelService.ListCustomerRepricingConfigs]: <doc:CloudChannelServiceClient/listCustomerRepricingConfigs(request:)>
+/// [google.cloud.channel.v1.CloudChannelService.ListCustomerRepricingConfigs]: <doc:CloudChannelServiceClient/listCustomerRepricingConfigs(request:options:)>
 public struct ListCustomerRepricingConfigsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
@@ -42,7 +42,7 @@ public struct ListCustomerRepricingConfigsRequest: Codable, Equatable, GoogleClo
   /// [CloudChannelService.ListCustomerRepricingConfigs][google.cloud.channel.v1.CloudChannelService.ListCustomerRepricingConfigs]
   /// call.
   ///
-  /// [google.cloud.channel.v1.CloudChannelService.ListCustomerRepricingConfigs]: <doc:CloudChannelServiceClient/listCustomerRepricingConfigs(request:)>
+  /// [google.cloud.channel.v1.CloudChannelService.ListCustomerRepricingConfigs]: <doc:CloudChannelServiceClient/listCustomerRepricingConfigs(request:options:)>
   /// [google.cloud.channel.v1.ListCustomerRepricingConfigsResponse.next_page_token]: <doc:ListCustomerRepricingConfigsResponse/nextPageToken>
   public var pageToken: Swift.String = Swift.String()
 

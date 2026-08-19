@@ -114,10 +114,10 @@ public class CatalogServiceClient: Clients.CatalogServiceProtocol {
   /// * UserEventService will only join events with products from branch
   ///   {newBranch}.
   ///
-  /// [google.cloud.retail.v2.ProductService.GetProduct]: <doc:ProductServiceClient/getProduct(request:)>
-  /// [google.cloud.retail.v2.ProductService.ListProducts]: <doc:ProductServiceClient/listProducts(request:)>
+  /// [google.cloud.retail.v2.ProductService.GetProduct]: <doc:ProductServiceClient/getProduct(request:options:)>
+  /// [google.cloud.retail.v2.ProductService.ListProducts]: <doc:ProductServiceClient/listProducts(request:options:)>
   /// [google.cloud.retail.v2.SearchRequest.branch]: <doc:SearchRequest/branch>
-  /// [google.cloud.retail.v2.SearchService.Search]: <doc:SearchServiceClient/search(request:)>
+  /// [google.cloud.retail.v2.SearchService.Search]: <doc:SearchServiceClient/search(request:options:)>
   ///
   /// @Snippet(path: "CatalogService_SetDefaultBranch")
   public func setDefaultBranch(
@@ -130,7 +130,7 @@ public class CatalogServiceClient: Clients.CatalogServiceProtocol {
   /// [CatalogService.SetDefaultBranch][google.cloud.retail.v2.CatalogService.SetDefaultBranch]
   /// method under a specified parent catalog.
   ///
-  /// [google.cloud.retail.v2.CatalogService.SetDefaultBranch]: <doc:CatalogServiceClient/setDefaultBranch(request:)>
+  /// [google.cloud.retail.v2.CatalogService.SetDefaultBranch]: <doc:CatalogServiceClient/setDefaultBranch(request:options:)>
   ///
   /// @Snippet(path: "CatalogService_GetDefaultBranch")
   public func getDefaultBranch(

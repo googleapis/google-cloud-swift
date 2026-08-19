@@ -22,7 +22,7 @@
   /// Response message for
   /// [JobService.SearchModelDeploymentMonitoringStatsAnomalies][google.cloud.aiplatform.v1.JobService.SearchModelDeploymentMonitoringStatsAnomalies].
   ///
-  /// [google.cloud.aiplatform.v1.JobService.SearchModelDeploymentMonitoringStatsAnomalies]: <doc:JobServiceClient/searchModelDeploymentMonitoringStatsAnomalies(request:)>
+  /// [google.cloud.aiplatform.v1.JobService.SearchModelDeploymentMonitoringStatsAnomalies]: <doc:JobServiceClient/searchModelDeploymentMonitoringStatsAnomalies(request:options:)>
   public struct SearchModelDeploymentMonitoringStatsAnomaliesResponse: Codable, Equatable,
     GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
@@ -40,7 +40,7 @@
     /// [JobService.SearchModelDeploymentMonitoringStatsAnomalies][google.cloud.aiplatform.v1.JobService.SearchModelDeploymentMonitoringStatsAnomalies]
     /// call.
     ///
-    /// [google.cloud.aiplatform.v1.JobService.SearchModelDeploymentMonitoringStatsAnomalies]: <doc:JobServiceClient/searchModelDeploymentMonitoringStatsAnomalies(request:)>
+    /// [google.cloud.aiplatform.v1.JobService.SearchModelDeploymentMonitoringStatsAnomalies]: <doc:JobServiceClient/searchModelDeploymentMonitoringStatsAnomalies(request:options:)>
     public var nextPageToken: Swift.String = Swift.String()
 
     /// Initialize a new instance of `SearchModelDeploymentMonitoringStatsAnomaliesResponse`.

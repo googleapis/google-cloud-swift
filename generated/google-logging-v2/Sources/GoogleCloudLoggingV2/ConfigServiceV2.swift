@@ -670,7 +670,7 @@ public class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol {
   /// Router](https://cloud.google.com/logging/docs/routing/managed-encryption)
   /// for more information.
   ///
-  /// [google.logging.v2.ConfigServiceV2.UpdateCmekSettings]: <doc:ConfigServiceV2Client/updateCmekSettings(request:)>
+  /// [google.logging.v2.ConfigServiceV2.UpdateCmekSettings]: <doc:ConfigServiceV2Client/updateCmekSettings(request:options:)>
   ///
   /// @Snippet(path: "ConfigServiceV2_UpdateCmekSettings")
   public func updateCmekSettings(
@@ -714,7 +714,7 @@ public class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol {
   /// Router](https://cloud.google.com/logging/docs/routing/managed-encryption)
   /// for more information.
   ///
-  /// [google.logging.v2.ConfigServiceV2.UpdateSettings]: <doc:ConfigServiceV2Client/updateSettings(request:)>
+  /// [google.logging.v2.ConfigServiceV2.UpdateSettings]: <doc:ConfigServiceV2Client/updateSettings(request:options:)>
   ///
   /// @Snippet(path: "ConfigServiceV2_UpdateSettings")
   public func updateSettings(

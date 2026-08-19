@@ -26,7 +26,7 @@ import GoogleCloudWkt
 /// [RunTask][google.cloud.tasks.v2.CloudTasks.RunTask], will run a task even if
 /// the queue has reached its [RateLimits][google.cloud.tasks.v2.RateLimits].
 ///
-/// [google.cloud.tasks.v2.CloudTasks.RunTask]: <doc:CloudTasksClient/runTask(request:)>
+/// [google.cloud.tasks.v2.CloudTasks.RunTask]: <doc:CloudTasksClient/runTask(request:options:)>
 /// [google.cloud.tasks.v2.RateLimits]: <doc:RateLimits>
 public struct RateLimits: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
@@ -78,7 +78,7 @@ public struct RateLimits: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// is updated.
   ///
   ///
-  /// [google.cloud.tasks.v2.CloudTasks.UpdateQueue]: <doc:CloudTasksClient/updateQueue(request:)>
+  /// [google.cloud.tasks.v2.CloudTasks.UpdateQueue]: <doc:CloudTasksClient/updateQueue(request:options:)>
   /// [google.cloud.tasks.v2.RateLimits.max_dispatches_per_second]: <doc:RateLimits/maxDispatchesPerSecond>
   public var maxBurstSize: Swift.Int32 = Swift.Int32()
 

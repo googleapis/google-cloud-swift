@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [DataprocMetastore.ListBackups][google.cloud.metastore.v1.DataprocMetastore.ListBackups].
 ///
-/// [google.cloud.metastore.v1.DataprocMetastore.ListBackups]: <doc:DataprocMetastoreClient/listBackups(request:)>
+/// [google.cloud.metastore.v1.DataprocMetastore.ListBackups]: <doc:DataprocMetastoreClient/listBackups(request:options:)>
 public struct ListBackupsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

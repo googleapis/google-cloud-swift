@@ -269,7 +269,7 @@ public struct Product: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// [google.cloud.retail.v2.Product.Type.COLLECTION]: <doc:Product/Type_/collection>
   /// [google.cloud.retail.v2.Product.Type.PRIMARY]: <doc:Product/Type_/primary>
   /// [google.cloud.retail.v2.Product.Type.VARIANT]: <doc:Product/Type_/variant>
-  /// [google.cloud.retail.v2.SearchService.Search]: <doc:SearchServiceClient/search(request:)>
+  /// [google.cloud.retail.v2.SearchService.Search]: <doc:SearchServiceClient/search(request:options:)>
   public var availableTime: GoogleCloudWkt.Timestamp? = nil
 
   /// The online availability of the [Product][google.cloud.retail.v2.Product].
@@ -522,7 +522,7 @@ public struct Product: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// [google.cloud.retail.v2.Product]: <doc:Product>
   /// [google.cloud.retail.v2.Product.Type.PRIMARY]: <doc:Product/Type_/primary>
   /// [google.cloud.retail.v2.Product.primary_product_id]: <doc:Product/primaryProductId>
-  /// [google.cloud.retail.v2.ProductService.GetProduct]: <doc:ProductServiceClient/getProduct(request:)>
+  /// [google.cloud.retail.v2.ProductService.GetProduct]: <doc:ProductServiceClient/getProduct(request:options:)>
   public var variants: [Product] = []
 
   /// Output only. A list of local inventories specific to different places.
@@ -533,8 +533,8 @@ public struct Product: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// [ProductService.RemoveLocalInventories][google.cloud.retail.v2.ProductService.RemoveLocalInventories]
   /// APIs if fine-grained, high-volume updates are necessary.
   ///
-  /// [google.cloud.retail.v2.ProductService.AddLocalInventories]: <doc:ProductServiceClient/addLocalInventories(request:)>
-  /// [google.cloud.retail.v2.ProductService.RemoveLocalInventories]: <doc:ProductServiceClient/removeLocalInventories(request:)>
+  /// [google.cloud.retail.v2.ProductService.AddLocalInventories]: <doc:ProductServiceClient/addLocalInventories(request:options:)>
+  /// [google.cloud.retail.v2.ProductService.RemoveLocalInventories]: <doc:ProductServiceClient/removeLocalInventories(request:options:)>
   public var localInventories: [LocalInventory] = []
 
   public var expiration: OneOf_Expiration? = nil
@@ -1032,9 +1032,9 @@ public struct Product: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// [google.cloud.retail.v2.Product.Type.VARIANT]: <doc:Product/Type_/variant>
     /// [google.cloud.retail.v2.Product.expire_time]: <doc:Product/OneOf_Expiration/expireTime(_:)>
     /// [google.cloud.retail.v2.Product.ttl]: <doc:Product/OneOf_Expiration/ttl(_:)>
-    /// [google.cloud.retail.v2.ProductService.GetProduct]: <doc:ProductServiceClient/getProduct(request:)>
-    /// [google.cloud.retail.v2.ProductService.ListProducts]: <doc:ProductServiceClient/listProducts(request:)>
-    /// [google.cloud.retail.v2.SearchService.Search]: <doc:SearchServiceClient/search(request:)>
+    /// [google.cloud.retail.v2.ProductService.GetProduct]: <doc:ProductServiceClient/getProduct(request:options:)>
+    /// [google.cloud.retail.v2.ProductService.ListProducts]: <doc:ProductServiceClient/listProducts(request:options:)>
+    /// [google.cloud.retail.v2.SearchService.Search]: <doc:SearchServiceClient/search(request:options:)>
     indirect case ttl(GoogleCloudWkt.Duration?)
   }
 

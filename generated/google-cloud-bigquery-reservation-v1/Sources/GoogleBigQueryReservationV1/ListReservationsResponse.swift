@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// The response for
 /// [ReservationService.ListReservations][google.cloud.bigquery.reservation.v1.ReservationService.ListReservations].
 ///
-/// [google.cloud.bigquery.reservation.v1.ReservationService.ListReservations]: <doc:ReservationServiceClient/listReservations(request:)>
+/// [google.cloud.bigquery.reservation.v1.ReservationService.ListReservations]: <doc:ReservationServiceClient/listReservations(request:options:)>
 public struct ListReservationsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

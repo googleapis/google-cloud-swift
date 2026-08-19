@@ -23,8 +23,8 @@
   /// Request message for
   /// [FeatureRegistryService.DeleteFeature][google.cloud.aiplatform.v1.FeatureRegistryService.DeleteFeature].
   ///
-  /// [google.cloud.aiplatform.v1.FeatureRegistryService.DeleteFeature]: <doc:FeatureRegistryServiceClient/deleteFeature(request:)>
-  /// [google.cloud.aiplatform.v1.FeaturestoreService.DeleteFeature]: <doc:FeaturestoreServiceClient/deleteFeature(request:)>
+  /// [google.cloud.aiplatform.v1.FeatureRegistryService.DeleteFeature]: <doc:FeatureRegistryServiceClient/deleteFeature(request:options:)>
+  /// [google.cloud.aiplatform.v1.FeaturestoreService.DeleteFeature]: <doc:FeaturestoreServiceClient/deleteFeature(request:options:)>
   public struct DeleteFeatureRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

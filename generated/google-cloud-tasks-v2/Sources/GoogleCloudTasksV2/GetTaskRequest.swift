@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for getting a task using
 /// [GetTask][google.cloud.tasks.v2.CloudTasks.GetTask].
 ///
-/// [google.cloud.tasks.v2.CloudTasks.GetTask]: <doc:CloudTasksClient/getTask(request:)>
+/// [google.cloud.tasks.v2.CloudTasks.GetTask]: <doc:CloudTasksClient/getTask(request:options:)>
 public struct GetTaskRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

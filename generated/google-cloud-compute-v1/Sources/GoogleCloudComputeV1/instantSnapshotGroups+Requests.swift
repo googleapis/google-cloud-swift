@@ -21,7 +21,7 @@
   extension InstantSnapshotGroupsClient {
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.instantSnapshotGroups.delete] method.
     ///
-    /// [google.cloud.compute.v1.instantSnapshotGroups.delete]: <doc:InstantSnapshotGroupsClient/delete(request:)>
+    /// [google.cloud.compute.v1.instantSnapshotGroups.delete]: <doc:InstantSnapshotGroupsClient/delete(request:options:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -78,7 +78,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.instantSnapshotGroups.get] method.
     ///
-    /// [google.cloud.compute.v1.instantSnapshotGroups.get]: <doc:InstantSnapshotGroupsClient/`get`(request:)>
+    /// [google.cloud.compute.v1.instantSnapshotGroups.get]: <doc:InstantSnapshotGroupsClient/`get`(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -120,7 +120,7 @@
 
     /// Synthetic request message for the [getIamPolicy()][google.cloud.compute.v1.instantSnapshotGroups.getIamPolicy] method.
     ///
-    /// [google.cloud.compute.v1.instantSnapshotGroups.getIamPolicy]: <doc:InstantSnapshotGroupsClient/getIamPolicy(request:)>
+    /// [google.cloud.compute.v1.instantSnapshotGroups.getIamPolicy]: <doc:InstantSnapshotGroupsClient/getIamPolicy(request:options:)>
     public struct GetIamPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -166,7 +166,7 @@
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.instantSnapshotGroups.insert] method.
     ///
-    /// [google.cloud.compute.v1.instantSnapshotGroups.insert]: <doc:InstantSnapshotGroupsClient/insert(request:)>
+    /// [google.cloud.compute.v1.instantSnapshotGroups.insert]: <doc:InstantSnapshotGroupsClient/insert(request:options:)>
     public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -196,7 +196,7 @@
 
       /// Synthetic request body field for the [insert()][google.cloud.compute.v1.instantSnapshotGroups.insert] method.
       ///
-      /// [google.cloud.compute.v1.instantSnapshotGroups.insert]: <doc:InstantSnapshotGroupsClient/insert(request:)>
+      /// [google.cloud.compute.v1.instantSnapshotGroups.insert]: <doc:InstantSnapshotGroupsClient/insert(request:options:)>
       public var body: InstantSnapshotGroup? = nil
 
       /// Initialize a new instance of `InsertRequest`.
@@ -228,7 +228,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.instantSnapshotGroups.list] method.
     ///
-    /// [google.cloud.compute.v1.instantSnapshotGroups.list]: <doc:InstantSnapshotGroupsClient/list(request:)>
+    /// [google.cloud.compute.v1.instantSnapshotGroups.list]: <doc:InstantSnapshotGroupsClient/list(request:options:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -360,7 +360,7 @@
 
     /// Synthetic request message for the [setIamPolicy()][google.cloud.compute.v1.instantSnapshotGroups.setIamPolicy] method.
     ///
-    /// [google.cloud.compute.v1.instantSnapshotGroups.setIamPolicy]: <doc:InstantSnapshotGroupsClient/setIamPolicy(request:)>
+    /// [google.cloud.compute.v1.instantSnapshotGroups.setIamPolicy]: <doc:InstantSnapshotGroupsClient/setIamPolicy(request:options:)>
     public struct SetIamPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -375,7 +375,7 @@
 
       /// Synthetic request body field for the [setIamPolicy()][google.cloud.compute.v1.instantSnapshotGroups.setIamPolicy] method.
       ///
-      /// [google.cloud.compute.v1.instantSnapshotGroups.setIamPolicy]: <doc:InstantSnapshotGroupsClient/setIamPolicy(request:)>
+      /// [google.cloud.compute.v1.instantSnapshotGroups.setIamPolicy]: <doc:InstantSnapshotGroupsClient/setIamPolicy(request:options:)>
       public var body: ZoneSetPolicyRequest? = nil
 
       /// Initialize a new instance of `SetIamPolicyRequest`.
@@ -408,7 +408,7 @@
 
     /// Synthetic request message for the [testIamPermissions()][google.cloud.compute.v1.instantSnapshotGroups.testIamPermissions] method.
     ///
-    /// [google.cloud.compute.v1.instantSnapshotGroups.testIamPermissions]: <doc:InstantSnapshotGroupsClient/testIamPermissions(request:)>
+    /// [google.cloud.compute.v1.instantSnapshotGroups.testIamPermissions]: <doc:InstantSnapshotGroupsClient/testIamPermissions(request:options:)>
     public struct TestIamPermissionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -423,7 +423,7 @@
 
       /// Synthetic request body field for the [testIamPermissions()][google.cloud.compute.v1.instantSnapshotGroups.testIamPermissions] method.
       ///
-      /// [google.cloud.compute.v1.instantSnapshotGroups.testIamPermissions]: <doc:InstantSnapshotGroupsClient/testIamPermissions(request:)>
+      /// [google.cloud.compute.v1.instantSnapshotGroups.testIamPermissions]: <doc:InstantSnapshotGroupsClient/testIamPermissions(request:options:)>
       public var body: TestPermissionsRequest? = nil
 
       /// Initialize a new instance of `TestIamPermissionsRequest`.

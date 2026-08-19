@@ -21,7 +21,7 @@
   extension AutoscalersClient {
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.autoscalers.aggregatedList] method.
     ///
-    /// [google.cloud.compute.v1.autoscalers.aggregatedList]: <doc:AutoscalersClient/aggregatedList(request:)>
+    /// [google.cloud.compute.v1.autoscalers.aggregatedList]: <doc:AutoscalersClient/aggregatedList(request:options:)>
     public struct AggregatedListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -163,7 +163,7 @@
 
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.autoscalers.delete] method.
     ///
-    /// [google.cloud.compute.v1.autoscalers.delete]: <doc:AutoscalersClient/delete(request:)>
+    /// [google.cloud.compute.v1.autoscalers.delete]: <doc:AutoscalersClient/delete(request:options:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -220,7 +220,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.autoscalers.get] method.
     ///
-    /// [google.cloud.compute.v1.autoscalers.get]: <doc:AutoscalersClient/`get`(request:)>
+    /// [google.cloud.compute.v1.autoscalers.get]: <doc:AutoscalersClient/`get`(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -262,7 +262,7 @@
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.autoscalers.insert] method.
     ///
-    /// [google.cloud.compute.v1.autoscalers.insert]: <doc:AutoscalersClient/insert(request:)>
+    /// [google.cloud.compute.v1.autoscalers.insert]: <doc:AutoscalersClient/insert(request:options:)>
     public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -289,7 +289,7 @@
 
       /// Synthetic request body field for the [insert()][google.cloud.compute.v1.autoscalers.insert] method.
       ///
-      /// [google.cloud.compute.v1.autoscalers.insert]: <doc:AutoscalersClient/insert(request:)>
+      /// [google.cloud.compute.v1.autoscalers.insert]: <doc:AutoscalersClient/insert(request:options:)>
       public var body: Autoscaler? = nil
 
       /// Initialize a new instance of `InsertRequest`.
@@ -321,7 +321,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.autoscalers.list] method.
     ///
-    /// [google.cloud.compute.v1.autoscalers.list]: <doc:AutoscalersClient/list(request:)>
+    /// [google.cloud.compute.v1.autoscalers.list]: <doc:AutoscalersClient/list(request:options:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -453,7 +453,7 @@
 
     /// Synthetic request message for the [patch()][google.cloud.compute.v1.autoscalers.patch] method.
     ///
-    /// [google.cloud.compute.v1.autoscalers.patch]: <doc:AutoscalersClient/patch(request:)>
+    /// [google.cloud.compute.v1.autoscalers.patch]: <doc:AutoscalersClient/patch(request:options:)>
     public struct PatchRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -483,7 +483,7 @@
 
       /// Synthetic request body field for the [patch()][google.cloud.compute.v1.autoscalers.patch] method.
       ///
-      /// [google.cloud.compute.v1.autoscalers.patch]: <doc:AutoscalersClient/patch(request:)>
+      /// [google.cloud.compute.v1.autoscalers.patch]: <doc:AutoscalersClient/patch(request:options:)>
       public var body: Autoscaler? = nil
 
       /// Initialize a new instance of `PatchRequest`.
@@ -515,7 +515,7 @@
 
     /// Synthetic request message for the [testIamPermissions()][google.cloud.compute.v1.autoscalers.testIamPermissions] method.
     ///
-    /// [google.cloud.compute.v1.autoscalers.testIamPermissions]: <doc:AutoscalersClient/testIamPermissions(request:)>
+    /// [google.cloud.compute.v1.autoscalers.testIamPermissions]: <doc:AutoscalersClient/testIamPermissions(request:options:)>
     public struct TestIamPermissionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -530,7 +530,7 @@
 
       /// Synthetic request body field for the [testIamPermissions()][google.cloud.compute.v1.autoscalers.testIamPermissions] method.
       ///
-      /// [google.cloud.compute.v1.autoscalers.testIamPermissions]: <doc:AutoscalersClient/testIamPermissions(request:)>
+      /// [google.cloud.compute.v1.autoscalers.testIamPermissions]: <doc:AutoscalersClient/testIamPermissions(request:options:)>
       public var body: TestPermissionsRequest? = nil
 
       /// Initialize a new instance of `TestIamPermissionsRequest`.
@@ -562,7 +562,7 @@
 
     /// Synthetic request message for the [update()][google.cloud.compute.v1.autoscalers.update] method.
     ///
-    /// [google.cloud.compute.v1.autoscalers.update]: <doc:AutoscalersClient/update(request:)>
+    /// [google.cloud.compute.v1.autoscalers.update]: <doc:AutoscalersClient/update(request:options:)>
     public struct UpdateRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -592,7 +592,7 @@
 
       /// Synthetic request body field for the [update()][google.cloud.compute.v1.autoscalers.update] method.
       ///
-      /// [google.cloud.compute.v1.autoscalers.update]: <doc:AutoscalersClient/update(request:)>
+      /// [google.cloud.compute.v1.autoscalers.update]: <doc:AutoscalersClient/update(request:options:)>
       public var body: Autoscaler? = nil
 
       /// Initialize a new instance of `UpdateRequest`.

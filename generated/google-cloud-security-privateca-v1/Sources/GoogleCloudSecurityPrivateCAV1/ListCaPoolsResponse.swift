@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [CertificateAuthorityService.ListCaPools][google.cloud.security.privateca.v1.CertificateAuthorityService.ListCaPools].
 ///
-/// [google.cloud.security.privateca.v1.CertificateAuthorityService.ListCaPools]: <doc:CertificateAuthorityServiceClient/listCaPools(request:)>
+/// [google.cloud.security.privateca.v1.CertificateAuthorityService.ListCaPools]: <doc:CertificateAuthorityServiceClient/listCaPools(request:options:)>
 public struct ListCaPoolsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

@@ -21,7 +21,7 @@
   /// Request message for
   /// [MigrationService.BatchMigrateResources][google.cloud.aiplatform.v1.MigrationService.BatchMigrateResources].
   ///
-  /// [google.cloud.aiplatform.v1.MigrationService.BatchMigrateResources]: <doc:MigrationServiceClient/batchMigrateResources(request:)>
+  /// [google.cloud.aiplatform.v1.MigrationService.BatchMigrateResources]: <doc:MigrationServiceClient/batchMigrateResources(request:options:)>
   public struct BatchMigrateResourcesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

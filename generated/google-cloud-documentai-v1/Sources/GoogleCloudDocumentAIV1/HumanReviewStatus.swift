@@ -34,7 +34,7 @@ public struct HumanReviewStatus: Codable, Equatable, GoogleCloudWkt._AnyPackable
   /// the long-running operation returned by
   /// [ReviewDocument][google.cloud.documentai.v1.DocumentProcessorService.ReviewDocument].
   ///
-  /// [google.cloud.documentai.v1.DocumentProcessorService.ReviewDocument]: <doc:DocumentProcessorServiceClient/reviewDocument(request:)>
+  /// [google.cloud.documentai.v1.DocumentProcessorService.ReviewDocument]: <doc:DocumentProcessorServiceClient/reviewDocument(request:options:)>
   /// [google.cloud.documentai.v1.HumanReviewStatus.state]: <doc:HumanReviewStatus/state>
   public var humanReviewOperation: Swift.String = Swift.String()
 

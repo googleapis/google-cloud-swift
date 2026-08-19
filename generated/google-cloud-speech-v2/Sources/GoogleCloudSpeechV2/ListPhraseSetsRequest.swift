@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for the
 /// [ListPhraseSets][google.cloud.speech.v2.Speech.ListPhraseSets] method.
 ///
-/// [google.cloud.speech.v2.Speech.ListPhraseSets]: <doc:SpeechClient/listPhraseSets(request:)>
+/// [google.cloud.speech.v2.Speech.ListPhraseSets]: <doc:SpeechClient/listPhraseSets(request:options:)>
 public struct ListPhraseSetsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
@@ -41,7 +41,7 @@ public struct ListPhraseSetsRequest: Codable, Equatable, GoogleCloudWkt._AnyPack
   /// [ListPhraseSets][google.cloud.speech.v2.Speech.ListPhraseSets] must match
   /// the call that provided the page token.
   ///
-  /// [google.cloud.speech.v2.Speech.ListPhraseSets]: <doc:SpeechClient/listPhraseSets(request:)>
+  /// [google.cloud.speech.v2.Speech.ListPhraseSets]: <doc:SpeechClient/listPhraseSets(request:options:)>
   public var pageToken: Swift.String = Swift.String()
 
   /// Whether, or not, to show resources that have been deleted.

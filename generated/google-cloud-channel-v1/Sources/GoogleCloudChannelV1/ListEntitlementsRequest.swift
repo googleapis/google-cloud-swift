@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [CloudChannelService.ListEntitlements][google.cloud.channel.v1.CloudChannelService.ListEntitlements]
 ///
-/// [google.cloud.channel.v1.CloudChannelService.ListEntitlements]: <doc:CloudChannelServiceClient/listEntitlements(request:)>
+/// [google.cloud.channel.v1.CloudChannelService.ListEntitlements]: <doc:CloudChannelServiceClient/listEntitlements(request:options:)>
 public struct ListEntitlementsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
@@ -41,7 +41,7 @@ public struct ListEntitlementsRequest: Codable, Equatable, GoogleCloudWkt._AnyPa
   /// [CloudChannelService.ListEntitlements][google.cloud.channel.v1.CloudChannelService.ListEntitlements]
   /// call.
   ///
-  /// [google.cloud.channel.v1.CloudChannelService.ListEntitlements]: <doc:CloudChannelServiceClient/listEntitlements(request:)>
+  /// [google.cloud.channel.v1.CloudChannelService.ListEntitlements]: <doc:CloudChannelServiceClient/listEntitlements(request:options:)>
   /// [google.cloud.channel.v1.ListEntitlementsResponse.next_page_token]: <doc:ListEntitlementsResponse/nextPageToken>
   public var pageToken: Swift.String = Swift.String()
 

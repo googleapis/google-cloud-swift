@@ -21,7 +21,7 @@
   /// The request message for
   /// [ConversationProfiles.ClearSuggestionFeatureConfig][google.cloud.dialogflow.v2.ConversationProfiles.ClearSuggestionFeatureConfig].
   ///
-  /// [google.cloud.dialogflow.v2.ConversationProfiles.ClearSuggestionFeatureConfig]: <doc:ConversationProfilesClient/clearSuggestionFeatureConfig(request:)>
+  /// [google.cloud.dialogflow.v2.ConversationProfiles.ClearSuggestionFeatureConfig]: <doc:ConversationProfilesClient/clearSuggestionFeatureConfig(request:options:)>
   public struct ClearSuggestionFeatureConfigRequest: Codable, Equatable, GoogleCloudWkt
       ._AnyPackable,
     Sendable

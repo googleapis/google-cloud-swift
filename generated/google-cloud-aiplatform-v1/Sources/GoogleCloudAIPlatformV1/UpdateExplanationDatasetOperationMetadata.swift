@@ -21,7 +21,7 @@
   /// Runtime operation information for
   /// [ModelService.UpdateExplanationDataset][google.cloud.aiplatform.v1.ModelService.UpdateExplanationDataset].
   ///
-  /// [google.cloud.aiplatform.v1.ModelService.UpdateExplanationDataset]: <doc:ModelServiceClient/updateExplanationDataset(request:)>
+  /// [google.cloud.aiplatform.v1.ModelService.UpdateExplanationDataset]: <doc:ModelServiceClient/updateExplanationDataset(request:options:)>
   public struct UpdateExplanationDatasetOperationMetadata: Codable, Equatable, GoogleCloudWkt
       ._AnyPackable,
     Sendable

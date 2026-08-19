@@ -21,7 +21,7 @@
   /// The request message for
   /// [Flows.ImportFlow][google.cloud.dialogflow.cx.v3.Flows.ImportFlow].
   ///
-  /// [google.cloud.dialogflow.cx.v3.Flows.ImportFlow]: <doc:FlowsClient/importFlow(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Flows.ImportFlow]: <doc:FlowsClient/importFlow(request:options:)>
   public struct ImportFlowRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

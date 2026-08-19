@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// ListOrgPolicyViolationsPreviewsResponse is the response message for
 /// [OrgPolicyViolationsPreviewService.ListOrgPolicyViolationsPreviews][google.cloud.policysimulator.v1.OrgPolicyViolationsPreviewService.ListOrgPolicyViolationsPreviews].
 ///
-/// [google.cloud.policysimulator.v1.OrgPolicyViolationsPreviewService.ListOrgPolicyViolationsPreviews]: <doc:OrgPolicyViolationsPreviewServiceClient/listOrgPolicyViolationsPreviews(request:)>
+/// [google.cloud.policysimulator.v1.OrgPolicyViolationsPreviewService.ListOrgPolicyViolationsPreviews]: <doc:OrgPolicyViolationsPreviewServiceClient/listOrgPolicyViolationsPreviews(request:options:)>
 public struct ListOrgPolicyViolationsPreviewsResponse: Codable, Equatable, GoogleCloudWkt
     ._AnyPackable,
   GoogleCloudGax._PaginatedResponse,

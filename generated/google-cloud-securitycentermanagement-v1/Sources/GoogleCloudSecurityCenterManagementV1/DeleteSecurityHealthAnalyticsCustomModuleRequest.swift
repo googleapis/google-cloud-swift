@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [SecurityCenterManagement.DeleteSecurityHealthAnalyticsCustomModule][google.cloud.securitycentermanagement.v1.SecurityCenterManagement.DeleteSecurityHealthAnalyticsCustomModule].
 ///
-/// [google.cloud.securitycentermanagement.v1.SecurityCenterManagement.DeleteSecurityHealthAnalyticsCustomModule]: <doc:SecurityCenterManagementClient/deleteSecurityHealthAnalyticsCustomModule(request:)>
+/// [google.cloud.securitycentermanagement.v1.SecurityCenterManagement.DeleteSecurityHealthAnalyticsCustomModule]: <doc:SecurityCenterManagementClient/deleteSecurityHealthAnalyticsCustomModule(request:options:)>
 public struct DeleteSecurityHealthAnalyticsCustomModuleRequest: Codable, Equatable, GoogleCloudWkt
     ._AnyPackable,
   Sendable

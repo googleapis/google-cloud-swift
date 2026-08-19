@@ -21,7 +21,7 @@ import GoogleRpc
 /// Response for
 /// [VectorSearchService.ImportDataObjects][google.cloud.vectorsearch.v1.VectorSearchService.ImportDataObjects].
 ///
-/// [google.cloud.vectorsearch.v1.VectorSearchService.ImportDataObjects]: <doc:VectorSearchServiceClient/importDataObjects(request:)>
+/// [google.cloud.vectorsearch.v1.VectorSearchService.ImportDataObjects]: <doc:VectorSearchServiceClient/importDataObjects(request:options:)>
 public struct ImportDataObjectsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

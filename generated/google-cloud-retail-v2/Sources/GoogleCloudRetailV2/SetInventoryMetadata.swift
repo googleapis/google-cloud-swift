@@ -22,7 +22,7 @@ import GoogleCloudWkt
 /// [ProductService.SetInventory][google.cloud.retail.v2.ProductService.SetInventory]
 /// method.
 ///
-/// [google.cloud.retail.v2.ProductService.SetInventory]: <doc:ProductServiceClient/setInventory(request:)>
+/// [google.cloud.retail.v2.ProductService.SetInventory]: <doc:ProductServiceClient/setInventory(request:options:)>
 public struct SetInventoryMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

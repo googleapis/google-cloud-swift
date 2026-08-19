@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// The [ListExternalApis][google.cloud.apihub.v1.ApiHub.ListExternalApis]
 /// method's response.
 ///
-/// [google.cloud.apihub.v1.ApiHub.ListExternalApis]: <doc:ApiHubClient/listExternalApis(request:)>
+/// [google.cloud.apihub.v1.ApiHub.ListExternalApis]: <doc:ApiHubClient/listExternalApis(request:options:)>
 public struct ListExternalApisResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

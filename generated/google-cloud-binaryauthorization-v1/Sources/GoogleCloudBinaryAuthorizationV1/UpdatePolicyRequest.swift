@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [BinauthzManagementServiceV1.UpdatePolicy][google.cloud.binaryauthorization.v1.BinauthzManagementServiceV1.UpdatePolicy].
 ///
-/// [google.cloud.binaryauthorization.v1.BinauthzManagementServiceV1.UpdatePolicy]: <doc:BinauthzManagementServiceV1Client/updatePolicy(request:)>
+/// [google.cloud.binaryauthorization.v1.BinauthzManagementServiceV1.UpdatePolicy]: <doc:BinauthzManagementServiceV1Client/updatePolicy(request:options:)>
 public struct UpdatePolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

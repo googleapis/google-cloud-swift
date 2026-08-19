@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// The [ListDeployments][google.cloud.apihub.v1.ApiHub.ListDeployments] method's
 /// request.
 ///
-/// [google.cloud.apihub.v1.ApiHub.ListDeployments]: <doc:ApiHubClient/listDeployments(request:)>
+/// [google.cloud.apihub.v1.ApiHub.ListDeployments]: <doc:ApiHubClient/listDeployments(request:options:)>
 public struct ListDeploymentsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

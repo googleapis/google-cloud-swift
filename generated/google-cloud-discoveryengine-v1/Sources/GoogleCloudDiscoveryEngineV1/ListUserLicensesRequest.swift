@@ -21,7 +21,7 @@
   /// Request message for
   /// [UserLicenseService.ListUserLicenses][google.cloud.discoveryengine.v1.UserLicenseService.ListUserLicenses].
   ///
-  /// [google.cloud.discoveryengine.v1.UserLicenseService.ListUserLicenses]: <doc:UserLicenseServiceClient/listUserLicenses(request:)>
+  /// [google.cloud.discoveryengine.v1.UserLicenseService.ListUserLicenses]: <doc:UserLicenseServiceClient/listUserLicenses(request:options:)>
   public struct ListUserLicensesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

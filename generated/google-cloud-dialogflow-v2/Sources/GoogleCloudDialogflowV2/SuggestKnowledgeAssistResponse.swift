@@ -21,7 +21,7 @@
   /// The response message for
   /// [Participants.SuggestKnowledgeAssist][google.cloud.dialogflow.v2.Participants.SuggestKnowledgeAssist].
   ///
-  /// [google.cloud.dialogflow.v2.Participants.SuggestKnowledgeAssist]: <doc:ParticipantsClient/suggestKnowledgeAssist(request:)>
+  /// [google.cloud.dialogflow.v2.Participants.SuggestKnowledgeAssist]: <doc:ParticipantsClient/suggestKnowledgeAssist(request:options:)>
   public struct SuggestKnowledgeAssistResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

@@ -21,7 +21,7 @@
   /// Request message for
   /// [KnowledgeBases.UpdateKnowledgeBase][google.cloud.dialogflow.v2.KnowledgeBases.UpdateKnowledgeBase].
   ///
-  /// [google.cloud.dialogflow.v2.KnowledgeBases.UpdateKnowledgeBase]: <doc:KnowledgeBasesClient/updateKnowledgeBase(request:)>
+  /// [google.cloud.dialogflow.v2.KnowledgeBases.UpdateKnowledgeBase]: <doc:KnowledgeBasesClient/updateKnowledgeBase(request:options:)>
   public struct UpdateKnowledgeBaseRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

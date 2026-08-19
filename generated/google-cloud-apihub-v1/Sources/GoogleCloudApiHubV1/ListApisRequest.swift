@@ -19,7 +19,7 @@ import GoogleCloudWkt
 
 /// The [ListApis][google.cloud.apihub.v1.ApiHub.ListApis] method's request.
 ///
-/// [google.cloud.apihub.v1.ApiHub.ListApis]: <doc:ApiHubClient/listApis(request:)>
+/// [google.cloud.apihub.v1.ApiHub.ListApis]: <doc:ApiHubClient/listApis(request:options:)>
 public struct ListApisRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

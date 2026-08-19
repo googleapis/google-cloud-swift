@@ -25,7 +25,7 @@
   /// the google.longrunning.Operations.response field if the operation is
   /// successful.
   ///
-  /// [google.cloud.discoveryengine.v1.CompletionService.ImportCompletionSuggestions]: <doc:CompletionServiceClient/importCompletionSuggestions(request:)>
+  /// [google.cloud.discoveryengine.v1.CompletionService.ImportCompletionSuggestions]: <doc:CompletionServiceClient/importCompletionSuggestions(request:options:)>
   public struct ImportCompletionSuggestionsResponse: Codable, Equatable, GoogleCloudWkt
       ._AnyPackable,
     Sendable

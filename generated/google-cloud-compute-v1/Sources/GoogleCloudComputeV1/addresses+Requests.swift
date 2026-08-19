@@ -21,7 +21,7 @@
   extension AddressesClient {
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.addresses.aggregatedList] method.
     ///
-    /// [google.cloud.compute.v1.addresses.aggregatedList]: <doc:AddressesClient/aggregatedList(request:)>
+    /// [google.cloud.compute.v1.addresses.aggregatedList]: <doc:AddressesClient/aggregatedList(request:options:)>
     public struct AggregatedListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -163,7 +163,7 @@
 
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.addresses.delete] method.
     ///
-    /// [google.cloud.compute.v1.addresses.delete]: <doc:AddressesClient/delete(request:)>
+    /// [google.cloud.compute.v1.addresses.delete]: <doc:AddressesClient/delete(request:options:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -220,7 +220,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.addresses.get] method.
     ///
-    /// [google.cloud.compute.v1.addresses.get]: <doc:AddressesClient/`get`(request:)>
+    /// [google.cloud.compute.v1.addresses.get]: <doc:AddressesClient/`get`(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -262,7 +262,7 @@
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.addresses.insert] method.
     ///
-    /// [google.cloud.compute.v1.addresses.insert]: <doc:AddressesClient/insert(request:)>
+    /// [google.cloud.compute.v1.addresses.insert]: <doc:AddressesClient/insert(request:options:)>
     public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -289,7 +289,7 @@
 
       /// Synthetic request body field for the [insert()][google.cloud.compute.v1.addresses.insert] method.
       ///
-      /// [google.cloud.compute.v1.addresses.insert]: <doc:AddressesClient/insert(request:)>
+      /// [google.cloud.compute.v1.addresses.insert]: <doc:AddressesClient/insert(request:options:)>
       public var body: Address? = nil
 
       /// Initialize a new instance of `InsertRequest`.
@@ -321,7 +321,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.addresses.list] method.
     ///
-    /// [google.cloud.compute.v1.addresses.list]: <doc:AddressesClient/list(request:)>
+    /// [google.cloud.compute.v1.addresses.list]: <doc:AddressesClient/list(request:options:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -453,7 +453,7 @@
 
     /// Synthetic request message for the [move()][google.cloud.compute.v1.addresses.move] method.
     ///
-    /// [google.cloud.compute.v1.addresses.move]: <doc:AddressesClient/move(request:)>
+    /// [google.cloud.compute.v1.addresses.move]: <doc:AddressesClient/move(request:options:)>
     public struct MoveRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -483,7 +483,7 @@
 
       /// Synthetic request body field for the [move()][google.cloud.compute.v1.addresses.move] method.
       ///
-      /// [google.cloud.compute.v1.addresses.move]: <doc:AddressesClient/move(request:)>
+      /// [google.cloud.compute.v1.addresses.move]: <doc:AddressesClient/move(request:options:)>
       public var body: RegionAddressesMoveRequest? = nil
 
       /// Initialize a new instance of `MoveRequest`.
@@ -515,7 +515,7 @@
 
     /// Synthetic request message for the [setLabels()][google.cloud.compute.v1.addresses.setLabels] method.
     ///
-    /// [google.cloud.compute.v1.addresses.setLabels]: <doc:AddressesClient/setLabels(request:)>
+    /// [google.cloud.compute.v1.addresses.setLabels]: <doc:AddressesClient/setLabels(request:options:)>
     public struct SetLabelsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -545,7 +545,7 @@
 
       /// Synthetic request body field for the [setLabels()][google.cloud.compute.v1.addresses.setLabels] method.
       ///
-      /// [google.cloud.compute.v1.addresses.setLabels]: <doc:AddressesClient/setLabels(request:)>
+      /// [google.cloud.compute.v1.addresses.setLabels]: <doc:AddressesClient/setLabels(request:options:)>
       public var body: RegionSetLabelsRequest? = nil
 
       /// Initialize a new instance of `SetLabelsRequest`.
@@ -577,7 +577,7 @@
 
     /// Synthetic request message for the [testIamPermissions()][google.cloud.compute.v1.addresses.testIamPermissions] method.
     ///
-    /// [google.cloud.compute.v1.addresses.testIamPermissions]: <doc:AddressesClient/testIamPermissions(request:)>
+    /// [google.cloud.compute.v1.addresses.testIamPermissions]: <doc:AddressesClient/testIamPermissions(request:options:)>
     public struct TestIamPermissionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -592,7 +592,7 @@
 
       /// Synthetic request body field for the [testIamPermissions()][google.cloud.compute.v1.addresses.testIamPermissions] method.
       ///
-      /// [google.cloud.compute.v1.addresses.testIamPermissions]: <doc:AddressesClient/testIamPermissions(request:)>
+      /// [google.cloud.compute.v1.addresses.testIamPermissions]: <doc:AddressesClient/testIamPermissions(request:options:)>
       public var body: TestPermissionsRequest? = nil
 
       /// Initialize a new instance of `TestIamPermissionsRequest`.

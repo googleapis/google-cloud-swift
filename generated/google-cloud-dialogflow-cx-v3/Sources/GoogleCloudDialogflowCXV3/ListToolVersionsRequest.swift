@@ -21,7 +21,7 @@
   /// The request message for
   /// [Tools.ListToolVersions][google.cloud.dialogflow.cx.v3.Tools.ListToolVersions].
   ///
-  /// [google.cloud.dialogflow.cx.v3.Tools.ListToolVersions]: <doc:ToolsClient/listToolVersions(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Tools.ListToolVersions]: <doc:ToolsClient/listToolVersions(request:options:)>
   public struct ListToolVersionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

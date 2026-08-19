@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// The [UpdateExternalApi][google.cloud.apihub.v1.ApiHub.UpdateExternalApi]
 /// method's request.
 ///
-/// [google.cloud.apihub.v1.ApiHub.UpdateExternalApi]: <doc:ApiHubClient/updateExternalApi(request:)>
+/// [google.cloud.apihub.v1.ApiHub.UpdateExternalApi]: <doc:ApiHubClient/updateExternalApi(request:options:)>
 public struct UpdateExternalApiRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

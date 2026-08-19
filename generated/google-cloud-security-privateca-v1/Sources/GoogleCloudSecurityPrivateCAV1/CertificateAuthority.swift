@@ -559,7 +559,7 @@ public struct CertificateAuthority: Codable, Equatable, GoogleCloudWkt._AnyPacka
     ///
     /// [google.cloud.security.privateca.v1.CaPool]: <doc:CaPool>
     /// [google.cloud.security.privateca.v1.CertificateAuthority.expire_time]: <doc:CertificateAuthority/expireTime>
-    /// [google.cloud.security.privateca.v1.CertificateAuthorityService.UndeleteCertificateAuthority]: <doc:CertificateAuthorityServiceClient/undeleteCertificateAuthority(request:)>
+    /// [google.cloud.security.privateca.v1.CertificateAuthorityService.UndeleteCertificateAuthority]: <doc:CertificateAuthorityServiceClient/undeleteCertificateAuthority(request:options:)>
     case deleted
     /// Encodes an unknown integer value.
     ///

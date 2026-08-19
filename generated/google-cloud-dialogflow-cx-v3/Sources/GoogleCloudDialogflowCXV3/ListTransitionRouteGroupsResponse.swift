@@ -22,7 +22,7 @@
   /// The response message for
   /// [TransitionRouteGroups.ListTransitionRouteGroups][google.cloud.dialogflow.cx.v3.TransitionRouteGroups.ListTransitionRouteGroups].
   ///
-  /// [google.cloud.dialogflow.cx.v3.TransitionRouteGroups.ListTransitionRouteGroups]: <doc:TransitionRouteGroupsClient/listTransitionRouteGroups(request:)>
+  /// [google.cloud.dialogflow.cx.v3.TransitionRouteGroups.ListTransitionRouteGroups]: <doc:TransitionRouteGroupsClient/listTransitionRouteGroups(request:options:)>
   public struct ListTransitionRouteGroupsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable

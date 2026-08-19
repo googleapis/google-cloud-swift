@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [KeyManagementService.ListKeyRings][google.cloud.kms.v1.KeyManagementService.ListKeyRings].
 ///
-/// [google.cloud.kms.v1.KeyManagementService.ListKeyRings]: <doc:KeyManagementServiceClient/listKeyRings(request:)>
+/// [google.cloud.kms.v1.KeyManagementService.ListKeyRings]: <doc:KeyManagementServiceClient/listKeyRings(request:options:)>
 public struct ListKeyRingsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [VmwareEngine.GetDnsBindPermission][google.cloud.vmwareengine.v1.VmwareEngine.GetDnsBindPermission]
 ///
-/// [google.cloud.vmwareengine.v1.VmwareEngine.GetDnsBindPermission]: <doc:VmwareEngineClient/getDnsBindPermission(request:)>
+/// [google.cloud.vmwareengine.v1.VmwareEngine.GetDnsBindPermission]: <doc:VmwareEngineClient/getDnsBindPermission(request:options:)>
 public struct GetDnsBindPermissionRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

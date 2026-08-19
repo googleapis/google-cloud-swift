@@ -21,7 +21,7 @@
   extension RegionTargetHttpProxiesClient {
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.regionTargetHttpProxies.delete] method.
     ///
-    /// [google.cloud.compute.v1.regionTargetHttpProxies.delete]: <doc:RegionTargetHttpProxiesClient/delete(request:)>
+    /// [google.cloud.compute.v1.regionTargetHttpProxies.delete]: <doc:RegionTargetHttpProxiesClient/delete(request:options:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -78,7 +78,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.regionTargetHttpProxies.get] method.
     ///
-    /// [google.cloud.compute.v1.regionTargetHttpProxies.get]: <doc:RegionTargetHttpProxiesClient/`get`(request:)>
+    /// [google.cloud.compute.v1.regionTargetHttpProxies.get]: <doc:RegionTargetHttpProxiesClient/`get`(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -120,7 +120,7 @@
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.regionTargetHttpProxies.insert] method.
     ///
-    /// [google.cloud.compute.v1.regionTargetHttpProxies.insert]: <doc:RegionTargetHttpProxiesClient/insert(request:)>
+    /// [google.cloud.compute.v1.regionTargetHttpProxies.insert]: <doc:RegionTargetHttpProxiesClient/insert(request:options:)>
     public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -147,7 +147,7 @@
 
       /// Synthetic request body field for the [insert()][google.cloud.compute.v1.regionTargetHttpProxies.insert] method.
       ///
-      /// [google.cloud.compute.v1.regionTargetHttpProxies.insert]: <doc:RegionTargetHttpProxiesClient/insert(request:)>
+      /// [google.cloud.compute.v1.regionTargetHttpProxies.insert]: <doc:RegionTargetHttpProxiesClient/insert(request:options:)>
       public var body: TargetHttpProxy? = nil
 
       /// Initialize a new instance of `InsertRequest`.
@@ -179,7 +179,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.regionTargetHttpProxies.list] method.
     ///
-    /// [google.cloud.compute.v1.regionTargetHttpProxies.list]: <doc:RegionTargetHttpProxiesClient/list(request:)>
+    /// [google.cloud.compute.v1.regionTargetHttpProxies.list]: <doc:RegionTargetHttpProxiesClient/list(request:options:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -311,7 +311,7 @@
 
     /// Synthetic request message for the [setUrlMap()][google.cloud.compute.v1.regionTargetHttpProxies.setUrlMap] method.
     ///
-    /// [google.cloud.compute.v1.regionTargetHttpProxies.setUrlMap]: <doc:RegionTargetHttpProxiesClient/setUrlMap(request:)>
+    /// [google.cloud.compute.v1.regionTargetHttpProxies.setUrlMap]: <doc:RegionTargetHttpProxiesClient/setUrlMap(request:options:)>
     public struct SetUrlMapRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -341,7 +341,7 @@
 
       /// Synthetic request body field for the [setUrlMap()][google.cloud.compute.v1.regionTargetHttpProxies.setUrlMap] method.
       ///
-      /// [google.cloud.compute.v1.regionTargetHttpProxies.setUrlMap]: <doc:RegionTargetHttpProxiesClient/setUrlMap(request:)>
+      /// [google.cloud.compute.v1.regionTargetHttpProxies.setUrlMap]: <doc:RegionTargetHttpProxiesClient/setUrlMap(request:options:)>
       public var body: UrlMapReference? = nil
 
       /// Initialize a new instance of `SetUrlMapRequest`.

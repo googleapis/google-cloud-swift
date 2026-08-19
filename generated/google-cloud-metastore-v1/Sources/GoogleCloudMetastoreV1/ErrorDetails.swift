@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Error details in public error message for
 /// [DataprocMetastore.QueryMetadata][google.cloud.metastore.v1.DataprocMetastore.QueryMetadata].
 ///
-/// [google.cloud.metastore.v1.DataprocMetastore.QueryMetadata]: <doc:DataprocMetastoreClient/queryMetadata(request:)>
+/// [google.cloud.metastore.v1.DataprocMetastore.QueryMetadata]: <doc:DataprocMetastoreClient/queryMetadata(request:options:)>
 public struct ErrorDetails: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

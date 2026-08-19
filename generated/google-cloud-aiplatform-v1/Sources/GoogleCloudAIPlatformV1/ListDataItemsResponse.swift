@@ -22,7 +22,7 @@
   /// Response message for
   /// [DatasetService.ListDataItems][google.cloud.aiplatform.v1.DatasetService.ListDataItems].
   ///
-  /// [google.cloud.aiplatform.v1.DatasetService.ListDataItems]: <doc:DatasetServiceClient/listDataItems(request:)>
+  /// [google.cloud.aiplatform.v1.DatasetService.ListDataItems]: <doc:DatasetServiceClient/listDataItems(request:options:)>
   public struct ListDataItemsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable

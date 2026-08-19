@@ -22,7 +22,7 @@
   /// [SchemaService.DeleteSchema][google.cloud.discoveryengine.v1.SchemaService.DeleteSchema]
   /// method.
   ///
-  /// [google.cloud.discoveryengine.v1.SchemaService.DeleteSchema]: <doc:SchemaServiceClient/deleteSchema(request:)>
+  /// [google.cloud.discoveryengine.v1.SchemaService.DeleteSchema]: <doc:SchemaServiceClient/deleteSchema(request:options:)>
   public struct DeleteSchemaRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

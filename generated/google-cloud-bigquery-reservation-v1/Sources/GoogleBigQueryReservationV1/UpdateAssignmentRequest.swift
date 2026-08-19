@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// The request for
 /// [ReservationService.UpdateAssignment][google.cloud.bigquery.reservation.v1.ReservationService.UpdateAssignment].
 ///
-/// [google.cloud.bigquery.reservation.v1.ReservationService.UpdateAssignment]: <doc:ReservationServiceClient/updateAssignment(request:)>
+/// [google.cloud.bigquery.reservation.v1.ReservationService.UpdateAssignment]: <doc:ReservationServiceClient/updateAssignment(request:options:)>
 public struct UpdateAssignmentRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

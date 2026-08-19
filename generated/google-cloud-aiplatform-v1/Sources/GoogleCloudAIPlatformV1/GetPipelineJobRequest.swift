@@ -21,7 +21,7 @@
   /// Request message for
   /// [PipelineService.GetPipelineJob][google.cloud.aiplatform.v1.PipelineService.GetPipelineJob].
   ///
-  /// [google.cloud.aiplatform.v1.PipelineService.GetPipelineJob]: <doc:PipelineServiceClient/getPipelineJob(request:)>
+  /// [google.cloud.aiplatform.v1.PipelineService.GetPipelineJob]: <doc:PipelineServiceClient/getPipelineJob(request:options:)>
   public struct GetPipelineJobRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

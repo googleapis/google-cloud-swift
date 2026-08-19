@@ -21,7 +21,7 @@
   /// Runtime operation information for
   /// [IndexEndpointService.MutateDeployedIndex][google.cloud.aiplatform.v1.IndexEndpointService.MutateDeployedIndex].
   ///
-  /// [google.cloud.aiplatform.v1.IndexEndpointService.MutateDeployedIndex]: <doc:IndexEndpointServiceClient/mutateDeployedIndex(request:)>
+  /// [google.cloud.aiplatform.v1.IndexEndpointService.MutateDeployedIndex]: <doc:IndexEndpointServiceClient/mutateDeployedIndex(request:options:)>
   public struct MutateDeployedIndexOperationMetadata: Codable, Equatable, GoogleCloudWkt
       ._AnyPackable,
     Sendable

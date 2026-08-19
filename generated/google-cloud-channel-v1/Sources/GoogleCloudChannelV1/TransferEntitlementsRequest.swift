@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [CloudChannelService.TransferEntitlements][google.cloud.channel.v1.CloudChannelService.TransferEntitlements].
 ///
-/// [google.cloud.channel.v1.CloudChannelService.TransferEntitlements]: <doc:CloudChannelServiceClient/transferEntitlements(request:)>
+/// [google.cloud.channel.v1.CloudChannelService.TransferEntitlements]: <doc:CloudChannelServiceClient/transferEntitlements(request:options:)>
 public struct TransferEntitlementsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

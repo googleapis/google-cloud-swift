@@ -21,7 +21,7 @@
   /// Request message for
   /// [VertexRagDataService.DeleteRagFile][google.cloud.aiplatform.v1.VertexRagDataService.DeleteRagFile].
   ///
-  /// [google.cloud.aiplatform.v1.VertexRagDataService.DeleteRagFile]: <doc:VertexRagDataServiceClient/deleteRagFile(request:)>
+  /// [google.cloud.aiplatform.v1.VertexRagDataService.DeleteRagFile]: <doc:VertexRagDataServiceClient/deleteRagFile(request:options:)>
   public struct DeleteRagFileRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

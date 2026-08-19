@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [KeyManagementService.GetCryptoKey][google.cloud.kms.v1.KeyManagementService.GetCryptoKey].
 ///
-/// [google.cloud.kms.v1.KeyManagementService.GetCryptoKey]: <doc:KeyManagementServiceClient/getCryptoKey(request:)>
+/// [google.cloud.kms.v1.KeyManagementService.GetCryptoKey]: <doc:KeyManagementServiceClient/getCryptoKey(request:options:)>
 public struct GetCryptoKeyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

@@ -23,7 +23,7 @@
   /// [SchemaService.ListSchemas][google.cloud.discoveryengine.v1.SchemaService.ListSchemas]
   /// method.
   ///
-  /// [google.cloud.discoveryengine.v1.SchemaService.ListSchemas]: <doc:SchemaServiceClient/listSchemas(request:)>
+  /// [google.cloud.discoveryengine.v1.SchemaService.ListSchemas]: <doc:SchemaServiceClient/listSchemas(request:options:)>
   public struct ListSchemasResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable

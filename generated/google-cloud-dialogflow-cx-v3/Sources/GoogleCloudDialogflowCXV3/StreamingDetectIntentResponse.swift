@@ -43,7 +43,7 @@
   /// is set to `FINAL`.
   ///
   /// [google.cloud.dialogflow.cx.v3.DetectIntentResponse.response_type]: <doc:DetectIntentResponse/responseType>
-  /// [google.cloud.dialogflow.cx.v3.Sessions.StreamingDetectIntent]: <doc:SessionsClient/streamingDetectIntent(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Sessions.StreamingDetectIntent]: <doc:SessionsClient/streamingDetectIntent(request:options:)>
   public struct StreamingDetectIntentResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

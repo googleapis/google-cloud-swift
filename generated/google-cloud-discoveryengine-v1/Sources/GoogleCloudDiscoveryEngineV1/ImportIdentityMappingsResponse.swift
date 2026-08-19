@@ -22,7 +22,7 @@
   /// Response message for
   /// [IdentityMappingStoreService.ImportIdentityMappings][google.cloud.discoveryengine.v1.IdentityMappingStoreService.ImportIdentityMappings]
   ///
-  /// [google.cloud.discoveryengine.v1.IdentityMappingStoreService.ImportIdentityMappings]: <doc:IdentityMappingStoreServiceClient/importIdentityMappings(request:)>
+  /// [google.cloud.discoveryengine.v1.IdentityMappingStoreService.ImportIdentityMappings]: <doc:IdentityMappingStoreServiceClient/importIdentityMappings(request:options:)>
   public struct ImportIdentityMappingsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

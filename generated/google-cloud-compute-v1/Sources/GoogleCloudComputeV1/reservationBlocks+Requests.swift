@@ -21,7 +21,7 @@
   extension ReservationBlocksClient {
     /// Synthetic request message for the [get()][google.cloud.compute.v1.reservationBlocks.get] method.
     ///
-    /// [google.cloud.compute.v1.reservationBlocks.get]: <doc:ReservationBlocksClient/`get`(request:)>
+    /// [google.cloud.compute.v1.reservationBlocks.get]: <doc:ReservationBlocksClient/`get`(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -178,7 +178,7 @@
 
     /// Synthetic request message for the [getIamPolicy()][google.cloud.compute.v1.reservationBlocks.getIamPolicy] method.
     ///
-    /// [google.cloud.compute.v1.reservationBlocks.getIamPolicy]: <doc:ReservationBlocksClient/getIamPolicy(request:)>
+    /// [google.cloud.compute.v1.reservationBlocks.getIamPolicy]: <doc:ReservationBlocksClient/getIamPolicy(request:options:)>
     public struct GetIamPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -226,7 +226,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.reservationBlocks.list] method.
     ///
-    /// [google.cloud.compute.v1.reservationBlocks.list]: <doc:ReservationBlocksClient/list(request:)>
+    /// [google.cloud.compute.v1.reservationBlocks.list]: <doc:ReservationBlocksClient/list(request:options:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -362,7 +362,7 @@
 
     /// Synthetic request message for the [performMaintenance()][google.cloud.compute.v1.reservationBlocks.performMaintenance] method.
     ///
-    /// [google.cloud.compute.v1.reservationBlocks.performMaintenance]: <doc:ReservationBlocksClient/performMaintenance(request:)>
+    /// [google.cloud.compute.v1.reservationBlocks.performMaintenance]: <doc:ReservationBlocksClient/performMaintenance(request:options:)>
     public struct PerformMaintenanceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -397,7 +397,7 @@
 
       /// Synthetic request body field for the [performMaintenance()][google.cloud.compute.v1.reservationBlocks.performMaintenance] method.
       ///
-      /// [google.cloud.compute.v1.reservationBlocks.performMaintenance]: <doc:ReservationBlocksClient/performMaintenance(request:)>
+      /// [google.cloud.compute.v1.reservationBlocks.performMaintenance]: <doc:ReservationBlocksClient/performMaintenance(request:options:)>
       public var body: ReservationsBlocksPerformMaintenanceRequest? = nil
 
       /// Initialize a new instance of `PerformMaintenanceRequest`.
@@ -430,7 +430,7 @@
 
     /// Synthetic request message for the [setIamPolicy()][google.cloud.compute.v1.reservationBlocks.setIamPolicy] method.
     ///
-    /// [google.cloud.compute.v1.reservationBlocks.setIamPolicy]: <doc:ReservationBlocksClient/setIamPolicy(request:)>
+    /// [google.cloud.compute.v1.reservationBlocks.setIamPolicy]: <doc:ReservationBlocksClient/setIamPolicy(request:options:)>
     public struct SetIamPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -448,7 +448,7 @@
 
       /// Synthetic request body field for the [setIamPolicy()][google.cloud.compute.v1.reservationBlocks.setIamPolicy] method.
       ///
-      /// [google.cloud.compute.v1.reservationBlocks.setIamPolicy]: <doc:ReservationBlocksClient/setIamPolicy(request:)>
+      /// [google.cloud.compute.v1.reservationBlocks.setIamPolicy]: <doc:ReservationBlocksClient/setIamPolicy(request:options:)>
       public var body: ZoneSetNestedPolicyRequest? = nil
 
       /// Initialize a new instance of `SetIamPolicyRequest`.
@@ -480,7 +480,7 @@
 
     /// Synthetic request message for the [testIamPermissions()][google.cloud.compute.v1.reservationBlocks.testIamPermissions] method.
     ///
-    /// [google.cloud.compute.v1.reservationBlocks.testIamPermissions]: <doc:ReservationBlocksClient/testIamPermissions(request:)>
+    /// [google.cloud.compute.v1.reservationBlocks.testIamPermissions]: <doc:ReservationBlocksClient/testIamPermissions(request:options:)>
     public struct TestIamPermissionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -498,7 +498,7 @@
 
       /// Synthetic request body field for the [testIamPermissions()][google.cloud.compute.v1.reservationBlocks.testIamPermissions] method.
       ///
-      /// [google.cloud.compute.v1.reservationBlocks.testIamPermissions]: <doc:ReservationBlocksClient/testIamPermissions(request:)>
+      /// [google.cloud.compute.v1.reservationBlocks.testIamPermissions]: <doc:ReservationBlocksClient/testIamPermissions(request:options:)>
       public var body: TestPermissionsRequest? = nil
 
       /// Initialize a new instance of `TestIamPermissionsRequest`.

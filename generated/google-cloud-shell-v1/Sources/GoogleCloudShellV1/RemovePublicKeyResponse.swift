@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [RemovePublicKey][google.cloud.shell.v1.CloudShellService.RemovePublicKey].
 ///
-/// [google.cloud.shell.v1.CloudShellService.RemovePublicKey]: <doc:CloudShellServiceClient/removePublicKey(request:)>
+/// [google.cloud.shell.v1.CloudShellService.RemovePublicKey]: <doc:CloudShellServiceClient/removePublicKey(request:options:)>
 public struct RemovePublicKeyResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

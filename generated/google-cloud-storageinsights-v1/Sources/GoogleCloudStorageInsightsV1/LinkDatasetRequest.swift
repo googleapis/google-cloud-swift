@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [`LinkDataset`][google.cloud.storageinsights.v1.StorageInsights.LinkDataset]
 ///
-/// [google.cloud.storageinsights.v1.StorageInsights.LinkDataset]: <doc:StorageInsightsClient/linkDataset(request:)>
+/// [google.cloud.storageinsights.v1.StorageInsights.LinkDataset]: <doc:StorageInsightsClient/linkDataset(request:options:)>
 public struct LinkDatasetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

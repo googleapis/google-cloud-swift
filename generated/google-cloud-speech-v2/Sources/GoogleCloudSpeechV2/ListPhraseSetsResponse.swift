@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// Response message for the
 /// [ListPhraseSets][google.cloud.speech.v2.Speech.ListPhraseSets] method.
 ///
-/// [google.cloud.speech.v2.Speech.ListPhraseSets]: <doc:SpeechClient/listPhraseSets(request:)>
+/// [google.cloud.speech.v2.Speech.ListPhraseSets]: <doc:SpeechClient/listPhraseSets(request:options:)>
 public struct ListPhraseSetsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

@@ -22,7 +22,7 @@ import GoogleCloudWkt
 /// [CloudChannelReportsService.FetchReportResults][google.cloud.channel.v1.CloudChannelReportsService.FetchReportResults].
 /// Contains a tabular representation of the report results.
 ///
-/// [google.cloud.channel.v1.CloudChannelReportsService.FetchReportResults]: <doc:CloudChannelReportsServiceClient/fetchReportResults(request:)>
+/// [google.cloud.channel.v1.CloudChannelReportsService.FetchReportResults]: <doc:CloudChannelReportsServiceClient/fetchReportResults(request:options:)>
 @available(*, deprecated)
 public struct FetchReportResultsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,

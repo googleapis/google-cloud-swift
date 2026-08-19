@@ -21,7 +21,7 @@
   /// The request message for
   /// [Playbooks.UpdatePlaybook][google.cloud.dialogflow.cx.v3.Playbooks.UpdatePlaybook].
   ///
-  /// [google.cloud.dialogflow.cx.v3.Playbooks.UpdatePlaybook]: <doc:PlaybooksClient/updatePlaybook(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Playbooks.UpdatePlaybook]: <doc:PlaybooksClient/updatePlaybook(request:options:)>
   public struct UpdatePlaybookRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

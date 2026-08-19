@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [SecurityCenterManagement.GetEffectiveSecurityHealthAnalyticsCustomModule][google.cloud.securitycentermanagement.v1.SecurityCenterManagement.GetEffectiveSecurityHealthAnalyticsCustomModule].
 ///
-/// [google.cloud.securitycentermanagement.v1.SecurityCenterManagement.GetEffectiveSecurityHealthAnalyticsCustomModule]: <doc:SecurityCenterManagementClient/getEffectiveSecurityHealthAnalyticsCustomModule(request:)>
+/// [google.cloud.securitycentermanagement.v1.SecurityCenterManagement.GetEffectiveSecurityHealthAnalyticsCustomModule]: <doc:SecurityCenterManagementClient/getEffectiveSecurityHealthAnalyticsCustomModule(request:options:)>
 public struct GetEffectiveSecurityHealthAnalyticsCustomModuleRequest: Codable, Equatable,
   GoogleCloudWkt._AnyPackable,
   Sendable

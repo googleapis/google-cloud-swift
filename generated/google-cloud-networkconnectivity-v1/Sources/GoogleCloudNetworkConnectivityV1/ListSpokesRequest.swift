@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// The request for
 /// [HubService.ListSpokes][google.cloud.networkconnectivity.v1.HubService.ListSpokes].
 ///
-/// [google.cloud.networkconnectivity.v1.HubService.ListSpokes]: <doc:HubServiceClient/listSpokes(request:)>
+/// [google.cloud.networkconnectivity.v1.HubService.ListSpokes]: <doc:HubServiceClient/listSpokes(request:options:)>
 public struct ListSpokesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

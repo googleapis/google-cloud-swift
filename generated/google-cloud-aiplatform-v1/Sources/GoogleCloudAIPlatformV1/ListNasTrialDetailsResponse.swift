@@ -22,7 +22,7 @@
   /// Response message for
   /// [JobService.ListNasTrialDetails][google.cloud.aiplatform.v1.JobService.ListNasTrialDetails]
   ///
-  /// [google.cloud.aiplatform.v1.JobService.ListNasTrialDetails]: <doc:JobServiceClient/listNasTrialDetails(request:)>
+  /// [google.cloud.aiplatform.v1.JobService.ListNasTrialDetails]: <doc:JobServiceClient/listNasTrialDetails(request:options:)>
   public struct ListNasTrialDetailsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable

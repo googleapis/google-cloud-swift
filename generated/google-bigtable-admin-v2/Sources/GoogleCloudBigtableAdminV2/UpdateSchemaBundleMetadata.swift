@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// The metadata for the Operation returned by
 /// [UpdateSchemaBundle][google.bigtable.admin.v2.BigtableTableAdmin.UpdateSchemaBundle].
 ///
-/// [google.bigtable.admin.v2.BigtableTableAdmin.UpdateSchemaBundle]: <doc:BigtableTableAdminClient/updateSchemaBundle(request:)>
+/// [google.bigtable.admin.v2.BigtableTableAdmin.UpdateSchemaBundle]: <doc:BigtableTableAdminClient/updateSchemaBundle(request:options:)>
 public struct UpdateSchemaBundleMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

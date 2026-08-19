@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [ConsumerProcurementService.ModifyOrder][google.cloud.commerce.consumer.procurement.v1.ConsumerProcurementService.ModifyOrder].
 ///
-/// [google.cloud.commerce.consumer.procurement.v1.ConsumerProcurementService.ModifyOrder]: <doc:ConsumerProcurementServiceClient/modifyOrder(request:)>
+/// [google.cloud.commerce.consumer.procurement.v1.ConsumerProcurementService.ModifyOrder]: <doc:ConsumerProcurementServiceClient/modifyOrder(request:options:)>
 public struct ModifyOrderRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

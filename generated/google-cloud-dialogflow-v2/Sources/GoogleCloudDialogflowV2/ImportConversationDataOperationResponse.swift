@@ -22,7 +22,7 @@
   /// [ConversationDatasets.ImportConversationData][google.cloud.dialogflow.v2.ConversationDatasets.ImportConversationData]
   /// long running operation.
   ///
-  /// [google.cloud.dialogflow.v2.ConversationDatasets.ImportConversationData]: <doc:ConversationDatasetsClient/importConversationData(request:)>
+  /// [google.cloud.dialogflow.v2.ConversationDatasets.ImportConversationData]: <doc:ConversationDatasetsClient/importConversationData(request:options:)>
   public struct ImportConversationDataOperationResponse: Codable, Equatable, GoogleCloudWkt
       ._AnyPackable,
     Sendable

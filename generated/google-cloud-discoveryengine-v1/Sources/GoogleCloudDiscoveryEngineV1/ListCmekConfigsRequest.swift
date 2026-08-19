@@ -22,7 +22,7 @@
   /// [CmekConfigService.ListCmekConfigs][google.cloud.discoveryengine.v1.CmekConfigService.ListCmekConfigs]
   /// method.
   ///
-  /// [google.cloud.discoveryengine.v1.CmekConfigService.ListCmekConfigs]: <doc:CmekConfigServiceClient/listCmekConfigs(request:)>
+  /// [google.cloud.discoveryengine.v1.CmekConfigService.ListCmekConfigs]: <doc:CmekConfigServiceClient/listCmekConfigs(request:options:)>
   public struct ListCmekConfigsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

@@ -23,7 +23,7 @@
   /// operation. This will be returned by the google.longrunning.Operation.metadata
   /// field.
   ///
-  /// [google.cloud.discoveryengine.v1.SiteSearchEngineService.RecrawlUris]: <doc:SiteSearchEngineServiceClient/recrawlUris(request:)>
+  /// [google.cloud.discoveryengine.v1.SiteSearchEngineService.RecrawlUris]: <doc:SiteSearchEngineServiceClient/recrawlUris(request:options:)>
   public struct RecrawlUrisMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

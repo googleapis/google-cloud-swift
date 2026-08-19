@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [SecurityCenterManagement.ListSecurityCenterServices][google.cloud.securitycentermanagement.v1.SecurityCenterManagement.ListSecurityCenterServices].
 ///
-/// [google.cloud.securitycentermanagement.v1.SecurityCenterManagement.ListSecurityCenterServices]: <doc:SecurityCenterManagementClient/listSecurityCenterServices(request:)>
+/// [google.cloud.securitycentermanagement.v1.SecurityCenterManagement.ListSecurityCenterServices]: <doc:SecurityCenterManagementClient/listSecurityCenterServices(request:options:)>
 public struct ListSecurityCenterServicesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

@@ -53,7 +53,7 @@
     /// request, in the form of `slice.dimension = <dimension>`.
     ///
     /// [google.cloud.aiplatform.v1.ModelEvaluationSlice.Slice.dimension]: <doc:ModelEvaluationSlice/Slice/dimension>
-    /// [google.cloud.aiplatform.v1.ModelService.ListModelEvaluationSlices]: <doc:ModelServiceClient/listModelEvaluationSlices(request:)>
+    /// [google.cloud.aiplatform.v1.ModelService.ListModelEvaluationSlices]: <doc:ModelServiceClient/listModelEvaluationSlices(request:options:)>
     public var sliceDimensions: [Swift.String] = []
 
     /// Points to a YAML file stored on Google Cloud Storage describing

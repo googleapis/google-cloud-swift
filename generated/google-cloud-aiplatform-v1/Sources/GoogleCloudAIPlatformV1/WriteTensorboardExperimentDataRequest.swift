@@ -21,7 +21,7 @@
   /// Request message for
   /// [TensorboardService.WriteTensorboardExperimentData][google.cloud.aiplatform.v1.TensorboardService.WriteTensorboardExperimentData].
   ///
-  /// [google.cloud.aiplatform.v1.TensorboardService.WriteTensorboardExperimentData]: <doc:TensorboardServiceClient/writeTensorboardExperimentData(request:)>
+  /// [google.cloud.aiplatform.v1.TensorboardService.WriteTensorboardExperimentData]: <doc:TensorboardServiceClient/writeTensorboardExperimentData(request:options:)>
   public struct WriteTensorboardExperimentDataRequest: Codable, Equatable, GoogleCloudWkt
       ._AnyPackable,
     Sendable

@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [KeyManagementService.UpdateCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.UpdateCryptoKeyVersion].
 ///
-/// [google.cloud.kms.v1.KeyManagementService.UpdateCryptoKeyVersion]: <doc:KeyManagementServiceClient/updateCryptoKeyVersion(request:)>
+/// [google.cloud.kms.v1.KeyManagementService.UpdateCryptoKeyVersion]: <doc:KeyManagementServiceClient/updateCryptoKeyVersion(request:options:)>
 public struct UpdateCryptoKeyVersionRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

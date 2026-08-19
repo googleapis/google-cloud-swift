@@ -22,7 +22,7 @@
   /// Response message for
   /// [FeaturestoreService.SearchFeatures][google.cloud.aiplatform.v1.FeaturestoreService.SearchFeatures].
   ///
-  /// [google.cloud.aiplatform.v1.FeaturestoreService.SearchFeatures]: <doc:FeaturestoreServiceClient/searchFeatures(request:)>
+  /// [google.cloud.aiplatform.v1.FeaturestoreService.SearchFeatures]: <doc:FeaturestoreServiceClient/searchFeatures(request:options:)>
   public struct SearchFeaturesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable

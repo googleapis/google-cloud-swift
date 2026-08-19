@@ -21,7 +21,7 @@
   extension GlobalOperationsClient {
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.globalOperations.aggregatedList] method.
     ///
-    /// [google.cloud.compute.v1.globalOperations.aggregatedList]: <doc:GlobalOperationsClient/aggregatedList(request:)>
+    /// [google.cloud.compute.v1.globalOperations.aggregatedList]: <doc:GlobalOperationsClient/aggregatedList(request:options:)>
     public struct AggregatedListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -163,7 +163,7 @@
 
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.globalOperations.delete] method.
     ///
-    /// [google.cloud.compute.v1.globalOperations.delete]: <doc:GlobalOperationsClient/delete(request:)>
+    /// [google.cloud.compute.v1.globalOperations.delete]: <doc:GlobalOperationsClient/delete(request:options:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -203,7 +203,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.globalOperations.get] method.
     ///
-    /// [google.cloud.compute.v1.globalOperations.get]: <doc:GlobalOperationsClient/`get`(request:)>
+    /// [google.cloud.compute.v1.globalOperations.get]: <doc:GlobalOperationsClient/`get`(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -243,7 +243,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.globalOperations.list] method.
     ///
-    /// [google.cloud.compute.v1.globalOperations.list]: <doc:GlobalOperationsClient/list(request:)>
+    /// [google.cloud.compute.v1.globalOperations.list]: <doc:GlobalOperationsClient/list(request:options:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -372,7 +372,7 @@
 
     /// Synthetic request message for the [wait()][google.cloud.compute.v1.globalOperations.wait] method.
     ///
-    /// [google.cloud.compute.v1.globalOperations.wait]: <doc:GlobalOperationsClient/wait(request:)>
+    /// [google.cloud.compute.v1.globalOperations.wait]: <doc:GlobalOperationsClient/wait(request:options:)>
     public struct WaitRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {

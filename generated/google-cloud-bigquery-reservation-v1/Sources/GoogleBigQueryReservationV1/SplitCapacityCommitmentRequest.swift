@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// The request for
 /// [ReservationService.SplitCapacityCommitment][google.cloud.bigquery.reservation.v1.ReservationService.SplitCapacityCommitment].
 ///
-/// [google.cloud.bigquery.reservation.v1.ReservationService.SplitCapacityCommitment]: <doc:ReservationServiceClient/splitCapacityCommitment(request:)>
+/// [google.cloud.bigquery.reservation.v1.ReservationService.SplitCapacityCommitment]: <doc:ReservationServiceClient/splitCapacityCommitment(request:options:)>
 public struct SplitCapacityCommitmentRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

@@ -21,7 +21,7 @@
   /// Request message for
   /// [MetadataService.UpdateContext][google.cloud.aiplatform.v1.MetadataService.UpdateContext].
   ///
-  /// [google.cloud.aiplatform.v1.MetadataService.UpdateContext]: <doc:MetadataServiceClient/updateContext(request:)>
+  /// [google.cloud.aiplatform.v1.MetadataService.UpdateContext]: <doc:MetadataServiceClient/updateContext(request:options:)>
   public struct UpdateContextRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

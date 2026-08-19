@@ -22,7 +22,7 @@
   /// [DataStoreService.GetDataStore][google.cloud.discoveryengine.v1.DataStoreService.GetDataStore]
   /// method.
   ///
-  /// [google.cloud.discoveryengine.v1.DataStoreService.GetDataStore]: <doc:DataStoreServiceClient/getDataStore(request:)>
+  /// [google.cloud.discoveryengine.v1.DataStoreService.GetDataStore]: <doc:DataStoreServiceClient/getDataStore(request:options:)>
   public struct GetDataStoreRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

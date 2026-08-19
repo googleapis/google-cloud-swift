@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [VmwareEngine.ListNetworkPeerings][google.cloud.vmwareengine.v1.VmwareEngine.ListNetworkPeerings]
 ///
-/// [google.cloud.vmwareengine.v1.VmwareEngine.ListNetworkPeerings]: <doc:VmwareEngineClient/listNetworkPeerings(request:)>
+/// [google.cloud.vmwareengine.v1.VmwareEngine.ListNetworkPeerings]: <doc:VmwareEngineClient/listNetworkPeerings(request:options:)>
 public struct ListNetworkPeeringsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

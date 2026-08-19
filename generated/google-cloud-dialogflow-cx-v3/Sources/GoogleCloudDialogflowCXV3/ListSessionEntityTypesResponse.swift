@@ -22,7 +22,7 @@
   /// The response message for
   /// [SessionEntityTypes.ListSessionEntityTypes][google.cloud.dialogflow.cx.v3.SessionEntityTypes.ListSessionEntityTypes].
   ///
-  /// [google.cloud.dialogflow.cx.v3.SessionEntityTypes.ListSessionEntityTypes]: <doc:SessionEntityTypesClient/listSessionEntityTypes(request:)>
+  /// [google.cloud.dialogflow.cx.v3.SessionEntityTypes.ListSessionEntityTypes]: <doc:SessionEntityTypesClient/listSessionEntityTypes(request:options:)>
   public struct ListSessionEntityTypesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable

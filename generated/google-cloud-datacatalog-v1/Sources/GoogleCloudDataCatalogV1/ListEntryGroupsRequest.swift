@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [ListEntryGroups][google.cloud.datacatalog.v1.DataCatalog.ListEntryGroups].
 ///
-/// [google.cloud.datacatalog.v1.DataCatalog.ListEntryGroups]: <doc:DataCatalogClient/listEntryGroups(request:)>
+/// [google.cloud.datacatalog.v1.DataCatalog.ListEntryGroups]: <doc:DataCatalogClient/listEntryGroups(request:options:)>
 public struct ListEntryGroupsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

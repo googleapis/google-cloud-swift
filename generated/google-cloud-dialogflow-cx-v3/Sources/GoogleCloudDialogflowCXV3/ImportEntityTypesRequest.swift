@@ -21,7 +21,7 @@
   /// The request message for
   /// [EntityTypes.ImportEntityTypes][google.cloud.dialogflow.cx.v3.EntityTypes.ImportEntityTypes].
   ///
-  /// [google.cloud.dialogflow.cx.v3.EntityTypes.ImportEntityTypes]: <doc:EntityTypesClient/importEntityTypes(request:)>
+  /// [google.cloud.dialogflow.cx.v3.EntityTypes.ImportEntityTypes]: <doc:EntityTypesClient/importEntityTypes(request:options:)>
   public struct ImportEntityTypesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

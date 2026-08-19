@@ -21,7 +21,7 @@
   extension RegionInstanceGroupsClient {
     /// Synthetic request message for the [get()][google.cloud.compute.v1.regionInstanceGroups.get] method.
     ///
-    /// [google.cloud.compute.v1.regionInstanceGroups.get]: <doc:RegionInstanceGroupsClient/`get`(request:)>
+    /// [google.cloud.compute.v1.regionInstanceGroups.get]: <doc:RegionInstanceGroupsClient/`get`(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -63,7 +63,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.regionInstanceGroups.list] method.
     ///
-    /// [google.cloud.compute.v1.regionInstanceGroups.list]: <doc:RegionInstanceGroupsClient/list(request:)>
+    /// [google.cloud.compute.v1.regionInstanceGroups.list]: <doc:RegionInstanceGroupsClient/list(request:options:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -195,7 +195,7 @@
 
     /// Synthetic request message for the [listInstances()][google.cloud.compute.v1.regionInstanceGroups.listInstances] method.
     ///
-    /// [google.cloud.compute.v1.regionInstanceGroups.listInstances]: <doc:RegionInstanceGroupsClient/listInstances(request:)>
+    /// [google.cloud.compute.v1.regionInstanceGroups.listInstances]: <doc:RegionInstanceGroupsClient/listInstances(request:options:)>
     public struct ListInstancesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -304,7 +304,7 @@
 
       /// Synthetic request body field for the [listInstances()][google.cloud.compute.v1.regionInstanceGroups.listInstances] method.
       ///
-      /// [google.cloud.compute.v1.regionInstanceGroups.listInstances]: <doc:RegionInstanceGroupsClient/listInstances(request:)>
+      /// [google.cloud.compute.v1.regionInstanceGroups.listInstances]: <doc:RegionInstanceGroupsClient/listInstances(request:options:)>
       public var body: RegionInstanceGroupsListInstancesRequest? = nil
 
       /// Initialize a new instance of `ListInstancesRequest`.
@@ -337,7 +337,7 @@
 
     /// Synthetic request message for the [setNamedPorts()][google.cloud.compute.v1.regionInstanceGroups.setNamedPorts] method.
     ///
-    /// [google.cloud.compute.v1.regionInstanceGroups.setNamedPorts]: <doc:RegionInstanceGroupsClient/setNamedPorts(request:)>
+    /// [google.cloud.compute.v1.regionInstanceGroups.setNamedPorts]: <doc:RegionInstanceGroupsClient/setNamedPorts(request:options:)>
     public struct SetNamedPortsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -367,7 +367,7 @@
 
       /// Synthetic request body field for the [setNamedPorts()][google.cloud.compute.v1.regionInstanceGroups.setNamedPorts] method.
       ///
-      /// [google.cloud.compute.v1.regionInstanceGroups.setNamedPorts]: <doc:RegionInstanceGroupsClient/setNamedPorts(request:)>
+      /// [google.cloud.compute.v1.regionInstanceGroups.setNamedPorts]: <doc:RegionInstanceGroupsClient/setNamedPorts(request:options:)>
       public var body: RegionInstanceGroupsSetNamedPortsRequest? = nil
 
       /// Initialize a new instance of `SetNamedPortsRequest`.
@@ -400,7 +400,7 @@
 
     /// Synthetic request message for the [testIamPermissions()][google.cloud.compute.v1.regionInstanceGroups.testIamPermissions] method.
     ///
-    /// [google.cloud.compute.v1.regionInstanceGroups.testIamPermissions]: <doc:RegionInstanceGroupsClient/testIamPermissions(request:)>
+    /// [google.cloud.compute.v1.regionInstanceGroups.testIamPermissions]: <doc:RegionInstanceGroupsClient/testIamPermissions(request:options:)>
     public struct TestIamPermissionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -415,7 +415,7 @@
 
       /// Synthetic request body field for the [testIamPermissions()][google.cloud.compute.v1.regionInstanceGroups.testIamPermissions] method.
       ///
-      /// [google.cloud.compute.v1.regionInstanceGroups.testIamPermissions]: <doc:RegionInstanceGroupsClient/testIamPermissions(request:)>
+      /// [google.cloud.compute.v1.regionInstanceGroups.testIamPermissions]: <doc:RegionInstanceGroupsClient/testIamPermissions(request:options:)>
       public var body: TestPermissionsRequest? = nil
 
       /// Initialize a new instance of `TestIamPermissionsRequest`.

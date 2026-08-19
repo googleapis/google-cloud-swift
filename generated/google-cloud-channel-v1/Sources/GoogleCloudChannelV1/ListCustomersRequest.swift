@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [CloudChannelService.ListCustomers][google.cloud.channel.v1.CloudChannelService.ListCustomers]
 ///
-/// [google.cloud.channel.v1.CloudChannelService.ListCustomers]: <doc:CloudChannelServiceClient/listCustomers(request:)>
+/// [google.cloud.channel.v1.CloudChannelService.ListCustomers]: <doc:CloudChannelServiceClient/listCustomers(request:options:)>
 public struct ListCustomersRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
@@ -40,7 +40,7 @@ public struct ListCustomersRequest: Codable, Equatable, GoogleCloudWkt._AnyPacka
   /// [CloudChannelService.ListCustomers][google.cloud.channel.v1.CloudChannelService.ListCustomers]
   /// call.
   ///
-  /// [google.cloud.channel.v1.CloudChannelService.ListCustomers]: <doc:CloudChannelServiceClient/listCustomers(request:)>
+  /// [google.cloud.channel.v1.CloudChannelService.ListCustomers]: <doc:CloudChannelServiceClient/listCustomers(request:options:)>
   /// [google.cloud.channel.v1.ListCustomersResponse.next_page_token]: <doc:ListCustomersResponse/nextPageToken>
   public var pageToken: Swift.String = Swift.String()
 

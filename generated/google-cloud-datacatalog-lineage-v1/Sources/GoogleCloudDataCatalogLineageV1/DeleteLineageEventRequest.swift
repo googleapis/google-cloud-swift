@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [DeleteLineageEvent][google.cloud.datacatalog.lineage.v1.Lineage.DeleteLineageEvent].
 ///
-/// [google.cloud.datacatalog.lineage.v1.Lineage.DeleteLineageEvent]: <doc:LineageClient/deleteLineageEvent(request:)>
+/// [google.cloud.datacatalog.lineage.v1.Lineage.DeleteLineageEvent]: <doc:LineageClient/deleteLineageEvent(request:options:)>
 public struct DeleteLineageEventRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

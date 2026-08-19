@@ -21,7 +21,7 @@
   /// Response message for
   /// [TensorboardService.BatchCreateTensorboardTimeSeries][google.cloud.aiplatform.v1.TensorboardService.BatchCreateTensorboardTimeSeries].
   ///
-  /// [google.cloud.aiplatform.v1.TensorboardService.BatchCreateTensorboardTimeSeries]: <doc:TensorboardServiceClient/batchCreateTensorboardTimeSeries(request:)>
+  /// [google.cloud.aiplatform.v1.TensorboardService.BatchCreateTensorboardTimeSeries]: <doc:TensorboardServiceClient/batchCreateTensorboardTimeSeries(request:options:)>
   public struct BatchCreateTensorboardTimeSeriesResponse: Codable, Equatable, GoogleCloudWkt
       ._AnyPackable,
     Sendable

@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [CloudChannelService.SuspendEntitlement][google.cloud.channel.v1.CloudChannelService.SuspendEntitlement].
 ///
-/// [google.cloud.channel.v1.CloudChannelService.SuspendEntitlement]: <doc:CloudChannelServiceClient/suspendEntitlement(request:)>
+/// [google.cloud.channel.v1.CloudChannelService.SuspendEntitlement]: <doc:CloudChannelServiceClient/suspendEntitlement(request:options:)>
 public struct SuspendEntitlementRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

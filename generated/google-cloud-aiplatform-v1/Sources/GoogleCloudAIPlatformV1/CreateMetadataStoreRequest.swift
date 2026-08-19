@@ -21,7 +21,7 @@
   /// Request message for
   /// [MetadataService.CreateMetadataStore][google.cloud.aiplatform.v1.MetadataService.CreateMetadataStore].
   ///
-  /// [google.cloud.aiplatform.v1.MetadataService.CreateMetadataStore]: <doc:MetadataServiceClient/createMetadataStore(request:)>
+  /// [google.cloud.aiplatform.v1.MetadataService.CreateMetadataStore]: <doc:MetadataServiceClient/createMetadataStore(request:options:)>
   public struct CreateMetadataStoreRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

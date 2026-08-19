@@ -21,7 +21,7 @@
   /// Request message for
   /// [EndpointService.GetEndpoint][google.cloud.aiplatform.v1.EndpointService.GetEndpoint]
   ///
-  /// [google.cloud.aiplatform.v1.EndpointService.GetEndpoint]: <doc:EndpointServiceClient/getEndpoint(request:)>
+  /// [google.cloud.aiplatform.v1.EndpointService.GetEndpoint]: <doc:EndpointServiceClient/getEndpoint(request:options:)>
   public struct GetEndpointRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

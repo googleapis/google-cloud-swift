@@ -21,7 +21,7 @@
   /// The request message for
   /// [Playbooks.ListPlaybooks][google.cloud.dialogflow.cx.v3.Playbooks.ListPlaybooks].
   ///
-  /// [google.cloud.dialogflow.cx.v3.Playbooks.ListPlaybooks]: <doc:PlaybooksClient/listPlaybooks(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Playbooks.ListPlaybooks]: <doc:PlaybooksClient/listPlaybooks(request:options:)>
   public struct ListPlaybooksRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

@@ -21,7 +21,7 @@
   /// Response message for
   /// [EndpointService.MutateDeployedModel][google.cloud.aiplatform.v1.EndpointService.MutateDeployedModel].
   ///
-  /// [google.cloud.aiplatform.v1.EndpointService.MutateDeployedModel]: <doc:EndpointServiceClient/mutateDeployedModel(request:)>
+  /// [google.cloud.aiplatform.v1.EndpointService.MutateDeployedModel]: <doc:EndpointServiceClient/mutateDeployedModel(request:options:)>
   public struct MutateDeployedModelResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

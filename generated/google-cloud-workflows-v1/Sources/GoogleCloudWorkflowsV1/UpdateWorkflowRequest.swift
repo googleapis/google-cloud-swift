@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [UpdateWorkflow][google.cloud.workflows.v1.Workflows.UpdateWorkflow]
 /// method.
 ///
-/// [google.cloud.workflows.v1.Workflows.UpdateWorkflow]: <doc:WorkflowsClient/updateWorkflow(request:)>
+/// [google.cloud.workflows.v1.Workflows.UpdateWorkflow]: <doc:WorkflowsClient/updateWorkflow(request:options:)>
 public struct UpdateWorkflowRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

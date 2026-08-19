@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [CertificateAuthorityService.DeleteCertificateTemplate][google.cloud.security.privateca.v1.CertificateAuthorityService.DeleteCertificateTemplate].
 ///
-/// [google.cloud.security.privateca.v1.CertificateAuthorityService.DeleteCertificateTemplate]: <doc:CertificateAuthorityServiceClient/deleteCertificateTemplate(request:)>
+/// [google.cloud.security.privateca.v1.CertificateAuthorityService.DeleteCertificateTemplate]: <doc:CertificateAuthorityServiceClient/deleteCertificateTemplate(request:options:)>
 public struct DeleteCertificateTemplateRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

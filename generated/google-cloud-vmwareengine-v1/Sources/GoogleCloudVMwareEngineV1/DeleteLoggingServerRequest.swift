@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [VmwareEngine.DeleteLoggingServer][google.cloud.vmwareengine.v1.VmwareEngine.DeleteLoggingServer]
 ///
-/// [google.cloud.vmwareengine.v1.VmwareEngine.DeleteLoggingServer]: <doc:VmwareEngineClient/deleteLoggingServer(request:)>
+/// [google.cloud.vmwareengine.v1.VmwareEngine.DeleteLoggingServer]: <doc:VmwareEngineClient/deleteLoggingServer(request:options:)>
 public struct DeleteLoggingServerRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

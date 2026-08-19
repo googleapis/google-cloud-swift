@@ -22,7 +22,7 @@
   /// [DocumentService.CreateDocument][google.cloud.discoveryengine.v1.DocumentService.CreateDocument]
   /// method.
   ///
-  /// [google.cloud.discoveryengine.v1.DocumentService.CreateDocument]: <doc:DocumentServiceClient/createDocument(request:)>
+  /// [google.cloud.discoveryengine.v1.DocumentService.CreateDocument]: <doc:DocumentServiceClient/createDocument(request:options:)>
   public struct CreateDocumentRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

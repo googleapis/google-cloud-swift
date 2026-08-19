@@ -22,7 +22,7 @@ import GoogleCloudWkt
 /// [ListHostProjectRegistrations][google.cloud.apihub.v1.HostProjectRegistrationService.ListHostProjectRegistrations]
 /// method's response.
 ///
-/// [google.cloud.apihub.v1.HostProjectRegistrationService.ListHostProjectRegistrations]: <doc:HostProjectRegistrationServiceClient/listHostProjectRegistrations(request:)>
+/// [google.cloud.apihub.v1.HostProjectRegistrationService.ListHostProjectRegistrations]: <doc:HostProjectRegistrationServiceClient/listHostProjectRegistrations(request:options:)>
 public struct ListHostProjectRegistrationsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

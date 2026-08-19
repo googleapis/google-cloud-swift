@@ -21,7 +21,7 @@
   /// Request message for
   /// [RankService.Rank][google.cloud.discoveryengine.v1.RankService.Rank] method.
   ///
-  /// [google.cloud.discoveryengine.v1.RankService.Rank]: <doc:RankServiceClient/rank(request:)>
+  /// [google.cloud.discoveryengine.v1.RankService.Rank]: <doc:RankServiceClient/rank(request:options:)>
   public struct RankRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

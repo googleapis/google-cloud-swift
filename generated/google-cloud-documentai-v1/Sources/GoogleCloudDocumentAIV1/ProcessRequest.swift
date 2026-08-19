@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [ProcessDocument][google.cloud.documentai.v1.DocumentProcessorService.ProcessDocument]
 /// method.
 ///
-/// [google.cloud.documentai.v1.DocumentProcessorService.ProcessDocument]: <doc:DocumentProcessorServiceClient/processDocument(request:)>
+/// [google.cloud.documentai.v1.DocumentProcessorService.ProcessDocument]: <doc:DocumentProcessorServiceClient/processDocument(request:options:)>
 public struct ProcessRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

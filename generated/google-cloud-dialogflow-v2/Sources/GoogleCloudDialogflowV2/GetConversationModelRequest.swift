@@ -21,7 +21,7 @@
   /// The request message for
   /// [ConversationModels.GetConversationModel][google.cloud.dialogflow.v2.ConversationModels.GetConversationModel]
   ///
-  /// [google.cloud.dialogflow.v2.ConversationModels.GetConversationModel]: <doc:ConversationModelsClient/getConversationModel(request:)>
+  /// [google.cloud.dialogflow.v2.ConversationModels.GetConversationModel]: <doc:ConversationModelsClient/getConversationModel(request:options:)>
   public struct GetConversationModelRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

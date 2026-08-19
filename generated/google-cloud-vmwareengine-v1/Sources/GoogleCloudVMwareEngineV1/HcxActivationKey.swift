@@ -26,8 +26,8 @@ import GoogleCloudWkt
 /// [VmwareEngine.CreateHcxActivationKey][google.cloud.vmwareengine.v1.VmwareEngine.CreateHcxActivationKey]
 /// to create new ones.
 ///
-/// [google.cloud.vmwareengine.v1.VmwareEngine.CreateHcxActivationKey]: <doc:VmwareEngineClient/createHcxActivationKey(request:)>
-/// [google.cloud.vmwareengine.v1.VmwareEngine.ListHcxActivationKeys]: <doc:VmwareEngineClient/listHcxActivationKeys(request:)>
+/// [google.cloud.vmwareengine.v1.VmwareEngine.CreateHcxActivationKey]: <doc:VmwareEngineClient/createHcxActivationKey(request:options:)>
+/// [google.cloud.vmwareengine.v1.VmwareEngine.ListHcxActivationKeys]: <doc:VmwareEngineClient/listHcxActivationKeys(request:options:)>
 public struct HcxActivationKey: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

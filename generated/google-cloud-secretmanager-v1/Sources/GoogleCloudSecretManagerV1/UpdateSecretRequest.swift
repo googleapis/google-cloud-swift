@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [SecretManagerService.UpdateSecret][google.cloud.secretmanager.v1.SecretManagerService.UpdateSecret].
 ///
-/// [google.cloud.secretmanager.v1.SecretManagerService.UpdateSecret]: <doc:SecretManagerServiceClient/updateSecret(request:)>
+/// [google.cloud.secretmanager.v1.SecretManagerService.UpdateSecret]: <doc:SecretManagerServiceClient/updateSecret(request:options:)>
 public struct UpdateSecretRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

@@ -21,7 +21,7 @@
   /// Request message for
   /// [MetadataService.ListMetadataStores][google.cloud.aiplatform.v1.MetadataService.ListMetadataStores].
   ///
-  /// [google.cloud.aiplatform.v1.MetadataService.ListMetadataStores]: <doc:MetadataServiceClient/listMetadataStores(request:)>
+  /// [google.cloud.aiplatform.v1.MetadataService.ListMetadataStores]: <doc:MetadataServiceClient/listMetadataStores(request:options:)>
   public struct ListMetadataStoresRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {
@@ -43,7 +43,7 @@
     /// provided the page token. (Otherwise the request will fail with
     /// INVALID_ARGUMENT error.)
     ///
-    /// [google.cloud.aiplatform.v1.MetadataService.ListMetadataStores]: <doc:MetadataServiceClient/listMetadataStores(request:)>
+    /// [google.cloud.aiplatform.v1.MetadataService.ListMetadataStores]: <doc:MetadataServiceClient/listMetadataStores(request:options:)>
     public var pageToken: Swift.String = Swift.String()
 
     /// Initialize a new instance of `ListMetadataStoresRequest`.

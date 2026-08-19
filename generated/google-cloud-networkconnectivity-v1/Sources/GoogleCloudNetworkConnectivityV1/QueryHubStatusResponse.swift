@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// The response for
 /// [HubService.QueryHubStatus][google.cloud.networkconnectivity.v1.HubService.QueryHubStatus].
 ///
-/// [google.cloud.networkconnectivity.v1.HubService.QueryHubStatus]: <doc:HubServiceClient/queryHubStatus(request:)>
+/// [google.cloud.networkconnectivity.v1.HubService.QueryHubStatus]: <doc:HubServiceClient/queryHubStatus(request:options:)>
 public struct QueryHubStatusResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

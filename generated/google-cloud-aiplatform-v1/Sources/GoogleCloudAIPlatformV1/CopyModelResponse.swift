@@ -22,7 +22,7 @@
   /// [ModelService.CopyModel][google.cloud.aiplatform.v1.ModelService.CopyModel]
   /// operation.
   ///
-  /// [google.cloud.aiplatform.v1.ModelService.CopyModel]: <doc:ModelServiceClient/copyModel(request:)>
+  /// [google.cloud.aiplatform.v1.ModelService.CopyModel]: <doc:ModelServiceClient/copyModel(request:options:)>
   public struct CopyModelResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

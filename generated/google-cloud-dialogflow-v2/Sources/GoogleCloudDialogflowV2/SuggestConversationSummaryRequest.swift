@@ -21,7 +21,7 @@
   /// The request message for
   /// [Conversations.SuggestConversationSummary][google.cloud.dialogflow.v2.Conversations.SuggestConversationSummary].
   ///
-  /// [google.cloud.dialogflow.v2.Conversations.SuggestConversationSummary]: <doc:ConversationsClient/suggestConversationSummary(request:)>
+  /// [google.cloud.dialogflow.v2.Conversations.SuggestConversationSummary]: <doc:ConversationsClient/suggestConversationSummary(request:options:)>
   public struct SuggestConversationSummaryRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

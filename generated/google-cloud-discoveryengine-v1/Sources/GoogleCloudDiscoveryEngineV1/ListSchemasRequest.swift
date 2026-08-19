@@ -22,7 +22,7 @@
   /// [SchemaService.ListSchemas][google.cloud.discoveryengine.v1.SchemaService.ListSchemas]
   /// method.
   ///
-  /// [google.cloud.discoveryengine.v1.SchemaService.ListSchemas]: <doc:SchemaServiceClient/listSchemas(request:)>
+  /// [google.cloud.discoveryengine.v1.SchemaService.ListSchemas]: <doc:SchemaServiceClient/listSchemas(request:options:)>
   public struct ListSchemasRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {
@@ -49,7 +49,7 @@
     /// [SchemaService.ListSchemas][google.cloud.discoveryengine.v1.SchemaService.ListSchemas]
     /// must match the call that provided the page token.
     ///
-    /// [google.cloud.discoveryengine.v1.SchemaService.ListSchemas]: <doc:SchemaServiceClient/listSchemas(request:)>
+    /// [google.cloud.discoveryengine.v1.SchemaService.ListSchemas]: <doc:SchemaServiceClient/listSchemas(request:options:)>
     public var pageToken: Swift.String = Swift.String()
 
     /// Initialize a new instance of `ListSchemasRequest`.

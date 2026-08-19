@@ -21,7 +21,7 @@
   /// The request message for
   /// [Participants.SuggestSmartReplies][google.cloud.dialogflow.v2.Participants.SuggestSmartReplies].
   ///
-  /// [google.cloud.dialogflow.v2.Participants.SuggestSmartReplies]: <doc:ParticipantsClient/suggestSmartReplies(request:)>
+  /// [google.cloud.dialogflow.v2.Participants.SuggestSmartReplies]: <doc:ParticipantsClient/suggestSmartReplies(request:options:)>
   public struct SuggestSmartRepliesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

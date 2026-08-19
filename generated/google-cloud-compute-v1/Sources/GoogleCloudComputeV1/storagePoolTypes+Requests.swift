@@ -21,7 +21,7 @@
   extension StoragePoolTypesClient {
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.storagePoolTypes.aggregatedList] method.
     ///
-    /// [google.cloud.compute.v1.storagePoolTypes.aggregatedList]: <doc:StoragePoolTypesClient/aggregatedList(request:)>
+    /// [google.cloud.compute.v1.storagePoolTypes.aggregatedList]: <doc:StoragePoolTypesClient/aggregatedList(request:options:)>
     public struct AggregatedListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -163,7 +163,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.storagePoolTypes.get] method.
     ///
-    /// [google.cloud.compute.v1.storagePoolTypes.get]: <doc:StoragePoolTypesClient/`get`(request:)>
+    /// [google.cloud.compute.v1.storagePoolTypes.get]: <doc:StoragePoolTypesClient/`get`(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -205,7 +205,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.storagePoolTypes.list] method.
     ///
-    /// [google.cloud.compute.v1.storagePoolTypes.list]: <doc:StoragePoolTypesClient/list(request:)>
+    /// [google.cloud.compute.v1.storagePoolTypes.list]: <doc:StoragePoolTypesClient/list(request:options:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {

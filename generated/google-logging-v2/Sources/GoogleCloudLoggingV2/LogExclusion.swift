@@ -51,7 +51,7 @@ public struct LogExclusion: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// exclusion][google.logging.v2.ConfigServiceV2.UpdateExclusion] to change the
   /// value of this field.
   ///
-  /// [google.logging.v2.ConfigServiceV2.UpdateExclusion]: <doc:ConfigServiceV2Client/updateExclusion(request:)>
+  /// [google.logging.v2.ConfigServiceV2.UpdateExclusion]: <doc:ConfigServiceV2Client/updateExclusion(request:options:)>
   public var disabled: Swift.Bool = Swift.Bool()
 
   /// Output only. The creation timestamp of the exclusion.

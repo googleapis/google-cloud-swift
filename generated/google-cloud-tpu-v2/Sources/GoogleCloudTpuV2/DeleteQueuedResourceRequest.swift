@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request for
 /// [DeleteQueuedResource][google.cloud.tpu.v2.Tpu.DeleteQueuedResource].
 ///
-/// [google.cloud.tpu.v2.Tpu.DeleteQueuedResource]: <doc:TpuClient/deleteQueuedResource(request:)>
+/// [google.cloud.tpu.v2.Tpu.DeleteQueuedResource]: <doc:TpuClient/deleteQueuedResource(request:options:)>
 public struct DeleteQueuedResourceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

@@ -163,7 +163,7 @@ public class PoliciesClient: Clients.PoliciesProtocol {
   ///
   /// This pattern helps prevent conflicts between concurrent updates.
   ///
-  /// [google.iam.v2.Policies.GetPolicy]: <doc:PoliciesClient/getPolicy(request:)>
+  /// [google.iam.v2.Policies.GetPolicy]: <doc:PoliciesClient/getPolicy(request:options:)>
   ///
   /// @Snippet(path: "Policies_UpdatePolicy")
   public func updatePolicy(
@@ -184,7 +184,7 @@ public class PoliciesClient: Clients.PoliciesProtocol {
   ///
   /// This pattern helps prevent conflicts between concurrent updates.
   ///
-  /// [google.iam.v2.Policies.GetPolicy]: <doc:PoliciesClient/getPolicy(request:)>
+  /// [google.iam.v2.Policies.GetPolicy]: <doc:PoliciesClient/getPolicy(request:options:)>
   ///
   /// @Snippet(path: "Policies_UpdatePolicy")
   public func updatePolicy(

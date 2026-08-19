@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [SecretManagerService.CreateSecret][google.cloud.secretmanager.v1.SecretManagerService.CreateSecret].
 ///
-/// [google.cloud.secretmanager.v1.SecretManagerService.CreateSecret]: <doc:SecretManagerServiceClient/createSecret(request:)>
+/// [google.cloud.secretmanager.v1.SecretManagerService.CreateSecret]: <doc:SecretManagerServiceClient/createSecret(request:options:)>
 public struct CreateSecretRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

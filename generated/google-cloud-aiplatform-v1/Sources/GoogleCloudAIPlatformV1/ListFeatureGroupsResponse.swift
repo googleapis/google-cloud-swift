@@ -22,7 +22,7 @@
   /// Response message for
   /// [FeatureRegistryService.ListFeatureGroups][google.cloud.aiplatform.v1.FeatureRegistryService.ListFeatureGroups].
   ///
-  /// [google.cloud.aiplatform.v1.FeatureRegistryService.ListFeatureGroups]: <doc:FeatureRegistryServiceClient/listFeatureGroups(request:)>
+  /// [google.cloud.aiplatform.v1.FeatureRegistryService.ListFeatureGroups]: <doc:FeatureRegistryServiceClient/listFeatureGroups(request:options:)>
   public struct ListFeatureGroupsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable

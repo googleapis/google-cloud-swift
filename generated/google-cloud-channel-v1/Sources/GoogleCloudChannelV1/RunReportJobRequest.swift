@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [CloudChannelReportsService.RunReportJob][google.cloud.channel.v1.CloudChannelReportsService.RunReportJob].
 ///
-/// [google.cloud.channel.v1.CloudChannelReportsService.RunReportJob]: <doc:CloudChannelReportsServiceClient/runReportJob(request:)>
+/// [google.cloud.channel.v1.CloudChannelReportsService.RunReportJob]: <doc:CloudChannelReportsServiceClient/runReportJob(request:options:)>
 @available(*, deprecated)
 public struct RunReportJobRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable

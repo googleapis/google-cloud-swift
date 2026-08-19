@@ -21,7 +21,7 @@
   /// Request message for
   /// [VertexRagDataService.GetRagEngineConfig][google.cloud.aiplatform.v1.VertexRagDataService.GetRagEngineConfig]
   ///
-  /// [google.cloud.aiplatform.v1.VertexRagDataService.GetRagEngineConfig]: <doc:VertexRagDataServiceClient/getRagEngineConfig(request:)>
+  /// [google.cloud.aiplatform.v1.VertexRagDataService.GetRagEngineConfig]: <doc:VertexRagDataServiceClient/getRagEngineConfig(request:options:)>
   public struct GetRagEngineConfigRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [TrainProcessorVersion][google.cloud.documentai.v1.DocumentProcessorService.TrainProcessorVersion]
 /// method.
 ///
-/// [google.cloud.documentai.v1.DocumentProcessorService.TrainProcessorVersion]: <doc:DocumentProcessorServiceClient/trainProcessorVersion(request:)>
+/// [google.cloud.documentai.v1.DocumentProcessorService.TrainProcessorVersion]: <doc:DocumentProcessorServiceClient/trainProcessorVersion(request:options:)>
 public struct TrainProcessorVersionRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

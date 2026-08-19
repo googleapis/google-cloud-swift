@@ -21,7 +21,7 @@
   extension InterconnectAttachmentsClient {
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.interconnectAttachments.aggregatedList] method.
     ///
-    /// [google.cloud.compute.v1.interconnectAttachments.aggregatedList]: <doc:InterconnectAttachmentsClient/aggregatedList(request:)>
+    /// [google.cloud.compute.v1.interconnectAttachments.aggregatedList]: <doc:InterconnectAttachmentsClient/aggregatedList(request:options:)>
     public struct AggregatedListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -164,7 +164,7 @@
 
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.interconnectAttachments.delete] method.
     ///
-    /// [google.cloud.compute.v1.interconnectAttachments.delete]: <doc:InterconnectAttachmentsClient/delete(request:)>
+    /// [google.cloud.compute.v1.interconnectAttachments.delete]: <doc:InterconnectAttachmentsClient/delete(request:options:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -221,7 +221,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.interconnectAttachments.get] method.
     ///
-    /// [google.cloud.compute.v1.interconnectAttachments.get]: <doc:InterconnectAttachmentsClient/`get`(request:)>
+    /// [google.cloud.compute.v1.interconnectAttachments.get]: <doc:InterconnectAttachmentsClient/`get`(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -263,7 +263,7 @@
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.interconnectAttachments.insert] method.
     ///
-    /// [google.cloud.compute.v1.interconnectAttachments.insert]: <doc:InterconnectAttachmentsClient/insert(request:)>
+    /// [google.cloud.compute.v1.interconnectAttachments.insert]: <doc:InterconnectAttachmentsClient/insert(request:options:)>
     public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -293,7 +293,7 @@
 
       /// Synthetic request body field for the [insert()][google.cloud.compute.v1.interconnectAttachments.insert] method.
       ///
-      /// [google.cloud.compute.v1.interconnectAttachments.insert]: <doc:InterconnectAttachmentsClient/insert(request:)>
+      /// [google.cloud.compute.v1.interconnectAttachments.insert]: <doc:InterconnectAttachmentsClient/insert(request:options:)>
       public var body: InterconnectAttachment? = nil
 
       /// Initialize a new instance of `InsertRequest`.
@@ -325,7 +325,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.interconnectAttachments.list] method.
     ///
-    /// [google.cloud.compute.v1.interconnectAttachments.list]: <doc:InterconnectAttachmentsClient/list(request:)>
+    /// [google.cloud.compute.v1.interconnectAttachments.list]: <doc:InterconnectAttachmentsClient/list(request:options:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -457,7 +457,7 @@
 
     /// Synthetic request message for the [patch()][google.cloud.compute.v1.interconnectAttachments.patch] method.
     ///
-    /// [google.cloud.compute.v1.interconnectAttachments.patch]: <doc:InterconnectAttachmentsClient/patch(request:)>
+    /// [google.cloud.compute.v1.interconnectAttachments.patch]: <doc:InterconnectAttachmentsClient/patch(request:options:)>
     public struct PatchRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -487,7 +487,7 @@
 
       /// Synthetic request body field for the [patch()][google.cloud.compute.v1.interconnectAttachments.patch] method.
       ///
-      /// [google.cloud.compute.v1.interconnectAttachments.patch]: <doc:InterconnectAttachmentsClient/patch(request:)>
+      /// [google.cloud.compute.v1.interconnectAttachments.patch]: <doc:InterconnectAttachmentsClient/patch(request:options:)>
       public var body: InterconnectAttachment? = nil
 
       /// Initialize a new instance of `PatchRequest`.
@@ -519,7 +519,7 @@
 
     /// Synthetic request message for the [setLabels()][google.cloud.compute.v1.interconnectAttachments.setLabels] method.
     ///
-    /// [google.cloud.compute.v1.interconnectAttachments.setLabels]: <doc:InterconnectAttachmentsClient/setLabels(request:)>
+    /// [google.cloud.compute.v1.interconnectAttachments.setLabels]: <doc:InterconnectAttachmentsClient/setLabels(request:options:)>
     public struct SetLabelsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -549,7 +549,7 @@
 
       /// Synthetic request body field for the [setLabels()][google.cloud.compute.v1.interconnectAttachments.setLabels] method.
       ///
-      /// [google.cloud.compute.v1.interconnectAttachments.setLabels]: <doc:InterconnectAttachmentsClient/setLabels(request:)>
+      /// [google.cloud.compute.v1.interconnectAttachments.setLabels]: <doc:InterconnectAttachmentsClient/setLabels(request:options:)>
       public var body: RegionSetLabelsRequest? = nil
 
       /// Initialize a new instance of `SetLabelsRequest`.

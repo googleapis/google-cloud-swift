@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Response for
 /// [TroubleshootIamPolicy][google.cloud.policytroubleshooter.iam.v3.PolicyTroubleshooter.TroubleshootIamPolicy].
 ///
-/// [google.cloud.policytroubleshooter.iam.v3.PolicyTroubleshooter.TroubleshootIamPolicy]: <doc:PolicyTroubleshooterClient/troubleshootIamPolicy(request:)>
+/// [google.cloud.policytroubleshooter.iam.v3.PolicyTroubleshooter.TroubleshootIamPolicy]: <doc:PolicyTroubleshooterClient/troubleshootIamPolicy(request:options:)>
 public struct TroubleshootIamPolicyResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

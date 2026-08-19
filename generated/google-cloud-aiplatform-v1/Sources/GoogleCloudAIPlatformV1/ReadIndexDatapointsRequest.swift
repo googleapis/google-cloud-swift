@@ -21,7 +21,7 @@
   /// The request message for
   /// [MatchService.ReadIndexDatapoints][google.cloud.aiplatform.v1.MatchService.ReadIndexDatapoints].
   ///
-  /// [google.cloud.aiplatform.v1.MatchService.ReadIndexDatapoints]: <doc:MatchServiceClient/readIndexDatapoints(request:)>
+  /// [google.cloud.aiplatform.v1.MatchService.ReadIndexDatapoints]: <doc:MatchServiceClient/readIndexDatapoints(request:options:)>
   public struct ReadIndexDatapointsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

@@ -22,7 +22,7 @@ import GoogleCloudWkt
 /// method. Some processor types may require the project be added to an
 /// allowlist.
 ///
-/// [google.cloud.documentai.v1.DocumentProcessorService.ListProcessorTypes]: <doc:DocumentProcessorServiceClient/listProcessorTypes(request:)>
+/// [google.cloud.documentai.v1.DocumentProcessorService.ListProcessorTypes]: <doc:DocumentProcessorServiceClient/listProcessorTypes(request:options:)>
 public struct ListProcessorTypesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

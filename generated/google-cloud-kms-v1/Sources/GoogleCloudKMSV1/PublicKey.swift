@@ -22,7 +22,7 @@ import GoogleCloudWkt
 /// [GetPublicKey][google.cloud.kms.v1.KeyManagementService.GetPublicKey].
 ///
 /// [google.cloud.kms.v1.CryptoKeyVersion]: <doc:CryptoKeyVersion>
-/// [google.cloud.kms.v1.KeyManagementService.GetPublicKey]: <doc:KeyManagementServiceClient/getPublicKey(request:)>
+/// [google.cloud.kms.v1.KeyManagementService.GetPublicKey]: <doc:KeyManagementServiceClient/getPublicKey(request:options:)>
 public struct PublicKey: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

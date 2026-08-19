@@ -19,7 +19,7 @@ import GoogleCloudWkt
 
 /// Request for [GetQueuedResource][google.cloud.tpu.v2.Tpu.GetQueuedResource]
 ///
-/// [google.cloud.tpu.v2.Tpu.GetQueuedResource]: <doc:TpuClient/getQueuedResource(request:)>
+/// [google.cloud.tpu.v2.Tpu.GetQueuedResource]: <doc:TpuClient/getQueuedResource(request:options:)>
 public struct GetQueuedResourceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [ListTags][google.cloud.datacatalog.v1.DataCatalog.ListTags].
 ///
-/// [google.cloud.datacatalog.v1.DataCatalog.ListTags]: <doc:DataCatalogClient/listTags(request:)>
+/// [google.cloud.datacatalog.v1.DataCatalog.ListTags]: <doc:DataCatalogClient/listTags(request:options:)>
 public struct ListTagsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

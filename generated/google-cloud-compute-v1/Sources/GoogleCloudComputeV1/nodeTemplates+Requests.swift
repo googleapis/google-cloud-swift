@@ -21,7 +21,7 @@
   extension NodeTemplatesClient {
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.nodeTemplates.aggregatedList] method.
     ///
-    /// [google.cloud.compute.v1.nodeTemplates.aggregatedList]: <doc:NodeTemplatesClient/aggregatedList(request:)>
+    /// [google.cloud.compute.v1.nodeTemplates.aggregatedList]: <doc:NodeTemplatesClient/aggregatedList(request:options:)>
     public struct AggregatedListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -163,7 +163,7 @@
 
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.nodeTemplates.delete] method.
     ///
-    /// [google.cloud.compute.v1.nodeTemplates.delete]: <doc:NodeTemplatesClient/delete(request:)>
+    /// [google.cloud.compute.v1.nodeTemplates.delete]: <doc:NodeTemplatesClient/delete(request:options:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -220,7 +220,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.nodeTemplates.get] method.
     ///
-    /// [google.cloud.compute.v1.nodeTemplates.get]: <doc:NodeTemplatesClient/`get`(request:)>
+    /// [google.cloud.compute.v1.nodeTemplates.get]: <doc:NodeTemplatesClient/`get`(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -262,7 +262,7 @@
 
     /// Synthetic request message for the [getIamPolicy()][google.cloud.compute.v1.nodeTemplates.getIamPolicy] method.
     ///
-    /// [google.cloud.compute.v1.nodeTemplates.getIamPolicy]: <doc:NodeTemplatesClient/getIamPolicy(request:)>
+    /// [google.cloud.compute.v1.nodeTemplates.getIamPolicy]: <doc:NodeTemplatesClient/getIamPolicy(request:options:)>
     public struct GetIamPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -307,7 +307,7 @@
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.nodeTemplates.insert] method.
     ///
-    /// [google.cloud.compute.v1.nodeTemplates.insert]: <doc:NodeTemplatesClient/insert(request:)>
+    /// [google.cloud.compute.v1.nodeTemplates.insert]: <doc:NodeTemplatesClient/insert(request:options:)>
     public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -334,7 +334,7 @@
 
       /// Synthetic request body field for the [insert()][google.cloud.compute.v1.nodeTemplates.insert] method.
       ///
-      /// [google.cloud.compute.v1.nodeTemplates.insert]: <doc:NodeTemplatesClient/insert(request:)>
+      /// [google.cloud.compute.v1.nodeTemplates.insert]: <doc:NodeTemplatesClient/insert(request:options:)>
       public var body: NodeTemplate? = nil
 
       /// Initialize a new instance of `InsertRequest`.
@@ -366,7 +366,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.nodeTemplates.list] method.
     ///
-    /// [google.cloud.compute.v1.nodeTemplates.list]: <doc:NodeTemplatesClient/list(request:)>
+    /// [google.cloud.compute.v1.nodeTemplates.list]: <doc:NodeTemplatesClient/list(request:options:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -498,7 +498,7 @@
 
     /// Synthetic request message for the [setIamPolicy()][google.cloud.compute.v1.nodeTemplates.setIamPolicy] method.
     ///
-    /// [google.cloud.compute.v1.nodeTemplates.setIamPolicy]: <doc:NodeTemplatesClient/setIamPolicy(request:)>
+    /// [google.cloud.compute.v1.nodeTemplates.setIamPolicy]: <doc:NodeTemplatesClient/setIamPolicy(request:options:)>
     public struct SetIamPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -513,7 +513,7 @@
 
       /// Synthetic request body field for the [setIamPolicy()][google.cloud.compute.v1.nodeTemplates.setIamPolicy] method.
       ///
-      /// [google.cloud.compute.v1.nodeTemplates.setIamPolicy]: <doc:NodeTemplatesClient/setIamPolicy(request:)>
+      /// [google.cloud.compute.v1.nodeTemplates.setIamPolicy]: <doc:NodeTemplatesClient/setIamPolicy(request:options:)>
       public var body: RegionSetPolicyRequest? = nil
 
       /// Initialize a new instance of `SetIamPolicyRequest`.
@@ -545,7 +545,7 @@
 
     /// Synthetic request message for the [testIamPermissions()][google.cloud.compute.v1.nodeTemplates.testIamPermissions] method.
     ///
-    /// [google.cloud.compute.v1.nodeTemplates.testIamPermissions]: <doc:NodeTemplatesClient/testIamPermissions(request:)>
+    /// [google.cloud.compute.v1.nodeTemplates.testIamPermissions]: <doc:NodeTemplatesClient/testIamPermissions(request:options:)>
     public struct TestIamPermissionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -560,7 +560,7 @@
 
       /// Synthetic request body field for the [testIamPermissions()][google.cloud.compute.v1.nodeTemplates.testIamPermissions] method.
       ///
-      /// [google.cloud.compute.v1.nodeTemplates.testIamPermissions]: <doc:NodeTemplatesClient/testIamPermissions(request:)>
+      /// [google.cloud.compute.v1.nodeTemplates.testIamPermissions]: <doc:NodeTemplatesClient/testIamPermissions(request:options:)>
       public var body: TestPermissionsRequest? = nil
 
       /// Initialize a new instance of `TestIamPermissionsRequest`.

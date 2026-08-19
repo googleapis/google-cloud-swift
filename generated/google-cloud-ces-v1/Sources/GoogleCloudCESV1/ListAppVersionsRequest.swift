@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [AgentService.ListAppVersions][google.cloud.ces.v1.AgentService.ListAppVersions].
 ///
-/// [google.cloud.ces.v1.AgentService.ListAppVersions]: <doc:AgentServiceClient/listAppVersions(request:)>
+/// [google.cloud.ces.v1.AgentService.ListAppVersions]: <doc:AgentServiceClient/listAppVersions(request:options:)>
 public struct ListAppVersionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
@@ -37,7 +37,7 @@ public struct ListAppVersionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPac
   /// [AgentService.ListAppVersions][google.cloud.ces.v1.AgentService.ListAppVersions]
   /// call.
   ///
-  /// [google.cloud.ces.v1.AgentService.ListAppVersions]: <doc:AgentServiceClient/listAppVersions(request:)>
+  /// [google.cloud.ces.v1.AgentService.ListAppVersions]: <doc:AgentServiceClient/listAppVersions(request:options:)>
   /// [google.cloud.ces.v1.ListAppVersionsResponse.next_page_token]: <doc:ListAppVersionsResponse/nextPageToken>
   public var pageToken: Swift.String = Swift.String()
 

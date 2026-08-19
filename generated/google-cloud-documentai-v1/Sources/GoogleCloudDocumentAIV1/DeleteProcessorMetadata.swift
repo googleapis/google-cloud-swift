@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [DeleteProcessor][google.cloud.documentai.v1.DocumentProcessorService.DeleteProcessor]
 /// method.
 ///
-/// [google.cloud.documentai.v1.DocumentProcessorService.DeleteProcessor]: <doc:DocumentProcessorServiceClient/deleteProcessor(request:)>
+/// [google.cloud.documentai.v1.DocumentProcessorService.DeleteProcessor]: <doc:DocumentProcessorServiceClient/deleteProcessor(request:options:)>
 public struct DeleteProcessorMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

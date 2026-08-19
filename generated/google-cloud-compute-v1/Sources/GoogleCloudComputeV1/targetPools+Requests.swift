@@ -21,7 +21,7 @@
   extension TargetPoolsClient {
     /// Synthetic request message for the [addHealthCheck()][google.cloud.compute.v1.targetPools.addHealthCheck] method.
     ///
-    /// [google.cloud.compute.v1.targetPools.addHealthCheck]: <doc:TargetPoolsClient/addHealthCheck(request:)>
+    /// [google.cloud.compute.v1.targetPools.addHealthCheck]: <doc:TargetPoolsClient/addHealthCheck(request:options:)>
     public struct AddHealthCheckRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -51,7 +51,7 @@
 
       /// Synthetic request body field for the [addHealthCheck()][google.cloud.compute.v1.targetPools.addHealthCheck] method.
       ///
-      /// [google.cloud.compute.v1.targetPools.addHealthCheck]: <doc:TargetPoolsClient/addHealthCheck(request:)>
+      /// [google.cloud.compute.v1.targetPools.addHealthCheck]: <doc:TargetPoolsClient/addHealthCheck(request:options:)>
       public var body: TargetPoolsAddHealthCheckRequest? = nil
 
       /// Initialize a new instance of `AddHealthCheckRequest`.
@@ -83,7 +83,7 @@
 
     /// Synthetic request message for the [addInstance()][google.cloud.compute.v1.targetPools.addInstance] method.
     ///
-    /// [google.cloud.compute.v1.targetPools.addInstance]: <doc:TargetPoolsClient/addInstance(request:)>
+    /// [google.cloud.compute.v1.targetPools.addInstance]: <doc:TargetPoolsClient/addInstance(request:options:)>
     public struct AddInstanceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -113,7 +113,7 @@
 
       /// Synthetic request body field for the [addInstance()][google.cloud.compute.v1.targetPools.addInstance] method.
       ///
-      /// [google.cloud.compute.v1.targetPools.addInstance]: <doc:TargetPoolsClient/addInstance(request:)>
+      /// [google.cloud.compute.v1.targetPools.addInstance]: <doc:TargetPoolsClient/addInstance(request:options:)>
       public var body: TargetPoolsAddInstanceRequest? = nil
 
       /// Initialize a new instance of `AddInstanceRequest`.
@@ -145,7 +145,7 @@
 
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.targetPools.aggregatedList] method.
     ///
-    /// [google.cloud.compute.v1.targetPools.aggregatedList]: <doc:TargetPoolsClient/aggregatedList(request:)>
+    /// [google.cloud.compute.v1.targetPools.aggregatedList]: <doc:TargetPoolsClient/aggregatedList(request:options:)>
     public struct AggregatedListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -287,7 +287,7 @@
 
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.targetPools.delete] method.
     ///
-    /// [google.cloud.compute.v1.targetPools.delete]: <doc:TargetPoolsClient/delete(request:)>
+    /// [google.cloud.compute.v1.targetPools.delete]: <doc:TargetPoolsClient/delete(request:options:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -344,7 +344,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.targetPools.get] method.
     ///
-    /// [google.cloud.compute.v1.targetPools.get]: <doc:TargetPoolsClient/`get`(request:)>
+    /// [google.cloud.compute.v1.targetPools.get]: <doc:TargetPoolsClient/`get`(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -386,7 +386,7 @@
 
     /// Synthetic request message for the [getHealth()][google.cloud.compute.v1.targetPools.getHealth] method.
     ///
-    /// [google.cloud.compute.v1.targetPools.getHealth]: <doc:TargetPoolsClient/getHealth(request:)>
+    /// [google.cloud.compute.v1.targetPools.getHealth]: <doc:TargetPoolsClient/getHealth(request:options:)>
     public struct GetHealthRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -401,7 +401,7 @@
 
       /// Synthetic request body field for the [getHealth()][google.cloud.compute.v1.targetPools.getHealth] method.
       ///
-      /// [google.cloud.compute.v1.targetPools.getHealth]: <doc:TargetPoolsClient/getHealth(request:)>
+      /// [google.cloud.compute.v1.targetPools.getHealth]: <doc:TargetPoolsClient/getHealth(request:options:)>
       public var body: InstanceReference? = nil
 
       /// Initialize a new instance of `GetHealthRequest`.
@@ -433,7 +433,7 @@
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.targetPools.insert] method.
     ///
-    /// [google.cloud.compute.v1.targetPools.insert]: <doc:TargetPoolsClient/insert(request:)>
+    /// [google.cloud.compute.v1.targetPools.insert]: <doc:TargetPoolsClient/insert(request:options:)>
     public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -460,7 +460,7 @@
 
       /// Synthetic request body field for the [insert()][google.cloud.compute.v1.targetPools.insert] method.
       ///
-      /// [google.cloud.compute.v1.targetPools.insert]: <doc:TargetPoolsClient/insert(request:)>
+      /// [google.cloud.compute.v1.targetPools.insert]: <doc:TargetPoolsClient/insert(request:options:)>
       public var body: TargetPool? = nil
 
       /// Initialize a new instance of `InsertRequest`.
@@ -492,7 +492,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.targetPools.list] method.
     ///
-    /// [google.cloud.compute.v1.targetPools.list]: <doc:TargetPoolsClient/list(request:)>
+    /// [google.cloud.compute.v1.targetPools.list]: <doc:TargetPoolsClient/list(request:options:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -624,7 +624,7 @@
 
     /// Synthetic request message for the [removeHealthCheck()][google.cloud.compute.v1.targetPools.removeHealthCheck] method.
     ///
-    /// [google.cloud.compute.v1.targetPools.removeHealthCheck]: <doc:TargetPoolsClient/removeHealthCheck(request:)>
+    /// [google.cloud.compute.v1.targetPools.removeHealthCheck]: <doc:TargetPoolsClient/removeHealthCheck(request:options:)>
     public struct RemoveHealthCheckRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -654,7 +654,7 @@
 
       /// Synthetic request body field for the [removeHealthCheck()][google.cloud.compute.v1.targetPools.removeHealthCheck] method.
       ///
-      /// [google.cloud.compute.v1.targetPools.removeHealthCheck]: <doc:TargetPoolsClient/removeHealthCheck(request:)>
+      /// [google.cloud.compute.v1.targetPools.removeHealthCheck]: <doc:TargetPoolsClient/removeHealthCheck(request:options:)>
       public var body: TargetPoolsRemoveHealthCheckRequest? = nil
 
       /// Initialize a new instance of `RemoveHealthCheckRequest`.
@@ -686,7 +686,7 @@
 
     /// Synthetic request message for the [removeInstance()][google.cloud.compute.v1.targetPools.removeInstance] method.
     ///
-    /// [google.cloud.compute.v1.targetPools.removeInstance]: <doc:TargetPoolsClient/removeInstance(request:)>
+    /// [google.cloud.compute.v1.targetPools.removeInstance]: <doc:TargetPoolsClient/removeInstance(request:options:)>
     public struct RemoveInstanceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -716,7 +716,7 @@
 
       /// Synthetic request body field for the [removeInstance()][google.cloud.compute.v1.targetPools.removeInstance] method.
       ///
-      /// [google.cloud.compute.v1.targetPools.removeInstance]: <doc:TargetPoolsClient/removeInstance(request:)>
+      /// [google.cloud.compute.v1.targetPools.removeInstance]: <doc:TargetPoolsClient/removeInstance(request:options:)>
       public var body: TargetPoolsRemoveInstanceRequest? = nil
 
       /// Initialize a new instance of `RemoveInstanceRequest`.
@@ -748,7 +748,7 @@
 
     /// Synthetic request message for the [setBackup()][google.cloud.compute.v1.targetPools.setBackup] method.
     ///
-    /// [google.cloud.compute.v1.targetPools.setBackup]: <doc:TargetPoolsClient/setBackup(request:)>
+    /// [google.cloud.compute.v1.targetPools.setBackup]: <doc:TargetPoolsClient/setBackup(request:options:)>
     public struct SetBackupRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -781,7 +781,7 @@
 
       /// Synthetic request body field for the [setBackup()][google.cloud.compute.v1.targetPools.setBackup] method.
       ///
-      /// [google.cloud.compute.v1.targetPools.setBackup]: <doc:TargetPoolsClient/setBackup(request:)>
+      /// [google.cloud.compute.v1.targetPools.setBackup]: <doc:TargetPoolsClient/setBackup(request:options:)>
       public var body: TargetReference? = nil
 
       /// Initialize a new instance of `SetBackupRequest`.
@@ -813,7 +813,7 @@
 
     /// Synthetic request message for the [setSecurityPolicy()][google.cloud.compute.v1.targetPools.setSecurityPolicy] method.
     ///
-    /// [google.cloud.compute.v1.targetPools.setSecurityPolicy]: <doc:TargetPoolsClient/setSecurityPolicy(request:)>
+    /// [google.cloud.compute.v1.targetPools.setSecurityPolicy]: <doc:TargetPoolsClient/setSecurityPolicy(request:options:)>
     public struct SetSecurityPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -844,7 +844,7 @@
 
       /// Synthetic request body field for the [setSecurityPolicy()][google.cloud.compute.v1.targetPools.setSecurityPolicy] method.
       ///
-      /// [google.cloud.compute.v1.targetPools.setSecurityPolicy]: <doc:TargetPoolsClient/setSecurityPolicy(request:)>
+      /// [google.cloud.compute.v1.targetPools.setSecurityPolicy]: <doc:TargetPoolsClient/setSecurityPolicy(request:options:)>
       public var body: SecurityPolicyReference? = nil
 
       /// Initialize a new instance of `SetSecurityPolicyRequest`.
@@ -876,7 +876,7 @@
 
     /// Synthetic request message for the [testIamPermissions()][google.cloud.compute.v1.targetPools.testIamPermissions] method.
     ///
-    /// [google.cloud.compute.v1.targetPools.testIamPermissions]: <doc:TargetPoolsClient/testIamPermissions(request:)>
+    /// [google.cloud.compute.v1.targetPools.testIamPermissions]: <doc:TargetPoolsClient/testIamPermissions(request:options:)>
     public struct TestIamPermissionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -891,7 +891,7 @@
 
       /// Synthetic request body field for the [testIamPermissions()][google.cloud.compute.v1.targetPools.testIamPermissions] method.
       ///
-      /// [google.cloud.compute.v1.targetPools.testIamPermissions]: <doc:TargetPoolsClient/testIamPermissions(request:)>
+      /// [google.cloud.compute.v1.targetPools.testIamPermissions]: <doc:TargetPoolsClient/testIamPermissions(request:options:)>
       public var body: TestPermissionsRequest? = nil
 
       /// Initialize a new instance of `TestIamPermissionsRequest`.

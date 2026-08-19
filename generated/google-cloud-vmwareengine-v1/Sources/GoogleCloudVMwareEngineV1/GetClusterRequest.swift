@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [VmwareEngine.GetCluster][google.cloud.vmwareengine.v1.VmwareEngine.GetCluster]
 ///
-/// [google.cloud.vmwareengine.v1.VmwareEngine.GetCluster]: <doc:VmwareEngineClient/getCluster(request:)>
+/// [google.cloud.vmwareengine.v1.VmwareEngine.GetCluster]: <doc:VmwareEngineClient/getCluster(request:options:)>
 public struct GetClusterRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

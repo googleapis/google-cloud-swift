@@ -21,7 +21,7 @@
   /// Request message for
   /// [MetadataService.ListExecutions][google.cloud.aiplatform.v1.MetadataService.ListExecutions].
   ///
-  /// [google.cloud.aiplatform.v1.MetadataService.ListExecutions]: <doc:MetadataServiceClient/listExecutions(request:)>
+  /// [google.cloud.aiplatform.v1.MetadataService.ListExecutions]: <doc:MetadataServiceClient/listExecutions(request:options:)>
   public struct ListExecutionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {
@@ -42,7 +42,7 @@
     /// provided the page token. (Otherwise the request will fail with an
     /// INVALID_ARGUMENT error.)
     ///
-    /// [google.cloud.aiplatform.v1.MetadataService.ListExecutions]: <doc:MetadataServiceClient/listExecutions(request:)>
+    /// [google.cloud.aiplatform.v1.MetadataService.ListExecutions]: <doc:MetadataServiceClient/listExecutions(request:options:)>
     public var pageToken: Swift.String = Swift.String()
 
     /// Filter specifying the boolean condition for the Executions to satisfy in

@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [UpdatePluginInstance][google.cloud.apihub.v1.ApiHubPlugin.UpdatePluginInstance]
 /// method's request.
 ///
-/// [google.cloud.apihub.v1.ApiHubPlugin.UpdatePluginInstance]: <doc:ApiHubPluginClient/updatePluginInstance(request:)>
+/// [google.cloud.apihub.v1.ApiHubPlugin.UpdatePluginInstance]: <doc:ApiHubPluginClient/updatePluginInstance(request:options:)>
 public struct UpdatePluginInstanceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

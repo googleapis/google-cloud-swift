@@ -103,7 +103,7 @@
     /// [TuningJob.state][google.cloud.aiplatform.v1.TuningJob.state] is set to
     /// `CANCELLED`.
     ///
-    /// [google.cloud.aiplatform.v1.GenAiTuningService.GetTuningJob]: <doc:GenAiTuningServiceClient/getTuningJob(request:)>
+    /// [google.cloud.aiplatform.v1.GenAiTuningService.GetTuningJob]: <doc:GenAiTuningServiceClient/getTuningJob(request:options:)>
     /// [google.cloud.aiplatform.v1.TuningJob.error]: <doc:TuningJob/error>
     /// [google.cloud.aiplatform.v1.TuningJob.state]: <doc:TuningJob/state>
     /// [google.rpc.Status.code]: https://www.google.com/search?q=Swift+google.rpc+GoogleRpc.Status/code

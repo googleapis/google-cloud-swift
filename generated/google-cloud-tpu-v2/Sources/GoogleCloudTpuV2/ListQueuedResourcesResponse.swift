@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// Response for
 /// [ListQueuedResources][google.cloud.tpu.v2.Tpu.ListQueuedResources].
 ///
-/// [google.cloud.tpu.v2.Tpu.ListQueuedResources]: <doc:TpuClient/listQueuedResources(request:)>
+/// [google.cloud.tpu.v2.Tpu.ListQueuedResources]: <doc:TpuClient/listQueuedResources(request:options:)>
 public struct ListQueuedResourcesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

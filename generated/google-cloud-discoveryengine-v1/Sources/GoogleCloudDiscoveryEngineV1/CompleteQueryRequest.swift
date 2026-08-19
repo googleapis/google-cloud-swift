@@ -22,7 +22,7 @@
   /// [CompletionService.CompleteQuery][google.cloud.discoveryengine.v1.CompletionService.CompleteQuery]
   /// method.
   ///
-  /// [google.cloud.discoveryengine.v1.CompletionService.CompleteQuery]: <doc:CompletionServiceClient/completeQuery(request:)>
+  /// [google.cloud.discoveryengine.v1.CompletionService.CompleteQuery]: <doc:CompletionServiceClient/completeQuery(request:options:)>
   public struct CompleteQueryRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {
@@ -53,7 +53,7 @@
     /// * `document` is the default model for regular dataStores.
     /// * `search-history` is the default model for site search dataStores.
     ///
-    /// [google.cloud.discoveryengine.v1.SearchService.Search]: <doc:SearchServiceClient/search(request:)>
+    /// [google.cloud.discoveryengine.v1.SearchService.Search]: <doc:SearchServiceClient/search(request:options:)>
     public var queryModel: Swift.String = Swift.String()
 
     /// A unique identifier for tracking visitors. For example, this could be

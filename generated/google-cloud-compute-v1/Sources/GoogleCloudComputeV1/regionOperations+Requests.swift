@@ -21,7 +21,7 @@
   extension RegionOperationsClient {
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.regionOperations.delete] method.
     ///
-    /// [google.cloud.compute.v1.regionOperations.delete]: <doc:RegionOperationsClient/delete(request:)>
+    /// [google.cloud.compute.v1.regionOperations.delete]: <doc:RegionOperationsClient/delete(request:options:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -64,7 +64,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.regionOperations.get] method.
     ///
-    /// [google.cloud.compute.v1.regionOperations.get]: <doc:RegionOperationsClient/`get`(request:)>
+    /// [google.cloud.compute.v1.regionOperations.get]: <doc:RegionOperationsClient/`get`(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -107,7 +107,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.regionOperations.list] method.
     ///
-    /// [google.cloud.compute.v1.regionOperations.list]: <doc:RegionOperationsClient/list(request:)>
+    /// [google.cloud.compute.v1.regionOperations.list]: <doc:RegionOperationsClient/list(request:options:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -239,7 +239,7 @@
 
     /// Synthetic request message for the [wait()][google.cloud.compute.v1.regionOperations.wait] method.
     ///
-    /// [google.cloud.compute.v1.regionOperations.wait]: <doc:RegionOperationsClient/wait(request:)>
+    /// [google.cloud.compute.v1.regionOperations.wait]: <doc:RegionOperationsClient/wait(request:options:)>
     public struct WaitRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {

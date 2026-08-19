@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [VmwareEngine.DeleteExternalAddress][google.cloud.vmwareengine.v1.VmwareEngine.DeleteExternalAddress]
 ///
-/// [google.cloud.vmwareengine.v1.VmwareEngine.DeleteExternalAddress]: <doc:VmwareEngineClient/deleteExternalAddress(request:)>
+/// [google.cloud.vmwareengine.v1.VmwareEngine.DeleteExternalAddress]: <doc:VmwareEngineClient/deleteExternalAddress(request:options:)>
 public struct DeleteExternalAddressRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

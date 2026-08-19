@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [EkmService.UpdateEkmConnection][google.cloud.kms.v1.EkmService.UpdateEkmConnection].
 ///
-/// [google.cloud.kms.v1.EkmService.UpdateEkmConnection]: <doc:EkmServiceClient/updateEkmConnection(request:)>
+/// [google.cloud.kms.v1.EkmService.UpdateEkmConnection]: <doc:EkmServiceClient/updateEkmConnection(request:options:)>
 public struct UpdateEkmConnectionRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

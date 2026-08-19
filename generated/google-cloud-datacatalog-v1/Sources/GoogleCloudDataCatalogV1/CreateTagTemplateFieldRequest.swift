@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [CreateTagTemplateField][google.cloud.datacatalog.v1.DataCatalog.CreateTagTemplateField].
 ///
-/// [google.cloud.datacatalog.v1.DataCatalog.CreateTagTemplateField]: <doc:DataCatalogClient/createTagTemplateField(request:)>
+/// [google.cloud.datacatalog.v1.DataCatalog.CreateTagTemplateField]: <doc:DataCatalogClient/createTagTemplateField(request:options:)>
 public struct CreateTagTemplateFieldRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

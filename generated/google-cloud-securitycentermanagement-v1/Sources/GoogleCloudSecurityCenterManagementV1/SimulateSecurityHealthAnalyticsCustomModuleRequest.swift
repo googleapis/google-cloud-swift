@@ -22,7 +22,7 @@ import GoogleIAMV1
 /// [SecurityCenterManagement.SimulateSecurityHealthAnalyticsCustomModule][google.cloud.securitycentermanagement.v1.SecurityCenterManagement.SimulateSecurityHealthAnalyticsCustomModule].
 /// The maximum size of the request is 4 MiB.
 ///
-/// [google.cloud.securitycentermanagement.v1.SecurityCenterManagement.SimulateSecurityHealthAnalyticsCustomModule]: <doc:SecurityCenterManagementClient/simulateSecurityHealthAnalyticsCustomModule(request:)>
+/// [google.cloud.securitycentermanagement.v1.SecurityCenterManagement.SimulateSecurityHealthAnalyticsCustomModule]: <doc:SecurityCenterManagementClient/simulateSecurityHealthAnalyticsCustomModule(request:options:)>
 public struct SimulateSecurityHealthAnalyticsCustomModuleRequest: Codable, Equatable, GoogleCloudWkt
     ._AnyPackable,
   Sendable

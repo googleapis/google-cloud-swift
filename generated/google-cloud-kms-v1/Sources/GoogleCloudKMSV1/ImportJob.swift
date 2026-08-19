@@ -58,7 +58,7 @@ import GoogleCloudWkt
 /// [google.cloud.kms.v1.ImportJob.import_method]: <doc:ImportJob/importMethod>
 /// [google.cloud.kms.v1.ImportJob.public_key]: <doc:ImportJob/publicKey>
 /// [google.cloud.kms.v1.ImportJob.state]: <doc:ImportJob/state>
-/// [google.cloud.kms.v1.KeyManagementService.ImportCryptoKeyVersion]: <doc:KeyManagementServiceClient/importCryptoKeyVersion(request:)>
+/// [google.cloud.kms.v1.KeyManagementService.ImportCryptoKeyVersion]: <doc:KeyManagementServiceClient/importCryptoKeyVersion(request:options:)>
 public struct ImportJob: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
@@ -135,7 +135,7 @@ public struct ImportJob: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// request.
   ///
   /// [google.cloud.kms.v1.ImportJob.WrappingPublicKey]: <doc:ImportJob/WrappingPublicKey>
-  /// [google.cloud.kms.v1.KeyManagementService.GetImportJob]: <doc:KeyManagementServiceClient/getImportJob(request:)>
+  /// [google.cloud.kms.v1.KeyManagementService.GetImportJob]: <doc:KeyManagementServiceClient/getImportJob(request:options:)>
   public var publicKeyFormat: PublicKey.PublicKeyFormat = PublicKey.PublicKeyFormat()
 
   /// Output only. Statement that was generated and signed by the key creator
@@ -197,7 +197,7 @@ public struct ImportJob: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// and set the public_key_format to the desired public key format.
     ///
     /// [google.cloud.kms.v1.ImportJob]: <doc:ImportJob>
-    /// [google.cloud.kms.v1.KeyManagementService.GetImportJob]: <doc:KeyManagementServiceClient/getImportJob(request:)>
+    /// [google.cloud.kms.v1.KeyManagementService.GetImportJob]: <doc:KeyManagementServiceClient/getImportJob(request:options:)>
     public var pem: Swift.String = Swift.String()
 
     /// Output only. Contains the public key, formatted according to the
@@ -206,7 +206,7 @@ public struct ImportJob: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// [KeyManagementService.GetImportJob][google.cloud.kms.v1.KeyManagementService.GetImportJob]
     /// request.
     ///
-    /// [google.cloud.kms.v1.KeyManagementService.GetImportJob]: <doc:KeyManagementServiceClient/getImportJob(request:)>
+    /// [google.cloud.kms.v1.KeyManagementService.GetImportJob]: <doc:KeyManagementServiceClient/getImportJob(request:options:)>
     /// [google.cloud.kms.v1.PublicKey.PublicKeyFormat]: <doc:PublicKey/PublicKeyFormat>
     public var data: Foundation.Data = Foundation.Data()
 
@@ -462,8 +462,8 @@ public struct ImportJob: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// [CreateCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.CreateCryptoKeyVersion]
     /// requests.
     ///
-    /// [google.cloud.kms.v1.KeyManagementService.CreateCryptoKey]: <doc:KeyManagementServiceClient/createCryptoKey(request:)>
-    /// [google.cloud.kms.v1.KeyManagementService.CreateCryptoKeyVersion]: <doc:KeyManagementServiceClient/createCryptoKeyVersion(request:)>
+    /// [google.cloud.kms.v1.KeyManagementService.CreateCryptoKey]: <doc:KeyManagementServiceClient/createCryptoKey(request:options:)>
+    /// [google.cloud.kms.v1.KeyManagementService.CreateCryptoKeyVersion]: <doc:KeyManagementServiceClient/createCryptoKeyVersion(request:options:)>
     case active
     /// This job can no longer be used and may not leave this state once entered.
     case expired

@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// ListOrgPolicyViolationsPreviewsRequest is the request message for
 /// [OrgPolicyViolationsPreviewService.ListOrgPolicyViolationsPreviews][google.cloud.policysimulator.v1.OrgPolicyViolationsPreviewService.ListOrgPolicyViolationsPreviews].
 ///
-/// [google.cloud.policysimulator.v1.OrgPolicyViolationsPreviewService.ListOrgPolicyViolationsPreviews]: <doc:OrgPolicyViolationsPreviewServiceClient/listOrgPolicyViolationsPreviews(request:)>
+/// [google.cloud.policysimulator.v1.OrgPolicyViolationsPreviewService.ListOrgPolicyViolationsPreviews]: <doc:OrgPolicyViolationsPreviewServiceClient/listOrgPolicyViolationsPreviews(request:options:)>
 public struct ListOrgPolicyViolationsPreviewsRequest: Codable, Equatable, GoogleCloudWkt
     ._AnyPackable,
   Sendable

@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [EnableProcessor][google.cloud.documentai.v1.DocumentProcessorService.EnableProcessor]
 /// method. Intentionally empty proto for adding fields in future.
 ///
-/// [google.cloud.documentai.v1.DocumentProcessorService.EnableProcessor]: <doc:DocumentProcessorServiceClient/enableProcessor(request:)>
+/// [google.cloud.documentai.v1.DocumentProcessorService.EnableProcessor]: <doc:DocumentProcessorServiceClient/enableProcessor(request:options:)>
 public struct EnableProcessorResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

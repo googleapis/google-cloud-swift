@@ -21,7 +21,7 @@
   /// Request message for
   /// [MetadataService.DeleteContext][google.cloud.aiplatform.v1.MetadataService.DeleteContext].
   ///
-  /// [google.cloud.aiplatform.v1.MetadataService.DeleteContext]: <doc:MetadataServiceClient/deleteContext(request:)>
+  /// [google.cloud.aiplatform.v1.MetadataService.DeleteContext]: <doc:MetadataServiceClient/deleteContext(request:options:)>
   public struct DeleteContextRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [CloudChannelService.ListChannelPartnerRepricingConfigs][google.cloud.channel.v1.CloudChannelService.ListChannelPartnerRepricingConfigs].
 ///
-/// [google.cloud.channel.v1.CloudChannelService.ListChannelPartnerRepricingConfigs]: <doc:CloudChannelServiceClient/listChannelPartnerRepricingConfigs(request:)>
+/// [google.cloud.channel.v1.CloudChannelService.ListChannelPartnerRepricingConfigs]: <doc:CloudChannelServiceClient/listChannelPartnerRepricingConfigs(request:options:)>
 public struct ListChannelPartnerRepricingConfigsResponse: Codable, Equatable, GoogleCloudWkt
     ._AnyPackable,
   GoogleCloudGax._PaginatedResponse,

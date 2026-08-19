@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Message included in the metadata field of operations returned from
 /// [StartEnvironment][google.cloud.shell.v1.CloudShellService.StartEnvironment].
 ///
-/// [google.cloud.shell.v1.CloudShellService.StartEnvironment]: <doc:CloudShellServiceClient/startEnvironment(request:)>
+/// [google.cloud.shell.v1.CloudShellService.StartEnvironment]: <doc:CloudShellServiceClient/startEnvironment(request:options:)>
 public struct StartEnvironmentMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

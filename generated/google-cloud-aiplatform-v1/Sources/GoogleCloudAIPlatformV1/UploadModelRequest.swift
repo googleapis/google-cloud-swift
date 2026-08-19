@@ -21,7 +21,7 @@
   /// Request message for
   /// [ModelService.UploadModel][google.cloud.aiplatform.v1.ModelService.UploadModel].
   ///
-  /// [google.cloud.aiplatform.v1.ModelService.UploadModel]: <doc:ModelServiceClient/uploadModel(request:)>
+  /// [google.cloud.aiplatform.v1.ModelService.UploadModel]: <doc:ModelServiceClient/uploadModel(request:options:)>
   public struct UploadModelRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

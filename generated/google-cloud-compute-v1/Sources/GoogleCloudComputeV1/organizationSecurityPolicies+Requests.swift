@@ -21,7 +21,7 @@
   extension OrganizationSecurityPoliciesClient {
     /// Synthetic request message for the [addAssociation()][google.cloud.compute.v1.organizationSecurityPolicies.addAssociation] method.
     ///
-    /// [google.cloud.compute.v1.organizationSecurityPolicies.addAssociation]: <doc:OrganizationSecurityPoliciesClient/addAssociation(request:)>
+    /// [google.cloud.compute.v1.organizationSecurityPolicies.addAssociation]: <doc:OrganizationSecurityPoliciesClient/addAssociation(request:options:)>
     public struct AddAssociationRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -50,7 +50,7 @@
 
       /// Synthetic request body field for the [addAssociation()][google.cloud.compute.v1.organizationSecurityPolicies.addAssociation] method.
       ///
-      /// [google.cloud.compute.v1.organizationSecurityPolicies.addAssociation]: <doc:OrganizationSecurityPoliciesClient/addAssociation(request:)>
+      /// [google.cloud.compute.v1.organizationSecurityPolicies.addAssociation]: <doc:OrganizationSecurityPoliciesClient/addAssociation(request:options:)>
       public var body: SecurityPolicyAssociation? = nil
 
       /// Initialize a new instance of `AddAssociationRequest`.
@@ -83,7 +83,7 @@
 
     /// Synthetic request message for the [addRule()][google.cloud.compute.v1.organizationSecurityPolicies.addRule] method.
     ///
-    /// [google.cloud.compute.v1.organizationSecurityPolicies.addRule]: <doc:OrganizationSecurityPoliciesClient/addRule(request:)>
+    /// [google.cloud.compute.v1.organizationSecurityPolicies.addRule]: <doc:OrganizationSecurityPoliciesClient/addRule(request:options:)>
     public struct AddRuleRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -107,7 +107,7 @@
 
       /// Synthetic request body field for the [addRule()][google.cloud.compute.v1.organizationSecurityPolicies.addRule] method.
       ///
-      /// [google.cloud.compute.v1.organizationSecurityPolicies.addRule]: <doc:OrganizationSecurityPoliciesClient/addRule(request:)>
+      /// [google.cloud.compute.v1.organizationSecurityPolicies.addRule]: <doc:OrganizationSecurityPoliciesClient/addRule(request:options:)>
       public var body: SecurityPolicyRule? = nil
 
       /// Initialize a new instance of `AddRuleRequest`.
@@ -140,7 +140,7 @@
 
     /// Synthetic request message for the [copyRules()][google.cloud.compute.v1.organizationSecurityPolicies.copyRules] method.
     ///
-    /// [google.cloud.compute.v1.organizationSecurityPolicies.copyRules]: <doc:OrganizationSecurityPoliciesClient/copyRules(request:)>
+    /// [google.cloud.compute.v1.organizationSecurityPolicies.copyRules]: <doc:OrganizationSecurityPoliciesClient/copyRules(request:options:)>
     public struct CopyRulesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -195,7 +195,7 @@
 
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.organizationSecurityPolicies.delete] method.
     ///
-    /// [google.cloud.compute.v1.organizationSecurityPolicies.delete]: <doc:OrganizationSecurityPoliciesClient/delete(request:)>
+    /// [google.cloud.compute.v1.organizationSecurityPolicies.delete]: <doc:OrganizationSecurityPoliciesClient/delete(request:options:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -247,7 +247,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.organizationSecurityPolicies.get] method.
     ///
-    /// [google.cloud.compute.v1.organizationSecurityPolicies.get]: <doc:OrganizationSecurityPoliciesClient/`get`(request:)>
+    /// [google.cloud.compute.v1.organizationSecurityPolicies.get]: <doc:OrganizationSecurityPoliciesClient/`get`(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -283,7 +283,7 @@
 
     /// Synthetic request message for the [getAssociation()][google.cloud.compute.v1.organizationSecurityPolicies.getAssociation] method.
     ///
-    /// [google.cloud.compute.v1.organizationSecurityPolicies.getAssociation]: <doc:OrganizationSecurityPoliciesClient/getAssociation(request:)>
+    /// [google.cloud.compute.v1.organizationSecurityPolicies.getAssociation]: <doc:OrganizationSecurityPoliciesClient/getAssociation(request:options:)>
     public struct GetAssociationRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -323,7 +323,7 @@
 
     /// Synthetic request message for the [getRule()][google.cloud.compute.v1.organizationSecurityPolicies.getRule] method.
     ///
-    /// [google.cloud.compute.v1.organizationSecurityPolicies.getRule]: <doc:OrganizationSecurityPoliciesClient/getRule(request:)>
+    /// [google.cloud.compute.v1.organizationSecurityPolicies.getRule]: <doc:OrganizationSecurityPoliciesClient/getRule(request:options:)>
     public struct GetRuleRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -363,7 +363,7 @@
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.organizationSecurityPolicies.insert] method.
     ///
-    /// [google.cloud.compute.v1.organizationSecurityPolicies.insert]: <doc:OrganizationSecurityPoliciesClient/insert(request:)>
+    /// [google.cloud.compute.v1.organizationSecurityPolicies.insert]: <doc:OrganizationSecurityPoliciesClient/insert(request:options:)>
     public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -389,7 +389,7 @@
 
       /// Synthetic request body field for the [insert()][google.cloud.compute.v1.organizationSecurityPolicies.insert] method.
       ///
-      /// [google.cloud.compute.v1.organizationSecurityPolicies.insert]: <doc:OrganizationSecurityPoliciesClient/insert(request:)>
+      /// [google.cloud.compute.v1.organizationSecurityPolicies.insert]: <doc:OrganizationSecurityPoliciesClient/insert(request:options:)>
       public var body: SecurityPolicy? = nil
 
       /// Initialize a new instance of `InsertRequest`.
@@ -422,7 +422,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.organizationSecurityPolicies.list] method.
     ///
-    /// [google.cloud.compute.v1.organizationSecurityPolicies.list]: <doc:OrganizationSecurityPoliciesClient/list(request:)>
+    /// [google.cloud.compute.v1.organizationSecurityPolicies.list]: <doc:OrganizationSecurityPoliciesClient/list(request:options:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -552,7 +552,7 @@
 
     /// Synthetic request message for the [listAssociations()][google.cloud.compute.v1.organizationSecurityPolicies.listAssociations] method.
     ///
-    /// [google.cloud.compute.v1.organizationSecurityPolicies.listAssociations]: <doc:OrganizationSecurityPoliciesClient/listAssociations(request:)>
+    /// [google.cloud.compute.v1.organizationSecurityPolicies.listAssociations]: <doc:OrganizationSecurityPoliciesClient/listAssociations(request:options:)>
     public struct ListAssociationsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -590,7 +590,7 @@
 
     /// Synthetic request message for the [listPreconfiguredExpressionSets()][google.cloud.compute.v1.organizationSecurityPolicies.listPreconfiguredExpressionSets] method.
     ///
-    /// [google.cloud.compute.v1.organizationSecurityPolicies.listPreconfiguredExpressionSets]: <doc:OrganizationSecurityPoliciesClient/listPreconfiguredExpressionSets(request:)>
+    /// [google.cloud.compute.v1.organizationSecurityPolicies.listPreconfiguredExpressionSets]: <doc:OrganizationSecurityPoliciesClient/listPreconfiguredExpressionSets(request:options:)>
     public struct ListPreconfiguredExpressionSetsRequest: Codable, Equatable, GoogleCloudWkt
         ._AnyPackable,
       Sendable
@@ -721,7 +721,7 @@
 
     /// Synthetic request message for the [move()][google.cloud.compute.v1.organizationSecurityPolicies.move] method.
     ///
-    /// [google.cloud.compute.v1.organizationSecurityPolicies.move]: <doc:OrganizationSecurityPoliciesClient/move(request:)>
+    /// [google.cloud.compute.v1.organizationSecurityPolicies.move]: <doc:OrganizationSecurityPoliciesClient/move(request:options:)>
     public struct MoveRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -776,7 +776,7 @@
 
     /// Synthetic request message for the [patch()][google.cloud.compute.v1.organizationSecurityPolicies.patch] method.
     ///
-    /// [google.cloud.compute.v1.organizationSecurityPolicies.patch]: <doc:OrganizationSecurityPoliciesClient/patch(request:)>
+    /// [google.cloud.compute.v1.organizationSecurityPolicies.patch]: <doc:OrganizationSecurityPoliciesClient/patch(request:options:)>
     public struct PatchRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -800,7 +800,7 @@
 
       /// Synthetic request body field for the [patch()][google.cloud.compute.v1.organizationSecurityPolicies.patch] method.
       ///
-      /// [google.cloud.compute.v1.organizationSecurityPolicies.patch]: <doc:OrganizationSecurityPoliciesClient/patch(request:)>
+      /// [google.cloud.compute.v1.organizationSecurityPolicies.patch]: <doc:OrganizationSecurityPoliciesClient/patch(request:options:)>
       public var body: SecurityPolicy? = nil
 
       /// Initialize a new instance of `PatchRequest`.
@@ -833,7 +833,7 @@
 
     /// Synthetic request message for the [patchRule()][google.cloud.compute.v1.organizationSecurityPolicies.patchRule] method.
     ///
-    /// [google.cloud.compute.v1.organizationSecurityPolicies.patchRule]: <doc:OrganizationSecurityPoliciesClient/patchRule(request:)>
+    /// [google.cloud.compute.v1.organizationSecurityPolicies.patchRule]: <doc:OrganizationSecurityPoliciesClient/patchRule(request:options:)>
     public struct PatchRuleRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -860,7 +860,7 @@
 
       /// Synthetic request body field for the [patchRule()][google.cloud.compute.v1.organizationSecurityPolicies.patchRule] method.
       ///
-      /// [google.cloud.compute.v1.organizationSecurityPolicies.patchRule]: <doc:OrganizationSecurityPoliciesClient/patchRule(request:)>
+      /// [google.cloud.compute.v1.organizationSecurityPolicies.patchRule]: <doc:OrganizationSecurityPoliciesClient/patchRule(request:options:)>
       public var body: SecurityPolicyRule? = nil
 
       /// Initialize a new instance of `PatchRuleRequest`.
@@ -893,7 +893,7 @@
 
     /// Synthetic request message for the [removeAssociation()][google.cloud.compute.v1.organizationSecurityPolicies.removeAssociation] method.
     ///
-    /// [google.cloud.compute.v1.organizationSecurityPolicies.removeAssociation]: <doc:OrganizationSecurityPoliciesClient/removeAssociation(request:)>
+    /// [google.cloud.compute.v1.organizationSecurityPolicies.removeAssociation]: <doc:OrganizationSecurityPoliciesClient/removeAssociation(request:options:)>
     public struct RemoveAssociationRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -948,7 +948,7 @@
 
     /// Synthetic request message for the [removeRule()][google.cloud.compute.v1.organizationSecurityPolicies.removeRule] method.
     ///
-    /// [google.cloud.compute.v1.organizationSecurityPolicies.removeRule]: <doc:OrganizationSecurityPoliciesClient/removeRule(request:)>
+    /// [google.cloud.compute.v1.organizationSecurityPolicies.removeRule]: <doc:OrganizationSecurityPoliciesClient/removeRule(request:options:)>
     public struct RemoveRuleRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {

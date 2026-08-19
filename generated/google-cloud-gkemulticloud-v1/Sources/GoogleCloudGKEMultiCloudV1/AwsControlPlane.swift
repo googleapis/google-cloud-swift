@@ -29,7 +29,7 @@ public struct AwsControlPlane: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// calling
   /// [GetAwsServerConfig][google.cloud.gkemulticloud.v1.AwsClusters.GetAwsServerConfig].
   ///
-  /// [google.cloud.gkemulticloud.v1.AwsClusters.GetAwsServerConfig]: <doc:AwsClustersClient/getAwsServerConfig(request:)>
+  /// [google.cloud.gkemulticloud.v1.AwsClusters.GetAwsServerConfig]: <doc:AwsClustersClient/getAwsServerConfig(request:options:)>
   public var version: Swift.String = Swift.String()
 
   /// Optional. The AWS instance type.

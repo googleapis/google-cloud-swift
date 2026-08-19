@@ -25,7 +25,7 @@
   /// [endpoint][google.cloud.aiplatform.v1.StreamingPredictRequest.endpoint] field
   /// and optionally [input][]. The subsequent messages must contain [input][].
   ///
-  /// [google.cloud.aiplatform.v1.PredictionService.StreamingPredict]: <doc:PredictionServiceClient/streamingPredict(request:)>
+  /// [google.cloud.aiplatform.v1.PredictionService.StreamingPredict]: <doc:PredictionServiceClient/streamingPredict(request:options:)>
   /// [google.cloud.aiplatform.v1.StreamingPredictRequest.endpoint]: <doc:StreamingPredictRequest/endpoint>
   public struct StreamingPredictRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable

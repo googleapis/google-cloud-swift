@@ -21,7 +21,7 @@
   extension GlobalAddressesClient {
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.globalAddresses.delete] method.
     ///
-    /// [google.cloud.compute.v1.globalAddresses.delete]: <doc:GlobalAddressesClient/delete(request:)>
+    /// [google.cloud.compute.v1.globalAddresses.delete]: <doc:GlobalAddressesClient/delete(request:options:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -75,7 +75,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.globalAddresses.get] method.
     ///
-    /// [google.cloud.compute.v1.globalAddresses.get]: <doc:GlobalAddressesClient/`get`(request:)>
+    /// [google.cloud.compute.v1.globalAddresses.get]: <doc:GlobalAddressesClient/`get`(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -114,7 +114,7 @@
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.globalAddresses.insert] method.
     ///
-    /// [google.cloud.compute.v1.globalAddresses.insert]: <doc:GlobalAddressesClient/insert(request:)>
+    /// [google.cloud.compute.v1.globalAddresses.insert]: <doc:GlobalAddressesClient/insert(request:options:)>
     public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -138,7 +138,7 @@
 
       /// Synthetic request body field for the [insert()][google.cloud.compute.v1.globalAddresses.insert] method.
       ///
-      /// [google.cloud.compute.v1.globalAddresses.insert]: <doc:GlobalAddressesClient/insert(request:)>
+      /// [google.cloud.compute.v1.globalAddresses.insert]: <doc:GlobalAddressesClient/insert(request:options:)>
       public var body: Address? = nil
 
       /// Initialize a new instance of `InsertRequest`.
@@ -170,7 +170,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.globalAddresses.list] method.
     ///
-    /// [google.cloud.compute.v1.globalAddresses.list]: <doc:GlobalAddressesClient/list(request:)>
+    /// [google.cloud.compute.v1.globalAddresses.list]: <doc:GlobalAddressesClient/list(request:options:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -299,7 +299,7 @@
 
     /// Synthetic request message for the [move()][google.cloud.compute.v1.globalAddresses.move] method.
     ///
-    /// [google.cloud.compute.v1.globalAddresses.move]: <doc:GlobalAddressesClient/move(request:)>
+    /// [google.cloud.compute.v1.globalAddresses.move]: <doc:GlobalAddressesClient/move(request:options:)>
     public struct MoveRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -326,7 +326,7 @@
 
       /// Synthetic request body field for the [move()][google.cloud.compute.v1.globalAddresses.move] method.
       ///
-      /// [google.cloud.compute.v1.globalAddresses.move]: <doc:GlobalAddressesClient/move(request:)>
+      /// [google.cloud.compute.v1.globalAddresses.move]: <doc:GlobalAddressesClient/move(request:options:)>
       public var body: GlobalAddressesMoveRequest? = nil
 
       /// Initialize a new instance of `MoveRequest`.
@@ -358,7 +358,7 @@
 
     /// Synthetic request message for the [setLabels()][google.cloud.compute.v1.globalAddresses.setLabels] method.
     ///
-    /// [google.cloud.compute.v1.globalAddresses.setLabels]: <doc:GlobalAddressesClient/setLabels(request:)>
+    /// [google.cloud.compute.v1.globalAddresses.setLabels]: <doc:GlobalAddressesClient/setLabels(request:options:)>
     public struct SetLabelsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -370,7 +370,7 @@
 
       /// Synthetic request body field for the [setLabels()][google.cloud.compute.v1.globalAddresses.setLabels] method.
       ///
-      /// [google.cloud.compute.v1.globalAddresses.setLabels]: <doc:GlobalAddressesClient/setLabels(request:)>
+      /// [google.cloud.compute.v1.globalAddresses.setLabels]: <doc:GlobalAddressesClient/setLabels(request:options:)>
       public var body: GlobalSetLabelsRequest? = nil
 
       /// Initialize a new instance of `SetLabelsRequest`.
@@ -402,7 +402,7 @@
 
     /// Synthetic request message for the [testIamPermissions()][google.cloud.compute.v1.globalAddresses.testIamPermissions] method.
     ///
-    /// [google.cloud.compute.v1.globalAddresses.testIamPermissions]: <doc:GlobalAddressesClient/testIamPermissions(request:)>
+    /// [google.cloud.compute.v1.globalAddresses.testIamPermissions]: <doc:GlobalAddressesClient/testIamPermissions(request:options:)>
     public struct TestIamPermissionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -414,7 +414,7 @@
 
       /// Synthetic request body field for the [testIamPermissions()][google.cloud.compute.v1.globalAddresses.testIamPermissions] method.
       ///
-      /// [google.cloud.compute.v1.globalAddresses.testIamPermissions]: <doc:GlobalAddressesClient/testIamPermissions(request:)>
+      /// [google.cloud.compute.v1.globalAddresses.testIamPermissions]: <doc:GlobalAddressesClient/testIamPermissions(request:options:)>
       public var body: TestPermissionsRequest? = nil
 
       /// Initialize a new instance of `TestIamPermissionsRequest`.

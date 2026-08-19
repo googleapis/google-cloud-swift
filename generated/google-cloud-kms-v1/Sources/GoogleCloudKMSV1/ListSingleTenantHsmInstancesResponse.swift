@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [HsmManagement.ListSingleTenantHsmInstances][google.cloud.kms.v1.HsmManagement.ListSingleTenantHsmInstances].
 ///
-/// [google.cloud.kms.v1.HsmManagement.ListSingleTenantHsmInstances]: <doc:HsmManagementClient/listSingleTenantHsmInstances(request:)>
+/// [google.cloud.kms.v1.HsmManagement.ListSingleTenantHsmInstances]: <doc:HsmManagementClient/listSingleTenantHsmInstances(request:options:)>
 public struct ListSingleTenantHsmInstancesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

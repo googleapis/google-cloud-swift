@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Message included in the metadata field of operations returned from
 /// [AuthorizeEnvironment][google.cloud.shell.v1.CloudShellService.AuthorizeEnvironment].
 ///
-/// [google.cloud.shell.v1.CloudShellService.AuthorizeEnvironment]: <doc:CloudShellServiceClient/authorizeEnvironment(request:)>
+/// [google.cloud.shell.v1.CloudShellService.AuthorizeEnvironment]: <doc:CloudShellServiceClient/authorizeEnvironment(request:options:)>
 public struct AuthorizeEnvironmentMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

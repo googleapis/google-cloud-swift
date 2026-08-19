@@ -21,7 +21,7 @@
   /// Request message for
   /// [ModelService.DeleteModelVersion][google.cloud.aiplatform.v1.ModelService.DeleteModelVersion].
   ///
-  /// [google.cloud.aiplatform.v1.ModelService.DeleteModelVersion]: <doc:ModelServiceClient/deleteModelVersion(request:)>
+  /// [google.cloud.aiplatform.v1.ModelService.DeleteModelVersion]: <doc:ModelServiceClient/deleteModelVersion(request:options:)>
   public struct DeleteModelVersionRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

@@ -21,7 +21,7 @@
   /// Request message for
   /// [SessionService.ListSessions][google.cloud.aiplatform.v1.SessionService.ListSessions].
   ///
-  /// [google.cloud.aiplatform.v1.SessionService.ListSessions]: <doc:SessionServiceClient/listSessions(request:)>
+  /// [google.cloud.aiplatform.v1.SessionService.ListSessions]: <doc:SessionServiceClient/listSessions(request:options:)>
   public struct ListSessionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {
@@ -42,7 +42,7 @@
     /// call.
     ///
     /// [google.cloud.aiplatform.v1.ListSessionsResponse.next_page_token]: <doc:ListSessionsResponse/nextPageToken>
-    /// [google.cloud.aiplatform.v1.SessionService.ListSessions]: <doc:SessionServiceClient/listSessions(request:)>
+    /// [google.cloud.aiplatform.v1.SessionService.ListSessions]: <doc:SessionServiceClient/listSessions(request:options:)>
     public var pageToken: Swift.String = Swift.String()
 
     /// Optional. The standard list filter.

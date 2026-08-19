@@ -21,7 +21,7 @@
   /// The request message for
   /// [Pages.GetPage][google.cloud.dialogflow.cx.v3.Pages.GetPage].
   ///
-  /// [google.cloud.dialogflow.cx.v3.Pages.GetPage]: <doc:PagesClient/getPage(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Pages.GetPage]: <doc:PagesClient/getPage(request:options:)>
   public struct GetPageRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

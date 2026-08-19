@@ -21,7 +21,7 @@
   /// The request message for
   /// [Intents.UpdateIntent][google.cloud.dialogflow.v2.Intents.UpdateIntent].
   ///
-  /// [google.cloud.dialogflow.v2.Intents.UpdateIntent]: <doc:IntentsClient/updateIntent(request:)>
+  /// [google.cloud.dialogflow.v2.Intents.UpdateIntent]: <doc:IntentsClient/updateIntent(request:options:)>
   public struct UpdateIntentRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

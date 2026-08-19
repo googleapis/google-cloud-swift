@@ -21,7 +21,7 @@
   /// Request message for
   /// [VertexRagDataService.ImportRagFiles][google.cloud.aiplatform.v1.VertexRagDataService.ImportRagFiles].
   ///
-  /// [google.cloud.aiplatform.v1.VertexRagDataService.ImportRagFiles]: <doc:VertexRagDataServiceClient/importRagFiles(request:)>
+  /// [google.cloud.aiplatform.v1.VertexRagDataService.ImportRagFiles]: <doc:VertexRagDataServiceClient/importRagFiles(request:options:)>
   public struct ImportRagFilesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {
@@ -34,7 +34,7 @@
     /// RagCorpus.
     /// [VertexRagDataService.ImportRagFiles][google.cloud.aiplatform.v1.VertexRagDataService.ImportRagFiles].
     ///
-    /// [google.cloud.aiplatform.v1.VertexRagDataService.ImportRagFiles]: <doc:VertexRagDataServiceClient/importRagFiles(request:)>
+    /// [google.cloud.aiplatform.v1.VertexRagDataService.ImportRagFiles]: <doc:VertexRagDataServiceClient/importRagFiles(request:options:)>
     public var importRagFilesConfig: ImportRagFilesConfig? = nil
 
     /// Initialize a new instance of `ImportRagFilesRequest`.

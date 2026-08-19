@@ -185,7 +185,7 @@ public class ServiceManagerClient: Clients.ServiceManagerProtocol {
   ///
   /// Operation<response: google.protobuf.Empty>
   ///
-  /// [google.api.servicemanagement.v1.ServiceManager.UndeleteService]: <doc:ServiceManagerClient/undeleteService(request:)>
+  /// [google.api.servicemanagement.v1.ServiceManager.UndeleteService]: <doc:ServiceManagerClient/undeleteService(request:options:)>
   ///
   /// @Snippet(path: "ServiceManager_DeleteService")
   public func deleteService(
@@ -203,7 +203,7 @@ public class ServiceManagerClient: Clients.ServiceManagerProtocol {
   ///
   /// Operation<response: google.protobuf.Empty>
   ///
-  /// [google.api.servicemanagement.v1.ServiceManager.UndeleteService]: <doc:ServiceManagerClient/undeleteService(request:)>
+  /// [google.api.servicemanagement.v1.ServiceManager.UndeleteService]: <doc:ServiceManagerClient/undeleteService(request:options:)>
   ///
   /// @Snippet(path: "ServiceManager_DeleteService")
   public func deleteService(
@@ -378,7 +378,7 @@ public class ServiceManagerClient: Clients.ServiceManagerProtocol {
   /// existing rollouts are kept for each service. The rest will be deleted
   /// eventually.
   ///
-  /// [google.api.servicemanagement.v1.ServiceManager.CreateServiceRollout]: <doc:ServiceManagerClient/createServiceRollout(request:)>
+  /// [google.api.servicemanagement.v1.ServiceManager.CreateServiceRollout]: <doc:ServiceManagerClient/createServiceRollout(request:options:)>
   ///
   /// @Snippet(path: "ServiceManager_CreateServiceConfig")
   public func createServiceConfig(
@@ -402,7 +402,7 @@ public class ServiceManagerClient: Clients.ServiceManagerProtocol {
   ///
   /// Operation<response: SubmitConfigSourceResponse>
   ///
-  /// [google.api.servicemanagement.v1.ServiceManager.CreateServiceRollout]: <doc:ServiceManagerClient/createServiceRollout(request:)>
+  /// [google.api.servicemanagement.v1.ServiceManager.CreateServiceRollout]: <doc:ServiceManagerClient/createServiceRollout(request:options:)>
   ///
   /// @Snippet(path: "ServiceManager_SubmitConfigSource")
   public func submitConfigSource(
@@ -426,7 +426,7 @@ public class ServiceManagerClient: Clients.ServiceManagerProtocol {
   ///
   /// Operation<response: SubmitConfigSourceResponse>
   ///
-  /// [google.api.servicemanagement.v1.ServiceManager.CreateServiceRollout]: <doc:ServiceManagerClient/createServiceRollout(request:)>
+  /// [google.api.servicemanagement.v1.ServiceManager.CreateServiceRollout]: <doc:ServiceManagerClient/createServiceRollout(request:options:)>
   ///
   /// @Snippet(path: "ServiceManager_SubmitConfigSource")
   public func submitConfigSource(

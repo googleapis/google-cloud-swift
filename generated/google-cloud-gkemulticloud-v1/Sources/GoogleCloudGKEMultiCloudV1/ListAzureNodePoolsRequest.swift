@@ -49,7 +49,7 @@ public struct ListAzureNodePoolsRequest: Codable, Equatable, GoogleCloudWkt._Any
   /// [azureNodePools.list][google.cloud.gkemulticloud.v1.AzureClusters.ListAzureNodePools]
   /// request, if any.
   ///
-  /// [google.cloud.gkemulticloud.v1.AzureClusters.ListAzureNodePools]: <doc:AzureClustersClient/listAzureNodePools(request:)>
+  /// [google.cloud.gkemulticloud.v1.AzureClusters.ListAzureNodePools]: <doc:AzureClustersClient/listAzureNodePools(request:options:)>
   public var pageToken: Swift.String = Swift.String()
 
   /// Initialize a new instance of `ListAzureNodePoolsRequest`.

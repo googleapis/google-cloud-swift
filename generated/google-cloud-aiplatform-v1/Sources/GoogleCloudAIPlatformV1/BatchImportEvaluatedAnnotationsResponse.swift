@@ -21,7 +21,7 @@
   /// Response message for
   /// [ModelService.BatchImportEvaluatedAnnotations][google.cloud.aiplatform.v1.ModelService.BatchImportEvaluatedAnnotations]
   ///
-  /// [google.cloud.aiplatform.v1.ModelService.BatchImportEvaluatedAnnotations]: <doc:ModelServiceClient/batchImportEvaluatedAnnotations(request:)>
+  /// [google.cloud.aiplatform.v1.ModelService.BatchImportEvaluatedAnnotations]: <doc:ModelServiceClient/batchImportEvaluatedAnnotations(request:options:)>
   public struct BatchImportEvaluatedAnnotationsResponse: Codable, Equatable, GoogleCloudWkt
       ._AnyPackable,
     Sendable

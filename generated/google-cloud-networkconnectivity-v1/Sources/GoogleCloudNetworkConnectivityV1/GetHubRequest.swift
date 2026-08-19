@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [HubService.GetHub][google.cloud.networkconnectivity.v1.HubService.GetHub]
 /// method.
 ///
-/// [google.cloud.networkconnectivity.v1.HubService.GetHub]: <doc:HubServiceClient/getHub(request:)>
+/// [google.cloud.networkconnectivity.v1.HubService.GetHub]: <doc:HubServiceClient/getHub(request:options:)>
 public struct GetHubRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

@@ -25,7 +25,7 @@
   /// [upload][google.cloud.aiplatform.v1.ModelService.UploadModel] the Model to
   /// Vertex AI, and evaluate the Model.
   ///
-  /// [google.cloud.aiplatform.v1.ModelService.UploadModel]: <doc:ModelServiceClient/uploadModel(request:)>
+  /// [google.cloud.aiplatform.v1.ModelService.UploadModel]: <doc:ModelServiceClient/uploadModel(request:options:)>
   public struct TrainingPipeline: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {
@@ -95,7 +95,7 @@
     /// which this pipeline is.
     ///
     /// [google.cloud.aiplatform.v1.Model.name]: <doc:Model/name>
-    /// [google.cloud.aiplatform.v1.ModelService.UploadModel]: <doc:ModelServiceClient/uploadModel(request:)>
+    /// [google.cloud.aiplatform.v1.ModelService.UploadModel]: <doc:ModelServiceClient/uploadModel(request:options:)>
     /// [google.cloud.aiplatform.v1.TrainingPipeline.training_task_definition]: <doc:TrainingPipeline/trainingTaskDefinition>
     public var modelToUpload: Model? = nil
 

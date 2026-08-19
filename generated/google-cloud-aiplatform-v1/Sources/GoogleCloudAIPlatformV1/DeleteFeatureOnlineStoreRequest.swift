@@ -21,7 +21,7 @@
   /// Request message for
   /// [FeatureOnlineStoreAdminService.DeleteFeatureOnlineStore][google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService.DeleteFeatureOnlineStore].
   ///
-  /// [google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService.DeleteFeatureOnlineStore]: <doc:FeatureOnlineStoreAdminServiceClient/deleteFeatureOnlineStore(request:)>
+  /// [google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService.DeleteFeatureOnlineStore]: <doc:FeatureOnlineStoreAdminServiceClient/deleteFeatureOnlineStore(request:options:)>
   public struct DeleteFeatureOnlineStoreRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

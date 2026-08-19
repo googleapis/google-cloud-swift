@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// The request message for
 /// [RegistrationService.UpdateNamespace][google.cloud.servicedirectory.v1.RegistrationService.UpdateNamespace].
 ///
-/// [google.cloud.servicedirectory.v1.RegistrationService.UpdateNamespace]: <doc:RegistrationServiceClient/updateNamespace(request:)>
+/// [google.cloud.servicedirectory.v1.RegistrationService.UpdateNamespace]: <doc:RegistrationServiceClient/updateNamespace(request:options:)>
 public struct UpdateNamespaceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

@@ -173,7 +173,7 @@ public struct SingleTenantHsmInstance: Codable, Equatable, GoogleCloudWkt._AnyPa
     /// [CreateSingleTenantHsmInstanceProposal][google.cloud.kms.v1.HsmManagement.CreateSingleTenantHsmInstanceProposal]
     /// with the [RegisterTwoFactorAuthKeys][] operation.
     ///
-    /// [google.cloud.kms.v1.HsmManagement.CreateSingleTenantHsmInstanceProposal]: <doc:HsmManagementClient/createSingleTenantHsmInstanceProposal(request:)>
+    /// [google.cloud.kms.v1.HsmManagement.CreateSingleTenantHsmInstanceProposal]: <doc:HsmManagementClient/createSingleTenantHsmInstanceProposal(request:options:)>
     /// [google.cloud.kms.v1.SingleTenantHsmInstance]: <doc:SingleTenantHsmInstance>
     case pendingTwoFactorAuthRegistration
     /// The

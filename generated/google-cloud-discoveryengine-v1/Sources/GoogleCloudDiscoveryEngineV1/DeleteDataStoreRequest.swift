@@ -22,7 +22,7 @@
   /// [DataStoreService.DeleteDataStore][google.cloud.discoveryengine.v1.DataStoreService.DeleteDataStore]
   /// method.
   ///
-  /// [google.cloud.discoveryengine.v1.DataStoreService.DeleteDataStore]: <doc:DataStoreServiceClient/deleteDataStore(request:)>
+  /// [google.cloud.discoveryengine.v1.DataStoreService.DeleteDataStore]: <doc:DataStoreServiceClient/deleteDataStore(request:options:)>
   public struct DeleteDataStoreRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

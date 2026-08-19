@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [CloudChannelService.ListTransferableSkus][google.cloud.channel.v1.CloudChannelService.ListTransferableSkus].
 ///
-/// [google.cloud.channel.v1.CloudChannelService.ListTransferableSkus]: <doc:CloudChannelServiceClient/listTransferableSkus(request:)>
+/// [google.cloud.channel.v1.CloudChannelService.ListTransferableSkus]: <doc:CloudChannelServiceClient/listTransferableSkus(request:options:)>
 public struct ListTransferableSkusResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

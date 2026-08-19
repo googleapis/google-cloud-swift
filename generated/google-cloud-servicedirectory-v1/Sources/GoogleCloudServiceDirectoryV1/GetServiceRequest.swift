@@ -22,7 +22,7 @@ import GoogleCloudWkt
 /// This should not be used for looking up a service. Instead, use the `resolve`
 /// method as it contains all endpoints and associated annotations.
 ///
-/// [google.cloud.servicedirectory.v1.RegistrationService.GetService]: <doc:RegistrationServiceClient/getService(request:)>
+/// [google.cloud.servicedirectory.v1.RegistrationService.GetService]: <doc:RegistrationServiceClient/getService(request:options:)>
 public struct GetServiceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

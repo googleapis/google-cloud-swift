@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [ListWorkflows][google.cloud.workflows.v1.Workflows.ListWorkflows]
 /// method.
 ///
-/// [google.cloud.workflows.v1.Workflows.ListWorkflows]: <doc:WorkflowsClient/listWorkflows(request:)>
+/// [google.cloud.workflows.v1.Workflows.ListWorkflows]: <doc:WorkflowsClient/listWorkflows(request:options:)>
 public struct ListWorkflowsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

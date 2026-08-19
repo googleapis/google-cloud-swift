@@ -21,7 +21,7 @@
   extension ResourcePoliciesClient {
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.resourcePolicies.aggregatedList] method.
     ///
-    /// [google.cloud.compute.v1.resourcePolicies.aggregatedList]: <doc:ResourcePoliciesClient/aggregatedList(request:)>
+    /// [google.cloud.compute.v1.resourcePolicies.aggregatedList]: <doc:ResourcePoliciesClient/aggregatedList(request:options:)>
     public struct AggregatedListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -163,7 +163,7 @@
 
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.resourcePolicies.delete] method.
     ///
-    /// [google.cloud.compute.v1.resourcePolicies.delete]: <doc:ResourcePoliciesClient/delete(request:)>
+    /// [google.cloud.compute.v1.resourcePolicies.delete]: <doc:ResourcePoliciesClient/delete(request:options:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -220,7 +220,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.resourcePolicies.get] method.
     ///
-    /// [google.cloud.compute.v1.resourcePolicies.get]: <doc:ResourcePoliciesClient/`get`(request:)>
+    /// [google.cloud.compute.v1.resourcePolicies.get]: <doc:ResourcePoliciesClient/`get`(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -262,7 +262,7 @@
 
     /// Synthetic request message for the [getIamPolicy()][google.cloud.compute.v1.resourcePolicies.getIamPolicy] method.
     ///
-    /// [google.cloud.compute.v1.resourcePolicies.getIamPolicy]: <doc:ResourcePoliciesClient/getIamPolicy(request:)>
+    /// [google.cloud.compute.v1.resourcePolicies.getIamPolicy]: <doc:ResourcePoliciesClient/getIamPolicy(request:options:)>
     public struct GetIamPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -307,7 +307,7 @@
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.resourcePolicies.insert] method.
     ///
-    /// [google.cloud.compute.v1.resourcePolicies.insert]: <doc:ResourcePoliciesClient/insert(request:)>
+    /// [google.cloud.compute.v1.resourcePolicies.insert]: <doc:ResourcePoliciesClient/insert(request:options:)>
     public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -334,7 +334,7 @@
 
       /// Synthetic request body field for the [insert()][google.cloud.compute.v1.resourcePolicies.insert] method.
       ///
-      /// [google.cloud.compute.v1.resourcePolicies.insert]: <doc:ResourcePoliciesClient/insert(request:)>
+      /// [google.cloud.compute.v1.resourcePolicies.insert]: <doc:ResourcePoliciesClient/insert(request:options:)>
       public var body: ResourcePolicy? = nil
 
       /// Initialize a new instance of `InsertRequest`.
@@ -366,7 +366,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.resourcePolicies.list] method.
     ///
-    /// [google.cloud.compute.v1.resourcePolicies.list]: <doc:ResourcePoliciesClient/list(request:)>
+    /// [google.cloud.compute.v1.resourcePolicies.list]: <doc:ResourcePoliciesClient/list(request:options:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -498,7 +498,7 @@
 
     /// Synthetic request message for the [patch()][google.cloud.compute.v1.resourcePolicies.patch] method.
     ///
-    /// [google.cloud.compute.v1.resourcePolicies.patch]: <doc:ResourcePoliciesClient/patch(request:)>
+    /// [google.cloud.compute.v1.resourcePolicies.patch]: <doc:ResourcePoliciesClient/patch(request:options:)>
     public struct PatchRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -531,7 +531,7 @@
 
       /// Synthetic request body field for the [patch()][google.cloud.compute.v1.resourcePolicies.patch] method.
       ///
-      /// [google.cloud.compute.v1.resourcePolicies.patch]: <doc:ResourcePoliciesClient/patch(request:)>
+      /// [google.cloud.compute.v1.resourcePolicies.patch]: <doc:ResourcePoliciesClient/patch(request:options:)>
       public var body: ResourcePolicy? = nil
 
       /// Initialize a new instance of `PatchRequest`.
@@ -563,7 +563,7 @@
 
     /// Synthetic request message for the [setIamPolicy()][google.cloud.compute.v1.resourcePolicies.setIamPolicy] method.
     ///
-    /// [google.cloud.compute.v1.resourcePolicies.setIamPolicy]: <doc:ResourcePoliciesClient/setIamPolicy(request:)>
+    /// [google.cloud.compute.v1.resourcePolicies.setIamPolicy]: <doc:ResourcePoliciesClient/setIamPolicy(request:options:)>
     public struct SetIamPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -578,7 +578,7 @@
 
       /// Synthetic request body field for the [setIamPolicy()][google.cloud.compute.v1.resourcePolicies.setIamPolicy] method.
       ///
-      /// [google.cloud.compute.v1.resourcePolicies.setIamPolicy]: <doc:ResourcePoliciesClient/setIamPolicy(request:)>
+      /// [google.cloud.compute.v1.resourcePolicies.setIamPolicy]: <doc:ResourcePoliciesClient/setIamPolicy(request:options:)>
       public var body: RegionSetPolicyRequest? = nil
 
       /// Initialize a new instance of `SetIamPolicyRequest`.
@@ -610,7 +610,7 @@
 
     /// Synthetic request message for the [testIamPermissions()][google.cloud.compute.v1.resourcePolicies.testIamPermissions] method.
     ///
-    /// [google.cloud.compute.v1.resourcePolicies.testIamPermissions]: <doc:ResourcePoliciesClient/testIamPermissions(request:)>
+    /// [google.cloud.compute.v1.resourcePolicies.testIamPermissions]: <doc:ResourcePoliciesClient/testIamPermissions(request:options:)>
     public struct TestIamPermissionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -625,7 +625,7 @@
 
       /// Synthetic request body field for the [testIamPermissions()][google.cloud.compute.v1.resourcePolicies.testIamPermissions] method.
       ///
-      /// [google.cloud.compute.v1.resourcePolicies.testIamPermissions]: <doc:ResourcePoliciesClient/testIamPermissions(request:)>
+      /// [google.cloud.compute.v1.resourcePolicies.testIamPermissions]: <doc:ResourcePoliciesClient/testIamPermissions(request:options:)>
       public var body: TestPermissionsRequest? = nil
 
       /// Initialize a new instance of `TestIamPermissionsRequest`.

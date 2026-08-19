@@ -21,7 +21,7 @@
   /// The request message for
   /// [Flows.DeleteFlow][google.cloud.dialogflow.cx.v3.Flows.DeleteFlow].
   ///
-  /// [google.cloud.dialogflow.cx.v3.Flows.DeleteFlow]: <doc:FlowsClient/deleteFlow(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Flows.DeleteFlow]: <doc:FlowsClient/deleteFlow(request:options:)>
   public struct DeleteFlowRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

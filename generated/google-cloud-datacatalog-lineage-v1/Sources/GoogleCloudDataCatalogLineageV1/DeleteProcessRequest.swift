@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [DeleteProcess][google.cloud.datacatalog.lineage.v1.Lineage.DeleteProcess].
 ///
-/// [google.cloud.datacatalog.lineage.v1.Lineage.DeleteProcess]: <doc:LineageClient/deleteProcess(request:)>
+/// [google.cloud.datacatalog.lineage.v1.Lineage.DeleteProcess]: <doc:LineageClient/deleteProcess(request:options:)>
 public struct DeleteProcessRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

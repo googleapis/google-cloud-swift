@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [VmwareEngine.RevokeDnsBindPermission][google.cloud.vmwareengine.v1.VmwareEngine.RevokeDnsBindPermission]
 ///
-/// [google.cloud.vmwareengine.v1.VmwareEngine.RevokeDnsBindPermission]: <doc:VmwareEngineClient/revokeDnsBindPermission(request:)>
+/// [google.cloud.vmwareengine.v1.VmwareEngine.RevokeDnsBindPermission]: <doc:VmwareEngineClient/revokeDnsBindPermission(request:options:)>
 public struct RevokeDnsBindPermissionRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

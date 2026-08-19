@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [SecurityCenterManagement.ListEventThreatDetectionCustomModules][google.cloud.securitycentermanagement.v1.SecurityCenterManagement.ListEventThreatDetectionCustomModules].
 ///
-/// [google.cloud.securitycentermanagement.v1.SecurityCenterManagement.ListEventThreatDetectionCustomModules]: <doc:SecurityCenterManagementClient/listEventThreatDetectionCustomModules(request:)>
+/// [google.cloud.securitycentermanagement.v1.SecurityCenterManagement.ListEventThreatDetectionCustomModules]: <doc:SecurityCenterManagementClient/listEventThreatDetectionCustomModules(request:options:)>
 public struct ListEventThreatDetectionCustomModulesResponse: Codable, Equatable, GoogleCloudWkt
     ._AnyPackable,
   GoogleCloudGax._PaginatedResponse,

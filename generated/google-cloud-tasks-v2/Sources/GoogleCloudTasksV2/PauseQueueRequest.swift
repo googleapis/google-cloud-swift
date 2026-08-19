@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [PauseQueue][google.cloud.tasks.v2.CloudTasks.PauseQueue].
 ///
-/// [google.cloud.tasks.v2.CloudTasks.PauseQueue]: <doc:CloudTasksClient/pauseQueue(request:)>
+/// [google.cloud.tasks.v2.CloudTasks.PauseQueue]: <doc:CloudTasksClient/pauseQueue(request:options:)>
 public struct PauseQueueRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

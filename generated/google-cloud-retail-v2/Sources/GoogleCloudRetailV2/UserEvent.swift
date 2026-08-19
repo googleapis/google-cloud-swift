@@ -68,7 +68,7 @@ public struct UserEvent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// [UserEventService.ImportUserEvents][google.cloud.retail.v2.UserEventService.ImportUserEvents]
   /// method. Timestamp of when the user event happened.
   ///
-  /// [google.cloud.retail.v2.UserEventService.ImportUserEvents]: <doc:UserEventServiceClient/importUserEvents(request:)>
+  /// [google.cloud.retail.v2.UserEventService.ImportUserEvents]: <doc:UserEventServiceClient/importUserEvents(request:options:)>
   public var eventTime: GoogleCloudWkt.Timestamp? = nil
 
   /// A list of identifiers for the independent experiment groups this user event
@@ -102,9 +102,9 @@ public struct UserEvent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// to this field.
   ///
   /// [google.cloud.retail.v2.PredictResponse.attribution_token]: <doc:PredictResponse/attributionToken>
-  /// [google.cloud.retail.v2.PredictionService.Predict]: <doc:PredictionServiceClient/predict(request:)>
+  /// [google.cloud.retail.v2.PredictionService.Predict]: <doc:PredictionServiceClient/predict(request:options:)>
   /// [google.cloud.retail.v2.SearchResponse.attribution_token]: <doc:SearchResponse/attributionToken>
-  /// [google.cloud.retail.v2.SearchService.Search]: <doc:SearchServiceClient/search(request:)>
+  /// [google.cloud.retail.v2.SearchService.Search]: <doc:SearchServiceClient/search(request:options:)>
   public var attributionToken: Swift.String = Swift.String()
 
   /// The main product details related to the event.

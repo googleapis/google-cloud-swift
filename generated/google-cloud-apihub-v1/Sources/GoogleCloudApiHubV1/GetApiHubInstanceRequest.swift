@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [GetApiHubInstance][google.cloud.apihub.v1.Provisioning.GetApiHubInstance]
 /// method's request.
 ///
-/// [google.cloud.apihub.v1.Provisioning.GetApiHubInstance]: <doc:ProvisioningClient/getApiHubInstance(request:)>
+/// [google.cloud.apihub.v1.Provisioning.GetApiHubInstance]: <doc:ProvisioningClient/getApiHubInstance(request:options:)>
 public struct GetApiHubInstanceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

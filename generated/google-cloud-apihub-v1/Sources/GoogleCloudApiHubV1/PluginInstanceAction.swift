@@ -196,8 +196,8 @@ public struct PluginInstanceAction: Codable, Equatable, GoogleCloudWkt._AnyPacka
     /// to restore the action back to enabled/disabled state. Note enable/disable
     /// on actions can only be triggered if plugin instance is in Active state.
     ///
-    /// [google.cloud.apihub.v1.ApiHubPlugin.DisablePluginInstanceAction]: <doc:ApiHubPluginClient/disablePluginInstanceAction(request:)>
-    /// [google.cloud.apihub.v1.ApiHubPlugin.EnablePluginInstanceAction]: <doc:ApiHubPluginClient/enablePluginInstanceAction(request:)>
+    /// [google.cloud.apihub.v1.ApiHubPlugin.DisablePluginInstanceAction]: <doc:ApiHubPluginClient/disablePluginInstanceAction(request:options:)>
+    /// [google.cloud.apihub.v1.ApiHubPlugin.EnablePluginInstanceAction]: <doc:ApiHubPluginClient/enablePluginInstanceAction(request:options:)>
     case error
     /// Encodes an unknown integer value.
     ///

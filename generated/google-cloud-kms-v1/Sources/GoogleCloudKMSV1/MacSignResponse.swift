@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [KeyManagementService.MacSign][google.cloud.kms.v1.KeyManagementService.MacSign].
 ///
-/// [google.cloud.kms.v1.KeyManagementService.MacSign]: <doc:KeyManagementServiceClient/macSign(request:)>
+/// [google.cloud.kms.v1.KeyManagementService.MacSign]: <doc:KeyManagementServiceClient/macSign(request:options:)>
 public struct MacSignResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

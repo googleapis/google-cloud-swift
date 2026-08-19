@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [CloudChannelService.ActivateEntitlement][google.cloud.channel.v1.CloudChannelService.ActivateEntitlement].
 ///
-/// [google.cloud.channel.v1.CloudChannelService.ActivateEntitlement]: <doc:CloudChannelServiceClient/activateEntitlement(request:)>
+/// [google.cloud.channel.v1.CloudChannelService.ActivateEntitlement]: <doc:CloudChannelServiceClient/activateEntitlement(request:options:)>
 public struct ActivateEntitlementRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

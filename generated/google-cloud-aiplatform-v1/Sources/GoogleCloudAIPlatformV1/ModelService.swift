@@ -367,7 +367,7 @@
     /// deleting the Model instead.
     ///
     /// [google.cloud.aiplatform.v1.DeployedModel]: <doc:DeployedModel>
-    /// [google.cloud.aiplatform.v1.ModelService.DeleteModel]: <doc:ModelServiceClient/deleteModel(request:)>
+    /// [google.cloud.aiplatform.v1.ModelService.DeleteModel]: <doc:ModelServiceClient/deleteModel(request:options:)>
     ///
     /// @Snippet(path: "ModelService_DeleteModelVersion")
     public func deleteModelVersion(
@@ -385,7 +385,7 @@
     /// deleting the Model instead.
     ///
     /// [google.cloud.aiplatform.v1.DeployedModel]: <doc:DeployedModel>
-    /// [google.cloud.aiplatform.v1.ModelService.DeleteModel]: <doc:ModelServiceClient/deleteModel(request:)>
+    /// [google.cloud.aiplatform.v1.ModelService.DeleteModel]: <doc:ModelServiceClient/deleteModel(request:options:)>
     ///
     /// @Snippet(path: "ModelService_DeleteModelVersion")
     public func deleteModelVersion(

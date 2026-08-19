@@ -44,7 +44,7 @@ public struct SetDefaultBranchRequest: Codable, Equatable, GoogleCloudWkt._AnyPa
   /// This field must be a UTF-8 encoded string with a length limit of 1,000
   /// characters. Otherwise, an INVALID_ARGUMENT error is returned.
   ///
-  /// [google.cloud.retail.v2.CatalogService.GetDefaultBranch]: <doc:CatalogServiceClient/getDefaultBranch(request:)>
+  /// [google.cloud.retail.v2.CatalogService.GetDefaultBranch]: <doc:CatalogServiceClient/getDefaultBranch(request:options:)>
   public var note: Swift.String = Swift.String()
 
   /// If set to true, it permits switching to a branch with

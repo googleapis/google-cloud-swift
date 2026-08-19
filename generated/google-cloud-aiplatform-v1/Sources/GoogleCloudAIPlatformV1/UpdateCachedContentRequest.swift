@@ -22,7 +22,7 @@
   /// [GenAiCacheService.UpdateCachedContent][google.cloud.aiplatform.v1.GenAiCacheService.UpdateCachedContent].
   /// Only expire_time or ttl can be updated.
   ///
-  /// [google.cloud.aiplatform.v1.GenAiCacheService.UpdateCachedContent]: <doc:GenAiCacheServiceClient/updateCachedContent(request:)>
+  /// [google.cloud.aiplatform.v1.GenAiCacheService.UpdateCachedContent]: <doc:GenAiCacheServiceClient/updateCachedContent(request:options:)>
   public struct UpdateCachedContentRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

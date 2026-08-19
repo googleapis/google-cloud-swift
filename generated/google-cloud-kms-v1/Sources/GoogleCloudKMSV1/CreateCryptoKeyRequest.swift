@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [KeyManagementService.CreateCryptoKey][google.cloud.kms.v1.KeyManagementService.CreateCryptoKey].
 ///
-/// [google.cloud.kms.v1.KeyManagementService.CreateCryptoKey]: <doc:KeyManagementServiceClient/createCryptoKey(request:)>
+/// [google.cloud.kms.v1.KeyManagementService.CreateCryptoKey]: <doc:KeyManagementServiceClient/createCryptoKey(request:options:)>
 public struct CreateCryptoKeyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
@@ -52,8 +52,8 @@ public struct CreateCryptoKeyRequest: Codable, Equatable, GoogleCloudWkt._AnyPac
   ///
   /// [google.cloud.kms.v1.CryptoKey]: <doc:CryptoKey>
   /// [google.cloud.kms.v1.CryptoKeyVersion]: <doc:CryptoKeyVersion>
-  /// [google.cloud.kms.v1.KeyManagementService.CreateCryptoKeyVersion]: <doc:KeyManagementServiceClient/createCryptoKeyVersion(request:)>
-  /// [google.cloud.kms.v1.KeyManagementService.ImportCryptoKeyVersion]: <doc:KeyManagementServiceClient/importCryptoKeyVersion(request:)>
+  /// [google.cloud.kms.v1.KeyManagementService.CreateCryptoKeyVersion]: <doc:KeyManagementServiceClient/createCryptoKeyVersion(request:options:)>
+  /// [google.cloud.kms.v1.KeyManagementService.ImportCryptoKeyVersion]: <doc:KeyManagementServiceClient/importCryptoKeyVersion(request:options:)>
   public var skipInitialVersionCreation: Swift.Bool = Swift.Bool()
 
   /// Optional. Whether trusted wrapping will be enabled on the first

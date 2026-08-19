@@ -25,7 +25,7 @@ public struct ListInstancesResponse: Codable, Equatable, GoogleCloudWkt._AnyPack
 {
   /// Response from [ListInstances][google.cloud.lustre.v1.Lustre.ListInstances].
   ///
-  /// [google.cloud.lustre.v1.Lustre.ListInstances]: <doc:LustreClient/listInstances(request:)>
+  /// [google.cloud.lustre.v1.Lustre.ListInstances]: <doc:LustreClient/listInstances(request:options:)>
   public var instances: [Instance] = []
 
   /// A token identifying a page of results the server should return.

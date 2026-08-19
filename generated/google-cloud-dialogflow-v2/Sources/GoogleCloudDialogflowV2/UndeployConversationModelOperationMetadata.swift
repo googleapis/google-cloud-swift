@@ -22,7 +22,7 @@
   /// [ConversationModels.UndeployConversationModel][google.cloud.dialogflow.v2.ConversationModels.UndeployConversationModel]
   /// operation.
   ///
-  /// [google.cloud.dialogflow.v2.ConversationModels.UndeployConversationModel]: <doc:ConversationModelsClient/undeployConversationModel(request:)>
+  /// [google.cloud.dialogflow.v2.ConversationModels.UndeployConversationModel]: <doc:ConversationModelsClient/undeployConversationModel(request:options:)>
   public struct UndeployConversationModelOperationMetadata: Codable, Equatable, GoogleCloudWkt
       ._AnyPackable,
     Sendable

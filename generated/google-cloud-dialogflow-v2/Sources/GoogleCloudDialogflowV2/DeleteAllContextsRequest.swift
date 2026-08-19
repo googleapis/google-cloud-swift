@@ -21,7 +21,7 @@
   /// The request message for
   /// [Contexts.DeleteAllContexts][google.cloud.dialogflow.v2.Contexts.DeleteAllContexts].
   ///
-  /// [google.cloud.dialogflow.v2.Contexts.DeleteAllContexts]: <doc:ContextsClient/deleteAllContexts(request:)>
+  /// [google.cloud.dialogflow.v2.Contexts.DeleteAllContexts]: <doc:ContextsClient/deleteAllContexts(request:options:)>
   public struct DeleteAllContextsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

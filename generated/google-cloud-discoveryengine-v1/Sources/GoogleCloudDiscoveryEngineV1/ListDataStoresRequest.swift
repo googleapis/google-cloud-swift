@@ -22,7 +22,7 @@
   /// [DataStoreService.ListDataStores][google.cloud.discoveryengine.v1.DataStoreService.ListDataStores]
   /// method.
   ///
-  /// [google.cloud.discoveryengine.v1.DataStoreService.ListDataStores]: <doc:DataStoreServiceClient/listDataStores(request:)>
+  /// [google.cloud.discoveryengine.v1.DataStoreService.ListDataStores]: <doc:DataStoreServiceClient/listDataStores(request:options:)>
   public struct ListDataStoresRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {
@@ -57,7 +57,7 @@
     /// must match the call that provided the page token. Otherwise, an
     /// INVALID_ARGUMENT error is returned.
     ///
-    /// [google.cloud.discoveryengine.v1.DataStoreService.ListDataStores]: <doc:DataStoreServiceClient/listDataStores(request:)>
+    /// [google.cloud.discoveryengine.v1.DataStoreService.ListDataStores]: <doc:DataStoreServiceClient/listDataStores(request:options:)>
     /// [google.cloud.discoveryengine.v1.ListDataStoresResponse.next_page_token]: <doc:ListDataStoresResponse/nextPageToken>
     public var pageToken: Swift.String = Swift.String()
 

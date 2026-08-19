@@ -21,7 +21,7 @@
   /// Request message for
   /// [MetadataService.ListContexts][google.cloud.aiplatform.v1.MetadataService.ListContexts]
   ///
-  /// [google.cloud.aiplatform.v1.MetadataService.ListContexts]: <doc:MetadataServiceClient/listContexts(request:)>
+  /// [google.cloud.aiplatform.v1.MetadataService.ListContexts]: <doc:MetadataServiceClient/listContexts(request:options:)>
   public struct ListContextsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {
@@ -42,7 +42,7 @@
     /// provided the page token. (Otherwise the request will fail with
     /// INVALID_ARGUMENT error.)
     ///
-    /// [google.cloud.aiplatform.v1.MetadataService.ListContexts]: <doc:MetadataServiceClient/listContexts(request:)>
+    /// [google.cloud.aiplatform.v1.MetadataService.ListContexts]: <doc:MetadataServiceClient/listContexts(request:options:)>
     public var pageToken: Swift.String = Swift.String()
 
     /// Filter specifying the boolean condition for the Contexts to satisfy in

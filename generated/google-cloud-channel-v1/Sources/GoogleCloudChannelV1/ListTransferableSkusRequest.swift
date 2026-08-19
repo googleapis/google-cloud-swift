@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [CloudChannelService.ListTransferableSkus][google.cloud.channel.v1.CloudChannelService.ListTransferableSkus]
 ///
-/// [google.cloud.channel.v1.CloudChannelService.ListTransferableSkus]: <doc:CloudChannelServiceClient/listTransferableSkus(request:)>
+/// [google.cloud.channel.v1.CloudChannelService.ListTransferableSkus]: <doc:CloudChannelServiceClient/listTransferableSkus(request:options:)>
 public struct ListTransferableSkusRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
@@ -41,7 +41,7 @@ public struct ListTransferableSkusRequest: Codable, Equatable, GoogleCloudWkt._A
   /// [CloudChannelService.ListTransferableSkus][google.cloud.channel.v1.CloudChannelService.ListTransferableSkus]
   /// call. Optional.
   ///
-  /// [google.cloud.channel.v1.CloudChannelService.ListTransferableSkus]: <doc:CloudChannelServiceClient/listTransferableSkus(request:)>
+  /// [google.cloud.channel.v1.CloudChannelService.ListTransferableSkus]: <doc:CloudChannelServiceClient/listTransferableSkus(request:options:)>
   /// [google.cloud.channel.v1.ListTransferableSkusResponse.next_page_token]: <doc:ListTransferableSkusResponse/nextPageToken>
   public var pageToken: Swift.String = Swift.String()
 

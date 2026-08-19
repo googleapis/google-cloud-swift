@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [ResumeJob][google.cloud.scheduler.v1.CloudScheduler.ResumeJob].
 ///
-/// [google.cloud.scheduler.v1.CloudScheduler.ResumeJob]: <doc:CloudSchedulerClient/resumeJob(request:)>
+/// [google.cloud.scheduler.v1.CloudScheduler.ResumeJob]: <doc:CloudSchedulerClient/resumeJob(request:options:)>
 public struct ResumeJobRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

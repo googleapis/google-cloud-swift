@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [LookupApiHubInstance][google.cloud.apihub.v1.Provisioning.LookupApiHubInstance]
 /// method's response.`
 ///
-/// [google.cloud.apihub.v1.Provisioning.LookupApiHubInstance]: <doc:ProvisioningClient/lookupApiHubInstance(request:)>
+/// [google.cloud.apihub.v1.Provisioning.LookupApiHubInstance]: <doc:ProvisioningClient/lookupApiHubInstance(request:options:)>
 public struct LookupApiHubInstanceResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

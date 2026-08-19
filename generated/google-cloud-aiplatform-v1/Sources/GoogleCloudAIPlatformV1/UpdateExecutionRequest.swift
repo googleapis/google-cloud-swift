@@ -21,7 +21,7 @@
   /// Request message for
   /// [MetadataService.UpdateExecution][google.cloud.aiplatform.v1.MetadataService.UpdateExecution].
   ///
-  /// [google.cloud.aiplatform.v1.MetadataService.UpdateExecution]: <doc:MetadataServiceClient/updateExecution(request:)>
+  /// [google.cloud.aiplatform.v1.MetadataService.UpdateExecution]: <doc:MetadataServiceClient/updateExecution(request:options:)>
   public struct UpdateExecutionRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

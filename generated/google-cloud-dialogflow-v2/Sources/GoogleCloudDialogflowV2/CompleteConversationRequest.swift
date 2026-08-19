@@ -21,7 +21,7 @@
   /// The request message for
   /// [Conversations.CompleteConversation][google.cloud.dialogflow.v2.Conversations.CompleteConversation].
   ///
-  /// [google.cloud.dialogflow.v2.Conversations.CompleteConversation]: <doc:ConversationsClient/completeConversation(request:)>
+  /// [google.cloud.dialogflow.v2.Conversations.CompleteConversation]: <doc:ConversationsClient/completeConversation(request:options:)>
   public struct CompleteConversationRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

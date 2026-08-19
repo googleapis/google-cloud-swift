@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [CloudChannelService.CancelEntitlement][google.cloud.channel.v1.CloudChannelService.CancelEntitlement].
 ///
-/// [google.cloud.channel.v1.CloudChannelService.CancelEntitlement]: <doc:CloudChannelServiceClient/cancelEntitlement(request:)>
+/// [google.cloud.channel.v1.CloudChannelService.CancelEntitlement]: <doc:CloudChannelServiceClient/cancelEntitlement(request:options:)>
 public struct CancelEntitlementRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

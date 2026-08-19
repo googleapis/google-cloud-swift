@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [HubService.ListGroups][google.cloud.networkconnectivity.v1.HubService.ListGroups]
 /// method.
 ///
-/// [google.cloud.networkconnectivity.v1.HubService.ListGroups]: <doc:HubServiceClient/listGroups(request:)>
+/// [google.cloud.networkconnectivity.v1.HubService.ListGroups]: <doc:HubServiceClient/listGroups(request:options:)>
 public struct ListGroupsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

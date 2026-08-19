@@ -22,7 +22,7 @@
   /// [SessionService.CreateSession][google.cloud.aiplatform.v1.SessionService.CreateSession]
   /// operation.
   ///
-  /// [google.cloud.aiplatform.v1.SessionService.CreateSession]: <doc:SessionServiceClient/createSession(request:)>
+  /// [google.cloud.aiplatform.v1.SessionService.CreateSession]: <doc:SessionServiceClient/createSession(request:options:)>
   public struct CreateSessionOperationMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

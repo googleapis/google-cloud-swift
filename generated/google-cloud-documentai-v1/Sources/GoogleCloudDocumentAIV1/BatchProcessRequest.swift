@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [BatchProcessDocuments][google.cloud.documentai.v1.DocumentProcessorService.BatchProcessDocuments].
 ///
-/// [google.cloud.documentai.v1.DocumentProcessorService.BatchProcessDocuments]: <doc:DocumentProcessorServiceClient/batchProcessDocuments(request:)>
+/// [google.cloud.documentai.v1.DocumentProcessorService.BatchProcessDocuments]: <doc:DocumentProcessorServiceClient/batchProcessDocuments(request:options:)>
 public struct BatchProcessRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
@@ -39,14 +39,14 @@ public struct BatchProcessRequest: Codable, Equatable, GoogleCloudWkt._AnyPackab
   /// [BatchProcessDocuments][google.cloud.documentai.v1.DocumentProcessorService.BatchProcessDocuments]
   /// method.
   ///
-  /// [google.cloud.documentai.v1.DocumentProcessorService.BatchProcessDocuments]: <doc:DocumentProcessorServiceClient/batchProcessDocuments(request:)>
+  /// [google.cloud.documentai.v1.DocumentProcessorService.BatchProcessDocuments]: <doc:DocumentProcessorServiceClient/batchProcessDocuments(request:options:)>
   public var inputDocuments: BatchDocumentsInputConfig? = nil
 
   /// The output configuration for the
   /// [BatchProcessDocuments][google.cloud.documentai.v1.DocumentProcessorService.BatchProcessDocuments]
   /// method.
   ///
-  /// [google.cloud.documentai.v1.DocumentProcessorService.BatchProcessDocuments]: <doc:DocumentProcessorServiceClient/batchProcessDocuments(request:)>
+  /// [google.cloud.documentai.v1.DocumentProcessorService.BatchProcessDocuments]: <doc:DocumentProcessorServiceClient/batchProcessDocuments(request:options:)>
   public var documentOutputConfig: DocumentOutputConfig? = nil
 
   /// Whether human review should be skipped for this request. Default to

@@ -43,7 +43,7 @@ public struct ListCloudControlsRequest: Codable, Equatable, GoogleCloudWkt._AnyP
   /// [ListCloudControls][google.cloud.cloudsecuritycompliance.v1.Config.ListCloudControls]
   /// request must match the call that provided the page token.
   ///
-  /// [google.cloud.cloudsecuritycompliance.v1.Config.ListCloudControls]: <doc:ConfigClient/listCloudControls(request:)>
+  /// [google.cloud.cloudsecuritycompliance.v1.Config.ListCloudControls]: <doc:ConfigClient/listCloudControls(request:options:)>
   public var pageToken: Swift.String = Swift.String()
 
   /// Initialize a new instance of `ListCloudControlsRequest`.

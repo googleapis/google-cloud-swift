@@ -21,7 +21,7 @@
   extension RolloutPlansClient {
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.rolloutPlans.delete] method.
     ///
-    /// [google.cloud.compute.v1.rolloutPlans.delete]: <doc:RolloutPlansClient/delete(request:)>
+    /// [google.cloud.compute.v1.rolloutPlans.delete]: <doc:RolloutPlansClient/delete(request:options:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -75,7 +75,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.rolloutPlans.get] method.
     ///
-    /// [google.cloud.compute.v1.rolloutPlans.get]: <doc:RolloutPlansClient/`get`(request:)>
+    /// [google.cloud.compute.v1.rolloutPlans.get]: <doc:RolloutPlansClient/`get`(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -114,7 +114,7 @@
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.rolloutPlans.insert] method.
     ///
-    /// [google.cloud.compute.v1.rolloutPlans.insert]: <doc:RolloutPlansClient/insert(request:)>
+    /// [google.cloud.compute.v1.rolloutPlans.insert]: <doc:RolloutPlansClient/insert(request:options:)>
     public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -138,7 +138,7 @@
 
       /// Synthetic request body field for the [insert()][google.cloud.compute.v1.rolloutPlans.insert] method.
       ///
-      /// [google.cloud.compute.v1.rolloutPlans.insert]: <doc:RolloutPlansClient/insert(request:)>
+      /// [google.cloud.compute.v1.rolloutPlans.insert]: <doc:RolloutPlansClient/insert(request:options:)>
       public var body: RolloutPlan? = nil
 
       /// Initialize a new instance of `InsertRequest`.
@@ -170,7 +170,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.rolloutPlans.list] method.
     ///
-    /// [google.cloud.compute.v1.rolloutPlans.list]: <doc:RolloutPlansClient/list(request:)>
+    /// [google.cloud.compute.v1.rolloutPlans.list]: <doc:RolloutPlansClient/list(request:options:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {

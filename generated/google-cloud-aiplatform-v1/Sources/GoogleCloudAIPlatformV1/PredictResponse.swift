@@ -21,7 +21,7 @@
   /// Response message for
   /// [PredictionService.Predict][google.cloud.aiplatform.v1.PredictionService.Predict].
   ///
-  /// [google.cloud.aiplatform.v1.PredictionService.Predict]: <doc:PredictionServiceClient/predict(request:)>
+  /// [google.cloud.aiplatform.v1.PredictionService.Predict]: <doc:PredictionServiceClient/predict(request:options:)>
   public struct PredictResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

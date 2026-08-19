@@ -21,7 +21,7 @@
   extension ProjectsClient {
     /// Synthetic request message for the [disableXpnHost()][google.cloud.compute.v1.projects.disableXpnHost] method.
     ///
-    /// [google.cloud.compute.v1.projects.disableXpnHost]: <doc:ProjectsClient/disableXpnHost(request:)>
+    /// [google.cloud.compute.v1.projects.disableXpnHost]: <doc:ProjectsClient/disableXpnHost(request:options:)>
     public struct DisableXpnHostRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -72,7 +72,7 @@
 
     /// Synthetic request message for the [disableXpnResource()][google.cloud.compute.v1.projects.disableXpnResource] method.
     ///
-    /// [google.cloud.compute.v1.projects.disableXpnResource]: <doc:ProjectsClient/disableXpnResource(request:)>
+    /// [google.cloud.compute.v1.projects.disableXpnResource]: <doc:ProjectsClient/disableXpnResource(request:options:)>
     public struct DisableXpnResourceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -96,7 +96,7 @@
 
       /// Synthetic request body field for the [disableXpnResource()][google.cloud.compute.v1.projects.disableXpnResource] method.
       ///
-      /// [google.cloud.compute.v1.projects.disableXpnResource]: <doc:ProjectsClient/disableXpnResource(request:)>
+      /// [google.cloud.compute.v1.projects.disableXpnResource]: <doc:ProjectsClient/disableXpnResource(request:options:)>
       public var body: ProjectsDisableXpnResourceRequest? = nil
 
       /// Initialize a new instance of `DisableXpnResourceRequest`.
@@ -128,7 +128,7 @@
 
     /// Synthetic request message for the [enableXpnHost()][google.cloud.compute.v1.projects.enableXpnHost] method.
     ///
-    /// [google.cloud.compute.v1.projects.enableXpnHost]: <doc:ProjectsClient/enableXpnHost(request:)>
+    /// [google.cloud.compute.v1.projects.enableXpnHost]: <doc:ProjectsClient/enableXpnHost(request:options:)>
     public struct EnableXpnHostRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -179,7 +179,7 @@
 
     /// Synthetic request message for the [enableXpnResource()][google.cloud.compute.v1.projects.enableXpnResource] method.
     ///
-    /// [google.cloud.compute.v1.projects.enableXpnResource]: <doc:ProjectsClient/enableXpnResource(request:)>
+    /// [google.cloud.compute.v1.projects.enableXpnResource]: <doc:ProjectsClient/enableXpnResource(request:options:)>
     public struct EnableXpnResourceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -203,7 +203,7 @@
 
       /// Synthetic request body field for the [enableXpnResource()][google.cloud.compute.v1.projects.enableXpnResource] method.
       ///
-      /// [google.cloud.compute.v1.projects.enableXpnResource]: <doc:ProjectsClient/enableXpnResource(request:)>
+      /// [google.cloud.compute.v1.projects.enableXpnResource]: <doc:ProjectsClient/enableXpnResource(request:options:)>
       public var body: ProjectsEnableXpnResourceRequest? = nil
 
       /// Initialize a new instance of `EnableXpnResourceRequest`.
@@ -235,7 +235,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.projects.get] method.
     ///
-    /// [google.cloud.compute.v1.projects.get]: <doc:ProjectsClient/`get`(request:)>
+    /// [google.cloud.compute.v1.projects.get]: <doc:ProjectsClient/`get`(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -271,7 +271,7 @@
 
     /// Synthetic request message for the [getXpnHost()][google.cloud.compute.v1.projects.getXpnHost] method.
     ///
-    /// [google.cloud.compute.v1.projects.getXpnHost]: <doc:ProjectsClient/getXpnHost(request:)>
+    /// [google.cloud.compute.v1.projects.getXpnHost]: <doc:ProjectsClient/getXpnHost(request:options:)>
     public struct GetXpnHostRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -307,7 +307,7 @@
 
     /// Synthetic request message for the [getXpnResources()][google.cloud.compute.v1.projects.getXpnResources] method.
     ///
-    /// [google.cloud.compute.v1.projects.getXpnResources]: <doc:ProjectsClient/getXpnResources(request:)>
+    /// [google.cloud.compute.v1.projects.getXpnResources]: <doc:ProjectsClient/getXpnResources(request:options:)>
     public struct GetXpnResourcesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -436,7 +436,7 @@
 
     /// Synthetic request message for the [listXpnHosts()][google.cloud.compute.v1.projects.listXpnHosts] method.
     ///
-    /// [google.cloud.compute.v1.projects.listXpnHosts]: <doc:ProjectsClient/listXpnHosts(request:)>
+    /// [google.cloud.compute.v1.projects.listXpnHosts]: <doc:ProjectsClient/listXpnHosts(request:options:)>
     public struct ListXpnHostsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -538,7 +538,7 @@
 
       /// Synthetic request body field for the [listXpnHosts()][google.cloud.compute.v1.projects.listXpnHosts] method.
       ///
-      /// [google.cloud.compute.v1.projects.listXpnHosts]: <doc:ProjectsClient/listXpnHosts(request:)>
+      /// [google.cloud.compute.v1.projects.listXpnHosts]: <doc:ProjectsClient/listXpnHosts(request:options:)>
       public var body: ProjectsListXpnHostsRequest? = nil
 
       /// Initialize a new instance of `ListXpnHostsRequest`.
@@ -570,7 +570,7 @@
 
     /// Synthetic request message for the [moveDisk()][google.cloud.compute.v1.projects.moveDisk] method.
     ///
-    /// [google.cloud.compute.v1.projects.moveDisk]: <doc:ProjectsClient/moveDisk(request:)>
+    /// [google.cloud.compute.v1.projects.moveDisk]: <doc:ProjectsClient/moveDisk(request:options:)>
     @available(*, deprecated)
     public struct MoveDiskRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
@@ -595,7 +595,7 @@
 
       /// Synthetic request body field for the [moveDisk()][google.cloud.compute.v1.projects.moveDisk] method.
       ///
-      /// [google.cloud.compute.v1.projects.moveDisk]: <doc:ProjectsClient/moveDisk(request:)>
+      /// [google.cloud.compute.v1.projects.moveDisk]: <doc:ProjectsClient/moveDisk(request:options:)>
       public var body: DiskMoveRequest? = nil
 
       /// Initialize a new instance of `MoveDiskRequest`.
@@ -627,7 +627,7 @@
 
     /// Synthetic request message for the [moveInstance()][google.cloud.compute.v1.projects.moveInstance] method.
     ///
-    /// [google.cloud.compute.v1.projects.moveInstance]: <doc:ProjectsClient/moveInstance(request:)>
+    /// [google.cloud.compute.v1.projects.moveInstance]: <doc:ProjectsClient/moveInstance(request:options:)>
     @available(*, deprecated)
     public struct MoveInstanceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
@@ -652,7 +652,7 @@
 
       /// Synthetic request body field for the [moveInstance()][google.cloud.compute.v1.projects.moveInstance] method.
       ///
-      /// [google.cloud.compute.v1.projects.moveInstance]: <doc:ProjectsClient/moveInstance(request:)>
+      /// [google.cloud.compute.v1.projects.moveInstance]: <doc:ProjectsClient/moveInstance(request:options:)>
       public var body: InstanceMoveRequest? = nil
 
       /// Initialize a new instance of `MoveInstanceRequest`.
@@ -684,7 +684,7 @@
 
     /// Synthetic request message for the [setCloudArmorTier()][google.cloud.compute.v1.projects.setCloudArmorTier] method.
     ///
-    /// [google.cloud.compute.v1.projects.setCloudArmorTier]: <doc:ProjectsClient/setCloudArmorTier(request:)>
+    /// [google.cloud.compute.v1.projects.setCloudArmorTier]: <doc:ProjectsClient/setCloudArmorTier(request:options:)>
     public struct SetCloudArmorTierRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -708,7 +708,7 @@
 
       /// Synthetic request body field for the [setCloudArmorTier()][google.cloud.compute.v1.projects.setCloudArmorTier] method.
       ///
-      /// [google.cloud.compute.v1.projects.setCloudArmorTier]: <doc:ProjectsClient/setCloudArmorTier(request:)>
+      /// [google.cloud.compute.v1.projects.setCloudArmorTier]: <doc:ProjectsClient/setCloudArmorTier(request:options:)>
       public var body: ProjectsSetCloudArmorTierRequest? = nil
 
       /// Initialize a new instance of `SetCloudArmorTierRequest`.
@@ -740,7 +740,7 @@
 
     /// Synthetic request message for the [setCommonInstanceMetadata()][google.cloud.compute.v1.projects.setCommonInstanceMetadata] method.
     ///
-    /// [google.cloud.compute.v1.projects.setCommonInstanceMetadata]: <doc:ProjectsClient/setCommonInstanceMetadata(request:)>
+    /// [google.cloud.compute.v1.projects.setCommonInstanceMetadata]: <doc:ProjectsClient/setCommonInstanceMetadata(request:options:)>
     public struct SetCommonInstanceMetadataRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -764,7 +764,7 @@
 
       /// Synthetic request body field for the [setCommonInstanceMetadata()][google.cloud.compute.v1.projects.setCommonInstanceMetadata] method.
       ///
-      /// [google.cloud.compute.v1.projects.setCommonInstanceMetadata]: <doc:ProjectsClient/setCommonInstanceMetadata(request:)>
+      /// [google.cloud.compute.v1.projects.setCommonInstanceMetadata]: <doc:ProjectsClient/setCommonInstanceMetadata(request:options:)>
       public var body: Metadata? = nil
 
       /// Initialize a new instance of `SetCommonInstanceMetadataRequest`.
@@ -797,7 +797,7 @@
 
     /// Synthetic request message for the [setDefaultNetworkTier()][google.cloud.compute.v1.projects.setDefaultNetworkTier] method.
     ///
-    /// [google.cloud.compute.v1.projects.setDefaultNetworkTier]: <doc:ProjectsClient/setDefaultNetworkTier(request:)>
+    /// [google.cloud.compute.v1.projects.setDefaultNetworkTier]: <doc:ProjectsClient/setDefaultNetworkTier(request:options:)>
     public struct SetDefaultNetworkTierRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -821,7 +821,7 @@
 
       /// Synthetic request body field for the [setDefaultNetworkTier()][google.cloud.compute.v1.projects.setDefaultNetworkTier] method.
       ///
-      /// [google.cloud.compute.v1.projects.setDefaultNetworkTier]: <doc:ProjectsClient/setDefaultNetworkTier(request:)>
+      /// [google.cloud.compute.v1.projects.setDefaultNetworkTier]: <doc:ProjectsClient/setDefaultNetworkTier(request:options:)>
       public var body: ProjectsSetDefaultNetworkTierRequest? = nil
 
       /// Initialize a new instance of `SetDefaultNetworkTierRequest`.
@@ -853,7 +853,7 @@
 
     /// Synthetic request message for the [setUsageExportBucket()][google.cloud.compute.v1.projects.setUsageExportBucket] method.
     ///
-    /// [google.cloud.compute.v1.projects.setUsageExportBucket]: <doc:ProjectsClient/setUsageExportBucket(request:)>
+    /// [google.cloud.compute.v1.projects.setUsageExportBucket]: <doc:ProjectsClient/setUsageExportBucket(request:options:)>
     public struct SetUsageExportBucketRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -877,7 +877,7 @@
 
       /// Synthetic request body field for the [setUsageExportBucket()][google.cloud.compute.v1.projects.setUsageExportBucket] method.
       ///
-      /// [google.cloud.compute.v1.projects.setUsageExportBucket]: <doc:ProjectsClient/setUsageExportBucket(request:)>
+      /// [google.cloud.compute.v1.projects.setUsageExportBucket]: <doc:ProjectsClient/setUsageExportBucket(request:options:)>
       public var body: UsageExportLocation? = nil
 
       /// Initialize a new instance of `SetUsageExportBucketRequest`.

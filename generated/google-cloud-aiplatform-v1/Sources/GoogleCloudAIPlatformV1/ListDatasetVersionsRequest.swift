@@ -21,7 +21,7 @@
   /// Request message for
   /// [DatasetService.ListDatasetVersions][google.cloud.aiplatform.v1.DatasetService.ListDatasetVersions].
   ///
-  /// [google.cloud.aiplatform.v1.DatasetService.ListDatasetVersions]: <doc:DatasetServiceClient/listDatasetVersions(request:)>
+  /// [google.cloud.aiplatform.v1.DatasetService.ListDatasetVersions]: <doc:DatasetServiceClient/listDatasetVersions(request:options:)>
   public struct ListDatasetVersionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

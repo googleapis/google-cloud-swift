@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [ProductService.ListProducts][google.cloud.retail.v2.ProductService.ListProducts]
 /// method.
 ///
-/// [google.cloud.retail.v2.ProductService.ListProducts]: <doc:ProductServiceClient/listProducts(request:)>
+/// [google.cloud.retail.v2.ProductService.ListProducts]: <doc:ProductServiceClient/listProducts(request:options:)>
 public struct ListProductsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
@@ -58,7 +58,7 @@ public struct ListProductsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackab
   /// INVALID_ARGUMENT error is returned.
   ///
   /// [google.cloud.retail.v2.ListProductsResponse.next_page_token]: <doc:ListProductsResponse/nextPageToken>
-  /// [google.cloud.retail.v2.ProductService.ListProducts]: <doc:ProductServiceClient/listProducts(request:)>
+  /// [google.cloud.retail.v2.ProductService.ListProducts]: <doc:ProductServiceClient/listProducts(request:options:)>
   public var pageToken: Swift.String = Swift.String()
 
   /// A filter to apply on the list results. Supported features:

@@ -19,7 +19,7 @@ import GoogleCloudWkt
 
 /// Request for [UpdateInstance][google.cloud.memcache.v1.CloudMemcache.UpdateInstance].
 ///
-/// [google.cloud.memcache.v1.CloudMemcache.UpdateInstance]: <doc:CloudMemcacheClient/updateInstance(request:)>
+/// [google.cloud.memcache.v1.CloudMemcache.UpdateInstance]: <doc:CloudMemcacheClient/updateInstance(request:options:)>
 public struct UpdateInstanceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

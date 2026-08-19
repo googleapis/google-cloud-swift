@@ -21,7 +21,7 @@
   /// The request message for
   /// [EntityTypes.BatchUpdateEntityTypes][google.cloud.dialogflow.v2.EntityTypes.BatchUpdateEntityTypes].
   ///
-  /// [google.cloud.dialogflow.v2.EntityTypes.BatchUpdateEntityTypes]: <doc:EntityTypesClient/batchUpdateEntityTypes(request:)>
+  /// [google.cloud.dialogflow.v2.EntityTypes.BatchUpdateEntityTypes]: <doc:EntityTypesClient/batchUpdateEntityTypes(request:options:)>
   public struct BatchUpdateEntityTypesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

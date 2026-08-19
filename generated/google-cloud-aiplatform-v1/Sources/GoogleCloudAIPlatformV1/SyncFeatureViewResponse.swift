@@ -21,7 +21,7 @@
   /// Response message for
   /// [FeatureOnlineStoreAdminService.SyncFeatureView][google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService.SyncFeatureView].
   ///
-  /// [google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService.SyncFeatureView]: <doc:FeatureOnlineStoreAdminServiceClient/syncFeatureView(request:)>
+  /// [google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService.SyncFeatureView]: <doc:FeatureOnlineStoreAdminServiceClient/syncFeatureView(request:options:)>
   public struct SyncFeatureViewResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

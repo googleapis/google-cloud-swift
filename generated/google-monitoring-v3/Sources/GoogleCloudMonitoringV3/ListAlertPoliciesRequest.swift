@@ -33,7 +33,7 @@ public struct ListAlertPoliciesRequest: Codable, Equatable, GoogleCloudWkt._AnyP
   /// [GetAlertPolicy][google.monitoring.v3.AlertPolicyService.GetAlertPolicy]
   /// operation, instead.
   ///
-  /// [google.monitoring.v3.AlertPolicyService.GetAlertPolicy]: <doc:AlertPolicyServiceClient/getAlertPolicy(request:)>
+  /// [google.monitoring.v3.AlertPolicyService.GetAlertPolicy]: <doc:AlertPolicyServiceClient/getAlertPolicy(request:options:)>
   public var name: Swift.String = Swift.String()
 
   /// Optional. If provided, this field specifies the criteria that must be met

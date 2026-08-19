@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [KeyManagementService.GetCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.GetCryptoKeyVersion].
 ///
-/// [google.cloud.kms.v1.KeyManagementService.GetCryptoKeyVersion]: <doc:KeyManagementServiceClient/getCryptoKeyVersion(request:)>
+/// [google.cloud.kms.v1.KeyManagementService.GetCryptoKeyVersion]: <doc:KeyManagementServiceClient/getCryptoKeyVersion(request:options:)>
 public struct GetCryptoKeyVersionRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

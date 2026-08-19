@@ -22,7 +22,7 @@
   /// [ModelService.ExportModel][google.cloud.aiplatform.v1.ModelService.ExportModel]
   /// operation.
   ///
-  /// [google.cloud.aiplatform.v1.ModelService.ExportModel]: <doc:ModelServiceClient/exportModel(request:)>
+  /// [google.cloud.aiplatform.v1.ModelService.ExportModel]: <doc:ModelServiceClient/exportModel(request:options:)>
   public struct ExportModelResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

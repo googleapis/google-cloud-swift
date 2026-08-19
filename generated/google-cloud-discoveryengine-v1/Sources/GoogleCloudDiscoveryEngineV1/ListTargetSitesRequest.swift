@@ -22,7 +22,7 @@
   /// [SiteSearchEngineService.ListTargetSites][google.cloud.discoveryengine.v1.SiteSearchEngineService.ListTargetSites]
   /// method.
   ///
-  /// [google.cloud.discoveryengine.v1.SiteSearchEngineService.ListTargetSites]: <doc:SiteSearchEngineServiceClient/listTargetSites(request:)>
+  /// [google.cloud.discoveryengine.v1.SiteSearchEngineService.ListTargetSites]: <doc:SiteSearchEngineServiceClient/listTargetSites(request:options:)>
   public struct ListTargetSitesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

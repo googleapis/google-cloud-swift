@@ -22,7 +22,7 @@
   /// [DocumentService.PurgeDocuments][google.cloud.discoveryengine.v1.DocumentService.PurgeDocuments]
   /// method.
   ///
-  /// [google.cloud.discoveryengine.v1.DocumentService.PurgeDocuments]: <doc:DocumentServiceClient/purgeDocuments(request:)>
+  /// [google.cloud.discoveryengine.v1.DocumentService.PurgeDocuments]: <doc:DocumentServiceClient/purgeDocuments(request:options:)>
   public struct PurgeDocumentsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {
@@ -119,7 +119,7 @@
     /// [DocumentService.PurgeDocuments][google.cloud.discoveryengine.v1.DocumentService.PurgeDocuments]
     /// method.
     ///
-    /// [google.cloud.discoveryengine.v1.DocumentService.PurgeDocuments]: <doc:DocumentServiceClient/purgeDocuments(request:)>
+    /// [google.cloud.discoveryengine.v1.DocumentService.PurgeDocuments]: <doc:DocumentServiceClient/purgeDocuments(request:options:)>
     public struct InlineSource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {

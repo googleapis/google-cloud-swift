@@ -37,8 +37,8 @@
     /// methods.
     /// Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
     ///
-    /// [google.cloud.dialogflow.v2.Intents.BatchUpdateIntents]: <doc:IntentsClient/batchUpdateIntents(request:)>
-    /// [google.cloud.dialogflow.v2.Intents.UpdateIntent]: <doc:IntentsClient/updateIntent(request:)>
+    /// [google.cloud.dialogflow.v2.Intents.BatchUpdateIntents]: <doc:IntentsClient/batchUpdateIntents(request:options:)>
+    /// [google.cloud.dialogflow.v2.Intents.UpdateIntent]: <doc:IntentsClient/updateIntent(request:options:)>
     public var name: Swift.String = Swift.String()
 
     /// Required. The name of this intent.
@@ -136,8 +136,8 @@
     /// It identifies the parent followup intent.
     /// Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
     ///
-    /// [google.cloud.dialogflow.v2.Intents.BatchUpdateIntents]: <doc:IntentsClient/batchUpdateIntents(request:)>
-    /// [google.cloud.dialogflow.v2.Intents.CreateIntent]: <doc:IntentsClient/createIntent(request:)>
+    /// [google.cloud.dialogflow.v2.Intents.BatchUpdateIntents]: <doc:IntentsClient/batchUpdateIntents(request:options:)>
+    /// [google.cloud.dialogflow.v2.Intents.CreateIntent]: <doc:IntentsClient/createIntent(request:options:)>
     public var parentFollowupIntentName: Swift.String = Swift.String()
 
     /// Output only. Read-only. Information about all followup intents that have

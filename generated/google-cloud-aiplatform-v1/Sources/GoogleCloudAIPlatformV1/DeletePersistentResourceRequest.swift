@@ -21,7 +21,7 @@
   /// Request message for
   /// [PersistentResourceService.DeletePersistentResource][google.cloud.aiplatform.v1.PersistentResourceService.DeletePersistentResource].
   ///
-  /// [google.cloud.aiplatform.v1.PersistentResourceService.DeletePersistentResource]: <doc:PersistentResourceServiceClient/deletePersistentResource(request:)>
+  /// [google.cloud.aiplatform.v1.PersistentResourceService.DeletePersistentResource]: <doc:PersistentResourceServiceClient/deletePersistentResource(request:options:)>
   public struct DeletePersistentResourceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

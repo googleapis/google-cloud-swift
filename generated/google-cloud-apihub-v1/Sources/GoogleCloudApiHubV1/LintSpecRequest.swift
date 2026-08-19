@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// The [LintSpec][google.cloud.apihub.v1.LintingService.LintSpec] method's
 /// request.
 ///
-/// [google.cloud.apihub.v1.LintingService.LintSpec]: <doc:LintingServiceClient/lintSpec(request:)>
+/// [google.cloud.apihub.v1.LintingService.LintSpec]: <doc:LintingServiceClient/lintSpec(request:options:)>
 public struct LintSpecRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

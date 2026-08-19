@@ -52,7 +52,7 @@
     /// call.
     ///
     /// [google.cloud.aiplatform.v1.ListNotebookExecutionJobsResponse.next_page_token]: <doc:ListNotebookExecutionJobsResponse/nextPageToken>
-    /// [google.cloud.aiplatform.v1.NotebookService.ListNotebookExecutionJobs]: <doc:NotebookServiceClient/listNotebookExecutionJobs(request:)>
+    /// [google.cloud.aiplatform.v1.NotebookService.ListNotebookExecutionJobs]: <doc:NotebookServiceClient/listNotebookExecutionJobs(request:options:)>
     public var pageToken: Swift.String = Swift.String()
 
     /// Optional. A comma-separated list of fields to order by, sorted in ascending

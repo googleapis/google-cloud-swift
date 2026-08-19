@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [ListControls][google.cloud.auditmanager.v1.AuditManager.ListControls].
 ///
-/// [google.cloud.auditmanager.v1.AuditManager.ListControls]: <doc:AuditManagerClient/listControls(request:)>
+/// [google.cloud.auditmanager.v1.AuditManager.ListControls]: <doc:AuditManagerClient/listControls(request:options:)>
 public struct ListControlsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

@@ -22,7 +22,7 @@
   /// Response message for
   /// [JobService.ListDataLabelingJobs][google.cloud.aiplatform.v1.JobService.ListDataLabelingJobs].
   ///
-  /// [google.cloud.aiplatform.v1.JobService.ListDataLabelingJobs]: <doc:JobServiceClient/listDataLabelingJobs(request:)>
+  /// [google.cloud.aiplatform.v1.JobService.ListDataLabelingJobs]: <doc:JobServiceClient/listDataLabelingJobs(request:options:)>
   public struct ListDataLabelingJobsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable

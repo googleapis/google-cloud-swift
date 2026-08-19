@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [CloudChannelService.UpdateCustomerRepricingConfig][google.cloud.channel.v1.CloudChannelService.UpdateCustomerRepricingConfig].
 ///
-/// [google.cloud.channel.v1.CloudChannelService.UpdateCustomerRepricingConfig]: <doc:CloudChannelServiceClient/updateCustomerRepricingConfig(request:)>
+/// [google.cloud.channel.v1.CloudChannelService.UpdateCustomerRepricingConfig]: <doc:CloudChannelServiceClient/updateCustomerRepricingConfig(request:options:)>
 public struct UpdateCustomerRepricingConfigRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

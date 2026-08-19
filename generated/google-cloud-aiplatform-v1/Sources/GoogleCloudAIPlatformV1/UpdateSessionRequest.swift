@@ -21,7 +21,7 @@
   /// Request message for
   /// [SessionService.UpdateSession][google.cloud.aiplatform.v1.SessionService.UpdateSession].
   ///
-  /// [google.cloud.aiplatform.v1.SessionService.UpdateSession]: <doc:SessionServiceClient/updateSession(request:)>
+  /// [google.cloud.aiplatform.v1.SessionService.UpdateSession]: <doc:SessionServiceClient/updateSession(request:options:)>
   public struct UpdateSessionRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

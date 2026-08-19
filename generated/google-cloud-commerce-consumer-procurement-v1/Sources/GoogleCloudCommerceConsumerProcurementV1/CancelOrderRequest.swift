@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [ConsumerProcurementService.CancelOrder][google.cloud.commerce.consumer.procurement.v1.ConsumerProcurementService.CancelOrder].
 ///
-/// [google.cloud.commerce.consumer.procurement.v1.ConsumerProcurementService.CancelOrder]: <doc:ConsumerProcurementServiceClient/cancelOrder(request:)>
+/// [google.cloud.commerce.consumer.procurement.v1.ConsumerProcurementService.CancelOrder]: <doc:ConsumerProcurementServiceClient/cancelOrder(request:options:)>
 public struct CancelOrderRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

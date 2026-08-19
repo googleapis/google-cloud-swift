@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// The response for
 /// [google.datastore.admin.v1.DatastoreAdmin.ListIndexes][google.datastore.admin.v1.DatastoreAdmin.ListIndexes].
 ///
-/// [google.datastore.admin.v1.DatastoreAdmin.ListIndexes]: <doc:DatastoreAdminClient/listIndexes(request:)>
+/// [google.datastore.admin.v1.DatastoreAdmin.ListIndexes]: <doc:DatastoreAdminClient/listIndexes(request:options:)>
 public struct ListIndexesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

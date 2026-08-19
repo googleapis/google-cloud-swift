@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [KeyManagementService.RawEncrypt][google.cloud.kms.v1.KeyManagementService.RawEncrypt].
 ///
-/// [google.cloud.kms.v1.KeyManagementService.RawEncrypt]: <doc:KeyManagementServiceClient/rawEncrypt(request:)>
+/// [google.cloud.kms.v1.KeyManagementService.RawEncrypt]: <doc:KeyManagementServiceClient/rawEncrypt(request:options:)>
 public struct RawEncryptRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

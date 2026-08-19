@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [EnterpriseKnowledgeGraphService.ListEntityReconciliationJobs][google.cloud.enterpriseknowledgegraph.v1.EnterpriseKnowledgeGraphService.ListEntityReconciliationJobs].
 ///
-/// [google.cloud.enterpriseknowledgegraph.v1.EnterpriseKnowledgeGraphService.ListEntityReconciliationJobs]: <doc:EnterpriseKnowledgeGraphServiceClient/listEntityReconciliationJobs(request:)>
+/// [google.cloud.enterpriseknowledgegraph.v1.EnterpriseKnowledgeGraphService.ListEntityReconciliationJobs]: <doc:EnterpriseKnowledgeGraphServiceClient/listEntityReconciliationJobs(request:options:)>
 public struct ListEntityReconciliationJobsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// Response message for the
 /// [ListRecognizers][google.cloud.speech.v2.Speech.ListRecognizers] method.
 ///
-/// [google.cloud.speech.v2.Speech.ListRecognizers]: <doc:SpeechClient/listRecognizers(request:)>
+/// [google.cloud.speech.v2.Speech.ListRecognizers]: <doc:SpeechClient/listRecognizers(request:options:)>
 public struct ListRecognizersResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

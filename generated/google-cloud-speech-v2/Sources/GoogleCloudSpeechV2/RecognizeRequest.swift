@@ -23,7 +23,7 @@ import GoogleCloudWkt
 /// [INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT]. See [content
 /// limits](https://cloud.google.com/speech-to-text/quotas#content).
 ///
-/// [google.cloud.speech.v2.Speech.Recognize]: <doc:SpeechClient/recognize(request:)>
+/// [google.cloud.speech.v2.Speech.Recognize]: <doc:SpeechClient/recognize(request:options:)>
 public struct RecognizeRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

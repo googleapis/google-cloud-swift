@@ -21,7 +21,7 @@
   /// Request message for
   /// [Documents.ListDocuments][google.cloud.dialogflow.v2.Documents.ListDocuments].
   ///
-  /// [google.cloud.dialogflow.v2.Documents.ListDocuments]: <doc:DocumentsClient/listDocuments(request:)>
+  /// [google.cloud.dialogflow.v2.Documents.ListDocuments]: <doc:DocumentsClient/listDocuments(request:options:)>
   public struct ListDocumentsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

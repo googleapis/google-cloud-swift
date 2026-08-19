@@ -328,10 +328,10 @@ public struct Job: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// [google.cloud.talent.v4.Job.posting_expire_time]: <doc:Job/postingExpireTime>
   /// [google.cloud.talent.v4.Job.posting_publish_time]: <doc:Job/postingPublishTime>
   /// [google.cloud.talent.v4.Job.requisition_id]: <doc:Job/requisitionId>
-  /// [google.cloud.talent.v4.JobService.DeleteJob]: <doc:JobServiceClient/deleteJob(request:)>
-  /// [google.cloud.talent.v4.JobService.GetJob]: <doc:JobServiceClient/getJob(request:)>
-  /// [google.cloud.talent.v4.JobService.ListJobs]: <doc:JobServiceClient/listJobs(request:)>
-  /// [google.cloud.talent.v4.JobService.UpdateJob]: <doc:JobServiceClient/updateJob(request:)>
+  /// [google.cloud.talent.v4.JobService.DeleteJob]: <doc:JobServiceClient/deleteJob(request:options:)>
+  /// [google.cloud.talent.v4.JobService.GetJob]: <doc:JobServiceClient/getJob(request:options:)>
+  /// [google.cloud.talent.v4.JobService.ListJobs]: <doc:JobServiceClient/listJobs(request:options:)>
+  /// [google.cloud.talent.v4.JobService.UpdateJob]: <doc:JobServiceClient/updateJob(request:options:)>
   /// [google.cloud.talent.v4.UpdateJobRequest.update_mask]: <doc:UpdateJobRequest/updateMask>
   public var postingExpireTime: GoogleCloudWkt.Timestamp? = nil
 

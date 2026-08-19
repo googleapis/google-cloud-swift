@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [UpdateJob][google.cloud.scheduler.v1.CloudScheduler.UpdateJob].
 ///
-/// [google.cloud.scheduler.v1.CloudScheduler.UpdateJob]: <doc:CloudSchedulerClient/updateJob(request:)>
+/// [google.cloud.scheduler.v1.CloudScheduler.UpdateJob]: <doc:CloudSchedulerClient/updateJob(request:options:)>
 public struct UpdateJobRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

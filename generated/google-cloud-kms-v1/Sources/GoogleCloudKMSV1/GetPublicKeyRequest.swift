@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [KeyManagementService.GetPublicKey][google.cloud.kms.v1.KeyManagementService.GetPublicKey].
 ///
-/// [google.cloud.kms.v1.KeyManagementService.GetPublicKey]: <doc:KeyManagementServiceClient/getPublicKey(request:)>
+/// [google.cloud.kms.v1.KeyManagementService.GetPublicKey]: <doc:KeyManagementServiceClient/getPublicKey(request:options:)>
 public struct GetPublicKeyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

@@ -21,7 +21,7 @@
   extension RoutesClient {
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.routes.delete] method.
     ///
-    /// [google.cloud.compute.v1.routes.delete]: <doc:RoutesClient/delete(request:)>
+    /// [google.cloud.compute.v1.routes.delete]: <doc:RoutesClient/delete(request:options:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -75,7 +75,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.routes.get] method.
     ///
-    /// [google.cloud.compute.v1.routes.get]: <doc:RoutesClient/`get`(request:)>
+    /// [google.cloud.compute.v1.routes.get]: <doc:RoutesClient/`get`(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -114,7 +114,7 @@
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.routes.insert] method.
     ///
-    /// [google.cloud.compute.v1.routes.insert]: <doc:RoutesClient/insert(request:)>
+    /// [google.cloud.compute.v1.routes.insert]: <doc:RoutesClient/insert(request:options:)>
     public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -138,7 +138,7 @@
 
       /// Synthetic request body field for the [insert()][google.cloud.compute.v1.routes.insert] method.
       ///
-      /// [google.cloud.compute.v1.routes.insert]: <doc:RoutesClient/insert(request:)>
+      /// [google.cloud.compute.v1.routes.insert]: <doc:RoutesClient/insert(request:options:)>
       public var body: Route? = nil
 
       /// Initialize a new instance of `InsertRequest`.
@@ -170,7 +170,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.routes.list] method.
     ///
-    /// [google.cloud.compute.v1.routes.list]: <doc:RoutesClient/list(request:)>
+    /// [google.cloud.compute.v1.routes.list]: <doc:RoutesClient/list(request:options:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -299,7 +299,7 @@
 
     /// Synthetic request message for the [testIamPermissions()][google.cloud.compute.v1.routes.testIamPermissions] method.
     ///
-    /// [google.cloud.compute.v1.routes.testIamPermissions]: <doc:RoutesClient/testIamPermissions(request:)>
+    /// [google.cloud.compute.v1.routes.testIamPermissions]: <doc:RoutesClient/testIamPermissions(request:options:)>
     public struct TestIamPermissionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -311,7 +311,7 @@
 
       /// Synthetic request body field for the [testIamPermissions()][google.cloud.compute.v1.routes.testIamPermissions] method.
       ///
-      /// [google.cloud.compute.v1.routes.testIamPermissions]: <doc:RoutesClient/testIamPermissions(request:)>
+      /// [google.cloud.compute.v1.routes.testIamPermissions]: <doc:RoutesClient/testIamPermissions(request:options:)>
       public var body: TestPermissionsRequest? = nil
 
       /// Initialize a new instance of `TestIamPermissionsRequest`.

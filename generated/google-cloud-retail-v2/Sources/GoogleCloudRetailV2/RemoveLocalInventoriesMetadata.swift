@@ -22,7 +22,7 @@ import GoogleCloudWkt
 /// [ProductService.RemoveLocalInventories][google.cloud.retail.v2.ProductService.RemoveLocalInventories]
 /// method.
 ///
-/// [google.cloud.retail.v2.ProductService.RemoveLocalInventories]: <doc:ProductServiceClient/removeLocalInventories(request:)>
+/// [google.cloud.retail.v2.ProductService.RemoveLocalInventories]: <doc:ProductServiceClient/removeLocalInventories(request:options:)>
 public struct RemoveLocalInventoriesMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

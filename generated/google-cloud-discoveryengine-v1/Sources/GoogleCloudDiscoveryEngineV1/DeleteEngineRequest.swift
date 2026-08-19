@@ -22,7 +22,7 @@
   /// [EngineService.DeleteEngine][google.cloud.discoveryengine.v1.EngineService.DeleteEngine]
   /// method.
   ///
-  /// [google.cloud.discoveryengine.v1.EngineService.DeleteEngine]: <doc:EngineServiceClient/deleteEngine(request:)>
+  /// [google.cloud.discoveryengine.v1.EngineService.DeleteEngine]: <doc:EngineServiceClient/deleteEngine(request:options:)>
   public struct DeleteEngineRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

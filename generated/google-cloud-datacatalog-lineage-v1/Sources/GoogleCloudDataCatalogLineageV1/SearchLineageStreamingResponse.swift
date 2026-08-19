@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [SearchLineageStreaming][google.cloud.datacatalog.lineage.v1.Lineage.SearchLineageStreaming].
 ///
-/// [google.cloud.datacatalog.lineage.v1.Lineage.SearchLineageStreaming]: <doc:LineageClient/searchLineageStreaming(request:)>
+/// [google.cloud.datacatalog.lineage.v1.Lineage.SearchLineageStreaming]: <doc:LineageClient/searchLineageStreaming(request:options:)>
 public struct SearchLineageStreamingResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

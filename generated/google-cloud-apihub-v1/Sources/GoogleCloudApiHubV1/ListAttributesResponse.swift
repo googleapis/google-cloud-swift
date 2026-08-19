@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// The [ListAttributes][google.cloud.apihub.v1.ApiHub.ListAttributes] method's
 /// response.
 ///
-/// [google.cloud.apihub.v1.ApiHub.ListAttributes]: <doc:ApiHubClient/listAttributes(request:)>
+/// [google.cloud.apihub.v1.ApiHub.ListAttributes]: <doc:ApiHubClient/listAttributes(request:options:)>
 public struct ListAttributesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

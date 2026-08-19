@@ -23,7 +23,7 @@
   /// operation. This will be returned by the google.longrunning.Operation.metadata
   /// field.
   ///
-  /// [google.cloud.discoveryengine.v1.EngineService.CreateEngine]: <doc:EngineServiceClient/createEngine(request:)>
+  /// [google.cloud.discoveryengine.v1.EngineService.CreateEngine]: <doc:EngineServiceClient/createEngine(request:options:)>
   public struct CreateEngineMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

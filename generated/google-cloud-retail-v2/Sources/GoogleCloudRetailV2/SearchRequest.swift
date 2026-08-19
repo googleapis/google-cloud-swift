@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [SearchService.Search][google.cloud.retail.v2.SearchService.Search] method.
 ///
-/// [google.cloud.retail.v2.SearchService.Search]: <doc:SearchServiceClient/search(request:)>
+/// [google.cloud.retail.v2.SearchService.Search]: <doc:SearchServiceClient/search(request:options:)>
 public struct SearchRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
@@ -88,7 +88,7 @@ public struct SearchRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// error is returned.
   ///
   /// [google.cloud.retail.v2.SearchResponse.next_page_token]: <doc:SearchResponse/nextPageToken>
-  /// [google.cloud.retail.v2.SearchService.Search]: <doc:SearchServiceClient/search(request:)>
+  /// [google.cloud.retail.v2.SearchService.Search]: <doc:SearchServiceClient/search(request:options:)>
   public var pageToken: Swift.String = Swift.String()
 
   /// A 0-indexed integer that specifies the current offset (that is, starting

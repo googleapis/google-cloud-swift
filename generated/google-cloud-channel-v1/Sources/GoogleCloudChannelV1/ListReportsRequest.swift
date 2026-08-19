@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [CloudChannelReportsService.ListReports][google.cloud.channel.v1.CloudChannelReportsService.ListReports].
 ///
-/// [google.cloud.channel.v1.CloudChannelReportsService.ListReports]: <doc:CloudChannelReportsServiceClient/listReports(request:)>
+/// [google.cloud.channel.v1.CloudChannelReportsService.ListReports]: <doc:CloudChannelReportsServiceClient/listReports(request:options:)>
 @available(*, deprecated)
 public struct ListReportsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
@@ -41,7 +41,7 @@ public struct ListReportsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   /// [CloudChannelReportsService.ListReports][google.cloud.channel.v1.CloudChannelReportsService.ListReports]
   /// call.
   ///
-  /// [google.cloud.channel.v1.CloudChannelReportsService.ListReports]: <doc:CloudChannelReportsServiceClient/listReports(request:)>
+  /// [google.cloud.channel.v1.CloudChannelReportsService.ListReports]: <doc:CloudChannelReportsServiceClient/listReports(request:options:)>
   /// [google.cloud.channel.v1.ListReportsResponse.next_page_token]: <doc:ListReportsResponse/nextPageToken>
   public var pageToken: Swift.String = Swift.String()
 

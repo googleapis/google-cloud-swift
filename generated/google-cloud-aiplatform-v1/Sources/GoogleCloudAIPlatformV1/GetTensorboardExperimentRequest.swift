@@ -21,7 +21,7 @@
   /// Request message for
   /// [TensorboardService.GetTensorboardExperiment][google.cloud.aiplatform.v1.TensorboardService.GetTensorboardExperiment].
   ///
-  /// [google.cloud.aiplatform.v1.TensorboardService.GetTensorboardExperiment]: <doc:TensorboardServiceClient/getTensorboardExperiment(request:)>
+  /// [google.cloud.aiplatform.v1.TensorboardService.GetTensorboardExperiment]: <doc:TensorboardServiceClient/getTensorboardExperiment(request:options:)>
   public struct GetTensorboardExperimentRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

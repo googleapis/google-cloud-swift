@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [GetAuditReport][google.cloud.auditmanager.v1.AuditManager.GetAuditReport].
 ///
-/// [google.cloud.auditmanager.v1.AuditManager.GetAuditReport]: <doc:AuditManagerClient/getAuditReport(request:)>
+/// [google.cloud.auditmanager.v1.AuditManager.GetAuditReport]: <doc:AuditManagerClient/getAuditReport(request:options:)>
 public struct GetAuditReportRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

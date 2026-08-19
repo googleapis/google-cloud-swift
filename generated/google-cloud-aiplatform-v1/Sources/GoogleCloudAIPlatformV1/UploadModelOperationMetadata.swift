@@ -22,7 +22,7 @@
   /// [ModelService.UploadModel][google.cloud.aiplatform.v1.ModelService.UploadModel]
   /// operation.
   ///
-  /// [google.cloud.aiplatform.v1.ModelService.UploadModel]: <doc:ModelServiceClient/uploadModel(request:)>
+  /// [google.cloud.aiplatform.v1.ModelService.UploadModel]: <doc:ModelServiceClient/uploadModel(request:options:)>
   public struct UploadModelOperationMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

@@ -267,7 +267,7 @@ public class FoldersClient: Clients.FoldersProtocol {
   /// `PreconditionFailure` explaining this violation will be returned
   /// in the Status.details field.
   ///
-  /// [google.cloud.resourcemanager.v3.Folders.CreateFolder]: <doc:FoldersClient/createFolder(request:)>
+  /// [google.cloud.resourcemanager.v3.Folders.CreateFolder]: <doc:FoldersClient/createFolder(request:options:)>
   ///
   /// @Snippet(path: "Folders_UpdateFolder")
   public func updateFolder(
@@ -294,7 +294,7 @@ public class FoldersClient: Clients.FoldersProtocol {
   /// `PreconditionFailure` explaining this violation will be returned
   /// in the Status.details field.
   ///
-  /// [google.cloud.resourcemanager.v3.Folders.CreateFolder]: <doc:FoldersClient/createFolder(request:)>
+  /// [google.cloud.resourcemanager.v3.Folders.CreateFolder]: <doc:FoldersClient/createFolder(request:options:)>
   ///
   /// @Snippet(path: "Folders_UpdateFolder")
   public func updateFolder(
@@ -371,7 +371,7 @@ public class FoldersClient: Clients.FoldersProtocol {
   /// documentation. The caller must have `resourcemanager.folders.move`
   /// permission on the folder's current and proposed new parent.
   ///
-  /// [google.cloud.resourcemanager.v3.Folders.CreateFolder]: <doc:FoldersClient/createFolder(request:)>
+  /// [google.cloud.resourcemanager.v3.Folders.CreateFolder]: <doc:FoldersClient/createFolder(request:options:)>
   ///
   /// @Snippet(path: "Folders_MoveFolder")
   public func moveFolder(
@@ -398,7 +398,7 @@ public class FoldersClient: Clients.FoldersProtocol {
   /// documentation. The caller must have `resourcemanager.folders.move`
   /// permission on the folder's current and proposed new parent.
   ///
-  /// [google.cloud.resourcemanager.v3.Folders.CreateFolder]: <doc:FoldersClient/createFolder(request:)>
+  /// [google.cloud.resourcemanager.v3.Folders.CreateFolder]: <doc:FoldersClient/createFolder(request:options:)>
   ///
   /// @Snippet(path: "Folders_MoveFolder")
   public func moveFolder(
@@ -564,7 +564,7 @@ public class FoldersClient: Clients.FoldersProtocol {
   /// permission on the identified folder.
   ///
   /// [google.cloud.resourcemanager.v3.Folder.State.ACTIVE]: <doc:Folder/State/active>
-  /// [google.cloud.resourcemanager.v3.Folders.CreateFolder]: <doc:FoldersClient/createFolder(request:)>
+  /// [google.cloud.resourcemanager.v3.Folders.CreateFolder]: <doc:FoldersClient/createFolder(request:options:)>
   ///
   /// @Snippet(path: "Folders_UndeleteFolder")
   public func undeleteFolder(
@@ -586,7 +586,7 @@ public class FoldersClient: Clients.FoldersProtocol {
   /// permission on the identified folder.
   ///
   /// [google.cloud.resourcemanager.v3.Folder.State.ACTIVE]: <doc:Folder/State/active>
-  /// [google.cloud.resourcemanager.v3.Folders.CreateFolder]: <doc:FoldersClient/createFolder(request:)>
+  /// [google.cloud.resourcemanager.v3.Folders.CreateFolder]: <doc:FoldersClient/createFolder(request:options:)>
   ///
   /// @Snippet(path: "Folders_UndeleteFolder")
   public func undeleteFolder(

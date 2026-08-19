@@ -22,7 +22,7 @@
   /// [SchemaService.UpdateSchema][google.cloud.discoveryengine.v1.SchemaService.UpdateSchema]
   /// method.
   ///
-  /// [google.cloud.discoveryengine.v1.SchemaService.UpdateSchema]: <doc:SchemaServiceClient/updateSchema(request:)>
+  /// [google.cloud.discoveryengine.v1.SchemaService.UpdateSchema]: <doc:SchemaServiceClient/updateSchema(request:options:)>
   public struct UpdateSchemaRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

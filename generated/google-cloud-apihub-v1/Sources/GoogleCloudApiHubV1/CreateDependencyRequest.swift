@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [CreateDependency][google.cloud.apihub.v1.ApiHubDependencies.CreateDependency]
 /// method's request.
 ///
-/// [google.cloud.apihub.v1.ApiHubDependencies.CreateDependency]: <doc:ApiHubDependenciesClient/createDependency(request:)>
+/// [google.cloud.apihub.v1.ApiHubDependencies.CreateDependency]: <doc:ApiHubDependenciesClient/createDependency(request:options:)>
 public struct CreateDependencyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

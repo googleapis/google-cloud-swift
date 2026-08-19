@@ -21,7 +21,7 @@
   /// Request message for
   /// [DatasetService.CreateDatasetVersion][google.cloud.aiplatform.v1.DatasetService.CreateDatasetVersion].
   ///
-  /// [google.cloud.aiplatform.v1.DatasetService.CreateDatasetVersion]: <doc:DatasetServiceClient/createDatasetVersion(request:)>
+  /// [google.cloud.aiplatform.v1.DatasetService.CreateDatasetVersion]: <doc:DatasetServiceClient/createDatasetVersion(request:options:)>
   public struct CreateDatasetVersionRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

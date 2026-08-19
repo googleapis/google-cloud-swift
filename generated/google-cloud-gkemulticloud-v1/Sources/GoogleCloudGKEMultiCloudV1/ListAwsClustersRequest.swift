@@ -48,7 +48,7 @@ public struct ListAwsClustersRequest: Codable, Equatable, GoogleCloudWkt._AnyPac
   /// [awsClusters.list][google.cloud.gkemulticloud.v1.AwsClusters.ListAwsClusters]
   /// request, if any.
   ///
-  /// [google.cloud.gkemulticloud.v1.AwsClusters.ListAwsClusters]: <doc:AwsClustersClient/listAwsClusters(request:)>
+  /// [google.cloud.gkemulticloud.v1.AwsClusters.ListAwsClusters]: <doc:AwsClustersClient/listAwsClusters(request:options:)>
   public var pageToken: Swift.String = Swift.String()
 
   /// Initialize a new instance of `ListAwsClustersRequest`.

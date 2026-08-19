@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [GetStyleGuideContents][google.cloud.apihub.v1.LintingService.GetStyleGuideContents]
 /// method's request.
 ///
-/// [google.cloud.apihub.v1.LintingService.GetStyleGuideContents]: <doc:LintingServiceClient/getStyleGuideContents(request:)>
+/// [google.cloud.apihub.v1.LintingService.GetStyleGuideContents]: <doc:LintingServiceClient/getStyleGuideContents(request:options:)>
 public struct GetStyleGuideContentsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

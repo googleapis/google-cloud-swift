@@ -19,7 +19,7 @@ import GoogleCloudWkt
 
 /// Request for [StopNode][google.cloud.tpu.v2.Tpu.StopNode].
 ///
-/// [google.cloud.tpu.v2.Tpu.StopNode]: <doc:TpuClient/stopNode(request:)>
+/// [google.cloud.tpu.v2.Tpu.StopNode]: <doc:TpuClient/stopNode(request:options:)>
 public struct StopNodeRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

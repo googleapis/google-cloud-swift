@@ -21,7 +21,7 @@
   /// Request message for
   /// [MetadataService.DeleteMetadataStore][google.cloud.aiplatform.v1.MetadataService.DeleteMetadataStore].
   ///
-  /// [google.cloud.aiplatform.v1.MetadataService.DeleteMetadataStore]: <doc:MetadataServiceClient/deleteMetadataStore(request:)>
+  /// [google.cloud.aiplatform.v1.MetadataService.DeleteMetadataStore]: <doc:MetadataServiceClient/deleteMetadataStore(request:options:)>
   public struct DeleteMetadataStoreRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

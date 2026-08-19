@@ -21,7 +21,7 @@
   /// Response message for
   /// [FeaturestoreService.BatchCreateFeatures][google.cloud.aiplatform.v1.FeaturestoreService.BatchCreateFeatures].
   ///
-  /// [google.cloud.aiplatform.v1.FeaturestoreService.BatchCreateFeatures]: <doc:FeaturestoreServiceClient/batchCreateFeatures(request:)>
+  /// [google.cloud.aiplatform.v1.FeaturestoreService.BatchCreateFeatures]: <doc:FeaturestoreServiceClient/batchCreateFeatures(request:options:)>
   public struct BatchCreateFeaturesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

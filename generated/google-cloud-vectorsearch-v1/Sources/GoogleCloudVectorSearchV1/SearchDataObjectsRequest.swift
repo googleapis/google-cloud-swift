@@ -37,7 +37,7 @@ public struct SearchDataObjectsRequest: Codable, Equatable, GoogleCloudWkt._AnyP
   /// [DataObjectSearchService.SearchDataObjects][google.cloud.vectorsearch.v1.DataObjectSearchService.SearchDataObjects]
   /// call.
   ///
-  /// [google.cloud.vectorsearch.v1.DataObjectSearchService.SearchDataObjects]: <doc:DataObjectSearchServiceClient/searchDataObjects(request:)>
+  /// [google.cloud.vectorsearch.v1.DataObjectSearchService.SearchDataObjects]: <doc:DataObjectSearchServiceClient/searchDataObjects(request:options:)>
   /// [google.cloud.vectorsearch.v1.SearchDataObjectsResponse.next_page_token]: <doc:SearchDataObjectsResponse/nextPageToken>
   public var pageToken: Swift.String = Swift.String()
 

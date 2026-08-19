@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [KeyManagementService.Encrypt][google.cloud.kms.v1.KeyManagementService.Encrypt].
 ///
-/// [google.cloud.kms.v1.KeyManagementService.Encrypt]: <doc:KeyManagementServiceClient/encrypt(request:)>
+/// [google.cloud.kms.v1.KeyManagementService.Encrypt]: <doc:KeyManagementServiceClient/encrypt(request:options:)>
 public struct EncryptResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

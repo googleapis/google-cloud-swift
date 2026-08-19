@@ -250,7 +250,7 @@ public class DataCatalogClient: Clients.DataCatalogProtocol {
   /// resource
   /// project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).
   ///
-  /// [google.cloud.datacatalog.v1.DataCatalog.CreateEntry]: <doc:DataCatalogClient/createEntry(request:)>
+  /// [google.cloud.datacatalog.v1.DataCatalog.CreateEntry]: <doc:DataCatalogClient/createEntry(request:options:)>
   ///
   /// @Snippet(path: "DataCatalog_DeleteEntry")
   @available(*, deprecated)
@@ -288,7 +288,7 @@ public class DataCatalogClient: Clients.DataCatalogProtocol {
   /// To get a list of both custom and automatically created entries, use
   /// [SearchCatalog][google.cloud.datacatalog.v1.DataCatalog.SearchCatalog].
   ///
-  /// [google.cloud.datacatalog.v1.DataCatalog.SearchCatalog]: <doc:DataCatalogClient/searchCatalog(request:)>
+  /// [google.cloud.datacatalog.v1.DataCatalog.SearchCatalog]: <doc:DataCatalogClient/searchCatalog(request:options:)>
   ///
   /// @Snippet(path: "DataCatalog_ListEntries")
   @available(*, deprecated)
@@ -304,7 +304,7 @@ public class DataCatalogClient: Clients.DataCatalogProtocol {
   /// To get a list of both custom and automatically created entries, use
   /// [SearchCatalog][google.cloud.datacatalog.v1.DataCatalog.SearchCatalog].
   ///
-  /// [google.cloud.datacatalog.v1.DataCatalog.SearchCatalog]: <doc:DataCatalogClient/searchCatalog(request:)>
+  /// [google.cloud.datacatalog.v1.DataCatalog.SearchCatalog]: <doc:DataCatalogClient/searchCatalog(request:options:)>
   ///
   /// @Snippet(path: "DataCatalog_ListEntries")
   @available(*, deprecated)

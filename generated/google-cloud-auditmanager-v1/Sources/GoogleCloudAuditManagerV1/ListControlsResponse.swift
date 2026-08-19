@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [ListControls][google.cloud.auditmanager.v1.AuditManager.ListControls].
 ///
-/// [google.cloud.auditmanager.v1.AuditManager.ListControls]: <doc:AuditManagerClient/listControls(request:)>
+/// [google.cloud.auditmanager.v1.AuditManager.ListControls]: <doc:AuditManagerClient/listControls(request:options:)>
 public struct ListControlsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

@@ -22,7 +22,7 @@
   /// [EngineService.UpdateEngine][google.cloud.discoveryengine.v1.EngineService.UpdateEngine]
   /// method.
   ///
-  /// [google.cloud.discoveryengine.v1.EngineService.UpdateEngine]: <doc:EngineServiceClient/updateEngine(request:)>
+  /// [google.cloud.discoveryengine.v1.EngineService.UpdateEngine]: <doc:EngineServiceClient/updateEngine(request:options:)>
   public struct UpdateEngineRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

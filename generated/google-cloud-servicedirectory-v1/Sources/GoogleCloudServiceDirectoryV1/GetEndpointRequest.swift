@@ -22,7 +22,7 @@ import GoogleCloudWkt
 /// This should not be used to lookup endpoints at runtime. Instead, use
 /// the `resolve` method.
 ///
-/// [google.cloud.servicedirectory.v1.RegistrationService.GetEndpoint]: <doc:RegistrationServiceClient/getEndpoint(request:)>
+/// [google.cloud.servicedirectory.v1.RegistrationService.GetEndpoint]: <doc:RegistrationServiceClient/getEndpoint(request:options:)>
 public struct GetEndpointRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

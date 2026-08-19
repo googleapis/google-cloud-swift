@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [CloudChannelService.CheckCloudIdentityAccountsExist][google.cloud.channel.v1.CloudChannelService.CheckCloudIdentityAccountsExist].
 ///
-/// [google.cloud.channel.v1.CloudChannelService.CheckCloudIdentityAccountsExist]: <doc:CloudChannelServiceClient/checkCloudIdentityAccountsExist(request:)>
+/// [google.cloud.channel.v1.CloudChannelService.CheckCloudIdentityAccountsExist]: <doc:CloudChannelServiceClient/checkCloudIdentityAccountsExist(request:options:)>
 public struct CheckCloudIdentityAccountsExistRequest: Codable, Equatable, GoogleCloudWkt
     ._AnyPackable,
   Sendable

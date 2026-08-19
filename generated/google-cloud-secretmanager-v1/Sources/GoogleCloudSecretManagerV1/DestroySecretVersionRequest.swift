@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [SecretManagerService.DestroySecretVersion][google.cloud.secretmanager.v1.SecretManagerService.DestroySecretVersion].
 ///
-/// [google.cloud.secretmanager.v1.SecretManagerService.DestroySecretVersion]: <doc:SecretManagerServiceClient/destroySecretVersion(request:)>
+/// [google.cloud.secretmanager.v1.SecretManagerService.DestroySecretVersion]: <doc:SecretManagerServiceClient/destroySecretVersion(request:options:)>
 public struct DestroySecretVersionRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [ReviewDocument][google.cloud.documentai.v1.DocumentProcessorService.ReviewDocument]
 /// method.
 ///
-/// [google.cloud.documentai.v1.DocumentProcessorService.ReviewDocument]: <doc:DocumentProcessorServiceClient/reviewDocument(request:)>
+/// [google.cloud.documentai.v1.DocumentProcessorService.ReviewDocument]: <doc:DocumentProcessorServiceClient/reviewDocument(request:options:)>
 public struct ReviewDocumentOperationMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

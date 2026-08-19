@@ -22,7 +22,7 @@
   /// Response message for
   /// [MetadataService.ListExecutions][google.cloud.aiplatform.v1.MetadataService.ListExecutions].
   ///
-  /// [google.cloud.aiplatform.v1.MetadataService.ListExecutions]: <doc:MetadataServiceClient/listExecutions(request:)>
+  /// [google.cloud.aiplatform.v1.MetadataService.ListExecutions]: <doc:MetadataServiceClient/listExecutions(request:options:)>
   public struct ListExecutionsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable

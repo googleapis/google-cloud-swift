@@ -22,7 +22,7 @@
   /// [GroundedGenerationService.CheckGrounding][google.cloud.discoveryengine.v1.GroundedGenerationService.CheckGrounding]
   /// method.
   ///
-  /// [google.cloud.discoveryengine.v1.GroundedGenerationService.CheckGrounding]: <doc:GroundedGenerationServiceClient/checkGrounding(request:)>
+  /// [google.cloud.discoveryengine.v1.GroundedGenerationService.CheckGrounding]: <doc:GroundedGenerationServiceClient/checkGrounding(request:options:)>
   public struct CheckGroundingResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [VmwareEngine.ListLoggingServers][google.cloud.vmwareengine.v1.VmwareEngine.ListLoggingServers]
 ///
-/// [google.cloud.vmwareengine.v1.VmwareEngine.ListLoggingServers]: <doc:VmwareEngineClient/listLoggingServers(request:)>
+/// [google.cloud.vmwareengine.v1.VmwareEngine.ListLoggingServers]: <doc:VmwareEngineClient/listLoggingServers(request:options:)>
 public struct ListLoggingServersResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

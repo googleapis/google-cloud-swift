@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [EnrollResource][google.cloud.auditmanager.v1.AuditManager.EnrollResource].
 ///
-/// [google.cloud.auditmanager.v1.AuditManager.EnrollResource]: <doc:AuditManagerClient/enrollResource(request:)>
+/// [google.cloud.auditmanager.v1.AuditManager.EnrollResource]: <doc:AuditManagerClient/enrollResource(request:options:)>
 public struct EnrollResourceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
@@ -124,7 +124,7 @@ public struct EnrollResourceRequest: Codable, Equatable, GoogleCloudWkt._AnyPack
       /// [GenerateAuditReport][google.cloud.auditmanager.v1.AuditManager.GenerateAuditReport]
       /// API call.
       ///
-      /// [google.cloud.auditmanager.v1.AuditManager.GenerateAuditReport]: <doc:AuditManagerClient/generateAuditReport(request:)>
+      /// [google.cloud.auditmanager.v1.AuditManager.GenerateAuditReport]: <doc:AuditManagerClient/generateAuditReport(request:options:)>
       case eligibleGcsBucket(Swift.String)
     }
 

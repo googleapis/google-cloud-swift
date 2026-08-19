@@ -29,7 +29,7 @@ import GoogleCloudWkt
 /// NOTE: A response may contain fewer elements than the request `page_size` and
 /// still have a `next_page_token`.
 ///
-/// [google.cloud.resourcemanager.v3.Projects.ListProjects]: <doc:ProjectsClient/listProjects(request:)>
+/// [google.cloud.resourcemanager.v3.Projects.ListProjects]: <doc:ProjectsClient/listProjects(request:options:)>
 public struct ListProjectsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

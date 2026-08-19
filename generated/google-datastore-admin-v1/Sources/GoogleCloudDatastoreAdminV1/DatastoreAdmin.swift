@@ -255,7 +255,7 @@ public class DatastoreAdminClient: Clients.DatastoreAdminProtocol {
   ///
   /// Indexes with a single property cannot be created.
   ///
-  /// [google.datastore.admin.v1.DatastoreAdmin.DeleteIndex]: <doc:DatastoreAdminClient/deleteIndex(request:)>
+  /// [google.datastore.admin.v1.DatastoreAdmin.DeleteIndex]: <doc:DatastoreAdminClient/deleteIndex(request:options:)>
   /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   ///
   /// @Snippet(path: "DatastoreAdmin_CreateIndex")
@@ -280,7 +280,7 @@ public class DatastoreAdminClient: Clients.DatastoreAdminProtocol {
   ///
   /// Indexes with a single property cannot be created.
   ///
-  /// [google.datastore.admin.v1.DatastoreAdmin.DeleteIndex]: <doc:DatastoreAdminClient/deleteIndex(request:)>
+  /// [google.datastore.admin.v1.DatastoreAdmin.DeleteIndex]: <doc:DatastoreAdminClient/deleteIndex(request:options:)>
   /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   ///
   /// @Snippet(path: "DatastoreAdmin_CreateIndex")
@@ -352,7 +352,7 @@ public class DatastoreAdminClient: Clients.DatastoreAdminProtocol {
   /// by fixing the data that caused the error, followed by calling
   /// [delete][google.datastore.admin.v1.DatastoreAdmin.DeleteIndex] again.
   ///
-  /// [google.datastore.admin.v1.DatastoreAdmin.DeleteIndex]: <doc:DatastoreAdminClient/deleteIndex(request:)>
+  /// [google.datastore.admin.v1.DatastoreAdmin.DeleteIndex]: <doc:DatastoreAdminClient/deleteIndex(request:options:)>
   /// [google.datastore.admin.v1.Index.State]: <doc:Index/State>
   /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   ///
@@ -375,7 +375,7 @@ public class DatastoreAdminClient: Clients.DatastoreAdminProtocol {
   /// by fixing the data that caused the error, followed by calling
   /// [delete][google.datastore.admin.v1.DatastoreAdmin.DeleteIndex] again.
   ///
-  /// [google.datastore.admin.v1.DatastoreAdmin.DeleteIndex]: <doc:DatastoreAdminClient/deleteIndex(request:)>
+  /// [google.datastore.admin.v1.DatastoreAdmin.DeleteIndex]: <doc:DatastoreAdminClient/deleteIndex(request:options:)>
   /// [google.datastore.admin.v1.Index.State]: <doc:Index/State>
   /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   ///

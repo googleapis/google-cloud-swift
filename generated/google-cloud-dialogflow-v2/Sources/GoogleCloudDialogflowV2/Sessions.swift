@@ -59,7 +59,7 @@
     /// See [Versions and
     /// environments](https://cloud.google.com/dialogflow/es/docs/agents-versions).
     ///
-    /// [google.cloud.dialogflow.v2.Participants.AnalyzeContent]: <doc:ParticipantsClient/analyzeContent(request:)>
+    /// [google.cloud.dialogflow.v2.Participants.AnalyzeContent]: <doc:ParticipantsClient/analyzeContent(request:options:)>
     ///
     /// @Snippet(path: "Sessions_DetectIntent")
     public func detectIntent(

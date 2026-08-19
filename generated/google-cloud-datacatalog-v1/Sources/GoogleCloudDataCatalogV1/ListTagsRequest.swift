@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [ListTags][google.cloud.datacatalog.v1.DataCatalog.ListTags].
 ///
-/// [google.cloud.datacatalog.v1.DataCatalog.ListTags]: <doc:DataCatalogClient/listTags(request:)>
+/// [google.cloud.datacatalog.v1.DataCatalog.ListTags]: <doc:DataCatalogClient/listTags(request:options:)>
 public struct ListTagsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

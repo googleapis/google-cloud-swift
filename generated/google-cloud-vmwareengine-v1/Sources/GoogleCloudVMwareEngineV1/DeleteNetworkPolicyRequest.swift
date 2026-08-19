@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [VmwareEngine.DeleteNetworkPolicy][google.cloud.vmwareengine.v1.VmwareEngine.DeleteNetworkPolicy]
 ///
-/// [google.cloud.vmwareengine.v1.VmwareEngine.DeleteNetworkPolicy]: <doc:VmwareEngineClient/deleteNetworkPolicy(request:)>
+/// [google.cloud.vmwareengine.v1.VmwareEngine.DeleteNetworkPolicy]: <doc:VmwareEngineClient/deleteNetworkPolicy(request:options:)>
 public struct DeleteNetworkPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

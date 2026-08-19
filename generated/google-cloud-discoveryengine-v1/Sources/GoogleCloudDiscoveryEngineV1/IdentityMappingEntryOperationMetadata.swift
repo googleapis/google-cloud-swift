@@ -23,8 +23,8 @@
   /// and
   /// [IdentityMappingStoreService.PurgeIdentityMappings][google.cloud.discoveryengine.v1.IdentityMappingStoreService.PurgeIdentityMappings]
   ///
-  /// [google.cloud.discoveryengine.v1.IdentityMappingStoreService.ImportIdentityMappings]: <doc:IdentityMappingStoreServiceClient/importIdentityMappings(request:)>
-  /// [google.cloud.discoveryengine.v1.IdentityMappingStoreService.PurgeIdentityMappings]: <doc:IdentityMappingStoreServiceClient/purgeIdentityMappings(request:)>
+  /// [google.cloud.discoveryengine.v1.IdentityMappingStoreService.ImportIdentityMappings]: <doc:IdentityMappingStoreServiceClient/importIdentityMappings(request:options:)>
+  /// [google.cloud.discoveryengine.v1.IdentityMappingStoreService.PurgeIdentityMappings]: <doc:IdentityMappingStoreServiceClient/purgeIdentityMappings(request:options:)>
   public struct IdentityMappingEntryOperationMetadata: Codable, Equatable, GoogleCloudWkt
       ._AnyPackable,
     Sendable

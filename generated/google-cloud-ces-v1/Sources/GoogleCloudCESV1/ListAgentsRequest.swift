@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [AgentService.ListAgents][google.cloud.ces.v1.AgentService.ListAgents].
 ///
-/// [google.cloud.ces.v1.AgentService.ListAgents]: <doc:AgentServiceClient/listAgents(request:)>
+/// [google.cloud.ces.v1.AgentService.ListAgents]: <doc:AgentServiceClient/listAgents(request:options:)>
 public struct ListAgentsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
@@ -37,7 +37,7 @@ public struct ListAgentsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable
   /// [AgentService.ListAgents][google.cloud.ces.v1.AgentService.ListAgents]
   /// call.
   ///
-  /// [google.cloud.ces.v1.AgentService.ListAgents]: <doc:AgentServiceClient/listAgents(request:)>
+  /// [google.cloud.ces.v1.AgentService.ListAgents]: <doc:AgentServiceClient/listAgents(request:options:)>
   /// [google.cloud.ces.v1.ListAgentsResponse.next_page_token]: <doc:ListAgentsResponse/nextPageToken>
   public var pageToken: Swift.String = Swift.String()
 

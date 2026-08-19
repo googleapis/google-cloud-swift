@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [AuthorizeEnvironment][google.cloud.shell.v1.CloudShellService.AuthorizeEnvironment].
 ///
-/// [google.cloud.shell.v1.CloudShellService.AuthorizeEnvironment]: <doc:CloudShellServiceClient/authorizeEnvironment(request:)>
+/// [google.cloud.shell.v1.CloudShellService.AuthorizeEnvironment]: <doc:CloudShellServiceClient/authorizeEnvironment(request:options:)>
 public struct AuthorizeEnvironmentResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

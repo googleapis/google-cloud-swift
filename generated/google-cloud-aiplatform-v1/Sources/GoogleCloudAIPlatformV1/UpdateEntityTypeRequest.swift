@@ -21,7 +21,7 @@
   /// Request message for
   /// [FeaturestoreService.UpdateEntityType][google.cloud.aiplatform.v1.FeaturestoreService.UpdateEntityType].
   ///
-  /// [google.cloud.aiplatform.v1.FeaturestoreService.UpdateEntityType]: <doc:FeaturestoreServiceClient/updateEntityType(request:)>
+  /// [google.cloud.aiplatform.v1.FeaturestoreService.UpdateEntityType]: <doc:FeaturestoreServiceClient/updateEntityType(request:options:)>
   public struct UpdateEntityTypeRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

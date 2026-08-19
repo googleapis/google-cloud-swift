@@ -22,7 +22,7 @@
   /// [EngineService.ListEngines][google.cloud.discoveryengine.v1.EngineService.ListEngines]
   /// method.
   ///
-  /// [google.cloud.discoveryengine.v1.EngineService.ListEngines]: <doc:EngineServiceClient/listEngines(request:)>
+  /// [google.cloud.discoveryengine.v1.EngineService.ListEngines]: <doc:EngineServiceClient/listEngines(request:options:)>
   public struct ListEnginesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

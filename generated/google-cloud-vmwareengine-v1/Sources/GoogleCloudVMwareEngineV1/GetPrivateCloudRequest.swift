@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [VmwareEngine.GetPrivateCloud][google.cloud.vmwareengine.v1.VmwareEngine.GetPrivateCloud]
 ///
-/// [google.cloud.vmwareengine.v1.VmwareEngine.GetPrivateCloud]: <doc:VmwareEngineClient/getPrivateCloud(request:)>
+/// [google.cloud.vmwareengine.v1.VmwareEngine.GetPrivateCloud]: <doc:VmwareEngineClient/getPrivateCloud(request:options:)>
 public struct GetPrivateCloudRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

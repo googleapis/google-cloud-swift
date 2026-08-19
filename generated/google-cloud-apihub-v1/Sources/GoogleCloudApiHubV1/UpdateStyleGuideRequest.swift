@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [UpdateStyleGuide][google.cloud.apihub.v1.LintingService.UpdateStyleGuide]
 /// method's request.
 ///
-/// [google.cloud.apihub.v1.LintingService.UpdateStyleGuide]: <doc:LintingServiceClient/updateStyleGuide(request:)>
+/// [google.cloud.apihub.v1.LintingService.UpdateStyleGuide]: <doc:LintingServiceClient/updateStyleGuide(request:options:)>
 public struct UpdateStyleGuideRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

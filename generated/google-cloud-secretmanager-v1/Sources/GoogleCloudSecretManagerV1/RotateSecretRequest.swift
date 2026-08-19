@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [SecretManagerService.RotateSecret][google.cloud.secretmanager.v1.SecretManagerService.RotateSecret].
 ///
-/// [google.cloud.secretmanager.v1.SecretManagerService.RotateSecret]: <doc:SecretManagerServiceClient/rotateSecret(request:)>
+/// [google.cloud.secretmanager.v1.SecretManagerService.RotateSecret]: <doc:SecretManagerServiceClient/rotateSecret(request:options:)>
 public struct RotateSecretRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

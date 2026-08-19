@@ -21,7 +21,7 @@
   /// Request message for
   /// [JobService.DeleteNasJob][google.cloud.aiplatform.v1.JobService.DeleteNasJob].
   ///
-  /// [google.cloud.aiplatform.v1.JobService.DeleteNasJob]: <doc:JobServiceClient/deleteNasJob(request:)>
+  /// [google.cloud.aiplatform.v1.JobService.DeleteNasJob]: <doc:JobServiceClient/deleteNasJob(request:options:)>
   public struct DeleteNasJobRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

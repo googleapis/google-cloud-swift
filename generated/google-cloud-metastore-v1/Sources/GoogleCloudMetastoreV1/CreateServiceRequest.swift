@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [DataprocMetastore.CreateService][google.cloud.metastore.v1.DataprocMetastore.CreateService].
 ///
-/// [google.cloud.metastore.v1.DataprocMetastore.CreateService]: <doc:DataprocMetastoreClient/createService(request:)>
+/// [google.cloud.metastore.v1.DataprocMetastore.CreateService]: <doc:DataprocMetastoreClient/createService(request:options:)>
 public struct CreateServiceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

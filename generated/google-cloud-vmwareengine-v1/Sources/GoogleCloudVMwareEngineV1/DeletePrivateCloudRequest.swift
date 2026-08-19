@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [VmwareEngine.DeletePrivateCloud][google.cloud.vmwareengine.v1.VmwareEngine.DeletePrivateCloud]
 ///
-/// [google.cloud.vmwareengine.v1.VmwareEngine.DeletePrivateCloud]: <doc:VmwareEngineClient/deletePrivateCloud(request:)>
+/// [google.cloud.vmwareengine.v1.VmwareEngine.DeletePrivateCloud]: <doc:VmwareEngineClient/deletePrivateCloud(request:options:)>
 public struct DeletePrivateCloudRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
@@ -51,7 +51,7 @@ public struct DeletePrivateCloudRequest: Codable, Equatable, GoogleCloudWkt._Any
   /// process and ceases billing immediately. During the final deletion process,
   /// the value of `PrivateCloud.state` becomes `PURGING`.
   ///
-  /// [google.cloud.vmwareengine.v1.VmwareEngine.UndeletePrivateCloud]: <doc:VmwareEngineClient/undeletePrivateCloud(request:)>
+  /// [google.cloud.vmwareengine.v1.VmwareEngine.UndeletePrivateCloud]: <doc:VmwareEngineClient/undeletePrivateCloud(request:options:)>
   public var delayHours: Swift.Int32? = nil
 
   /// Initialize a new instance of `DeletePrivateCloudRequest`.

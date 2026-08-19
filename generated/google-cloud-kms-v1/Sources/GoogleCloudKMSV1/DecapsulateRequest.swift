@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [KeyManagementService.Decapsulate][google.cloud.kms.v1.KeyManagementService.Decapsulate].
 ///
-/// [google.cloud.kms.v1.KeyManagementService.Decapsulate]: <doc:KeyManagementServiceClient/decapsulate(request:)>
+/// [google.cloud.kms.v1.KeyManagementService.Decapsulate]: <doc:KeyManagementServiceClient/decapsulate(request:options:)>
 public struct DecapsulateRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

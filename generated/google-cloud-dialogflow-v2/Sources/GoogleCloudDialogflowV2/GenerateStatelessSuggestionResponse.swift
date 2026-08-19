@@ -21,7 +21,7 @@
   /// The response message for
   /// [Conversations.GenerateStatelessSuggestion][google.cloud.dialogflow.v2.Conversations.GenerateStatelessSuggestion].
   ///
-  /// [google.cloud.dialogflow.v2.Conversations.GenerateStatelessSuggestion]: <doc:ConversationsClient/generateStatelessSuggestion(request:)>
+  /// [google.cloud.dialogflow.v2.Conversations.GenerateStatelessSuggestion]: <doc:ConversationsClient/generateStatelessSuggestion(request:options:)>
   public struct GenerateStatelessSuggestionResponse: Codable, Equatable, GoogleCloudWkt
       ._AnyPackable,
     Sendable

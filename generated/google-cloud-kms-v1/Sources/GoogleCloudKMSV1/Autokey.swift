@@ -44,8 +44,8 @@ import GoogleCloudGax
 /// a resource project's ancestor folder, see
 /// [ShowEffectiveAutokeyConfig][google.cloud.kms.v1.AutokeyAdmin.ShowEffectiveAutokeyConfig].
 ///
-/// [google.cloud.kms.v1.AutokeyAdmin.ShowEffectiveAutokeyConfig]: <doc:AutokeyAdminClient/showEffectiveAutokeyConfig(request:)>
-/// [google.cloud.kms.v1.AutokeyAdmin.UpdateAutokeyConfig]: <doc:AutokeyAdminClient/updateAutokeyConfig(request:)>
+/// [google.cloud.kms.v1.AutokeyAdmin.ShowEffectiveAutokeyConfig]: <doc:AutokeyAdminClient/showEffectiveAutokeyConfig(request:options:)>
+/// [google.cloud.kms.v1.AutokeyAdmin.UpdateAutokeyConfig]: <doc:AutokeyAdminClient/updateAutokeyConfig(request:options:)>
 /// [google.cloud.kms.v1.CryptoKey]: <doc:CryptoKey>
 /// [google.cloud.kms.v1.KeyHandle]: <doc:KeyHandle>
 ///

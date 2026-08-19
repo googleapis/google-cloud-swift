@@ -21,7 +21,7 @@
   /// Response message for
   /// [TensorboardService.ReadTensorboardUsage][google.cloud.aiplatform.v1.TensorboardService.ReadTensorboardUsage].
   ///
-  /// [google.cloud.aiplatform.v1.TensorboardService.ReadTensorboardUsage]: <doc:TensorboardServiceClient/readTensorboardUsage(request:)>
+  /// [google.cloud.aiplatform.v1.TensorboardService.ReadTensorboardUsage]: <doc:TensorboardServiceClient/readTensorboardUsage(request:options:)>
   public struct ReadTensorboardUsageResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// The request for
 /// [ReservationService.ListReservations][google.cloud.bigquery.reservation.v1.ReservationService.ListReservations].
 ///
-/// [google.cloud.bigquery.reservation.v1.ReservationService.ListReservations]: <doc:ReservationServiceClient/listReservations(request:)>
+/// [google.cloud.bigquery.reservation.v1.ReservationService.ListReservations]: <doc:ReservationServiceClient/listReservations(request:options:)>
 public struct ListReservationsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

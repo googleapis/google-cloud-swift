@@ -21,7 +21,7 @@
   extension ZoneOperationsClient {
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.zoneOperations.delete] method.
     ///
-    /// [google.cloud.compute.v1.zoneOperations.delete]: <doc:ZoneOperationsClient/delete(request:)>
+    /// [google.cloud.compute.v1.zoneOperations.delete]: <doc:ZoneOperationsClient/delete(request:options:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -64,7 +64,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.zoneOperations.get] method.
     ///
-    /// [google.cloud.compute.v1.zoneOperations.get]: <doc:ZoneOperationsClient/`get`(request:)>
+    /// [google.cloud.compute.v1.zoneOperations.get]: <doc:ZoneOperationsClient/`get`(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -107,7 +107,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.zoneOperations.list] method.
     ///
-    /// [google.cloud.compute.v1.zoneOperations.list]: <doc:ZoneOperationsClient/list(request:)>
+    /// [google.cloud.compute.v1.zoneOperations.list]: <doc:ZoneOperationsClient/list(request:options:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -239,7 +239,7 @@
 
     /// Synthetic request message for the [wait()][google.cloud.compute.v1.zoneOperations.wait] method.
     ///
-    /// [google.cloud.compute.v1.zoneOperations.wait]: <doc:ZoneOperationsClient/wait(request:)>
+    /// [google.cloud.compute.v1.zoneOperations.wait]: <doc:ZoneOperationsClient/wait(request:options:)>
     public struct WaitRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {

@@ -180,7 +180,7 @@ public class MetricServiceClient: Clients.MetricServiceProtocol {
   /// [projects.timeSeries.create][google.monitoring.v3.MetricService.CreateTimeSeries]
   /// instead.
   ///
-  /// [google.monitoring.v3.MetricService.CreateTimeSeries]: <doc:MetricServiceClient/createTimeSeries(request:)>
+  /// [google.monitoring.v3.MetricService.CreateTimeSeries]: <doc:MetricServiceClient/createTimeSeries(request:options:)>
   ///
   /// @Snippet(path: "MetricService_CreateServiceTimeSeries")
   public func createServiceTimeSeries(

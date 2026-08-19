@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [google.bigtable.admin.v2.BigtableTableAdmin.ListTables][google.bigtable.admin.v2.BigtableTableAdmin.ListTables]
 ///
-/// [google.bigtable.admin.v2.BigtableTableAdmin.ListTables]: <doc:BigtableTableAdminClient/listTables(request:)>
+/// [google.bigtable.admin.v2.BigtableTableAdmin.ListTables]: <doc:BigtableTableAdminClient/listTables(request:options:)>
 public struct ListTablesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

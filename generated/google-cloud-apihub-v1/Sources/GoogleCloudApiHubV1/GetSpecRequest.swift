@@ -19,7 +19,7 @@ import GoogleCloudWkt
 
 /// The [GetSpec][google.cloud.apihub.v1.ApiHub.GetSpec] method's request.
 ///
-/// [google.cloud.apihub.v1.ApiHub.GetSpec]: <doc:ApiHubClient/getSpec(request:)>
+/// [google.cloud.apihub.v1.ApiHub.GetSpec]: <doc:ApiHubClient/getSpec(request:options:)>
 public struct GetSpecRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

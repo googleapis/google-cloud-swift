@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [Simulator.ListReplayResults][google.cloud.policysimulator.v1.Simulator.ListReplayResults].
 ///
-/// [google.cloud.policysimulator.v1.Simulator.ListReplayResults]: <doc:SimulatorClient/listReplayResults(request:)>
+/// [google.cloud.policysimulator.v1.Simulator.ListReplayResults]: <doc:SimulatorClient/listReplayResults(request:options:)>
 public struct ListReplayResultsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

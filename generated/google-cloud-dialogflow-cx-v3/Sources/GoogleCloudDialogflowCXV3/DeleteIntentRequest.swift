@@ -21,7 +21,7 @@
   /// The request message for
   /// [Intents.DeleteIntent][google.cloud.dialogflow.cx.v3.Intents.DeleteIntent].
   ///
-  /// [google.cloud.dialogflow.cx.v3.Intents.DeleteIntent]: <doc:IntentsClient/deleteIntent(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Intents.DeleteIntent]: <doc:IntentsClient/deleteIntent(request:options:)>
   public struct DeleteIntentRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

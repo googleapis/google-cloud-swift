@@ -176,7 +176,7 @@
     /// [SearchService.Search][google.cloud.discoveryengine.v1.SearchService.Search]
     /// API.
     ///
-    /// [google.cloud.discoveryengine.v1.SearchService.Search]: <doc:SearchServiceClient/search(request:)>
+    /// [google.cloud.discoveryengine.v1.SearchService.Search]: <doc:SearchServiceClient/search(request:options:)>
     public struct ChunkMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -187,7 +187,7 @@
       /// API.
       ///
       /// [google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.ChunkSpec.num_previous_chunks]: <doc:SearchRequest/ContentSearchSpec/ChunkSpec/numPreviousChunks>
-      /// [google.cloud.discoveryengine.v1.SearchService.Search]: <doc:SearchServiceClient/search(request:)>
+      /// [google.cloud.discoveryengine.v1.SearchService.Search]: <doc:SearchServiceClient/search(request:options:)>
       public var previousChunks: [Chunk] = []
 
       /// The next chunks of the current chunk. The number is controlled by
@@ -197,7 +197,7 @@
       /// API.
       ///
       /// [google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.ChunkSpec.num_next_chunks]: <doc:SearchRequest/ContentSearchSpec/ChunkSpec/numNextChunks>
-      /// [google.cloud.discoveryengine.v1.SearchService.Search]: <doc:SearchServiceClient/search(request:)>
+      /// [google.cloud.discoveryengine.v1.SearchService.Search]: <doc:SearchServiceClient/search(request:options:)>
       public var nextChunks: [Chunk] = []
 
       /// Initialize a new instance of `ChunkMetadata`.

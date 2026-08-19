@@ -22,7 +22,7 @@ import GoogleCloudWkt
 /// [CatalogService.ListCatalogs][google.cloud.retail.v2.CatalogService.ListCatalogs]
 /// method.
 ///
-/// [google.cloud.retail.v2.CatalogService.ListCatalogs]: <doc:CatalogServiceClient/listCatalogs(request:)>
+/// [google.cloud.retail.v2.CatalogService.ListCatalogs]: <doc:CatalogServiceClient/listCatalogs(request:options:)>
 public struct ListCatalogsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

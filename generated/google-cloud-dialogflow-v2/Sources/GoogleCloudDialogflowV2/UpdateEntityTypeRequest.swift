@@ -21,7 +21,7 @@
   /// The request message for
   /// [EntityTypes.UpdateEntityType][google.cloud.dialogflow.v2.EntityTypes.UpdateEntityType].
   ///
-  /// [google.cloud.dialogflow.v2.EntityTypes.UpdateEntityType]: <doc:EntityTypesClient/updateEntityType(request:)>
+  /// [google.cloud.dialogflow.v2.EntityTypes.UpdateEntityType]: <doc:EntityTypesClient/updateEntityType(request:options:)>
   public struct UpdateEntityTypeRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [google.bigtable.admin.v2.BigtableTableAdmin.ModifyColumnFamilies][google.bigtable.admin.v2.BigtableTableAdmin.ModifyColumnFamilies]
 ///
-/// [google.bigtable.admin.v2.BigtableTableAdmin.ModifyColumnFamilies]: <doc:BigtableTableAdminClient/modifyColumnFamilies(request:)>
+/// [google.bigtable.admin.v2.BigtableTableAdmin.ModifyColumnFamilies]: <doc:BigtableTableAdminClient/modifyColumnFamilies(request:options:)>
 public struct ModifyColumnFamiliesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

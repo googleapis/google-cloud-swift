@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [KeyManagementService.AsymmetricSign][google.cloud.kms.v1.KeyManagementService.AsymmetricSign].
 ///
-/// [google.cloud.kms.v1.KeyManagementService.AsymmetricSign]: <doc:KeyManagementServiceClient/asymmetricSign(request:)>
+/// [google.cloud.kms.v1.KeyManagementService.AsymmetricSign]: <doc:KeyManagementServiceClient/asymmetricSign(request:options:)>
 public struct AsymmetricSignResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

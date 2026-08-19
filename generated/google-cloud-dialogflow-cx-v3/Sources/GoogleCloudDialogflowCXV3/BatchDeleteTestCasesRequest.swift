@@ -21,7 +21,7 @@
   /// The request message for
   /// [TestCases.BatchDeleteTestCases][google.cloud.dialogflow.cx.v3.TestCases.BatchDeleteTestCases].
   ///
-  /// [google.cloud.dialogflow.cx.v3.TestCases.BatchDeleteTestCases]: <doc:TestCasesClient/batchDeleteTestCases(request:)>
+  /// [google.cloud.dialogflow.cx.v3.TestCases.BatchDeleteTestCases]: <doc:TestCasesClient/batchDeleteTestCases(request:options:)>
   public struct BatchDeleteTestCasesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

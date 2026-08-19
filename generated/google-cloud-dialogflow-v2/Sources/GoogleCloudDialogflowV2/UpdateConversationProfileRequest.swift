@@ -21,7 +21,7 @@
   /// The request message for
   /// [ConversationProfiles.UpdateConversationProfile][google.cloud.dialogflow.v2.ConversationProfiles.UpdateConversationProfile].
   ///
-  /// [google.cloud.dialogflow.v2.ConversationProfiles.UpdateConversationProfile]: <doc:ConversationProfilesClient/updateConversationProfile(request:)>
+  /// [google.cloud.dialogflow.v2.ConversationProfiles.UpdateConversationProfile]: <doc:ConversationProfilesClient/updateConversationProfile(request:options:)>
   public struct UpdateConversationProfileRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

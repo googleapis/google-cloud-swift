@@ -66,7 +66,7 @@ public struct CustomAttribute: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// [google.cloud.retail.v2.AttributesConfig.attribute_config_level]: <doc:AttributesConfig/attributeConfigLevel>
   /// [google.cloud.retail.v2.Catalog]: <doc:Catalog>
   /// [google.cloud.retail.v2.CustomAttribute.text]: <doc:CustomAttribute/text>
-  /// [google.cloud.retail.v2.SearchService.Search]: <doc:SearchServiceClient/search(request:)>
+  /// [google.cloud.retail.v2.SearchService.Search]: <doc:SearchServiceClient/search(request:options:)>
   /// [google.cloud.retail.v2.UserEvent]: <doc:UserEvent>
   @available(*, deprecated)
   public var searchable: Swift.Bool? = nil
@@ -94,7 +94,7 @@ public struct CustomAttribute: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// [google.cloud.retail.v2.SearchRequest.boost_spec]: <doc:SearchRequest/boostSpec>
   /// [google.cloud.retail.v2.SearchRequest.facet_specs]: <doc:SearchRequest/facetSpecs>
   /// [google.cloud.retail.v2.SearchRequest.filter]: <doc:SearchRequest/filter>
-  /// [google.cloud.retail.v2.SearchService.Search]: <doc:SearchServiceClient/search(request:)>
+  /// [google.cloud.retail.v2.SearchService.Search]: <doc:SearchServiceClient/search(request:options:)>
   /// [google.cloud.retail.v2.UserEvent]: <doc:UserEvent>
   @available(*, deprecated)
   public var indexable: Swift.Bool? = nil

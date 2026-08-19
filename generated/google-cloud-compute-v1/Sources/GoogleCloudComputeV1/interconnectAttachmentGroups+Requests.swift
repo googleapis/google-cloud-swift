@@ -21,7 +21,7 @@
   extension InterconnectAttachmentGroupsClient {
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.interconnectAttachmentGroups.delete] method.
     ///
-    /// [google.cloud.compute.v1.interconnectAttachmentGroups.delete]: <doc:InterconnectAttachmentGroupsClient/delete(request:)>
+    /// [google.cloud.compute.v1.interconnectAttachmentGroups.delete]: <doc:InterconnectAttachmentGroupsClient/delete(request:options:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -77,7 +77,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.interconnectAttachmentGroups.get] method.
     ///
-    /// [google.cloud.compute.v1.interconnectAttachmentGroups.get]: <doc:InterconnectAttachmentGroupsClient/`get`(request:)>
+    /// [google.cloud.compute.v1.interconnectAttachmentGroups.get]: <doc:InterconnectAttachmentGroupsClient/`get`(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -116,7 +116,7 @@
 
     /// Synthetic request message for the [getIamPolicy()][google.cloud.compute.v1.interconnectAttachmentGroups.getIamPolicy] method.
     ///
-    /// [google.cloud.compute.v1.interconnectAttachmentGroups.getIamPolicy]: <doc:InterconnectAttachmentGroupsClient/getIamPolicy(request:)>
+    /// [google.cloud.compute.v1.interconnectAttachmentGroups.getIamPolicy]: <doc:InterconnectAttachmentGroupsClient/getIamPolicy(request:options:)>
     public struct GetIamPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -159,7 +159,7 @@
 
     /// Synthetic request message for the [getOperationalStatus()][google.cloud.compute.v1.interconnectAttachmentGroups.getOperationalStatus] method.
     ///
-    /// [google.cloud.compute.v1.interconnectAttachmentGroups.getOperationalStatus]: <doc:InterconnectAttachmentGroupsClient/getOperationalStatus(request:)>
+    /// [google.cloud.compute.v1.interconnectAttachmentGroups.getOperationalStatus]: <doc:InterconnectAttachmentGroupsClient/getOperationalStatus(request:options:)>
     public struct GetOperationalStatusRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -199,7 +199,7 @@
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.interconnectAttachmentGroups.insert] method.
     ///
-    /// [google.cloud.compute.v1.interconnectAttachmentGroups.insert]: <doc:InterconnectAttachmentGroupsClient/insert(request:)>
+    /// [google.cloud.compute.v1.interconnectAttachmentGroups.insert]: <doc:InterconnectAttachmentGroupsClient/insert(request:options:)>
     public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -224,7 +224,7 @@
 
       /// Synthetic request body field for the [insert()][google.cloud.compute.v1.interconnectAttachmentGroups.insert] method.
       ///
-      /// [google.cloud.compute.v1.interconnectAttachmentGroups.insert]: <doc:InterconnectAttachmentGroupsClient/insert(request:)>
+      /// [google.cloud.compute.v1.interconnectAttachmentGroups.insert]: <doc:InterconnectAttachmentGroupsClient/insert(request:options:)>
       public var body: InterconnectAttachmentGroup? = nil
 
       /// Initialize a new instance of `InsertRequest`.
@@ -257,7 +257,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.interconnectAttachmentGroups.list] method.
     ///
-    /// [google.cloud.compute.v1.interconnectAttachmentGroups.list]: <doc:InterconnectAttachmentGroupsClient/list(request:)>
+    /// [google.cloud.compute.v1.interconnectAttachmentGroups.list]: <doc:InterconnectAttachmentGroupsClient/list(request:options:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -387,7 +387,7 @@
 
     /// Synthetic request message for the [patch()][google.cloud.compute.v1.interconnectAttachmentGroups.patch] method.
     ///
-    /// [google.cloud.compute.v1.interconnectAttachmentGroups.patch]: <doc:InterconnectAttachmentGroupsClient/patch(request:)>
+    /// [google.cloud.compute.v1.interconnectAttachmentGroups.patch]: <doc:InterconnectAttachmentGroupsClient/patch(request:options:)>
     public struct PatchRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -418,7 +418,7 @@
 
       /// Synthetic request body field for the [patch()][google.cloud.compute.v1.interconnectAttachmentGroups.patch] method.
       ///
-      /// [google.cloud.compute.v1.interconnectAttachmentGroups.patch]: <doc:InterconnectAttachmentGroupsClient/patch(request:)>
+      /// [google.cloud.compute.v1.interconnectAttachmentGroups.patch]: <doc:InterconnectAttachmentGroupsClient/patch(request:options:)>
       public var body: InterconnectAttachmentGroup? = nil
 
       /// Initialize a new instance of `PatchRequest`.
@@ -451,7 +451,7 @@
 
     /// Synthetic request message for the [setIamPolicy()][google.cloud.compute.v1.interconnectAttachmentGroups.setIamPolicy] method.
     ///
-    /// [google.cloud.compute.v1.interconnectAttachmentGroups.setIamPolicy]: <doc:InterconnectAttachmentGroupsClient/setIamPolicy(request:)>
+    /// [google.cloud.compute.v1.interconnectAttachmentGroups.setIamPolicy]: <doc:InterconnectAttachmentGroupsClient/setIamPolicy(request:options:)>
     public struct SetIamPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -463,7 +463,7 @@
 
       /// Synthetic request body field for the [setIamPolicy()][google.cloud.compute.v1.interconnectAttachmentGroups.setIamPolicy] method.
       ///
-      /// [google.cloud.compute.v1.interconnectAttachmentGroups.setIamPolicy]: <doc:InterconnectAttachmentGroupsClient/setIamPolicy(request:)>
+      /// [google.cloud.compute.v1.interconnectAttachmentGroups.setIamPolicy]: <doc:InterconnectAttachmentGroupsClient/setIamPolicy(request:options:)>
       public var body: GlobalSetPolicyRequest? = nil
 
       /// Initialize a new instance of `SetIamPolicyRequest`.
@@ -496,7 +496,7 @@
 
     /// Synthetic request message for the [testIamPermissions()][google.cloud.compute.v1.interconnectAttachmentGroups.testIamPermissions] method.
     ///
-    /// [google.cloud.compute.v1.interconnectAttachmentGroups.testIamPermissions]: <doc:InterconnectAttachmentGroupsClient/testIamPermissions(request:)>
+    /// [google.cloud.compute.v1.interconnectAttachmentGroups.testIamPermissions]: <doc:InterconnectAttachmentGroupsClient/testIamPermissions(request:options:)>
     public struct TestIamPermissionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -508,7 +508,7 @@
 
       /// Synthetic request body field for the [testIamPermissions()][google.cloud.compute.v1.interconnectAttachmentGroups.testIamPermissions] method.
       ///
-      /// [google.cloud.compute.v1.interconnectAttachmentGroups.testIamPermissions]: <doc:InterconnectAttachmentGroupsClient/testIamPermissions(request:)>
+      /// [google.cloud.compute.v1.interconnectAttachmentGroups.testIamPermissions]: <doc:InterconnectAttachmentGroupsClient/testIamPermissions(request:options:)>
       public var body: TestPermissionsRequest? = nil
 
       /// Initialize a new instance of `TestIamPermissionsRequest`.

@@ -22,7 +22,7 @@
   /// The response message for
   /// [Playbooks.ListPlaybooks][google.cloud.dialogflow.cx.v3.Playbooks.ListPlaybooks].
   ///
-  /// [google.cloud.dialogflow.cx.v3.Playbooks.ListPlaybooks]: <doc:PlaybooksClient/listPlaybooks(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Playbooks.ListPlaybooks]: <doc:PlaybooksClient/listPlaybooks(request:options:)>
   public struct ListPlaybooksResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable

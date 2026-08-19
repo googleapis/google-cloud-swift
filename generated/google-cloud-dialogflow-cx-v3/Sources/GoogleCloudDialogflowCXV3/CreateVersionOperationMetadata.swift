@@ -21,7 +21,7 @@
   /// Metadata associated with the long running operation for
   /// [Versions.CreateVersion][google.cloud.dialogflow.cx.v3.Versions.CreateVersion].
   ///
-  /// [google.cloud.dialogflow.cx.v3.Versions.CreateVersion]: <doc:VersionsClient/createVersion(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Versions.CreateVersion]: <doc:VersionsClient/createVersion(request:options:)>
   public struct CreateVersionOperationMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

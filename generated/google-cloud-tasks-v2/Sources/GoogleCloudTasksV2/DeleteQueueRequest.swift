@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [DeleteQueue][google.cloud.tasks.v2.CloudTasks.DeleteQueue].
 ///
-/// [google.cloud.tasks.v2.CloudTasks.DeleteQueue]: <doc:CloudTasksClient/deleteQueue(request:)>
+/// [google.cloud.tasks.v2.CloudTasks.DeleteQueue]: <doc:CloudTasksClient/deleteQueue(request:options:)>
 public struct DeleteQueueRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

@@ -26,7 +26,7 @@ import GoogleCloudWkt
 /// feature might be changed in backward-incompatible ways and is not recommended
 /// for production use. It is not subject to any SLA or deprecation policy.
 ///
-/// [google.bigtable.admin.v2.BigtableTableAdmin.ListSnapshots]: <doc:BigtableTableAdminClient/listSnapshots(request:)>
+/// [google.bigtable.admin.v2.BigtableTableAdmin.ListSnapshots]: <doc:BigtableTableAdminClient/listSnapshots(request:options:)>
 public struct ListSnapshotsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

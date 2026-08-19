@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for deleting a task using
 /// [DeleteTask][google.cloud.tasks.v2.CloudTasks.DeleteTask].
 ///
-/// [google.cloud.tasks.v2.CloudTasks.DeleteTask]: <doc:CloudTasksClient/deleteTask(request:)>
+/// [google.cloud.tasks.v2.CloudTasks.DeleteTask]: <doc:CloudTasksClient/deleteTask(request:options:)>
 public struct DeleteTaskRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

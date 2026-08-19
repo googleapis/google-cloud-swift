@@ -242,9 +242,9 @@ public class ApiHubClient: Clients.ApiHubProtocol {
   /// [ListAPIOperations][google.cloud.apihub.v1.ApiHub.ListApiOperations]
   /// method.
   ///
-  /// [google.cloud.apihub.v1.ApiHub.GetSpec]: <doc:ApiHubClient/getSpec(request:)>
-  /// [google.cloud.apihub.v1.ApiHub.GetSpecContents]: <doc:ApiHubClient/getSpecContents(request:)>
-  /// [google.cloud.apihub.v1.ApiHub.ListApiOperations]: <doc:ApiHubClient/listApiOperations(request:)>
+  /// [google.cloud.apihub.v1.ApiHub.GetSpec]: <doc:ApiHubClient/getSpec(request:options:)>
+  /// [google.cloud.apihub.v1.ApiHub.GetSpecContents]: <doc:ApiHubClient/getSpecContents(request:options:)>
+  /// [google.cloud.apihub.v1.ApiHub.ListApiOperations]: <doc:ApiHubClient/listApiOperations(request:options:)>
   ///
   /// @Snippet(path: "ApiHub_CreateSpec")
   public func createSpec(
@@ -258,7 +258,7 @@ public class ApiHubClient: Clients.ApiHubProtocol {
   /// Use [GetSpecContents][google.cloud.apihub.v1.ApiHub.GetSpecContents] method
   /// to retrieve the same.
   ///
-  /// [google.cloud.apihub.v1.ApiHub.GetSpecContents]: <doc:ApiHubClient/getSpecContents(request:)>
+  /// [google.cloud.apihub.v1.ApiHub.GetSpecContents]: <doc:ApiHubClient/getSpecContents(request:options:)>
   ///
   /// @Snippet(path: "ApiHub_GetSpec")
   public func getSpec(
@@ -413,7 +413,7 @@ public class ApiHubClient: Clients.ApiHubProtocol {
   /// If the operation was created by parsing the spec, then it can be edited by
   /// updating the spec.
   ///
-  /// [google.cloud.apihub.v1.ApiHub.CreateApiOperation]: <doc:ApiHubClient/createApiOperation(request:)>
+  /// [google.cloud.apihub.v1.ApiHub.CreateApiOperation]: <doc:ApiHubClient/createApiOperation(request:options:)>
   /// [google.cloud.apihub.v1.ApiOperation]: <doc:ApiOperation>
   /// [google.cloud.apihub.v1.ApiOperation.attributes]: <doc:ApiOperation/attributes>
   /// [google.cloud.apihub.v1.UpdateApiOperationRequest.update_mask]: <doc:UpdateApiOperationRequest/updateMask>
@@ -549,8 +549,8 @@ public class ApiHubClient: Clients.ApiHubProtocol {
   /// Allowed values for the same can be updated via
   /// [UpdateAttribute][google.cloud.apihub.v1.ApiHub.UpdateAttribute] method.
   ///
-  /// [google.cloud.apihub.v1.ApiHub.ListAttributes]: <doc:ApiHubClient/listAttributes(request:)>
-  /// [google.cloud.apihub.v1.ApiHub.UpdateAttribute]: <doc:ApiHubClient/updateAttribute(request:)>
+  /// [google.cloud.apihub.v1.ApiHub.ListAttributes]: <doc:ApiHubClient/listAttributes(request:options:)>
+  /// [google.cloud.apihub.v1.ApiHub.UpdateAttribute]: <doc:ApiHubClient/updateAttribute(request:options:)>
   ///
   /// @Snippet(path: "ApiHub_CreateAttribute")
   public func createAttribute(

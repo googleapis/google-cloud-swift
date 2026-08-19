@@ -26,7 +26,7 @@
     /// [Sessions.DetectIntent][google.cloud.dialogflow.v2.Sessions.DetectIntent]
     /// call.
     ///
-    /// [google.cloud.dialogflow.v2.Sessions.DetectIntent]: <doc:SessionsClient/detectIntent(request:)>
+    /// [google.cloud.dialogflow.v2.Sessions.DetectIntent]: <doc:SessionsClient/detectIntent(request:options:)>
     public var detectIntentResponse: DetectIntentResponse? = nil
 
     /// AutomatedAgentReply type.

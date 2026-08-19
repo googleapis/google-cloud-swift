@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [UpdateCluster][google.cloud.hypercomputecluster.v1.HypercomputeCluster.UpdateCluster].
 ///
-/// [google.cloud.hypercomputecluster.v1.HypercomputeCluster.UpdateCluster]: <doc:HypercomputeClusterClient/updateCluster(request:)>
+/// [google.cloud.hypercomputecluster.v1.HypercomputeCluster.UpdateCluster]: <doc:HypercomputeClusterClient/updateCluster(request:options:)>
 public struct UpdateClusterRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

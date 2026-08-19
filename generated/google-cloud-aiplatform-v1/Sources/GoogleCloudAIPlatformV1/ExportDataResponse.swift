@@ -21,7 +21,7 @@
   /// Response message for
   /// [DatasetService.ExportData][google.cloud.aiplatform.v1.DatasetService.ExportData].
   ///
-  /// [google.cloud.aiplatform.v1.DatasetService.ExportData]: <doc:DatasetServiceClient/exportData(request:)>
+  /// [google.cloud.aiplatform.v1.DatasetService.ExportData]: <doc:DatasetServiceClient/exportData(request:options:)>
   public struct ExportDataResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

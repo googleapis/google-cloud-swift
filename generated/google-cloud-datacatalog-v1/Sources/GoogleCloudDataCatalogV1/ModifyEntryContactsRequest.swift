@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [ModifyEntryContacts][google.cloud.datacatalog.v1.DataCatalog.ModifyEntryContacts].
 ///
-/// [google.cloud.datacatalog.v1.DataCatalog.ModifyEntryContacts]: <doc:DataCatalogClient/modifyEntryContacts(request:)>
+/// [google.cloud.datacatalog.v1.DataCatalog.ModifyEntryContacts]: <doc:DataCatalogClient/modifyEntryContacts(request:options:)>
 public struct ModifyEntryContactsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

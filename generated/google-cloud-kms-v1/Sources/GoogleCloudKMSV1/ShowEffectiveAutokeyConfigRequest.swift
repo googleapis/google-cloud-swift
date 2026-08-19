@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [ShowEffectiveAutokeyConfig][google.cloud.kms.v1.AutokeyAdmin.ShowEffectiveAutokeyConfig].
 ///
-/// [google.cloud.kms.v1.AutokeyAdmin.ShowEffectiveAutokeyConfig]: <doc:AutokeyAdminClient/showEffectiveAutokeyConfig(request:)>
+/// [google.cloud.kms.v1.AutokeyAdmin.ShowEffectiveAutokeyConfig]: <doc:AutokeyAdminClient/showEffectiveAutokeyConfig(request:options:)>
 public struct ShowEffectiveAutokeyConfigRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

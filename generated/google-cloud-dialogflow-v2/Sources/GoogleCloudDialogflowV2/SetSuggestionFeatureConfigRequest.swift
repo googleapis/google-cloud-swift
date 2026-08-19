@@ -21,7 +21,7 @@
   /// The request message for
   /// [ConversationProfiles.SetSuggestionFeatureConfig][google.cloud.dialogflow.v2.ConversationProfiles.SetSuggestionFeatureConfig].
   ///
-  /// [google.cloud.dialogflow.v2.ConversationProfiles.SetSuggestionFeatureConfig]: <doc:ConversationProfilesClient/setSuggestionFeatureConfig(request:)>
+  /// [google.cloud.dialogflow.v2.ConversationProfiles.SetSuggestionFeatureConfig]: <doc:ConversationProfilesClient/setSuggestionFeatureConfig(request:options:)>
   public struct SetSuggestionFeatureConfigRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

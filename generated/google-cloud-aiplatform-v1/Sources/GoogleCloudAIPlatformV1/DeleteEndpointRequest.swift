@@ -21,7 +21,7 @@
   /// Request message for
   /// [EndpointService.DeleteEndpoint][google.cloud.aiplatform.v1.EndpointService.DeleteEndpoint].
   ///
-  /// [google.cloud.aiplatform.v1.EndpointService.DeleteEndpoint]: <doc:EndpointServiceClient/deleteEndpoint(request:)>
+  /// [google.cloud.aiplatform.v1.EndpointService.DeleteEndpoint]: <doc:EndpointServiceClient/deleteEndpoint(request:options:)>
   public struct DeleteEndpointRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

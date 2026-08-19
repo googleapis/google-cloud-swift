@@ -21,7 +21,7 @@
   /// The request message for
   /// [Contexts.ListContexts][google.cloud.dialogflow.v2.Contexts.ListContexts].
   ///
-  /// [google.cloud.dialogflow.v2.Contexts.ListContexts]: <doc:ContextsClient/listContexts(request:)>
+  /// [google.cloud.dialogflow.v2.Contexts.ListContexts]: <doc:ContextsClient/listContexts(request:options:)>
   public struct ListContextsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

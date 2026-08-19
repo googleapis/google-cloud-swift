@@ -21,7 +21,7 @@
   /// Request message for
   /// [VertexRagDataService.ListRagFiles][google.cloud.aiplatform.v1.VertexRagDataService.ListRagFiles].
   ///
-  /// [google.cloud.aiplatform.v1.VertexRagDataService.ListRagFiles]: <doc:VertexRagDataServiceClient/listRagFiles(request:)>
+  /// [google.cloud.aiplatform.v1.VertexRagDataService.ListRagFiles]: <doc:VertexRagDataServiceClient/listRagFiles(request:options:)>
   public struct ListRagFilesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {
@@ -41,7 +41,7 @@
     /// call.
     ///
     /// [google.cloud.aiplatform.v1.ListRagFilesResponse.next_page_token]: <doc:ListRagFilesResponse/nextPageToken>
-    /// [google.cloud.aiplatform.v1.VertexRagDataService.ListRagFiles]: <doc:VertexRagDataServiceClient/listRagFiles(request:)>
+    /// [google.cloud.aiplatform.v1.VertexRagDataService.ListRagFiles]: <doc:VertexRagDataServiceClient/listRagFiles(request:options:)>
     public var pageToken: Swift.String = Swift.String()
 
     /// Initialize a new instance of `ListRagFilesRequest`.

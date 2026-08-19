@@ -21,7 +21,7 @@
   /// The request message for
   /// [Agents.GetAgent][google.cloud.dialogflow.v2.Agents.GetAgent].
   ///
-  /// [google.cloud.dialogflow.v2.Agents.GetAgent]: <doc:AgentsClient/getAgent(request:)>
+  /// [google.cloud.dialogflow.v2.Agents.GetAgent]: <doc:AgentsClient/getAgent(request:options:)>
   public struct GetAgentRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

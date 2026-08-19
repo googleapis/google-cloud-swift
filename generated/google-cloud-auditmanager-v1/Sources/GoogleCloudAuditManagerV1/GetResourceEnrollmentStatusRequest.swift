@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [GetResourceEnrollmentStatus][google.cloud.auditmanager.v1.AuditManager.GetResourceEnrollmentStatus].
 ///
-/// [google.cloud.auditmanager.v1.AuditManager.GetResourceEnrollmentStatus]: <doc:AuditManagerClient/getResourceEnrollmentStatus(request:)>
+/// [google.cloud.auditmanager.v1.AuditManager.GetResourceEnrollmentStatus]: <doc:AuditManagerClient/getResourceEnrollmentStatus(request:options:)>
 public struct GetResourceEnrollmentStatusRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

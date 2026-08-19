@@ -21,7 +21,7 @@
   /// The request message for
   /// [FeatureOnlineStoreService.SearchNearestEntities][google.cloud.aiplatform.v1.FeatureOnlineStoreService.SearchNearestEntities].
   ///
-  /// [google.cloud.aiplatform.v1.FeatureOnlineStoreService.SearchNearestEntities]: <doc:FeatureOnlineStoreServiceClient/searchNearestEntities(request:)>
+  /// [google.cloud.aiplatform.v1.FeatureOnlineStoreService.SearchNearestEntities]: <doc:FeatureOnlineStoreServiceClient/searchNearestEntities(request:options:)>
   public struct SearchNearestEntitiesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

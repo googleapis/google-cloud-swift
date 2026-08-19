@@ -21,7 +21,7 @@
   /// Request message for
   /// [Documents.GetDocument][google.cloud.dialogflow.v2.Documents.GetDocument].
   ///
-  /// [google.cloud.dialogflow.v2.Documents.GetDocument]: <doc:DocumentsClient/getDocument(request:)>
+  /// [google.cloud.dialogflow.v2.Documents.GetDocument]: <doc:DocumentsClient/getDocument(request:options:)>
   public struct GetDocumentRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [HubService.UpdateSpoke][google.cloud.networkconnectivity.v1.HubService.UpdateSpoke]
 /// method.
 ///
-/// [google.cloud.networkconnectivity.v1.HubService.UpdateSpoke]: <doc:HubServiceClient/updateSpoke(request:)>
+/// [google.cloud.networkconnectivity.v1.HubService.UpdateSpoke]: <doc:HubServiceClient/updateSpoke(request:options:)>
 public struct UpdateSpokeRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

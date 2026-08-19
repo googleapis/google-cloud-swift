@@ -21,7 +21,7 @@
   extension RegionBackendBucketsClient {
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.regionBackendBuckets.delete] method.
     ///
-    /// [google.cloud.compute.v1.regionBackendBuckets.delete]: <doc:RegionBackendBucketsClient/delete(request:)>
+    /// [google.cloud.compute.v1.regionBackendBuckets.delete]: <doc:RegionBackendBucketsClient/delete(request:options:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -79,7 +79,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.regionBackendBuckets.get] method.
     ///
-    /// [google.cloud.compute.v1.regionBackendBuckets.get]: <doc:RegionBackendBucketsClient/`get`(request:)>
+    /// [google.cloud.compute.v1.regionBackendBuckets.get]: <doc:RegionBackendBucketsClient/`get`(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -121,7 +121,7 @@
 
     /// Synthetic request message for the [getIamPolicy()][google.cloud.compute.v1.regionBackendBuckets.getIamPolicy] method.
     ///
-    /// [google.cloud.compute.v1.regionBackendBuckets.getIamPolicy]: <doc:RegionBackendBucketsClient/getIamPolicy(request:)>
+    /// [google.cloud.compute.v1.regionBackendBuckets.getIamPolicy]: <doc:RegionBackendBucketsClient/getIamPolicy(request:options:)>
     public struct GetIamPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -167,7 +167,7 @@
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.regionBackendBuckets.insert] method.
     ///
-    /// [google.cloud.compute.v1.regionBackendBuckets.insert]: <doc:RegionBackendBucketsClient/insert(request:)>
+    /// [google.cloud.compute.v1.regionBackendBuckets.insert]: <doc:RegionBackendBucketsClient/insert(request:options:)>
     public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -194,7 +194,7 @@
 
       /// Synthetic request body field for the [insert()][google.cloud.compute.v1.regionBackendBuckets.insert] method.
       ///
-      /// [google.cloud.compute.v1.regionBackendBuckets.insert]: <doc:RegionBackendBucketsClient/insert(request:)>
+      /// [google.cloud.compute.v1.regionBackendBuckets.insert]: <doc:RegionBackendBucketsClient/insert(request:options:)>
       public var body: BackendBucket? = nil
 
       /// Initialize a new instance of `InsertRequest`.
@@ -226,7 +226,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.regionBackendBuckets.list] method.
     ///
-    /// [google.cloud.compute.v1.regionBackendBuckets.list]: <doc:RegionBackendBucketsClient/list(request:)>
+    /// [google.cloud.compute.v1.regionBackendBuckets.list]: <doc:RegionBackendBucketsClient/list(request:options:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -358,7 +358,7 @@
 
     /// Synthetic request message for the [listUsable()][google.cloud.compute.v1.regionBackendBuckets.listUsable] method.
     ///
-    /// [google.cloud.compute.v1.regionBackendBuckets.listUsable]: <doc:RegionBackendBucketsClient/listUsable(request:)>
+    /// [google.cloud.compute.v1.regionBackendBuckets.listUsable]: <doc:RegionBackendBucketsClient/listUsable(request:options:)>
     public struct ListUsableRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -491,7 +491,7 @@
 
     /// Synthetic request message for the [patch()][google.cloud.compute.v1.regionBackendBuckets.patch] method.
     ///
-    /// [google.cloud.compute.v1.regionBackendBuckets.patch]: <doc:RegionBackendBucketsClient/patch(request:)>
+    /// [google.cloud.compute.v1.regionBackendBuckets.patch]: <doc:RegionBackendBucketsClient/patch(request:options:)>
     public struct PatchRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -522,7 +522,7 @@
 
       /// Synthetic request body field for the [patch()][google.cloud.compute.v1.regionBackendBuckets.patch] method.
       ///
-      /// [google.cloud.compute.v1.regionBackendBuckets.patch]: <doc:RegionBackendBucketsClient/patch(request:)>
+      /// [google.cloud.compute.v1.regionBackendBuckets.patch]: <doc:RegionBackendBucketsClient/patch(request:options:)>
       public var body: BackendBucket? = nil
 
       /// Initialize a new instance of `PatchRequest`.
@@ -554,7 +554,7 @@
 
     /// Synthetic request message for the [setIamPolicy()][google.cloud.compute.v1.regionBackendBuckets.setIamPolicy] method.
     ///
-    /// [google.cloud.compute.v1.regionBackendBuckets.setIamPolicy]: <doc:RegionBackendBucketsClient/setIamPolicy(request:)>
+    /// [google.cloud.compute.v1.regionBackendBuckets.setIamPolicy]: <doc:RegionBackendBucketsClient/setIamPolicy(request:options:)>
     public struct SetIamPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -569,7 +569,7 @@
 
       /// Synthetic request body field for the [setIamPolicy()][google.cloud.compute.v1.regionBackendBuckets.setIamPolicy] method.
       ///
-      /// [google.cloud.compute.v1.regionBackendBuckets.setIamPolicy]: <doc:RegionBackendBucketsClient/setIamPolicy(request:)>
+      /// [google.cloud.compute.v1.regionBackendBuckets.setIamPolicy]: <doc:RegionBackendBucketsClient/setIamPolicy(request:options:)>
       public var body: RegionSetPolicyRequest? = nil
 
       /// Initialize a new instance of `SetIamPolicyRequest`.
@@ -602,7 +602,7 @@
 
     /// Synthetic request message for the [testIamPermissions()][google.cloud.compute.v1.regionBackendBuckets.testIamPermissions] method.
     ///
-    /// [google.cloud.compute.v1.regionBackendBuckets.testIamPermissions]: <doc:RegionBackendBucketsClient/testIamPermissions(request:)>
+    /// [google.cloud.compute.v1.regionBackendBuckets.testIamPermissions]: <doc:RegionBackendBucketsClient/testIamPermissions(request:options:)>
     public struct TestIamPermissionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -617,7 +617,7 @@
 
       /// Synthetic request body field for the [testIamPermissions()][google.cloud.compute.v1.regionBackendBuckets.testIamPermissions] method.
       ///
-      /// [google.cloud.compute.v1.regionBackendBuckets.testIamPermissions]: <doc:RegionBackendBucketsClient/testIamPermissions(request:)>
+      /// [google.cloud.compute.v1.regionBackendBuckets.testIamPermissions]: <doc:RegionBackendBucketsClient/testIamPermissions(request:options:)>
       public var body: TestPermissionsRequest? = nil
 
       /// Initialize a new instance of `TestIamPermissionsRequest`.

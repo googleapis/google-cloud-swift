@@ -21,7 +21,7 @@
   /// The request message for
   /// [Participants.SuggestArticles][google.cloud.dialogflow.v2.Participants.SuggestArticles].
   ///
-  /// [google.cloud.dialogflow.v2.Participants.SuggestArticles]: <doc:ParticipantsClient/suggestArticles(request:)>
+  /// [google.cloud.dialogflow.v2.Participants.SuggestArticles]: <doc:ParticipantsClient/suggestArticles(request:options:)>
   public struct SuggestArticlesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

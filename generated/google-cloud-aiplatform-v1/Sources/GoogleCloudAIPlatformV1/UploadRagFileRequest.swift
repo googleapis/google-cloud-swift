@@ -21,7 +21,7 @@
   /// Request message for
   /// [VertexRagDataService.UploadRagFile][google.cloud.aiplatform.v1.VertexRagDataService.UploadRagFile].
   ///
-  /// [google.cloud.aiplatform.v1.VertexRagDataService.UploadRagFile]: <doc:VertexRagDataServiceClient/uploadRagFile(request:)>
+  /// [google.cloud.aiplatform.v1.VertexRagDataService.UploadRagFile]: <doc:VertexRagDataServiceClient/uploadRagFile(request:options:)>
   public struct UploadRagFileRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {
@@ -36,7 +36,7 @@
     /// Required. The config for the RagFiles to be uploaded into the RagCorpus.
     /// [VertexRagDataService.UploadRagFile][google.cloud.aiplatform.v1.VertexRagDataService.UploadRagFile].
     ///
-    /// [google.cloud.aiplatform.v1.VertexRagDataService.UploadRagFile]: <doc:VertexRagDataServiceClient/uploadRagFile(request:)>
+    /// [google.cloud.aiplatform.v1.VertexRagDataService.UploadRagFile]: <doc:VertexRagDataServiceClient/uploadRagFile(request:options:)>
     public var uploadRagFileConfig: UploadRagFileConfig? = nil
 
     /// Initialize a new instance of `UploadRagFileRequest`.

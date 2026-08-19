@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [CertificateAuthorityService.CreateCertificateTemplate][google.cloud.security.privateca.v1.CertificateAuthorityService.CreateCertificateTemplate].
 ///
-/// [google.cloud.security.privateca.v1.CertificateAuthorityService.CreateCertificateTemplate]: <doc:CertificateAuthorityServiceClient/createCertificateTemplate(request:)>
+/// [google.cloud.security.privateca.v1.CertificateAuthorityService.CreateCertificateTemplate]: <doc:CertificateAuthorityServiceClient/createCertificateTemplate(request:options:)>
 public struct CreateCertificateTemplateRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

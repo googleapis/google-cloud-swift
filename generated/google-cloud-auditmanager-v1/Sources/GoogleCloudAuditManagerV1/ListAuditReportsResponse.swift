@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [ListAuditReports][google.cloud.auditmanager.v1.AuditManager.ListAuditReports].
 ///
-/// [google.cloud.auditmanager.v1.AuditManager.ListAuditReports]: <doc:AuditManagerClient/listAuditReports(request:)>
+/// [google.cloud.auditmanager.v1.AuditManager.ListAuditReports]: <doc:AuditManagerClient/listAuditReports(request:options:)>
 public struct ListAuditReportsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

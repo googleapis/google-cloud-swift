@@ -21,7 +21,7 @@
   /// The request message for
   /// [ConversationModels.CreateConversationModelEvaluation][google.cloud.dialogflow.v2.ConversationModels.CreateConversationModelEvaluation]
   ///
-  /// [google.cloud.dialogflow.v2.ConversationModels.CreateConversationModelEvaluation]: <doc:ConversationModelsClient/createConversationModelEvaluation(request:)>
+  /// [google.cloud.dialogflow.v2.ConversationModels.CreateConversationModelEvaluation]: <doc:ConversationModelsClient/createConversationModelEvaluation(request:options:)>
   public struct CreateConversationModelEvaluationRequest: Codable, Equatable, GoogleCloudWkt
       ._AnyPackable,
     Sendable

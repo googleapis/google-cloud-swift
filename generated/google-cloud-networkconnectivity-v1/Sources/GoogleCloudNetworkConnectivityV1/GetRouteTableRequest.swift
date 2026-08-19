@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// The request for
 /// [HubService.GetRouteTable][google.cloud.networkconnectivity.v1.HubService.GetRouteTable].
 ///
-/// [google.cloud.networkconnectivity.v1.HubService.GetRouteTable]: <doc:HubServiceClient/getRouteTable(request:)>
+/// [google.cloud.networkconnectivity.v1.HubService.GetRouteTable]: <doc:HubServiceClient/getRouteTable(request:options:)>
 public struct GetRouteTableRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

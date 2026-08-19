@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [SecurityCenterManagement.ListEffectiveSecurityHealthAnalyticsCustomModules][google.cloud.securitycentermanagement.v1.SecurityCenterManagement.ListEffectiveSecurityHealthAnalyticsCustomModules].
 ///
-/// [google.cloud.securitycentermanagement.v1.SecurityCenterManagement.ListEffectiveSecurityHealthAnalyticsCustomModules]: <doc:SecurityCenterManagementClient/listEffectiveSecurityHealthAnalyticsCustomModules(request:)>
+/// [google.cloud.securitycentermanagement.v1.SecurityCenterManagement.ListEffectiveSecurityHealthAnalyticsCustomModules]: <doc:SecurityCenterManagementClient/listEffectiveSecurityHealthAnalyticsCustomModules(request:options:)>
 public struct ListEffectiveSecurityHealthAnalyticsCustomModulesResponse: Codable, Equatable,
   GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,

@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [VmwareEngine.ListPrivateConnectionPeeringRoutes][google.cloud.vmwareengine.v1.VmwareEngine.ListPrivateConnectionPeeringRoutes]
 ///
-/// [google.cloud.vmwareengine.v1.VmwareEngine.ListPrivateConnectionPeeringRoutes]: <doc:VmwareEngineClient/listPrivateConnectionPeeringRoutes(request:)>
+/// [google.cloud.vmwareengine.v1.VmwareEngine.ListPrivateConnectionPeeringRoutes]: <doc:VmwareEngineClient/listPrivateConnectionPeeringRoutes(request:options:)>
 public struct ListPrivateConnectionPeeringRoutesResponse: Codable, Equatable, GoogleCloudWkt
     ._AnyPackable,
   GoogleCloudGax._PaginatedResponse,

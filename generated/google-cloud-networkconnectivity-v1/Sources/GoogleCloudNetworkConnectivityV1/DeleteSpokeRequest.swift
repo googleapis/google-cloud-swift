@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// The request for
 /// [HubService.DeleteSpoke][google.cloud.networkconnectivity.v1.HubService.DeleteSpoke].
 ///
-/// [google.cloud.networkconnectivity.v1.HubService.DeleteSpoke]: <doc:HubServiceClient/deleteSpoke(request:)>
+/// [google.cloud.networkconnectivity.v1.HubService.DeleteSpoke]: <doc:HubServiceClient/deleteSpoke(request:options:)>
 public struct DeleteSpokeRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

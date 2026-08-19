@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Metadata type for the operation returned by
 /// [google.bigtable.admin.v2.BigtableTableAdmin.UndeleteTable][google.bigtable.admin.v2.BigtableTableAdmin.UndeleteTable].
 ///
-/// [google.bigtable.admin.v2.BigtableTableAdmin.UndeleteTable]: <doc:BigtableTableAdminClient/undeleteTable(request:)>
+/// [google.bigtable.admin.v2.BigtableTableAdmin.UndeleteTable]: <doc:BigtableTableAdminClient/undeleteTable(request:options:)>
 public struct UndeleteTableMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

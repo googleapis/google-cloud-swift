@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// The response for
 /// [ConnectionService.ListConnections][google.cloud.bigquery.connection.v1.ConnectionService.ListConnections].
 ///
-/// [google.cloud.bigquery.connection.v1.ConnectionService.ListConnections]: <doc:ConnectionServiceClient/listConnections(request:)>
+/// [google.cloud.bigquery.connection.v1.ConnectionService.ListConnections]: <doc:ConnectionServiceClient/listConnections(request:options:)>
 public struct ListConnectionsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

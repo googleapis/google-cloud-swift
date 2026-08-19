@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [VmwareEngine.UpdatePrivateConnection][google.cloud.vmwareengine.v1.VmwareEngine.UpdatePrivateConnection]
 ///
-/// [google.cloud.vmwareengine.v1.VmwareEngine.UpdatePrivateConnection]: <doc:VmwareEngineClient/updatePrivateConnection(request:)>
+/// [google.cloud.vmwareengine.v1.VmwareEngine.UpdatePrivateConnection]: <doc:VmwareEngineClient/updatePrivateConnection(request:options:)>
 public struct UpdatePrivateConnectionRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

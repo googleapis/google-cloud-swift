@@ -23,7 +23,7 @@
   /// [CompletionService.PurgeSuggestionDenyListEntries][google.cloud.discoveryengine.v1.CompletionService.PurgeSuggestionDenyListEntries]
   /// method.
   ///
-  /// [google.cloud.discoveryengine.v1.CompletionService.PurgeSuggestionDenyListEntries]: <doc:CompletionServiceClient/purgeSuggestionDenyListEntries(request:)>
+  /// [google.cloud.discoveryengine.v1.CompletionService.PurgeSuggestionDenyListEntries]: <doc:CompletionServiceClient/purgeSuggestionDenyListEntries(request:options:)>
   public struct PurgeSuggestionDenyListEntriesResponse: Codable, Equatable, GoogleCloudWkt
       ._AnyPackable,
     Sendable

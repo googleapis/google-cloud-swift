@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [VmwareEngine.ListPrivateConnections][google.cloud.vmwareengine.v1.VmwareEngine.ListPrivateConnections]
 ///
-/// [google.cloud.vmwareengine.v1.VmwareEngine.ListPrivateConnections]: <doc:VmwareEngineClient/listPrivateConnections(request:)>
+/// [google.cloud.vmwareengine.v1.VmwareEngine.ListPrivateConnections]: <doc:VmwareEngineClient/listPrivateConnections(request:options:)>
 public struct ListPrivateConnectionsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

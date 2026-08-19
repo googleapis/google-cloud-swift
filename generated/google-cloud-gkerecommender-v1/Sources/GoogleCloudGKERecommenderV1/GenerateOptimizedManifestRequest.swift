@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [GkeInferenceQuickstart.GenerateOptimizedManifest][google.cloud.gkerecommender.v1.GkeInferenceQuickstart.GenerateOptimizedManifest].
 ///
-/// [google.cloud.gkerecommender.v1.GkeInferenceQuickstart.GenerateOptimizedManifest]: <doc:GkeInferenceQuickstartClient/generateOptimizedManifest(request:)>
+/// [google.cloud.gkerecommender.v1.GkeInferenceQuickstart.GenerateOptimizedManifest]: <doc:GkeInferenceQuickstartClient/generateOptimizedManifest(request:options:)>
 public struct GenerateOptimizedManifestRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
@@ -28,14 +28,14 @@ public struct GenerateOptimizedManifestRequest: Codable, Equatable, GoogleCloudW
   /// [GkeInferenceQuickstart.FetchProfiles][google.cloud.gkerecommender.v1.GkeInferenceQuickstart.FetchProfiles]
   /// to find valid configurations.
   ///
-  /// [google.cloud.gkerecommender.v1.GkeInferenceQuickstart.FetchProfiles]: <doc:GkeInferenceQuickstartClient/fetchProfiles(request:)>
+  /// [google.cloud.gkerecommender.v1.GkeInferenceQuickstart.FetchProfiles]: <doc:GkeInferenceQuickstartClient/fetchProfiles(request:options:)>
   public var modelServerInfo: ModelServerInfo? = nil
 
   /// Required. The accelerator type. Use
   /// [GkeInferenceQuickstart.FetchProfiles][google.cloud.gkerecommender.v1.GkeInferenceQuickstart.FetchProfiles]
   /// to find valid accelerators for a given `model_server_info`.
   ///
-  /// [google.cloud.gkerecommender.v1.GkeInferenceQuickstart.FetchProfiles]: <doc:GkeInferenceQuickstartClient/fetchProfiles(request:)>
+  /// [google.cloud.gkerecommender.v1.GkeInferenceQuickstart.FetchProfiles]: <doc:GkeInferenceQuickstartClient/fetchProfiles(request:options:)>
   public var acceleratorType: Swift.String = Swift.String()
 
   /// Optional. The kubernetes namespace to deploy the manifests in.

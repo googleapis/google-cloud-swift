@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [LookupRuntimeProjectAttachment][google.cloud.apihub.v1.RuntimeProjectAttachmentService.LookupRuntimeProjectAttachment]
 /// method's request.
 ///
-/// [google.cloud.apihub.v1.RuntimeProjectAttachmentService.LookupRuntimeProjectAttachment]: <doc:RuntimeProjectAttachmentServiceClient/lookupRuntimeProjectAttachment(request:)>
+/// [google.cloud.apihub.v1.RuntimeProjectAttachmentService.LookupRuntimeProjectAttachment]: <doc:RuntimeProjectAttachmentServiceClient/lookupRuntimeProjectAttachment(request:options:)>
 public struct LookupRuntimeProjectAttachmentRequest: Codable, Equatable, GoogleCloudWkt
     ._AnyPackable,
   Sendable

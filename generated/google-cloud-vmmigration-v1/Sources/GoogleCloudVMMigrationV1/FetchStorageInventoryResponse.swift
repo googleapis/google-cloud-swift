@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [fetchStorageInventory][google.cloud.vmmigration.v1.VmMigration.FetchStorageInventory].
 ///
-/// [google.cloud.vmmigration.v1.VmMigration.FetchStorageInventory]: <doc:VmMigrationClient/fetchStorageInventory(request:)>
+/// [google.cloud.vmmigration.v1.VmMigration.FetchStorageInventory]: <doc:VmMigrationClient/fetchStorageInventory(request:options:)>
 public struct FetchStorageInventoryResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

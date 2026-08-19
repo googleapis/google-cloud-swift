@@ -26,7 +26,7 @@ import GoogleCloudWkt
 /// `next_page_token` set. This token can be used in a subsequent request to
 /// retrieve the next request page.
 ///
-/// [google.cloud.resourcemanager.v3.Projects.SearchProjects]: <doc:ProjectsClient/searchProjects(request:)>
+/// [google.cloud.resourcemanager.v3.Projects.SearchProjects]: <doc:ProjectsClient/searchProjects(request:options:)>
 public struct SearchProjectsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

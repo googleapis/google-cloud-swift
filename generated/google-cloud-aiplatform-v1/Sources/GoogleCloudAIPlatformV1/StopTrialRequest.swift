@@ -21,7 +21,7 @@
   /// Request message for
   /// [VizierService.StopTrial][google.cloud.aiplatform.v1.VizierService.StopTrial].
   ///
-  /// [google.cloud.aiplatform.v1.VizierService.StopTrial]: <doc:VizierServiceClient/stopTrial(request:)>
+  /// [google.cloud.aiplatform.v1.VizierService.StopTrial]: <doc:VizierServiceClient/stopTrial(request:options:)>
   public struct StopTrialRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [AgentService.GetGuardrail][google.cloud.ces.v1.AgentService.GetGuardrail].
 ///
-/// [google.cloud.ces.v1.AgentService.GetGuardrail]: <doc:AgentServiceClient/getGuardrail(request:)>
+/// [google.cloud.ces.v1.AgentService.GetGuardrail]: <doc:AgentServiceClient/getGuardrail(request:options:)>
 public struct GetGuardrailRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

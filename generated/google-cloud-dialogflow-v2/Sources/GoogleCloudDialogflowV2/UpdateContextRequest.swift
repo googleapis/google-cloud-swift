@@ -21,7 +21,7 @@
   /// The request message for
   /// [Contexts.UpdateContext][google.cloud.dialogflow.v2.Contexts.UpdateContext].
   ///
-  /// [google.cloud.dialogflow.v2.Contexts.UpdateContext]: <doc:ContextsClient/updateContext(request:)>
+  /// [google.cloud.dialogflow.v2.Contexts.UpdateContext]: <doc:ContextsClient/updateContext(request:options:)>
   public struct UpdateContextRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

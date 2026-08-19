@@ -22,7 +22,7 @@
   /// [ReasoningEngineService.UpdateReasoningEngine][google.cloud.aiplatform.v1.ReasoningEngineService.UpdateReasoningEngine]
   /// operation.
   ///
-  /// [google.cloud.aiplatform.v1.ReasoningEngineService.UpdateReasoningEngine]: <doc:ReasoningEngineServiceClient/updateReasoningEngine(request:)>
+  /// [google.cloud.aiplatform.v1.ReasoningEngineService.UpdateReasoningEngine]: <doc:ReasoningEngineServiceClient/updateReasoningEngine(request:options:)>
   public struct UpdateReasoningEngineOperationMetadata: Codable, Equatable, GoogleCloudWkt
       ._AnyPackable,
     Sendable

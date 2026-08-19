@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [DisablePluginInstanceAction][google.cloud.apihub.v1.ApiHubPlugin.DisablePluginInstanceAction]
 /// method's request.
 ///
-/// [google.cloud.apihub.v1.ApiHubPlugin.DisablePluginInstanceAction]: <doc:ApiHubPluginClient/disablePluginInstanceAction(request:)>
+/// [google.cloud.apihub.v1.ApiHubPlugin.DisablePluginInstanceAction]: <doc:ApiHubPluginClient/disablePluginInstanceAction(request:options:)>
 public struct DisablePluginInstanceActionRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

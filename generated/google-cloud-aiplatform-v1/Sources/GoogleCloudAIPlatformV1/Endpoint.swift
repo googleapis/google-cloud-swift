@@ -41,8 +41,8 @@
     /// [EndpointService.UndeployModel][google.cloud.aiplatform.v1.EndpointService.UndeployModel]
     /// respectively.
     ///
-    /// [google.cloud.aiplatform.v1.EndpointService.DeployModel]: <doc:EndpointServiceClient/deployModel(request:)>
-    /// [google.cloud.aiplatform.v1.EndpointService.UndeployModel]: <doc:EndpointServiceClient/undeployModel(request:)>
+    /// [google.cloud.aiplatform.v1.EndpointService.DeployModel]: <doc:EndpointServiceClient/deployModel(request:options:)>
+    /// [google.cloud.aiplatform.v1.EndpointService.UndeployModel]: <doc:EndpointServiceClient/undeployModel(request:options:)>
     public var deployedModels: [DeployedModel] = []
 
     /// A map from a DeployedModel's ID to the percentage of this Endpoint's
@@ -128,7 +128,7 @@
     /// Format:
     /// `projects/{project}/locations/{location}/modelDeploymentMonitoringJobs/{model_deployment_monitoring_job}`
     ///
-    /// [google.cloud.aiplatform.v1.JobService.CreateModelDeploymentMonitoringJob]: <doc:JobServiceClient/createModelDeploymentMonitoringJob(request:)>
+    /// [google.cloud.aiplatform.v1.JobService.CreateModelDeploymentMonitoringJob]: <doc:JobServiceClient/createModelDeploymentMonitoringJob(request:options:)>
     public var modelDeploymentMonitoringJob: Swift.String = Swift.String()
 
     /// Configures the request-response logging for online prediction.

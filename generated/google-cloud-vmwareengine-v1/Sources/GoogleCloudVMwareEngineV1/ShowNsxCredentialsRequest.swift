@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [VmwareEngine.ShowNsxCredentials][google.cloud.vmwareengine.v1.VmwareEngine.ShowNsxCredentials]
 ///
-/// [google.cloud.vmwareengine.v1.VmwareEngine.ShowNsxCredentials]: <doc:VmwareEngineClient/showNsxCredentials(request:)>
+/// [google.cloud.vmwareengine.v1.VmwareEngine.ShowNsxCredentials]: <doc:VmwareEngineClient/showNsxCredentials(request:options:)>
 public struct ShowNsxCredentialsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

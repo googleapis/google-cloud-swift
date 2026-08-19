@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [StarEntry][google.cloud.datacatalog.v1.DataCatalog.StarEntry].
 ///
-/// [google.cloud.datacatalog.v1.DataCatalog.StarEntry]: <doc:DataCatalogClient/starEntry(request:)>
+/// [google.cloud.datacatalog.v1.DataCatalog.StarEntry]: <doc:DataCatalogClient/starEntry(request:options:)>
 public struct StarEntryRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

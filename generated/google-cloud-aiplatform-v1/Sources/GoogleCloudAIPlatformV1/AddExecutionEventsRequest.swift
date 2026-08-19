@@ -21,7 +21,7 @@
   /// Request message for
   /// [MetadataService.AddExecutionEvents][google.cloud.aiplatform.v1.MetadataService.AddExecutionEvents].
   ///
-  /// [google.cloud.aiplatform.v1.MetadataService.AddExecutionEvents]: <doc:MetadataServiceClient/addExecutionEvents(request:)>
+  /// [google.cloud.aiplatform.v1.MetadataService.AddExecutionEvents]: <doc:MetadataServiceClient/addExecutionEvents(request:options:)>
   public struct AddExecutionEventsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

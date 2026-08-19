@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [VmwareEngine.UpdateCluster][google.cloud.vmwareengine.v1.VmwareEngine.UpdateCluster]
 ///
-/// [google.cloud.vmwareengine.v1.VmwareEngine.UpdateCluster]: <doc:VmwareEngineClient/updateCluster(request:)>
+/// [google.cloud.vmwareengine.v1.VmwareEngine.UpdateCluster]: <doc:VmwareEngineClient/updateCluster(request:options:)>
 public struct UpdateClusterRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

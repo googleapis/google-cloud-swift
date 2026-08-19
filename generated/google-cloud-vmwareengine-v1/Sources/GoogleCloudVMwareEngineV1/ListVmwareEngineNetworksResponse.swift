@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [VmwareEngine.ListVmwareEngineNetworks][google.cloud.vmwareengine.v1.VmwareEngine.ListVmwareEngineNetworks]
 ///
-/// [google.cloud.vmwareengine.v1.VmwareEngine.ListVmwareEngineNetworks]: <doc:VmwareEngineClient/listVmwareEngineNetworks(request:)>
+/// [google.cloud.vmwareengine.v1.VmwareEngine.ListVmwareEngineNetworks]: <doc:VmwareEngineClient/listVmwareEngineNetworks(request:options:)>
 public struct ListVmwareEngineNetworksResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

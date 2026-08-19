@@ -21,7 +21,7 @@
   /// Request message for
   /// [MetadataService.AddContextChildren][google.cloud.aiplatform.v1.MetadataService.AddContextChildren].
   ///
-  /// [google.cloud.aiplatform.v1.MetadataService.AddContextChildren]: <doc:MetadataServiceClient/addContextChildren(request:)>
+  /// [google.cloud.aiplatform.v1.MetadataService.AddContextChildren]: <doc:MetadataServiceClient/addContextChildren(request:options:)>
   public struct AddContextChildrenRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

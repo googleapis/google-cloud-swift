@@ -22,7 +22,7 @@
   /// [ConversationalSearchService.AnswerQuery][google.cloud.discoveryengine.v1.ConversationalSearchService.AnswerQuery]
   /// method.
   ///
-  /// [google.cloud.discoveryengine.v1.ConversationalSearchService.AnswerQuery]: <doc:ConversationalSearchServiceClient/answerQuery(request:)>
+  /// [google.cloud.discoveryengine.v1.ConversationalSearchService.AnswerQuery]: <doc:ConversationalSearchServiceClient/answerQuery(request:options:)>
   public struct AnswerQueryResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {
@@ -37,7 +37,7 @@
     ///
     /// [google.cloud.discoveryengine.v1.Answer.name]: <doc:Answer/name>
     /// [google.cloud.discoveryengine.v1.AnswerQueryRequest.QueryUnderstandingSpec.QueryRephraserSpec.max_rephrase_steps]: <doc:AnswerQueryRequest/QueryUnderstandingSpec/QueryRephraserSpec/maxRephraseSteps>
-    /// [google.cloud.discoveryengine.v1.ConversationalSearchService.GetAnswer]: <doc:ConversationalSearchServiceClient/getAnswer(request:)>
+    /// [google.cloud.discoveryengine.v1.ConversationalSearchService.GetAnswer]: <doc:ConversationalSearchServiceClient/getAnswer(request:options:)>
     public var answer: Answer? = nil
 
     /// Session resource object.

@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// The response message for
 /// [AssetService.AnalyzeOrgPolicies][google.cloud.asset.v1.AssetService.AnalyzeOrgPolicies].
 ///
-/// [google.cloud.asset.v1.AssetService.AnalyzeOrgPolicies]: <doc:AssetServiceClient/analyzeOrgPolicies(request:)>
+/// [google.cloud.asset.v1.AssetService.AnalyzeOrgPolicies]: <doc:AssetServiceClient/analyzeOrgPolicies(request:options:)>
 public struct AnalyzeOrgPoliciesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

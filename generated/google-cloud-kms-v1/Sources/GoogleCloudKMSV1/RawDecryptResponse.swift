@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [KeyManagementService.RawDecrypt][google.cloud.kms.v1.KeyManagementService.RawDecrypt].
 ///
-/// [google.cloud.kms.v1.KeyManagementService.RawDecrypt]: <doc:KeyManagementServiceClient/rawDecrypt(request:)>
+/// [google.cloud.kms.v1.KeyManagementService.RawDecrypt]: <doc:KeyManagementServiceClient/rawDecrypt(request:options:)>
 public struct RawDecryptResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

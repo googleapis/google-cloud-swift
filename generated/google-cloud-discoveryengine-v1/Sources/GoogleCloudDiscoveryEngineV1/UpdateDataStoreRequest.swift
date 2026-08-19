@@ -22,7 +22,7 @@
   /// [DataStoreService.UpdateDataStore][google.cloud.discoveryengine.v1.DataStoreService.UpdateDataStore]
   /// method.
   ///
-  /// [google.cloud.discoveryengine.v1.DataStoreService.UpdateDataStore]: <doc:DataStoreServiceClient/updateDataStore(request:)>
+  /// [google.cloud.discoveryengine.v1.DataStoreService.UpdateDataStore]: <doc:DataStoreServiceClient/updateDataStore(request:options:)>
   public struct UpdateDataStoreRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

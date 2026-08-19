@@ -21,7 +21,7 @@
   extension NetworkEdgeSecurityServicesClient {
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.networkEdgeSecurityServices.aggregatedList] method.
     ///
-    /// [google.cloud.compute.v1.networkEdgeSecurityServices.aggregatedList]: <doc:NetworkEdgeSecurityServicesClient/aggregatedList(request:)>
+    /// [google.cloud.compute.v1.networkEdgeSecurityServices.aggregatedList]: <doc:NetworkEdgeSecurityServicesClient/aggregatedList(request:options:)>
     public struct AggregatedListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -164,7 +164,7 @@
 
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.networkEdgeSecurityServices.delete] method.
     ///
-    /// [google.cloud.compute.v1.networkEdgeSecurityServices.delete]: <doc:NetworkEdgeSecurityServicesClient/delete(request:)>
+    /// [google.cloud.compute.v1.networkEdgeSecurityServices.delete]: <doc:NetworkEdgeSecurityServicesClient/delete(request:options:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -222,7 +222,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.networkEdgeSecurityServices.get] method.
     ///
-    /// [google.cloud.compute.v1.networkEdgeSecurityServices.get]: <doc:NetworkEdgeSecurityServicesClient/`get`(request:)>
+    /// [google.cloud.compute.v1.networkEdgeSecurityServices.get]: <doc:NetworkEdgeSecurityServicesClient/`get`(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -264,7 +264,7 @@
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.networkEdgeSecurityServices.insert] method.
     ///
-    /// [google.cloud.compute.v1.networkEdgeSecurityServices.insert]: <doc:NetworkEdgeSecurityServicesClient/insert(request:)>
+    /// [google.cloud.compute.v1.networkEdgeSecurityServices.insert]: <doc:NetworkEdgeSecurityServicesClient/insert(request:options:)>
     public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -294,7 +294,7 @@
 
       /// Synthetic request body field for the [insert()][google.cloud.compute.v1.networkEdgeSecurityServices.insert] method.
       ///
-      /// [google.cloud.compute.v1.networkEdgeSecurityServices.insert]: <doc:NetworkEdgeSecurityServicesClient/insert(request:)>
+      /// [google.cloud.compute.v1.networkEdgeSecurityServices.insert]: <doc:NetworkEdgeSecurityServicesClient/insert(request:options:)>
       public var body: NetworkEdgeSecurityService? = nil
 
       /// Initialize a new instance of `InsertRequest`.
@@ -327,7 +327,7 @@
 
     /// Synthetic request message for the [patch()][google.cloud.compute.v1.networkEdgeSecurityServices.patch] method.
     ///
-    /// [google.cloud.compute.v1.networkEdgeSecurityServices.patch]: <doc:NetworkEdgeSecurityServicesClient/patch(request:)>
+    /// [google.cloud.compute.v1.networkEdgeSecurityServices.patch]: <doc:NetworkEdgeSecurityServicesClient/patch(request:options:)>
     public struct PatchRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -362,7 +362,7 @@
 
       /// Synthetic request body field for the [patch()][google.cloud.compute.v1.networkEdgeSecurityServices.patch] method.
       ///
-      /// [google.cloud.compute.v1.networkEdgeSecurityServices.patch]: <doc:NetworkEdgeSecurityServicesClient/patch(request:)>
+      /// [google.cloud.compute.v1.networkEdgeSecurityServices.patch]: <doc:NetworkEdgeSecurityServicesClient/patch(request:options:)>
       public var body: NetworkEdgeSecurityService? = nil
 
       /// Initialize a new instance of `PatchRequest`.

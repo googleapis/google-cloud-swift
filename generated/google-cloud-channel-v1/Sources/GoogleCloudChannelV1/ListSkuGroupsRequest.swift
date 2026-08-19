@@ -38,7 +38,7 @@ public struct ListSkuGroupsRequest: Codable, Equatable, GoogleCloudWkt._AnyPacka
   /// [CloudChannelService.ListSkuGroups][google.cloud.channel.v1.CloudChannelService.ListSkuGroups]
   /// call.
   ///
-  /// [google.cloud.channel.v1.CloudChannelService.ListSkuGroups]: <doc:CloudChannelServiceClient/listSkuGroups(request:)>
+  /// [google.cloud.channel.v1.CloudChannelService.ListSkuGroups]: <doc:CloudChannelServiceClient/listSkuGroups(request:options:)>
   /// [google.cloud.channel.v1.ListSkuGroupsResponse.next_page_token]: <doc:ListSkuGroupsResponse/nextPageToken>
   public var pageToken: Swift.String = Swift.String()
 

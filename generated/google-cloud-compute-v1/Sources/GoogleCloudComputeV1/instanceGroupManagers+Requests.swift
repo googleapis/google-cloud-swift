@@ -21,7 +21,7 @@
   extension InstanceGroupManagersClient {
     /// Synthetic request message for the [abandonInstances()][google.cloud.compute.v1.instanceGroupManagers.abandonInstances] method.
     ///
-    /// [google.cloud.compute.v1.instanceGroupManagers.abandonInstances]: <doc:InstanceGroupManagersClient/abandonInstances(request:)>
+    /// [google.cloud.compute.v1.instanceGroupManagers.abandonInstances]: <doc:InstanceGroupManagersClient/abandonInstances(request:options:)>
     public struct AbandonInstancesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -52,7 +52,7 @@
 
       /// Synthetic request body field for the [abandonInstances()][google.cloud.compute.v1.instanceGroupManagers.abandonInstances] method.
       ///
-      /// [google.cloud.compute.v1.instanceGroupManagers.abandonInstances]: <doc:InstanceGroupManagersClient/abandonInstances(request:)>
+      /// [google.cloud.compute.v1.instanceGroupManagers.abandonInstances]: <doc:InstanceGroupManagersClient/abandonInstances(request:options:)>
       public var body: InstanceGroupManagersAbandonInstancesRequest? = nil
 
       /// Initialize a new instance of `AbandonInstancesRequest`.
@@ -85,7 +85,7 @@
 
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.instanceGroupManagers.aggregatedList] method.
     ///
-    /// [google.cloud.compute.v1.instanceGroupManagers.aggregatedList]: <doc:InstanceGroupManagersClient/aggregatedList(request:)>
+    /// [google.cloud.compute.v1.instanceGroupManagers.aggregatedList]: <doc:InstanceGroupManagersClient/aggregatedList(request:options:)>
     public struct AggregatedListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -228,7 +228,7 @@
 
     /// Synthetic request message for the [applyUpdatesToInstances()][google.cloud.compute.v1.instanceGroupManagers.applyUpdatesToInstances] method.
     ///
-    /// [google.cloud.compute.v1.instanceGroupManagers.applyUpdatesToInstances]: <doc:InstanceGroupManagersClient/applyUpdatesToInstances(request:)>
+    /// [google.cloud.compute.v1.instanceGroupManagers.applyUpdatesToInstances]: <doc:InstanceGroupManagersClient/applyUpdatesToInstances(request:options:)>
     public struct ApplyUpdatesToInstancesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -244,7 +244,7 @@
 
       /// Synthetic request body field for the [applyUpdatesToInstances()][google.cloud.compute.v1.instanceGroupManagers.applyUpdatesToInstances] method.
       ///
-      /// [google.cloud.compute.v1.instanceGroupManagers.applyUpdatesToInstances]: <doc:InstanceGroupManagersClient/applyUpdatesToInstances(request:)>
+      /// [google.cloud.compute.v1.instanceGroupManagers.applyUpdatesToInstances]: <doc:InstanceGroupManagersClient/applyUpdatesToInstances(request:options:)>
       public var body: InstanceGroupManagersApplyUpdatesRequest? = nil
 
       /// Initialize a new instance of `ApplyUpdatesToInstancesRequest`.
@@ -277,7 +277,7 @@
 
     /// Synthetic request message for the [createInstances()][google.cloud.compute.v1.instanceGroupManagers.createInstances] method.
     ///
-    /// [google.cloud.compute.v1.instanceGroupManagers.createInstances]: <doc:InstanceGroupManagersClient/createInstances(request:)>
+    /// [google.cloud.compute.v1.instanceGroupManagers.createInstances]: <doc:InstanceGroupManagersClient/createInstances(request:options:)>
     public struct CreateInstancesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -309,7 +309,7 @@
 
       /// Synthetic request body field for the [createInstances()][google.cloud.compute.v1.instanceGroupManagers.createInstances] method.
       ///
-      /// [google.cloud.compute.v1.instanceGroupManagers.createInstances]: <doc:InstanceGroupManagersClient/createInstances(request:)>
+      /// [google.cloud.compute.v1.instanceGroupManagers.createInstances]: <doc:InstanceGroupManagersClient/createInstances(request:options:)>
       public var body: InstanceGroupManagersCreateInstancesRequest? = nil
 
       /// Initialize a new instance of `CreateInstancesRequest`.
@@ -342,7 +342,7 @@
 
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.instanceGroupManagers.delete] method.
     ///
-    /// [google.cloud.compute.v1.instanceGroupManagers.delete]: <doc:InstanceGroupManagersClient/delete(request:)>
+    /// [google.cloud.compute.v1.instanceGroupManagers.delete]: <doc:InstanceGroupManagersClient/delete(request:options:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -404,7 +404,7 @@
 
     /// Synthetic request message for the [deleteInstances()][google.cloud.compute.v1.instanceGroupManagers.deleteInstances] method.
     ///
-    /// [google.cloud.compute.v1.instanceGroupManagers.deleteInstances]: <doc:InstanceGroupManagersClient/deleteInstances(request:)>
+    /// [google.cloud.compute.v1.instanceGroupManagers.deleteInstances]: <doc:InstanceGroupManagersClient/deleteInstances(request:options:)>
     public struct DeleteInstancesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -439,7 +439,7 @@
 
       /// Synthetic request body field for the [deleteInstances()][google.cloud.compute.v1.instanceGroupManagers.deleteInstances] method.
       ///
-      /// [google.cloud.compute.v1.instanceGroupManagers.deleteInstances]: <doc:InstanceGroupManagersClient/deleteInstances(request:)>
+      /// [google.cloud.compute.v1.instanceGroupManagers.deleteInstances]: <doc:InstanceGroupManagersClient/deleteInstances(request:options:)>
       public var body: InstanceGroupManagersDeleteInstancesRequest? = nil
 
       /// Initialize a new instance of `DeleteInstancesRequest`.
@@ -472,7 +472,7 @@
 
     /// Synthetic request message for the [deletePerInstanceConfigs()][google.cloud.compute.v1.instanceGroupManagers.deletePerInstanceConfigs] method.
     ///
-    /// [google.cloud.compute.v1.instanceGroupManagers.deletePerInstanceConfigs]: <doc:InstanceGroupManagersClient/deletePerInstanceConfigs(request:)>
+    /// [google.cloud.compute.v1.instanceGroupManagers.deletePerInstanceConfigs]: <doc:InstanceGroupManagersClient/deletePerInstanceConfigs(request:options:)>
     public struct DeletePerInstanceConfigsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -491,7 +491,7 @@
 
       /// Synthetic request body field for the [deletePerInstanceConfigs()][google.cloud.compute.v1.instanceGroupManagers.deletePerInstanceConfigs] method.
       ///
-      /// [google.cloud.compute.v1.instanceGroupManagers.deletePerInstanceConfigs]: <doc:InstanceGroupManagersClient/deletePerInstanceConfigs(request:)>
+      /// [google.cloud.compute.v1.instanceGroupManagers.deletePerInstanceConfigs]: <doc:InstanceGroupManagersClient/deletePerInstanceConfigs(request:options:)>
       public var body: InstanceGroupManagersDeletePerInstanceConfigsReq? = nil
 
       /// Initialize a new instance of `DeletePerInstanceConfigsRequest`.
@@ -524,7 +524,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.instanceGroupManagers.get] method.
     ///
-    /// [google.cloud.compute.v1.instanceGroupManagers.get]: <doc:InstanceGroupManagersClient/`get`(request:)>
+    /// [google.cloud.compute.v1.instanceGroupManagers.get]: <doc:InstanceGroupManagersClient/`get`(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -567,7 +567,7 @@
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.instanceGroupManagers.insert] method.
     ///
-    /// [google.cloud.compute.v1.instanceGroupManagers.insert]: <doc:InstanceGroupManagersClient/insert(request:)>
+    /// [google.cloud.compute.v1.instanceGroupManagers.insert]: <doc:InstanceGroupManagersClient/insert(request:options:)>
     public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -595,7 +595,7 @@
 
       /// Synthetic request body field for the [insert()][google.cloud.compute.v1.instanceGroupManagers.insert] method.
       ///
-      /// [google.cloud.compute.v1.instanceGroupManagers.insert]: <doc:InstanceGroupManagersClient/insert(request:)>
+      /// [google.cloud.compute.v1.instanceGroupManagers.insert]: <doc:InstanceGroupManagersClient/insert(request:options:)>
       public var body: InstanceGroupManager? = nil
 
       /// Initialize a new instance of `InsertRequest`.
@@ -627,7 +627,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.instanceGroupManagers.list] method.
     ///
-    /// [google.cloud.compute.v1.instanceGroupManagers.list]: <doc:InstanceGroupManagersClient/list(request:)>
+    /// [google.cloud.compute.v1.instanceGroupManagers.list]: <doc:InstanceGroupManagersClient/list(request:options:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -760,7 +760,7 @@
 
     /// Synthetic request message for the [listErrors()][google.cloud.compute.v1.instanceGroupManagers.listErrors] method.
     ///
-    /// [google.cloud.compute.v1.instanceGroupManagers.listErrors]: <doc:InstanceGroupManagersClient/listErrors(request:)>
+    /// [google.cloud.compute.v1.instanceGroupManagers.listErrors]: <doc:InstanceGroupManagersClient/listErrors(request:options:)>
     public struct ListErrorsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -900,7 +900,7 @@
 
     /// Synthetic request message for the [listManagedInstances()][google.cloud.compute.v1.instanceGroupManagers.listManagedInstances] method.
     ///
-    /// [google.cloud.compute.v1.instanceGroupManagers.listManagedInstances]: <doc:InstanceGroupManagersClient/listManagedInstances(request:)>
+    /// [google.cloud.compute.v1.instanceGroupManagers.listManagedInstances]: <doc:InstanceGroupManagersClient/listManagedInstances(request:options:)>
     public struct ListManagedInstancesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -1037,7 +1037,7 @@
 
     /// Synthetic request message for the [listPerInstanceConfigs()][google.cloud.compute.v1.instanceGroupManagers.listPerInstanceConfigs] method.
     ///
-    /// [google.cloud.compute.v1.instanceGroupManagers.listPerInstanceConfigs]: <doc:InstanceGroupManagersClient/listPerInstanceConfigs(request:)>
+    /// [google.cloud.compute.v1.instanceGroupManagers.listPerInstanceConfigs]: <doc:InstanceGroupManagersClient/listPerInstanceConfigs(request:options:)>
     public struct ListPerInstanceConfigsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -1175,7 +1175,7 @@
 
     /// Synthetic request message for the [patch()][google.cloud.compute.v1.instanceGroupManagers.patch] method.
     ///
-    /// [google.cloud.compute.v1.instanceGroupManagers.patch]: <doc:InstanceGroupManagersClient/patch(request:)>
+    /// [google.cloud.compute.v1.instanceGroupManagers.patch]: <doc:InstanceGroupManagersClient/patch(request:options:)>
     public struct PatchRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -1206,7 +1206,7 @@
 
       /// Synthetic request body field for the [patch()][google.cloud.compute.v1.instanceGroupManagers.patch] method.
       ///
-      /// [google.cloud.compute.v1.instanceGroupManagers.patch]: <doc:InstanceGroupManagersClient/patch(request:)>
+      /// [google.cloud.compute.v1.instanceGroupManagers.patch]: <doc:InstanceGroupManagersClient/patch(request:options:)>
       public var body: InstanceGroupManager? = nil
 
       /// Initialize a new instance of `PatchRequest`.
@@ -1238,7 +1238,7 @@
 
     /// Synthetic request message for the [patchPerInstanceConfigs()][google.cloud.compute.v1.instanceGroupManagers.patchPerInstanceConfigs] method.
     ///
-    /// [google.cloud.compute.v1.instanceGroupManagers.patchPerInstanceConfigs]: <doc:InstanceGroupManagersClient/patchPerInstanceConfigs(request:)>
+    /// [google.cloud.compute.v1.instanceGroupManagers.patchPerInstanceConfigs]: <doc:InstanceGroupManagersClient/patchPerInstanceConfigs(request:options:)>
     public struct PatchPerInstanceConfigsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -1271,7 +1271,7 @@
 
       /// Synthetic request body field for the [patchPerInstanceConfigs()][google.cloud.compute.v1.instanceGroupManagers.patchPerInstanceConfigs] method.
       ///
-      /// [google.cloud.compute.v1.instanceGroupManagers.patchPerInstanceConfigs]: <doc:InstanceGroupManagersClient/patchPerInstanceConfigs(request:)>
+      /// [google.cloud.compute.v1.instanceGroupManagers.patchPerInstanceConfigs]: <doc:InstanceGroupManagersClient/patchPerInstanceConfigs(request:options:)>
       public var body: InstanceGroupManagersPatchPerInstanceConfigsReq? = nil
 
       /// Initialize a new instance of `PatchPerInstanceConfigsRequest`.
@@ -1304,7 +1304,7 @@
 
     /// Synthetic request message for the [recreateInstances()][google.cloud.compute.v1.instanceGroupManagers.recreateInstances] method.
     ///
-    /// [google.cloud.compute.v1.instanceGroupManagers.recreateInstances]: <doc:InstanceGroupManagersClient/recreateInstances(request:)>
+    /// [google.cloud.compute.v1.instanceGroupManagers.recreateInstances]: <doc:InstanceGroupManagersClient/recreateInstances(request:options:)>
     public struct RecreateInstancesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -1339,7 +1339,7 @@
 
       /// Synthetic request body field for the [recreateInstances()][google.cloud.compute.v1.instanceGroupManagers.recreateInstances] method.
       ///
-      /// [google.cloud.compute.v1.instanceGroupManagers.recreateInstances]: <doc:InstanceGroupManagersClient/recreateInstances(request:)>
+      /// [google.cloud.compute.v1.instanceGroupManagers.recreateInstances]: <doc:InstanceGroupManagersClient/recreateInstances(request:options:)>
       public var body: InstanceGroupManagersRecreateInstancesRequest? = nil
 
       /// Initialize a new instance of `RecreateInstancesRequest`.
@@ -1372,7 +1372,7 @@
 
     /// Synthetic request message for the [resize()][google.cloud.compute.v1.instanceGroupManagers.resize] method.
     ///
-    /// [google.cloud.compute.v1.instanceGroupManagers.resize]: <doc:InstanceGroupManagersClient/resize(request:)>
+    /// [google.cloud.compute.v1.instanceGroupManagers.resize]: <doc:InstanceGroupManagersClient/resize(request:options:)>
     public struct ResizeRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -1435,7 +1435,7 @@
 
     /// Synthetic request message for the [resumeInstances()][google.cloud.compute.v1.instanceGroupManagers.resumeInstances] method.
     ///
-    /// [google.cloud.compute.v1.instanceGroupManagers.resumeInstances]: <doc:InstanceGroupManagersClient/resumeInstances(request:)>
+    /// [google.cloud.compute.v1.instanceGroupManagers.resumeInstances]: <doc:InstanceGroupManagersClient/resumeInstances(request:options:)>
     public struct ResumeInstancesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -1466,7 +1466,7 @@
 
       /// Synthetic request body field for the [resumeInstances()][google.cloud.compute.v1.instanceGroupManagers.resumeInstances] method.
       ///
-      /// [google.cloud.compute.v1.instanceGroupManagers.resumeInstances]: <doc:InstanceGroupManagersClient/resumeInstances(request:)>
+      /// [google.cloud.compute.v1.instanceGroupManagers.resumeInstances]: <doc:InstanceGroupManagersClient/resumeInstances(request:options:)>
       public var body: InstanceGroupManagersResumeInstancesRequest? = nil
 
       /// Initialize a new instance of `ResumeInstancesRequest`.
@@ -1499,7 +1499,7 @@
 
     /// Synthetic request message for the [setInstanceTemplate()][google.cloud.compute.v1.instanceGroupManagers.setInstanceTemplate] method.
     ///
-    /// [google.cloud.compute.v1.instanceGroupManagers.setInstanceTemplate]: <doc:InstanceGroupManagersClient/setInstanceTemplate(request:)>
+    /// [google.cloud.compute.v1.instanceGroupManagers.setInstanceTemplate]: <doc:InstanceGroupManagersClient/setInstanceTemplate(request:options:)>
     public struct SetInstanceTemplateRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -1530,7 +1530,7 @@
 
       /// Synthetic request body field for the [setInstanceTemplate()][google.cloud.compute.v1.instanceGroupManagers.setInstanceTemplate] method.
       ///
-      /// [google.cloud.compute.v1.instanceGroupManagers.setInstanceTemplate]: <doc:InstanceGroupManagersClient/setInstanceTemplate(request:)>
+      /// [google.cloud.compute.v1.instanceGroupManagers.setInstanceTemplate]: <doc:InstanceGroupManagersClient/setInstanceTemplate(request:options:)>
       public var body: InstanceGroupManagersSetInstanceTemplateRequest? = nil
 
       /// Initialize a new instance of `SetInstanceTemplateRequest`.
@@ -1563,7 +1563,7 @@
 
     /// Synthetic request message for the [setTargetPools()][google.cloud.compute.v1.instanceGroupManagers.setTargetPools] method.
     ///
-    /// [google.cloud.compute.v1.instanceGroupManagers.setTargetPools]: <doc:InstanceGroupManagersClient/setTargetPools(request:)>
+    /// [google.cloud.compute.v1.instanceGroupManagers.setTargetPools]: <doc:InstanceGroupManagersClient/setTargetPools(request:options:)>
     public struct SetTargetPoolsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -1594,7 +1594,7 @@
 
       /// Synthetic request body field for the [setTargetPools()][google.cloud.compute.v1.instanceGroupManagers.setTargetPools] method.
       ///
-      /// [google.cloud.compute.v1.instanceGroupManagers.setTargetPools]: <doc:InstanceGroupManagersClient/setTargetPools(request:)>
+      /// [google.cloud.compute.v1.instanceGroupManagers.setTargetPools]: <doc:InstanceGroupManagersClient/setTargetPools(request:options:)>
       public var body: InstanceGroupManagersSetTargetPoolsRequest? = nil
 
       /// Initialize a new instance of `SetTargetPoolsRequest`.
@@ -1627,7 +1627,7 @@
 
     /// Synthetic request message for the [startInstances()][google.cloud.compute.v1.instanceGroupManagers.startInstances] method.
     ///
-    /// [google.cloud.compute.v1.instanceGroupManagers.startInstances]: <doc:InstanceGroupManagersClient/startInstances(request:)>
+    /// [google.cloud.compute.v1.instanceGroupManagers.startInstances]: <doc:InstanceGroupManagersClient/startInstances(request:options:)>
     public struct StartInstancesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -1658,7 +1658,7 @@
 
       /// Synthetic request body field for the [startInstances()][google.cloud.compute.v1.instanceGroupManagers.startInstances] method.
       ///
-      /// [google.cloud.compute.v1.instanceGroupManagers.startInstances]: <doc:InstanceGroupManagersClient/startInstances(request:)>
+      /// [google.cloud.compute.v1.instanceGroupManagers.startInstances]: <doc:InstanceGroupManagersClient/startInstances(request:options:)>
       public var body: InstanceGroupManagersStartInstancesRequest? = nil
 
       /// Initialize a new instance of `StartInstancesRequest`.
@@ -1691,7 +1691,7 @@
 
     /// Synthetic request message for the [stopInstances()][google.cloud.compute.v1.instanceGroupManagers.stopInstances] method.
     ///
-    /// [google.cloud.compute.v1.instanceGroupManagers.stopInstances]: <doc:InstanceGroupManagersClient/stopInstances(request:)>
+    /// [google.cloud.compute.v1.instanceGroupManagers.stopInstances]: <doc:InstanceGroupManagersClient/stopInstances(request:options:)>
     public struct StopInstancesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -1726,7 +1726,7 @@
 
       /// Synthetic request body field for the [stopInstances()][google.cloud.compute.v1.instanceGroupManagers.stopInstances] method.
       ///
-      /// [google.cloud.compute.v1.instanceGroupManagers.stopInstances]: <doc:InstanceGroupManagersClient/stopInstances(request:)>
+      /// [google.cloud.compute.v1.instanceGroupManagers.stopInstances]: <doc:InstanceGroupManagersClient/stopInstances(request:options:)>
       public var body: InstanceGroupManagersStopInstancesRequest? = nil
 
       /// Initialize a new instance of `StopInstancesRequest`.
@@ -1759,7 +1759,7 @@
 
     /// Synthetic request message for the [suspendInstances()][google.cloud.compute.v1.instanceGroupManagers.suspendInstances] method.
     ///
-    /// [google.cloud.compute.v1.instanceGroupManagers.suspendInstances]: <doc:InstanceGroupManagersClient/suspendInstances(request:)>
+    /// [google.cloud.compute.v1.instanceGroupManagers.suspendInstances]: <doc:InstanceGroupManagersClient/suspendInstances(request:options:)>
     public struct SuspendInstancesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -1790,7 +1790,7 @@
 
       /// Synthetic request body field for the [suspendInstances()][google.cloud.compute.v1.instanceGroupManagers.suspendInstances] method.
       ///
-      /// [google.cloud.compute.v1.instanceGroupManagers.suspendInstances]: <doc:InstanceGroupManagersClient/suspendInstances(request:)>
+      /// [google.cloud.compute.v1.instanceGroupManagers.suspendInstances]: <doc:InstanceGroupManagersClient/suspendInstances(request:options:)>
       public var body: InstanceGroupManagersSuspendInstancesRequest? = nil
 
       /// Initialize a new instance of `SuspendInstancesRequest`.
@@ -1823,7 +1823,7 @@
 
     /// Synthetic request message for the [updatePerInstanceConfigs()][google.cloud.compute.v1.instanceGroupManagers.updatePerInstanceConfigs] method.
     ///
-    /// [google.cloud.compute.v1.instanceGroupManagers.updatePerInstanceConfigs]: <doc:InstanceGroupManagersClient/updatePerInstanceConfigs(request:)>
+    /// [google.cloud.compute.v1.instanceGroupManagers.updatePerInstanceConfigs]: <doc:InstanceGroupManagersClient/updatePerInstanceConfigs(request:options:)>
     public struct UpdatePerInstanceConfigsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -1856,7 +1856,7 @@
 
       /// Synthetic request body field for the [updatePerInstanceConfigs()][google.cloud.compute.v1.instanceGroupManagers.updatePerInstanceConfigs] method.
       ///
-      /// [google.cloud.compute.v1.instanceGroupManagers.updatePerInstanceConfigs]: <doc:InstanceGroupManagersClient/updatePerInstanceConfigs(request:)>
+      /// [google.cloud.compute.v1.instanceGroupManagers.updatePerInstanceConfigs]: <doc:InstanceGroupManagersClient/updatePerInstanceConfigs(request:options:)>
       public var body: InstanceGroupManagersUpdatePerInstanceConfigsReq? = nil
 
       /// Initialize a new instance of `UpdatePerInstanceConfigsRequest`.

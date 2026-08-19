@@ -21,7 +21,7 @@
   /// Request message for
   /// [ModelService.ListModelVersions][google.cloud.aiplatform.v1.ModelService.ListModelVersions].
   ///
-  /// [google.cloud.aiplatform.v1.ModelService.ListModelVersions]: <doc:ModelServiceClient/listModelVersions(request:)>
+  /// [google.cloud.aiplatform.v1.ModelService.ListModelVersions]: <doc:ModelServiceClient/listModelVersions(request:options:)>
   public struct ListModelVersionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {
@@ -39,7 +39,7 @@
     /// call.
     ///
     /// [google.cloud.aiplatform.v1.ListModelVersionsResponse.next_page_token]: <doc:ListModelVersionsResponse/nextPageToken>
-    /// [google.cloud.aiplatform.v1.ModelService.ListModelVersions]: <doc:ModelServiceClient/listModelVersions(request:)>
+    /// [google.cloud.aiplatform.v1.ModelService.ListModelVersions]: <doc:ModelServiceClient/listModelVersions(request:options:)>
     public var pageToken: Swift.String = Swift.String()
 
     /// An expression for filtering the results of the request. For field names

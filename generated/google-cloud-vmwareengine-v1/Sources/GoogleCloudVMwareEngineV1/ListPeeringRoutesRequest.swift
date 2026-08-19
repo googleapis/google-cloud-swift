@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [VmwareEngine.ListPeeringRoutes][google.cloud.vmwareengine.v1.VmwareEngine.ListPeeringRoutes]
 ///
-/// [google.cloud.vmwareengine.v1.VmwareEngine.ListPeeringRoutes]: <doc:VmwareEngineClient/listPeeringRoutes(request:)>
+/// [google.cloud.vmwareengine.v1.VmwareEngine.ListPeeringRoutes]: <doc:VmwareEngineClient/listPeeringRoutes(request:options:)>
 public struct ListPeeringRoutesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

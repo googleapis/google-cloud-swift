@@ -143,7 +143,7 @@ public class CertificateAuthorityServiceClient: Clients.CertificateAuthorityServ
   /// [google.cloud.security.privateca.v1.CertificateAuthority]: <doc:CertificateAuthority>
   /// [google.cloud.security.privateca.v1.CertificateAuthority.State.AWAITING_USER_ACTIVATION]: <doc:CertificateAuthority/State/awaitingUserActivation>
   /// [google.cloud.security.privateca.v1.CertificateAuthority.Type.SUBORDINATE]: <doc:CertificateAuthority/Type_/subordinate>
-  /// [google.cloud.security.privateca.v1.CertificateAuthorityService.FetchCertificateAuthorityCsr]: <doc:CertificateAuthorityServiceClient/fetchCertificateAuthorityCsr(request:)>
+  /// [google.cloud.security.privateca.v1.CertificateAuthorityService.FetchCertificateAuthorityCsr]: <doc:CertificateAuthorityServiceClient/fetchCertificateAuthorityCsr(request:options:)>
   ///
   /// @Snippet(path: "CertificateAuthorityService_ActivateCertificateAuthority")
   public func activateCertificateAuthority(
@@ -166,7 +166,7 @@ public class CertificateAuthorityServiceClient: Clients.CertificateAuthorityServ
   /// [google.cloud.security.privateca.v1.CertificateAuthority]: <doc:CertificateAuthority>
   /// [google.cloud.security.privateca.v1.CertificateAuthority.State.AWAITING_USER_ACTIVATION]: <doc:CertificateAuthority/State/awaitingUserActivation>
   /// [google.cloud.security.privateca.v1.CertificateAuthority.Type.SUBORDINATE]: <doc:CertificateAuthority/Type_/subordinate>
-  /// [google.cloud.security.privateca.v1.CertificateAuthorityService.FetchCertificateAuthorityCsr]: <doc:CertificateAuthorityServiceClient/fetchCertificateAuthorityCsr(request:)>
+  /// [google.cloud.security.privateca.v1.CertificateAuthorityService.FetchCertificateAuthorityCsr]: <doc:CertificateAuthorityServiceClient/fetchCertificateAuthorityCsr(request:options:)>
   ///
   /// @Snippet(path: "CertificateAuthorityService_ActivateCertificateAuthority")
   public func activateCertificateAuthority(
@@ -468,7 +468,7 @@ public class CertificateAuthorityServiceClient: Clients.CertificateAuthorityServ
   /// [google.cloud.security.privateca.v1.CertificateAuthority]: <doc:CertificateAuthority>
   /// [google.cloud.security.privateca.v1.CertificateAuthority.State.AWAITING_USER_ACTIVATION]: <doc:CertificateAuthority/State/awaitingUserActivation>
   /// [google.cloud.security.privateca.v1.CertificateAuthority.Type.SUBORDINATE]: <doc:CertificateAuthority/Type_/subordinate>
-  /// [google.cloud.security.privateca.v1.CertificateAuthorityService.ActivateCertificateAuthority]: <doc:CertificateAuthorityServiceClient/activateCertificateAuthority(request:)>
+  /// [google.cloud.security.privateca.v1.CertificateAuthorityService.ActivateCertificateAuthority]: <doc:CertificateAuthorityServiceClient/activateCertificateAuthority(request:options:)>
   ///
   /// @Snippet(path: "CertificateAuthorityService_FetchCertificateAuthorityCsr")
   public func fetchCertificateAuthorityCsr(

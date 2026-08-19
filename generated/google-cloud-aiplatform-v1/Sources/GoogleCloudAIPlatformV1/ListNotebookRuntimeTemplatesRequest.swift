@@ -21,7 +21,7 @@
   /// Request message for
   /// [NotebookService.ListNotebookRuntimeTemplates][google.cloud.aiplatform.v1.NotebookService.ListNotebookRuntimeTemplates].
   ///
-  /// [google.cloud.aiplatform.v1.NotebookService.ListNotebookRuntimeTemplates]: <doc:NotebookServiceClient/listNotebookRuntimeTemplates(request:)>
+  /// [google.cloud.aiplatform.v1.NotebookService.ListNotebookRuntimeTemplates]: <doc:NotebookServiceClient/listNotebookRuntimeTemplates(request:options:)>
   public struct ListNotebookRuntimeTemplatesRequest: Codable, Equatable, GoogleCloudWkt
       ._AnyPackable,
     Sendable
@@ -69,7 +69,7 @@
     /// call.
     ///
     /// [google.cloud.aiplatform.v1.ListNotebookRuntimeTemplatesResponse.next_page_token]: <doc:ListNotebookRuntimeTemplatesResponse/nextPageToken>
-    /// [google.cloud.aiplatform.v1.NotebookService.ListNotebookRuntimeTemplates]: <doc:NotebookServiceClient/listNotebookRuntimeTemplates(request:)>
+    /// [google.cloud.aiplatform.v1.NotebookService.ListNotebookRuntimeTemplates]: <doc:NotebookServiceClient/listNotebookRuntimeTemplates(request:options:)>
     public var pageToken: Swift.String = Swift.String()
 
     /// Optional. Mask specifying which fields to read.

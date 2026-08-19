@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for the
 /// [GetCustomClass][google.cloud.speech.v2.Speech.GetCustomClass] method.
 ///
-/// [google.cloud.speech.v2.Speech.GetCustomClass]: <doc:SpeechClient/getCustomClass(request:)>
+/// [google.cloud.speech.v2.Speech.GetCustomClass]: <doc:SpeechClient/getCustomClass(request:options:)>
 public struct GetCustomClassRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

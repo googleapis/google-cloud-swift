@@ -22,7 +22,7 @@
   /// Response message for
   /// [DatasetService.SearchDataItems][google.cloud.aiplatform.v1.DatasetService.SearchDataItems].
   ///
-  /// [google.cloud.aiplatform.v1.DatasetService.SearchDataItems]: <doc:DatasetServiceClient/searchDataItems(request:)>
+  /// [google.cloud.aiplatform.v1.DatasetService.SearchDataItems]: <doc:DatasetServiceClient/searchDataItems(request:options:)>
   public struct SearchDataItemsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable

@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// The [UpdateAttribute][google.cloud.apihub.v1.ApiHub.UpdateAttribute] method's
 /// request.
 ///
-/// [google.cloud.apihub.v1.ApiHub.UpdateAttribute]: <doc:ApiHubClient/updateAttribute(request:)>
+/// [google.cloud.apihub.v1.ApiHub.UpdateAttribute]: <doc:ApiHubClient/updateAttribute(request:options:)>
 public struct UpdateAttributeRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

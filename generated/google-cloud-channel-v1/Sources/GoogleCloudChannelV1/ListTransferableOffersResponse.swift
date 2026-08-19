@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [CloudChannelService.ListTransferableOffers][google.cloud.channel.v1.CloudChannelService.ListTransferableOffers].
 ///
-/// [google.cloud.channel.v1.CloudChannelService.ListTransferableOffers]: <doc:CloudChannelServiceClient/listTransferableOffers(request:)>
+/// [google.cloud.channel.v1.CloudChannelService.ListTransferableOffers]: <doc:CloudChannelServiceClient/listTransferableOffers(request:options:)>
 public struct ListTransferableOffersResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

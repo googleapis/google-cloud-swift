@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [`DeleteDatasetConfig`][google.cloud.storageinsights.v1.StorageInsights.DeleteDatasetConfig]
 ///
-/// [google.cloud.storageinsights.v1.StorageInsights.DeleteDatasetConfig]: <doc:StorageInsightsClient/deleteDatasetConfig(request:)>
+/// [google.cloud.storageinsights.v1.StorageInsights.DeleteDatasetConfig]: <doc:StorageInsightsClient/deleteDatasetConfig(request:options:)>
 public struct DeleteDatasetConfigRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

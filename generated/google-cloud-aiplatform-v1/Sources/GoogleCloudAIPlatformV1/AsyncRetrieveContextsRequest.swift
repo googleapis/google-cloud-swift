@@ -21,7 +21,7 @@
   /// Request message for
   /// [VertexRagService.AsyncRetrieveContexts][google.cloud.aiplatform.v1.VertexRagService.AsyncRetrieveContexts].
   ///
-  /// [google.cloud.aiplatform.v1.VertexRagService.AsyncRetrieveContexts]: <doc:VertexRagServiceClient/asyncRetrieveContexts(request:)>
+  /// [google.cloud.aiplatform.v1.VertexRagService.AsyncRetrieveContexts]: <doc:VertexRagServiceClient/asyncRetrieveContexts(request:options:)>
   public struct AsyncRetrieveContextsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

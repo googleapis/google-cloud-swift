@@ -21,7 +21,7 @@
   /// The request message for
   /// [Pages.DeletePage][google.cloud.dialogflow.cx.v3.Pages.DeletePage].
   ///
-  /// [google.cloud.dialogflow.cx.v3.Pages.DeletePage]: <doc:PagesClient/deletePage(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Pages.DeletePage]: <doc:PagesClient/deletePage(request:options:)>
   public struct DeletePageRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

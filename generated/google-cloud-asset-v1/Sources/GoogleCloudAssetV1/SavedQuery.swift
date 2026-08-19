@@ -135,8 +135,8 @@ public struct SavedQuery: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       /// [AssetService.AnalyzeIamPolicyLongrunning][google.cloud.asset.v1.AssetService.AnalyzeIamPolicyLongrunning]
       /// RPC.
       ///
-      /// [google.cloud.asset.v1.AssetService.AnalyzeIamPolicy]: <doc:AssetServiceClient/analyzeIamPolicy(request:)>
-      /// [google.cloud.asset.v1.AssetService.AnalyzeIamPolicyLongrunning]: <doc:AssetServiceClient/analyzeIamPolicyLongrunning(request:)>
+      /// [google.cloud.asset.v1.AssetService.AnalyzeIamPolicy]: <doc:AssetServiceClient/analyzeIamPolicy(request:options:)>
+      /// [google.cloud.asset.v1.AssetService.AnalyzeIamPolicyLongrunning]: <doc:AssetServiceClient/analyzeIamPolicyLongrunning(request:options:)>
       indirect case iamPolicyAnalysisQuery(IamPolicyAnalysisQuery?)
     }
 

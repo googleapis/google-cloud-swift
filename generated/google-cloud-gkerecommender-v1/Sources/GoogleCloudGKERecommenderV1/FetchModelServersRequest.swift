@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [GkeInferenceQuickstart.FetchModelServers][google.cloud.gkerecommender.v1.GkeInferenceQuickstart.FetchModelServers].
 ///
-/// [google.cloud.gkerecommender.v1.GkeInferenceQuickstart.FetchModelServers]: <doc:GkeInferenceQuickstartClient/fetchModelServers(request:)>
+/// [google.cloud.gkerecommender.v1.GkeInferenceQuickstart.FetchModelServers]: <doc:GkeInferenceQuickstartClient/fetchModelServers(request:options:)>
 public struct FetchModelServersRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
@@ -29,7 +29,7 @@ public struct FetchModelServersRequest: Codable, Equatable, GoogleCloudWkt._AnyP
   /// [GkeInferenceQuickstart.FetchModels][google.cloud.gkerecommender.v1.GkeInferenceQuickstart.FetchModels]
   /// to find available models.
   ///
-  /// [google.cloud.gkerecommender.v1.GkeInferenceQuickstart.FetchModels]: <doc:GkeInferenceQuickstartClient/fetchModels(request:)>
+  /// [google.cloud.gkerecommender.v1.GkeInferenceQuickstart.FetchModels]: <doc:GkeInferenceQuickstartClient/fetchModels(request:options:)>
   public var model: Swift.String = Swift.String()
 
   /// Optional. The target number of results to return in a single response.

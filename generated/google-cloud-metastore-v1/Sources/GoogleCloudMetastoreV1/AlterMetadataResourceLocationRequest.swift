@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [DataprocMetastore.AlterMetadataResourceLocation][google.cloud.metastore.v1.DataprocMetastore.AlterMetadataResourceLocation].
 ///
-/// [google.cloud.metastore.v1.DataprocMetastore.AlterMetadataResourceLocation]: <doc:DataprocMetastoreClient/alterMetadataResourceLocation(request:)>
+/// [google.cloud.metastore.v1.DataprocMetastore.AlterMetadataResourceLocation]: <doc:DataprocMetastoreClient/alterMetadataResourceLocation(request:options:)>
 public struct AlterMetadataResourceLocationRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

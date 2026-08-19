@@ -21,7 +21,7 @@
   /// Request message for
   /// [JobService.CancelCustomJob][google.cloud.aiplatform.v1.JobService.CancelCustomJob].
   ///
-  /// [google.cloud.aiplatform.v1.JobService.CancelCustomJob]: <doc:JobServiceClient/cancelCustomJob(request:)>
+  /// [google.cloud.aiplatform.v1.JobService.CancelCustomJob]: <doc:JobServiceClient/cancelCustomJob(request:options:)>
   public struct CancelCustomJobRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

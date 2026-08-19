@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [KeyManagementService.AsymmetricDecrypt][google.cloud.kms.v1.KeyManagementService.AsymmetricDecrypt].
 ///
-/// [google.cloud.kms.v1.KeyManagementService.AsymmetricDecrypt]: <doc:KeyManagementServiceClient/asymmetricDecrypt(request:)>
+/// [google.cloud.kms.v1.KeyManagementService.AsymmetricDecrypt]: <doc:KeyManagementServiceClient/asymmetricDecrypt(request:options:)>
 public struct AsymmetricDecryptRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

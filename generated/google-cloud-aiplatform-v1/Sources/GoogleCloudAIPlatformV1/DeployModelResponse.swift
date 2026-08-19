@@ -21,7 +21,7 @@
   /// Response message for
   /// [EndpointService.DeployModel][google.cloud.aiplatform.v1.EndpointService.DeployModel].
   ///
-  /// [google.cloud.aiplatform.v1.EndpointService.DeployModel]: <doc:EndpointServiceClient/deployModel(request:)>
+  /// [google.cloud.aiplatform.v1.EndpointService.DeployModel]: <doc:EndpointServiceClient/deployModel(request:options:)>
   public struct DeployModelResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

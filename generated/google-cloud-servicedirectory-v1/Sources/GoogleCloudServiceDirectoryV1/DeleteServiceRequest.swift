@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// The request message for
 /// [RegistrationService.DeleteService][google.cloud.servicedirectory.v1.RegistrationService.DeleteService].
 ///
-/// [google.cloud.servicedirectory.v1.RegistrationService.DeleteService]: <doc:RegistrationServiceClient/deleteService(request:)>
+/// [google.cloud.servicedirectory.v1.RegistrationService.DeleteService]: <doc:RegistrationServiceClient/deleteService(request:options:)>
 public struct DeleteServiceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

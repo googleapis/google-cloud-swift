@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [BinauthzManagementServiceV1.UpdateAttestor][google.cloud.binaryauthorization.v1.BinauthzManagementServiceV1.UpdateAttestor].
 ///
-/// [google.cloud.binaryauthorization.v1.BinauthzManagementServiceV1.UpdateAttestor]: <doc:BinauthzManagementServiceV1Client/updateAttestor(request:)>
+/// [google.cloud.binaryauthorization.v1.BinauthzManagementServiceV1.UpdateAttestor]: <doc:BinauthzManagementServiceV1Client/updateAttestor(request:options:)>
 public struct UpdateAttestorRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

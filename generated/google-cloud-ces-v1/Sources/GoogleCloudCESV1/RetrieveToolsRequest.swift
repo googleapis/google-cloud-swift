@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [ToolService.RetrieveTools][google.cloud.ces.v1.ToolService.RetrieveTools].
 ///
-/// [google.cloud.ces.v1.ToolService.RetrieveTools]: <doc:ToolServiceClient/retrieveTools(request:)>
+/// [google.cloud.ces.v1.ToolService.RetrieveTools]: <doc:ToolServiceClient/retrieveTools(request:options:)>
 public struct RetrieveToolsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

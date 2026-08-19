@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// The request message for
 /// [GetDlpJob][google.privacy.dlp.v2.DlpService.GetDlpJob].
 ///
-/// [google.privacy.dlp.v2.DlpService.GetDlpJob]: <doc:DlpServiceClient/getDlpJob(request:)>
+/// [google.privacy.dlp.v2.DlpService.GetDlpJob]: <doc:DlpServiceClient/getDlpJob(request:options:)>
 public struct GetDlpJobRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

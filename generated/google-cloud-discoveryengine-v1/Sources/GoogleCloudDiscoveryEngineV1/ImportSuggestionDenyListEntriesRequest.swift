@@ -22,7 +22,7 @@
   /// [CompletionService.ImportSuggestionDenyListEntries][google.cloud.discoveryengine.v1.CompletionService.ImportSuggestionDenyListEntries]
   /// method.
   ///
-  /// [google.cloud.discoveryengine.v1.CompletionService.ImportSuggestionDenyListEntries]: <doc:CompletionServiceClient/importSuggestionDenyListEntries(request:)>
+  /// [google.cloud.discoveryengine.v1.CompletionService.ImportSuggestionDenyListEntries]: <doc:CompletionServiceClient/importSuggestionDenyListEntries(request:options:)>
   public struct ImportSuggestionDenyListEntriesRequest: Codable, Equatable, GoogleCloudWkt
       ._AnyPackable,
     Sendable

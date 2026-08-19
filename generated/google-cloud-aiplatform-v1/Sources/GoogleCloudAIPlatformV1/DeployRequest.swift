@@ -21,7 +21,7 @@
   /// Request message for
   /// [ModelGardenService.Deploy][google.cloud.aiplatform.v1.ModelGardenService.Deploy].
   ///
-  /// [google.cloud.aiplatform.v1.ModelGardenService.Deploy]: <doc:ModelGardenServiceClient/deploy(request:)>
+  /// [google.cloud.aiplatform.v1.ModelGardenService.Deploy]: <doc:ModelGardenServiceClient/deploy(request:options:)>
   public struct DeployRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

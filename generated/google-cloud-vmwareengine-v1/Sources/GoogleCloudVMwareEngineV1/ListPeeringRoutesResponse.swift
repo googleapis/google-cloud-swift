@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [VmwareEngine.ListPeeringRoutes][google.cloud.vmwareengine.v1.VmwareEngine.ListPeeringRoutes]
 ///
-/// [google.cloud.vmwareengine.v1.VmwareEngine.ListPeeringRoutes]: <doc:VmwareEngineClient/listPeeringRoutes(request:)>
+/// [google.cloud.vmwareengine.v1.VmwareEngine.ListPeeringRoutes]: <doc:VmwareEngineClient/listPeeringRoutes(request:options:)>
 public struct ListPeeringRoutesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

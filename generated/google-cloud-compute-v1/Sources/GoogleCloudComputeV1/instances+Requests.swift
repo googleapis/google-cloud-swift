@@ -21,7 +21,7 @@
   extension InstancesClient {
     /// Synthetic request message for the [addAccessConfig()][google.cloud.compute.v1.instances.addAccessConfig] method.
     ///
-    /// [google.cloud.compute.v1.instances.addAccessConfig]: <doc:InstancesClient/addAccessConfig(request:)>
+    /// [google.cloud.compute.v1.instances.addAccessConfig]: <doc:InstancesClient/addAccessConfig(request:options:)>
     public struct AddAccessConfigRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -54,7 +54,7 @@
 
       /// Synthetic request body field for the [addAccessConfig()][google.cloud.compute.v1.instances.addAccessConfig] method.
       ///
-      /// [google.cloud.compute.v1.instances.addAccessConfig]: <doc:InstancesClient/addAccessConfig(request:)>
+      /// [google.cloud.compute.v1.instances.addAccessConfig]: <doc:InstancesClient/addAccessConfig(request:options:)>
       public var body: AccessConfig? = nil
 
       /// Initialize a new instance of `AddAccessConfigRequest`.
@@ -86,7 +86,7 @@
 
     /// Synthetic request message for the [addNetworkInterface()][google.cloud.compute.v1.instances.addNetworkInterface] method.
     ///
-    /// [google.cloud.compute.v1.instances.addNetworkInterface]: <doc:InstancesClient/addNetworkInterface(request:)>
+    /// [google.cloud.compute.v1.instances.addNetworkInterface]: <doc:InstancesClient/addNetworkInterface(request:options:)>
     public struct AddNetworkInterfaceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -117,7 +117,7 @@
 
       /// Synthetic request body field for the [addNetworkInterface()][google.cloud.compute.v1.instances.addNetworkInterface] method.
       ///
-      /// [google.cloud.compute.v1.instances.addNetworkInterface]: <doc:InstancesClient/addNetworkInterface(request:)>
+      /// [google.cloud.compute.v1.instances.addNetworkInterface]: <doc:InstancesClient/addNetworkInterface(request:options:)>
       public var body: NetworkInterface? = nil
 
       /// Initialize a new instance of `AddNetworkInterfaceRequest`.
@@ -149,7 +149,7 @@
 
     /// Synthetic request message for the [addResourcePolicies()][google.cloud.compute.v1.instances.addResourcePolicies] method.
     ///
-    /// [google.cloud.compute.v1.instances.addResourcePolicies]: <doc:InstancesClient/addResourcePolicies(request:)>
+    /// [google.cloud.compute.v1.instances.addResourcePolicies]: <doc:InstancesClient/addResourcePolicies(request:options:)>
     public struct AddResourcePoliciesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -179,7 +179,7 @@
 
       /// Synthetic request body field for the [addResourcePolicies()][google.cloud.compute.v1.instances.addResourcePolicies] method.
       ///
-      /// [google.cloud.compute.v1.instances.addResourcePolicies]: <doc:InstancesClient/addResourcePolicies(request:)>
+      /// [google.cloud.compute.v1.instances.addResourcePolicies]: <doc:InstancesClient/addResourcePolicies(request:options:)>
       public var body: InstancesAddResourcePoliciesRequest? = nil
 
       /// Initialize a new instance of `AddResourcePoliciesRequest`.
@@ -211,7 +211,7 @@
 
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.instances.aggregatedList] method.
     ///
-    /// [google.cloud.compute.v1.instances.aggregatedList]: <doc:InstancesClient/aggregatedList(request:)>
+    /// [google.cloud.compute.v1.instances.aggregatedList]: <doc:InstancesClient/aggregatedList(request:options:)>
     public struct AggregatedListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -353,7 +353,7 @@
 
     /// Synthetic request message for the [attachDisk()][google.cloud.compute.v1.instances.attachDisk] method.
     ///
-    /// [google.cloud.compute.v1.instances.attachDisk]: <doc:InstancesClient/attachDisk(request:)>
+    /// [google.cloud.compute.v1.instances.attachDisk]: <doc:InstancesClient/attachDisk(request:options:)>
     public struct AttachDiskRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -388,7 +388,7 @@
 
       /// Synthetic request body field for the [attachDisk()][google.cloud.compute.v1.instances.attachDisk] method.
       ///
-      /// [google.cloud.compute.v1.instances.attachDisk]: <doc:InstancesClient/attachDisk(request:)>
+      /// [google.cloud.compute.v1.instances.attachDisk]: <doc:InstancesClient/attachDisk(request:options:)>
       public var body: AttachedDisk? = nil
 
       /// Initialize a new instance of `AttachDiskRequest`.
@@ -420,7 +420,7 @@
 
     /// Synthetic request message for the [bulkInsert()][google.cloud.compute.v1.instances.bulkInsert] method.
     ///
-    /// [google.cloud.compute.v1.instances.bulkInsert]: <doc:InstancesClient/bulkInsert(request:)>
+    /// [google.cloud.compute.v1.instances.bulkInsert]: <doc:InstancesClient/bulkInsert(request:options:)>
     public struct BulkInsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -447,7 +447,7 @@
 
       /// Synthetic request body field for the [bulkInsert()][google.cloud.compute.v1.instances.bulkInsert] method.
       ///
-      /// [google.cloud.compute.v1.instances.bulkInsert]: <doc:InstancesClient/bulkInsert(request:)>
+      /// [google.cloud.compute.v1.instances.bulkInsert]: <doc:InstancesClient/bulkInsert(request:options:)>
       public var body: BulkInsertInstanceResource? = nil
 
       /// Initialize a new instance of `BulkInsertRequest`.
@@ -479,7 +479,7 @@
 
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.instances.delete] method.
     ///
-    /// [google.cloud.compute.v1.instances.delete]: <doc:InstancesClient/delete(request:)>
+    /// [google.cloud.compute.v1.instances.delete]: <doc:InstancesClient/delete(request:options:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -539,7 +539,7 @@
 
     /// Synthetic request message for the [deleteAccessConfig()][google.cloud.compute.v1.instances.deleteAccessConfig] method.
     ///
-    /// [google.cloud.compute.v1.instances.deleteAccessConfig]: <doc:InstancesClient/deleteAccessConfig(request:)>
+    /// [google.cloud.compute.v1.instances.deleteAccessConfig]: <doc:InstancesClient/deleteAccessConfig(request:options:)>
     public struct DeleteAccessConfigRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -602,7 +602,7 @@
 
     /// Synthetic request message for the [deleteNetworkInterface()][google.cloud.compute.v1.instances.deleteNetworkInterface] method.
     ///
-    /// [google.cloud.compute.v1.instances.deleteNetworkInterface]: <doc:InstancesClient/deleteNetworkInterface(request:)>
+    /// [google.cloud.compute.v1.instances.deleteNetworkInterface]: <doc:InstancesClient/deleteNetworkInterface(request:options:)>
     public struct DeleteNetworkInterfaceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -663,7 +663,7 @@
 
     /// Synthetic request message for the [detachDisk()][google.cloud.compute.v1.instances.detachDisk] method.
     ///
-    /// [google.cloud.compute.v1.instances.detachDisk]: <doc:InstancesClient/detachDisk(request:)>
+    /// [google.cloud.compute.v1.instances.detachDisk]: <doc:InstancesClient/detachDisk(request:options:)>
     public struct DetachDiskRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -724,7 +724,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.instances.get] method.
     ///
-    /// [google.cloud.compute.v1.instances.get]: <doc:InstancesClient/`get`(request:)>
+    /// [google.cloud.compute.v1.instances.get]: <doc:InstancesClient/`get`(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -766,7 +766,7 @@
 
     /// Synthetic request message for the [getEffectiveFirewalls()][google.cloud.compute.v1.instances.getEffectiveFirewalls] method.
     ///
-    /// [google.cloud.compute.v1.instances.getEffectiveFirewalls]: <doc:InstancesClient/getEffectiveFirewalls(request:)>
+    /// [google.cloud.compute.v1.instances.getEffectiveFirewalls]: <doc:InstancesClient/getEffectiveFirewalls(request:options:)>
     public struct GetEffectiveFirewallsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -811,7 +811,7 @@
 
     /// Synthetic request message for the [getGuestAttributes()][google.cloud.compute.v1.instances.getGuestAttributes] method.
     ///
-    /// [google.cloud.compute.v1.instances.getGuestAttributes]: <doc:InstancesClient/getGuestAttributes(request:)>
+    /// [google.cloud.compute.v1.instances.getGuestAttributes]: <doc:InstancesClient/getGuestAttributes(request:options:)>
     public struct GetGuestAttributesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -859,7 +859,7 @@
 
     /// Synthetic request message for the [getIamPolicy()][google.cloud.compute.v1.instances.getIamPolicy] method.
     ///
-    /// [google.cloud.compute.v1.instances.getIamPolicy]: <doc:InstancesClient/getIamPolicy(request:)>
+    /// [google.cloud.compute.v1.instances.getIamPolicy]: <doc:InstancesClient/getIamPolicy(request:options:)>
     public struct GetIamPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -904,7 +904,7 @@
 
     /// Synthetic request message for the [getScreenshot()][google.cloud.compute.v1.instances.getScreenshot] method.
     ///
-    /// [google.cloud.compute.v1.instances.getScreenshot]: <doc:InstancesClient/getScreenshot(request:)>
+    /// [google.cloud.compute.v1.instances.getScreenshot]: <doc:InstancesClient/getScreenshot(request:options:)>
     public struct GetScreenshotRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -946,7 +946,7 @@
 
     /// Synthetic request message for the [getSerialPortOutput()][google.cloud.compute.v1.instances.getSerialPortOutput] method.
     ///
-    /// [google.cloud.compute.v1.instances.getSerialPortOutput]: <doc:InstancesClient/getSerialPortOutput(request:)>
+    /// [google.cloud.compute.v1.instances.getSerialPortOutput]: <doc:InstancesClient/getSerialPortOutput(request:options:)>
     public struct GetSerialPortOutputRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -1010,7 +1010,7 @@
 
     /// Synthetic request message for the [getShieldedInstanceIdentity()][google.cloud.compute.v1.instances.getShieldedInstanceIdentity] method.
     ///
-    /// [google.cloud.compute.v1.instances.getShieldedInstanceIdentity]: <doc:InstancesClient/getShieldedInstanceIdentity(request:)>
+    /// [google.cloud.compute.v1.instances.getShieldedInstanceIdentity]: <doc:InstancesClient/getShieldedInstanceIdentity(request:options:)>
     public struct GetShieldedInstanceIdentityRequest: Codable, Equatable, GoogleCloudWkt
         ._AnyPackable,
       Sendable
@@ -1054,7 +1054,7 @@
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.instances.insert] method.
     ///
-    /// [google.cloud.compute.v1.instances.insert]: <doc:InstancesClient/insert(request:)>
+    /// [google.cloud.compute.v1.instances.insert]: <doc:InstancesClient/insert(request:options:)>
     public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -1103,7 +1103,7 @@
 
       /// Synthetic request body field for the [insert()][google.cloud.compute.v1.instances.insert] method.
       ///
-      /// [google.cloud.compute.v1.instances.insert]: <doc:InstancesClient/insert(request:)>
+      /// [google.cloud.compute.v1.instances.insert]: <doc:InstancesClient/insert(request:options:)>
       public var body: Instance? = nil
 
       /// Initialize a new instance of `InsertRequest`.
@@ -1135,7 +1135,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.instances.list] method.
     ///
-    /// [google.cloud.compute.v1.instances.list]: <doc:InstancesClient/list(request:)>
+    /// [google.cloud.compute.v1.instances.list]: <doc:InstancesClient/list(request:options:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -1267,7 +1267,7 @@
 
     /// Synthetic request message for the [listReferrers()][google.cloud.compute.v1.instances.listReferrers] method.
     ///
-    /// [google.cloud.compute.v1.instances.listReferrers]: <doc:InstancesClient/listReferrers(request:)>
+    /// [google.cloud.compute.v1.instances.listReferrers]: <doc:InstancesClient/listReferrers(request:options:)>
     public struct ListReferrersRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -1403,7 +1403,7 @@
 
     /// Synthetic request message for the [performMaintenance()][google.cloud.compute.v1.instances.performMaintenance] method.
     ///
-    /// [google.cloud.compute.v1.instances.performMaintenance]: <doc:InstancesClient/performMaintenance(request:)>
+    /// [google.cloud.compute.v1.instances.performMaintenance]: <doc:InstancesClient/performMaintenance(request:options:)>
     public struct PerformMaintenanceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -1460,7 +1460,7 @@
 
     /// Synthetic request message for the [removeResourcePolicies()][google.cloud.compute.v1.instances.removeResourcePolicies] method.
     ///
-    /// [google.cloud.compute.v1.instances.removeResourcePolicies]: <doc:InstancesClient/removeResourcePolicies(request:)>
+    /// [google.cloud.compute.v1.instances.removeResourcePolicies]: <doc:InstancesClient/removeResourcePolicies(request:options:)>
     public struct RemoveResourcePoliciesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -1490,7 +1490,7 @@
 
       /// Synthetic request body field for the [removeResourcePolicies()][google.cloud.compute.v1.instances.removeResourcePolicies] method.
       ///
-      /// [google.cloud.compute.v1.instances.removeResourcePolicies]: <doc:InstancesClient/removeResourcePolicies(request:)>
+      /// [google.cloud.compute.v1.instances.removeResourcePolicies]: <doc:InstancesClient/removeResourcePolicies(request:options:)>
       public var body: InstancesRemoveResourcePoliciesRequest? = nil
 
       /// Initialize a new instance of `RemoveResourcePoliciesRequest`.
@@ -1522,7 +1522,7 @@
 
     /// Synthetic request message for the [reportHostAsFaulty()][google.cloud.compute.v1.instances.reportHostAsFaulty] method.
     ///
-    /// [google.cloud.compute.v1.instances.reportHostAsFaulty]: <doc:InstancesClient/reportHostAsFaulty(request:)>
+    /// [google.cloud.compute.v1.instances.reportHostAsFaulty]: <doc:InstancesClient/reportHostAsFaulty(request:options:)>
     public struct ReportHostAsFaultyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -1552,7 +1552,7 @@
 
       /// Synthetic request body field for the [reportHostAsFaulty()][google.cloud.compute.v1.instances.reportHostAsFaulty] method.
       ///
-      /// [google.cloud.compute.v1.instances.reportHostAsFaulty]: <doc:InstancesClient/reportHostAsFaulty(request:)>
+      /// [google.cloud.compute.v1.instances.reportHostAsFaulty]: <doc:InstancesClient/reportHostAsFaulty(request:options:)>
       public var body: InstancesReportHostAsFaultyRequest? = nil
 
       /// Initialize a new instance of `ReportHostAsFaultyRequest`.
@@ -1584,7 +1584,7 @@
 
     /// Synthetic request message for the [reset()][google.cloud.compute.v1.instances.reset] method.
     ///
-    /// [google.cloud.compute.v1.instances.reset]: <doc:InstancesClient/reset(request:)>
+    /// [google.cloud.compute.v1.instances.reset]: <doc:InstancesClient/reset(request:options:)>
     public struct ResetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -1641,7 +1641,7 @@
 
     /// Synthetic request message for the [resume()][google.cloud.compute.v1.instances.resume] method.
     ///
-    /// [google.cloud.compute.v1.instances.resume]: <doc:InstancesClient/resume(request:)>
+    /// [google.cloud.compute.v1.instances.resume]: <doc:InstancesClient/resume(request:options:)>
     public struct ResumeRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -1698,7 +1698,7 @@
 
     /// Synthetic request message for the [sendDiagnosticInterrupt()][google.cloud.compute.v1.instances.sendDiagnosticInterrupt] method.
     ///
-    /// [google.cloud.compute.v1.instances.sendDiagnosticInterrupt]: <doc:InstancesClient/sendDiagnosticInterrupt(request:)>
+    /// [google.cloud.compute.v1.instances.sendDiagnosticInterrupt]: <doc:InstancesClient/sendDiagnosticInterrupt(request:options:)>
     public struct SendDiagnosticInterruptRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -1741,7 +1741,7 @@
 
     /// Synthetic request message for the [setDeletionProtection()][google.cloud.compute.v1.instances.setDeletionProtection] method.
     ///
-    /// [google.cloud.compute.v1.instances.setDeletionProtection]: <doc:InstancesClient/setDeletionProtection(request:)>
+    /// [google.cloud.compute.v1.instances.setDeletionProtection]: <doc:InstancesClient/setDeletionProtection(request:options:)>
     public struct SetDeletionProtectionRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -1801,7 +1801,7 @@
 
     /// Synthetic request message for the [setDiskAutoDelete()][google.cloud.compute.v1.instances.setDiskAutoDelete] method.
     ///
-    /// [google.cloud.compute.v1.instances.setDiskAutoDelete]: <doc:InstancesClient/setDiskAutoDelete(request:)>
+    /// [google.cloud.compute.v1.instances.setDiskAutoDelete]: <doc:InstancesClient/setDiskAutoDelete(request:options:)>
     public struct SetDiskAutoDeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -1865,7 +1865,7 @@
 
     /// Synthetic request message for the [setIamPolicy()][google.cloud.compute.v1.instances.setIamPolicy] method.
     ///
-    /// [google.cloud.compute.v1.instances.setIamPolicy]: <doc:InstancesClient/setIamPolicy(request:)>
+    /// [google.cloud.compute.v1.instances.setIamPolicy]: <doc:InstancesClient/setIamPolicy(request:options:)>
     public struct SetIamPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -1880,7 +1880,7 @@
 
       /// Synthetic request body field for the [setIamPolicy()][google.cloud.compute.v1.instances.setIamPolicy] method.
       ///
-      /// [google.cloud.compute.v1.instances.setIamPolicy]: <doc:InstancesClient/setIamPolicy(request:)>
+      /// [google.cloud.compute.v1.instances.setIamPolicy]: <doc:InstancesClient/setIamPolicy(request:options:)>
       public var body: ZoneSetPolicyRequest? = nil
 
       /// Initialize a new instance of `SetIamPolicyRequest`.
@@ -1912,7 +1912,7 @@
 
     /// Synthetic request message for the [setLabels()][google.cloud.compute.v1.instances.setLabels] method.
     ///
-    /// [google.cloud.compute.v1.instances.setLabels]: <doc:InstancesClient/setLabels(request:)>
+    /// [google.cloud.compute.v1.instances.setLabels]: <doc:InstancesClient/setLabels(request:options:)>
     public struct SetLabelsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -1942,7 +1942,7 @@
 
       /// Synthetic request body field for the [setLabels()][google.cloud.compute.v1.instances.setLabels] method.
       ///
-      /// [google.cloud.compute.v1.instances.setLabels]: <doc:InstancesClient/setLabels(request:)>
+      /// [google.cloud.compute.v1.instances.setLabels]: <doc:InstancesClient/setLabels(request:options:)>
       public var body: InstancesSetLabelsRequest? = nil
 
       /// Initialize a new instance of `SetLabelsRequest`.
@@ -1974,7 +1974,7 @@
 
     /// Synthetic request message for the [setMachineResources()][google.cloud.compute.v1.instances.setMachineResources] method.
     ///
-    /// [google.cloud.compute.v1.instances.setMachineResources]: <doc:InstancesClient/setMachineResources(request:)>
+    /// [google.cloud.compute.v1.instances.setMachineResources]: <doc:InstancesClient/setMachineResources(request:options:)>
     public struct SetMachineResourcesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -2004,7 +2004,7 @@
 
       /// Synthetic request body field for the [setMachineResources()][google.cloud.compute.v1.instances.setMachineResources] method.
       ///
-      /// [google.cloud.compute.v1.instances.setMachineResources]: <doc:InstancesClient/setMachineResources(request:)>
+      /// [google.cloud.compute.v1.instances.setMachineResources]: <doc:InstancesClient/setMachineResources(request:options:)>
       public var body: InstancesSetMachineResourcesRequest? = nil
 
       /// Initialize a new instance of `SetMachineResourcesRequest`.
@@ -2036,7 +2036,7 @@
 
     /// Synthetic request message for the [setMachineType()][google.cloud.compute.v1.instances.setMachineType] method.
     ///
-    /// [google.cloud.compute.v1.instances.setMachineType]: <doc:InstancesClient/setMachineType(request:)>
+    /// [google.cloud.compute.v1.instances.setMachineType]: <doc:InstancesClient/setMachineType(request:options:)>
     public struct SetMachineTypeRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -2066,7 +2066,7 @@
 
       /// Synthetic request body field for the [setMachineType()][google.cloud.compute.v1.instances.setMachineType] method.
       ///
-      /// [google.cloud.compute.v1.instances.setMachineType]: <doc:InstancesClient/setMachineType(request:)>
+      /// [google.cloud.compute.v1.instances.setMachineType]: <doc:InstancesClient/setMachineType(request:options:)>
       public var body: InstancesSetMachineTypeRequest? = nil
 
       /// Initialize a new instance of `SetMachineTypeRequest`.
@@ -2098,7 +2098,7 @@
 
     /// Synthetic request message for the [setMetadata()][google.cloud.compute.v1.instances.setMetadata] method.
     ///
-    /// [google.cloud.compute.v1.instances.setMetadata]: <doc:InstancesClient/setMetadata(request:)>
+    /// [google.cloud.compute.v1.instances.setMetadata]: <doc:InstancesClient/setMetadata(request:options:)>
     public struct SetMetadataRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -2128,7 +2128,7 @@
 
       /// Synthetic request body field for the [setMetadata()][google.cloud.compute.v1.instances.setMetadata] method.
       ///
-      /// [google.cloud.compute.v1.instances.setMetadata]: <doc:InstancesClient/setMetadata(request:)>
+      /// [google.cloud.compute.v1.instances.setMetadata]: <doc:InstancesClient/setMetadata(request:options:)>
       public var body: Metadata? = nil
 
       /// Initialize a new instance of `SetMetadataRequest`.
@@ -2160,7 +2160,7 @@
 
     /// Synthetic request message for the [setMinCpuPlatform()][google.cloud.compute.v1.instances.setMinCpuPlatform] method.
     ///
-    /// [google.cloud.compute.v1.instances.setMinCpuPlatform]: <doc:InstancesClient/setMinCpuPlatform(request:)>
+    /// [google.cloud.compute.v1.instances.setMinCpuPlatform]: <doc:InstancesClient/setMinCpuPlatform(request:options:)>
     public struct SetMinCpuPlatformRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -2190,7 +2190,7 @@
 
       /// Synthetic request body field for the [setMinCpuPlatform()][google.cloud.compute.v1.instances.setMinCpuPlatform] method.
       ///
-      /// [google.cloud.compute.v1.instances.setMinCpuPlatform]: <doc:InstancesClient/setMinCpuPlatform(request:)>
+      /// [google.cloud.compute.v1.instances.setMinCpuPlatform]: <doc:InstancesClient/setMinCpuPlatform(request:options:)>
       public var body: InstancesSetMinCpuPlatformRequest? = nil
 
       /// Initialize a new instance of `SetMinCpuPlatformRequest`.
@@ -2222,7 +2222,7 @@
 
     /// Synthetic request message for the [setName()][google.cloud.compute.v1.instances.setName] method.
     ///
-    /// [google.cloud.compute.v1.instances.setName]: <doc:InstancesClient/setName(request:)>
+    /// [google.cloud.compute.v1.instances.setName]: <doc:InstancesClient/setName(request:options:)>
     public struct SetNameRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -2252,7 +2252,7 @@
 
       /// Synthetic request body field for the [setName()][google.cloud.compute.v1.instances.setName] method.
       ///
-      /// [google.cloud.compute.v1.instances.setName]: <doc:InstancesClient/setName(request:)>
+      /// [google.cloud.compute.v1.instances.setName]: <doc:InstancesClient/setName(request:options:)>
       public var body: InstancesSetNameRequest? = nil
 
       /// Initialize a new instance of `SetNameRequest`.
@@ -2284,7 +2284,7 @@
 
     /// Synthetic request message for the [setScheduling()][google.cloud.compute.v1.instances.setScheduling] method.
     ///
-    /// [google.cloud.compute.v1.instances.setScheduling]: <doc:InstancesClient/setScheduling(request:)>
+    /// [google.cloud.compute.v1.instances.setScheduling]: <doc:InstancesClient/setScheduling(request:options:)>
     public struct SetSchedulingRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -2314,7 +2314,7 @@
 
       /// Synthetic request body field for the [setScheduling()][google.cloud.compute.v1.instances.setScheduling] method.
       ///
-      /// [google.cloud.compute.v1.instances.setScheduling]: <doc:InstancesClient/setScheduling(request:)>
+      /// [google.cloud.compute.v1.instances.setScheduling]: <doc:InstancesClient/setScheduling(request:options:)>
       public var body: Scheduling? = nil
 
       /// Initialize a new instance of `SetSchedulingRequest`.
@@ -2346,7 +2346,7 @@
 
     /// Synthetic request message for the [setSecurityPolicy()][google.cloud.compute.v1.instances.setSecurityPolicy] method.
     ///
-    /// [google.cloud.compute.v1.instances.setSecurityPolicy]: <doc:InstancesClient/setSecurityPolicy(request:)>
+    /// [google.cloud.compute.v1.instances.setSecurityPolicy]: <doc:InstancesClient/setSecurityPolicy(request:options:)>
     public struct SetSecurityPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -2377,7 +2377,7 @@
 
       /// Synthetic request body field for the [setSecurityPolicy()][google.cloud.compute.v1.instances.setSecurityPolicy] method.
       ///
-      /// [google.cloud.compute.v1.instances.setSecurityPolicy]: <doc:InstancesClient/setSecurityPolicy(request:)>
+      /// [google.cloud.compute.v1.instances.setSecurityPolicy]: <doc:InstancesClient/setSecurityPolicy(request:options:)>
       public var body: InstancesSetSecurityPolicyRequest? = nil
 
       /// Initialize a new instance of `SetSecurityPolicyRequest`.
@@ -2409,7 +2409,7 @@
 
     /// Synthetic request message for the [setServiceAccount()][google.cloud.compute.v1.instances.setServiceAccount] method.
     ///
-    /// [google.cloud.compute.v1.instances.setServiceAccount]: <doc:InstancesClient/setServiceAccount(request:)>
+    /// [google.cloud.compute.v1.instances.setServiceAccount]: <doc:InstancesClient/setServiceAccount(request:options:)>
     public struct SetServiceAccountRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -2439,7 +2439,7 @@
 
       /// Synthetic request body field for the [setServiceAccount()][google.cloud.compute.v1.instances.setServiceAccount] method.
       ///
-      /// [google.cloud.compute.v1.instances.setServiceAccount]: <doc:InstancesClient/setServiceAccount(request:)>
+      /// [google.cloud.compute.v1.instances.setServiceAccount]: <doc:InstancesClient/setServiceAccount(request:options:)>
       public var body: InstancesSetServiceAccountRequest? = nil
 
       /// Initialize a new instance of `SetServiceAccountRequest`.
@@ -2471,7 +2471,7 @@
 
     /// Synthetic request message for the [setShieldedInstanceIntegrityPolicy()][google.cloud.compute.v1.instances.setShieldedInstanceIntegrityPolicy] method.
     ///
-    /// [google.cloud.compute.v1.instances.setShieldedInstanceIntegrityPolicy]: <doc:InstancesClient/setShieldedInstanceIntegrityPolicy(request:)>
+    /// [google.cloud.compute.v1.instances.setShieldedInstanceIntegrityPolicy]: <doc:InstancesClient/setShieldedInstanceIntegrityPolicy(request:options:)>
     public struct SetShieldedInstanceIntegrityPolicyRequest: Codable, Equatable, GoogleCloudWkt
         ._AnyPackable,
       Sendable
@@ -2502,7 +2502,7 @@
 
       /// Synthetic request body field for the [setShieldedInstanceIntegrityPolicy()][google.cloud.compute.v1.instances.setShieldedInstanceIntegrityPolicy] method.
       ///
-      /// [google.cloud.compute.v1.instances.setShieldedInstanceIntegrityPolicy]: <doc:InstancesClient/setShieldedInstanceIntegrityPolicy(request:)>
+      /// [google.cloud.compute.v1.instances.setShieldedInstanceIntegrityPolicy]: <doc:InstancesClient/setShieldedInstanceIntegrityPolicy(request:options:)>
       public var body: ShieldedInstanceIntegrityPolicy? = nil
 
       /// Initialize a new instance of `SetShieldedInstanceIntegrityPolicyRequest`.
@@ -2535,7 +2535,7 @@
 
     /// Synthetic request message for the [setTags()][google.cloud.compute.v1.instances.setTags] method.
     ///
-    /// [google.cloud.compute.v1.instances.setTags]: <doc:InstancesClient/setTags(request:)>
+    /// [google.cloud.compute.v1.instances.setTags]: <doc:InstancesClient/setTags(request:options:)>
     public struct SetTagsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -2565,7 +2565,7 @@
 
       /// Synthetic request body field for the [setTags()][google.cloud.compute.v1.instances.setTags] method.
       ///
-      /// [google.cloud.compute.v1.instances.setTags]: <doc:InstancesClient/setTags(request:)>
+      /// [google.cloud.compute.v1.instances.setTags]: <doc:InstancesClient/setTags(request:options:)>
       public var body: Tags? = nil
 
       /// Initialize a new instance of `SetTagsRequest`.
@@ -2597,7 +2597,7 @@
 
     /// Synthetic request message for the [simulateMaintenanceEvent()][google.cloud.compute.v1.instances.simulateMaintenanceEvent] method.
     ///
-    /// [google.cloud.compute.v1.instances.simulateMaintenanceEvent]: <doc:InstancesClient/simulateMaintenanceEvent(request:)>
+    /// [google.cloud.compute.v1.instances.simulateMaintenanceEvent]: <doc:InstancesClient/simulateMaintenanceEvent(request:options:)>
     public struct SimulateMaintenanceEventRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -2659,7 +2659,7 @@
 
     /// Synthetic request message for the [start()][google.cloud.compute.v1.instances.start] method.
     ///
-    /// [google.cloud.compute.v1.instances.start]: <doc:InstancesClient/start(request:)>
+    /// [google.cloud.compute.v1.instances.start]: <doc:InstancesClient/start(request:options:)>
     public struct StartRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -2716,7 +2716,7 @@
 
     /// Synthetic request message for the [startWithEncryptionKey()][google.cloud.compute.v1.instances.startWithEncryptionKey] method.
     ///
-    /// [google.cloud.compute.v1.instances.startWithEncryptionKey]: <doc:InstancesClient/startWithEncryptionKey(request:)>
+    /// [google.cloud.compute.v1.instances.startWithEncryptionKey]: <doc:InstancesClient/startWithEncryptionKey(request:options:)>
     public struct StartWithEncryptionKeyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -2746,7 +2746,7 @@
 
       /// Synthetic request body field for the [startWithEncryptionKey()][google.cloud.compute.v1.instances.startWithEncryptionKey] method.
       ///
-      /// [google.cloud.compute.v1.instances.startWithEncryptionKey]: <doc:InstancesClient/startWithEncryptionKey(request:)>
+      /// [google.cloud.compute.v1.instances.startWithEncryptionKey]: <doc:InstancesClient/startWithEncryptionKey(request:options:)>
       public var body: InstancesStartWithEncryptionKeyRequest? = nil
 
       /// Initialize a new instance of `StartWithEncryptionKeyRequest`.
@@ -2778,7 +2778,7 @@
 
     /// Synthetic request message for the [stop()][google.cloud.compute.v1.instances.stop] method.
     ///
-    /// [google.cloud.compute.v1.instances.stop]: <doc:InstancesClient/stop(request:)>
+    /// [google.cloud.compute.v1.instances.stop]: <doc:InstancesClient/stop(request:options:)>
     public struct StopRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -2843,7 +2843,7 @@
 
     /// Synthetic request message for the [suspend()][google.cloud.compute.v1.instances.suspend] method.
     ///
-    /// [google.cloud.compute.v1.instances.suspend]: <doc:InstancesClient/suspend(request:)>
+    /// [google.cloud.compute.v1.instances.suspend]: <doc:InstancesClient/suspend(request:options:)>
     public struct SuspendRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -2905,7 +2905,7 @@
 
     /// Synthetic request message for the [testIamPermissions()][google.cloud.compute.v1.instances.testIamPermissions] method.
     ///
-    /// [google.cloud.compute.v1.instances.testIamPermissions]: <doc:InstancesClient/testIamPermissions(request:)>
+    /// [google.cloud.compute.v1.instances.testIamPermissions]: <doc:InstancesClient/testIamPermissions(request:options:)>
     public struct TestIamPermissionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -2920,7 +2920,7 @@
 
       /// Synthetic request body field for the [testIamPermissions()][google.cloud.compute.v1.instances.testIamPermissions] method.
       ///
-      /// [google.cloud.compute.v1.instances.testIamPermissions]: <doc:InstancesClient/testIamPermissions(request:)>
+      /// [google.cloud.compute.v1.instances.testIamPermissions]: <doc:InstancesClient/testIamPermissions(request:options:)>
       public var body: TestPermissionsRequest? = nil
 
       /// Initialize a new instance of `TestIamPermissionsRequest`.
@@ -2952,7 +2952,7 @@
 
     /// Synthetic request message for the [update()][google.cloud.compute.v1.instances.update] method.
     ///
-    /// [google.cloud.compute.v1.instances.update]: <doc:InstancesClient/update(request:)>
+    /// [google.cloud.compute.v1.instances.update]: <doc:InstancesClient/update(request:options:)>
     public struct UpdateRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -3000,7 +3000,7 @@
 
       /// Synthetic request body field for the [update()][google.cloud.compute.v1.instances.update] method.
       ///
-      /// [google.cloud.compute.v1.instances.update]: <doc:InstancesClient/update(request:)>
+      /// [google.cloud.compute.v1.instances.update]: <doc:InstancesClient/update(request:options:)>
       public var body: Instance? = nil
 
       /// Initialize a new instance of `UpdateRequest`.
@@ -3258,7 +3258,7 @@
 
     /// Synthetic request message for the [updateAccessConfig()][google.cloud.compute.v1.instances.updateAccessConfig] method.
     ///
-    /// [google.cloud.compute.v1.instances.updateAccessConfig]: <doc:InstancesClient/updateAccessConfig(request:)>
+    /// [google.cloud.compute.v1.instances.updateAccessConfig]: <doc:InstancesClient/updateAccessConfig(request:options:)>
     public struct UpdateAccessConfigRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -3291,7 +3291,7 @@
 
       /// Synthetic request body field for the [updateAccessConfig()][google.cloud.compute.v1.instances.updateAccessConfig] method.
       ///
-      /// [google.cloud.compute.v1.instances.updateAccessConfig]: <doc:InstancesClient/updateAccessConfig(request:)>
+      /// [google.cloud.compute.v1.instances.updateAccessConfig]: <doc:InstancesClient/updateAccessConfig(request:options:)>
       public var body: AccessConfig? = nil
 
       /// Initialize a new instance of `UpdateAccessConfigRequest`.
@@ -3323,7 +3323,7 @@
 
     /// Synthetic request message for the [updateDisplayDevice()][google.cloud.compute.v1.instances.updateDisplayDevice] method.
     ///
-    /// [google.cloud.compute.v1.instances.updateDisplayDevice]: <doc:InstancesClient/updateDisplayDevice(request:)>
+    /// [google.cloud.compute.v1.instances.updateDisplayDevice]: <doc:InstancesClient/updateDisplayDevice(request:options:)>
     public struct UpdateDisplayDeviceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -3353,7 +3353,7 @@
 
       /// Synthetic request body field for the [updateDisplayDevice()][google.cloud.compute.v1.instances.updateDisplayDevice] method.
       ///
-      /// [google.cloud.compute.v1.instances.updateDisplayDevice]: <doc:InstancesClient/updateDisplayDevice(request:)>
+      /// [google.cloud.compute.v1.instances.updateDisplayDevice]: <doc:InstancesClient/updateDisplayDevice(request:options:)>
       public var body: DisplayDevice? = nil
 
       /// Initialize a new instance of `UpdateDisplayDeviceRequest`.
@@ -3385,7 +3385,7 @@
 
     /// Synthetic request message for the [updateNetworkInterface()][google.cloud.compute.v1.instances.updateNetworkInterface] method.
     ///
-    /// [google.cloud.compute.v1.instances.updateNetworkInterface]: <doc:InstancesClient/updateNetworkInterface(request:)>
+    /// [google.cloud.compute.v1.instances.updateNetworkInterface]: <doc:InstancesClient/updateNetworkInterface(request:options:)>
     public struct UpdateNetworkInterfaceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -3418,7 +3418,7 @@
 
       /// Synthetic request body field for the [updateNetworkInterface()][google.cloud.compute.v1.instances.updateNetworkInterface] method.
       ///
-      /// [google.cloud.compute.v1.instances.updateNetworkInterface]: <doc:InstancesClient/updateNetworkInterface(request:)>
+      /// [google.cloud.compute.v1.instances.updateNetworkInterface]: <doc:InstancesClient/updateNetworkInterface(request:options:)>
       public var body: NetworkInterface? = nil
 
       /// Initialize a new instance of `UpdateNetworkInterfaceRequest`.
@@ -3450,7 +3450,7 @@
 
     /// Synthetic request message for the [updateShieldedInstanceConfig()][google.cloud.compute.v1.instances.updateShieldedInstanceConfig] method.
     ///
-    /// [google.cloud.compute.v1.instances.updateShieldedInstanceConfig]: <doc:InstancesClient/updateShieldedInstanceConfig(request:)>
+    /// [google.cloud.compute.v1.instances.updateShieldedInstanceConfig]: <doc:InstancesClient/updateShieldedInstanceConfig(request:options:)>
     public struct UpdateShieldedInstanceConfigRequest: Codable, Equatable, GoogleCloudWkt
         ._AnyPackable,
       Sendable
@@ -3481,7 +3481,7 @@
 
       /// Synthetic request body field for the [updateShieldedInstanceConfig()][google.cloud.compute.v1.instances.updateShieldedInstanceConfig] method.
       ///
-      /// [google.cloud.compute.v1.instances.updateShieldedInstanceConfig]: <doc:InstancesClient/updateShieldedInstanceConfig(request:)>
+      /// [google.cloud.compute.v1.instances.updateShieldedInstanceConfig]: <doc:InstancesClient/updateShieldedInstanceConfig(request:options:)>
       public var body: ShieldedInstanceConfig? = nil
 
       /// Initialize a new instance of `UpdateShieldedInstanceConfigRequest`.

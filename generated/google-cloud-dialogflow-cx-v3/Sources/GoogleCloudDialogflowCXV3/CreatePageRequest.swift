@@ -21,7 +21,7 @@
   /// The request message for
   /// [Pages.CreatePage][google.cloud.dialogflow.cx.v3.Pages.CreatePage].
   ///
-  /// [google.cloud.dialogflow.cx.v3.Pages.CreatePage]: <doc:PagesClient/createPage(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Pages.CreatePage]: <doc:PagesClient/createPage(request:options:)>
   public struct CreatePageRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

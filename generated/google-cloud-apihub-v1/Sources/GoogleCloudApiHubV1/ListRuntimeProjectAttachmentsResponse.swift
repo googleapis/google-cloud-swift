@@ -22,7 +22,7 @@ import GoogleCloudWkt
 /// [ListRuntimeProjectAttachments][google.cloud.apihub.v1.RuntimeProjectAttachmentService.ListRuntimeProjectAttachments]
 /// method's response.
 ///
-/// [google.cloud.apihub.v1.RuntimeProjectAttachmentService.ListRuntimeProjectAttachments]: <doc:RuntimeProjectAttachmentServiceClient/listRuntimeProjectAttachments(request:)>
+/// [google.cloud.apihub.v1.RuntimeProjectAttachmentService.ListRuntimeProjectAttachments]: <doc:RuntimeProjectAttachmentServiceClient/listRuntimeProjectAttachments(request:options:)>
 public struct ListRuntimeProjectAttachmentsResponse: Codable, Equatable, GoogleCloudWkt
     ._AnyPackable,
   GoogleCloudGax._PaginatedResponse,

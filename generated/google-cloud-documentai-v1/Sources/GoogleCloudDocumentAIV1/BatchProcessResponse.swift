@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [BatchProcessDocuments][google.cloud.documentai.v1.DocumentProcessorService.BatchProcessDocuments].
 ///
-/// [google.cloud.documentai.v1.DocumentProcessorService.BatchProcessDocuments]: <doc:DocumentProcessorServiceClient/batchProcessDocuments(request:)>
+/// [google.cloud.documentai.v1.DocumentProcessorService.BatchProcessDocuments]: <doc:DocumentProcessorServiceClient/batchProcessDocuments(request:options:)>
 public struct BatchProcessResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

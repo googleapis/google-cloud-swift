@@ -21,7 +21,7 @@
   /// Request message for
   /// [JobService.SearchModelDeploymentMonitoringStatsAnomalies][google.cloud.aiplatform.v1.JobService.SearchModelDeploymentMonitoringStatsAnomalies].
   ///
-  /// [google.cloud.aiplatform.v1.JobService.SearchModelDeploymentMonitoringStatsAnomalies]: <doc:JobServiceClient/searchModelDeploymentMonitoringStatsAnomalies(request:)>
+  /// [google.cloud.aiplatform.v1.JobService.SearchModelDeploymentMonitoringStatsAnomalies]: <doc:JobServiceClient/searchModelDeploymentMonitoringStatsAnomalies(request:options:)>
   public struct SearchModelDeploymentMonitoringStatsAnomaliesRequest: Codable, Equatable,
     GoogleCloudWkt._AnyPackable,
     Sendable
@@ -54,7 +54,7 @@
     /// [JobService.SearchModelDeploymentMonitoringStatsAnomalies][google.cloud.aiplatform.v1.JobService.SearchModelDeploymentMonitoringStatsAnomalies]
     /// call.
     ///
-    /// [google.cloud.aiplatform.v1.JobService.SearchModelDeploymentMonitoringStatsAnomalies]: <doc:JobServiceClient/searchModelDeploymentMonitoringStatsAnomalies(request:)>
+    /// [google.cloud.aiplatform.v1.JobService.SearchModelDeploymentMonitoringStatsAnomalies]: <doc:JobServiceClient/searchModelDeploymentMonitoringStatsAnomalies(request:options:)>
     public var pageToken: Swift.String = Swift.String()
 
     /// The earliest timestamp of stats being generated.

@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [KeyManagementService.ListImportJobs][google.cloud.kms.v1.KeyManagementService.ListImportJobs].
 ///
-/// [google.cloud.kms.v1.KeyManagementService.ListImportJobs]: <doc:KeyManagementServiceClient/listImportJobs(request:)>
+/// [google.cloud.kms.v1.KeyManagementService.ListImportJobs]: <doc:KeyManagementServiceClient/listImportJobs(request:options:)>
 public struct ListImportJobsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

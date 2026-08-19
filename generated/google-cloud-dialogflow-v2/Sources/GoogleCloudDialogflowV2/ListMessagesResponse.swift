@@ -22,7 +22,7 @@
   /// The response message for
   /// [Conversations.ListMessages][google.cloud.dialogflow.v2.Conversations.ListMessages].
   ///
-  /// [google.cloud.dialogflow.v2.Conversations.ListMessages]: <doc:ConversationsClient/listMessages(request:)>
+  /// [google.cloud.dialogflow.v2.Conversations.ListMessages]: <doc:ConversationsClient/listMessages(request:options:)>
   public struct ListMessagesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable

@@ -39,7 +39,7 @@ import GoogleCloudWkt
 /// [audio][google.cloud.speech.v2.StreamingRecognizeRequest.audio] set.
 ///
 /// [google.cloud.speech.v2.Recognizer]: <doc:Recognizer>
-/// [google.cloud.speech.v2.Speech.StreamingRecognize]: <doc:SpeechClient/streamingRecognize(request:)>
+/// [google.cloud.speech.v2.Speech.StreamingRecognize]: <doc:SpeechClient/streamingRecognize(request:options:)>
 /// [google.cloud.speech.v2.StreamingRecognizeRequest]: <doc:StreamingRecognizeRequest>
 /// [google.cloud.speech.v2.StreamingRecognizeRequest.audio]: <doc:StreamingRecognizeRequest/OneOf_StreamingRequest/audio(_:)>
 /// [google.cloud.speech.v2.StreamingRecognizeRequest.recognizer]: <doc:StreamingRecognizeRequest/recognizer>

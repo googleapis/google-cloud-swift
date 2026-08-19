@@ -21,7 +21,7 @@
   /// Request message for
   /// [JobService.GetNasTrialDetail][google.cloud.aiplatform.v1.JobService.GetNasTrialDetail].
   ///
-  /// [google.cloud.aiplatform.v1.JobService.GetNasTrialDetail]: <doc:JobServiceClient/getNasTrialDetail(request:)>
+  /// [google.cloud.aiplatform.v1.JobService.GetNasTrialDetail]: <doc:JobServiceClient/getNasTrialDetail(request:options:)>
   public struct GetNasTrialDetailRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

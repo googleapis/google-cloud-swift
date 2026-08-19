@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [ConsumerProcurementService.PlaceOrder][google.cloud.commerce.consumer.procurement.v1.ConsumerProcurementService.PlaceOrder].
 ///
-/// [google.cloud.commerce.consumer.procurement.v1.ConsumerProcurementService.PlaceOrder]: <doc:ConsumerProcurementServiceClient/placeOrder(request:)>
+/// [google.cloud.commerce.consumer.procurement.v1.ConsumerProcurementService.PlaceOrder]: <doc:ConsumerProcurementServiceClient/placeOrder(request:options:)>
 public struct PlaceOrderRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for the
 /// [GetPhraseSet][google.cloud.speech.v2.Speech.GetPhraseSet] method.
 ///
-/// [google.cloud.speech.v2.Speech.GetPhraseSet]: <doc:SpeechClient/getPhraseSet(request:)>
+/// [google.cloud.speech.v2.Speech.GetPhraseSet]: <doc:SpeechClient/getPhraseSet(request:options:)>
 public struct GetPhraseSetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

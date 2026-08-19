@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [VmwareEngine.CreateExternalAddress][google.cloud.vmwareengine.v1.VmwareEngine.CreateExternalAddress]
 ///
-/// [google.cloud.vmwareengine.v1.VmwareEngine.CreateExternalAddress]: <doc:VmwareEngineClient/createExternalAddress(request:)>
+/// [google.cloud.vmwareengine.v1.VmwareEngine.CreateExternalAddress]: <doc:VmwareEngineClient/createExternalAddress(request:options:)>
 public struct CreateExternalAddressRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

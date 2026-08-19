@@ -22,7 +22,7 @@
   /// [EngineService.CreateEngine][google.cloud.discoveryengine.v1.EngineService.CreateEngine]
   /// method.
   ///
-  /// [google.cloud.discoveryengine.v1.EngineService.CreateEngine]: <doc:EngineServiceClient/createEngine(request:)>
+  /// [google.cloud.discoveryengine.v1.EngineService.CreateEngine]: <doc:EngineServiceClient/createEngine(request:options:)>
   public struct CreateEngineRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

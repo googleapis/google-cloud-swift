@@ -22,7 +22,7 @@
   /// [TestCases.BatchRunTestCases][google.cloud.dialogflow.cx.v3.TestCases.BatchRunTestCases]
   /// long running operation.
   ///
-  /// [google.cloud.dialogflow.cx.v3.TestCases.BatchRunTestCases]: <doc:TestCasesClient/batchRunTestCases(request:)>
+  /// [google.cloud.dialogflow.cx.v3.TestCases.BatchRunTestCases]: <doc:TestCasesClient/batchRunTestCases(request:options:)>
   public struct BatchRunTestCasesMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

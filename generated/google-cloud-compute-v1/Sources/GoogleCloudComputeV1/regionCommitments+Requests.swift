@@ -21,7 +21,7 @@
   extension RegionCommitmentsClient {
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.regionCommitments.aggregatedList] method.
     ///
-    /// [google.cloud.compute.v1.regionCommitments.aggregatedList]: <doc:RegionCommitmentsClient/aggregatedList(request:)>
+    /// [google.cloud.compute.v1.regionCommitments.aggregatedList]: <doc:RegionCommitmentsClient/aggregatedList(request:options:)>
     public struct AggregatedListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -163,7 +163,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.regionCommitments.get] method.
     ///
-    /// [google.cloud.compute.v1.regionCommitments.get]: <doc:RegionCommitmentsClient/`get`(request:)>
+    /// [google.cloud.compute.v1.regionCommitments.get]: <doc:RegionCommitmentsClient/`get`(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -205,7 +205,7 @@
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.regionCommitments.insert] method.
     ///
-    /// [google.cloud.compute.v1.regionCommitments.insert]: <doc:RegionCommitmentsClient/insert(request:)>
+    /// [google.cloud.compute.v1.regionCommitments.insert]: <doc:RegionCommitmentsClient/insert(request:options:)>
     public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -232,7 +232,7 @@
 
       /// Synthetic request body field for the [insert()][google.cloud.compute.v1.regionCommitments.insert] method.
       ///
-      /// [google.cloud.compute.v1.regionCommitments.insert]: <doc:RegionCommitmentsClient/insert(request:)>
+      /// [google.cloud.compute.v1.regionCommitments.insert]: <doc:RegionCommitmentsClient/insert(request:options:)>
       public var body: Commitment? = nil
 
       /// Initialize a new instance of `InsertRequest`.
@@ -264,7 +264,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.regionCommitments.list] method.
     ///
-    /// [google.cloud.compute.v1.regionCommitments.list]: <doc:RegionCommitmentsClient/list(request:)>
+    /// [google.cloud.compute.v1.regionCommitments.list]: <doc:RegionCommitmentsClient/list(request:options:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -396,7 +396,7 @@
 
     /// Synthetic request message for the [update()][google.cloud.compute.v1.regionCommitments.update] method.
     ///
-    /// [google.cloud.compute.v1.regionCommitments.update]: <doc:RegionCommitmentsClient/update(request:)>
+    /// [google.cloud.compute.v1.regionCommitments.update]: <doc:RegionCommitmentsClient/update(request:options:)>
     public struct UpdateRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -431,7 +431,7 @@
 
       /// Synthetic request body field for the [update()][google.cloud.compute.v1.regionCommitments.update] method.
       ///
-      /// [google.cloud.compute.v1.regionCommitments.update]: <doc:RegionCommitmentsClient/update(request:)>
+      /// [google.cloud.compute.v1.regionCommitments.update]: <doc:RegionCommitmentsClient/update(request:options:)>
       public var body: Commitment? = nil
 
       /// Initialize a new instance of `UpdateRequest`.

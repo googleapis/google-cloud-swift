@@ -21,7 +21,7 @@
   /// Request message for
   /// [PredictionService.Explain][google.cloud.aiplatform.v1.PredictionService.Explain].
   ///
-  /// [google.cloud.aiplatform.v1.PredictionService.Explain]: <doc:PredictionServiceClient/explain(request:)>
+  /// [google.cloud.aiplatform.v1.PredictionService.Explain]: <doc:PredictionServiceClient/explain(request:options:)>
   public struct ExplainRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

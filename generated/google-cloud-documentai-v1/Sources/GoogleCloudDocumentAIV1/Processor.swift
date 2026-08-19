@@ -30,7 +30,7 @@ public struct Processor: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// To get a list of processor types, see
   /// [FetchProcessorTypes][google.cloud.documentai.v1.DocumentProcessorService.FetchProcessorTypes].
   ///
-  /// [google.cloud.documentai.v1.DocumentProcessorService.FetchProcessorTypes]: <doc:DocumentProcessorServiceClient/fetchProcessorTypes(request:)>
+  /// [google.cloud.documentai.v1.DocumentProcessorService.FetchProcessorTypes]: <doc:DocumentProcessorServiceClient/fetchProcessorTypes(request:options:)>
   public var type: Swift.String = Swift.String()
 
   /// The display name of the processor.

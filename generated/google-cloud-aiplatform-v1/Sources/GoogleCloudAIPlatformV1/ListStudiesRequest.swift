@@ -21,7 +21,7 @@
   /// Request message for
   /// [VizierService.ListStudies][google.cloud.aiplatform.v1.VizierService.ListStudies].
   ///
-  /// [google.cloud.aiplatform.v1.VizierService.ListStudies]: <doc:VizierServiceClient/listStudies(request:)>
+  /// [google.cloud.aiplatform.v1.VizierService.ListStudies]: <doc:VizierServiceClient/listStudies(request:options:)>
   public struct ListStudiesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

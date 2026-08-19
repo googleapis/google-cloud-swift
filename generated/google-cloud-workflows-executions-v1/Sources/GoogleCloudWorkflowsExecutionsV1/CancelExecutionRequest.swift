@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [CancelExecution][google.cloud.workflows.executions.v1.Executions.CancelExecution]
 /// method.
 ///
-/// [google.cloud.workflows.executions.v1.Executions.CancelExecution]: <doc:ExecutionsClient/cancelExecution(request:)>
+/// [google.cloud.workflows.executions.v1.Executions.CancelExecution]: <doc:ExecutionsClient/cancelExecution(request:options:)>
 public struct CancelExecutionRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

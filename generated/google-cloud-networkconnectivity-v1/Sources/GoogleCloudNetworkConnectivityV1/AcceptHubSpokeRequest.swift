@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// The request for
 /// [HubService.AcceptHubSpoke][google.cloud.networkconnectivity.v1.HubService.AcceptHubSpoke].
 ///
-/// [google.cloud.networkconnectivity.v1.HubService.AcceptHubSpoke]: <doc:HubServiceClient/acceptHubSpoke(request:)>
+/// [google.cloud.networkconnectivity.v1.HubService.AcceptHubSpoke]: <doc:HubServiceClient/acceptHubSpoke(request:options:)>
 public struct AcceptHubSpokeRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

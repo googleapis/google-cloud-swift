@@ -21,7 +21,7 @@
   extension GlobalOrganizationOperationsClient {
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.globalOrganizationOperations.delete] method.
     ///
-    /// [google.cloud.compute.v1.globalOrganizationOperations.delete]: <doc:GlobalOrganizationOperationsClient/delete(request:)>
+    /// [google.cloud.compute.v1.globalOrganizationOperations.delete]: <doc:GlobalOrganizationOperationsClient/delete(request:options:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -62,7 +62,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.globalOrganizationOperations.get] method.
     ///
-    /// [google.cloud.compute.v1.globalOrganizationOperations.get]: <doc:GlobalOrganizationOperationsClient/`get`(request:)>
+    /// [google.cloud.compute.v1.globalOrganizationOperations.get]: <doc:GlobalOrganizationOperationsClient/`get`(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -102,7 +102,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.globalOrganizationOperations.list] method.
     ///
-    /// [google.cloud.compute.v1.globalOrganizationOperations.list]: <doc:GlobalOrganizationOperationsClient/list(request:)>
+    /// [google.cloud.compute.v1.globalOrganizationOperations.list]: <doc:GlobalOrganizationOperationsClient/list(request:options:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {

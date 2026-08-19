@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [StartEnvironment][google.cloud.shell.v1.CloudShellService.StartEnvironment]
 /// once the operation is complete.
 ///
-/// [google.cloud.shell.v1.CloudShellService.StartEnvironment]: <doc:CloudShellServiceClient/startEnvironment(request:)>
+/// [google.cloud.shell.v1.CloudShellService.StartEnvironment]: <doc:CloudShellServiceClient/startEnvironment(request:options:)>
 public struct StartEnvironmentResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

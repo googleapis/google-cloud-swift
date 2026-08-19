@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [VmwareEngine.UpdateNetworkPolicy][google.cloud.vmwareengine.v1.VmwareEngine.UpdateNetworkPolicy]
 ///
-/// [google.cloud.vmwareengine.v1.VmwareEngine.UpdateNetworkPolicy]: <doc:VmwareEngineClient/updateNetworkPolicy(request:)>
+/// [google.cloud.vmwareengine.v1.VmwareEngine.UpdateNetworkPolicy]: <doc:VmwareEngineClient/updateNetworkPolicy(request:options:)>
 public struct UpdateNetworkPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

@@ -21,7 +21,7 @@
   /// Runtime operation information for
   /// [IndexService.UpdateIndex][google.cloud.aiplatform.v1.IndexService.UpdateIndex].
   ///
-  /// [google.cloud.aiplatform.v1.IndexService.UpdateIndex]: <doc:IndexServiceClient/updateIndex(request:)>
+  /// [google.cloud.aiplatform.v1.IndexService.UpdateIndex]: <doc:IndexServiceClient/updateIndex(request:options:)>
   public struct UpdateIndexOperationMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

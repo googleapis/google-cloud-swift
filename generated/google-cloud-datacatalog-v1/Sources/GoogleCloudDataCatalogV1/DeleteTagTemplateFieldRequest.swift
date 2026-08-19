@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [DeleteTagTemplateField][google.cloud.datacatalog.v1.DataCatalog.DeleteTagTemplateField].
 ///
-/// [google.cloud.datacatalog.v1.DataCatalog.DeleteTagTemplateField]: <doc:DataCatalogClient/deleteTagTemplateField(request:)>
+/// [google.cloud.datacatalog.v1.DataCatalog.DeleteTagTemplateField]: <doc:DataCatalogClient/deleteTagTemplateField(request:options:)>
 public struct DeleteTagTemplateFieldRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

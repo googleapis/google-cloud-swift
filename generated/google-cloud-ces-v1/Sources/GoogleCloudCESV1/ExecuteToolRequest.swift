@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [ToolService.ExecuteTool][google.cloud.ces.v1.ToolService.ExecuteTool].
 ///
-/// [google.cloud.ces.v1.ToolService.ExecuteTool]: <doc:ToolServiceClient/executeTool(request:)>
+/// [google.cloud.ces.v1.ToolService.ExecuteTool]: <doc:ToolServiceClient/executeTool(request:options:)>
 public struct ExecuteToolRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

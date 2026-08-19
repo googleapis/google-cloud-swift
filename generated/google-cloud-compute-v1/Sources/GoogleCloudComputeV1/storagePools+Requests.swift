@@ -21,7 +21,7 @@
   extension StoragePoolsClient {
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.storagePools.aggregatedList] method.
     ///
-    /// [google.cloud.compute.v1.storagePools.aggregatedList]: <doc:StoragePoolsClient/aggregatedList(request:)>
+    /// [google.cloud.compute.v1.storagePools.aggregatedList]: <doc:StoragePoolsClient/aggregatedList(request:options:)>
     public struct AggregatedListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -163,7 +163,7 @@
 
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.storagePools.delete] method.
     ///
-    /// [google.cloud.compute.v1.storagePools.delete]: <doc:StoragePoolsClient/delete(request:)>
+    /// [google.cloud.compute.v1.storagePools.delete]: <doc:StoragePoolsClient/delete(request:options:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -220,7 +220,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.storagePools.get] method.
     ///
-    /// [google.cloud.compute.v1.storagePools.get]: <doc:StoragePoolsClient/`get`(request:)>
+    /// [google.cloud.compute.v1.storagePools.get]: <doc:StoragePoolsClient/`get`(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -262,7 +262,7 @@
 
     /// Synthetic request message for the [getIamPolicy()][google.cloud.compute.v1.storagePools.getIamPolicy] method.
     ///
-    /// [google.cloud.compute.v1.storagePools.getIamPolicy]: <doc:StoragePoolsClient/getIamPolicy(request:)>
+    /// [google.cloud.compute.v1.storagePools.getIamPolicy]: <doc:StoragePoolsClient/getIamPolicy(request:options:)>
     public struct GetIamPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -307,7 +307,7 @@
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.storagePools.insert] method.
     ///
-    /// [google.cloud.compute.v1.storagePools.insert]: <doc:StoragePoolsClient/insert(request:)>
+    /// [google.cloud.compute.v1.storagePools.insert]: <doc:StoragePoolsClient/insert(request:options:)>
     public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -334,7 +334,7 @@
 
       /// Synthetic request body field for the [insert()][google.cloud.compute.v1.storagePools.insert] method.
       ///
-      /// [google.cloud.compute.v1.storagePools.insert]: <doc:StoragePoolsClient/insert(request:)>
+      /// [google.cloud.compute.v1.storagePools.insert]: <doc:StoragePoolsClient/insert(request:options:)>
       public var body: StoragePool? = nil
 
       /// Initialize a new instance of `InsertRequest`.
@@ -366,7 +366,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.storagePools.list] method.
     ///
-    /// [google.cloud.compute.v1.storagePools.list]: <doc:StoragePoolsClient/list(request:)>
+    /// [google.cloud.compute.v1.storagePools.list]: <doc:StoragePoolsClient/list(request:options:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -498,7 +498,7 @@
 
     /// Synthetic request message for the [listDisks()][google.cloud.compute.v1.storagePools.listDisks] method.
     ///
-    /// [google.cloud.compute.v1.storagePools.listDisks]: <doc:StoragePoolsClient/listDisks(request:)>
+    /// [google.cloud.compute.v1.storagePools.listDisks]: <doc:StoragePoolsClient/listDisks(request:options:)>
     public struct ListDisksRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -633,7 +633,7 @@
 
     /// Synthetic request message for the [setIamPolicy()][google.cloud.compute.v1.storagePools.setIamPolicy] method.
     ///
-    /// [google.cloud.compute.v1.storagePools.setIamPolicy]: <doc:StoragePoolsClient/setIamPolicy(request:)>
+    /// [google.cloud.compute.v1.storagePools.setIamPolicy]: <doc:StoragePoolsClient/setIamPolicy(request:options:)>
     public struct SetIamPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -648,7 +648,7 @@
 
       /// Synthetic request body field for the [setIamPolicy()][google.cloud.compute.v1.storagePools.setIamPolicy] method.
       ///
-      /// [google.cloud.compute.v1.storagePools.setIamPolicy]: <doc:StoragePoolsClient/setIamPolicy(request:)>
+      /// [google.cloud.compute.v1.storagePools.setIamPolicy]: <doc:StoragePoolsClient/setIamPolicy(request:options:)>
       public var body: ZoneSetPolicyRequest? = nil
 
       /// Initialize a new instance of `SetIamPolicyRequest`.
@@ -680,7 +680,7 @@
 
     /// Synthetic request message for the [testIamPermissions()][google.cloud.compute.v1.storagePools.testIamPermissions] method.
     ///
-    /// [google.cloud.compute.v1.storagePools.testIamPermissions]: <doc:StoragePoolsClient/testIamPermissions(request:)>
+    /// [google.cloud.compute.v1.storagePools.testIamPermissions]: <doc:StoragePoolsClient/testIamPermissions(request:options:)>
     public struct TestIamPermissionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -695,7 +695,7 @@
 
       /// Synthetic request body field for the [testIamPermissions()][google.cloud.compute.v1.storagePools.testIamPermissions] method.
       ///
-      /// [google.cloud.compute.v1.storagePools.testIamPermissions]: <doc:StoragePoolsClient/testIamPermissions(request:)>
+      /// [google.cloud.compute.v1.storagePools.testIamPermissions]: <doc:StoragePoolsClient/testIamPermissions(request:options:)>
       public var body: TestPermissionsRequest? = nil
 
       /// Initialize a new instance of `TestIamPermissionsRequest`.
@@ -727,7 +727,7 @@
 
     /// Synthetic request message for the [update()][google.cloud.compute.v1.storagePools.update] method.
     ///
-    /// [google.cloud.compute.v1.storagePools.update]: <doc:StoragePoolsClient/update(request:)>
+    /// [google.cloud.compute.v1.storagePools.update]: <doc:StoragePoolsClient/update(request:options:)>
     public struct UpdateRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -760,7 +760,7 @@
 
       /// Synthetic request body field for the [update()][google.cloud.compute.v1.storagePools.update] method.
       ///
-      /// [google.cloud.compute.v1.storagePools.update]: <doc:StoragePoolsClient/update(request:)>
+      /// [google.cloud.compute.v1.storagePools.update]: <doc:StoragePoolsClient/update(request:options:)>
       public var body: StoragePool? = nil
 
       /// Initialize a new instance of `UpdateRequest`.

@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [VmwareEngine.CreateVmwareEngineNetwork][google.cloud.vmwareengine.v1.VmwareEngine.CreateVmwareEngineNetwork]
 ///
-/// [google.cloud.vmwareengine.v1.VmwareEngine.CreateVmwareEngineNetwork]: <doc:VmwareEngineClient/createVmwareEngineNetwork(request:)>
+/// [google.cloud.vmwareengine.v1.VmwareEngine.CreateVmwareEngineNetwork]: <doc:VmwareEngineClient/createVmwareEngineNetwork(request:options:)>
 public struct CreateVmwareEngineNetworkRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

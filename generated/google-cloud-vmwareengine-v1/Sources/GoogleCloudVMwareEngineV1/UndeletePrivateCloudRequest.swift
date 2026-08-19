@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [VmwareEngine.UndeletePrivateCloud][google.cloud.vmwareengine.v1.VmwareEngine.UndeletePrivateCloud]
 ///
-/// [google.cloud.vmwareengine.v1.VmwareEngine.UndeletePrivateCloud]: <doc:VmwareEngineClient/undeletePrivateCloud(request:)>
+/// [google.cloud.vmwareengine.v1.VmwareEngine.UndeletePrivateCloud]: <doc:VmwareEngineClient/undeletePrivateCloud(request:options:)>
 public struct UndeletePrivateCloudRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

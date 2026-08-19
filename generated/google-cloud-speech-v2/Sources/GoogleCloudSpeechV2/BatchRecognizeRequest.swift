@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [BatchRecognize][google.cloud.speech.v2.Speech.BatchRecognize]
 /// method.
 ///
-/// [google.cloud.speech.v2.Speech.BatchRecognize]: <doc:SpeechClient/batchRecognize(request:)>
+/// [google.cloud.speech.v2.Speech.BatchRecognize]: <doc:SpeechClient/batchRecognize(request:options:)>
 public struct BatchRecognizeRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

@@ -23,8 +23,8 @@
   /// Request message for
   /// [FeatureRegistryService.ListFeatures][google.cloud.aiplatform.v1.FeatureRegistryService.ListFeatures].
   ///
-  /// [google.cloud.aiplatform.v1.FeatureRegistryService.ListFeatures]: <doc:FeatureRegistryServiceClient/listFeatures(request:)>
-  /// [google.cloud.aiplatform.v1.FeaturestoreService.ListFeatures]: <doc:FeaturestoreServiceClient/listFeatures(request:)>
+  /// [google.cloud.aiplatform.v1.FeatureRegistryService.ListFeatures]: <doc:FeatureRegistryServiceClient/listFeatures(request:options:)>
+  /// [google.cloud.aiplatform.v1.FeaturestoreService.ListFeatures]: <doc:FeaturestoreServiceClient/listFeatures(request:options:)>
   public struct ListFeaturesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {
@@ -75,8 +75,8 @@
     /// [FeatureRegistryService.ListFeatures][google.cloud.aiplatform.v1.FeatureRegistryService.ListFeatures]
     /// must match the call that provided the page token.
     ///
-    /// [google.cloud.aiplatform.v1.FeatureRegistryService.ListFeatures]: <doc:FeatureRegistryServiceClient/listFeatures(request:)>
-    /// [google.cloud.aiplatform.v1.FeaturestoreService.ListFeatures]: <doc:FeaturestoreServiceClient/listFeatures(request:)>
+    /// [google.cloud.aiplatform.v1.FeatureRegistryService.ListFeatures]: <doc:FeatureRegistryServiceClient/listFeatures(request:options:)>
+    /// [google.cloud.aiplatform.v1.FeaturestoreService.ListFeatures]: <doc:FeaturestoreServiceClient/listFeatures(request:options:)>
     public var pageToken: Swift.String = Swift.String()
 
     /// A comma-separated list of fields to order by, sorted in ascending order.

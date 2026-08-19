@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [FetchProcessorTypes][google.cloud.documentai.v1.DocumentProcessorService.FetchProcessorTypes]
 /// method.
 ///
-/// [google.cloud.documentai.v1.DocumentProcessorService.FetchProcessorTypes]: <doc:DocumentProcessorServiceClient/fetchProcessorTypes(request:)>
+/// [google.cloud.documentai.v1.DocumentProcessorService.FetchProcessorTypes]: <doc:DocumentProcessorServiceClient/fetchProcessorTypes(request:options:)>
 public struct FetchProcessorTypesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

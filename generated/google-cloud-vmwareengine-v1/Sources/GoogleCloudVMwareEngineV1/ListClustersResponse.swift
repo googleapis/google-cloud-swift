@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [VmwareEngine.ListClusters][google.cloud.vmwareengine.v1.VmwareEngine.ListClusters]
 ///
-/// [google.cloud.vmwareengine.v1.VmwareEngine.ListClusters]: <doc:VmwareEngineClient/listClusters(request:)>
+/// [google.cloud.vmwareengine.v1.VmwareEngine.ListClusters]: <doc:VmwareEngineClient/listClusters(request:options:)>
 public struct ListClustersResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

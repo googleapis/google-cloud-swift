@@ -23,7 +23,7 @@
   /// operation. This will be returned by the google.longrunning.Operation.metadata
   /// field.
   ///
-  /// [google.cloud.discoveryengine.v1.SiteSearchEngineService.DeleteSitemap]: <doc:SiteSearchEngineServiceClient/deleteSitemap(request:)>
+  /// [google.cloud.discoveryengine.v1.SiteSearchEngineService.DeleteSitemap]: <doc:SiteSearchEngineServiceClient/deleteSitemap(request:options:)>
   public struct DeleteSitemapMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

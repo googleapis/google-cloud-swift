@@ -19,7 +19,7 @@ import GoogleCloudWkt
 
 /// The request message for [Locations.GetLocation][google.cloud.location.Locations.GetLocation].
 ///
-/// [google.cloud.location.Locations.GetLocation]: <doc:LocationsClient/getLocation(request:)>
+/// [google.cloud.location.Locations.GetLocation]: <doc:LocationsClient/getLocation(request:options:)>
 public struct GetLocationRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

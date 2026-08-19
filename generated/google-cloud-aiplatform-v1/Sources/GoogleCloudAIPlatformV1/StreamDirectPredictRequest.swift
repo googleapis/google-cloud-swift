@@ -26,7 +26,7 @@
   /// field and optionally [input][]. The subsequent messages must contain
   /// [input][].
   ///
-  /// [google.cloud.aiplatform.v1.PredictionService.StreamDirectPredict]: <doc:PredictionServiceClient/streamDirectPredict(request:)>
+  /// [google.cloud.aiplatform.v1.PredictionService.StreamDirectPredict]: <doc:PredictionServiceClient/streamDirectPredict(request:options:)>
   /// [google.cloud.aiplatform.v1.StreamDirectPredictRequest.endpoint]: <doc:StreamDirectPredictRequest/endpoint>
   public struct StreamDirectPredictRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable

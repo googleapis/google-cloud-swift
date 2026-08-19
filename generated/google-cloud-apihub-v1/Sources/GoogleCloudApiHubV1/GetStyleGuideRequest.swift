@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// The [GetStyleGuide][google.cloud.apihub.v1.LintingService.GetStyleGuide]
 /// method's request.
 ///
-/// [google.cloud.apihub.v1.LintingService.GetStyleGuide]: <doc:LintingServiceClient/getStyleGuide(request:)>
+/// [google.cloud.apihub.v1.LintingService.GetStyleGuide]: <doc:LintingServiceClient/getStyleGuide(request:options:)>
 public struct GetStyleGuideRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

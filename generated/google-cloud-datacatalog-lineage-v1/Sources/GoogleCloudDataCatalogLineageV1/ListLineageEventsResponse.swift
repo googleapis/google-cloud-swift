@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [ListLineageEvents][google.cloud.datacatalog.lineage.v1.Lineage.ListLineageEvents].
 ///
-/// [google.cloud.datacatalog.lineage.v1.Lineage.ListLineageEvents]: <doc:LineageClient/listLineageEvents(request:)>
+/// [google.cloud.datacatalog.lineage.v1.Lineage.ListLineageEvents]: <doc:LineageClient/listLineageEvents(request:options:)>
 public struct ListLineageEventsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

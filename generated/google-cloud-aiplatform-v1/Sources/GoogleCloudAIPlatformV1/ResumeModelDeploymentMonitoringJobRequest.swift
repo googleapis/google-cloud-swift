@@ -21,7 +21,7 @@
   /// Request message for
   /// [JobService.ResumeModelDeploymentMonitoringJob][google.cloud.aiplatform.v1.JobService.ResumeModelDeploymentMonitoringJob].
   ///
-  /// [google.cloud.aiplatform.v1.JobService.ResumeModelDeploymentMonitoringJob]: <doc:JobServiceClient/resumeModelDeploymentMonitoringJob(request:)>
+  /// [google.cloud.aiplatform.v1.JobService.ResumeModelDeploymentMonitoringJob]: <doc:JobServiceClient/resumeModelDeploymentMonitoringJob(request:options:)>
   public struct ResumeModelDeploymentMonitoringJobRequest: Codable, Equatable, GoogleCloudWkt
       ._AnyPackable,
     Sendable

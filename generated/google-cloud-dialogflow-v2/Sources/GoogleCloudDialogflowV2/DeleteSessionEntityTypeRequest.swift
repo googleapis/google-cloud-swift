@@ -21,7 +21,7 @@
   /// The request message for
   /// [SessionEntityTypes.DeleteSessionEntityType][google.cloud.dialogflow.v2.SessionEntityTypes.DeleteSessionEntityType].
   ///
-  /// [google.cloud.dialogflow.v2.SessionEntityTypes.DeleteSessionEntityType]: <doc:SessionEntityTypesClient/deleteSessionEntityType(request:)>
+  /// [google.cloud.dialogflow.v2.SessionEntityTypes.DeleteSessionEntityType]: <doc:SessionEntityTypesClient/deleteSessionEntityType(request:options:)>
   public struct DeleteSessionEntityTypeRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

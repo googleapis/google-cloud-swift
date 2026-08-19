@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// The request for
 /// [google.datastore.admin.v1.DatastoreAdmin.CreateIndex][google.datastore.admin.v1.DatastoreAdmin.CreateIndex].
 ///
-/// [google.datastore.admin.v1.DatastoreAdmin.CreateIndex]: <doc:DatastoreAdminClient/createIndex(request:)>
+/// [google.datastore.admin.v1.DatastoreAdmin.CreateIndex]: <doc:DatastoreAdminClient/createIndex(request:options:)>
 public struct CreateIndexRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

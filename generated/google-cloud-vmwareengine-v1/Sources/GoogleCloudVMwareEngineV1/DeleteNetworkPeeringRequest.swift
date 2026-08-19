@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [VmwareEngine.DeleteNetworkPeering][google.cloud.vmwareengine.v1.VmwareEngine.DeleteNetworkPeering]
 ///
-/// [google.cloud.vmwareengine.v1.VmwareEngine.DeleteNetworkPeering]: <doc:VmwareEngineClient/deleteNetworkPeering(request:)>
+/// [google.cloud.vmwareengine.v1.VmwareEngine.DeleteNetworkPeering]: <doc:VmwareEngineClient/deleteNetworkPeering(request:options:)>
 public struct DeleteNetworkPeeringRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// The [UpdateDeployment][google.cloud.apihub.v1.ApiHub.UpdateDeployment]
 /// method's request.
 ///
-/// [google.cloud.apihub.v1.ApiHub.UpdateDeployment]: <doc:ApiHubClient/updateDeployment(request:)>
+/// [google.cloud.apihub.v1.ApiHub.UpdateDeployment]: <doc:ApiHubClient/updateDeployment(request:options:)>
 public struct UpdateDeploymentRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

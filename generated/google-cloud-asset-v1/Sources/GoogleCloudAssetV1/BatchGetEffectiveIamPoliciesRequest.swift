@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// A request message for
 /// [AssetService.BatchGetEffectiveIamPolicies][google.cloud.asset.v1.AssetService.BatchGetEffectiveIamPolicies].
 ///
-/// [google.cloud.asset.v1.AssetService.BatchGetEffectiveIamPolicies]: <doc:AssetServiceClient/batchGetEffectiveIamPolicies(request:)>
+/// [google.cloud.asset.v1.AssetService.BatchGetEffectiveIamPolicies]: <doc:AssetServiceClient/batchGetEffectiveIamPolicies(request:options:)>
 public struct BatchGetEffectiveIamPoliciesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

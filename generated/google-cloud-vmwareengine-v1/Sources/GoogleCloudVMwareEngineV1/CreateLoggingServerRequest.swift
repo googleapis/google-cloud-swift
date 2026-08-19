@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [VmwareEngine.CreateLoggingServer][google.cloud.vmwareengine.v1.VmwareEngine.CreateLoggingServer]
 ///
-/// [google.cloud.vmwareengine.v1.VmwareEngine.CreateLoggingServer]: <doc:VmwareEngineClient/createLoggingServer(request:)>
+/// [google.cloud.vmwareengine.v1.VmwareEngine.CreateLoggingServer]: <doc:VmwareEngineClient/createLoggingServer(request:options:)>
 public struct CreateLoggingServerRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

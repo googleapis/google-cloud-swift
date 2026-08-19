@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// The request for
 /// [ReservationService.DeleteReservationGroup][google.cloud.bigquery.reservation.v1.ReservationService.DeleteReservationGroup].
 ///
-/// [google.cloud.bigquery.reservation.v1.ReservationService.DeleteReservationGroup]: <doc:ReservationServiceClient/deleteReservationGroup(request:)>
+/// [google.cloud.bigquery.reservation.v1.ReservationService.DeleteReservationGroup]: <doc:ReservationServiceClient/deleteReservationGroup(request:options:)>
 public struct DeleteReservationGroupRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

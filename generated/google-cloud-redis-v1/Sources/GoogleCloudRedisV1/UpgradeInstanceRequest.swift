@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request for
 /// [UpgradeInstance][google.cloud.redis.v1.CloudRedis.UpgradeInstance].
 ///
-/// [google.cloud.redis.v1.CloudRedis.UpgradeInstance]: <doc:CloudRedisClient/upgradeInstance(request:)>
+/// [google.cloud.redis.v1.CloudRedis.UpgradeInstance]: <doc:CloudRedisClient/upgradeInstance(request:options:)>
 public struct UpgradeInstanceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

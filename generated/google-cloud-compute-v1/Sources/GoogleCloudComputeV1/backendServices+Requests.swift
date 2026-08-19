@@ -21,7 +21,7 @@
   extension BackendServicesClient {
     /// Synthetic request message for the [addSignedUrlKey()][google.cloud.compute.v1.backendServices.addSignedUrlKey] method.
     ///
-    /// [google.cloud.compute.v1.backendServices.addSignedUrlKey]: <doc:BackendServicesClient/addSignedUrlKey(request:)>
+    /// [google.cloud.compute.v1.backendServices.addSignedUrlKey]: <doc:BackendServicesClient/addSignedUrlKey(request:options:)>
     public struct AddSignedUrlKeyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -49,7 +49,7 @@
 
       /// Synthetic request body field for the [addSignedUrlKey()][google.cloud.compute.v1.backendServices.addSignedUrlKey] method.
       ///
-      /// [google.cloud.compute.v1.backendServices.addSignedUrlKey]: <doc:BackendServicesClient/addSignedUrlKey(request:)>
+      /// [google.cloud.compute.v1.backendServices.addSignedUrlKey]: <doc:BackendServicesClient/addSignedUrlKey(request:options:)>
       public var body: SignedUrlKey? = nil
 
       /// Initialize a new instance of `AddSignedUrlKeyRequest`.
@@ -81,7 +81,7 @@
 
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.backendServices.aggregatedList] method.
     ///
-    /// [google.cloud.compute.v1.backendServices.aggregatedList]: <doc:BackendServicesClient/aggregatedList(request:)>
+    /// [google.cloud.compute.v1.backendServices.aggregatedList]: <doc:BackendServicesClient/aggregatedList(request:options:)>
     public struct AggregatedListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -223,7 +223,7 @@
 
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.backendServices.delete] method.
     ///
-    /// [google.cloud.compute.v1.backendServices.delete]: <doc:BackendServicesClient/delete(request:)>
+    /// [google.cloud.compute.v1.backendServices.delete]: <doc:BackendServicesClient/delete(request:options:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -277,7 +277,7 @@
 
     /// Synthetic request message for the [deleteSignedUrlKey()][google.cloud.compute.v1.backendServices.deleteSignedUrlKey] method.
     ///
-    /// [google.cloud.compute.v1.backendServices.deleteSignedUrlKey]: <doc:BackendServicesClient/deleteSignedUrlKey(request:)>
+    /// [google.cloud.compute.v1.backendServices.deleteSignedUrlKey]: <doc:BackendServicesClient/deleteSignedUrlKey(request:options:)>
     public struct DeleteSignedUrlKeyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -336,7 +336,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.backendServices.get] method.
     ///
-    /// [google.cloud.compute.v1.backendServices.get]: <doc:BackendServicesClient/`get`(request:)>
+    /// [google.cloud.compute.v1.backendServices.get]: <doc:BackendServicesClient/`get`(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -375,7 +375,7 @@
 
     /// Synthetic request message for the [getEffectiveSecurityPolicies()][google.cloud.compute.v1.backendServices.getEffectiveSecurityPolicies] method.
     ///
-    /// [google.cloud.compute.v1.backendServices.getEffectiveSecurityPolicies]: <doc:BackendServicesClient/getEffectiveSecurityPolicies(request:)>
+    /// [google.cloud.compute.v1.backendServices.getEffectiveSecurityPolicies]: <doc:BackendServicesClient/getEffectiveSecurityPolicies(request:options:)>
     public struct GetEffectiveSecurityPoliciesRequest: Codable, Equatable, GoogleCloudWkt
         ._AnyPackable,
       Sendable
@@ -416,7 +416,7 @@
 
     /// Synthetic request message for the [getHealth()][google.cloud.compute.v1.backendServices.getHealth] method.
     ///
-    /// [google.cloud.compute.v1.backendServices.getHealth]: <doc:BackendServicesClient/getHealth(request:)>
+    /// [google.cloud.compute.v1.backendServices.getHealth]: <doc:BackendServicesClient/getHealth(request:options:)>
     public struct GetHealthRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -427,7 +427,7 @@
 
       /// Synthetic request body field for the [getHealth()][google.cloud.compute.v1.backendServices.getHealth] method.
       ///
-      /// [google.cloud.compute.v1.backendServices.getHealth]: <doc:BackendServicesClient/getHealth(request:)>
+      /// [google.cloud.compute.v1.backendServices.getHealth]: <doc:BackendServicesClient/getHealth(request:options:)>
       public var body: ResourceGroupReference? = nil
 
       /// Initialize a new instance of `GetHealthRequest`.
@@ -459,7 +459,7 @@
 
     /// Synthetic request message for the [getIamPolicy()][google.cloud.compute.v1.backendServices.getIamPolicy] method.
     ///
-    /// [google.cloud.compute.v1.backendServices.getIamPolicy]: <doc:BackendServicesClient/getIamPolicy(request:)>
+    /// [google.cloud.compute.v1.backendServices.getIamPolicy]: <doc:BackendServicesClient/getIamPolicy(request:options:)>
     public struct GetIamPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -501,7 +501,7 @@
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.backendServices.insert] method.
     ///
-    /// [google.cloud.compute.v1.backendServices.insert]: <doc:BackendServicesClient/insert(request:)>
+    /// [google.cloud.compute.v1.backendServices.insert]: <doc:BackendServicesClient/insert(request:options:)>
     public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -525,7 +525,7 @@
 
       /// Synthetic request body field for the [insert()][google.cloud.compute.v1.backendServices.insert] method.
       ///
-      /// [google.cloud.compute.v1.backendServices.insert]: <doc:BackendServicesClient/insert(request:)>
+      /// [google.cloud.compute.v1.backendServices.insert]: <doc:BackendServicesClient/insert(request:options:)>
       public var body: BackendService? = nil
 
       /// Initialize a new instance of `InsertRequest`.
@@ -557,7 +557,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.backendServices.list] method.
     ///
-    /// [google.cloud.compute.v1.backendServices.list]: <doc:BackendServicesClient/list(request:)>
+    /// [google.cloud.compute.v1.backendServices.list]: <doc:BackendServicesClient/list(request:options:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -686,7 +686,7 @@
 
     /// Synthetic request message for the [listUsable()][google.cloud.compute.v1.backendServices.listUsable] method.
     ///
-    /// [google.cloud.compute.v1.backendServices.listUsable]: <doc:BackendServicesClient/listUsable(request:)>
+    /// [google.cloud.compute.v1.backendServices.listUsable]: <doc:BackendServicesClient/listUsable(request:options:)>
     public struct ListUsableRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -815,7 +815,7 @@
 
     /// Synthetic request message for the [patch()][google.cloud.compute.v1.backendServices.patch] method.
     ///
-    /// [google.cloud.compute.v1.backendServices.patch]: <doc:BackendServicesClient/patch(request:)>
+    /// [google.cloud.compute.v1.backendServices.patch]: <doc:BackendServicesClient/patch(request:options:)>
     public struct PatchRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -842,7 +842,7 @@
 
       /// Synthetic request body field for the [patch()][google.cloud.compute.v1.backendServices.patch] method.
       ///
-      /// [google.cloud.compute.v1.backendServices.patch]: <doc:BackendServicesClient/patch(request:)>
+      /// [google.cloud.compute.v1.backendServices.patch]: <doc:BackendServicesClient/patch(request:options:)>
       public var body: BackendService? = nil
 
       /// Initialize a new instance of `PatchRequest`.
@@ -874,7 +874,7 @@
 
     /// Synthetic request message for the [setEdgeSecurityPolicy()][google.cloud.compute.v1.backendServices.setEdgeSecurityPolicy] method.
     ///
-    /// [google.cloud.compute.v1.backendServices.setEdgeSecurityPolicy]: <doc:BackendServicesClient/setEdgeSecurityPolicy(request:)>
+    /// [google.cloud.compute.v1.backendServices.setEdgeSecurityPolicy]: <doc:BackendServicesClient/setEdgeSecurityPolicy(request:options:)>
     public struct SetEdgeSecurityPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -902,7 +902,7 @@
 
       /// Synthetic request body field for the [setEdgeSecurityPolicy()][google.cloud.compute.v1.backendServices.setEdgeSecurityPolicy] method.
       ///
-      /// [google.cloud.compute.v1.backendServices.setEdgeSecurityPolicy]: <doc:BackendServicesClient/setEdgeSecurityPolicy(request:)>
+      /// [google.cloud.compute.v1.backendServices.setEdgeSecurityPolicy]: <doc:BackendServicesClient/setEdgeSecurityPolicy(request:options:)>
       public var body: SecurityPolicyReference? = nil
 
       /// Initialize a new instance of `SetEdgeSecurityPolicyRequest`.
@@ -935,7 +935,7 @@
 
     /// Synthetic request message for the [setIamPolicy()][google.cloud.compute.v1.backendServices.setIamPolicy] method.
     ///
-    /// [google.cloud.compute.v1.backendServices.setIamPolicy]: <doc:BackendServicesClient/setIamPolicy(request:)>
+    /// [google.cloud.compute.v1.backendServices.setIamPolicy]: <doc:BackendServicesClient/setIamPolicy(request:options:)>
     public struct SetIamPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -947,7 +947,7 @@
 
       /// Synthetic request body field for the [setIamPolicy()][google.cloud.compute.v1.backendServices.setIamPolicy] method.
       ///
-      /// [google.cloud.compute.v1.backendServices.setIamPolicy]: <doc:BackendServicesClient/setIamPolicy(request:)>
+      /// [google.cloud.compute.v1.backendServices.setIamPolicy]: <doc:BackendServicesClient/setIamPolicy(request:options:)>
       public var body: GlobalSetPolicyRequest? = nil
 
       /// Initialize a new instance of `SetIamPolicyRequest`.
@@ -979,7 +979,7 @@
 
     /// Synthetic request message for the [setSecurityPolicy()][google.cloud.compute.v1.backendServices.setSecurityPolicy] method.
     ///
-    /// [google.cloud.compute.v1.backendServices.setSecurityPolicy]: <doc:BackendServicesClient/setSecurityPolicy(request:)>
+    /// [google.cloud.compute.v1.backendServices.setSecurityPolicy]: <doc:BackendServicesClient/setSecurityPolicy(request:options:)>
     public struct SetSecurityPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -1007,7 +1007,7 @@
 
       /// Synthetic request body field for the [setSecurityPolicy()][google.cloud.compute.v1.backendServices.setSecurityPolicy] method.
       ///
-      /// [google.cloud.compute.v1.backendServices.setSecurityPolicy]: <doc:BackendServicesClient/setSecurityPolicy(request:)>
+      /// [google.cloud.compute.v1.backendServices.setSecurityPolicy]: <doc:BackendServicesClient/setSecurityPolicy(request:options:)>
       public var body: SecurityPolicyReference? = nil
 
       /// Initialize a new instance of `SetSecurityPolicyRequest`.
@@ -1040,7 +1040,7 @@
 
     /// Synthetic request message for the [testIamPermissions()][google.cloud.compute.v1.backendServices.testIamPermissions] method.
     ///
-    /// [google.cloud.compute.v1.backendServices.testIamPermissions]: <doc:BackendServicesClient/testIamPermissions(request:)>
+    /// [google.cloud.compute.v1.backendServices.testIamPermissions]: <doc:BackendServicesClient/testIamPermissions(request:options:)>
     public struct TestIamPermissionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -1052,7 +1052,7 @@
 
       /// Synthetic request body field for the [testIamPermissions()][google.cloud.compute.v1.backendServices.testIamPermissions] method.
       ///
-      /// [google.cloud.compute.v1.backendServices.testIamPermissions]: <doc:BackendServicesClient/testIamPermissions(request:)>
+      /// [google.cloud.compute.v1.backendServices.testIamPermissions]: <doc:BackendServicesClient/testIamPermissions(request:options:)>
       public var body: TestPermissionsRequest? = nil
 
       /// Initialize a new instance of `TestIamPermissionsRequest`.
@@ -1085,7 +1085,7 @@
 
     /// Synthetic request message for the [update()][google.cloud.compute.v1.backendServices.update] method.
     ///
-    /// [google.cloud.compute.v1.backendServices.update]: <doc:BackendServicesClient/update(request:)>
+    /// [google.cloud.compute.v1.backendServices.update]: <doc:BackendServicesClient/update(request:options:)>
     public struct UpdateRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -1112,7 +1112,7 @@
 
       /// Synthetic request body field for the [update()][google.cloud.compute.v1.backendServices.update] method.
       ///
-      /// [google.cloud.compute.v1.backendServices.update]: <doc:BackendServicesClient/update(request:)>
+      /// [google.cloud.compute.v1.backendServices.update]: <doc:BackendServicesClient/update(request:options:)>
       public var body: BackendService? = nil
 
       /// Initialize a new instance of `UpdateRequest`.

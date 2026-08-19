@@ -22,7 +22,7 @@
   /// Response message for
   /// [ModelService.ListModelVersionCheckpoints][google.cloud.aiplatform.v1.ModelService.ListModelVersionCheckpoints]
   ///
-  /// [google.cloud.aiplatform.v1.ModelService.ListModelVersionCheckpoints]: <doc:ModelServiceClient/listModelVersionCheckpoints(request:)>
+  /// [google.cloud.aiplatform.v1.ModelService.ListModelVersionCheckpoints]: <doc:ModelServiceClient/listModelVersionCheckpoints(request:options:)>
   public struct ListModelVersionCheckpointsResponse: Codable, Equatable, GoogleCloudWkt
       ._AnyPackable,
     GoogleCloudGax._PaginatedResponse,

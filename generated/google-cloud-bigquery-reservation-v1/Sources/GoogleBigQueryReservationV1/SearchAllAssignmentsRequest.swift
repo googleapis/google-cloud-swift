@@ -22,7 +22,7 @@ import GoogleCloudWkt
 /// Note: "bigquery.reservationAssignments.search" permission is required on the
 /// related assignee.
 ///
-/// [google.cloud.bigquery.reservation.v1.ReservationService.SearchAllAssignments]: <doc:ReservationServiceClient/searchAllAssignments(request:)>
+/// [google.cloud.bigquery.reservation.v1.ReservationService.SearchAllAssignments]: <doc:ReservationServiceClient/searchAllAssignments(request:options:)>
 public struct SearchAllAssignmentsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [VmwareEngine.ResetVcenterCredentials][google.cloud.vmwareengine.v1.VmwareEngine.ResetVcenterCredentials]
 ///
-/// [google.cloud.vmwareengine.v1.VmwareEngine.ResetVcenterCredentials]: <doc:VmwareEngineClient/resetVcenterCredentials(request:)>
+/// [google.cloud.vmwareengine.v1.VmwareEngine.ResetVcenterCredentials]: <doc:VmwareEngineClient/resetVcenterCredentials(request:options:)>
 public struct ResetVcenterCredentialsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

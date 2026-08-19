@@ -21,7 +21,7 @@
   /// Response message for
   /// [TensorboardService.ReadTensorboardTimeSeriesData][google.cloud.aiplatform.v1.TensorboardService.ReadTensorboardTimeSeriesData].
   ///
-  /// [google.cloud.aiplatform.v1.TensorboardService.ReadTensorboardTimeSeriesData]: <doc:TensorboardServiceClient/readTensorboardTimeSeriesData(request:)>
+  /// [google.cloud.aiplatform.v1.TensorboardService.ReadTensorboardTimeSeriesData]: <doc:TensorboardServiceClient/readTensorboardTimeSeriesData(request:options:)>
   public struct ReadTensorboardTimeSeriesDataResponse: Codable, Equatable, GoogleCloudWkt
       ._AnyPackable,
     Sendable

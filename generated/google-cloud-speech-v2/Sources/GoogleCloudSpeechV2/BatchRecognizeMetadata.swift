@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Operation metadata for
 /// [BatchRecognize][google.cloud.speech.v2.Speech.BatchRecognize].
 ///
-/// [google.cloud.speech.v2.Speech.BatchRecognize]: <doc:SpeechClient/batchRecognize(request:)>
+/// [google.cloud.speech.v2.Speech.BatchRecognize]: <doc:SpeechClient/batchRecognize(request:options:)>
 public struct BatchRecognizeMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

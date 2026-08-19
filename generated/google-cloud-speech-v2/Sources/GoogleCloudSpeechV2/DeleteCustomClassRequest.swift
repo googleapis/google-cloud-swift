@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for the
 /// [DeleteCustomClass][google.cloud.speech.v2.Speech.DeleteCustomClass] method.
 ///
-/// [google.cloud.speech.v2.Speech.DeleteCustomClass]: <doc:SpeechClient/deleteCustomClass(request:)>
+/// [google.cloud.speech.v2.Speech.DeleteCustomClass]: <doc:SpeechClient/deleteCustomClass(request:options:)>
 public struct DeleteCustomClassRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

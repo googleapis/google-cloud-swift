@@ -21,7 +21,7 @@
   extension InterconnectsClient {
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.interconnects.delete] method.
     ///
-    /// [google.cloud.compute.v1.interconnects.delete]: <doc:InterconnectsClient/delete(request:)>
+    /// [google.cloud.compute.v1.interconnects.delete]: <doc:InterconnectsClient/delete(request:options:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -75,7 +75,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.interconnects.get] method.
     ///
-    /// [google.cloud.compute.v1.interconnects.get]: <doc:InterconnectsClient/`get`(request:)>
+    /// [google.cloud.compute.v1.interconnects.get]: <doc:InterconnectsClient/`get`(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -114,7 +114,7 @@
 
     /// Synthetic request message for the [getDiagnostics()][google.cloud.compute.v1.interconnects.getDiagnostics] method.
     ///
-    /// [google.cloud.compute.v1.interconnects.getDiagnostics]: <doc:InterconnectsClient/getDiagnostics(request:)>
+    /// [google.cloud.compute.v1.interconnects.getDiagnostics]: <doc:InterconnectsClient/getDiagnostics(request:options:)>
     public struct GetDiagnosticsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -153,7 +153,7 @@
 
     /// Synthetic request message for the [getMacsecConfig()][google.cloud.compute.v1.interconnects.getMacsecConfig] method.
     ///
-    /// [google.cloud.compute.v1.interconnects.getMacsecConfig]: <doc:InterconnectsClient/getMacsecConfig(request:)>
+    /// [google.cloud.compute.v1.interconnects.getMacsecConfig]: <doc:InterconnectsClient/getMacsecConfig(request:options:)>
     public struct GetMacsecConfigRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -192,7 +192,7 @@
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.interconnects.insert] method.
     ///
-    /// [google.cloud.compute.v1.interconnects.insert]: <doc:InterconnectsClient/insert(request:)>
+    /// [google.cloud.compute.v1.interconnects.insert]: <doc:InterconnectsClient/insert(request:options:)>
     public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -216,7 +216,7 @@
 
       /// Synthetic request body field for the [insert()][google.cloud.compute.v1.interconnects.insert] method.
       ///
-      /// [google.cloud.compute.v1.interconnects.insert]: <doc:InterconnectsClient/insert(request:)>
+      /// [google.cloud.compute.v1.interconnects.insert]: <doc:InterconnectsClient/insert(request:options:)>
       public var body: Interconnect? = nil
 
       /// Initialize a new instance of `InsertRequest`.
@@ -248,7 +248,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.interconnects.list] method.
     ///
-    /// [google.cloud.compute.v1.interconnects.list]: <doc:InterconnectsClient/list(request:)>
+    /// [google.cloud.compute.v1.interconnects.list]: <doc:InterconnectsClient/list(request:options:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -377,7 +377,7 @@
 
     /// Synthetic request message for the [patch()][google.cloud.compute.v1.interconnects.patch] method.
     ///
-    /// [google.cloud.compute.v1.interconnects.patch]: <doc:InterconnectsClient/patch(request:)>
+    /// [google.cloud.compute.v1.interconnects.patch]: <doc:InterconnectsClient/patch(request:options:)>
     public struct PatchRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -404,7 +404,7 @@
 
       /// Synthetic request body field for the [patch()][google.cloud.compute.v1.interconnects.patch] method.
       ///
-      /// [google.cloud.compute.v1.interconnects.patch]: <doc:InterconnectsClient/patch(request:)>
+      /// [google.cloud.compute.v1.interconnects.patch]: <doc:InterconnectsClient/patch(request:options:)>
       public var body: Interconnect? = nil
 
       /// Initialize a new instance of `PatchRequest`.
@@ -436,7 +436,7 @@
 
     /// Synthetic request message for the [setLabels()][google.cloud.compute.v1.interconnects.setLabels] method.
     ///
-    /// [google.cloud.compute.v1.interconnects.setLabels]: <doc:InterconnectsClient/setLabels(request:)>
+    /// [google.cloud.compute.v1.interconnects.setLabels]: <doc:InterconnectsClient/setLabels(request:options:)>
     public struct SetLabelsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -448,7 +448,7 @@
 
       /// Synthetic request body field for the [setLabels()][google.cloud.compute.v1.interconnects.setLabels] method.
       ///
-      /// [google.cloud.compute.v1.interconnects.setLabels]: <doc:InterconnectsClient/setLabels(request:)>
+      /// [google.cloud.compute.v1.interconnects.setLabels]: <doc:InterconnectsClient/setLabels(request:options:)>
       public var body: GlobalSetLabelsRequest? = nil
 
       /// Initialize a new instance of `SetLabelsRequest`.

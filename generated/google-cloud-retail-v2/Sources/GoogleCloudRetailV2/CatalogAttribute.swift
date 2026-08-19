@@ -60,8 +60,8 @@ public struct CatalogAttribute: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// After catalog changes, it takes about 10 minutes for this field to update.
   ///
   /// [google.cloud.retail.v2.CatalogAttribute]: <doc:CatalogAttribute>
-  /// [google.cloud.retail.v2.CatalogService.AddCatalogAttribute]: <doc:CatalogServiceClient/addCatalogAttribute(request:)>
-  /// [google.cloud.retail.v2.CatalogService.UpdateAttributesConfig]: <doc:CatalogServiceClient/updateAttributesConfig(request:)>
+  /// [google.cloud.retail.v2.CatalogService.AddCatalogAttribute]: <doc:CatalogServiceClient/addCatalogAttribute(request:options:)>
+  /// [google.cloud.retail.v2.CatalogService.UpdateAttributesConfig]: <doc:CatalogServiceClient/updateAttributesConfig(request:options:)>
   /// [google.cloud.retail.v2.Product]: <doc:Product>
   /// [google.cloud.retail.v2.Product.attributes]: <doc:Product/attributes>
   public var inUse: Swift.Bool = Swift.Bool()
@@ -83,7 +83,7 @@ public struct CatalogAttribute: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// is CATALOG_LEVEL_ATTRIBUTE_CONFIG, otherwise throws INVALID_FORMAT error.
   ///
   /// [google.cloud.retail.v2.AttributesConfig.attribute_config_level]: <doc:AttributesConfig/attributeConfigLevel>
-  /// [google.cloud.retail.v2.SearchService.Search]: <doc:SearchServiceClient/search(request:)>
+  /// [google.cloud.retail.v2.SearchService.Search]: <doc:SearchServiceClient/search(request:options:)>
   public var indexableOption: CatalogAttribute.IndexableOption = CatalogAttribute.IndexableOption()
 
   /// If DYNAMIC_FACETABLE_ENABLED, attribute values are available for dynamic
@@ -113,7 +113,7 @@ public struct CatalogAttribute: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// is CATALOG_LEVEL_ATTRIBUTE_CONFIG, otherwise throws INVALID_FORMAT error.
   ///
   /// [google.cloud.retail.v2.AttributesConfig.attribute_config_level]: <doc:AttributesConfig/attributeConfigLevel>
-  /// [google.cloud.retail.v2.SearchService.Search]: <doc:SearchServiceClient/search(request:)>
+  /// [google.cloud.retail.v2.SearchService.Search]: <doc:SearchServiceClient/search(request:options:)>
   public var searchableOption: CatalogAttribute.SearchableOption =
     CatalogAttribute.SearchableOption()
 

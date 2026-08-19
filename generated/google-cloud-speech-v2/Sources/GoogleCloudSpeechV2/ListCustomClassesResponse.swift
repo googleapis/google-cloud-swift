@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// Response message for the
 /// [ListCustomClasses][google.cloud.speech.v2.Speech.ListCustomClasses] method.
 ///
-/// [google.cloud.speech.v2.Speech.ListCustomClasses]: <doc:SpeechClient/listCustomClasses(request:)>
+/// [google.cloud.speech.v2.Speech.ListCustomClasses]: <doc:SpeechClient/listCustomClasses(request:options:)>
 public struct ListCustomClassesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

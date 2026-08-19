@@ -22,7 +22,7 @@
   /// Response message for
   /// [JobService.ListCustomJobs][google.cloud.aiplatform.v1.JobService.ListCustomJobs]
   ///
-  /// [google.cloud.aiplatform.v1.JobService.ListCustomJobs]: <doc:JobServiceClient/listCustomJobs(request:)>
+  /// [google.cloud.aiplatform.v1.JobService.ListCustomJobs]: <doc:JobServiceClient/listCustomJobs(request:options:)>
   public struct ListCustomJobsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable

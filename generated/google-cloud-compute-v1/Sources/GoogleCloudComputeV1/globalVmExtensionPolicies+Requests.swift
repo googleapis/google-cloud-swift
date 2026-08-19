@@ -21,7 +21,7 @@
   extension GlobalVmExtensionPoliciesClient {
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.globalVmExtensionPolicies.aggregatedList] method.
     ///
-    /// [google.cloud.compute.v1.globalVmExtensionPolicies.aggregatedList]: <doc:GlobalVmExtensionPoliciesClient/aggregatedList(request:)>
+    /// [google.cloud.compute.v1.globalVmExtensionPolicies.aggregatedList]: <doc:GlobalVmExtensionPoliciesClient/aggregatedList(request:options:)>
     public struct AggregatedListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -164,7 +164,7 @@
 
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.globalVmExtensionPolicies.delete] method.
     ///
-    /// [google.cloud.compute.v1.globalVmExtensionPolicies.delete]: <doc:GlobalVmExtensionPoliciesClient/delete(request:)>
+    /// [google.cloud.compute.v1.globalVmExtensionPolicies.delete]: <doc:GlobalVmExtensionPoliciesClient/delete(request:options:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -191,7 +191,7 @@
 
       /// Synthetic request body field for the [delete()][google.cloud.compute.v1.globalVmExtensionPolicies.delete] method.
       ///
-      /// [google.cloud.compute.v1.globalVmExtensionPolicies.delete]: <doc:GlobalVmExtensionPoliciesClient/delete(request:)>
+      /// [google.cloud.compute.v1.globalVmExtensionPolicies.delete]: <doc:GlobalVmExtensionPoliciesClient/delete(request:options:)>
       public var body: GlobalVmExtensionPolicyRolloutOperationRolloutInput? = nil
 
       /// Initialize a new instance of `DeleteRequest`.
@@ -223,7 +223,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.globalVmExtensionPolicies.get] method.
     ///
-    /// [google.cloud.compute.v1.globalVmExtensionPolicies.get]: <doc:GlobalVmExtensionPoliciesClient/`get`(request:)>
+    /// [google.cloud.compute.v1.globalVmExtensionPolicies.get]: <doc:GlobalVmExtensionPoliciesClient/`get`(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -262,7 +262,7 @@
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.globalVmExtensionPolicies.insert] method.
     ///
-    /// [google.cloud.compute.v1.globalVmExtensionPolicies.insert]: <doc:GlobalVmExtensionPoliciesClient/insert(request:)>
+    /// [google.cloud.compute.v1.globalVmExtensionPolicies.insert]: <doc:GlobalVmExtensionPoliciesClient/insert(request:options:)>
     public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -286,7 +286,7 @@
 
       /// Synthetic request body field for the [insert()][google.cloud.compute.v1.globalVmExtensionPolicies.insert] method.
       ///
-      /// [google.cloud.compute.v1.globalVmExtensionPolicies.insert]: <doc:GlobalVmExtensionPoliciesClient/insert(request:)>
+      /// [google.cloud.compute.v1.globalVmExtensionPolicies.insert]: <doc:GlobalVmExtensionPoliciesClient/insert(request:options:)>
       public var body: GlobalVmExtensionPolicy? = nil
 
       /// Initialize a new instance of `InsertRequest`.
@@ -318,7 +318,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.globalVmExtensionPolicies.list] method.
     ///
-    /// [google.cloud.compute.v1.globalVmExtensionPolicies.list]: <doc:GlobalVmExtensionPoliciesClient/list(request:)>
+    /// [google.cloud.compute.v1.globalVmExtensionPolicies.list]: <doc:GlobalVmExtensionPoliciesClient/list(request:options:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -447,7 +447,7 @@
 
     /// Synthetic request message for the [update()][google.cloud.compute.v1.globalVmExtensionPolicies.update] method.
     ///
-    /// [google.cloud.compute.v1.globalVmExtensionPolicies.update]: <doc:GlobalVmExtensionPoliciesClient/update(request:)>
+    /// [google.cloud.compute.v1.globalVmExtensionPolicies.update]: <doc:GlobalVmExtensionPoliciesClient/update(request:options:)>
     public struct UpdateRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -474,7 +474,7 @@
 
       /// Synthetic request body field for the [update()][google.cloud.compute.v1.globalVmExtensionPolicies.update] method.
       ///
-      /// [google.cloud.compute.v1.globalVmExtensionPolicies.update]: <doc:GlobalVmExtensionPoliciesClient/update(request:)>
+      /// [google.cloud.compute.v1.globalVmExtensionPolicies.update]: <doc:GlobalVmExtensionPoliciesClient/update(request:options:)>
       public var body: GlobalVmExtensionPolicy? = nil
 
       /// Initialize a new instance of `UpdateRequest`.

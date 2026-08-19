@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [CatalogService.AddCatalogAttribute][google.cloud.retail.v2.CatalogService.AddCatalogAttribute]
 /// method.
 ///
-/// [google.cloud.retail.v2.CatalogService.AddCatalogAttribute]: <doc:CatalogServiceClient/addCatalogAttribute(request:)>
+/// [google.cloud.retail.v2.CatalogService.AddCatalogAttribute]: <doc:CatalogServiceClient/addCatalogAttribute(request:options:)>
 public struct AddCatalogAttributeRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

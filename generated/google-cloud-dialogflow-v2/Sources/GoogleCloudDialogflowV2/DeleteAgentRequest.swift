@@ -21,7 +21,7 @@
   /// The request message for
   /// [Agents.DeleteAgent][google.cloud.dialogflow.v2.Agents.DeleteAgent].
   ///
-  /// [google.cloud.dialogflow.v2.Agents.DeleteAgent]: <doc:AgentsClient/deleteAgent(request:)>
+  /// [google.cloud.dialogflow.v2.Agents.DeleteAgent]: <doc:AgentsClient/deleteAgent(request:options:)>
   public struct DeleteAgentRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

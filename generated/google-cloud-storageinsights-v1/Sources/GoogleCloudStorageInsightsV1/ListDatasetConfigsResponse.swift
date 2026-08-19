@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [`ListDatasetConfigs`][google.cloud.storageinsights.v1.StorageInsights.ListDatasetConfigs]
 ///
-/// [google.cloud.storageinsights.v1.StorageInsights.ListDatasetConfigs]: <doc:StorageInsightsClient/listDatasetConfigs(request:)>
+/// [google.cloud.storageinsights.v1.StorageInsights.ListDatasetConfigs]: <doc:StorageInsightsClient/listDatasetConfigs(request:options:)>
 public struct ListDatasetConfigsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

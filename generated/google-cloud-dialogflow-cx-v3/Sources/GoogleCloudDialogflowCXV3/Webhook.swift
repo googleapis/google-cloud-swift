@@ -33,8 +33,8 @@
     /// populates the name automatically. Format:
     /// `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/webhooks/<WebhookID>`.
     ///
-    /// [google.cloud.dialogflow.cx.v3.Webhooks.CreateWebhook]: <doc:WebhooksClient/createWebhook(request:)>
-    /// [google.cloud.dialogflow.cx.v3.Webhooks.UpdateWebhook]: <doc:WebhooksClient/updateWebhook(request:)>
+    /// [google.cloud.dialogflow.cx.v3.Webhooks.CreateWebhook]: <doc:WebhooksClient/createWebhook(request:options:)>
+    /// [google.cloud.dialogflow.cx.v3.Webhooks.UpdateWebhook]: <doc:WebhooksClient/updateWebhook(request:options:)>
     public var name: Swift.String = Swift.String()
 
     /// Required. The human-readable name of the webhook, unique within the agent.

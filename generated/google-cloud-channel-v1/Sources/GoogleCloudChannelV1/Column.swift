@@ -29,7 +29,7 @@ public struct Column: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// To see all reports and their columns, call
   /// [CloudChannelReportsService.ListReports][google.cloud.channel.v1.CloudChannelReportsService.ListReports].
   ///
-  /// [google.cloud.channel.v1.CloudChannelReportsService.ListReports]: <doc:CloudChannelReportsServiceClient/listReports(request:)>
+  /// [google.cloud.channel.v1.CloudChannelReportsService.ListReports]: <doc:CloudChannelReportsServiceClient/listReports(request:options:)>
   /// [google.cloud.channel.v1.RunReportJobRequest.filter]: <doc:RunReportJobRequest/filter>
   public var columnId: Swift.String = Swift.String()
 

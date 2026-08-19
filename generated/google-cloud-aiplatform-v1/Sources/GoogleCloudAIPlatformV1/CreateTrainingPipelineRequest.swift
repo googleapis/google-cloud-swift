@@ -21,7 +21,7 @@
   /// Request message for
   /// [PipelineService.CreateTrainingPipeline][google.cloud.aiplatform.v1.PipelineService.CreateTrainingPipeline].
   ///
-  /// [google.cloud.aiplatform.v1.PipelineService.CreateTrainingPipeline]: <doc:PipelineServiceClient/createTrainingPipeline(request:)>
+  /// [google.cloud.aiplatform.v1.PipelineService.CreateTrainingPipeline]: <doc:PipelineServiceClient/createTrainingPipeline(request:options:)>
   public struct CreateTrainingPipelineRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

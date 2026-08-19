@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [VmwareEngine.ListExternalAccessRules][google.cloud.vmwareengine.v1.VmwareEngine.ListExternalAccessRules]
 ///
-/// [google.cloud.vmwareengine.v1.VmwareEngine.ListExternalAccessRules]: <doc:VmwareEngineClient/listExternalAccessRules(request:)>
+/// [google.cloud.vmwareengine.v1.VmwareEngine.ListExternalAccessRules]: <doc:VmwareEngineClient/listExternalAccessRules(request:options:)>
 public struct ListExternalAccessRulesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

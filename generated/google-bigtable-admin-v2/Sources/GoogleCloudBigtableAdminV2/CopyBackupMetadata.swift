@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Metadata type for the google.longrunning.Operation returned by
 /// [CopyBackup][google.bigtable.admin.v2.BigtableTableAdmin.CopyBackup].
 ///
-/// [google.bigtable.admin.v2.BigtableTableAdmin.CopyBackup]: <doc:BigtableTableAdminClient/copyBackup(request:)>
+/// [google.bigtable.admin.v2.BigtableTableAdmin.CopyBackup]: <doc:BigtableTableAdminClient/copyBackup(request:options:)>
 public struct CopyBackupMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
@@ -36,7 +36,7 @@ public struct CopyBackupMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   /// [CopyBackup][google.bigtable.admin.v2.BigtableTableAdmin.CopyBackup]
   /// operation.
   ///
-  /// [google.bigtable.admin.v2.BigtableTableAdmin.CopyBackup]: <doc:BigtableTableAdminClient/copyBackup(request:)>
+  /// [google.bigtable.admin.v2.BigtableTableAdmin.CopyBackup]: <doc:BigtableTableAdminClient/copyBackup(request:options:)>
   public var progress: OperationProgress? = nil
 
   /// Initialize a new instance of `CopyBackupMetadata`.

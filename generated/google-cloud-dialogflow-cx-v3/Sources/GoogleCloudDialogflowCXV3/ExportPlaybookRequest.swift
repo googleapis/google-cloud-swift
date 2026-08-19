@@ -21,7 +21,7 @@
   /// The request message for
   /// [Playbooks.ExportPlaybook][google.cloud.dialogflow.cx.v3.Playbooks.ExportPlaybook].
   ///
-  /// [google.cloud.dialogflow.cx.v3.Playbooks.ExportPlaybook]: <doc:PlaybooksClient/exportPlaybook(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Playbooks.ExportPlaybook]: <doc:PlaybooksClient/exportPlaybook(request:options:)>
   public struct ExportPlaybookRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

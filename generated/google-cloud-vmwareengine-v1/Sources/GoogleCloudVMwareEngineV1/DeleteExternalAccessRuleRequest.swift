@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [VmwareEngine.DeleteExternalAccessRule][google.cloud.vmwareengine.v1.VmwareEngine.DeleteExternalAccessRule]
 ///
-/// [google.cloud.vmwareengine.v1.VmwareEngine.DeleteExternalAccessRule]: <doc:VmwareEngineClient/deleteExternalAccessRule(request:)>
+/// [google.cloud.vmwareengine.v1.VmwareEngine.DeleteExternalAccessRule]: <doc:VmwareEngineClient/deleteExternalAccessRule(request:options:)>
 public struct DeleteExternalAccessRuleRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

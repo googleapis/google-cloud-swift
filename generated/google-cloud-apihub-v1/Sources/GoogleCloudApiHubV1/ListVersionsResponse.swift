@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// The [ListVersions][google.cloud.apihub.v1.ApiHub.ListVersions] method's
 /// response.
 ///
-/// [google.cloud.apihub.v1.ApiHub.ListVersions]: <doc:ApiHubClient/listVersions(request:)>
+/// [google.cloud.apihub.v1.ApiHub.ListVersions]: <doc:ApiHubClient/listVersions(request:options:)>
 public struct ListVersionsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

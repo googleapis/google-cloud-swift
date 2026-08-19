@@ -21,7 +21,7 @@
   /// Request message for
   /// [VizierService.LookupStudy][google.cloud.aiplatform.v1.VizierService.LookupStudy].
   ///
-  /// [google.cloud.aiplatform.v1.VizierService.LookupStudy]: <doc:VizierServiceClient/lookupStudy(request:)>
+  /// [google.cloud.aiplatform.v1.VizierService.LookupStudy]: <doc:VizierServiceClient/lookupStudy(request:options:)>
   public struct LookupStudyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

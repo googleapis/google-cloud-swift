@@ -112,7 +112,7 @@ public struct Project: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// This can generally be reversed by invoking [UndeleteProject]
     /// [google.cloud.resourcemanager.v3.Projects.UndeleteProject].
     ///
-    /// [google.cloud.resourcemanager.v3.Projects.DeleteProject]: <doc:ProjectsClient/deleteProject(request:)>
+    /// [google.cloud.resourcemanager.v3.Projects.DeleteProject]: <doc:ProjectsClient/deleteProject(request:options:)>
     case deleteRequested
     /// Encodes an unknown integer value.
     ///

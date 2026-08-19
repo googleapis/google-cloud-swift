@@ -21,7 +21,7 @@
   /// Request message for
   /// [MetadataService.GetMetadataSchema][google.cloud.aiplatform.v1.MetadataService.GetMetadataSchema].
   ///
-  /// [google.cloud.aiplatform.v1.MetadataService.GetMetadataSchema]: <doc:MetadataServiceClient/getMetadataSchema(request:)>
+  /// [google.cloud.aiplatform.v1.MetadataService.GetMetadataSchema]: <doc:MetadataServiceClient/getMetadataSchema(request:options:)>
   public struct GetMetadataSchemaRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

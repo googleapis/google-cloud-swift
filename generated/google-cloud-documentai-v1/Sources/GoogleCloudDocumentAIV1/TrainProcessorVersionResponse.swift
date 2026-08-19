@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// The response for
 /// [TrainProcessorVersion][google.cloud.documentai.v1.DocumentProcessorService.TrainProcessorVersion].
 ///
-/// [google.cloud.documentai.v1.DocumentProcessorService.TrainProcessorVersion]: <doc:DocumentProcessorServiceClient/trainProcessorVersion(request:)>
+/// [google.cloud.documentai.v1.DocumentProcessorService.TrainProcessorVersion]: <doc:DocumentProcessorServiceClient/trainProcessorVersion(request:options:)>
 public struct TrainProcessorVersionResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

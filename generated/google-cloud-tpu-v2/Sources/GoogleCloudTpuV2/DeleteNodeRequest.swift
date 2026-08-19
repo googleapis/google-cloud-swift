@@ -19,7 +19,7 @@ import GoogleCloudWkt
 
 /// Request for [DeleteNode][google.cloud.tpu.v2.Tpu.DeleteNode].
 ///
-/// [google.cloud.tpu.v2.Tpu.DeleteNode]: <doc:TpuClient/deleteNode(request:)>
+/// [google.cloud.tpu.v2.Tpu.DeleteNode]: <doc:TpuClient/deleteNode(request:options:)>
 public struct DeleteNodeRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

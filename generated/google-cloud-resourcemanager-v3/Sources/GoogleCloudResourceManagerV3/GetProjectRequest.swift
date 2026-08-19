@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [GetProject][google.cloud.resourcemanager.v3.Projects.GetProject]
 /// method.
 ///
-/// [google.cloud.resourcemanager.v3.Projects.GetProject]: <doc:ProjectsClient/getProject(request:)>
+/// [google.cloud.resourcemanager.v3.Projects.GetProject]: <doc:ProjectsClient/getProject(request:options:)>
 public struct GetProjectRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

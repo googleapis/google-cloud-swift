@@ -21,7 +21,7 @@
   extension ServiceAttachmentsClient {
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.serviceAttachments.aggregatedList] method.
     ///
-    /// [google.cloud.compute.v1.serviceAttachments.aggregatedList]: <doc:ServiceAttachmentsClient/aggregatedList(request:)>
+    /// [google.cloud.compute.v1.serviceAttachments.aggregatedList]: <doc:ServiceAttachmentsClient/aggregatedList(request:options:)>
     public struct AggregatedListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -164,7 +164,7 @@
 
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.serviceAttachments.delete] method.
     ///
-    /// [google.cloud.compute.v1.serviceAttachments.delete]: <doc:ServiceAttachmentsClient/delete(request:)>
+    /// [google.cloud.compute.v1.serviceAttachments.delete]: <doc:ServiceAttachmentsClient/delete(request:options:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -221,7 +221,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.serviceAttachments.get] method.
     ///
-    /// [google.cloud.compute.v1.serviceAttachments.get]: <doc:ServiceAttachmentsClient/`get`(request:)>
+    /// [google.cloud.compute.v1.serviceAttachments.get]: <doc:ServiceAttachmentsClient/`get`(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -266,7 +266,7 @@
 
     /// Synthetic request message for the [getIamPolicy()][google.cloud.compute.v1.serviceAttachments.getIamPolicy] method.
     ///
-    /// [google.cloud.compute.v1.serviceAttachments.getIamPolicy]: <doc:ServiceAttachmentsClient/getIamPolicy(request:)>
+    /// [google.cloud.compute.v1.serviceAttachments.getIamPolicy]: <doc:ServiceAttachmentsClient/getIamPolicy(request:options:)>
     public struct GetIamPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -311,7 +311,7 @@
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.serviceAttachments.insert] method.
     ///
-    /// [google.cloud.compute.v1.serviceAttachments.insert]: <doc:ServiceAttachmentsClient/insert(request:)>
+    /// [google.cloud.compute.v1.serviceAttachments.insert]: <doc:ServiceAttachmentsClient/insert(request:options:)>
     public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -338,7 +338,7 @@
 
       /// Synthetic request body field for the [insert()][google.cloud.compute.v1.serviceAttachments.insert] method.
       ///
-      /// [google.cloud.compute.v1.serviceAttachments.insert]: <doc:ServiceAttachmentsClient/insert(request:)>
+      /// [google.cloud.compute.v1.serviceAttachments.insert]: <doc:ServiceAttachmentsClient/insert(request:options:)>
       public var body: ServiceAttachment? = nil
 
       /// Initialize a new instance of `InsertRequest`.
@@ -370,7 +370,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.serviceAttachments.list] method.
     ///
-    /// [google.cloud.compute.v1.serviceAttachments.list]: <doc:ServiceAttachmentsClient/list(request:)>
+    /// [google.cloud.compute.v1.serviceAttachments.list]: <doc:ServiceAttachmentsClient/list(request:options:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -502,7 +502,7 @@
 
     /// Synthetic request message for the [patch()][google.cloud.compute.v1.serviceAttachments.patch] method.
     ///
-    /// [google.cloud.compute.v1.serviceAttachments.patch]: <doc:ServiceAttachmentsClient/patch(request:)>
+    /// [google.cloud.compute.v1.serviceAttachments.patch]: <doc:ServiceAttachmentsClient/patch(request:options:)>
     public struct PatchRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -533,7 +533,7 @@
 
       /// Synthetic request body field for the [patch()][google.cloud.compute.v1.serviceAttachments.patch] method.
       ///
-      /// [google.cloud.compute.v1.serviceAttachments.patch]: <doc:ServiceAttachmentsClient/patch(request:)>
+      /// [google.cloud.compute.v1.serviceAttachments.patch]: <doc:ServiceAttachmentsClient/patch(request:options:)>
       public var body: ServiceAttachment? = nil
 
       /// Initialize a new instance of `PatchRequest`.
@@ -565,7 +565,7 @@
 
     /// Synthetic request message for the [setIamPolicy()][google.cloud.compute.v1.serviceAttachments.setIamPolicy] method.
     ///
-    /// [google.cloud.compute.v1.serviceAttachments.setIamPolicy]: <doc:ServiceAttachmentsClient/setIamPolicy(request:)>
+    /// [google.cloud.compute.v1.serviceAttachments.setIamPolicy]: <doc:ServiceAttachmentsClient/setIamPolicy(request:options:)>
     public struct SetIamPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -580,7 +580,7 @@
 
       /// Synthetic request body field for the [setIamPolicy()][google.cloud.compute.v1.serviceAttachments.setIamPolicy] method.
       ///
-      /// [google.cloud.compute.v1.serviceAttachments.setIamPolicy]: <doc:ServiceAttachmentsClient/setIamPolicy(request:)>
+      /// [google.cloud.compute.v1.serviceAttachments.setIamPolicy]: <doc:ServiceAttachmentsClient/setIamPolicy(request:options:)>
       public var body: RegionSetPolicyRequest? = nil
 
       /// Initialize a new instance of `SetIamPolicyRequest`.
@@ -612,7 +612,7 @@
 
     /// Synthetic request message for the [testIamPermissions()][google.cloud.compute.v1.serviceAttachments.testIamPermissions] method.
     ///
-    /// [google.cloud.compute.v1.serviceAttachments.testIamPermissions]: <doc:ServiceAttachmentsClient/testIamPermissions(request:)>
+    /// [google.cloud.compute.v1.serviceAttachments.testIamPermissions]: <doc:ServiceAttachmentsClient/testIamPermissions(request:options:)>
     public struct TestIamPermissionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -627,7 +627,7 @@
 
       /// Synthetic request body field for the [testIamPermissions()][google.cloud.compute.v1.serviceAttachments.testIamPermissions] method.
       ///
-      /// [google.cloud.compute.v1.serviceAttachments.testIamPermissions]: <doc:ServiceAttachmentsClient/testIamPermissions(request:)>
+      /// [google.cloud.compute.v1.serviceAttachments.testIamPermissions]: <doc:ServiceAttachmentsClient/testIamPermissions(request:options:)>
       public var body: TestPermissionsRequest? = nil
 
       /// Initialize a new instance of `TestIamPermissionsRequest`.

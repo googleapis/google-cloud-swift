@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [GetTagTemplate][google.cloud.datacatalog.v1.DataCatalog.GetTagTemplate].
 ///
-/// [google.cloud.datacatalog.v1.DataCatalog.GetTagTemplate]: <doc:DataCatalogClient/getTagTemplate(request:)>
+/// [google.cloud.datacatalog.v1.DataCatalog.GetTagTemplate]: <doc:DataCatalogClient/getTagTemplate(request:options:)>
 public struct GetTagTemplateRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

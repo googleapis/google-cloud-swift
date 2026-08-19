@@ -33,8 +33,8 @@
   /// [ConversationProfile.human_agent_assistant_config][google.cloud.dialogflow.v2.ConversationProfile.human_agent_assistant_config]
   ///
   /// [google.cloud.dialogflow.v2.ConversationProfile.human_agent_assistant_config]: <doc:ConversationProfile/humanAgentAssistantConfig>
-  /// [google.cloud.dialogflow.v2.Participants.AnalyzeContent]: <doc:ParticipantsClient/analyzeContent(request:)>
-  /// [google.cloud.dialogflow.v2.Participants.StreamingAnalyzeContent]: <doc:ParticipantsClient/streamingAnalyzeContent(request:)>
+  /// [google.cloud.dialogflow.v2.Participants.AnalyzeContent]: <doc:ParticipantsClient/analyzeContent(request:options:)>
+  /// [google.cloud.dialogflow.v2.Participants.StreamingAnalyzeContent]: <doc:ParticipantsClient/streamingAnalyzeContent(request:options:)>
   public struct SentimentAnalysisResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

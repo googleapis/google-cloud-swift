@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [ListResourceEnrollmentStatuses][google.cloud.auditmanager.v1.AuditManager.ListResourceEnrollmentStatuses].
 ///
-/// [google.cloud.auditmanager.v1.AuditManager.ListResourceEnrollmentStatuses]: <doc:AuditManagerClient/listResourceEnrollmentStatuses(request:)>
+/// [google.cloud.auditmanager.v1.AuditManager.ListResourceEnrollmentStatuses]: <doc:AuditManagerClient/listResourceEnrollmentStatuses(request:options:)>
 public struct ListResourceEnrollmentStatusesResponse: Codable, Equatable, GoogleCloudWkt
     ._AnyPackable,
   GoogleCloudGax._PaginatedResponse,

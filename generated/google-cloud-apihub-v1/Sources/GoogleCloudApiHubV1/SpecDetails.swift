@@ -89,7 +89,7 @@ public struct SpecDetails: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// [ListAPIOperations][google.cloud.apihub.v1.ApiHub.ListApiOperations]
     /// method.
     ///
-    /// [google.cloud.apihub.v1.ApiHub.ListApiOperations]: <doc:ApiHubClient/listApiOperations(request:)>
+    /// [google.cloud.apihub.v1.ApiHub.ListApiOperations]: <doc:ApiHubClient/listApiOperations(request:options:)>
     indirect case openApiSpecDetails(OpenApiSpecDetails?)
   }
 

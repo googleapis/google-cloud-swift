@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// The [DeleteVersion][google.cloud.apihub.v1.ApiHub.DeleteVersion] method's
 /// request.
 ///
-/// [google.cloud.apihub.v1.ApiHub.DeleteVersion]: <doc:ApiHubClient/deleteVersion(request:)>
+/// [google.cloud.apihub.v1.ApiHub.DeleteVersion]: <doc:ApiHubClient/deleteVersion(request:options:)>
 public struct DeleteVersionRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

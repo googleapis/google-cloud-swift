@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [CloudChannelReportsService.FetchReportResults][google.cloud.channel.v1.CloudChannelReportsService.FetchReportResults].
 ///
-/// [google.cloud.channel.v1.CloudChannelReportsService.FetchReportResults]: <doc:CloudChannelReportsServiceClient/fetchReportResults(request:)>
+/// [google.cloud.channel.v1.CloudChannelReportsService.FetchReportResults]: <doc:CloudChannelReportsServiceClient/fetchReportResults(request:options:)>
 @available(*, deprecated)
 public struct FetchReportResultsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
@@ -30,7 +30,7 @@ public struct FetchReportResultsRequest: Codable, Equatable, GoogleCloudWkt._Any
   /// Report_job uses the format:
   /// accounts/{account_id}/reportJobs/{report_job_id}
   ///
-  /// [google.cloud.channel.v1.CloudChannelReportsService.RunReportJob]: <doc:CloudChannelReportsServiceClient/runReportJob(request:)>
+  /// [google.cloud.channel.v1.CloudChannelReportsService.RunReportJob]: <doc:CloudChannelReportsServiceClient/runReportJob(request:options:)>
   public var reportJob: Swift.String = Swift.String()
 
   /// Optional. Requested page size of the report. The server may return fewer
@@ -48,7 +48,7 @@ public struct FetchReportResultsRequest: Codable, Equatable, GoogleCloudWkt._Any
   /// [CloudChannelReportsService.FetchReportResults][google.cloud.channel.v1.CloudChannelReportsService.FetchReportResults]
   /// call.
   ///
-  /// [google.cloud.channel.v1.CloudChannelReportsService.FetchReportResults]: <doc:CloudChannelReportsServiceClient/fetchReportResults(request:)>
+  /// [google.cloud.channel.v1.CloudChannelReportsService.FetchReportResults]: <doc:CloudChannelReportsServiceClient/fetchReportResults(request:options:)>
   /// [google.cloud.channel.v1.FetchReportResultsResponse.next_page_token]: <doc:FetchReportResultsResponse/nextPageToken>
   public var pageToken: Swift.String = Swift.String()
 

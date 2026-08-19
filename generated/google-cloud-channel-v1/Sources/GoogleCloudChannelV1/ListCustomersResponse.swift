@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [CloudChannelService.ListCustomers][google.cloud.channel.v1.CloudChannelService.ListCustomers].
 ///
-/// [google.cloud.channel.v1.CloudChannelService.ListCustomers]: <doc:CloudChannelServiceClient/listCustomers(request:)>
+/// [google.cloud.channel.v1.CloudChannelService.ListCustomers]: <doc:CloudChannelServiceClient/listCustomers(request:options:)>
 public struct ListCustomersResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

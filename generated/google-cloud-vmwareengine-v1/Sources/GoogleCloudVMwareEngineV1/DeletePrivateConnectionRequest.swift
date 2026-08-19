@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [VmwareEngine.DeletePrivateConnection][google.cloud.vmwareengine.v1.VmwareEngine.DeletePrivateConnection]
 ///
-/// [google.cloud.vmwareengine.v1.VmwareEngine.DeletePrivateConnection]: <doc:VmwareEngineClient/deletePrivateConnection(request:)>
+/// [google.cloud.vmwareengine.v1.VmwareEngine.DeletePrivateConnection]: <doc:VmwareEngineClient/deletePrivateConnection(request:options:)>
 public struct DeletePrivateConnectionRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

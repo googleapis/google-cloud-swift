@@ -21,7 +21,7 @@
   /// Request message for
   /// [JobService.CancelBatchPredictionJob][google.cloud.aiplatform.v1.JobService.CancelBatchPredictionJob].
   ///
-  /// [google.cloud.aiplatform.v1.JobService.CancelBatchPredictionJob]: <doc:JobServiceClient/cancelBatchPredictionJob(request:)>
+  /// [google.cloud.aiplatform.v1.JobService.CancelBatchPredictionJob]: <doc:JobServiceClient/cancelBatchPredictionJob(request:options:)>
   public struct CancelBatchPredictionJobRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

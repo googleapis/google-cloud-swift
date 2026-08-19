@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [UpdateEntryGroup][google.cloud.datacatalog.v1.DataCatalog.UpdateEntryGroup].
 ///
-/// [google.cloud.datacatalog.v1.DataCatalog.UpdateEntryGroup]: <doc:DataCatalogClient/updateEntryGroup(request:)>
+/// [google.cloud.datacatalog.v1.DataCatalog.UpdateEntryGroup]: <doc:DataCatalogClient/updateEntryGroup(request:options:)>
 public struct UpdateEntryGroupRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

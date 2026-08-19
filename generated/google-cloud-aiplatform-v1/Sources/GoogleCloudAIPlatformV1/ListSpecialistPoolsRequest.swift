@@ -21,7 +21,7 @@
   /// Request message for
   /// [SpecialistPoolService.ListSpecialistPools][google.cloud.aiplatform.v1.SpecialistPoolService.ListSpecialistPools].
   ///
-  /// [google.cloud.aiplatform.v1.SpecialistPoolService.ListSpecialistPools]: <doc:SpecialistPoolServiceClient/listSpecialistPools(request:)>
+  /// [google.cloud.aiplatform.v1.SpecialistPoolService.ListSpecialistPools]: <doc:SpecialistPoolServiceClient/listSpecialistPools(request:options:)>
   public struct ListSpecialistPoolsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {
@@ -40,7 +40,7 @@
     /// call. Return first page if empty.
     ///
     /// [google.cloud.aiplatform.v1.ListSpecialistPoolsResponse.next_page_token]: <doc:ListSpecialistPoolsResponse/nextPageToken>
-    /// [google.cloud.aiplatform.v1.SpecialistPoolService.ListSpecialistPools]: <doc:SpecialistPoolServiceClient/listSpecialistPools(request:)>
+    /// [google.cloud.aiplatform.v1.SpecialistPoolService.ListSpecialistPools]: <doc:SpecialistPoolServiceClient/listSpecialistPools(request:options:)>
     public var pageToken: Swift.String = Swift.String()
 
     /// Mask specifying which fields to read. FieldMask represents a set of

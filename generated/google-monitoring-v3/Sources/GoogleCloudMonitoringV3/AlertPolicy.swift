@@ -38,7 +38,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// method, do not include the `name` field in the alerting policy passed as
   /// part of the request.
   ///
-  /// [google.monitoring.v3.AlertPolicyService.CreateAlertPolicy]: <doc:AlertPolicyServiceClient/createAlertPolicy(request:)>
+  /// [google.monitoring.v3.AlertPolicyService.CreateAlertPolicy]: <doc:AlertPolicyServiceClient/createAlertPolicy(request:options:)>
   public var name: Swift.String = Swift.String()
 
   /// A short name or phrase used to identify the policy in dashboards,
@@ -287,8 +287,8 @@ public struct AlertPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// values.  Otherwise, treat the change as a new condition and let the
     /// existing condition be deleted.
     ///
-    /// [google.monitoring.v3.AlertPolicyService.CreateAlertPolicy]: <doc:AlertPolicyServiceClient/createAlertPolicy(request:)>
-    /// [google.monitoring.v3.AlertPolicyService.UpdateAlertPolicy]: <doc:AlertPolicyServiceClient/updateAlertPolicy(request:)>
+    /// [google.monitoring.v3.AlertPolicyService.CreateAlertPolicy]: <doc:AlertPolicyServiceClient/createAlertPolicy(request:options:)>
+    /// [google.monitoring.v3.AlertPolicyService.UpdateAlertPolicy]: <doc:AlertPolicyServiceClient/updateAlertPolicy(request:options:)>
     public var name: Swift.String = Swift.String()
 
     /// A short name or phrase used to identify the condition in dashboards,

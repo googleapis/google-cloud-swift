@@ -21,7 +21,7 @@
   /// Request message for
   /// [FeaturestoreOnlineServingService.WriteFeatureValues][google.cloud.aiplatform.v1.FeaturestoreOnlineServingService.WriteFeatureValues].
   ///
-  /// [google.cloud.aiplatform.v1.FeaturestoreOnlineServingService.WriteFeatureValues]: <doc:FeaturestoreOnlineServingServiceClient/writeFeatureValues(request:)>
+  /// [google.cloud.aiplatform.v1.FeaturestoreOnlineServingService.WriteFeatureValues]: <doc:FeaturestoreOnlineServingServiceClient/writeFeatureValues(request:options:)>
   public struct WriteFeatureValuesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

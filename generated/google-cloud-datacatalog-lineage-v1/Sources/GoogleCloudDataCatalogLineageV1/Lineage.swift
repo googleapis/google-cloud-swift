@@ -395,7 +395,7 @@ public class LineageClient: Clients.LineageProtocol {
   /// have the `datalineage.events.get` permission. The project provided in the
   /// URL is used for Billing and Quota.
   ///
-  /// [google.cloud.datacatalog.lineage.v1.Lineage.SearchLinks]: <doc:LineageClient/searchLinks(request:)>
+  /// [google.cloud.datacatalog.lineage.v1.Lineage.SearchLinks]: <doc:LineageClient/searchLinks(request:options:)>
   ///
   /// @Snippet(path: "Lineage_BatchSearchLinkProcesses")
   public func batchSearchLinkProcesses(
@@ -419,7 +419,7 @@ public class LineageClient: Clients.LineageProtocol {
   /// have the `datalineage.events.get` permission. The project provided in the
   /// URL is used for Billing and Quota.
   ///
-  /// [google.cloud.datacatalog.lineage.v1.Lineage.SearchLinks]: <doc:LineageClient/searchLinks(request:)>
+  /// [google.cloud.datacatalog.lineage.v1.Lineage.SearchLinks]: <doc:LineageClient/searchLinks(request:options:)>
   ///
   /// @Snippet(path: "Lineage_BatchSearchLinkProcesses")
   public func batchSearchLinkProcesses(

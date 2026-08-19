@@ -21,7 +21,7 @@
   /// Request message for
   /// [AnswerRecords.UpdateAnswerRecord][google.cloud.dialogflow.v2.AnswerRecords.UpdateAnswerRecord].
   ///
-  /// [google.cloud.dialogflow.v2.AnswerRecords.UpdateAnswerRecord]: <doc:AnswerRecordsClient/updateAnswerRecord(request:)>
+  /// [google.cloud.dialogflow.v2.AnswerRecords.UpdateAnswerRecord]: <doc:AnswerRecordsClient/updateAnswerRecord(request:options:)>
   public struct UpdateAnswerRecordRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

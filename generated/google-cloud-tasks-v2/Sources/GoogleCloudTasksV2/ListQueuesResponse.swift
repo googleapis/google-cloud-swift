@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [ListQueues][google.cloud.tasks.v2.CloudTasks.ListQueues].
 ///
-/// [google.cloud.tasks.v2.CloudTasks.ListQueues]: <doc:CloudTasksClient/listQueues(request:)>
+/// [google.cloud.tasks.v2.CloudTasks.ListQueues]: <doc:CloudTasksClient/listQueues(request:options:)>
 public struct ListQueuesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable
@@ -39,7 +39,7 @@ public struct ListQueuesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   ///
   /// The page token is valid for only 2 hours.
   ///
-  /// [google.cloud.tasks.v2.CloudTasks.ListQueues]: <doc:CloudTasksClient/listQueues(request:)>
+  /// [google.cloud.tasks.v2.CloudTasks.ListQueues]: <doc:CloudTasksClient/listQueues(request:options:)>
   /// [google.cloud.tasks.v2.ListQueuesRequest.page_token]: <doc:ListQueuesRequest/pageToken>
   public var nextPageToken: Swift.String = Swift.String()
 

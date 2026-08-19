@@ -21,7 +21,7 @@
   /// Request message for
   /// [ReasoningEngineService.UpdateReasoningEngine][google.cloud.aiplatform.v1.ReasoningEngineService.UpdateReasoningEngine].
   ///
-  /// [google.cloud.aiplatform.v1.ReasoningEngineService.UpdateReasoningEngine]: <doc:ReasoningEngineServiceClient/updateReasoningEngine(request:)>
+  /// [google.cloud.aiplatform.v1.ReasoningEngineService.UpdateReasoningEngine]: <doc:ReasoningEngineServiceClient/updateReasoningEngine(request:options:)>
   public struct UpdateReasoningEngineRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// The request message for
 /// [RegistrationService.ListServices][google.cloud.servicedirectory.v1.RegistrationService.ListServices].
 ///
-/// [google.cloud.servicedirectory.v1.RegistrationService.ListServices]: <doc:RegistrationServiceClient/listServices(request:)>
+/// [google.cloud.servicedirectory.v1.RegistrationService.ListServices]: <doc:RegistrationServiceClient/listServices(request:options:)>
 public struct ListServicesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

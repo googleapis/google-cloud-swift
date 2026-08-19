@@ -21,7 +21,7 @@
   /// Runtime operation information for
   /// [VertexRagDataService.CreateRagCorpus][google.cloud.aiplatform.v1.VertexRagDataService.CreateRagCorpus].
   ///
-  /// [google.cloud.aiplatform.v1.VertexRagDataService.CreateRagCorpus]: <doc:VertexRagDataServiceClient/createRagCorpus(request:)>
+  /// [google.cloud.aiplatform.v1.VertexRagDataService.CreateRagCorpus]: <doc:VertexRagDataServiceClient/createRagCorpus(request:options:)>
   public struct CreateRagCorpusOperationMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

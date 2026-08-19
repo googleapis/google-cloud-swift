@@ -22,7 +22,7 @@
   /// Response message for
   /// [JobService.ListNasJobs][google.cloud.aiplatform.v1.JobService.ListNasJobs]
   ///
-  /// [google.cloud.aiplatform.v1.JobService.ListNasJobs]: <doc:JobServiceClient/listNasJobs(request:)>
+  /// [google.cloud.aiplatform.v1.JobService.ListNasJobs]: <doc:JobServiceClient/listNasJobs(request:options:)>
   public struct ListNasJobsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable

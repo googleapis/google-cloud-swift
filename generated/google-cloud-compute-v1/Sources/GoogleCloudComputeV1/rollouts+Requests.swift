@@ -21,7 +21,7 @@
   extension RolloutsClient {
     /// Synthetic request message for the [advance()][google.cloud.compute.v1.rollouts.advance] method.
     ///
-    /// [google.cloud.compute.v1.rollouts.advance]: <doc:RolloutsClient/advance(request:)>
+    /// [google.cloud.compute.v1.rollouts.advance]: <doc:RolloutsClient/advance(request:options:)>
     public struct AdvanceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -78,7 +78,7 @@
 
     /// Synthetic request message for the [cancel()][google.cloud.compute.v1.rollouts.cancel] method.
     ///
-    /// [google.cloud.compute.v1.rollouts.cancel]: <doc:RolloutsClient/cancel(request:)>
+    /// [google.cloud.compute.v1.rollouts.cancel]: <doc:RolloutsClient/cancel(request:options:)>
     public struct CancelRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -138,7 +138,7 @@
 
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.rollouts.delete] method.
     ///
-    /// [google.cloud.compute.v1.rollouts.delete]: <doc:RolloutsClient/delete(request:)>
+    /// [google.cloud.compute.v1.rollouts.delete]: <doc:RolloutsClient/delete(request:options:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -192,7 +192,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.rollouts.get] method.
     ///
-    /// [google.cloud.compute.v1.rollouts.get]: <doc:RolloutsClient/`get`(request:)>
+    /// [google.cloud.compute.v1.rollouts.get]: <doc:RolloutsClient/`get`(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -231,7 +231,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.rollouts.list] method.
     ///
-    /// [google.cloud.compute.v1.rollouts.list]: <doc:RolloutsClient/list(request:)>
+    /// [google.cloud.compute.v1.rollouts.list]: <doc:RolloutsClient/list(request:options:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -360,7 +360,7 @@
 
     /// Synthetic request message for the [pause()][google.cloud.compute.v1.rollouts.pause] method.
     ///
-    /// [google.cloud.compute.v1.rollouts.pause]: <doc:RolloutsClient/pause(request:)>
+    /// [google.cloud.compute.v1.rollouts.pause]: <doc:RolloutsClient/pause(request:options:)>
     public struct PauseRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -419,7 +419,7 @@
 
     /// Synthetic request message for the [resume()][google.cloud.compute.v1.rollouts.resume] method.
     ///
-    /// [google.cloud.compute.v1.rollouts.resume]: <doc:RolloutsClient/resume(request:)>
+    /// [google.cloud.compute.v1.rollouts.resume]: <doc:RolloutsClient/resume(request:options:)>
     public struct ResumeRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {

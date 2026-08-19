@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// The [UpdateVersion][google.cloud.apihub.v1.ApiHub.UpdateVersion] method's
 /// request.
 ///
-/// [google.cloud.apihub.v1.ApiHub.UpdateVersion]: <doc:ApiHubClient/updateVersion(request:)>
+/// [google.cloud.apihub.v1.ApiHub.UpdateVersion]: <doc:ApiHubClient/updateVersion(request:options:)>
 public struct UpdateVersionRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

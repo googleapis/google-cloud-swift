@@ -21,7 +21,7 @@
   /// The request message for
   /// [Flows.ListFlows][google.cloud.dialogflow.cx.v3.Flows.ListFlows].
   ///
-  /// [google.cloud.dialogflow.cx.v3.Flows.ListFlows]: <doc:FlowsClient/listFlows(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Flows.ListFlows]: <doc:FlowsClient/listFlows(request:options:)>
   public struct ListFlowsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

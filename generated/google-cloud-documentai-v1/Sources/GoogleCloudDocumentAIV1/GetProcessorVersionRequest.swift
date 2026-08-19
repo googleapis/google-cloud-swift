@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [GetProcessorVersion][google.cloud.documentai.v1.DocumentProcessorService.GetProcessorVersion]
 /// method.
 ///
-/// [google.cloud.documentai.v1.DocumentProcessorService.GetProcessorVersion]: <doc:DocumentProcessorServiceClient/getProcessorVersion(request:)>
+/// [google.cloud.documentai.v1.DocumentProcessorService.GetProcessorVersion]: <doc:DocumentProcessorServiceClient/getProcessorVersion(request:options:)>
 public struct GetProcessorVersionRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

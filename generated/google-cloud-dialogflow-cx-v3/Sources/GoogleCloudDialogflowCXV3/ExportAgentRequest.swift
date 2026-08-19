@@ -21,7 +21,7 @@
   /// The request message for
   /// [Agents.ExportAgent][google.cloud.dialogflow.cx.v3.Agents.ExportAgent].
   ///
-  /// [google.cloud.dialogflow.cx.v3.Agents.ExportAgent]: <doc:AgentsClient/exportAgent(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Agents.ExportAgent]: <doc:AgentsClient/exportAgent(request:options:)>
   public struct ExportAgentRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

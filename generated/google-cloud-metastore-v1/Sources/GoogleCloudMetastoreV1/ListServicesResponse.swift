@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [DataprocMetastore.ListServices][google.cloud.metastore.v1.DataprocMetastore.ListServices].
 ///
-/// [google.cloud.metastore.v1.DataprocMetastore.ListServices]: <doc:DataprocMetastoreClient/listServices(request:)>
+/// [google.cloud.metastore.v1.DataprocMetastore.ListServices]: <doc:DataprocMetastoreClient/listServices(request:options:)>
 public struct ListServicesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

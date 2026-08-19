@@ -199,9 +199,9 @@ public class WorkflowTemplateServiceClient: Clients.WorkflowTemplateServiceProto
   /// [Operation.response][google.longrunning.Operation.response] will be
   /// [Empty][google.protobuf.Empty].
   ///
-  /// [google.cloud.dataproc.v1.WorkflowTemplateService.CreateWorkflowTemplate]: <doc:WorkflowTemplateServiceClient/createWorkflowTemplate(request:)>
-  /// [google.cloud.dataproc.v1.WorkflowTemplateService.DeleteWorkflowTemplate]: <doc:WorkflowTemplateServiceClient/deleteWorkflowTemplate(request:)>
-  /// [google.cloud.dataproc.v1.WorkflowTemplateService.InstantiateWorkflowTemplate]: <doc:WorkflowTemplateServiceClient/instantiateWorkflowTemplate(request:)>
+  /// [google.cloud.dataproc.v1.WorkflowTemplateService.CreateWorkflowTemplate]: <doc:WorkflowTemplateServiceClient/createWorkflowTemplate(request:options:)>
+  /// [google.cloud.dataproc.v1.WorkflowTemplateService.DeleteWorkflowTemplate]: <doc:WorkflowTemplateServiceClient/deleteWorkflowTemplate(request:options:)>
+  /// [google.cloud.dataproc.v1.WorkflowTemplateService.InstantiateWorkflowTemplate]: <doc:WorkflowTemplateServiceClient/instantiateWorkflowTemplate(request:options:)>
   /// [google.longrunning.Operation.metadata]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/metadata
   /// [google.longrunning.Operation.response]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/OneOf_Result/response(_:)
   /// [google.protobuf.Empty]: https://www.google.com/search?q=Swift+google.protobuf+GoogleCloudWkt.Empty
@@ -239,9 +239,9 @@ public class WorkflowTemplateServiceClient: Clients.WorkflowTemplateServiceProto
   /// [Operation.response][google.longrunning.Operation.response] will be
   /// [Empty][google.protobuf.Empty].
   ///
-  /// [google.cloud.dataproc.v1.WorkflowTemplateService.CreateWorkflowTemplate]: <doc:WorkflowTemplateServiceClient/createWorkflowTemplate(request:)>
-  /// [google.cloud.dataproc.v1.WorkflowTemplateService.DeleteWorkflowTemplate]: <doc:WorkflowTemplateServiceClient/deleteWorkflowTemplate(request:)>
-  /// [google.cloud.dataproc.v1.WorkflowTemplateService.InstantiateWorkflowTemplate]: <doc:WorkflowTemplateServiceClient/instantiateWorkflowTemplate(request:)>
+  /// [google.cloud.dataproc.v1.WorkflowTemplateService.CreateWorkflowTemplate]: <doc:WorkflowTemplateServiceClient/createWorkflowTemplate(request:options:)>
+  /// [google.cloud.dataproc.v1.WorkflowTemplateService.DeleteWorkflowTemplate]: <doc:WorkflowTemplateServiceClient/deleteWorkflowTemplate(request:options:)>
+  /// [google.cloud.dataproc.v1.WorkflowTemplateService.InstantiateWorkflowTemplate]: <doc:WorkflowTemplateServiceClient/instantiateWorkflowTemplate(request:options:)>
   /// [google.longrunning.Operation.metadata]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/metadata
   /// [google.longrunning.Operation.response]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/OneOf_Result/response(_:)
   /// [google.protobuf.Empty]: https://www.google.com/search?q=Swift+google.protobuf+GoogleCloudWkt.Empty

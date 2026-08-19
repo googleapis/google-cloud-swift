@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [DeleteProcessorVersion][google.cloud.documentai.v1.DocumentProcessorService.DeleteProcessorVersion]
 /// method.
 ///
-/// [google.cloud.documentai.v1.DocumentProcessorService.DeleteProcessorVersion]: <doc:DocumentProcessorServiceClient/deleteProcessorVersion(request:)>
+/// [google.cloud.documentai.v1.DocumentProcessorService.DeleteProcessorVersion]: <doc:DocumentProcessorServiceClient/deleteProcessorVersion(request:options:)>
 public struct DeleteProcessorVersionRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

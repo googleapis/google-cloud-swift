@@ -116,7 +116,7 @@ public struct ListPurchasableSkusRequest: Codable, Equatable, GoogleCloudWkt._An
   /// List SKUs for a new entitlement. Make the purchase using
   /// [CloudChannelService.CreateEntitlement][google.cloud.channel.v1.CloudChannelService.CreateEntitlement].
   ///
-  /// [google.cloud.channel.v1.CloudChannelService.CreateEntitlement]: <doc:CloudChannelServiceClient/createEntitlement(request:)>
+  /// [google.cloud.channel.v1.CloudChannelService.CreateEntitlement]: <doc:CloudChannelServiceClient/createEntitlement(request:options:)>
   public struct CreateEntitlementPurchase: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {
@@ -157,7 +157,7 @@ public struct ListPurchasableSkusRequest: Codable, Equatable, GoogleCloudWkt._An
   /// using
   /// [CloudChannelService.ChangeOffer][google.cloud.channel.v1.CloudChannelService.ChangeOffer].
   ///
-  /// [google.cloud.channel.v1.CloudChannelService.ChangeOffer]: <doc:CloudChannelServiceClient/changeOffer(request:)>
+  /// [google.cloud.channel.v1.CloudChannelService.ChangeOffer]: <doc:CloudChannelServiceClient/changeOffer(request:options:)>
   public struct ChangeOfferPurchase: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

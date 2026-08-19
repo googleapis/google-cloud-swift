@@ -431,12 +431,12 @@
       /// CreatePipelineJobRequest.parent field is required (format:
       /// projects/{project}/locations/{location}).
       ///
-      /// [google.cloud.aiplatform.v1.PipelineService.CreatePipelineJob]: <doc:PipelineServiceClient/createPipelineJob(request:)>
+      /// [google.cloud.aiplatform.v1.PipelineService.CreatePipelineJob]: <doc:PipelineServiceClient/createPipelineJob(request:options:)>
       indirect case createPipelineJobRequest(CreatePipelineJobRequest?)
       /// Request for
       /// [NotebookService.CreateNotebookExecutionJob][google.cloud.aiplatform.v1.NotebookService.CreateNotebookExecutionJob].
       ///
-      /// [google.cloud.aiplatform.v1.NotebookService.CreateNotebookExecutionJob]: <doc:NotebookServiceClient/createNotebookExecutionJob(request:)>
+      /// [google.cloud.aiplatform.v1.NotebookService.CreateNotebookExecutionJob]: <doc:NotebookServiceClient/createNotebookExecutionJob(request:options:)>
       indirect case createNotebookExecutionJobRequest(CreateNotebookExecutionJobRequest?)
     }
 

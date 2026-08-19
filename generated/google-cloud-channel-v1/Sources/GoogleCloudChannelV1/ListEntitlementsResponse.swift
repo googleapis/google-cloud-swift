@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [CloudChannelService.ListEntitlements][google.cloud.channel.v1.CloudChannelService.ListEntitlements].
 ///
-/// [google.cloud.channel.v1.CloudChannelService.ListEntitlements]: <doc:CloudChannelServiceClient/listEntitlements(request:)>
+/// [google.cloud.channel.v1.CloudChannelService.ListEntitlements]: <doc:CloudChannelServiceClient/listEntitlements(request:options:)>
 public struct ListEntitlementsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

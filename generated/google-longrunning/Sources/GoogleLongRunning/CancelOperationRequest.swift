@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// The request message for
 /// [Operations.CancelOperation][google.longrunning.Operations.CancelOperation].
 ///
-/// [google.longrunning.Operations.CancelOperation]: <doc:OperationsClient/cancelOperation(request:)>
+/// [google.longrunning.Operations.CancelOperation]: <doc:OperationsClient/cancelOperation(request:options:)>
 public struct CancelOperationRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

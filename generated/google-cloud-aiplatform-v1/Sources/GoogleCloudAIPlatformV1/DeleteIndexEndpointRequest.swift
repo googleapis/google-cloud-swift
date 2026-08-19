@@ -21,7 +21,7 @@
   /// Request message for
   /// [IndexEndpointService.DeleteIndexEndpoint][google.cloud.aiplatform.v1.IndexEndpointService.DeleteIndexEndpoint].
   ///
-  /// [google.cloud.aiplatform.v1.IndexEndpointService.DeleteIndexEndpoint]: <doc:IndexEndpointServiceClient/deleteIndexEndpoint(request:)>
+  /// [google.cloud.aiplatform.v1.IndexEndpointService.DeleteIndexEndpoint]: <doc:IndexEndpointServiceClient/deleteIndexEndpoint(request:options:)>
   public struct DeleteIndexEndpointRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

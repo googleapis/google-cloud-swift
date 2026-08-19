@@ -21,7 +21,7 @@
   extension TargetHttpsProxiesClient {
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.targetHttpsProxies.aggregatedList] method.
     ///
-    /// [google.cloud.compute.v1.targetHttpsProxies.aggregatedList]: <doc:TargetHttpsProxiesClient/aggregatedList(request:)>
+    /// [google.cloud.compute.v1.targetHttpsProxies.aggregatedList]: <doc:TargetHttpsProxiesClient/aggregatedList(request:options:)>
     public struct AggregatedListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -164,7 +164,7 @@
 
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.targetHttpsProxies.delete] method.
     ///
-    /// [google.cloud.compute.v1.targetHttpsProxies.delete]: <doc:TargetHttpsProxiesClient/delete(request:)>
+    /// [google.cloud.compute.v1.targetHttpsProxies.delete]: <doc:TargetHttpsProxiesClient/delete(request:options:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -218,7 +218,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.targetHttpsProxies.get] method.
     ///
-    /// [google.cloud.compute.v1.targetHttpsProxies.get]: <doc:TargetHttpsProxiesClient/`get`(request:)>
+    /// [google.cloud.compute.v1.targetHttpsProxies.get]: <doc:TargetHttpsProxiesClient/`get`(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -257,7 +257,7 @@
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.targetHttpsProxies.insert] method.
     ///
-    /// [google.cloud.compute.v1.targetHttpsProxies.insert]: <doc:TargetHttpsProxiesClient/insert(request:)>
+    /// [google.cloud.compute.v1.targetHttpsProxies.insert]: <doc:TargetHttpsProxiesClient/insert(request:options:)>
     public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -281,7 +281,7 @@
 
       /// Synthetic request body field for the [insert()][google.cloud.compute.v1.targetHttpsProxies.insert] method.
       ///
-      /// [google.cloud.compute.v1.targetHttpsProxies.insert]: <doc:TargetHttpsProxiesClient/insert(request:)>
+      /// [google.cloud.compute.v1.targetHttpsProxies.insert]: <doc:TargetHttpsProxiesClient/insert(request:options:)>
       public var body: TargetHttpsProxy? = nil
 
       /// Initialize a new instance of `InsertRequest`.
@@ -313,7 +313,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.targetHttpsProxies.list] method.
     ///
-    /// [google.cloud.compute.v1.targetHttpsProxies.list]: <doc:TargetHttpsProxiesClient/list(request:)>
+    /// [google.cloud.compute.v1.targetHttpsProxies.list]: <doc:TargetHttpsProxiesClient/list(request:options:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -442,7 +442,7 @@
 
     /// Synthetic request message for the [patch()][google.cloud.compute.v1.targetHttpsProxies.patch] method.
     ///
-    /// [google.cloud.compute.v1.targetHttpsProxies.patch]: <doc:TargetHttpsProxiesClient/patch(request:)>
+    /// [google.cloud.compute.v1.targetHttpsProxies.patch]: <doc:TargetHttpsProxiesClient/patch(request:options:)>
     public struct PatchRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -469,7 +469,7 @@
 
       /// Synthetic request body field for the [patch()][google.cloud.compute.v1.targetHttpsProxies.patch] method.
       ///
-      /// [google.cloud.compute.v1.targetHttpsProxies.patch]: <doc:TargetHttpsProxiesClient/patch(request:)>
+      /// [google.cloud.compute.v1.targetHttpsProxies.patch]: <doc:TargetHttpsProxiesClient/patch(request:options:)>
       public var body: TargetHttpsProxy? = nil
 
       /// Initialize a new instance of `PatchRequest`.
@@ -501,7 +501,7 @@
 
     /// Synthetic request message for the [setCertificateMap()][google.cloud.compute.v1.targetHttpsProxies.setCertificateMap] method.
     ///
-    /// [google.cloud.compute.v1.targetHttpsProxies.setCertificateMap]: <doc:TargetHttpsProxiesClient/setCertificateMap(request:)>
+    /// [google.cloud.compute.v1.targetHttpsProxies.setCertificateMap]: <doc:TargetHttpsProxiesClient/setCertificateMap(request:options:)>
     public struct SetCertificateMapRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -529,7 +529,7 @@
 
       /// Synthetic request body field for the [setCertificateMap()][google.cloud.compute.v1.targetHttpsProxies.setCertificateMap] method.
       ///
-      /// [google.cloud.compute.v1.targetHttpsProxies.setCertificateMap]: <doc:TargetHttpsProxiesClient/setCertificateMap(request:)>
+      /// [google.cloud.compute.v1.targetHttpsProxies.setCertificateMap]: <doc:TargetHttpsProxiesClient/setCertificateMap(request:options:)>
       public var body: TargetHttpsProxiesSetCertificateMapRequest? = nil
 
       /// Initialize a new instance of `SetCertificateMapRequest`.
@@ -562,7 +562,7 @@
 
     /// Synthetic request message for the [setQuicOverride()][google.cloud.compute.v1.targetHttpsProxies.setQuicOverride] method.
     ///
-    /// [google.cloud.compute.v1.targetHttpsProxies.setQuicOverride]: <doc:TargetHttpsProxiesClient/setQuicOverride(request:)>
+    /// [google.cloud.compute.v1.targetHttpsProxies.setQuicOverride]: <doc:TargetHttpsProxiesClient/setQuicOverride(request:options:)>
     public struct SetQuicOverrideRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -590,7 +590,7 @@
 
       /// Synthetic request body field for the [setQuicOverride()][google.cloud.compute.v1.targetHttpsProxies.setQuicOverride] method.
       ///
-      /// [google.cloud.compute.v1.targetHttpsProxies.setQuicOverride]: <doc:TargetHttpsProxiesClient/setQuicOverride(request:)>
+      /// [google.cloud.compute.v1.targetHttpsProxies.setQuicOverride]: <doc:TargetHttpsProxiesClient/setQuicOverride(request:options:)>
       public var body: TargetHttpsProxiesSetQuicOverrideRequest? = nil
 
       /// Initialize a new instance of `SetQuicOverrideRequest`.
@@ -623,7 +623,7 @@
 
     /// Synthetic request message for the [setSslCertificates()][google.cloud.compute.v1.targetHttpsProxies.setSslCertificates] method.
     ///
-    /// [google.cloud.compute.v1.targetHttpsProxies.setSslCertificates]: <doc:TargetHttpsProxiesClient/setSslCertificates(request:)>
+    /// [google.cloud.compute.v1.targetHttpsProxies.setSslCertificates]: <doc:TargetHttpsProxiesClient/setSslCertificates(request:options:)>
     public struct SetSslCertificatesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -651,7 +651,7 @@
 
       /// Synthetic request body field for the [setSslCertificates()][google.cloud.compute.v1.targetHttpsProxies.setSslCertificates] method.
       ///
-      /// [google.cloud.compute.v1.targetHttpsProxies.setSslCertificates]: <doc:TargetHttpsProxiesClient/setSslCertificates(request:)>
+      /// [google.cloud.compute.v1.targetHttpsProxies.setSslCertificates]: <doc:TargetHttpsProxiesClient/setSslCertificates(request:options:)>
       public var body: TargetHttpsProxiesSetSslCertificatesRequest? = nil
 
       /// Initialize a new instance of `SetSslCertificatesRequest`.
@@ -684,7 +684,7 @@
 
     /// Synthetic request message for the [setSslPolicy()][google.cloud.compute.v1.targetHttpsProxies.setSslPolicy] method.
     ///
-    /// [google.cloud.compute.v1.targetHttpsProxies.setSslPolicy]: <doc:TargetHttpsProxiesClient/setSslPolicy(request:)>
+    /// [google.cloud.compute.v1.targetHttpsProxies.setSslPolicy]: <doc:TargetHttpsProxiesClient/setSslPolicy(request:options:)>
     public struct SetSslPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -712,7 +712,7 @@
 
       /// Synthetic request body field for the [setSslPolicy()][google.cloud.compute.v1.targetHttpsProxies.setSslPolicy] method.
       ///
-      /// [google.cloud.compute.v1.targetHttpsProxies.setSslPolicy]: <doc:TargetHttpsProxiesClient/setSslPolicy(request:)>
+      /// [google.cloud.compute.v1.targetHttpsProxies.setSslPolicy]: <doc:TargetHttpsProxiesClient/setSslPolicy(request:options:)>
       public var body: SslPolicyReference? = nil
 
       /// Initialize a new instance of `SetSslPolicyRequest`.
@@ -744,7 +744,7 @@
 
     /// Synthetic request message for the [setUrlMap()][google.cloud.compute.v1.targetHttpsProxies.setUrlMap] method.
     ///
-    /// [google.cloud.compute.v1.targetHttpsProxies.setUrlMap]: <doc:TargetHttpsProxiesClient/setUrlMap(request:)>
+    /// [google.cloud.compute.v1.targetHttpsProxies.setUrlMap]: <doc:TargetHttpsProxiesClient/setUrlMap(request:options:)>
     public struct SetUrlMapRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -772,7 +772,7 @@
 
       /// Synthetic request body field for the [setUrlMap()][google.cloud.compute.v1.targetHttpsProxies.setUrlMap] method.
       ///
-      /// [google.cloud.compute.v1.targetHttpsProxies.setUrlMap]: <doc:TargetHttpsProxiesClient/setUrlMap(request:)>
+      /// [google.cloud.compute.v1.targetHttpsProxies.setUrlMap]: <doc:TargetHttpsProxiesClient/setUrlMap(request:options:)>
       public var body: UrlMapReference? = nil
 
       /// Initialize a new instance of `SetUrlMapRequest`.

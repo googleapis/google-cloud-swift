@@ -57,8 +57,8 @@ public struct Service: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// Control plane clients should use
   /// [RegistrationService.ListEndpoints][google.cloud.servicedirectory.v1.RegistrationService.ListEndpoints].
   ///
-  /// [google.cloud.servicedirectory.v1.LookupService.ResolveService]: <doc:LookupServiceClient/resolveService(request:)>
-  /// [google.cloud.servicedirectory.v1.RegistrationService.ListEndpoints]: <doc:RegistrationServiceClient/listEndpoints(request:)>
+  /// [google.cloud.servicedirectory.v1.LookupService.ResolveService]: <doc:LookupServiceClient/resolveService(request:options:)>
+  /// [google.cloud.servicedirectory.v1.RegistrationService.ListEndpoints]: <doc:RegistrationServiceClient/listEndpoints(request:options:)>
   public var endpoints: [Endpoint] = []
 
   /// Output only. The globally unique identifier of the service in the UUID4

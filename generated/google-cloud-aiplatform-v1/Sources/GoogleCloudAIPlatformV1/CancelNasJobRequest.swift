@@ -21,7 +21,7 @@
   /// Request message for
   /// [JobService.CancelNasJob][google.cloud.aiplatform.v1.JobService.CancelNasJob].
   ///
-  /// [google.cloud.aiplatform.v1.JobService.CancelNasJob]: <doc:JobServiceClient/cancelNasJob(request:)>
+  /// [google.cloud.aiplatform.v1.JobService.CancelNasJob]: <doc:JobServiceClient/cancelNasJob(request:options:)>
   public struct CancelNasJobRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

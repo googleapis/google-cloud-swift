@@ -21,7 +21,7 @@
   /// Request message for
   /// [ModelGardenService.GetPublisherModel][google.cloud.aiplatform.v1.ModelGardenService.GetPublisherModel]
   ///
-  /// [google.cloud.aiplatform.v1.ModelGardenService.GetPublisherModel]: <doc:ModelGardenServiceClient/getPublisherModel(request:)>
+  /// [google.cloud.aiplatform.v1.ModelGardenService.GetPublisherModel]: <doc:ModelGardenServiceClient/getPublisherModel(request:options:)>
   public struct GetPublisherModelRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

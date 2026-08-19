@@ -60,7 +60,7 @@ public struct GenerateAttachedClusterInstallManifestRequest: Codable, Equatable,
   /// calling
   /// [GetAttachedServerConfig][google.cloud.gkemulticloud.v1.AttachedClusters.GetAttachedServerConfig].
   ///
-  /// [google.cloud.gkemulticloud.v1.AttachedClusters.GetAttachedServerConfig]: <doc:AttachedClustersClient/getAttachedServerConfig(request:)>
+  /// [google.cloud.gkemulticloud.v1.AttachedClusters.GetAttachedServerConfig]: <doc:AttachedClustersClient/getAttachedServerConfig(request:options:)>
   public var platformVersion: Swift.String = Swift.String()
 
   /// Optional. Proxy configuration for outbound HTTP(S) traffic.

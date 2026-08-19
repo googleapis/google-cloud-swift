@@ -22,7 +22,7 @@
   /// [GeneratorEvaluations.CreateGeneratorEvaluation][google.cloud.dialogflow.v2.GeneratorEvaluations.CreateGeneratorEvaluation]
   /// operation.
   ///
-  /// [google.cloud.dialogflow.v2.GeneratorEvaluations.CreateGeneratorEvaluation]: <doc:GeneratorEvaluationsClient/createGeneratorEvaluation(request:)>
+  /// [google.cloud.dialogflow.v2.GeneratorEvaluations.CreateGeneratorEvaluation]: <doc:GeneratorEvaluationsClient/createGeneratorEvaluation(request:options:)>
   public struct GeneratorEvaluationOperationMetadata: Codable, Equatable, GoogleCloudWkt
       ._AnyPackable,
     Sendable

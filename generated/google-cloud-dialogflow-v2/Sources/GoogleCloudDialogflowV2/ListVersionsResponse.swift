@@ -22,7 +22,7 @@
   /// The response message for
   /// [Versions.ListVersions][google.cloud.dialogflow.v2.Versions.ListVersions].
   ///
-  /// [google.cloud.dialogflow.v2.Versions.ListVersions]: <doc:VersionsClient/listVersions(request:)>
+  /// [google.cloud.dialogflow.v2.Versions.ListVersions]: <doc:VersionsClient/listVersions(request:options:)>
   public struct ListVersionsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable

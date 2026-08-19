@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [VmwareEngine.ListSubnets][google.cloud.vmwareengine.v1.VmwareEngine.ListSubnets]
 ///
-/// [google.cloud.vmwareengine.v1.VmwareEngine.ListSubnets]: <doc:VmwareEngineClient/listSubnets(request:)>
+/// [google.cloud.vmwareengine.v1.VmwareEngine.ListSubnets]: <doc:VmwareEngineClient/listSubnets(request:options:)>
 public struct ListSubnetsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

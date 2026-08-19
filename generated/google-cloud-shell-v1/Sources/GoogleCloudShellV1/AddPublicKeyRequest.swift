@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [AddPublicKey][google.cloud.shell.v1.CloudShellService.AddPublicKey].
 ///
-/// [google.cloud.shell.v1.CloudShellService.AddPublicKey]: <doc:CloudShellServiceClient/addPublicKey(request:)>
+/// [google.cloud.shell.v1.CloudShellService.AddPublicKey]: <doc:CloudShellServiceClient/addPublicKey(request:options:)>
 public struct AddPublicKeyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

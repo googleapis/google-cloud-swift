@@ -22,7 +22,7 @@
   /// [SiteSearchEngineService.DisableAdvancedSiteSearch][google.cloud.discoveryengine.v1.SiteSearchEngineService.DisableAdvancedSiteSearch]
   /// method.
   ///
-  /// [google.cloud.discoveryengine.v1.SiteSearchEngineService.DisableAdvancedSiteSearch]: <doc:SiteSearchEngineServiceClient/disableAdvancedSiteSearch(request:)>
+  /// [google.cloud.discoveryengine.v1.SiteSearchEngineService.DisableAdvancedSiteSearch]: <doc:SiteSearchEngineServiceClient/disableAdvancedSiteSearch(request:options:)>
   public struct DisableAdvancedSiteSearchResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

@@ -21,7 +21,7 @@
   /// Request message for
   /// [MetadataService.GetContext][google.cloud.aiplatform.v1.MetadataService.GetContext].
   ///
-  /// [google.cloud.aiplatform.v1.MetadataService.GetContext]: <doc:MetadataServiceClient/getContext(request:)>
+  /// [google.cloud.aiplatform.v1.MetadataService.GetContext]: <doc:MetadataServiceClient/getContext(request:options:)>
   public struct GetContextRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

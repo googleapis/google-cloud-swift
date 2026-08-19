@@ -40,7 +40,7 @@ public struct AutokeyConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// `cloudkms.admin` role (or pertinent permissions). A request with an empty
   /// key project field will clear the configuration.
   ///
-  /// [google.cloud.kms.v1.AutokeyAdmin.UpdateAutokeyConfig]: <doc:AutokeyAdminClient/updateAutokeyConfig(request:)>
+  /// [google.cloud.kms.v1.AutokeyAdmin.UpdateAutokeyConfig]: <doc:AutokeyAdminClient/updateAutokeyConfig(request:options:)>
   /// [google.cloud.kms.v1.CryptoKey]: <doc:CryptoKey>
   /// [google.cloud.kms.v1.KeyHandle]: <doc:KeyHandle>
   public var keyProject: Swift.String = Swift.String()

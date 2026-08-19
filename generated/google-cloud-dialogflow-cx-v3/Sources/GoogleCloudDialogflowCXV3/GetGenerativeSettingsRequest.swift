@@ -22,7 +22,7 @@
   /// [GetGenerativeSettings][google.cloud.dialogflow.cx.v3.Agents.GetGenerativeSettings]
   /// RPC.
   ///
-  /// [google.cloud.dialogflow.cx.v3.Agents.GetGenerativeSettings]: <doc:AgentsClient/getGenerativeSettings(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Agents.GetGenerativeSettings]: <doc:AgentsClient/getGenerativeSettings(request:options:)>
   public struct GetGenerativeSettingsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [DisableProcessor][google.cloud.documentai.v1.DocumentProcessorService.DisableProcessor]
 /// method.
 ///
-/// [google.cloud.documentai.v1.DocumentProcessorService.DisableProcessor]: <doc:DocumentProcessorServiceClient/disableProcessor(request:)>
+/// [google.cloud.documentai.v1.DocumentProcessorService.DisableProcessor]: <doc:DocumentProcessorServiceClient/disableProcessor(request:options:)>
 public struct DisableProcessorMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

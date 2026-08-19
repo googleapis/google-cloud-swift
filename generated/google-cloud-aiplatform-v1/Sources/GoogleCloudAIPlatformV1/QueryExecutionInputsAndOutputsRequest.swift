@@ -21,7 +21,7 @@
   /// Request message for
   /// [MetadataService.QueryExecutionInputsAndOutputs][google.cloud.aiplatform.v1.MetadataService.QueryExecutionInputsAndOutputs].
   ///
-  /// [google.cloud.aiplatform.v1.MetadataService.QueryExecutionInputsAndOutputs]: <doc:MetadataServiceClient/queryExecutionInputsAndOutputs(request:)>
+  /// [google.cloud.aiplatform.v1.MetadataService.QueryExecutionInputsAndOutputs]: <doc:MetadataServiceClient/queryExecutionInputsAndOutputs(request:options:)>
   public struct QueryExecutionInputsAndOutputsRequest: Codable, Equatable, GoogleCloudWkt
       ._AnyPackable,
     Sendable

@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [google.bigtable.admin.v2.BigtableTableAdmin.DeleteAuthorizedView][google.bigtable.admin.v2.BigtableTableAdmin.DeleteAuthorizedView]
 ///
-/// [google.bigtable.admin.v2.BigtableTableAdmin.DeleteAuthorizedView]: <doc:BigtableTableAdminClient/deleteAuthorizedView(request:)>
+/// [google.bigtable.admin.v2.BigtableTableAdmin.DeleteAuthorizedView]: <doc:BigtableTableAdminClient/deleteAuthorizedView(request:options:)>
 public struct DeleteAuthorizedViewRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

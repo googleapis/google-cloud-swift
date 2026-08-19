@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [AgentService.ListDeployments][google.cloud.ces.v1.AgentService.ListDeployments].
 ///
-/// [google.cloud.ces.v1.AgentService.ListDeployments]: <doc:AgentServiceClient/listDeployments(request:)>
+/// [google.cloud.ces.v1.AgentService.ListDeployments]: <doc:AgentServiceClient/listDeployments(request:options:)>
 public struct ListDeploymentsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

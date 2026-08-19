@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Metadata type for the operation returned by
 /// [UpdateTable][google.bigtable.admin.v2.BigtableTableAdmin.UpdateTable].
 ///
-/// [google.bigtable.admin.v2.BigtableTableAdmin.UpdateTable]: <doc:BigtableTableAdminClient/updateTable(request:)>
+/// [google.bigtable.admin.v2.BigtableTableAdmin.UpdateTable]: <doc:BigtableTableAdminClient/updateTable(request:options:)>
 public struct UpdateTableMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

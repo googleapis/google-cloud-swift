@@ -21,7 +21,7 @@
   extension TargetTcpProxiesClient {
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.targetTcpProxies.aggregatedList] method.
     ///
-    /// [google.cloud.compute.v1.targetTcpProxies.aggregatedList]: <doc:TargetTcpProxiesClient/aggregatedList(request:)>
+    /// [google.cloud.compute.v1.targetTcpProxies.aggregatedList]: <doc:TargetTcpProxiesClient/aggregatedList(request:options:)>
     public struct AggregatedListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -163,7 +163,7 @@
 
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.targetTcpProxies.delete] method.
     ///
-    /// [google.cloud.compute.v1.targetTcpProxies.delete]: <doc:TargetTcpProxiesClient/delete(request:)>
+    /// [google.cloud.compute.v1.targetTcpProxies.delete]: <doc:TargetTcpProxiesClient/delete(request:options:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -217,7 +217,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.targetTcpProxies.get] method.
     ///
-    /// [google.cloud.compute.v1.targetTcpProxies.get]: <doc:TargetTcpProxiesClient/`get`(request:)>
+    /// [google.cloud.compute.v1.targetTcpProxies.get]: <doc:TargetTcpProxiesClient/`get`(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -256,7 +256,7 @@
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.targetTcpProxies.insert] method.
     ///
-    /// [google.cloud.compute.v1.targetTcpProxies.insert]: <doc:TargetTcpProxiesClient/insert(request:)>
+    /// [google.cloud.compute.v1.targetTcpProxies.insert]: <doc:TargetTcpProxiesClient/insert(request:options:)>
     public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -280,7 +280,7 @@
 
       /// Synthetic request body field for the [insert()][google.cloud.compute.v1.targetTcpProxies.insert] method.
       ///
-      /// [google.cloud.compute.v1.targetTcpProxies.insert]: <doc:TargetTcpProxiesClient/insert(request:)>
+      /// [google.cloud.compute.v1.targetTcpProxies.insert]: <doc:TargetTcpProxiesClient/insert(request:options:)>
       public var body: TargetTcpProxy? = nil
 
       /// Initialize a new instance of `InsertRequest`.
@@ -312,7 +312,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.targetTcpProxies.list] method.
     ///
-    /// [google.cloud.compute.v1.targetTcpProxies.list]: <doc:TargetTcpProxiesClient/list(request:)>
+    /// [google.cloud.compute.v1.targetTcpProxies.list]: <doc:TargetTcpProxiesClient/list(request:options:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -441,7 +441,7 @@
 
     /// Synthetic request message for the [setBackendService()][google.cloud.compute.v1.targetTcpProxies.setBackendService] method.
     ///
-    /// [google.cloud.compute.v1.targetTcpProxies.setBackendService]: <doc:TargetTcpProxiesClient/setBackendService(request:)>
+    /// [google.cloud.compute.v1.targetTcpProxies.setBackendService]: <doc:TargetTcpProxiesClient/setBackendService(request:options:)>
     public struct SetBackendServiceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -469,7 +469,7 @@
 
       /// Synthetic request body field for the [setBackendService()][google.cloud.compute.v1.targetTcpProxies.setBackendService] method.
       ///
-      /// [google.cloud.compute.v1.targetTcpProxies.setBackendService]: <doc:TargetTcpProxiesClient/setBackendService(request:)>
+      /// [google.cloud.compute.v1.targetTcpProxies.setBackendService]: <doc:TargetTcpProxiesClient/setBackendService(request:options:)>
       public var body: TargetTcpProxiesSetBackendServiceRequest? = nil
 
       /// Initialize a new instance of `SetBackendServiceRequest`.
@@ -502,7 +502,7 @@
 
     /// Synthetic request message for the [setProxyHeader()][google.cloud.compute.v1.targetTcpProxies.setProxyHeader] method.
     ///
-    /// [google.cloud.compute.v1.targetTcpProxies.setProxyHeader]: <doc:TargetTcpProxiesClient/setProxyHeader(request:)>
+    /// [google.cloud.compute.v1.targetTcpProxies.setProxyHeader]: <doc:TargetTcpProxiesClient/setProxyHeader(request:options:)>
     public struct SetProxyHeaderRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -529,7 +529,7 @@
 
       /// Synthetic request body field for the [setProxyHeader()][google.cloud.compute.v1.targetTcpProxies.setProxyHeader] method.
       ///
-      /// [google.cloud.compute.v1.targetTcpProxies.setProxyHeader]: <doc:TargetTcpProxiesClient/setProxyHeader(request:)>
+      /// [google.cloud.compute.v1.targetTcpProxies.setProxyHeader]: <doc:TargetTcpProxiesClient/setProxyHeader(request:options:)>
       public var body: TargetTcpProxiesSetProxyHeaderRequest? = nil
 
       /// Initialize a new instance of `SetProxyHeaderRequest`.
@@ -561,7 +561,7 @@
 
     /// Synthetic request message for the [testIamPermissions()][google.cloud.compute.v1.targetTcpProxies.testIamPermissions] method.
     ///
-    /// [google.cloud.compute.v1.targetTcpProxies.testIamPermissions]: <doc:TargetTcpProxiesClient/testIamPermissions(request:)>
+    /// [google.cloud.compute.v1.targetTcpProxies.testIamPermissions]: <doc:TargetTcpProxiesClient/testIamPermissions(request:options:)>
     public struct TestIamPermissionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -573,7 +573,7 @@
 
       /// Synthetic request body field for the [testIamPermissions()][google.cloud.compute.v1.targetTcpProxies.testIamPermissions] method.
       ///
-      /// [google.cloud.compute.v1.targetTcpProxies.testIamPermissions]: <doc:TargetTcpProxiesClient/testIamPermissions(request:)>
+      /// [google.cloud.compute.v1.targetTcpProxies.testIamPermissions]: <doc:TargetTcpProxiesClient/testIamPermissions(request:options:)>
       public var body: TestPermissionsRequest? = nil
 
       /// Initialize a new instance of `TestIamPermissionsRequest`.

@@ -55,8 +55,8 @@ public struct CryptoKey: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// [google.cloud.kms.v1.CryptoKey.purpose]: <doc:CryptoKey/purpose>
   /// [google.cloud.kms.v1.CryptoKeyVersion]: <doc:CryptoKeyVersion>
   /// [google.cloud.kms.v1.EncryptRequest.name]: <doc:EncryptRequest/name>
-  /// [google.cloud.kms.v1.KeyManagementService.Encrypt]: <doc:KeyManagementServiceClient/encrypt(request:)>
-  /// [google.cloud.kms.v1.KeyManagementService.UpdateCryptoKeyPrimaryVersion]: <doc:KeyManagementServiceClient/updateCryptoKeyPrimaryVersion(request:)>
+  /// [google.cloud.kms.v1.KeyManagementService.Encrypt]: <doc:KeyManagementServiceClient/encrypt(request:options:)>
+  /// [google.cloud.kms.v1.KeyManagementService.UpdateCryptoKeyPrimaryVersion]: <doc:KeyManagementServiceClient/updateCryptoKeyPrimaryVersion(request:options:)>
   public var primary: CryptoKeyVersion? = nil
 
   /// Immutable. The immutable purpose of this
@@ -92,8 +92,8 @@ public struct CryptoKey: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// [google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT]: <doc:CryptoKey/CryptoKeyPurpose/encryptDecrypt>
   /// [google.cloud.kms.v1.CryptoKey.next_rotation_time]: <doc:CryptoKey/nextRotationTime>
   /// [google.cloud.kms.v1.CryptoKey.purpose]: <doc:CryptoKey/purpose>
-  /// [google.cloud.kms.v1.KeyManagementService.CreateCryptoKeyVersion]: <doc:KeyManagementServiceClient/createCryptoKeyVersion(request:)>
-  /// [google.cloud.kms.v1.KeyManagementService.UpdateCryptoKeyPrimaryVersion]: <doc:KeyManagementServiceClient/updateCryptoKeyPrimaryVersion(request:)>
+  /// [google.cloud.kms.v1.KeyManagementService.CreateCryptoKeyVersion]: <doc:KeyManagementServiceClient/createCryptoKeyVersion(request:options:)>
+  /// [google.cloud.kms.v1.KeyManagementService.UpdateCryptoKeyPrimaryVersion]: <doc:KeyManagementServiceClient/updateCryptoKeyPrimaryVersion(request:options:)>
   public var nextRotationTime: GoogleCloudWkt.Timestamp? = nil
 
   /// A template describing settings for new
@@ -104,7 +104,7 @@ public struct CryptoKey: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// or auto-rotation are controlled by this template.
   ///
   /// [google.cloud.kms.v1.CryptoKeyVersion]: <doc:CryptoKeyVersion>
-  /// [google.cloud.kms.v1.KeyManagementService.CreateCryptoKeyVersion]: <doc:KeyManagementServiceClient/createCryptoKeyVersion(request:)>
+  /// [google.cloud.kms.v1.KeyManagementService.CreateCryptoKeyVersion]: <doc:KeyManagementServiceClient/createCryptoKeyVersion(request:options:)>
   public var versionTemplate: CryptoKeyVersionTemplate? = nil
 
   /// Labels with user-defined metadata. For more information, see
@@ -270,8 +270,8 @@ public struct CryptoKey: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// [Decrypt][google.cloud.kms.v1.KeyManagementService.Decrypt].
     ///
     /// [google.cloud.kms.v1.CryptoKey]: <doc:CryptoKey>
-    /// [google.cloud.kms.v1.KeyManagementService.Decrypt]: <doc:KeyManagementServiceClient/decrypt(request:)>
-    /// [google.cloud.kms.v1.KeyManagementService.Encrypt]: <doc:KeyManagementServiceClient/encrypt(request:)>
+    /// [google.cloud.kms.v1.KeyManagementService.Decrypt]: <doc:KeyManagementServiceClient/decrypt(request:options:)>
+    /// [google.cloud.kms.v1.KeyManagementService.Encrypt]: <doc:KeyManagementServiceClient/encrypt(request:options:)>
     case encryptDecrypt
     /// [CryptoKeys][google.cloud.kms.v1.CryptoKey] with this purpose may be used
     /// with
@@ -280,8 +280,8 @@ public struct CryptoKey: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// [GetPublicKey][google.cloud.kms.v1.KeyManagementService.GetPublicKey].
     ///
     /// [google.cloud.kms.v1.CryptoKey]: <doc:CryptoKey>
-    /// [google.cloud.kms.v1.KeyManagementService.AsymmetricSign]: <doc:KeyManagementServiceClient/asymmetricSign(request:)>
-    /// [google.cloud.kms.v1.KeyManagementService.GetPublicKey]: <doc:KeyManagementServiceClient/getPublicKey(request:)>
+    /// [google.cloud.kms.v1.KeyManagementService.AsymmetricSign]: <doc:KeyManagementServiceClient/asymmetricSign(request:options:)>
+    /// [google.cloud.kms.v1.KeyManagementService.GetPublicKey]: <doc:KeyManagementServiceClient/getPublicKey(request:options:)>
     case asymmetricSign
     /// [CryptoKeys][google.cloud.kms.v1.CryptoKey] with this purpose may be used
     /// with
@@ -290,8 +290,8 @@ public struct CryptoKey: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// [GetPublicKey][google.cloud.kms.v1.KeyManagementService.GetPublicKey].
     ///
     /// [google.cloud.kms.v1.CryptoKey]: <doc:CryptoKey>
-    /// [google.cloud.kms.v1.KeyManagementService.AsymmetricDecrypt]: <doc:KeyManagementServiceClient/asymmetricDecrypt(request:)>
-    /// [google.cloud.kms.v1.KeyManagementService.GetPublicKey]: <doc:KeyManagementServiceClient/getPublicKey(request:)>
+    /// [google.cloud.kms.v1.KeyManagementService.AsymmetricDecrypt]: <doc:KeyManagementServiceClient/asymmetricDecrypt(request:options:)>
+    /// [google.cloud.kms.v1.KeyManagementService.GetPublicKey]: <doc:KeyManagementServiceClient/getPublicKey(request:options:)>
     case asymmetricDecrypt
     /// [CryptoKeys][google.cloud.kms.v1.CryptoKey] with this purpose may be used
     /// with [RawEncrypt][google.cloud.kms.v1.KeyManagementService.RawEncrypt]
@@ -300,14 +300,14 @@ public struct CryptoKey: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// encryption and does not support automatic CryptoKey rotation.
     ///
     /// [google.cloud.kms.v1.CryptoKey]: <doc:CryptoKey>
-    /// [google.cloud.kms.v1.KeyManagementService.RawDecrypt]: <doc:KeyManagementServiceClient/rawDecrypt(request:)>
-    /// [google.cloud.kms.v1.KeyManagementService.RawEncrypt]: <doc:KeyManagementServiceClient/rawEncrypt(request:)>
+    /// [google.cloud.kms.v1.KeyManagementService.RawDecrypt]: <doc:KeyManagementServiceClient/rawDecrypt(request:options:)>
+    /// [google.cloud.kms.v1.KeyManagementService.RawEncrypt]: <doc:KeyManagementServiceClient/rawEncrypt(request:options:)>
     case rawEncryptDecrypt
     /// [CryptoKeys][google.cloud.kms.v1.CryptoKey] with this purpose may be used
     /// with [MacSign][google.cloud.kms.v1.KeyManagementService.MacSign].
     ///
     /// [google.cloud.kms.v1.CryptoKey]: <doc:CryptoKey>
-    /// [google.cloud.kms.v1.KeyManagementService.MacSign]: <doc:KeyManagementServiceClient/macSign(request:)>
+    /// [google.cloud.kms.v1.KeyManagementService.MacSign]: <doc:KeyManagementServiceClient/macSign(request:options:)>
     case mac
     /// [CryptoKeys][google.cloud.kms.v1.CryptoKey] with this purpose may be used
     /// with
@@ -315,8 +315,8 @@ public struct CryptoKey: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// and [Decapsulate][google.cloud.kms.v1.KeyManagementService.Decapsulate].
     ///
     /// [google.cloud.kms.v1.CryptoKey]: <doc:CryptoKey>
-    /// [google.cloud.kms.v1.KeyManagementService.Decapsulate]: <doc:KeyManagementServiceClient/decapsulate(request:)>
-    /// [google.cloud.kms.v1.KeyManagementService.GetPublicKey]: <doc:KeyManagementServiceClient/getPublicKey(request:)>
+    /// [google.cloud.kms.v1.KeyManagementService.Decapsulate]: <doc:KeyManagementServiceClient/decapsulate(request:options:)>
+    /// [google.cloud.kms.v1.KeyManagementService.GetPublicKey]: <doc:KeyManagementServiceClient/getPublicKey(request:options:)>
     case keyEncapsulation
     /// [CryptoKeys][google.cloud.kms.v1.CryptoKey] with this purpose may be used
     /// for AES key

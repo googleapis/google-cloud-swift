@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [SecurityCenterManagement.ListSecurityCenterServices][google.cloud.securitycentermanagement.v1.SecurityCenterManagement.ListSecurityCenterServices].
 ///
-/// [google.cloud.securitycentermanagement.v1.SecurityCenterManagement.ListSecurityCenterServices]: <doc:SecurityCenterManagementClient/listSecurityCenterServices(request:)>
+/// [google.cloud.securitycentermanagement.v1.SecurityCenterManagement.ListSecurityCenterServices]: <doc:SecurityCenterManagementClient/listSecurityCenterServices(request:options:)>
 public struct ListSecurityCenterServicesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

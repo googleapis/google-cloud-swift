@@ -21,7 +21,7 @@
   extension ExternalVpnGatewaysClient {
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.externalVpnGateways.delete] method.
     ///
-    /// [google.cloud.compute.v1.externalVpnGateways.delete]: <doc:ExternalVpnGatewaysClient/delete(request:)>
+    /// [google.cloud.compute.v1.externalVpnGateways.delete]: <doc:ExternalVpnGatewaysClient/delete(request:options:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -75,7 +75,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.externalVpnGateways.get] method.
     ///
-    /// [google.cloud.compute.v1.externalVpnGateways.get]: <doc:ExternalVpnGatewaysClient/`get`(request:)>
+    /// [google.cloud.compute.v1.externalVpnGateways.get]: <doc:ExternalVpnGatewaysClient/`get`(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -114,7 +114,7 @@
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.externalVpnGateways.insert] method.
     ///
-    /// [google.cloud.compute.v1.externalVpnGateways.insert]: <doc:ExternalVpnGatewaysClient/insert(request:)>
+    /// [google.cloud.compute.v1.externalVpnGateways.insert]: <doc:ExternalVpnGatewaysClient/insert(request:options:)>
     public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -138,7 +138,7 @@
 
       /// Synthetic request body field for the [insert()][google.cloud.compute.v1.externalVpnGateways.insert] method.
       ///
-      /// [google.cloud.compute.v1.externalVpnGateways.insert]: <doc:ExternalVpnGatewaysClient/insert(request:)>
+      /// [google.cloud.compute.v1.externalVpnGateways.insert]: <doc:ExternalVpnGatewaysClient/insert(request:options:)>
       public var body: ExternalVpnGateway? = nil
 
       /// Initialize a new instance of `InsertRequest`.
@@ -170,7 +170,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.externalVpnGateways.list] method.
     ///
-    /// [google.cloud.compute.v1.externalVpnGateways.list]: <doc:ExternalVpnGatewaysClient/list(request:)>
+    /// [google.cloud.compute.v1.externalVpnGateways.list]: <doc:ExternalVpnGatewaysClient/list(request:options:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -299,7 +299,7 @@
 
     /// Synthetic request message for the [setLabels()][google.cloud.compute.v1.externalVpnGateways.setLabels] method.
     ///
-    /// [google.cloud.compute.v1.externalVpnGateways.setLabels]: <doc:ExternalVpnGatewaysClient/setLabels(request:)>
+    /// [google.cloud.compute.v1.externalVpnGateways.setLabels]: <doc:ExternalVpnGatewaysClient/setLabels(request:options:)>
     public struct SetLabelsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -311,7 +311,7 @@
 
       /// Synthetic request body field for the [setLabels()][google.cloud.compute.v1.externalVpnGateways.setLabels] method.
       ///
-      /// [google.cloud.compute.v1.externalVpnGateways.setLabels]: <doc:ExternalVpnGatewaysClient/setLabels(request:)>
+      /// [google.cloud.compute.v1.externalVpnGateways.setLabels]: <doc:ExternalVpnGatewaysClient/setLabels(request:options:)>
       public var body: GlobalSetLabelsRequest? = nil
 
       /// Initialize a new instance of `SetLabelsRequest`.
@@ -343,7 +343,7 @@
 
     /// Synthetic request message for the [testIamPermissions()][google.cloud.compute.v1.externalVpnGateways.testIamPermissions] method.
     ///
-    /// [google.cloud.compute.v1.externalVpnGateways.testIamPermissions]: <doc:ExternalVpnGatewaysClient/testIamPermissions(request:)>
+    /// [google.cloud.compute.v1.externalVpnGateways.testIamPermissions]: <doc:ExternalVpnGatewaysClient/testIamPermissions(request:options:)>
     public struct TestIamPermissionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -355,7 +355,7 @@
 
       /// Synthetic request body field for the [testIamPermissions()][google.cloud.compute.v1.externalVpnGateways.testIamPermissions] method.
       ///
-      /// [google.cloud.compute.v1.externalVpnGateways.testIamPermissions]: <doc:ExternalVpnGatewaysClient/testIamPermissions(request:)>
+      /// [google.cloud.compute.v1.externalVpnGateways.testIamPermissions]: <doc:ExternalVpnGatewaysClient/testIamPermissions(request:options:)>
       public var body: TestPermissionsRequest? = nil
 
       /// Initialize a new instance of `TestIamPermissionsRequest`.

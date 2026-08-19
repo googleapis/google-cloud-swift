@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [VmwareEngine.UpdateExternalAddress][google.cloud.vmwareengine.v1.VmwareEngine.UpdateExternalAddress]
 ///
-/// [google.cloud.vmwareengine.v1.VmwareEngine.UpdateExternalAddress]: <doc:VmwareEngineClient/updateExternalAddress(request:)>
+/// [google.cloud.vmwareengine.v1.VmwareEngine.UpdateExternalAddress]: <doc:VmwareEngineClient/updateExternalAddress(request:options:)>
 public struct UpdateExternalAddressRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

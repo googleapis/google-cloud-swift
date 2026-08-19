@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [VmwareEngine.GetDnsForwarding][google.cloud.vmwareengine.v1.VmwareEngine.GetDnsForwarding]
 ///
-/// [google.cloud.vmwareengine.v1.VmwareEngine.GetDnsForwarding]: <doc:VmwareEngineClient/getDnsForwarding(request:)>
+/// [google.cloud.vmwareengine.v1.VmwareEngine.GetDnsForwarding]: <doc:VmwareEngineClient/getDnsForwarding(request:options:)>
 public struct GetDnsForwardingRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

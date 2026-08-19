@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [VmwareEngine.DeleteManagementDnsZoneBinding][google.cloud.vmwareengine.v1.VmwareEngine.DeleteManagementDnsZoneBinding]
 ///
-/// [google.cloud.vmwareengine.v1.VmwareEngine.DeleteManagementDnsZoneBinding]: <doc:VmwareEngineClient/deleteManagementDnsZoneBinding(request:)>
+/// [google.cloud.vmwareengine.v1.VmwareEngine.DeleteManagementDnsZoneBinding]: <doc:VmwareEngineClient/deleteManagementDnsZoneBinding(request:options:)>
 public struct DeleteManagementDnsZoneBindingRequest: Codable, Equatable, GoogleCloudWkt
     ._AnyPackable,
   Sendable

@@ -21,7 +21,7 @@
   /// Response message for
   /// [VizierService.SuggestTrials][google.cloud.aiplatform.v1.VizierService.SuggestTrials].
   ///
-  /// [google.cloud.aiplatform.v1.VizierService.SuggestTrials]: <doc:VizierServiceClient/suggestTrials(request:)>
+  /// [google.cloud.aiplatform.v1.VizierService.SuggestTrials]: <doc:VizierServiceClient/suggestTrials(request:options:)>
   public struct SuggestTrialsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

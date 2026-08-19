@@ -21,7 +21,7 @@
   /// Runtime operation information for
   /// [VertexRagDataService.UpdateRagEngineConfig][google.cloud.aiplatform.v1.VertexRagDataService.UpdateRagEngineConfig].
   ///
-  /// [google.cloud.aiplatform.v1.VertexRagDataService.UpdateRagEngineConfig]: <doc:VertexRagDataServiceClient/updateRagEngineConfig(request:)>
+  /// [google.cloud.aiplatform.v1.VertexRagDataService.UpdateRagEngineConfig]: <doc:VertexRagDataServiceClient/updateRagEngineConfig(request:options:)>
   public struct UpdateRagEngineConfigOperationMetadata: Codable, Equatable, GoogleCloudWkt
       ._AnyPackable,
     Sendable

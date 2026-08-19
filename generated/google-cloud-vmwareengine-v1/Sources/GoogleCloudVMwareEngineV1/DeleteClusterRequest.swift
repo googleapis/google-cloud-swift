@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [VmwareEngine.DeleteCluster][google.cloud.vmwareengine.v1.VmwareEngine.DeleteCluster]
 ///
-/// [google.cloud.vmwareengine.v1.VmwareEngine.DeleteCluster]: <doc:VmwareEngineClient/deleteCluster(request:)>
+/// [google.cloud.vmwareengine.v1.VmwareEngine.DeleteCluster]: <doc:VmwareEngineClient/deleteCluster(request:options:)>
 public struct DeleteClusterRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

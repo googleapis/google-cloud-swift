@@ -22,7 +22,7 @@
   /// Response message for
   /// [FeatureOnlineStoreService.FeatureViewDirectWrite][google.cloud.aiplatform.v1.FeatureOnlineStoreService.FeatureViewDirectWrite].
   ///
-  /// [google.cloud.aiplatform.v1.FeatureOnlineStoreService.FeatureViewDirectWrite]: <doc:FeatureOnlineStoreServiceClient/featureViewDirectWrite(request:)>
+  /// [google.cloud.aiplatform.v1.FeatureOnlineStoreService.FeatureViewDirectWrite]: <doc:FeatureOnlineStoreServiceClient/featureViewDirectWrite(request:options:)>
   public struct FeatureViewDirectWriteResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

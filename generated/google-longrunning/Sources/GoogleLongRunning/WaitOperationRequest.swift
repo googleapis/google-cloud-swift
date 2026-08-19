@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// The request message for
 /// [Operations.WaitOperation][google.longrunning.Operations.WaitOperation].
 ///
-/// [google.longrunning.Operations.WaitOperation]: <doc:OperationsClient/waitOperation(request:)>
+/// [google.longrunning.Operations.WaitOperation]: <doc:OperationsClient/waitOperation(request:options:)>
 public struct WaitOperationRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

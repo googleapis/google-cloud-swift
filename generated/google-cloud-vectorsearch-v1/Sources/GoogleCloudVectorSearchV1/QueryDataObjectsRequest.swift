@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [DataObjectSearchService.QueryDataObjects][google.cloud.vectorsearch.v1.DataObjectSearchService.QueryDataObjects].
 ///
-/// [google.cloud.vectorsearch.v1.DataObjectSearchService.QueryDataObjects]: <doc:DataObjectSearchServiceClient/queryDataObjects(request:)>
+/// [google.cloud.vectorsearch.v1.DataObjectSearchService.QueryDataObjects]: <doc:DataObjectSearchServiceClient/queryDataObjects(request:options:)>
 public struct QueryDataObjectsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
@@ -46,7 +46,7 @@ public struct QueryDataObjectsRequest: Codable, Equatable, GoogleCloudWkt._AnyPa
   /// [DataObjectSearchService.QueryDataObjects][google.cloud.vectorsearch.v1.DataObjectSearchService.QueryDataObjects]
   /// call.
   ///
-  /// [google.cloud.vectorsearch.v1.DataObjectSearchService.QueryDataObjects]: <doc:DataObjectSearchServiceClient/queryDataObjects(request:)>
+  /// [google.cloud.vectorsearch.v1.DataObjectSearchService.QueryDataObjects]: <doc:DataObjectSearchServiceClient/queryDataObjects(request:options:)>
   /// [google.cloud.vectorsearch.v1.QueryDataObjectsResponse.next_page_token]: <doc:QueryDataObjectsResponse/nextPageToken>
   public var pageToken: Swift.String = Swift.String()
 

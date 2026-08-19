@@ -21,7 +21,7 @@
   /// The request message for
   /// [Intents.ImportIntents][google.cloud.dialogflow.cx.v3.Intents.ImportIntents].
   ///
-  /// [google.cloud.dialogflow.cx.v3.Intents.ImportIntents]: <doc:IntentsClient/importIntents(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Intents.ImportIntents]: <doc:IntentsClient/importIntents(request:options:)>
   public struct ImportIntentsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

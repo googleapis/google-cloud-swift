@@ -22,7 +22,7 @@
   /// [DocumentService.DeleteDocument][google.cloud.discoveryengine.v1.DocumentService.DeleteDocument]
   /// method.
   ///
-  /// [google.cloud.discoveryengine.v1.DocumentService.DeleteDocument]: <doc:DocumentServiceClient/deleteDocument(request:)>
+  /// [google.cloud.discoveryengine.v1.DocumentService.DeleteDocument]: <doc:DocumentServiceClient/deleteDocument(request:options:)>
   public struct DeleteDocumentRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [KeyManagementService.MacVerify][google.cloud.kms.v1.KeyManagementService.MacVerify].
 ///
-/// [google.cloud.kms.v1.KeyManagementService.MacVerify]: <doc:KeyManagementServiceClient/macVerify(request:)>
+/// [google.cloud.kms.v1.KeyManagementService.MacVerify]: <doc:KeyManagementServiceClient/macVerify(request:options:)>
 public struct MacVerifyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

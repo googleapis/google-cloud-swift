@@ -21,7 +21,7 @@
   extension NetworkFirewallPoliciesClient {
     /// Synthetic request message for the [addAssociation()][google.cloud.compute.v1.networkFirewallPolicies.addAssociation] method.
     ///
-    /// [google.cloud.compute.v1.networkFirewallPolicies.addAssociation]: <doc:NetworkFirewallPoliciesClient/addAssociation(request:)>
+    /// [google.cloud.compute.v1.networkFirewallPolicies.addAssociation]: <doc:NetworkFirewallPoliciesClient/addAssociation(request:options:)>
     public struct AddAssociationRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -53,7 +53,7 @@
 
       /// Synthetic request body field for the [addAssociation()][google.cloud.compute.v1.networkFirewallPolicies.addAssociation] method.
       ///
-      /// [google.cloud.compute.v1.networkFirewallPolicies.addAssociation]: <doc:NetworkFirewallPoliciesClient/addAssociation(request:)>
+      /// [google.cloud.compute.v1.networkFirewallPolicies.addAssociation]: <doc:NetworkFirewallPoliciesClient/addAssociation(request:options:)>
       public var body: FirewallPolicyAssociation? = nil
 
       /// Initialize a new instance of `AddAssociationRequest`.
@@ -86,7 +86,7 @@
 
     /// Synthetic request message for the [addPacketMirroringRule()][google.cloud.compute.v1.networkFirewallPolicies.addPacketMirroringRule] method.
     ///
-    /// [google.cloud.compute.v1.networkFirewallPolicies.addPacketMirroringRule]: <doc:NetworkFirewallPoliciesClient/addPacketMirroringRule(request:)>
+    /// [google.cloud.compute.v1.networkFirewallPolicies.addPacketMirroringRule]: <doc:NetworkFirewallPoliciesClient/addPacketMirroringRule(request:options:)>
     public struct AddPacketMirroringRuleRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -121,7 +121,7 @@
 
       /// Synthetic request body field for the [addPacketMirroringRule()][google.cloud.compute.v1.networkFirewallPolicies.addPacketMirroringRule] method.
       ///
-      /// [google.cloud.compute.v1.networkFirewallPolicies.addPacketMirroringRule]: <doc:NetworkFirewallPoliciesClient/addPacketMirroringRule(request:)>
+      /// [google.cloud.compute.v1.networkFirewallPolicies.addPacketMirroringRule]: <doc:NetworkFirewallPoliciesClient/addPacketMirroringRule(request:options:)>
       public var body: FirewallPolicyRule? = nil
 
       /// Initialize a new instance of `AddPacketMirroringRuleRequest`.
@@ -154,7 +154,7 @@
 
     /// Synthetic request message for the [addRule()][google.cloud.compute.v1.networkFirewallPolicies.addRule] method.
     ///
-    /// [google.cloud.compute.v1.networkFirewallPolicies.addRule]: <doc:NetworkFirewallPoliciesClient/addRule(request:)>
+    /// [google.cloud.compute.v1.networkFirewallPolicies.addRule]: <doc:NetworkFirewallPoliciesClient/addRule(request:options:)>
     public struct AddRuleRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -189,7 +189,7 @@
 
       /// Synthetic request body field for the [addRule()][google.cloud.compute.v1.networkFirewallPolicies.addRule] method.
       ///
-      /// [google.cloud.compute.v1.networkFirewallPolicies.addRule]: <doc:NetworkFirewallPoliciesClient/addRule(request:)>
+      /// [google.cloud.compute.v1.networkFirewallPolicies.addRule]: <doc:NetworkFirewallPoliciesClient/addRule(request:options:)>
       public var body: FirewallPolicyRule? = nil
 
       /// Initialize a new instance of `AddRuleRequest`.
@@ -221,7 +221,7 @@
 
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.networkFirewallPolicies.aggregatedList] method.
     ///
-    /// [google.cloud.compute.v1.networkFirewallPolicies.aggregatedList]: <doc:NetworkFirewallPoliciesClient/aggregatedList(request:)>
+    /// [google.cloud.compute.v1.networkFirewallPolicies.aggregatedList]: <doc:NetworkFirewallPoliciesClient/aggregatedList(request:options:)>
     public struct AggregatedListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -364,7 +364,7 @@
 
     /// Synthetic request message for the [cloneRules()][google.cloud.compute.v1.networkFirewallPolicies.cloneRules] method.
     ///
-    /// [google.cloud.compute.v1.networkFirewallPolicies.cloneRules]: <doc:NetworkFirewallPoliciesClient/cloneRules(request:)>
+    /// [google.cloud.compute.v1.networkFirewallPolicies.cloneRules]: <doc:NetworkFirewallPoliciesClient/cloneRules(request:options:)>
     public struct CloneRulesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -422,7 +422,7 @@
 
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.networkFirewallPolicies.delete] method.
     ///
-    /// [google.cloud.compute.v1.networkFirewallPolicies.delete]: <doc:NetworkFirewallPoliciesClient/delete(request:)>
+    /// [google.cloud.compute.v1.networkFirewallPolicies.delete]: <doc:NetworkFirewallPoliciesClient/delete(request:options:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -476,7 +476,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.networkFirewallPolicies.get] method.
     ///
-    /// [google.cloud.compute.v1.networkFirewallPolicies.get]: <doc:NetworkFirewallPoliciesClient/`get`(request:)>
+    /// [google.cloud.compute.v1.networkFirewallPolicies.get]: <doc:NetworkFirewallPoliciesClient/`get`(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -515,7 +515,7 @@
 
     /// Synthetic request message for the [getAssociation()][google.cloud.compute.v1.networkFirewallPolicies.getAssociation] method.
     ///
-    /// [google.cloud.compute.v1.networkFirewallPolicies.getAssociation]: <doc:NetworkFirewallPoliciesClient/getAssociation(request:)>
+    /// [google.cloud.compute.v1.networkFirewallPolicies.getAssociation]: <doc:NetworkFirewallPoliciesClient/getAssociation(request:options:)>
     public struct GetAssociationRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -558,7 +558,7 @@
 
     /// Synthetic request message for the [getIamPolicy()][google.cloud.compute.v1.networkFirewallPolicies.getIamPolicy] method.
     ///
-    /// [google.cloud.compute.v1.networkFirewallPolicies.getIamPolicy]: <doc:NetworkFirewallPoliciesClient/getIamPolicy(request:)>
+    /// [google.cloud.compute.v1.networkFirewallPolicies.getIamPolicy]: <doc:NetworkFirewallPoliciesClient/getIamPolicy(request:options:)>
     public struct GetIamPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -601,7 +601,7 @@
 
     /// Synthetic request message for the [getPacketMirroringRule()][google.cloud.compute.v1.networkFirewallPolicies.getPacketMirroringRule] method.
     ///
-    /// [google.cloud.compute.v1.networkFirewallPolicies.getPacketMirroringRule]: <doc:NetworkFirewallPoliciesClient/getPacketMirroringRule(request:)>
+    /// [google.cloud.compute.v1.networkFirewallPolicies.getPacketMirroringRule]: <doc:NetworkFirewallPoliciesClient/getPacketMirroringRule(request:options:)>
     public struct GetPacketMirroringRuleRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -644,7 +644,7 @@
 
     /// Synthetic request message for the [getRule()][google.cloud.compute.v1.networkFirewallPolicies.getRule] method.
     ///
-    /// [google.cloud.compute.v1.networkFirewallPolicies.getRule]: <doc:NetworkFirewallPoliciesClient/getRule(request:)>
+    /// [google.cloud.compute.v1.networkFirewallPolicies.getRule]: <doc:NetworkFirewallPoliciesClient/getRule(request:options:)>
     public struct GetRuleRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -686,7 +686,7 @@
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.networkFirewallPolicies.insert] method.
     ///
-    /// [google.cloud.compute.v1.networkFirewallPolicies.insert]: <doc:NetworkFirewallPoliciesClient/insert(request:)>
+    /// [google.cloud.compute.v1.networkFirewallPolicies.insert]: <doc:NetworkFirewallPoliciesClient/insert(request:options:)>
     public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -710,7 +710,7 @@
 
       /// Synthetic request body field for the [insert()][google.cloud.compute.v1.networkFirewallPolicies.insert] method.
       ///
-      /// [google.cloud.compute.v1.networkFirewallPolicies.insert]: <doc:NetworkFirewallPoliciesClient/insert(request:)>
+      /// [google.cloud.compute.v1.networkFirewallPolicies.insert]: <doc:NetworkFirewallPoliciesClient/insert(request:options:)>
       public var body: FirewallPolicy? = nil
 
       /// Initialize a new instance of `InsertRequest`.
@@ -742,7 +742,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.networkFirewallPolicies.list] method.
     ///
-    /// [google.cloud.compute.v1.networkFirewallPolicies.list]: <doc:NetworkFirewallPoliciesClient/list(request:)>
+    /// [google.cloud.compute.v1.networkFirewallPolicies.list]: <doc:NetworkFirewallPoliciesClient/list(request:options:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -871,7 +871,7 @@
 
     /// Synthetic request message for the [patch()][google.cloud.compute.v1.networkFirewallPolicies.patch] method.
     ///
-    /// [google.cloud.compute.v1.networkFirewallPolicies.patch]: <doc:NetworkFirewallPoliciesClient/patch(request:)>
+    /// [google.cloud.compute.v1.networkFirewallPolicies.patch]: <doc:NetworkFirewallPoliciesClient/patch(request:options:)>
     public struct PatchRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -898,7 +898,7 @@
 
       /// Synthetic request body field for the [patch()][google.cloud.compute.v1.networkFirewallPolicies.patch] method.
       ///
-      /// [google.cloud.compute.v1.networkFirewallPolicies.patch]: <doc:NetworkFirewallPoliciesClient/patch(request:)>
+      /// [google.cloud.compute.v1.networkFirewallPolicies.patch]: <doc:NetworkFirewallPoliciesClient/patch(request:options:)>
       public var body: FirewallPolicy? = nil
 
       /// Initialize a new instance of `PatchRequest`.
@@ -930,7 +930,7 @@
 
     /// Synthetic request message for the [patchPacketMirroringRule()][google.cloud.compute.v1.networkFirewallPolicies.patchPacketMirroringRule] method.
     ///
-    /// [google.cloud.compute.v1.networkFirewallPolicies.patchPacketMirroringRule]: <doc:NetworkFirewallPoliciesClient/patchPacketMirroringRule(request:)>
+    /// [google.cloud.compute.v1.networkFirewallPolicies.patchPacketMirroringRule]: <doc:NetworkFirewallPoliciesClient/patchPacketMirroringRule(request:options:)>
     public struct PatchPacketMirroringRuleRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -960,7 +960,7 @@
 
       /// Synthetic request body field for the [patchPacketMirroringRule()][google.cloud.compute.v1.networkFirewallPolicies.patchPacketMirroringRule] method.
       ///
-      /// [google.cloud.compute.v1.networkFirewallPolicies.patchPacketMirroringRule]: <doc:NetworkFirewallPoliciesClient/patchPacketMirroringRule(request:)>
+      /// [google.cloud.compute.v1.networkFirewallPolicies.patchPacketMirroringRule]: <doc:NetworkFirewallPoliciesClient/patchPacketMirroringRule(request:options:)>
       public var body: FirewallPolicyRule? = nil
 
       /// Initialize a new instance of `PatchPacketMirroringRuleRequest`.
@@ -993,7 +993,7 @@
 
     /// Synthetic request message for the [patchRule()][google.cloud.compute.v1.networkFirewallPolicies.patchRule] method.
     ///
-    /// [google.cloud.compute.v1.networkFirewallPolicies.patchRule]: <doc:NetworkFirewallPoliciesClient/patchRule(request:)>
+    /// [google.cloud.compute.v1.networkFirewallPolicies.patchRule]: <doc:NetworkFirewallPoliciesClient/patchRule(request:options:)>
     public struct PatchRuleRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -1023,7 +1023,7 @@
 
       /// Synthetic request body field for the [patchRule()][google.cloud.compute.v1.networkFirewallPolicies.patchRule] method.
       ///
-      /// [google.cloud.compute.v1.networkFirewallPolicies.patchRule]: <doc:NetworkFirewallPoliciesClient/patchRule(request:)>
+      /// [google.cloud.compute.v1.networkFirewallPolicies.patchRule]: <doc:NetworkFirewallPoliciesClient/patchRule(request:options:)>
       public var body: FirewallPolicyRule? = nil
 
       /// Initialize a new instance of `PatchRuleRequest`.
@@ -1056,7 +1056,7 @@
 
     /// Synthetic request message for the [removeAssociation()][google.cloud.compute.v1.networkFirewallPolicies.removeAssociation] method.
     ///
-    /// [google.cloud.compute.v1.networkFirewallPolicies.removeAssociation]: <doc:NetworkFirewallPoliciesClient/removeAssociation(request:)>
+    /// [google.cloud.compute.v1.networkFirewallPolicies.removeAssociation]: <doc:NetworkFirewallPoliciesClient/removeAssociation(request:options:)>
     public struct RemoveAssociationRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -1114,7 +1114,7 @@
 
     /// Synthetic request message for the [removePacketMirroringRule()][google.cloud.compute.v1.networkFirewallPolicies.removePacketMirroringRule] method.
     ///
-    /// [google.cloud.compute.v1.networkFirewallPolicies.removePacketMirroringRule]: <doc:NetworkFirewallPoliciesClient/removePacketMirroringRule(request:)>
+    /// [google.cloud.compute.v1.networkFirewallPolicies.removePacketMirroringRule]: <doc:NetworkFirewallPoliciesClient/removePacketMirroringRule(request:options:)>
     public struct RemovePacketMirroringRuleRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -1172,7 +1172,7 @@
 
     /// Synthetic request message for the [removeRule()][google.cloud.compute.v1.networkFirewallPolicies.removeRule] method.
     ///
-    /// [google.cloud.compute.v1.networkFirewallPolicies.removeRule]: <doc:NetworkFirewallPoliciesClient/removeRule(request:)>
+    /// [google.cloud.compute.v1.networkFirewallPolicies.removeRule]: <doc:NetworkFirewallPoliciesClient/removeRule(request:options:)>
     public struct RemoveRuleRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -1230,7 +1230,7 @@
 
     /// Synthetic request message for the [setIamPolicy()][google.cloud.compute.v1.networkFirewallPolicies.setIamPolicy] method.
     ///
-    /// [google.cloud.compute.v1.networkFirewallPolicies.setIamPolicy]: <doc:NetworkFirewallPoliciesClient/setIamPolicy(request:)>
+    /// [google.cloud.compute.v1.networkFirewallPolicies.setIamPolicy]: <doc:NetworkFirewallPoliciesClient/setIamPolicy(request:options:)>
     public struct SetIamPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -1242,7 +1242,7 @@
 
       /// Synthetic request body field for the [setIamPolicy()][google.cloud.compute.v1.networkFirewallPolicies.setIamPolicy] method.
       ///
-      /// [google.cloud.compute.v1.networkFirewallPolicies.setIamPolicy]: <doc:NetworkFirewallPoliciesClient/setIamPolicy(request:)>
+      /// [google.cloud.compute.v1.networkFirewallPolicies.setIamPolicy]: <doc:NetworkFirewallPoliciesClient/setIamPolicy(request:options:)>
       public var body: GlobalSetPolicyRequest? = nil
 
       /// Initialize a new instance of `SetIamPolicyRequest`.
@@ -1275,7 +1275,7 @@
 
     /// Synthetic request message for the [testIamPermissions()][google.cloud.compute.v1.networkFirewallPolicies.testIamPermissions] method.
     ///
-    /// [google.cloud.compute.v1.networkFirewallPolicies.testIamPermissions]: <doc:NetworkFirewallPoliciesClient/testIamPermissions(request:)>
+    /// [google.cloud.compute.v1.networkFirewallPolicies.testIamPermissions]: <doc:NetworkFirewallPoliciesClient/testIamPermissions(request:options:)>
     public struct TestIamPermissionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -1287,7 +1287,7 @@
 
       /// Synthetic request body field for the [testIamPermissions()][google.cloud.compute.v1.networkFirewallPolicies.testIamPermissions] method.
       ///
-      /// [google.cloud.compute.v1.networkFirewallPolicies.testIamPermissions]: <doc:NetworkFirewallPoliciesClient/testIamPermissions(request:)>
+      /// [google.cloud.compute.v1.networkFirewallPolicies.testIamPermissions]: <doc:NetworkFirewallPoliciesClient/testIamPermissions(request:options:)>
       public var body: TestPermissionsRequest? = nil
 
       /// Initialize a new instance of `TestIamPermissionsRequest`.

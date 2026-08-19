@@ -21,7 +21,7 @@
   /// Request message for
   /// [SessionService.AppendEvent][google.cloud.aiplatform.v1.SessionService.AppendEvent].
   ///
-  /// [google.cloud.aiplatform.v1.SessionService.AppendEvent]: <doc:SessionServiceClient/appendEvent(request:)>
+  /// [google.cloud.aiplatform.v1.SessionService.AppendEvent]: <doc:SessionServiceClient/appendEvent(request:options:)>
   public struct AppendEventRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

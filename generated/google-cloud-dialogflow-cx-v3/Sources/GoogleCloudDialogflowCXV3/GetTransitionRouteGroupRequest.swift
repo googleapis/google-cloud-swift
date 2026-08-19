@@ -21,7 +21,7 @@
   /// The request message for
   /// [TransitionRouteGroups.GetTransitionRouteGroup][google.cloud.dialogflow.cx.v3.TransitionRouteGroups.GetTransitionRouteGroup].
   ///
-  /// [google.cloud.dialogflow.cx.v3.TransitionRouteGroups.GetTransitionRouteGroup]: <doc:TransitionRouteGroupsClient/getTransitionRouteGroup(request:)>
+  /// [google.cloud.dialogflow.cx.v3.TransitionRouteGroups.GetTransitionRouteGroup]: <doc:TransitionRouteGroupsClient/getTransitionRouteGroup(request:options:)>
   public struct GetTransitionRouteGroupRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

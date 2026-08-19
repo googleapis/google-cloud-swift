@@ -49,7 +49,7 @@ public struct TagTemplate: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// Additionally, you can search for a public tag by value with a
   /// simple search query in addition to using a ``tag:`` predicate.
   ///
-  /// [google.cloud.datacatalog.v1.DataCatalog.ListTags]: <doc:DataCatalogClient/listTags(request:)>
+  /// [google.cloud.datacatalog.v1.DataCatalog.ListTags]: <doc:DataCatalogClient/listTags(request:options:)>
   public var isPubliclyReadable: Swift.Bool = Swift.Bool()
 
   /// Required. Map of tag template field IDs to the settings for the field.

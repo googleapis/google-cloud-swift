@@ -36,7 +36,7 @@
     /// [RecommendationService.Recommend][google.cloud.discoveryengine.v1.RecommendationService.Recommend]
     /// requests.
     ///
-    /// [google.cloud.discoveryengine.v1.RecommendationService.Recommend]: <doc:RecommendationServiceClient/recommend(request:)>
+    /// [google.cloud.discoveryengine.v1.RecommendationService.Recommend]: <doc:RecommendationServiceClient/recommend(request:options:)>
     /// [google.cloud.discoveryengine.v1.ServingConfig]: <doc:ServingConfig>
     public var servingConfig: Swift.String = Swift.String()
 

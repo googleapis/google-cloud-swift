@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [GkeInferenceQuickstart.FetchModelServerVersions][google.cloud.gkerecommender.v1.GkeInferenceQuickstart.FetchModelServerVersions].
 ///
-/// [google.cloud.gkerecommender.v1.GkeInferenceQuickstart.FetchModelServerVersions]: <doc:GkeInferenceQuickstartClient/fetchModelServerVersions(request:)>
+/// [google.cloud.gkerecommender.v1.GkeInferenceQuickstart.FetchModelServerVersions]: <doc:GkeInferenceQuickstartClient/fetchModelServerVersions(request:options:)>
 public struct FetchModelServerVersionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
@@ -29,7 +29,7 @@ public struct FetchModelServerVersionsRequest: Codable, Equatable, GoogleCloudWk
   /// [GkeInferenceQuickstart.FetchModels][google.cloud.gkerecommender.v1.GkeInferenceQuickstart.FetchModels]
   /// to find available models.
   ///
-  /// [google.cloud.gkerecommender.v1.GkeInferenceQuickstart.FetchModels]: <doc:GkeInferenceQuickstartClient/fetchModels(request:)>
+  /// [google.cloud.gkerecommender.v1.GkeInferenceQuickstart.FetchModels]: <doc:GkeInferenceQuickstartClient/fetchModels(request:options:)>
   public var model: Swift.String = Swift.String()
 
   /// Required. The model server for which to list versions. Open-source model
@@ -37,7 +37,7 @@ public struct FetchModelServerVersionsRequest: Codable, Equatable, GoogleCloudWk
   /// [GkeInferenceQuickstart.FetchModelServers][google.cloud.gkerecommender.v1.GkeInferenceQuickstart.FetchModelServers]
   /// to find available model servers.
   ///
-  /// [google.cloud.gkerecommender.v1.GkeInferenceQuickstart.FetchModelServers]: <doc:GkeInferenceQuickstartClient/fetchModelServers(request:)>
+  /// [google.cloud.gkerecommender.v1.GkeInferenceQuickstart.FetchModelServers]: <doc:GkeInferenceQuickstartClient/fetchModelServers(request:options:)>
   public var modelServer: Swift.String = Swift.String()
 
   /// Optional. The target number of results to return in a single response.

@@ -21,7 +21,7 @@
   /// The request message for
   /// [Participants.UpdateParticipant][google.cloud.dialogflow.v2.Participants.UpdateParticipant].
   ///
-  /// [google.cloud.dialogflow.v2.Participants.UpdateParticipant]: <doc:ParticipantsClient/updateParticipant(request:)>
+  /// [google.cloud.dialogflow.v2.Participants.UpdateParticipant]: <doc:ParticipantsClient/updateParticipant(request:options:)>
   public struct UpdateParticipantRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

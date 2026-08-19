@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [AgentService.ListExamples][google.cloud.ces.v1.AgentService.ListExamples].
 ///
-/// [google.cloud.ces.v1.AgentService.ListExamples]: <doc:AgentServiceClient/listExamples(request:)>
+/// [google.cloud.ces.v1.AgentService.ListExamples]: <doc:AgentServiceClient/listExamples(request:options:)>
 public struct ListExamplesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

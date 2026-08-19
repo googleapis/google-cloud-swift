@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request for
 /// [GenerateServiceIdentity][google.cloud.tpu.v2.Tpu.GenerateServiceIdentity].
 ///
-/// [google.cloud.tpu.v2.Tpu.GenerateServiceIdentity]: <doc:TpuClient/generateServiceIdentity(request:)>
+/// [google.cloud.tpu.v2.Tpu.GenerateServiceIdentity]: <doc:TpuClient/generateServiceIdentity(request:options:)>
 public struct GenerateServiceIdentityRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

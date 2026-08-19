@@ -21,7 +21,7 @@
   /// Request message for
   /// [IndexService.GetIndex][google.cloud.aiplatform.v1.IndexService.GetIndex]
   ///
-  /// [google.cloud.aiplatform.v1.IndexService.GetIndex]: <doc:IndexServiceClient/getIndex(request:)>
+  /// [google.cloud.aiplatform.v1.IndexService.GetIndex]: <doc:IndexServiceClient/getIndex(request:options:)>
   public struct GetIndexRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

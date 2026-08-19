@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [EkmService.ListEkmConnections][google.cloud.kms.v1.EkmService.ListEkmConnections].
 ///
-/// [google.cloud.kms.v1.EkmService.ListEkmConnections]: <doc:EkmServiceClient/listEkmConnections(request:)>
+/// [google.cloud.kms.v1.EkmService.ListEkmConnections]: <doc:EkmServiceClient/listEkmConnections(request:options:)>
 public struct ListEkmConnectionsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

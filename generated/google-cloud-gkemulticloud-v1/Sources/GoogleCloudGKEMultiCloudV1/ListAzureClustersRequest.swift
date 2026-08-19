@@ -48,7 +48,7 @@ public struct ListAzureClustersRequest: Codable, Equatable, GoogleCloudWkt._AnyP
   /// [azureClusters.list][google.cloud.gkemulticloud.v1.AzureClusters.ListAzureClusters]
   /// request, if any.
   ///
-  /// [google.cloud.gkemulticloud.v1.AzureClusters.ListAzureClusters]: <doc:AzureClustersClient/listAzureClusters(request:)>
+  /// [google.cloud.gkemulticloud.v1.AzureClusters.ListAzureClusters]: <doc:AzureClustersClient/listAzureClusters(request:options:)>
   public var pageToken: Swift.String = Swift.String()
 
   /// Initialize a new instance of `ListAzureClustersRequest`.

@@ -21,7 +21,7 @@
   /// Request message for
   /// [FeaturestoreService.DeleteFeaturestore][google.cloud.aiplatform.v1.FeaturestoreService.DeleteFeaturestore].
   ///
-  /// [google.cloud.aiplatform.v1.FeaturestoreService.DeleteFeaturestore]: <doc:FeaturestoreServiceClient/deleteFeaturestore(request:)>
+  /// [google.cloud.aiplatform.v1.FeaturestoreService.DeleteFeaturestore]: <doc:FeaturestoreServiceClient/deleteFeaturestore(request:options:)>
   public struct DeleteFeaturestoreRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

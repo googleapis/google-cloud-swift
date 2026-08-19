@@ -21,7 +21,7 @@
   /// The request message for
   /// [ConversationModels.DeleteConversationModel][google.cloud.dialogflow.v2.ConversationModels.DeleteConversationModel]
   ///
-  /// [google.cloud.dialogflow.v2.ConversationModels.DeleteConversationModel]: <doc:ConversationModelsClient/deleteConversationModel(request:)>
+  /// [google.cloud.dialogflow.v2.ConversationModels.DeleteConversationModel]: <doc:ConversationModelsClient/deleteConversationModel(request:options:)>
   public struct DeleteConversationModelRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

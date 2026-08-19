@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// The request for
 /// [HubService.QueryHubStatus][google.cloud.networkconnectivity.v1.HubService.QueryHubStatus].
 ///
-/// [google.cloud.networkconnectivity.v1.HubService.QueryHubStatus]: <doc:HubServiceClient/queryHubStatus(request:)>
+/// [google.cloud.networkconnectivity.v1.HubService.QueryHubStatus]: <doc:HubServiceClient/queryHubStatus(request:options:)>
 public struct QueryHubStatusRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

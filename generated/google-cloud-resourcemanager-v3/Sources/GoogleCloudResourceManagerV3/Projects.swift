@@ -102,7 +102,7 @@ public class ProjectsClient: Clients.ProjectsProtocol {
   /// retrieve the latest state of a project, use the
   /// [GetProject][google.cloud.resourcemanager.v3.Projects.GetProject] method.
   ///
-  /// [google.cloud.resourcemanager.v3.Projects.GetProject]: <doc:ProjectsClient/getProject(request:)>
+  /// [google.cloud.resourcemanager.v3.Projects.GetProject]: <doc:ProjectsClient/getProject(request:options:)>
   ///
   /// @Snippet(path: "Projects_SearchProjects")
   public func searchProjects(
@@ -122,7 +122,7 @@ public class ProjectsClient: Clients.ProjectsProtocol {
   /// retrieve the latest state of a project, use the
   /// [GetProject][google.cloud.resourcemanager.v3.Projects.GetProject] method.
   ///
-  /// [google.cloud.resourcemanager.v3.Projects.GetProject]: <doc:ProjectsClient/getProject(request:)>
+  /// [google.cloud.resourcemanager.v3.Projects.GetProject]: <doc:ProjectsClient/getProject(request:options:)>
   ///
   /// @Snippet(path: "Projects_SearchProjects")
   public func searchProjects(
@@ -425,7 +425,7 @@ public class ProjectsClient: Clients.ProjectsProtocol {
   ///
   /// [google.cloud.resourcemanager.v3.Project.State.ACTIVE]: <doc:Project/State/active>
   /// [google.cloud.resourcemanager.v3.Project.State.DELETE_REQUESTED]: <doc:Project/State/deleteRequested>
-  /// [google.cloud.resourcemanager.v3.Projects.SearchProjects]: <doc:ProjectsClient/searchProjects(request:)>
+  /// [google.cloud.resourcemanager.v3.Projects.SearchProjects]: <doc:ProjectsClient/searchProjects(request:options:)>
   ///
   /// @Snippet(path: "Projects_DeleteProject")
   public func deleteProject(
@@ -470,7 +470,7 @@ public class ProjectsClient: Clients.ProjectsProtocol {
   ///
   /// [google.cloud.resourcemanager.v3.Project.State.ACTIVE]: <doc:Project/State/active>
   /// [google.cloud.resourcemanager.v3.Project.State.DELETE_REQUESTED]: <doc:Project/State/deleteRequested>
-  /// [google.cloud.resourcemanager.v3.Projects.SearchProjects]: <doc:ProjectsClient/searchProjects(request:)>
+  /// [google.cloud.resourcemanager.v3.Projects.SearchProjects]: <doc:ProjectsClient/searchProjects(request:options:)>
   ///
   /// @Snippet(path: "Projects_DeleteProject")
   public func deleteProject(

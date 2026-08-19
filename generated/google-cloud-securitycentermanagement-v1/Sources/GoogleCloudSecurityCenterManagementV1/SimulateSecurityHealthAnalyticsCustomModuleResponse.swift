@@ -21,7 +21,7 @@ import GoogleRpc
 /// Response message for
 /// [SecurityCenterManagement.SimulateSecurityHealthAnalyticsCustomModule][google.cloud.securitycentermanagement.v1.SecurityCenterManagement.SimulateSecurityHealthAnalyticsCustomModule].
 ///
-/// [google.cloud.securitycentermanagement.v1.SecurityCenterManagement.SimulateSecurityHealthAnalyticsCustomModule]: <doc:SecurityCenterManagementClient/simulateSecurityHealthAnalyticsCustomModule(request:)>
+/// [google.cloud.securitycentermanagement.v1.SecurityCenterManagement.SimulateSecurityHealthAnalyticsCustomModule]: <doc:SecurityCenterManagementClient/simulateSecurityHealthAnalyticsCustomModule(request:options:)>
 public struct SimulateSecurityHealthAnalyticsCustomModuleResponse: Codable, Equatable,
   GoogleCloudWkt._AnyPackable,
   Sendable

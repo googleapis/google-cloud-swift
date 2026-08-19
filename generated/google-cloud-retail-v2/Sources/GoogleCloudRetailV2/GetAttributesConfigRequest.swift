@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [CatalogService.GetAttributesConfig][google.cloud.retail.v2.CatalogService.GetAttributesConfig]
 /// method.
 ///
-/// [google.cloud.retail.v2.CatalogService.GetAttributesConfig]: <doc:CatalogServiceClient/getAttributesConfig(request:)>
+/// [google.cloud.retail.v2.CatalogService.GetAttributesConfig]: <doc:CatalogServiceClient/getAttributesConfig(request:options:)>
 public struct GetAttributesConfigRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

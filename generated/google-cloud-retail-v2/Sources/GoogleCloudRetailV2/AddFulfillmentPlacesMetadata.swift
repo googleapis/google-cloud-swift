@@ -22,7 +22,7 @@ import GoogleCloudWkt
 /// [ProductService.AddFulfillmentPlaces][google.cloud.retail.v2.ProductService.AddFulfillmentPlaces]
 /// method.
 ///
-/// [google.cloud.retail.v2.ProductService.AddFulfillmentPlaces]: <doc:ProductServiceClient/addFulfillmentPlaces(request:)>
+/// [google.cloud.retail.v2.ProductService.AddFulfillmentPlaces]: <doc:ProductServiceClient/addFulfillmentPlaces(request:options:)>
 public struct AddFulfillmentPlacesMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

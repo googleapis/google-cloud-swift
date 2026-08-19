@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [CloudChannelService.ListEntitlementChanges][google.cloud.channel.v1.CloudChannelService.ListEntitlementChanges]
 ///
-/// [google.cloud.channel.v1.CloudChannelService.ListEntitlementChanges]: <doc:CloudChannelServiceClient/listEntitlementChanges(request:)>
+/// [google.cloud.channel.v1.CloudChannelService.ListEntitlementChanges]: <doc:CloudChannelServiceClient/listEntitlementChanges(request:options:)>
 public struct ListEntitlementChangesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
@@ -46,7 +46,7 @@ public struct ListEntitlementChangesRequest: Codable, Equatable, GoogleCloudWkt.
   /// [CloudChannelService.ListEntitlementChanges][google.cloud.channel.v1.CloudChannelService.ListEntitlementChanges]
   /// must match the call that provided the page token.
   ///
-  /// [google.cloud.channel.v1.CloudChannelService.ListEntitlementChanges]: <doc:CloudChannelServiceClient/listEntitlementChanges(request:)>
+  /// [google.cloud.channel.v1.CloudChannelService.ListEntitlementChanges]: <doc:CloudChannelServiceClient/listEntitlementChanges(request:options:)>
   public var pageToken: Swift.String = Swift.String()
 
   /// Optional. Filters applied to the list results.

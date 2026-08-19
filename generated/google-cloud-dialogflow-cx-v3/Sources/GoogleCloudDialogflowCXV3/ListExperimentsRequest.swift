@@ -21,7 +21,7 @@
   /// The request message for
   /// [Experiments.ListExperiments][google.cloud.dialogflow.cx.v3.Experiments.ListExperiments].
   ///
-  /// [google.cloud.dialogflow.cx.v3.Experiments.ListExperiments]: <doc:ExperimentsClient/listExperiments(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Experiments.ListExperiments]: <doc:ExperimentsClient/listExperiments(request:options:)>
   public struct ListExperimentsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

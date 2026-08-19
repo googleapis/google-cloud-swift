@@ -21,7 +21,7 @@
   /// The request message for
   /// [Environments.DeleteEnvironment][google.cloud.dialogflow.v2.Environments.DeleteEnvironment].
   ///
-  /// [google.cloud.dialogflow.v2.Environments.DeleteEnvironment]: <doc:EnvironmentsClient/deleteEnvironment(request:)>
+  /// [google.cloud.dialogflow.v2.Environments.DeleteEnvironment]: <doc:EnvironmentsClient/deleteEnvironment(request:options:)>
   public struct DeleteEnvironmentRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

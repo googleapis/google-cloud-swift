@@ -21,7 +21,7 @@
   /// Request message for
   /// [VertexRagService.RetrieveContexts][google.cloud.aiplatform.v1.VertexRagService.RetrieveContexts].
   ///
-  /// [google.cloud.aiplatform.v1.VertexRagService.RetrieveContexts]: <doc:VertexRagServiceClient/retrieveContexts(request:)>
+  /// [google.cloud.aiplatform.v1.VertexRagService.RetrieveContexts]: <doc:VertexRagServiceClient/retrieveContexts(request:options:)>
   public struct RetrieveContextsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

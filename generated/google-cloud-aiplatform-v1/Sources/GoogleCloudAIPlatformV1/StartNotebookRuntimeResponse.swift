@@ -21,7 +21,7 @@
   /// Response message for
   /// [NotebookService.StartNotebookRuntime][google.cloud.aiplatform.v1.NotebookService.StartNotebookRuntime].
   ///
-  /// [google.cloud.aiplatform.v1.NotebookService.StartNotebookRuntime]: <doc:NotebookServiceClient/startNotebookRuntime(request:)>
+  /// [google.cloud.aiplatform.v1.NotebookService.StartNotebookRuntime]: <doc:NotebookServiceClient/startNotebookRuntime(request:options:)>
   public struct StartNotebookRuntimeResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// returned by the
 /// [ImportEntries][google.cloud.datacatalog.v1.DataCatalog.ImportEntries].
 ///
-/// [google.cloud.datacatalog.v1.DataCatalog.ImportEntries]: <doc:DataCatalogClient/importEntries(request:)>
+/// [google.cloud.datacatalog.v1.DataCatalog.ImportEntries]: <doc:DataCatalogClient/importEntries(request:options:)>
 /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
 public struct ImportEntriesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable

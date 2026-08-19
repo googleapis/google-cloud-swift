@@ -21,7 +21,7 @@
   /// Metadata information for
   /// [NotebookService.AssignNotebookRuntime][google.cloud.aiplatform.v1.NotebookService.AssignNotebookRuntime].
   ///
-  /// [google.cloud.aiplatform.v1.NotebookService.AssignNotebookRuntime]: <doc:NotebookServiceClient/assignNotebookRuntime(request:)>
+  /// [google.cloud.aiplatform.v1.NotebookService.AssignNotebookRuntime]: <doc:NotebookServiceClient/assignNotebookRuntime(request:options:)>
   public struct AssignNotebookRuntimeOperationMetadata: Codable, Equatable, GoogleCloudWkt
       ._AnyPackable,
     Sendable

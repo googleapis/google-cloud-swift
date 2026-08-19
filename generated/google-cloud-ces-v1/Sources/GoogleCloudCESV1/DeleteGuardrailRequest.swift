@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [AgentService.DeleteGuardrail][google.cloud.ces.v1.AgentService.DeleteGuardrail].
 ///
-/// [google.cloud.ces.v1.AgentService.DeleteGuardrail]: <doc:AgentServiceClient/deleteGuardrail(request:)>
+/// [google.cloud.ces.v1.AgentService.DeleteGuardrail]: <doc:AgentServiceClient/deleteGuardrail(request:options:)>
 public struct DeleteGuardrailRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

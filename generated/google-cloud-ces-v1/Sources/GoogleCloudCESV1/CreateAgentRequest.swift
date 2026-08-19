@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [AgentService.CreateAgent][google.cloud.ces.v1.AgentService.CreateAgent].
 ///
-/// [google.cloud.ces.v1.AgentService.CreateAgent]: <doc:AgentServiceClient/createAgent(request:)>
+/// [google.cloud.ces.v1.AgentService.CreateAgent]: <doc:AgentServiceClient/createAgent(request:options:)>
 public struct CreateAgentRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

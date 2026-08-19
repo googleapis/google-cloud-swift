@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [CloudChannelService.CreateChannelPartnerLink][google.cloud.channel.v1.CloudChannelService.CreateChannelPartnerLink]
 ///
-/// [google.cloud.channel.v1.CloudChannelService.CreateChannelPartnerLink]: <doc:CloudChannelServiceClient/createChannelPartnerLink(request:)>
+/// [google.cloud.channel.v1.CloudChannelService.CreateChannelPartnerLink]: <doc:CloudChannelServiceClient/createChannelPartnerLink(request:options:)>
 public struct CreateChannelPartnerLinkRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

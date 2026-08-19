@@ -21,7 +21,7 @@
   /// Request message for
   /// [GenAiCacheService.CreateCachedContent][google.cloud.aiplatform.v1.GenAiCacheService.CreateCachedContent].
   ///
-  /// [google.cloud.aiplatform.v1.GenAiCacheService.CreateCachedContent]: <doc:GenAiCacheServiceClient/createCachedContent(request:)>
+  /// [google.cloud.aiplatform.v1.GenAiCacheService.CreateCachedContent]: <doc:GenAiCacheServiceClient/createCachedContent(request:options:)>
   public struct CreateCachedContentRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

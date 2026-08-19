@@ -19,7 +19,7 @@ import GoogleCloudWkt
 
 /// Request for [CreateInstance][google.cloud.memcache.v1.CloudMemcache.CreateInstance].
 ///
-/// [google.cloud.memcache.v1.CloudMemcache.CreateInstance]: <doc:CloudMemcacheClient/createInstance(request:)>
+/// [google.cloud.memcache.v1.CloudMemcache.CreateInstance]: <doc:CloudMemcacheClient/createInstance(request:options:)>
 public struct CreateInstanceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

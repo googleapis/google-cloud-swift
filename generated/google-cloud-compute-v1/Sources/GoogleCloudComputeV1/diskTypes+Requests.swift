@@ -21,7 +21,7 @@
   extension DiskTypesClient {
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.diskTypes.aggregatedList] method.
     ///
-    /// [google.cloud.compute.v1.diskTypes.aggregatedList]: <doc:DiskTypesClient/aggregatedList(request:)>
+    /// [google.cloud.compute.v1.diskTypes.aggregatedList]: <doc:DiskTypesClient/aggregatedList(request:options:)>
     public struct AggregatedListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -163,7 +163,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.diskTypes.get] method.
     ///
-    /// [google.cloud.compute.v1.diskTypes.get]: <doc:DiskTypesClient/`get`(request:)>
+    /// [google.cloud.compute.v1.diskTypes.get]: <doc:DiskTypesClient/`get`(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -205,7 +205,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.diskTypes.list] method.
     ///
-    /// [google.cloud.compute.v1.diskTypes.list]: <doc:DiskTypesClient/list(request:)>
+    /// [google.cloud.compute.v1.diskTypes.list]: <doc:DiskTypesClient/list(request:options:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {

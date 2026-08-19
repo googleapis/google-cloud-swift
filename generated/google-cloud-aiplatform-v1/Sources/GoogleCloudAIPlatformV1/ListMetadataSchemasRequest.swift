@@ -21,7 +21,7 @@
   /// Request message for
   /// [MetadataService.ListMetadataSchemas][google.cloud.aiplatform.v1.MetadataService.ListMetadataSchemas].
   ///
-  /// [google.cloud.aiplatform.v1.MetadataService.ListMetadataSchemas]: <doc:MetadataServiceClient/listMetadataSchemas(request:)>
+  /// [google.cloud.aiplatform.v1.MetadataService.ListMetadataSchemas]: <doc:MetadataServiceClient/listMetadataSchemas(request:options:)>
   public struct ListMetadataSchemasRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {
@@ -43,7 +43,7 @@
     /// provided the page token. (Otherwise the request will fail with
     /// INVALID_ARGUMENT error.)
     ///
-    /// [google.cloud.aiplatform.v1.MetadataService.ListMetadataSchemas]: <doc:MetadataServiceClient/listMetadataSchemas(request:)>
+    /// [google.cloud.aiplatform.v1.MetadataService.ListMetadataSchemas]: <doc:MetadataServiceClient/listMetadataSchemas(request:options:)>
     public var pageToken: Swift.String = Swift.String()
 
     /// A query to filter available MetadataSchemas for matching results.

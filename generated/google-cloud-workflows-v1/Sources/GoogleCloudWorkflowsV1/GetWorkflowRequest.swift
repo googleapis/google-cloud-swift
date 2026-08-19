@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request for the
 /// [GetWorkflow][google.cloud.workflows.v1.Workflows.GetWorkflow] method.
 ///
-/// [google.cloud.workflows.v1.Workflows.GetWorkflow]: <doc:WorkflowsClient/getWorkflow(request:)>
+/// [google.cloud.workflows.v1.Workflows.GetWorkflow]: <doc:WorkflowsClient/getWorkflow(request:options:)>
 public struct GetWorkflowRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

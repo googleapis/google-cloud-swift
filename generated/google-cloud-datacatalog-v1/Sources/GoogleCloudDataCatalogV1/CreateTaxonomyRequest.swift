@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [CreateTaxonomy][google.cloud.datacatalog.v1.PolicyTagManager.CreateTaxonomy].
 ///
-/// [google.cloud.datacatalog.v1.PolicyTagManager.CreateTaxonomy]: <doc:PolicyTagManagerClient/createTaxonomy(request:)>
+/// [google.cloud.datacatalog.v1.PolicyTagManager.CreateTaxonomy]: <doc:PolicyTagManagerClient/createTaxonomy(request:options:)>
 public struct CreateTaxonomyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

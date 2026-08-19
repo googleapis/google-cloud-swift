@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [HubService.CreateHub][google.cloud.networkconnectivity.v1.HubService.CreateHub]
 /// method.
 ///
-/// [google.cloud.networkconnectivity.v1.HubService.CreateHub]: <doc:HubServiceClient/createHub(request:)>
+/// [google.cloud.networkconnectivity.v1.HubService.CreateHub]: <doc:HubServiceClient/createHub(request:options:)>
 public struct CreateHubRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

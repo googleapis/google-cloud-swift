@@ -24,7 +24,7 @@ import GoogleCloudWkt
 /// Router](https://cloud.google.com/logging/docs/routing/managed-encryption) for
 /// more information.
 ///
-/// [google.logging.v2.ConfigServiceV2.UpdateCmekSettings]: <doc:ConfigServiceV2Client/updateCmekSettings(request:)>
+/// [google.logging.v2.ConfigServiceV2.UpdateCmekSettings]: <doc:ConfigServiceV2Client/updateCmekSettings(request:options:)>
 public struct UpdateCmekSettingsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

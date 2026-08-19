@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [ListDependencies][google.cloud.apihub.v1.ApiHubDependencies.ListDependencies]
 /// method's request.
 ///
-/// [google.cloud.apihub.v1.ApiHubDependencies.ListDependencies]: <doc:ApiHubDependenciesClient/listDependencies(request:)>
+/// [google.cloud.apihub.v1.ApiHubDependencies.ListDependencies]: <doc:ApiHubDependenciesClient/listDependencies(request:options:)>
 public struct ListDependenciesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

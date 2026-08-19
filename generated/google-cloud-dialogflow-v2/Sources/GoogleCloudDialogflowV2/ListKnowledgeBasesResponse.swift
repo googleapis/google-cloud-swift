@@ -22,7 +22,7 @@
   /// Response message for
   /// [KnowledgeBases.ListKnowledgeBases][google.cloud.dialogflow.v2.KnowledgeBases.ListKnowledgeBases].
   ///
-  /// [google.cloud.dialogflow.v2.KnowledgeBases.ListKnowledgeBases]: <doc:KnowledgeBasesClient/listKnowledgeBases(request:)>
+  /// [google.cloud.dialogflow.v2.KnowledgeBases.ListKnowledgeBases]: <doc:KnowledgeBasesClient/listKnowledgeBases(request:options:)>
   public struct ListKnowledgeBasesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable

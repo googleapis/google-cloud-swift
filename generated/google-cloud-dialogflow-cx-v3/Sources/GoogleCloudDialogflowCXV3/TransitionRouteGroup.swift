@@ -33,7 +33,7 @@
     /// `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/transitionRouteGroups/<TransitionRouteGroupID>`
     /// .
     ///
-    /// [google.cloud.dialogflow.cx.v3.TransitionRouteGroups.CreateTransitionRouteGroup]: <doc:TransitionRouteGroupsClient/createTransitionRouteGroup(request:)>
+    /// [google.cloud.dialogflow.cx.v3.TransitionRouteGroups.CreateTransitionRouteGroup]: <doc:TransitionRouteGroupsClient/createTransitionRouteGroup(request:options:)>
     public var name: Swift.String = Swift.String()
 
     /// Required. The human-readable name of the transition route group, unique

@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [EkmService.ListEkmConnections][google.cloud.kms.v1.EkmService.ListEkmConnections].
 ///
-/// [google.cloud.kms.v1.EkmService.ListEkmConnections]: <doc:EkmServiceClient/listEkmConnections(request:)>
+/// [google.cloud.kms.v1.EkmService.ListEkmConnections]: <doc:EkmServiceClient/listEkmConnections(request:options:)>
 public struct ListEkmConnectionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

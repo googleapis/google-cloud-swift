@@ -21,7 +21,7 @@
   /// The request message for
   /// [Tools.GetTool][google.cloud.dialogflow.cx.v3.Tools.GetTool].
   ///
-  /// [google.cloud.dialogflow.cx.v3.Tools.GetTool]: <doc:ToolsClient/getTool(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Tools.GetTool]: <doc:ToolsClient/getTool(request:options:)>
   public struct GetToolRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

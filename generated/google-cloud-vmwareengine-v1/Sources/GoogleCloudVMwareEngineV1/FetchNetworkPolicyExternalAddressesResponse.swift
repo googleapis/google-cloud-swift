@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [VmwareEngine.FetchNetworkPolicyExternalAddresses][google.cloud.vmwareengine.v1.VmwareEngine.FetchNetworkPolicyExternalAddresses]
 ///
-/// [google.cloud.vmwareengine.v1.VmwareEngine.FetchNetworkPolicyExternalAddresses]: <doc:VmwareEngineClient/fetchNetworkPolicyExternalAddresses(request:)>
+/// [google.cloud.vmwareengine.v1.VmwareEngine.FetchNetworkPolicyExternalAddresses]: <doc:VmwareEngineClient/fetchNetworkPolicyExternalAddresses(request:options:)>
 public struct FetchNetworkPolicyExternalAddressesResponse: Codable, Equatable, GoogleCloudWkt
     ._AnyPackable,
   GoogleCloudGax._PaginatedResponse,

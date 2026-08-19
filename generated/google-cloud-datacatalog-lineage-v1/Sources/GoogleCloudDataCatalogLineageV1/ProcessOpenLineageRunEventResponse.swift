@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [ProcessOpenLineageRunEvent][google.cloud.datacatalog.lineage.v1.Lineage.ProcessOpenLineageRunEvent].
 ///
-/// [google.cloud.datacatalog.lineage.v1.Lineage.ProcessOpenLineageRunEvent]: <doc:LineageClient/processOpenLineageRunEvent(request:)>
+/// [google.cloud.datacatalog.lineage.v1.Lineage.ProcessOpenLineageRunEvent]: <doc:LineageClient/processOpenLineageRunEvent(request:options:)>
 public struct ProcessOpenLineageRunEventResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

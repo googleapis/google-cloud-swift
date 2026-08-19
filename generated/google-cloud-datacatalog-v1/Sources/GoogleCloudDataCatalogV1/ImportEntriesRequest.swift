@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [ImportEntries][google.cloud.datacatalog.v1.DataCatalog.ImportEntries]
 /// method.
 ///
-/// [google.cloud.datacatalog.v1.DataCatalog.ImportEntries]: <doc:DataCatalogClient/importEntries(request:)>
+/// [google.cloud.datacatalog.v1.DataCatalog.ImportEntries]: <doc:DataCatalogClient/importEntries(request:options:)>
 public struct ImportEntriesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

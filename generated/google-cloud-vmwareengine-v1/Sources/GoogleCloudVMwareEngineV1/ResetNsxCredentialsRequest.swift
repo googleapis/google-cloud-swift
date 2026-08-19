@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [VmwareEngine.ResetNsxCredentials][google.cloud.vmwareengine.v1.VmwareEngine.ResetNsxCredentials]
 ///
-/// [google.cloud.vmwareengine.v1.VmwareEngine.ResetNsxCredentials]: <doc:VmwareEngineClient/resetNsxCredentials(request:)>
+/// [google.cloud.vmwareengine.v1.VmwareEngine.ResetNsxCredentials]: <doc:VmwareEngineClient/resetNsxCredentials(request:options:)>
 public struct ResetNsxCredentialsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

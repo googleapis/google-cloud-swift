@@ -27,7 +27,7 @@
     /// will populate the name automatically. Otherwise use format:
     /// `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/testCases/<TestCaseID>`.
     ///
-    /// [google.cloud.dialogflow.cx.v3.TestCases.CreateTestCase]: <doc:TestCasesClient/createTestCase(request:)>
+    /// [google.cloud.dialogflow.cx.v3.TestCases.CreateTestCase]: <doc:TestCasesClient/createTestCase(request:options:)>
     public var name: Swift.String = Swift.String()
 
     /// Tags are short descriptions that users may apply to test cases for

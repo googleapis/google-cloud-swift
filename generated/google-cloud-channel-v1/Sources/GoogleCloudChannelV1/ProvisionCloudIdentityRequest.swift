@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [CloudChannelService.ProvisionCloudIdentity][google.cloud.channel.v1.CloudChannelService.ProvisionCloudIdentity]
 ///
-/// [google.cloud.channel.v1.CloudChannelService.ProvisionCloudIdentity]: <doc:CloudChannelServiceClient/provisionCloudIdentity(request:)>
+/// [google.cloud.channel.v1.CloudChannelService.ProvisionCloudIdentity]: <doc:CloudChannelServiceClient/provisionCloudIdentity(request:options:)>
 public struct ProvisionCloudIdentityRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

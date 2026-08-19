@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [LicenseManagementService.EnumerateLicensedUsers][google.cloud.commerce.consumer.procurement.v1.LicenseManagementService.EnumerateLicensedUsers].
 ///
-/// [google.cloud.commerce.consumer.procurement.v1.LicenseManagementService.EnumerateLicensedUsers]: <doc:LicenseManagementServiceClient/enumerateLicensedUsers(request:)>
+/// [google.cloud.commerce.consumer.procurement.v1.LicenseManagementService.EnumerateLicensedUsers]: <doc:LicenseManagementServiceClient/enumerateLicensedUsers(request:options:)>
 public struct EnumerateLicensedUsersRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [VmwareEngine.ListExternalAddresses][google.cloud.vmwareengine.v1.VmwareEngine.ListExternalAddresses]
 ///
-/// [google.cloud.vmwareengine.v1.VmwareEngine.ListExternalAddresses]: <doc:VmwareEngineClient/listExternalAddresses(request:)>
+/// [google.cloud.vmwareengine.v1.VmwareEngine.ListExternalAddresses]: <doc:VmwareEngineClient/listExternalAddresses(request:options:)>
 public struct ListExternalAddressesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

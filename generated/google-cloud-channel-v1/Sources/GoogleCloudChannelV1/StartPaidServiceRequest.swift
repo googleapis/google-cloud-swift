@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [CloudChannelService.StartPaidService][google.cloud.channel.v1.CloudChannelService.StartPaidService].
 ///
-/// [google.cloud.channel.v1.CloudChannelService.StartPaidService]: <doc:CloudChannelServiceClient/startPaidService(request:)>
+/// [google.cloud.channel.v1.CloudChannelService.StartPaidService]: <doc:CloudChannelServiceClient/startPaidService(request:options:)>
 public struct StartPaidServiceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

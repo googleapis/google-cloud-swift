@@ -21,7 +21,7 @@
   /// Request message for
   /// [ScheduleService.DeleteSchedule][google.cloud.aiplatform.v1.ScheduleService.DeleteSchedule].
   ///
-  /// [google.cloud.aiplatform.v1.ScheduleService.DeleteSchedule]: <doc:ScheduleServiceClient/deleteSchedule(request:)>
+  /// [google.cloud.aiplatform.v1.ScheduleService.DeleteSchedule]: <doc:ScheduleServiceClient/deleteSchedule(request:options:)>
   public struct DeleteScheduleRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

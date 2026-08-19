@@ -23,7 +23,7 @@
   /// operation. This will be returned by the google.longrunning.Operation.metadata
   /// field.
   ///
-  /// [google.cloud.discoveryengine.v1.SiteSearchEngineService.CreateTargetSite]: <doc:SiteSearchEngineServiceClient/createTargetSite(request:)>
+  /// [google.cloud.discoveryengine.v1.SiteSearchEngineService.CreateTargetSite]: <doc:SiteSearchEngineServiceClient/createTargetSite(request:options:)>
   public struct CreateTargetSiteMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

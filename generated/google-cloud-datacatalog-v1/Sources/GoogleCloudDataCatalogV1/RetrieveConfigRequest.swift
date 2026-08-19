@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [RetrieveConfig][google.cloud.datacatalog.v1.DataCatalog.RetrieveConfig].
 ///
-/// [google.cloud.datacatalog.v1.DataCatalog.RetrieveConfig]: <doc:DataCatalogClient/retrieveConfig(request:)>
+/// [google.cloud.datacatalog.v1.DataCatalog.RetrieveConfig]: <doc:DataCatalogClient/retrieveConfig(request:options:)>
 public struct RetrieveConfigRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

@@ -22,7 +22,7 @@ import GoogleCloudWkt
 /// Note: "bigquery.reservationAssignments.create" permission is required on the
 /// related assignee.
 ///
-/// [google.cloud.bigquery.reservation.v1.ReservationService.CreateAssignment]: <doc:ReservationServiceClient/createAssignment(request:)>
+/// [google.cloud.bigquery.reservation.v1.ReservationService.CreateAssignment]: <doc:ReservationServiceClient/createAssignment(request:options:)>
 public struct CreateAssignmentRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

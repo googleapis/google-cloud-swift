@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [EnableProcessor][google.cloud.documentai.v1.DocumentProcessorService.EnableProcessor]
 /// method.
 ///
-/// [google.cloud.documentai.v1.DocumentProcessorService.EnableProcessor]: <doc:DocumentProcessorServiceClient/enableProcessor(request:)>
+/// [google.cloud.documentai.v1.DocumentProcessorService.EnableProcessor]: <doc:DocumentProcessorServiceClient/enableProcessor(request:options:)>
 public struct EnableProcessorMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

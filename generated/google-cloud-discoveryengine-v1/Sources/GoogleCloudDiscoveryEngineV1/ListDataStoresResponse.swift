@@ -23,7 +23,7 @@
   /// [DataStoreService.ListDataStores][google.cloud.discoveryengine.v1.DataStoreService.ListDataStores]
   /// method.
   ///
-  /// [google.cloud.discoveryengine.v1.DataStoreService.ListDataStores]: <doc:DataStoreServiceClient/listDataStores(request:)>
+  /// [google.cloud.discoveryengine.v1.DataStoreService.ListDataStores]: <doc:DataStoreServiceClient/listDataStores(request:options:)>
   public struct ListDataStoresResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable

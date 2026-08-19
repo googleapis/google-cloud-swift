@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [GetProcess][google.cloud.datacatalog.lineage.v1.Lineage.GetProcess].
 ///
-/// [google.cloud.datacatalog.lineage.v1.Lineage.GetProcess]: <doc:LineageClient/getProcess(request:)>
+/// [google.cloud.datacatalog.lineage.v1.Lineage.GetProcess]: <doc:LineageClient/getProcess(request:options:)>
 public struct GetProcessRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

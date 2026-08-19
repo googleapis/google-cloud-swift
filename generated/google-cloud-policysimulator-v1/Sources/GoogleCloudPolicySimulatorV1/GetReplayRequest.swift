@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [Simulator.GetReplay][google.cloud.policysimulator.v1.Simulator.GetReplay].
 ///
-/// [google.cloud.policysimulator.v1.Simulator.GetReplay]: <doc:SimulatorClient/getReplay(request:)>
+/// [google.cloud.policysimulator.v1.Simulator.GetReplay]: <doc:SimulatorClient/getReplay(request:options:)>
 public struct GetReplayRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

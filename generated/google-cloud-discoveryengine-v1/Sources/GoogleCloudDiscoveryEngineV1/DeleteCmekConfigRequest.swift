@@ -22,7 +22,7 @@
   /// [CmekConfigService.DeleteCmekConfig][google.cloud.discoveryengine.v1.CmekConfigService.DeleteCmekConfig]
   /// method.
   ///
-  /// [google.cloud.discoveryengine.v1.CmekConfigService.DeleteCmekConfig]: <doc:CmekConfigServiceClient/deleteCmekConfig(request:)>
+  /// [google.cloud.discoveryengine.v1.CmekConfigService.DeleteCmekConfig]: <doc:CmekConfigServiceClient/deleteCmekConfig(request:options:)>
   public struct DeleteCmekConfigRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

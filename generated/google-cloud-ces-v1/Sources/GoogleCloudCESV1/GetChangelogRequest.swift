@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [AgentService.GetChangelog][google.cloud.ces.v1.AgentService.GetChangelog].
 ///
-/// [google.cloud.ces.v1.AgentService.GetChangelog]: <doc:AgentServiceClient/getChangelog(request:)>
+/// [google.cloud.ces.v1.AgentService.GetChangelog]: <doc:AgentServiceClient/getChangelog(request:options:)>
 public struct GetChangelogRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

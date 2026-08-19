@@ -22,7 +22,7 @@ import GoogleCloudWkt
 /// [ListProcessorTypes][google.cloud.documentai.v1.DocumentProcessorService.ListProcessorTypes]
 /// method.
 ///
-/// [google.cloud.documentai.v1.DocumentProcessorService.ListProcessorTypes]: <doc:DocumentProcessorServiceClient/listProcessorTypes(request:)>
+/// [google.cloud.documentai.v1.DocumentProcessorService.ListProcessorTypes]: <doc:DocumentProcessorServiceClient/listProcessorTypes(request:options:)>
 public struct ListProcessorTypesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

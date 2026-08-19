@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [CloudChannelService.DeleteCustomer][google.cloud.channel.v1.CloudChannelService.DeleteCustomer].
 ///
-/// [google.cloud.channel.v1.CloudChannelService.DeleteCustomer]: <doc:CloudChannelServiceClient/deleteCustomer(request:)>
+/// [google.cloud.channel.v1.CloudChannelService.DeleteCustomer]: <doc:CloudChannelServiceClient/deleteCustomer(request:options:)>
 public struct DeleteCustomerRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

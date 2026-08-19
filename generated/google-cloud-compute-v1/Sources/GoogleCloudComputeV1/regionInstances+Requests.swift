@@ -21,7 +21,7 @@
   extension RegionInstancesClient {
     /// Synthetic request message for the [bulkInsert()][google.cloud.compute.v1.regionInstances.bulkInsert] method.
     ///
-    /// [google.cloud.compute.v1.regionInstances.bulkInsert]: <doc:RegionInstancesClient/bulkInsert(request:)>
+    /// [google.cloud.compute.v1.regionInstances.bulkInsert]: <doc:RegionInstancesClient/bulkInsert(request:options:)>
     public struct BulkInsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -48,7 +48,7 @@
 
       /// Synthetic request body field for the [bulkInsert()][google.cloud.compute.v1.regionInstances.bulkInsert] method.
       ///
-      /// [google.cloud.compute.v1.regionInstances.bulkInsert]: <doc:RegionInstancesClient/bulkInsert(request:)>
+      /// [google.cloud.compute.v1.regionInstances.bulkInsert]: <doc:RegionInstancesClient/bulkInsert(request:options:)>
       public var body: BulkInsertInstanceResource? = nil
 
       /// Initialize a new instance of `BulkInsertRequest`.

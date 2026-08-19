@@ -45,8 +45,8 @@
     /// Format:
     /// `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/pages/<PageID>`.
     ///
-    /// [google.cloud.dialogflow.cx.v3.Pages.CreatePage]: <doc:PagesClient/createPage(request:)>
-    /// [google.cloud.dialogflow.cx.v3.Pages.UpdatePage]: <doc:PagesClient/updatePage(request:)>
+    /// [google.cloud.dialogflow.cx.v3.Pages.CreatePage]: <doc:PagesClient/createPage(request:options:)>
+    /// [google.cloud.dialogflow.cx.v3.Pages.UpdatePage]: <doc:PagesClient/updatePage(request:options:)>
     public var name: Swift.String = Swift.String()
 
     /// Required. The human-readable name of the page, unique within the flow.

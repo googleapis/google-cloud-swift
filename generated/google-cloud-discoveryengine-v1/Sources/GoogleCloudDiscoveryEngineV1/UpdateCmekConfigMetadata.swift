@@ -23,7 +23,7 @@
   /// operation. This will be returned by the google.longrunning.Operation.metadata
   /// field.
   ///
-  /// [google.cloud.discoveryengine.v1.CmekConfigService.UpdateCmekConfig]: <doc:CmekConfigServiceClient/updateCmekConfig(request:)>
+  /// [google.cloud.discoveryengine.v1.CmekConfigService.UpdateCmekConfig]: <doc:CmekConfigServiceClient/updateCmekConfig(request:options:)>
   public struct UpdateCmekConfigMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

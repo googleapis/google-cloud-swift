@@ -21,7 +21,7 @@
   /// The request message for
   /// [ConversationProfiles.CreateConversationProfile][google.cloud.dialogflow.v2.ConversationProfiles.CreateConversationProfile].
   ///
-  /// [google.cloud.dialogflow.v2.ConversationProfiles.CreateConversationProfile]: <doc:ConversationProfilesClient/createConversationProfile(request:)>
+  /// [google.cloud.dialogflow.v2.ConversationProfiles.CreateConversationProfile]: <doc:ConversationProfilesClient/createConversationProfile(request:options:)>
   public struct CreateConversationProfileRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

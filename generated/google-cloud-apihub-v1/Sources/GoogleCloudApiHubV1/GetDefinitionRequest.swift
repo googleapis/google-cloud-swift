@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// The [GetDefinition][google.cloud.apihub.v1.ApiHub.GetDefinition] method's
 /// request.
 ///
-/// [google.cloud.apihub.v1.ApiHub.GetDefinition]: <doc:ApiHubClient/getDefinition(request:)>
+/// [google.cloud.apihub.v1.ApiHub.GetDefinition]: <doc:ApiHubClient/getDefinition(request:options:)>
 public struct GetDefinitionRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

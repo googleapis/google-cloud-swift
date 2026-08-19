@@ -19,7 +19,7 @@ import GoogleCloudWkt
 
 /// Request for [GetRuntimeVersion][google.cloud.tpu.v2.Tpu.GetRuntimeVersion].
 ///
-/// [google.cloud.tpu.v2.Tpu.GetRuntimeVersion]: <doc:TpuClient/getRuntimeVersion(request:)>
+/// [google.cloud.tpu.v2.Tpu.GetRuntimeVersion]: <doc:TpuClient/getRuntimeVersion(request:options:)>
 public struct GetRuntimeVersionRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

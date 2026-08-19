@@ -21,7 +21,7 @@
   /// Request message for
   /// [PipelineService.CancelTrainingPipeline][google.cloud.aiplatform.v1.PipelineService.CancelTrainingPipeline].
   ///
-  /// [google.cloud.aiplatform.v1.PipelineService.CancelTrainingPipeline]: <doc:PipelineServiceClient/cancelTrainingPipeline(request:)>
+  /// [google.cloud.aiplatform.v1.PipelineService.CancelTrainingPipeline]: <doc:PipelineServiceClient/cancelTrainingPipeline(request:options:)>
   public struct CancelTrainingPipelineRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

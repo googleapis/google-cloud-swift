@@ -222,8 +222,8 @@
     /// to false.
     ///
     /// [google.cloud.discoveryengine.v1.Document]: <doc:Document>
-    /// [google.cloud.discoveryengine.v1.DocumentService.GetDocument]: <doc:DocumentServiceClient/getDocument(request:)>
-    /// [google.cloud.discoveryengine.v1.DocumentService.ListDocuments]: <doc:DocumentServiceClient/listDocuments(request:)>
+    /// [google.cloud.discoveryengine.v1.DocumentService.GetDocument]: <doc:DocumentServiceClient/getDocument(request:options:)>
+    /// [google.cloud.discoveryengine.v1.DocumentService.ListDocuments]: <doc:DocumentServiceClient/listDocuments(request:options:)>
     /// [google.cloud.discoveryengine.v1.PurgeDocumentsRequest.force]: <doc:PurgeDocumentsRequest/force>
     ///
     /// @Snippet(path: "DocumentService_PurgeDocuments")
@@ -251,8 +251,8 @@
     /// to false.
     ///
     /// [google.cloud.discoveryengine.v1.Document]: <doc:Document>
-    /// [google.cloud.discoveryengine.v1.DocumentService.GetDocument]: <doc:DocumentServiceClient/getDocument(request:)>
-    /// [google.cloud.discoveryengine.v1.DocumentService.ListDocuments]: <doc:DocumentServiceClient/listDocuments(request:)>
+    /// [google.cloud.discoveryengine.v1.DocumentService.GetDocument]: <doc:DocumentServiceClient/getDocument(request:options:)>
+    /// [google.cloud.discoveryengine.v1.DocumentService.ListDocuments]: <doc:DocumentServiceClient/listDocuments(request:options:)>
     /// [google.cloud.discoveryengine.v1.PurgeDocumentsRequest.force]: <doc:PurgeDocumentsRequest/force>
     ///
     /// @Snippet(path: "DocumentService_PurgeDocuments")

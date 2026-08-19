@@ -21,7 +21,7 @@
   /// The request message for
   /// [Agents.TrainAgent][google.cloud.dialogflow.v2.Agents.TrainAgent].
   ///
-  /// [google.cloud.dialogflow.v2.Agents.TrainAgent]: <doc:AgentsClient/trainAgent(request:)>
+  /// [google.cloud.dialogflow.v2.Agents.TrainAgent]: <doc:AgentsClient/trainAgent(request:options:)>
   public struct TrainAgentRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

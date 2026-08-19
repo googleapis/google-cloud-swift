@@ -25,8 +25,8 @@ import GoogleCloudWkt
 /// [MoveProject][google.cloud.resourcemanager.v3.Projects.MoveProject] method to
 /// change the `parent` field.
 ///
-/// [google.cloud.resourcemanager.v3.Projects.MoveProject]: <doc:ProjectsClient/moveProject(request:)>
-/// [google.cloud.resourcemanager.v3.Projects.UpdateProject]: <doc:ProjectsClient/updateProject(request:)>
+/// [google.cloud.resourcemanager.v3.Projects.MoveProject]: <doc:ProjectsClient/moveProject(request:options:)>
+/// [google.cloud.resourcemanager.v3.Projects.UpdateProject]: <doc:ProjectsClient/updateProject(request:options:)>
 public struct UpdateProjectRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

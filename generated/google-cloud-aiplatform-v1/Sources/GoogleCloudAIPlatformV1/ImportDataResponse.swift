@@ -21,7 +21,7 @@
   /// Response message for
   /// [DatasetService.ImportData][google.cloud.aiplatform.v1.DatasetService.ImportData].
   ///
-  /// [google.cloud.aiplatform.v1.DatasetService.ImportData]: <doc:DatasetServiceClient/importData(request:)>
+  /// [google.cloud.aiplatform.v1.DatasetService.ImportData]: <doc:DatasetServiceClient/importData(request:options:)>
   public struct ImportDataResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

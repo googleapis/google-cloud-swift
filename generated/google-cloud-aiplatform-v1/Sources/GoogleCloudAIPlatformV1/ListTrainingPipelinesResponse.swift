@@ -22,7 +22,7 @@
   /// Response message for
   /// [PipelineService.ListTrainingPipelines][google.cloud.aiplatform.v1.PipelineService.ListTrainingPipelines]
   ///
-  /// [google.cloud.aiplatform.v1.PipelineService.ListTrainingPipelines]: <doc:PipelineServiceClient/listTrainingPipelines(request:)>
+  /// [google.cloud.aiplatform.v1.PipelineService.ListTrainingPipelines]: <doc:PipelineServiceClient/listTrainingPipelines(request:options:)>
   public struct ListTrainingPipelinesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable

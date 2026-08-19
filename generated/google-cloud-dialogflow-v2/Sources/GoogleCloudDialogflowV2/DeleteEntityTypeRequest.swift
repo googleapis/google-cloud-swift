@@ -21,7 +21,7 @@
   /// The request message for
   /// [EntityTypes.DeleteEntityType][google.cloud.dialogflow.v2.EntityTypes.DeleteEntityType].
   ///
-  /// [google.cloud.dialogflow.v2.EntityTypes.DeleteEntityType]: <doc:EntityTypesClient/deleteEntityType(request:)>
+  /// [google.cloud.dialogflow.v2.EntityTypes.DeleteEntityType]: <doc:EntityTypesClient/deleteEntityType(request:options:)>
   public struct DeleteEntityTypeRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

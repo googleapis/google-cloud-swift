@@ -22,7 +22,7 @@
   /// [ConversationalSearchService.ConverseConversation][google.cloud.discoveryengine.v1.ConversationalSearchService.ConverseConversation]
   /// method.
   ///
-  /// [google.cloud.discoveryengine.v1.ConversationalSearchService.ConverseConversation]: <doc:ConversationalSearchServiceClient/converseConversation(request:)>
+  /// [google.cloud.discoveryengine.v1.ConversationalSearchService.ConverseConversation]: <doc:ConversationalSearchServiceClient/converseConversation(request:options:)>
   public struct ConverseConversationRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

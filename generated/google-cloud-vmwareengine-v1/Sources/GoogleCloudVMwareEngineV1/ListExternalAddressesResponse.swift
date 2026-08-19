@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [VmwareEngine.ListExternalAddresses][google.cloud.vmwareengine.v1.VmwareEngine.ListExternalAddresses]
 ///
-/// [google.cloud.vmwareengine.v1.VmwareEngine.ListExternalAddresses]: <doc:VmwareEngineClient/listExternalAddresses(request:)>
+/// [google.cloud.vmwareengine.v1.VmwareEngine.ListExternalAddresses]: <doc:VmwareEngineClient/listExternalAddresses(request:options:)>
 public struct ListExternalAddressesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

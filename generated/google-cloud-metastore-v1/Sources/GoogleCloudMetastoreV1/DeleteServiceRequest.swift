@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [DataprocMetastore.DeleteService][google.cloud.metastore.v1.DataprocMetastore.DeleteService].
 ///
-/// [google.cloud.metastore.v1.DataprocMetastore.DeleteService]: <doc:DataprocMetastoreClient/deleteService(request:)>
+/// [google.cloud.metastore.v1.DataprocMetastore.DeleteService]: <doc:DataprocMetastoreClient/deleteService(request:options:)>
 public struct DeleteServiceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [ModifyEntryOverview][google.cloud.datacatalog.v1.DataCatalog.ModifyEntryOverview].
 ///
-/// [google.cloud.datacatalog.v1.DataCatalog.ModifyEntryOverview]: <doc:DataCatalogClient/modifyEntryOverview(request:)>
+/// [google.cloud.datacatalog.v1.DataCatalog.ModifyEntryOverview]: <doc:DataCatalogClient/modifyEntryOverview(request:options:)>
 public struct ModifyEntryOverviewRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

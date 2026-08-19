@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// The [CreateApiOperation][google.cloud.apihub.v1.ApiHub.CreateApiOperation]
 /// method's request.
 ///
-/// [google.cloud.apihub.v1.ApiHub.CreateApiOperation]: <doc:ApiHubClient/createApiOperation(request:)>
+/// [google.cloud.apihub.v1.ApiHub.CreateApiOperation]: <doc:ApiHubClient/createApiOperation(request:options:)>
 public struct CreateApiOperationRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

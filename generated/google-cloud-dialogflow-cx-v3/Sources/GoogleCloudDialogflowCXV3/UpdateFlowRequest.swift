@@ -21,7 +21,7 @@
   /// The request message for
   /// [Flows.UpdateFlow][google.cloud.dialogflow.cx.v3.Flows.UpdateFlow].
   ///
-  /// [google.cloud.dialogflow.cx.v3.Flows.UpdateFlow]: <doc:FlowsClient/updateFlow(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Flows.UpdateFlow]: <doc:FlowsClient/updateFlow(request:options:)>
   public struct UpdateFlowRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

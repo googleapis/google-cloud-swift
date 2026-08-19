@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [VmwareEngine.UpdateLoggingServer][google.cloud.vmwareengine.v1.VmwareEngine.UpdateLoggingServer]
 ///
-/// [google.cloud.vmwareengine.v1.VmwareEngine.UpdateLoggingServer]: <doc:VmwareEngineClient/updateLoggingServer(request:)>
+/// [google.cloud.vmwareengine.v1.VmwareEngine.UpdateLoggingServer]: <doc:VmwareEngineClient/updateLoggingServer(request:options:)>
 public struct UpdateLoggingServerRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

@@ -21,7 +21,7 @@
   /// Request message for
   /// [Documents.ImportDocuments][google.cloud.dialogflow.v2.Documents.ImportDocuments].
   ///
-  /// [google.cloud.dialogflow.v2.Documents.ImportDocuments]: <doc:DocumentsClient/importDocuments(request:)>
+  /// [google.cloud.dialogflow.v2.Documents.ImportDocuments]: <doc:DocumentsClient/importDocuments(request:options:)>
   public struct ImportDocumentsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

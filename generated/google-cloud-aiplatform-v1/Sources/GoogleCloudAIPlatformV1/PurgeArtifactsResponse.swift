@@ -21,7 +21,7 @@
   /// Response message for
   /// [MetadataService.PurgeArtifacts][google.cloud.aiplatform.v1.MetadataService.PurgeArtifacts].
   ///
-  /// [google.cloud.aiplatform.v1.MetadataService.PurgeArtifacts]: <doc:MetadataServiceClient/purgeArtifacts(request:)>
+  /// [google.cloud.aiplatform.v1.MetadataService.PurgeArtifacts]: <doc:MetadataServiceClient/purgeArtifacts(request:options:)>
   public struct PurgeArtifactsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

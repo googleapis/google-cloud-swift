@@ -125,7 +125,7 @@
     /// [ImportFeatureValues][google.cloud.aiplatform.v1.FeaturestoreService.ImportFeatureValues]
     /// operation.
     ///
-    /// [google.cloud.aiplatform.v1.FeaturestoreService.ImportFeatureValues]: <doc:FeaturestoreServiceClient/importFeatureValues(request:)>
+    /// [google.cloud.aiplatform.v1.FeaturestoreService.ImportFeatureValues]: <doc:FeaturestoreServiceClient/importFeatureValues(request:options:)>
     public struct ImportFeaturesAnalysis: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -282,7 +282,7 @@
       /// [ImportFeatureValues][google.cloud.aiplatform.v1.FeaturestoreService.ImportFeatureValues]
       /// operation.
       ///
-      /// [google.cloud.aiplatform.v1.FeaturestoreService.ImportFeatureValues]: <doc:FeaturestoreServiceClient/importFeatureValues(request:)>
+      /// [google.cloud.aiplatform.v1.FeaturestoreService.ImportFeatureValues]: <doc:FeaturestoreServiceClient/importFeatureValues(request:options:)>
       public enum Baseline: Codable, Equatable, Sendable {
         /// Should not be used.
         case unspecified

@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [KeyManagementService.GenerateRandomBytes][google.cloud.kms.v1.KeyManagementService.GenerateRandomBytes].
 ///
-/// [google.cloud.kms.v1.KeyManagementService.GenerateRandomBytes]: <doc:KeyManagementServiceClient/generateRandomBytes(request:)>
+/// [google.cloud.kms.v1.KeyManagementService.GenerateRandomBytes]: <doc:KeyManagementServiceClient/generateRandomBytes(request:options:)>
 public struct GenerateRandomBytesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

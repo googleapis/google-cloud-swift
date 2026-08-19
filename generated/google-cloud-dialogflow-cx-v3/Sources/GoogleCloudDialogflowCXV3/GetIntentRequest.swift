@@ -21,7 +21,7 @@
   /// The request message for
   /// [Intents.GetIntent][google.cloud.dialogflow.cx.v3.Intents.GetIntent].
   ///
-  /// [google.cloud.dialogflow.cx.v3.Intents.GetIntent]: <doc:IntentsClient/getIntent(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Intents.GetIntent]: <doc:IntentsClient/getIntent(request:options:)>
   public struct GetIntentRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

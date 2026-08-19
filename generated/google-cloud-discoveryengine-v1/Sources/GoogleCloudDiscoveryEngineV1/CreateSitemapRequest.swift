@@ -22,7 +22,7 @@
   /// [SiteSearchEngineService.CreateSitemap][google.cloud.discoveryengine.v1.SiteSearchEngineService.CreateSitemap]
   /// method.
   ///
-  /// [google.cloud.discoveryengine.v1.SiteSearchEngineService.CreateSitemap]: <doc:SiteSearchEngineServiceClient/createSitemap(request:)>
+  /// [google.cloud.discoveryengine.v1.SiteSearchEngineService.CreateSitemap]: <doc:SiteSearchEngineServiceClient/createSitemap(request:options:)>
   public struct CreateSitemapRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

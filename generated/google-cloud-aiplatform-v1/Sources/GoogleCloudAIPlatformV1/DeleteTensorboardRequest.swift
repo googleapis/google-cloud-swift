@@ -21,7 +21,7 @@
   /// Request message for
   /// [TensorboardService.DeleteTensorboard][google.cloud.aiplatform.v1.TensorboardService.DeleteTensorboard].
   ///
-  /// [google.cloud.aiplatform.v1.TensorboardService.DeleteTensorboard]: <doc:TensorboardServiceClient/deleteTensorboard(request:)>
+  /// [google.cloud.aiplatform.v1.TensorboardService.DeleteTensorboard]: <doc:TensorboardServiceClient/deleteTensorboard(request:options:)>
   public struct DeleteTensorboardRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

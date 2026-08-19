@@ -19,7 +19,7 @@ import GoogleCloudWkt
 
 /// The [DeleteSpec][google.cloud.apihub.v1.ApiHub.DeleteSpec] method's request.
 ///
-/// [google.cloud.apihub.v1.ApiHub.DeleteSpec]: <doc:ApiHubClient/deleteSpec(request:)>
+/// [google.cloud.apihub.v1.ApiHub.DeleteSpec]: <doc:ApiHubClient/deleteSpec(request:options:)>
 public struct DeleteSpecRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

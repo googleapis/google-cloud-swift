@@ -21,7 +21,7 @@
   extension InstanceGroupManagerResizeRequestsClient {
     /// Synthetic request message for the [cancel()][google.cloud.compute.v1.instanceGroupManagerResizeRequests.cancel] method.
     ///
-    /// [google.cloud.compute.v1.instanceGroupManagerResizeRequests.cancel]: <doc:InstanceGroupManagerResizeRequestsClient/cancel(request:)>
+    /// [google.cloud.compute.v1.instanceGroupManagerResizeRequests.cancel]: <doc:InstanceGroupManagerResizeRequestsClient/cancel(request:options:)>
     public struct CancelRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -85,7 +85,7 @@
 
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.instanceGroupManagerResizeRequests.delete] method.
     ///
-    /// [google.cloud.compute.v1.instanceGroupManagerResizeRequests.delete]: <doc:InstanceGroupManagerResizeRequestsClient/delete(request:)>
+    /// [google.cloud.compute.v1.instanceGroupManagerResizeRequests.delete]: <doc:InstanceGroupManagerResizeRequestsClient/delete(request:options:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -149,7 +149,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.instanceGroupManagerResizeRequests.get] method.
     ///
-    /// [google.cloud.compute.v1.instanceGroupManagerResizeRequests.get]: <doc:InstanceGroupManagerResizeRequestsClient/`get`(request:)>
+    /// [google.cloud.compute.v1.instanceGroupManagerResizeRequests.get]: <doc:InstanceGroupManagerResizeRequestsClient/`get`(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -198,7 +198,7 @@
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.instanceGroupManagerResizeRequests.insert] method.
     ///
-    /// [google.cloud.compute.v1.instanceGroupManagerResizeRequests.insert]: <doc:InstanceGroupManagerResizeRequestsClient/insert(request:)>
+    /// [google.cloud.compute.v1.instanceGroupManagerResizeRequests.insert]: <doc:InstanceGroupManagerResizeRequestsClient/insert(request:options:)>
     public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -232,7 +232,7 @@
 
       /// Synthetic request body field for the [insert()][google.cloud.compute.v1.instanceGroupManagerResizeRequests.insert] method.
       ///
-      /// [google.cloud.compute.v1.instanceGroupManagerResizeRequests.insert]: <doc:InstanceGroupManagerResizeRequestsClient/insert(request:)>
+      /// [google.cloud.compute.v1.instanceGroupManagerResizeRequests.insert]: <doc:InstanceGroupManagerResizeRequestsClient/insert(request:options:)>
       public var body: InstanceGroupManagerResizeRequest? = nil
 
       /// Initialize a new instance of `InsertRequest`.
@@ -265,7 +265,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.instanceGroupManagerResizeRequests.list] method.
     ///
-    /// [google.cloud.compute.v1.instanceGroupManagerResizeRequests.list]: <doc:InstanceGroupManagerResizeRequestsClient/list(request:)>
+    /// [google.cloud.compute.v1.instanceGroupManagerResizeRequests.list]: <doc:InstanceGroupManagerResizeRequestsClient/list(request:options:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {

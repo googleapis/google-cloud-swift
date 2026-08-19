@@ -19,7 +19,7 @@ import GoogleCloudWkt
 
 /// Request message for [GetQueue][google.cloud.tasks.v2.CloudTasks.GetQueue].
 ///
-/// [google.cloud.tasks.v2.CloudTasks.GetQueue]: <doc:CloudTasksClient/getQueue(request:)>
+/// [google.cloud.tasks.v2.CloudTasks.GetQueue]: <doc:CloudTasksClient/getQueue(request:options:)>
 public struct GetQueueRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [CloudChannelService.ListTransferableOffers][google.cloud.channel.v1.CloudChannelService.ListTransferableOffers]
 ///
-/// [google.cloud.channel.v1.CloudChannelService.ListTransferableOffers]: <doc:CloudChannelServiceClient/listTransferableOffers(request:)>
+/// [google.cloud.channel.v1.CloudChannelService.ListTransferableOffers]: <doc:CloudChannelServiceClient/listTransferableOffers(request:options:)>
 public struct ListTransferableOffersRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
@@ -39,7 +39,7 @@ public struct ListTransferableOffersRequest: Codable, Equatable, GoogleCloudWkt.
   /// [CloudChannelService.ListTransferableOffers][google.cloud.channel.v1.CloudChannelService.ListTransferableOffers]
   /// call.
   ///
-  /// [google.cloud.channel.v1.CloudChannelService.ListTransferableOffers]: <doc:CloudChannelServiceClient/listTransferableOffers(request:)>
+  /// [google.cloud.channel.v1.CloudChannelService.ListTransferableOffers]: <doc:CloudChannelServiceClient/listTransferableOffers(request:options:)>
   /// [google.cloud.channel.v1.ListTransferableOffersResponse.next_page_token]: <doc:ListTransferableOffersResponse/nextPageToken>
   public var pageToken: Swift.String = Swift.String()
 

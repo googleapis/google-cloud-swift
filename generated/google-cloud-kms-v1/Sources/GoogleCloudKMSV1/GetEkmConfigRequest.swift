@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [EkmService.GetEkmConfig][google.cloud.kms.v1.EkmService.GetEkmConfig].
 ///
-/// [google.cloud.kms.v1.EkmService.GetEkmConfig]: <doc:EkmServiceClient/getEkmConfig(request:)>
+/// [google.cloud.kms.v1.EkmService.GetEkmConfig]: <doc:EkmServiceClient/getEkmConfig(request:options:)>
 public struct GetEkmConfigRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

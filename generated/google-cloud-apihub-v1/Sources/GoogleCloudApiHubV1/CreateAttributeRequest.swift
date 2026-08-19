@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// The [CreateAttribute][google.cloud.apihub.v1.ApiHub.CreateAttribute] method's
 /// request.
 ///
-/// [google.cloud.apihub.v1.ApiHub.CreateAttribute]: <doc:ApiHubClient/createAttribute(request:)>
+/// [google.cloud.apihub.v1.ApiHub.CreateAttribute]: <doc:ApiHubClient/createAttribute(request:options:)>
 public struct CreateAttributeRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

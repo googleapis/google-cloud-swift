@@ -90,10 +90,10 @@ public struct NotificationChannel: Codable, Equatable, GoogleCloudWkt._AnyPackab
   /// operation. To change the value of this field, you must call
   /// [`VerifyNotificationChannel`][google.monitoring.v3.NotificationChannelService.VerifyNotificationChannel].
   ///
-  /// [google.monitoring.v3.NotificationChannelService.GetNotificationChannel]: <doc:NotificationChannelServiceClient/getNotificationChannel(request:)>
-  /// [google.monitoring.v3.NotificationChannelService.ListNotificationChannels]: <doc:NotificationChannelServiceClient/listNotificationChannels(request:)>
-  /// [google.monitoring.v3.NotificationChannelService.UpdateNotificationChannel]: <doc:NotificationChannelServiceClient/updateNotificationChannel(request:)>
-  /// [google.monitoring.v3.NotificationChannelService.VerifyNotificationChannel]: <doc:NotificationChannelServiceClient/verifyNotificationChannel(request:)>
+  /// [google.monitoring.v3.NotificationChannelService.GetNotificationChannel]: <doc:NotificationChannelServiceClient/getNotificationChannel(request:options:)>
+  /// [google.monitoring.v3.NotificationChannelService.ListNotificationChannels]: <doc:NotificationChannelServiceClient/listNotificationChannels(request:options:)>
+  /// [google.monitoring.v3.NotificationChannelService.UpdateNotificationChannel]: <doc:NotificationChannelServiceClient/updateNotificationChannel(request:options:)>
+  /// [google.monitoring.v3.NotificationChannelService.VerifyNotificationChannel]: <doc:NotificationChannelServiceClient/verifyNotificationChannel(request:options:)>
   public var verificationStatus: NotificationChannel.VerificationStatus =
     NotificationChannel.VerificationStatus()
 
@@ -134,8 +134,8 @@ public struct NotificationChannel: Codable, Equatable, GoogleCloudWkt._AnyPackab
   /// [`UpdateNotificationChannel`][google.monitoring.v3.NotificationChannelService.UpdateNotificationChannel]
   /// operation.
   ///
-  /// [google.monitoring.v3.NotificationChannelService.CreateNotificationChannel]: <doc:NotificationChannelServiceClient/createNotificationChannel(request:)>
-  /// [google.monitoring.v3.NotificationChannelService.UpdateNotificationChannel]: <doc:NotificationChannelServiceClient/updateNotificationChannel(request:)>
+  /// [google.monitoring.v3.NotificationChannelService.CreateNotificationChannel]: <doc:NotificationChannelServiceClient/createNotificationChannel(request:options:)>
+  /// [google.monitoring.v3.NotificationChannelService.UpdateNotificationChannel]: <doc:NotificationChannelServiceClient/updateNotificationChannel(request:options:)>
   public enum VerificationStatus: Codable, Equatable, Sendable {
     /// Sentinel value used to indicate that the state is unknown, omitted, or
     /// is not applicable (as in the case of channels that neither support

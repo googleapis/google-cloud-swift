@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [VmwareEngine.ListNetworkPolicies][google.cloud.vmwareengine.v1.VmwareEngine.ListNetworkPolicies]
 ///
-/// [google.cloud.vmwareengine.v1.VmwareEngine.ListNetworkPolicies]: <doc:VmwareEngineClient/listNetworkPolicies(request:)>
+/// [google.cloud.vmwareengine.v1.VmwareEngine.ListNetworkPolicies]: <doc:VmwareEngineClient/listNetworkPolicies(request:options:)>
 public struct ListNetworkPoliciesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

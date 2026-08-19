@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// Response message for listing jobs using
 /// [ListJobs][google.cloud.scheduler.v1.CloudScheduler.ListJobs].
 ///
-/// [google.cloud.scheduler.v1.CloudScheduler.ListJobs]: <doc:CloudSchedulerClient/listJobs(request:)>
+/// [google.cloud.scheduler.v1.CloudScheduler.ListJobs]: <doc:CloudSchedulerClient/listJobs(request:options:)>
 public struct ListJobsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable
@@ -38,7 +38,7 @@ public struct ListJobsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   ///
   /// The page token is valid for only 2 hours.
   ///
-  /// [google.cloud.scheduler.v1.CloudScheduler.ListJobs]: <doc:CloudSchedulerClient/listJobs(request:)>
+  /// [google.cloud.scheduler.v1.CloudScheduler.ListJobs]: <doc:CloudSchedulerClient/listJobs(request:options:)>
   /// [google.cloud.scheduler.v1.ListJobsRequest.page_token]: <doc:ListJobsRequest/pageToken>
   public var nextPageToken: Swift.String = Swift.String()
 

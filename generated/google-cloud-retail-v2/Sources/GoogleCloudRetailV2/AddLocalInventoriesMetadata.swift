@@ -22,7 +22,7 @@ import GoogleCloudWkt
 /// [ProductService.AddLocalInventories][google.cloud.retail.v2.ProductService.AddLocalInventories]
 /// method.
 ///
-/// [google.cloud.retail.v2.ProductService.AddLocalInventories]: <doc:ProductServiceClient/addLocalInventories(request:)>
+/// [google.cloud.retail.v2.ProductService.AddLocalInventories]: <doc:ProductServiceClient/addLocalInventories(request:options:)>
 public struct AddLocalInventoriesMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

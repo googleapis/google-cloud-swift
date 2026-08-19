@@ -22,7 +22,7 @@
   /// Response message for
   /// [IdentityMappingStoreService.ListIdentityMappings][google.cloud.discoveryengine.v1.IdentityMappingStoreService.ListIdentityMappings]
   ///
-  /// [google.cloud.discoveryengine.v1.IdentityMappingStoreService.ListIdentityMappings]: <doc:IdentityMappingStoreServiceClient/listIdentityMappings(request:)>
+  /// [google.cloud.discoveryengine.v1.IdentityMappingStoreService.ListIdentityMappings]: <doc:IdentityMappingStoreServiceClient/listIdentityMappings(request:options:)>
   public struct ListIdentityMappingsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable

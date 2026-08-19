@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [VmwareEngine.CreateHcxActivationKey][google.cloud.vmwareengine.v1.VmwareEngine.CreateHcxActivationKey]
 ///
-/// [google.cloud.vmwareengine.v1.VmwareEngine.CreateHcxActivationKey]: <doc:VmwareEngineClient/createHcxActivationKey(request:)>
+/// [google.cloud.vmwareengine.v1.VmwareEngine.CreateHcxActivationKey]: <doc:VmwareEngineClient/createHcxActivationKey(request:options:)>
 public struct CreateHcxActivationKeyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

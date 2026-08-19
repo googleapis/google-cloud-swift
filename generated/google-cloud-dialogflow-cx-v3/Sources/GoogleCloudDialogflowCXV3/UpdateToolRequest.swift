@@ -21,7 +21,7 @@
   /// The request message for
   /// [Tools.UpdateTool][google.cloud.dialogflow.cx.v3.Tools.UpdateTool].
   ///
-  /// [google.cloud.dialogflow.cx.v3.Tools.UpdateTool]: <doc:ToolsClient/updateTool(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Tools.UpdateTool]: <doc:ToolsClient/updateTool(request:options:)>
   public struct UpdateToolRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

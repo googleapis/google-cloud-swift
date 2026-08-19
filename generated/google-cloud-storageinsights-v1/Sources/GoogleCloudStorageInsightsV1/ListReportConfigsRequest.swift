@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [`ListReportConfigs`][google.cloud.storageinsights.v1.StorageInsights.ListReportConfigs]
 ///
-/// [google.cloud.storageinsights.v1.StorageInsights.ListReportConfigs]: <doc:StorageInsightsClient/listReportConfigs(request:)>
+/// [google.cloud.storageinsights.v1.StorageInsights.ListReportConfigs]: <doc:StorageInsightsClient/listReportConfigs(request:options:)>
 public struct ListReportConfigsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

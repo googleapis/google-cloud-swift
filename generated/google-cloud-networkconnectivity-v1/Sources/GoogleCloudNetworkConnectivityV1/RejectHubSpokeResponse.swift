@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// The response for
 /// [HubService.RejectHubSpoke][google.cloud.networkconnectivity.v1.HubService.RejectHubSpoke].
 ///
-/// [google.cloud.networkconnectivity.v1.HubService.RejectHubSpoke]: <doc:HubServiceClient/rejectHubSpoke(request:)>
+/// [google.cloud.networkconnectivity.v1.HubService.RejectHubSpoke]: <doc:HubServiceClient/rejectHubSpoke(request:options:)>
 public struct RejectHubSpokeResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

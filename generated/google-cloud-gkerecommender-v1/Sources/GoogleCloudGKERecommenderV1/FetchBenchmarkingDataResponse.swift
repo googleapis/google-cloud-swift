@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [GkeInferenceQuickstart.FetchBenchmarkingData][google.cloud.gkerecommender.v1.GkeInferenceQuickstart.FetchBenchmarkingData].
 ///
-/// [google.cloud.gkerecommender.v1.GkeInferenceQuickstart.FetchBenchmarkingData]: <doc:GkeInferenceQuickstartClient/fetchBenchmarkingData(request:)>
+/// [google.cloud.gkerecommender.v1.GkeInferenceQuickstart.FetchBenchmarkingData]: <doc:GkeInferenceQuickstartClient/fetchBenchmarkingData(request:options:)>
 public struct FetchBenchmarkingDataResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

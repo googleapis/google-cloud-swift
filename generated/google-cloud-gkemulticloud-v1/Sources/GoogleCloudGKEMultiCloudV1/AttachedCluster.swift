@@ -43,7 +43,7 @@ public struct AttachedCluster: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// calling
   /// [GetAttachedServerConfig][google.cloud.gkemulticloud.v1.AttachedClusters.GetAttachedServerConfig].
   ///
-  /// [google.cloud.gkemulticloud.v1.AttachedClusters.GetAttachedServerConfig]: <doc:AttachedClustersClient/getAttachedServerConfig(request:)>
+  /// [google.cloud.gkemulticloud.v1.AttachedClusters.GetAttachedServerConfig]: <doc:AttachedClustersClient/getAttachedServerConfig(request:options:)>
   public var platformVersion: Swift.String = Swift.String()
 
   /// Required. The Kubernetes distribution of the underlying attached cluster.

@@ -21,7 +21,7 @@
   /// Request message for
   /// [ReasoningEngineExecutionService.CancelAsyncQueryReasoningEngine][google.cloud.aiplatform.v1.ReasoningEngineExecutionService.CancelAsyncQueryReasoningEngine].
   ///
-  /// [google.cloud.aiplatform.v1.ReasoningEngineExecutionService.CancelAsyncQueryReasoningEngine]: <doc:ReasoningEngineExecutionServiceClient/cancelAsyncQueryReasoningEngine(request:)>
+  /// [google.cloud.aiplatform.v1.ReasoningEngineExecutionService.CancelAsyncQueryReasoningEngine]: <doc:ReasoningEngineExecutionServiceClient/cancelAsyncQueryReasoningEngine(request:options:)>
   public struct CancelAsyncQueryReasoningEngineRequest: Codable, Equatable, GoogleCloudWkt
       ._AnyPackable,
     Sendable

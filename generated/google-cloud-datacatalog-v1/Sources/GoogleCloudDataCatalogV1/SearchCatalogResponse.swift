@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [SearchCatalog][google.cloud.datacatalog.v1.DataCatalog.SearchCatalog].
 ///
-/// [google.cloud.datacatalog.v1.DataCatalog.SearchCatalog]: <doc:DataCatalogClient/searchCatalog(request:)>
+/// [google.cloud.datacatalog.v1.DataCatalog.SearchCatalog]: <doc:DataCatalogClient/searchCatalog(request:options:)>
 public struct SearchCatalogResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

@@ -21,7 +21,7 @@
   /// Request message for
   /// [ModelService.ListModelEvaluations][google.cloud.aiplatform.v1.ModelService.ListModelEvaluations].
   ///
-  /// [google.cloud.aiplatform.v1.ModelService.ListModelEvaluations]: <doc:ModelServiceClient/listModelEvaluations(request:)>
+  /// [google.cloud.aiplatform.v1.ModelService.ListModelEvaluations]: <doc:ModelServiceClient/listModelEvaluations(request:options:)>
   public struct ListModelEvaluationsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {
@@ -43,7 +43,7 @@
     /// call.
     ///
     /// [google.cloud.aiplatform.v1.ListModelEvaluationsResponse.next_page_token]: <doc:ListModelEvaluationsResponse/nextPageToken>
-    /// [google.cloud.aiplatform.v1.ModelService.ListModelEvaluations]: <doc:ModelServiceClient/listModelEvaluations(request:)>
+    /// [google.cloud.aiplatform.v1.ModelService.ListModelEvaluations]: <doc:ModelServiceClient/listModelEvaluations(request:options:)>
     public var pageToken: Swift.String = Swift.String()
 
     /// Mask specifying which fields to read.

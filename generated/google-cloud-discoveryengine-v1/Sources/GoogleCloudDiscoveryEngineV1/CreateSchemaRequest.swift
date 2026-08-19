@@ -22,7 +22,7 @@
   /// [SchemaService.CreateSchema][google.cloud.discoveryengine.v1.SchemaService.CreateSchema]
   /// method.
   ///
-  /// [google.cloud.discoveryengine.v1.SchemaService.CreateSchema]: <doc:SchemaServiceClient/createSchema(request:)>
+  /// [google.cloud.discoveryengine.v1.SchemaService.CreateSchema]: <doc:SchemaServiceClient/createSchema(request:options:)>
   public struct CreateSchemaRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

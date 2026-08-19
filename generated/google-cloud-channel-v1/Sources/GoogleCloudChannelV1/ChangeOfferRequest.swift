@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [CloudChannelService.ChangeOffer][google.cloud.channel.v1.CloudChannelService.ChangeOffer].
 ///
-/// [google.cloud.channel.v1.CloudChannelService.ChangeOffer]: <doc:CloudChannelServiceClient/changeOffer(request:)>
+/// [google.cloud.channel.v1.CloudChannelService.ChangeOffer]: <doc:CloudChannelServiceClient/changeOffer(request:options:)>
 public struct ChangeOfferRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [DataprocMetastore.ListServices][google.cloud.metastore.v1.DataprocMetastore.ListServices].
 ///
-/// [google.cloud.metastore.v1.DataprocMetastore.ListServices]: <doc:DataprocMetastoreClient/listServices(request:)>
+/// [google.cloud.metastore.v1.DataprocMetastore.ListServices]: <doc:DataprocMetastoreClient/listServices(request:options:)>
 public struct ListServicesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
@@ -46,7 +46,7 @@ public struct ListServicesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackab
   /// [DataprocMetastore.ListServices][google.cloud.metastore.v1.DataprocMetastore.ListServices]
   /// must match the call that provided the page token.
   ///
-  /// [google.cloud.metastore.v1.DataprocMetastore.ListServices]: <doc:DataprocMetastoreClient/listServices(request:)>
+  /// [google.cloud.metastore.v1.DataprocMetastore.ListServices]: <doc:DataprocMetastoreClient/listServices(request:options:)>
   public var pageToken: Swift.String = Swift.String()
 
   /// Optional. The filter to apply to list results.

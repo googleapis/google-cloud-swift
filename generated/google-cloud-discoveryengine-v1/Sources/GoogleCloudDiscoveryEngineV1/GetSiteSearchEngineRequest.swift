@@ -22,7 +22,7 @@
   /// [SiteSearchEngineService.GetSiteSearchEngine][google.cloud.discoveryengine.v1.SiteSearchEngineService.GetSiteSearchEngine]
   /// method.
   ///
-  /// [google.cloud.discoveryengine.v1.SiteSearchEngineService.GetSiteSearchEngine]: <doc:SiteSearchEngineServiceClient/getSiteSearchEngine(request:)>
+  /// [google.cloud.discoveryengine.v1.SiteSearchEngineService.GetSiteSearchEngine]: <doc:SiteSearchEngineServiceClient/getSiteSearchEngine(request:options:)>
   public struct GetSiteSearchEngineRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

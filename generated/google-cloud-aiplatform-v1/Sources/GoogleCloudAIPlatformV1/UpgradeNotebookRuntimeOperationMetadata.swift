@@ -21,7 +21,7 @@
   /// Metadata information for
   /// [NotebookService.UpgradeNotebookRuntime][google.cloud.aiplatform.v1.NotebookService.UpgradeNotebookRuntime].
   ///
-  /// [google.cloud.aiplatform.v1.NotebookService.UpgradeNotebookRuntime]: <doc:NotebookServiceClient/upgradeNotebookRuntime(request:)>
+  /// [google.cloud.aiplatform.v1.NotebookService.UpgradeNotebookRuntime]: <doc:NotebookServiceClient/upgradeNotebookRuntime(request:options:)>
   public struct UpgradeNotebookRuntimeOperationMetadata: Codable, Equatable, GoogleCloudWkt
       ._AnyPackable,
     Sendable

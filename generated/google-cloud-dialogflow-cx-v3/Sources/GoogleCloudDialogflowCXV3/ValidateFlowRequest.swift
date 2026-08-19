@@ -21,7 +21,7 @@
   /// The request message for
   /// [Flows.ValidateFlow][google.cloud.dialogflow.cx.v3.Flows.ValidateFlow].
   ///
-  /// [google.cloud.dialogflow.cx.v3.Flows.ValidateFlow]: <doc:FlowsClient/validateFlow(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Flows.ValidateFlow]: <doc:FlowsClient/validateFlow(request:options:)>
   public struct ValidateFlowRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

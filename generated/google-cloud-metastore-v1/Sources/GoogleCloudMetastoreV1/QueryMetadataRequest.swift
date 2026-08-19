@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [DataprocMetastore.QueryMetadata][google.cloud.metastore.v1.DataprocMetastore.QueryMetadata].
 ///
-/// [google.cloud.metastore.v1.DataprocMetastore.QueryMetadata]: <doc:DataprocMetastoreClient/queryMetadata(request:)>
+/// [google.cloud.metastore.v1.DataprocMetastore.QueryMetadata]: <doc:DataprocMetastoreClient/queryMetadata(request:options:)>
 public struct QueryMetadataRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

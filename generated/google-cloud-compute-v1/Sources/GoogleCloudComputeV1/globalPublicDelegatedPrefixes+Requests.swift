@@ -21,7 +21,7 @@
   extension GlobalPublicDelegatedPrefixesClient {
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.globalPublicDelegatedPrefixes.delete] method.
     ///
-    /// [google.cloud.compute.v1.globalPublicDelegatedPrefixes.delete]: <doc:GlobalPublicDelegatedPrefixesClient/delete(request:)>
+    /// [google.cloud.compute.v1.globalPublicDelegatedPrefixes.delete]: <doc:GlobalPublicDelegatedPrefixesClient/delete(request:options:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -76,7 +76,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.globalPublicDelegatedPrefixes.get] method.
     ///
-    /// [google.cloud.compute.v1.globalPublicDelegatedPrefixes.get]: <doc:GlobalPublicDelegatedPrefixesClient/`get`(request:)>
+    /// [google.cloud.compute.v1.globalPublicDelegatedPrefixes.get]: <doc:GlobalPublicDelegatedPrefixesClient/`get`(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -116,7 +116,7 @@
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.globalPublicDelegatedPrefixes.insert] method.
     ///
-    /// [google.cloud.compute.v1.globalPublicDelegatedPrefixes.insert]: <doc:GlobalPublicDelegatedPrefixesClient/insert(request:)>
+    /// [google.cloud.compute.v1.globalPublicDelegatedPrefixes.insert]: <doc:GlobalPublicDelegatedPrefixesClient/insert(request:options:)>
     public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -140,7 +140,7 @@
 
       /// Synthetic request body field for the [insert()][google.cloud.compute.v1.globalPublicDelegatedPrefixes.insert] method.
       ///
-      /// [google.cloud.compute.v1.globalPublicDelegatedPrefixes.insert]: <doc:GlobalPublicDelegatedPrefixesClient/insert(request:)>
+      /// [google.cloud.compute.v1.globalPublicDelegatedPrefixes.insert]: <doc:GlobalPublicDelegatedPrefixesClient/insert(request:options:)>
       public var body: PublicDelegatedPrefix? = nil
 
       /// Initialize a new instance of `InsertRequest`.
@@ -173,7 +173,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.globalPublicDelegatedPrefixes.list] method.
     ///
-    /// [google.cloud.compute.v1.globalPublicDelegatedPrefixes.list]: <doc:GlobalPublicDelegatedPrefixesClient/list(request:)>
+    /// [google.cloud.compute.v1.globalPublicDelegatedPrefixes.list]: <doc:GlobalPublicDelegatedPrefixesClient/list(request:options:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -303,7 +303,7 @@
 
     /// Synthetic request message for the [patch()][google.cloud.compute.v1.globalPublicDelegatedPrefixes.patch] method.
     ///
-    /// [google.cloud.compute.v1.globalPublicDelegatedPrefixes.patch]: <doc:GlobalPublicDelegatedPrefixesClient/patch(request:)>
+    /// [google.cloud.compute.v1.globalPublicDelegatedPrefixes.patch]: <doc:GlobalPublicDelegatedPrefixesClient/patch(request:options:)>
     public struct PatchRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -330,7 +330,7 @@
 
       /// Synthetic request body field for the [patch()][google.cloud.compute.v1.globalPublicDelegatedPrefixes.patch] method.
       ///
-      /// [google.cloud.compute.v1.globalPublicDelegatedPrefixes.patch]: <doc:GlobalPublicDelegatedPrefixesClient/patch(request:)>
+      /// [google.cloud.compute.v1.globalPublicDelegatedPrefixes.patch]: <doc:GlobalPublicDelegatedPrefixesClient/patch(request:options:)>
       public var body: PublicDelegatedPrefix? = nil
 
       /// Initialize a new instance of `PatchRequest`.

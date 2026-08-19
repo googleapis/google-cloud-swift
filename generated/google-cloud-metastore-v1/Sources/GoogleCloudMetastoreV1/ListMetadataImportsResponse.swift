@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [DataprocMetastore.ListMetadataImports][google.cloud.metastore.v1.DataprocMetastore.ListMetadataImports].
 ///
-/// [google.cloud.metastore.v1.DataprocMetastore.ListMetadataImports]: <doc:DataprocMetastoreClient/listMetadataImports(request:)>
+/// [google.cloud.metastore.v1.DataprocMetastore.ListMetadataImports]: <doc:DataprocMetastoreClient/listMetadataImports(request:options:)>
 public struct ListMetadataImportsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

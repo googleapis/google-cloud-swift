@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Metadata type for the long-running operation returned by
 /// [RestoreTable][google.bigtable.admin.v2.BigtableTableAdmin.RestoreTable].
 ///
-/// [google.bigtable.admin.v2.BigtableTableAdmin.RestoreTable]: <doc:BigtableTableAdminClient/restoreTable(request:)>
+/// [google.bigtable.admin.v2.BigtableTableAdmin.RestoreTable]: <doc:BigtableTableAdminClient/restoreTable(request:options:)>
 public struct RestoreTableMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
@@ -45,7 +45,7 @@ public struct RestoreTableMetadata: Codable, Equatable, GoogleCloudWkt._AnyPacka
   /// [RestoreTable][google.bigtable.admin.v2.BigtableTableAdmin.RestoreTable]
   /// operation.
   ///
-  /// [google.bigtable.admin.v2.BigtableTableAdmin.RestoreTable]: <doc:BigtableTableAdminClient/restoreTable(request:)>
+  /// [google.bigtable.admin.v2.BigtableTableAdmin.RestoreTable]: <doc:BigtableTableAdminClient/restoreTable(request:options:)>
   public var progress: OperationProgress? = nil
 
   /// Information about the source used to restore the table, as specified by

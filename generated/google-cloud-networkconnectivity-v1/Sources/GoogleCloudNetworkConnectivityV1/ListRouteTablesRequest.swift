@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [HubService.ListRouteTables][google.cloud.networkconnectivity.v1.HubService.ListRouteTables]
 /// method.
 ///
-/// [google.cloud.networkconnectivity.v1.HubService.ListRouteTables]: <doc:HubServiceClient/listRouteTables(request:)>
+/// [google.cloud.networkconnectivity.v1.HubService.ListRouteTables]: <doc:HubServiceClient/listRouteTables(request:options:)>
 public struct ListRouteTablesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

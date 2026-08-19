@@ -22,7 +22,7 @@
   /// Response message for
   /// [ReasoningEngineService.ListReasoningEngines][google.cloud.aiplatform.v1.ReasoningEngineService.ListReasoningEngines]
   ///
-  /// [google.cloud.aiplatform.v1.ReasoningEngineService.ListReasoningEngines]: <doc:ReasoningEngineServiceClient/listReasoningEngines(request:)>
+  /// [google.cloud.aiplatform.v1.ReasoningEngineService.ListReasoningEngines]: <doc:ReasoningEngineServiceClient/listReasoningEngines(request:options:)>
   public struct ListReasoningEnginesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable

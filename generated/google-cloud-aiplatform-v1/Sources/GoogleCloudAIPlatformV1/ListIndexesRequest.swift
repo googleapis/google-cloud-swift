@@ -21,7 +21,7 @@
   /// Request message for
   /// [IndexService.ListIndexes][google.cloud.aiplatform.v1.IndexService.ListIndexes].
   ///
-  /// [google.cloud.aiplatform.v1.IndexService.ListIndexes]: <doc:IndexServiceClient/listIndexes(request:)>
+  /// [google.cloud.aiplatform.v1.IndexService.ListIndexes]: <doc:IndexServiceClient/listIndexes(request:options:)>
   public struct ListIndexesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {
@@ -42,7 +42,7 @@
     /// [IndexService.ListIndexes][google.cloud.aiplatform.v1.IndexService.ListIndexes]
     /// call.
     ///
-    /// [google.cloud.aiplatform.v1.IndexService.ListIndexes]: <doc:IndexServiceClient/listIndexes(request:)>
+    /// [google.cloud.aiplatform.v1.IndexService.ListIndexes]: <doc:IndexServiceClient/listIndexes(request:options:)>
     /// [google.cloud.aiplatform.v1.ListIndexesResponse.next_page_token]: <doc:ListIndexesResponse/nextPageToken>
     public var pageToken: Swift.String = Swift.String()
 

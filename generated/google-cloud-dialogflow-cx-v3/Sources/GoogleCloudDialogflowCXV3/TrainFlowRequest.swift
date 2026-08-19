@@ -21,7 +21,7 @@
   /// The request message for
   /// [Flows.TrainFlow][google.cloud.dialogflow.cx.v3.Flows.TrainFlow].
   ///
-  /// [google.cloud.dialogflow.cx.v3.Flows.TrainFlow]: <doc:FlowsClient/trainFlow(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Flows.TrainFlow]: <doc:FlowsClient/trainFlow(request:options:)>
   public struct TrainFlowRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

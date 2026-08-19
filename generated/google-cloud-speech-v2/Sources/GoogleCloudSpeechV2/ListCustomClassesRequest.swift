@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for the
 /// [ListCustomClasses][google.cloud.speech.v2.Speech.ListCustomClasses] method.
 ///
-/// [google.cloud.speech.v2.Speech.ListCustomClasses]: <doc:SpeechClient/listCustomClasses(request:)>
+/// [google.cloud.speech.v2.Speech.ListCustomClasses]: <doc:SpeechClient/listCustomClasses(request:options:)>
 public struct ListCustomClassesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
@@ -42,7 +42,7 @@ public struct ListCustomClassesRequest: Codable, Equatable, GoogleCloudWkt._AnyP
   /// [ListCustomClasses][google.cloud.speech.v2.Speech.ListCustomClasses] must
   /// match the call that provided the page token.
   ///
-  /// [google.cloud.speech.v2.Speech.ListCustomClasses]: <doc:SpeechClient/listCustomClasses(request:)>
+  /// [google.cloud.speech.v2.Speech.ListCustomClasses]: <doc:SpeechClient/listCustomClasses(request:options:)>
   public var pageToken: Swift.String = Swift.String()
 
   /// Whether, or not, to show resources that have been deleted.

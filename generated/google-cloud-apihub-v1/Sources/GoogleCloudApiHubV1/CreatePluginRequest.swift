@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// The [CreatePlugin][google.cloud.apihub.v1.ApiHubPlugin.CreatePlugin] method's
 /// request.
 ///
-/// [google.cloud.apihub.v1.ApiHubPlugin.CreatePlugin]: <doc:ApiHubPluginClient/createPlugin(request:)>
+/// [google.cloud.apihub.v1.ApiHubPlugin.CreatePlugin]: <doc:ApiHubPluginClient/createPlugin(request:options:)>
 public struct CreatePluginRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

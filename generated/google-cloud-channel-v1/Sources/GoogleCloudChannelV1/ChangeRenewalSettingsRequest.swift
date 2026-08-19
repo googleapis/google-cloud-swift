@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [CloudChannelService.ChangeRenewalSettings][google.cloud.channel.v1.CloudChannelService.ChangeRenewalSettings].
 ///
-/// [google.cloud.channel.v1.CloudChannelService.ChangeRenewalSettings]: <doc:CloudChannelServiceClient/changeRenewalSettings(request:)>
+/// [google.cloud.channel.v1.CloudChannelService.ChangeRenewalSettings]: <doc:CloudChannelServiceClient/changeRenewalSettings(request:options:)>
 public struct ChangeRenewalSettingsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [google.bigtable.admin.v2.BigtableTableAdmin.ListAuthorizedViews][google.bigtable.admin.v2.BigtableTableAdmin.ListAuthorizedViews]
 ///
-/// [google.bigtable.admin.v2.BigtableTableAdmin.ListAuthorizedViews]: <doc:BigtableTableAdminClient/listAuthorizedViews(request:)>
+/// [google.bigtable.admin.v2.BigtableTableAdmin.ListAuthorizedViews]: <doc:BigtableTableAdminClient/listAuthorizedViews(request:options:)>
 public struct ListAuthorizedViewsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

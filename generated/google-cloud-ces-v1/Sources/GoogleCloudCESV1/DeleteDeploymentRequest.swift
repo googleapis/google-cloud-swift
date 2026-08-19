@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [AgentService.DeleteDeployment][google.cloud.ces.v1.AgentService.DeleteDeployment].
 ///
-/// [google.cloud.ces.v1.AgentService.DeleteDeployment]: <doc:AgentServiceClient/deleteDeployment(request:)>
+/// [google.cloud.ces.v1.AgentService.DeleteDeployment]: <doc:AgentServiceClient/deleteDeployment(request:options:)>
 public struct DeleteDeploymentRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

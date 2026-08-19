@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for forcing a task to run now using
 /// [RunTask][google.cloud.tasks.v2.CloudTasks.RunTask].
 ///
-/// [google.cloud.tasks.v2.CloudTasks.RunTask]: <doc:CloudTasksClient/runTask(request:)>
+/// [google.cloud.tasks.v2.CloudTasks.RunTask]: <doc:CloudTasksClient/runTask(request:options:)>
 public struct RunTaskRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

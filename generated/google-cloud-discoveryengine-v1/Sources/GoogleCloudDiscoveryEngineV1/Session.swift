@@ -93,7 +93,7 @@
       /// is set to true, this field will be populated when getting answer query
       /// session.
       ///
-      /// [google.cloud.discoveryengine.v1.ConversationalSearchService.GetSession]: <doc:ConversationalSearchServiceClient/getSession(request:)>
+      /// [google.cloud.discoveryengine.v1.ConversationalSearchService.GetSession]: <doc:ConversationalSearchServiceClient/getSession(request:options:)>
       /// [google.cloud.discoveryengine.v1.GetSessionRequest.include_answer_details]: <doc:GetSessionRequest/includeAnswerDetails>
       public var detailedAnswer: Answer? = nil
 
@@ -104,7 +104,7 @@
       /// is set to true, this field will be populated when getting assistant
       /// session.
       ///
-      /// [google.cloud.discoveryengine.v1.ConversationalSearchService.GetSession]: <doc:ConversationalSearchServiceClient/getSession(request:)>
+      /// [google.cloud.discoveryengine.v1.ConversationalSearchService.GetSession]: <doc:ConversationalSearchServiceClient/getSession(request:options:)>
       /// [google.cloud.discoveryengine.v1.GetSessionRequest.include_answer_details]: <doc:GetSessionRequest/includeAnswerDetails>
       public var detailedAssistAnswer: AssistAnswer? = nil
 

@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [DataObjectService.CreateDataObject][google.cloud.vectorsearch.v1.DataObjectService.CreateDataObject].
 ///
-/// [google.cloud.vectorsearch.v1.DataObjectService.CreateDataObject]: <doc:DataObjectServiceClient/createDataObject(request:)>
+/// [google.cloud.vectorsearch.v1.DataObjectService.CreateDataObject]: <doc:DataObjectServiceClient/createDataObject(request:options:)>
 public struct CreateDataObjectRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

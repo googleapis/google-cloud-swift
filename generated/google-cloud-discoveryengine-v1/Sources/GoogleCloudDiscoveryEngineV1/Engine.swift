@@ -687,8 +687,8 @@
       /// [EngineService.ListEngines][google.cloud.discoveryengine.v1.EngineService.ListEngines]
       /// API after engine creation.
       ///
-      /// [google.cloud.discoveryengine.v1.EngineService.GetEngine]: <doc:EngineServiceClient/getEngine(request:)>
-      /// [google.cloud.discoveryengine.v1.EngineService.ListEngines]: <doc:EngineServiceClient/listEngines(request:)>
+      /// [google.cloud.discoveryengine.v1.EngineService.GetEngine]: <doc:EngineServiceClient/getEngine(request:options:)>
+      /// [google.cloud.discoveryengine.v1.EngineService.ListEngines]: <doc:EngineServiceClient/listEngines(request:options:)>
       public var agentCreationConfig: Engine.ChatEngineConfig.AgentCreationConfig? = nil
 
       /// The resource name of an exist Dialogflow agent to link to this Chat
@@ -708,8 +708,8 @@
       /// for actual agent association after Engine is created.
       ///
       /// [google.cloud.discoveryengine.v1.Engine.ChatEngineMetadata.dialogflow_agent]: <doc:Engine/ChatEngineMetadata/dialogflowAgent>
-      /// [google.cloud.discoveryengine.v1.EngineService.GetEngine]: <doc:EngineServiceClient/getEngine(request:)>
-      /// [google.cloud.discoveryengine.v1.EngineService.ListEngines]: <doc:EngineServiceClient/listEngines(request:)>
+      /// [google.cloud.discoveryengine.v1.EngineService.GetEngine]: <doc:EngineServiceClient/getEngine(request:options:)>
+      /// [google.cloud.discoveryengine.v1.EngineService.ListEngines]: <doc:EngineServiceClient/listEngines(request:options:)>
       public var dialogflowAgentToLink: Swift.String = Swift.String()
 
       /// Optional. If the flag set to true, we allow the agent and engine are in
@@ -725,9 +725,9 @@
       /// [EngineService.ListEngines][google.cloud.discoveryengine.v1.EngineService.ListEngines]
       /// API after engine creation.
       ///
-      /// [google.cloud.discoveryengine.v1.EngineService.CreateEngine]: <doc:EngineServiceClient/createEngine(request:)>
-      /// [google.cloud.discoveryengine.v1.EngineService.GetEngine]: <doc:EngineServiceClient/getEngine(request:)>
-      /// [google.cloud.discoveryengine.v1.EngineService.ListEngines]: <doc:EngineServiceClient/listEngines(request:)>
+      /// [google.cloud.discoveryengine.v1.EngineService.CreateEngine]: <doc:EngineServiceClient/createEngine(request:options:)>
+      /// [google.cloud.discoveryengine.v1.EngineService.GetEngine]: <doc:EngineServiceClient/getEngine(request:options:)>
+      /// [google.cloud.discoveryengine.v1.EngineService.ListEngines]: <doc:EngineServiceClient/listEngines(request:options:)>
       public var allowCrossRegion: Swift.Bool = Swift.Bool()
 
       /// Initialize a new instance of `ChatEngineConfig`.
@@ -755,8 +755,8 @@
       /// [EngineService.ListEngines][google.cloud.discoveryengine.v1.EngineService.ListEngines]
       /// API after engine creation.
       ///
-      /// [google.cloud.discoveryengine.v1.EngineService.GetEngine]: <doc:EngineServiceClient/getEngine(request:)>
-      /// [google.cloud.discoveryengine.v1.EngineService.ListEngines]: <doc:EngineServiceClient/listEngines(request:)>
+      /// [google.cloud.discoveryengine.v1.EngineService.GetEngine]: <doc:EngineServiceClient/getEngine(request:options:)>
+      /// [google.cloud.discoveryengine.v1.EngineService.ListEngines]: <doc:EngineServiceClient/listEngines(request:options:)>
       public struct AgentCreationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         Sendable
       {

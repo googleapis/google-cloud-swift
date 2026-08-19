@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [VmwareEngine.ListPrivateConnections][google.cloud.vmwareengine.v1.VmwareEngine.ListPrivateConnections]
 ///
-/// [google.cloud.vmwareengine.v1.VmwareEngine.ListPrivateConnections]: <doc:VmwareEngineClient/listPrivateConnections(request:)>
+/// [google.cloud.vmwareengine.v1.VmwareEngine.ListPrivateConnections]: <doc:VmwareEngineClient/listPrivateConnections(request:options:)>
 public struct ListPrivateConnectionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

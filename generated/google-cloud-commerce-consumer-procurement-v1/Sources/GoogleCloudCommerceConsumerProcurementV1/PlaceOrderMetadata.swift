@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Message stored in the metadata field of the Operation returned by
 /// [ConsumerProcurementService.PlaceOrder][google.cloud.commerce.consumer.procurement.v1.ConsumerProcurementService.PlaceOrder].
 ///
-/// [google.cloud.commerce.consumer.procurement.v1.ConsumerProcurementService.PlaceOrder]: <doc:ConsumerProcurementServiceClient/placeOrder(request:)>
+/// [google.cloud.commerce.consumer.procurement.v1.ConsumerProcurementService.PlaceOrder]: <doc:ConsumerProcurementServiceClient/placeOrder(request:options:)>
 public struct PlaceOrderMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

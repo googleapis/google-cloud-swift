@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [CatalogService.ReplaceCatalogAttribute][google.cloud.retail.v2.CatalogService.ReplaceCatalogAttribute]
 /// method.
 ///
-/// [google.cloud.retail.v2.CatalogService.ReplaceCatalogAttribute]: <doc:CatalogServiceClient/replaceCatalogAttribute(request:)>
+/// [google.cloud.retail.v2.CatalogService.ReplaceCatalogAttribute]: <doc:CatalogServiceClient/replaceCatalogAttribute(request:options:)>
 public struct ReplaceCatalogAttributeRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

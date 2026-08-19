@@ -21,7 +21,7 @@
   /// The request message for
   /// [EntityTypes.ExportEntityTypes][google.cloud.dialogflow.cx.v3.EntityTypes.ExportEntityTypes].
   ///
-  /// [google.cloud.dialogflow.cx.v3.EntityTypes.ExportEntityTypes]: <doc:EntityTypesClient/exportEntityTypes(request:)>
+  /// [google.cloud.dialogflow.cx.v3.EntityTypes.ExportEntityTypes]: <doc:EntityTypesClient/exportEntityTypes(request:options:)>
   public struct ExportEntityTypesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

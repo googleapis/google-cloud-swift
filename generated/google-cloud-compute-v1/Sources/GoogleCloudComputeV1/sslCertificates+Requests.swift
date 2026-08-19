@@ -21,7 +21,7 @@
   extension SslCertificatesClient {
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.sslCertificates.aggregatedList] method.
     ///
-    /// [google.cloud.compute.v1.sslCertificates.aggregatedList]: <doc:SslCertificatesClient/aggregatedList(request:)>
+    /// [google.cloud.compute.v1.sslCertificates.aggregatedList]: <doc:SslCertificatesClient/aggregatedList(request:options:)>
     public struct AggregatedListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -163,7 +163,7 @@
 
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.sslCertificates.delete] method.
     ///
-    /// [google.cloud.compute.v1.sslCertificates.delete]: <doc:SslCertificatesClient/delete(request:)>
+    /// [google.cloud.compute.v1.sslCertificates.delete]: <doc:SslCertificatesClient/delete(request:options:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -217,7 +217,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.sslCertificates.get] method.
     ///
-    /// [google.cloud.compute.v1.sslCertificates.get]: <doc:SslCertificatesClient/`get`(request:)>
+    /// [google.cloud.compute.v1.sslCertificates.get]: <doc:SslCertificatesClient/`get`(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -256,7 +256,7 @@
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.sslCertificates.insert] method.
     ///
-    /// [google.cloud.compute.v1.sslCertificates.insert]: <doc:SslCertificatesClient/insert(request:)>
+    /// [google.cloud.compute.v1.sslCertificates.insert]: <doc:SslCertificatesClient/insert(request:options:)>
     public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -280,7 +280,7 @@
 
       /// Synthetic request body field for the [insert()][google.cloud.compute.v1.sslCertificates.insert] method.
       ///
-      /// [google.cloud.compute.v1.sslCertificates.insert]: <doc:SslCertificatesClient/insert(request:)>
+      /// [google.cloud.compute.v1.sslCertificates.insert]: <doc:SslCertificatesClient/insert(request:options:)>
       public var body: SslCertificate? = nil
 
       /// Initialize a new instance of `InsertRequest`.
@@ -312,7 +312,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.sslCertificates.list] method.
     ///
-    /// [google.cloud.compute.v1.sslCertificates.list]: <doc:SslCertificatesClient/list(request:)>
+    /// [google.cloud.compute.v1.sslCertificates.list]: <doc:SslCertificatesClient/list(request:options:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {

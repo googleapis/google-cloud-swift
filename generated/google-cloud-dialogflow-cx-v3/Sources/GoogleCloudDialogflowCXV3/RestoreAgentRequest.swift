@@ -21,7 +21,7 @@
   /// The request message for
   /// [Agents.RestoreAgent][google.cloud.dialogflow.cx.v3.Agents.RestoreAgent].
   ///
-  /// [google.cloud.dialogflow.cx.v3.Agents.RestoreAgent]: <doc:AgentsClient/restoreAgent(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Agents.RestoreAgent]: <doc:AgentsClient/restoreAgent(request:options:)>
   public struct RestoreAgentRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

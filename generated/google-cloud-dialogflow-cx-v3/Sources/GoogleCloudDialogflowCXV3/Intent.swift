@@ -35,8 +35,8 @@
     /// Format:
     /// `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/intents/<IntentID>`.
     ///
-    /// [google.cloud.dialogflow.cx.v3.Intents.CreateIntent]: <doc:IntentsClient/createIntent(request:)>
-    /// [google.cloud.dialogflow.cx.v3.Intents.UpdateIntent]: <doc:IntentsClient/updateIntent(request:)>
+    /// [google.cloud.dialogflow.cx.v3.Intents.CreateIntent]: <doc:IntentsClient/createIntent(request:options:)>
+    /// [google.cloud.dialogflow.cx.v3.Intents.UpdateIntent]: <doc:IntentsClient/updateIntent(request:options:)>
     public var name: Swift.String = Swift.String()
 
     /// Required. The human-readable name of the intent, unique within the agent.

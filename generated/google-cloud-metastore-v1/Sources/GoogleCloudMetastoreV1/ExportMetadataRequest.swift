@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [DataprocMetastore.ExportMetadata][google.cloud.metastore.v1.DataprocMetastore.ExportMetadata].
 ///
-/// [google.cloud.metastore.v1.DataprocMetastore.ExportMetadata]: <doc:DataprocMetastoreClient/exportMetadata(request:)>
+/// [google.cloud.metastore.v1.DataprocMetastore.ExportMetadata]: <doc:DataprocMetastoreClient/exportMetadata(request:options:)>
 public struct ExportMetadataRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

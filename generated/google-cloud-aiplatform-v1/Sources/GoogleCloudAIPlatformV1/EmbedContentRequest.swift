@@ -21,7 +21,7 @@
   /// Request message for
   /// [PredictionService.EmbedContent][google.cloud.aiplatform.v1.PredictionService.EmbedContent].
   ///
-  /// [google.cloud.aiplatform.v1.PredictionService.EmbedContent]: <doc:PredictionServiceClient/embedContent(request:)>
+  /// [google.cloud.aiplatform.v1.PredictionService.EmbedContent]: <doc:PredictionServiceClient/embedContent(request:options:)>
   public struct EmbedContentRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

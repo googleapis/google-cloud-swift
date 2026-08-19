@@ -22,7 +22,7 @@
   /// Response message for
   /// [AnswerRecords.ListAnswerRecords][google.cloud.dialogflow.v2.AnswerRecords.ListAnswerRecords].
   ///
-  /// [google.cloud.dialogflow.v2.AnswerRecords.ListAnswerRecords]: <doc:AnswerRecordsClient/listAnswerRecords(request:)>
+  /// [google.cloud.dialogflow.v2.AnswerRecords.ListAnswerRecords]: <doc:AnswerRecordsClient/listAnswerRecords(request:options:)>
   public struct ListAnswerRecordsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable

@@ -23,7 +23,7 @@
   /// [DocumentService.ListDocuments][google.cloud.discoveryengine.v1.DocumentService.ListDocuments]
   /// method.
   ///
-  /// [google.cloud.discoveryengine.v1.DocumentService.ListDocuments]: <doc:DocumentServiceClient/listDocuments(request:)>
+  /// [google.cloud.discoveryengine.v1.DocumentService.ListDocuments]: <doc:DocumentServiceClient/listDocuments(request:options:)>
   public struct ListDocumentsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable

@@ -21,7 +21,7 @@
   /// Response message for
   /// [IndexEndpointService.MutateDeployedIndex][google.cloud.aiplatform.v1.IndexEndpointService.MutateDeployedIndex].
   ///
-  /// [google.cloud.aiplatform.v1.IndexEndpointService.MutateDeployedIndex]: <doc:IndexEndpointServiceClient/mutateDeployedIndex(request:)>
+  /// [google.cloud.aiplatform.v1.IndexEndpointService.MutateDeployedIndex]: <doc:IndexEndpointServiceClient/mutateDeployedIndex(request:options:)>
   public struct MutateDeployedIndexResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

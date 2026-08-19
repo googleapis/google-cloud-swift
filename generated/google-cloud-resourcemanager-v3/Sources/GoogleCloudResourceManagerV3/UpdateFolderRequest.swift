@@ -26,7 +26,7 @@ import GoogleCloudWkt
 /// [MoveFolder][google.cloud.resourcemanager.v3.Folders.MoveFolder] method to
 /// change the `parent` field.
 ///
-/// [google.cloud.resourcemanager.v3.Folders.MoveFolder]: <doc:FoldersClient/moveFolder(request:)>
+/// [google.cloud.resourcemanager.v3.Folders.MoveFolder]: <doc:FoldersClient/moveFolder(request:options:)>
 public struct UpdateFolderRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

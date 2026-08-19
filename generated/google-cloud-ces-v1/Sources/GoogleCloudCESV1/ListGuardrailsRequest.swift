@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [AgentService.ListGuardrails][google.cloud.ces.v1.AgentService.ListGuardrails].
 ///
-/// [google.cloud.ces.v1.AgentService.ListGuardrails]: <doc:AgentServiceClient/listGuardrails(request:)>
+/// [google.cloud.ces.v1.AgentService.ListGuardrails]: <doc:AgentServiceClient/listGuardrails(request:options:)>
 public struct ListGuardrailsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
@@ -37,7 +37,7 @@ public struct ListGuardrailsRequest: Codable, Equatable, GoogleCloudWkt._AnyPack
   /// [AgentService.ListGuardrails][google.cloud.ces.v1.AgentService.ListGuardrails]
   /// call.
   ///
-  /// [google.cloud.ces.v1.AgentService.ListGuardrails]: <doc:AgentServiceClient/listGuardrails(request:)>
+  /// [google.cloud.ces.v1.AgentService.ListGuardrails]: <doc:AgentServiceClient/listGuardrails(request:options:)>
   /// [google.cloud.ces.v1.ListGuardrailsResponse.next_page_token]: <doc:ListGuardrailsResponse/nextPageToken>
   public var pageToken: Swift.String = Swift.String()
 

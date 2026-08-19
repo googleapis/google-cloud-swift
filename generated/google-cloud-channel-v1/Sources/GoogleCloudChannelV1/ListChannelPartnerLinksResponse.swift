@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [CloudChannelService.ListChannelPartnerLinks][google.cloud.channel.v1.CloudChannelService.ListChannelPartnerLinks].
 ///
-/// [google.cloud.channel.v1.CloudChannelService.ListChannelPartnerLinks]: <doc:CloudChannelServiceClient/listChannelPartnerLinks(request:)>
+/// [google.cloud.channel.v1.CloudChannelService.ListChannelPartnerLinks]: <doc:CloudChannelServiceClient/listChannelPartnerLinks(request:options:)>
 public struct ListChannelPartnerLinksResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

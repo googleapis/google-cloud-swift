@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [DataprocMetastore.CreateBackup][google.cloud.metastore.v1.DataprocMetastore.CreateBackup].
 ///
-/// [google.cloud.metastore.v1.DataprocMetastore.CreateBackup]: <doc:DataprocMetastoreClient/createBackup(request:)>
+/// [google.cloud.metastore.v1.DataprocMetastore.CreateBackup]: <doc:DataprocMetastoreClient/createBackup(request:options:)>
 public struct CreateBackupRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

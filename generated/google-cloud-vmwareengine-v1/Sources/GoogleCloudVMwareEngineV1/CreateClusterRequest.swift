@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [VmwareEngine.CreateCluster][google.cloud.vmwareengine.v1.VmwareEngine.CreateCluster]
 ///
-/// [google.cloud.vmwareengine.v1.VmwareEngine.CreateCluster]: <doc:VmwareEngineClient/createCluster(request:)>
+/// [google.cloud.vmwareengine.v1.VmwareEngine.CreateCluster]: <doc:VmwareEngineClient/createCluster(request:options:)>
 public struct CreateClusterRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

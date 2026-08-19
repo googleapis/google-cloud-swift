@@ -82,7 +82,7 @@ public class CloudChannelReportsServiceClient: Clients.CloudChannelReportsServic
   /// BigQuery](https://cloud.google.com/channel/docs/rebilling/export-data-to-bigquery)
   /// instead.
   ///
-  /// [google.cloud.channel.v1.CloudChannelReportsService.FetchReportResults]: <doc:CloudChannelReportsServiceClient/fetchReportResults(request:)>
+  /// [google.cloud.channel.v1.CloudChannelReportsService.FetchReportResults]: <doc:CloudChannelReportsServiceClient/fetchReportResults(request:options:)>
   /// [google.cloud.channel.v1.OperationMetadata]: <doc:OperationMetadata>
   /// [google.cloud.channel.v1.RunReportJobResponse.report_job]: <doc:RunReportJobResponse/reportJob>
   ///
@@ -124,7 +124,7 @@ public class CloudChannelReportsServiceClient: Clients.CloudChannelReportsServic
   /// BigQuery](https://cloud.google.com/channel/docs/rebilling/export-data-to-bigquery)
   /// instead.
   ///
-  /// [google.cloud.channel.v1.CloudChannelReportsService.FetchReportResults]: <doc:CloudChannelReportsServiceClient/fetchReportResults(request:)>
+  /// [google.cloud.channel.v1.CloudChannelReportsService.FetchReportResults]: <doc:CloudChannelReportsServiceClient/fetchReportResults(request:options:)>
   /// [google.cloud.channel.v1.OperationMetadata]: <doc:OperationMetadata>
   /// [google.cloud.channel.v1.RunReportJobResponse.report_job]: <doc:RunReportJobResponse/reportJob>
   ///
@@ -194,7 +194,7 @@ public class CloudChannelReportsServiceClient: Clients.CloudChannelReportsServic
   /// BigQuery](https://cloud.google.com/channel/docs/rebilling/export-data-to-bigquery)
   /// instead.
   ///
-  /// [google.cloud.channel.v1.CloudChannelReportsService.RunReportJob]: <doc:CloudChannelReportsServiceClient/runReportJob(request:)>
+  /// [google.cloud.channel.v1.CloudChannelReportsService.RunReportJob]: <doc:CloudChannelReportsServiceClient/runReportJob(request:options:)>
   ///
   /// @Snippet(path: "CloudChannelReportsService_FetchReportResults")
   @available(*, deprecated)
@@ -211,7 +211,7 @@ public class CloudChannelReportsServiceClient: Clients.CloudChannelReportsServic
   /// BigQuery](https://cloud.google.com/channel/docs/rebilling/export-data-to-bigquery)
   /// instead.
   ///
-  /// [google.cloud.channel.v1.CloudChannelReportsService.RunReportJob]: <doc:CloudChannelReportsServiceClient/runReportJob(request:)>
+  /// [google.cloud.channel.v1.CloudChannelReportsService.RunReportJob]: <doc:CloudChannelReportsServiceClient/runReportJob(request:options:)>
   ///
   /// @Snippet(path: "CloudChannelReportsService_FetchReportResults")
   @available(*, deprecated)

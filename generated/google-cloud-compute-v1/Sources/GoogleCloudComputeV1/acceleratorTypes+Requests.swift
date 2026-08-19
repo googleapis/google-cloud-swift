@@ -21,7 +21,7 @@
   extension AcceleratorTypesClient {
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.acceleratorTypes.aggregatedList] method.
     ///
-    /// [google.cloud.compute.v1.acceleratorTypes.aggregatedList]: <doc:AcceleratorTypesClient/aggregatedList(request:)>
+    /// [google.cloud.compute.v1.acceleratorTypes.aggregatedList]: <doc:AcceleratorTypesClient/aggregatedList(request:options:)>
     public struct AggregatedListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -163,7 +163,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.acceleratorTypes.get] method.
     ///
-    /// [google.cloud.compute.v1.acceleratorTypes.get]: <doc:AcceleratorTypesClient/`get`(request:)>
+    /// [google.cloud.compute.v1.acceleratorTypes.get]: <doc:AcceleratorTypesClient/`get`(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -205,7 +205,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.acceleratorTypes.list] method.
     ///
-    /// [google.cloud.compute.v1.acceleratorTypes.list]: <doc:AcceleratorTypesClient/list(request:)>
+    /// [google.cloud.compute.v1.acceleratorTypes.list]: <doc:AcceleratorTypesClient/list(request:options:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {

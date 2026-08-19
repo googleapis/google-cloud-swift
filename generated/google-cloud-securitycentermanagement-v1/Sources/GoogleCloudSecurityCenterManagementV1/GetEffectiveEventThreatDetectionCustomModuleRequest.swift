@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [SecurityCenterManagement.GetEffectiveEventThreatDetectionCustomModule][google.cloud.securitycentermanagement.v1.SecurityCenterManagement.GetEffectiveEventThreatDetectionCustomModule].
 ///
-/// [google.cloud.securitycentermanagement.v1.SecurityCenterManagement.GetEffectiveEventThreatDetectionCustomModule]: <doc:SecurityCenterManagementClient/getEffectiveEventThreatDetectionCustomModule(request:)>
+/// [google.cloud.securitycentermanagement.v1.SecurityCenterManagement.GetEffectiveEventThreatDetectionCustomModule]: <doc:SecurityCenterManagementClient/getEffectiveEventThreatDetectionCustomModule(request:options:)>
 public struct GetEffectiveEventThreatDetectionCustomModuleRequest: Codable, Equatable,
   GoogleCloudWkt._AnyPackable,
   Sendable

@@ -21,7 +21,7 @@
   /// Request message for
   /// [FeaturestoreService.SearchFeatures][google.cloud.aiplatform.v1.FeaturestoreService.SearchFeatures].
   ///
-  /// [google.cloud.aiplatform.v1.FeaturestoreService.SearchFeatures]: <doc:FeaturestoreServiceClient/searchFeatures(request:)>
+  /// [google.cloud.aiplatform.v1.FeaturestoreService.SearchFeatures]: <doc:FeaturestoreServiceClient/searchFeatures(request:options:)>
   public struct SearchFeaturesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {
@@ -105,7 +105,7 @@
     /// [FeaturestoreService.SearchFeatures][google.cloud.aiplatform.v1.FeaturestoreService.SearchFeatures],
     /// except `page_size`, must match the call that provided the page token.
     ///
-    /// [google.cloud.aiplatform.v1.FeaturestoreService.SearchFeatures]: <doc:FeaturestoreServiceClient/searchFeatures(request:)>
+    /// [google.cloud.aiplatform.v1.FeaturestoreService.SearchFeatures]: <doc:FeaturestoreServiceClient/searchFeatures(request:options:)>
     public var pageToken: Swift.String = Swift.String()
 
     /// Initialize a new instance of `SearchFeaturesRequest`.

@@ -21,7 +21,7 @@
   /// Request message for
   /// [NotebookService.DeleteNotebookRuntime][google.cloud.aiplatform.v1.NotebookService.DeleteNotebookRuntime].
   ///
-  /// [google.cloud.aiplatform.v1.NotebookService.DeleteNotebookRuntime]: <doc:NotebookServiceClient/deleteNotebookRuntime(request:)>
+  /// [google.cloud.aiplatform.v1.NotebookService.DeleteNotebookRuntime]: <doc:NotebookServiceClient/deleteNotebookRuntime(request:options:)>
   public struct DeleteNotebookRuntimeRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

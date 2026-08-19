@@ -22,7 +22,7 @@
   /// Response message for
   /// [FeatureOnlineStoreAdminService.ListFeatureOnlineStores][google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService.ListFeatureOnlineStores].
   ///
-  /// [google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService.ListFeatureOnlineStores]: <doc:FeatureOnlineStoreAdminServiceClient/listFeatureOnlineStores(request:)>
+  /// [google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService.ListFeatureOnlineStores]: <doc:FeatureOnlineStoreAdminServiceClient/listFeatureOnlineStores(request:options:)>
   public struct ListFeatureOnlineStoresResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable

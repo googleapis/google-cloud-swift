@@ -76,7 +76,7 @@ public struct SecretVersion: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// [SecretManagerService.AddSecretVersion][google.cloud.secretmanager.v1.SecretManagerService.AddSecretVersion].
   ///
   /// [google.cloud.secretmanager.v1.SecretManagerService]: <doc:SecretManagerServiceClient>
-  /// [google.cloud.secretmanager.v1.SecretManagerService.AddSecretVersion]: <doc:SecretManagerServiceClient/addSecretVersion(request:)>
+  /// [google.cloud.secretmanager.v1.SecretManagerService.AddSecretVersion]: <doc:SecretManagerServiceClient/addSecretVersion(request:options:)>
   /// [google.cloud.secretmanager.v1.SecretPayload]: <doc:SecretPayload>
   public var clientSpecifiedPayloadChecksum: Swift.Bool = Swift.Bool()
 

@@ -47,7 +47,7 @@ public struct ProcessOptions: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// [ProcessDocument][google.cloud.documentai.v1.DocumentProcessorService.ProcessDocument].
   ///
   /// [google.cloud.documentai.v1.Document.Page.page_number]: <doc:Document/Page/pageNumber>
-  /// [google.cloud.documentai.v1.DocumentProcessorService.ProcessDocument]: <doc:DocumentProcessorServiceClient/processDocument(request:)>
+  /// [google.cloud.documentai.v1.DocumentProcessorService.ProcessDocument]: <doc:DocumentProcessorServiceClient/processDocument(request:options:)>
   public var pageRange: OneOf_PageRange? = nil
 
   /// Initialize a new instance of `ProcessOptions`.
@@ -254,7 +254,7 @@ public struct ProcessOptions: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// [ProcessDocument][google.cloud.documentai.v1.DocumentProcessorService.ProcessDocument].
   ///
   /// [google.cloud.documentai.v1.Document.Page.page_number]: <doc:Document/Page/pageNumber>
-  /// [google.cloud.documentai.v1.DocumentProcessorService.ProcessDocument]: <doc:DocumentProcessorServiceClient/processDocument(request:)>
+  /// [google.cloud.documentai.v1.DocumentProcessorService.ProcessDocument]: <doc:DocumentProcessorServiceClient/processDocument(request:options:)>
   public enum OneOf_PageRange: Codable, Equatable, Sendable {
     /// Which pages to process (1-indexed).
     indirect case individualPageSelector(ProcessOptions.IndividualPageSelector?)

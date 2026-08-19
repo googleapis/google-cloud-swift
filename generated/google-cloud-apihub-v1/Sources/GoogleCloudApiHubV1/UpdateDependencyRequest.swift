@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [UpdateDependency][google.cloud.apihub.v1.ApiHubDependencies.UpdateDependency]
 /// method's request.
 ///
-/// [google.cloud.apihub.v1.ApiHubDependencies.UpdateDependency]: <doc:ApiHubDependenciesClient/updateDependency(request:)>
+/// [google.cloud.apihub.v1.ApiHubDependencies.UpdateDependency]: <doc:ApiHubDependenciesClient/updateDependency(request:options:)>
 public struct UpdateDependencyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

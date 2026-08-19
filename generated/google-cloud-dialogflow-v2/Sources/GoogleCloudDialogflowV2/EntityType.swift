@@ -41,8 +41,8 @@
     /// methods. Format: `projects/<Project ID>/agent/entityTypes/<Entity Type
     /// ID>`.
     ///
-    /// [google.cloud.dialogflow.v2.EntityTypes.BatchUpdateEntityTypes]: <doc:EntityTypesClient/batchUpdateEntityTypes(request:)>
-    /// [google.cloud.dialogflow.v2.EntityTypes.UpdateEntityType]: <doc:EntityTypesClient/updateEntityType(request:)>
+    /// [google.cloud.dialogflow.v2.EntityTypes.BatchUpdateEntityTypes]: <doc:EntityTypesClient/batchUpdateEntityTypes(request:options:)>
+    /// [google.cloud.dialogflow.v2.EntityTypes.UpdateEntityType]: <doc:EntityTypesClient/updateEntityType(request:options:)>
     public var name: Swift.String = Swift.String()
 
     /// Required. The name of the entity type.

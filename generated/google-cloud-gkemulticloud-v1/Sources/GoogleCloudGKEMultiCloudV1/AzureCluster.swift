@@ -42,7 +42,7 @@ public struct AzureCluster: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// [GetAzureServerConfig][google.cloud.gkemulticloud.v1.AzureClusters.GetAzureServerConfig]
   /// to list all supported Azure regions within a given Google Cloud region.
   ///
-  /// [google.cloud.gkemulticloud.v1.AzureClusters.GetAzureServerConfig]: <doc:AzureClustersClient/getAzureServerConfig(request:)>
+  /// [google.cloud.gkemulticloud.v1.AzureClusters.GetAzureServerConfig]: <doc:AzureClustersClient/getAzureServerConfig(request:options:)>
   public var azureRegion: Swift.String = Swift.String()
 
   /// Required. The ARM ID of the resource group where the cluster resources are

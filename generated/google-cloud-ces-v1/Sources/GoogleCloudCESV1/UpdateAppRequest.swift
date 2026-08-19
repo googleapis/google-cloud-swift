@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [AgentService.UpdateApp][google.cloud.ces.v1.AgentService.UpdateApp].
 ///
-/// [google.cloud.ces.v1.AgentService.UpdateApp]: <doc:AgentServiceClient/updateApp(request:)>
+/// [google.cloud.ces.v1.AgentService.UpdateApp]: <doc:AgentServiceClient/updateApp(request:options:)>
 public struct UpdateAppRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

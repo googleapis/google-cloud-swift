@@ -46,8 +46,8 @@ public struct SecretPayload: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// https://cloud.google.com/apis/design/design_patterns#integer_types
   ///
   /// [google.cloud.secretmanager.v1.SecretManagerService]: <doc:SecretManagerServiceClient>
-  /// [google.cloud.secretmanager.v1.SecretManagerService.AccessSecretVersion]: <doc:SecretManagerServiceClient/accessSecretVersion(request:)>
-  /// [google.cloud.secretmanager.v1.SecretManagerService.AddSecretVersion]: <doc:SecretManagerServiceClient/addSecretVersion(request:)>
+  /// [google.cloud.secretmanager.v1.SecretManagerService.AccessSecretVersion]: <doc:SecretManagerServiceClient/accessSecretVersion(request:options:)>
+  /// [google.cloud.secretmanager.v1.SecretManagerService.AddSecretVersion]: <doc:SecretManagerServiceClient/addSecretVersion(request:options:)>
   /// [google.cloud.secretmanager.v1.SecretPayload.data]: <doc:SecretPayload/data>
   public var dataCrc32C: Swift.Int64? = nil
 

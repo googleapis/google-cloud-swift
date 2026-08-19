@@ -95,8 +95,8 @@ public struct LogSink: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// the sink cannot have a writer_identity and no additional permissions are
   /// required.
   ///
-  /// [google.logging.v2.ConfigServiceV2.CreateSink]: <doc:ConfigServiceV2Client/createSink(request:)>
-  /// [google.logging.v2.ConfigServiceV2.UpdateSink]: <doc:ConfigServiceV2Client/updateSink(request:)>
+  /// [google.logging.v2.ConfigServiceV2.CreateSink]: <doc:ConfigServiceV2Client/createSink(request:options:)>
+  /// [google.logging.v2.ConfigServiceV2.UpdateSink]: <doc:ConfigServiceV2Client/updateSink(request:options:)>
   public var writerIdentity: Swift.String = Swift.String()
 
   /// Optional. This field applies only to sinks owned by organizations and

@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [ListPolicyTags][google.cloud.datacatalog.v1.PolicyTagManager.ListPolicyTags].
 ///
-/// [google.cloud.datacatalog.v1.PolicyTagManager.ListPolicyTags]: <doc:PolicyTagManagerClient/listPolicyTags(request:)>
+/// [google.cloud.datacatalog.v1.PolicyTagManager.ListPolicyTags]: <doc:PolicyTagManagerClient/listPolicyTags(request:options:)>
 public struct ListPolicyTagsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

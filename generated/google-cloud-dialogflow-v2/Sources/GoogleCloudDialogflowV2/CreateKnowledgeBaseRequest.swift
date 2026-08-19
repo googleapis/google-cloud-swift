@@ -21,7 +21,7 @@
   /// Request message for
   /// [KnowledgeBases.CreateKnowledgeBase][google.cloud.dialogflow.v2.KnowledgeBases.CreateKnowledgeBase].
   ///
-  /// [google.cloud.dialogflow.v2.KnowledgeBases.CreateKnowledgeBase]: <doc:KnowledgeBasesClient/createKnowledgeBase(request:)>
+  /// [google.cloud.dialogflow.v2.KnowledgeBases.CreateKnowledgeBase]: <doc:KnowledgeBasesClient/createKnowledgeBase(request:options:)>
   public struct CreateKnowledgeBaseRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

@@ -58,7 +58,7 @@
   ///
   ///  After you sent all input, you must half-close or abort the request stream.
   ///
-  /// [google.cloud.dialogflow.v2.Participants.StreamingAnalyzeContent]: <doc:ParticipantsClient/streamingAnalyzeContent(request:)>
+  /// [google.cloud.dialogflow.v2.Participants.StreamingAnalyzeContent]: <doc:ParticipantsClient/streamingAnalyzeContent(request:options:)>
   /// [google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest.audio_config]: <doc:StreamingAnalyzeContentRequest/OneOf_Config/audioConfig(_:)>
   /// [google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest.config]: <doc:StreamingAnalyzeContentRequest/OneOf_Config>
   /// [google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest.input]: <doc:StreamingAnalyzeContentRequest/OneOf_Input>
@@ -120,7 +120,7 @@
     ///
     /// [google.cloud.dialogflow.v2.AudioEncoding.AUDIO_ENCODING_LINEAR_16]: <doc:AudioEncoding/linear16>
     /// [google.cloud.dialogflow.v2.AudioEncoding.AUDIO_ENCODING_MULAW]: <doc:AudioEncoding/mulaw>
-    /// [google.cloud.dialogflow.v2.Conversations.CreateConversation]: <doc:ConversationsClient/createConversation(request:)>
+    /// [google.cloud.dialogflow.v2.Conversations.CreateConversation]: <doc:ConversationsClient/createConversation(request:options:)>
     public var enableExtendedStreaming: Swift.Bool = Swift.Bool()
 
     /// Optional. Enable partial responses from Dialogflow CX agent. If this flag

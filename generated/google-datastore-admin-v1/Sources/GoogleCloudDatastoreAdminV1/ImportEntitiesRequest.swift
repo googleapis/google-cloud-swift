@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// The request for
 /// [google.datastore.admin.v1.DatastoreAdmin.ImportEntities][google.datastore.admin.v1.DatastoreAdmin.ImportEntities].
 ///
-/// [google.datastore.admin.v1.DatastoreAdmin.ImportEntities]: <doc:DatastoreAdminClient/importEntities(request:)>
+/// [google.datastore.admin.v1.DatastoreAdmin.ImportEntities]: <doc:DatastoreAdminClient/importEntities(request:options:)>
 public struct ImportEntitiesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

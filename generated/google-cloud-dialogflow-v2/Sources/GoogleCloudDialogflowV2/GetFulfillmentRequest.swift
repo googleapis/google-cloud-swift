@@ -21,7 +21,7 @@
   /// The request message for
   /// [Fulfillments.GetFulfillment][google.cloud.dialogflow.v2.Fulfillments.GetFulfillment].
   ///
-  /// [google.cloud.dialogflow.v2.Fulfillments.GetFulfillment]: <doc:FulfillmentsClient/getFulfillment(request:)>
+  /// [google.cloud.dialogflow.v2.Fulfillments.GetFulfillment]: <doc:FulfillmentsClient/getFulfillment(request:options:)>
   public struct GetFulfillmentRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

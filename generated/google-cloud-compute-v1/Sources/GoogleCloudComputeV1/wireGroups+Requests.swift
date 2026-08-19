@@ -21,7 +21,7 @@
   extension WireGroupsClient {
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.wireGroups.delete] method.
     ///
-    /// [google.cloud.compute.v1.wireGroups.delete]: <doc:WireGroupsClient/delete(request:)>
+    /// [google.cloud.compute.v1.wireGroups.delete]: <doc:WireGroupsClient/delete(request:options:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -78,7 +78,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.wireGroups.get] method.
     ///
-    /// [google.cloud.compute.v1.wireGroups.get]: <doc:WireGroupsClient/`get`(request:)>
+    /// [google.cloud.compute.v1.wireGroups.get]: <doc:WireGroupsClient/`get`(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -119,7 +119,7 @@
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.wireGroups.insert] method.
     ///
-    /// [google.cloud.compute.v1.wireGroups.insert]: <doc:WireGroupsClient/insert(request:)>
+    /// [google.cloud.compute.v1.wireGroups.insert]: <doc:WireGroupsClient/insert(request:options:)>
     public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -149,7 +149,7 @@
 
       /// Synthetic request body field for the [insert()][google.cloud.compute.v1.wireGroups.insert] method.
       ///
-      /// [google.cloud.compute.v1.wireGroups.insert]: <doc:WireGroupsClient/insert(request:)>
+      /// [google.cloud.compute.v1.wireGroups.insert]: <doc:WireGroupsClient/insert(request:options:)>
       public var body: WireGroup? = nil
 
       /// Initialize a new instance of `InsertRequest`.
@@ -181,7 +181,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.wireGroups.list] method.
     ///
-    /// [google.cloud.compute.v1.wireGroups.list]: <doc:WireGroupsClient/list(request:)>
+    /// [google.cloud.compute.v1.wireGroups.list]: <doc:WireGroupsClient/list(request:options:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -312,7 +312,7 @@
 
     /// Synthetic request message for the [patch()][google.cloud.compute.v1.wireGroups.patch] method.
     ///
-    /// [google.cloud.compute.v1.wireGroups.patch]: <doc:WireGroupsClient/patch(request:)>
+    /// [google.cloud.compute.v1.wireGroups.patch]: <doc:WireGroupsClient/patch(request:options:)>
     public struct PatchRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -348,7 +348,7 @@
 
       /// Synthetic request body field for the [patch()][google.cloud.compute.v1.wireGroups.patch] method.
       ///
-      /// [google.cloud.compute.v1.wireGroups.patch]: <doc:WireGroupsClient/patch(request:)>
+      /// [google.cloud.compute.v1.wireGroups.patch]: <doc:WireGroupsClient/patch(request:options:)>
       public var body: WireGroup? = nil
 
       /// Initialize a new instance of `PatchRequest`.

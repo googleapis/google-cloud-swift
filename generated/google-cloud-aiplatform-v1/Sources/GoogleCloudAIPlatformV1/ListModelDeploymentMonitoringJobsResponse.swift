@@ -22,7 +22,7 @@
   /// Response message for
   /// [JobService.ListModelDeploymentMonitoringJobs][google.cloud.aiplatform.v1.JobService.ListModelDeploymentMonitoringJobs].
   ///
-  /// [google.cloud.aiplatform.v1.JobService.ListModelDeploymentMonitoringJobs]: <doc:JobServiceClient/listModelDeploymentMonitoringJobs(request:)>
+  /// [google.cloud.aiplatform.v1.JobService.ListModelDeploymentMonitoringJobs]: <doc:JobServiceClient/listModelDeploymentMonitoringJobs(request:options:)>
   public struct ListModelDeploymentMonitoringJobsResponse: Codable, Equatable, GoogleCloudWkt
       ._AnyPackable,
     GoogleCloudGax._PaginatedResponse,

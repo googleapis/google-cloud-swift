@@ -22,7 +22,7 @@
   /// [SiteSearchEngineService.DeleteSitemap][google.cloud.discoveryengine.v1.SiteSearchEngineService.DeleteSitemap]
   /// method.
   ///
-  /// [google.cloud.discoveryengine.v1.SiteSearchEngineService.DeleteSitemap]: <doc:SiteSearchEngineServiceClient/deleteSitemap(request:)>
+  /// [google.cloud.discoveryengine.v1.SiteSearchEngineService.DeleteSitemap]: <doc:SiteSearchEngineServiceClient/deleteSitemap(request:options:)>
   public struct DeleteSitemapRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

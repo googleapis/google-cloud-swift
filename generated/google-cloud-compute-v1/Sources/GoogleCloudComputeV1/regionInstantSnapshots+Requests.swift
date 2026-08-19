@@ -21,7 +21,7 @@
   extension RegionInstantSnapshotsClient {
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.regionInstantSnapshots.delete] method.
     ///
-    /// [google.cloud.compute.v1.regionInstantSnapshots.delete]: <doc:RegionInstantSnapshotsClient/delete(request:)>
+    /// [google.cloud.compute.v1.regionInstantSnapshots.delete]: <doc:RegionInstantSnapshotsClient/delete(request:options:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -78,7 +78,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.regionInstantSnapshots.get] method.
     ///
-    /// [google.cloud.compute.v1.regionInstantSnapshots.get]: <doc:RegionInstantSnapshotsClient/`get`(request:)>
+    /// [google.cloud.compute.v1.regionInstantSnapshots.get]: <doc:RegionInstantSnapshotsClient/`get`(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -120,7 +120,7 @@
 
     /// Synthetic request message for the [getIamPolicy()][google.cloud.compute.v1.regionInstantSnapshots.getIamPolicy] method.
     ///
-    /// [google.cloud.compute.v1.regionInstantSnapshots.getIamPolicy]: <doc:RegionInstantSnapshotsClient/getIamPolicy(request:)>
+    /// [google.cloud.compute.v1.regionInstantSnapshots.getIamPolicy]: <doc:RegionInstantSnapshotsClient/getIamPolicy(request:options:)>
     public struct GetIamPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -166,7 +166,7 @@
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.regionInstantSnapshots.insert] method.
     ///
-    /// [google.cloud.compute.v1.regionInstantSnapshots.insert]: <doc:RegionInstantSnapshotsClient/insert(request:)>
+    /// [google.cloud.compute.v1.regionInstantSnapshots.insert]: <doc:RegionInstantSnapshotsClient/insert(request:options:)>
     public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -193,7 +193,7 @@
 
       /// Synthetic request body field for the [insert()][google.cloud.compute.v1.regionInstantSnapshots.insert] method.
       ///
-      /// [google.cloud.compute.v1.regionInstantSnapshots.insert]: <doc:RegionInstantSnapshotsClient/insert(request:)>
+      /// [google.cloud.compute.v1.regionInstantSnapshots.insert]: <doc:RegionInstantSnapshotsClient/insert(request:options:)>
       public var body: InstantSnapshot? = nil
 
       /// Initialize a new instance of `InsertRequest`.
@@ -225,7 +225,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.regionInstantSnapshots.list] method.
     ///
-    /// [google.cloud.compute.v1.regionInstantSnapshots.list]: <doc:RegionInstantSnapshotsClient/list(request:)>
+    /// [google.cloud.compute.v1.regionInstantSnapshots.list]: <doc:RegionInstantSnapshotsClient/list(request:options:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -357,7 +357,7 @@
 
     /// Synthetic request message for the [setIamPolicy()][google.cloud.compute.v1.regionInstantSnapshots.setIamPolicy] method.
     ///
-    /// [google.cloud.compute.v1.regionInstantSnapshots.setIamPolicy]: <doc:RegionInstantSnapshotsClient/setIamPolicy(request:)>
+    /// [google.cloud.compute.v1.regionInstantSnapshots.setIamPolicy]: <doc:RegionInstantSnapshotsClient/setIamPolicy(request:options:)>
     public struct SetIamPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -372,7 +372,7 @@
 
       /// Synthetic request body field for the [setIamPolicy()][google.cloud.compute.v1.regionInstantSnapshots.setIamPolicy] method.
       ///
-      /// [google.cloud.compute.v1.regionInstantSnapshots.setIamPolicy]: <doc:RegionInstantSnapshotsClient/setIamPolicy(request:)>
+      /// [google.cloud.compute.v1.regionInstantSnapshots.setIamPolicy]: <doc:RegionInstantSnapshotsClient/setIamPolicy(request:options:)>
       public var body: RegionSetPolicyRequest? = nil
 
       /// Initialize a new instance of `SetIamPolicyRequest`.
@@ -405,7 +405,7 @@
 
     /// Synthetic request message for the [setLabels()][google.cloud.compute.v1.regionInstantSnapshots.setLabels] method.
     ///
-    /// [google.cloud.compute.v1.regionInstantSnapshots.setLabels]: <doc:RegionInstantSnapshotsClient/setLabels(request:)>
+    /// [google.cloud.compute.v1.regionInstantSnapshots.setLabels]: <doc:RegionInstantSnapshotsClient/setLabels(request:options:)>
     public struct SetLabelsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -435,7 +435,7 @@
 
       /// Synthetic request body field for the [setLabels()][google.cloud.compute.v1.regionInstantSnapshots.setLabels] method.
       ///
-      /// [google.cloud.compute.v1.regionInstantSnapshots.setLabels]: <doc:RegionInstantSnapshotsClient/setLabels(request:)>
+      /// [google.cloud.compute.v1.regionInstantSnapshots.setLabels]: <doc:RegionInstantSnapshotsClient/setLabels(request:options:)>
       public var body: RegionSetLabelsRequest? = nil
 
       /// Initialize a new instance of `SetLabelsRequest`.
@@ -467,7 +467,7 @@
 
     /// Synthetic request message for the [testIamPermissions()][google.cloud.compute.v1.regionInstantSnapshots.testIamPermissions] method.
     ///
-    /// [google.cloud.compute.v1.regionInstantSnapshots.testIamPermissions]: <doc:RegionInstantSnapshotsClient/testIamPermissions(request:)>
+    /// [google.cloud.compute.v1.regionInstantSnapshots.testIamPermissions]: <doc:RegionInstantSnapshotsClient/testIamPermissions(request:options:)>
     public struct TestIamPermissionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -482,7 +482,7 @@
 
       /// Synthetic request body field for the [testIamPermissions()][google.cloud.compute.v1.regionInstantSnapshots.testIamPermissions] method.
       ///
-      /// [google.cloud.compute.v1.regionInstantSnapshots.testIamPermissions]: <doc:RegionInstantSnapshotsClient/testIamPermissions(request:)>
+      /// [google.cloud.compute.v1.regionInstantSnapshots.testIamPermissions]: <doc:RegionInstantSnapshotsClient/testIamPermissions(request:options:)>
       public var body: TestPermissionsRequest? = nil
 
       /// Initialize a new instance of `TestIamPermissionsRequest`.

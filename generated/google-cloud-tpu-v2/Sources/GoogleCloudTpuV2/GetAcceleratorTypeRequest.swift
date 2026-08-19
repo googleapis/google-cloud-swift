@@ -19,7 +19,7 @@ import GoogleCloudWkt
 
 /// Request for [GetAcceleratorType][google.cloud.tpu.v2.Tpu.GetAcceleratorType].
 ///
-/// [google.cloud.tpu.v2.Tpu.GetAcceleratorType]: <doc:TpuClient/getAcceleratorType(request:)>
+/// [google.cloud.tpu.v2.Tpu.GetAcceleratorType]: <doc:TpuClient/getAcceleratorType(request:options:)>
 public struct GetAcceleratorTypeRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

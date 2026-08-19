@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [google.bigtable.admin.v2.BigtableTableAdmin.CheckConsistency][google.bigtable.admin.v2.BigtableTableAdmin.CheckConsistency]
 ///
-/// [google.bigtable.admin.v2.BigtableTableAdmin.CheckConsistency]: <doc:BigtableTableAdminClient/checkConsistency(request:)>
+/// [google.bigtable.admin.v2.BigtableTableAdmin.CheckConsistency]: <doc:BigtableTableAdminClient/checkConsistency(request:options:)>
 public struct CheckConsistencyResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

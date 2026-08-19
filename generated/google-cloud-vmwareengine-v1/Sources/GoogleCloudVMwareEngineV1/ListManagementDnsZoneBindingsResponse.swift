@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [VmwareEngine.ListManagementDnsZoneBindings][google.cloud.vmwareengine.v1.VmwareEngine.ListManagementDnsZoneBindings]
 ///
-/// [google.cloud.vmwareengine.v1.VmwareEngine.ListManagementDnsZoneBindings]: <doc:VmwareEngineClient/listManagementDnsZoneBindings(request:)>
+/// [google.cloud.vmwareengine.v1.VmwareEngine.ListManagementDnsZoneBindings]: <doc:VmwareEngineClient/listManagementDnsZoneBindings(request:options:)>
 public struct ListManagementDnsZoneBindingsResponse: Codable, Equatable, GoogleCloudWkt
     ._AnyPackable,
   GoogleCloudGax._PaginatedResponse,

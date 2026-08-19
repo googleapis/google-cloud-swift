@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [VmwareEngine.ListNodeTypes][google.cloud.vmwareengine.v1.VmwareEngine.ListNodeTypes]
 ///
-/// [google.cloud.vmwareengine.v1.VmwareEngine.ListNodeTypes]: <doc:VmwareEngineClient/listNodeTypes(request:)>
+/// [google.cloud.vmwareengine.v1.VmwareEngine.ListNodeTypes]: <doc:VmwareEngineClient/listNodeTypes(request:options:)>
 public struct ListNodeTypesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

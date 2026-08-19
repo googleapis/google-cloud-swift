@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [VmwareEngine.GetNode][google.cloud.vmwareengine.v1.VmwareEngine.GetNode]
 ///
-/// [google.cloud.vmwareengine.v1.VmwareEngine.GetNode]: <doc:VmwareEngineClient/getNode(request:)>
+/// [google.cloud.vmwareengine.v1.VmwareEngine.GetNode]: <doc:VmwareEngineClient/getNode(request:options:)>
 public struct GetNodeRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

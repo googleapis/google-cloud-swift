@@ -132,7 +132,7 @@ public class DocumentProcessorServiceClient: Clients.DocumentProcessorServicePro
   /// [ListProcessorTypes][google.cloud.documentai.v1.DocumentProcessorService.ListProcessorTypes]
   /// here, because it isn't paginated.
   ///
-  /// [google.cloud.documentai.v1.DocumentProcessorService.ListProcessorTypes]: <doc:DocumentProcessorServiceClient/listProcessorTypes(request:)>
+  /// [google.cloud.documentai.v1.DocumentProcessorService.ListProcessorTypes]: <doc:DocumentProcessorServiceClient/listProcessorTypes(request:options:)>
   ///
   /// @Snippet(path: "DocumentProcessorService_FetchProcessorTypes")
   public func fetchProcessorTypes(
@@ -743,8 +743,8 @@ public class DocumentProcessorServiceClient: Clients.DocumentProcessorServicePro
   /// and
   /// [BatchProcessDocuments][google.cloud.documentai.v1.DocumentProcessorService.BatchProcessDocuments].
   ///
-  /// [google.cloud.documentai.v1.DocumentProcessorService.BatchProcessDocuments]: <doc:DocumentProcessorServiceClient/batchProcessDocuments(request:)>
-  /// [google.cloud.documentai.v1.DocumentProcessorService.ProcessDocument]: <doc:DocumentProcessorServiceClient/processDocument(request:)>
+  /// [google.cloud.documentai.v1.DocumentProcessorService.BatchProcessDocuments]: <doc:DocumentProcessorServiceClient/batchProcessDocuments(request:options:)>
+  /// [google.cloud.documentai.v1.DocumentProcessorService.ProcessDocument]: <doc:DocumentProcessorServiceClient/processDocument(request:options:)>
   /// [google.cloud.documentai.v1.Processor]: <doc:Processor>
   ///
   /// @Snippet(path: "DocumentProcessorService_SetDefaultProcessorVersion")
@@ -760,8 +760,8 @@ public class DocumentProcessorServiceClient: Clients.DocumentProcessorServicePro
   /// and
   /// [BatchProcessDocuments][google.cloud.documentai.v1.DocumentProcessorService.BatchProcessDocuments].
   ///
-  /// [google.cloud.documentai.v1.DocumentProcessorService.BatchProcessDocuments]: <doc:DocumentProcessorServiceClient/batchProcessDocuments(request:)>
-  /// [google.cloud.documentai.v1.DocumentProcessorService.ProcessDocument]: <doc:DocumentProcessorServiceClient/processDocument(request:)>
+  /// [google.cloud.documentai.v1.DocumentProcessorService.BatchProcessDocuments]: <doc:DocumentProcessorServiceClient/batchProcessDocuments(request:options:)>
+  /// [google.cloud.documentai.v1.DocumentProcessorService.ProcessDocument]: <doc:DocumentProcessorServiceClient/processDocument(request:options:)>
   /// [google.cloud.documentai.v1.Processor]: <doc:Processor>
   ///
   /// @Snippet(path: "DocumentProcessorService_SetDefaultProcessorVersion")

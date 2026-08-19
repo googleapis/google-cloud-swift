@@ -21,7 +21,7 @@
   /// The request message for
   /// [Playbooks.CreatePlaybook][google.cloud.dialogflow.cx.v3.Playbooks.CreatePlaybook].
   ///
-  /// [google.cloud.dialogflow.cx.v3.Playbooks.CreatePlaybook]: <doc:PlaybooksClient/createPlaybook(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Playbooks.CreatePlaybook]: <doc:PlaybooksClient/createPlaybook(request:options:)>
   public struct CreatePlaybookRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

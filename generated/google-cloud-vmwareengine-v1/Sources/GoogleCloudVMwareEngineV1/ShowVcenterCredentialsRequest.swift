@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [VmwareEngine.ShowVcenterCredentials][google.cloud.vmwareengine.v1.VmwareEngine.ShowVcenterCredentials]
 ///
-/// [google.cloud.vmwareengine.v1.VmwareEngine.ShowVcenterCredentials]: <doc:VmwareEngineClient/showVcenterCredentials(request:)>
+/// [google.cloud.vmwareengine.v1.VmwareEngine.ShowVcenterCredentials]: <doc:VmwareEngineClient/showVcenterCredentials(request:options:)>
 public struct ShowVcenterCredentialsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

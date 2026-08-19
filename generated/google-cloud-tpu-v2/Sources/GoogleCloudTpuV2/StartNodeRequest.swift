@@ -19,7 +19,7 @@ import GoogleCloudWkt
 
 /// Request for [StartNode][google.cloud.tpu.v2.Tpu.StartNode].
 ///
-/// [google.cloud.tpu.v2.Tpu.StartNode]: <doc:TpuClient/startNode(request:)>
+/// [google.cloud.tpu.v2.Tpu.StartNode]: <doc:TpuClient/startNode(request:options:)>
 public struct StartNodeRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

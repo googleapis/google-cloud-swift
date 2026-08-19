@@ -21,7 +21,7 @@
   /// Request message for
   /// [VertexRagDataService.DeleteRagCorpus][google.cloud.aiplatform.v1.VertexRagDataService.DeleteRagCorpus].
   ///
-  /// [google.cloud.aiplatform.v1.VertexRagDataService.DeleteRagCorpus]: <doc:VertexRagDataServiceClient/deleteRagCorpus(request:)>
+  /// [google.cloud.aiplatform.v1.VertexRagDataService.DeleteRagCorpus]: <doc:VertexRagDataServiceClient/deleteRagCorpus(request:options:)>
   public struct DeleteRagCorpusRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

@@ -21,7 +21,7 @@
   /// The request message for
   /// [ConversationDatasets.DeleteConversationDataset][google.cloud.dialogflow.v2.ConversationDatasets.DeleteConversationDataset].
   ///
-  /// [google.cloud.dialogflow.v2.ConversationDatasets.DeleteConversationDataset]: <doc:ConversationDatasetsClient/deleteConversationDataset(request:)>
+  /// [google.cloud.dialogflow.v2.ConversationDatasets.DeleteConversationDataset]: <doc:ConversationDatasetsClient/deleteConversationDataset(request:options:)>
   public struct DeleteConversationDatasetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [AgentService.ListConversations][google.cloud.ces.v1.AgentService.ListConversations].
 ///
-/// [google.cloud.ces.v1.AgentService.ListConversations]: <doc:AgentServiceClient/listConversations(request:)>
+/// [google.cloud.ces.v1.AgentService.ListConversations]: <doc:AgentServiceClient/listConversations(request:options:)>
 public struct ListConversationsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

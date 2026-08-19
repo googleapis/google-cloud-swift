@@ -21,7 +21,7 @@
   /// The request message for
   /// [Generators.DeleteGenerator][google.cloud.dialogflow.cx.v3.Generators.DeleteGenerator].
   ///
-  /// [google.cloud.dialogflow.cx.v3.Generators.DeleteGenerator]: <doc:GeneratorsClient/deleteGenerator(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Generators.DeleteGenerator]: <doc:GeneratorsClient/deleteGenerator(request:options:)>
   public struct DeleteGeneratorRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

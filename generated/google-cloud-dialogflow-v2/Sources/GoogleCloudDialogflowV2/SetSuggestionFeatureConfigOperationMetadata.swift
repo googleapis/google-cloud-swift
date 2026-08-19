@@ -22,7 +22,7 @@
   /// [ConversationProfiles.SetSuggestionFeatureConfig][google.cloud.dialogflow.v2.ConversationProfiles.SetSuggestionFeatureConfig]
   /// operation.
   ///
-  /// [google.cloud.dialogflow.v2.ConversationProfiles.SetSuggestionFeatureConfig]: <doc:ConversationProfilesClient/setSuggestionFeatureConfig(request:)>
+  /// [google.cloud.dialogflow.v2.ConversationProfiles.SetSuggestionFeatureConfig]: <doc:ConversationProfilesClient/setSuggestionFeatureConfig(request:options:)>
   public struct SetSuggestionFeatureConfigOperationMetadata: Codable, Equatable, GoogleCloudWkt
       ._AnyPackable,
     Sendable

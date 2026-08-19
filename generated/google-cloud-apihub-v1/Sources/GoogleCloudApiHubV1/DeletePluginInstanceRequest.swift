@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [DeletePluginInstance][google.cloud.apihub.v1.ApiHubPlugin.DeletePluginInstance]
 /// method's request.
 ///
-/// [google.cloud.apihub.v1.ApiHubPlugin.DeletePluginInstance]: <doc:ApiHubPluginClient/deletePluginInstance(request:)>
+/// [google.cloud.apihub.v1.ApiHubPlugin.DeletePluginInstance]: <doc:ApiHubPluginClient/deletePluginInstance(request:options:)>
 public struct DeletePluginInstanceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

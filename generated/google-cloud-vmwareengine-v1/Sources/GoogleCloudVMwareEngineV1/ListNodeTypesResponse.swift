@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [VmwareEngine.ListNodeTypes][google.cloud.vmwareengine.v1.VmwareEngine.ListNodeTypes]
 ///
-/// [google.cloud.vmwareengine.v1.VmwareEngine.ListNodeTypes]: <doc:VmwareEngineClient/listNodeTypes(request:)>
+/// [google.cloud.vmwareengine.v1.VmwareEngine.ListNodeTypes]: <doc:VmwareEngineClient/listNodeTypes(request:options:)>
 public struct ListNodeTypesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

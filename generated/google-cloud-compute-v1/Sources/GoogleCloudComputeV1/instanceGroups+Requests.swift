@@ -21,7 +21,7 @@
   extension InstanceGroupsClient {
     /// Synthetic request message for the [addInstances()][google.cloud.compute.v1.instanceGroups.addInstances] method.
     ///
-    /// [google.cloud.compute.v1.instanceGroups.addInstances]: <doc:InstanceGroupsClient/addInstances(request:)>
+    /// [google.cloud.compute.v1.instanceGroups.addInstances]: <doc:InstanceGroupsClient/addInstances(request:options:)>
     public struct AddInstancesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -52,7 +52,7 @@
 
       /// Synthetic request body field for the [addInstances()][google.cloud.compute.v1.instanceGroups.addInstances] method.
       ///
-      /// [google.cloud.compute.v1.instanceGroups.addInstances]: <doc:InstanceGroupsClient/addInstances(request:)>
+      /// [google.cloud.compute.v1.instanceGroups.addInstances]: <doc:InstanceGroupsClient/addInstances(request:options:)>
       public var body: InstanceGroupsAddInstancesRequest? = nil
 
       /// Initialize a new instance of `AddInstancesRequest`.
@@ -84,7 +84,7 @@
 
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.instanceGroups.aggregatedList] method.
     ///
-    /// [google.cloud.compute.v1.instanceGroups.aggregatedList]: <doc:InstanceGroupsClient/aggregatedList(request:)>
+    /// [google.cloud.compute.v1.instanceGroups.aggregatedList]: <doc:InstanceGroupsClient/aggregatedList(request:options:)>
     public struct AggregatedListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -226,7 +226,7 @@
 
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.instanceGroups.delete] method.
     ///
-    /// [google.cloud.compute.v1.instanceGroups.delete]: <doc:InstanceGroupsClient/delete(request:)>
+    /// [google.cloud.compute.v1.instanceGroups.delete]: <doc:InstanceGroupsClient/delete(request:options:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -284,7 +284,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.instanceGroups.get] method.
     ///
-    /// [google.cloud.compute.v1.instanceGroups.get]: <doc:InstanceGroupsClient/`get`(request:)>
+    /// [google.cloud.compute.v1.instanceGroups.get]: <doc:InstanceGroupsClient/`get`(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -327,7 +327,7 @@
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.instanceGroups.insert] method.
     ///
-    /// [google.cloud.compute.v1.instanceGroups.insert]: <doc:InstanceGroupsClient/insert(request:)>
+    /// [google.cloud.compute.v1.instanceGroups.insert]: <doc:InstanceGroupsClient/insert(request:options:)>
     public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -355,7 +355,7 @@
 
       /// Synthetic request body field for the [insert()][google.cloud.compute.v1.instanceGroups.insert] method.
       ///
-      /// [google.cloud.compute.v1.instanceGroups.insert]: <doc:InstanceGroupsClient/insert(request:)>
+      /// [google.cloud.compute.v1.instanceGroups.insert]: <doc:InstanceGroupsClient/insert(request:options:)>
       public var body: InstanceGroup? = nil
 
       /// Initialize a new instance of `InsertRequest`.
@@ -387,7 +387,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.instanceGroups.list] method.
     ///
-    /// [google.cloud.compute.v1.instanceGroups.list]: <doc:InstanceGroupsClient/list(request:)>
+    /// [google.cloud.compute.v1.instanceGroups.list]: <doc:InstanceGroupsClient/list(request:options:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -520,7 +520,7 @@
 
     /// Synthetic request message for the [listInstances()][google.cloud.compute.v1.instanceGroups.listInstances] method.
     ///
-    /// [google.cloud.compute.v1.instanceGroups.listInstances]: <doc:InstanceGroupsClient/listInstances(request:)>
+    /// [google.cloud.compute.v1.instanceGroups.listInstances]: <doc:InstanceGroupsClient/listInstances(request:options:)>
     public struct ListInstancesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -630,7 +630,7 @@
 
       /// Synthetic request body field for the [listInstances()][google.cloud.compute.v1.instanceGroups.listInstances] method.
       ///
-      /// [google.cloud.compute.v1.instanceGroups.listInstances]: <doc:InstanceGroupsClient/listInstances(request:)>
+      /// [google.cloud.compute.v1.instanceGroups.listInstances]: <doc:InstanceGroupsClient/listInstances(request:options:)>
       public var body: InstanceGroupsListInstancesRequest? = nil
 
       /// Initialize a new instance of `ListInstancesRequest`.
@@ -662,7 +662,7 @@
 
     /// Synthetic request message for the [removeInstances()][google.cloud.compute.v1.instanceGroups.removeInstances] method.
     ///
-    /// [google.cloud.compute.v1.instanceGroups.removeInstances]: <doc:InstanceGroupsClient/removeInstances(request:)>
+    /// [google.cloud.compute.v1.instanceGroups.removeInstances]: <doc:InstanceGroupsClient/removeInstances(request:options:)>
     public struct RemoveInstancesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -694,7 +694,7 @@
 
       /// Synthetic request body field for the [removeInstances()][google.cloud.compute.v1.instanceGroups.removeInstances] method.
       ///
-      /// [google.cloud.compute.v1.instanceGroups.removeInstances]: <doc:InstanceGroupsClient/removeInstances(request:)>
+      /// [google.cloud.compute.v1.instanceGroups.removeInstances]: <doc:InstanceGroupsClient/removeInstances(request:options:)>
       public var body: InstanceGroupsRemoveInstancesRequest? = nil
 
       /// Initialize a new instance of `RemoveInstancesRequest`.
@@ -726,7 +726,7 @@
 
     /// Synthetic request message for the [setNamedPorts()][google.cloud.compute.v1.instanceGroups.setNamedPorts] method.
     ///
-    /// [google.cloud.compute.v1.instanceGroups.setNamedPorts]: <doc:InstanceGroupsClient/setNamedPorts(request:)>
+    /// [google.cloud.compute.v1.instanceGroups.setNamedPorts]: <doc:InstanceGroupsClient/setNamedPorts(request:options:)>
     public struct SetNamedPortsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -757,7 +757,7 @@
 
       /// Synthetic request body field for the [setNamedPorts()][google.cloud.compute.v1.instanceGroups.setNamedPorts] method.
       ///
-      /// [google.cloud.compute.v1.instanceGroups.setNamedPorts]: <doc:InstanceGroupsClient/setNamedPorts(request:)>
+      /// [google.cloud.compute.v1.instanceGroups.setNamedPorts]: <doc:InstanceGroupsClient/setNamedPorts(request:options:)>
       public var body: InstanceGroupsSetNamedPortsRequest? = nil
 
       /// Initialize a new instance of `SetNamedPortsRequest`.
@@ -789,7 +789,7 @@
 
     /// Synthetic request message for the [testIamPermissions()][google.cloud.compute.v1.instanceGroups.testIamPermissions] method.
     ///
-    /// [google.cloud.compute.v1.instanceGroups.testIamPermissions]: <doc:InstanceGroupsClient/testIamPermissions(request:)>
+    /// [google.cloud.compute.v1.instanceGroups.testIamPermissions]: <doc:InstanceGroupsClient/testIamPermissions(request:options:)>
     public struct TestIamPermissionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -804,7 +804,7 @@
 
       /// Synthetic request body field for the [testIamPermissions()][google.cloud.compute.v1.instanceGroups.testIamPermissions] method.
       ///
-      /// [google.cloud.compute.v1.instanceGroups.testIamPermissions]: <doc:InstanceGroupsClient/testIamPermissions(request:)>
+      /// [google.cloud.compute.v1.instanceGroups.testIamPermissions]: <doc:InstanceGroupsClient/testIamPermissions(request:options:)>
       public var body: TestPermissionsRequest? = nil
 
       /// Initialize a new instance of `TestIamPermissionsRequest`.

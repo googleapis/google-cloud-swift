@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for the
 /// [DeletePhraseSet][google.cloud.speech.v2.Speech.DeletePhraseSet] method.
 ///
-/// [google.cloud.speech.v2.Speech.DeletePhraseSet]: <doc:SpeechClient/deletePhraseSet(request:)>
+/// [google.cloud.speech.v2.Speech.DeletePhraseSet]: <doc:SpeechClient/deletePhraseSet(request:options:)>
 public struct DeletePhraseSetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

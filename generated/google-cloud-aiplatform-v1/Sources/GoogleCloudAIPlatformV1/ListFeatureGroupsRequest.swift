@@ -21,7 +21,7 @@
   /// Request message for
   /// [FeatureRegistryService.ListFeatureGroups][google.cloud.aiplatform.v1.FeatureRegistryService.ListFeatureGroups].
   ///
-  /// [google.cloud.aiplatform.v1.FeatureRegistryService.ListFeatureGroups]: <doc:FeatureRegistryServiceClient/listFeatureGroups(request:)>
+  /// [google.cloud.aiplatform.v1.FeatureRegistryService.ListFeatureGroups]: <doc:FeatureRegistryServiceClient/listFeatureGroups(request:options:)>
   public struct ListFeatureGroupsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {
@@ -63,7 +63,7 @@
     /// [FeatureRegistryService.ListFeatureGroups][google.cloud.aiplatform.v1.FeatureRegistryService.ListFeatureGroups]
     /// must match the call that provided the page token.
     ///
-    /// [google.cloud.aiplatform.v1.FeatureRegistryService.ListFeatureGroups]: <doc:FeatureRegistryServiceClient/listFeatureGroups(request:)>
+    /// [google.cloud.aiplatform.v1.FeatureRegistryService.ListFeatureGroups]: <doc:FeatureRegistryServiceClient/listFeatureGroups(request:options:)>
     public var pageToken: Swift.String = Swift.String()
 
     /// A comma-separated list of fields to order by, sorted in ascending order.

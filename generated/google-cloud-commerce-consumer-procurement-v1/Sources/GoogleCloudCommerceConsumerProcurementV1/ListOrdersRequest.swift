@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [ConsumerProcurementService.ListOrders][google.cloud.commerce.consumer.procurement.v1.ConsumerProcurementService.ListOrders].
 ///
-/// [google.cloud.commerce.consumer.procurement.v1.ConsumerProcurementService.ListOrders]: <doc:ConsumerProcurementServiceClient/listOrders(request:)>
+/// [google.cloud.commerce.consumer.procurement.v1.ConsumerProcurementService.ListOrders]: <doc:ConsumerProcurementServiceClient/listOrders(request:options:)>
 public struct ListOrdersRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

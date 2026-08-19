@@ -22,7 +22,7 @@
   /// Response message for
   /// [JobService.ListBatchPredictionJobs][google.cloud.aiplatform.v1.JobService.ListBatchPredictionJobs]
   ///
-  /// [google.cloud.aiplatform.v1.JobService.ListBatchPredictionJobs]: <doc:JobServiceClient/listBatchPredictionJobs(request:)>
+  /// [google.cloud.aiplatform.v1.JobService.ListBatchPredictionJobs]: <doc:JobServiceClient/listBatchPredictionJobs(request:options:)>
   public struct ListBatchPredictionJobsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable

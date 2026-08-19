@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [fetchStorageInventory][google.cloud.vmmigration.v1.VmMigration.FetchStorageInventory].
 ///
-/// [google.cloud.vmmigration.v1.VmMigration.FetchStorageInventory]: <doc:VmMigrationClient/fetchStorageInventory(request:)>
+/// [google.cloud.vmmigration.v1.VmMigration.FetchStorageInventory]: <doc:VmMigrationClient/fetchStorageInventory(request:options:)>
 public struct FetchStorageInventoryRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

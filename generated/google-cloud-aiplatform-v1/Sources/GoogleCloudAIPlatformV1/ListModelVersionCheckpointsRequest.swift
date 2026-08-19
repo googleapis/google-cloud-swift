@@ -21,7 +21,7 @@
   /// Request message for
   /// [ModelService.ListModelVersionCheckpoints][google.cloud.aiplatform.v1.ModelService.ListModelVersionCheckpoints].
   ///
-  /// [google.cloud.aiplatform.v1.ModelService.ListModelVersionCheckpoints]: <doc:ModelServiceClient/listModelVersionCheckpoints(request:)>
+  /// [google.cloud.aiplatform.v1.ModelService.ListModelVersionCheckpoints]: <doc:ModelServiceClient/listModelVersionCheckpoints(request:options:)>
   public struct ListModelVersionCheckpointsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {
@@ -45,7 +45,7 @@
     /// call.
     ///
     /// [google.cloud.aiplatform.v1.ListModelVersionCheckpointsResponse.next_page_token]: <doc:ListModelVersionCheckpointsResponse/nextPageToken>
-    /// [google.cloud.aiplatform.v1.ModelService.ListModelVersionCheckpoints]: <doc:ModelServiceClient/listModelVersionCheckpoints(request:)>
+    /// [google.cloud.aiplatform.v1.ModelService.ListModelVersionCheckpoints]: <doc:ModelServiceClient/listModelVersionCheckpoints(request:options:)>
     public var pageToken: Swift.String = Swift.String()
 
     /// Initialize a new instance of `ListModelVersionCheckpointsRequest`.

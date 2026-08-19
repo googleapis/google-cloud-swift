@@ -77,7 +77,7 @@
     /// [SearchService.Search][google.cloud.discoveryengine.v1.SearchService.Search]
     /// instead with required OAuth and IAM checks to provide better data security.
     ///
-    /// [google.cloud.discoveryengine.v1.SearchService.Search]: <doc:SearchServiceClient/search(request:)>
+    /// [google.cloud.discoveryengine.v1.SearchService.Search]: <doc:SearchServiceClient/search(request:options:)>
     ///
     /// @Snippet(path: "SearchService_SearchLite")
     public func searchLite(
@@ -100,7 +100,7 @@
     /// [SearchService.Search][google.cloud.discoveryengine.v1.SearchService.Search]
     /// instead with required OAuth and IAM checks to provide better data security.
     ///
-    /// [google.cloud.discoveryengine.v1.SearchService.Search]: <doc:SearchServiceClient/search(request:)>
+    /// [google.cloud.discoveryengine.v1.SearchService.Search]: <doc:SearchServiceClient/search(request:options:)>
     ///
     /// @Snippet(path: "SearchService_SearchLite")
     public func searchLite(

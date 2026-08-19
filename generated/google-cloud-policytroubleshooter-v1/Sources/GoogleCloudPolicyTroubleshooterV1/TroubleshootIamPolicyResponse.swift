@@ -21,7 +21,7 @@ import GoogleRpc
 /// Response for
 /// [TroubleshootIamPolicy][google.cloud.policytroubleshooter.v1.IamChecker.TroubleshootIamPolicy].
 ///
-/// [google.cloud.policytroubleshooter.v1.IamChecker.TroubleshootIamPolicy]: <doc:IamCheckerClient/troubleshootIamPolicy(request:)>
+/// [google.cloud.policytroubleshooter.v1.IamChecker.TroubleshootIamPolicy]: <doc:IamCheckerClient/troubleshootIamPolicy(request:options:)>
 public struct TroubleshootIamPolicyResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

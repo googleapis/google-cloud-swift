@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [StartEnvironment][google.cloud.shell.v1.CloudShellService.StartEnvironment].
 ///
-/// [google.cloud.shell.v1.CloudShellService.StartEnvironment]: <doc:CloudShellServiceClient/startEnvironment(request:)>
+/// [google.cloud.shell.v1.CloudShellService.StartEnvironment]: <doc:CloudShellServiceClient/startEnvironment(request:options:)>
 public struct StartEnvironmentRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

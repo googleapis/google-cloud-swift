@@ -21,7 +21,7 @@
   /// Runtime operation information for
   /// [DatasetService.ImportData][google.cloud.aiplatform.v1.DatasetService.ImportData].
   ///
-  /// [google.cloud.aiplatform.v1.DatasetService.ImportData]: <doc:DatasetServiceClient/importData(request:)>
+  /// [google.cloud.aiplatform.v1.DatasetService.ImportData]: <doc:DatasetServiceClient/importData(request:options:)>
   public struct ImportDataOperationMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

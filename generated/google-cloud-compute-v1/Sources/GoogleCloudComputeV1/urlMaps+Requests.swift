@@ -21,7 +21,7 @@
   extension UrlMapsClient {
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.urlMaps.aggregatedList] method.
     ///
-    /// [google.cloud.compute.v1.urlMaps.aggregatedList]: <doc:UrlMapsClient/aggregatedList(request:)>
+    /// [google.cloud.compute.v1.urlMaps.aggregatedList]: <doc:UrlMapsClient/aggregatedList(request:options:)>
     public struct AggregatedListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -163,7 +163,7 @@
 
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.urlMaps.delete] method.
     ///
-    /// [google.cloud.compute.v1.urlMaps.delete]: <doc:UrlMapsClient/delete(request:)>
+    /// [google.cloud.compute.v1.urlMaps.delete]: <doc:UrlMapsClient/delete(request:options:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -217,7 +217,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.urlMaps.get] method.
     ///
-    /// [google.cloud.compute.v1.urlMaps.get]: <doc:UrlMapsClient/`get`(request:)>
+    /// [google.cloud.compute.v1.urlMaps.get]: <doc:UrlMapsClient/`get`(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -256,7 +256,7 @@
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.urlMaps.insert] method.
     ///
-    /// [google.cloud.compute.v1.urlMaps.insert]: <doc:UrlMapsClient/insert(request:)>
+    /// [google.cloud.compute.v1.urlMaps.insert]: <doc:UrlMapsClient/insert(request:options:)>
     public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -280,7 +280,7 @@
 
       /// Synthetic request body field for the [insert()][google.cloud.compute.v1.urlMaps.insert] method.
       ///
-      /// [google.cloud.compute.v1.urlMaps.insert]: <doc:UrlMapsClient/insert(request:)>
+      /// [google.cloud.compute.v1.urlMaps.insert]: <doc:UrlMapsClient/insert(request:options:)>
       public var body: UrlMap? = nil
 
       /// Initialize a new instance of `InsertRequest`.
@@ -312,7 +312,7 @@
 
     /// Synthetic request message for the [invalidateCache()][google.cloud.compute.v1.urlMaps.invalidateCache] method.
     ///
-    /// [google.cloud.compute.v1.urlMaps.invalidateCache]: <doc:UrlMapsClient/invalidateCache(request:)>
+    /// [google.cloud.compute.v1.urlMaps.invalidateCache]: <doc:UrlMapsClient/invalidateCache(request:options:)>
     public struct InvalidateCacheRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -339,7 +339,7 @@
 
       /// Synthetic request body field for the [invalidateCache()][google.cloud.compute.v1.urlMaps.invalidateCache] method.
       ///
-      /// [google.cloud.compute.v1.urlMaps.invalidateCache]: <doc:UrlMapsClient/invalidateCache(request:)>
+      /// [google.cloud.compute.v1.urlMaps.invalidateCache]: <doc:UrlMapsClient/invalidateCache(request:options:)>
       public var body: CacheInvalidationRule? = nil
 
       /// Initialize a new instance of `InvalidateCacheRequest`.
@@ -371,7 +371,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.urlMaps.list] method.
     ///
-    /// [google.cloud.compute.v1.urlMaps.list]: <doc:UrlMapsClient/list(request:)>
+    /// [google.cloud.compute.v1.urlMaps.list]: <doc:UrlMapsClient/list(request:options:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -500,7 +500,7 @@
 
     /// Synthetic request message for the [patch()][google.cloud.compute.v1.urlMaps.patch] method.
     ///
-    /// [google.cloud.compute.v1.urlMaps.patch]: <doc:UrlMapsClient/patch(request:)>
+    /// [google.cloud.compute.v1.urlMaps.patch]: <doc:UrlMapsClient/patch(request:options:)>
     public struct PatchRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -527,7 +527,7 @@
 
       /// Synthetic request body field for the [patch()][google.cloud.compute.v1.urlMaps.patch] method.
       ///
-      /// [google.cloud.compute.v1.urlMaps.patch]: <doc:UrlMapsClient/patch(request:)>
+      /// [google.cloud.compute.v1.urlMaps.patch]: <doc:UrlMapsClient/patch(request:options:)>
       public var body: UrlMap? = nil
 
       /// Initialize a new instance of `PatchRequest`.
@@ -559,7 +559,7 @@
 
     /// Synthetic request message for the [testIamPermissions()][google.cloud.compute.v1.urlMaps.testIamPermissions] method.
     ///
-    /// [google.cloud.compute.v1.urlMaps.testIamPermissions]: <doc:UrlMapsClient/testIamPermissions(request:)>
+    /// [google.cloud.compute.v1.urlMaps.testIamPermissions]: <doc:UrlMapsClient/testIamPermissions(request:options:)>
     public struct TestIamPermissionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -571,7 +571,7 @@
 
       /// Synthetic request body field for the [testIamPermissions()][google.cloud.compute.v1.urlMaps.testIamPermissions] method.
       ///
-      /// [google.cloud.compute.v1.urlMaps.testIamPermissions]: <doc:UrlMapsClient/testIamPermissions(request:)>
+      /// [google.cloud.compute.v1.urlMaps.testIamPermissions]: <doc:UrlMapsClient/testIamPermissions(request:options:)>
       public var body: TestPermissionsRequest? = nil
 
       /// Initialize a new instance of `TestIamPermissionsRequest`.
@@ -603,7 +603,7 @@
 
     /// Synthetic request message for the [update()][google.cloud.compute.v1.urlMaps.update] method.
     ///
-    /// [google.cloud.compute.v1.urlMaps.update]: <doc:UrlMapsClient/update(request:)>
+    /// [google.cloud.compute.v1.urlMaps.update]: <doc:UrlMapsClient/update(request:options:)>
     public struct UpdateRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -630,7 +630,7 @@
 
       /// Synthetic request body field for the [update()][google.cloud.compute.v1.urlMaps.update] method.
       ///
-      /// [google.cloud.compute.v1.urlMaps.update]: <doc:UrlMapsClient/update(request:)>
+      /// [google.cloud.compute.v1.urlMaps.update]: <doc:UrlMapsClient/update(request:options:)>
       public var body: UrlMap? = nil
 
       /// Initialize a new instance of `UpdateRequest`.
@@ -662,7 +662,7 @@
 
     /// Synthetic request message for the [validate()][google.cloud.compute.v1.urlMaps.validate] method.
     ///
-    /// [google.cloud.compute.v1.urlMaps.validate]: <doc:UrlMapsClient/validate(request:)>
+    /// [google.cloud.compute.v1.urlMaps.validate]: <doc:UrlMapsClient/validate(request:options:)>
     public struct ValidateRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -674,7 +674,7 @@
 
       /// Synthetic request body field for the [validate()][google.cloud.compute.v1.urlMaps.validate] method.
       ///
-      /// [google.cloud.compute.v1.urlMaps.validate]: <doc:UrlMapsClient/validate(request:)>
+      /// [google.cloud.compute.v1.urlMaps.validate]: <doc:UrlMapsClient/validate(request:options:)>
       public var body: UrlMapsValidateRequest? = nil
 
       /// Initialize a new instance of `ValidateRequest`.

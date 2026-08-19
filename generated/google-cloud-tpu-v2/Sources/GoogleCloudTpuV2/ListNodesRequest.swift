@@ -19,7 +19,7 @@ import GoogleCloudWkt
 
 /// Request for [ListNodes][google.cloud.tpu.v2.Tpu.ListNodes].
 ///
-/// [google.cloud.tpu.v2.Tpu.ListNodes]: <doc:TpuClient/listNodes(request:)>
+/// [google.cloud.tpu.v2.Tpu.ListNodes]: <doc:TpuClient/listNodes(request:options:)>
 public struct ListNodesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

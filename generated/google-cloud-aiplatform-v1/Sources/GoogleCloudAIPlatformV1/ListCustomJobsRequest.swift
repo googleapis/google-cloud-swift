@@ -21,7 +21,7 @@
   /// Request message for
   /// [JobService.ListCustomJobs][google.cloud.aiplatform.v1.JobService.ListCustomJobs].
   ///
-  /// [google.cloud.aiplatform.v1.JobService.ListCustomJobs]: <doc:JobServiceClient/listCustomJobs(request:)>
+  /// [google.cloud.aiplatform.v1.JobService.ListCustomJobs]: <doc:JobServiceClient/listCustomJobs(request:options:)>
   public struct ListCustomJobsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {
@@ -61,7 +61,7 @@
     /// [JobService.ListCustomJobs][google.cloud.aiplatform.v1.JobService.ListCustomJobs]
     /// call.
     ///
-    /// [google.cloud.aiplatform.v1.JobService.ListCustomJobs]: <doc:JobServiceClient/listCustomJobs(request:)>
+    /// [google.cloud.aiplatform.v1.JobService.ListCustomJobs]: <doc:JobServiceClient/listCustomJobs(request:options:)>
     /// [google.cloud.aiplatform.v1.ListCustomJobsResponse.next_page_token]: <doc:ListCustomJobsResponse/nextPageToken>
     public var pageToken: Swift.String = Swift.String()
 

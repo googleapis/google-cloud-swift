@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [CreateCluster][google.cloud.hypercomputecluster.v1.HypercomputeCluster.CreateCluster].
 ///
-/// [google.cloud.hypercomputecluster.v1.HypercomputeCluster.CreateCluster]: <doc:HypercomputeClusterClient/createCluster(request:)>
+/// [google.cloud.hypercomputecluster.v1.HypercomputeCluster.CreateCluster]: <doc:HypercomputeClusterClient/createCluster(request:options:)>
 public struct CreateClusterRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

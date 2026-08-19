@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [KeyManagementService.DeleteCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.DeleteCryptoKeyVersion]
 /// long-running operation.
 ///
-/// [google.cloud.kms.v1.KeyManagementService.DeleteCryptoKeyVersion]: <doc:KeyManagementServiceClient/deleteCryptoKeyVersion(request:)>
+/// [google.cloud.kms.v1.KeyManagementService.DeleteCryptoKeyVersion]: <doc:KeyManagementServiceClient/deleteCryptoKeyVersion(request:options:)>
 public struct DeleteCryptoKeyVersionMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

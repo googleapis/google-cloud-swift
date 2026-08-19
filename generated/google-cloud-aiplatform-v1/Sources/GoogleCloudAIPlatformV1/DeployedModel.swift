@@ -68,7 +68,7 @@
     /// will be used for the explanation configuration.
     ///
     /// [google.cloud.aiplatform.v1.DeployedModel.explanation_spec]: <doc:DeployedModel/explanationSpec>
-    /// [google.cloud.aiplatform.v1.EndpointService.DeployModel]: <doc:EndpointServiceClient/deployModel(request:)>
+    /// [google.cloud.aiplatform.v1.EndpointService.DeployModel]: <doc:EndpointServiceClient/deployModel(request:options:)>
     /// [google.cloud.aiplatform.v1.Model.explanation_spec]: <doc:Model/explanationSpec>
     public var explanationSpec: ExplanationSpec? = nil
 

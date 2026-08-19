@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [AgentService.BatchDeleteConversations][google.cloud.ces.v1.AgentService.BatchDeleteConversations].
 ///
-/// [google.cloud.ces.v1.AgentService.BatchDeleteConversations]: <doc:AgentServiceClient/batchDeleteConversations(request:)>
+/// [google.cloud.ces.v1.AgentService.BatchDeleteConversations]: <doc:AgentServiceClient/batchDeleteConversations(request:options:)>
 public struct BatchDeleteConversationsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

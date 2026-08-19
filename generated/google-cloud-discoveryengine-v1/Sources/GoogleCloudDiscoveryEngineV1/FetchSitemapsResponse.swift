@@ -22,7 +22,7 @@
   /// [SiteSearchEngineService.FetchSitemaps][google.cloud.discoveryengine.v1.SiteSearchEngineService.FetchSitemaps]
   /// method.
   ///
-  /// [google.cloud.discoveryengine.v1.SiteSearchEngineService.FetchSitemaps]: <doc:SiteSearchEngineServiceClient/fetchSitemaps(request:)>
+  /// [google.cloud.discoveryengine.v1.SiteSearchEngineService.FetchSitemaps]: <doc:SiteSearchEngineServiceClient/fetchSitemaps(request:options:)>
   public struct FetchSitemapsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

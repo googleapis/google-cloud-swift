@@ -21,7 +21,7 @@
   /// Runtime operation metadata for
   /// [SpecialistPoolService.UpdateSpecialistPool][google.cloud.aiplatform.v1.SpecialistPoolService.UpdateSpecialistPool].
   ///
-  /// [google.cloud.aiplatform.v1.SpecialistPoolService.UpdateSpecialistPool]: <doc:SpecialistPoolServiceClient/updateSpecialistPool(request:)>
+  /// [google.cloud.aiplatform.v1.SpecialistPoolService.UpdateSpecialistPool]: <doc:SpecialistPoolServiceClient/updateSpecialistPool(request:options:)>
   public struct UpdateSpecialistPoolOperationMetadata: Codable, Equatable, GoogleCloudWkt
       ._AnyPackable,
     Sendable

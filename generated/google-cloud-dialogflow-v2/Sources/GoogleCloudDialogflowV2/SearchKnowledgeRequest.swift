@@ -21,7 +21,7 @@
   /// The request message for
   /// [Conversations.SearchKnowledge][google.cloud.dialogflow.v2.Conversations.SearchKnowledge].
   ///
-  /// [google.cloud.dialogflow.v2.Conversations.SearchKnowledge]: <doc:ConversationsClient/searchKnowledge(request:)>
+  /// [google.cloud.dialogflow.v2.Conversations.SearchKnowledge]: <doc:ConversationsClient/searchKnowledge(request:options:)>
   public struct SearchKnowledgeRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {
@@ -675,7 +675,7 @@
     /// If SUGGESTED_QUERY source is specified, we will treat it as a continuation
     /// of a SuggestKnowledgeAssist call.
     ///
-    /// [google.cloud.dialogflow.v2.Participants.SuggestKnowledgeAssist]: <doc:ParticipantsClient/suggestKnowledgeAssist(request:)>
+    /// [google.cloud.dialogflow.v2.Participants.SuggestKnowledgeAssist]: <doc:ParticipantsClient/suggestKnowledgeAssist(request:options:)>
     public enum QuerySource: Codable, Equatable, Sendable {
       /// Unknown query source.
       case unspecified
@@ -684,7 +684,7 @@
       /// The query is a suggested query from
       /// [Participants.SuggestKnowledgeAssist][google.cloud.dialogflow.v2.Participants.SuggestKnowledgeAssist].
       ///
-      /// [google.cloud.dialogflow.v2.Participants.SuggestKnowledgeAssist]: <doc:ParticipantsClient/suggestKnowledgeAssist(request:)>
+      /// [google.cloud.dialogflow.v2.Participants.SuggestKnowledgeAssist]: <doc:ParticipantsClient/suggestKnowledgeAssist(request:options:)>
       case suggestedQuery
       /// Encodes an unknown integer value.
       ///

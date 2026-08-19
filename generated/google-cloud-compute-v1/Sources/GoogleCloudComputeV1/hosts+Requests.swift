@@ -21,7 +21,7 @@
   extension HostsClient {
     /// Synthetic request message for the [get()][google.cloud.compute.v1.hosts.get] method.
     ///
-    /// [google.cloud.compute.v1.hosts.get]: <doc:HostsClient/`get`(request:)>
+    /// [google.cloud.compute.v1.hosts.get]: <doc:HostsClient/`get`(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -71,7 +71,7 @@
 
     /// Synthetic request message for the [getVersion()][google.cloud.compute.v1.hosts.getVersion] method.
     ///
-    /// [google.cloud.compute.v1.hosts.getVersion]: <doc:HostsClient/getVersion(request:)>
+    /// [google.cloud.compute.v1.hosts.getVersion]: <doc:HostsClient/getVersion(request:options:)>
     public struct GetVersionRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -97,7 +97,7 @@
 
       /// Synthetic request body field for the [getVersion()][google.cloud.compute.v1.hosts.getVersion] method.
       ///
-      /// [google.cloud.compute.v1.hosts.getVersion]: <doc:HostsClient/getVersion(request:)>
+      /// [google.cloud.compute.v1.hosts.getVersion]: <doc:HostsClient/getVersion(request:options:)>
       public var body: HostsGetVersionRequest? = nil
 
       /// Initialize a new instance of `GetVersionRequest`.
@@ -129,7 +129,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.hosts.list] method.
     ///
-    /// [google.cloud.compute.v1.hosts.list]: <doc:HostsClient/list(request:)>
+    /// [google.cloud.compute.v1.hosts.list]: <doc:HostsClient/list(request:options:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {

@@ -21,7 +21,7 @@
   /// Request message for
   /// [MetadataService.CreateArtifact][google.cloud.aiplatform.v1.MetadataService.CreateArtifact].
   ///
-  /// [google.cloud.aiplatform.v1.MetadataService.CreateArtifact]: <doc:MetadataServiceClient/createArtifact(request:)>
+  /// [google.cloud.aiplatform.v1.MetadataService.CreateArtifact]: <doc:MetadataServiceClient/createArtifact(request:options:)>
   public struct CreateArtifactRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

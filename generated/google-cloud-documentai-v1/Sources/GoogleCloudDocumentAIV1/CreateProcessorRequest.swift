@@ -23,7 +23,7 @@ import GoogleCloudWkt
 /// [ProcessorType][google.cloud.documentai.v1.ProcessorType] isn't available in
 /// that region, the creation fails.
 ///
-/// [google.cloud.documentai.v1.DocumentProcessorService.CreateProcessor]: <doc:DocumentProcessorServiceClient/createProcessor(request:)>
+/// [google.cloud.documentai.v1.DocumentProcessorService.CreateProcessor]: <doc:DocumentProcessorServiceClient/createProcessor(request:options:)>
 /// [google.cloud.documentai.v1.ProcessorType]: <doc:ProcessorType>
 public struct CreateProcessorRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable

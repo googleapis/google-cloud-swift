@@ -26,7 +26,7 @@ public struct ControlFamily: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// [ListControls][google.cloud.auditmanager.v1.AuditManager.ListControls]
   /// method and review the `control_family` field in the response.
   ///
-  /// [google.cloud.auditmanager.v1.AuditManager.ListControls]: <doc:AuditManagerClient/listControls(request:)>
+  /// [google.cloud.auditmanager.v1.AuditManager.ListControls]: <doc:AuditManagerClient/listControls(request:options:)>
   public var familyId: Swift.String = Swift.String()
 
   /// Display name of the regulatory control family.

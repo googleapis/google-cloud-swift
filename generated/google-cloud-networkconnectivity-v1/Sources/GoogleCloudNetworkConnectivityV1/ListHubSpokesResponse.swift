@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// The response for
 /// [HubService.ListHubSpokes][google.cloud.networkconnectivity.v1.HubService.ListHubSpokes].
 ///
-/// [google.cloud.networkconnectivity.v1.HubService.ListHubSpokes]: <doc:HubServiceClient/listHubSpokes(request:)>
+/// [google.cloud.networkconnectivity.v1.HubService.ListHubSpokes]: <doc:HubServiceClient/listHubSpokes(request:options:)>
 public struct ListHubSpokesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

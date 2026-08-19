@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [CatalogService.ListCatalogs][google.cloud.retail.v2.CatalogService.ListCatalogs]
 /// method.
 ///
-/// [google.cloud.retail.v2.CatalogService.ListCatalogs]: <doc:CatalogServiceClient/listCatalogs(request:)>
+/// [google.cloud.retail.v2.CatalogService.ListCatalogs]: <doc:CatalogServiceClient/listCatalogs(request:options:)>
 public struct ListCatalogsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
@@ -55,7 +55,7 @@ public struct ListCatalogsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackab
   /// must match the call that provided the page token. Otherwise, an
   /// INVALID_ARGUMENT error is returned.
   ///
-  /// [google.cloud.retail.v2.CatalogService.ListCatalogs]: <doc:CatalogServiceClient/listCatalogs(request:)>
+  /// [google.cloud.retail.v2.CatalogService.ListCatalogs]: <doc:CatalogServiceClient/listCatalogs(request:options:)>
   /// [google.cloud.retail.v2.ListCatalogsResponse.next_page_token]: <doc:ListCatalogsResponse/nextPageToken>
   public var pageToken: Swift.String = Swift.String()
 

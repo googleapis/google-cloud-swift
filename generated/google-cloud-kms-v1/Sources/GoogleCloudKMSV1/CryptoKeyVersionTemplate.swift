@@ -26,7 +26,7 @@ import GoogleCloudWkt
 ///
 /// [google.cloud.kms.v1.CryptoKeyVersion]: <doc:CryptoKeyVersion>
 /// [google.cloud.kms.v1.CryptoKeyVersionTemplate]: <doc:CryptoKeyVersionTemplate>
-/// [google.cloud.kms.v1.KeyManagementService.CreateCryptoKeyVersion]: <doc:KeyManagementServiceClient/createCryptoKeyVersion(request:)>
+/// [google.cloud.kms.v1.KeyManagementService.CreateCryptoKeyVersion]: <doc:KeyManagementServiceClient/createCryptoKeyVersion(request:options:)>
 public struct CryptoKeyVersionTemplate: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

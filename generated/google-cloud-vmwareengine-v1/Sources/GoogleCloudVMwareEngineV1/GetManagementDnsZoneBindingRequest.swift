@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [VmwareEngine.GetManagementDnsZoneBinding][google.cloud.vmwareengine.v1.VmwareEngine.GetManagementDnsZoneBinding]
 ///
-/// [google.cloud.vmwareengine.v1.VmwareEngine.GetManagementDnsZoneBinding]: <doc:VmwareEngineClient/getManagementDnsZoneBinding(request:)>
+/// [google.cloud.vmwareengine.v1.VmwareEngine.GetManagementDnsZoneBinding]: <doc:VmwareEngineClient/getManagementDnsZoneBinding(request:options:)>
 public struct GetManagementDnsZoneBindingRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

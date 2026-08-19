@@ -21,7 +21,7 @@
   /// Request message for
   /// [Documents.ReloadDocument][google.cloud.dialogflow.v2.Documents.ReloadDocument].
   ///
-  /// [google.cloud.dialogflow.v2.Documents.ReloadDocument]: <doc:DocumentsClient/reloadDocument(request:)>
+  /// [google.cloud.dialogflow.v2.Documents.ReloadDocument]: <doc:DocumentsClient/reloadDocument(request:options:)>
   public struct ReloadDocumentRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

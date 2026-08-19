@@ -22,7 +22,7 @@
   /// The response message for
   /// [SipTrunks.ListSipTrunks][google.cloud.dialogflow.v2.SipTrunks.ListSipTrunks].
   ///
-  /// [google.cloud.dialogflow.v2.SipTrunks.ListSipTrunks]: <doc:SipTrunksClient/listSipTrunks(request:)>
+  /// [google.cloud.dialogflow.v2.SipTrunks.ListSipTrunks]: <doc:SipTrunksClient/listSipTrunks(request:options:)>
   public struct ListSipTrunksResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable

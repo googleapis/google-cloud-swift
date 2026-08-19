@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// The request for
 /// [ListBackups][google.bigtable.admin.v2.BigtableTableAdmin.ListBackups].
 ///
-/// [google.bigtable.admin.v2.BigtableTableAdmin.ListBackups]: <doc:BigtableTableAdminClient/listBackups(request:)>
+/// [google.bigtable.admin.v2.BigtableTableAdmin.ListBackups]: <doc:BigtableTableAdminClient/listBackups(request:options:)>
 public struct ListBackupsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

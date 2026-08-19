@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [DataprocMetastore.MoveTableToDatabase][google.cloud.metastore.v1.DataprocMetastore.MoveTableToDatabase].
 ///
-/// [google.cloud.metastore.v1.DataprocMetastore.MoveTableToDatabase]: <doc:DataprocMetastoreClient/moveTableToDatabase(request:)>
+/// [google.cloud.metastore.v1.DataprocMetastore.MoveTableToDatabase]: <doc:DataprocMetastoreClient/moveTableToDatabase(request:options:)>
 public struct MoveTableToDatabaseRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

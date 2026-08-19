@@ -22,7 +22,7 @@
   /// [DocumentService.BatchGetDocumentsMetadata][google.cloud.discoveryengine.v1.DocumentService.BatchGetDocumentsMetadata]
   /// method.
   ///
-  /// [google.cloud.discoveryengine.v1.DocumentService.BatchGetDocumentsMetadata]: <doc:DocumentServiceClient/batchGetDocumentsMetadata(request:)>
+  /// [google.cloud.discoveryengine.v1.DocumentService.BatchGetDocumentsMetadata]: <doc:DocumentServiceClient/batchGetDocumentsMetadata(request:options:)>
   public struct BatchGetDocumentsMetadataResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

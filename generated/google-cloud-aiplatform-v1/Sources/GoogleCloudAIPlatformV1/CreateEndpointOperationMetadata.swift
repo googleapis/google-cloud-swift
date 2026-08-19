@@ -21,7 +21,7 @@
   /// Runtime operation information for
   /// [EndpointService.CreateEndpoint][google.cloud.aiplatform.v1.EndpointService.CreateEndpoint].
   ///
-  /// [google.cloud.aiplatform.v1.EndpointService.CreateEndpoint]: <doc:EndpointServiceClient/createEndpoint(request:)>
+  /// [google.cloud.aiplatform.v1.EndpointService.CreateEndpoint]: <doc:EndpointServiceClient/createEndpoint(request:options:)>
   public struct CreateEndpointOperationMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

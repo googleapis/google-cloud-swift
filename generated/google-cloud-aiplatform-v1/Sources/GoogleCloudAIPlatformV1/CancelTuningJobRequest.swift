@@ -21,7 +21,7 @@
   /// Request message for
   /// [GenAiTuningService.CancelTuningJob][google.cloud.aiplatform.v1.GenAiTuningService.CancelTuningJob].
   ///
-  /// [google.cloud.aiplatform.v1.GenAiTuningService.CancelTuningJob]: <doc:GenAiTuningServiceClient/cancelTuningJob(request:)>
+  /// [google.cloud.aiplatform.v1.GenAiTuningService.CancelTuningJob]: <doc:GenAiTuningServiceClient/cancelTuningJob(request:options:)>
   public struct CancelTuningJobRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

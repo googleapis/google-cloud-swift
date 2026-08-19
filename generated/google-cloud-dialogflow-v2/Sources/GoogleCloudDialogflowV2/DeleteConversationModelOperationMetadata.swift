@@ -22,7 +22,7 @@
   /// [ConversationModels.DeleteConversationModel][google.cloud.dialogflow.v2.ConversationModels.DeleteConversationModel]
   /// operation.
   ///
-  /// [google.cloud.dialogflow.v2.ConversationModels.DeleteConversationModel]: <doc:ConversationModelsClient/deleteConversationModel(request:)>
+  /// [google.cloud.dialogflow.v2.ConversationModels.DeleteConversationModel]: <doc:ConversationModelsClient/deleteConversationModel(request:options:)>
   public struct DeleteConversationModelOperationMetadata: Codable, Equatable, GoogleCloudWkt
       ._AnyPackable,
     Sendable

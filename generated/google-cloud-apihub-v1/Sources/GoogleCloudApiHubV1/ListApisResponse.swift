@@ -20,7 +20,7 @@ import GoogleCloudWkt
 
 /// The [ListApis][google.cloud.apihub.v1.ApiHub.ListApis] method's response.
 ///
-/// [google.cloud.apihub.v1.ApiHub.ListApis]: <doc:ApiHubClient/listApis(request:)>
+/// [google.cloud.apihub.v1.ApiHub.ListApis]: <doc:ApiHubClient/listApis(request:options:)>
 public struct ListApisResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

@@ -21,7 +21,7 @@
   /// Runtime operation information for
   /// [VertexRagDataService.ImportRagFiles][google.cloud.aiplatform.v1.VertexRagDataService.ImportRagFiles].
   ///
-  /// [google.cloud.aiplatform.v1.VertexRagDataService.ImportRagFiles]: <doc:VertexRagDataServiceClient/importRagFiles(request:)>
+  /// [google.cloud.aiplatform.v1.VertexRagDataService.ImportRagFiles]: <doc:VertexRagDataServiceClient/importRagFiles(request:options:)>
   public struct ImportRagFilesOperationMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

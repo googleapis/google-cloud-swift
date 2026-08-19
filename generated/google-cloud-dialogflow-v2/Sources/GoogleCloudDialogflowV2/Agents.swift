@@ -319,7 +319,7 @@
     /// [training
     /// documentation](https://cloud.google.com/dialogflow/es/docs/training).
     ///
-    /// [google.cloud.dialogflow.v2.Agents.TrainAgent]: <doc:AgentsClient/trainAgent(request:)>
+    /// [google.cloud.dialogflow.v2.Agents.TrainAgent]: <doc:AgentsClient/trainAgent(request:options:)>
     /// [google.cloud.dialogflow.v2.ImportAgentRequest]: <doc:ImportAgentRequest>
     ///
     /// @Snippet(path: "Agents_ImportAgent")
@@ -357,7 +357,7 @@
     /// [training
     /// documentation](https://cloud.google.com/dialogflow/es/docs/training).
     ///
-    /// [google.cloud.dialogflow.v2.Agents.TrainAgent]: <doc:AgentsClient/trainAgent(request:)>
+    /// [google.cloud.dialogflow.v2.Agents.TrainAgent]: <doc:AgentsClient/trainAgent(request:options:)>
     /// [google.cloud.dialogflow.v2.ImportAgentRequest]: <doc:ImportAgentRequest>
     ///
     /// @Snippet(path: "Agents_ImportAgent")
@@ -435,7 +435,7 @@
     /// [training
     /// documentation](https://cloud.google.com/dialogflow/es/docs/training).
     ///
-    /// [google.cloud.dialogflow.v2.Agents.TrainAgent]: <doc:AgentsClient/trainAgent(request:)>
+    /// [google.cloud.dialogflow.v2.Agents.TrainAgent]: <doc:AgentsClient/trainAgent(request:options:)>
     ///
     /// @Snippet(path: "Agents_RestoreAgent")
     public func restoreAgent(
@@ -470,7 +470,7 @@
     /// [training
     /// documentation](https://cloud.google.com/dialogflow/es/docs/training).
     ///
-    /// [google.cloud.dialogflow.v2.Agents.TrainAgent]: <doc:AgentsClient/trainAgent(request:)>
+    /// [google.cloud.dialogflow.v2.Agents.TrainAgent]: <doc:AgentsClient/trainAgent(request:options:)>
     ///
     /// @Snippet(path: "Agents_RestoreAgent")
     public func restoreAgent(

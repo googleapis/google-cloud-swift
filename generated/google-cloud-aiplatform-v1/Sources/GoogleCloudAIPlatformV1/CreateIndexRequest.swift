@@ -21,7 +21,7 @@
   /// Request message for
   /// [IndexService.CreateIndex][google.cloud.aiplatform.v1.IndexService.CreateIndex].
   ///
-  /// [google.cloud.aiplatform.v1.IndexService.CreateIndex]: <doc:IndexServiceClient/createIndex(request:)>
+  /// [google.cloud.aiplatform.v1.IndexService.CreateIndex]: <doc:IndexServiceClient/createIndex(request:options:)>
   public struct CreateIndexRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

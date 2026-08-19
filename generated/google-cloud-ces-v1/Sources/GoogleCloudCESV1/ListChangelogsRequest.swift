@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [AgentService.ListChangelogs][google.cloud.ces.v1.AgentService.ListChangelogs].
 ///
-/// [google.cloud.ces.v1.AgentService.ListChangelogs]: <doc:AgentServiceClient/listChangelogs(request:)>
+/// [google.cloud.ces.v1.AgentService.ListChangelogs]: <doc:AgentServiceClient/listChangelogs(request:options:)>
 public struct ListChangelogsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
@@ -37,7 +37,7 @@ public struct ListChangelogsRequest: Codable, Equatable, GoogleCloudWkt._AnyPack
   /// [AgentService.ListChangelogs][google.cloud.ces.v1.AgentService.ListChangelogs]
   /// call.
   ///
-  /// [google.cloud.ces.v1.AgentService.ListChangelogs]: <doc:AgentServiceClient/listChangelogs(request:)>
+  /// [google.cloud.ces.v1.AgentService.ListChangelogs]: <doc:AgentServiceClient/listChangelogs(request:options:)>
   /// [google.cloud.ces.v1.ListChangelogsResponse.next_page_token]: <doc:ListChangelogsResponse/nextPageToken>
   public var pageToken: Swift.String = Swift.String()
 

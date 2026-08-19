@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [AgentService.CreateExample][google.cloud.ces.v1.AgentService.CreateExample].
 ///
-/// [google.cloud.ces.v1.AgentService.CreateExample]: <doc:AgentServiceClient/createExample(request:)>
+/// [google.cloud.ces.v1.AgentService.CreateExample]: <doc:AgentServiceClient/createExample(request:options:)>
 public struct CreateExampleRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

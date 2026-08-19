@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for deleting a job using
 /// [DeleteJob][google.cloud.scheduler.v1.CloudScheduler.DeleteJob].
 ///
-/// [google.cloud.scheduler.v1.CloudScheduler.DeleteJob]: <doc:CloudSchedulerClient/deleteJob(request:)>
+/// [google.cloud.scheduler.v1.CloudScheduler.DeleteJob]: <doc:CloudSchedulerClient/deleteJob(request:options:)>
 public struct DeleteJobRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [ReconcileTags][google.cloud.datacatalog.v1.DataCatalog.ReconcileTags].
 ///
-/// [google.cloud.datacatalog.v1.DataCatalog.ReconcileTags]: <doc:DataCatalogClient/reconcileTags(request:)>
+/// [google.cloud.datacatalog.v1.DataCatalog.ReconcileTags]: <doc:DataCatalogClient/reconcileTags(request:options:)>
 public struct ReconcileTagsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

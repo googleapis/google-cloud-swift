@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for listing tasks using
 /// [ListTasks][google.cloud.tasks.v2.CloudTasks.ListTasks].
 ///
-/// [google.cloud.tasks.v2.CloudTasks.ListTasks]: <doc:CloudTasksClient/listTasks(request:)>
+/// [google.cloud.tasks.v2.CloudTasks.ListTasks]: <doc:CloudTasksClient/listTasks(request:options:)>
 public struct ListTasksRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
@@ -68,7 +68,7 @@ public struct ListTasksRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   ///
   /// The page token is valid for only 2 hours.
   ///
-  /// [google.cloud.tasks.v2.CloudTasks.ListTasks]: <doc:CloudTasksClient/listTasks(request:)>
+  /// [google.cloud.tasks.v2.CloudTasks.ListTasks]: <doc:CloudTasksClient/listTasks(request:options:)>
   /// [google.cloud.tasks.v2.ListTasksResponse.next_page_token]: <doc:ListTasksResponse/nextPageToken>
   public var pageToken: Swift.String = Swift.String()
 

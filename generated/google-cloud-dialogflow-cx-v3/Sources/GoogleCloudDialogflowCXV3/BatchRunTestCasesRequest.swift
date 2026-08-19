@@ -21,7 +21,7 @@
   /// The request message for
   /// [TestCases.BatchRunTestCases][google.cloud.dialogflow.cx.v3.TestCases.BatchRunTestCases].
   ///
-  /// [google.cloud.dialogflow.cx.v3.TestCases.BatchRunTestCases]: <doc:TestCasesClient/batchRunTestCases(request:)>
+  /// [google.cloud.dialogflow.cx.v3.TestCases.BatchRunTestCases]: <doc:TestCasesClient/batchRunTestCases(request:options:)>
   public struct BatchRunTestCasesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

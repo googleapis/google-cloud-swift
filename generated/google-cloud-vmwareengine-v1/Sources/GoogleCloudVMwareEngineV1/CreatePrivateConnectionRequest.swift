@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [VmwareEngine.CreatePrivateConnection][google.cloud.vmwareengine.v1.VmwareEngine.CreatePrivateConnection]
 ///
-/// [google.cloud.vmwareengine.v1.VmwareEngine.CreatePrivateConnection]: <doc:VmwareEngineClient/createPrivateConnection(request:)>
+/// [google.cloud.vmwareengine.v1.VmwareEngine.CreatePrivateConnection]: <doc:VmwareEngineClient/createPrivateConnection(request:options:)>
 public struct CreatePrivateConnectionRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

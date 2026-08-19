@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [ExecutePluginInstanceAction][google.cloud.apihub.v1.ApiHubPlugin.ExecutePluginInstanceAction]
 /// method's response.
 ///
-/// [google.cloud.apihub.v1.ApiHubPlugin.ExecutePluginInstanceAction]: <doc:ApiHubPluginClient/executePluginInstanceAction(request:)>
+/// [google.cloud.apihub.v1.ApiHubPlugin.ExecutePluginInstanceAction]: <doc:ApiHubPluginClient/executePluginInstanceAction(request:options:)>
 public struct ExecutePluginInstanceActionResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [CloudChannelService.DeleteCustomerRepricingConfig][google.cloud.channel.v1.CloudChannelService.DeleteCustomerRepricingConfig].
 ///
-/// [google.cloud.channel.v1.CloudChannelService.DeleteCustomerRepricingConfig]: <doc:CloudChannelServiceClient/deleteCustomerRepricingConfig(request:)>
+/// [google.cloud.channel.v1.CloudChannelService.DeleteCustomerRepricingConfig]: <doc:CloudChannelServiceClient/deleteCustomerRepricingConfig(request:options:)>
 public struct DeleteCustomerRepricingConfigRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

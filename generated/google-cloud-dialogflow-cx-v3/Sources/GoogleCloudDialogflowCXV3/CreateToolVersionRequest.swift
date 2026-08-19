@@ -23,7 +23,7 @@
   /// The request message for
   /// [Tools.CreateToolVersion][google.cloud.dialogflow.cx.v3.Tools.CreateToolVersion].
   ///
-  /// [google.cloud.dialogflow.cx.v3.Tools.CreateToolVersion]: <doc:ToolsClient/createToolVersion(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Tools.CreateToolVersion]: <doc:ToolsClient/createToolVersion(request:options:)>
   public struct CreateToolVersionRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

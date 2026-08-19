@@ -22,7 +22,7 @@
   /// Request message for
   /// [PredictionService.RawPredict][google.cloud.aiplatform.v1.PredictionService.RawPredict].
   ///
-  /// [google.cloud.aiplatform.v1.PredictionService.RawPredict]: <doc:PredictionServiceClient/rawPredict(request:)>
+  /// [google.cloud.aiplatform.v1.PredictionService.RawPredict]: <doc:PredictionServiceClient/rawPredict(request:options:)>
   public struct RawPredictRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {
@@ -51,7 +51,7 @@
     /// [google.cloud.aiplatform.v1.Endpoint]: <doc:Endpoint>
     /// [google.cloud.aiplatform.v1.Model]: <doc:Model>
     /// [google.cloud.aiplatform.v1.PredictSchemata.instance_schema_uri]: <doc:PredictSchemata/instanceSchemaUri>
-    /// [google.cloud.aiplatform.v1.PredictionService.RawPredict]: <doc:PredictionServiceClient/rawPredict(request:)>
+    /// [google.cloud.aiplatform.v1.PredictionService.RawPredict]: <doc:PredictionServiceClient/rawPredict(request:options:)>
     public var httpBody: GoogleApi.HttpBody? = nil
 
     /// Initialize a new instance of `RawPredictRequest`.

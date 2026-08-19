@@ -39,7 +39,7 @@ public struct ListCorporaRequest: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   /// call.
   ///
   /// [google.cloud.visionai.v1.ListCorporaResponse.next_page_token]: <doc:ListCorporaResponse/nextPageToken>
-  /// [google.cloud.visionai.v1.Warehouse.ListCorpora]: <doc:WarehouseClient/listCorpora(request:)>
+  /// [google.cloud.visionai.v1.Warehouse.ListCorpora]: <doc:WarehouseClient/listCorpora(request:options:)>
   public var pageToken: Swift.String = Swift.String()
 
   /// The filter applied to the returned corpora list.

@@ -21,7 +21,7 @@
   extension RegionNetworkFirewallPoliciesClient {
     /// Synthetic request message for the [addAssociation()][google.cloud.compute.v1.regionNetworkFirewallPolicies.addAssociation] method.
     ///
-    /// [google.cloud.compute.v1.regionNetworkFirewallPolicies.addAssociation]: <doc:RegionNetworkFirewallPoliciesClient/addAssociation(request:)>
+    /// [google.cloud.compute.v1.regionNetworkFirewallPolicies.addAssociation]: <doc:RegionNetworkFirewallPoliciesClient/addAssociation(request:options:)>
     public struct AddAssociationRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -56,7 +56,7 @@
 
       /// Synthetic request body field for the [addAssociation()][google.cloud.compute.v1.regionNetworkFirewallPolicies.addAssociation] method.
       ///
-      /// [google.cloud.compute.v1.regionNetworkFirewallPolicies.addAssociation]: <doc:RegionNetworkFirewallPoliciesClient/addAssociation(request:)>
+      /// [google.cloud.compute.v1.regionNetworkFirewallPolicies.addAssociation]: <doc:RegionNetworkFirewallPoliciesClient/addAssociation(request:options:)>
       public var body: FirewallPolicyAssociation? = nil
 
       /// Initialize a new instance of `AddAssociationRequest`.
@@ -89,7 +89,7 @@
 
     /// Synthetic request message for the [addRule()][google.cloud.compute.v1.regionNetworkFirewallPolicies.addRule] method.
     ///
-    /// [google.cloud.compute.v1.regionNetworkFirewallPolicies.addRule]: <doc:RegionNetworkFirewallPoliciesClient/addRule(request:)>
+    /// [google.cloud.compute.v1.regionNetworkFirewallPolicies.addRule]: <doc:RegionNetworkFirewallPoliciesClient/addRule(request:options:)>
     public struct AddRuleRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -127,7 +127,7 @@
 
       /// Synthetic request body field for the [addRule()][google.cloud.compute.v1.regionNetworkFirewallPolicies.addRule] method.
       ///
-      /// [google.cloud.compute.v1.regionNetworkFirewallPolicies.addRule]: <doc:RegionNetworkFirewallPoliciesClient/addRule(request:)>
+      /// [google.cloud.compute.v1.regionNetworkFirewallPolicies.addRule]: <doc:RegionNetworkFirewallPoliciesClient/addRule(request:options:)>
       public var body: FirewallPolicyRule? = nil
 
       /// Initialize a new instance of `AddRuleRequest`.
@@ -160,7 +160,7 @@
 
     /// Synthetic request message for the [cloneRules()][google.cloud.compute.v1.regionNetworkFirewallPolicies.cloneRules] method.
     ///
-    /// [google.cloud.compute.v1.regionNetworkFirewallPolicies.cloneRules]: <doc:RegionNetworkFirewallPoliciesClient/cloneRules(request:)>
+    /// [google.cloud.compute.v1.regionNetworkFirewallPolicies.cloneRules]: <doc:RegionNetworkFirewallPoliciesClient/cloneRules(request:options:)>
     public struct CloneRulesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -221,7 +221,7 @@
 
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.regionNetworkFirewallPolicies.delete] method.
     ///
-    /// [google.cloud.compute.v1.regionNetworkFirewallPolicies.delete]: <doc:RegionNetworkFirewallPoliciesClient/delete(request:)>
+    /// [google.cloud.compute.v1.regionNetworkFirewallPolicies.delete]: <doc:RegionNetworkFirewallPoliciesClient/delete(request:options:)>
     public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -279,7 +279,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.regionNetworkFirewallPolicies.get] method.
     ///
-    /// [google.cloud.compute.v1.regionNetworkFirewallPolicies.get]: <doc:RegionNetworkFirewallPoliciesClient/`get`(request:)>
+    /// [google.cloud.compute.v1.regionNetworkFirewallPolicies.get]: <doc:RegionNetworkFirewallPoliciesClient/`get`(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -322,7 +322,7 @@
 
     /// Synthetic request message for the [getAssociation()][google.cloud.compute.v1.regionNetworkFirewallPolicies.getAssociation] method.
     ///
-    /// [google.cloud.compute.v1.regionNetworkFirewallPolicies.getAssociation]: <doc:RegionNetworkFirewallPoliciesClient/getAssociation(request:)>
+    /// [google.cloud.compute.v1.regionNetworkFirewallPolicies.getAssociation]: <doc:RegionNetworkFirewallPoliciesClient/getAssociation(request:options:)>
     public struct GetAssociationRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -368,7 +368,7 @@
 
     /// Synthetic request message for the [getEffectiveFirewalls()][google.cloud.compute.v1.regionNetworkFirewallPolicies.getEffectiveFirewalls] method.
     ///
-    /// [google.cloud.compute.v1.regionNetworkFirewallPolicies.getEffectiveFirewalls]: <doc:RegionNetworkFirewallPoliciesClient/getEffectiveFirewalls(request:)>
+    /// [google.cloud.compute.v1.regionNetworkFirewallPolicies.getEffectiveFirewalls]: <doc:RegionNetworkFirewallPoliciesClient/getEffectiveFirewalls(request:options:)>
     public struct GetEffectiveFirewallsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -411,7 +411,7 @@
 
     /// Synthetic request message for the [getIamPolicy()][google.cloud.compute.v1.regionNetworkFirewallPolicies.getIamPolicy] method.
     ///
-    /// [google.cloud.compute.v1.regionNetworkFirewallPolicies.getIamPolicy]: <doc:RegionNetworkFirewallPoliciesClient/getIamPolicy(request:)>
+    /// [google.cloud.compute.v1.regionNetworkFirewallPolicies.getIamPolicy]: <doc:RegionNetworkFirewallPoliciesClient/getIamPolicy(request:options:)>
     public struct GetIamPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -457,7 +457,7 @@
 
     /// Synthetic request message for the [getRule()][google.cloud.compute.v1.regionNetworkFirewallPolicies.getRule] method.
     ///
-    /// [google.cloud.compute.v1.regionNetworkFirewallPolicies.getRule]: <doc:RegionNetworkFirewallPoliciesClient/getRule(request:)>
+    /// [google.cloud.compute.v1.regionNetworkFirewallPolicies.getRule]: <doc:RegionNetworkFirewallPoliciesClient/getRule(request:options:)>
     public struct GetRuleRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -503,7 +503,7 @@
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.regionNetworkFirewallPolicies.insert] method.
     ///
-    /// [google.cloud.compute.v1.regionNetworkFirewallPolicies.insert]: <doc:RegionNetworkFirewallPoliciesClient/insert(request:)>
+    /// [google.cloud.compute.v1.regionNetworkFirewallPolicies.insert]: <doc:RegionNetworkFirewallPoliciesClient/insert(request:options:)>
     public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -530,7 +530,7 @@
 
       /// Synthetic request body field for the [insert()][google.cloud.compute.v1.regionNetworkFirewallPolicies.insert] method.
       ///
-      /// [google.cloud.compute.v1.regionNetworkFirewallPolicies.insert]: <doc:RegionNetworkFirewallPoliciesClient/insert(request:)>
+      /// [google.cloud.compute.v1.regionNetworkFirewallPolicies.insert]: <doc:RegionNetworkFirewallPoliciesClient/insert(request:options:)>
       public var body: FirewallPolicy? = nil
 
       /// Initialize a new instance of `InsertRequest`.
@@ -563,7 +563,7 @@
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.regionNetworkFirewallPolicies.list] method.
     ///
-    /// [google.cloud.compute.v1.regionNetworkFirewallPolicies.list]: <doc:RegionNetworkFirewallPoliciesClient/list(request:)>
+    /// [google.cloud.compute.v1.regionNetworkFirewallPolicies.list]: <doc:RegionNetworkFirewallPoliciesClient/list(request:options:)>
     public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -696,7 +696,7 @@
 
     /// Synthetic request message for the [patch()][google.cloud.compute.v1.regionNetworkFirewallPolicies.patch] method.
     ///
-    /// [google.cloud.compute.v1.regionNetworkFirewallPolicies.patch]: <doc:RegionNetworkFirewallPoliciesClient/patch(request:)>
+    /// [google.cloud.compute.v1.regionNetworkFirewallPolicies.patch]: <doc:RegionNetworkFirewallPoliciesClient/patch(request:options:)>
     public struct PatchRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -726,7 +726,7 @@
 
       /// Synthetic request body field for the [patch()][google.cloud.compute.v1.regionNetworkFirewallPolicies.patch] method.
       ///
-      /// [google.cloud.compute.v1.regionNetworkFirewallPolicies.patch]: <doc:RegionNetworkFirewallPoliciesClient/patch(request:)>
+      /// [google.cloud.compute.v1.regionNetworkFirewallPolicies.patch]: <doc:RegionNetworkFirewallPoliciesClient/patch(request:options:)>
       public var body: FirewallPolicy? = nil
 
       /// Initialize a new instance of `PatchRequest`.
@@ -759,7 +759,7 @@
 
     /// Synthetic request message for the [patchRule()][google.cloud.compute.v1.regionNetworkFirewallPolicies.patchRule] method.
     ///
-    /// [google.cloud.compute.v1.regionNetworkFirewallPolicies.patchRule]: <doc:RegionNetworkFirewallPoliciesClient/patchRule(request:)>
+    /// [google.cloud.compute.v1.regionNetworkFirewallPolicies.patchRule]: <doc:RegionNetworkFirewallPoliciesClient/patchRule(request:options:)>
     public struct PatchRuleRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -792,7 +792,7 @@
 
       /// Synthetic request body field for the [patchRule()][google.cloud.compute.v1.regionNetworkFirewallPolicies.patchRule] method.
       ///
-      /// [google.cloud.compute.v1.regionNetworkFirewallPolicies.patchRule]: <doc:RegionNetworkFirewallPoliciesClient/patchRule(request:)>
+      /// [google.cloud.compute.v1.regionNetworkFirewallPolicies.patchRule]: <doc:RegionNetworkFirewallPoliciesClient/patchRule(request:options:)>
       public var body: FirewallPolicyRule? = nil
 
       /// Initialize a new instance of `PatchRuleRequest`.
@@ -825,7 +825,7 @@
 
     /// Synthetic request message for the [removeAssociation()][google.cloud.compute.v1.regionNetworkFirewallPolicies.removeAssociation] method.
     ///
-    /// [google.cloud.compute.v1.regionNetworkFirewallPolicies.removeAssociation]: <doc:RegionNetworkFirewallPoliciesClient/removeAssociation(request:)>
+    /// [google.cloud.compute.v1.regionNetworkFirewallPolicies.removeAssociation]: <doc:RegionNetworkFirewallPoliciesClient/removeAssociation(request:options:)>
     public struct RemoveAssociationRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -886,7 +886,7 @@
 
     /// Synthetic request message for the [removeRule()][google.cloud.compute.v1.regionNetworkFirewallPolicies.removeRule] method.
     ///
-    /// [google.cloud.compute.v1.regionNetworkFirewallPolicies.removeRule]: <doc:RegionNetworkFirewallPoliciesClient/removeRule(request:)>
+    /// [google.cloud.compute.v1.regionNetworkFirewallPolicies.removeRule]: <doc:RegionNetworkFirewallPoliciesClient/removeRule(request:options:)>
     public struct RemoveRuleRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -947,7 +947,7 @@
 
     /// Synthetic request message for the [setIamPolicy()][google.cloud.compute.v1.regionNetworkFirewallPolicies.setIamPolicy] method.
     ///
-    /// [google.cloud.compute.v1.regionNetworkFirewallPolicies.setIamPolicy]: <doc:RegionNetworkFirewallPoliciesClient/setIamPolicy(request:)>
+    /// [google.cloud.compute.v1.regionNetworkFirewallPolicies.setIamPolicy]: <doc:RegionNetworkFirewallPoliciesClient/setIamPolicy(request:options:)>
     public struct SetIamPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -962,7 +962,7 @@
 
       /// Synthetic request body field for the [setIamPolicy()][google.cloud.compute.v1.regionNetworkFirewallPolicies.setIamPolicy] method.
       ///
-      /// [google.cloud.compute.v1.regionNetworkFirewallPolicies.setIamPolicy]: <doc:RegionNetworkFirewallPoliciesClient/setIamPolicy(request:)>
+      /// [google.cloud.compute.v1.regionNetworkFirewallPolicies.setIamPolicy]: <doc:RegionNetworkFirewallPoliciesClient/setIamPolicy(request:options:)>
       public var body: RegionSetPolicyRequest? = nil
 
       /// Initialize a new instance of `SetIamPolicyRequest`.
@@ -995,7 +995,7 @@
 
     /// Synthetic request message for the [testIamPermissions()][google.cloud.compute.v1.regionNetworkFirewallPolicies.testIamPermissions] method.
     ///
-    /// [google.cloud.compute.v1.regionNetworkFirewallPolicies.testIamPermissions]: <doc:RegionNetworkFirewallPoliciesClient/testIamPermissions(request:)>
+    /// [google.cloud.compute.v1.regionNetworkFirewallPolicies.testIamPermissions]: <doc:RegionNetworkFirewallPoliciesClient/testIamPermissions(request:options:)>
     public struct TestIamPermissionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Sendable
     {
@@ -1010,7 +1010,7 @@
 
       /// Synthetic request body field for the [testIamPermissions()][google.cloud.compute.v1.regionNetworkFirewallPolicies.testIamPermissions] method.
       ///
-      /// [google.cloud.compute.v1.regionNetworkFirewallPolicies.testIamPermissions]: <doc:RegionNetworkFirewallPoliciesClient/testIamPermissions(request:)>
+      /// [google.cloud.compute.v1.regionNetworkFirewallPolicies.testIamPermissions]: <doc:RegionNetworkFirewallPoliciesClient/testIamPermissions(request:options:)>
       public var body: TestPermissionsRequest? = nil
 
       /// Initialize a new instance of `TestIamPermissionsRequest`.

@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [HsmManagement.ListSingleTenantHsmInstances][google.cloud.kms.v1.HsmManagement.ListSingleTenantHsmInstances].
 ///
-/// [google.cloud.kms.v1.HsmManagement.ListSingleTenantHsmInstances]: <doc:HsmManagementClient/listSingleTenantHsmInstances(request:)>
+/// [google.cloud.kms.v1.HsmManagement.ListSingleTenantHsmInstances]: <doc:HsmManagementClient/listSingleTenantHsmInstances(request:options:)>
 public struct ListSingleTenantHsmInstancesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {
@@ -69,7 +69,7 @@ public struct ListSingleTenantHsmInstancesRequest: Codable, Equatable, GoogleClo
   /// [SingleTenantHsmInstances][google.cloud.kms.v1.SingleTenantHsmInstance] in
   /// DELETED state.
   ///
-  /// [google.cloud.kms.v1.HsmManagement.ListSingleTenantHsmInstances]: <doc:HsmManagementClient/listSingleTenantHsmInstances(request:)>
+  /// [google.cloud.kms.v1.HsmManagement.ListSingleTenantHsmInstances]: <doc:HsmManagementClient/listSingleTenantHsmInstances(request:options:)>
   /// [google.cloud.kms.v1.SingleTenantHsmInstance]: <doc:SingleTenantHsmInstance>
   public var showDeleted: Swift.Bool = Swift.Bool()
 

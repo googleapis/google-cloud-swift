@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [DataprocMetastore.UpdateService][google.cloud.metastore.v1.DataprocMetastore.UpdateService].
 ///
-/// [google.cloud.metastore.v1.DataprocMetastore.UpdateService]: <doc:DataprocMetastoreClient/updateService(request:)>
+/// [google.cloud.metastore.v1.DataprocMetastore.UpdateService]: <doc:DataprocMetastoreClient/updateService(request:options:)>
 public struct UpdateServiceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

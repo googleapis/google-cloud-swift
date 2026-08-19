@@ -22,7 +22,7 @@
   /// Runtime operation information for
   /// [MigrationService.BatchMigrateResources][google.cloud.aiplatform.v1.MigrationService.BatchMigrateResources].
   ///
-  /// [google.cloud.aiplatform.v1.MigrationService.BatchMigrateResources]: <doc:MigrationServiceClient/batchMigrateResources(request:)>
+  /// [google.cloud.aiplatform.v1.MigrationService.BatchMigrateResources]: <doc:MigrationServiceClient/batchMigrateResources(request:options:)>
   public struct BatchMigrateResourcesOperationMetadata: Codable, Equatable, GoogleCloudWkt
       ._AnyPackable,
     Sendable

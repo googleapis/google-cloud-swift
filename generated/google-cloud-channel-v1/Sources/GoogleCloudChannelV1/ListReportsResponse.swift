@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [CloudChannelReportsService.ListReports][google.cloud.channel.v1.CloudChannelReportsService.ListReports].
 ///
-/// [google.cloud.channel.v1.CloudChannelReportsService.ListReports]: <doc:CloudChannelReportsServiceClient/listReports(request:)>
+/// [google.cloud.channel.v1.CloudChannelReportsService.ListReports]: <doc:CloudChannelReportsServiceClient/listReports(request:options:)>
 @available(*, deprecated)
 public struct ListReportsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,

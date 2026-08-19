@@ -94,7 +94,7 @@
     ///
     /// [google.cloud.dialogflow.v2.ConversationProfile.create_time]: <doc:ConversationProfile/createTime>
     /// [google.cloud.dialogflow.v2.ConversationProfile.update_time]: <doc:ConversationProfile/updateTime>
-    /// [google.cloud.dialogflow.v2.ConversationProfiles.GetConversationProfile]: <doc:ConversationProfilesClient/getConversationProfile(request:)>
+    /// [google.cloud.dialogflow.v2.ConversationProfiles.GetConversationProfile]: <doc:ConversationProfilesClient/getConversationProfile(request:options:)>
     ///
     /// @Snippet(path: "ConversationProfiles_CreateConversationProfile")
     public func createConversationProfile(
@@ -114,7 +114,7 @@
     ///
     /// [google.cloud.dialogflow.v2.ConversationProfile.create_time]: <doc:ConversationProfile/createTime>
     /// [google.cloud.dialogflow.v2.ConversationProfile.update_time]: <doc:ConversationProfile/updateTime>
-    /// [google.cloud.dialogflow.v2.ConversationProfiles.GetConversationProfile]: <doc:ConversationProfilesClient/getConversationProfile(request:)>
+    /// [google.cloud.dialogflow.v2.ConversationProfiles.GetConversationProfile]: <doc:ConversationProfilesClient/getConversationProfile(request:options:)>
     ///
     /// @Snippet(path: "ConversationProfiles_UpdateConversationProfile")
     public func updateConversationProfile(

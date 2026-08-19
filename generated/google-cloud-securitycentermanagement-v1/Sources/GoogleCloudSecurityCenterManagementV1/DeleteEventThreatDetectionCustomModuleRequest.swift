@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [SecurityCenterManagement.DeleteEventThreatDetectionCustomModule][google.cloud.securitycentermanagement.v1.SecurityCenterManagement.DeleteEventThreatDetectionCustomModule].
 ///
-/// [google.cloud.securitycentermanagement.v1.SecurityCenterManagement.DeleteEventThreatDetectionCustomModule]: <doc:SecurityCenterManagementClient/deleteEventThreatDetectionCustomModule(request:)>
+/// [google.cloud.securitycentermanagement.v1.SecurityCenterManagement.DeleteEventThreatDetectionCustomModule]: <doc:SecurityCenterManagementClient/deleteEventThreatDetectionCustomModule(request:options:)>
 public struct DeleteEventThreatDetectionCustomModuleRequest: Codable, Equatable, GoogleCloudWkt
     ._AnyPackable,
   Sendable

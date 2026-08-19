@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [CloudChannelService.ChangeParameters][google.cloud.channel.v1.CloudChannelService.ChangeParameters].
 ///
-/// [google.cloud.channel.v1.CloudChannelService.ChangeParameters]: <doc:CloudChannelServiceClient/changeParameters(request:)>
+/// [google.cloud.channel.v1.CloudChannelService.ChangeParameters]: <doc:CloudChannelServiceClient/changeParameters(request:options:)>
 public struct ChangeParametersRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

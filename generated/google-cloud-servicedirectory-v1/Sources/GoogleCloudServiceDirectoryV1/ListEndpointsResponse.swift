@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// The response message for
 /// [RegistrationService.ListEndpoints][google.cloud.servicedirectory.v1.RegistrationService.ListEndpoints].
 ///
-/// [google.cloud.servicedirectory.v1.RegistrationService.ListEndpoints]: <doc:RegistrationServiceClient/listEndpoints(request:)>
+/// [google.cloud.servicedirectory.v1.RegistrationService.ListEndpoints]: <doc:RegistrationServiceClient/listEndpoints(request:options:)>
 public struct ListEndpointsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable

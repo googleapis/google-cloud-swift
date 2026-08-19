@@ -23,7 +23,7 @@
   /// [UserLicenseService.BatchUpdateUserLicenses][google.cloud.discoveryengine.v1.UserLicenseService.BatchUpdateUserLicenses]
   /// method.
   ///
-  /// [google.cloud.discoveryengine.v1.UserLicenseService.BatchUpdateUserLicenses]: <doc:UserLicenseServiceClient/batchUpdateUserLicenses(request:)>
+  /// [google.cloud.discoveryengine.v1.UserLicenseService.BatchUpdateUserLicenses]: <doc:UserLicenseServiceClient/batchUpdateUserLicenses(request:options:)>
   public struct BatchUpdateUserLicensesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

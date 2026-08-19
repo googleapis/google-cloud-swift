@@ -19,7 +19,7 @@ import GoogleCloudWkt
 
 /// Request for [DeleteInstance][google.cloud.memcache.v1.CloudMemcache.DeleteInstance].
 ///
-/// [google.cloud.memcache.v1.CloudMemcache.DeleteInstance]: <doc:CloudMemcacheClient/deleteInstance(request:)>
+/// [google.cloud.memcache.v1.CloudMemcache.DeleteInstance]: <doc:CloudMemcacheClient/deleteInstance(request:options:)>
 public struct DeleteInstanceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

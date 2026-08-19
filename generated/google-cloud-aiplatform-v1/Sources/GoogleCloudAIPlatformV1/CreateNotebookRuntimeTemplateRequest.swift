@@ -21,7 +21,7 @@
   /// Request message for
   /// [NotebookService.CreateNotebookRuntimeTemplate][google.cloud.aiplatform.v1.NotebookService.CreateNotebookRuntimeTemplate].
   ///
-  /// [google.cloud.aiplatform.v1.NotebookService.CreateNotebookRuntimeTemplate]: <doc:NotebookServiceClient/createNotebookRuntimeTemplate(request:)>
+  /// [google.cloud.aiplatform.v1.NotebookService.CreateNotebookRuntimeTemplate]: <doc:NotebookServiceClient/createNotebookRuntimeTemplate(request:options:)>
   public struct CreateNotebookRuntimeTemplateRequest: Codable, Equatable, GoogleCloudWkt
       ._AnyPackable,
     Sendable

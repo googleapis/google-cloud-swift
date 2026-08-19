@@ -21,7 +21,7 @@
   /// The response message for
   /// [Versions.CompareVersions][google.cloud.dialogflow.cx.v3.Versions.CompareVersions].
   ///
-  /// [google.cloud.dialogflow.cx.v3.Versions.CompareVersions]: <doc:VersionsClient/compareVersions(request:)>
+  /// [google.cloud.dialogflow.cx.v3.Versions.CompareVersions]: <doc:VersionsClient/compareVersions(request:options:)>
   public struct CompareVersionsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

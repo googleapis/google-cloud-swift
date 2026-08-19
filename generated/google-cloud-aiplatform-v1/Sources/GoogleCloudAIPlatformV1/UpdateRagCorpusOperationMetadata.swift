@@ -21,7 +21,7 @@
   /// Runtime operation information for
   /// [VertexRagDataService.UpdateRagCorpus][google.cloud.aiplatform.v1.VertexRagDataService.UpdateRagCorpus].
   ///
-  /// [google.cloud.aiplatform.v1.VertexRagDataService.UpdateRagCorpus]: <doc:VertexRagDataServiceClient/updateRagCorpus(request:)>
+  /// [google.cloud.aiplatform.v1.VertexRagDataService.UpdateRagCorpus]: <doc:VertexRagDataServiceClient/updateRagCorpus(request:options:)>
   public struct UpdateRagCorpusOperationMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {

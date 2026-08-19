@@ -49,7 +49,7 @@ public struct ListAwsNodePoolsRequest: Codable, Equatable, GoogleCloudWkt._AnyPa
   /// [awsNodePools.list][google.cloud.gkemulticloud.v1.AwsClusters.ListAwsNodePools]
   /// request, if any.
   ///
-  /// [google.cloud.gkemulticloud.v1.AwsClusters.ListAwsNodePools]: <doc:AwsClustersClient/listAwsNodePools(request:)>
+  /// [google.cloud.gkemulticloud.v1.AwsClusters.ListAwsNodePools]: <doc:AwsClustersClient/listAwsNodePools(request:options:)>
   public var pageToken: Swift.String = Swift.String()
 
   /// Initialize a new instance of `ListAwsNodePoolsRequest`.

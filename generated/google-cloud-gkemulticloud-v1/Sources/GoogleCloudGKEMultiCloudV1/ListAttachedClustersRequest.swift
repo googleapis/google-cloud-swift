@@ -47,7 +47,7 @@ public struct ListAttachedClustersRequest: Codable, Equatable, GoogleCloudWkt._A
   /// [attachedClusters.list][google.cloud.gkemulticloud.v1.AttachedClusters.ListAttachedClusters]
   /// request, if any.
   ///
-  /// [google.cloud.gkemulticloud.v1.AttachedClusters.ListAttachedClusters]: <doc:AttachedClustersClient/listAttachedClusters(request:)>
+  /// [google.cloud.gkemulticloud.v1.AttachedClusters.ListAttachedClusters]: <doc:AttachedClustersClient/listAttachedClusters(request:options:)>
   public var pageToken: Swift.String = Swift.String()
 
   /// Initialize a new instance of `ListAttachedClustersRequest`.

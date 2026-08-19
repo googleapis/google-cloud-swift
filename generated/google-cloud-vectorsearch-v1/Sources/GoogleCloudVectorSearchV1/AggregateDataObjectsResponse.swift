@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Response message for
 /// [DataObjectSearchService.AggregateDataObjects][google.cloud.vectorsearch.v1.DataObjectSearchService.AggregateDataObjects].
 ///
-/// [google.cloud.vectorsearch.v1.DataObjectSearchService.AggregateDataObjects]: <doc:DataObjectSearchServiceClient/aggregateDataObjects(request:)>
+/// [google.cloud.vectorsearch.v1.DataObjectSearchService.AggregateDataObjects]: <doc:DataObjectSearchServiceClient/aggregateDataObjects(request:options:)>
 public struct AggregateDataObjectsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

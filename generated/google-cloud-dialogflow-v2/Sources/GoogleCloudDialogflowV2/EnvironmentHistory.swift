@@ -22,7 +22,7 @@
   /// The response message for
   /// [Environments.GetEnvironmentHistory][google.cloud.dialogflow.v2.Environments.GetEnvironmentHistory].
   ///
-  /// [google.cloud.dialogflow.v2.Environments.GetEnvironmentHistory]: <doc:EnvironmentsClient/getEnvironmentHistory(request:)>
+  /// [google.cloud.dialogflow.v2.Environments.GetEnvironmentHistory]: <doc:EnvironmentsClient/getEnvironmentHistory(request:options:)>
   public struct EnvironmentHistory: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable

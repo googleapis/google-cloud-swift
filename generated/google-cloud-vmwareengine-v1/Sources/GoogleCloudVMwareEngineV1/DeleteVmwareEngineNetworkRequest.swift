@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [VmwareEngine.DeleteVmwareEngineNetwork][google.cloud.vmwareengine.v1.VmwareEngine.DeleteVmwareEngineNetwork]
 ///
-/// [google.cloud.vmwareengine.v1.VmwareEngine.DeleteVmwareEngineNetwork]: <doc:VmwareEngineClient/deleteVmwareEngineNetwork(request:)>
+/// [google.cloud.vmwareengine.v1.VmwareEngine.DeleteVmwareEngineNetwork]: <doc:VmwareEngineClient/deleteVmwareEngineNetwork(request:options:)>
 public struct DeleteVmwareEngineNetworkRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

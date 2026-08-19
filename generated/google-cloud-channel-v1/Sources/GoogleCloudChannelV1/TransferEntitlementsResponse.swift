@@ -21,7 +21,7 @@ import GoogleCloudWkt
 /// [CloudChannelService.TransferEntitlements][google.cloud.channel.v1.CloudChannelService.TransferEntitlements].
 /// This is put in the response field of google.longrunning.Operation.
 ///
-/// [google.cloud.channel.v1.CloudChannelService.TransferEntitlements]: <doc:CloudChannelServiceClient/transferEntitlements(request:)>
+/// [google.cloud.channel.v1.CloudChannelService.TransferEntitlements]: <doc:CloudChannelServiceClient/transferEntitlements(request:options:)>
 public struct TransferEntitlementsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

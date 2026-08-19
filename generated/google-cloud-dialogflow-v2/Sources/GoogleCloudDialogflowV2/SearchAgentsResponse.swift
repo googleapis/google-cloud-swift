@@ -22,7 +22,7 @@
   /// The response message for
   /// [Agents.SearchAgents][google.cloud.dialogflow.v2.Agents.SearchAgents].
   ///
-  /// [google.cloud.dialogflow.v2.Agents.SearchAgents]: <doc:AgentsClient/searchAgents(request:)>
+  /// [google.cloud.dialogflow.v2.Agents.SearchAgents]: <doc:AgentsClient/searchAgents(request:options:)>
   public struct SearchAgentsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable

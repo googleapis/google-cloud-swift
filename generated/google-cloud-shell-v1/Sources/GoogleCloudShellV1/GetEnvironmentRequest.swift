@@ -20,7 +20,7 @@ import GoogleCloudWkt
 /// Request message for
 /// [GetEnvironment][google.cloud.shell.v1.CloudShellService.GetEnvironment].
 ///
-/// [google.cloud.shell.v1.CloudShellService.GetEnvironment]: <doc:CloudShellServiceClient/getEnvironment(request:)>
+/// [google.cloud.shell.v1.CloudShellService.GetEnvironment]: <doc:CloudShellServiceClient/getEnvironment(request:options:)>
 public struct GetEnvironmentRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable
 {

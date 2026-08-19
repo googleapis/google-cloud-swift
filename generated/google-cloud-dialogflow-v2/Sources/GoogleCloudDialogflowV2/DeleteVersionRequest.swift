@@ -21,7 +21,7 @@
   /// The request message for
   /// [Versions.DeleteVersion][google.cloud.dialogflow.v2.Versions.DeleteVersion].
   ///
-  /// [google.cloud.dialogflow.v2.Versions.DeleteVersion]: <doc:VersionsClient/deleteVersion(request:)>
+  /// [google.cloud.dialogflow.v2.Versions.DeleteVersion]: <doc:VersionsClient/deleteVersion(request:options:)>
   public struct DeleteVersionRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable
   {
