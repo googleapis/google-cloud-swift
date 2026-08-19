@@ -94,40 +94,7 @@ public class ApiGatewayServiceClient: Clients.ApiGatewayServiceProtocol {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Gateway>.State in
-      guard op.done else {
-        return .init(done: false, result: nil)
-      }
-
-      switch op.result {
-      case .response(let anyValue):
-        guard let anyValueUnwrapped = anyValue else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding(
-                "Operation completed but response value was missing")))
-        }
-        let response = try Gateway(fromAny: anyValueUnwrapped)
-        return .init(done: true, result: .success(response))
-      case .error(let status):
-        guard let statusUnwrapped = status else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but error value was missing")
-            ))
-        }
-        let error = GoogleCloudGax.RequestError.service(
-          GoogleCloudGax.ServiceError(
-            code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-            message: statusUnwrapped.message))
-        return .init(done: true, result: .failure(error))
-      case .none:
-        return .init(
-          done: true,
-          result: .failure(
-            GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-      }
+      return try op._extractStatus(Gateway.self)
     }
     let rawOp = try await self.createGateway(request: withPolling, options: options)
     let initialState = try extractStatus(rawOp)
@@ -162,40 +129,7 @@ public class ApiGatewayServiceClient: Clients.ApiGatewayServiceProtocol {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Gateway>.State in
-      guard op.done else {
-        return .init(done: false, result: nil)
-      }
-
-      switch op.result {
-      case .response(let anyValue):
-        guard let anyValueUnwrapped = anyValue else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding(
-                "Operation completed but response value was missing")))
-        }
-        let response = try Gateway(fromAny: anyValueUnwrapped)
-        return .init(done: true, result: .success(response))
-      case .error(let status):
-        guard let statusUnwrapped = status else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but error value was missing")
-            ))
-        }
-        let error = GoogleCloudGax.RequestError.service(
-          GoogleCloudGax.ServiceError(
-            code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-            message: statusUnwrapped.message))
-        return .init(done: true, result: .failure(error))
-      case .none:
-        return .init(
-          done: true,
-          result: .failure(
-            GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-      }
+      return try op._extractStatus(Gateway.self)
     }
     let rawOp = try await self.updateGateway(request: withPolling, options: options)
     let initialState = try extractStatus(rawOp)
@@ -226,40 +160,15 @@ public class ApiGatewayServiceClient: Clients.ApiGatewayServiceProtocol {
   /// @Snippet(path: "ApiGatewayService_DeleteGateway")
   public func deleteGateway(
     withPolling: DeleteGatewayRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+  ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
-      in
-      guard op.done else {
-        return .init(done: false, result: nil)
-      }
-
-      switch op.result {
-      case .response:
-        return .init(done: true, result: .success(()))
-      case .error(let status):
-        guard let statusUnwrapped = status else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but error value was missing")
-            ))
-        }
-        let error = GoogleCloudGax.RequestError.service(
-          GoogleCloudGax.ServiceError(
-            code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-            message: statusUnwrapped.message))
-        return .init(done: true, result: .failure(error))
-      case .none:
-        return .init(
-          done: true,
-          result: .failure(
-            GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-      }
+      (op: GoogleLongRunning.Operation) throws
+        -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
+      return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteGateway(request: withPolling, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -323,40 +232,7 @@ public class ApiGatewayServiceClient: Clients.ApiGatewayServiceProtocol {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Api>.State
       in
-      guard op.done else {
-        return .init(done: false, result: nil)
-      }
-
-      switch op.result {
-      case .response(let anyValue):
-        guard let anyValueUnwrapped = anyValue else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding(
-                "Operation completed but response value was missing")))
-        }
-        let response = try Api(fromAny: anyValueUnwrapped)
-        return .init(done: true, result: .success(response))
-      case .error(let status):
-        guard let statusUnwrapped = status else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but error value was missing")
-            ))
-        }
-        let error = GoogleCloudGax.RequestError.service(
-          GoogleCloudGax.ServiceError(
-            code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-            message: statusUnwrapped.message))
-        return .init(done: true, result: .failure(error))
-      case .none:
-        return .init(
-          done: true,
-          result: .failure(
-            GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-      }
+      return try op._extractStatus(Api.self)
     }
     let rawOp = try await self.createApi(request: withPolling, options: options)
     let initialState = try extractStatus(rawOp)
@@ -391,40 +267,7 @@ public class ApiGatewayServiceClient: Clients.ApiGatewayServiceProtocol {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Api>.State
       in
-      guard op.done else {
-        return .init(done: false, result: nil)
-      }
-
-      switch op.result {
-      case .response(let anyValue):
-        guard let anyValueUnwrapped = anyValue else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding(
-                "Operation completed but response value was missing")))
-        }
-        let response = try Api(fromAny: anyValueUnwrapped)
-        return .init(done: true, result: .success(response))
-      case .error(let status):
-        guard let statusUnwrapped = status else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but error value was missing")
-            ))
-        }
-        let error = GoogleCloudGax.RequestError.service(
-          GoogleCloudGax.ServiceError(
-            code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-            message: statusUnwrapped.message))
-        return .init(done: true, result: .failure(error))
-      case .none:
-        return .init(
-          done: true,
-          result: .failure(
-            GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-      }
+      return try op._extractStatus(Api.self)
     }
     let rawOp = try await self.updateApi(request: withPolling, options: options)
     let initialState = try extractStatus(rawOp)
@@ -455,40 +298,15 @@ public class ApiGatewayServiceClient: Clients.ApiGatewayServiceProtocol {
   /// @Snippet(path: "ApiGatewayService_DeleteApi")
   public func deleteApi(
     withPolling: DeleteApiRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+  ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
-      in
-      guard op.done else {
-        return .init(done: false, result: nil)
-      }
-
-      switch op.result {
-      case .response:
-        return .init(done: true, result: .success(()))
-      case .error(let status):
-        guard let statusUnwrapped = status else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but error value was missing")
-            ))
-        }
-        let error = GoogleCloudGax.RequestError.service(
-          GoogleCloudGax.ServiceError(
-            code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-            message: statusUnwrapped.message))
-        return .init(done: true, result: .failure(error))
-      case .none:
-        return .init(
-          done: true,
-          result: .failure(
-            GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-      }
+      (op: GoogleLongRunning.Operation) throws
+        -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
+      return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteApi(request: withPolling, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -552,40 +370,7 @@ public class ApiGatewayServiceClient: Clients.ApiGatewayServiceProtocol {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<ApiConfig>.State in
-      guard op.done else {
-        return .init(done: false, result: nil)
-      }
-
-      switch op.result {
-      case .response(let anyValue):
-        guard let anyValueUnwrapped = anyValue else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding(
-                "Operation completed but response value was missing")))
-        }
-        let response = try ApiConfig(fromAny: anyValueUnwrapped)
-        return .init(done: true, result: .success(response))
-      case .error(let status):
-        guard let statusUnwrapped = status else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but error value was missing")
-            ))
-        }
-        let error = GoogleCloudGax.RequestError.service(
-          GoogleCloudGax.ServiceError(
-            code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-            message: statusUnwrapped.message))
-        return .init(done: true, result: .failure(error))
-      case .none:
-        return .init(
-          done: true,
-          result: .failure(
-            GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-      }
+      return try op._extractStatus(ApiConfig.self)
     }
     let rawOp = try await self.createApiConfig(request: withPolling, options: options)
     let initialState = try extractStatus(rawOp)
@@ -620,40 +405,7 @@ public class ApiGatewayServiceClient: Clients.ApiGatewayServiceProtocol {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<ApiConfig>.State in
-      guard op.done else {
-        return .init(done: false, result: nil)
-      }
-
-      switch op.result {
-      case .response(let anyValue):
-        guard let anyValueUnwrapped = anyValue else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding(
-                "Operation completed but response value was missing")))
-        }
-        let response = try ApiConfig(fromAny: anyValueUnwrapped)
-        return .init(done: true, result: .success(response))
-      case .error(let status):
-        guard let statusUnwrapped = status else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but error value was missing")
-            ))
-        }
-        let error = GoogleCloudGax.RequestError.service(
-          GoogleCloudGax.ServiceError(
-            code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-            message: statusUnwrapped.message))
-        return .init(done: true, result: .failure(error))
-      case .none:
-        return .init(
-          done: true,
-          result: .failure(
-            GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-      }
+      return try op._extractStatus(ApiConfig.self)
     }
     let rawOp = try await self.updateApiConfig(request: withPolling, options: options)
     let initialState = try extractStatus(rawOp)
@@ -684,40 +436,15 @@ public class ApiGatewayServiceClient: Clients.ApiGatewayServiceProtocol {
   /// @Snippet(path: "ApiGatewayService_DeleteApiConfig")
   public func deleteApiConfig(
     withPolling: DeleteApiConfigRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+  ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
-      in
-      guard op.done else {
-        return .init(done: false, result: nil)
-      }
-
-      switch op.result {
-      case .response:
-        return .init(done: true, result: .success(()))
-      case .error(let status):
-        guard let statusUnwrapped = status else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but error value was missing")
-            ))
-        }
-        let error = GoogleCloudGax.RequestError.service(
-          GoogleCloudGax.ServiceError(
-            code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-            message: statusUnwrapped.message))
-        return .init(done: true, result: .failure(error))
-      case .none:
-        return .init(
-          done: true,
-          result: .failure(
-            GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-      }
+      (op: GoogleLongRunning.Operation) throws
+        -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
+      return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteApiConfig(request: withPolling, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -853,12 +580,12 @@ extension Clients {
 
     /// See `ApiGatewayServiceClient.deleteGateway`.
     func deleteGateway(withPolling: DeleteGatewayRequest) async throws -> any GoogleCloudGax
-      .PollableOperation<Void>
+      .PollableOperation<Swift.Void>
 
     /// See `ApiGatewayServiceClient.deleteGateway`.
     func deleteGateway(
       name: Swift.String,
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
     /// See `ApiGatewayServiceClient.listApis`.
     func listApis(request: ListApisRequest) async throws -> GoogleCloudApiGatewayV1.ListApisResponse
@@ -913,12 +640,12 @@ extension Clients {
 
     /// See `ApiGatewayServiceClient.deleteApi`.
     func deleteApi(withPolling: DeleteApiRequest) async throws -> any GoogleCloudGax
-      .PollableOperation<Void>
+      .PollableOperation<Swift.Void>
 
     /// See `ApiGatewayServiceClient.deleteApi`.
     func deleteApi(
       name: Swift.String,
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
     /// See `ApiGatewayServiceClient.listApiConfigs`.
     func listApiConfigs(request: ListApiConfigsRequest) async throws
@@ -978,12 +705,12 @@ extension Clients {
 
     /// See `ApiGatewayServiceClient.deleteApiConfig`.
     func deleteApiConfig(withPolling: DeleteApiConfigRequest) async throws -> any GoogleCloudGax
-      .PollableOperation<Void>
+      .PollableOperation<Swift.Void>
 
     /// See `ApiGatewayServiceClient.deleteApiConfig`.
     func deleteApiConfig(
       name: Swift.String,
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
     /// See `ApiGatewayServiceClient.listOperations`.
     func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
@@ -1059,7 +786,7 @@ extension Clients {
     /// See `ApiGatewayServiceClient.deleteGateway`.
     func deleteGateway(
       withPolling: DeleteGatewayRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
     /// See `ApiGatewayServiceClient.listApis`.
     func listApis(
@@ -1104,7 +831,7 @@ extension Clients {
     /// See `ApiGatewayServiceClient.deleteApi`.
     func deleteApi(
       withPolling: DeleteApiRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
     /// See `ApiGatewayServiceClient.listApiConfigs`.
     func listApiConfigs(
@@ -1149,7 +876,7 @@ extension Clients {
     /// See `ApiGatewayServiceClient.deleteApiConfig`.
     func deleteApiConfig(
       withPolling: DeleteApiConfigRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
     /// See `ApiGatewayServiceClient.listOperations`.
     func listOperations(
@@ -1325,15 +1052,15 @@ extension Clients.ApiGatewayServiceProtocol {
   }
 
   public func deleteGateway(withPolling: DeleteGatewayRequest) async throws -> any GoogleCloudGax
-    .PollableOperation<Void>
+    .PollableOperation<Swift.Void>
   {
     try await self.deleteGateway(withPolling: withPolling, options: .init())
   }
 
   public func deleteGateway(
     withPolling: DeleteGatewayRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
-    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+  ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
+    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleCloudGax.RequestError.unimplemented
     }
     return GoogleCloudGax._PollableOperationImpl(
@@ -1342,7 +1069,7 @@ extension Clients.ApiGatewayServiceProtocol {
 
   public func deleteGateway(
     name: Swift.String,
-  ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+  ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
     let request = DeleteGatewayRequest().with {
       $0.name = name
     }
@@ -1492,15 +1219,15 @@ extension Clients.ApiGatewayServiceProtocol {
   }
 
   public func deleteApi(withPolling: DeleteApiRequest) async throws -> any GoogleCloudGax
-    .PollableOperation<Void>
+    .PollableOperation<Swift.Void>
   {
     try await self.deleteApi(withPolling: withPolling, options: .init())
   }
 
   public func deleteApi(
     withPolling: DeleteApiRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
-    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+  ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
+    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleCloudGax.RequestError.unimplemented
     }
     return GoogleCloudGax._PollableOperationImpl(
@@ -1509,7 +1236,7 @@ extension Clients.ApiGatewayServiceProtocol {
 
   public func deleteApi(
     name: Swift.String,
-  ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+  ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
     let request = DeleteApiRequest().with {
       $0.name = name
     }
@@ -1667,15 +1394,15 @@ extension Clients.ApiGatewayServiceProtocol {
   }
 
   public func deleteApiConfig(withPolling: DeleteApiConfigRequest) async throws
-    -> any GoogleCloudGax.PollableOperation<Void>
+    -> any GoogleCloudGax.PollableOperation<Swift.Void>
   {
     try await self.deleteApiConfig(withPolling: withPolling, options: .init())
   }
 
   public func deleteApiConfig(
     withPolling: DeleteApiConfigRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
-    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+  ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
+    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleCloudGax.RequestError.unimplemented
     }
     return GoogleCloudGax._PollableOperationImpl(
@@ -1684,7 +1411,7 @@ extension Clients.ApiGatewayServiceProtocol {
 
   public func deleteApiConfig(
     name: Swift.String,
-  ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+  ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
     let request = DeleteApiConfigRequest().with {
       $0.name = name
     }

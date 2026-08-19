@@ -100,40 +100,7 @@ public class OrganizationSecurityProfileGroupServiceClient: Clients
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<SecurityProfileGroup>.State in
-      guard op.done else {
-        return .init(done: false, result: nil)
-      }
-
-      switch op.result {
-      case .response(let anyValue):
-        guard let anyValueUnwrapped = anyValue else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding(
-                "Operation completed but response value was missing")))
-        }
-        let response = try SecurityProfileGroup(fromAny: anyValueUnwrapped)
-        return .init(done: true, result: .success(response))
-      case .error(let status):
-        guard let statusUnwrapped = status else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but error value was missing")
-            ))
-        }
-        let error = GoogleCloudGax.RequestError.service(
-          GoogleCloudGax.ServiceError(
-            code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-            message: statusUnwrapped.message))
-        return .init(done: true, result: .failure(error))
-      case .none:
-        return .init(
-          done: true,
-          result: .failure(
-            GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-      }
+      return try op._extractStatus(SecurityProfileGroup.self)
     }
     let rawOp = try await self.createSecurityProfileGroup(request: withPolling, options: options)
     let initialState = try extractStatus(rawOp)
@@ -169,40 +136,7 @@ public class OrganizationSecurityProfileGroupServiceClient: Clients
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<SecurityProfileGroup>.State in
-      guard op.done else {
-        return .init(done: false, result: nil)
-      }
-
-      switch op.result {
-      case .response(let anyValue):
-        guard let anyValueUnwrapped = anyValue else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding(
-                "Operation completed but response value was missing")))
-        }
-        let response = try SecurityProfileGroup(fromAny: anyValueUnwrapped)
-        return .init(done: true, result: .success(response))
-      case .error(let status):
-        guard let statusUnwrapped = status else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but error value was missing")
-            ))
-        }
-        let error = GoogleCloudGax.RequestError.service(
-          GoogleCloudGax.ServiceError(
-            code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-            message: statusUnwrapped.message))
-        return .init(done: true, result: .failure(error))
-      case .none:
-        return .init(
-          done: true,
-          result: .failure(
-            GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-      }
+      return try op._extractStatus(SecurityProfileGroup.self)
     }
     let rawOp = try await self.updateSecurityProfileGroup(request: withPolling, options: options)
     let initialState = try extractStatus(rawOp)
@@ -234,40 +168,15 @@ public class OrganizationSecurityProfileGroupServiceClient: Clients
   /// @Snippet(path: "OrganizationSecurityProfileGroupService_DeleteSecurityProfileGroup")
   public func deleteSecurityProfileGroup(
     withPolling: DeleteSecurityProfileGroupRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+  ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
-      in
-      guard op.done else {
-        return .init(done: false, result: nil)
-      }
-
-      switch op.result {
-      case .response:
-        return .init(done: true, result: .success(()))
-      case .error(let status):
-        guard let statusUnwrapped = status else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but error value was missing")
-            ))
-        }
-        let error = GoogleCloudGax.RequestError.service(
-          GoogleCloudGax.ServiceError(
-            code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-            message: statusUnwrapped.message))
-        return .init(done: true, result: .failure(error))
-      case .none:
-        return .init(
-          done: true,
-          result: .failure(
-            GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-      }
+      (op: GoogleLongRunning.Operation) throws
+        -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
+      return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteSecurityProfileGroup(request: withPolling, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -332,40 +241,7 @@ public class OrganizationSecurityProfileGroupServiceClient: Clients
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<SecurityProfile>.State in
-      guard op.done else {
-        return .init(done: false, result: nil)
-      }
-
-      switch op.result {
-      case .response(let anyValue):
-        guard let anyValueUnwrapped = anyValue else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding(
-                "Operation completed but response value was missing")))
-        }
-        let response = try SecurityProfile(fromAny: anyValueUnwrapped)
-        return .init(done: true, result: .success(response))
-      case .error(let status):
-        guard let statusUnwrapped = status else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but error value was missing")
-            ))
-        }
-        let error = GoogleCloudGax.RequestError.service(
-          GoogleCloudGax.ServiceError(
-            code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-            message: statusUnwrapped.message))
-        return .init(done: true, result: .failure(error))
-      case .none:
-        return .init(
-          done: true,
-          result: .failure(
-            GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-      }
+      return try op._extractStatus(SecurityProfile.self)
     }
     let rawOp = try await self.createSecurityProfile(request: withPolling, options: options)
     let initialState = try extractStatus(rawOp)
@@ -400,40 +276,7 @@ public class OrganizationSecurityProfileGroupServiceClient: Clients
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<SecurityProfile>.State in
-      guard op.done else {
-        return .init(done: false, result: nil)
-      }
-
-      switch op.result {
-      case .response(let anyValue):
-        guard let anyValueUnwrapped = anyValue else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding(
-                "Operation completed but response value was missing")))
-        }
-        let response = try SecurityProfile(fromAny: anyValueUnwrapped)
-        return .init(done: true, result: .success(response))
-      case .error(let status):
-        guard let statusUnwrapped = status else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but error value was missing")
-            ))
-        }
-        let error = GoogleCloudGax.RequestError.service(
-          GoogleCloudGax.ServiceError(
-            code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-            message: statusUnwrapped.message))
-        return .init(done: true, result: .failure(error))
-      case .none:
-        return .init(
-          done: true,
-          result: .failure(
-            GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-      }
+      return try op._extractStatus(SecurityProfile.self)
     }
     let rawOp = try await self.updateSecurityProfile(request: withPolling, options: options)
     let initialState = try extractStatus(rawOp)
@@ -464,40 +307,15 @@ public class OrganizationSecurityProfileGroupServiceClient: Clients
   /// @Snippet(path: "OrganizationSecurityProfileGroupService_DeleteSecurityProfile")
   public func deleteSecurityProfile(
     withPolling: DeleteSecurityProfileRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+  ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
-      in
-      guard op.done else {
-        return .init(done: false, result: nil)
-      }
-
-      switch op.result {
-      case .response:
-        return .init(done: true, result: .success(()))
-      case .error(let status):
-        guard let statusUnwrapped = status else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but error value was missing")
-            ))
-        }
-        let error = GoogleCloudGax.RequestError.service(
-          GoogleCloudGax.ServiceError(
-            code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-            message: statusUnwrapped.message))
-        return .init(done: true, result: .failure(error))
-      case .none:
-        return .init(
-          done: true,
-          result: .failure(
-            GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-      }
+      (op: GoogleLongRunning.Operation) throws
+        -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
+      return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteSecurityProfile(request: withPolling, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -742,12 +560,12 @@ extension Clients {
 
     /// See `OrganizationSecurityProfileGroupServiceClient.deleteSecurityProfileGroup`.
     func deleteSecurityProfileGroup(withPolling: DeleteSecurityProfileGroupRequest) async throws
-      -> any GoogleCloudGax.PollableOperation<Void>
+      -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
     /// See `OrganizationSecurityProfileGroupServiceClient.deleteSecurityProfileGroup`.
     func deleteSecurityProfileGroup(
       name: Swift.String,
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
     /// See `OrganizationSecurityProfileGroupServiceClient.listSecurityProfiles`.
     func listSecurityProfiles(request: ListSecurityProfilesRequest) async throws
@@ -807,12 +625,12 @@ extension Clients {
 
     /// See `OrganizationSecurityProfileGroupServiceClient.deleteSecurityProfile`.
     func deleteSecurityProfile(withPolling: DeleteSecurityProfileRequest) async throws
-      -> any GoogleCloudGax.PollableOperation<Void>
+      -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
     /// See `OrganizationSecurityProfileGroupServiceClient.deleteSecurityProfile`.
     func deleteSecurityProfile(
       name: Swift.String,
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
     /// See `OrganizationSecurityProfileGroupServiceClient.listLocations`.
     func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
@@ -911,7 +729,7 @@ extension Clients {
     /// See `OrganizationSecurityProfileGroupServiceClient.deleteSecurityProfileGroup`.
     func deleteSecurityProfileGroup(
       withPolling: DeleteSecurityProfileGroupRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
     /// See `OrganizationSecurityProfileGroupServiceClient.listSecurityProfiles`.
     func listSecurityProfiles(
@@ -956,7 +774,7 @@ extension Clients {
     /// See `OrganizationSecurityProfileGroupServiceClient.deleteSecurityProfile`.
     func deleteSecurityProfile(
       withPolling: DeleteSecurityProfileRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
     /// See `OrganizationSecurityProfileGroupServiceClient.listLocations`.
     func listLocations(
@@ -1166,15 +984,15 @@ extension Clients.OrganizationSecurityProfileGroupServiceProtocol {
   }
 
   public func deleteSecurityProfileGroup(withPolling: DeleteSecurityProfileGroupRequest)
-    async throws -> any GoogleCloudGax.PollableOperation<Void>
+    async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
   {
     try await self.deleteSecurityProfileGroup(withPolling: withPolling, options: .init())
   }
 
   public func deleteSecurityProfileGroup(
     withPolling: DeleteSecurityProfileGroupRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
-    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+  ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
+    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleCloudGax.RequestError.unimplemented
     }
     return GoogleCloudGax._PollableOperationImpl(
@@ -1183,7 +1001,7 @@ extension Clients.OrganizationSecurityProfileGroupServiceProtocol {
 
   public func deleteSecurityProfileGroup(
     name: Swift.String,
-  ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+  ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
     let request = DeleteSecurityProfileGroupRequest().with {
       $0.name = name
     }
@@ -1342,15 +1160,15 @@ extension Clients.OrganizationSecurityProfileGroupServiceProtocol {
   }
 
   public func deleteSecurityProfile(withPolling: DeleteSecurityProfileRequest) async throws
-    -> any GoogleCloudGax.PollableOperation<Void>
+    -> any GoogleCloudGax.PollableOperation<Swift.Void>
   {
     try await self.deleteSecurityProfile(withPolling: withPolling, options: .init())
   }
 
   public func deleteSecurityProfile(
     withPolling: DeleteSecurityProfileRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
-    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+  ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
+    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleCloudGax.RequestError.unimplemented
     }
     return GoogleCloudGax._PollableOperationImpl(
@@ -1359,7 +1177,7 @@ extension Clients.OrganizationSecurityProfileGroupServiceProtocol {
 
   public func deleteSecurityProfile(
     name: Swift.String,
-  ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+  ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
     let request = DeleteSecurityProfileRequest().with {
       $0.name = name
     }

@@ -66,40 +66,7 @@
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleCloudGax._PollableOperationImpl<FeatureGroup>.State in
-        guard op.done else {
-          return .init(done: false, result: nil)
-        }
-
-        switch op.result {
-        case .response(let anyValue):
-          guard let anyValueUnwrapped = anyValue else {
-            return .init(
-              done: true,
-              result: .failure(
-                GoogleCloudGax.RequestError.binding(
-                  "Operation completed but response value was missing")))
-          }
-          let response = try FeatureGroup(fromAny: anyValueUnwrapped)
-          return .init(done: true, result: .success(response))
-        case .error(let status):
-          guard let statusUnwrapped = status else {
-            return .init(
-              done: true,
-              result: .failure(
-                GoogleCloudGax.RequestError.binding(
-                  "Operation completed but error value was missing")))
-          }
-          let error = GoogleCloudGax.RequestError.service(
-            GoogleCloudGax.ServiceError(
-              code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-              message: statusUnwrapped.message))
-          return .init(done: true, result: .failure(error))
-        case .none:
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-        }
+        return try op._extractStatus(FeatureGroup.self)
       }
       let rawOp = try await self.createFeatureGroup(request: withPolling, options: options)
       let initialState = try extractStatus(rawOp)
@@ -167,40 +134,7 @@
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleCloudGax._PollableOperationImpl<FeatureGroup>.State in
-        guard op.done else {
-          return .init(done: false, result: nil)
-        }
-
-        switch op.result {
-        case .response(let anyValue):
-          guard let anyValueUnwrapped = anyValue else {
-            return .init(
-              done: true,
-              result: .failure(
-                GoogleCloudGax.RequestError.binding(
-                  "Operation completed but response value was missing")))
-          }
-          let response = try FeatureGroup(fromAny: anyValueUnwrapped)
-          return .init(done: true, result: .success(response))
-        case .error(let status):
-          guard let statusUnwrapped = status else {
-            return .init(
-              done: true,
-              result: .failure(
-                GoogleCloudGax.RequestError.binding(
-                  "Operation completed but error value was missing")))
-          }
-          let error = GoogleCloudGax.RequestError.service(
-            GoogleCloudGax.ServiceError(
-              code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-              message: statusUnwrapped.message))
-          return .init(done: true, result: .failure(error))
-        case .none:
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-        }
+        return try op._extractStatus(FeatureGroup.self)
       }
       let rawOp = try await self.updateFeatureGroup(request: withPolling, options: options)
       let initialState = try extractStatus(rawOp)
@@ -231,40 +165,15 @@
     /// @Snippet(path: "FeatureRegistryService_DeleteFeatureGroup")
     public func deleteFeatureGroup(
       withPolling: DeleteFeatureGroupRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
-          -> GoogleCloudGax._PollableOperationImpl<Void>.State in
-        guard op.done else {
-          return .init(done: false, result: nil)
-        }
-
-        switch op.result {
-        case .response:
-          return .init(done: true, result: .success(()))
-        case .error(let status):
-          guard let statusUnwrapped = status else {
-            return .init(
-              done: true,
-              result: .failure(
-                GoogleCloudGax.RequestError.binding(
-                  "Operation completed but error value was missing")))
-          }
-          let error = GoogleCloudGax.RequestError.service(
-            GoogleCloudGax.ServiceError(
-              code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-              message: statusUnwrapped.message))
-          return .init(done: true, result: .failure(error))
-        case .none:
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-        }
+          -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
+        return try op._extractStatusEmpty()
       }
       let rawOp = try await self.deleteFeatureGroup(request: withPolling, options: options)
       let initialState = try extractStatus(rawOp)
-      let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+      let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -295,40 +204,7 @@
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleCloudGax._PollableOperationImpl<Feature>.State in
-        guard op.done else {
-          return .init(done: false, result: nil)
-        }
-
-        switch op.result {
-        case .response(let anyValue):
-          guard let anyValueUnwrapped = anyValue else {
-            return .init(
-              done: true,
-              result: .failure(
-                GoogleCloudGax.RequestError.binding(
-                  "Operation completed but response value was missing")))
-          }
-          let response = try Feature(fromAny: anyValueUnwrapped)
-          return .init(done: true, result: .success(response))
-        case .error(let status):
-          guard let statusUnwrapped = status else {
-            return .init(
-              done: true,
-              result: .failure(
-                GoogleCloudGax.RequestError.binding(
-                  "Operation completed but error value was missing")))
-          }
-          let error = GoogleCloudGax.RequestError.service(
-            GoogleCloudGax.ServiceError(
-              code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-              message: statusUnwrapped.message))
-          return .init(done: true, result: .failure(error))
-        case .none:
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-        }
+        return try op._extractStatus(Feature.self)
       }
       let rawOp = try await self.createFeature(request: withPolling, options: options)
       let initialState = try extractStatus(rawOp)
@@ -363,40 +239,7 @@
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleCloudGax._PollableOperationImpl<BatchCreateFeaturesResponse>.State in
-        guard op.done else {
-          return .init(done: false, result: nil)
-        }
-
-        switch op.result {
-        case .response(let anyValue):
-          guard let anyValueUnwrapped = anyValue else {
-            return .init(
-              done: true,
-              result: .failure(
-                GoogleCloudGax.RequestError.binding(
-                  "Operation completed but response value was missing")))
-          }
-          let response = try BatchCreateFeaturesResponse(fromAny: anyValueUnwrapped)
-          return .init(done: true, result: .success(response))
-        case .error(let status):
-          guard let statusUnwrapped = status else {
-            return .init(
-              done: true,
-              result: .failure(
-                GoogleCloudGax.RequestError.binding(
-                  "Operation completed but error value was missing")))
-          }
-          let error = GoogleCloudGax.RequestError.service(
-            GoogleCloudGax.ServiceError(
-              code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-              message: statusUnwrapped.message))
-          return .init(done: true, result: .failure(error))
-        case .none:
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-        }
+        return try op._extractStatus(BatchCreateFeaturesResponse.self)
       }
       let rawOp = try await self.batchCreateFeatures(request: withPolling, options: options)
       let initialState = try extractStatus(rawOp)
@@ -466,40 +309,7 @@
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleCloudGax._PollableOperationImpl<Feature>.State in
-        guard op.done else {
-          return .init(done: false, result: nil)
-        }
-
-        switch op.result {
-        case .response(let anyValue):
-          guard let anyValueUnwrapped = anyValue else {
-            return .init(
-              done: true,
-              result: .failure(
-                GoogleCloudGax.RequestError.binding(
-                  "Operation completed but response value was missing")))
-          }
-          let response = try Feature(fromAny: anyValueUnwrapped)
-          return .init(done: true, result: .success(response))
-        case .error(let status):
-          guard let statusUnwrapped = status else {
-            return .init(
-              done: true,
-              result: .failure(
-                GoogleCloudGax.RequestError.binding(
-                  "Operation completed but error value was missing")))
-          }
-          let error = GoogleCloudGax.RequestError.service(
-            GoogleCloudGax.ServiceError(
-              code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-              message: statusUnwrapped.message))
-          return .init(done: true, result: .failure(error))
-        case .none:
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-        }
+        return try op._extractStatus(Feature.self)
       }
       let rawOp = try await self.updateFeature(request: withPolling, options: options)
       let initialState = try extractStatus(rawOp)
@@ -530,40 +340,15 @@
     /// @Snippet(path: "FeatureRegistryService_DeleteFeature")
     public func deleteFeature(
       withPolling: DeleteFeatureRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
-          -> GoogleCloudGax._PollableOperationImpl<Void>.State in
-        guard op.done else {
-          return .init(done: false, result: nil)
-        }
-
-        switch op.result {
-        case .response:
-          return .init(done: true, result: .success(()))
-        case .error(let status):
-          guard let statusUnwrapped = status else {
-            return .init(
-              done: true,
-              result: .failure(
-                GoogleCloudGax.RequestError.binding(
-                  "Operation completed but error value was missing")))
-          }
-          let error = GoogleCloudGax.RequestError.service(
-            GoogleCloudGax.ServiceError(
-              code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-              message: statusUnwrapped.message))
-          return .init(done: true, result: .failure(error))
-        case .none:
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-        }
+          -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
+        return try op._extractStatusEmpty()
       }
       let rawOp = try await self.deleteFeature(request: withPolling, options: options)
       let initialState = try extractStatus(rawOp)
-      let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+      let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -785,13 +570,13 @@
 
       /// See `FeatureRegistryServiceClient.deleteFeatureGroup`.
       func deleteFeatureGroup(withPolling: DeleteFeatureGroupRequest) async throws
-        -> any GoogleCloudGax.PollableOperation<Void>
+        -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
       /// See `FeatureRegistryServiceClient.deleteFeatureGroup`.
       func deleteFeatureGroup(
         name: Swift.String,
         force: Swift.Bool,
-      ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+      ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
       /// See `FeatureRegistryServiceClient.createFeature`.
       func createFeature(request: CreateFeatureRequest) async throws -> GoogleLongRunning.Operation
@@ -861,12 +646,12 @@
 
       /// See `FeatureRegistryServiceClient.deleteFeature`.
       func deleteFeature(withPolling: DeleteFeatureRequest) async throws -> any GoogleCloudGax
-        .PollableOperation<Void>
+        .PollableOperation<Swift.Void>
 
       /// See `FeatureRegistryServiceClient.deleteFeature`.
       func deleteFeature(
         name: Swift.String,
-      ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+      ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
       /// See `FeatureRegistryServiceClient.listLocations`.
       func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
@@ -969,7 +754,7 @@
       /// See `FeatureRegistryServiceClient.deleteFeatureGroup`.
       func deleteFeatureGroup(
         withPolling: DeleteFeatureGroupRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+      ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
       /// See `FeatureRegistryServiceClient.createFeature`.
       func createFeature(
@@ -1024,7 +809,7 @@
       /// See `FeatureRegistryServiceClient.deleteFeature`.
       func deleteFeature(
         withPolling: DeleteFeatureRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+      ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
       /// See `FeatureRegistryServiceClient.listLocations`.
       func listLocations(
@@ -1236,15 +1021,15 @@
     }
 
     public func deleteFeatureGroup(withPolling: DeleteFeatureGroupRequest) async throws
-      -> any GoogleCloudGax.PollableOperation<Void>
+      -> any GoogleCloudGax.PollableOperation<Swift.Void>
     {
       try await self.deleteFeatureGroup(withPolling: withPolling, options: .init())
     }
 
     public func deleteFeatureGroup(
       withPolling: DeleteFeatureGroupRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
-      let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
+      let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleCloudGax.RequestError.unimplemented
       }
       return GoogleCloudGax._PollableOperationImpl(
@@ -1254,7 +1039,7 @@
     public func deleteFeatureGroup(
       name: Swift.String,
       force: Swift.Bool,
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
       let request = DeleteFeatureGroupRequest().with {
         $0.name = name
         $0.force = force
@@ -1454,15 +1239,15 @@
     }
 
     public func deleteFeature(withPolling: DeleteFeatureRequest) async throws -> any GoogleCloudGax
-      .PollableOperation<Void>
+      .PollableOperation<Swift.Void>
     {
       try await self.deleteFeature(withPolling: withPolling, options: .init())
     }
 
     public func deleteFeature(
       withPolling: DeleteFeatureRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
-      let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
+      let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleCloudGax.RequestError.unimplemented
       }
       return GoogleCloudGax._PollableOperationImpl(
@@ -1471,7 +1256,7 @@
 
     public func deleteFeature(
       name: Swift.String,
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
       let request = DeleteFeatureRequest().with {
         $0.name = name
       }

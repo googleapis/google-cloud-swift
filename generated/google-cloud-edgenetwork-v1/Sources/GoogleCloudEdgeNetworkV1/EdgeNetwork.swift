@@ -155,40 +155,7 @@ public class EdgeNetworkClient: Clients.EdgeNetworkProtocol {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Network>.State in
-      guard op.done else {
-        return .init(done: false, result: nil)
-      }
-
-      switch op.result {
-      case .response(let anyValue):
-        guard let anyValueUnwrapped = anyValue else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding(
-                "Operation completed but response value was missing")))
-        }
-        let response = try Network(fromAny: anyValueUnwrapped)
-        return .init(done: true, result: .success(response))
-      case .error(let status):
-        guard let statusUnwrapped = status else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but error value was missing")
-            ))
-        }
-        let error = GoogleCloudGax.RequestError.service(
-          GoogleCloudGax.ServiceError(
-            code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-            message: statusUnwrapped.message))
-        return .init(done: true, result: .failure(error))
-      case .none:
-        return .init(
-          done: true,
-          result: .failure(
-            GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-      }
+      return try op._extractStatus(Network.self)
     }
     let rawOp = try await self.createNetwork(request: withPolling, options: options)
     let initialState = try extractStatus(rawOp)
@@ -219,40 +186,15 @@ public class EdgeNetworkClient: Clients.EdgeNetworkProtocol {
   /// @Snippet(path: "EdgeNetwork_DeleteNetwork")
   public func deleteNetwork(
     withPolling: DeleteNetworkRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+  ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
-      in
-      guard op.done else {
-        return .init(done: false, result: nil)
-      }
-
-      switch op.result {
-      case .response:
-        return .init(done: true, result: .success(()))
-      case .error(let status):
-        guard let statusUnwrapped = status else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but error value was missing")
-            ))
-        }
-        let error = GoogleCloudGax.RequestError.service(
-          GoogleCloudGax.ServiceError(
-            code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-            message: statusUnwrapped.message))
-        return .init(done: true, result: .failure(error))
-      case .none:
-        return .init(
-          done: true,
-          result: .failure(
-            GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-      }
+      (op: GoogleLongRunning.Operation) throws
+        -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
+      return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteNetwork(request: withPolling, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -316,40 +258,7 @@ public class EdgeNetworkClient: Clients.EdgeNetworkProtocol {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Subnet>.State in
-      guard op.done else {
-        return .init(done: false, result: nil)
-      }
-
-      switch op.result {
-      case .response(let anyValue):
-        guard let anyValueUnwrapped = anyValue else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding(
-                "Operation completed but response value was missing")))
-        }
-        let response = try Subnet(fromAny: anyValueUnwrapped)
-        return .init(done: true, result: .success(response))
-      case .error(let status):
-        guard let statusUnwrapped = status else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but error value was missing")
-            ))
-        }
-        let error = GoogleCloudGax.RequestError.service(
-          GoogleCloudGax.ServiceError(
-            code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-            message: statusUnwrapped.message))
-        return .init(done: true, result: .failure(error))
-      case .none:
-        return .init(
-          done: true,
-          result: .failure(
-            GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-      }
+      return try op._extractStatus(Subnet.self)
     }
     let rawOp = try await self.createSubnet(request: withPolling, options: options)
     let initialState = try extractStatus(rawOp)
@@ -384,40 +293,7 @@ public class EdgeNetworkClient: Clients.EdgeNetworkProtocol {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Subnet>.State in
-      guard op.done else {
-        return .init(done: false, result: nil)
-      }
-
-      switch op.result {
-      case .response(let anyValue):
-        guard let anyValueUnwrapped = anyValue else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding(
-                "Operation completed but response value was missing")))
-        }
-        let response = try Subnet(fromAny: anyValueUnwrapped)
-        return .init(done: true, result: .success(response))
-      case .error(let status):
-        guard let statusUnwrapped = status else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but error value was missing")
-            ))
-        }
-        let error = GoogleCloudGax.RequestError.service(
-          GoogleCloudGax.ServiceError(
-            code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-            message: statusUnwrapped.message))
-        return .init(done: true, result: .failure(error))
-      case .none:
-        return .init(
-          done: true,
-          result: .failure(
-            GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-      }
+      return try op._extractStatus(Subnet.self)
     }
     let rawOp = try await self.updateSubnet(request: withPolling, options: options)
     let initialState = try extractStatus(rawOp)
@@ -448,40 +324,15 @@ public class EdgeNetworkClient: Clients.EdgeNetworkProtocol {
   /// @Snippet(path: "EdgeNetwork_DeleteSubnet")
   public func deleteSubnet(
     withPolling: DeleteSubnetRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+  ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
-      in
-      guard op.done else {
-        return .init(done: false, result: nil)
-      }
-
-      switch op.result {
-      case .response:
-        return .init(done: true, result: .success(()))
-      case .error(let status):
-        guard let statusUnwrapped = status else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but error value was missing")
-            ))
-        }
-        let error = GoogleCloudGax.RequestError.service(
-          GoogleCloudGax.ServiceError(
-            code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-            message: statusUnwrapped.message))
-        return .init(done: true, result: .failure(error))
-      case .none:
-        return .init(
-          done: true,
-          result: .failure(
-            GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-      }
+      (op: GoogleLongRunning.Operation) throws
+        -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
+      return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteSubnet(request: withPolling, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -588,40 +439,7 @@ public class EdgeNetworkClient: Clients.EdgeNetworkProtocol {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<InterconnectAttachment>.State in
-      guard op.done else {
-        return .init(done: false, result: nil)
-      }
-
-      switch op.result {
-      case .response(let anyValue):
-        guard let anyValueUnwrapped = anyValue else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding(
-                "Operation completed but response value was missing")))
-        }
-        let response = try InterconnectAttachment(fromAny: anyValueUnwrapped)
-        return .init(done: true, result: .success(response))
-      case .error(let status):
-        guard let statusUnwrapped = status else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but error value was missing")
-            ))
-        }
-        let error = GoogleCloudGax.RequestError.service(
-          GoogleCloudGax.ServiceError(
-            code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-            message: statusUnwrapped.message))
-        return .init(done: true, result: .failure(error))
-      case .none:
-        return .init(
-          done: true,
-          result: .failure(
-            GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-      }
+      return try op._extractStatus(InterconnectAttachment.self)
     }
     let rawOp = try await self.createInterconnectAttachment(request: withPolling, options: options)
     let initialState = try extractStatus(rawOp)
@@ -653,40 +471,15 @@ public class EdgeNetworkClient: Clients.EdgeNetworkProtocol {
   /// @Snippet(path: "EdgeNetwork_DeleteInterconnectAttachment")
   public func deleteInterconnectAttachment(
     withPolling: DeleteInterconnectAttachmentRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+  ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
-      in
-      guard op.done else {
-        return .init(done: false, result: nil)
-      }
-
-      switch op.result {
-      case .response:
-        return .init(done: true, result: .success(()))
-      case .error(let status):
-        guard let statusUnwrapped = status else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but error value was missing")
-            ))
-        }
-        let error = GoogleCloudGax.RequestError.service(
-          GoogleCloudGax.ServiceError(
-            code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-            message: statusUnwrapped.message))
-        return .init(done: true, result: .failure(error))
-      case .none:
-        return .init(
-          done: true,
-          result: .failure(
-            GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-      }
+      (op: GoogleLongRunning.Operation) throws
+        -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
+      return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteInterconnectAttachment(request: withPolling, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -759,40 +552,7 @@ public class EdgeNetworkClient: Clients.EdgeNetworkProtocol {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Router>.State in
-      guard op.done else {
-        return .init(done: false, result: nil)
-      }
-
-      switch op.result {
-      case .response(let anyValue):
-        guard let anyValueUnwrapped = anyValue else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding(
-                "Operation completed but response value was missing")))
-        }
-        let response = try Router(fromAny: anyValueUnwrapped)
-        return .init(done: true, result: .success(response))
-      case .error(let status):
-        guard let statusUnwrapped = status else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but error value was missing")
-            ))
-        }
-        let error = GoogleCloudGax.RequestError.service(
-          GoogleCloudGax.ServiceError(
-            code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-            message: statusUnwrapped.message))
-        return .init(done: true, result: .failure(error))
-      case .none:
-        return .init(
-          done: true,
-          result: .failure(
-            GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-      }
+      return try op._extractStatus(Router.self)
     }
     let rawOp = try await self.createRouter(request: withPolling, options: options)
     let initialState = try extractStatus(rawOp)
@@ -827,40 +587,7 @@ public class EdgeNetworkClient: Clients.EdgeNetworkProtocol {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Router>.State in
-      guard op.done else {
-        return .init(done: false, result: nil)
-      }
-
-      switch op.result {
-      case .response(let anyValue):
-        guard let anyValueUnwrapped = anyValue else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding(
-                "Operation completed but response value was missing")))
-        }
-        let response = try Router(fromAny: anyValueUnwrapped)
-        return .init(done: true, result: .success(response))
-      case .error(let status):
-        guard let statusUnwrapped = status else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but error value was missing")
-            ))
-        }
-        let error = GoogleCloudGax.RequestError.service(
-          GoogleCloudGax.ServiceError(
-            code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-            message: statusUnwrapped.message))
-        return .init(done: true, result: .failure(error))
-      case .none:
-        return .init(
-          done: true,
-          result: .failure(
-            GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-      }
+      return try op._extractStatus(Router.self)
     }
     let rawOp = try await self.updateRouter(request: withPolling, options: options)
     let initialState = try extractStatus(rawOp)
@@ -891,40 +618,15 @@ public class EdgeNetworkClient: Clients.EdgeNetworkProtocol {
   /// @Snippet(path: "EdgeNetwork_DeleteRouter")
   public func deleteRouter(
     withPolling: DeleteRouterRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+  ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
-      in
-      guard op.done else {
-        return .init(done: false, result: nil)
-      }
-
-      switch op.result {
-      case .response:
-        return .init(done: true, result: .success(()))
-      case .error(let status):
-        guard let statusUnwrapped = status else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but error value was missing")
-            ))
-        }
-        let error = GoogleCloudGax.RequestError.service(
-          GoogleCloudGax.ServiceError(
-            code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-            message: statusUnwrapped.message))
-        return .init(done: true, result: .failure(error))
-      case .none:
-        return .init(
-          done: true,
-          result: .failure(
-            GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-      }
+      (op: GoogleLongRunning.Operation) throws
+        -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
+      return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteRouter(request: withPolling, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -1125,12 +827,12 @@ extension Clients {
 
     /// See `EdgeNetworkClient.deleteNetwork`.
     func deleteNetwork(withPolling: DeleteNetworkRequest) async throws -> any GoogleCloudGax
-      .PollableOperation<Void>
+      .PollableOperation<Swift.Void>
 
     /// See `EdgeNetworkClient.deleteNetwork`.
     func deleteNetwork(
       name: Swift.String,
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
     /// See `EdgeNetworkClient.listSubnets`.
     func listSubnets(request: ListSubnetsRequest) async throws
@@ -1186,12 +888,12 @@ extension Clients {
 
     /// See `EdgeNetworkClient.deleteSubnet`.
     func deleteSubnet(withPolling: DeleteSubnetRequest) async throws -> any GoogleCloudGax
-      .PollableOperation<Void>
+      .PollableOperation<Swift.Void>
 
     /// See `EdgeNetworkClient.deleteSubnet`.
     func deleteSubnet(
       name: Swift.String,
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
     /// See `EdgeNetworkClient.listInterconnects`.
     func listInterconnects(request: ListInterconnectsRequest) async throws
@@ -1269,12 +971,12 @@ extension Clients {
 
     /// See `EdgeNetworkClient.deleteInterconnectAttachment`.
     func deleteInterconnectAttachment(withPolling: DeleteInterconnectAttachmentRequest) async throws
-      -> any GoogleCloudGax.PollableOperation<Void>
+      -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
     /// See `EdgeNetworkClient.deleteInterconnectAttachment`.
     func deleteInterconnectAttachment(
       name: Swift.String,
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
     /// See `EdgeNetworkClient.listRouters`.
     func listRouters(request: ListRoutersRequest) async throws
@@ -1339,12 +1041,12 @@ extension Clients {
 
     /// See `EdgeNetworkClient.deleteRouter`.
     func deleteRouter(withPolling: DeleteRouterRequest) async throws -> any GoogleCloudGax
-      .PollableOperation<Void>
+      .PollableOperation<Swift.Void>
 
     /// See `EdgeNetworkClient.deleteRouter`.
     func deleteRouter(
       name: Swift.String,
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
     /// See `EdgeNetworkClient.listLocations`.
     func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
@@ -1451,7 +1153,7 @@ extension Clients {
     /// See `EdgeNetworkClient.deleteNetwork`.
     func deleteNetwork(
       withPolling: DeleteNetworkRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
     /// See `EdgeNetworkClient.listSubnets`.
     func listSubnets(
@@ -1496,7 +1198,7 @@ extension Clients {
     /// See `EdgeNetworkClient.deleteSubnet`.
     func deleteSubnet(
       withPolling: DeleteSubnetRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
     /// See `EdgeNetworkClient.listInterconnects`.
     func listInterconnects(
@@ -1551,7 +1253,7 @@ extension Clients {
     /// See `EdgeNetworkClient.deleteInterconnectAttachment`.
     func deleteInterconnectAttachment(
       withPolling: DeleteInterconnectAttachmentRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
     /// See `EdgeNetworkClient.listRouters`.
     func listRouters(
@@ -1601,7 +1303,7 @@ extension Clients {
     /// See `EdgeNetworkClient.deleteRouter`.
     func deleteRouter(
       withPolling: DeleteRouterRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
     /// See `EdgeNetworkClient.listLocations`.
     func listLocations(
@@ -1852,15 +1554,15 @@ extension Clients.EdgeNetworkProtocol {
   }
 
   public func deleteNetwork(withPolling: DeleteNetworkRequest) async throws -> any GoogleCloudGax
-    .PollableOperation<Void>
+    .PollableOperation<Swift.Void>
   {
     try await self.deleteNetwork(withPolling: withPolling, options: .init())
   }
 
   public func deleteNetwork(
     withPolling: DeleteNetworkRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
-    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+  ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
+    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleCloudGax.RequestError.unimplemented
     }
     return GoogleCloudGax._PollableOperationImpl(
@@ -1869,7 +1571,7 @@ extension Clients.EdgeNetworkProtocol {
 
   public func deleteNetwork(
     name: Swift.String,
-  ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+  ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
     let request = DeleteNetworkRequest().with {
       $0.name = name
     }
@@ -2022,15 +1724,15 @@ extension Clients.EdgeNetworkProtocol {
   }
 
   public func deleteSubnet(withPolling: DeleteSubnetRequest) async throws -> any GoogleCloudGax
-    .PollableOperation<Void>
+    .PollableOperation<Swift.Void>
   {
     try await self.deleteSubnet(withPolling: withPolling, options: .init())
   }
 
   public func deleteSubnet(
     withPolling: DeleteSubnetRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
-    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+  ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
+    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleCloudGax.RequestError.unimplemented
     }
     return GoogleCloudGax._PollableOperationImpl(
@@ -2039,7 +1741,7 @@ extension Clients.EdgeNetworkProtocol {
 
   public func deleteSubnet(
     name: Swift.String,
-  ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+  ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
     let request = DeleteSubnetRequest().with {
       $0.name = name
     }
@@ -2239,15 +1941,15 @@ extension Clients.EdgeNetworkProtocol {
   }
 
   public func deleteInterconnectAttachment(withPolling: DeleteInterconnectAttachmentRequest)
-    async throws -> any GoogleCloudGax.PollableOperation<Void>
+    async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
   {
     try await self.deleteInterconnectAttachment(withPolling: withPolling, options: .init())
   }
 
   public func deleteInterconnectAttachment(
     withPolling: DeleteInterconnectAttachmentRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
-    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+  ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
+    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleCloudGax.RequestError.unimplemented
     }
     return GoogleCloudGax._PollableOperationImpl(
@@ -2256,7 +1958,7 @@ extension Clients.EdgeNetworkProtocol {
 
   public func deleteInterconnectAttachment(
     name: Swift.String,
-  ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+  ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
     let request = DeleteInterconnectAttachmentRequest().with {
       $0.name = name
     }
@@ -2430,15 +2132,15 @@ extension Clients.EdgeNetworkProtocol {
   }
 
   public func deleteRouter(withPolling: DeleteRouterRequest) async throws -> any GoogleCloudGax
-    .PollableOperation<Void>
+    .PollableOperation<Swift.Void>
   {
     try await self.deleteRouter(withPolling: withPolling, options: .init())
   }
 
   public func deleteRouter(
     withPolling: DeleteRouterRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
-    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+  ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
+    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleCloudGax.RequestError.unimplemented
     }
     return GoogleCloudGax._PollableOperationImpl(
@@ -2447,7 +2149,7 @@ extension Clients.EdgeNetworkProtocol {
 
   public func deleteRouter(
     name: Swift.String,
-  ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+  ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
     let request = DeleteRouterRequest().with {
       $0.name = name
     }

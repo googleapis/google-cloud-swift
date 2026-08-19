@@ -178,40 +178,7 @@ public class ProductServiceClient: Clients.ProductServiceProtocol {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<PurgeProductsResponse>.State in
-      guard op.done else {
-        return .init(done: false, result: nil)
-      }
-
-      switch op.result {
-      case .response(let anyValue):
-        guard let anyValueUnwrapped = anyValue else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding(
-                "Operation completed but response value was missing")))
-        }
-        let response = try PurgeProductsResponse(fromAny: anyValueUnwrapped)
-        return .init(done: true, result: .success(response))
-      case .error(let status):
-        guard let statusUnwrapped = status else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but error value was missing")
-            ))
-        }
-        let error = GoogleCloudGax.RequestError.service(
-          GoogleCloudGax.ServiceError(
-            code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-            message: statusUnwrapped.message))
-        return .init(done: true, result: .failure(error))
-      case .none:
-        return .init(
-          done: true,
-          result: .failure(
-            GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-      }
+      return try op._extractStatus(PurgeProductsResponse.self)
     }
     let rawOp = try await self.purgeProducts(request: withPolling, options: options)
     let initialState = try extractStatus(rawOp)
@@ -263,40 +230,7 @@ public class ProductServiceClient: Clients.ProductServiceProtocol {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<ImportProductsResponse>.State in
-      guard op.done else {
-        return .init(done: false, result: nil)
-      }
-
-      switch op.result {
-      case .response(let anyValue):
-        guard let anyValueUnwrapped = anyValue else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding(
-                "Operation completed but response value was missing")))
-        }
-        let response = try ImportProductsResponse(fromAny: anyValueUnwrapped)
-        return .init(done: true, result: .success(response))
-      case .error(let status):
-        guard let statusUnwrapped = status else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but error value was missing")
-            ))
-        }
-        let error = GoogleCloudGax.RequestError.service(
-          GoogleCloudGax.ServiceError(
-            code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-            message: statusUnwrapped.message))
-        return .init(done: true, result: .failure(error))
-      case .none:
-        return .init(
-          done: true,
-          result: .failure(
-            GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-      }
+      return try op._extractStatus(ImportProductsResponse.self)
     }
     let rawOp = try await self.importProducts(request: withPolling, options: options)
     let initialState = try extractStatus(rawOp)
@@ -454,40 +388,7 @@ public class ProductServiceClient: Clients.ProductServiceProtocol {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<SetInventoryResponse>.State in
-      guard op.done else {
-        return .init(done: false, result: nil)
-      }
-
-      switch op.result {
-      case .response(let anyValue):
-        guard let anyValueUnwrapped = anyValue else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding(
-                "Operation completed but response value was missing")))
-        }
-        let response = try SetInventoryResponse(fromAny: anyValueUnwrapped)
-        return .init(done: true, result: .success(response))
-      case .error(let status):
-        guard let statusUnwrapped = status else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but error value was missing")
-            ))
-        }
-        let error = GoogleCloudGax.RequestError.service(
-          GoogleCloudGax.ServiceError(
-            code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-            message: statusUnwrapped.message))
-        return .init(done: true, result: .failure(error))
-      case .none:
-        return .init(
-          done: true,
-          result: .failure(
-            GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-      }
+      return try op._extractStatus(SetInventoryResponse.self)
     }
     let rawOp = try await self.setInventory(request: withPolling, options: options)
     let initialState = try extractStatus(rawOp)
@@ -599,40 +500,7 @@ public class ProductServiceClient: Clients.ProductServiceProtocol {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<AddFulfillmentPlacesResponse>.State in
-      guard op.done else {
-        return .init(done: false, result: nil)
-      }
-
-      switch op.result {
-      case .response(let anyValue):
-        guard let anyValueUnwrapped = anyValue else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding(
-                "Operation completed but response value was missing")))
-        }
-        let response = try AddFulfillmentPlacesResponse(fromAny: anyValueUnwrapped)
-        return .init(done: true, result: .success(response))
-      case .error(let status):
-        guard let statusUnwrapped = status else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but error value was missing")
-            ))
-        }
-        let error = GoogleCloudGax.RequestError.service(
-          GoogleCloudGax.ServiceError(
-            code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-            message: statusUnwrapped.message))
-        return .init(done: true, result: .failure(error))
-      case .none:
-        return .init(
-          done: true,
-          result: .failure(
-            GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-      }
+      return try op._extractStatus(AddFulfillmentPlacesResponse.self)
     }
     let rawOp = try await self.addFulfillmentPlaces(request: withPolling, options: options)
     let initialState = try extractStatus(rawOp)
@@ -745,40 +613,7 @@ public class ProductServiceClient: Clients.ProductServiceProtocol {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<RemoveFulfillmentPlacesResponse>.State in
-      guard op.done else {
-        return .init(done: false, result: nil)
-      }
-
-      switch op.result {
-      case .response(let anyValue):
-        guard let anyValueUnwrapped = anyValue else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding(
-                "Operation completed but response value was missing")))
-        }
-        let response = try RemoveFulfillmentPlacesResponse(fromAny: anyValueUnwrapped)
-        return .init(done: true, result: .success(response))
-      case .error(let status):
-        guard let statusUnwrapped = status else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but error value was missing")
-            ))
-        }
-        let error = GoogleCloudGax.RequestError.service(
-          GoogleCloudGax.ServiceError(
-            code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-            message: statusUnwrapped.message))
-        return .init(done: true, result: .failure(error))
-      case .none:
-        return .init(
-          done: true,
-          result: .failure(
-            GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-      }
+      return try op._extractStatus(RemoveFulfillmentPlacesResponse.self)
     }
     let rawOp = try await self.removeFulfillmentPlaces(request: withPolling, options: options)
     let initialState = try extractStatus(rawOp)
@@ -885,40 +720,7 @@ public class ProductServiceClient: Clients.ProductServiceProtocol {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<AddLocalInventoriesResponse>.State in
-      guard op.done else {
-        return .init(done: false, result: nil)
-      }
-
-      switch op.result {
-      case .response(let anyValue):
-        guard let anyValueUnwrapped = anyValue else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding(
-                "Operation completed but response value was missing")))
-        }
-        let response = try AddLocalInventoriesResponse(fromAny: anyValueUnwrapped)
-        return .init(done: true, result: .success(response))
-      case .error(let status):
-        guard let statusUnwrapped = status else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but error value was missing")
-            ))
-        }
-        let error = GoogleCloudGax.RequestError.service(
-          GoogleCloudGax.ServiceError(
-            code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-            message: statusUnwrapped.message))
-        return .init(done: true, result: .failure(error))
-      case .none:
-        return .init(
-          done: true,
-          result: .failure(
-            GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-      }
+      return try op._extractStatus(AddLocalInventoriesResponse.self)
     }
     let rawOp = try await self.addLocalInventories(request: withPolling, options: options)
     let initialState = try extractStatus(rawOp)
@@ -1020,40 +822,7 @@ public class ProductServiceClient: Clients.ProductServiceProtocol {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<RemoveLocalInventoriesResponse>.State in
-      guard op.done else {
-        return .init(done: false, result: nil)
-      }
-
-      switch op.result {
-      case .response(let anyValue):
-        guard let anyValueUnwrapped = anyValue else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding(
-                "Operation completed but response value was missing")))
-        }
-        let response = try RemoveLocalInventoriesResponse(fromAny: anyValueUnwrapped)
-        return .init(done: true, result: .success(response))
-      case .error(let status):
-        guard let statusUnwrapped = status else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but error value was missing")
-            ))
-        }
-        let error = GoogleCloudGax.RequestError.service(
-          GoogleCloudGax.ServiceError(
-            code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-            message: statusUnwrapped.message))
-        return .init(done: true, result: .failure(error))
-      case .none:
-        return .init(
-          done: true,
-          result: .failure(
-            GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-      }
+      return try op._extractStatus(RemoveLocalInventoriesResponse.self)
     }
     let rawOp = try await self.removeLocalInventories(request: withPolling, options: options)
     let initialState = try extractStatus(rawOp)

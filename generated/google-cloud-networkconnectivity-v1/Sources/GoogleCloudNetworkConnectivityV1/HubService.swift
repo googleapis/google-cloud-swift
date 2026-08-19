@@ -98,40 +98,7 @@ public class HubServiceClient: Clients.HubServiceProtocol {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Hub>.State
       in
-      guard op.done else {
-        return .init(done: false, result: nil)
-      }
-
-      switch op.result {
-      case .response(let anyValue):
-        guard let anyValueUnwrapped = anyValue else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding(
-                "Operation completed but response value was missing")))
-        }
-        let response = try Hub(fromAny: anyValueUnwrapped)
-        return .init(done: true, result: .success(response))
-      case .error(let status):
-        guard let statusUnwrapped = status else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but error value was missing")
-            ))
-        }
-        let error = GoogleCloudGax.RequestError.service(
-          GoogleCloudGax.ServiceError(
-            code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-            message: statusUnwrapped.message))
-        return .init(done: true, result: .failure(error))
-      case .none:
-        return .init(
-          done: true,
-          result: .failure(
-            GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-      }
+      return try op._extractStatus(Hub.self)
     }
     let rawOp = try await self.createHub(request: withPolling, options: options)
     let initialState = try extractStatus(rawOp)
@@ -168,40 +135,7 @@ public class HubServiceClient: Clients.HubServiceProtocol {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Hub>.State
       in
-      guard op.done else {
-        return .init(done: false, result: nil)
-      }
-
-      switch op.result {
-      case .response(let anyValue):
-        guard let anyValueUnwrapped = anyValue else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding(
-                "Operation completed but response value was missing")))
-        }
-        let response = try Hub(fromAny: anyValueUnwrapped)
-        return .init(done: true, result: .success(response))
-      case .error(let status):
-        guard let statusUnwrapped = status else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but error value was missing")
-            ))
-        }
-        let error = GoogleCloudGax.RequestError.service(
-          GoogleCloudGax.ServiceError(
-            code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-            message: statusUnwrapped.message))
-        return .init(done: true, result: .failure(error))
-      case .none:
-        return .init(
-          done: true,
-          result: .failure(
-            GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-      }
+      return try op._extractStatus(Hub.self)
     }
     let rawOp = try await self.updateHub(request: withPolling, options: options)
     let initialState = try extractStatus(rawOp)
@@ -232,40 +166,15 @@ public class HubServiceClient: Clients.HubServiceProtocol {
   /// @Snippet(path: "HubService_DeleteHub")
   public func deleteHub(
     withPolling: DeleteHubRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+  ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
-      in
-      guard op.done else {
-        return .init(done: false, result: nil)
-      }
-
-      switch op.result {
-      case .response:
-        return .init(done: true, result: .success(()))
-      case .error(let status):
-        guard let statusUnwrapped = status else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but error value was missing")
-            ))
-        }
-        let error = GoogleCloudGax.RequestError.service(
-          GoogleCloudGax.ServiceError(
-            code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-            message: statusUnwrapped.message))
-        return .init(done: true, result: .failure(error))
-      case .none:
-        return .init(
-          done: true,
-          result: .failure(
-            GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-      }
+      (op: GoogleLongRunning.Operation) throws
+        -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
+      return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteHub(request: withPolling, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -387,40 +296,7 @@ public class HubServiceClient: Clients.HubServiceProtocol {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Spoke>.State
       in
-      guard op.done else {
-        return .init(done: false, result: nil)
-      }
-
-      switch op.result {
-      case .response(let anyValue):
-        guard let anyValueUnwrapped = anyValue else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding(
-                "Operation completed but response value was missing")))
-        }
-        let response = try Spoke(fromAny: anyValueUnwrapped)
-        return .init(done: true, result: .success(response))
-      case .error(let status):
-        guard let statusUnwrapped = status else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but error value was missing")
-            ))
-        }
-        let error = GoogleCloudGax.RequestError.service(
-          GoogleCloudGax.ServiceError(
-            code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-            message: statusUnwrapped.message))
-        return .init(done: true, result: .failure(error))
-      case .none:
-        return .init(
-          done: true,
-          result: .failure(
-            GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-      }
+      return try op._extractStatus(Spoke.self)
     }
     let rawOp = try await self.createSpoke(request: withPolling, options: options)
     let initialState = try extractStatus(rawOp)
@@ -455,40 +331,7 @@ public class HubServiceClient: Clients.HubServiceProtocol {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Spoke>.State
       in
-      guard op.done else {
-        return .init(done: false, result: nil)
-      }
-
-      switch op.result {
-      case .response(let anyValue):
-        guard let anyValueUnwrapped = anyValue else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding(
-                "Operation completed but response value was missing")))
-        }
-        let response = try Spoke(fromAny: anyValueUnwrapped)
-        return .init(done: true, result: .success(response))
-      case .error(let status):
-        guard let statusUnwrapped = status else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but error value was missing")
-            ))
-        }
-        let error = GoogleCloudGax.RequestError.service(
-          GoogleCloudGax.ServiceError(
-            code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-            message: statusUnwrapped.message))
-        return .init(done: true, result: .failure(error))
-      case .none:
-        return .init(
-          done: true,
-          result: .failure(
-            GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-      }
+      return try op._extractStatus(Spoke.self)
     }
     let rawOp = try await self.updateSpoke(request: withPolling, options: options)
     let initialState = try extractStatus(rawOp)
@@ -529,40 +372,7 @@ public class HubServiceClient: Clients.HubServiceProtocol {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<RejectHubSpokeResponse>.State in
-      guard op.done else {
-        return .init(done: false, result: nil)
-      }
-
-      switch op.result {
-      case .response(let anyValue):
-        guard let anyValueUnwrapped = anyValue else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding(
-                "Operation completed but response value was missing")))
-        }
-        let response = try RejectHubSpokeResponse(fromAny: anyValueUnwrapped)
-        return .init(done: true, result: .success(response))
-      case .error(let status):
-        guard let statusUnwrapped = status else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but error value was missing")
-            ))
-        }
-        let error = GoogleCloudGax.RequestError.service(
-          GoogleCloudGax.ServiceError(
-            code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-            message: statusUnwrapped.message))
-        return .init(done: true, result: .failure(error))
-      case .none:
-        return .init(
-          done: true,
-          result: .failure(
-            GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-      }
+      return try op._extractStatus(RejectHubSpokeResponse.self)
     }
     let rawOp = try await self.rejectHubSpoke(request: withPolling, options: options)
     let initialState = try extractStatus(rawOp)
@@ -600,40 +410,7 @@ public class HubServiceClient: Clients.HubServiceProtocol {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<AcceptHubSpokeResponse>.State in
-      guard op.done else {
-        return .init(done: false, result: nil)
-      }
-
-      switch op.result {
-      case .response(let anyValue):
-        guard let anyValueUnwrapped = anyValue else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding(
-                "Operation completed but response value was missing")))
-        }
-        let response = try AcceptHubSpokeResponse(fromAny: anyValueUnwrapped)
-        return .init(done: true, result: .success(response))
-      case .error(let status):
-        guard let statusUnwrapped = status else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but error value was missing")
-            ))
-        }
-        let error = GoogleCloudGax.RequestError.service(
-          GoogleCloudGax.ServiceError(
-            code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-            message: statusUnwrapped.message))
-        return .init(done: true, result: .failure(error))
-      case .none:
-        return .init(
-          done: true,
-          result: .failure(
-            GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-      }
+      return try op._extractStatus(AcceptHubSpokeResponse.self)
     }
     let rawOp = try await self.acceptHubSpoke(request: withPolling, options: options)
     let initialState = try extractStatus(rawOp)
@@ -669,40 +446,7 @@ public class HubServiceClient: Clients.HubServiceProtocol {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<AcceptSpokeUpdateResponse>.State in
-      guard op.done else {
-        return .init(done: false, result: nil)
-      }
-
-      switch op.result {
-      case .response(let anyValue):
-        guard let anyValueUnwrapped = anyValue else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding(
-                "Operation completed but response value was missing")))
-        }
-        let response = try AcceptSpokeUpdateResponse(fromAny: anyValueUnwrapped)
-        return .init(done: true, result: .success(response))
-      case .error(let status):
-        guard let statusUnwrapped = status else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but error value was missing")
-            ))
-        }
-        let error = GoogleCloudGax.RequestError.service(
-          GoogleCloudGax.ServiceError(
-            code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-            message: statusUnwrapped.message))
-        return .init(done: true, result: .failure(error))
-      case .none:
-        return .init(
-          done: true,
-          result: .failure(
-            GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-      }
+      return try op._extractStatus(AcceptSpokeUpdateResponse.self)
     }
     let rawOp = try await self.acceptSpokeUpdate(request: withPolling, options: options)
     let initialState = try extractStatus(rawOp)
@@ -738,40 +482,7 @@ public class HubServiceClient: Clients.HubServiceProtocol {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<RejectSpokeUpdateResponse>.State in
-      guard op.done else {
-        return .init(done: false, result: nil)
-      }
-
-      switch op.result {
-      case .response(let anyValue):
-        guard let anyValueUnwrapped = anyValue else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding(
-                "Operation completed but response value was missing")))
-        }
-        let response = try RejectSpokeUpdateResponse(fromAny: anyValueUnwrapped)
-        return .init(done: true, result: .success(response))
-      case .error(let status):
-        guard let statusUnwrapped = status else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but error value was missing")
-            ))
-        }
-        let error = GoogleCloudGax.RequestError.service(
-          GoogleCloudGax.ServiceError(
-            code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-            message: statusUnwrapped.message))
-        return .init(done: true, result: .failure(error))
-      case .none:
-        return .init(
-          done: true,
-          result: .failure(
-            GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-      }
+      return try op._extractStatus(RejectSpokeUpdateResponse.self)
     }
     let rawOp = try await self.rejectSpokeUpdate(request: withPolling, options: options)
     let initialState = try extractStatus(rawOp)
@@ -803,40 +514,15 @@ public class HubServiceClient: Clients.HubServiceProtocol {
   /// @Snippet(path: "HubService_DeleteSpoke")
   public func deleteSpoke(
     withPolling: DeleteSpokeRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+  ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
-      in
-      guard op.done else {
-        return .init(done: false, result: nil)
-      }
-
-      switch op.result {
-      case .response:
-        return .init(done: true, result: .success(()))
-      case .error(let status):
-        guard let statusUnwrapped = status else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but error value was missing")
-            ))
-        }
-        let error = GoogleCloudGax.RequestError.service(
-          GoogleCloudGax.ServiceError(
-            code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-            message: statusUnwrapped.message))
-        return .init(done: true, result: .failure(error))
-      case .none:
-        return .init(
-          done: true,
-          result: .failure(
-            GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-      }
+      (op: GoogleLongRunning.Operation) throws
+        -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
+      return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteSpoke(request: withPolling, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -967,40 +653,7 @@ public class HubServiceClient: Clients.HubServiceProtocol {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Group>.State
       in
-      guard op.done else {
-        return .init(done: false, result: nil)
-      }
-
-      switch op.result {
-      case .response(let anyValue):
-        guard let anyValueUnwrapped = anyValue else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding(
-                "Operation completed but response value was missing")))
-        }
-        let response = try Group(fromAny: anyValueUnwrapped)
-        return .init(done: true, result: .success(response))
-      case .error(let status):
-        guard let statusUnwrapped = status else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but error value was missing")
-            ))
-        }
-        let error = GoogleCloudGax.RequestError.service(
-          GoogleCloudGax.ServiceError(
-            code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-            message: statusUnwrapped.message))
-        return .init(done: true, result: .failure(error))
-      case .none:
-        return .init(
-          done: true,
-          result: .failure(
-            GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-      }
+      return try op._extractStatus(Group.self)
     }
     let rawOp = try await self.updateGroup(request: withPolling, options: options)
     let initialState = try extractStatus(rawOp)
@@ -1211,12 +864,12 @@ extension Clients {
 
     /// See `HubServiceClient.deleteHub`.
     func deleteHub(withPolling: DeleteHubRequest) async throws -> any GoogleCloudGax
-      .PollableOperation<Void>
+      .PollableOperation<Swift.Void>
 
     /// See `HubServiceClient.deleteHub`.
     func deleteHub(
       name: Swift.String,
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
     /// See `HubServiceClient.listHubSpokes`.
     func listHubSpokes(request: ListHubSpokesRequest) async throws
@@ -1356,12 +1009,12 @@ extension Clients {
 
     /// See `HubServiceClient.deleteSpoke`.
     func deleteSpoke(withPolling: DeleteSpokeRequest) async throws -> any GoogleCloudGax
-      .PollableOperation<Void>
+      .PollableOperation<Swift.Void>
 
     /// See `HubServiceClient.deleteSpoke`.
     func deleteSpoke(
       name: Swift.String,
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
     /// See `HubServiceClient.getRouteTable`.
     func getRouteTable(request: GetRouteTableRequest) async throws
@@ -1540,7 +1193,7 @@ extension Clients {
     /// See `HubServiceClient.deleteHub`.
     func deleteHub(
       withPolling: DeleteHubRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
     /// See `HubServiceClient.listHubSpokes`.
     func listHubSpokes(
@@ -1645,7 +1298,7 @@ extension Clients {
     /// See `HubServiceClient.deleteSpoke`.
     func deleteSpoke(
       withPolling: DeleteSpokeRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
     /// See `HubServiceClient.getRouteTable`.
     func getRouteTable(
@@ -1899,15 +1552,15 @@ extension Clients.HubServiceProtocol {
   }
 
   public func deleteHub(withPolling: DeleteHubRequest) async throws -> any GoogleCloudGax
-    .PollableOperation<Void>
+    .PollableOperation<Swift.Void>
   {
     try await self.deleteHub(withPolling: withPolling, options: .init())
   }
 
   public func deleteHub(
     withPolling: DeleteHubRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
-    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+  ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
+    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleCloudGax.RequestError.unimplemented
     }
     return GoogleCloudGax._PollableOperationImpl(
@@ -1916,7 +1569,7 @@ extension Clients.HubServiceProtocol {
 
   public func deleteHub(
     name: Swift.String,
-  ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+  ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
     let request = DeleteHubRequest().with {
       $0.name = name
     }
@@ -2308,15 +1961,15 @@ extension Clients.HubServiceProtocol {
   }
 
   public func deleteSpoke(withPolling: DeleteSpokeRequest) async throws -> any GoogleCloudGax
-    .PollableOperation<Void>
+    .PollableOperation<Swift.Void>
   {
     try await self.deleteSpoke(withPolling: withPolling, options: .init())
   }
 
   public func deleteSpoke(
     withPolling: DeleteSpokeRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
-    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+  ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
+    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleCloudGax.RequestError.unimplemented
     }
     return GoogleCloudGax._PollableOperationImpl(
@@ -2325,7 +1978,7 @@ extension Clients.HubServiceProtocol {
 
   public func deleteSpoke(
     name: Swift.String,
-  ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+  ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
     let request = DeleteSpokeRequest().with {
       $0.name = name
     }

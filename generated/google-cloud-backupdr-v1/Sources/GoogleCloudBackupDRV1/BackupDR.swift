@@ -96,40 +96,7 @@ public class BackupDRClient: Clients.BackupDRProtocol {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<ManagementServer>.State in
-      guard op.done else {
-        return .init(done: false, result: nil)
-      }
-
-      switch op.result {
-      case .response(let anyValue):
-        guard let anyValueUnwrapped = anyValue else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding(
-                "Operation completed but response value was missing")))
-        }
-        let response = try ManagementServer(fromAny: anyValueUnwrapped)
-        return .init(done: true, result: .success(response))
-      case .error(let status):
-        guard let statusUnwrapped = status else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but error value was missing")
-            ))
-        }
-        let error = GoogleCloudGax.RequestError.service(
-          GoogleCloudGax.ServiceError(
-            code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-            message: statusUnwrapped.message))
-        return .init(done: true, result: .failure(error))
-      case .none:
-        return .init(
-          done: true,
-          result: .failure(
-            GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-      }
+      return try op._extractStatus(ManagementServer.self)
     }
     let rawOp = try await self.createManagementServer(request: withPolling, options: options)
     let initialState = try extractStatus(rawOp)
@@ -160,40 +127,15 @@ public class BackupDRClient: Clients.BackupDRProtocol {
   /// @Snippet(path: "BackupDR_DeleteManagementServer")
   public func deleteManagementServer(
     withPolling: DeleteManagementServerRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+  ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
-      in
-      guard op.done else {
-        return .init(done: false, result: nil)
-      }
-
-      switch op.result {
-      case .response:
-        return .init(done: true, result: .success(()))
-      case .error(let status):
-        guard let statusUnwrapped = status else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but error value was missing")
-            ))
-        }
-        let error = GoogleCloudGax.RequestError.service(
-          GoogleCloudGax.ServiceError(
-            code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-            message: statusUnwrapped.message))
-        return .init(done: true, result: .failure(error))
-      case .none:
-        return .init(
-          done: true,
-          result: .failure(
-            GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-      }
+      (op: GoogleLongRunning.Operation) throws
+        -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
+      return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteManagementServer(request: withPolling, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -224,40 +166,7 @@ public class BackupDRClient: Clients.BackupDRProtocol {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<BackupVault>.State in
-      guard op.done else {
-        return .init(done: false, result: nil)
-      }
-
-      switch op.result {
-      case .response(let anyValue):
-        guard let anyValueUnwrapped = anyValue else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding(
-                "Operation completed but response value was missing")))
-        }
-        let response = try BackupVault(fromAny: anyValueUnwrapped)
-        return .init(done: true, result: .success(response))
-      case .error(let status):
-        guard let statusUnwrapped = status else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but error value was missing")
-            ))
-        }
-        let error = GoogleCloudGax.RequestError.service(
-          GoogleCloudGax.ServiceError(
-            code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-            message: statusUnwrapped.message))
-        return .init(done: true, result: .failure(error))
-      case .none:
-        return .init(
-          done: true,
-          result: .failure(
-            GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-      }
+      return try op._extractStatus(BackupVault.self)
     }
     let rawOp = try await self.createBackupVault(request: withPolling, options: options)
     let initialState = try extractStatus(rawOp)
@@ -353,40 +262,7 @@ public class BackupDRClient: Clients.BackupDRProtocol {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<BackupVault>.State in
-      guard op.done else {
-        return .init(done: false, result: nil)
-      }
-
-      switch op.result {
-      case .response(let anyValue):
-        guard let anyValueUnwrapped = anyValue else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding(
-                "Operation completed but response value was missing")))
-        }
-        let response = try BackupVault(fromAny: anyValueUnwrapped)
-        return .init(done: true, result: .success(response))
-      case .error(let status):
-        guard let statusUnwrapped = status else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but error value was missing")
-            ))
-        }
-        let error = GoogleCloudGax.RequestError.service(
-          GoogleCloudGax.ServiceError(
-            code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-            message: statusUnwrapped.message))
-        return .init(done: true, result: .failure(error))
-      case .none:
-        return .init(
-          done: true,
-          result: .failure(
-            GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-      }
+      return try op._extractStatus(BackupVault.self)
     }
     let rawOp = try await self.updateBackupVault(request: withPolling, options: options)
     let initialState = try extractStatus(rawOp)
@@ -417,40 +293,15 @@ public class BackupDRClient: Clients.BackupDRProtocol {
   /// @Snippet(path: "BackupDR_DeleteBackupVault")
   public func deleteBackupVault(
     withPolling: DeleteBackupVaultRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+  ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
-      in
-      guard op.done else {
-        return .init(done: false, result: nil)
-      }
-
-      switch op.result {
-      case .response:
-        return .init(done: true, result: .success(()))
-      case .error(let status):
-        guard let statusUnwrapped = status else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but error value was missing")
-            ))
-        }
-        let error = GoogleCloudGax.RequestError.service(
-          GoogleCloudGax.ServiceError(
-            code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-            message: statusUnwrapped.message))
-        return .init(done: true, result: .failure(error))
-      case .none:
-        return .init(
-          done: true,
-          result: .failure(
-            GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-      }
+      (op: GoogleLongRunning.Operation) throws
+        -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
+      return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteBackupVault(request: withPolling, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -514,40 +365,7 @@ public class BackupDRClient: Clients.BackupDRProtocol {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<DataSource>.State in
-      guard op.done else {
-        return .init(done: false, result: nil)
-      }
-
-      switch op.result {
-      case .response(let anyValue):
-        guard let anyValueUnwrapped = anyValue else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding(
-                "Operation completed but response value was missing")))
-        }
-        let response = try DataSource(fromAny: anyValueUnwrapped)
-        return .init(done: true, result: .success(response))
-      case .error(let status):
-        guard let statusUnwrapped = status else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but error value was missing")
-            ))
-        }
-        let error = GoogleCloudGax.RequestError.service(
-          GoogleCloudGax.ServiceError(
-            code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-            message: statusUnwrapped.message))
-        return .init(done: true, result: .failure(error))
-      case .none:
-        return .init(
-          done: true,
-          result: .failure(
-            GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-      }
+      return try op._extractStatus(DataSource.self)
     }
     let rawOp = try await self.updateDataSource(request: withPolling, options: options)
     let initialState = try extractStatus(rawOp)
@@ -640,40 +458,7 @@ public class BackupDRClient: Clients.BackupDRProtocol {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Backup>.State in
-      guard op.done else {
-        return .init(done: false, result: nil)
-      }
-
-      switch op.result {
-      case .response(let anyValue):
-        guard let anyValueUnwrapped = anyValue else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding(
-                "Operation completed but response value was missing")))
-        }
-        let response = try Backup(fromAny: anyValueUnwrapped)
-        return .init(done: true, result: .success(response))
-      case .error(let status):
-        guard let statusUnwrapped = status else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but error value was missing")
-            ))
-        }
-        let error = GoogleCloudGax.RequestError.service(
-          GoogleCloudGax.ServiceError(
-            code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-            message: statusUnwrapped.message))
-        return .init(done: true, result: .failure(error))
-      case .none:
-        return .init(
-          done: true,
-          result: .failure(
-            GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-      }
+      return try op._extractStatus(Backup.self)
     }
     let rawOp = try await self.updateBackup(request: withPolling, options: options)
     let initialState = try extractStatus(rawOp)
@@ -708,40 +493,7 @@ public class BackupDRClient: Clients.BackupDRProtocol {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<Backup>.State in
-      guard op.done else {
-        return .init(done: false, result: nil)
-      }
-
-      switch op.result {
-      case .response(let anyValue):
-        guard let anyValueUnwrapped = anyValue else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding(
-                "Operation completed but response value was missing")))
-        }
-        let response = try Backup(fromAny: anyValueUnwrapped)
-        return .init(done: true, result: .success(response))
-      case .error(let status):
-        guard let statusUnwrapped = status else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but error value was missing")
-            ))
-        }
-        let error = GoogleCloudGax.RequestError.service(
-          GoogleCloudGax.ServiceError(
-            code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-            message: statusUnwrapped.message))
-        return .init(done: true, result: .failure(error))
-      case .none:
-        return .init(
-          done: true,
-          result: .failure(
-            GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-      }
+      return try op._extractStatus(Backup.self)
     }
     let rawOp = try await self.deleteBackup(request: withPolling, options: options)
     let initialState = try extractStatus(rawOp)
@@ -776,40 +528,7 @@ public class BackupDRClient: Clients.BackupDRProtocol {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<RestoreBackupResponse>.State in
-      guard op.done else {
-        return .init(done: false, result: nil)
-      }
-
-      switch op.result {
-      case .response(let anyValue):
-        guard let anyValueUnwrapped = anyValue else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding(
-                "Operation completed but response value was missing")))
-        }
-        let response = try RestoreBackupResponse(fromAny: anyValueUnwrapped)
-        return .init(done: true, result: .success(response))
-      case .error(let status):
-        guard let statusUnwrapped = status else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but error value was missing")
-            ))
-        }
-        let error = GoogleCloudGax.RequestError.service(
-          GoogleCloudGax.ServiceError(
-            code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-            message: statusUnwrapped.message))
-        return .init(done: true, result: .failure(error))
-      case .none:
-        return .init(
-          done: true,
-          result: .failure(
-            GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-      }
+      return try op._extractStatus(RestoreBackupResponse.self)
     }
     let rawOp = try await self.restoreBackup(request: withPolling, options: options)
     let initialState = try extractStatus(rawOp)
@@ -845,40 +564,7 @@ public class BackupDRClient: Clients.BackupDRProtocol {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<BackupPlan>.State in
-      guard op.done else {
-        return .init(done: false, result: nil)
-      }
-
-      switch op.result {
-      case .response(let anyValue):
-        guard let anyValueUnwrapped = anyValue else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding(
-                "Operation completed but response value was missing")))
-        }
-        let response = try BackupPlan(fromAny: anyValueUnwrapped)
-        return .init(done: true, result: .success(response))
-      case .error(let status):
-        guard let statusUnwrapped = status else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but error value was missing")
-            ))
-        }
-        let error = GoogleCloudGax.RequestError.service(
-          GoogleCloudGax.ServiceError(
-            code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-            message: statusUnwrapped.message))
-        return .init(done: true, result: .failure(error))
-      case .none:
-        return .init(
-          done: true,
-          result: .failure(
-            GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-      }
+      return try op._extractStatus(BackupPlan.self)
     }
     let rawOp = try await self.createBackupPlan(request: withPolling, options: options)
     let initialState = try extractStatus(rawOp)
@@ -913,40 +599,7 @@ public class BackupDRClient: Clients.BackupDRProtocol {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<BackupPlan>.State in
-      guard op.done else {
-        return .init(done: false, result: nil)
-      }
-
-      switch op.result {
-      case .response(let anyValue):
-        guard let anyValueUnwrapped = anyValue else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding(
-                "Operation completed but response value was missing")))
-        }
-        let response = try BackupPlan(fromAny: anyValueUnwrapped)
-        return .init(done: true, result: .success(response))
-      case .error(let status):
-        guard let statusUnwrapped = status else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but error value was missing")
-            ))
-        }
-        let error = GoogleCloudGax.RequestError.service(
-          GoogleCloudGax.ServiceError(
-            code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-            message: statusUnwrapped.message))
-        return .init(done: true, result: .failure(error))
-      case .none:
-        return .init(
-          done: true,
-          result: .failure(
-            GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-      }
+      return try op._extractStatus(BackupPlan.self)
     }
     let rawOp = try await self.updateBackupPlan(request: withPolling, options: options)
     let initialState = try extractStatus(rawOp)
@@ -1010,40 +663,15 @@ public class BackupDRClient: Clients.BackupDRProtocol {
   /// @Snippet(path: "BackupDR_DeleteBackupPlan")
   public func deleteBackupPlan(
     withPolling: DeleteBackupPlanRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+  ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
-      in
-      guard op.done else {
-        return .init(done: false, result: nil)
-      }
-
-      switch op.result {
-      case .response:
-        return .init(done: true, result: .success(()))
-      case .error(let status):
-        guard let statusUnwrapped = status else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but error value was missing")
-            ))
-        }
-        let error = GoogleCloudGax.RequestError.service(
-          GoogleCloudGax.ServiceError(
-            code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-            message: statusUnwrapped.message))
-        return .init(done: true, result: .failure(error))
-      case .none:
-        return .init(
-          done: true,
-          result: .failure(
-            GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-      }
+      (op: GoogleLongRunning.Operation) throws
+        -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
+      return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteBackupPlan(request: withPolling, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -1107,40 +735,7 @@ public class BackupDRClient: Clients.BackupDRProtocol {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<BackupPlanAssociation>.State in
-      guard op.done else {
-        return .init(done: false, result: nil)
-      }
-
-      switch op.result {
-      case .response(let anyValue):
-        guard let anyValueUnwrapped = anyValue else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding(
-                "Operation completed but response value was missing")))
-        }
-        let response = try BackupPlanAssociation(fromAny: anyValueUnwrapped)
-        return .init(done: true, result: .success(response))
-      case .error(let status):
-        guard let statusUnwrapped = status else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but error value was missing")
-            ))
-        }
-        let error = GoogleCloudGax.RequestError.service(
-          GoogleCloudGax.ServiceError(
-            code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-            message: statusUnwrapped.message))
-        return .init(done: true, result: .failure(error))
-      case .none:
-        return .init(
-          done: true,
-          result: .failure(
-            GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-      }
+      return try op._extractStatus(BackupPlanAssociation.self)
     }
     let rawOp = try await self.createBackupPlanAssociation(request: withPolling, options: options)
     let initialState = try extractStatus(rawOp)
@@ -1176,40 +771,7 @@ public class BackupDRClient: Clients.BackupDRProtocol {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<BackupPlanAssociation>.State in
-      guard op.done else {
-        return .init(done: false, result: nil)
-      }
-
-      switch op.result {
-      case .response(let anyValue):
-        guard let anyValueUnwrapped = anyValue else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding(
-                "Operation completed but response value was missing")))
-        }
-        let response = try BackupPlanAssociation(fromAny: anyValueUnwrapped)
-        return .init(done: true, result: .success(response))
-      case .error(let status):
-        guard let statusUnwrapped = status else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but error value was missing")
-            ))
-        }
-        let error = GoogleCloudGax.RequestError.service(
-          GoogleCloudGax.ServiceError(
-            code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-            message: statusUnwrapped.message))
-        return .init(done: true, result: .failure(error))
-      case .none:
-        return .init(
-          done: true,
-          result: .failure(
-            GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-      }
+      return try op._extractStatus(BackupPlanAssociation.self)
     }
     let rawOp = try await self.updateBackupPlanAssociation(request: withPolling, options: options)
     let initialState = try extractStatus(rawOp)
@@ -1304,40 +866,15 @@ public class BackupDRClient: Clients.BackupDRProtocol {
   /// @Snippet(path: "BackupDR_DeleteBackupPlanAssociation")
   public func deleteBackupPlanAssociation(
     withPolling: DeleteBackupPlanAssociationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+  ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
-      in
-      guard op.done else {
-        return .init(done: false, result: nil)
-      }
-
-      switch op.result {
-      case .response:
-        return .init(done: true, result: .success(()))
-      case .error(let status):
-        guard let statusUnwrapped = status else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but error value was missing")
-            ))
-        }
-        let error = GoogleCloudGax.RequestError.service(
-          GoogleCloudGax.ServiceError(
-            code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-            message: statusUnwrapped.message))
-        return .init(done: true, result: .failure(error))
-      case .none:
-        return .init(
-          done: true,
-          result: .failure(
-            GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-      }
+      (op: GoogleLongRunning.Operation) throws
+        -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
+      return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteBackupPlanAssociation(request: withPolling, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -1368,40 +905,7 @@ public class BackupDRClient: Clients.BackupDRProtocol {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<BackupPlanAssociation>.State in
-      guard op.done else {
-        return .init(done: false, result: nil)
-      }
-
-      switch op.result {
-      case .response(let anyValue):
-        guard let anyValueUnwrapped = anyValue else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding(
-                "Operation completed but response value was missing")))
-        }
-        let response = try BackupPlanAssociation(fromAny: anyValueUnwrapped)
-        return .init(done: true, result: .success(response))
-      case .error(let status):
-        guard let statusUnwrapped = status else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but error value was missing")
-            ))
-        }
-        let error = GoogleCloudGax.RequestError.service(
-          GoogleCloudGax.ServiceError(
-            code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-            message: statusUnwrapped.message))
-        return .init(done: true, result: .failure(error))
-      case .none:
-        return .init(
-          done: true,
-          result: .failure(
-            GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-      }
+      return try op._extractStatus(BackupPlanAssociation.self)
     }
     let rawOp = try await self.triggerBackup(request: withPolling, options: options)
     let initialState = try extractStatus(rawOp)
@@ -1498,40 +1002,7 @@ public class BackupDRClient: Clients.BackupDRProtocol {
     let extractStatus = {
       (op: GoogleLongRunning.Operation) throws
         -> GoogleCloudGax._PollableOperationImpl<InitializeServiceResponse>.State in
-      guard op.done else {
-        return .init(done: false, result: nil)
-      }
-
-      switch op.result {
-      case .response(let anyValue):
-        guard let anyValueUnwrapped = anyValue else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding(
-                "Operation completed but response value was missing")))
-        }
-        let response = try InitializeServiceResponse(fromAny: anyValueUnwrapped)
-        return .init(done: true, result: .success(response))
-      case .error(let status):
-        guard let statusUnwrapped = status else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but error value was missing")
-            ))
-        }
-        let error = GoogleCloudGax.RequestError.service(
-          GoogleCloudGax.ServiceError(
-            code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-            message: statusUnwrapped.message))
-        return .init(done: true, result: .failure(error))
-      case .none:
-        return .init(
-          done: true,
-          result: .failure(
-            GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-      }
+      return try op._extractStatus(InitializeServiceResponse.self)
     }
     let rawOp = try await self.initializeService(request: withPolling, options: options)
     let initialState = try extractStatus(rawOp)
@@ -1733,12 +1204,12 @@ extension Clients {
 
     /// See `BackupDRClient.deleteManagementServer`.
     func deleteManagementServer(withPolling: DeleteManagementServerRequest) async throws
-      -> any GoogleCloudGax.PollableOperation<Void>
+      -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
     /// See `BackupDRClient.deleteManagementServer`.
     func deleteManagementServer(
       name: Swift.String,
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
     /// See `BackupDRClient.createBackupVault`.
     func createBackupVault(request: CreateBackupVaultRequest) async throws
@@ -1812,12 +1283,12 @@ extension Clients {
 
     /// See `BackupDRClient.deleteBackupVault`.
     func deleteBackupVault(withPolling: DeleteBackupVaultRequest) async throws -> any GoogleCloudGax
-      .PollableOperation<Void>
+      .PollableOperation<Swift.Void>
 
     /// See `BackupDRClient.deleteBackupVault`.
     func deleteBackupVault(
       name: Swift.String,
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
     /// See `BackupDRClient.listDataSources`.
     func listDataSources(request: ListDataSourcesRequest) async throws
@@ -1988,12 +1459,12 @@ extension Clients {
 
     /// See `BackupDRClient.deleteBackupPlan`.
     func deleteBackupPlan(withPolling: DeleteBackupPlanRequest) async throws -> any GoogleCloudGax
-      .PollableOperation<Void>
+      .PollableOperation<Swift.Void>
 
     /// See `BackupDRClient.deleteBackupPlan`.
     func deleteBackupPlan(
       name: Swift.String,
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
     /// See `BackupDRClient.getBackupPlanRevision`.
     func getBackupPlanRevision(request: GetBackupPlanRevisionRequest) async throws
@@ -2092,12 +1563,12 @@ extension Clients {
 
     /// See `BackupDRClient.deleteBackupPlanAssociation`.
     func deleteBackupPlanAssociation(withPolling: DeleteBackupPlanAssociationRequest) async throws
-      -> any GoogleCloudGax.PollableOperation<Void>
+      -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
     /// See `BackupDRClient.deleteBackupPlanAssociation`.
     func deleteBackupPlanAssociation(
       name: Swift.String,
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
     /// See `BackupDRClient.triggerBackup`.
     func triggerBackup(request: TriggerBackupRequest) async throws -> GoogleLongRunning.Operation
@@ -2246,7 +1717,7 @@ extension Clients {
     /// See `BackupDRClient.deleteManagementServer`.
     func deleteManagementServer(
       withPolling: DeleteManagementServerRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
     /// See `BackupDRClient.createBackupVault`.
     func createBackupVault(
@@ -2301,7 +1772,7 @@ extension Clients {
     /// See `BackupDRClient.deleteBackupVault`.
     func deleteBackupVault(
       withPolling: DeleteBackupVaultRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
     /// See `BackupDRClient.listDataSources`.
     func listDataSources(
@@ -2426,7 +1897,7 @@ extension Clients {
     /// See `BackupDRClient.deleteBackupPlan`.
     func deleteBackupPlan(
       withPolling: DeleteBackupPlanRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
     /// See `BackupDRClient.getBackupPlanRevision`.
     func getBackupPlanRevision(
@@ -2498,7 +1969,7 @@ extension Clients {
     /// See `BackupDRClient.deleteBackupPlanAssociation`.
     func deleteBackupPlanAssociation(
       withPolling: DeleteBackupPlanAssociationRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
     /// See `BackupDRClient.triggerBackup`.
     func triggerBackup(
@@ -2713,15 +2184,15 @@ extension Clients.BackupDRProtocol {
   }
 
   public func deleteManagementServer(withPolling: DeleteManagementServerRequest) async throws
-    -> any GoogleCloudGax.PollableOperation<Void>
+    -> any GoogleCloudGax.PollableOperation<Swift.Void>
   {
     try await self.deleteManagementServer(withPolling: withPolling, options: .init())
   }
 
   public func deleteManagementServer(
     withPolling: DeleteManagementServerRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
-    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+  ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
+    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleCloudGax.RequestError.unimplemented
     }
     return GoogleCloudGax._PollableOperationImpl(
@@ -2730,7 +2201,7 @@ extension Clients.BackupDRProtocol {
 
   public func deleteManagementServer(
     name: Swift.String,
-  ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+  ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
     let request = DeleteManagementServerRequest().with {
       $0.name = name
     }
@@ -2925,15 +2396,15 @@ extension Clients.BackupDRProtocol {
   }
 
   public func deleteBackupVault(withPolling: DeleteBackupVaultRequest) async throws
-    -> any GoogleCloudGax.PollableOperation<Void>
+    -> any GoogleCloudGax.PollableOperation<Swift.Void>
   {
     try await self.deleteBackupVault(withPolling: withPolling, options: .init())
   }
 
   public func deleteBackupVault(
     withPolling: DeleteBackupVaultRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
-    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+  ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
+    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleCloudGax.RequestError.unimplemented
     }
     return GoogleCloudGax._PollableOperationImpl(
@@ -2942,7 +2413,7 @@ extension Clients.BackupDRProtocol {
 
   public func deleteBackupVault(
     name: Swift.String,
-  ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+  ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
     let request = DeleteBackupVaultRequest().with {
       $0.name = name
     }
@@ -3405,15 +2876,15 @@ extension Clients.BackupDRProtocol {
   }
 
   public func deleteBackupPlan(withPolling: DeleteBackupPlanRequest) async throws
-    -> any GoogleCloudGax.PollableOperation<Void>
+    -> any GoogleCloudGax.PollableOperation<Swift.Void>
   {
     try await self.deleteBackupPlan(withPolling: withPolling, options: .init())
   }
 
   public func deleteBackupPlan(
     withPolling: DeleteBackupPlanRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
-    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+  ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
+    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleCloudGax.RequestError.unimplemented
     }
     return GoogleCloudGax._PollableOperationImpl(
@@ -3422,7 +2893,7 @@ extension Clients.BackupDRProtocol {
 
   public func deleteBackupPlan(
     name: Swift.String,
-  ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+  ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
     let request = DeleteBackupPlanRequest().with {
       $0.name = name
     }
@@ -3683,15 +3154,15 @@ extension Clients.BackupDRProtocol {
   }
 
   public func deleteBackupPlanAssociation(withPolling: DeleteBackupPlanAssociationRequest)
-    async throws -> any GoogleCloudGax.PollableOperation<Void>
+    async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
   {
     try await self.deleteBackupPlanAssociation(withPolling: withPolling, options: .init())
   }
 
   public func deleteBackupPlanAssociation(
     withPolling: DeleteBackupPlanAssociationRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
-    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+  ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
+    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleCloudGax.RequestError.unimplemented
     }
     return GoogleCloudGax._PollableOperationImpl(
@@ -3700,7 +3171,7 @@ extension Clients.BackupDRProtocol {
 
   public func deleteBackupPlanAssociation(
     name: Swift.String,
-  ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+  ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
     let request = DeleteBackupPlanAssociationRequest().with {
       $0.name = name
     }

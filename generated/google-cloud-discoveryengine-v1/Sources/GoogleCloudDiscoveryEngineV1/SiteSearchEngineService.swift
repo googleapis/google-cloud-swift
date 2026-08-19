@@ -79,40 +79,7 @@
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleCloudGax._PollableOperationImpl<TargetSite>.State in
-        guard op.done else {
-          return .init(done: false, result: nil)
-        }
-
-        switch op.result {
-        case .response(let anyValue):
-          guard let anyValueUnwrapped = anyValue else {
-            return .init(
-              done: true,
-              result: .failure(
-                GoogleCloudGax.RequestError.binding(
-                  "Operation completed but response value was missing")))
-          }
-          let response = try TargetSite(fromAny: anyValueUnwrapped)
-          return .init(done: true, result: .success(response))
-        case .error(let status):
-          guard let statusUnwrapped = status else {
-            return .init(
-              done: true,
-              result: .failure(
-                GoogleCloudGax.RequestError.binding(
-                  "Operation completed but error value was missing")))
-          }
-          let error = GoogleCloudGax.RequestError.service(
-            GoogleCloudGax.ServiceError(
-              code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-              message: statusUnwrapped.message))
-          return .init(done: true, result: .failure(error))
-        case .none:
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-        }
+        return try op._extractStatus(TargetSite.self)
       }
       let rawOp = try await self.createTargetSite(request: withPolling, options: options)
       let initialState = try extractStatus(rawOp)
@@ -153,40 +120,7 @@
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleCloudGax._PollableOperationImpl<BatchCreateTargetSitesResponse>.State in
-        guard op.done else {
-          return .init(done: false, result: nil)
-        }
-
-        switch op.result {
-        case .response(let anyValue):
-          guard let anyValueUnwrapped = anyValue else {
-            return .init(
-              done: true,
-              result: .failure(
-                GoogleCloudGax.RequestError.binding(
-                  "Operation completed but response value was missing")))
-          }
-          let response = try BatchCreateTargetSitesResponse(fromAny: anyValueUnwrapped)
-          return .init(done: true, result: .success(response))
-        case .error(let status):
-          guard let statusUnwrapped = status else {
-            return .init(
-              done: true,
-              result: .failure(
-                GoogleCloudGax.RequestError.binding(
-                  "Operation completed but error value was missing")))
-          }
-          let error = GoogleCloudGax.RequestError.service(
-            GoogleCloudGax.ServiceError(
-              code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-              message: statusUnwrapped.message))
-          return .init(done: true, result: .failure(error))
-        case .none:
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-        }
+        return try op._extractStatus(BatchCreateTargetSitesResponse.self)
       }
       let rawOp = try await self.batchCreateTargetSites(request: withPolling, options: options)
       let initialState = try extractStatus(rawOp)
@@ -238,40 +172,7 @@
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleCloudGax._PollableOperationImpl<TargetSite>.State in
-        guard op.done else {
-          return .init(done: false, result: nil)
-        }
-
-        switch op.result {
-        case .response(let anyValue):
-          guard let anyValueUnwrapped = anyValue else {
-            return .init(
-              done: true,
-              result: .failure(
-                GoogleCloudGax.RequestError.binding(
-                  "Operation completed but response value was missing")))
-          }
-          let response = try TargetSite(fromAny: anyValueUnwrapped)
-          return .init(done: true, result: .success(response))
-        case .error(let status):
-          guard let statusUnwrapped = status else {
-            return .init(
-              done: true,
-              result: .failure(
-                GoogleCloudGax.RequestError.binding(
-                  "Operation completed but error value was missing")))
-          }
-          let error = GoogleCloudGax.RequestError.service(
-            GoogleCloudGax.ServiceError(
-              code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-              message: statusUnwrapped.message))
-          return .init(done: true, result: .failure(error))
-        case .none:
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-        }
+        return try op._extractStatus(TargetSite.self)
       }
       let rawOp = try await self.updateTargetSite(request: withPolling, options: options)
       let initialState = try extractStatus(rawOp)
@@ -306,40 +207,15 @@
     /// @Snippet(path: "SiteSearchEngineService_DeleteTargetSite")
     public func deleteTargetSite(
       withPolling: DeleteTargetSiteRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
-          -> GoogleCloudGax._PollableOperationImpl<Void>.State in
-        guard op.done else {
-          return .init(done: false, result: nil)
-        }
-
-        switch op.result {
-        case .response:
-          return .init(done: true, result: .success(()))
-        case .error(let status):
-          guard let statusUnwrapped = status else {
-            return .init(
-              done: true,
-              result: .failure(
-                GoogleCloudGax.RequestError.binding(
-                  "Operation completed but error value was missing")))
-          }
-          let error = GoogleCloudGax.RequestError.service(
-            GoogleCloudGax.ServiceError(
-              code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-              message: statusUnwrapped.message))
-          return .init(done: true, result: .failure(error))
-        case .none:
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-        }
+          -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
+        return try op._extractStatusEmpty()
       }
       let rawOp = try await self.deleteTargetSite(request: withPolling, options: options)
       let initialState = try extractStatus(rawOp)
-      let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+      let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -403,40 +279,7 @@
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleCloudGax._PollableOperationImpl<Sitemap>.State in
-        guard op.done else {
-          return .init(done: false, result: nil)
-        }
-
-        switch op.result {
-        case .response(let anyValue):
-          guard let anyValueUnwrapped = anyValue else {
-            return .init(
-              done: true,
-              result: .failure(
-                GoogleCloudGax.RequestError.binding(
-                  "Operation completed but response value was missing")))
-          }
-          let response = try Sitemap(fromAny: anyValueUnwrapped)
-          return .init(done: true, result: .success(response))
-        case .error(let status):
-          guard let statusUnwrapped = status else {
-            return .init(
-              done: true,
-              result: .failure(
-                GoogleCloudGax.RequestError.binding(
-                  "Operation completed but error value was missing")))
-          }
-          let error = GoogleCloudGax.RequestError.service(
-            GoogleCloudGax.ServiceError(
-              code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-              message: statusUnwrapped.message))
-          return .init(done: true, result: .failure(error))
-        case .none:
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-        }
+        return try op._extractStatus(Sitemap.self)
       }
       let rawOp = try await self.createSitemap(request: withPolling, options: options)
       let initialState = try extractStatus(rawOp)
@@ -471,40 +314,15 @@
     /// @Snippet(path: "SiteSearchEngineService_DeleteSitemap")
     public func deleteSitemap(
       withPolling: DeleteSitemapRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
-          -> GoogleCloudGax._PollableOperationImpl<Void>.State in
-        guard op.done else {
-          return .init(done: false, result: nil)
-        }
-
-        switch op.result {
-        case .response:
-          return .init(done: true, result: .success(()))
-        case .error(let status):
-          guard let statusUnwrapped = status else {
-            return .init(
-              done: true,
-              result: .failure(
-                GoogleCloudGax.RequestError.binding(
-                  "Operation completed but error value was missing")))
-          }
-          let error = GoogleCloudGax.RequestError.service(
-            GoogleCloudGax.ServiceError(
-              code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-              message: statusUnwrapped.message))
-          return .init(done: true, result: .failure(error))
-        case .none:
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-        }
+          -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
+        return try op._extractStatusEmpty()
       }
       let rawOp = try await self.deleteSitemap(request: withPolling, options: options)
       let initialState = try extractStatus(rawOp)
-      let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+      let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -548,40 +366,7 @@
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleCloudGax._PollableOperationImpl<EnableAdvancedSiteSearchResponse>.State in
-        guard op.done else {
-          return .init(done: false, result: nil)
-        }
-
-        switch op.result {
-        case .response(let anyValue):
-          guard let anyValueUnwrapped = anyValue else {
-            return .init(
-              done: true,
-              result: .failure(
-                GoogleCloudGax.RequestError.binding(
-                  "Operation completed but response value was missing")))
-          }
-          let response = try EnableAdvancedSiteSearchResponse(fromAny: anyValueUnwrapped)
-          return .init(done: true, result: .success(response))
-        case .error(let status):
-          guard let statusUnwrapped = status else {
-            return .init(
-              done: true,
-              result: .failure(
-                GoogleCloudGax.RequestError.binding(
-                  "Operation completed but error value was missing")))
-          }
-          let error = GoogleCloudGax.RequestError.service(
-            GoogleCloudGax.ServiceError(
-              code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-              message: statusUnwrapped.message))
-          return .init(done: true, result: .failure(error))
-        case .none:
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-        }
+        return try op._extractStatus(EnableAdvancedSiteSearchResponse.self)
       }
       let rawOp = try await self.enableAdvancedSiteSearch(request: withPolling, options: options)
       let initialState = try extractStatus(rawOp)
@@ -618,40 +403,7 @@
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleCloudGax._PollableOperationImpl<DisableAdvancedSiteSearchResponse>.State in
-        guard op.done else {
-          return .init(done: false, result: nil)
-        }
-
-        switch op.result {
-        case .response(let anyValue):
-          guard let anyValueUnwrapped = anyValue else {
-            return .init(
-              done: true,
-              result: .failure(
-                GoogleCloudGax.RequestError.binding(
-                  "Operation completed but response value was missing")))
-          }
-          let response = try DisableAdvancedSiteSearchResponse(fromAny: anyValueUnwrapped)
-          return .init(done: true, result: .success(response))
-        case .error(let status):
-          guard let statusUnwrapped = status else {
-            return .init(
-              done: true,
-              result: .failure(
-                GoogleCloudGax.RequestError.binding(
-                  "Operation completed but error value was missing")))
-          }
-          let error = GoogleCloudGax.RequestError.service(
-            GoogleCloudGax.ServiceError(
-              code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-              message: statusUnwrapped.message))
-          return .init(done: true, result: .failure(error))
-        case .none:
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-        }
+        return try op._extractStatus(DisableAdvancedSiteSearchResponse.self)
       }
       let rawOp = try await self.disableAdvancedSiteSearch(request: withPolling, options: options)
       let initialState = try extractStatus(rawOp)
@@ -688,40 +440,7 @@
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleCloudGax._PollableOperationImpl<RecrawlUrisResponse>.State in
-        guard op.done else {
-          return .init(done: false, result: nil)
-        }
-
-        switch op.result {
-        case .response(let anyValue):
-          guard let anyValueUnwrapped = anyValue else {
-            return .init(
-              done: true,
-              result: .failure(
-                GoogleCloudGax.RequestError.binding(
-                  "Operation completed but response value was missing")))
-          }
-          let response = try RecrawlUrisResponse(fromAny: anyValueUnwrapped)
-          return .init(done: true, result: .success(response))
-        case .error(let status):
-          guard let statusUnwrapped = status else {
-            return .init(
-              done: true,
-              result: .failure(
-                GoogleCloudGax.RequestError.binding(
-                  "Operation completed but error value was missing")))
-          }
-          let error = GoogleCloudGax.RequestError.service(
-            GoogleCloudGax.ServiceError(
-              code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-              message: statusUnwrapped.message))
-          return .init(done: true, result: .failure(error))
-        case .none:
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-        }
+        return try op._extractStatus(RecrawlUrisResponse.self)
       }
       let rawOp = try await self.recrawlUris(request: withPolling, options: options)
       let initialState = try extractStatus(rawOp)
@@ -761,40 +480,7 @@
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleCloudGax._PollableOperationImpl<BatchVerifyTargetSitesResponse>.State in
-        guard op.done else {
-          return .init(done: false, result: nil)
-        }
-
-        switch op.result {
-        case .response(let anyValue):
-          guard let anyValueUnwrapped = anyValue else {
-            return .init(
-              done: true,
-              result: .failure(
-                GoogleCloudGax.RequestError.binding(
-                  "Operation completed but response value was missing")))
-          }
-          let response = try BatchVerifyTargetSitesResponse(fromAny: anyValueUnwrapped)
-          return .init(done: true, result: .success(response))
-        case .error(let status):
-          guard let statusUnwrapped = status else {
-            return .init(
-              done: true,
-              result: .failure(
-                GoogleCloudGax.RequestError.binding(
-                  "Operation completed but error value was missing")))
-          }
-          let error = GoogleCloudGax.RequestError.service(
-            GoogleCloudGax.ServiceError(
-              code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-              message: statusUnwrapped.message))
-          return .init(done: true, result: .failure(error))
-        case .none:
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-        }
+        return try op._extractStatus(BatchVerifyTargetSitesResponse.self)
       }
       let rawOp = try await self.batchVerifyTargetSites(request: withPolling, options: options)
       let initialState = try extractStatus(rawOp)
@@ -959,12 +645,12 @@
 
       /// See `SiteSearchEngineServiceClient.deleteTargetSite`.
       func deleteTargetSite(withPolling: DeleteTargetSiteRequest) async throws -> any GoogleCloudGax
-        .PollableOperation<Void>
+        .PollableOperation<Swift.Void>
 
       /// See `SiteSearchEngineServiceClient.deleteTargetSite`.
       func deleteTargetSite(
         name: Swift.String,
-      ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+      ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
       /// See `SiteSearchEngineServiceClient.listTargetSites`.
       func listTargetSites(request: ListTargetSitesRequest) async throws
@@ -998,12 +684,12 @@
 
       /// See `SiteSearchEngineServiceClient.deleteSitemap`.
       func deleteSitemap(withPolling: DeleteSitemapRequest) async throws -> any GoogleCloudGax
-        .PollableOperation<Void>
+        .PollableOperation<Swift.Void>
 
       /// See `SiteSearchEngineServiceClient.deleteSitemap`.
       func deleteSitemap(
         name: Swift.String,
-      ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+      ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
       /// See `SiteSearchEngineServiceClient.fetchSitemaps`.
       func fetchSitemaps(request: FetchSitemapsRequest) async throws
@@ -1125,7 +811,7 @@
       /// See `SiteSearchEngineServiceClient.deleteTargetSite`.
       func deleteTargetSite(
         withPolling: DeleteTargetSiteRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+      ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
       /// See `SiteSearchEngineServiceClient.listTargetSites`.
       func listTargetSites(
@@ -1155,7 +841,7 @@
       /// See `SiteSearchEngineServiceClient.deleteSitemap`.
       func deleteSitemap(
         withPolling: DeleteSitemapRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+      ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
       /// See `SiteSearchEngineServiceClient.fetchSitemaps`.
       func fetchSitemaps(
@@ -1392,15 +1078,15 @@
     }
 
     public func deleteTargetSite(withPolling: DeleteTargetSiteRequest) async throws
-      -> any GoogleCloudGax.PollableOperation<Void>
+      -> any GoogleCloudGax.PollableOperation<Swift.Void>
     {
       try await self.deleteTargetSite(withPolling: withPolling, options: .init())
     }
 
     public func deleteTargetSite(
       withPolling: DeleteTargetSiteRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
-      let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
+      let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleCloudGax.RequestError.unimplemented
       }
       return GoogleCloudGax._PollableOperationImpl(
@@ -1409,7 +1095,7 @@
 
     public func deleteTargetSite(
       name: Swift.String,
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
       let request = DeleteTargetSiteRequest().with {
         $0.name = name
       }
@@ -1506,15 +1192,15 @@
     }
 
     public func deleteSitemap(withPolling: DeleteSitemapRequest) async throws -> any GoogleCloudGax
-      .PollableOperation<Void>
+      .PollableOperation<Swift.Void>
     {
       try await self.deleteSitemap(withPolling: withPolling, options: .init())
     }
 
     public func deleteSitemap(
       withPolling: DeleteSitemapRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
-      let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
+      let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleCloudGax.RequestError.unimplemented
       }
       return GoogleCloudGax._PollableOperationImpl(
@@ -1523,7 +1209,7 @@
 
     public func deleteSitemap(
       name: Swift.String,
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
       let request = DeleteSitemapRequest().with {
         $0.name = name
       }

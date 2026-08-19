@@ -106,40 +106,15 @@
     /// @Snippet(path: "PipelineService_DeleteTrainingPipeline")
     public func deleteTrainingPipeline(
       withPolling: DeleteTrainingPipelineRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
-          -> GoogleCloudGax._PollableOperationImpl<Void>.State in
-        guard op.done else {
-          return .init(done: false, result: nil)
-        }
-
-        switch op.result {
-        case .response:
-          return .init(done: true, result: .success(()))
-        case .error(let status):
-          guard let statusUnwrapped = status else {
-            return .init(
-              done: true,
-              result: .failure(
-                GoogleCloudGax.RequestError.binding(
-                  "Operation completed but error value was missing")))
-          }
-          let error = GoogleCloudGax.RequestError.service(
-            GoogleCloudGax.ServiceError(
-              code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-              message: statusUnwrapped.message))
-          return .init(done: true, result: .failure(error))
-        case .none:
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-        }
+          -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
+        return try op._extractStatusEmpty()
       }
       let rawOp = try await self.deleteTrainingPipeline(request: withPolling, options: options)
       let initialState = try extractStatus(rawOp)
-      let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+      let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -235,40 +210,15 @@
     /// @Snippet(path: "PipelineService_DeletePipelineJob")
     public func deletePipelineJob(
       withPolling: DeletePipelineJobRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
-          -> GoogleCloudGax._PollableOperationImpl<Void>.State in
-        guard op.done else {
-          return .init(done: false, result: nil)
-        }
-
-        switch op.result {
-        case .response:
-          return .init(done: true, result: .success(()))
-        case .error(let status):
-          guard let statusUnwrapped = status else {
-            return .init(
-              done: true,
-              result: .failure(
-                GoogleCloudGax.RequestError.binding(
-                  "Operation completed but error value was missing")))
-          }
-          let error = GoogleCloudGax.RequestError.service(
-            GoogleCloudGax.ServiceError(
-              code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-              message: statusUnwrapped.message))
-          return .init(done: true, result: .failure(error))
-        case .none:
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-        }
+          -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
+        return try op._extractStatusEmpty()
       }
       let rawOp = try await self.deletePipelineJob(request: withPolling, options: options)
       let initialState = try extractStatus(rawOp)
-      let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+      let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -303,40 +253,7 @@
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleCloudGax._PollableOperationImpl<BatchDeletePipelineJobsResponse>.State in
-        guard op.done else {
-          return .init(done: false, result: nil)
-        }
-
-        switch op.result {
-        case .response(let anyValue):
-          guard let anyValueUnwrapped = anyValue else {
-            return .init(
-              done: true,
-              result: .failure(
-                GoogleCloudGax.RequestError.binding(
-                  "Operation completed but response value was missing")))
-          }
-          let response = try BatchDeletePipelineJobsResponse(fromAny: anyValueUnwrapped)
-          return .init(done: true, result: .success(response))
-        case .error(let status):
-          guard let statusUnwrapped = status else {
-            return .init(
-              done: true,
-              result: .failure(
-                GoogleCloudGax.RequestError.binding(
-                  "Operation completed but error value was missing")))
-          }
-          let error = GoogleCloudGax.RequestError.service(
-            GoogleCloudGax.ServiceError(
-              code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-              message: statusUnwrapped.message))
-          return .init(done: true, result: .failure(error))
-        case .none:
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-        }
+        return try op._extractStatus(BatchDeletePipelineJobsResponse.self)
       }
       let rawOp = try await self.batchDeletePipelineJobs(request: withPolling, options: options)
       let initialState = try extractStatus(rawOp)
@@ -411,40 +328,7 @@
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleCloudGax._PollableOperationImpl<BatchCancelPipelineJobsResponse>.State in
-        guard op.done else {
-          return .init(done: false, result: nil)
-        }
-
-        switch op.result {
-        case .response(let anyValue):
-          guard let anyValueUnwrapped = anyValue else {
-            return .init(
-              done: true,
-              result: .failure(
-                GoogleCloudGax.RequestError.binding(
-                  "Operation completed but response value was missing")))
-          }
-          let response = try BatchCancelPipelineJobsResponse(fromAny: anyValueUnwrapped)
-          return .init(done: true, result: .success(response))
-        case .error(let status):
-          guard let statusUnwrapped = status else {
-            return .init(
-              done: true,
-              result: .failure(
-                GoogleCloudGax.RequestError.binding(
-                  "Operation completed but error value was missing")))
-          }
-          let error = GoogleCloudGax.RequestError.service(
-            GoogleCloudGax.ServiceError(
-              code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-              message: statusUnwrapped.message))
-          return .init(done: true, result: .failure(error))
-        case .none:
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-        }
+        return try op._extractStatus(BatchCancelPipelineJobsResponse.self)
       }
       let rawOp = try await self.batchCancelPipelineJobs(request: withPolling, options: options)
       let initialState = try extractStatus(rawOp)
@@ -653,12 +537,12 @@
 
       /// See `PipelineServiceClient.deleteTrainingPipeline`.
       func deleteTrainingPipeline(withPolling: DeleteTrainingPipelineRequest) async throws
-        -> any GoogleCloudGax.PollableOperation<Void>
+        -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
       /// See `PipelineServiceClient.deleteTrainingPipeline`.
       func deleteTrainingPipeline(
         name: Swift.String,
-      ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+      ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
       /// See `PipelineServiceClient.cancelTrainingPipeline`.
       func cancelTrainingPipeline(request: CancelTrainingPipelineRequest) async throws
@@ -708,12 +592,12 @@
 
       /// See `PipelineServiceClient.deletePipelineJob`.
       func deletePipelineJob(withPolling: DeletePipelineJobRequest) async throws
-        -> any GoogleCloudGax.PollableOperation<Void>
+        -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
       /// See `PipelineServiceClient.deletePipelineJob`.
       func deletePipelineJob(
         name: Swift.String,
-      ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+      ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
       /// See `PipelineServiceClient.batchDeletePipelineJobs`.
       func batchDeletePipelineJobs(request: BatchDeletePipelineJobsRequest) async throws
@@ -837,7 +721,7 @@
       /// See `PipelineServiceClient.deleteTrainingPipeline`.
       func deleteTrainingPipeline(
         withPolling: DeleteTrainingPipelineRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+      ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
       /// See `PipelineServiceClient.cancelTrainingPipeline`.
       func cancelTrainingPipeline(
@@ -872,7 +756,7 @@
       /// See `PipelineServiceClient.deletePipelineJob`.
       func deletePipelineJob(
         withPolling: DeletePipelineJobRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+      ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
       /// See `PipelineServiceClient.batchDeletePipelineJobs`.
       func batchDeletePipelineJobs(
@@ -1053,15 +937,15 @@
     }
 
     public func deleteTrainingPipeline(withPolling: DeleteTrainingPipelineRequest) async throws
-      -> any GoogleCloudGax.PollableOperation<Void>
+      -> any GoogleCloudGax.PollableOperation<Swift.Void>
     {
       try await self.deleteTrainingPipeline(withPolling: withPolling, options: .init())
     }
 
     public func deleteTrainingPipeline(
       withPolling: DeleteTrainingPipelineRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
-      let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
+      let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleCloudGax.RequestError.unimplemented
       }
       return GoogleCloudGax._PollableOperationImpl(
@@ -1070,7 +954,7 @@
 
     public func deleteTrainingPipeline(
       name: Swift.String,
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
       let request = DeleteTrainingPipelineRequest().with {
         $0.name = name
       }
@@ -1192,15 +1076,15 @@
     }
 
     public func deletePipelineJob(withPolling: DeletePipelineJobRequest) async throws
-      -> any GoogleCloudGax.PollableOperation<Void>
+      -> any GoogleCloudGax.PollableOperation<Swift.Void>
     {
       try await self.deletePipelineJob(withPolling: withPolling, options: .init())
     }
 
     public func deletePipelineJob(
       withPolling: DeletePipelineJobRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
-      let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
+      let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleCloudGax.RequestError.unimplemented
       }
       return GoogleCloudGax._PollableOperationImpl(
@@ -1209,7 +1093,7 @@
 
     public func deletePipelineJob(
       name: Swift.String,
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
       let request = DeletePipelineJobRequest().with {
         $0.name = name
       }

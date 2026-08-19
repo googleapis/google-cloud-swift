@@ -127,40 +127,15 @@ public class WorkflowTemplateServiceClient: Clients.WorkflowTemplateServiceProto
   /// @Snippet(path: "WorkflowTemplateService_InstantiateWorkflowTemplate")
   public func instantiateWorkflowTemplate(
     withPolling: InstantiateWorkflowTemplateRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+  ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
-      in
-      guard op.done else {
-        return .init(done: false, result: nil)
-      }
-
-      switch op.result {
-      case .response:
-        return .init(done: true, result: .success(()))
-      case .error(let status):
-        guard let statusUnwrapped = status else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but error value was missing")
-            ))
-        }
-        let error = GoogleCloudGax.RequestError.service(
-          GoogleCloudGax.ServiceError(
-            code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-            message: statusUnwrapped.message))
-        return .init(done: true, result: .failure(error))
-      case .none:
-        return .init(
-          done: true,
-          result: .failure(
-            GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-      }
+      (op: GoogleLongRunning.Operation) throws
+        -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
+      return try op._extractStatusEmpty()
     }
     let rawOp = try await self.instantiateWorkflowTemplate(request: withPolling, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -249,41 +224,16 @@ public class WorkflowTemplateServiceClient: Clients.WorkflowTemplateServiceProto
   /// @Snippet(path: "WorkflowTemplateService_InstantiateInlineWorkflowTemplate")
   public func instantiateInlineWorkflowTemplate(
     withPolling: InstantiateInlineWorkflowTemplateRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+  ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
-      in
-      guard op.done else {
-        return .init(done: false, result: nil)
-      }
-
-      switch op.result {
-      case .response:
-        return .init(done: true, result: .success(()))
-      case .error(let status):
-        guard let statusUnwrapped = status else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but error value was missing")
-            ))
-        }
-        let error = GoogleCloudGax.RequestError.service(
-          GoogleCloudGax.ServiceError(
-            code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-            message: statusUnwrapped.message))
-        return .init(done: true, result: .failure(error))
-      case .none:
-        return .init(
-          done: true,
-          result: .failure(
-            GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-      }
+      (op: GoogleLongRunning.Operation) throws
+        -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
+      return try op._extractStatusEmpty()
     }
     let rawOp = try await self.instantiateInlineWorkflowTemplate(
       request: withPolling, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -471,18 +421,18 @@ extension Clients {
 
     /// See `WorkflowTemplateServiceClient.instantiateWorkflowTemplate`.
     func instantiateWorkflowTemplate(withPolling: InstantiateWorkflowTemplateRequest) async throws
-      -> any GoogleCloudGax.PollableOperation<Void>
+      -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
     /// See `WorkflowTemplateServiceClient.instantiateWorkflowTemplate`.
     func instantiateWorkflowTemplate(
       name: Swift.String,
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
     /// See `WorkflowTemplateServiceClient.instantiateWorkflowTemplate`.
     func instantiateWorkflowTemplate(
       name: Swift.String,
       parameters: [Swift.String: Swift.String],
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
     /// See `WorkflowTemplateServiceClient.instantiateInlineWorkflowTemplate`.
     func instantiateInlineWorkflowTemplate(request: InstantiateInlineWorkflowTemplateRequest)
@@ -490,13 +440,13 @@ extension Clients {
 
     /// See `WorkflowTemplateServiceClient.instantiateInlineWorkflowTemplate`.
     func instantiateInlineWorkflowTemplate(withPolling: InstantiateInlineWorkflowTemplateRequest)
-      async throws -> any GoogleCloudGax.PollableOperation<Void>
+      async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
     /// See `WorkflowTemplateServiceClient.instantiateInlineWorkflowTemplate`.
     func instantiateInlineWorkflowTemplate(
       parent: Swift.String,
       template: WorkflowTemplate?,
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
     /// See `WorkflowTemplateServiceClient.updateWorkflowTemplate`.
     func updateWorkflowTemplate(request: UpdateWorkflowTemplateRequest) async throws
@@ -588,7 +538,7 @@ extension Clients {
     /// See `WorkflowTemplateServiceClient.instantiateWorkflowTemplate`.
     func instantiateWorkflowTemplate(
       withPolling: InstantiateWorkflowTemplateRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
     /// See `WorkflowTemplateServiceClient.instantiateInlineWorkflowTemplate`.
     func instantiateInlineWorkflowTemplate(
@@ -598,7 +548,7 @@ extension Clients {
     /// See `WorkflowTemplateServiceClient.instantiateInlineWorkflowTemplate`.
     func instantiateInlineWorkflowTemplate(
       withPolling: InstantiateInlineWorkflowTemplateRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
     /// See `WorkflowTemplateServiceClient.updateWorkflowTemplate`.
     func updateWorkflowTemplate(
@@ -716,15 +666,15 @@ extension Clients.WorkflowTemplateServiceProtocol {
   }
 
   public func instantiateWorkflowTemplate(withPolling: InstantiateWorkflowTemplateRequest)
-    async throws -> any GoogleCloudGax.PollableOperation<Void>
+    async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
   {
     try await self.instantiateWorkflowTemplate(withPolling: withPolling, options: .init())
   }
 
   public func instantiateWorkflowTemplate(
     withPolling: InstantiateWorkflowTemplateRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
-    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+  ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
+    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleCloudGax.RequestError.unimplemented
     }
     return GoogleCloudGax._PollableOperationImpl(
@@ -733,7 +683,7 @@ extension Clients.WorkflowTemplateServiceProtocol {
 
   public func instantiateWorkflowTemplate(
     name: Swift.String,
-  ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+  ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
     let request = InstantiateWorkflowTemplateRequest().with {
       $0.name = name
     }
@@ -743,7 +693,7 @@ extension Clients.WorkflowTemplateServiceProtocol {
   public func instantiateWorkflowTemplate(
     name: Swift.String,
     parameters: [Swift.String: Swift.String],
-  ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+  ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
     let request = InstantiateWorkflowTemplateRequest().with {
       $0.name = name
       $0.parameters = parameters
@@ -765,14 +715,14 @@ extension Clients.WorkflowTemplateServiceProtocol {
 
   public func instantiateInlineWorkflowTemplate(
     withPolling: InstantiateInlineWorkflowTemplateRequest
-  ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+  ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
     try await self.instantiateInlineWorkflowTemplate(withPolling: withPolling, options: .init())
   }
 
   public func instantiateInlineWorkflowTemplate(
     withPolling: InstantiateInlineWorkflowTemplateRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
-    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+  ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
+    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleCloudGax.RequestError.unimplemented
     }
     return GoogleCloudGax._PollableOperationImpl(
@@ -782,7 +732,7 @@ extension Clients.WorkflowTemplateServiceProtocol {
   public func instantiateInlineWorkflowTemplate(
     parent: Swift.String,
     template: WorkflowTemplate?,
-  ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+  ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
     let request = InstantiateInlineWorkflowTemplateRequest().with {
       $0.parent = parent
       $0.template = template

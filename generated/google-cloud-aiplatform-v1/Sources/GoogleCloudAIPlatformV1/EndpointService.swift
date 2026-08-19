@@ -64,40 +64,7 @@
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleCloudGax._PollableOperationImpl<Endpoint>.State in
-        guard op.done else {
-          return .init(done: false, result: nil)
-        }
-
-        switch op.result {
-        case .response(let anyValue):
-          guard let anyValueUnwrapped = anyValue else {
-            return .init(
-              done: true,
-              result: .failure(
-                GoogleCloudGax.RequestError.binding(
-                  "Operation completed but response value was missing")))
-          }
-          let response = try Endpoint(fromAny: anyValueUnwrapped)
-          return .init(done: true, result: .success(response))
-        case .error(let status):
-          guard let statusUnwrapped = status else {
-            return .init(
-              done: true,
-              result: .failure(
-                GoogleCloudGax.RequestError.binding(
-                  "Operation completed but error value was missing")))
-          }
-          let error = GoogleCloudGax.RequestError.service(
-            GoogleCloudGax.ServiceError(
-              code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-              message: statusUnwrapped.message))
-          return .init(done: true, result: .failure(error))
-        case .none:
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-        }
+        return try op._extractStatus(Endpoint.self)
       }
       let rawOp = try await self.createEndpoint(request: withPolling, options: options)
       let initialState = try extractStatus(rawOp)
@@ -174,40 +141,7 @@
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleCloudGax._PollableOperationImpl<Endpoint>.State in
-        guard op.done else {
-          return .init(done: false, result: nil)
-        }
-
-        switch op.result {
-        case .response(let anyValue):
-          guard let anyValueUnwrapped = anyValue else {
-            return .init(
-              done: true,
-              result: .failure(
-                GoogleCloudGax.RequestError.binding(
-                  "Operation completed but response value was missing")))
-          }
-          let response = try Endpoint(fromAny: anyValueUnwrapped)
-          return .init(done: true, result: .success(response))
-        case .error(let status):
-          guard let statusUnwrapped = status else {
-            return .init(
-              done: true,
-              result: .failure(
-                GoogleCloudGax.RequestError.binding(
-                  "Operation completed but error value was missing")))
-          }
-          let error = GoogleCloudGax.RequestError.service(
-            GoogleCloudGax.ServiceError(
-              code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-              message: statusUnwrapped.message))
-          return .init(done: true, result: .failure(error))
-        case .none:
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-        }
+        return try op._extractStatus(Endpoint.self)
       }
       let rawOp = try await self.updateEndpointLongRunning(request: withPolling, options: options)
       let initialState = try extractStatus(rawOp)
@@ -238,40 +172,15 @@
     /// @Snippet(path: "EndpointService_DeleteEndpoint")
     public func deleteEndpoint(
       withPolling: DeleteEndpointRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
-          -> GoogleCloudGax._PollableOperationImpl<Void>.State in
-        guard op.done else {
-          return .init(done: false, result: nil)
-        }
-
-        switch op.result {
-        case .response:
-          return .init(done: true, result: .success(()))
-        case .error(let status):
-          guard let statusUnwrapped = status else {
-            return .init(
-              done: true,
-              result: .failure(
-                GoogleCloudGax.RequestError.binding(
-                  "Operation completed but error value was missing")))
-          }
-          let error = GoogleCloudGax.RequestError.service(
-            GoogleCloudGax.ServiceError(
-              code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-              message: statusUnwrapped.message))
-          return .init(done: true, result: .failure(error))
-        case .none:
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-        }
+          -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
+        return try op._extractStatusEmpty()
       }
       let rawOp = try await self.deleteEndpoint(request: withPolling, options: options)
       let initialState = try extractStatus(rawOp)
-      let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+      let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -302,40 +211,7 @@
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleCloudGax._PollableOperationImpl<DeployModelResponse>.State in
-        guard op.done else {
-          return .init(done: false, result: nil)
-        }
-
-        switch op.result {
-        case .response(let anyValue):
-          guard let anyValueUnwrapped = anyValue else {
-            return .init(
-              done: true,
-              result: .failure(
-                GoogleCloudGax.RequestError.binding(
-                  "Operation completed but response value was missing")))
-          }
-          let response = try DeployModelResponse(fromAny: anyValueUnwrapped)
-          return .init(done: true, result: .success(response))
-        case .error(let status):
-          guard let statusUnwrapped = status else {
-            return .init(
-              done: true,
-              result: .failure(
-                GoogleCloudGax.RequestError.binding(
-                  "Operation completed but error value was missing")))
-          }
-          let error = GoogleCloudGax.RequestError.service(
-            GoogleCloudGax.ServiceError(
-              code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-              message: statusUnwrapped.message))
-          return .init(done: true, result: .failure(error))
-        case .none:
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-        }
+        return try op._extractStatus(DeployModelResponse.self)
       }
       let rawOp = try await self.deployModel(request: withPolling, options: options)
       let initialState = try extractStatus(rawOp)
@@ -373,40 +249,7 @@
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleCloudGax._PollableOperationImpl<UndeployModelResponse>.State in
-        guard op.done else {
-          return .init(done: false, result: nil)
-        }
-
-        switch op.result {
-        case .response(let anyValue):
-          guard let anyValueUnwrapped = anyValue else {
-            return .init(
-              done: true,
-              result: .failure(
-                GoogleCloudGax.RequestError.binding(
-                  "Operation completed but response value was missing")))
-          }
-          let response = try UndeployModelResponse(fromAny: anyValueUnwrapped)
-          return .init(done: true, result: .success(response))
-        case .error(let status):
-          guard let statusUnwrapped = status else {
-            return .init(
-              done: true,
-              result: .failure(
-                GoogleCloudGax.RequestError.binding(
-                  "Operation completed but error value was missing")))
-          }
-          let error = GoogleCloudGax.RequestError.service(
-            GoogleCloudGax.ServiceError(
-              code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-              message: statusUnwrapped.message))
-          return .init(done: true, result: .failure(error))
-        case .none:
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-        }
+        return try op._extractStatus(UndeployModelResponse.self)
       }
       let rawOp = try await self.undeployModel(request: withPolling, options: options)
       let initialState = try extractStatus(rawOp)
@@ -448,40 +291,7 @@
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleCloudGax._PollableOperationImpl<MutateDeployedModelResponse>.State in
-        guard op.done else {
-          return .init(done: false, result: nil)
-        }
-
-        switch op.result {
-        case .response(let anyValue):
-          guard let anyValueUnwrapped = anyValue else {
-            return .init(
-              done: true,
-              result: .failure(
-                GoogleCloudGax.RequestError.binding(
-                  "Operation completed but response value was missing")))
-          }
-          let response = try MutateDeployedModelResponse(fromAny: anyValueUnwrapped)
-          return .init(done: true, result: .success(response))
-        case .error(let status):
-          guard let statusUnwrapped = status else {
-            return .init(
-              done: true,
-              result: .failure(
-                GoogleCloudGax.RequestError.binding(
-                  "Operation completed but error value was missing")))
-          }
-          let error = GoogleCloudGax.RequestError.service(
-            GoogleCloudGax.ServiceError(
-              code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-              message: statusUnwrapped.message))
-          return .init(done: true, result: .failure(error))
-        case .none:
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-        }
+        return try op._extractStatus(MutateDeployedModelResponse.self)
       }
       let rawOp = try await self.mutateDeployedModel(request: withPolling, options: options)
       let initialState = try extractStatus(rawOp)
@@ -723,12 +533,12 @@
 
       /// See `EndpointServiceClient.deleteEndpoint`.
       func deleteEndpoint(withPolling: DeleteEndpointRequest) async throws -> any GoogleCloudGax
-        .PollableOperation<Void>
+        .PollableOperation<Swift.Void>
 
       /// See `EndpointServiceClient.deleteEndpoint`.
       func deleteEndpoint(
         name: Swift.String,
-      ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+      ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
       /// See `EndpointServiceClient.deployModel`.
       func deployModel(request: DeployModelRequest) async throws -> GoogleLongRunning.Operation
@@ -879,7 +689,7 @@
       /// See `EndpointServiceClient.deleteEndpoint`.
       func deleteEndpoint(
         withPolling: DeleteEndpointRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+      ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
       /// See `EndpointServiceClient.deployModel`.
       func deployModel(
@@ -1153,15 +963,15 @@
     }
 
     public func deleteEndpoint(withPolling: DeleteEndpointRequest) async throws
-      -> any GoogleCloudGax.PollableOperation<Void>
+      -> any GoogleCloudGax.PollableOperation<Swift.Void>
     {
       try await self.deleteEndpoint(withPolling: withPolling, options: .init())
     }
 
     public func deleteEndpoint(
       withPolling: DeleteEndpointRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
-      let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
+      let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleCloudGax.RequestError.unimplemented
       }
       return GoogleCloudGax._PollableOperationImpl(
@@ -1170,7 +980,7 @@
 
     public func deleteEndpoint(
       name: Swift.String,
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
       let request = DeleteEndpointRequest().with {
         $0.name = name
       }

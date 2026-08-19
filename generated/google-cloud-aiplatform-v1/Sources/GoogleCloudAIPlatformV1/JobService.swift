@@ -103,40 +103,15 @@
     /// @Snippet(path: "JobService_DeleteCustomJob")
     public func deleteCustomJob(
       withPolling: DeleteCustomJobRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
-          -> GoogleCloudGax._PollableOperationImpl<Void>.State in
-        guard op.done else {
-          return .init(done: false, result: nil)
-        }
-
-        switch op.result {
-        case .response:
-          return .init(done: true, result: .success(()))
-        case .error(let status):
-          guard let statusUnwrapped = status else {
-            return .init(
-              done: true,
-              result: .failure(
-                GoogleCloudGax.RequestError.binding(
-                  "Operation completed but error value was missing")))
-          }
-          let error = GoogleCloudGax.RequestError.service(
-            GoogleCloudGax.ServiceError(
-              code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-              message: statusUnwrapped.message))
-          return .init(done: true, result: .failure(error))
-        case .none:
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-        }
+          -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
+        return try op._extractStatusEmpty()
       }
       let rawOp = try await self.deleteCustomJob(request: withPolling, options: options)
       let initialState = try extractStatus(rawOp)
-      let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+      let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -232,40 +207,15 @@
     /// @Snippet(path: "JobService_DeleteDataLabelingJob")
     public func deleteDataLabelingJob(
       withPolling: DeleteDataLabelingJobRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
-          -> GoogleCloudGax._PollableOperationImpl<Void>.State in
-        guard op.done else {
-          return .init(done: false, result: nil)
-        }
-
-        switch op.result {
-        case .response:
-          return .init(done: true, result: .success(()))
-        case .error(let status):
-          guard let statusUnwrapped = status else {
-            return .init(
-              done: true,
-              result: .failure(
-                GoogleCloudGax.RequestError.binding(
-                  "Operation completed but error value was missing")))
-          }
-          let error = GoogleCloudGax.RequestError.service(
-            GoogleCloudGax.ServiceError(
-              code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-              message: statusUnwrapped.message))
-          return .init(done: true, result: .failure(error))
-        case .none:
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-        }
+          -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
+        return try op._extractStatusEmpty()
       }
       let rawOp = try await self.deleteDataLabelingJob(request: withPolling, options: options)
       let initialState = try extractStatus(rawOp)
-      let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+      let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -344,41 +294,16 @@
     /// @Snippet(path: "JobService_DeleteHyperparameterTuningJob")
     public func deleteHyperparameterTuningJob(
       withPolling: DeleteHyperparameterTuningJobRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
-          -> GoogleCloudGax._PollableOperationImpl<Void>.State in
-        guard op.done else {
-          return .init(done: false, result: nil)
-        }
-
-        switch op.result {
-        case .response:
-          return .init(done: true, result: .success(()))
-        case .error(let status):
-          guard let statusUnwrapped = status else {
-            return .init(
-              done: true,
-              result: .failure(
-                GoogleCloudGax.RequestError.binding(
-                  "Operation completed but error value was missing")))
-          }
-          let error = GoogleCloudGax.RequestError.service(
-            GoogleCloudGax.ServiceError(
-              code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-              message: statusUnwrapped.message))
-          return .init(done: true, result: .failure(error))
-        case .none:
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-        }
+          -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
+        return try op._extractStatusEmpty()
       }
       let rawOp = try await self.deleteHyperparameterTuningJob(
         request: withPolling, options: options)
       let initialState = try extractStatus(rawOp)
-      let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+      let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -474,40 +399,15 @@
     /// @Snippet(path: "JobService_DeleteNasJob")
     public func deleteNasJob(
       withPolling: DeleteNasJobRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
-          -> GoogleCloudGax._PollableOperationImpl<Void>.State in
-        guard op.done else {
-          return .init(done: false, result: nil)
-        }
-
-        switch op.result {
-        case .response:
-          return .init(done: true, result: .success(()))
-        case .error(let status):
-          guard let statusUnwrapped = status else {
-            return .init(
-              done: true,
-              result: .failure(
-                GoogleCloudGax.RequestError.binding(
-                  "Operation completed but error value was missing")))
-          }
-          let error = GoogleCloudGax.RequestError.service(
-            GoogleCloudGax.ServiceError(
-              code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-              message: statusUnwrapped.message))
-          return .init(done: true, result: .failure(error))
-        case .none:
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-        }
+          -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
+        return try op._extractStatusEmpty()
       }
       let rawOp = try await self.deleteNasJob(request: withPolling, options: options)
       let initialState = try extractStatus(rawOp)
-      let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+      let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -639,40 +539,15 @@
     /// @Snippet(path: "JobService_DeleteBatchPredictionJob")
     public func deleteBatchPredictionJob(
       withPolling: DeleteBatchPredictionJobRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
-          -> GoogleCloudGax._PollableOperationImpl<Void>.State in
-        guard op.done else {
-          return .init(done: false, result: nil)
-        }
-
-        switch op.result {
-        case .response:
-          return .init(done: true, result: .success(()))
-        case .error(let status):
-          guard let statusUnwrapped = status else {
-            return .init(
-              done: true,
-              result: .failure(
-                GoogleCloudGax.RequestError.binding(
-                  "Operation completed but error value was missing")))
-          }
-          let error = GoogleCloudGax.RequestError.service(
-            GoogleCloudGax.ServiceError(
-              code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-              message: statusUnwrapped.message))
-          return .init(done: true, result: .failure(error))
-        case .none:
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-        }
+          -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
+        return try op._extractStatusEmpty()
       }
       let rawOp = try await self.deleteBatchPredictionJob(request: withPolling, options: options)
       let initialState = try extractStatus(rawOp)
-      let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+      let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -800,40 +675,7 @@
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleCloudGax._PollableOperationImpl<ModelDeploymentMonitoringJob>.State in
-        guard op.done else {
-          return .init(done: false, result: nil)
-        }
-
-        switch op.result {
-        case .response(let anyValue):
-          guard let anyValueUnwrapped = anyValue else {
-            return .init(
-              done: true,
-              result: .failure(
-                GoogleCloudGax.RequestError.binding(
-                  "Operation completed but response value was missing")))
-          }
-          let response = try ModelDeploymentMonitoringJob(fromAny: anyValueUnwrapped)
-          return .init(done: true, result: .success(response))
-        case .error(let status):
-          guard let statusUnwrapped = status else {
-            return .init(
-              done: true,
-              result: .failure(
-                GoogleCloudGax.RequestError.binding(
-                  "Operation completed but error value was missing")))
-          }
-          let error = GoogleCloudGax.RequestError.service(
-            GoogleCloudGax.ServiceError(
-              code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-              message: statusUnwrapped.message))
-          return .init(done: true, result: .failure(error))
-        case .none:
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-        }
+        return try op._extractStatus(ModelDeploymentMonitoringJob.self)
       }
       let rawOp = try await self.updateModelDeploymentMonitoringJob(
         request: withPolling, options: options)
@@ -867,41 +709,16 @@
     /// @Snippet(path: "JobService_DeleteModelDeploymentMonitoringJob")
     public func deleteModelDeploymentMonitoringJob(
       withPolling: DeleteModelDeploymentMonitoringJobRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
-          -> GoogleCloudGax._PollableOperationImpl<Void>.State in
-        guard op.done else {
-          return .init(done: false, result: nil)
-        }
-
-        switch op.result {
-        case .response:
-          return .init(done: true, result: .success(()))
-        case .error(let status):
-          guard let statusUnwrapped = status else {
-            return .init(
-              done: true,
-              result: .failure(
-                GoogleCloudGax.RequestError.binding(
-                  "Operation completed but error value was missing")))
-          }
-          let error = GoogleCloudGax.RequestError.service(
-            GoogleCloudGax.ServiceError(
-              code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-              message: statusUnwrapped.message))
-          return .init(done: true, result: .failure(error))
-        case .none:
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-        }
+          -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
+        return try op._extractStatusEmpty()
       }
       let rawOp = try await self.deleteModelDeploymentMonitoringJob(
         request: withPolling, options: options)
       let initialState = try extractStatus(rawOp)
-      let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+      let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -1129,12 +946,12 @@
 
       /// See `JobServiceClient.deleteCustomJob`.
       func deleteCustomJob(withPolling: DeleteCustomJobRequest) async throws -> any GoogleCloudGax
-        .PollableOperation<Void>
+        .PollableOperation<Swift.Void>
 
       /// See `JobServiceClient.deleteCustomJob`.
       func deleteCustomJob(
         name: Swift.String,
-      ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+      ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
       /// See `JobServiceClient.cancelCustomJob`.
       func cancelCustomJob(request: CancelCustomJobRequest) async throws
@@ -1183,12 +1000,12 @@
 
       /// See `JobServiceClient.deleteDataLabelingJob`.
       func deleteDataLabelingJob(withPolling: DeleteDataLabelingJobRequest) async throws
-        -> any GoogleCloudGax.PollableOperation<Void>
+        -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
       /// See `JobServiceClient.deleteDataLabelingJob`.
       func deleteDataLabelingJob(
         name: Swift.String,
-      ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+      ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
       /// See `JobServiceClient.cancelDataLabelingJob`.
       func cancelDataLabelingJob(request: CancelDataLabelingJobRequest) async throws
@@ -1237,12 +1054,12 @@
 
       /// See `JobServiceClient.deleteHyperparameterTuningJob`.
       func deleteHyperparameterTuningJob(withPolling: DeleteHyperparameterTuningJobRequest)
-        async throws -> any GoogleCloudGax.PollableOperation<Void>
+        async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
       /// See `JobServiceClient.deleteHyperparameterTuningJob`.
       func deleteHyperparameterTuningJob(
         name: Swift.String,
-      ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+      ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
       /// See `JobServiceClient.cancelHyperparameterTuningJob`.
       func cancelHyperparameterTuningJob(request: CancelHyperparameterTuningJobRequest) async throws
@@ -1288,12 +1105,12 @@
 
       /// See `JobServiceClient.deleteNasJob`.
       func deleteNasJob(withPolling: DeleteNasJobRequest) async throws -> any GoogleCloudGax
-        .PollableOperation<Void>
+        .PollableOperation<Swift.Void>
 
       /// See `JobServiceClient.deleteNasJob`.
       func deleteNasJob(
         name: Swift.String,
-      ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+      ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
       /// See `JobServiceClient.cancelNasJob`.
       func cancelNasJob(request: CancelNasJobRequest) async throws
@@ -1365,12 +1182,12 @@
 
       /// See `JobServiceClient.deleteBatchPredictionJob`.
       func deleteBatchPredictionJob(withPolling: DeleteBatchPredictionJobRequest) async throws
-        -> any GoogleCloudGax.PollableOperation<Void>
+        -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
       /// See `JobServiceClient.deleteBatchPredictionJob`.
       func deleteBatchPredictionJob(
         name: Swift.String,
-      ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+      ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
       /// See `JobServiceClient.cancelBatchPredictionJob`.
       func cancelBatchPredictionJob(request: CancelBatchPredictionJobRequest) async throws
@@ -1452,12 +1269,12 @@
       /// See `JobServiceClient.deleteModelDeploymentMonitoringJob`.
       func deleteModelDeploymentMonitoringJob(
         withPolling: DeleteModelDeploymentMonitoringJobRequest
-      ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+      ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
       /// See `JobServiceClient.deleteModelDeploymentMonitoringJob`.
       func deleteModelDeploymentMonitoringJob(
         name: Swift.String,
-      ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+      ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
       /// See `JobServiceClient.pauseModelDeploymentMonitoringJob`.
       func pauseModelDeploymentMonitoringJob(request: PauseModelDeploymentMonitoringJobRequest)
@@ -1563,7 +1380,7 @@
       /// See `JobServiceClient.deleteCustomJob`.
       func deleteCustomJob(
         withPolling: DeleteCustomJobRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+      ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
       /// See `JobServiceClient.cancelCustomJob`.
       func cancelCustomJob(
@@ -1598,7 +1415,7 @@
       /// See `JobServiceClient.deleteDataLabelingJob`.
       func deleteDataLabelingJob(
         withPolling: DeleteDataLabelingJobRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+      ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
       /// See `JobServiceClient.cancelDataLabelingJob`.
       func cancelDataLabelingJob(
@@ -1633,7 +1450,7 @@
       /// See `JobServiceClient.deleteHyperparameterTuningJob`.
       func deleteHyperparameterTuningJob(
         withPolling: DeleteHyperparameterTuningJobRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+      ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
       /// See `JobServiceClient.cancelHyperparameterTuningJob`.
       func cancelHyperparameterTuningJob(
@@ -1668,7 +1485,7 @@
       /// See `JobServiceClient.deleteNasJob`.
       func deleteNasJob(
         withPolling: DeleteNasJobRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+      ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
       /// See `JobServiceClient.cancelNasJob`.
       func cancelNasJob(
@@ -1718,7 +1535,7 @@
       /// See `JobServiceClient.deleteBatchPredictionJob`.
       func deleteBatchPredictionJob(
         withPolling: DeleteBatchPredictionJobRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+      ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
       /// See `JobServiceClient.cancelBatchPredictionJob`.
       func cancelBatchPredictionJob(
@@ -1778,7 +1595,7 @@
       func deleteModelDeploymentMonitoringJob(
         withPolling: DeleteModelDeploymentMonitoringJobRequest,
         options: GoogleCloudGax.RequestOptions
-      ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+      ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
       /// See `JobServiceClient.pauseModelDeploymentMonitoringJob`.
       func pauseModelDeploymentMonitoringJob(
@@ -1943,15 +1760,15 @@
     }
 
     public func deleteCustomJob(withPolling: DeleteCustomJobRequest) async throws
-      -> any GoogleCloudGax.PollableOperation<Void>
+      -> any GoogleCloudGax.PollableOperation<Swift.Void>
     {
       try await self.deleteCustomJob(withPolling: withPolling, options: .init())
     }
 
     public func deleteCustomJob(
       withPolling: DeleteCustomJobRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
-      let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
+      let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleCloudGax.RequestError.unimplemented
       }
       return GoogleCloudGax._PollableOperationImpl(
@@ -1960,7 +1777,7 @@
 
     public func deleteCustomJob(
       name: Swift.String,
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
       let request = DeleteCustomJobRequest().with {
         $0.name = name
       }
@@ -2081,15 +1898,15 @@
     }
 
     public func deleteDataLabelingJob(withPolling: DeleteDataLabelingJobRequest) async throws
-      -> any GoogleCloudGax.PollableOperation<Void>
+      -> any GoogleCloudGax.PollableOperation<Swift.Void>
     {
       try await self.deleteDataLabelingJob(withPolling: withPolling, options: .init())
     }
 
     public func deleteDataLabelingJob(
       withPolling: DeleteDataLabelingJobRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
-      let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
+      let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleCloudGax.RequestError.unimplemented
       }
       return GoogleCloudGax._PollableOperationImpl(
@@ -2098,7 +1915,7 @@
 
     public func deleteDataLabelingJob(
       name: Swift.String,
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
       let request = DeleteDataLabelingJobRequest().with {
         $0.name = name
       }
@@ -2219,15 +2036,15 @@
     }
 
     public func deleteHyperparameterTuningJob(withPolling: DeleteHyperparameterTuningJobRequest)
-      async throws -> any GoogleCloudGax.PollableOperation<Void>
+      async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
     {
       try await self.deleteHyperparameterTuningJob(withPolling: withPolling, options: .init())
     }
 
     public func deleteHyperparameterTuningJob(
       withPolling: DeleteHyperparameterTuningJobRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
-      let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
+      let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleCloudGax.RequestError.unimplemented
       }
       return GoogleCloudGax._PollableOperationImpl(
@@ -2236,7 +2053,7 @@
 
     public func deleteHyperparameterTuningJob(
       name: Swift.String,
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
       let request = DeleteHyperparameterTuningJobRequest().with {
         $0.name = name
       }
@@ -2357,15 +2174,15 @@
     }
 
     public func deleteNasJob(withPolling: DeleteNasJobRequest) async throws -> any GoogleCloudGax
-      .PollableOperation<Void>
+      .PollableOperation<Swift.Void>
     {
       try await self.deleteNasJob(withPolling: withPolling, options: .init())
     }
 
     public func deleteNasJob(
       withPolling: DeleteNasJobRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
-      let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
+      let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleCloudGax.RequestError.unimplemented
       }
       return GoogleCloudGax._PollableOperationImpl(
@@ -2374,7 +2191,7 @@
 
     public func deleteNasJob(
       name: Swift.String,
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
       let request = DeleteNasJobRequest().with {
         $0.name = name
       }
@@ -2553,15 +2370,15 @@
     }
 
     public func deleteBatchPredictionJob(withPolling: DeleteBatchPredictionJobRequest) async throws
-      -> any GoogleCloudGax.PollableOperation<Void>
+      -> any GoogleCloudGax.PollableOperation<Swift.Void>
     {
       try await self.deleteBatchPredictionJob(withPolling: withPolling, options: .init())
     }
 
     public func deleteBatchPredictionJob(
       withPolling: DeleteBatchPredictionJobRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
-      let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
+      let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleCloudGax.RequestError.unimplemented
       }
       return GoogleCloudGax._PollableOperationImpl(
@@ -2570,7 +2387,7 @@
 
     public func deleteBatchPredictionJob(
       name: Swift.String,
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
       let request = DeleteBatchPredictionJobRequest().with {
         $0.name = name
       }
@@ -2778,14 +2595,14 @@
 
     public func deleteModelDeploymentMonitoringJob(
       withPolling: DeleteModelDeploymentMonitoringJobRequest
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
       try await self.deleteModelDeploymentMonitoringJob(withPolling: withPolling, options: .init())
     }
 
     public func deleteModelDeploymentMonitoringJob(
       withPolling: DeleteModelDeploymentMonitoringJobRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
-      let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
+      let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleCloudGax.RequestError.unimplemented
       }
       return GoogleCloudGax._PollableOperationImpl(
@@ -2794,7 +2611,7 @@
 
     public func deleteModelDeploymentMonitoringJob(
       name: Swift.String,
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
       let request = DeleteModelDeploymentMonitoringJobRequest().with {
         $0.name = name
       }

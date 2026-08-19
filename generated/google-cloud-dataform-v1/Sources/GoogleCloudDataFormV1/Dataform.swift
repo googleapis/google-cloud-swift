@@ -98,40 +98,15 @@ public class DataformClient: Clients.DataformProtocol {
   /// @Snippet(path: "Dataform_DeleteTeamFolderTree")
   public func deleteTeamFolderTree(
     withPolling: DeleteTeamFolderTreeRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+  ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
-      in
-      guard op.done else {
-        return .init(done: false, result: nil)
-      }
-
-      switch op.result {
-      case .response:
-        return .init(done: true, result: .success(()))
-      case .error(let status):
-        guard let statusUnwrapped = status else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but error value was missing")
-            ))
-        }
-        let error = GoogleCloudGax.RequestError.service(
-          GoogleCloudGax.ServiceError(
-            code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-            message: statusUnwrapped.message))
-        return .init(done: true, result: .failure(error))
-      case .none:
-        return .init(
-          done: true,
-          result: .failure(
-            GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-      }
+      (op: GoogleLongRunning.Operation) throws
+        -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
+      return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteTeamFolderTree(request: withPolling, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -248,40 +223,15 @@ public class DataformClient: Clients.DataformProtocol {
   /// @Snippet(path: "Dataform_DeleteFolderTree")
   public func deleteFolderTree(
     withPolling: DeleteFolderTreeRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+  ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
-      in
-      guard op.done else {
-        return .init(done: false, result: nil)
-      }
-
-      switch op.result {
-      case .response:
-        return .init(done: true, result: .success(()))
-      case .error(let status):
-        guard let statusUnwrapped = status else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but error value was missing")
-            ))
-        }
-        let error = GoogleCloudGax.RequestError.service(
-          GoogleCloudGax.ServiceError(
-            code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-            message: statusUnwrapped.message))
-        return .init(done: true, result: .failure(error))
-      case .none:
-        return .init(
-          done: true,
-          result: .failure(
-            GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-      }
+      (op: GoogleLongRunning.Operation) throws
+        -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
+      return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteFolderTree(request: withPolling, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -360,40 +310,15 @@ public class DataformClient: Clients.DataformProtocol {
   /// @Snippet(path: "Dataform_MoveFolder")
   public func moveFolder(
     withPolling: MoveFolderRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+  ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
-      in
-      guard op.done else {
-        return .init(done: false, result: nil)
-      }
-
-      switch op.result {
-      case .response:
-        return .init(done: true, result: .success(()))
-      case .error(let status):
-        guard let statusUnwrapped = status else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but error value was missing")
-            ))
-        }
-        let error = GoogleCloudGax.RequestError.service(
-          GoogleCloudGax.ServiceError(
-            code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-            message: statusUnwrapped.message))
-        return .init(done: true, result: .failure(error))
-      case .none:
-        return .init(
-          done: true,
-          result: .failure(
-            GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-      }
+      (op: GoogleLongRunning.Operation) throws
+        -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
+      return try op._extractStatusEmpty()
     }
     let rawOp = try await self.moveFolder(request: withPolling, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -491,40 +416,15 @@ public class DataformClient: Clients.DataformProtocol {
   /// @Snippet(path: "Dataform_MoveRepository")
   public func moveRepository(
     withPolling: MoveRepositoryRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+  ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleCloudGax._PollableOperationImpl<Void>.State
-      in
-      guard op.done else {
-        return .init(done: false, result: nil)
-      }
-
-      switch op.result {
-      case .response:
-        return .init(done: true, result: .success(()))
-      case .error(let status):
-        guard let statusUnwrapped = status else {
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but error value was missing")
-            ))
-        }
-        let error = GoogleCloudGax.RequestError.service(
-          GoogleCloudGax.ServiceError(
-            code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-            message: statusUnwrapped.message))
-        return .init(done: true, result: .failure(error))
-      case .none:
-        return .init(
-          done: true,
-          result: .failure(
-            GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-      }
+      (op: GoogleLongRunning.Operation) throws
+        -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
+      return try op._extractStatusEmpty()
     }
     let rawOp = try await self.moveRepository(request: withPolling, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -1385,13 +1285,13 @@ extension Clients {
 
     /// See `DataformClient.deleteTeamFolderTree`.
     func deleteTeamFolderTree(withPolling: DeleteTeamFolderTreeRequest) async throws
-      -> any GoogleCloudGax.PollableOperation<Void>
+      -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
     /// See `DataformClient.deleteTeamFolderTree`.
     func deleteTeamFolderTree(
       name: Swift.String,
       force: Swift.Bool,
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
     /// See `DataformClient.queryTeamFolderContents`.
     func queryTeamFolderContents(request: QueryTeamFolderContentsRequest) async throws
@@ -1460,13 +1360,13 @@ extension Clients {
 
     /// See `DataformClient.deleteFolderTree`.
     func deleteFolderTree(withPolling: DeleteFolderTreeRequest) async throws -> any GoogleCloudGax
-      .PollableOperation<Void>
+      .PollableOperation<Swift.Void>
 
     /// See `DataformClient.deleteFolderTree`.
     func deleteFolderTree(
       name: Swift.String,
       force: Swift.Bool,
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
     /// See `DataformClient.queryFolderContents`.
     func queryFolderContents(request: QueryFolderContentsRequest) async throws
@@ -1501,13 +1401,13 @@ extension Clients {
 
     /// See `DataformClient.moveFolder`.
     func moveFolder(withPolling: MoveFolderRequest) async throws -> any GoogleCloudGax
-      .PollableOperation<Void>
+      .PollableOperation<Swift.Void>
 
     /// See `DataformClient.moveFolder`.
     func moveFolder(
       name: Swift.String,
       destinationContainingFolder: Swift.String?,
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
     /// See `DataformClient.listRepositories`.
     func listRepositories(request: ListRepositoriesRequest) async throws
@@ -1566,13 +1466,13 @@ extension Clients {
 
     /// See `DataformClient.moveRepository`.
     func moveRepository(withPolling: MoveRepositoryRequest) async throws -> any GoogleCloudGax
-      .PollableOperation<Void>
+      .PollableOperation<Swift.Void>
 
     /// See `DataformClient.moveRepository`.
     func moveRepository(
       name: Swift.String,
       destinationContainingFolder: Swift.String?,
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
     /// See `DataformClient.commitRepositoryChanges`.
     func commitRepositoryChanges(request: CommitRepositoryChangesRequest) async throws
@@ -2029,7 +1929,7 @@ extension Clients {
     /// See `DataformClient.deleteTeamFolderTree`.
     func deleteTeamFolderTree(
       withPolling: DeleteTeamFolderTreeRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
     /// See `DataformClient.queryTeamFolderContents`.
     func queryTeamFolderContents(
@@ -2081,7 +1981,7 @@ extension Clients {
     /// See `DataformClient.deleteFolderTree`.
     func deleteFolderTree(
       withPolling: DeleteFolderTreeRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
     /// See `DataformClient.queryFolderContents`.
     func queryFolderContents(
@@ -2111,7 +2011,7 @@ extension Clients {
     /// See `DataformClient.moveFolder`.
     func moveFolder(
       withPolling: MoveFolderRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
     /// See `DataformClient.listRepositories`.
     func listRepositories(
@@ -2151,7 +2051,7 @@ extension Clients {
     /// See `DataformClient.moveRepository`.
     func moveRepository(
       withPolling: MoveRepositoryRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
     /// See `DataformClient.commitRepositoryChanges`.
     func commitRepositoryChanges(
@@ -2606,15 +2506,15 @@ extension Clients.DataformProtocol {
   }
 
   public func deleteTeamFolderTree(withPolling: DeleteTeamFolderTreeRequest) async throws
-    -> any GoogleCloudGax.PollableOperation<Void>
+    -> any GoogleCloudGax.PollableOperation<Swift.Void>
   {
     try await self.deleteTeamFolderTree(withPolling: withPolling, options: .init())
   }
 
   public func deleteTeamFolderTree(
     withPolling: DeleteTeamFolderTreeRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
-    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+  ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
+    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleCloudGax.RequestError.unimplemented
     }
     return GoogleCloudGax._PollableOperationImpl(
@@ -2624,7 +2524,7 @@ extension Clients.DataformProtocol {
   public func deleteTeamFolderTree(
     name: Swift.String,
     force: Swift.Bool,
-  ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+  ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
     let request = DeleteTeamFolderTreeRequest().with {
       $0.name = name
       $0.force = force
@@ -2800,15 +2700,15 @@ extension Clients.DataformProtocol {
   }
 
   public func deleteFolderTree(withPolling: DeleteFolderTreeRequest) async throws
-    -> any GoogleCloudGax.PollableOperation<Void>
+    -> any GoogleCloudGax.PollableOperation<Swift.Void>
   {
     try await self.deleteFolderTree(withPolling: withPolling, options: .init())
   }
 
   public func deleteFolderTree(
     withPolling: DeleteFolderTreeRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
-    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+  ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
+    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleCloudGax.RequestError.unimplemented
     }
     return GoogleCloudGax._PollableOperationImpl(
@@ -2818,7 +2718,7 @@ extension Clients.DataformProtocol {
   public func deleteFolderTree(
     name: Swift.String,
     force: Swift.Bool,
-  ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+  ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
     let request = DeleteFolderTreeRequest().with {
       $0.name = name
       $0.force = force
@@ -2911,15 +2811,15 @@ extension Clients.DataformProtocol {
   }
 
   public func moveFolder(withPolling: MoveFolderRequest) async throws -> any GoogleCloudGax
-    .PollableOperation<Void>
+    .PollableOperation<Swift.Void>
   {
     try await self.moveFolder(withPolling: withPolling, options: .init())
   }
 
   public func moveFolder(
     withPolling: MoveFolderRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
-    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+  ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
+    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleCloudGax.RequestError.unimplemented
     }
     return GoogleCloudGax._PollableOperationImpl(
@@ -2929,7 +2829,7 @@ extension Clients.DataformProtocol {
   public func moveFolder(
     name: Swift.String,
     destinationContainingFolder: Swift.String?,
-  ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+  ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
     let request = MoveFolderRequest().with {
       $0.name = name
       $0.destinationContainingFolder = destinationContainingFolder
@@ -3075,15 +2975,15 @@ extension Clients.DataformProtocol {
   }
 
   public func moveRepository(withPolling: MoveRepositoryRequest) async throws -> any GoogleCloudGax
-    .PollableOperation<Void>
+    .PollableOperation<Swift.Void>
   {
     try await self.moveRepository(withPolling: withPolling, options: .init())
   }
 
   public func moveRepository(
     withPolling: MoveRepositoryRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
-    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+  ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
+    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleCloudGax.RequestError.unimplemented
     }
     return GoogleCloudGax._PollableOperationImpl(
@@ -3093,7 +2993,7 @@ extension Clients.DataformProtocol {
   public func moveRepository(
     name: Swift.String,
     destinationContainingFolder: Swift.String?,
-  ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+  ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
     let request = MoveRepositoryRequest().with {
       $0.name = name
       $0.destinationContainingFolder = destinationContainingFolder

@@ -167,40 +167,7 @@
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
           -> GoogleCloudGax._PollableOperationImpl<BatchUpdateEntityTypesResponse>.State in
-        guard op.done else {
-          return .init(done: false, result: nil)
-        }
-
-        switch op.result {
-        case .response(let anyValue):
-          guard let anyValueUnwrapped = anyValue else {
-            return .init(
-              done: true,
-              result: .failure(
-                GoogleCloudGax.RequestError.binding(
-                  "Operation completed but response value was missing")))
-          }
-          let response = try BatchUpdateEntityTypesResponse(fromAny: anyValueUnwrapped)
-          return .init(done: true, result: .success(response))
-        case .error(let status):
-          guard let statusUnwrapped = status else {
-            return .init(
-              done: true,
-              result: .failure(
-                GoogleCloudGax.RequestError.binding(
-                  "Operation completed but error value was missing")))
-          }
-          let error = GoogleCloudGax.RequestError.service(
-            GoogleCloudGax.ServiceError(
-              code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-              message: statusUnwrapped.message))
-          return .init(done: true, result: .failure(error))
-        case .none:
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-        }
+        return try op._extractStatus(BatchUpdateEntityTypesResponse.self)
       }
       let rawOp = try await self.batchUpdateEntityTypes(request: withPolling, options: options)
       let initialState = try extractStatus(rawOp)
@@ -259,40 +226,15 @@
     /// @Snippet(path: "EntityTypes_BatchDeleteEntityTypes")
     public func batchDeleteEntityTypes(
       withPolling: BatchDeleteEntityTypesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
-          -> GoogleCloudGax._PollableOperationImpl<Void>.State in
-        guard op.done else {
-          return .init(done: false, result: nil)
-        }
-
-        switch op.result {
-        case .response:
-          return .init(done: true, result: .success(()))
-        case .error(let status):
-          guard let statusUnwrapped = status else {
-            return .init(
-              done: true,
-              result: .failure(
-                GoogleCloudGax.RequestError.binding(
-                  "Operation completed but error value was missing")))
-          }
-          let error = GoogleCloudGax.RequestError.service(
-            GoogleCloudGax.ServiceError(
-              code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-              message: statusUnwrapped.message))
-          return .init(done: true, result: .failure(error))
-        case .none:
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-        }
+          -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
+        return try op._extractStatusEmpty()
       }
       let rawOp = try await self.batchDeleteEntityTypes(request: withPolling, options: options)
       let initialState = try extractStatus(rawOp)
-      let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+      let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -345,40 +287,15 @@
     /// @Snippet(path: "EntityTypes_BatchCreateEntities")
     public func batchCreateEntities(
       withPolling: BatchCreateEntitiesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
-          -> GoogleCloudGax._PollableOperationImpl<Void>.State in
-        guard op.done else {
-          return .init(done: false, result: nil)
-        }
-
-        switch op.result {
-        case .response:
-          return .init(done: true, result: .success(()))
-        case .error(let status):
-          guard let statusUnwrapped = status else {
-            return .init(
-              done: true,
-              result: .failure(
-                GoogleCloudGax.RequestError.binding(
-                  "Operation completed but error value was missing")))
-          }
-          let error = GoogleCloudGax.RequestError.service(
-            GoogleCloudGax.ServiceError(
-              code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-              message: statusUnwrapped.message))
-          return .init(done: true, result: .failure(error))
-        case .none:
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-        }
+          -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
+        return try op._extractStatusEmpty()
       }
       let rawOp = try await self.batchCreateEntities(request: withPolling, options: options)
       let initialState = try extractStatus(rawOp)
-      let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+      let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -437,40 +354,15 @@
     /// @Snippet(path: "EntityTypes_BatchUpdateEntities")
     public func batchUpdateEntities(
       withPolling: BatchUpdateEntitiesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
-          -> GoogleCloudGax._PollableOperationImpl<Void>.State in
-        guard op.done else {
-          return .init(done: false, result: nil)
-        }
-
-        switch op.result {
-        case .response:
-          return .init(done: true, result: .success(()))
-        case .error(let status):
-          guard let statusUnwrapped = status else {
-            return .init(
-              done: true,
-              result: .failure(
-                GoogleCloudGax.RequestError.binding(
-                  "Operation completed but error value was missing")))
-          }
-          let error = GoogleCloudGax.RequestError.service(
-            GoogleCloudGax.ServiceError(
-              code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-              message: statusUnwrapped.message))
-          return .init(done: true, result: .failure(error))
-        case .none:
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-        }
+          -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
+        return try op._extractStatusEmpty()
       }
       let rawOp = try await self.batchUpdateEntities(request: withPolling, options: options)
       let initialState = try extractStatus(rawOp)
-      let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+      let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -523,40 +415,15 @@
     /// @Snippet(path: "EntityTypes_BatchDeleteEntities")
     public func batchDeleteEntities(
       withPolling: BatchDeleteEntitiesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
       let extractStatus = {
         (op: GoogleLongRunning.Operation) throws
-          -> GoogleCloudGax._PollableOperationImpl<Void>.State in
-        guard op.done else {
-          return .init(done: false, result: nil)
-        }
-
-        switch op.result {
-        case .response:
-          return .init(done: true, result: .success(()))
-        case .error(let status):
-          guard let statusUnwrapped = status else {
-            return .init(
-              done: true,
-              result: .failure(
-                GoogleCloudGax.RequestError.binding(
-                  "Operation completed but error value was missing")))
-          }
-          let error = GoogleCloudGax.RequestError.service(
-            GoogleCloudGax.ServiceError(
-              code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-              message: statusUnwrapped.message))
-          return .init(done: true, result: .failure(error))
-        case .none:
-          return .init(
-            done: true,
-            result: .failure(
-              GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
-        }
+          -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
+        return try op._extractStatusEmpty()
       }
       let rawOp = try await self.batchDeleteEntities(request: withPolling, options: options)
       let initialState = try extractStatus(rawOp)
-      let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+      let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -783,13 +650,13 @@
 
       /// See `EntityTypesClient.batchDeleteEntityTypes`.
       func batchDeleteEntityTypes(withPolling: BatchDeleteEntityTypesRequest) async throws
-        -> any GoogleCloudGax.PollableOperation<Void>
+        -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
       /// See `EntityTypesClient.batchDeleteEntityTypes`.
       func batchDeleteEntityTypes(
         parent: Swift.String,
         entityTypeNames: [Swift.String],
-      ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+      ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
       /// See `EntityTypesClient.batchCreateEntities`.
       func batchCreateEntities(request: BatchCreateEntitiesRequest) async throws
@@ -797,20 +664,20 @@
 
       /// See `EntityTypesClient.batchCreateEntities`.
       func batchCreateEntities(withPolling: BatchCreateEntitiesRequest) async throws
-        -> any GoogleCloudGax.PollableOperation<Void>
+        -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
       /// See `EntityTypesClient.batchCreateEntities`.
       func batchCreateEntities(
         parent: Swift.String,
         entities: [EntityType.Entity],
-      ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+      ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
       /// See `EntityTypesClient.batchCreateEntities`.
       func batchCreateEntities(
         parent: Swift.String,
         entities: [EntityType.Entity],
         languageCode: Swift.String,
-      ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+      ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
       /// See `EntityTypesClient.batchUpdateEntities`.
       func batchUpdateEntities(request: BatchUpdateEntitiesRequest) async throws
@@ -818,20 +685,20 @@
 
       /// See `EntityTypesClient.batchUpdateEntities`.
       func batchUpdateEntities(withPolling: BatchUpdateEntitiesRequest) async throws
-        -> any GoogleCloudGax.PollableOperation<Void>
+        -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
       /// See `EntityTypesClient.batchUpdateEntities`.
       func batchUpdateEntities(
         parent: Swift.String,
         entities: [EntityType.Entity],
-      ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+      ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
       /// See `EntityTypesClient.batchUpdateEntities`.
       func batchUpdateEntities(
         parent: Swift.String,
         entities: [EntityType.Entity],
         languageCode: Swift.String,
-      ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+      ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
       /// See `EntityTypesClient.batchDeleteEntities`.
       func batchDeleteEntities(request: BatchDeleteEntitiesRequest) async throws
@@ -839,20 +706,20 @@
 
       /// See `EntityTypesClient.batchDeleteEntities`.
       func batchDeleteEntities(withPolling: BatchDeleteEntitiesRequest) async throws
-        -> any GoogleCloudGax.PollableOperation<Void>
+        -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
       /// See `EntityTypesClient.batchDeleteEntities`.
       func batchDeleteEntities(
         parent: Swift.String,
         entityValues: [Swift.String],
-      ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+      ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
       /// See `EntityTypesClient.batchDeleteEntities`.
       func batchDeleteEntities(
         parent: Swift.String,
         entityValues: [Swift.String],
         languageCode: Swift.String,
-      ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+      ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
       /// See `EntityTypesClient.listLocations`.
       func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
@@ -938,7 +805,7 @@
       /// See `EntityTypesClient.batchDeleteEntityTypes`.
       func batchDeleteEntityTypes(
         withPolling: BatchDeleteEntityTypesRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+      ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
       /// See `EntityTypesClient.batchCreateEntities`.
       func batchCreateEntities(
@@ -948,7 +815,7 @@
       /// See `EntityTypesClient.batchCreateEntities`.
       func batchCreateEntities(
         withPolling: BatchCreateEntitiesRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+      ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
       /// See `EntityTypesClient.batchUpdateEntities`.
       func batchUpdateEntities(
@@ -958,7 +825,7 @@
       /// See `EntityTypesClient.batchUpdateEntities`.
       func batchUpdateEntities(
         withPolling: BatchUpdateEntitiesRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+      ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
       /// See `EntityTypesClient.batchDeleteEntities`.
       func batchDeleteEntities(
@@ -968,7 +835,7 @@
       /// See `EntityTypesClient.batchDeleteEntities`.
       func batchDeleteEntities(
         withPolling: BatchDeleteEntitiesRequest, options: GoogleCloudGax.RequestOptions
-      ) async throws -> any GoogleCloudGax.PollableOperation<Void>
+      ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
       /// See `EntityTypesClient.listLocations`.
       func listLocations(
@@ -1214,15 +1081,15 @@
     }
 
     public func batchDeleteEntityTypes(withPolling: BatchDeleteEntityTypesRequest) async throws
-      -> any GoogleCloudGax.PollableOperation<Void>
+      -> any GoogleCloudGax.PollableOperation<Swift.Void>
     {
       try await self.batchDeleteEntityTypes(withPolling: withPolling, options: .init())
     }
 
     public func batchDeleteEntityTypes(
       withPolling: BatchDeleteEntityTypesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
-      let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
+      let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleCloudGax.RequestError.unimplemented
       }
       return GoogleCloudGax._PollableOperationImpl(
@@ -1232,7 +1099,7 @@
     public func batchDeleteEntityTypes(
       parent: Swift.String,
       entityTypeNames: [Swift.String],
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
       let request = BatchDeleteEntityTypesRequest().with {
         $0.parent = parent
         $0.entityTypeNames = entityTypeNames
@@ -1253,15 +1120,15 @@
     }
 
     public func batchCreateEntities(withPolling: BatchCreateEntitiesRequest) async throws
-      -> any GoogleCloudGax.PollableOperation<Void>
+      -> any GoogleCloudGax.PollableOperation<Swift.Void>
     {
       try await self.batchCreateEntities(withPolling: withPolling, options: .init())
     }
 
     public func batchCreateEntities(
       withPolling: BatchCreateEntitiesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
-      let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
+      let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleCloudGax.RequestError.unimplemented
       }
       return GoogleCloudGax._PollableOperationImpl(
@@ -1271,7 +1138,7 @@
     public func batchCreateEntities(
       parent: Swift.String,
       entities: [EntityType.Entity],
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
       let request = BatchCreateEntitiesRequest().with {
         $0.parent = parent
         $0.entities = entities
@@ -1283,7 +1150,7 @@
       parent: Swift.String,
       entities: [EntityType.Entity],
       languageCode: Swift.String,
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
       let request = BatchCreateEntitiesRequest().with {
         $0.parent = parent
         $0.entities = entities
@@ -1305,15 +1172,15 @@
     }
 
     public func batchUpdateEntities(withPolling: BatchUpdateEntitiesRequest) async throws
-      -> any GoogleCloudGax.PollableOperation<Void>
+      -> any GoogleCloudGax.PollableOperation<Swift.Void>
     {
       try await self.batchUpdateEntities(withPolling: withPolling, options: .init())
     }
 
     public func batchUpdateEntities(
       withPolling: BatchUpdateEntitiesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
-      let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
+      let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleCloudGax.RequestError.unimplemented
       }
       return GoogleCloudGax._PollableOperationImpl(
@@ -1323,7 +1190,7 @@
     public func batchUpdateEntities(
       parent: Swift.String,
       entities: [EntityType.Entity],
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
       let request = BatchUpdateEntitiesRequest().with {
         $0.parent = parent
         $0.entities = entities
@@ -1335,7 +1202,7 @@
       parent: Swift.String,
       entities: [EntityType.Entity],
       languageCode: Swift.String,
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
       let request = BatchUpdateEntitiesRequest().with {
         $0.parent = parent
         $0.entities = entities
@@ -1357,15 +1224,15 @@
     }
 
     public func batchDeleteEntities(withPolling: BatchDeleteEntitiesRequest) async throws
-      -> any GoogleCloudGax.PollableOperation<Void>
+      -> any GoogleCloudGax.PollableOperation<Swift.Void>
     {
       try await self.batchDeleteEntities(withPolling: withPolling, options: .init())
     }
 
     public func batchDeleteEntities(
       withPolling: BatchDeleteEntitiesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
-      let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Void>.State in
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
+      let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleCloudGax.RequestError.unimplemented
       }
       return GoogleCloudGax._PollableOperationImpl(
@@ -1375,7 +1242,7 @@
     public func batchDeleteEntities(
       parent: Swift.String,
       entityValues: [Swift.String],
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
       let request = BatchDeleteEntitiesRequest().with {
         $0.parent = parent
         $0.entityValues = entityValues
@@ -1387,7 +1254,7 @@
       parent: Swift.String,
       entityValues: [Swift.String],
       languageCode: Swift.String,
-    ) async throws -> any GoogleCloudGax.PollableOperation<Void> {
+    ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
       let request = BatchDeleteEntitiesRequest().with {
         $0.parent = parent
         $0.entityValues = entityValues
