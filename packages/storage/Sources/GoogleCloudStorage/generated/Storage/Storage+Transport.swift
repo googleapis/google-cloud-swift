@@ -19,7 +19,6 @@ import GoogleCloudAuth
 @_spi(GoogleCloudInternal) import GoogleCloudGax
 @_spi(GoogleCloudInternal) import GoogleCloudGaxGRPC
 import GoogleCloudWkt
-
 internal import StorageProtos
 internal import GoogleCloudWktConvert
 internal import SwiftProtobuf
@@ -42,24 +41,50 @@ extension Clients {
     public func deleteBucket(
       request: DeleteBucketRequest, options: GoogleCloudGax.RequestOptions
     ) async throws {
+      let routingParams = GoogleCloudGaxGRPC._RoutingMatcher.format([
+        (
+          "bucket",
+          GoogleCloudGaxGRPC._RoutingMatcher.value(
+            request.name,
+            prefix: [],
+            matching: [.multiWildcard],
+            suffix: []
+          )
+        )
+      ])
+
       let protoRequest = try request.toProto()
       let _: SwiftProtobuf.Google_Protobuf_Empty = try await self.inner.execute(
         path: "/google.storage.v2.Storage/DeleteBucket",
         request: protoRequest,
         options: options,
-        clientHeader: Clients.clientHeader
+        clientHeader: Clients.clientHeader,
+        routingParams: routingParams
       )
     }
 
     public func getBucket(
       request: GetBucketRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> Bucket {
+      let routingParams = GoogleCloudGaxGRPC._RoutingMatcher.format([
+        (
+          "bucket",
+          GoogleCloudGaxGRPC._RoutingMatcher.value(
+            request.name,
+            prefix: [],
+            matching: [.multiWildcard],
+            suffix: []
+          )
+        )
+      ])
+
       let protoRequest = try request.toProto()
       let protoResponse: StorageProtos.Google_Storage_V2_Bucket = try await self.inner.execute(
         path: "/google.storage.v2.Storage/GetBucket",
         request: protoRequest,
         options: options,
-        clientHeader: Clients.clientHeader
+        clientHeader: Clients.clientHeader,
+        routingParams: routingParams
       )
       return try Bucket(proto: protoResponse)
     }
@@ -67,12 +92,31 @@ extension Clients {
     public func createBucket(
       request: CreateBucketRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> Bucket {
+      let routingParams = GoogleCloudGaxGRPC._RoutingMatcher.format([
+        (
+          "project",
+          GoogleCloudGaxGRPC._RoutingMatcher.value(
+            request.bucket?.project,
+            prefix: [],
+            matching: [.multiWildcard],
+            suffix: []
+          )
+            ?? GoogleCloudGaxGRPC._RoutingMatcher.value(
+              request.parent,
+              prefix: [],
+              matching: [.multiWildcard],
+              suffix: []
+            )
+        )
+      ])
+
       let protoRequest = try request.toProto()
       let protoResponse: StorageProtos.Google_Storage_V2_Bucket = try await self.inner.execute(
         path: "/google.storage.v2.Storage/CreateBucket",
         request: protoRequest,
         options: options,
-        clientHeader: Clients.clientHeader
+        clientHeader: Clients.clientHeader,
+        routingParams: routingParams
       )
       return try Bucket(proto: protoResponse)
     }
@@ -80,13 +124,26 @@ extension Clients {
     public func listBuckets(
       request: ListBucketsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> ListBucketsResponse {
+      let routingParams = GoogleCloudGaxGRPC._RoutingMatcher.format([
+        (
+          "project",
+          GoogleCloudGaxGRPC._RoutingMatcher.value(
+            request.parent,
+            prefix: [],
+            matching: [.multiWildcard],
+            suffix: []
+          )
+        )
+      ])
+
       let protoRequest = try request.toProto()
       let protoResponse: StorageProtos.Google_Storage_V2_ListBucketsResponse = try await self.inner
         .execute(
           path: "/google.storage.v2.Storage/ListBuckets",
           request: protoRequest,
           options: options,
-          clientHeader: Clients.clientHeader
+          clientHeader: Clients.clientHeader,
+          routingParams: routingParams
         )
       return try ListBucketsResponse(proto: protoResponse)
     }
@@ -94,12 +151,25 @@ extension Clients {
     public func lockBucketRetentionPolicy(
       request: LockBucketRetentionPolicyRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> Bucket {
+      let routingParams = GoogleCloudGaxGRPC._RoutingMatcher.format([
+        (
+          "bucket",
+          GoogleCloudGaxGRPC._RoutingMatcher.value(
+            request.bucket,
+            prefix: [],
+            matching: [.multiWildcard],
+            suffix: []
+          )
+        )
+      ])
+
       let protoRequest = try request.toProto()
       let protoResponse: StorageProtos.Google_Storage_V2_Bucket = try await self.inner.execute(
         path: "/google.storage.v2.Storage/LockBucketRetentionPolicy",
         request: protoRequest,
         options: options,
-        clientHeader: Clients.clientHeader
+        clientHeader: Clients.clientHeader,
+        routingParams: routingParams
       )
       return try Bucket(proto: protoResponse)
     }
@@ -107,12 +177,25 @@ extension Clients {
     public func updateBucket(
       request: UpdateBucketRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> Bucket {
+      let routingParams = GoogleCloudGaxGRPC._RoutingMatcher.format([
+        (
+          "bucket",
+          GoogleCloudGaxGRPC._RoutingMatcher.value(
+            request.bucket?.name,
+            prefix: [],
+            matching: [.multiWildcard],
+            suffix: []
+          )
+        )
+      ])
+
       let protoRequest = try request.toProto()
       let protoResponse: StorageProtos.Google_Storage_V2_Bucket = try await self.inner.execute(
         path: "/google.storage.v2.Storage/UpdateBucket",
         request: protoRequest,
         options: options,
-        clientHeader: Clients.clientHeader
+        clientHeader: Clients.clientHeader,
+        routingParams: routingParams
       )
       return try Bucket(proto: protoResponse)
     }
@@ -120,12 +203,25 @@ extension Clients {
     public func composeObject(
       request: ComposeObjectRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> Object {
+      let routingParams = GoogleCloudGaxGRPC._RoutingMatcher.format([
+        (
+          "bucket",
+          GoogleCloudGaxGRPC._RoutingMatcher.value(
+            request.destination?.bucket,
+            prefix: [],
+            matching: [.multiWildcard],
+            suffix: []
+          )
+        )
+      ])
+
       let protoRequest = try request.toProto()
       let protoResponse: StorageProtos.Google_Storage_V2_Object = try await self.inner.execute(
         path: "/google.storage.v2.Storage/ComposeObject",
         request: protoRequest,
         options: options,
-        clientHeader: Clients.clientHeader
+        clientHeader: Clients.clientHeader,
+        routingParams: routingParams
       )
       return try Object(proto: protoResponse)
     }
@@ -133,24 +229,50 @@ extension Clients {
     public func deleteObject(
       request: DeleteObjectRequest, options: GoogleCloudGax.RequestOptions
     ) async throws {
+      let routingParams = GoogleCloudGaxGRPC._RoutingMatcher.format([
+        (
+          "bucket",
+          GoogleCloudGaxGRPC._RoutingMatcher.value(
+            request.bucket,
+            prefix: [],
+            matching: [.multiWildcard],
+            suffix: []
+          )
+        )
+      ])
+
       let protoRequest = try request.toProto()
       let _: SwiftProtobuf.Google_Protobuf_Empty = try await self.inner.execute(
         path: "/google.storage.v2.Storage/DeleteObject",
         request: protoRequest,
         options: options,
-        clientHeader: Clients.clientHeader
+        clientHeader: Clients.clientHeader,
+        routingParams: routingParams
       )
     }
 
     public func restoreObject(
       request: RestoreObjectRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> Object {
+      let routingParams = GoogleCloudGaxGRPC._RoutingMatcher.format([
+        (
+          "bucket",
+          GoogleCloudGaxGRPC._RoutingMatcher.value(
+            request.bucket,
+            prefix: [],
+            matching: [.multiWildcard],
+            suffix: []
+          )
+        )
+      ])
+
       let protoRequest = try request.toProto()
       let protoResponse: StorageProtos.Google_Storage_V2_Object = try await self.inner.execute(
         path: "/google.storage.v2.Storage/RestoreObject",
         request: protoRequest,
         options: options,
-        clientHeader: Clients.clientHeader
+        clientHeader: Clients.clientHeader,
+        routingParams: routingParams
       )
       return try Object(proto: protoResponse)
     }
@@ -158,12 +280,25 @@ extension Clients {
     public func getObject(
       request: GetObjectRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> Object {
+      let routingParams = GoogleCloudGaxGRPC._RoutingMatcher.format([
+        (
+          "bucket",
+          GoogleCloudGaxGRPC._RoutingMatcher.value(
+            request.bucket,
+            prefix: [],
+            matching: [.multiWildcard],
+            suffix: []
+          )
+        )
+      ])
+
       let protoRequest = try request.toProto()
       let protoResponse: StorageProtos.Google_Storage_V2_Object = try await self.inner.execute(
         path: "/google.storage.v2.Storage/GetObject",
         request: protoRequest,
         options: options,
-        clientHeader: Clients.clientHeader
+        clientHeader: Clients.clientHeader,
+        routingParams: routingParams
       )
       return try Object(proto: protoResponse)
     }
@@ -171,12 +306,25 @@ extension Clients {
     public func updateObject(
       request: UpdateObjectRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> Object {
+      let routingParams = GoogleCloudGaxGRPC._RoutingMatcher.format([
+        (
+          "bucket",
+          GoogleCloudGaxGRPC._RoutingMatcher.value(
+            request.object?.bucket,
+            prefix: [],
+            matching: [.multiWildcard],
+            suffix: []
+          )
+        )
+      ])
+
       let protoRequest = try request.toProto()
       let protoResponse: StorageProtos.Google_Storage_V2_Object = try await self.inner.execute(
         path: "/google.storage.v2.Storage/UpdateObject",
         request: protoRequest,
         options: options,
-        clientHeader: Clients.clientHeader
+        clientHeader: Clients.clientHeader,
+        routingParams: routingParams
       )
       return try Object(proto: protoResponse)
     }
@@ -184,13 +332,26 @@ extension Clients {
     public func listObjects(
       request: ListObjectsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> ListObjectsResponse {
+      let routingParams = GoogleCloudGaxGRPC._RoutingMatcher.format([
+        (
+          "bucket",
+          GoogleCloudGaxGRPC._RoutingMatcher.value(
+            request.parent,
+            prefix: [],
+            matching: [.multiWildcard],
+            suffix: []
+          )
+        )
+      ])
+
       let protoRequest = try request.toProto()
       let protoResponse: StorageProtos.Google_Storage_V2_ListObjectsResponse = try await self.inner
         .execute(
           path: "/google.storage.v2.Storage/ListObjects",
           request: protoRequest,
           options: options,
-          clientHeader: Clients.clientHeader
+          clientHeader: Clients.clientHeader,
+          routingParams: routingParams
         )
       return try ListObjectsResponse(proto: protoResponse)
     }
@@ -198,13 +359,35 @@ extension Clients {
     public func rewriteObject(
       request: RewriteObjectRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> RewriteResponse {
+      let routingParams = GoogleCloudGaxGRPC._RoutingMatcher.format([
+        (
+          "bucket",
+          GoogleCloudGaxGRPC._RoutingMatcher.value(
+            request.destinationBucket,
+            prefix: [],
+            matching: [.multiWildcard],
+            suffix: []
+          )
+        ),
+        (
+          "source_bucket",
+          GoogleCloudGaxGRPC._RoutingMatcher.value(
+            request.sourceBucket,
+            prefix: [],
+            matching: [.multiWildcard],
+            suffix: []
+          )
+        ),
+      ])
+
       let protoRequest = try request.toProto()
       let protoResponse: StorageProtos.Google_Storage_V2_RewriteResponse = try await self.inner
         .execute(
           path: "/google.storage.v2.Storage/RewriteObject",
           request: protoRequest,
           options: options,
-          clientHeader: Clients.clientHeader
+          clientHeader: Clients.clientHeader,
+          routingParams: routingParams
         )
       return try RewriteResponse(proto: protoResponse)
     }
@@ -212,12 +395,25 @@ extension Clients {
     public func moveObject(
       request: MoveObjectRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> Object {
+      let routingParams = GoogleCloudGaxGRPC._RoutingMatcher.format([
+        (
+          "bucket",
+          GoogleCloudGaxGRPC._RoutingMatcher.value(
+            request.bucket,
+            prefix: [],
+            matching: [.multiWildcard],
+            suffix: []
+          )
+        )
+      ])
+
       let protoRequest = try request.toProto()
       let protoResponse: StorageProtos.Google_Storage_V2_Object = try await self.inner.execute(
         path: "/google.storage.v2.Storage/MoveObject",
         request: protoRequest,
         options: options,
-        clientHeader: Clients.clientHeader
+        clientHeader: Clients.clientHeader,
+        routingParams: routingParams
       )
       return try Object(proto: protoResponse)
     }

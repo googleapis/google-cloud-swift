@@ -22,7 +22,6 @@ import GoogleCloudWkt
 import GoogleIAMV1
 import GoogleLongRunning
 import GoogleRpc
-
 internal import StorageControlProtos
 internal import GoogleCloudWktConvert
 internal import SwiftProtobuf
@@ -45,13 +44,17 @@ extension Clients {
     public func createFolder(
       request: CreateFolderRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> Folder {
-      var routingParams: [String] = []
-      if let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty {
-        let encoded =
-          pathVariable0.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)
-          ?? pathVariable0
-        routingParams.append("parent=\(encoded)")
-      }
+      let routingParams = GoogleCloudGaxGRPC._RoutingMatcher.format([
+        (
+          "bucket",
+          GoogleCloudGaxGRPC._RoutingMatcher.value(
+            request.parent,
+            prefix: [],
+            matching: [.multiWildcard],
+            suffix: []
+          )
+        )
+      ])
 
       let protoRequest = try request.toProto()
       let protoResponse: StorageControlProtos.Google_Storage_Control_V2_Folder =
@@ -68,13 +71,19 @@ extension Clients {
     public func deleteFolder(
       request: DeleteFolderRequest, options: GoogleCloudGax.RequestOptions
     ) async throws {
-      var routingParams: [String] = []
-      if let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty {
-        let encoded =
-          pathVariable0.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)
-          ?? pathVariable0
-        routingParams.append("name=\(encoded)")
-      }
+      let routingParams = GoogleCloudGaxGRPC._RoutingMatcher.format([
+        (
+          "bucket",
+          GoogleCloudGaxGRPC._RoutingMatcher.value(
+            request.name,
+            prefix: [],
+            matching: [
+              .literal("projects/"), .singleWildcard, .literal("/buckets/"), .singleWildcard,
+            ],
+            suffix: [.trailingMultiWildcard]
+          )
+        )
+      ])
 
       let protoRequest = try request.toProto()
       let _: SwiftProtobuf.Google_Protobuf_Empty = try await self.inner.execute(
@@ -89,13 +98,19 @@ extension Clients {
     public func getFolder(
       request: GetFolderRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> Folder {
-      var routingParams: [String] = []
-      if let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty {
-        let encoded =
-          pathVariable0.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)
-          ?? pathVariable0
-        routingParams.append("name=\(encoded)")
-      }
+      let routingParams = GoogleCloudGaxGRPC._RoutingMatcher.format([
+        (
+          "bucket",
+          GoogleCloudGaxGRPC._RoutingMatcher.value(
+            request.name,
+            prefix: [],
+            matching: [
+              .literal("projects/"), .singleWildcard, .literal("/buckets/"), .singleWildcard,
+            ],
+            suffix: [.trailingMultiWildcard]
+          )
+        )
+      ])
 
       let protoRequest = try request.toProto()
       let protoResponse: StorageControlProtos.Google_Storage_Control_V2_Folder =
@@ -112,13 +127,17 @@ extension Clients {
     public func listFolders(
       request: ListFoldersRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> ListFoldersResponse {
-      var routingParams: [String] = []
-      if let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty {
-        let encoded =
-          pathVariable0.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)
-          ?? pathVariable0
-        routingParams.append("parent=\(encoded)")
-      }
+      let routingParams = GoogleCloudGaxGRPC._RoutingMatcher.format([
+        (
+          "bucket",
+          GoogleCloudGaxGRPC._RoutingMatcher.value(
+            request.parent,
+            prefix: [],
+            matching: [.multiWildcard],
+            suffix: []
+          )
+        )
+      ])
 
       let protoRequest = try request.toProto()
       let protoResponse: StorageControlProtos.Google_Storage_Control_V2_ListFoldersResponse =
@@ -135,13 +154,19 @@ extension Clients {
     public func renameFolder(
       request: RenameFolderRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      var routingParams: [String] = []
-      if let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty {
-        let encoded =
-          pathVariable0.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)
-          ?? pathVariable0
-        routingParams.append("name=\(encoded)")
-      }
+      let routingParams = GoogleCloudGaxGRPC._RoutingMatcher.format([
+        (
+          "bucket",
+          GoogleCloudGaxGRPC._RoutingMatcher.value(
+            request.name,
+            prefix: [],
+            matching: [
+              .literal("projects/"), .singleWildcard, .literal("/buckets/"), .singleWildcard,
+            ],
+            suffix: [.trailingMultiWildcard]
+          )
+        )
+      ])
 
       let protoRequest = try request.toProto()
       let protoResponse: StorageControlProtos.Google_Longrunning_Operation = try await self.inner
@@ -158,13 +183,19 @@ extension Clients {
     public func deleteFolderRecursive(
       request: DeleteFolderRecursiveRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      var routingParams: [String] = []
-      if let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty {
-        let encoded =
-          pathVariable0.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)
-          ?? pathVariable0
-        routingParams.append("name=\(encoded)")
-      }
+      let routingParams = GoogleCloudGaxGRPC._RoutingMatcher.format([
+        (
+          "bucket",
+          GoogleCloudGaxGRPC._RoutingMatcher.value(
+            request.name,
+            prefix: [],
+            matching: [
+              .literal("projects/"), .singleWildcard, .literal("/buckets/"), .singleWildcard,
+            ],
+            suffix: [.trailingMultiWildcard]
+          )
+        )
+      ])
 
       let protoRequest = try request.toProto()
       let protoResponse: StorageControlProtos.Google_Longrunning_Operation = try await self.inner
@@ -181,13 +212,19 @@ extension Clients {
     public func getStorageLayout(
       request: GetStorageLayoutRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> StorageLayout {
-      var routingParams: [String] = []
-      if let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty {
-        let encoded =
-          pathVariable0.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)
-          ?? pathVariable0
-        routingParams.append("name=\(encoded)")
-      }
+      let routingParams = GoogleCloudGaxGRPC._RoutingMatcher.format([
+        (
+          "bucket",
+          GoogleCloudGaxGRPC._RoutingMatcher.value(
+            request.name,
+            prefix: [],
+            matching: [
+              .literal("projects/"), .singleWildcard, .literal("/buckets/"), .singleWildcard,
+            ],
+            suffix: [.trailingMultiWildcard]
+          )
+        )
+      ])
 
       let protoRequest = try request.toProto()
       let protoResponse: StorageControlProtos.Google_Storage_Control_V2_StorageLayout =
@@ -204,13 +241,26 @@ extension Clients {
     public func createManagedFolder(
       request: CreateManagedFolderRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> ManagedFolder {
+      let routingParams = GoogleCloudGaxGRPC._RoutingMatcher.format([
+        (
+          "bucket",
+          GoogleCloudGaxGRPC._RoutingMatcher.value(
+            request.parent,
+            prefix: [],
+            matching: [.multiWildcard],
+            suffix: []
+          )
+        )
+      ])
+
       let protoRequest = try request.toProto()
       let protoResponse: StorageControlProtos.Google_Storage_Control_V2_ManagedFolder =
         try await self.inner.execute(
           path: "/google.storage.control.v2.StorageControl/CreateManagedFolder",
           request: protoRequest,
           options: options,
-          clientHeader: Clients.clientHeader
+          clientHeader: Clients.clientHeader,
+          routingParams: routingParams
         )
       return try ManagedFolder(proto: protoResponse)
     }
@@ -218,25 +268,55 @@ extension Clients {
     public func deleteManagedFolder(
       request: DeleteManagedFolderRequest, options: GoogleCloudGax.RequestOptions
     ) async throws {
+      let routingParams = GoogleCloudGaxGRPC._RoutingMatcher.format([
+        (
+          "bucket",
+          GoogleCloudGaxGRPC._RoutingMatcher.value(
+            request.name,
+            prefix: [],
+            matching: [
+              .literal("projects/"), .singleWildcard, .literal("/buckets/"), .singleWildcard,
+            ],
+            suffix: [.trailingMultiWildcard]
+          )
+        )
+      ])
+
       let protoRequest = try request.toProto()
       let _: SwiftProtobuf.Google_Protobuf_Empty = try await self.inner.execute(
         path: "/google.storage.control.v2.StorageControl/DeleteManagedFolder",
         request: protoRequest,
         options: options,
-        clientHeader: Clients.clientHeader
+        clientHeader: Clients.clientHeader,
+        routingParams: routingParams
       )
     }
 
     public func getManagedFolder(
       request: GetManagedFolderRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> ManagedFolder {
+      let routingParams = GoogleCloudGaxGRPC._RoutingMatcher.format([
+        (
+          "bucket",
+          GoogleCloudGaxGRPC._RoutingMatcher.value(
+            request.name,
+            prefix: [],
+            matching: [
+              .literal("projects/"), .singleWildcard, .literal("/buckets/"), .singleWildcard,
+            ],
+            suffix: [.trailingMultiWildcard]
+          )
+        )
+      ])
+
       let protoRequest = try request.toProto()
       let protoResponse: StorageControlProtos.Google_Storage_Control_V2_ManagedFolder =
         try await self.inner.execute(
           path: "/google.storage.control.v2.StorageControl/GetManagedFolder",
           request: protoRequest,
           options: options,
-          clientHeader: Clients.clientHeader
+          clientHeader: Clients.clientHeader,
+          routingParams: routingParams
         )
       return try ManagedFolder(proto: protoResponse)
     }
@@ -244,13 +324,26 @@ extension Clients {
     public func listManagedFolders(
       request: ListManagedFoldersRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> ListManagedFoldersResponse {
+      let routingParams = GoogleCloudGaxGRPC._RoutingMatcher.format([
+        (
+          "bucket",
+          GoogleCloudGaxGRPC._RoutingMatcher.value(
+            request.parent,
+            prefix: [],
+            matching: [.multiWildcard],
+            suffix: []
+          )
+        )
+      ])
+
       let protoRequest = try request.toProto()
       let protoResponse: StorageControlProtos.Google_Storage_Control_V2_ListManagedFoldersResponse =
         try await self.inner.execute(
           path: "/google.storage.control.v2.StorageControl/ListManagedFolders",
           request: protoRequest,
           options: options,
-          clientHeader: Clients.clientHeader
+          clientHeader: Clients.clientHeader,
+          routingParams: routingParams
         )
       return try ListManagedFoldersResponse(proto: protoResponse)
     }
@@ -258,13 +351,28 @@ extension Clients {
     public func updateManagedFolder(
       request: UpdateManagedFolderRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> ManagedFolder {
+      let routingParams = GoogleCloudGaxGRPC._RoutingMatcher.format([
+        (
+          "bucket",
+          GoogleCloudGaxGRPC._RoutingMatcher.value(
+            request.managedFolder?.name,
+            prefix: [],
+            matching: [
+              .literal("projects/"), .singleWildcard, .literal("/buckets/"), .singleWildcard,
+            ],
+            suffix: [.trailingMultiWildcard]
+          )
+        )
+      ])
+
       let protoRequest = try request.toProto()
       let protoResponse: StorageControlProtos.Google_Storage_Control_V2_ManagedFolder =
         try await self.inner.execute(
           path: "/google.storage.control.v2.StorageControl/UpdateManagedFolder",
           request: protoRequest,
           options: options,
-          clientHeader: Clients.clientHeader
+          clientHeader: Clients.clientHeader,
+          routingParams: routingParams
         )
       return try ManagedFolder(proto: protoResponse)
     }
@@ -272,13 +380,26 @@ extension Clients {
     public func createAnywhereCache(
       request: CreateAnywhereCacheRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
+      let routingParams = GoogleCloudGaxGRPC._RoutingMatcher.format([
+        (
+          "bucket",
+          GoogleCloudGaxGRPC._RoutingMatcher.value(
+            request.parent,
+            prefix: [],
+            matching: [.multiWildcard],
+            suffix: []
+          )
+        )
+      ])
+
       let protoRequest = try request.toProto()
       let protoResponse: StorageControlProtos.Google_Longrunning_Operation = try await self.inner
         .execute(
           path: "/google.storage.control.v2.StorageControl/CreateAnywhereCache",
           request: protoRequest,
           options: options,
-          clientHeader: Clients.clientHeader
+          clientHeader: Clients.clientHeader,
+          routingParams: routingParams
         )
       return try GoogleLongRunning.Operation(proto: protoResponse)
     }
@@ -286,13 +407,28 @@ extension Clients {
     public func updateAnywhereCache(
       request: UpdateAnywhereCacheRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
+      let routingParams = GoogleCloudGaxGRPC._RoutingMatcher.format([
+        (
+          "bucket",
+          GoogleCloudGaxGRPC._RoutingMatcher.value(
+            request.anywhereCache?.name,
+            prefix: [],
+            matching: [
+              .literal("projects/"), .singleWildcard, .literal("/buckets/"), .singleWildcard,
+            ],
+            suffix: [.trailingMultiWildcard]
+          )
+        )
+      ])
+
       let protoRequest = try request.toProto()
       let protoResponse: StorageControlProtos.Google_Longrunning_Operation = try await self.inner
         .execute(
           path: "/google.storage.control.v2.StorageControl/UpdateAnywhereCache",
           request: protoRequest,
           options: options,
-          clientHeader: Clients.clientHeader
+          clientHeader: Clients.clientHeader,
+          routingParams: routingParams
         )
       return try GoogleLongRunning.Operation(proto: protoResponse)
     }
@@ -300,13 +436,28 @@ extension Clients {
     public func disableAnywhereCache(
       request: DisableAnywhereCacheRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> AnywhereCache {
+      let routingParams = GoogleCloudGaxGRPC._RoutingMatcher.format([
+        (
+          "bucket",
+          GoogleCloudGaxGRPC._RoutingMatcher.value(
+            request.name,
+            prefix: [],
+            matching: [
+              .literal("projects/"), .singleWildcard, .literal("/buckets/"), .singleWildcard,
+            ],
+            suffix: [.trailingMultiWildcard]
+          )
+        )
+      ])
+
       let protoRequest = try request.toProto()
       let protoResponse: StorageControlProtos.Google_Storage_Control_V2_AnywhereCache =
         try await self.inner.execute(
           path: "/google.storage.control.v2.StorageControl/DisableAnywhereCache",
           request: protoRequest,
           options: options,
-          clientHeader: Clients.clientHeader
+          clientHeader: Clients.clientHeader,
+          routingParams: routingParams
         )
       return try AnywhereCache(proto: protoResponse)
     }
@@ -314,13 +465,28 @@ extension Clients {
     public func pauseAnywhereCache(
       request: PauseAnywhereCacheRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> AnywhereCache {
+      let routingParams = GoogleCloudGaxGRPC._RoutingMatcher.format([
+        (
+          "bucket",
+          GoogleCloudGaxGRPC._RoutingMatcher.value(
+            request.name,
+            prefix: [],
+            matching: [
+              .literal("projects/"), .singleWildcard, .literal("/buckets/"), .singleWildcard,
+            ],
+            suffix: [.trailingMultiWildcard]
+          )
+        )
+      ])
+
       let protoRequest = try request.toProto()
       let protoResponse: StorageControlProtos.Google_Storage_Control_V2_AnywhereCache =
         try await self.inner.execute(
           path: "/google.storage.control.v2.StorageControl/PauseAnywhereCache",
           request: protoRequest,
           options: options,
-          clientHeader: Clients.clientHeader
+          clientHeader: Clients.clientHeader,
+          routingParams: routingParams
         )
       return try AnywhereCache(proto: protoResponse)
     }
@@ -328,13 +494,28 @@ extension Clients {
     public func resumeAnywhereCache(
       request: ResumeAnywhereCacheRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> AnywhereCache {
+      let routingParams = GoogleCloudGaxGRPC._RoutingMatcher.format([
+        (
+          "bucket",
+          GoogleCloudGaxGRPC._RoutingMatcher.value(
+            request.name,
+            prefix: [],
+            matching: [
+              .literal("projects/"), .singleWildcard, .literal("/buckets/"), .singleWildcard,
+            ],
+            suffix: [.trailingMultiWildcard]
+          )
+        )
+      ])
+
       let protoRequest = try request.toProto()
       let protoResponse: StorageControlProtos.Google_Storage_Control_V2_AnywhereCache =
         try await self.inner.execute(
           path: "/google.storage.control.v2.StorageControl/ResumeAnywhereCache",
           request: protoRequest,
           options: options,
-          clientHeader: Clients.clientHeader
+          clientHeader: Clients.clientHeader,
+          routingParams: routingParams
         )
       return try AnywhereCache(proto: protoResponse)
     }
@@ -342,13 +523,28 @@ extension Clients {
     public func getAnywhereCache(
       request: GetAnywhereCacheRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> AnywhereCache {
+      let routingParams = GoogleCloudGaxGRPC._RoutingMatcher.format([
+        (
+          "bucket",
+          GoogleCloudGaxGRPC._RoutingMatcher.value(
+            request.name,
+            prefix: [],
+            matching: [
+              .literal("projects/"), .singleWildcard, .literal("/buckets/"), .singleWildcard,
+            ],
+            suffix: [.trailingMultiWildcard]
+          )
+        )
+      ])
+
       let protoRequest = try request.toProto()
       let protoResponse: StorageControlProtos.Google_Storage_Control_V2_AnywhereCache =
         try await self.inner.execute(
           path: "/google.storage.control.v2.StorageControl/GetAnywhereCache",
           request: protoRequest,
           options: options,
-          clientHeader: Clients.clientHeader
+          clientHeader: Clients.clientHeader,
+          routingParams: routingParams
         )
       return try AnywhereCache(proto: protoResponse)
     }
@@ -356,13 +552,26 @@ extension Clients {
     public func listAnywhereCaches(
       request: ListAnywhereCachesRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> ListAnywhereCachesResponse {
+      let routingParams = GoogleCloudGaxGRPC._RoutingMatcher.format([
+        (
+          "bucket",
+          GoogleCloudGaxGRPC._RoutingMatcher.value(
+            request.parent,
+            prefix: [],
+            matching: [.multiWildcard],
+            suffix: []
+          )
+        )
+      ])
+
       let protoRequest = try request.toProto()
       let protoResponse: StorageControlProtos.Google_Storage_Control_V2_ListAnywhereCachesResponse =
         try await self.inner.execute(
           path: "/google.storage.control.v2.StorageControl/ListAnywhereCaches",
           request: protoRequest,
           options: options,
-          clientHeader: Clients.clientHeader
+          clientHeader: Clients.clientHeader,
+          routingParams: routingParams
         )
       return try ListAnywhereCachesResponse(proto: protoResponse)
     }
@@ -370,13 +579,26 @@ extension Clients {
     public func createRapidCache(
       request: CreateRapidCacheRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
+      let routingParams = GoogleCloudGaxGRPC._RoutingMatcher.format([
+        (
+          "bucket",
+          GoogleCloudGaxGRPC._RoutingMatcher.value(
+            request.parent,
+            prefix: [],
+            matching: [.multiWildcard],
+            suffix: []
+          )
+        )
+      ])
+
       let protoRequest = try request.toProto()
       let protoResponse: StorageControlProtos.Google_Longrunning_Operation = try await self.inner
         .execute(
           path: "/google.storage.control.v2.StorageControl/CreateRapidCache",
           request: protoRequest,
           options: options,
-          clientHeader: Clients.clientHeader
+          clientHeader: Clients.clientHeader,
+          routingParams: routingParams
         )
       return try GoogleLongRunning.Operation(proto: protoResponse)
     }
@@ -384,13 +606,28 @@ extension Clients {
     public func updateRapidCache(
       request: UpdateRapidCacheRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
+      let routingParams = GoogleCloudGaxGRPC._RoutingMatcher.format([
+        (
+          "bucket",
+          GoogleCloudGaxGRPC._RoutingMatcher.value(
+            request.rapidCache?.name,
+            prefix: [],
+            matching: [
+              .literal("projects/"), .singleWildcard, .literal("/buckets/"), .singleWildcard,
+            ],
+            suffix: [.trailingMultiWildcard]
+          )
+        )
+      ])
+
       let protoRequest = try request.toProto()
       let protoResponse: StorageControlProtos.Google_Longrunning_Operation = try await self.inner
         .execute(
           path: "/google.storage.control.v2.StorageControl/UpdateRapidCache",
           request: protoRequest,
           options: options,
-          clientHeader: Clients.clientHeader
+          clientHeader: Clients.clientHeader,
+          routingParams: routingParams
         )
       return try GoogleLongRunning.Operation(proto: protoResponse)
     }
@@ -398,13 +635,28 @@ extension Clients {
     public func getRapidCache(
       request: GetRapidCacheRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> RapidCache {
+      let routingParams = GoogleCloudGaxGRPC._RoutingMatcher.format([
+        (
+          "bucket",
+          GoogleCloudGaxGRPC._RoutingMatcher.value(
+            request.name,
+            prefix: [],
+            matching: [
+              .literal("projects/"), .singleWildcard, .literal("/buckets/"), .singleWildcard,
+            ],
+            suffix: [.trailingMultiWildcard]
+          )
+        )
+      ])
+
       let protoRequest = try request.toProto()
       let protoResponse: StorageControlProtos.Google_Storage_Control_V2_RapidCache =
         try await self.inner.execute(
           path: "/google.storage.control.v2.StorageControl/GetRapidCache",
           request: protoRequest,
           options: options,
-          clientHeader: Clients.clientHeader
+          clientHeader: Clients.clientHeader,
+          routingParams: routingParams
         )
       return try RapidCache(proto: protoResponse)
     }
@@ -412,13 +664,26 @@ extension Clients {
     public func listRapidCaches(
       request: ListRapidCachesRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> ListRapidCachesResponse {
+      let routingParams = GoogleCloudGaxGRPC._RoutingMatcher.format([
+        (
+          "bucket",
+          GoogleCloudGaxGRPC._RoutingMatcher.value(
+            request.parent,
+            prefix: [],
+            matching: [.multiWildcard],
+            suffix: []
+          )
+        )
+      ])
+
       let protoRequest = try request.toProto()
       let protoResponse: StorageControlProtos.Google_Storage_Control_V2_ListRapidCachesResponse =
         try await self.inner.execute(
           path: "/google.storage.control.v2.StorageControl/ListRapidCaches",
           request: protoRequest,
           options: options,
-          clientHeader: Clients.clientHeader
+          clientHeader: Clients.clientHeader,
+          routingParams: routingParams
         )
       return try ListRapidCachesResponse(proto: protoResponse)
     }
@@ -426,13 +691,17 @@ extension Clients {
     public func getProjectIntelligenceConfig(
       request: GetProjectIntelligenceConfigRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> IntelligenceConfig {
-      var routingParams: [String] = []
-      if let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty {
-        let encoded =
-          pathVariable0.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)
-          ?? pathVariable0
-        routingParams.append("name=\(encoded)")
-      }
+      let routingParams = GoogleCloudGaxGRPC._RoutingMatcher.format([
+        (
+          "name",
+          GoogleCloudGaxGRPC._RoutingMatcher.value(
+            request.name,
+            prefix: [],
+            matching: [.multiWildcard],
+            suffix: []
+          )
+        )
+      ])
 
       let protoRequest = try request.toProto()
       let protoResponse: StorageControlProtos.Google_Storage_Control_V2_IntelligenceConfig =
@@ -449,13 +718,17 @@ extension Clients {
     public func updateProjectIntelligenceConfig(
       request: UpdateProjectIntelligenceConfigRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> IntelligenceConfig {
-      var routingParams: [String] = []
-      if let pathVariable0 = request.intelligenceConfig.map({ $0.name }), !pathVariable0.isEmpty {
-        let encoded =
-          pathVariable0.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)
-          ?? pathVariable0
-        routingParams.append("intelligence_config.name=\(encoded)")
-      }
+      let routingParams = GoogleCloudGaxGRPC._RoutingMatcher.format([
+        (
+          "intelligence_config.name",
+          GoogleCloudGaxGRPC._RoutingMatcher.value(
+            request.intelligenceConfig?.name,
+            prefix: [],
+            matching: [.multiWildcard],
+            suffix: []
+          )
+        )
+      ])
 
       let protoRequest = try request.toProto()
       let protoResponse: StorageControlProtos.Google_Storage_Control_V2_IntelligenceConfig =
@@ -472,13 +745,17 @@ extension Clients {
     public func getFolderIntelligenceConfig(
       request: GetFolderIntelligenceConfigRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> IntelligenceConfig {
-      var routingParams: [String] = []
-      if let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty {
-        let encoded =
-          pathVariable0.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)
-          ?? pathVariable0
-        routingParams.append("name=\(encoded)")
-      }
+      let routingParams = GoogleCloudGaxGRPC._RoutingMatcher.format([
+        (
+          "name",
+          GoogleCloudGaxGRPC._RoutingMatcher.value(
+            request.name,
+            prefix: [],
+            matching: [.multiWildcard],
+            suffix: []
+          )
+        )
+      ])
 
       let protoRequest = try request.toProto()
       let protoResponse: StorageControlProtos.Google_Storage_Control_V2_IntelligenceConfig =
@@ -495,13 +772,17 @@ extension Clients {
     public func updateFolderIntelligenceConfig(
       request: UpdateFolderIntelligenceConfigRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> IntelligenceConfig {
-      var routingParams: [String] = []
-      if let pathVariable0 = request.intelligenceConfig.map({ $0.name }), !pathVariable0.isEmpty {
-        let encoded =
-          pathVariable0.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)
-          ?? pathVariable0
-        routingParams.append("intelligence_config.name=\(encoded)")
-      }
+      let routingParams = GoogleCloudGaxGRPC._RoutingMatcher.format([
+        (
+          "intelligence_config.name",
+          GoogleCloudGaxGRPC._RoutingMatcher.value(
+            request.intelligenceConfig?.name,
+            prefix: [],
+            matching: [.multiWildcard],
+            suffix: []
+          )
+        )
+      ])
 
       let protoRequest = try request.toProto()
       let protoResponse: StorageControlProtos.Google_Storage_Control_V2_IntelligenceConfig =
@@ -518,13 +799,17 @@ extension Clients {
     public func getOrganizationIntelligenceConfig(
       request: GetOrganizationIntelligenceConfigRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> IntelligenceConfig {
-      var routingParams: [String] = []
-      if let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty {
-        let encoded =
-          pathVariable0.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)
-          ?? pathVariable0
-        routingParams.append("name=\(encoded)")
-      }
+      let routingParams = GoogleCloudGaxGRPC._RoutingMatcher.format([
+        (
+          "name",
+          GoogleCloudGaxGRPC._RoutingMatcher.value(
+            request.name,
+            prefix: [],
+            matching: [.multiWildcard],
+            suffix: []
+          )
+        )
+      ])
 
       let protoRequest = try request.toProto()
       let protoResponse: StorageControlProtos.Google_Storage_Control_V2_IntelligenceConfig =
@@ -541,13 +826,17 @@ extension Clients {
     public func updateOrganizationIntelligenceConfig(
       request: UpdateOrganizationIntelligenceConfigRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> IntelligenceConfig {
-      var routingParams: [String] = []
-      if let pathVariable0 = request.intelligenceConfig.map({ $0.name }), !pathVariable0.isEmpty {
-        let encoded =
-          pathVariable0.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)
-          ?? pathVariable0
-        routingParams.append("intelligence_config.name=\(encoded)")
-      }
+      let routingParams = GoogleCloudGaxGRPC._RoutingMatcher.format([
+        (
+          "intelligence_config.name",
+          GoogleCloudGaxGRPC._RoutingMatcher.value(
+            request.intelligenceConfig?.name,
+            prefix: [],
+            matching: [.multiWildcard],
+            suffix: []
+          )
+        )
+      ])
 
       let protoRequest = try request.toProto()
       let protoResponse: StorageControlProtos.Google_Storage_Control_V2_IntelligenceConfig =
@@ -564,12 +853,33 @@ extension Clients {
     public func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
+      let routingParams = GoogleCloudGaxGRPC._RoutingMatcher.format([
+        (
+          "bucket",
+          GoogleCloudGaxGRPC._RoutingMatcher.value(
+            request.resource,
+            prefix: [],
+            matching: [
+              .literal("projects/"), .singleWildcard, .literal("/buckets/"), .singleWildcard,
+            ],
+            suffix: [.trailingMultiWildcard]
+          )
+            ?? GoogleCloudGaxGRPC._RoutingMatcher.value(
+              request.resource,
+              prefix: [],
+              matching: [.multiWildcard],
+              suffix: []
+            )
+        )
+      ])
+
       let protoRequest = try request.toProto()
       let protoResponse: StorageControlProtos.Google_Iam_V1_Policy = try await self.inner.execute(
         path: "/google.storage.control.v2.StorageControl/GetIamPolicy",
         request: protoRequest,
         options: options,
-        clientHeader: Clients.clientHeader
+        clientHeader: Clients.clientHeader,
+        routingParams: routingParams
       )
       return try GoogleIAMV1.Policy(proto: protoResponse)
     }
@@ -577,12 +887,33 @@ extension Clients {
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
+      let routingParams = GoogleCloudGaxGRPC._RoutingMatcher.format([
+        (
+          "bucket",
+          GoogleCloudGaxGRPC._RoutingMatcher.value(
+            request.resource,
+            prefix: [],
+            matching: [
+              .literal("projects/"), .singleWildcard, .literal("/buckets/"), .singleWildcard,
+            ],
+            suffix: [.trailingMultiWildcard]
+          )
+            ?? GoogleCloudGaxGRPC._RoutingMatcher.value(
+              request.resource,
+              prefix: [],
+              matching: [.multiWildcard],
+              suffix: []
+            )
+        )
+      ])
+
       let protoRequest = try request.toProto()
       let protoResponse: StorageControlProtos.Google_Iam_V1_Policy = try await self.inner.execute(
         path: "/google.storage.control.v2.StorageControl/SetIamPolicy",
         request: protoRequest,
         options: options,
-        clientHeader: Clients.clientHeader
+        clientHeader: Clients.clientHeader,
+        routingParams: routingParams
       )
       return try GoogleIAMV1.Policy(proto: protoResponse)
     }
@@ -590,13 +921,41 @@ extension Clients {
     public func testIamPermissions(
       request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
+      let routingParams = GoogleCloudGaxGRPC._RoutingMatcher.format([
+        (
+          "bucket",
+          GoogleCloudGaxGRPC._RoutingMatcher.value(
+            request.resource,
+            prefix: [],
+            matching: [
+              .literal("projects/"), .singleWildcard, .literal("/buckets/"), .singleWildcard,
+            ],
+            suffix: [.literal("/managedFolders"), .trailingMultiWildcard]
+          ) ?? GoogleCloudGaxGRPC._RoutingMatcher.value(
+            request.resource,
+            prefix: [],
+            matching: [
+              .literal("projects/"), .singleWildcard, .literal("/buckets/"), .singleWildcard,
+            ],
+            suffix: [.literal("/objects"), .trailingMultiWildcard]
+          )
+            ?? GoogleCloudGaxGRPC._RoutingMatcher.value(
+              request.resource,
+              prefix: [],
+              matching: [.multiWildcard],
+              suffix: []
+            )
+        )
+      ])
+
       let protoRequest = try request.toProto()
       let protoResponse: StorageControlProtos.Google_Iam_V1_TestIamPermissionsResponse =
         try await self.inner.execute(
           path: "/google.storage.control.v2.StorageControl/TestIamPermissions",
           request: protoRequest,
           options: options,
-          clientHeader: Clients.clientHeader
+          clientHeader: Clients.clientHeader,
+          routingParams: routingParams
         )
       return try GoogleIAMV1.TestIamPermissionsResponse(proto: protoResponse)
     }
@@ -604,13 +963,17 @@ extension Clients {
     public func getIntelligenceFinding(
       request: GetIntelligenceFindingRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> IntelligenceFinding {
-      var routingParams: [String] = []
-      if let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty {
-        let encoded =
-          pathVariable0.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)
-          ?? pathVariable0
-        routingParams.append("name=\(encoded)")
-      }
+      let routingParams = GoogleCloudGaxGRPC._RoutingMatcher.format([
+        (
+          "name",
+          GoogleCloudGaxGRPC._RoutingMatcher.value(
+            request.name,
+            prefix: [],
+            matching: [.multiWildcard],
+            suffix: []
+          )
+        )
+      ])
 
       let protoRequest = try request.toProto()
       let protoResponse: StorageControlProtos.Google_Storage_Control_V2_IntelligenceFinding =
@@ -627,13 +990,17 @@ extension Clients {
     public func listIntelligenceFindings(
       request: ListIntelligenceFindingsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> ListIntelligenceFindingsResponse {
-      var routingParams: [String] = []
-      if let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty {
-        let encoded =
-          pathVariable0.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)
-          ?? pathVariable0
-        routingParams.append("parent=\(encoded)")
-      }
+      let routingParams = GoogleCloudGaxGRPC._RoutingMatcher.format([
+        (
+          "parent",
+          GoogleCloudGaxGRPC._RoutingMatcher.value(
+            request.parent,
+            prefix: [],
+            matching: [.multiWildcard],
+            suffix: []
+          )
+        )
+      ])
 
       let protoRequest = try request.toProto()
       let protoResponse:
@@ -651,13 +1018,17 @@ extension Clients {
     public func summarizeIntelligenceFindings(
       request: SummarizeIntelligenceFindingsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> SummarizeIntelligenceFindingsResponse {
-      var routingParams: [String] = []
-      if let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty {
-        let encoded =
-          pathVariable0.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)
-          ?? pathVariable0
-        routingParams.append("parent=\(encoded)")
-      }
+      let routingParams = GoogleCloudGaxGRPC._RoutingMatcher.format([
+        (
+          "parent",
+          GoogleCloudGaxGRPC._RoutingMatcher.value(
+            request.parent,
+            prefix: [],
+            matching: [.multiWildcard],
+            suffix: []
+          )
+        )
+      ])
 
       let protoRequest = try request.toProto()
       let protoResponse:
@@ -675,13 +1046,17 @@ extension Clients {
     public func getIntelligenceFindingRevision(
       request: GetIntelligenceFindingRevisionRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> IntelligenceFindingRevision {
-      var routingParams: [String] = []
-      if let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty {
-        let encoded =
-          pathVariable0.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)
-          ?? pathVariable0
-        routingParams.append("name=\(encoded)")
-      }
+      let routingParams = GoogleCloudGaxGRPC._RoutingMatcher.format([
+        (
+          "name",
+          GoogleCloudGaxGRPC._RoutingMatcher.value(
+            request.name,
+            prefix: [],
+            matching: [.multiWildcard],
+            suffix: []
+          )
+        )
+      ])
 
       let protoRequest = try request.toProto()
       let protoResponse:
@@ -699,13 +1074,17 @@ extension Clients {
     public func listIntelligenceFindingRevisions(
       request: ListIntelligenceFindingRevisionsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> ListIntelligenceFindingRevisionsResponse {
-      var routingParams: [String] = []
-      if let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty {
-        let encoded =
-          pathVariable0.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)
-          ?? pathVariable0
-        routingParams.append("parent=\(encoded)")
-      }
+      let routingParams = GoogleCloudGaxGRPC._RoutingMatcher.format([
+        (
+          "parent",
+          GoogleCloudGaxGRPC._RoutingMatcher.value(
+            request.parent,
+            prefix: [],
+            matching: [.multiWildcard],
+            suffix: []
+          )
+        )
+      ])
 
       let protoRequest = try request.toProto()
       let protoResponse:
@@ -723,13 +1102,19 @@ extension Clients {
     public func viewObjectFullContext(
       request: ViewObjectFullContextRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> ObjectFullContext {
-      var routingParams: [String] = []
-      if let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty {
-        let encoded =
-          pathVariable0.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)
-          ?? pathVariable0
-        routingParams.append("name=\(encoded)")
-      }
+      let routingParams = GoogleCloudGaxGRPC._RoutingMatcher.format([
+        (
+          "bucket",
+          GoogleCloudGaxGRPC._RoutingMatcher.value(
+            request.name,
+            prefix: [],
+            matching: [
+              .literal("projects/"), .singleWildcard, .literal("/buckets/"), .singleWildcard,
+            ],
+            suffix: [.trailingMultiWildcard]
+          )
+        )
+      ])
 
       let protoRequest = try request.toProto()
       let protoResponse: StorageControlProtos.Google_Storage_Control_V2_ObjectFullContext =
@@ -746,13 +1131,17 @@ extension Clients {
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      var routingParams: [String] = []
-      if let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty {
-        let encoded =
-          pathVariable0.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)
-          ?? pathVariable0
-        routingParams.append("name=\(encoded)")
-      }
+      let routingParams = GoogleCloudGaxGRPC._RoutingMatcher.format([
+        (
+          "name",
+          GoogleCloudGaxGRPC._RoutingMatcher.value(
+            request.name,
+            prefix: [],
+            matching: [.multiWildcard],
+            suffix: []
+          )
+        )
+      ])
 
       let protoRequest = try request.toProto()
       let protoResponse: StorageControlProtos.Google_Longrunning_Operation = try await self.inner
