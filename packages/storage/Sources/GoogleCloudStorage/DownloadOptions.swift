@@ -154,6 +154,45 @@ struct HttpContentRange: Sendable, Hashable, Equatable {
 ///   }
 /// }
 /// ```
+///
+/// ### Checksum Validation
+///
+/// Validate data integrity during downloads using CRC32C or MD5 checksums:
+///
+/// ```swift
+/// // Default: Automatic CRC32C validation against server metadata
+/// let options = ReadObjectOptions()
+///
+/// // Validate against a pre-computed Base64-encoded checksum
+/// let options = ReadObjectOptions().with {
+///   $0.checksums = ChecksumOptions(crc32c: "TVUQaA==")
+/// }
+///
+/// // Validate against a 32-bit unsigned integer CRC32C checksum
+/// let options = ReadObjectOptions().with {
+///   $0.checksums = ChecksumOptions(crc32c: 0x4D551068)
+/// }
+///
+/// // Validate using MD5 instead of CRC32C
+/// let options = ReadObjectOptions().with {
+///   $0.checksums = ChecksumOptions(crc32c: nil, md5: .auto)
+/// }
+///
+/// // Validate both CRC32C and MD5
+/// let options = ReadObjectOptions().with {
+///   $0.checksums = ChecksumOptions(crc32c: .auto, md5: .auto)
+/// }
+///
+/// // Disable checksum validation
+/// let options = ReadObjectOptions().with {
+///   $0.checksums = .none
+/// }
+/// ```
+///
+/// > Note: Automatic checksum verification (`.auto`) is skipped for partial (ranged) reads
+/// > and decompressive transcoding because server metadata checksums cover the entire original
+/// > object, not partial or decompressed bytes. Pre-computed expected values (`.value(...)`)
+/// > are always verified.
 public struct ReadObjectOptions: Sendable {
   /// Object generation (`UInt64?`) to read a specific revision of an object.
   public var generation: UInt64?
@@ -170,7 +209,12 @@ public struct ReadObjectOptions: Sendable {
   /// Flag to enable automatic decompressive transcoding by GCS. Defaults to `true`.
   public var enableDecompressiveTranscoding: Bool = true
 
-  /// Checksum options for validating data integrity.
+  /// Checksum options for validating downloaded data integrity.
+  ///
+  /// Defaults to `.default`, which automatically calculates and validates CRC32C
+  /// checksums against the object's server metadata upon reaching EOF.
+  ///
+  /// If a checksum mismatch is detected, `DownloadError.checksumMismatch` is thrown.
   public var checksums: ChecksumOptions = .default
 
   /// Flag to enable transparent auto-resumption on transient network failures. Defaults to `true`.
