@@ -28,6 +28,9 @@ sources:
     commit: b407e8416e3893036aee5af9a12bd9b6a0e2b2e6
     sha256: 55912546338433f465a552e9ef09930c63b9eb697053937416890cff83a8622d
     subpath: src
+  showcase:
+    commit: 3fd9cb2f682d5f8263d913eaba8b78e045acc4d2
+    sha256: ed1e698886cb4ab9b90ca98cfee38023d813e9729fca7297578c81c4af3e1e9e
 tools:
   protoc:
     version: "33.2"
@@ -1377,6 +1380,18 @@ libraries:
   - name: google-rpc-context
     version: 0.0.0-preview
     copyright_year: "2026"
+  - name: google-showcase-v1beta1
+    version: 0.0.0-preview
+    apis:
+      - path: schema/google/showcase/v1beta1
+    copyright_year: "2026"
+    output: generated/google-showcase-v1beta1
+    roots:
+      - showcase
+      - googleapis
+    skip_release: true
+    swift:
+      library_name_override: GoogleShowcaseV1Beta1
   - name: google-storagetransfer-v1
     version: 0.1.0-preview
     copyright_year: "2026"
