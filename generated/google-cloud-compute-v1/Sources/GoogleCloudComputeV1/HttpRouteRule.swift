@@ -16,7 +16,7 @@
 
 #if RegionUrlMaps || UrlMaps
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The HttpRouteRule setting specifies how to match an HTTP request
   /// and the corresponding routing action that load balancing proxies perform.

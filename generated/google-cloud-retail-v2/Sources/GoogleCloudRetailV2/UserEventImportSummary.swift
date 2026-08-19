@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A summary of import result. The UserEventImportSummary summarizes
 /// the import status for user events.

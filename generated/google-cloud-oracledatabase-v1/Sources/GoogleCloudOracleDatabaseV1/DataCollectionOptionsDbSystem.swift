@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Data collection options for DbSystem.
 public struct DataCollectionOptionsDbSystem: Codable, Equatable, GoogleCloudWkt._AnyPackable,

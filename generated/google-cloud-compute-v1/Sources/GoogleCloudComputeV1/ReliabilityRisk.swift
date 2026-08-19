@@ -16,7 +16,7 @@
 
 #if ReliabilityRisks
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents a ReliabilityRisk resource.
   public struct ReliabilityRisk: Codable, Equatable, GoogleCloudWkt._AnyPackable,

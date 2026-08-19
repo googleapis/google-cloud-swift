@@ -16,7 +16,7 @@
 
 #if Agents && AnswerRecords && Contexts && ConversationDatasets && ConversationModels && ConversationProfiles && Conversations && Documents && EncryptionSpecService && EntityTypes && Environments && Fulfillments && GeneratorEvaluations && Generators && Intents && KnowledgeBases && Participants && SessionEntityTypes && Sessions && SipTrunks && Tools && Versions
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents a notification sent to Cloud Pub/Sub subscribers for
   /// human agent assistant events in a specific conversation.

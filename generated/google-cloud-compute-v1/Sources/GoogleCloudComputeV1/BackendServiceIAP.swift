@@ -16,7 +16,7 @@
 
 #if BackendServices || RegionBackendServices
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Identity-Aware Proxy
   public struct BackendServiceIAP: Codable, Equatable, GoogleCloudWkt._AnyPackable,

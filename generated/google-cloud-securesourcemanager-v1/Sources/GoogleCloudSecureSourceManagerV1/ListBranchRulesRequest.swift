@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// ListBranchRulesRequest is the request to list branch rules.
 public struct ListBranchRulesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

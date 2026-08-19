@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message for response to cancel Job.
 public struct CancelJobResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// This is an error detail intended to be used with INVALID_ARGUMENT errors.
 public struct QueryErrorList: Codable, Equatable, GoogleCloudWkt._AnyPackable,

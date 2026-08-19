@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A rule captures data quality intent about a data source.
 public struct DataQualityRule: Codable, Equatable, GoogleCloudWkt._AnyPackable,

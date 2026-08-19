@@ -16,7 +16,7 @@
 
 #if Agents && Changelogs && Deployments && EntityTypes && Environments && Examples && Experiments && Flows && Generators && Intents && Pages && Playbooks && SecuritySettingsService && SessionEntityTypes && Sessions && TestCases && Tools && TransitionRouteGroups && Versions && Webhooks
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The request message for a webhook call. The request is sent as a JSON object
   /// and the field names will be presented in camel cases.

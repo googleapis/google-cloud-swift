@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Set of detected objects with bounding boxes.
 public struct LocalizedObjectAnnotation: Codable, Equatable, GoogleCloudWkt._AnyPackable,

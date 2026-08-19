@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// DeleteHostGroupRequest for deleting a single host group.
 public struct DeleteHostGroupRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

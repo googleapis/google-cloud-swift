@@ -16,8 +16,8 @@
 
 import Foundation
 import GoogleApi
-import GoogleCloudGax
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudGax
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The `ListGroupMembers` response.
 public struct ListGroupMembersResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

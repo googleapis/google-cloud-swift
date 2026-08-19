@@ -16,7 +16,7 @@
 
 #if EngineService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Request message for
   /// [EngineService.DeleteEngine][google.cloud.discoveryengine.v1.EngineService.DeleteEngine]

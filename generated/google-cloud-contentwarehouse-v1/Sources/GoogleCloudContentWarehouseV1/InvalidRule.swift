@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A triggered rule that failed the validation check(s) after parsing.
 public struct InvalidRule: Codable, Equatable, GoogleCloudWkt._AnyPackable,

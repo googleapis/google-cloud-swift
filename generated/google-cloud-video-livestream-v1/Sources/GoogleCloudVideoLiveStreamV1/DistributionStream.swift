@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Multiplexing settings for output streams used in
 /// [Distribution][google.cloud.video.livestream.v1.Distribution].

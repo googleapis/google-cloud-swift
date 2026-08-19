@@ -15,9 +15,9 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudGax
+@_spi(GoogleCloudInternal) import GoogleCloudGax
 import GoogleCloudKMSV1
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Response message for
 /// [KeyDashboardService.ListCryptoKeys][google.cloud.kms.inventory.v1.KeyDashboardService.ListCryptoKeys].

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request for the `UpdateDnsAuthorization` method.
 public struct UpdateDnsAuthorizationRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

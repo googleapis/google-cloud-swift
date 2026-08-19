@@ -16,7 +16,7 @@
 
 #if Disks
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   extension DisksClient {
     /// Synthetic request message for the [addResourcePolicies()][google.cloud.compute.v1.disks.addResourcePolicies] method.

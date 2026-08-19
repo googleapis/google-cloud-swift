@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Response message for `ExecuteOntapPost` API.
 public struct ExecuteOntapPostResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

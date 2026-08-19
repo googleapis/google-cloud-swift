@@ -16,7 +16,7 @@
 
 #if GeneratorEvaluations
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
   import GoogleRpc
 
   /// A common evalaution pipeline status.

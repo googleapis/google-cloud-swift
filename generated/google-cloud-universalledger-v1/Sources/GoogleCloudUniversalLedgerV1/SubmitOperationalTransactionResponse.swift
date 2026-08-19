@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Response message for SubmitOperationalTransaction.
 public struct SubmitOperationalTransactionResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

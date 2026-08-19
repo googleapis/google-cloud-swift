@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The `DeleteGroup` request. The default behavior is to be able to delete a
 /// single group without any descendants.

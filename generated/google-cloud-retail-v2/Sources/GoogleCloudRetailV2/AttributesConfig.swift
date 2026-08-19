@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Catalog level attribute config.
 public struct AttributesConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if VertexRagService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Response message for
   /// [VertexRagService.AskContexts][google.cloud.aiplatform.v1.VertexRagService.AskContexts].

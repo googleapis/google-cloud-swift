@@ -16,7 +16,7 @@
 
 #if ConversationalSearchService || DocumentService || RecommendationService || SearchService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
   import GoogleRpc
 
   /// Document captures all raw metadata information of items to be recommended or

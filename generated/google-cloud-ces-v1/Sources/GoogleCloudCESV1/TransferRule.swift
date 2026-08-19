@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Rule for transferring to a specific agent.
 public struct TransferRule: Codable, Equatable, GoogleCloudWkt._AnyPackable,

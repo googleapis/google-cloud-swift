@@ -16,7 +16,7 @@
 
 #if InterconnectGroups
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// [Output Only] How reliable this topology is configured to be, and why
   /// this group does or does not meet the requirements for the intended

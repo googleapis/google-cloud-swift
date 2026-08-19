@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configuration for the addons that can be automatically spun up in the
 /// cluster, enabling additional functionality.

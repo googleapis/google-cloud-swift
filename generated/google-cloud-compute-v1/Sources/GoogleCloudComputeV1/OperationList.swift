@@ -16,8 +16,8 @@
 
 #if GlobalOperations || GlobalOrganizationOperations || RegionOperations || ZoneOperations
   import Foundation
-  import GoogleCloudGax
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudGax
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Contains a list of Operation resources.
   public struct OperationList: Codable, Equatable, GoogleCloudWkt._AnyPackable,

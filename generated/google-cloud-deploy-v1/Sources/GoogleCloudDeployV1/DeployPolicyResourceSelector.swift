@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Contains information on the resources to select for a deploy policy.
 /// Attributes provided must all match the resource in order for policy

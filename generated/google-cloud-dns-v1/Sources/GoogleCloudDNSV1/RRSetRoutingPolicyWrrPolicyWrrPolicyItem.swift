@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A routing block which contains the routing information for one WRR item.
 public struct RRSetRoutingPolicyWrrPolicyWrrPolicyItem: Codable, Equatable, GoogleCloudWkt

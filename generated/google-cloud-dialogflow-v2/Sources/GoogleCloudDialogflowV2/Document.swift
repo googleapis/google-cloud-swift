@@ -16,7 +16,7 @@
 
 #if Documents
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
   import GoogleRpc
 
   /// A knowledge document to be used by a

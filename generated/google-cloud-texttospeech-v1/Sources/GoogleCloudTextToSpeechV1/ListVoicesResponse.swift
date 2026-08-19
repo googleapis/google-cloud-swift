@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The message returned to the client by the `ListVoices` method.
 public struct ListVoicesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

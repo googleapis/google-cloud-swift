@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Row key for identifying a record in BigQuery table.
 public struct BigQueryKey: Codable, Equatable, GoogleCloudWkt._AnyPackable,

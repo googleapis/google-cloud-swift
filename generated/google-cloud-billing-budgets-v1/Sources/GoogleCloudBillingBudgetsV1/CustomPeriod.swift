@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 import GoogleType
 
 /// All date times begin at 12 AM US and Canadian Pacific Time (UTC-8).

@@ -16,7 +16,7 @@
 
 #if InstanceTemplates
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   extension InstanceTemplatesClient {
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.instanceTemplates.aggregatedList] method.

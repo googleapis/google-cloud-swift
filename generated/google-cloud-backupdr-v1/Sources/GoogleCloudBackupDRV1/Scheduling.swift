@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Sets the scheduling options for an Instance.
 public struct Scheduling: Codable, Equatable, GoogleCloudWkt._AnyPackable,

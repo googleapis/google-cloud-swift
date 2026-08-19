@@ -16,7 +16,7 @@
 
 #if PersistentResourceService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Configuration for the runtime on a PersistentResource instance, including
   /// but not limited to:

@@ -16,7 +16,7 @@
 
 #if JobService || PersistentResourceService || PipelineService || ReasoningEngineService || ScheduleService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// DNS peering configuration. These configurations are used to create
   /// DNS peering zones in the Vertex tenant project VPC, enabling resolution

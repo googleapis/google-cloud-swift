@@ -16,7 +16,7 @@
 
 #if SnapshotSettings
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   extension SnapshotSettingsClient {
     /// Synthetic request message for the [get()][google.cloud.compute.v1.snapshotSettings.get] method.

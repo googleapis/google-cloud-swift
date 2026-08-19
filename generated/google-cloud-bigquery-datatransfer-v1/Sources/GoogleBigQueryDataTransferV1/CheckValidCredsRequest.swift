@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A request to determine whether the user has valid credentials. This method
 /// is used to limit the number of OAuth popups in the user interface. The

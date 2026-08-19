@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Details about how and where to publish client libraries.
 public struct ClientLibrarySettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,

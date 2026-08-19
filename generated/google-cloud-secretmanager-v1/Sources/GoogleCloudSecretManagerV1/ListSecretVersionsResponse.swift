@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudGax
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudGax
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Response message for
 /// [SecretManagerService.ListSecretVersions][google.cloud.secretmanager.v1.SecretManagerService.ListSecretVersions].

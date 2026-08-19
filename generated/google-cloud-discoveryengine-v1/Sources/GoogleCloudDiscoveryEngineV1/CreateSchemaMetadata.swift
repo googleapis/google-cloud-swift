@@ -16,7 +16,7 @@
 
 #if SchemaService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Metadata for Create Schema LRO.
   public struct CreateSchemaMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,

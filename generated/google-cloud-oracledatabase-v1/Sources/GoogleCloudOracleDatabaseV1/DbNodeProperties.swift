@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Various properties and settings associated with Db node.
 public struct DbNodeProperties: Codable, Equatable, GoogleCloudWkt._AnyPackable,

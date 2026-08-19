@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configuration for Oracle Automatic Storage Management (ASM) connection.
 public struct OracleAsmConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

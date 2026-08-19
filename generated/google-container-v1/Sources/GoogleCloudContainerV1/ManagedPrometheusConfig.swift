@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// ManagedPrometheusConfig defines the configuration for
 /// Google Cloud Managed Service for Prometheus.

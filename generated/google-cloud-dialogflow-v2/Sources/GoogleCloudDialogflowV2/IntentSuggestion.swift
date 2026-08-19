@@ -16,7 +16,7 @@
 
 #if AnswerRecords
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents an intent suggestion.
   public struct IntentSuggestion: Codable, Equatable, GoogleCloudWkt._AnyPackable,

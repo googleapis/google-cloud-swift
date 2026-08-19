@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Job statistics that may change after a job starts.
 public struct JobStatistics: Codable, Equatable, GoogleCloudWkt._AnyPackable,

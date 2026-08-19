@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request to search for potentially sensitive info in a custom location.
 public struct HybridInspectDlpJobRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

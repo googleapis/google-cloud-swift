@@ -16,7 +16,7 @@
 
 #if Addresses || Autoscalers || BackendBuckets || BackendServices || Disks || ExternalVpnGateways || FirewallPolicies || Firewalls || GlobalAddresses || HealthChecks || HttpHealthChecks || HttpsHealthChecks || Images || InstanceGroups || InstanceTemplates || Instances || InstantSnapshotGroups || InstantSnapshots || InterconnectAttachmentGroups || InterconnectGroups || LicenseCodes || Licenses || MachineImages || NetworkAttachments || NetworkEndpointGroups || NetworkFirewallPolicies || NodeGroups || NodeTemplates || PacketMirrorings || RegionAutoscalers || RegionBackendBuckets || RegionBackendServices || RegionCompositeHealthChecks || RegionDisks || RegionHealthAggregationPolicies || RegionHealthCheckServices || RegionHealthChecks || RegionHealthSources || RegionInstanceGroups || RegionInstantSnapshotGroups || RegionInstantSnapshots || RegionNetworkFirewallPolicies || RegionNotificationEndpoints || RegionSnapshots || ReservationBlocks || ReservationSubBlocks || Reservations || ResourcePolicies || Routes || ServiceAttachments || Snapshots || StoragePools || Subnetworks || TargetInstances || TargetPools || TargetSslProxies || TargetTcpProxies || UrlMaps || VpnGateways
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct TestPermissionsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable

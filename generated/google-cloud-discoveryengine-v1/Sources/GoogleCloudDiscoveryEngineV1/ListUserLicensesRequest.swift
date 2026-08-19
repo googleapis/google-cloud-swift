@@ -16,7 +16,7 @@
 
 #if UserLicenseService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Request message for
   /// [UserLicenseService.ListUserLicenses][google.cloud.discoveryengine.v1.UserLicenseService.ListUserLicenses].

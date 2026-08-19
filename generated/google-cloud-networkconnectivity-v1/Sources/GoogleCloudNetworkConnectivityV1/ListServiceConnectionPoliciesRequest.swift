@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request for ListServiceConnectionPolicies.
 public struct ListServiceConnectionPoliciesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

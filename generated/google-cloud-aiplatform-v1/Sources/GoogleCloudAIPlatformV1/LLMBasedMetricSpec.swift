@@ -16,7 +16,7 @@
 
 #if GenAiTuningService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Specification for an LLM based metric.
   public struct LLMBasedMetricSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,

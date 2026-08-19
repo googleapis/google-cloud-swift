@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The request for `AutonomousDatabase.Update`.
 public struct UpdateAutonomousDatabaseRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

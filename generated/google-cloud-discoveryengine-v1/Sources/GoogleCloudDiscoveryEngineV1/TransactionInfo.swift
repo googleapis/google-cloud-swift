@@ -16,7 +16,7 @@
 
 #if RecommendationService || UserEventService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// A transaction represents the entire purchase transaction.
   public struct TransactionInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,

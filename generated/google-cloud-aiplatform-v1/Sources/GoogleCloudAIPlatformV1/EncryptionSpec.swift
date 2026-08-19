@@ -16,7 +16,7 @@
 
 #if DatasetService || DeploymentResourcePoolService || EndpointService || FeatureOnlineStoreAdminService || FeaturestoreService || GenAiCacheService || GenAiTuningService || IndexEndpointService || IndexService || JobService || MetadataService || ModelService || NotebookService || PersistentResourceService || PipelineService || ReasoningEngineService || ScheduleService || TensorboardService || VertexRagDataService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents a customer-managed encryption key spec that can be applied to
   /// a top-level resource.

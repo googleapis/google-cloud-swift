@@ -16,7 +16,7 @@
 
 #if Instances || NodeGroups || RegionCommitments || ReservationBlocks || ReservationSubBlocks || Reservations
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Upcoming Maintenance notification information.
   public struct UpcomingMaintenance: Codable, Equatable, GoogleCloudWkt._AnyPackable,

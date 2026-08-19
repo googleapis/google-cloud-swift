@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Summary of a single transformation.
 /// Only one of 'transformation', 'field_transformation', or 'record_suppress'

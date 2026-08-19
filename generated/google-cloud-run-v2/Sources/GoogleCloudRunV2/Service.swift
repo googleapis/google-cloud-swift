@@ -16,7 +16,7 @@
 
 import Foundation
 import GoogleApi
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Service acts as a top-level container that manages a set of
 /// configurations and revision templates which implement a network service.

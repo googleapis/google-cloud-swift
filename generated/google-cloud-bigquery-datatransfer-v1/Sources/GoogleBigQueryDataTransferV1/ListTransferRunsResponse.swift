@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudGax
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudGax
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The returned list of pipelines in the project.
 public struct ListTransferRunsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

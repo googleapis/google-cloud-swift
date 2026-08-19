@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request for creating a Serverless VPC Access connector.
 public struct CreateConnectorRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

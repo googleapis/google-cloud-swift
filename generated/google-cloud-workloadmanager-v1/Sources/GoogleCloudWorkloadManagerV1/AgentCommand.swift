@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// An AgentCommand specifies a one-time executable program for the agent to run.
 public struct AgentCommand: Codable, Equatable, GoogleCloudWkt._AnyPackable,

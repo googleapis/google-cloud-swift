@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A profile containing information about a model deployment.
 public struct Profile: Codable, Equatable, GoogleCloudWkt._AnyPackable,

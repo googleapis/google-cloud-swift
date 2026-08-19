@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Creates a VPN connection.
 public struct CreateVpnConnectionRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

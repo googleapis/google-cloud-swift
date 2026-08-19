@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Representation of an ingestion label type.
 public struct IngestionLabel: Codable, Equatable, GoogleCloudWkt._AnyPackable,

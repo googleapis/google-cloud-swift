@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Agent Assist frequently-asked-question answer data.
 public struct FaqAnswerData: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configuration for external server.
 public struct ExternalServerConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

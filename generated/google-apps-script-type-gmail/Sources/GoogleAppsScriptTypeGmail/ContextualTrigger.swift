@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Defines a trigger that fires when the open email meets a specific criteria.
 /// When the trigger fires, it executes a specific endpoint, usually

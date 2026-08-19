@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Defines the pipeline type and path within the Git repository.
 public struct PipelineConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The Kubernetes workloads configuration for GKE cluster associated with the
 /// Cloud Composer environment. Supported for Cloud Composer environments in

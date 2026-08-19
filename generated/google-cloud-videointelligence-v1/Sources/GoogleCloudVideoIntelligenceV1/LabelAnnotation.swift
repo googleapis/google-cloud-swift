@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Label annotation.
 public struct LabelAnnotation: Codable, Equatable, GoogleCloudWkt._AnyPackable,

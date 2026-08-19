@@ -16,7 +16,7 @@
 
 #if RegionCommitments
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Commitment for a particular license resource.
   public struct LicenseResourceCommitment: Codable, Equatable, GoogleCloudWkt._AnyPackable,

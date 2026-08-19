@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for "LivestreamService.CreateClip".
 public struct CreateClipRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

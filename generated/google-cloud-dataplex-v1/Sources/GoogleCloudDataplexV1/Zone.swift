@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A zone represents a logical group of related assets within a lake. A zone can
 /// be used to map to organizational structure or represent stages of data

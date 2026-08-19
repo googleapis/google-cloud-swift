@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// K8sBetaAPIConfig , configuration for beta APIs
 public struct K8sBetaAPIConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

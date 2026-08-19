@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// PhraseSet for biasing in speech recognition. A PhraseSet is used to provide
 /// "hints" to the speech recognizer to favor specific words and phrases in the

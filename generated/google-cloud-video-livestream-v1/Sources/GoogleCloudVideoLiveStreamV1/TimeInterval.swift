@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// TimeInterval represents a time interval.
 public struct TimeInterval: Codable, Equatable, GoogleCloudWkt._AnyPackable,

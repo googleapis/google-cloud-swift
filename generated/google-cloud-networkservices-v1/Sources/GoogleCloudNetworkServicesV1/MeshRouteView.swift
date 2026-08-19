@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// MeshRouteView defines view-only resource for Routes to a Mesh
 public struct MeshRouteView: Codable, Equatable, GoogleCloudWkt._AnyPackable,

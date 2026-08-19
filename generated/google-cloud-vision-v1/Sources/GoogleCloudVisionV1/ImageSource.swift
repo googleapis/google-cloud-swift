@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// External image source (Google Cloud Storage or web URL image location).
 public struct ImageSource: Codable, Equatable, GoogleCloudWkt._AnyPackable,

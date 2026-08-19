@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// An AzureBlobStorageData resource can be a data source, but not a data sink.
 /// An AzureBlobStorageData resource represents one Azure container. The storage

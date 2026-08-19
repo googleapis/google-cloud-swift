@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The RuleDeployment resource represents the deployment state of a Rule.
 public struct RuleDeployment: Codable, Equatable, GoogleCloudWkt._AnyPackable,

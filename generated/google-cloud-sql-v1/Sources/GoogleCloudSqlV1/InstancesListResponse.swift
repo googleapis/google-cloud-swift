@@ -16,8 +16,8 @@
 
 #if SqlInstancesService
   import Foundation
-  import GoogleCloudGax
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudGax
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Database instances list response.
   public struct InstancesListResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

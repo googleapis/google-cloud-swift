@@ -16,7 +16,7 @@
 
 #if DeploymentResourcePoolService || EndpointService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// A deployment of a Model. Endpoints contain one or more DeployedModels.
   public struct DeployedModel: Codable, Equatable, GoogleCloudWkt._AnyPackable,

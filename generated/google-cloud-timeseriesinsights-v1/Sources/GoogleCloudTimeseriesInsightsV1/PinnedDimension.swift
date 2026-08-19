@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A categorical dimension fixed to a certain value.
 public struct PinnedDimension: Codable, Equatable, GoogleCloudWkt._AnyPackable,

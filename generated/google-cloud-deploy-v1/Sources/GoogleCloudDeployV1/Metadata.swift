@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Metadata includes information associated with a `Rollout`.
 public struct Metadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,

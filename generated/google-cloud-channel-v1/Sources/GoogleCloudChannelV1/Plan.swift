@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The payment plan for the Offer. Describes how to make a payment.
 public struct Plan: Codable, Equatable, GoogleCloudWkt._AnyPackable,

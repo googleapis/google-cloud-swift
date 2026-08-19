@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configurations for a timestamp property.
 public struct TimestampTypeOptions: Codable, Equatable, GoogleCloudWkt._AnyPackable,

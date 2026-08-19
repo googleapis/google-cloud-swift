@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represent user-facing validation result message.
 public struct ValidationMessage: Codable, Equatable, GoogleCloudWkt._AnyPackable,

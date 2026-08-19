@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message describing VertexAutoMLVideoConfig.
 public struct VertexAutoMLVideoConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

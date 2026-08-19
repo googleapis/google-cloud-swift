@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message describing a result of an aggregation.
 public struct AggregationResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,

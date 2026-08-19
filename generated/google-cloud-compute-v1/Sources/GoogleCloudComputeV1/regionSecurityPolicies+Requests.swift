@@ -16,7 +16,7 @@
 
 #if RegionSecurityPolicies
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   extension RegionSecurityPoliciesClient {
     /// Synthetic request message for the [addRule()][google.cloud.compute.v1.regionSecurityPolicies.addRule] method.

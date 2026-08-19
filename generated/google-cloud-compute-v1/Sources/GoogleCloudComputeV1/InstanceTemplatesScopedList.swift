@@ -16,7 +16,7 @@
 
 #if InstanceTemplates
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct InstanceTemplatesScopedList: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable

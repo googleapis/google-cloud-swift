@@ -16,7 +16,7 @@
 
 #if BackendBuckets || BackendServices || RegionBackendServices || TargetInstances || TargetPools
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct SecurityPolicyReference: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable

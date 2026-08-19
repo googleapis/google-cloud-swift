@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Options to configure rule type FilterTableColumns.
 /// The rule is used to filter the list of columns to include or exclude from a

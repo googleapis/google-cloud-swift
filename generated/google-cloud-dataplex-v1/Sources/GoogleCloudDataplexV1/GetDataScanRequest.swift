@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Get dataScan request.
 public struct GetDataScanRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

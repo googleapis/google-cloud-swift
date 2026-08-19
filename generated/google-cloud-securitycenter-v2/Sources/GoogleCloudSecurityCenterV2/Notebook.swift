@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents a Jupyter notebook IPYNB file, such as a [Colab Enterprise
 /// notebook](https://cloud.google.com/colab/docs/introduction) file, that is

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request to get an Access Approval service account.
 public struct GetAccessApprovalServiceAccountMessage: Codable, Equatable, GoogleCloudWkt

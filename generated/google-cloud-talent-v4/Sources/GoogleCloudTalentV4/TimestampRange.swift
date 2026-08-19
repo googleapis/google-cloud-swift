@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message representing a period of time between two timestamps.
 public struct TimestampRange: Codable, Equatable, GoogleCloudWkt._AnyPackable,

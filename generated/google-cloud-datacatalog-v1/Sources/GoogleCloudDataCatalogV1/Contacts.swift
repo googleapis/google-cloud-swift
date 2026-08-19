@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Contact people for the entry.
 public struct Contacts: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if HealthChecks || RegionHealthChecks
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct GRPCHealthCheck: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable

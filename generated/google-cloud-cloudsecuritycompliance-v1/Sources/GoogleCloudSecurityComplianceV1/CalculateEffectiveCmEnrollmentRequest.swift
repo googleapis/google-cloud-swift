@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The request message for [CalculateEffectiveCmEnrollment][].
 public struct CalculateEffectiveCmEnrollmentRequest: Codable, Equatable, GoogleCloudWkt

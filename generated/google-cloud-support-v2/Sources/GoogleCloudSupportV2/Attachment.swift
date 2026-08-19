@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// An Attachment contains metadata about a file that was uploaded to a
 /// case - it is NOT a file itself. That being said, the name of an Attachment

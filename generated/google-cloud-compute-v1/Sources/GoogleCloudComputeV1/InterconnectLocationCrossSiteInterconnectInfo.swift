@@ -16,7 +16,7 @@
 
 #if InterconnectLocations
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Information about Cross-Site Interconnect wires which may be created
   /// between the containing location and another remote location.

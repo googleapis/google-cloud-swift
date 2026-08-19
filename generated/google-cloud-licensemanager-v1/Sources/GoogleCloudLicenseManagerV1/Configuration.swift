@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configuration for a Google SPLA product
 public struct Configuration: Codable, Equatable, GoogleCloudWkt._AnyPackable,

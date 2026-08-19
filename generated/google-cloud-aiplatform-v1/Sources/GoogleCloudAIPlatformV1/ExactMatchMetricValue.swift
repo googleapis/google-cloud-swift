@@ -16,7 +16,7 @@
 
 #if EvaluationService || GenAiTuningService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Exact match metric value for an instance.
   public struct ExactMatchMetricValue: Codable, Equatable, GoogleCloudWkt._AnyPackable,

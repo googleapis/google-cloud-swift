@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Each logical interface represents a logical abstraction of the underlying
 /// physical interface (for eg. bond, nic) of the instance. Each logical

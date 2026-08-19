@@ -16,7 +16,7 @@
 
 #if ModelService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Response message for
   /// [ModelService.BatchImportEvaluatedAnnotations][google.cloud.aiplatform.v1.ModelService.BatchImportEvaluatedAnnotations]

@@ -16,7 +16,7 @@
 
 #if Projects
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The location in Cloud Storage and naming method of the daily usage
   /// report. Contains bucket_name and report_name prefix.

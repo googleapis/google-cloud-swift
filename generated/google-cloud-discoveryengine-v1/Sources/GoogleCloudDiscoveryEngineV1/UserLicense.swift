@@ -16,7 +16,7 @@
 
 #if UserLicenseService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// User License information assigned by the admin.
   public struct UserLicense: Codable, Equatable, GoogleCloudWkt._AnyPackable,

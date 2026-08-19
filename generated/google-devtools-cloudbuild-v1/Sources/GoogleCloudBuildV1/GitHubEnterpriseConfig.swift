@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// GitHubEnterpriseConfig represents a configuration for a GitHub Enterprise
 /// server.

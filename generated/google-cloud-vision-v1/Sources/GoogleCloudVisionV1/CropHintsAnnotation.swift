@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Set of crop hints that are used to generate new crops when serving images.
 public struct CropHintsAnnotation: Codable, Equatable, GoogleCloudWkt._AnyPackable,

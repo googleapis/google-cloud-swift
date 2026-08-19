@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A code block to be executed instead of a real tool call.
 public struct CodeBlock: Codable, Equatable, GoogleCloudWkt._AnyPackable,

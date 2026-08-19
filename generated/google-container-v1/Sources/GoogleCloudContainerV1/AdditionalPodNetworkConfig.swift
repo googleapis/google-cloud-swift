@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// AdditionalPodNetworkConfig is the configuration for additional pod networks
 /// within the NodeNetworkConfig message

@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudGax
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudGax
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The [ListCurations][ApiHub.ListCurations] method's response.
 public struct ListCurationsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

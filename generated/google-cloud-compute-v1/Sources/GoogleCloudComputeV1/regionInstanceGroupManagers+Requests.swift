@@ -16,7 +16,7 @@
 
 #if RegionInstanceGroupManagers
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   extension RegionInstanceGroupManagersClient {
     /// Synthetic request message for the [abandonInstances()][google.cloud.compute.v1.regionInstanceGroupManagers.abandonInstances] method.

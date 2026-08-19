@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request object for `GetBlueprint`.
 public struct GetBlueprintRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

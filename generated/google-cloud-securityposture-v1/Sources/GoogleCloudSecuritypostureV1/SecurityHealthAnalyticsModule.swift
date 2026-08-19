@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message for Security Health Analytics built-in detector.
 public struct SecurityHealthAnalyticsModule: Codable, Equatable, GoogleCloudWkt._AnyPackable,

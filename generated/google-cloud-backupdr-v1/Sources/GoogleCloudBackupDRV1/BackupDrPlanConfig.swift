@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// BackupDrPlanConfig has additional information about Google Cloud Backup and
 /// DR's Plan backup configuration.

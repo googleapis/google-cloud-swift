@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudGax
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudGax
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The service account list response.
 public struct ListServiceAccountsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A representation of a batch workload in the service.
 public struct Batch: Codable, Equatable, GoogleCloudWkt._AnyPackable,

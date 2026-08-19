@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Defines the configuration for connections to an HTTP service provider.
 public struct GenericHTTPEndpointConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

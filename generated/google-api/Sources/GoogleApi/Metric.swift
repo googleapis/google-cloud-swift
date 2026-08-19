@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A specific metric, identified by specifying values for all of the
 /// labels of a [`MetricDescriptor`][google.api.MetricDescriptor].

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Redact a given value. For example, if used with an `InfoTypeTransformation`
 /// transforming PHONE_NUMBER, and input 'My phone number is 206-555-0123', the

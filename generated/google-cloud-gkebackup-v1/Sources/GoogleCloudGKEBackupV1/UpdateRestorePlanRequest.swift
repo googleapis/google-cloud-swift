@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for UpdateRestorePlan.
 public struct UpdateRestorePlanRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

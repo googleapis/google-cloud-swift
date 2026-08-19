@@ -16,7 +16,7 @@
 
 #if Licenses
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Additional license params.
   public struct LicenseParams: Codable, Equatable, GoogleCloudWkt._AnyPackable,

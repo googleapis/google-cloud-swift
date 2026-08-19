@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Standard represents the standard deployment strategy.
 public struct Standard: Codable, Equatable, GoogleCloudWkt._AnyPackable,

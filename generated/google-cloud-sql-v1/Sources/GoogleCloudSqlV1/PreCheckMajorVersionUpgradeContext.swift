@@ -16,7 +16,7 @@
 
 #if SqlBackupRunsService || SqlBackupsService || SqlDatabasesService || SqlInstancesService || SqlOperationsService || SqlSslCertsService || SqlUsersService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Pre-check major version upgrade context.
   public struct PreCheckMajorVersionUpgradeContext: Codable, Equatable, GoogleCloudWkt._AnyPackable,

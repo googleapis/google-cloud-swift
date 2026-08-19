@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// GoModule represents a Go module.
 public struct GoModule: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if IndexService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Runtime operation metadata with regard to Matching Engine Index.
   public struct NearestNeighborSearchOperationMetadata: Codable, Equatable, GoogleCloudWkt

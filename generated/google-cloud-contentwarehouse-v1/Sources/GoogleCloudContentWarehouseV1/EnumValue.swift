@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents the string value of the enum field.
 public struct EnumValue: Codable, Equatable, GoogleCloudWkt._AnyPackable,

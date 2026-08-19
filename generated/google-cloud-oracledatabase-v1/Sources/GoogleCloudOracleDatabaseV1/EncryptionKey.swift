@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The encryption key used to encrypt the Autonomous Database.
 public struct EncryptionKey: Codable, Equatable, GoogleCloudWkt._AnyPackable,

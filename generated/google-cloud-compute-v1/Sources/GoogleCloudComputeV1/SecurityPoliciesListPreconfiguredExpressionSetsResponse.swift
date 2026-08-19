@@ -16,7 +16,7 @@
 
 #if OrganizationSecurityPolicies || SecurityPolicies
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct SecurityPoliciesListPreconfiguredExpressionSetsResponse: Codable, Equatable,
     GoogleCloudWkt._AnyPackable,

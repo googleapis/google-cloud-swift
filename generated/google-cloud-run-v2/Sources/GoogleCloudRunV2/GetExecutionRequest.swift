@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for obtaining a Execution by its full name.
 public struct GetExecutionRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Predeploy contains the predeploy job configuration information.
 public struct Predeploy: Codable, Equatable, GoogleCloudWkt._AnyPackable,

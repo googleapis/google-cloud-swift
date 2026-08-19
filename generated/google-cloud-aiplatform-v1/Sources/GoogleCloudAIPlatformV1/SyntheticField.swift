@@ -16,7 +16,7 @@
 
 #if DataFoundryService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents a single named field within a SyntheticExample.
   public struct SyntheticField: Codable, Equatable, GoogleCloudWkt._AnyPackable,

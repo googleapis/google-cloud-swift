@@ -16,7 +16,7 @@
 
 #if Contexts
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The request message for
   /// [Contexts.ListContexts][google.cloud.dialogflow.v2.Contexts.ListContexts].

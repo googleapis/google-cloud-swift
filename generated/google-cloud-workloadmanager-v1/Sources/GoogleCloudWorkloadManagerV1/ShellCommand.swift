@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A ShellCommand is invoked via the agent's command line executor.
 public struct ShellCommand: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Information about the principal, resource, and permission to check.
 public struct AccessTuple: Codable, Equatable, GoogleCloudWkt._AnyPackable,

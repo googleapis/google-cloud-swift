@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Transfers the responsibility of managing a particular account to another
 /// manager. The sender must be the current account manager of the account and,

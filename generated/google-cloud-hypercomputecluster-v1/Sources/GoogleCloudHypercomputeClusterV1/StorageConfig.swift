@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Description of how a [storage
 /// resource][google.cloud.hypercomputecluster.v1.StorageResource] should be

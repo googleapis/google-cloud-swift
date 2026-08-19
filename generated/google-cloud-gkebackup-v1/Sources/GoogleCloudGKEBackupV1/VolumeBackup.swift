@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents the backup of a specific persistent volume as a component of a
 /// Backup - both the record of the operation and a pointer to the underlying

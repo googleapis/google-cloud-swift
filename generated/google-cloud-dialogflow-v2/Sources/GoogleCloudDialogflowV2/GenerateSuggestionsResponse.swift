@@ -16,7 +16,7 @@
 
 #if Conversations || Participants
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The response message for
   /// [Conversations.GenerateSuggestions][google.cloud.dialogflow.v2.Conversations.GenerateSuggestions].

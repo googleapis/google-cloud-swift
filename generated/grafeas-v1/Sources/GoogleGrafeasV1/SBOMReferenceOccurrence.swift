@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The occurrence representing an SBOM reference as applied to a specific
 /// resource. The occurrence follows the DSSE specification. See

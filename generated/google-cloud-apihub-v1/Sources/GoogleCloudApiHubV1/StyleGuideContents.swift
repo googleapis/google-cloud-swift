@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The style guide contents.
 public struct StyleGuideContents: Codable, Equatable, GoogleCloudWkt._AnyPackable,

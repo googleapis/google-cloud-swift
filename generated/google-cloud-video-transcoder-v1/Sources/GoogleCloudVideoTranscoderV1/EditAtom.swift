@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Edit atom.
 public struct EditAtom: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// BigQueryDestination is a wrapper for BigQuery output information.
 public struct BigQueryDestination: Codable, Equatable, GoogleCloudWkt._AnyPackable,

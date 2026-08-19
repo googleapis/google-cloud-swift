@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// ResourceAccessSpec holds the access control configuration to be enforced
 /// on the resources, for example, Cloud Storage bucket, BigQuery dataset,

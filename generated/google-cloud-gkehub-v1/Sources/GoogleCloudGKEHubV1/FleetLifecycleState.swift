@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// FleetLifecycleState describes the state of a Fleet resource.
 public struct FleetLifecycleState: Codable, Equatable, GoogleCloudWkt._AnyPackable,

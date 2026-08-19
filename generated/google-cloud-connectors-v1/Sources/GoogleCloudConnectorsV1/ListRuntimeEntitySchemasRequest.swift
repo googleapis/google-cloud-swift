@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for ConnectorsService.ListRuntimeEntitySchemas.
 /// For filter, only entity field is supported with literal equality operator.

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// An object representing a resource that can be used for monitoring, logging,
 /// billing, or other purposes. Examples include virtual machine instances,

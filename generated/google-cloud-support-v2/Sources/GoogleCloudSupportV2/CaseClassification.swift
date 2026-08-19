@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A Case Classification represents the topic that a case is about. It's very
 /// important to use accurate classifications, because they're

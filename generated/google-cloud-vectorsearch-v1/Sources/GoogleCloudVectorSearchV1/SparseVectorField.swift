@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message describing a sparse vector field.
 public struct SparseVectorField: Codable, Equatable, GoogleCloudWkt._AnyPackable,

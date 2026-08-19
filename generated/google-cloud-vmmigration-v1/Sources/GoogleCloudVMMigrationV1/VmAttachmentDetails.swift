@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Details for attachment of the disk to a VM.
 public struct VmAttachmentDetails: Codable, Equatable, GoogleCloudWkt._AnyPackable,

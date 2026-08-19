@@ -16,7 +16,7 @@
 
 #if IdentityMappingStoreService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Identity Mapping Store which contains Identity Mapping Entries.
   public struct IdentityMappingStore: Codable, Equatable, GoogleCloudWkt._AnyPackable,

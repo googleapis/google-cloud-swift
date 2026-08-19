@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// **Anthos Config Management**: State for a single cluster.
 public struct MembershipState: Codable, Equatable, GoogleCloudWkt._AnyPackable,

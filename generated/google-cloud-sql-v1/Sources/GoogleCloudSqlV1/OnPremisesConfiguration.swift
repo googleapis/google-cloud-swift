@@ -16,7 +16,7 @@
 
 #if SqlBackupsService || SqlInstancesService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// On-premises instance configuration.
   public struct OnPremisesConfiguration: Codable, Equatable, GoogleCloudWkt._AnyPackable,

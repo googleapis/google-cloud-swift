@@ -16,7 +16,7 @@
 
 #if TestCases
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The response message for
   /// [TestCases.RunTestCase][google.cloud.dialogflow.cx.v3.TestCases.RunTestCase].

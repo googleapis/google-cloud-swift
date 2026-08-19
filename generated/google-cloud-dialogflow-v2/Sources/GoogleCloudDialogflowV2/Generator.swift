@@ -16,7 +16,7 @@
 
 #if Conversations || GeneratorEvaluations || Generators
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// LLM generator.
   public struct Generator: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Parameters are key-value pairs that let you provide your custom location
 /// requirements, environment requirements, or other settings that are

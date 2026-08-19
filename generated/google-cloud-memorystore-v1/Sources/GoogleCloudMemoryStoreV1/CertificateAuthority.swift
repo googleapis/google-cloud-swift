@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A certificate authority for an instance.
 public struct CertificateAuthority: Codable, Equatable, GoogleCloudWkt._AnyPackable,

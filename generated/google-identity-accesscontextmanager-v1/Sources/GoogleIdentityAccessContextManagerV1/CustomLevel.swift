@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 import GoogleType
 
 /// `CustomLevel` is an `AccessLevel` using the Cloud Common Expression Language

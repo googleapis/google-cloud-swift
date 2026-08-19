@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// GetOpenIDConfigResponse is an OIDC discovery document for the cluster.
 /// See the OpenID Connect Discovery 1.0 specification for details.

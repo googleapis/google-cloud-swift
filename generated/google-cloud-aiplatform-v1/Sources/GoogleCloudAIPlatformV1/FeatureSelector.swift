@@ -16,7 +16,7 @@
 
 #if FeaturestoreOnlineServingService || FeaturestoreService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Selector for Features of an EntityType.
   public struct FeatureSelector: Codable, Equatable, GoogleCloudWkt._AnyPackable,

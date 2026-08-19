@@ -16,7 +16,7 @@
 
 #if SqlBackupsService || SqlInstancesService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Active Directory configuration, relevant only for Cloud SQL for SQL Server.
   public struct SqlActiveDirectoryConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if Agents
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Settings related to speech recognition.
   public struct SpeechToTextSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,

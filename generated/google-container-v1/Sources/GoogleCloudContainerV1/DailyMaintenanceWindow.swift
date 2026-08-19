@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Time window specified for daily maintenance operations.
 public struct DailyMaintenanceWindow: Codable, Equatable, GoogleCloudWkt._AnyPackable,

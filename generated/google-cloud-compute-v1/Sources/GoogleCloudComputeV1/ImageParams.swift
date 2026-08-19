@@ -16,7 +16,7 @@
 
 #if ImageFamilyViews || Images
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Additional image params.
   public struct ImageParams: Codable, Equatable, GoogleCloudWkt._AnyPackable,

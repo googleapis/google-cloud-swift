@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// An offline file annotation request.
 public struct AsyncAnnotateFileRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

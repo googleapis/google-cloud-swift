@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Options to modify claims in the token to generate custom-purpose tokens.
 public struct TokenOptions: Codable, Equatable, GoogleCloudWkt._AnyPackable,

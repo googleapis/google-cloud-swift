@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents a schema, for example, a BigQuery, GoogleSQL, or Avro schema.
 public struct Schema: Codable, Equatable, GoogleCloudWkt._AnyPackable,

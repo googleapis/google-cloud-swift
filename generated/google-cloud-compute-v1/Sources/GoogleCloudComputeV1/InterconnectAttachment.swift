@@ -16,7 +16,7 @@
 
 #if InterconnectAttachments
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents an Interconnect Attachment (VLAN) resource.
   ///

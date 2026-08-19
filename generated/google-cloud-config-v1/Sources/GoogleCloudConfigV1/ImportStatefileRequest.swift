@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A request to import a state file passed to a 'ImportStatefile' call.
 public struct ImportStatefileRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

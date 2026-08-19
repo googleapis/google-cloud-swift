@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request to update a scope rbacrolebinding.
 public struct UpdateScopeRBACRoleBindingRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

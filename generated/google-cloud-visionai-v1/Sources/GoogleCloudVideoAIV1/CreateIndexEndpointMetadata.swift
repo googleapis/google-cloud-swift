@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Metadata message for CreateIndexEndpoint.
 public struct CreateIndexEndpointMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,

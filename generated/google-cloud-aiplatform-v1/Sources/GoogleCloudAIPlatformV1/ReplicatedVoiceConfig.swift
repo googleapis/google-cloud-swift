@@ -16,7 +16,7 @@
 
 #if GenAiTuningService || LlmUtilityService || PredictionService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The configuration for the replicated voice to use.
   public struct ReplicatedVoiceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

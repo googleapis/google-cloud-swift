@@ -16,7 +16,7 @@
 
 #if GlobalOperations
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct OperationsScopedList: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable

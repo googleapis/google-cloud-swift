@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request used with the ListGatewayRouteViews method.
 public struct ListGatewayRouteViewsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

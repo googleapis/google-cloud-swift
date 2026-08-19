@@ -16,7 +16,7 @@
 
 #if GlobalNetworkEndpointGroups || NetworkEndpointGroups || RegionNetworkEndpointGroups
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Configuration for an App Engine network endpoint group (NEG).
   /// The service is optional, may be provided explicitly or in the

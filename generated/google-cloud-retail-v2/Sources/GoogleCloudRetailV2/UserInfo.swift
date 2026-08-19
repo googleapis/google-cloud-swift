@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Information of an end user.
 public struct UserInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,

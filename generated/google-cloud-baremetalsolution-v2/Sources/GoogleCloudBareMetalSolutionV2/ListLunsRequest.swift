@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message for requesting a list of storage volume luns.
 public struct ListLunsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

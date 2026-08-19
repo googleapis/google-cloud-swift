@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// DataSourceReference is a reference to a DataSource resource.
 public struct DataSourceReference: Codable, Equatable, GoogleCloudWkt._AnyPackable,

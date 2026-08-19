@@ -16,7 +16,7 @@
 
 #if ModelGardenService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Request message for
   /// [ModelGardenService.GetPublisherModel][google.cloud.aiplatform.v1.ModelGardenService.GetPublisherModel]

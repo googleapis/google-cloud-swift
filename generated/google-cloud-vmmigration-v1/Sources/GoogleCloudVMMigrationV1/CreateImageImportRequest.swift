@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for 'CreateImageImport' request.
 public struct CreateImageImportRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

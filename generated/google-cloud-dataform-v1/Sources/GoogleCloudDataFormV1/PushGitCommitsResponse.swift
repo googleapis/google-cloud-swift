@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// `PushGitCommits` response message.
 public struct PushGitCommitsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

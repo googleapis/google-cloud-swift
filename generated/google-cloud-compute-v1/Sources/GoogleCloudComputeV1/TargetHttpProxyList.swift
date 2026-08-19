@@ -16,8 +16,8 @@
 
 #if RegionTargetHttpProxies || TargetHttpProxies
   import Foundation
-  import GoogleCloudGax
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudGax
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// A list of TargetHttpProxy resources.
   public struct TargetHttpProxyList: Codable, Equatable, GoogleCloudWkt._AnyPackable,

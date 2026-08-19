@@ -16,7 +16,7 @@
 
 #if Environments
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Instructs the speech synthesizer on how to generate the output audio content.
   public struct TextToSpeechSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,

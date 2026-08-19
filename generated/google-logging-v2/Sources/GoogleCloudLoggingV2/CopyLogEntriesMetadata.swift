@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Metadata for CopyLogEntries long running operations.
 public struct CopyLogEntriesMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,

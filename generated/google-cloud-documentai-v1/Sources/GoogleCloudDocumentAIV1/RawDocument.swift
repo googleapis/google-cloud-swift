@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Payload message of raw document content (bytes).
 public struct RawDocument: Codable, Equatable, GoogleCloudWkt._AnyPackable,

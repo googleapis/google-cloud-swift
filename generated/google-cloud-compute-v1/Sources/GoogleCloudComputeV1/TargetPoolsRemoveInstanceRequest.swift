@@ -16,7 +16,7 @@
 
 #if TargetPools
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct TargetPoolsRemoveInstanceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable

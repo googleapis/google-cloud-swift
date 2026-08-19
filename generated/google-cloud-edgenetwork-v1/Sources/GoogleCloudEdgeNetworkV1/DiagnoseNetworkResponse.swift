@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// DiagnoseNetworkResponse contains the current status for a specific network.
 public struct DiagnoseNetworkResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

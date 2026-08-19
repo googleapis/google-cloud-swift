@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A billing account in the
 /// [Google Cloud Console](https://console.cloud.google.com/). You can assign a

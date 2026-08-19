@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A secret payload resource in the Secret Manager API. This contains the
 /// sensitive secret payload that is associated with a

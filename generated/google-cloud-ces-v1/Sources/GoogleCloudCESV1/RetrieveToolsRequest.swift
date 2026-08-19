@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for
 /// [ToolService.RetrieveTools][google.cloud.ces.v1.ToolService.RetrieveTools].

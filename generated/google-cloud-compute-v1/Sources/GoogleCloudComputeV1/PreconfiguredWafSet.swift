@@ -16,7 +16,7 @@
 
 #if OrganizationSecurityPolicies || SecurityPolicies
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct PreconfiguredWafSet: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable

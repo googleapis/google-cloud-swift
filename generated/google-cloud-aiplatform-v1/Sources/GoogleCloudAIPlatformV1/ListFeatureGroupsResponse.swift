@@ -16,8 +16,8 @@
 
 #if FeatureRegistryService
   import Foundation
-  import GoogleCloudGax
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudGax
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Response message for
   /// [FeatureRegistryService.ListFeatureGroups][google.cloud.aiplatform.v1.FeatureRegistryService.ListFeatureGroups].

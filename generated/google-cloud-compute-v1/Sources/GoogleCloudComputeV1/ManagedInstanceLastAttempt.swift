@@ -16,7 +16,7 @@
 
 #if InstanceGroupManagers || RegionInstanceGroupManagers
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct ManagedInstanceLastAttempt: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable

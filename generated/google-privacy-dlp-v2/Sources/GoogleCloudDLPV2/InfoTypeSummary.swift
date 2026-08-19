@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The infoType details for this column.
 public struct InfoTypeSummary: Codable, Equatable, GoogleCloudWkt._AnyPackable,

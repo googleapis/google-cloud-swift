@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Stored in the
 /// [google.longrunning.Operation.response][google.longrunning.Operation.response]

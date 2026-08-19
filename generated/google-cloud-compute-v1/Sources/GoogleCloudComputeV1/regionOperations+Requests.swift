@@ -16,7 +16,7 @@
 
 #if RegionOperations
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   extension RegionOperationsClient {
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.regionOperations.delete] method.

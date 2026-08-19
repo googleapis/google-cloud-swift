@@ -16,7 +16,7 @@
 
 #if RegionNetworkEndpointGroups
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   extension RegionNetworkEndpointGroupsClient {
     /// Synthetic request message for the [attachNetworkEndpoints()][google.cloud.compute.v1.regionNetworkEndpointGroups.attachNetworkEndpoints] method.

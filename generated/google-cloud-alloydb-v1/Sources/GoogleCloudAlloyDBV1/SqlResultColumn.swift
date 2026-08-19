@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Contains the name and datatype of a column in a SQL Result.
 public struct SqlResultColumn: Codable, Equatable, GoogleCloudWkt._AnyPackable,

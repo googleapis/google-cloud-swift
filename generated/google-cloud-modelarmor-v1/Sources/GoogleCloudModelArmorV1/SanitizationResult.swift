@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Sanitization result after applying all the filters on input content.
 public struct SanitizationResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,

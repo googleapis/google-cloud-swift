@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A shipment model contains a set of shipments which must be performed by a
 /// set of vehicles, while minimizing the overall cost, which is the sum of:

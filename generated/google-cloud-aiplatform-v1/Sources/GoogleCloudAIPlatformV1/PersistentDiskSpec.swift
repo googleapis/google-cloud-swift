@@ -16,7 +16,7 @@
 
 #if NotebookService || ScheduleService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents the spec of [persistent
   /// disk][https://cloud.google.com/compute/docs/disks/persistent-disks] options.

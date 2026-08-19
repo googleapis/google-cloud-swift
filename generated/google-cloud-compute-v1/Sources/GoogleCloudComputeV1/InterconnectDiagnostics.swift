@@ -16,7 +16,7 @@
 
 #if InterconnectGroups || Interconnects
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Diagnostics information about the Interconnect connection, which contains
   /// detailed and current technical information about Google's side of the

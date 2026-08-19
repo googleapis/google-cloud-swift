@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Common Dataplex fields.
 public struct DataplexSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,

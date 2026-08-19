@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configuration to instruct how sensitive data should be handled.
 public struct RedactionConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

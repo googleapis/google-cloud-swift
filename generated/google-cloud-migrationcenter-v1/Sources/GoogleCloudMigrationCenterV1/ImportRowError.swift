@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A resource that reports the import job errors at row level.
 public struct ImportRowError: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A license pool represents a pool of licenses that can be assigned to users.
 public struct LicensePool: Codable, Equatable, GoogleCloudWkt._AnyPackable,

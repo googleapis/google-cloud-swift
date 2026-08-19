@@ -16,7 +16,7 @@
 
 #if EvaluationService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Input for rouge metric.
   public struct RougeInput: Codable, Equatable, GoogleCloudWkt._AnyPackable,

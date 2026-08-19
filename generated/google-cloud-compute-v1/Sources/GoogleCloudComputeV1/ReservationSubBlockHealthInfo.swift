@@ -16,7 +16,7 @@
 
 #if ReservationSubBlocks
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Health information for the reservation subBlock.
   public struct ReservationSubBlockHealthInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,

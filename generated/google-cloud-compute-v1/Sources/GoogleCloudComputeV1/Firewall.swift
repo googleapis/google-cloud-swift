@@ -16,7 +16,7 @@
 
 #if Firewalls || Instances || Networks || RegionNetworkFirewallPolicies
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents a Firewall Rule resource.
   ///

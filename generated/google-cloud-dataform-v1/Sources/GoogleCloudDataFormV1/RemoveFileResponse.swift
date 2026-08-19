@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// `RemoveFile` response message.
 public struct RemoveFileResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

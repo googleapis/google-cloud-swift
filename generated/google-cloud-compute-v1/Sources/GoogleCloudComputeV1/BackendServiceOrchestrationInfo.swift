@@ -16,7 +16,7 @@
 
 #if BackendServices || RegionBackendServices
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// A message containing information about the resource or system that manages
   /// the backend service.

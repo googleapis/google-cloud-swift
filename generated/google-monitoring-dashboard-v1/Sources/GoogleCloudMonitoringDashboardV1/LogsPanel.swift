@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A widget that displays a stream of log.
 public struct LogsPanel: Codable, Equatable, GoogleCloudWkt._AnyPackable,

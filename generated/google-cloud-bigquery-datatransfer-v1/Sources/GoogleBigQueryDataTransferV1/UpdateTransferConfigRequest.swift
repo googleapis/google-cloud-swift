@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A request to update a transfer configuration. To update the user id of the
 /// transfer configuration, authorization info needs to be provided.

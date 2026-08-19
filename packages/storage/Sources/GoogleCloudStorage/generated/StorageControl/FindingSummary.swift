@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A summary of findings generated for an organization, a folder, or a project.
 public struct FindingSummary: Codable, Equatable, GoogleCloudWkt._AnyPackable,

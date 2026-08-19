@@ -16,7 +16,7 @@
 
 #if Sessions
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The request to detect user's intent.
   public struct DetectIntentRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

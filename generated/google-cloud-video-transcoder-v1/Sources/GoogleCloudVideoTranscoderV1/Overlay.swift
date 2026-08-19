@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Overlay configuration.
 public struct Overlay: Codable, Equatable, GoogleCloudWkt._AnyPackable,

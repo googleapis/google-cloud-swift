@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// DataDocumentation scan related spec.
 public struct DataDocumentationSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,

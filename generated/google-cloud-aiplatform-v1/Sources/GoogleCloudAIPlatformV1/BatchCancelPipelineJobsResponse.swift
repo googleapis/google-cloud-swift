@@ -16,7 +16,7 @@
 
 #if PipelineService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Response message for
   /// [PipelineService.BatchCancelPipelineJobs][google.cloud.aiplatform.v1.PipelineService.BatchCancelPipelineJobs].

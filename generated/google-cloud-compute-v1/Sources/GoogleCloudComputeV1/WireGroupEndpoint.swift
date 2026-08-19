@@ -16,7 +16,7 @@
 
 #if WireGroups
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// A logical endpoint for the wire group. An endpoint represents a metro that
   /// contains redundant Interconnect connections. A wire group is created

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Options for the build operations performed as a part of the version
 /// deployment. Only applicable for App Engine flexible environment when creating

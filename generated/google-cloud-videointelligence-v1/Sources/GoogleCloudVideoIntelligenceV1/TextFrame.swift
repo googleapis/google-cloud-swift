@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Video frame level annotation results for text annotation (OCR).
 /// Contains information regarding timestamp and bounding box locations for the

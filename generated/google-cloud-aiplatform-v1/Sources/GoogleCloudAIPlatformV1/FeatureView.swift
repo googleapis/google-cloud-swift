@@ -16,7 +16,7 @@
 
 #if FeatureOnlineStoreAdminService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// FeatureView is representation of values that the FeatureOnlineStore will
   /// serve based on its syncConfig.

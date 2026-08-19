@@ -16,7 +16,7 @@
 
 #if Interconnects
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Configuration information for application awareness on this Cloud
   /// Interconnect.

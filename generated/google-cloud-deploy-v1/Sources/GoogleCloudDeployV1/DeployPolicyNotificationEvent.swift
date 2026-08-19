@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Payload proto for "clouddeploy.googleapis.com/deploypolicy_notification".
 /// Platform Log event that describes the failure to send a pub/sub notification

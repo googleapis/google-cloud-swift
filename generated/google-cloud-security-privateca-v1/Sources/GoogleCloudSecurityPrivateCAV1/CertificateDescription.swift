@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A
 /// [CertificateDescription][google.cloud.security.privateca.v1.CertificateDescription]

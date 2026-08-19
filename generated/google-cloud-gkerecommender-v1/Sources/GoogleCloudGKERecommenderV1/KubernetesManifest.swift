@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A Kubernetes manifest.
 public struct KubernetesManifest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

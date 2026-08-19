@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// AddressGroup is a resource that specifies how a collection of IP/DNS used
 /// in Firewall Policy.

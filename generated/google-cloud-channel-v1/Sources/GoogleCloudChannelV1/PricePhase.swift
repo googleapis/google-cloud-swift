@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Specifies the price by the duration of months.
 /// For example, a 20% discount for the first six months, then a 10% discount

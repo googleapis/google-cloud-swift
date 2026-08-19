@@ -16,7 +16,7 @@
 
 #if Disks || RegionDisks
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// A transient resource used in compute.disks.stopGroupAsyncReplication and
   /// compute.regionDisks.stopGroupAsyncReplication. It is only used to process

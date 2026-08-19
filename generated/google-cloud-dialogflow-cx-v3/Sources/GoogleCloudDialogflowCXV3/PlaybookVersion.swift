@@ -16,7 +16,7 @@
 
 #if Playbooks
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Playbook version is a snapshot of the playbook at certain timestamp.
   public struct PlaybookVersion: Codable, Equatable, GoogleCloudWkt._AnyPackable,

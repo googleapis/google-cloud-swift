@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// `StreamingRecognizeResponse` is the only message returned to the client by
 /// `StreamingRecognize`. A series of zero or more `StreamingRecognizeResponse`

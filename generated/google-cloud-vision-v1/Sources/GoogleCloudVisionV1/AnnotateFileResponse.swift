@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 import GoogleRpc
 
 /// Response to a single file annotation request. A file may contain one or more

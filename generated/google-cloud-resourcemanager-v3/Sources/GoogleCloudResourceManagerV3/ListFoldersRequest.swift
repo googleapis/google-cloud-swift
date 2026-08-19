@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The ListFolders request message.
 public struct ListFoldersRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

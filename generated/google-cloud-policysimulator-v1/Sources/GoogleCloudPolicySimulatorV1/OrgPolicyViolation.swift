@@ -16,7 +16,7 @@
 
 import Foundation
 import GoogleCloudOrgPolicyV2
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 import GoogleRpc
 
 /// OrgPolicyViolation is a resource representing a single resource violating a

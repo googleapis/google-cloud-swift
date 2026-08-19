@@ -16,8 +16,8 @@
 
 #if InstanceGroupManagers
   import Foundation
-  import GoogleCloudGax
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudGax
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct InstanceGroupManagersListErrorsResponse: Codable, Equatable, GoogleCloudWkt
       ._AnyPackable,

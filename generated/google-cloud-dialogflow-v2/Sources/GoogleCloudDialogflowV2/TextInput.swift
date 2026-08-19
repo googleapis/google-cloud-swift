@@ -16,7 +16,7 @@
 
 #if Conversations || Participants || Sessions
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Auxiliary proto messages.
   ///

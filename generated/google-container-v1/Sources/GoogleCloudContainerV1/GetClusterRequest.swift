@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// GetClusterRequest gets the settings of a cluster.
 public struct GetClusterRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Backup is consisted of multiple backup files.
 public struct BackupFile: Codable, Equatable, GoogleCloudWkt._AnyPackable,

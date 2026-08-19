@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudGax
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudGax
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The response message for the `ListEnrollments` method.
 public struct ListEnrollmentsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if Instances
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Contains output only fields.
   /// Use this sub-message for actual values set on Instance attributes as compared

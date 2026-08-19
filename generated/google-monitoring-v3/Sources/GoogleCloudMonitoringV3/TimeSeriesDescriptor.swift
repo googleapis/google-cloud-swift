@@ -16,7 +16,7 @@
 
 import Foundation
 import GoogleApi
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A descriptor for the labels and points in a time series.
 public struct TimeSeriesDescriptor: Codable, Equatable, GoogleCloudWkt._AnyPackable,

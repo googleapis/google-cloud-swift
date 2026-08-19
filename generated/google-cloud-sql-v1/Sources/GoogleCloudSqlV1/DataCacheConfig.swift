@@ -16,7 +16,7 @@
 
 #if SqlBackupsService || SqlInstancesService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Data cache configurations.
   public struct DataCacheConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

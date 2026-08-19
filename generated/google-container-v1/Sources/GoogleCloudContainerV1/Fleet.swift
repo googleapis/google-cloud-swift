@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Fleet is the fleet configuration for the cluster.
 public struct Fleet: Codable, Equatable, GoogleCloudWkt._AnyPackable,

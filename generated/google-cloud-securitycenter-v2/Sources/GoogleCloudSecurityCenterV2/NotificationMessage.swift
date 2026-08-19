@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Cloud SCC's Notification
 public struct NotificationMessage: Codable, Equatable, GoogleCloudWkt._AnyPackable,

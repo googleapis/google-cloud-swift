@@ -16,7 +16,7 @@
 
 #if Instances
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// An instance serial console output.
   public struct SerialPortOutput: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// ResourceRecordSet data for one geo location.
 public struct RRSetRoutingPolicyGeoPolicyGeoPolicyItem: Codable, Equatable, GoogleCloudWkt

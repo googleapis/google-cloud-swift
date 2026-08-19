@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Rule set for modifying a set of infoTypes to alter behavior under certain
 /// circumstances, depending on the specific details of the rules within the set.

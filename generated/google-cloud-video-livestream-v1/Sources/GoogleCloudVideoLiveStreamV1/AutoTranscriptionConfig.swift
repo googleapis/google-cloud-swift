@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Advanced configurations for auto-generated text streams.
 public struct AutoTranscriptionConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

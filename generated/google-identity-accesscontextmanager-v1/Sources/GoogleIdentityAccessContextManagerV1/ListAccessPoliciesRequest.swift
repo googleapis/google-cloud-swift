@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A request to list all `AccessPolicies` for a container.
 public struct ListAccessPoliciesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// GetActiveDirectory for getting a single active directory.
 public struct GetActiveDirectoryRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

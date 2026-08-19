@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A test message for i64.
 public struct MessageWithI64: Codable, Equatable, GoogleCloudWkt._AnyPackable,

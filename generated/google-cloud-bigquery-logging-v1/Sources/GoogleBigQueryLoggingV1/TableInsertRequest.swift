@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Table insert request.
 public struct TableInsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

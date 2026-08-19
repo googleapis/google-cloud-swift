@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request to the `GetRecommendation` method.
 public struct GetRecommendationRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

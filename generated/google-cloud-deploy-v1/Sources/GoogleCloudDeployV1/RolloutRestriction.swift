@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Rollout restrictions.
 public struct RolloutRestriction: Codable, Equatable, GoogleCloudWkt._AnyPackable,

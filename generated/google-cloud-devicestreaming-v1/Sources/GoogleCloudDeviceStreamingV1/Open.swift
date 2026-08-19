@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message for opening a new stream.
 public struct Open: Codable, Equatable, GoogleCloudWkt._AnyPackable,

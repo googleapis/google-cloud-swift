@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A HostAddress represents a transport end point, which is the combination
 /// of an IP address or hostname and a port number.

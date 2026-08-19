@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// `Release` represents a versioned release containing kubernetes manifests.
 public struct Release: Codable, Equatable, GoogleCloudWkt._AnyPackable,

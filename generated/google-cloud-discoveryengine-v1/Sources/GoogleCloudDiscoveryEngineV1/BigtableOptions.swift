@@ -16,7 +16,7 @@
 
 #if DocumentService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The Bigtable Options object that contains information to support
   /// the import.

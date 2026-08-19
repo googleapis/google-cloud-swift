@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// HCX activation key. A default key is created during
 /// private cloud provisioning, but this behavior is subject to change

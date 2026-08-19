@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A request message for resuming a patch deployment.
 public struct ResumePatchDeploymentRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The group to roles mapping of the GoldengateDeployment.
 public struct GoldengateGroupToRolesMapping: Codable, Equatable, GoogleCloudWkt._AnyPackable,

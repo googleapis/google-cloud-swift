@@ -16,8 +16,8 @@
 
 #if Reservations
   import Foundation
-  import GoogleCloudGax
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudGax
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Contains a list of reservations.
   public struct ReservationAggregatedList: Codable, Equatable, GoogleCloudWkt._AnyPackable,

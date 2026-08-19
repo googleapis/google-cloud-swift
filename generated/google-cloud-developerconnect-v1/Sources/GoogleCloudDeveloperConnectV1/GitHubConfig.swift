@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configuration for connections to github.com.
 public struct GitHubConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

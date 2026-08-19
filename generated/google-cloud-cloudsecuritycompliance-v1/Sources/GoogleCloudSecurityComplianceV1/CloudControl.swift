@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A cloud control is a set of rules and associated metadata that you can
 /// use to define your organization's security or compliance intent.

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message describing ClientGateway object.
 public struct ClientGateway: Codable, Equatable, GoogleCloudWkt._AnyPackable,

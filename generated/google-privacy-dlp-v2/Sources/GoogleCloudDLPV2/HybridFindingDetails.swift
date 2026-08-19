@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Populate to associate additional data with each finding.
 public struct HybridFindingDetails: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// GetAzureJsonWebKeysRequest gets the public component of the keys used by the
 /// cluster to sign token requests. This will be the jwks_uri for the discover

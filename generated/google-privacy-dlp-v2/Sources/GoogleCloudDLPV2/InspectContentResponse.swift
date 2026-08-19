@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Results of inspecting an item.
 public struct InspectContentResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

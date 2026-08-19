@@ -16,7 +16,7 @@
 
 import Foundation
 import GoogleApi
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A widget that displays a list of incidents
 public struct IncidentList: Codable, Equatable, GoogleCloudWkt._AnyPackable,

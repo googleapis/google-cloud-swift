@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The quota details for a map of dimensions.
 public struct QuotaDetails: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Defines a output fields struct for data in DataObject.
 public struct OutputFields: Codable, Equatable, GoogleCloudWkt._AnyPackable,

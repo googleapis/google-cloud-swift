@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudGax
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudGax
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for `ListProjectBillingInfoResponse`.
 public struct ListProjectBillingInfoResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

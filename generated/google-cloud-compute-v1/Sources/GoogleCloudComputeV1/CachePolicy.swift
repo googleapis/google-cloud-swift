@@ -16,7 +16,7 @@
 
 #if RegionUrlMaps || UrlMaps
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Message containing CachePolicy configuration for URL Map's Route Action.
   public struct CachePolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,

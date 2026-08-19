@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Description of which voice to use for a synthesis request.
 public struct VoiceSelectionParams: Codable, Equatable, GoogleCloudWkt._AnyPackable,

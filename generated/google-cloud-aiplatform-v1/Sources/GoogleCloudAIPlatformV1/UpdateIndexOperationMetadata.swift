@@ -16,7 +16,7 @@
 
 #if IndexService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Runtime operation information for
   /// [IndexService.UpdateIndex][google.cloud.aiplatform.v1.IndexService.UpdateIndex].

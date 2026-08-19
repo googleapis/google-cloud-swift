@@ -16,7 +16,7 @@
 
 #if RegionCommitments || Reservations
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// This reservation type allows to pre allocate specific instance
   ///  configuration.

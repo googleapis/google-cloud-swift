@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configuration for the Cloud Storage Fuse CSI driver.
 public struct GcsFuseCsiDriverConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

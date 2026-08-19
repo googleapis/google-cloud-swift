@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Subset of Nodepool message that has defaults.
 public struct NodePoolDefaults: Codable, Equatable, GoogleCloudWkt._AnyPackable,

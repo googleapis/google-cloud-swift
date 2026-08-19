@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Response of auto-complete query.
 public struct CompleteQueryResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

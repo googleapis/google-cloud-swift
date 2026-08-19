@@ -16,7 +16,7 @@
 
 #if TestCases
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
   import GoogleRpc
 
   /// Error info for importing a test.

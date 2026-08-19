@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudGax
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudGax
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message for response of ListSSHKeys.
 public struct ListSSHKeysResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

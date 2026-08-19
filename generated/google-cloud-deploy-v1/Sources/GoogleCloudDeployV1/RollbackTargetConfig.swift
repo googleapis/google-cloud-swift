@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configs for the Rollback rollout.
 public struct RollbackTargetConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

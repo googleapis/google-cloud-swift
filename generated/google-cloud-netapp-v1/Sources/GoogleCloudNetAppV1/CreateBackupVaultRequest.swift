@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// CreateBackupVaultRequest creates a backup vault.
 public struct CreateBackupVaultRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

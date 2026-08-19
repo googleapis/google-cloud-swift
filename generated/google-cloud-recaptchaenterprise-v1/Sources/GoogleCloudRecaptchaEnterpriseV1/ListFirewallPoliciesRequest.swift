@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The list firewall policies request message.
 public struct ListFirewallPoliciesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if BackendServices || RegionBackendServices
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Contains the configurations necessary to generate a signature for access to
   /// private storage buckets that support Signature Version 4 for authentication.

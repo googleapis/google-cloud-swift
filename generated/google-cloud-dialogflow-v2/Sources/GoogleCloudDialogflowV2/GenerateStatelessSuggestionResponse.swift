@@ -16,7 +16,7 @@
 
 #if Conversations
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The response message for
   /// [Conversations.GenerateStatelessSuggestion][google.cloud.dialogflow.v2.Conversations.GenerateStatelessSuggestion].

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The Request of the CreateTenant method.
 public struct CreateTenantRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

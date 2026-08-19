@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Definition of a custom Compute Engine virtual machine image for starting a
 /// notebook instance with the environment installed directly on the VM.

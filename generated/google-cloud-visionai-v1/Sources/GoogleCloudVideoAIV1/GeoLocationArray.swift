@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A list of locations.
 public struct GeoLocationArray: Codable, Equatable, GoogleCloudWkt._AnyPackable,

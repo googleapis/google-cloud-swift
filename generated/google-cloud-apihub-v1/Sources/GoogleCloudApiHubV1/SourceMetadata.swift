@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// SourceMetadata represents the metadata for a resource at the source.
 public struct SourceMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,

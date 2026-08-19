@@ -16,7 +16,7 @@
 
 #if Routers
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Contain information of Nat mapping for an interface of this endpoint.
   public struct VmEndpointNatMappingsInterfaceNatMappings: Codable, Equatable, GoogleCloudWkt

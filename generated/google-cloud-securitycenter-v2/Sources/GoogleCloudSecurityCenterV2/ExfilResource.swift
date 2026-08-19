@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Resource where data was exfiltrated from or exfiltrated to.
 public struct ExfilResource: Codable, Equatable, GoogleCloudWkt._AnyPackable,

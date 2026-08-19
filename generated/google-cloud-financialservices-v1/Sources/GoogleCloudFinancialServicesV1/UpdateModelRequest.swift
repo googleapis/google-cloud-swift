@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request for updating a Model
 public struct UpdateModelRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

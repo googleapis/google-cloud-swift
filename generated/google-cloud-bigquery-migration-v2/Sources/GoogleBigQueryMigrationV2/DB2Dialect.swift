@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The dialect definition for DB2.
 public struct DB2Dialect: Codable, Equatable, GoogleCloudWkt._AnyPackable,

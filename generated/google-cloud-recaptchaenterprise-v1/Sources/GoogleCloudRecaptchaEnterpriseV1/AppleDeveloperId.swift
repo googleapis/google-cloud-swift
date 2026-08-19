@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Contains fields that are required to perform Apple-specific integrity checks.
 public struct AppleDeveloperId: Codable, Equatable, GoogleCloudWkt._AnyPackable,

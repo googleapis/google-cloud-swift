@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A trained translation model.
 public struct Model: Codable, Equatable, GoogleCloudWkt._AnyPackable,

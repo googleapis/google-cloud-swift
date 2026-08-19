@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The DocAI processor information.
 public struct ProcessorInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,

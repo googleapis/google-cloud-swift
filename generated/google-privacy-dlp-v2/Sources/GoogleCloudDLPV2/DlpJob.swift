@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Combines all of the information about a DLP job.
 public struct DlpJob: Codable, Equatable, GoogleCloudWkt._AnyPackable,

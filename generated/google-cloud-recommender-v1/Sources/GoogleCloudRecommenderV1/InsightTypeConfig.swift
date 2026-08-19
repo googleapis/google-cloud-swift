@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configuration for an InsightType.
 public struct InsightTypeConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

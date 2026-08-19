@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Defines a custom error message used by CreateScanConfig and UpdateScanConfig
 /// APIs when scan configuration validation fails. It is also reported as part of

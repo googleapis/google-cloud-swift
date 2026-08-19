@@ -16,7 +16,7 @@
 
 #if RegionUrlMaps
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   extension RegionUrlMapsClient {
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.regionUrlMaps.delete] method.

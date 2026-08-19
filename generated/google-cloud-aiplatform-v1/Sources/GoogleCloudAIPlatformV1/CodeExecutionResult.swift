@@ -16,7 +16,7 @@
 
 #if DataFoundryService || EvaluationService || GenAiCacheService || GenAiTuningService || LlmUtilityService || PredictionService || SessionService || VertexRagService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Result of executing the [ExecutableCode].
   ///

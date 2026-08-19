@@ -16,7 +16,7 @@
 
 #if Sessions
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The top-level message returned from the
   /// [StreamingDetectIntent][google.cloud.dialogflow.cx.v3.Sessions.StreamingDetectIntent]

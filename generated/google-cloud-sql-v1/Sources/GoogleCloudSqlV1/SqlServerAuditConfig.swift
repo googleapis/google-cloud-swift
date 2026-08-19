@@ -16,7 +16,7 @@
 
 #if SqlBackupsService || SqlInstancesService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// SQL Server specific audit configuration.
   public struct SqlServerAuditConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

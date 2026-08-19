@@ -16,7 +16,7 @@
 
 #if CmekConfigService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Response message for
   /// [CmekConfigService.ListCmekConfigs][google.cloud.discoveryengine.v1.CmekConfigService.ListCmekConfigs]

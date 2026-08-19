@@ -16,7 +16,7 @@
 
 #if BackendServices || RegionBackendServices
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Custom Metrics are used for CUSTOM_METRICS balancing_mode.
   public struct BackendCustomMetric: Codable, Equatable, GoogleCloudWkt._AnyPackable,

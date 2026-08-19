@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Video segment.
 public struct VideoSegment: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configurations for an enum/categorical property.
 public struct EnumTypeOptions: Codable, Equatable, GoogleCloudWkt._AnyPackable,

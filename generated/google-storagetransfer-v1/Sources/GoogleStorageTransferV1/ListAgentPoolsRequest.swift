@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The request passed to ListAgentPools.
 public struct ListAgentPoolsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

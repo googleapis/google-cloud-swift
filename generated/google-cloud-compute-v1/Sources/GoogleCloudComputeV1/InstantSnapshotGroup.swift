@@ -16,7 +16,7 @@
 
 #if InstantSnapshotGroups || RegionInstantSnapshotGroups
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents an InstantSnapshotGroup resource.
   ///

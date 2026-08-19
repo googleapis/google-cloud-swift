@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents a conversation, resource, and label provided by the user.
 public struct FeedbackLabel: Codable, Equatable, GoogleCloudWkt._AnyPackable,

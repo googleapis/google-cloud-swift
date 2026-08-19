@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// ConnectionSchemaMetadata is the singleton resource of each connection.
 /// It includes the entity and action names of runtime resources exposed

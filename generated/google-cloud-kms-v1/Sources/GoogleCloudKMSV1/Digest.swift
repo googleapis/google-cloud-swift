@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A [Digest][google.cloud.kms.v1.Digest] holds a cryptographic message digest.
 ///

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// PredictionResult is the result of using a model to create predictions.
 public struct PredictionResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,

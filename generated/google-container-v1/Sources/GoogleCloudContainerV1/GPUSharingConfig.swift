@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// GPUSharingConfig represents the GPU sharing configuration for Hardware
 /// Accelerators.

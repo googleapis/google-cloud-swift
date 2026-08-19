@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Third-party Python runtime library that is required by the application.
 public struct Library: Codable, Equatable, GoogleCloudWkt._AnyPackable,

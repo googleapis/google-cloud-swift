@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents a backfill job on a specific stream object.
 public struct BackfillJob: Codable, Equatable, GoogleCloudWkt._AnyPackable,

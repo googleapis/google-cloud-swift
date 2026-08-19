@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Fulfillment information, such as the store IDs for in-store pickup or region
 /// IDs for different shipping methods.

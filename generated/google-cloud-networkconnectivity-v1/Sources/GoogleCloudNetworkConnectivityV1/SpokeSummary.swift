@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Summarizes information about the spokes associated with a hub.
 /// The summary includes a count of spokes according to type

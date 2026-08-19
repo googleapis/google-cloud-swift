@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Run DataScan Response.
 public struct RunDataScanResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

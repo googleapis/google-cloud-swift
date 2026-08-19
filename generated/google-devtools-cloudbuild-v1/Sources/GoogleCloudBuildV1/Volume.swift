@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Volume describes a Docker container volume which is mounted into build steps
 /// in order to persist files across build step execution.

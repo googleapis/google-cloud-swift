@@ -16,7 +16,7 @@
 
 #if VpnGateways
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   extension VpnGatewaysClient {
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.vpnGateways.aggregatedList] method.

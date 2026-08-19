@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Metadata for an inserted ad in a VOD session.
 public struct VodSessionAd: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The note representing a secret.
 public struct SecretNote: Codable, Equatable, GoogleCloudWkt._AnyPackable,

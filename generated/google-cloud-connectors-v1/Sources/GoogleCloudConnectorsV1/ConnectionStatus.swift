@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// ConnectionStatus indicates the state of the connection.
 public struct ConnectionStatus: Codable, Equatable, GoogleCloudWkt._AnyPackable,

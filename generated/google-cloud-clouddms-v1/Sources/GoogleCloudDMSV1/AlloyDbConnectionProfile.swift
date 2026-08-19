@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Specifies required connection parameters, and the parameters
 /// required to create an AlloyDB destination cluster.

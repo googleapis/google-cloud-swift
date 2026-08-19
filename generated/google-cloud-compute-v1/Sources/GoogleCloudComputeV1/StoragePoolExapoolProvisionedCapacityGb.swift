@@ -16,7 +16,7 @@
 
 #if StoragePools
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Exapool provisioned capacities for each SKU type
   public struct StoragePoolExapoolProvisionedCapacityGb: Codable, Equatable, GoogleCloudWkt

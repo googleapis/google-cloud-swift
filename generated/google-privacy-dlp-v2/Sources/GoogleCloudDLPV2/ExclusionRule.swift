@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The rule that specifies conditions when findings of infoTypes specified in
 /// `InspectionRuleSet` are removed from results.

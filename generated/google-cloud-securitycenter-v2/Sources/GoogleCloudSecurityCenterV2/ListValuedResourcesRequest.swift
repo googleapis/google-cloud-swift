@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for listing the valued resources for a given simulation.
 public struct ListValuedResourcesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The response object from `AdvanceRollout`.
 public struct AdvanceRolloutResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

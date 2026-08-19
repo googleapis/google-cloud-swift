@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// DataScan scheduling and trigger settings.
 public struct Trigger: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Metadata object for CreateDocument request (currently empty).
 public struct CreateDocumentMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message for deleting an entitlement.
 public struct DeleteEntitlementRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

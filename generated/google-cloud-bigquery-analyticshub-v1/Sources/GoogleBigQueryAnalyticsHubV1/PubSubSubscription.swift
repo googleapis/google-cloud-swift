@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Defines the destination Pub/Sub subscription.
 /// If none of `push_config`, `bigquery_config`, `cloud_storage_config`,

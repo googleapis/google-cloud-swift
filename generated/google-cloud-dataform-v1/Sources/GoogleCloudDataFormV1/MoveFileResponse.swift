@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// `MoveFile` response message.
 public struct MoveFileResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

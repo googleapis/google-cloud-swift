@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message for requesting list of Processes.
 public struct ListProcessesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Describes stage and necessary actions to be taken by the
 /// user to complete the installation. Used for GitHub and GitHub Enterprise

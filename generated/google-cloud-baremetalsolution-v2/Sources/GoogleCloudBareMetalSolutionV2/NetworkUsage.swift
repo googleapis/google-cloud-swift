@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Network with all used IP addresses.
 public struct NetworkUsage: Codable, Equatable, GoogleCloudWkt._AnyPackable,

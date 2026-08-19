@@ -16,7 +16,7 @@
 
 #if DatasetService || DeploymentResourcePoolService || EndpointService || JobService || ModelService || PipelineService || PredictionService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Example-based explainability that returns the nearest neighbors from the
   /// provided dataset.

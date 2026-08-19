@@ -16,7 +16,7 @@
 
 #if NetworkProfiles
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct NetworkProfileProfileType: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable

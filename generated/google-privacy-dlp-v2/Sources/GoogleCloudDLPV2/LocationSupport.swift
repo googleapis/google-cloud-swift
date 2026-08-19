@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Locations at which a feature can be used.
 public struct LocationSupport: Codable, Equatable, GoogleCloudWkt._AnyPackable,

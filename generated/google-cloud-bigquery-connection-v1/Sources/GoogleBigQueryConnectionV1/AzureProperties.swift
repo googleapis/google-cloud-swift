@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Container for connection properties specific to Azure.
 public struct AzureProperties: Codable, Equatable, GoogleCloudWkt._AnyPackable,

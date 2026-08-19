@@ -16,7 +16,7 @@
 
 #if Conversations || GeneratorEvaluations || Generators
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Providing examples in the generator (i.e. building a few-shot generator)
   /// helps convey the desired format of the LLM response.

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Node Affinity: the configuration of desired nodes onto which this Instance
 /// could be scheduled. Based on

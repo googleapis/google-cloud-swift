@@ -16,7 +16,7 @@
 
 #if Hosts
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents a host resource.
   public struct Host: Codable, Equatable, GoogleCloudWkt._AnyPackable,

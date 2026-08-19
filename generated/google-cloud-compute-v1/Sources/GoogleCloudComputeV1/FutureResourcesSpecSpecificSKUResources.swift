@@ -16,7 +16,7 @@
 
 #if Advice
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct FutureResourcesSpecSpecificSKUResources: Codable, Equatable, GoogleCloudWkt
       ._AnyPackable,

@@ -16,7 +16,7 @@
 
 import Foundation
 import GoogleApi
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Response message for SubmitConfigSource method.
 public struct SubmitConfigSourceResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

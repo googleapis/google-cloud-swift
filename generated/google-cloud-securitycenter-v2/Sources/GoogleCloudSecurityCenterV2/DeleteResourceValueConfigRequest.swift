@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message to delete resource value config
 public struct DeleteResourceValueConfigRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A Job's resource allocation policy describes when, where, and how compute
 /// resources should be allocated for the Job.

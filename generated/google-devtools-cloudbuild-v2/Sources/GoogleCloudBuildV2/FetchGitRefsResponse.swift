@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Response for fetching git refs
 public struct FetchGitRefsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

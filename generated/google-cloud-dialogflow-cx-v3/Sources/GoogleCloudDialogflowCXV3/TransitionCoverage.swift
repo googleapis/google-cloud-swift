@@ -16,7 +16,7 @@
 
 #if TestCases
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Transition coverage represents the percentage of all possible page
   /// transitions (page-level transition routes and event handlers, excluding

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Sharing environment is a behavior model for sharing data within a
 /// data exchange. This option is configurable for a data exchange.

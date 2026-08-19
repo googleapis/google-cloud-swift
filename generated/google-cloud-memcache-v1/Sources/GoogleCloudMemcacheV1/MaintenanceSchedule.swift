@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Upcoming maintenance schedule.
 public struct MaintenanceSchedule: Codable, Equatable, GoogleCloudWkt._AnyPackable,

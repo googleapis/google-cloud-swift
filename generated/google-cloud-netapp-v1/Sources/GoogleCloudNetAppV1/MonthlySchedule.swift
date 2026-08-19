@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Make a snapshot once a month e.g. at 2nd 04:00, 7th 05:20, 24th 23:50
 public struct MonthlySchedule: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if InstanceTemplates || Instances || MachineImages || RegionInstanceTemplates || RegionInstances
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Node Affinity: the configuration of desired nodes onto which this Instance
   ///  could be scheduled.

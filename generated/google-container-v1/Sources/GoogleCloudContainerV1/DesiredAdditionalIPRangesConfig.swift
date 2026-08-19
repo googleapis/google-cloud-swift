@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// DesiredAdditionalIPRangesConfig is a wrapper used for cluster update
 /// operation and contains multiple AdditionalIPRangesConfigs.

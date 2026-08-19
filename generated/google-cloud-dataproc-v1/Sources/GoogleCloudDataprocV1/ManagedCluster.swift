@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Cluster that is managed by the workflow.
 public struct ManagedCluster: Codable, Equatable, GoogleCloudWkt._AnyPackable,

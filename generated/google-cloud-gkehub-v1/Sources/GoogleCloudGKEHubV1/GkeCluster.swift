@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// GkeCluster contains information specific to GKE clusters.
 public struct GkeCluster: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The request message to list all TagBindings for a parent.
 public struct ListTagBindingsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

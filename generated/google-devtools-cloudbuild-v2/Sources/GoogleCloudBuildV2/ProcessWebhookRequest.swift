@@ -16,7 +16,7 @@
 
 import Foundation
 import GoogleApi
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// RPC request object accepted by the ProcessWebhook RPC method.
 public struct ProcessWebhookRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

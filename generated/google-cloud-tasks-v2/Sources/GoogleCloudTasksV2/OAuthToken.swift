@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Contains information needed for generating an
 /// [OAuth token](https://developers.google.com/identity/protocols/OAuth2).

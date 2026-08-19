@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Contains the information for an automated `repair rollout` operation.
 public struct RepairRolloutOperation: Codable, Equatable, GoogleCloudWkt._AnyPackable,

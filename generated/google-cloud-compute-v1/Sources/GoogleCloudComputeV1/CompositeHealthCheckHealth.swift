@@ -16,7 +16,7 @@
 
 #if RegionCompositeHealthChecks
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Response message for RegionCompositeHealthChecks.GetHealth
   public struct CompositeHealthCheckHealth: Codable, Equatable, GoogleCloudWkt._AnyPackable,

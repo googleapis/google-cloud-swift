@@ -16,7 +16,7 @@
 
 #if Rollouts
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   extension RolloutsClient {
     /// Synthetic request message for the [advance()][google.cloud.compute.v1.rollouts.advance] method.

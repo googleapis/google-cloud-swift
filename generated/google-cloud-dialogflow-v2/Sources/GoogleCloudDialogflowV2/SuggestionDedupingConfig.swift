@@ -16,7 +16,7 @@
 
 #if Conversations || GeneratorEvaluations || Generators
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Config for suggestion deduping.
   /// NEXT_ID: 3

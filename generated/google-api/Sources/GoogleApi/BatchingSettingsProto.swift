@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// `BatchingSettingsProto` specifies a set of batching thresholds, each of
 /// which acts as a trigger to send a batch of messages as a request. At least

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for getting a license pool.
 public struct GetLicensePoolRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Auto-complete parameters.
 public struct CompleteQueryRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

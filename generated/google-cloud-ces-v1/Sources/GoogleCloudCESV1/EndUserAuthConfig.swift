@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// End-user authentication configuration used for Connection calls.
 /// The field values must be the names of context variables in the format

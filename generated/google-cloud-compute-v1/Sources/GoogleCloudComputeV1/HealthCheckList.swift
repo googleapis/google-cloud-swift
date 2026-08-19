@@ -16,8 +16,8 @@
 
 #if HealthChecks || RegionHealthChecks
   import Foundation
-  import GoogleCloudGax
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudGax
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Contains a list of HealthCheck resources.
   public struct HealthCheckList: Codable, Equatable, GoogleCloudWkt._AnyPackable,

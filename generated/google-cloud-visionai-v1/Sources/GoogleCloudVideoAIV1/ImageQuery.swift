@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Image query for search endpoint request.
 public struct ImageQuery: Codable, Equatable, GoogleCloudWkt._AnyPackable,

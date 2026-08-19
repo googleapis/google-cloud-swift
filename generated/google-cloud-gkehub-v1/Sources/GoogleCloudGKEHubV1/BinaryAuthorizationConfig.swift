@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// BinaryAuthorizationConfig defines the fleet level configuration of binary
 /// authorization feature.

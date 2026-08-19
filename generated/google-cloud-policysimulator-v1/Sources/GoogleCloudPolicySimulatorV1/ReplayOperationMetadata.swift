@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Metadata about a Replay operation.
 public struct ReplayOperationMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,

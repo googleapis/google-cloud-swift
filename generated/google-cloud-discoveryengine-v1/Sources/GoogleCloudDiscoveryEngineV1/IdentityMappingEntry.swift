@@ -16,7 +16,7 @@
 
 #if IdentityMappingStoreService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Identity Mapping Entry that maps an external identity to an internal
   /// identity.

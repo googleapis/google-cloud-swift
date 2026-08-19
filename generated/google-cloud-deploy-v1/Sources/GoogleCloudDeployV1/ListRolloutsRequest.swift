@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// ListRolloutsRequest is the request object used by `ListRollouts`.
 public struct ListRolloutsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

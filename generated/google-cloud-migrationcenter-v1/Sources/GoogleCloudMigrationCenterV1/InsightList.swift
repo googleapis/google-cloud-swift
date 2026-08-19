@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message containing insights list.
 public struct InsightList: Codable, Equatable, GoogleCloudWkt._AnyPackable,

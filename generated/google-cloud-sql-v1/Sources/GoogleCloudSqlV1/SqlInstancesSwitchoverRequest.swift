@@ -16,7 +16,7 @@
 
 #if SqlInstancesService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Instance switchover request.
   public struct SqlInstancesSwitchoverRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

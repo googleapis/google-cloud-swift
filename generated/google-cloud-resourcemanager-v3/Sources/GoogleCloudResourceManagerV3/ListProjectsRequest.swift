@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The request sent to the
 /// [ListProjects][google.cloud.resourcemanager.v3.Projects.ListProjects]

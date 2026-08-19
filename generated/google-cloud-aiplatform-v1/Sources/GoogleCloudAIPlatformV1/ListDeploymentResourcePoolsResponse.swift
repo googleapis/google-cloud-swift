@@ -16,8 +16,8 @@
 
 #if DeploymentResourcePoolService
   import Foundation
-  import GoogleCloudGax
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudGax
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Response message for ListDeploymentResourcePools method.
   public struct ListDeploymentResourcePoolsResponse: Codable, Equatable, GoogleCloudWkt

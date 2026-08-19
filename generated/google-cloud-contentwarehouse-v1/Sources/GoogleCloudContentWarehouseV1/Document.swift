@@ -16,7 +16,7 @@
 
 import Foundation
 import GoogleCloudDocumentAIV1
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Defines the structure for content warehouse document proto.
 public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,

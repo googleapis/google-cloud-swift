@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Metadata used for GAM ad decisioning.
 public struct GamVodConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

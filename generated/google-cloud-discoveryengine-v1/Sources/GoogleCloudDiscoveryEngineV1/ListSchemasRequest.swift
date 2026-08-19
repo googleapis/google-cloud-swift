@@ -16,7 +16,7 @@
 
 #if SchemaService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Request message for
   /// [SchemaService.ListSchemas][google.cloud.discoveryengine.v1.SchemaService.ListSchemas]

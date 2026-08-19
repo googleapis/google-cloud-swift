@@ -16,7 +16,7 @@
 
 #if MachineImages
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// DEPRECATED: Please use compute#instanceProperties instead.
   /// New properties will not be added to this field.

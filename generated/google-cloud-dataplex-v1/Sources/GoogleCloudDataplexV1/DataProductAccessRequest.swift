@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message for requesting access to a Data Product. This will be used to
 /// create a ChangeRequest of type REQUEST_DATA_PRODUCT_ACCESS.

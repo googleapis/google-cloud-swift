@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Create AspectType Request.
 public struct CreateAspectTypeRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

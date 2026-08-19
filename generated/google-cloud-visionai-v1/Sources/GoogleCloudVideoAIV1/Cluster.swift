@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message describing the Cluster object.
 public struct Cluster: Codable, Equatable, GoogleCloudWkt._AnyPackable,

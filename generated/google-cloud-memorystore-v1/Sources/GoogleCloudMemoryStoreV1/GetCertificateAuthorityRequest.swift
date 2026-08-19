@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for `GetCertificateAuthority`.
 public struct GetCertificateAuthorityRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

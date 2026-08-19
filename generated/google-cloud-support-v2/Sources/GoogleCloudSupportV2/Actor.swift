@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// An Actor represents an entity that performed an action. For example, an actor
 /// could be a user who posted a comment on a support case, a user who

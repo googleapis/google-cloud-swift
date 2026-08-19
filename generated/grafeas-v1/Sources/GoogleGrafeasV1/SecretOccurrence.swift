@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The occurrence provides details of a secret.
 public struct SecretOccurrence: Codable, Equatable, GoogleCloudWkt._AnyPackable,

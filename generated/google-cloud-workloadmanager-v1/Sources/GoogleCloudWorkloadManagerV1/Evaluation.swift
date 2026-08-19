@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents a Workload Manager Evaluation configuration.
 /// An Evaluation defines a set of rules to be validated against a scope

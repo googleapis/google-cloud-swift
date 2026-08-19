@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Metadata associated with a tune operation.
 public struct TuneModelMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,

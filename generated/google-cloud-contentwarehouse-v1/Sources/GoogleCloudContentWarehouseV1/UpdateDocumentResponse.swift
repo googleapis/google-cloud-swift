@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Response message for DocumentService.UpdateDocument.
 public struct UpdateDocumentResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

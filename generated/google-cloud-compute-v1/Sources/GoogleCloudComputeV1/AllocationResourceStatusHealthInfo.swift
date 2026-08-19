@@ -16,7 +16,7 @@
 
 #if RegionCommitments || Reservations
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Health information for the reservation.
   public struct AllocationResourceStatusHealthInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,

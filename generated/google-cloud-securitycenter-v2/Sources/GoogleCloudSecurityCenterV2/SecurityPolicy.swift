@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Information about the [Google Cloud Armor security
 /// policy](https://cloud.google.com/armor/docs/security-policy-overview)

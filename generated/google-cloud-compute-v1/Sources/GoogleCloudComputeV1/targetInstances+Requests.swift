@@ -16,7 +16,7 @@
 
 #if TargetInstances
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   extension TargetInstancesClient {
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.targetInstances.aggregatedList] method.

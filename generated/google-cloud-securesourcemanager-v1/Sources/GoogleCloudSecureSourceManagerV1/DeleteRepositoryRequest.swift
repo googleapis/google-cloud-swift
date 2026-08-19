@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// DeleteRepositoryRequest is the request to delete a repository.
 public struct DeleteRepositoryRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

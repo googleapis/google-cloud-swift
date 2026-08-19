@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Information about account verification, used for identity verification.
 public struct AccountVerificationInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,

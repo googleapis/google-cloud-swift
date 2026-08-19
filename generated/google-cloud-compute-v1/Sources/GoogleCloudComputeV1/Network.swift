@@ -16,7 +16,7 @@
 
 #if Networks
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents a VPC Network resource.
   ///

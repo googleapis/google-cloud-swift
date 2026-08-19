@@ -16,7 +16,7 @@
 
 #if BackendServices || RegionBackendServices
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Message containing connection draining configuration.
   public struct ConnectionDraining: Codable, Equatable, GoogleCloudWkt._AnyPackable,

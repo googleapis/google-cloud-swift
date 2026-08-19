@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Python code block to evaluate the condition.
 public struct PythonCodeCondition: Codable, Equatable, GoogleCloudWkt._AnyPackable,

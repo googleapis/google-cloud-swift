@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A request to update a reference list.
 public struct UpdateReferenceListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

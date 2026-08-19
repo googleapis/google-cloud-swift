@@ -16,7 +16,7 @@
 
 #if FeatureOnlineStoreService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Request message for
   /// [FeatureOnlineStoreService.FeatureViewDirectWrite][google.cloud.aiplatform.v1.FeatureOnlineStoreService.FeatureViewDirectWrite].

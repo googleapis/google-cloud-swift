@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Describes the payload of a user defined object custom context.
 public struct ObjectCustomContextPayload: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudGax
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudGax
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The response for `PluggableDatabase.List`.
 public struct ListPluggableDatabasesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

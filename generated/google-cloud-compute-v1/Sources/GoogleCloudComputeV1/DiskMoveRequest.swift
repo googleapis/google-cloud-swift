@@ -16,7 +16,7 @@
 
 #if Projects
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct DiskMoveRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable

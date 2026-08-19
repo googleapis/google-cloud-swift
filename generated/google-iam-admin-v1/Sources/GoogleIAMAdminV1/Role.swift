@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A role in the Identity and Access Management API.
 public struct Role: Codable, Equatable, GoogleCloudWkt._AnyPackable,

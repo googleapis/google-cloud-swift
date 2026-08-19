@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request to list notes.
 public struct ListNotesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

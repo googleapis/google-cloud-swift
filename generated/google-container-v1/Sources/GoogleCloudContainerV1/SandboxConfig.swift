@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// SandboxConfig contains configurations of the sandbox to use for the node.
 public struct SandboxConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

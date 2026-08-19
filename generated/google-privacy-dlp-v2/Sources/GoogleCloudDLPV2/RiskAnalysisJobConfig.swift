@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configuration for a risk analysis job. See
 /// https://cloud.google.com/sensitive-data-protection/docs/concepts-risk-analysis

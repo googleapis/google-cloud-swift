@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Used when the image import is not using OS adaptation process.
 public struct DataDiskImageImport: Codable, Equatable, GoogleCloudWkt._AnyPackable,

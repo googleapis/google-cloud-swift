@@ -16,7 +16,7 @@
 
 #if RegionCompositeHealthChecks
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   extension RegionCompositeHealthChecksClient {
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.regionCompositeHealthChecks.aggregatedList] method.

@@ -16,7 +16,7 @@
 
 #if InterconnectGroups
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   extension InterconnectGroupsClient {
     /// Synthetic request message for the [createMembers()][google.cloud.compute.v1.interconnectGroups.createMembers] method.

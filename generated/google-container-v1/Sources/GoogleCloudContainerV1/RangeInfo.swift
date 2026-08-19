@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// RangeInfo contains the range name and the range utilization by this cluster.
 public struct RangeInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,

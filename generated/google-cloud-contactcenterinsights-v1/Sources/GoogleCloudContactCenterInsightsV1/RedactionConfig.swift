@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// DLP resources used for redaction while ingesting conversations.
 /// DLP settings are applied to conversations ingested from the

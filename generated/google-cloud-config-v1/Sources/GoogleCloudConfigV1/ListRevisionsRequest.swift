@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A request to list Revisions passed to a 'ListRevisions' call.
 public struct ListRevisionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

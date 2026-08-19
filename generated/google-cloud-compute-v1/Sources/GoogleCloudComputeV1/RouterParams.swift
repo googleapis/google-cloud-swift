@@ -16,7 +16,7 @@
 
 #if Routers
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Additional router parameters.
   public struct RouterParams: Codable, Equatable, GoogleCloudWkt._AnyPackable,

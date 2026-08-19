@@ -16,7 +16,7 @@
 
 #if NotebookService || ScheduleService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
   import GoogleRpc
 
   /// NotebookExecutionJob represents an instance of a notebook execution.

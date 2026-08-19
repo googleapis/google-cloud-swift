@@ -16,7 +16,7 @@
 
 #if AssistantService || ConversationalSearchService || SessionService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// AssistAnswer resource, main part of
   /// [AssistResponse][google.cloud.discoveryengine.v1.AssistResponse].

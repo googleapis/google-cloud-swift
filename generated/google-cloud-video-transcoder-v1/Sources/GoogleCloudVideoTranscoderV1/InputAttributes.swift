@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Input attributes that provide additional information about the input asset.
 public struct InputAttributes: Codable, Equatable, GoogleCloudWkt._AnyPackable,

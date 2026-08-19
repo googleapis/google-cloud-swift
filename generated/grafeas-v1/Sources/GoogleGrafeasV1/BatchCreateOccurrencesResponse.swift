@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Response for creating occurrences in batch.
 public struct BatchCreateOccurrencesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

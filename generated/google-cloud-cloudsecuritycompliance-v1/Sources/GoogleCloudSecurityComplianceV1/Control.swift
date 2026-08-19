@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The regulatory control.
 public struct Control: Codable, Equatable, GoogleCloudWkt._AnyPackable,

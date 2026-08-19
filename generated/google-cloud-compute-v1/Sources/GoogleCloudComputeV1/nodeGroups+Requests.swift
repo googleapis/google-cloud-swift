@@ -16,7 +16,7 @@
 
 #if NodeGroups
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   extension NodeGroupsClient {
     /// Synthetic request message for the [addNodes()][google.cloud.compute.v1.nodeGroups.addNodes] method.

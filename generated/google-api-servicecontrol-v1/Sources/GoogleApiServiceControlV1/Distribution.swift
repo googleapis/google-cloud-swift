@@ -16,7 +16,7 @@
 
 import Foundation
 import GoogleApi
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Distribution represents a frequency distribution of double-valued sample
 /// points. It contains the size of the population of sample points plus

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A path that an attacker could take to reach an exposed resource.
 public struct AttackPath: Codable, Equatable, GoogleCloudWkt._AnyPackable,

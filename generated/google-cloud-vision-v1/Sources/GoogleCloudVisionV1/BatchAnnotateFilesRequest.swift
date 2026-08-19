@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A list of requests to annotate files using the BatchAnnotateFiles API.
 public struct BatchAnnotateFilesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

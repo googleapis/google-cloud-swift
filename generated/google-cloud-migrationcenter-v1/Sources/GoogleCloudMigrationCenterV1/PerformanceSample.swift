@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Performance data sample.
 public struct PerformanceSample: Codable, Equatable, GoogleCloudWkt._AnyPackable,

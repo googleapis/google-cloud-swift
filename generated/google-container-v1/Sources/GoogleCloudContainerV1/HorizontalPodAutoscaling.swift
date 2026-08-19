@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configuration options for the horizontal pod autoscaling feature, which
 /// increases or decreases the number of replica pods a replication controller

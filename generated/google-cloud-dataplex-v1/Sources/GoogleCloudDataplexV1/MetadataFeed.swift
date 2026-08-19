@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// MetadataFeed contains information related to the metadata feed.
 public struct MetadataFeed: Codable, Equatable, GoogleCloudWkt._AnyPackable,

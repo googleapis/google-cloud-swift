@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// NodePoolUpgradeInfo contains the upgrade information of a node pool.
 public struct NodePoolUpgradeInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,

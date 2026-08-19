@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Runtime error for a dashboard query.
 public struct QueryRuntimeError: Codable, Equatable, GoogleCloudWkt._AnyPackable,

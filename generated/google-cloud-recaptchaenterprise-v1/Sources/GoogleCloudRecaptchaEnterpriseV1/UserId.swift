@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// An identifier associated with a user.
 public struct UserId: Codable, Equatable, GoogleCloudWkt._AnyPackable,

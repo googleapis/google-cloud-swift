@@ -16,7 +16,7 @@
 
 #if Interconnects
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   extension InterconnectsClient {
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.interconnects.delete] method.

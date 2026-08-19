@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A representation of the ChannelConnection resource.
 /// A ChannelConnection is a resource which event providers create during the

@@ -16,7 +16,7 @@
 
 #if JobService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents the spec of a CustomJob.
   public struct CustomJobSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,

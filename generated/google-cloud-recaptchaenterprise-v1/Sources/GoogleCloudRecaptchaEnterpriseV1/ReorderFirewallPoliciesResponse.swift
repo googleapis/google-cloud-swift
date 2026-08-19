@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The reorder firewall policies response message.
 public struct ReorderFirewallPoliciesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

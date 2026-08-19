@@ -16,7 +16,7 @@
 
 #if VertexRagDataService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Config for uploading RagFile.
   public struct UploadRagFileConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if InterconnectAttachmentGroups
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The user's intent for this AttachmentGroup. This is the only required field
   /// besides the name that must be specified on group creation.

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request for the `GetMetricsScope` method.
 public struct GetMetricsScopeRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

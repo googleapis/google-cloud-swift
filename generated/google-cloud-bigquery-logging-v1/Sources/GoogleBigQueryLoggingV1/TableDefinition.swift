@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Describes an external data source used in a query.
 public struct TableDefinition: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if InterconnectGroups
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// [Output Only] The facilities Interconnects in this metro are present
   /// in.

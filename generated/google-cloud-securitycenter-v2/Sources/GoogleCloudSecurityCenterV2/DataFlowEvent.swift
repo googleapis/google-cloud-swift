@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Details about a data flow event, in which either the data is moved to or is
 /// accessed from a non-compliant geo-location, as defined in the applicable data

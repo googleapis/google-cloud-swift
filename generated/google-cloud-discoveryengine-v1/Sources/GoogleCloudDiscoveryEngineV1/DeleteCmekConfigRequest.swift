@@ -16,7 +16,7 @@
 
 #if CmekConfigService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Request message for
   /// [CmekConfigService.DeleteCmekConfig][google.cloud.discoveryengine.v1.CmekConfigService.DeleteCmekConfig]

@@ -16,7 +16,7 @@
 
 #if SqlInstancesService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Instance get latest recovery time response.
   public struct SqlInstancesGetLatestRecoveryTimeResponse: Codable, Equatable, GoogleCloudWkt

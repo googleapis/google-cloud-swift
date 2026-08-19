@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Metadata for the Submit URI long-running operation.
 public struct SubmitUriMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,

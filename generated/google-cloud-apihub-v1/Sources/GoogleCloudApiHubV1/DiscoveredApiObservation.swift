@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Respresents an API Observation observed in one of the sources.
 public struct DiscoveredApiObservation: Codable, Equatable, GoogleCloudWkt._AnyPackable,

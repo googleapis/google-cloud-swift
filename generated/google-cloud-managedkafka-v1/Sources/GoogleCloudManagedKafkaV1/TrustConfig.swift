@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Sources of CA certificates to install in the broker's truststore.
 public struct TrustConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

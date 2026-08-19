@@ -16,7 +16,7 @@
 
 #if Playbooks
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents a code block.
   public struct CodeBlock: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Eviction minimum reclaims are the resource amounts of minimum reclaims for
 /// each eviction signal.

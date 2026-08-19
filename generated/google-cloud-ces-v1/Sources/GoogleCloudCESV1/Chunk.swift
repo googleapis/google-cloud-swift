@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A chunk of content within a message.
 public struct Chunk: Codable, Equatable, GoogleCloudWkt._AnyPackable,

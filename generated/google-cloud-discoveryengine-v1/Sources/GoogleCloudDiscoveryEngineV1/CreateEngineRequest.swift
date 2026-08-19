@@ -16,7 +16,7 @@
 
 #if EngineService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Request for
   /// [EngineService.CreateEngine][google.cloud.discoveryengine.v1.EngineService.CreateEngine]

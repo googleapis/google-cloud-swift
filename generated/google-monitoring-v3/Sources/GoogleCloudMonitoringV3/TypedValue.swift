@@ -16,7 +16,7 @@
 
 import Foundation
 import GoogleApi
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A single strongly-typed value.
 public struct TypedValue: Codable, Equatable, GoogleCloudWkt._AnyPackable,

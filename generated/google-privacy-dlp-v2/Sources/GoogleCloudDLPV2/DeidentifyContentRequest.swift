@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request to de-identify a ContentItem.
 public struct DeidentifyContentRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

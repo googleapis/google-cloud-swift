@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudGax
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudGax
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Returns list of supported data sources and their metadata.
 public struct ListDataSourcesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

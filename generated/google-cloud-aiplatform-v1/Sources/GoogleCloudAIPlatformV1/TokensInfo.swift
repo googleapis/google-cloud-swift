@@ -16,7 +16,7 @@
 
 #if LlmUtilityService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Tokens info with a list of tokens and the corresponding list of token ids.
   public struct TokensInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,

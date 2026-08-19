@@ -16,7 +16,7 @@
 
 #if JobService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents the spec of a NasJob.
   public struct NasJobSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,

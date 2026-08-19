@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A single instance of a developer workstation with its own persistent storage.
 public struct Workstation: Codable, Equatable, GoogleCloudWkt._AnyPackable,

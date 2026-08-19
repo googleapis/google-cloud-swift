@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Pre-populate cache volume with data from the origin volume.
 public struct CachePrePopulate: Codable, Equatable, GoogleCloudWkt._AnyPackable,

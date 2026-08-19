@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Encapsulates a waypoint. Waypoints mark arrival and departure locations of
 /// VisitRequests, and start and end locations of Vehicles.

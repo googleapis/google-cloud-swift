@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// An Entry Group represents a logical grouping of one or more Entries.
 public struct EntryGroup: Codable, Equatable, GoogleCloudWkt._AnyPackable,

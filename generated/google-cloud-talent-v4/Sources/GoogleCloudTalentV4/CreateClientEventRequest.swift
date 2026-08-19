@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The report event request.
 public struct CreateClientEventRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

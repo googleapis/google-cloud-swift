@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for deleting a management server instance.
 public struct DeleteManagementServerRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if BackendBuckets || RegionBackendBuckets
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct BackendBucketUsedBy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable

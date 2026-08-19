@@ -16,7 +16,7 @@
 
 #if OrganizationSecurityPolicies || RegionSecurityPolicies || SecurityPolicies
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Configuration options for Cloud Armor Adaptive Protection (CAAP).
   public struct SecurityPolicyAdaptiveProtectionConfig: Codable, Equatable, GoogleCloudWkt

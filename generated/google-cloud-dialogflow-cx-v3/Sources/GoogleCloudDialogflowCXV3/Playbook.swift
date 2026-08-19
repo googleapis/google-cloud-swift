@@ -16,7 +16,7 @@
 
 #if Playbooks
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Playbook is the basic building block to instruct the LLM how to execute a
   /// certain task.

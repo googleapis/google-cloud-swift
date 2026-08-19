@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Basic autoscaling configurations for YARN.
 public struct BasicYarnAutoscalingConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

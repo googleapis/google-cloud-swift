@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A single Android device.
 public struct AndroidDevice: Codable, Equatable, GoogleCloudWkt._AnyPackable,

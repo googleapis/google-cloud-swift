@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Single /etc/hosts entry.
 public struct HostsEntry: Codable, Equatable, GoogleCloudWkt._AnyPackable,

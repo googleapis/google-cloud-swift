@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The request for importing an AdaptiveMt file along with its sentences.
 public struct ImportAdaptiveMtFileRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

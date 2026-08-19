@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A request to annotate one single file, e.g. a PDF, TIFF or GIF file.
 public struct AnnotateFileRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

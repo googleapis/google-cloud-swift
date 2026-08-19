@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Modify Entry request using permissions in the source system.
 public struct ModifyEntryRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

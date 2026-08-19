@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Salesforce organization structure.
 public struct SalesforceOrg: Codable, Equatable, GoogleCloudWkt._AnyPackable,

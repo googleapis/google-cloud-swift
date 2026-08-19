@@ -16,8 +16,8 @@
 
 #if FeatureOnlineStoreAdminService
   import Foundation
-  import GoogleCloudGax
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudGax
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Response message for
   /// [FeatureOnlineStoreAdminService.ListFeatureViews][google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService.ListFeatureViews].

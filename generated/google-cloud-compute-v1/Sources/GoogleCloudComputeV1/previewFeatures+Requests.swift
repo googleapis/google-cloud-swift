@@ -16,7 +16,7 @@
 
 #if PreviewFeatures
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   extension PreviewFeaturesClient {
     /// Synthetic request message for the [get()][google.cloud.compute.v1.previewFeatures.get] method.

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// `QueryWorkflowInvocationActions` request message.
 public struct QueryWorkflowInvocationActionsRequest: Codable, Equatable, GoogleCloudWkt

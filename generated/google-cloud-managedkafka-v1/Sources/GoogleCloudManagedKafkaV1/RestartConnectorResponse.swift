@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Response for RestartConnector.
 public struct RestartConnectorResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

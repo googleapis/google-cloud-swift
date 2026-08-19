@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// AutomationResourceSelector contains the information to select the resources
 /// to which an Automation is going to be applied.

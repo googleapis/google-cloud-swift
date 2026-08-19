@@ -16,7 +16,7 @@
 
 #if Participants || SessionEntityTypes || Sessions
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// A session represents a conversation between a Dialogflow agent and an
   /// end-user. You can create special entities, called session entities, during a

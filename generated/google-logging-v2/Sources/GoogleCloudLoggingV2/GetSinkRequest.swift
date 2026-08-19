@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The parameters to `GetSink`.
 public struct GetSinkRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A RestoreChannel imposes constraints on where backups can be restored.
 /// The RestoreChannel should be in the same project and region

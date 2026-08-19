@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Describes a view over log entries in a bucket.
 public struct LogView: Codable, Equatable, GoogleCloudWkt._AnyPackable,

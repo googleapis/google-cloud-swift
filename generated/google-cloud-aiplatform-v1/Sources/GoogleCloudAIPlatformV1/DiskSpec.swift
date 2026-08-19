@@ -16,7 +16,7 @@
 
 #if JobService || PersistentResourceService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents the spec of disk options.
   public struct DiskSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,

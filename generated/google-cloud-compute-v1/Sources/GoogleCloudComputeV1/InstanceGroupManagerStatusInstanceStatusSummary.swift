@@ -16,7 +16,7 @@
 
 #if InstanceGroupManagers || RegionInstanceGroupManagers
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The list of instance statuses and the number of instances in this managed
   /// instance group that have the status. For more information about how to

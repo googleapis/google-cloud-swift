@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message included in the metadata field of operations returned from
 /// [CreateEnvironment][google.cloud.shell.v1.CloudShellService.CreateEnvironment].

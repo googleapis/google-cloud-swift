@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configuration for the Compute Engine PD CSI driver.
 public struct GcePersistentDiskCsiDriverConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

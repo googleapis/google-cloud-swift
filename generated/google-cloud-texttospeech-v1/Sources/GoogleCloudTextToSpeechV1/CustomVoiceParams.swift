@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Description of the custom voice to be synthesized.
 public struct CustomVoiceParams: Codable, Equatable, GoogleCloudWkt._AnyPackable,

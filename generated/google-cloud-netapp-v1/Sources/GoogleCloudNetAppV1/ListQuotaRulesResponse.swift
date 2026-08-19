@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudGax
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudGax
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// ListQuotaRulesResponse is the response to a ListQuotaRulesRequest.
 public struct ListQuotaRulesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

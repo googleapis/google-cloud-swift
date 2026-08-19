@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Metadata of the
 /// [EvaluateProcessorVersion][google.cloud.documentai.v1.DocumentProcessorService.EvaluateProcessorVersion]

@@ -16,7 +16,7 @@
 
 #if EvaluationService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Spec for fulfillment instance.
   public struct FulfillmentInstance: Codable, Equatable, GoogleCloudWkt._AnyPackable,

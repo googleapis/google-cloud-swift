@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Normalized resolution.
 public struct NormalizedResolution: Codable, Equatable, GoogleCloudWkt._AnyPackable,

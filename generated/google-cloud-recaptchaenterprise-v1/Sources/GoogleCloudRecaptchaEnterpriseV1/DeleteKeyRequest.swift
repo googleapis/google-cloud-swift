@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The delete key request message.
 public struct DeleteKeyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

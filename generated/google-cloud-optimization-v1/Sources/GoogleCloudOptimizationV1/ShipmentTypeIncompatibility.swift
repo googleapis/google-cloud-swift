@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Specifies incompatibilties between shipments depending on their
 /// shipment_type. The appearance of incompatible shipments on the same route is

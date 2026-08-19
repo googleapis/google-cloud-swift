@@ -16,7 +16,7 @@
 
 #if SqlBackupsService || SqlInstancesService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The managed connection pooling configuration.
   public struct ConnectionPoolConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

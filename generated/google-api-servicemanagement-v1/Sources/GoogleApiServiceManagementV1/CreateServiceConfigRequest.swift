@@ -16,7 +16,7 @@
 
 import Foundation
 import GoogleApi
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for CreateServiceConfig method.
 public struct CreateServiceConfigRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

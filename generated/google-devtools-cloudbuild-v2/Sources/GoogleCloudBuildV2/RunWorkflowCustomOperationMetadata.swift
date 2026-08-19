@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents the custom metadata of the RunWorkflow long-running operation.
 public struct RunWorkflowCustomOperationMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,

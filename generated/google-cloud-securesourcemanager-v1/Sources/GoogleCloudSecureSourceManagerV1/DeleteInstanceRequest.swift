@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// DeleteInstanceRequest is the request for deleting an instance.
 public struct DeleteInstanceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

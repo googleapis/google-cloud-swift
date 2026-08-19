@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Issue Modeling result on a conversation.
 public struct IssueModelResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,

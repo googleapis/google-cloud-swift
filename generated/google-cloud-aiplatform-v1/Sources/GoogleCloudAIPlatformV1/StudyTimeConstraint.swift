@@ -16,7 +16,7 @@
 
 #if JobService || VizierService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Time-based Constraint for Study
   public struct StudyTimeConstraint: Codable, Equatable, GoogleCloudWkt._AnyPackable,

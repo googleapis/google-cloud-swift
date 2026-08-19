@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// LinkLayerAddress contains an IP address and corresponding link-layer address.
 public struct LinkLayerAddress: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// ClientTlsPolicy is a resource that specifies how a client should authenticate
 /// connections to backends of a service. This resource itself does not affect

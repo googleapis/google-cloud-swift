@@ -16,7 +16,7 @@
 
 #if Routes
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   extension RoutesClient {
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.routes.delete] method.

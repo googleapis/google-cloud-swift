@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The TlsInspectionPolicy resource contains references to CA pools in
 /// Certificate Authority Service and associated metadata.

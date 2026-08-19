@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// WebhookConfig describes the configuration of a trigger that
 /// creates a build whenever a webhook is sent to a trigger's webhook URL.

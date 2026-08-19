@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Specification to configure notifications published to Pub/Sub.
 /// Notifications are published to the customer-provided topic using the

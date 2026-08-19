@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for the CreateDataPolicy method.
 public struct CreateDataPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

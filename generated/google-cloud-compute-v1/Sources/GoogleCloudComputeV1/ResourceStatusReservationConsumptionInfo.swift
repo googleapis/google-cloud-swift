@@ -16,7 +16,7 @@
 
 #if Instances
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Reservation consumption information that the instance is consuming from.
   public struct ResourceStatusReservationConsumptionInfo: Codable, Equatable, GoogleCloudWkt

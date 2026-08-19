@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Describes when the clients can retry a failed request. Clients could ignore
 /// the recommendation here or retry when this information is missing from error

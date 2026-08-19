@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configuration for scheduled upgrades on the cluster.
 public struct ScheduleUpgradeConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

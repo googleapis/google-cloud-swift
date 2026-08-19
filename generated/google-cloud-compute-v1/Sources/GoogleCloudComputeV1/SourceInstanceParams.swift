@@ -16,7 +16,7 @@
 
 #if InstanceTemplates || RegionInstanceTemplates
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// A specification of the parameters to use when creating the instance template
   /// from a source instance.

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Details specific to a Smart Contract.
 public struct ContractDetails: Codable, Equatable, GoogleCloudWkt._AnyPackable,

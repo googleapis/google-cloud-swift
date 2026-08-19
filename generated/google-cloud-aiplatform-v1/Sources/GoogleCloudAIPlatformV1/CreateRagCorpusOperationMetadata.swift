@@ -16,7 +16,7 @@
 
 #if VertexRagDataService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Runtime operation information for
   /// [VertexRagDataService.CreateRagCorpus][google.cloud.aiplatform.v1.VertexRagDataService.CreateRagCorpus].

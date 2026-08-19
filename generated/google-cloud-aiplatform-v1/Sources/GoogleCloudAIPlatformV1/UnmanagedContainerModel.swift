@@ -16,7 +16,7 @@
 
 #if JobService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Contains model information necessary to perform batch prediction without
   /// requiring a full model import.

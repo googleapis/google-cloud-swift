@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// An Upgrade Occurrence represents that a specific resource_url could install a
 /// specific upgrade. This presence is supplied via local sources (i.e. it is

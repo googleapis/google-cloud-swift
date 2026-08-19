@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message for deleting a workstation configuration.
 public struct DeleteWorkstationConfigRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

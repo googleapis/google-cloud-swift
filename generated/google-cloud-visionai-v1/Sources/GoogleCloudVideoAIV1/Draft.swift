@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message describing Draft object
 public struct Draft: Codable, Equatable, GoogleCloudWkt._AnyPackable,

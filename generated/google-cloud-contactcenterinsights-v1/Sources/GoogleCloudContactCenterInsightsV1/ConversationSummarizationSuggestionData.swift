@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Conversation summarization suggestion data.
 public struct ConversationSummarizationSuggestionData: Codable, Equatable, GoogleCloudWkt

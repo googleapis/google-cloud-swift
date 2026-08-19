@@ -16,7 +16,7 @@
 
 #if Sessions
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Stores information about feedback provided by users about a response.
   public struct AnswerFeedback: Codable, Equatable, GoogleCloudWkt._AnyPackable,

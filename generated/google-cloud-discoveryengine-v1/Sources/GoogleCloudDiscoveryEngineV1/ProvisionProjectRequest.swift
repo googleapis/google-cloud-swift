@@ -16,7 +16,7 @@
 
 #if ProjectService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Request for
   /// [ProjectService.ProvisionProject][google.cloud.discoveryengine.v1.ProjectService.ProvisionProject]

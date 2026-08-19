@@ -16,7 +16,7 @@
 
 #if EvaluationService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Input for question answering correctness metric.
   public struct QuestionAnsweringCorrectnessInput: Codable, Equatable, GoogleCloudWkt._AnyPackable,

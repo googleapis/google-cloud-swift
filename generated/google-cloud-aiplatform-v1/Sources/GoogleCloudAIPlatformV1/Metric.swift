@@ -16,7 +16,7 @@
 
 #if GenAiTuningService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The metric used for running evaluations.
   public struct Metric: Codable, Equatable, GoogleCloudWkt._AnyPackable,

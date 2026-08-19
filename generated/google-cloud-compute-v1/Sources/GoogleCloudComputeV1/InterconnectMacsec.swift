@@ -16,7 +16,7 @@
 
 #if Interconnects
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Configuration information for enabling Media Access Control security
   /// (MACsec) on this Cloud Interconnect connection between Google and your

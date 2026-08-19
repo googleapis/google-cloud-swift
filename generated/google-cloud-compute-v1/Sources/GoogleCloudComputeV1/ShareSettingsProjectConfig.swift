@@ -16,7 +16,7 @@
 
 #if FutureReservations || NodeGroups || RegionCommitments || ReservationSlots || Reservations
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Config for each project in the share settings.
   public struct ShareSettingsProjectConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

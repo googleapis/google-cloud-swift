@@ -16,7 +16,7 @@
 
 #if ModelService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// True positive, false positive, or false negative.
   ///

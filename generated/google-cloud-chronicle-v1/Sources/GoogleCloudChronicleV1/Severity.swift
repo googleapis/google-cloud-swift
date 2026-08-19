@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Severity represents the severity level of the rule.
 public struct Severity: Codable, Equatable, GoogleCloudWkt._AnyPackable,

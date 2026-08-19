@@ -16,7 +16,7 @@
 
 #if Experiments
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The configuration for auto rollout.
   public struct RolloutConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

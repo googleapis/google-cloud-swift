@@ -16,7 +16,7 @@
 
 #if PreviewFeatures
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// [Output Only] The status of the feature.
   public struct PreviewFeatureStatus: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Experiment for the deployment.
 public struct ExperimentConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

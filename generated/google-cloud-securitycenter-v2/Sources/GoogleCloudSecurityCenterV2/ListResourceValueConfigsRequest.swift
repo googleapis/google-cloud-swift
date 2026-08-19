@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message to list resource value configs of a parent
 public struct ListResourceValueConfigsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Information regarding any resource causing the vulnerability such
 /// as JavaScript sources, image, audio files, etc.

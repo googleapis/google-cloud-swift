@@ -16,7 +16,7 @@
 
 #if VertexRagService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Agentic Retrieval Ask API for RAG.
   /// Request message for

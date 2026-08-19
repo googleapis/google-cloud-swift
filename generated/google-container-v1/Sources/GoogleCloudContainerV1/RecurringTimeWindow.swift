@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents an arbitrary window of time that recurs.
 public struct RecurringTimeWindow: Codable, Equatable, GoogleCloudWkt._AnyPackable,

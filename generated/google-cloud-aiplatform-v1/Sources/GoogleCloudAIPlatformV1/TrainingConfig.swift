@@ -16,7 +16,7 @@
 
 #if JobService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// CMLE training config. For every active learning labeling iteration, system
   /// will train a machine learning model on CMLE. The trained model will be used

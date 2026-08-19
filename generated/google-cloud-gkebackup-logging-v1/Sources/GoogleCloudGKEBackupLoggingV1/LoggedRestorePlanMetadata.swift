@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// LoggedRestorePlanMetadata as stored in Platform log. It's used to log the
 /// details of a RestorePlan, which are not provided by users, but are filled

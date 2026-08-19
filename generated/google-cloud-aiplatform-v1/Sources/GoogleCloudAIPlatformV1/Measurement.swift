@@ -16,7 +16,7 @@
 
 #if JobService || VizierService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// A message representing a Measurement of a Trial. A Measurement contains
   /// the Metrics got by executing a Trial using suggested hyperparameter

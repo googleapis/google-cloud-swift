@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Delete asset request.
 public struct DeleteAssetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

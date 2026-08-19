@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Exact match configuration.
 public struct ExactMatchConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

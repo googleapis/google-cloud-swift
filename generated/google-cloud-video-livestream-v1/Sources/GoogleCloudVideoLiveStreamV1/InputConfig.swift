@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configuration for the input sources of a channel.
 public struct InputConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

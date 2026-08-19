@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Aggregated status of the underlying assets of a lake or zone.
 public struct AssetStatus: Codable, Equatable, GoogleCloudWkt._AnyPackable,

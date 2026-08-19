@@ -16,7 +16,7 @@
 
 #if PredictionService || SessionService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Metadata related to retrieval in the grounding flow.
   public struct RetrievalMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,

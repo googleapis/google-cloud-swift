@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request for the `DeleteCertificateMapEntry` method.
 public struct DeleteCertificateMapEntryRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

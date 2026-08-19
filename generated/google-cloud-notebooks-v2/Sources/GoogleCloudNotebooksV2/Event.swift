@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The definition of an Event for a managed / semi-managed notebook instance.
 public struct Event: Codable, Equatable, GoogleCloudWkt._AnyPackable,

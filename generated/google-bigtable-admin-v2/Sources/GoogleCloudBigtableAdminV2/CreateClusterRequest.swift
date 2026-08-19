@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for BigtableInstanceAdmin.CreateCluster.
 public struct CreateClusterRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

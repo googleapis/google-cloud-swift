@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Steps taken to build the artifact.
 /// For a TaskRun, typically each container corresponds to one step in the

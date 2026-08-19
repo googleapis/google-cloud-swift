@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A trace describes how long it takes for an application to perform an
 /// operation. It consists of a set of spans, each of which represent a single

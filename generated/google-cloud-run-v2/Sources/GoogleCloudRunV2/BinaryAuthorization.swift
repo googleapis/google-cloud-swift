@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Settings for Binary Authorization feature.
 public struct BinaryAuthorization: Codable, Equatable, GoogleCloudWkt._AnyPackable,

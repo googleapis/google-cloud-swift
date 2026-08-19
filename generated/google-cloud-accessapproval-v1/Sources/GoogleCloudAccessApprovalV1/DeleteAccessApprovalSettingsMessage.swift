@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request to delete access approval settings.
 public struct DeleteAccessApprovalSettingsMessage: Codable, Equatable, GoogleCloudWkt._AnyPackable,

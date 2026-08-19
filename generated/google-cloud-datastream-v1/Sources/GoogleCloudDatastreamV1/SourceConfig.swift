@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The configuration of the stream source.
 public struct SourceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

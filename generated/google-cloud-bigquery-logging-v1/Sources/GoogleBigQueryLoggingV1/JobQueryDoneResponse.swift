@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Job getQueryDone response.
 public struct JobQueryDoneResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

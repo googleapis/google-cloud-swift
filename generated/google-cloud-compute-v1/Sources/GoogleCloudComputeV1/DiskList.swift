@@ -16,8 +16,8 @@
 
 #if Disks || RegionDisks
   import Foundation
-  import GoogleCloudGax
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudGax
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// A list of Disk resources.
   public struct DiskList: Codable, Equatable, GoogleCloudWkt._AnyPackable,

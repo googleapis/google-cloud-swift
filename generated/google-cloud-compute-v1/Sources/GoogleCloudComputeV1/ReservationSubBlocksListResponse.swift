@@ -16,8 +16,8 @@
 
 #if ReservationSubBlocks
   import Foundation
-  import GoogleCloudGax
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudGax
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// A list of reservation subBlocks under a single reservation.
   public struct ReservationSubBlocksListResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

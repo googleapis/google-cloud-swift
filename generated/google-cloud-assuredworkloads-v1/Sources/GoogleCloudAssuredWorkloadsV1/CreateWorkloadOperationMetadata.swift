@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Operation metadata to give request details of CreateWorkload.
 public struct CreateWorkloadOperationMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,

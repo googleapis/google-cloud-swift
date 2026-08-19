@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message for requesting list of Associations
 public struct ListFirewallEndpointAssociationsRequest: Codable, Equatable, GoogleCloudWkt

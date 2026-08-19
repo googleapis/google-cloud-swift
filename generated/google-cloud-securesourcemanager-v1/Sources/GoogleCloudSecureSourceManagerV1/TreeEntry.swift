@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents an entry within a tree structure (like a Git tree).
 public struct TreeEntry: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Various properties and settings associated with Exadata database server.
 public struct DbServerProperties: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for the AllocateQuota method.
 public struct AllocateQuotaRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if Participants || Sessions
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
   import GoogleType
 
   /// Represents the parameters of the conversational query.

@@ -16,7 +16,7 @@
 
 #if ExternalVpnGateways || GlobalAddresses || GlobalForwardingRules || Images || Interconnects || MachineImages || SecurityPolicies || Snapshots
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct GlobalSetLabelsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable

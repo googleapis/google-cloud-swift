@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Package is a generic definition of a package.
 public struct Package: Codable, Equatable, GoogleCloudWkt._AnyPackable,

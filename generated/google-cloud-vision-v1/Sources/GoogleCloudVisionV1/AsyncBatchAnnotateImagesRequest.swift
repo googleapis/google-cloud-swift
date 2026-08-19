@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request for async image annotation for a list of images.
 public struct AsyncBatchAnnotateImagesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

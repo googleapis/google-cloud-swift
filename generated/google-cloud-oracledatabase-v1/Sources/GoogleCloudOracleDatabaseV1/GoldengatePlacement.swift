@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The placement of the GoldengateDeployment.
 public struct GoldengatePlacement: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message for listing the information about the supported Database flags.
 public struct ListSupportedDatabaseFlagsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

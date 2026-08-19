@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The request to undeploy a QaScorecardRevision
 public struct UndeployQaScorecardRevisionRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

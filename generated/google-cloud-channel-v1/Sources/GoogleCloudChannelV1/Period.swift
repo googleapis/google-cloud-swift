@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents period in days/months/years.
 public struct Period: Codable, Equatable, GoogleCloudWkt._AnyPackable,

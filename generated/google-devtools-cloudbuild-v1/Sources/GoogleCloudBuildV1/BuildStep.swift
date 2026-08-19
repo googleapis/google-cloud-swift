@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A step in the build pipeline.
 public struct BuildStep: Codable, Equatable, GoogleCloudWkt._AnyPackable,

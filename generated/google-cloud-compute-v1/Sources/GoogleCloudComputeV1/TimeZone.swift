@@ -16,7 +16,7 @@
 
 #if RegionZones || Zones
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents a time zone from the
   /// [IANA Time Zone Database](https://www.iana.org/time-zones).

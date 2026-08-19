@@ -16,7 +16,7 @@
 
 import Foundation
 import GoogleCloudGKEHubConfigManagementV1
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// MembershipFeatureState contains Feature status information for a single
 /// Membership.

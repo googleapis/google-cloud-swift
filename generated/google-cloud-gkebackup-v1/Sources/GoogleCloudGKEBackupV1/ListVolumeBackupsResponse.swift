@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudGax
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudGax
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Response message for ListVolumeBackups.
 public struct ListVolumeBackupsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

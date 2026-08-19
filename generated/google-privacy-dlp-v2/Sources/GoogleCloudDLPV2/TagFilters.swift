@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Tags to match against for filtering.
 public struct TagFilters: Codable, Equatable, GoogleCloudWkt._AnyPackable,

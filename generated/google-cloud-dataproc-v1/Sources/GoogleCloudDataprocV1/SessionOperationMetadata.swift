@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Metadata describing the Session operation.
 public struct SessionOperationMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,

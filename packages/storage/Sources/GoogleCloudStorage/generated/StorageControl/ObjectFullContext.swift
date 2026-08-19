@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A full representation of an object context.
 public struct ObjectFullContext: Codable, Equatable, GoogleCloudWkt._AnyPackable,

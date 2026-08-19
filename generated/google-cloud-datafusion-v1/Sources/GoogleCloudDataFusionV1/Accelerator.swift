@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Identifies Data Fusion accelerators for an instance.
 public struct Accelerator: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if DocumentService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Cloud FhirStore source import data from.
   public struct FhirStoreSource: Codable, Equatable, GoogleCloudWkt._AnyPackable,

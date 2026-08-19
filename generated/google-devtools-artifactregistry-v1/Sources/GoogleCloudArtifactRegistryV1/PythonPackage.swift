@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// PythonPackage represents a python artifact.
 public struct PythonPackage: Codable, Equatable, GoogleCloudWkt._AnyPackable,

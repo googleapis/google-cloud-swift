@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for GenerateConfigReport method.
 public struct GenerateConfigReportRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

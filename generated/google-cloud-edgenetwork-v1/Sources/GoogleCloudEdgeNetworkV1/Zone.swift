@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A Google Edge Cloud zone.
 public struct Zone: Codable, Equatable, GoogleCloudWkt._AnyPackable,

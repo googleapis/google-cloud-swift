@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A filter to target VM instances for patching. The targeted
 /// VMs must meet all criteria specified. So if both labels and zones are

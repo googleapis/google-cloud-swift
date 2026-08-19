@@ -16,7 +16,7 @@
 
 #if PublicAdvertisedPrefixes
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents a CIDR range which can be used to assign addresses.
   public struct PublicAdvertisedPrefixPublicDelegatedPrefix: Codable, Equatable, GoogleCloudWkt

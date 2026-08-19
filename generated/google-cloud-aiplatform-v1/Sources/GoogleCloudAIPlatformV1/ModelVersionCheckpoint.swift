@@ -16,7 +16,7 @@
 
 #if ModelService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// A proto representation of a Spanner-stored ModelVersionCheckpoint.
   /// The meaning of the fields is equivalent to their in-Spanner counterparts.

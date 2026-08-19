@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// ListNodePoolsResponse is the result of ListNodePoolsRequest.
 public struct ListNodePoolsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

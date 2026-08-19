@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request for the `ListCrawledUrls` method.
 public struct ListCrawledUrlsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

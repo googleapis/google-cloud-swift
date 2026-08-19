@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// GatewayAPIConfig contains the desired config of Gateway API on this cluster.
 public struct GatewayAPIConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

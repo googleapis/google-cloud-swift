@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Client image to perform Google Cloud Vision API tasks over.
 public struct Image: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Table data read event. Only present for tables, not views, and is only
 /// included in the log record for the project that owns the table.

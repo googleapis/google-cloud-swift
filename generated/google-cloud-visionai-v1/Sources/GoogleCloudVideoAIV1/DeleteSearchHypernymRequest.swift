@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for deleting SearchHypernym.
 public struct DeleteSearchHypernymRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

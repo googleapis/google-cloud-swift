@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configuration for how the user barge-in activities should be handled.
 public struct BargeInConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

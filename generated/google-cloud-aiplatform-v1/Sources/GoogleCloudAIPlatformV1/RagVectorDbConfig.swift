@@ -16,7 +16,7 @@
 
 #if VertexRagDataService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Config for the Vector DB to use for RAG.
   public struct RagVectorDbConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// ClusterPolicyConfig stores the configuration for cluster wide policies.
 public struct ClusterPolicyConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

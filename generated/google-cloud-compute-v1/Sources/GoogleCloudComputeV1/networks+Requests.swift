@@ -16,7 +16,7 @@
 
 #if Networks
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   extension NetworksClient {
     /// Synthetic request message for the [addPeering()][google.cloud.compute.v1.networks.addPeering] method.

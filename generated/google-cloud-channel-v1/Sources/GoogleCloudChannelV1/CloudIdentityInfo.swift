@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Cloud Identity information for the Cloud Channel Customer.
 public struct CloudIdentityInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,

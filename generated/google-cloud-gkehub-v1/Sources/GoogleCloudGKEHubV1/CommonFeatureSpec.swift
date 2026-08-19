@@ -16,7 +16,7 @@
 
 import Foundation
 import GoogleCloudGKEHubMultiClusterIngressV1
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// CommonFeatureSpec contains Hub-wide configuration information
 public struct CommonFeatureSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,

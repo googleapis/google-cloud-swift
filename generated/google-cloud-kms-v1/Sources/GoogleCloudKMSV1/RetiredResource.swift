@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A RetiredResource resource represents the record of a deleted
 /// [CryptoKey][google.cloud.kms.v1.CryptoKey]. Its purpose is to provide

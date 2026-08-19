@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A CloudRepoSourceContext denotes a particular revision in a cloud
 /// repo (a repo hosted by the Google Cloud Platform).

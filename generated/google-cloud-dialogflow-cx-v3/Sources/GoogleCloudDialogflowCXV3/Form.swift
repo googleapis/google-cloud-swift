@@ -16,7 +16,7 @@
 
 #if Pages || Sessions || TestCases
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// A form is a data model that groups related parameters that can be collected
   /// from the user. The process in which the agent prompts the user and collects

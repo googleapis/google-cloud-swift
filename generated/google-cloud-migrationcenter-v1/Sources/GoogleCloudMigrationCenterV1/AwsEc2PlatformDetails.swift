@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// AWS EC2 specific details.
 public struct AwsEc2PlatformDetails: Codable, Equatable, GoogleCloudWkt._AnyPackable,

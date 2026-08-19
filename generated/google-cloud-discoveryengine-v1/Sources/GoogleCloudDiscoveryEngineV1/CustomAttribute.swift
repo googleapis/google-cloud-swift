@@ -16,7 +16,7 @@
 
 #if RecommendationService || UserEventService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// A custom attribute that is not explicitly modeled in a resource, e.g.
   /// [UserEvent][google.cloud.discoveryengine.v1.UserEvent].

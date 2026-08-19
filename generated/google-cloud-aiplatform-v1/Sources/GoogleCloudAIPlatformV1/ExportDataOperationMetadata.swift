@@ -16,7 +16,7 @@
 
 #if DatasetService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Runtime operation information for
   /// [DatasetService.ExportData][google.cloud.aiplatform.v1.DatasetService.ExportData].

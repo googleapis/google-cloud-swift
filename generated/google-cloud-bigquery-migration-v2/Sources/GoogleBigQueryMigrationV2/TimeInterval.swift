@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A time interval extending just after a start time through an end time.
 /// If the start time is the same as the end time, then the interval

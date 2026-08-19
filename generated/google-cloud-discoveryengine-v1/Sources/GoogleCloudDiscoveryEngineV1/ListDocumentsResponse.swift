@@ -16,8 +16,8 @@
 
 #if DocumentService
   import Foundation
-  import GoogleCloudGax
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudGax
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Response message for
   /// [DocumentService.ListDocuments][google.cloud.discoveryengine.v1.DocumentService.ListDocuments]

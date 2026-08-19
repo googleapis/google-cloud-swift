@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The response to deploy an issue model.
 public struct DeployIssueModelResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

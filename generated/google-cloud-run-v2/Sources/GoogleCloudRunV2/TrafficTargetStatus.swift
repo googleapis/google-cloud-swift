@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents the observed state of a single `TrafficTarget` entry.
 public struct TrafficTargetStatus: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A request to update a session template.
 public struct UpdateSessionTemplateRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

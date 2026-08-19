@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request object for `ListPublicBlueprints`.
 public struct ListPublicBlueprintsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

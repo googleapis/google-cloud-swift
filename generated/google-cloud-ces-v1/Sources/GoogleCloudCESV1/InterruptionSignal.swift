@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Indicates the agent's audio response has been interrupted. The client should
 /// immediately stop any current audio playback (e.g., due to user barge-in or

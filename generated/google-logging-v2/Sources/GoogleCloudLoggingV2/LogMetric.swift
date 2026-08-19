@@ -16,7 +16,7 @@
 
 import Foundation
 import GoogleApi
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Describes a logs-based metric. The value of the metric is the number of log
 /// entries that match a logs filter in a given time interval.

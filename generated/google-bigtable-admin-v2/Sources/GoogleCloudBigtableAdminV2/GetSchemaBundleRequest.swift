@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The request for
 /// [GetSchemaBundle][google.bigtable.admin.v2.BigtableTableAdmin.GetSchemaBundle].

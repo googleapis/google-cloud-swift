@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Encapsulates settings provided to GetIamPolicy.
 public struct GoogleIamV1GetPolicyOptions: Codable, Equatable, GoogleCloudWkt._AnyPackable,

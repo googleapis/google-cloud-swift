@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Driver scheduling configuration.
 public struct DriverSchedulingConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

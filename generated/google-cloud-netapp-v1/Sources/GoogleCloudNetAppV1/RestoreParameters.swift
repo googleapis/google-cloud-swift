@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The RestoreParameters if volume is created from a snapshot or backup.
 public struct RestoreParameters: Codable, Equatable, GoogleCloudWkt._AnyPackable,

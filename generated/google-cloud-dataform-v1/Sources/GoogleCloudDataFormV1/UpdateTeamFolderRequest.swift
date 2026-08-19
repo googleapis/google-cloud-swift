@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// `UpdateTeamFolder` request message.
 public struct UpdateTeamFolderRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

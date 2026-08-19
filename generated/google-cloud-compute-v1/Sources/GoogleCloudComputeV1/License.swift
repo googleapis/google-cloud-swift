@@ -16,7 +16,7 @@
 
 #if Licenses
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents a License resource.
   ///

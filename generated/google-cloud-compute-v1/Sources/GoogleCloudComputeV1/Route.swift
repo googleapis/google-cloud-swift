@@ -16,7 +16,7 @@
 
 #if Routers || Routes
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents a Route resource.
   ///

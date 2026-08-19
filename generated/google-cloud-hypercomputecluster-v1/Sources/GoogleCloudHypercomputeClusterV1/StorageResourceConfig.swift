@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Describes how a storage resource should be initialized. Each storage resource
 /// can either be imported from an existing Google Cloud resource or initialized

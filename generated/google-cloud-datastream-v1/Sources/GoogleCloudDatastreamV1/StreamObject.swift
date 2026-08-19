@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A specific stream object (e.g a specific DB table).
 public struct StreamObject: Codable, Equatable, GoogleCloudWkt._AnyPackable,

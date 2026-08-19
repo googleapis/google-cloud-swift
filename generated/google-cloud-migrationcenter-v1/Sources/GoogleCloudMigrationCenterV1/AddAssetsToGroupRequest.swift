@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A request to add assets to a group.
 public struct AddAssetsToGroupRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

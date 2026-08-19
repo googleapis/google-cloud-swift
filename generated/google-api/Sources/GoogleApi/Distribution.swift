@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// `Distribution` contains summary statistics for a population of values. It
 /// optionally contains a histogram representing the distribution of those values

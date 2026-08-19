@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The representation of a key managed by the API Keys API.
 public struct Key: Codable, Equatable, GoogleCloudWkt._AnyPackable,

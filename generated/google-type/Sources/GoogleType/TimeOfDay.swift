@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents a time of day. The date and time zone are either not significant
 /// or are specified elsewhere. An API may choose to allow leap seconds. Related

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// AdjustmentRule condition for image findings.
 /// This rule is silently ignored if the content being inspected is not an image.

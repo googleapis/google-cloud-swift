@@ -16,7 +16,7 @@
 
 #if Agents
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Settings for Generative Safety.
   public struct SafetySettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// `RemoveDirectory` response message.
 public struct RemoveDirectoryResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

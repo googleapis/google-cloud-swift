@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configuration for controlling how IPs are allocated in the cluster.
 public struct IPAllocationPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The configuration of a potential series of Restore operations to be performed
 /// against Backups belong to a particular BackupPlan.

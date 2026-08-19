@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// CleanupPolicyMostRecentVersions is an alternate condition of a CleanupPolicy
 /// for retaining a minimum number of versions.

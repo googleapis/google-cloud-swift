@@ -16,7 +16,7 @@
 
 #if PersistentResourceService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Request message for UpdatePersistentResource method.
   public struct UpdatePersistentResourceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

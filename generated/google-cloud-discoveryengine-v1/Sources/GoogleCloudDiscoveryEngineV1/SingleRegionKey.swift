@@ -16,7 +16,7 @@
 
 #if CmekConfigService || DataStoreService || IdentityMappingStoreService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Metadata for single-regional CMEKs.
   public struct SingleRegionKey: Codable, Equatable, GoogleCloudWkt._AnyPackable,

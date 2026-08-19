@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A request to replace all existing Access Levels in an Access Policy with
 /// the Access Levels provided. This is done atomically.

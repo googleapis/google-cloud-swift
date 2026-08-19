@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The data for an intent.
 /// Represents a detected intent in the conversation, for example MAKES_PROMISE.

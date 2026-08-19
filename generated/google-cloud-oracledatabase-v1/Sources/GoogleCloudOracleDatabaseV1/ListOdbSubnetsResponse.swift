@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudGax
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudGax
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The response for `OdbSubnet.List`.
 public struct ListOdbSubnetsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

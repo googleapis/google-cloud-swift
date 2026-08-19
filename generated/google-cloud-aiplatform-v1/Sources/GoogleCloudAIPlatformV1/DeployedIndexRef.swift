@@ -16,7 +16,7 @@
 
 #if IndexService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Points to a DeployedIndex.
   public struct DeployedIndexRef: Codable, Equatable, GoogleCloudWkt._AnyPackable,

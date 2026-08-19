@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Packages are named collections of versions.
 public struct Package: Codable, Equatable, GoogleCloudWkt._AnyPackable,

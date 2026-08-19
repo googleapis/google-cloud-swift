@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Organization, folder, or project to enroll for audit reports.
 public struct Enrollment: Codable, Equatable, GoogleCloudWkt._AnyPackable,

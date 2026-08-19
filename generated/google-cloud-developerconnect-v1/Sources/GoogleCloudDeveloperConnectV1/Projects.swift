@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Projects represents the projects to track with the InsightsConfig.
 public struct Projects: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if ResourcePolicies
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// An InstanceSchedulePolicy specifies when and how frequent certain
   /// operations are performed on the instance.

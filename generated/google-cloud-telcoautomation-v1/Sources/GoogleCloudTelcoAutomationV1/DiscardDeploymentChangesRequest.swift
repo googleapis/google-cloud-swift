@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request object for `DiscardDeploymentChanges`.
 public struct DiscardDeploymentChangesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

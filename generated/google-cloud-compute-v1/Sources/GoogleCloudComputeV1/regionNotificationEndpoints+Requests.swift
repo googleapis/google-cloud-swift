@@ -16,7 +16,7 @@
 
 #if RegionNotificationEndpoints
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   extension RegionNotificationEndpointsClient {
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.regionNotificationEndpoints.aggregatedList] method.

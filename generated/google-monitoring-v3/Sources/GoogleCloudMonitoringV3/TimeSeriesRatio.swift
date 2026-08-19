@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A `TimeSeriesRatio` specifies two `TimeSeries` to use for computing the
 /// `good_service / total_service` ratio. The specified `TimeSeries` must have

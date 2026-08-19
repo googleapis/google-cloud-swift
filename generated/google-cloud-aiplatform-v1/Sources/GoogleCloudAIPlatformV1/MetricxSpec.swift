@@ -16,7 +16,7 @@
 
 #if EvaluationService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Spec for MetricX metric.
   public struct MetricxSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,

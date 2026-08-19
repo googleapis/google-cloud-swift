@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configuration to use Change Tables CDC read method.
 public struct SqlServerChangeTables: Codable, Equatable, GoogleCloudWkt._AnyPackable,

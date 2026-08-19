@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// DataTableScopeInfo specifies the scope info of the data table.
 public struct DataTableScopeInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Options to configure CSV formatted reports.
 public struct CSVOptions: Codable, Equatable, GoogleCloudWkt._AnyPackable,

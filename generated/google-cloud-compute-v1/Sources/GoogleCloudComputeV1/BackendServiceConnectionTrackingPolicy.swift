@@ -16,7 +16,7 @@
 
 #if BackendServices || RegionBackendServices
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Connection Tracking configuration for this BackendService.
   public struct BackendServiceConnectionTrackingPolicy: Codable, Equatable, GoogleCloudWkt

@@ -16,7 +16,7 @@
 
 #if Networks
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// [Output Only] Describes the state of a peering connection, not just the
   /// local peering. This field provides information about the effective settings

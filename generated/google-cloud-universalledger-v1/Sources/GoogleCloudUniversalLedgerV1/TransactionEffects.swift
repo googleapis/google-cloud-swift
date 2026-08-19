@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Effects of the execution of a transaction in the world state.
 public struct TransactionEffects: Codable, Equatable, GoogleCloudWkt._AnyPackable,

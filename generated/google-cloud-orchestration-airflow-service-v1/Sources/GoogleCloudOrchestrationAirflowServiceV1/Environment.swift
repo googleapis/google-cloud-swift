@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// An environment for running orchestration tasks.
 public struct Environment: Codable, Equatable, GoogleCloudWkt._AnyPackable,

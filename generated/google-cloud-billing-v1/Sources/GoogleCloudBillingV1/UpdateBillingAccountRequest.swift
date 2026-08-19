@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for `UpdateBillingAccount`.
 public struct UpdateBillingAccountRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

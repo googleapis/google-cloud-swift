@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// WorkloadMetadataConfig defines the metadata configuration to expose to
 /// workloads on the node pool.

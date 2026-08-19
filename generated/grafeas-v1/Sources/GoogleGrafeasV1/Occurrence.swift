@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// An instance of an analysis type that has been found on a resource.
 public struct Occurrence: Codable, Equatable, GoogleCloudWkt._AnyPackable,

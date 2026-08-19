@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Specifies a build trigger to run and the source to use.
 public struct RunBuildTriggerRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

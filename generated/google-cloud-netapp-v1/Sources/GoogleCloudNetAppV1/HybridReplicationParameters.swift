@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The Hybrid Replication parameters for the volume.
 public struct HybridReplicationParameters: Codable, Equatable, GoogleCloudWkt._AnyPackable,

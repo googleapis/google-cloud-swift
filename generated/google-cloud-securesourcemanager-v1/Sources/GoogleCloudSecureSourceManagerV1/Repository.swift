@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Metadata of a Secure Source Manager repository.
 public struct Repository: Codable, Equatable, GoogleCloudWkt._AnyPackable,

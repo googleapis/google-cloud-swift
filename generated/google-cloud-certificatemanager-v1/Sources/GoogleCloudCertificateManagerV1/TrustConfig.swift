@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Defines a trust config.
 public struct TrustConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

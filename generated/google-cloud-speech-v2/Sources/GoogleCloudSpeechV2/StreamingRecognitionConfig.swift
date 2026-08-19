@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Provides configuration information for the StreamingRecognize request.
 public struct StreamingRecognitionConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

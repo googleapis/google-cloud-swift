@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Specifies the Event-driven transfer options. Event-driven transfers listen to
 /// an event stream to transfer updated files.

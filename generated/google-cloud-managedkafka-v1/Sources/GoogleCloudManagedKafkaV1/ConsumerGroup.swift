@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A Kafka consumer group in a given cluster.
 public struct ConsumerGroup: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request to create data table rows in bulk.
 public struct BulkCreateDataTableRowsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

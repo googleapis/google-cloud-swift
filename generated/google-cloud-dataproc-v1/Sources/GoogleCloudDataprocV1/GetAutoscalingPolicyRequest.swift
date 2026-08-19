@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A request to fetch an autoscaling policy.
 public struct GetAutoscalingPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

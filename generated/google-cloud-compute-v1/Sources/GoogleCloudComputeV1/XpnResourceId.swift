@@ -16,7 +16,7 @@
 
 #if Projects
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Service resource (a.k.a service project) ID.
   public struct XpnResourceId: Codable, Equatable, GoogleCloudWkt._AnyPackable,

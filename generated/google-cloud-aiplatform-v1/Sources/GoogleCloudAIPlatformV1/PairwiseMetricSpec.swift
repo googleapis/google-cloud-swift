@@ -16,7 +16,7 @@
 
 #if EvaluationService || GenAiTuningService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Spec for pairwise metric.
   public struct PairwiseMetricSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represent the source Vmware VM details.
 public struct VmwareSourceVmDetails: Codable, Equatable, GoogleCloudWkt._AnyPackable,

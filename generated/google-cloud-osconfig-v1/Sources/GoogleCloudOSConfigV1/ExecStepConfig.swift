@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Common configurations for an ExecStep.
 public struct ExecStepConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

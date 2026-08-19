@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A resource drift represents a drift to a resource in the state file.
 public struct ResourceDrift: Codable, Equatable, GoogleCloudWkt._AnyPackable,

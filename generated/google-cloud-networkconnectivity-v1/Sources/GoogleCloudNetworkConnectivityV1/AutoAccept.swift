@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The auto-accept setting for a group controls whether
 /// proposed spokes are automatically attached to the hub. If auto-accept is

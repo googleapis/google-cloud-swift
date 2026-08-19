@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Source information used to create a Service Config
 public struct SourceInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,

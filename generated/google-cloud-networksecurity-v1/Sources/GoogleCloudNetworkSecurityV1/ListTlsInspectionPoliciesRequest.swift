@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request used with the ListTlsInspectionPolicies method.
 public struct ListTlsInspectionPoliciesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

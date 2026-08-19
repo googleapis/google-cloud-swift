@@ -16,7 +16,7 @@
 
 #if ReasoningEngineExecutionService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Response message for [ReasoningEngineExecutionService.Query][]
   public struct QueryReasoningEngineResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

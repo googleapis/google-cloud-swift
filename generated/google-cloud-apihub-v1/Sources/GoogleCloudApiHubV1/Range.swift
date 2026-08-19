@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Object describing where in the file the issue was found.
 public struct Range: Codable, Equatable, GoogleCloudWkt._AnyPackable,

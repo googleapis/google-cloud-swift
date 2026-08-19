@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// VirtualMachinePreferences enables you to create sets of assumptions, for
 /// example, a geographical location and pricing track, for your migrated virtual

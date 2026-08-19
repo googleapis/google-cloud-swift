@@ -16,7 +16,7 @@
 
 #if AcceleratorTypes || DiskTypes || ImageFamilyViews || Images || MachineTypes || NodeTypes || RegionDiskTypes || RegionZones || Regions || StoragePoolTypes || Zones
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Deprecation status for a public resource.
   public struct DeprecationStatus: Codable, Equatable, GoogleCloudWkt._AnyPackable,

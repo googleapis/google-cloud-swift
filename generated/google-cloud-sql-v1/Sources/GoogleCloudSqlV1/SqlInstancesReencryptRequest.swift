@@ -16,7 +16,7 @@
 
 #if SqlInstancesService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Instance reencrypt request.
   public struct SqlInstancesReencryptRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

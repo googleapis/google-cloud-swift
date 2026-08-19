@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Mount point for a network.
 public struct NetworkMountPoint: Codable, Equatable, GoogleCloudWkt._AnyPackable,

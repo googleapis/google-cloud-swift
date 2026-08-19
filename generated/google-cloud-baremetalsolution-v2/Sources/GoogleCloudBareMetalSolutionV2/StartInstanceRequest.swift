@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message requesting to start a server.
 public struct StartInstanceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

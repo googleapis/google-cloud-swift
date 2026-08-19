@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Response message for Start/Stop Channel long-running operations.
 public struct ChannelOperationResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

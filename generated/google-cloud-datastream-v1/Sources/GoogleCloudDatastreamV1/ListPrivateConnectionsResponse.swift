@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudGax
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudGax
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Response containing a list of private connection configurations.
 public struct ListPrivateConnectionsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

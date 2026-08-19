@@ -16,7 +16,7 @@
 
 #if Routers
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Specifies a subnetwork to enable NAT64.
   public struct RouterNatSubnetworkToNat64: Codable, Equatable, GoogleCloudWkt._AnyPackable,

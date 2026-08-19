@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message for searching cloud locations from a given source location.
 public struct SearchCloudLocationsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if Autoscalers || InstanceGroupManagers || RegionAutoscalers || RegionInstanceGroupManagers
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Encapsulates numeric value that can be either absolute or relative.
   public struct FixedOrPercent: Codable, Equatable, GoogleCloudWkt._AnyPackable,

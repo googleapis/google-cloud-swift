@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request to get data table row.
 public struct GetDataTableRowRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

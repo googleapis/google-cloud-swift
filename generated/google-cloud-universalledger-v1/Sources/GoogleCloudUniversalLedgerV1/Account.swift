@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents the state of an account on the ledger.
 public struct Account: Codable, Equatable, GoogleCloudWkt._AnyPackable,

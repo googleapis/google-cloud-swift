@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Transfers tokens from one user account to another. The sender must be a
 /// regular user account, as opposed to a privileged account like a token manager

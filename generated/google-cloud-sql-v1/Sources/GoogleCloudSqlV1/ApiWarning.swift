@@ -16,7 +16,7 @@
 
 #if SqlBackupRunsService || SqlBackupsService || SqlDatabasesService || SqlInstancesService || SqlOperationsService || SqlSslCertsService || SqlUsersService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// An Admin API warning message.
   public struct ApiWarning: Codable, Equatable, GoogleCloudWkt._AnyPackable,

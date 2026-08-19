@@ -16,7 +16,7 @@
 
 #if SqlBackupsService || SqlInstancesService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Specifies options for controlling advanced machine features.
   public struct AdvancedMachineFeatures: Codable, Equatable, GoogleCloudWkt._AnyPackable,

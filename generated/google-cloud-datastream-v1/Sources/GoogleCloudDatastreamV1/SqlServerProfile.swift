@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// SQLServer database profile.
 public struct SqlServerProfile: Codable, Equatable, GoogleCloudWkt._AnyPackable,

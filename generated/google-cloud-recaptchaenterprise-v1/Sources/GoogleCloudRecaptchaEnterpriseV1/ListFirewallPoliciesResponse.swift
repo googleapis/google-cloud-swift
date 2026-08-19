@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudGax
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudGax
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Response to request to list firewall policies belonging to a project.
 public struct ListFirewallPoliciesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

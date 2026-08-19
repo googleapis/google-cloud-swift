@@ -16,7 +16,7 @@
 
 #if AnswerRecords || Conversations || GeneratorEvaluations || Generators || Participants
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Suggestion generated using free form generator.
   public struct FreeFormSuggestion: Codable, Equatable, GoogleCloudWkt._AnyPackable,

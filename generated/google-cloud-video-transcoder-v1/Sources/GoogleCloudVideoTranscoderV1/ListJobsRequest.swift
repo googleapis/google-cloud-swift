@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for `TranscoderService.ListJobs`.
 /// The parent location from which to retrieve the collection of jobs.

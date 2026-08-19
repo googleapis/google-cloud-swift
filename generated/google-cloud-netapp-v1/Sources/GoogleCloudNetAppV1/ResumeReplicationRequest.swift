@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// ResumeReplicationRequest resumes a stopped replication.
 public struct ResumeReplicationRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A TDX Attestation quote.
 public struct TdxCcelAttestation: Codable, Equatable, GoogleCloudWkt._AnyPackable,

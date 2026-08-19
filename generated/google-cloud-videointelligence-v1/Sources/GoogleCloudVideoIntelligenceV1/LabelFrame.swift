@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Video frame level annotation results for label detection.
 public struct LabelFrame: Codable, Equatable, GoogleCloudWkt._AnyPackable,

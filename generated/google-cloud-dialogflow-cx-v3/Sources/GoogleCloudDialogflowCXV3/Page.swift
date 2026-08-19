@@ -16,7 +16,7 @@
 
 #if Pages || Sessions || TestCases
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// A Dialogflow CX conversation (session) can be described and visualized as a
   /// state machine. The states of a CX session are represented by pages.

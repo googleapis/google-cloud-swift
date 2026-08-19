@@ -16,7 +16,7 @@
 
 #if SqlBackupsService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
   import GoogleType
 
   /// A backup resource.

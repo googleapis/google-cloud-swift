@@ -16,7 +16,7 @@
 
 import Foundation
 import GoogleCloudOrgPolicyV2
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The proposed changes to OrgPolicy.
 public struct OrgPolicyOverlay: Codable, Equatable, GoogleCloudWkt._AnyPackable,

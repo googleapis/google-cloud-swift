@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configuration of the standard (GKE) cluster management.
 public struct StandardManagementConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

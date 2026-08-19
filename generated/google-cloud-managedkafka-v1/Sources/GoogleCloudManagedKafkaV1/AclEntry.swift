@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents the access granted for a given Resource Pattern in an ACL.
 public struct AclEntry: Codable, Equatable, GoogleCloudWkt._AnyPackable,

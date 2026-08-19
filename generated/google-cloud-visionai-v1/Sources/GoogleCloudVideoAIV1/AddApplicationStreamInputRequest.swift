@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message for adding stream input to an Application.
 public struct AddApplicationStreamInputRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

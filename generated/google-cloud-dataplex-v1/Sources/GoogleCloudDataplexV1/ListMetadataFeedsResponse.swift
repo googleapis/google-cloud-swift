@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudGax
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudGax
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Response message for ListMetadataFeeds.
 public struct ListMetadataFeedsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

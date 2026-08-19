@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message describing Database object.
 public struct Database: Codable, Equatable, GoogleCloudWkt._AnyPackable,

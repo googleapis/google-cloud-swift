@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A snapshot of a table at a particular time. A snapshot can be used as a
 /// checkpoint for data restoration or a data source for a new table.

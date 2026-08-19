@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A restriction for a specific service and optionally one or multiple
 /// specific methods. Both fields are case insensitive.

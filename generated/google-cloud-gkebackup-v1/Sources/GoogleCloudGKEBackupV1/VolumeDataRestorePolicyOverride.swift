@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Defines an override to apply a VolumeDataRestorePolicy for scoped resources.
 public struct VolumeDataRestorePolicyOverride: Codable, Equatable, GoogleCloudWkt._AnyPackable,

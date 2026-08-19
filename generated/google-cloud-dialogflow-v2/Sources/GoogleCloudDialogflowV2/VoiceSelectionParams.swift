@@ -16,7 +16,7 @@
 
 #if ConversationProfiles || Conversations || Environments || Participants || Sessions
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Description of which voice to use for speech synthesis.
   public struct VoiceSelectionParams: Codable, Equatable, GoogleCloudWkt._AnyPackable,

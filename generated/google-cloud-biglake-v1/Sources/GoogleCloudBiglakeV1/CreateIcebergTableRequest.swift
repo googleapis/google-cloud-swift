@@ -16,7 +16,7 @@
 
 import Foundation
 import GoogleApi
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The request message for the `CreateIcebergTable` API.
 public struct CreateIcebergTableRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

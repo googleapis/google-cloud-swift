@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Pub/Sub target. The job will be delivered by publishing a message to
 /// the given Pub/Sub topic.

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// An individual endpoint that provides a
 /// [service][google.cloud.servicedirectory.v1.Service]. The service must

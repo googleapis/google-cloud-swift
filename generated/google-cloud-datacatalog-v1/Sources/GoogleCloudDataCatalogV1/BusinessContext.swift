@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Business Context of the entry.
 public struct BusinessContext: Codable, Equatable, GoogleCloudWkt._AnyPackable,

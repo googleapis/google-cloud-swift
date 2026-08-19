@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Metadata that describes the training and serving parameters of a
 /// [Model][google.cloud.retail.v2.Model]. A

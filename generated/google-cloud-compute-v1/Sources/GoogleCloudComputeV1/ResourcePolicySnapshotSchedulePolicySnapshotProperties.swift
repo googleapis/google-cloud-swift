@@ -16,7 +16,7 @@
 
 #if ResourcePolicies
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Specified snapshot properties for scheduled snapshots created by this
   /// policy.

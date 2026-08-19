@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A resource that represents the background job that imports asset frames.
 public struct ImportJob: Codable, Equatable, GoogleCloudWkt._AnyPackable,

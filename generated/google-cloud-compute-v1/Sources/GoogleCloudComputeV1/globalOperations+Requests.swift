@@ -16,7 +16,7 @@
 
 #if GlobalOperations
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   extension GlobalOperationsClient {
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.globalOperations.aggregatedList] method.

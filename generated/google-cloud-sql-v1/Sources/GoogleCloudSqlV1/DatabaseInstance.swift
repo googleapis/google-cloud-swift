@@ -16,7 +16,7 @@
 
 #if SqlBackupsService || SqlInstancesService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// A Cloud SQL instance resource.
   public struct DatabaseInstance: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// SetMonitoringServiceRequest sets the monitoring service of a cluster.
 public struct SetMonitoringServiceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

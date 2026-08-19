@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Lists machines in a site.
 public struct ListMachinesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

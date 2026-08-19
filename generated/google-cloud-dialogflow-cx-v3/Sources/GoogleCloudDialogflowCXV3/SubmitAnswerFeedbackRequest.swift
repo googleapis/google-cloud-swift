@@ -16,7 +16,7 @@
 
 #if Sessions
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The request to set the feedback for a bot answer.
   public struct SubmitAnswerFeedbackRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

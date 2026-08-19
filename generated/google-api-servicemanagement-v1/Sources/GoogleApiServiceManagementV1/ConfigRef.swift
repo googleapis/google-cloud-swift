@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents a service configuration with its name and id.
 public struct ConfigRef: Codable, Equatable, GoogleCloudWkt._AnyPackable,

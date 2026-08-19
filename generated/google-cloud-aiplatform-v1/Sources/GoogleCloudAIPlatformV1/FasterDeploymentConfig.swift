@@ -16,7 +16,7 @@
 
 #if DeploymentResourcePoolService || EndpointService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Configuration for faster model deployment.
   public struct FasterDeploymentConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

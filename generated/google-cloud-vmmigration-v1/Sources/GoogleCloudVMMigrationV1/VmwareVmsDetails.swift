@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// VmwareVmsDetails describes VMs in vCenter.
 public struct VmwareVmsDetails: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A CloudWorkspaceSourceContext denotes a workspace at a particular snapshot.
 public struct CloudWorkspaceSourceContext: Codable, Equatable, GoogleCloudWkt._AnyPackable,

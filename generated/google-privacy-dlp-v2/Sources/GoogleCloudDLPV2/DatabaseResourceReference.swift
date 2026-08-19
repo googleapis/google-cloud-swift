@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Identifies a single database resource, like a table within a database.
 public struct DatabaseResourceReference: Codable, Equatable, GoogleCloudWkt._AnyPackable,

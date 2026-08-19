@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configuration for the Stateful HA add-on.
 public struct StatefulHAConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

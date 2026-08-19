@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Config for EXPLICIT_CONTENT_DETECTION.
 public struct ExplicitContentDetectionConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

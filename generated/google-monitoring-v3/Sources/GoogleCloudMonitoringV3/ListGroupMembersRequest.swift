@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The `ListGroupMembers` request.
 public struct ListGroupMembersRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

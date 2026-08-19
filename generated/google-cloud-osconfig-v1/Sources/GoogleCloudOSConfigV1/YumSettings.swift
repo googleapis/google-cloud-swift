@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Yum patching is performed by executing `yum update`. Additional options
 /// can be set to control how this is executed.

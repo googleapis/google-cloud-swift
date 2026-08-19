@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// AVRO file format configuration.
 public struct AvroFileFormat: Codable, Equatable, GoogleCloudWkt._AnyPackable,

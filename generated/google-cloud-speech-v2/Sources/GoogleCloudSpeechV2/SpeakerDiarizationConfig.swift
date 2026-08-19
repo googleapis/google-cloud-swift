@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configuration to enable speaker diarization.
 public struct SpeakerDiarizationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

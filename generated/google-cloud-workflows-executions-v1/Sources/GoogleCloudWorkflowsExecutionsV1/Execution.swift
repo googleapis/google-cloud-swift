@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A running instance of a
 /// [Workflow](/workflows/docs/reference/rest/v1/projects.locations.workflows).

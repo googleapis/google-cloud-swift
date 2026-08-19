@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message for Enabling Multi Language Detection.
 public struct MultiLanguageDetectionMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,

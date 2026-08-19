@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The message definition for creating a `Snooze`. Users must provide the body
 /// of the `Snooze` to be created but must omit the `Snooze` field, `name`.

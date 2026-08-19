@@ -16,7 +16,7 @@
 
 #if FeatureRegistryService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Request message for
   /// [FeatureRegistryService.GetFeatureGroup][google.cloud.aiplatform.v1.FeatureRegistryService.GetFeatureGroup].

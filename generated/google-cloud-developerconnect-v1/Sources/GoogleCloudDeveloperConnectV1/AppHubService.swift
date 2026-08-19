@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// AppHubService represents the App Hub Service.
 public struct AppHubService: Codable, Equatable, GoogleCloudWkt._AnyPackable,

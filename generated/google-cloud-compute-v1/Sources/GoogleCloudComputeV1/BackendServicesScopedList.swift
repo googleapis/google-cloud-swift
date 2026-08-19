@@ -16,7 +16,7 @@
 
 #if BackendServices
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct BackendServicesScopedList: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable

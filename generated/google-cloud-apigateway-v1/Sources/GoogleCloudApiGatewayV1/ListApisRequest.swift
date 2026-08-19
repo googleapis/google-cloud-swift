@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for ApiGatewayService.ListApis
 public struct ListApisRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

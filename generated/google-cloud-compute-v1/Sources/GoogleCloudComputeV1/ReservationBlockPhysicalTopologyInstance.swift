@@ -16,7 +16,7 @@
 
 #if ReservationBlocks
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The instances information for a given Block
   public struct ReservationBlockPhysicalTopologyInstance: Codable, Equatable, GoogleCloudWkt

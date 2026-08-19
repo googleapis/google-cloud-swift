@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudGax
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudGax
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The response message for the ListAttachments endpoint.
 public struct ListAttachmentsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

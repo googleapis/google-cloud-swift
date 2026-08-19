@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents the Maintenance exclusion option.
 public struct MaintenanceExclusionOptions: Codable, Equatable, GoogleCloudWkt._AnyPackable,

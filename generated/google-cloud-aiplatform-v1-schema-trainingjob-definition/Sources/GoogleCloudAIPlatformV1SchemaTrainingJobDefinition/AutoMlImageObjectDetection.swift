@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A TrainingJob that trains and uploads an AutoML Image Object Detection Model.
 public struct AutoMlImageObjectDetection: Codable, Equatable, GoogleCloudWkt._AnyPackable,

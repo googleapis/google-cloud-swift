@@ -16,7 +16,7 @@
 
 #if VpnGateways
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Contains some information about a VPN tunnel.
   public struct VpnGatewayStatusTunnel: Codable, Equatable, GoogleCloudWkt._AnyPackable,

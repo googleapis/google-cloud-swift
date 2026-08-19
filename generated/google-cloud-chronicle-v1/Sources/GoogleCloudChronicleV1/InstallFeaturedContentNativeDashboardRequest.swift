@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message to install a FeaturedContentNativeDashboard.
 public struct InstallFeaturedContentNativeDashboardRequest: Codable, Equatable, GoogleCloudWkt

@@ -16,7 +16,7 @@
 
 #if SqlBackupRunsService || SqlBackupsService || SqlDatabasesService || SqlInstancesService || SqlOperationsService || SqlSslCertsService || SqlUsersService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Database instance operation errors list wrapper.
   public struct OperationErrors: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Information about the reinstatement issued on the monitored resource.
 public struct ReinstatementEvent: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// TextAnnotation contains a structured representation of OCR extracted text.
 /// The hierarchy of an OCR extracted text structure is like this:

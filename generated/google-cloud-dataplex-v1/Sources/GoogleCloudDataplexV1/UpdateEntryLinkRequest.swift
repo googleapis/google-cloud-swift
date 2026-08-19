@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for UpdateEntryLink method.
 public struct UpdateEntryLinkRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

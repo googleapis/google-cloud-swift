@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// VPC access connector specification.
 public struct VpcAccessConnector: Codable, Equatable, GoogleCloudWkt._AnyPackable,

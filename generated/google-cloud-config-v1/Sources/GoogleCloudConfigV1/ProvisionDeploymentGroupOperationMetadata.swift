@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Operation metadata for `ProvisionDeploymentGroup` and
 /// `DeprovisionDeploymentGroup` long-running operations.

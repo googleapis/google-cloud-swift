@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Define a parameter's name and location. The parameter may be passed as either
 /// an HTTP header or a URL query parameter, and if both are passed the behavior

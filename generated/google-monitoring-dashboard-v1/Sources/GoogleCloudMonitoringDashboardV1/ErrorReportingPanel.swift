@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A widget that displays a list of error groups.
 public struct ErrorReportingPanel: Codable, Equatable, GoogleCloudWkt._AnyPackable,

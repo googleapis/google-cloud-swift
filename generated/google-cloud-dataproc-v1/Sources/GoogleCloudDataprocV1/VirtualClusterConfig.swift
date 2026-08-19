@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The Dataproc cluster config for a cluster that does not directly control the
 /// underlying compute resources, such as a [Dataproc-on-GKE

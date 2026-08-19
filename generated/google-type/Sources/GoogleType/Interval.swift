@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents a time interval, encoded as a Timestamp start (inclusive) and a
 /// Timestamp end (exclusive).

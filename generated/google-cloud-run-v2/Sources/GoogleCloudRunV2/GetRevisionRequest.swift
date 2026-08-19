@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for obtaining a Revision by its full name.
 public struct GetRevisionRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

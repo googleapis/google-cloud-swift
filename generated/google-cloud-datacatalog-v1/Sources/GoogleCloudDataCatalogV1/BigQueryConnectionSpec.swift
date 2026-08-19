@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Specification for the BigQuery connection.
 public struct BigQueryConnectionSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,

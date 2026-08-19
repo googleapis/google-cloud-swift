@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request for requesting list of DeploymentEvents.
 public struct ListDeploymentEventsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

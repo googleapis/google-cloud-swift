@@ -16,7 +16,7 @@
 
 #if GlobalAddresses
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   extension GlobalAddressesClient {
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.globalAddresses.delete] method.

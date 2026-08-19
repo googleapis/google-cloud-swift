@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// RestoreBackupFilesRequest restores files from a backup to a volume.
 public struct RestoreBackupFilesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

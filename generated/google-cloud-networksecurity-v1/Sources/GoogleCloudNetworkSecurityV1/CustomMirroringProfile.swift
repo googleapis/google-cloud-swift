@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// CustomMirroringProfile defines out-of-band integration behavior (mirroring).
 /// It is used by mirroring rules with a MIRROR action.

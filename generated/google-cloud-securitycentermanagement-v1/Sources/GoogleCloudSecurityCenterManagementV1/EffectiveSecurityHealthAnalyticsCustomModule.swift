@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The representation of a Security Health Analytics custom module at a
 /// specified level of the resource hierarchy: organization, folder, or project.

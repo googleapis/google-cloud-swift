@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Settings for each NotificationType.
 public struct NotificationSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if SiteSearchEngineService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// SiteSearchEngine captures DataStore level site search persisting
   /// configurations. It is a singleton value per data store.

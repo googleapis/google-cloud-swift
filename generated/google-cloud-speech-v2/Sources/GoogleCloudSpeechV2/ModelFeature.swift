@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents a singular feature of a model. If the feature is `recognizer`,
 /// the release_state of the feature represents the release_state of the model

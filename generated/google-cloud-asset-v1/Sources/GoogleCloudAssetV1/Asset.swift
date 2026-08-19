@@ -17,7 +17,7 @@
 import Foundation
 import GoogleCloudOSConfigV1
 import GoogleCloudOrgPolicyV1
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 import GoogleIAMV1
 import GoogleIdentityAccessContextManagerV1
 

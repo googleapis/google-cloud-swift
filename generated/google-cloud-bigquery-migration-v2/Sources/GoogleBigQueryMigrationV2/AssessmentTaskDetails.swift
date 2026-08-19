@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Assessment task config.
 public struct AssessmentTaskDetails: Codable, Equatable, GoogleCloudWkt._AnyPackable,

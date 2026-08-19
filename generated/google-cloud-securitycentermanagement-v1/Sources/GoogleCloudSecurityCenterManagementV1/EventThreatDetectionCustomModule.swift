@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A Security Command Center resource that contains the configuration and
 /// enablement state of a custom module, which enables Event Threat Detection to

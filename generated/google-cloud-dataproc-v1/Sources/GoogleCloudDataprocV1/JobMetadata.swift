@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Job Operation metadata.
 public struct JobMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The metadata for the Operation returned by UpdateAppProfile.
 public struct UpdateAppProfileMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,

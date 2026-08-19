@@ -16,7 +16,7 @@
 
 #if Routers
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Next free: 7
   public struct PacketIntervals: Codable, Equatable, GoogleCloudWkt._AnyPackable,

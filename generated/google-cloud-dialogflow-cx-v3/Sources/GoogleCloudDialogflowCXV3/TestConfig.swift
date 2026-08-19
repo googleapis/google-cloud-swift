@@ -16,7 +16,7 @@
 
 #if TestCases
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents configurations for a test case.
   public struct TestConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

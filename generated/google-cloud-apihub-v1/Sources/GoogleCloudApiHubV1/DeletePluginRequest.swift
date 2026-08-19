@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The [DeletePlugin][ApiHub.DeletePlugin] method's request.
 public struct DeletePluginRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

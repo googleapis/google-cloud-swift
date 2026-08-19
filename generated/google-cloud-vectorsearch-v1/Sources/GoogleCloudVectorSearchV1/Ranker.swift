@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Defines a ranker to combine results from multiple searches.
 public struct Ranker: Codable, Equatable, GoogleCloudWkt._AnyPackable,

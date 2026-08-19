@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A dimension determines the grouping key for the query. In SQL terms, these
 /// would be part of both the "SELECT" and "GROUP BY" clauses.

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Response message for getting dashboard charts in batch.
 public struct BatchGetDashboardChartsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

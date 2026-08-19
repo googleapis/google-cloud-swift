@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Lists VPN connections.
 public struct ListVpnConnectionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

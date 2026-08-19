@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The request message for updating a TagKey.
 public struct UpdateTagKeyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

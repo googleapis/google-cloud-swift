@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Annotation progress for a single video.
 public struct VideoAnnotationProgress: Codable, Equatable, GoogleCloudWkt._AnyPackable,

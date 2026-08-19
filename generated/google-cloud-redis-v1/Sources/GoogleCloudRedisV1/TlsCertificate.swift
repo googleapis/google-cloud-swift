@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// TlsCertificate Resource
 public struct TlsCertificate: Codable, Equatable, GoogleCloudWkt._AnyPackable,

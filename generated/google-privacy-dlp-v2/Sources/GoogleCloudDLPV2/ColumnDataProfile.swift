@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The profile for a scanned column within a table.
 public struct ColumnDataProfile: Codable, Equatable, GoogleCloudWkt._AnyPackable,

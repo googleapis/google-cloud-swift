@@ -16,7 +16,7 @@
 
 #if NotebookService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Request message for
   /// [NotebookService.StopNotebookRuntime][google.cloud.aiplatform.v1.NotebookService.StopNotebookRuntime].

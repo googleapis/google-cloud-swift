@@ -16,7 +16,7 @@
 
 #if EndpointService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Configuration for GenAiAdvancedFeatures.
   public struct GenAiAdvancedFeaturesConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

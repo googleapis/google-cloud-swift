@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Response message for adding chart in a dashboard.
 public struct AddChartResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

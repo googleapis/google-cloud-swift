@@ -16,7 +16,7 @@
 
 #if SqlConnectService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Connect settings retrieval response.
   public struct ConnectSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,

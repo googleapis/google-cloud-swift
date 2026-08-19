@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Float range type.
 public struct FloatRange: Codable, Equatable, GoogleCloudWkt._AnyPackable,

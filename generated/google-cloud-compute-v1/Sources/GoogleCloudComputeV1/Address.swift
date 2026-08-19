@@ -16,7 +16,7 @@
 
 #if Addresses || GlobalAddresses
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents an IP Address resource.
   ///

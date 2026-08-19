@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The request to update a phrase matcher.
 public struct UpdatePhraseMatcherRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

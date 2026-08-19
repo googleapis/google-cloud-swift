@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// CloudSqlInstanceInitializationConfig contains the configuration for
 /// initializing a Cloud SQL instance.

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// DataAttributeBinding represents binding of attributes to resources. Eg: Bind
 /// 'CustomerInfo' entity with 'PII' attribute.

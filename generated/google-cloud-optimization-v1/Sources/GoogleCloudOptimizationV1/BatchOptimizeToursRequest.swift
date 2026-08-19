@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request to batch optimize tours as an asynchronous operation.
 /// Each input file should contain one `OptimizeToursRequest`, and each output

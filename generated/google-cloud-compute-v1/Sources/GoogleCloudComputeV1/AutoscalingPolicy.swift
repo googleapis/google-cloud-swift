@@ -16,7 +16,7 @@
 
 #if Autoscalers || RegionAutoscalers
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Cloud Autoscaler policy.
   public struct AutoscalingPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,

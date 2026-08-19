@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Options of a Hive table.
 public struct HiveTableOptions: Codable, Equatable, GoogleCloudWkt._AnyPackable,

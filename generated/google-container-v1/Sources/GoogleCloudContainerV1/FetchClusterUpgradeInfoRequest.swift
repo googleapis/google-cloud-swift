@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// FetchClusterUpgradeInfoRequest fetches the upgrade information of a cluster.
 public struct FetchClusterUpgradeInfoRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

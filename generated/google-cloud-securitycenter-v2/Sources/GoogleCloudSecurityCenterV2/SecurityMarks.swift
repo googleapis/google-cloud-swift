@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// User specified security marks that are attached to the parent Security
 /// Command Center resource. Security marks are scoped within a Security Command

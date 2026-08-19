@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// ExadbVmCluster represents a cluster of VMs that are used to run Exadata
 /// workloads.

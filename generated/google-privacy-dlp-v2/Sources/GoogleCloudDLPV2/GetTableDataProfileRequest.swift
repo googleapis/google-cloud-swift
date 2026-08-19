@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request to get a table data profile.
 public struct GetTableDataProfileRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

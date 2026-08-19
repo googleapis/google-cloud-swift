@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Srv connection format.
 public struct SrvConnectionFormat: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if DataFoundryService || EvaluationService || GenAiCacheService || GenAiTuningService || LlmUtilityService || PredictionService || SessionService || VertexRagService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Metadata describes the input video content.
   public struct VideoMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,

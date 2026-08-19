@@ -16,7 +16,7 @@
 
 #if NotebookService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The euc configuration of NotebookRuntimeTemplate.
   public struct NotebookEucConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

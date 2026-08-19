@@ -16,7 +16,7 @@
 
 #if InterconnectAttachmentGroups
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// [Output Only] The facilities used for this group's Attachments'
   /// Interconnects.

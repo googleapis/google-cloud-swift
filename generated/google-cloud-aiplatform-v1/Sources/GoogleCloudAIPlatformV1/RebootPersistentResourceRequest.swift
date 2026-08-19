@@ -16,7 +16,7 @@
 
 #if PersistentResourceService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Request message for
   /// [PersistentResourceService.RebootPersistentResource][google.cloud.aiplatform.v1.PersistentResourceService.RebootPersistentResource].

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Entry metadata relevant only to the user and private to them.
 public struct PersonalDetails: Codable, Equatable, GoogleCloudWkt._AnyPackable,

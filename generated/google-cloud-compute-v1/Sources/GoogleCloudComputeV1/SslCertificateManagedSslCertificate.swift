@@ -16,7 +16,7 @@
 
 #if RegionSslCertificates || SslCertificates
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Configuration and status of a managed SSL certificate.
   public struct SslCertificateManagedSslCertificate: Codable, Equatable, GoogleCloudWkt

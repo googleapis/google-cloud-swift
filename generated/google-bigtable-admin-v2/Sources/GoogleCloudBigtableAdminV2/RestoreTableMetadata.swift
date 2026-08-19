@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Metadata type for the long-running operation returned by
 /// [RestoreTable][google.bigtable.admin.v2.BigtableTableAdmin.RestoreTable].

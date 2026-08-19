@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The [DeleteExternalApi][google.cloud.apihub.v1.ApiHub.DeleteExternalApi]
 /// method's request.

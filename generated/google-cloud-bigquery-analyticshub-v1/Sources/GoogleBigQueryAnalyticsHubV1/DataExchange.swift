@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A data exchange is a container that lets you share data. Along with the
 /// descriptive information about the data exchange, it contains listings that

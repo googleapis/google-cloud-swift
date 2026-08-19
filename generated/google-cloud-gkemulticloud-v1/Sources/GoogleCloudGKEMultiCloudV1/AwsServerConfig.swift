@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// AwsServerConfig is the configuration of GKE cluster on AWS.
 @available(*, deprecated)

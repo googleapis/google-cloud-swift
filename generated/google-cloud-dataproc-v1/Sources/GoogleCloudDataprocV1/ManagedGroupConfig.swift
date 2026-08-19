@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Specifies the resources used to actively manage an instance group.
 public struct ManagedGroupConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

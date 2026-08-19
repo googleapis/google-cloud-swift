@@ -16,7 +16,7 @@
 
 #if DeploymentResourcePoolService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Request message for UpdateDeploymentResourcePool method.
   public struct UpdateDeploymentResourcePoolRequest: Codable, Equatable, GoogleCloudWkt

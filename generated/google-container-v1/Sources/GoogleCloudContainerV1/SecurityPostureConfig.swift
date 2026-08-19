@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// SecurityPostureConfig defines the flags needed to enable/disable features for
 /// the Security Posture API.

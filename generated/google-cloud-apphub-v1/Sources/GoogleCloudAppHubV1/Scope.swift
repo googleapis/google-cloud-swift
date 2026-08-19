@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Scope of an application.
 public struct Scope: Codable, Equatable, GoogleCloudWkt._AnyPackable,

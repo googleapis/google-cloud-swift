@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request to update a batch of jobs.
 public struct BatchUpdateJobsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

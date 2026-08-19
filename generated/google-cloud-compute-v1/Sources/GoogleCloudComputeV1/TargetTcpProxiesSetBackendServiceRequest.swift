@@ -16,7 +16,7 @@
 
 #if TargetTcpProxies
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct TargetTcpProxiesSetBackendServiceRequest: Codable, Equatable, GoogleCloudWkt
       ._AnyPackable,

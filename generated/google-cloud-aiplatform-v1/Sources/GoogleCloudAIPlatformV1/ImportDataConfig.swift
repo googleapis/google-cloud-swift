@@ -16,7 +16,7 @@
 
 #if DatasetService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Describes the location from where we import data into a Dataset, together
   /// with the labels that will be applied to the DataItems and the Annotations.

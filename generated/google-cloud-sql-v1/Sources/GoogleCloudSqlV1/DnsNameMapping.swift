@@ -16,7 +16,7 @@
 
 #if SqlBackupsService || SqlConnectService || SqlInstancesService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// DNS metadata.
   public struct DnsNameMapping: Codable, Equatable, GoogleCloudWkt._AnyPackable,

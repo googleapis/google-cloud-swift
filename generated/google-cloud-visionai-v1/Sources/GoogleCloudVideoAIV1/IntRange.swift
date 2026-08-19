@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Integer range type.
 public struct IntRange: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A Resource designed to manage encryption configurations for customers to
 /// support Customer Managed Encryption Keys (CMEK).

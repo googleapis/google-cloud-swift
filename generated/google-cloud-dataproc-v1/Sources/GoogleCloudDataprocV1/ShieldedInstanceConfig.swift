@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Shielded Instance Config for clusters using [Compute Engine Shielded
 /// VMs](https://cloud.google.com/security/shielded-cloud/shielded-vm).

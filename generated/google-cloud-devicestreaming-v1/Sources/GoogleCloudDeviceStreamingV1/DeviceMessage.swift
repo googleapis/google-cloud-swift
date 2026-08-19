@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A message returned from a device.
 public struct DeviceMessage: Codable, Equatable, GoogleCloudWkt._AnyPackable,

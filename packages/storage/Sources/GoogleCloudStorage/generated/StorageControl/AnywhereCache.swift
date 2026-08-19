@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// An Anywhere Cache Instance.
 public struct AnywhereCache: Codable, Equatable, GoogleCloudWkt._AnyPackable,

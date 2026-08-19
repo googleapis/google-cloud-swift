@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Contains a signed Cloud Storage URLs.
 public struct PreviewResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,

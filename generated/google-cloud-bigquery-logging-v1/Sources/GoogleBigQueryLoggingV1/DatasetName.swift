@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The fully-qualified name for a dataset.
 public struct DatasetName: Codable, Equatable, GoogleCloudWkt._AnyPackable,

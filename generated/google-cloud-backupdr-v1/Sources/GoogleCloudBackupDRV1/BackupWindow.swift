@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// `BackupWindow` defines a window of the day during which backup jobs will run.
 public struct BackupWindow: Codable, Equatable, GoogleCloudWkt._AnyPackable,

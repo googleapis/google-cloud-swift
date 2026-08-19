@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message for deleting a Series.
 public struct DeleteSeriesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

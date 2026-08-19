@@ -16,7 +16,7 @@
 
 #if Participants
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The request message for
   /// [Participants.UpdateParticipant][google.cloud.dialogflow.v2.Participants.UpdateParticipant].

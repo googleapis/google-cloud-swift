@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Video segment level annotation results for text detection.
 public struct TextSegment: Codable, Equatable, GoogleCloudWkt._AnyPackable,

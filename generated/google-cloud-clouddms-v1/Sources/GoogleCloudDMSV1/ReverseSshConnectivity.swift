@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The details needed to configure a reverse SSH tunnel between the source and
 /// destination databases. These details will be used when calling the

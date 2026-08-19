@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Defines a condition for overlapping bounding boxes.
 public struct Overlap: Codable, Equatable, GoogleCloudWkt._AnyPackable,

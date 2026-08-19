@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// EdgeSlm represents an SLM instance which manages the lifecycle of edge
 /// components installed on Workload clusters managed by an Orchestration

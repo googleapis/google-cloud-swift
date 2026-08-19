@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Export data from Managed Lustre to a Cloud Storage bucket.
 public struct ExportDataRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if VpnGateways
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// A VPN connection contains all VPN tunnels connected from this VpnGateway
   /// to the same peer gateway. The peer gateway could either be an external VPN

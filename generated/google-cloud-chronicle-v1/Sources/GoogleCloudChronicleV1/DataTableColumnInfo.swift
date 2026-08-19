@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// DataTableColumnInfo represents the column metadata of the
 /// datatable. The column_index represents the ordering of the

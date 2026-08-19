@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The message definition for updating a `Snooze`. The field, `snooze.name`
 /// identifies the `Snooze` to be updated. The remainder of `snooze` gives the

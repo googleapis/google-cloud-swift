@@ -16,7 +16,7 @@
 
 #if OrganizationSecurityPolicies || RegionSecurityPolicies || SecurityPolicies
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents a match condition that incoming network traffic is evaluated
   /// against.

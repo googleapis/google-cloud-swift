@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for List BackupPlanAssociation
 public struct ListBackupPlanAssociationsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

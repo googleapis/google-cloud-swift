@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for [GetDomain][google.cloud.managedidentities.v1.GetDomain]
 public struct GetDomainRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

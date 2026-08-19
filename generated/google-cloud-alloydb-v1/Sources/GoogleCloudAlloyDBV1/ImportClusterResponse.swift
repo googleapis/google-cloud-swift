@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Response of import rpc.
 public struct ImportClusterResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

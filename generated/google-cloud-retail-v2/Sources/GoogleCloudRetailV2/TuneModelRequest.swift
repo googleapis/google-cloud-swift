@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request to manually start a tuning process now (instead of waiting for
 /// the periodically scheduled tuning to happen).

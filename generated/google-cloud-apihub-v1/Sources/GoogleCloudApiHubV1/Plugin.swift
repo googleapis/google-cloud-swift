@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A plugin resource in the API Hub.
 public struct Plugin: Codable, Equatable, GoogleCloudWkt._AnyPackable,

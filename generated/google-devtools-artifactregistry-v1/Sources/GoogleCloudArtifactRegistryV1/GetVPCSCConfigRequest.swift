@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Gets the VPC SC config for a project.
 public struct GetVPCSCConfigRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

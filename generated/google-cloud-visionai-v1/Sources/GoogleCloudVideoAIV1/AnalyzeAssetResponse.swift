@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Response message for AnalyzeAsset.
 public struct AnalyzeAssetResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if DocumentService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The Spanner source for importing data
   public struct SpannerSource: Codable, Equatable, GoogleCloudWkt._AnyPackable,

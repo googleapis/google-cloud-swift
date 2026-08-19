@@ -16,7 +16,7 @@
 
 #if BackendServices || RegionBackendServices
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The configuration for a built-in load balancing policy.
   public struct BackendServiceLocalityLoadBalancingPolicyConfigPolicy: Codable, Equatable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Diagnostics information about interconnect, contains detailed and current
 /// technical information about Google's side of the connection.

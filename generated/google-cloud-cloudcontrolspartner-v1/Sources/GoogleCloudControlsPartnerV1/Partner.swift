@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message describing Partner resource
 public struct Partner: Codable, Equatable, GoogleCloudWkt._AnyPackable,

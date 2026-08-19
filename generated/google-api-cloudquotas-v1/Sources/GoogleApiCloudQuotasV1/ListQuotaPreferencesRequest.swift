@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message for requesting list of QuotaPreferences
 public struct ListQuotaPreferencesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

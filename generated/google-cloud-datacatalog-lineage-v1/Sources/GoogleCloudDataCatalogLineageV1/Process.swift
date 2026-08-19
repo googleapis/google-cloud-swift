@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A process is the definition of a data transformation operation.
 public struct Process: Codable, Equatable, GoogleCloudWkt._AnyPackable,

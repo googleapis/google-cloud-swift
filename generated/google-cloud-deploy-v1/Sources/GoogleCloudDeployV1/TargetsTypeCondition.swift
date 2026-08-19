@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// TargetsTypeCondition contains information on whether the Targets defined in
 /// the Delivery Pipeline are of the same type.

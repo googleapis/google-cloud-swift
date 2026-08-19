@@ -16,7 +16,7 @@
 
 #if SqlInstancesService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The cell value of the table.
   public struct Value: Codable, Equatable, GoogleCloudWkt._AnyPackable,

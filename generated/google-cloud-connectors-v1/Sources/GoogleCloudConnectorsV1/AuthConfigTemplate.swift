@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// AuthConfigTemplate defines required field over an authentication type.
 public struct AuthConfigTemplate: Codable, Equatable, GoogleCloudWkt._AnyPackable,

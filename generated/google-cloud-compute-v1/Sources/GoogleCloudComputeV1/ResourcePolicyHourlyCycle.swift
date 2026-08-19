@@ -16,7 +16,7 @@
 
 #if ResourcePolicies
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Time window specified for hourly operations.
   public struct ResourcePolicyHourlyCycle: Codable, Equatable, GoogleCloudWkt._AnyPackable,

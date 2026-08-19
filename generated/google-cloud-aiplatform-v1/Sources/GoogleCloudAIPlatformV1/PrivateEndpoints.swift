@@ -16,7 +16,7 @@
 
 #if DeploymentResourcePoolService || EndpointService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// PrivateEndpoints proto is used to provide paths for users to send
   /// requests privately.

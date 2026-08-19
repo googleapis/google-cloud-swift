@@ -16,7 +16,7 @@
 
 #if SqlUsersService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct SqlUsersUpdateRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message describing the Process object.
 public struct Process: Codable, Equatable, GoogleCloudWkt._AnyPackable,

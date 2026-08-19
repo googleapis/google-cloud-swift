@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Outputs and artifacts from applying a deployment.
 public struct ApplyResults: Codable, Equatable, GoogleCloudWkt._AnyPackable,

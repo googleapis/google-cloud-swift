@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The internal range resource for IPAM operations within a VPC network.
 /// Used to represent a private address range along with behavioral

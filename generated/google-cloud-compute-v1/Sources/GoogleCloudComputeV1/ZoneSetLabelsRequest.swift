@@ -16,7 +16,7 @@
 
 #if Disks || InstantSnapshots
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct ZoneSetLabelsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable

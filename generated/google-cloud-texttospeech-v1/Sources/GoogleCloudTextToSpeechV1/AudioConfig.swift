@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Description of audio data to be synthesized.
 public struct AudioConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

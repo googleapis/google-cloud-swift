@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudGax
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudGax
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A list of interactive sessions.
 public struct ListSessionsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// OmnichannelIntegrationConfig contains all App integration configs.
 public struct OmnichannelIntegrationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

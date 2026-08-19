@@ -16,7 +16,7 @@
 
 #if RegionNotificationEndpoints
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents a gRPC setting that describes one gRPC notification endpoint and
   /// the retry duration attempting to send notification to this endpoint.

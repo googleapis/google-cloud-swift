@@ -16,7 +16,7 @@
 
 #if FutureReservations
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The state that the future reservation will be reverted to should the
   /// amendment be declined.

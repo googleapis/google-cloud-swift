@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for ListRetrohunts method.
 public struct ListRetrohuntsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if ImageFamilyViews || Images || InstanceTemplates || Instances || MachineImages || RegionInstanceTemplates || RegionInstances
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct FileContentBuffer: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable

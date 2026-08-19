@@ -16,7 +16,7 @@
 
 #if GenAiCacheService || LlmUtilityService || PredictionService || VertexRagService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Tool to retrieve public web data for grounding, powered by Google.
   public struct GoogleSearchRetrieval: Codable, Equatable, GoogleCloudWkt._AnyPackable,

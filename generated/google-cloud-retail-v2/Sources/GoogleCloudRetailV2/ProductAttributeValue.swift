@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Product attribute which structured by an attribute name and value. This
 /// structure is used in conversational search filters and answers. For example,

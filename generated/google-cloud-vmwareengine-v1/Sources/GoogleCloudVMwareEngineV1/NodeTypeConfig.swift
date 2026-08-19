@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Information about the type and number of nodes associated with the cluster.
 public struct NodeTypeConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request to get networks with IPs.
 public struct ListNetworkUsageRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

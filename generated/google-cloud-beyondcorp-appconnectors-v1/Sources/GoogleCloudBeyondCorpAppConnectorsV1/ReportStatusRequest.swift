@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request report the connector status.
 public struct ReportStatusRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

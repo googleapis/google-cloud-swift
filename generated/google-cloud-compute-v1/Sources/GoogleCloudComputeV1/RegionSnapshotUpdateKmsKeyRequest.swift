@@ -16,7 +16,7 @@
 
 #if RegionSnapshots
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct RegionSnapshotUpdateKmsKeyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable

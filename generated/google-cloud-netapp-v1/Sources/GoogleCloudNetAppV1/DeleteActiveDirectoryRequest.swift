@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// DeleteActiveDirectoryRequest for deleting a single active directory.
 public struct DeleteActiveDirectoryRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

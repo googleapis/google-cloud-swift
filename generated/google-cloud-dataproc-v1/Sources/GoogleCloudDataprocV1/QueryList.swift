@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A list of queries to run on a cluster.
 public struct QueryList: Codable, Equatable, GoogleCloudWkt._AnyPackable,

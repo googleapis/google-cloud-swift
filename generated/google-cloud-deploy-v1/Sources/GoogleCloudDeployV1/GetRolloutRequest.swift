@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// GetRolloutRequest is the request object used by `GetRollout`.
 public struct GetRolloutRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

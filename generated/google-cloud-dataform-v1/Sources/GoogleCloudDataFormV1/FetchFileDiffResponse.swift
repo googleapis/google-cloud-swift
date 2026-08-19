@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// `FetchFileDiff` response message.
 public struct FetchFileDiffResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

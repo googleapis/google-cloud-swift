@@ -16,7 +16,7 @@
 
 #if RecommendationService || UserEventService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// UserEvent captures all metadata information Discovery Engine API needs to
   /// know about how end users interact with your website.

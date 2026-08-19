@@ -16,7 +16,7 @@
 
 #if JobService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The details for a Vertex Multimodal Dataset output.
   public struct VertexMultimodalDatasetDestination: Codable, Equatable, GoogleCloudWkt._AnyPackable,

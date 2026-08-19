@@ -16,7 +16,7 @@
 
 #if BackendBuckets || BackendServices || Images || InstanceTemplates || InterconnectAttachmentGroups || InterconnectGroups || LicenseCodes || Licenses || MachineImages || NetworkFirewallPolicies || Snapshots
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct GlobalSetPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable

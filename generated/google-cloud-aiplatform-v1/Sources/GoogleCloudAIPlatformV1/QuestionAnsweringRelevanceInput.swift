@@ -16,7 +16,7 @@
 
 #if EvaluationService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Input for question answering relevance metric.
   public struct QuestionAnsweringRelevanceInput: Codable, Equatable, GoogleCloudWkt._AnyPackable,

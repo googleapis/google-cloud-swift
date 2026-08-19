@@ -16,7 +16,7 @@
 
 #if MetadataService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// An edge describing the relationship between an Artifact and an Execution in
   /// a lineage graph.

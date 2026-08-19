@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Node specific properties.
 public struct NodeInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,

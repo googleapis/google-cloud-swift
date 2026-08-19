@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configuration of a stretched cluster.
 public struct StretchedClusterConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

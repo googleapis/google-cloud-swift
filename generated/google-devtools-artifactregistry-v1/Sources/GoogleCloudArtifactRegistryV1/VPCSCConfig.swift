@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The Artifact Registry VPC SC config that apply to a Project.
 public struct VPCSCConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

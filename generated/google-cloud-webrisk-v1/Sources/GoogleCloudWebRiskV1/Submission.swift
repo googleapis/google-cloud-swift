@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Wraps a URI that might be displaying malicious content.
 public struct Submission: Codable, Equatable, GoogleCloudWkt._AnyPackable,

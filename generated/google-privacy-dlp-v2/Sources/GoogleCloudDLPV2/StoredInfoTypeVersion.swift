@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Version of a StoredInfoType, including the configuration used to build it,
 /// create timestamp, and current state.

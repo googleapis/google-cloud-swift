@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// DeleteKmsConfigRequest deletes a KMS Config.
 public struct DeleteKmsConfigRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

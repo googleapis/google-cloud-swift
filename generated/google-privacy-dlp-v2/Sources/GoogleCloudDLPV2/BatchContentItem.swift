@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents a batch of content to inspect or redact.
 public struct BatchContentItem: Codable, Equatable, GoogleCloudWkt._AnyPackable,

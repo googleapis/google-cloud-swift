@@ -16,7 +16,7 @@
 
 #if DatasetService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// A SavedQuery is a view of the dataset. It references a subset of annotations
   /// by problem type and filters.

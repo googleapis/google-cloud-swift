@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// CheckAutopilotCompatibilityRequest requests getting the blockers for the
 /// given operation in the cluster.

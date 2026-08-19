@@ -16,7 +16,7 @@
 
 import Foundation
 import GoogleApi
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Execution represents the configuration of a single execution. A execution an
 /// immutable resource that references a container image which is run to

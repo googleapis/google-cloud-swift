@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Update user workloads Secret request.
 public struct UpdateUserWorkloadsSecretRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

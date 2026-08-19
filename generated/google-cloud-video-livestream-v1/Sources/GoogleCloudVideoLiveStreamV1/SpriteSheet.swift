@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Sprite sheet configuration.
 public struct SpriteSheet: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Options to configure Parquet formatted reports.
 public struct ParquetOptions: Codable, Equatable, GoogleCloudWkt._AnyPackable,

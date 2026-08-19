@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A request to delete data transfer run information.
 public struct DeleteTransferRunRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

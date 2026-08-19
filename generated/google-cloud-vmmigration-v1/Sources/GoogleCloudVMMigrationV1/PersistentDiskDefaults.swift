@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Details for creation of a Persistent Disk.
 public struct PersistentDiskDefaults: Codable, Equatable, GoogleCloudWkt._AnyPackable,

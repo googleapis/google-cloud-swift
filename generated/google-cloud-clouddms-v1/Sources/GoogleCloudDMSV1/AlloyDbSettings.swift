@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Settings for creating an AlloyDB cluster.
 public struct AlloyDbSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,

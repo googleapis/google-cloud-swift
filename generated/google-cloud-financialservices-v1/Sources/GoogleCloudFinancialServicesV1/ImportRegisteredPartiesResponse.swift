@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Response for adding/removing registered parties from BigQuery tables.
 public struct ImportRegisteredPartiesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

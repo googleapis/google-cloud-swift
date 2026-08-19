@@ -16,7 +16,7 @@
 
 import Foundation
 import GoogleCloudLoggingType
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Application log line emitted while processing a request.
 public struct LogLine: Codable, Equatable, GoogleCloudWkt._AnyPackable,

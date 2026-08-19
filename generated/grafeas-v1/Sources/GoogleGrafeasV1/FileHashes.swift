@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Container message for hashes of byte content of files, used in source
 /// messages to verify integrity of source input to the build.

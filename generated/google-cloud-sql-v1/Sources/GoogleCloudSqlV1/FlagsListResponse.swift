@@ -16,7 +16,7 @@
 
 #if SqlFlagsService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Flags list response.
   public struct FlagsListResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

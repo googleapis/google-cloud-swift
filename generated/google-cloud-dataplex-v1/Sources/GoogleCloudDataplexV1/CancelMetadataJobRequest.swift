@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Cancel metadata job request.
 public struct CancelMetadataJobRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

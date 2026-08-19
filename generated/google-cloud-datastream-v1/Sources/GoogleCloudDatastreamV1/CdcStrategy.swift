@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The strategy that the stream uses for CDC replication.
 public struct CdcStrategy: Codable, Equatable, GoogleCloudWkt._AnyPackable,

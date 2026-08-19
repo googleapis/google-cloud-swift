@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A tool that is created from a toolset.
 public struct ToolsetTool: Codable, Equatable, GoogleCloudWkt._AnyPackable,

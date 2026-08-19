@@ -16,8 +16,8 @@
 
 #if StoragePoolTypes
   import Foundation
-  import GoogleCloudGax
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudGax
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Contains a list of storage pool types.
   public struct StoragePoolTypeList: Codable, Equatable, GoogleCloudWkt._AnyPackable,

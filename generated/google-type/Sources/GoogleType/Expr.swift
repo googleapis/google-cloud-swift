@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents a textual expression in the Common Expression Language (CEL)
 /// syntax. CEL is a C-like expression language. The syntax and semantics of CEL

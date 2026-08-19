@@ -16,7 +16,7 @@
 
 #if GlobalVmExtensionPolicies || ZoneVmExtensionPolicies
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents a VM extension policy.
   public struct VmExtensionPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A custom attribute that is not explicitly modeled in
 /// [Product][google.cloud.retail.v2.Product].

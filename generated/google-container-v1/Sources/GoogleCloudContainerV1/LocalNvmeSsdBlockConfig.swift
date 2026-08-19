@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// LocalNvmeSsdBlockConfig contains configuration for using raw-block local
 /// NVMe SSDs

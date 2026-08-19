@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 public struct GenerateAttachedClusterAgentTokenRequest: Codable, Equatable, GoogleCloudWkt
     ._AnyPackable,

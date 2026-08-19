@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Target used to match against for Discovery.
 public struct DiscoveryTarget: Codable, Equatable, GoogleCloudWkt._AnyPackable,

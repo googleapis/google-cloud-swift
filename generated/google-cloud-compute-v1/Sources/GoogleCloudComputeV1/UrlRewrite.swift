@@ -16,7 +16,7 @@
 
 #if RegionUrlMaps || UrlMaps
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The spec for modifying the path before sending the request to the matched
   /// backend service.

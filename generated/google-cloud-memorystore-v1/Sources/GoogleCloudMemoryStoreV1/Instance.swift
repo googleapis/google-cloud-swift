@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A Memorystore instance.
 public struct Instance: Codable, Equatable, GoogleCloudWkt._AnyPackable,

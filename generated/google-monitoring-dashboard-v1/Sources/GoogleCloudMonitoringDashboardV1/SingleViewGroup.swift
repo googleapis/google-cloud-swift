@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A widget that groups the other widgets by using a dropdown menu. All widgets
 /// that are within the area spanned by the grouping widget are considered

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents a single Dataform action in a compilation result.
 public struct CompilationResultAction: Codable, Equatable, GoogleCloudWkt._AnyPackable,

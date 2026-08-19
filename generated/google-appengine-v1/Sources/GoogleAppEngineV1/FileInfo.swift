@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Single source file that is part of the version to be deployed. Each source
 /// file that is deployed must be specified separately.

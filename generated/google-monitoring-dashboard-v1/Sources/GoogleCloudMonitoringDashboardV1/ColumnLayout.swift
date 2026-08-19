@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A simplified layout that divides the available space into vertical columns
 /// and arranges a set of widgets vertically in each column.

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// OperatorQuery represents one query to a Operator.
 public struct OperatorQuery: Codable, Equatable, GoogleCloudWkt._AnyPackable,

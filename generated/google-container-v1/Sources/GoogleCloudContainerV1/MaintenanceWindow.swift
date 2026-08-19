@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// MaintenanceWindow defines the maintenance window to be used for the cluster.
 public struct MaintenanceWindow: Codable, Equatable, GoogleCloudWkt._AnyPackable,

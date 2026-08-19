@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configuration for Policy Controller
 public struct PolicyController: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Restricts access to Cloud Console and Google Cloud APIs for a set of users
 /// using Context-Aware Access.

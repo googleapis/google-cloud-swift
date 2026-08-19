@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Metadata about the recognition request and response.
 public struct RecognitionResponseMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Methods for GatewaySecurityPolicy RULES/GatewaySecurityPolicyRules.
 /// Request used by the CreateGatewaySecurityPolicyRule method.

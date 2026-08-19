@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// An Upgrade Note represents a potential upgrade of a package to a given
 /// version. For each package version combination (i.e. bash 4.0, bash 4.1,

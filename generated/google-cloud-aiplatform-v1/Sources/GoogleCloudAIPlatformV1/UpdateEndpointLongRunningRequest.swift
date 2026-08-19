@@ -16,7 +16,7 @@
 
 #if EndpointService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Request message for
   /// [EndpointService.UpdateEndpointLongRunning][google.cloud.aiplatform.v1.EndpointService.UpdateEndpointLongRunning].

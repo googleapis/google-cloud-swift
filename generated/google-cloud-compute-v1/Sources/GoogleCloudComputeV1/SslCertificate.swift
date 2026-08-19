@@ -16,7 +16,7 @@
 
 #if RegionSslCertificates || SslCertificates
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents an SSL certificate resource.
   ///

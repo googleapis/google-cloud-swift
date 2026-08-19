@@ -16,7 +16,7 @@
 
 #if RecommendationService || UserEventService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Media-specific user event information.
   public struct MediaInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,

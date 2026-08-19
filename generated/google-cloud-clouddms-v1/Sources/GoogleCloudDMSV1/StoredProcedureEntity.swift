@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Stored procedure's parent is a schema.
 public struct StoredProcedureEntity: Codable, Equatable, GoogleCloudWkt._AnyPackable,

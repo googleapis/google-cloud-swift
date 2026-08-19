@@ -16,7 +16,7 @@
 
 #if GenAiCacheService || PredictionService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
   import GoogleType
 
   /// Retrieval config.

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Mapping of BigQuery columns to timestamp, group_id and dimensions.
 public struct BigqueryMapping: Codable, Equatable, GoogleCloudWkt._AnyPackable,

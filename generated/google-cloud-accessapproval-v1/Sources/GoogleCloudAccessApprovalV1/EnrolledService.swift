@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents the enrollment of a cloud resource into a specific service.
 public struct EnrolledService: Codable, Equatable, GoogleCloudWkt._AnyPackable,

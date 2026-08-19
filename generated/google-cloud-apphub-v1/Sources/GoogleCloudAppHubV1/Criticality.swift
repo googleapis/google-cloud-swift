@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Criticality of the Application, Service, or Workload
 public struct Criticality: Codable, Equatable, GoogleCloudWkt._AnyPackable,

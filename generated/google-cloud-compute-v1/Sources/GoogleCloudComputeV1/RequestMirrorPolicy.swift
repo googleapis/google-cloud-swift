@@ -16,7 +16,7 @@
 
 #if RegionUrlMaps || UrlMaps
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// A policy that specifies how requests intended for the route's backends
   /// are shadowed to a separate mirrored backend service. The load balancer

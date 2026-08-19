@@ -16,7 +16,7 @@
 
 #if VertexRagDataService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The generic reusable api auth config.
   public struct ApiAuth: Codable, Equatable, GoogleCloudWkt._AnyPackable,

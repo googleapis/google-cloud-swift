@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The type and version of a source or destination database.
 public struct DatabaseEngineInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if ControlService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Defines circumstances to be checked before allowing a behavior
   public struct Condition: Codable, Equatable, GoogleCloudWkt._AnyPackable,

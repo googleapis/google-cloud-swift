@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The path details derived from the spec.
 public struct Path: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// InitializingReplicationStep contains specific step details.
 public struct InitializingReplicationStep: Codable, Equatable, GoogleCloudWkt._AnyPackable,

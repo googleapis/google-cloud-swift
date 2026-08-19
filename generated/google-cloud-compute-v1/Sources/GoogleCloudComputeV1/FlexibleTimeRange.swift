@@ -16,7 +16,7 @@
 
 #if Advice
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Specifies a flexible time range with flexible start time and duration.
   ///

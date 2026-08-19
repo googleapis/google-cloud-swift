@@ -16,7 +16,7 @@
 
 #if Interconnects
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Response for the InterconnectsGetMacsecConfigRequest.
   public struct InterconnectsGetMacsecConfigResponse: Codable, Equatable, GoogleCloudWkt

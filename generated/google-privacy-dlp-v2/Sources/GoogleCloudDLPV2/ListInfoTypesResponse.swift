@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Response to the ListInfoTypes request.
 public struct ListInfoTypesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

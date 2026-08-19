@@ -16,8 +16,8 @@
 
 #if Experiments
   import Foundation
-  import GoogleCloudGax
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudGax
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The response message for
   /// [Experiments.ListExperiments][google.cloud.dialogflow.cx.v3.Experiments.ListExperiments].

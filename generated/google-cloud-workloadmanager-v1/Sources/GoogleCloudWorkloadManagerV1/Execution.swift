@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Execution that represents a single run of an Evaluation.
 public struct Execution: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if VertexRagDataService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The SharePointSources to pass to ImportRagFiles.
   public struct SharePointSources: Codable, Equatable, GoogleCloudWkt._AnyPackable,

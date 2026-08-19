@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The response message for the `ListIcebergNamespaces` API.
 public struct ListIcebergNamespacesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

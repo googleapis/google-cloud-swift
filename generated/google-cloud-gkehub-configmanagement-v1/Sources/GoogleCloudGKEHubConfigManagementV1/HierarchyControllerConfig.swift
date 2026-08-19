@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configuration for Hierarchy Controller
 public struct HierarchyControllerConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

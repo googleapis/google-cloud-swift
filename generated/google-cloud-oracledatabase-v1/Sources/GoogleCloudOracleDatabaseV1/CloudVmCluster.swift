@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Details of the Cloud VM Cluster resource.
 /// https://docs.oracle.com/en-us/iaas/api/#/en/database/20160918/CloudVmCluster/

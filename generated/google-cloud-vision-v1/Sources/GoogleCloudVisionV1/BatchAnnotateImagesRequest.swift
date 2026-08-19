@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Multiple image annotation requests are batched into a single service call.
 public struct BatchAnnotateImagesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

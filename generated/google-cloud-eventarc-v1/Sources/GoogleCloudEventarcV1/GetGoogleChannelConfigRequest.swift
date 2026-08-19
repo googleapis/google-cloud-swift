@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The request message for the GetGoogleChannelConfig method.
 public struct GetGoogleChannelConfigRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

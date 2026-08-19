@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// FleetPackageInfo represents the status of the `FleetPackage` across all the
 /// target clusters.

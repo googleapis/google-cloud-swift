@@ -16,7 +16,7 @@
 
 #if GroundedGenerationService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Base structured datatype containing multi-part content of a message.
   public struct GroundedGenerationContent: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if ModelService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// A collection of metrics calculated by comparing Model's predictions on all of
   /// the test data against annotations from the test data.

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Specifies a set of log entries that are filtered out by a sink. If
 /// your Google Cloud resource receives a large volume of log entries, you can

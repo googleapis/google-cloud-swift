@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Response for the Bulk Upload Feedback Labels API.
 public struct BulkUploadFeedbackLabelsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

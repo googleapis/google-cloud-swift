@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudGax
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudGax
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// List DataAttributeBindings response.
 public struct ListDataAttributeBindingsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

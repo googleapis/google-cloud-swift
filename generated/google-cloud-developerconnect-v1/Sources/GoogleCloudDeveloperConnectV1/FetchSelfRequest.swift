@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message for fetching a User of the user themselves.
 public struct FetchSelfRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

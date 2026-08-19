@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A resource value configuration (RVC) is a mapping configuration of user's
 /// resources to resource values. Used in Attack path simulations.

@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudGax
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudGax
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Response message for VideoStitcher.ListLiveConfig.
 public struct ListLiveConfigsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

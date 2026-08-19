@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Jupyter configuration for an interactive session.
 public struct JupyterConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

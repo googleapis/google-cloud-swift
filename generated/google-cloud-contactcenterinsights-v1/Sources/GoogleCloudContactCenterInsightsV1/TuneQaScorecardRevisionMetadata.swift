@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Metadata for TuneQaScorecardRevision endpoint.
 public struct TuneQaScorecardRevisionMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Result containing the properties and count of a groupBy request.
 public struct GroupResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,

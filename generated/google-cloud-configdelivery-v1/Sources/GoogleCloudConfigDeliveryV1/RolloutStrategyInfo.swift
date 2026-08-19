@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// RolloutStrategyInfo represents the status of execution of different types of
 /// rollout strategies. Only the field corresponding to the rollout strategy

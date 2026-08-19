@@ -16,7 +16,7 @@
 
 #if AnswerRecords || Participants
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents article answer.
   public struct ArticleAnswer: Codable, Equatable, GoogleCloudWkt._AnyPackable,

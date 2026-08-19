@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The input config source for products.
 public struct ProductInputConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

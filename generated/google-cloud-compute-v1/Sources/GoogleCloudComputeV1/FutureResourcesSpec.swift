@@ -16,7 +16,7 @@
 
 #if Advice
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Specification of resources to be created at some time in the future within an
   /// optionally specified set of locations, and within the specified time range.

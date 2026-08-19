@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A set of raw indices to remove from a local list.
 public struct RawIndices: Codable, Equatable, GoogleCloudWkt._AnyPackable,

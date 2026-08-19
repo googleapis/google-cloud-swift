@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configuration options for writing logs to
 /// [Stackdriver Logging](https://cloud.google.com/logging/docs/).

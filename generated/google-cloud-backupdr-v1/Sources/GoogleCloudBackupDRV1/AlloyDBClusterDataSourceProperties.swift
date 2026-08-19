@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// AlloyDBClusterDataSourceProperties represents the properties of a
 /// AlloyDB cluster resource that are stored in the DataSource.

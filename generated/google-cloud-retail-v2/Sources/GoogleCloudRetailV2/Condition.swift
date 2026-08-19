@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Metadata that is used to define a condition that triggers an action.
 /// A valid condition must specify at least one of 'query_terms' or

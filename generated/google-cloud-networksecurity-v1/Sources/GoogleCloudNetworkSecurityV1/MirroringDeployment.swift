@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A deployment represents a zonal mirroring backend ready to accept
 /// GENEVE-encapsulated replica traffic, e.g. a zonal instance group fronted by

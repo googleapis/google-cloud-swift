@@ -16,7 +16,7 @@
 
 #if SqlUsersService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// User list response.
   public struct UsersListResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

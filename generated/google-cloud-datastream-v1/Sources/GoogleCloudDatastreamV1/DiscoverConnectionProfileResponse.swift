@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Response from a discover request.
 public struct DiscoverConnectionProfileResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

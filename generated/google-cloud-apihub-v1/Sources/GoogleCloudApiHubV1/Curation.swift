@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A curation resource in the API Hub.
 public struct Curation: Codable, Equatable, GoogleCloudWkt._AnyPackable,

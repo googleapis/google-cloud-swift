@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// `ServicePerimeterConfig` specifies a set of Google Cloud resources that
 /// describe specific Service Perimeter configuration.

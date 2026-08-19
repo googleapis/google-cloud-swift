@@ -16,7 +16,7 @@
 
 #if HttpsHealthChecks
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   extension HttpsHealthChecksClient {
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.httpsHealthChecks.delete] method.

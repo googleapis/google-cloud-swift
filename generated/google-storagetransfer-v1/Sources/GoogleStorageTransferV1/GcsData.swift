@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// In a GcsData resource, an object's name is the Cloud Storage object's
 /// name and its "last modification time" refers to the object's `updated`

@@ -16,7 +16,7 @@
 
 #if BackendServices || RegionBackendServices
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Subsetting configuration for this BackendService.
   /// Currently this is applicable only for Internal TCP/UDP load balancing,

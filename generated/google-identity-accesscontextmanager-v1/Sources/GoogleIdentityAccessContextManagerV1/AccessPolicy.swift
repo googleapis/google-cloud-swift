@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// `AccessPolicy` is a container for `AccessLevels` (which define the necessary
 /// attributes to use Google Cloud services) and `ServicePerimeters` (which

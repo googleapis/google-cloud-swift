@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Information specifying where to deploy a Cloud Run Service.
 public struct CloudRunLocation: Codable, Equatable, GoogleCloudWkt._AnyPackable,

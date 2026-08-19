@@ -16,7 +16,7 @@
 
 #if VertexRagDataService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// RagCorpus status.
   public struct CorpusStatus: Codable, Equatable, GoogleCloudWkt._AnyPackable,

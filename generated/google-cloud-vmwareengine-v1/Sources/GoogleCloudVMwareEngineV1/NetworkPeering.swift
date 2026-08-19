@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Details of a network peering.
 public struct NetworkPeering: Codable, Equatable, GoogleCloudWkt._AnyPackable,

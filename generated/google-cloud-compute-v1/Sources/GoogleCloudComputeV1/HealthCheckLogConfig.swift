@@ -16,7 +16,7 @@
 
 #if HealthChecks || RegionHealthChecks
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Configuration of logging on a health check. If logging is enabled, logs
   /// will be exported to Stackdriver.

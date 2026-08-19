@@ -16,7 +16,7 @@
 
 #if Environments
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents a result from running a test case in an agent environment.
   public struct ContinuousTestResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,

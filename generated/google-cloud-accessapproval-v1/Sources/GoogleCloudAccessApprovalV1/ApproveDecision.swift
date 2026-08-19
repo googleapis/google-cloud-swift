@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A decision that has been made to approve access to a resource.
 public struct ApproveDecision: Codable, Equatable, GoogleCloudWkt._AnyPackable,

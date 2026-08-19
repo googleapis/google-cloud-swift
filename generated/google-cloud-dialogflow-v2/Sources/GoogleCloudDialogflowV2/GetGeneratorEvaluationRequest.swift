@@ -16,7 +16,7 @@
 
 #if GeneratorEvaluations
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Request of GetGeneratorEvaluation.
   public struct GetGeneratorEvaluationRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

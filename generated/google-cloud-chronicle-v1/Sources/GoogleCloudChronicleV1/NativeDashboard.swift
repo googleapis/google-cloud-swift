@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// NativeDashboard resource.
 public struct NativeDashboard: Codable, Equatable, GoogleCloudWkt._AnyPackable,

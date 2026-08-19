@@ -16,7 +16,7 @@
 
 #if GlobalNetworkEndpointGroups || NetworkEndpointGroups || RegionNetworkEndpointGroups
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// All data that is specifically relevant to only network endpoint groups of
   /// type PRIVATE_SERVICE_CONNECT.

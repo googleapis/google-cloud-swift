@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 extension ResponsePolicyRulesClient {
   /// Synthetic request message for the [create()][.responsePolicyRules.create] method.

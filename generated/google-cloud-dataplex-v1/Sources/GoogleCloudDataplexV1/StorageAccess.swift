@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Describes the access mechanism of the data within its storage location.
 public struct StorageAccess: Codable, Equatable, GoogleCloudWkt._AnyPackable,

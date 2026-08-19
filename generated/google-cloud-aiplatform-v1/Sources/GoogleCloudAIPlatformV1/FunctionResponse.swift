@@ -16,7 +16,7 @@
 
 #if DataFoundryService || EvaluationService || GenAiCacheService || GenAiTuningService || LlmUtilityService || PredictionService || SessionService || VertexRagService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The result output from a [FunctionCall] that contains a string representing
   /// the [FunctionDeclaration.name] and a structured JSON object containing any

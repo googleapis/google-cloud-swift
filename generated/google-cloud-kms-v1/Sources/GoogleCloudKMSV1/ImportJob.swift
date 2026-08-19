@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// An [ImportJob][google.cloud.kms.v1.ImportJob] can be used to create
 /// [CryptoKeys][google.cloud.kms.v1.CryptoKey] and

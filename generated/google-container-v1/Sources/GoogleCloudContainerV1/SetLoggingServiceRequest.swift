@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// SetLoggingServiceRequest sets the logging service of a cluster.
 public struct SetLoggingServiceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

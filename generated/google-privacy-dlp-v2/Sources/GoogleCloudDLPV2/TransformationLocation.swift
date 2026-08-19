@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Specifies the location of a transformation.
 public struct TransformationLocation: Codable, Equatable, GoogleCloudWkt._AnyPackable,

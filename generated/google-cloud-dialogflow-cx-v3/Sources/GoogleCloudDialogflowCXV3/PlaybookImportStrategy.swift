@@ -16,7 +16,7 @@
 
 #if Playbooks
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The playbook import strategy used for resource conflict resolution associated
   /// with an

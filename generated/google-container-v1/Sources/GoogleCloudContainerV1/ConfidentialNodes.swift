@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// ConfidentialNodes is configuration for the confidential nodes feature, which
 /// makes nodes run on confidential VMs.

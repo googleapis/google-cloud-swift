@@ -16,7 +16,7 @@
 
 #if UserEventService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Request message for WriteUserEvent method.
   public struct WriteUserEventRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

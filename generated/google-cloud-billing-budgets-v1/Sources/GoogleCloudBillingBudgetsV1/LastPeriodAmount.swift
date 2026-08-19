@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Describes a budget amount targeted to the last
 /// [Filter.calendar_period][google.cloud.billing.budgets.v1.Filter.calendar_period]

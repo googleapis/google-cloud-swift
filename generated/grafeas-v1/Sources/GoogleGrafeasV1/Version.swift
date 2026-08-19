@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Version contains structured information about the version of a package.
 public struct Version: Codable, Equatable, GoogleCloudWkt._AnyPackable,

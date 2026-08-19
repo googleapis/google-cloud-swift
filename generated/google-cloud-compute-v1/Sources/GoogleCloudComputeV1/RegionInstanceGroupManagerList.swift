@@ -16,8 +16,8 @@
 
 #if RegionInstanceGroupManagers
   import Foundation
-  import GoogleCloudGax
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudGax
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Contains a list of managed instance groups.
   public struct RegionInstanceGroupManagerList: Codable, Equatable, GoogleCloudWkt._AnyPackable,

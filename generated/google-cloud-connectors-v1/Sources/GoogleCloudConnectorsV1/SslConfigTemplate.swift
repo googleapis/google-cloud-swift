@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Ssl config details of a connector version
 public struct SslConfigTemplate: Codable, Equatable, GoogleCloudWkt._AnyPackable,

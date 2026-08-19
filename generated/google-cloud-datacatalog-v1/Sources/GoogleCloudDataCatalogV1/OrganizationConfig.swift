@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The configuration related to the migration from Data Catalog to Dataplex that
 /// has been applied to an organization and any projects under it. It is the

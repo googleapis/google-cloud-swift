@@ -16,7 +16,7 @@
 
 #if InterconnectAttachmentGroups
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Response for the InterconnectAttachmentGroupsGetOperationalStatusResponse.
   public struct InterconnectAttachmentGroupsGetOperationalStatusResponse: Codable, Equatable,

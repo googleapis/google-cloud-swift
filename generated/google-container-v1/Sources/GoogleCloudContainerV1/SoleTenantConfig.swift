@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// SoleTenantConfig contains the NodeAffinities to specify what shared sole
 /// tenant node groups should back the node pool.

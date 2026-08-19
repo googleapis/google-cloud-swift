@@ -16,7 +16,7 @@
 
 #if DatasetService || JobService || ModelGardenService || ModelService || PipelineService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Specification of a container for serving predictions. Some fields in this
   /// message correspond to fields in the [Kubernetes Container v1 core

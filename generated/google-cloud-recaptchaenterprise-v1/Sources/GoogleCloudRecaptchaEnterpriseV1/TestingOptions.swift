@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Options for user acceptance testing.
 public struct TestingOptions: Codable, Equatable, GoogleCloudWkt._AnyPackable,

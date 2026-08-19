@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request for listing workloads in a Cloud Composer environment.
 public struct ListWorkloadsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

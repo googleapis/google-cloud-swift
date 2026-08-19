@@ -16,7 +16,7 @@
 
 import Foundation
 import GoogleApi
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A collection of data points that describes the time-varying values
 /// of a metric. A time series is identified by a combination of a

@@ -16,7 +16,7 @@
 
 #if LlmUtilityService || PredictionService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents token counting info for a single modality.
   public struct ModalityTokenCount: Codable, Equatable, GoogleCloudWkt._AnyPackable,

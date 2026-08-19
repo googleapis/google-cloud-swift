@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A pattern to match against one or more file stores. At least one
 /// pattern must be specified. Regular expressions use RE2

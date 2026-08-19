@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// This is a DailyScheduleComplianceReportLog published as part of GCBDR
 /// Reporting.

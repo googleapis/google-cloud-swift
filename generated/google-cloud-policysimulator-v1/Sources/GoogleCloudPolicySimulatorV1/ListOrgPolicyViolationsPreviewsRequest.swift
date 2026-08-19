@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// ListOrgPolicyViolationsPreviewsRequest is the request message for
 /// [OrgPolicyViolationsPreviewService.ListOrgPolicyViolationsPreviews][google.cloud.policysimulator.v1.OrgPolicyViolationsPreviewService.ListOrgPolicyViolationsPreviews].

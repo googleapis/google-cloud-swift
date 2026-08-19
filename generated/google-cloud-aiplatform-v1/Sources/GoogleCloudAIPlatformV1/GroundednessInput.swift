@@ -16,7 +16,7 @@
 
 #if EvaluationService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Input for groundedness metric.
   public struct GroundednessInput: Codable, Equatable, GoogleCloudWkt._AnyPackable,

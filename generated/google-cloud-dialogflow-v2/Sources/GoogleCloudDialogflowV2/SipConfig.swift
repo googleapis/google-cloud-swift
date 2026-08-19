@@ -16,7 +16,7 @@
 
 #if ConversationProfiles || Conversations
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Defines the SIP configuration.
   public struct SipConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

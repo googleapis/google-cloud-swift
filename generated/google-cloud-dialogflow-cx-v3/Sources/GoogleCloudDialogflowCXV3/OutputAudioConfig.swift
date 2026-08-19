@@ -16,7 +16,7 @@
 
 #if Sessions
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Instructs the speech synthesizer how to generate the output audio content.
   public struct OutputAudioConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

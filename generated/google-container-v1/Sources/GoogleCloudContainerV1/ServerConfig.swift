@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Kubernetes Engine service configuration.
 public struct ServerConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

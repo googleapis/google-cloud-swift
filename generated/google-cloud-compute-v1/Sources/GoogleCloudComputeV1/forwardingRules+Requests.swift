@@ -16,7 +16,7 @@
 
 #if ForwardingRules
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   extension ForwardingRulesClient {
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.forwardingRules.aggregatedList] method.

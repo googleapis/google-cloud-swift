@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// LogsPolicy describes if and how a job's logs are preserved. Logs include
 /// information that is automatically written by the Batch service agent and any

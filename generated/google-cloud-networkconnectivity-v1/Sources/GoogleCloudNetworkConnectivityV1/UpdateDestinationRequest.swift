@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message to update a `Destination` resource.
 public struct UpdateDestinationRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

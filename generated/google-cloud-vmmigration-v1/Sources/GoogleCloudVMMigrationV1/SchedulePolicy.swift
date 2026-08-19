@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A policy for scheduling replications.
 public struct SchedulePolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,

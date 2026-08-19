@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Response message for
 /// [BatchRecognize][google.cloud.speech.v2.Speech.BatchRecognize] that is

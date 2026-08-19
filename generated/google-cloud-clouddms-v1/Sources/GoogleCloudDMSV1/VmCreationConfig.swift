@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// VM creation configuration message
 public struct VmCreationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

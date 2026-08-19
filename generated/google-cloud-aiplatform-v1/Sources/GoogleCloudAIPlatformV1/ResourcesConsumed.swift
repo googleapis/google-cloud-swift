@@ -16,7 +16,7 @@
 
 #if JobService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Statistics information about resource consumption.
   public struct ResourcesConsumed: Codable, Equatable, GoogleCloudWkt._AnyPackable,

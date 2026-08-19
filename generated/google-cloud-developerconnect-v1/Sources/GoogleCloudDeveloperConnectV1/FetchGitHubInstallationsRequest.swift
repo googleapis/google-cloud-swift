@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request for fetching github installations.
 public struct FetchGitHubInstallationsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

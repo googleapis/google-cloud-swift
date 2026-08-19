@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Framework deployments represent the assignment of a framework to a target
 /// resource. Supported target resources are organizations, folders, and

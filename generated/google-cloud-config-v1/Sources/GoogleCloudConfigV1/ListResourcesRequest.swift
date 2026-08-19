@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A request to list Resources passed to a 'ListResources' call.
 public struct ListResourcesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

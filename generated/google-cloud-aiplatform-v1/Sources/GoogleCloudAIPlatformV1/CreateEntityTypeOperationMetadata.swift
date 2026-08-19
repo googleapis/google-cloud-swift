@@ -16,7 +16,7 @@
 
 #if FeaturestoreService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Details of operations that perform create EntityType.
   public struct CreateEntityTypeOperationMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,

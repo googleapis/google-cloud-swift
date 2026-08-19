@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A BackupPlanAssociation represents a single BackupPlanAssociation which
 /// contains details like workload, backup plan etc

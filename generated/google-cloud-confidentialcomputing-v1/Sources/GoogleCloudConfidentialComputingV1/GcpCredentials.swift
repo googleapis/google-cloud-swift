@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Credentials issued by GCP which are linked to the platform attestation. These
 /// will be verified server-side as part of attestaion verification.

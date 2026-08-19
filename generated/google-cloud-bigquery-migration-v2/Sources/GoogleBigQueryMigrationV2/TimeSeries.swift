@@ -16,7 +16,7 @@
 
 import Foundation
 import GoogleApi
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The metrics object for a SubTask.
 public struct TimeSeries: Codable, Equatable, GoogleCloudWkt._AnyPackable,

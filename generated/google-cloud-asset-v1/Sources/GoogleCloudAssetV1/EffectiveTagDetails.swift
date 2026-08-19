@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The effective tags and the ancestor resources from which they were inherited.
 public struct EffectiveTagDetails: Codable, Equatable, GoogleCloudWkt._AnyPackable,

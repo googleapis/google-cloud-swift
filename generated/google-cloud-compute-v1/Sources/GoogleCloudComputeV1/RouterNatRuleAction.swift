@@ -16,7 +16,7 @@
 
 #if Routers
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct RouterNatRuleAction: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// `FetchRepositoryHistory` request message.
 public struct FetchRepositoryHistoryRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

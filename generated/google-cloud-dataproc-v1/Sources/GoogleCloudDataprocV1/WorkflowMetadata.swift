@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A Dataproc workflow template resource.
 public struct WorkflowMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,

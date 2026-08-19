@@ -16,7 +16,7 @@
 
 #if GenAiCacheService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Request message for
   /// [GenAiCacheService.UpdateCachedContent][google.cloud.aiplatform.v1.GenAiCacheService.UpdateCachedContent].

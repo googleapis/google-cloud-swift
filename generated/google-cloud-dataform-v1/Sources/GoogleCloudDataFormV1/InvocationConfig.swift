@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Includes various configuration options for a workflow invocation.
 /// If both `included_targets` and `included_tags` are unset, all actions

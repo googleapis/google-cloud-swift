@@ -16,7 +16,7 @@
 
 #if EvaluationService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Input for safety metric.
   public struct SafetyInput: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A translated document message.
 public struct DocumentTranslation: Codable, Equatable, GoogleCloudWkt._AnyPackable,

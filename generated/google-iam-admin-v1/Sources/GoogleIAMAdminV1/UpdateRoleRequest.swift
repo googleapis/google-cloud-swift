@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The request to update a role.
 public struct UpdateRoleRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

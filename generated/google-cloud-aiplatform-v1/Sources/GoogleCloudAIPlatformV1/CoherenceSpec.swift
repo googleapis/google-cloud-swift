@@ -16,7 +16,7 @@
 
 #if EvaluationService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Spec for coherence score metric.
   public struct CoherenceSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,

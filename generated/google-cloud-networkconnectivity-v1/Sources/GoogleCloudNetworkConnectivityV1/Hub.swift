@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A Network Connectivity Center hub is a global management resource to which
 /// you attach spokes. A single hub can contain spokes from multiple regions.

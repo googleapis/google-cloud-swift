@@ -16,7 +16,7 @@
 
 #if RecommendationService || UserEventService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Detailed search information.
   public struct SearchInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,

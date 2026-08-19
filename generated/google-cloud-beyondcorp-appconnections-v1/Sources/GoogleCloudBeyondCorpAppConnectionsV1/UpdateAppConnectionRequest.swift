@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for BeyondCorp.UpdateAppConnection.
 public struct UpdateAppConnectionRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

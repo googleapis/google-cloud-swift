@@ -16,7 +16,7 @@
 
 #if ReservationBlocks
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The PhysicalHostTopology of the instance within a Block resource.
   public struct ReservationBlockPhysicalTopologyInstancePhysicalHostTopology: Codable, Equatable,

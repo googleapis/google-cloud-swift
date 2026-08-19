@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Response message for
 /// [ToolService.ExecuteTool][google.cloud.ces.v1.ToolService.ExecuteTool].

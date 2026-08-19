@@ -16,7 +16,7 @@
 
 #if TensorboardService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// One point viewable on a blob metric plot, but mostly just a wrapper message
   /// to work around repeated fields can't be used directly within `oneof` fields.

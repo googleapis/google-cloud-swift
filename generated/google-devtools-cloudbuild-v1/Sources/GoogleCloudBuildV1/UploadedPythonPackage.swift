@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Artifact uploaded using the PythonPackage directive.
 public struct UploadedPythonPackage: Codable, Equatable, GoogleCloudWkt._AnyPackable,

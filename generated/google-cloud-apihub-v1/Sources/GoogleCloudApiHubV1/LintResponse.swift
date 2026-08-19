@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// LintResponse contains the response from the linter.
 public struct LintResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

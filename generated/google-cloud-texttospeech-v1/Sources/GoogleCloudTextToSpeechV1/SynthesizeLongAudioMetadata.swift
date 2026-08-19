@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Metadata for response returned by the `SynthesizeLongAudio` method.
 public struct SynthesizeLongAudioMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,

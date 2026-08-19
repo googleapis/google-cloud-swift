@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request for DeleteConnectCluster.
 public struct DeleteConnectClusterRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

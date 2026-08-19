@@ -16,7 +16,7 @@
 
 #if NodeGroups || NodeTemplates
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct LocalDisk: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable

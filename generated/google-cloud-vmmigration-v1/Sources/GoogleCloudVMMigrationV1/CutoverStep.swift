@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// CutoverStep holds information about the cutover step progress.
 public struct CutoverStep: Codable, Equatable, GoogleCloudWkt._AnyPackable,

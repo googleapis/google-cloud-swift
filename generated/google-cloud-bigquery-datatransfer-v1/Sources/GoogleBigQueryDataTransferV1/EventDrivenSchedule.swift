@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Options customizing EventDriven transfers schedule.
 public struct EventDrivenSchedule: Codable, Equatable, GoogleCloudWkt._AnyPackable,

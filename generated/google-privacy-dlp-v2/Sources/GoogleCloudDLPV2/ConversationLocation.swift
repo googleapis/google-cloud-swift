@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Location within a conversation.
 public struct ConversationLocation: Codable, Equatable, GoogleCloudWkt._AnyPackable,

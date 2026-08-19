@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// An Instance is a computing unit that an end customer can connect to.
 /// It's the main unit of computing resources in AlloyDB.

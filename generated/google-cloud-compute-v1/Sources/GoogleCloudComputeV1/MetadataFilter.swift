@@ -16,7 +16,7 @@
 
 #if ForwardingRules || GlobalForwardingRules || RegionUrlMaps || UrlMaps
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Opaque filter criteria used by load balancers to restrict routing
   /// configuration to a limited set of load balancing proxies. Proxies and

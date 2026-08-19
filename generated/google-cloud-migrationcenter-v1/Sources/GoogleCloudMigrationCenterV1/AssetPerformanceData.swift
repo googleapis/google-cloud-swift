@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Performance data for an asset.
 public struct AssetPerformanceData: Codable, Equatable, GoogleCloudWkt._AnyPackable,

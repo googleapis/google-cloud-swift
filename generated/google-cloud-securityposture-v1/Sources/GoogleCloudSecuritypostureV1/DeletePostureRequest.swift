@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message for deleting a Posture.
 public struct DeletePostureRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

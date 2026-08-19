@@ -16,7 +16,7 @@
 
 #if DataFoundryService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Defines a generation strategy based on a high-level task description.
   public struct TaskDescriptionStrategy: Codable, Equatable, GoogleCloudWkt._AnyPackable,

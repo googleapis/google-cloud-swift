@@ -16,7 +16,7 @@
 
 #if Autoscalers || RegionAutoscalers
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents an Autoscaler resource.
   ///

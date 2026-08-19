@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 import GoogleIdentityAccessContextManagerType
 
 /// A restriction on the OS type and version of devices making requests.

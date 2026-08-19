@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// PromoteReplicaRequest promotes a Filestore standby instance (replica).
 public struct PromoteReplicaRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

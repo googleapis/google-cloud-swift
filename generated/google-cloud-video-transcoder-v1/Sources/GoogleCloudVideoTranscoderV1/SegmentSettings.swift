@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Segment settings for `ts`, `fmp4` and `vtt`.
 public struct SegmentSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,

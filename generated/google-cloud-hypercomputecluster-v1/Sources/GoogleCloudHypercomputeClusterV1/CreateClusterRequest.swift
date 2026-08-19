@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for
 /// [CreateCluster][google.cloud.hypercomputecluster.v1.HypercomputeCluster.CreateCluster].

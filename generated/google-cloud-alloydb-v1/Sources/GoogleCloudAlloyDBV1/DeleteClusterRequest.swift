@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message for deleting a Cluster
 public struct DeleteClusterRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// LoadingImageSourceFilesStep contains specific step details.
 public struct LoadingImageSourceFilesStep: Codable, Equatable, GoogleCloudWkt._AnyPackable,

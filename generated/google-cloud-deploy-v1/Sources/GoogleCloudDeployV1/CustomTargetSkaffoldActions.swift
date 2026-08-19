@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// CustomTargetSkaffoldActions represents the `CustomTargetType` configuration
 /// using Skaffold custom actions.

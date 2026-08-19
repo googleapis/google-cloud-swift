@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The grantable role query request.
 public struct QueryGrantableRolesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

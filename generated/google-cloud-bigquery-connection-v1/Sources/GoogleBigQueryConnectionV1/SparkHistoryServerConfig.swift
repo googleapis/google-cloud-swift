@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configuration of the Spark History Server.
 public struct SparkHistoryServerConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

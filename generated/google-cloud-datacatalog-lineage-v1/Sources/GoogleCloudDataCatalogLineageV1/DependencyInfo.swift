@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Dependency info describes how one entity depends on another.
 public struct DependencyInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// `MakeDirectory` request message.
 public struct MakeDirectoryRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

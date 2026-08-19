@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A Job resource represents a job posting (also referred to as a "job listing"
 /// or "job requisition"). A job belongs to a

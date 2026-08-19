@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Azure metadata associated with the resource, only applicable if the finding's
 /// cloud provider is Microsoft Azure.

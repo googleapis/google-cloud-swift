@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Details of the OCI Cloud Account.
 public struct CloudAccountDetails: Codable, Equatable, GoogleCloudWkt._AnyPackable,

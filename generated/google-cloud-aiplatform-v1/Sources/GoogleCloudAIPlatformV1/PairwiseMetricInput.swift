@@ -16,7 +16,7 @@
 
 #if EvaluationService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Input for pairwise metric.
   public struct PairwiseMetricInput: Codable, Equatable, GoogleCloudWkt._AnyPackable,

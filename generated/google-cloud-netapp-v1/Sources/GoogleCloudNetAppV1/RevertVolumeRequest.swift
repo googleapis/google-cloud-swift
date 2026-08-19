@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// RevertVolumeRequest reverts the given volume to the specified snapshot.
 public struct RevertVolumeRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

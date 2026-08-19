@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// DeleteQuotaRuleRequest for deleting a single quota rule.
 public struct DeleteQuotaRuleRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

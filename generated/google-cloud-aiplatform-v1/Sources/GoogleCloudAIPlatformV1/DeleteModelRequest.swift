@@ -16,7 +16,7 @@
 
 #if ModelService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Request message for
   /// [ModelService.DeleteModel][google.cloud.aiplatform.v1.ModelService.DeleteModel].

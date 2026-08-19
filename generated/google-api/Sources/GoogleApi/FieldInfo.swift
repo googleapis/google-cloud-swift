@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Rich semantic information of an API field beyond basic typing.
 public struct FieldInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,

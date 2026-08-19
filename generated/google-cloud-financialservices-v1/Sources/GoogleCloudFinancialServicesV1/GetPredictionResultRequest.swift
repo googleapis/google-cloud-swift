@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request for retrieving a specific PredictionResult resource.
 public struct GetPredictionResultRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

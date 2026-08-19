@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Get metadata partition request.
 public struct GetPartitionRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

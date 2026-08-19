@@ -16,7 +16,7 @@
 
 #if FeatureOnlineStoreService || FeaturestoreOnlineServingService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// A list of boolean values.
   public struct BoolArray: Codable, Equatable, GoogleCloudWkt._AnyPackable,

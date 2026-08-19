@@ -16,7 +16,7 @@
 
 #if InterconnectAttachments
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   extension InterconnectAttachmentsClient {
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.interconnectAttachments.aggregatedList] method.

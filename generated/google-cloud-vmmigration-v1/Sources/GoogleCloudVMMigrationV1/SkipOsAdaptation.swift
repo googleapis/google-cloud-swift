@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Mentions that the machine image import is not using OS adaptation process.
 public struct SkipOsAdaptation: Codable, Equatable, GoogleCloudWkt._AnyPackable,

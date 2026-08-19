@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Encoding of an input element such as an audio, video, or text track.
 /// Elementary streams must be packaged before mapping and sharing between

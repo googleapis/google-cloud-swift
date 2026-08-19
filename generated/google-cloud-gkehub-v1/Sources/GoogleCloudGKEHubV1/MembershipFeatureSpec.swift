@@ -16,7 +16,7 @@
 
 import Foundation
 import GoogleCloudGKEHubConfigManagementV1
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// MembershipFeatureSpec contains configuration information for a single
 /// Membership.

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message for removing stream input from an Application.
 public struct DeleteApplicationInstancesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

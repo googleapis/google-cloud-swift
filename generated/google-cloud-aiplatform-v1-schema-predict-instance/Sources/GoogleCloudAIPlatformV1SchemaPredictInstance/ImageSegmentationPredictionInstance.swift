@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Prediction input format for Image Segmentation.
 public struct ImageSegmentationPredictionInstance: Codable, Equatable, GoogleCloudWkt._AnyPackable,

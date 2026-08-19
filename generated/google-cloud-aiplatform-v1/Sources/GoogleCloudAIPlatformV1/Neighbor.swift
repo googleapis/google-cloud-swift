@@ -16,7 +16,7 @@
 
 #if ModelService || PredictionService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Neighbors for example-based explanations.
   public struct Neighbor: Codable, Equatable, GoogleCloudWkt._AnyPackable,

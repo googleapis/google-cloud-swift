@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request of `GenerateDownloadUrl` method.
 public struct GenerateDownloadUrlRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

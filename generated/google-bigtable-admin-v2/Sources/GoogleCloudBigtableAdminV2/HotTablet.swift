@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A tablet is a defined by a start and end key and is explained in
 /// https://cloud.google.com/bigtable/docs/overview#architecture and

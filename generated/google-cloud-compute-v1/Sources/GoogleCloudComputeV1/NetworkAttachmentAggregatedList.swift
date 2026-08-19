@@ -16,8 +16,8 @@
 
 #if NetworkAttachments
   import Foundation
-  import GoogleCloudGax
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudGax
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Contains a list of NetworkAttachmentsScopedList.
   public struct NetworkAttachmentAggregatedList: Codable, Equatable, GoogleCloudWkt._AnyPackable,

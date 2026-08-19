@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// AzureServerConfig contains information about a Google Cloud location, such as
 /// supported Azure regions and Kubernetes versions.

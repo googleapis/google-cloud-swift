@@ -16,7 +16,7 @@
 
 #if Generators
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Request of DeleteGenerator.
   public struct DeleteGeneratorRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

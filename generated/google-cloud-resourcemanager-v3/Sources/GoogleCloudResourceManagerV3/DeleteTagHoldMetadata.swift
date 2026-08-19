@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Runtime operation information for deleting a TagHold.
 /// (-- The metadata is currently empty, but may include information in the

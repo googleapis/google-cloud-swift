@@ -16,7 +16,7 @@
 
 #if GlobalVmExtensionPolicies
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// A LabelSelector is applicable for a VM only if it matches all labels in
   /// the LabelSelector.

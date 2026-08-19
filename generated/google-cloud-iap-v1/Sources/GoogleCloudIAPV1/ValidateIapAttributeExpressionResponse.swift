@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// IAP Expression Linter endpoint returns empty response body.
 public struct ValidateIapAttributeExpressionResponse: Codable, Equatable, GoogleCloudWkt

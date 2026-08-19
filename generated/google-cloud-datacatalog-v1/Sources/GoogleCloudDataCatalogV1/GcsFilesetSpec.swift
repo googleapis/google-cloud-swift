@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Describes a Cloud Storage fileset entry.
 public struct GcsFilesetSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,

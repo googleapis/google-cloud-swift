@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents a product's purchasable Stock Keeping Unit (SKU).
 /// SKUs represent the different variations of the product. For example, Google

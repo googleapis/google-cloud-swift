@@ -16,7 +16,7 @@
 
 #if DocumentService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Configuration of destination for Purge related errors.
   public struct PurgeErrorConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

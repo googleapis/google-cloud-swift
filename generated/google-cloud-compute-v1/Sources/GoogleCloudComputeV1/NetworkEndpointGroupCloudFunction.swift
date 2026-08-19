@@ -16,7 +16,7 @@
 
 #if GlobalNetworkEndpointGroups || NetworkEndpointGroups || RegionNetworkEndpointGroups
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Configuration for a Cloud Function network endpoint group (NEG).
   /// The function must be provided explicitly or in the URL mask.

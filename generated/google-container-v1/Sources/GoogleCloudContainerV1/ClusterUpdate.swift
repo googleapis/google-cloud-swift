@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// ClusterUpdate describes an update to the cluster. Exactly one update can
 /// be applied to a cluster with each request, so at most one field can be

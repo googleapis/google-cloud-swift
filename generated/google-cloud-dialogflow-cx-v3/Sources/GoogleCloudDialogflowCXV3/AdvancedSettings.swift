@@ -16,7 +16,7 @@
 
 #if Agents || Flows || Pages || Playbooks || Sessions || TestCases || TransitionRouteGroups
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Hierarchical advanced settings for agent/flow/page/fulfillment/parameter.
   /// Settings exposed at lower level overrides the settings exposed at higher

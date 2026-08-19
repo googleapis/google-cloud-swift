@@ -16,7 +16,7 @@
 
 #if FeatureRegistryService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Details of operations that perform update Feature.
   public struct UpdateFeatureOperationMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,

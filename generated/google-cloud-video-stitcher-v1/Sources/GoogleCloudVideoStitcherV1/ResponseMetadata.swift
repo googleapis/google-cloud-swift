@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Metadata for the response of an ad request.
 public struct ResponseMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,

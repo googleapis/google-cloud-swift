@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A chart that displays data on a 2D (X and Y axes) plane.
 public struct XyChart: Codable, Equatable, GoogleCloudWkt._AnyPackable,

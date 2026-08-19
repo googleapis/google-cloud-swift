@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// An API Configuration is a combination of settings for both the Managed
 /// Service and Gateways serving this API Config.

@@ -16,7 +16,7 @@
 
 #if Participants || Sessions
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
   import GoogleRpc
 
   /// The message returned from the [DetectIntent][] method.

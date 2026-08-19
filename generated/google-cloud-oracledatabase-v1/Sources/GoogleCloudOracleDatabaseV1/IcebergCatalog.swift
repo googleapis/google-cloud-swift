@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The Iceberg catalog details.
 public struct IcebergCatalog: Codable, Equatable, GoogleCloudWkt._AnyPackable,

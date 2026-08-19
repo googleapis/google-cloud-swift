@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The top-level message sent by the client for the `ListVoices` method.
 public struct ListVoicesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

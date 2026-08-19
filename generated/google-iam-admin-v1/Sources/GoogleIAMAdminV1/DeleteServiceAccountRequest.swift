@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The service account delete request.
 public struct DeleteServiceAccountRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

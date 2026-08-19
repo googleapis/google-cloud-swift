@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Metadata for a consumer group corresponding to a specific topic.
 public struct ConsumerTopicMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,

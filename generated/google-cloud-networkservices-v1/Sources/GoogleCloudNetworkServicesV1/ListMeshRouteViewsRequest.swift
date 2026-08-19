@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request used with the ListMeshRouteViews method.
 public struct ListMeshRouteViewsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

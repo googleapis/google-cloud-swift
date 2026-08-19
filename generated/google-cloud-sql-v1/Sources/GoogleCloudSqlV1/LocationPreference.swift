@@ -16,7 +16,7 @@
 
 #if SqlBackupsService || SqlInstancesService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Preferred location. This specifies where a Cloud SQL instance is located.
   /// Note that if the preferred location is not available, the instance will be

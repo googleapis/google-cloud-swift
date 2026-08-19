@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Dataproc Node Group.
 /// **The Dataproc `NodeGroup` resource is not related to the

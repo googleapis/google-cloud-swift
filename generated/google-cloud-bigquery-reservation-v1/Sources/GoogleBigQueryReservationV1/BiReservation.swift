@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents a BI Reservation.
 public struct BiReservation: Codable, Equatable, GoogleCloudWkt._AnyPackable,

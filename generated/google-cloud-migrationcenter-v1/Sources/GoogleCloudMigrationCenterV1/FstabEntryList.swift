@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Fstab content.
 public struct FstabEntryList: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Prediction output format for Generic Object Detection.
 public struct ObjectDetectionPredictionResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if Sessions || TestCases
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents the natural speech audio to be processed.
   public struct AudioInput: Codable, Equatable, GoogleCloudWkt._AnyPackable,

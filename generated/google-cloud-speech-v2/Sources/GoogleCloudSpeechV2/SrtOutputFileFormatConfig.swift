@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Output configurations [SubRip
 /// Text](https://www.matroska.org/technical/subtitles.html#srt-subtitles)

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A single immutable version of a `WasmPlugin` resource.
 /// Defines the Wasm module used and optionally its runtime config.

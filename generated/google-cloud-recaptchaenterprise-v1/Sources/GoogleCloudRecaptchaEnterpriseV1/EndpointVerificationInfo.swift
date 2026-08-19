@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Information about a verification endpoint that can be used for 2FA.
 public struct EndpointVerificationInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,

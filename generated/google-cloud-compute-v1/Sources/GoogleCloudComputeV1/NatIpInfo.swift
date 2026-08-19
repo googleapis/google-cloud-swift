@@ -16,7 +16,7 @@
 
 #if Routers
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Contains NAT IP information of a NAT config (i.e. usage status, mode).
   public struct NatIpInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,

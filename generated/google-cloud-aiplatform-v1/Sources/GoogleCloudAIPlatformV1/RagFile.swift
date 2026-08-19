@@ -16,7 +16,7 @@
 
 #if VertexRagDataService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// A RagFile contains user data for chunking, embedding and indexing.
   public struct RagFile: Codable, Equatable, GoogleCloudWkt._AnyPackable,

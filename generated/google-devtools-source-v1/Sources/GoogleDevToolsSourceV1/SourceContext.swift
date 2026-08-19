@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A SourceContext is a reference to a tree of files. A SourceContext together
 /// with a path point to a unique revision of a single file or directory.

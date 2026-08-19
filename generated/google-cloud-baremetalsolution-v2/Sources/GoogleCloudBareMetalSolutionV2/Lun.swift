@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A storage volume logical unit number (LUN).
 public struct Lun: Codable, Equatable, GoogleCloudWkt._AnyPackable,

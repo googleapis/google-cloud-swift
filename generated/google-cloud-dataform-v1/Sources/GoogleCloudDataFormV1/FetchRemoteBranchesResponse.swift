@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// `FetchRemoteBranches` response message.
 public struct FetchRemoteBranchesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

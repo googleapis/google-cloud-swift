@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Pub/Sub topic message for a DataProfileAction.PubSubNotification event.
 /// To receive a message of protocol buffer schema type, convert the message data

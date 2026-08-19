@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// HTTPGetAction describes an action based on HTTP Get requests.
 public struct HTTPGetAction: Codable, Equatable, GoogleCloudWkt._AnyPackable,

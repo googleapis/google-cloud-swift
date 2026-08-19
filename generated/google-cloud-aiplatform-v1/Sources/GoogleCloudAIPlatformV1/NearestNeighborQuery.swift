@@ -16,7 +16,7 @@
 
 #if FeatureOnlineStoreService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// A query to find a number of similar entities.
   public struct NearestNeighborQuery: Codable, Equatable, GoogleCloudWkt._AnyPackable,

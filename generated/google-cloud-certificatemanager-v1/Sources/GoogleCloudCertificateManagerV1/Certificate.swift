@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Defines TLS certificate.
 public struct Certificate: Codable, Equatable, GoogleCloudWkt._AnyPackable,

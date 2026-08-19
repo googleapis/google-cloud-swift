@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A Response Policy is a collection of selectors that apply to queries made against one or more Virtual Private Cloud networks.
 public struct ResponsePolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,

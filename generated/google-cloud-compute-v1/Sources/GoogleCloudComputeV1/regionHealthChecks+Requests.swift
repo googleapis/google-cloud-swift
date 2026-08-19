@@ -16,7 +16,7 @@
 
 #if RegionHealthChecks
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   extension RegionHealthChecksClient {
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.regionHealthChecks.delete] method.

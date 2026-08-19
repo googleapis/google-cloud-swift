@@ -16,7 +16,7 @@
 
 #if Instances
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct InstancesGetEffectiveFirewallsResponse: Codable, Equatable, GoogleCloudWkt
       ._AnyPackable,

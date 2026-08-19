@@ -16,7 +16,7 @@
 
 #if RegionCommitments || ReservationBlocks || ReservationSubBlocks || Reservations
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Maintenance Info for ReservationBlocks.
   public struct GroupMaintenanceInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,

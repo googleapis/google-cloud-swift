@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// An [X509Extension][google.cloud.security.privateca.v1.X509Extension]
 /// specifies an X.509 extension, which may be used in different parts of X.509

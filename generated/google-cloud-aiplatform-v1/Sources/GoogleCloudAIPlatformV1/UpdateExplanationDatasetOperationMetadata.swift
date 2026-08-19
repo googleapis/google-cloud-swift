@@ -16,7 +16,7 @@
 
 #if ModelService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Runtime operation information for
   /// [ModelService.UpdateExplanationDataset][google.cloud.aiplatform.v1.ModelService.UpdateExplanationDataset].

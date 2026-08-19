@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The access metadata for a particular region. This can be applied if the org
 /// policy for the given project disallows a particular region.

@@ -16,7 +16,7 @@
 
 #if IndexService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// A representation of a collection of database items organized in a way that
   /// allows for approximate nearest neighbor (a.k.a ANN) algorithms search.

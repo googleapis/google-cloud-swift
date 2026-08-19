@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A connection to a SCM like GitHub, GitHub Enterprise, Bitbucket Data Center,
 /// Bitbucket Cloud or GitLab.

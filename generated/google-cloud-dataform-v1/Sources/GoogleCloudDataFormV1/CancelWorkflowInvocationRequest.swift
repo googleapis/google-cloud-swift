@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// `CancelWorkflowInvocation` request message.
 public struct CancelWorkflowInvocationRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

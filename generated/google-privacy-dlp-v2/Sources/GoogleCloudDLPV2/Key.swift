@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A unique identifier for a Datastore entity.
 /// If a key's partition ID or any of its path kinds or names are

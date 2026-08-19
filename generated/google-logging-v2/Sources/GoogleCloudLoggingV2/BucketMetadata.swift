@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Metadata for LongRunningUpdateBucket Operations.
 public struct BucketMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,

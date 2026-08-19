@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// ListClustersRequest lists clusters.
 public struct ListClustersRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

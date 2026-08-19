@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Skaffold Config modules and their remote source.
 public struct SkaffoldModules: Codable, Equatable, GoogleCloudWkt._AnyPackable,

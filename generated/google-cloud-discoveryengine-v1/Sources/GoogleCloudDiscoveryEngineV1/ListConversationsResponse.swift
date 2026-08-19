@@ -16,8 +16,8 @@
 
 #if ConversationalSearchService
   import Foundation
-  import GoogleCloudGax
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudGax
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Response for ListConversations method.
   public struct ListConversationsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

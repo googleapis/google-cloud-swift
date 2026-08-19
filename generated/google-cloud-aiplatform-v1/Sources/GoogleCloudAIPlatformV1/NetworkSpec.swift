@@ -16,7 +16,7 @@
 
 #if NotebookService || ScheduleService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Network spec.
   public struct NetworkSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,

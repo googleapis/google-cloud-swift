@@ -16,7 +16,7 @@
 
 #if RolloutPlans
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// RolloutPlan resource.
   ///

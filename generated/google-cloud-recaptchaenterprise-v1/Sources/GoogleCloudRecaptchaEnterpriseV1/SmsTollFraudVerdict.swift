@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Information about SMS toll fraud.
 public struct SmsTollFraudVerdict: Codable, Equatable, GoogleCloudWkt._AnyPackable,

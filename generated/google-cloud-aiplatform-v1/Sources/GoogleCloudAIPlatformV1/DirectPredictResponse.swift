@@ -16,7 +16,7 @@
 
 #if PredictionService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Response message for
   /// [PredictionService.DirectPredict][google.cloud.aiplatform.v1.PredictionService.DirectPredict].

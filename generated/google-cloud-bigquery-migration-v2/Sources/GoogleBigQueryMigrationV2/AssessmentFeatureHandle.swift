@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// User-definable feature flags for assessment tasks.
 public struct AssessmentFeatureHandle: Codable, Equatable, GoogleCloudWkt._AnyPackable,

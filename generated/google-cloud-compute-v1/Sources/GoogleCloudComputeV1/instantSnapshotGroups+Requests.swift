@@ -16,7 +16,7 @@
 
 #if InstantSnapshotGroups
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   extension InstantSnapshotGroupsClient {
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.instantSnapshotGroups.delete] method.

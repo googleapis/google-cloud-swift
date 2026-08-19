@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents a private cloud resource. Private clouds of type `STANDARD` and
 /// `TIME_LIMITED` are zonal resources, `STRETCHED` private clouds are

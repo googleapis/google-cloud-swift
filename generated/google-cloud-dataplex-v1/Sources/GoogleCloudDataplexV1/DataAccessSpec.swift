@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// DataAccessSpec holds the access control configuration to be enforced on data
 /// stored within resources (eg: rows, columns in BigQuery Tables). When

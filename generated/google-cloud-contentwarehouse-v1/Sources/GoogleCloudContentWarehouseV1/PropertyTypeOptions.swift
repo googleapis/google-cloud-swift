@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configurations for a nested structured data property.
 public struct PropertyTypeOptions: Codable, Equatable, GoogleCloudWkt._AnyPackable,

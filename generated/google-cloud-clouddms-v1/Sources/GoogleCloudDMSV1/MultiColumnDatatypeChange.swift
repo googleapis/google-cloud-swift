@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Options to configure rule type MultiColumnDatatypeChange.
 /// The rule is used to change the data type and associated properties of

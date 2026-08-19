@@ -16,7 +16,7 @@
 
 #if SqlUsersService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Read-only password status.
   public struct PasswordStatus: Codable, Equatable, GoogleCloudWkt._AnyPackable,

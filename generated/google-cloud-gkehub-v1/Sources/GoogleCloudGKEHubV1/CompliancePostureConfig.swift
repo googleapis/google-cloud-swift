@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// CompliancePostureConfig defines the settings needed to enable/disable
 /// features for the Compliance Posture.

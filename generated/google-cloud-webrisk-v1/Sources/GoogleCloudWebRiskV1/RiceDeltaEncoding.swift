@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The Rice-Golomb encoded data. Used for sending compressed 4-byte hashes or
 /// compressed removal indices.

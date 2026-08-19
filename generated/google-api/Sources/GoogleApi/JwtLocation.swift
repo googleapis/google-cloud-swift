@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Specifies a location to extract JWT from an API request.
 public struct JwtLocation: Codable, Equatable, GoogleCloudWkt._AnyPackable,

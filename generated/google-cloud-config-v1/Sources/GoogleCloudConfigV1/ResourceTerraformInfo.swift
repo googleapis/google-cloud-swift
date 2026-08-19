@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Terraform info of a Resource.
 public struct ResourceTerraformInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,

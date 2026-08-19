@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// AnonymousAuthenticationConfig defines the settings needed to limit endpoints
 /// that allow anonymous authentication.

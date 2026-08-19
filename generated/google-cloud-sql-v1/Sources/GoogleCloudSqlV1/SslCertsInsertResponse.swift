@@ -16,7 +16,7 @@
 
 #if SqlSslCertsService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// SslCert insert response.
   public struct SslCertsInsertResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

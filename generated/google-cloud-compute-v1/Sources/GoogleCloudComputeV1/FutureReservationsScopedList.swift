@@ -16,7 +16,7 @@
 
 #if FutureReservations
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct FutureReservationsScopedList: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable

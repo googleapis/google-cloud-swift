@@ -16,8 +16,8 @@
 
 #if SqlBackupsService
   import Foundation
-  import GoogleCloudGax
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudGax
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The response payload containing a list of the backups.
   public struct ListBackupsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

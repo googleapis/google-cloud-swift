@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Origin of a process.
 public struct Origin: Codable, Equatable, GoogleCloudWkt._AnyPackable,

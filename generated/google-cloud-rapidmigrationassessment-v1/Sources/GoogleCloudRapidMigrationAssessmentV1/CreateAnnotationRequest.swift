@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message for creating an AnnotationS.
 public struct CreateAnnotationRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

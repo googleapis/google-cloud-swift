@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// DEPRECATED. This message only presents for the purpose of
 /// backward-compatibility. The server will never populate this message in

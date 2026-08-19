@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A [Certificate][google.cloud.kms.v1.Certificate] represents an X.509
 /// certificate used to authenticate HTTPS connections to EKM replicas.

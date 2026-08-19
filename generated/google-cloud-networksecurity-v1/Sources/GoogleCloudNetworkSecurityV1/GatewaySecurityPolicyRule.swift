@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The GatewaySecurityPolicyRule resource is in a nested collection within a
 /// GatewaySecurityPolicy and represents a traffic matching condition and

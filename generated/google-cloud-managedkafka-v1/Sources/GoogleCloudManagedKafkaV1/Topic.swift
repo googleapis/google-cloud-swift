@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A Kafka topic in a given cluster.
 public struct Topic: Codable, Equatable, GoogleCloudWkt._AnyPackable,

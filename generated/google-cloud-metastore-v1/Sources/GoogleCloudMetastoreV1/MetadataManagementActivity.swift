@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The metadata management activities of the metastore service.
 public struct MetadataManagementActivity: Codable, Equatable, GoogleCloudWkt._AnyPackable,

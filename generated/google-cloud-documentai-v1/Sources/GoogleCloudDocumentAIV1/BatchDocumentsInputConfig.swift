@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The common config to specify a set of documents used as input.
 public struct BatchDocumentsInputConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A hub status entry represents the status of a set of propagated Private
 /// Service Connect connections grouped by certain fields.

@@ -16,7 +16,7 @@
 
 #if NodeGroups
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Time window specified for daily maintenance operations. GCE's internal
   /// maintenance will be performed within this window.

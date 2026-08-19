@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configuration for tools using Service Directory.
 public struct ServiceDirectoryConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

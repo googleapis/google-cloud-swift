@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// BackupLock represents a single lock on a Backup resource.  An unexpired
 /// lock on a Backup prevents the Backup from being deleted.

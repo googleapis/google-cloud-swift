@@ -16,7 +16,7 @@
 
 #if OrganizationSecurityPolicies
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   extension OrganizationSecurityPoliciesClient {
     /// Synthetic request message for the [addAssociation()][google.cloud.compute.v1.organizationSecurityPolicies.addAssociation] method.

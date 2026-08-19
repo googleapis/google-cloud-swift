@@ -16,7 +16,7 @@
 
 #if Flows
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The response message for
   /// [Flows.ImportFlow][google.cloud.dialogflow.cx.v3.Flows.ImportFlow].

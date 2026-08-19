@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configuration for how a reseller will reprice a Customer.
 public struct CustomerRepricingConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

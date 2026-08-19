@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A configuration for running a PySpark Notebook batch workload.
 public struct PySparkNotebookBatch: Codable, Equatable, GoogleCloudWkt._AnyPackable,

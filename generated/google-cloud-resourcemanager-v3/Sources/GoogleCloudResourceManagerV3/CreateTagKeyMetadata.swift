@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Runtime operation information for creating a TagKey.
 public struct CreateTagKeyMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if AcceleratorTypes
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   extension AcceleratorTypesClient {
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.acceleratorTypes.aggregatedList] method.

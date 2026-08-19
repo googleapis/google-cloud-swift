@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The entrypoint for the application.
 public struct Entrypoint: Codable, Equatable, GoogleCloudWkt._AnyPackable,

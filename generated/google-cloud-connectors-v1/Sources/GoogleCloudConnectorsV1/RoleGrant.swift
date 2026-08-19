@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// This configuration defines all the Cloud IAM roles that needs to be granted
 /// to a particular GCP resource for the selected prinicpal like service

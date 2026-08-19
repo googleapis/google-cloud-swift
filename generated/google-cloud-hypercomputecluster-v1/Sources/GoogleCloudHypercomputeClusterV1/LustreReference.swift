@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A reference to a [Managed
 /// Lustre](https://cloud.google.com/products/managed-lustre) instance.

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configures a RRSetRoutingPolicy that routes in a weighted round robin fashion.
 public struct RRSetRoutingPolicyWrrPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A route next hop that leads to an interconnect attachment resource.
 public struct NextHopInterconnectAttachment: Codable, Equatable, GoogleCloudWkt._AnyPackable,

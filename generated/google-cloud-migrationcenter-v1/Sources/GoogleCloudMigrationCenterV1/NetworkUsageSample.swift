@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Network usage sample. Values are across all network interfaces.
 public struct NetworkUsageSample: Codable, Equatable, GoogleCloudWkt._AnyPackable,

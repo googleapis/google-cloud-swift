@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for IndexAsset.
 public struct IndexAssetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

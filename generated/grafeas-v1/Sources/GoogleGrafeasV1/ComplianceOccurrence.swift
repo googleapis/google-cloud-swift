@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// An indication that the compliance checks in the associated ComplianceNote
 /// were not satisfied for particular resources or a specified reason.

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// This location metadata represents additional configuration options for a
 /// given location where a Redis instance may be created. All fields are output

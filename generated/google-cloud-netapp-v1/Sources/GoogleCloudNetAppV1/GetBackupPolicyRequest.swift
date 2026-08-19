@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// GetBackupPolicyRequest gets the state of a backupPolicy.
 public struct GetBackupPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

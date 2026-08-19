@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Generates an offline credential(offline) for a cluster.
 public struct GenerateOfflineCredentialRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

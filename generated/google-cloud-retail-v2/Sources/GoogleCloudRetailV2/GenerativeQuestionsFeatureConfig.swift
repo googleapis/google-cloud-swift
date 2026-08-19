@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configuration for overall generative question feature state.
 public struct GenerativeQuestionsFeatureConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

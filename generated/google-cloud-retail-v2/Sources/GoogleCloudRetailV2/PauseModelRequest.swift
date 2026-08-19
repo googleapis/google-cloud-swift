@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request for pausing training of a model.
 public struct PauseModelRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

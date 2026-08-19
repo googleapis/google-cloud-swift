@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The metadata of an LRO from deleting multiple versions.
 public struct BatchDeleteVersionsMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,

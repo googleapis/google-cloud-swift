@@ -16,7 +16,7 @@
 
 #if NodeGroups
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct NodeGroupsDeleteNodesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable

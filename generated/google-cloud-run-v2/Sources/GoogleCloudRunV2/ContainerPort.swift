@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// ContainerPort represents a network port in a single container.
 public struct ContainerPort: Codable, Equatable, GoogleCloudWkt._AnyPackable,

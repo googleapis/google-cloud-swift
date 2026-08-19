@@ -16,7 +16,7 @@
 
 #if ConversationProfiles || Conversations
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Defines the services to connect to incoming Dialogflow conversations.
   public struct ConversationProfile: Codable, Equatable, GoogleCloudWkt._AnyPackable,

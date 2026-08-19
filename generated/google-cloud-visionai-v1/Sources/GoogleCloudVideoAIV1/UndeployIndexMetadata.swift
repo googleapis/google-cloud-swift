@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Metadata message for UndeployIndex.
 public struct UndeployIndexMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,

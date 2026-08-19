@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Metadata related to the progress of the RemoveLocalInventories operation.
 /// Currently empty because there is no meaningful metadata populated from the

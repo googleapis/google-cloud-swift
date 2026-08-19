@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// ScopeFeatureSpec contains feature specs for a fleet scope.
 public struct ScopeFeatureSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,

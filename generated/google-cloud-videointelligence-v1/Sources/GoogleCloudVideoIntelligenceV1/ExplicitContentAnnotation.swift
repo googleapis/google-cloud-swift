@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Explicit content annotation (based on per-frame visual signals only).
 /// If no explicit content has been detected in a frame, no annotations are

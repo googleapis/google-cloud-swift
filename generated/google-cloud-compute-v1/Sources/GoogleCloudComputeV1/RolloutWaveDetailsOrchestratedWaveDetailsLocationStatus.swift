@@ -16,7 +16,7 @@
 
 #if Rollouts
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents the status of a location in a wave.
   public struct RolloutWaveDetailsOrchestratedWaveDetailsLocationStatus: Codable, Equatable,

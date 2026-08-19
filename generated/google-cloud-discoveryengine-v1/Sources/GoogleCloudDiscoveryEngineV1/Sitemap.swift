@@ -16,7 +16,7 @@
 
 #if SiteSearchEngineService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// A sitemap for the SiteSearchEngine.
   public struct Sitemap: Codable, Equatable, GoogleCloudWkt._AnyPackable,

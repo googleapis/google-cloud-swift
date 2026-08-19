@@ -16,7 +16,7 @@
 
 #if Experiments
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents an experiment in an environment.
   public struct Experiment: Codable, Equatable, GoogleCloudWkt._AnyPackable,

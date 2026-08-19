@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// An event signifying the start of a new step in a [migration from Cloud
 /// Datastore to Cloud Firestore in Datastore

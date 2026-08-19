@@ -16,7 +16,7 @@
 
 #if JobService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Parameters that configure the active learning pipeline. Active learning will
   ///  label the data incrementally by several iterations. For every iteration, it

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for restarting a Data Fusion instance.
 public struct RestartInstanceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

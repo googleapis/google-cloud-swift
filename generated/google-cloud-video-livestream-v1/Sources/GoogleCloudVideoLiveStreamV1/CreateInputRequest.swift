@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for "LivestreamService.CreateInput".
 public struct CreateInputRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

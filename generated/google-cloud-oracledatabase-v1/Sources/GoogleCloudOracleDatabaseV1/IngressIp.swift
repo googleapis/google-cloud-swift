@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The ingress IPs of the GoldengateDeployment.
 public struct IngressIp: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Resource-oriented representation of a request to Cloud KMS Autokey and the
 /// resulting provisioning of a [CryptoKey][google.cloud.kms.v1.CryptoKey].

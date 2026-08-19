@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message for getting a InterconnectAttachment
 public struct GetInterconnectAttachmentRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

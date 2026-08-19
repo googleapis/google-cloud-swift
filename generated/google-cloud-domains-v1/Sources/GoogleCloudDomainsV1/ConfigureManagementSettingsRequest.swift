@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request for the `ConfigureManagementSettings` method.
 public struct ConfigureManagementSettingsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

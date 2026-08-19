@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The request for `DbSystem.Delete`.
 public struct DeleteDbSystemRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

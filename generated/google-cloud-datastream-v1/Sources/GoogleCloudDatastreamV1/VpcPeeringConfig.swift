@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The VPC Peering configuration is used to create VPC peering between
 /// Datastream and the consumer's VPC.

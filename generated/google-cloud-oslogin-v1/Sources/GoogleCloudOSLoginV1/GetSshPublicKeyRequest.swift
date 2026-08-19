@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A request message for retrieving an SSH public key.
 public struct GetSshPublicKeyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A message with several interesting `oneof` fields.
 public struct MessageWithOneOf: Codable, Equatable, GoogleCloudWkt._AnyPackable,

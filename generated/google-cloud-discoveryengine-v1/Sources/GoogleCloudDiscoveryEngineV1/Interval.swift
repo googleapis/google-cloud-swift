@@ -16,7 +16,7 @@
 
 #if AssistantService || ConversationalSearchService || SearchService || ServingConfigService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// A floating point interval.
   public struct Interval: Codable, Equatable, GoogleCloudWkt._AnyPackable,

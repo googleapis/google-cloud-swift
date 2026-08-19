@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Aggregated statistics about an issue model.
 public struct IssueModelLabelStats: Codable, Equatable, GoogleCloudWkt._AnyPackable,

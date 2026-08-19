@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Settings for Python client libraries.
 public struct PythonSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,

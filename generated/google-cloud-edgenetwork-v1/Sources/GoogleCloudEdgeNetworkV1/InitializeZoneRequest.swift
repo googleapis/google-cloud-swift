@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message for initializing a specified zone
 public struct InitializeZoneRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

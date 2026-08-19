@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message for Updating a Floor Setting
 public struct UpdateFloorSettingRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

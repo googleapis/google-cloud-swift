@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message to get the install status of a developer mode deployment.
 public struct GetInstallStatusRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for updating a worker pool.
 public struct UpdateWorkerPoolRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

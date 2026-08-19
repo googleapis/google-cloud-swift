@@ -16,7 +16,7 @@
 
 #if CompletionService || DocumentService || UserEventService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
   import GoogleType
 
   /// BigQuery source import data from.

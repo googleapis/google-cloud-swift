@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Payload associated with Entry related log events.
 public struct EntryLinkEvent: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Security related configuration, including encryption, Kerberos, etc.
 public struct SecurityConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

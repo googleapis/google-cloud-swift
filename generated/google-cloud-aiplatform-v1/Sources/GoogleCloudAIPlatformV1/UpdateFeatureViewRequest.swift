@@ -16,7 +16,7 @@
 
 #if FeatureOnlineStoreAdminService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Request message for
   /// [FeatureOnlineStoreAdminService.UpdateFeatureView][google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService.UpdateFeatureView].

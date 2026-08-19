@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A `ReferenceImage` represents a product image and its associated metadata,
 /// such as bounding boxes.

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Execution log of a background job.
 public struct BackgroundJobLogEntry: Codable, Equatable, GoogleCloudWkt._AnyPackable,

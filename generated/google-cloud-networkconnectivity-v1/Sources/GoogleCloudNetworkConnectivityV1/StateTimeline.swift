@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The timeline of the pending states for a resource.
 public struct StateTimeline: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Logical element on the page.
 public struct Block: Codable, Equatable, GoogleCloudWkt._AnyPackable,

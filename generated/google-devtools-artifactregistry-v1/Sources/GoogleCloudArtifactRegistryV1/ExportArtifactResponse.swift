@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The response for exporting an artifact to a destination.
 public struct ExportArtifactResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configurations for an integer property.
 public struct IntegerTypeOptions: Codable, Equatable, GoogleCloudWkt._AnyPackable,

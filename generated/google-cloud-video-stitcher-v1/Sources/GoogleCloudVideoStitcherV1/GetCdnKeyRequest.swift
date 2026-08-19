@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for VideoStitcherService.getCdnKey.
 public struct GetCdnKeyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if InstanceTemplates || Instances || MachineImages || RegionInstanceTemplates || RegionInstances
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Specifies the reservations that this instance can consume from.
   public struct ReservationAffinity: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if SqlBackupRunsService || SqlBackupsService || SqlDatabasesService || SqlInstancesService || SqlOperationsService || SqlSslCertsService || SqlUsersService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The sub operation type based on the operation type.
   public struct SqlSubOperationType: Codable, Equatable, GoogleCloudWkt._AnyPackable,

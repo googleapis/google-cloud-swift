@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// MembershipState describes the state of a Membership resource.
 public struct MembershipState: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Per-Site Status.
 public struct NFDeploySiteStatus: Codable, Equatable, GoogleCloudWkt._AnyPackable,

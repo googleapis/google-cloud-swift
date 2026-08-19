@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// ListNodePoolsRequest lists the node pool(s) for a cluster.
 public struct ListNodePoolsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

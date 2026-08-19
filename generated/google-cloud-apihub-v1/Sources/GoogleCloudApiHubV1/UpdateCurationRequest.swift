@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The [UpdateCuration][ApiHub.UpdateCuration] method's request.
 public struct UpdateCurationRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

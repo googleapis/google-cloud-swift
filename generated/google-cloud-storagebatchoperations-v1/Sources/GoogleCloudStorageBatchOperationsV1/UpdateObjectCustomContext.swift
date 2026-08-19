@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Describes options to update object custom contexts.
 public struct UpdateObjectCustomContext: Codable, Equatable, GoogleCloudWkt._AnyPackable,

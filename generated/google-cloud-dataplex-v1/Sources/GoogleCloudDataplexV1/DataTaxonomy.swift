@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// DataTaxonomy represents a set of hierarchical DataAttributes resources,
 /// grouped with a common theme Eg: 'SensitiveDataTaxonomy' can have attributes

@@ -16,7 +16,7 @@
 
 #if Agents
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The response message for
   /// [Agents.ExportAgent][google.cloud.dialogflow.v2.Agents.ExportAgent].

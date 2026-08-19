@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Certificate of the execution of a specific transaction in a round.
 public struct TransactionCertificate: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// An asset identifier in Google Cloud which contains its name, type and
 /// ancestors. An asset can be any resource in the Google Cloud [resource

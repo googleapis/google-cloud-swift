@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Node pool configs that apply to all auto-provisioned node pools
 /// in autopilot clusters and node auto-provisioning enabled clusters.

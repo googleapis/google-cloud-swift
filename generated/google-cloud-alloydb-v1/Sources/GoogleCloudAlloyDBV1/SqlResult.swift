@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// SqlResult represents the result for the execution of a sql statement.
 public struct SqlResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,

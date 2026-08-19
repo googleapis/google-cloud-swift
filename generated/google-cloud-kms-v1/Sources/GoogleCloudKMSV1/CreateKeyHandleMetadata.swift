@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Metadata message for
 /// [CreateKeyHandle][google.cloud.kms.v1.Autokey.CreateKeyHandle] long-running

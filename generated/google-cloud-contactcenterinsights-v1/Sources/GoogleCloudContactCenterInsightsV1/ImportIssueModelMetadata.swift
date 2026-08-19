@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Metadata used for import issue model.
 public struct ImportIssueModelMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,

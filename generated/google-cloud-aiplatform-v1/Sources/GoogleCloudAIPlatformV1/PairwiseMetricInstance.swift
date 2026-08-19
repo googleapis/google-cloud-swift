@@ -16,7 +16,7 @@
 
 #if EvaluationService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Pairwise metric instance. Usually one instance corresponds to one row in an
   /// evaluation dataset.

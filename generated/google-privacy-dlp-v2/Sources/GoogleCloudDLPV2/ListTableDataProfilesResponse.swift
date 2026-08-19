@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudGax
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudGax
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// List of profiles generated for a given organization or project.
 public struct ListTableDataProfilesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

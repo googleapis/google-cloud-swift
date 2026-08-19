@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Transactions for token issuance and minting.
 /// Notifies the network that the target account has deposited reserve funds and

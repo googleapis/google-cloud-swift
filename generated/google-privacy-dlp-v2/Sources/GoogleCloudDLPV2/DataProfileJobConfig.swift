@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configuration for setting up a job to scan resources for profile generation.
 /// Only one data profile configuration may exist per organization, folder,

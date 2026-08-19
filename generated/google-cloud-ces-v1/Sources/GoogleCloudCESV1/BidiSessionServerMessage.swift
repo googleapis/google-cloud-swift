@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The top-level message returned from
 /// [SessionService.BidiRunSession][google.cloud.ces.v1.SessionService.BidiRunSession]

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// EphemeralStorageLocalSsdConfig contains configuration for the node ephemeral
 /// storage using Local SSDs.

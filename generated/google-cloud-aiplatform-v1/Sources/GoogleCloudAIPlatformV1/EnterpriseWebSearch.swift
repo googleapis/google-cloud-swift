@@ -16,7 +16,7 @@
 
 #if GenAiCacheService || LlmUtilityService || PredictionService || VertexRagService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Tool to search public web data, powered by Vertex AI Search and Sec4
   /// compliance.

@@ -16,7 +16,7 @@
 
 #if ReasoningEngineService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Request message for
   /// [ReasoningEngineService.DeleteReasoningEngine][google.cloud.aiplatform.v1.ReasoningEngineService.DeleteReasoningEngine].

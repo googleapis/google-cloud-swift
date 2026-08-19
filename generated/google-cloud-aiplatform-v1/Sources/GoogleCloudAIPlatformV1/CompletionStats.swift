@@ -16,7 +16,7 @@
 
 #if JobService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Success and error statistics of processing multiple entities
   /// (for example, DataItems or structured data rows) in batch.

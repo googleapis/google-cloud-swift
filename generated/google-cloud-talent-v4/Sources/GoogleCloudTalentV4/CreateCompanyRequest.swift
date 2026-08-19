@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The Request of the CreateCompany method.
 public struct CreateCompanyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

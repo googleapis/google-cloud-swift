@@ -16,7 +16,7 @@
 
 #if UrlMaps
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct UrlMapsScopedList: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable

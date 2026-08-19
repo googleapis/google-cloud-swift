@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Determines what tables will have profiles generated within an organization
 /// or project. Includes the ability to filter by regular expression patterns

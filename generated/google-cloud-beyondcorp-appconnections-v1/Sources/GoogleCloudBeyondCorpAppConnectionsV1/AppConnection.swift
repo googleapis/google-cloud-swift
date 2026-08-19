@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A BeyondCorp AppConnection resource represents a BeyondCorp protected
 /// AppConnection to a remote application. It creates all the necessary GCP

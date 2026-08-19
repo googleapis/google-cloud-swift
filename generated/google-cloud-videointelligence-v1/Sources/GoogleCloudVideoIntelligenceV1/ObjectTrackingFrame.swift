@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Video frame level annotations for object detection and tracking. This field
 /// stores per frame location, time offset, and confidence.

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// UpgradeInfoEvent is a notification sent to customers about the upgrade
 /// information of a resource.

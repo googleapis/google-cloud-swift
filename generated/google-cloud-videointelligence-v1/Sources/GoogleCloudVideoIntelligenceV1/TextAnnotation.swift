@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Annotations related to one detected OCR text snippet. This will contain the
 /// corresponding text, confidence value, and frame level information for each

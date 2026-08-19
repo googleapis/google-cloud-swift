@@ -16,7 +16,7 @@
 
 #if IndexService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Response message for
   /// [IndexService.RemoveDatapoints][google.cloud.aiplatform.v1.IndexService.RemoveDatapoints]

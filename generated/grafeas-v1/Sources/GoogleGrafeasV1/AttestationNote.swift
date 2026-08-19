@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Note kind that represents a logical attestation "role" or "authority". For
 /// example, an organization might have one `Authority` for "QA" and one for

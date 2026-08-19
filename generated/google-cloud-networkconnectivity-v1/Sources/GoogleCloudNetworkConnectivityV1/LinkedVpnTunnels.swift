@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A collection of Cloud VPN tunnel resources. These resources should be
 /// redundant HA VPN tunnels that all advertise the same prefixes to Google

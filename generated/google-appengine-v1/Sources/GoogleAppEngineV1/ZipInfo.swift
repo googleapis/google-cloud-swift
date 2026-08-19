@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The zip file information for a zip deployment.
 public struct ZipInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Responsible AI Filter settings.
 public struct RaiFilterSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,

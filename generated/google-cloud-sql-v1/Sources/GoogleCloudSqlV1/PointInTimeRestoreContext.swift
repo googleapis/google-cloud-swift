@@ -16,7 +16,7 @@
 
 #if SqlInstancesService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The context to perform a point-in-time recovery of an instance managed by
   /// Backup and Disaster Recovery (DR) Service.

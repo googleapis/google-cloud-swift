@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// VerifyJobRun contains information specific to a verify `JobRun`.
 public struct VerifyJobRun: Codable, Equatable, GoogleCloudWkt._AnyPackable,

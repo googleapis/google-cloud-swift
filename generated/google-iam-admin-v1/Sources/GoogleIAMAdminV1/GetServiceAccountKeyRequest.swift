@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The service account key get by id request.
 public struct GetServiceAccountKeyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

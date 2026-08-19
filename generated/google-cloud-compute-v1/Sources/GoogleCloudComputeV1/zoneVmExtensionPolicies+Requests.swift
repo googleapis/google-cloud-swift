@@ -16,7 +16,7 @@
 
 #if ZoneVmExtensionPolicies
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   extension ZoneVmExtensionPoliciesClient {
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.zoneVmExtensionPolicies.delete] method.

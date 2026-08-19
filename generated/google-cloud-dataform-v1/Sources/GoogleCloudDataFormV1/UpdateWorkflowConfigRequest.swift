@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// `UpdateWorkflowConfig` request message.
 public struct UpdateWorkflowConfigRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

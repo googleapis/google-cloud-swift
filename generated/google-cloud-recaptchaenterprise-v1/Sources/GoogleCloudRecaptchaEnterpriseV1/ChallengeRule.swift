@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A rule to configure the behavior of reCAPTCHA for conditionally presenting a
 /// challenge.

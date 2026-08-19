@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Contains information about the AI model associated with the finding.
 public struct AiModel: Codable, Equatable, GoogleCloudWkt._AnyPackable,

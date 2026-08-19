@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// ThresholdRule contains the definition of a threshold. Threshold rules define
 /// the triggering events used to generate a budget notification email. When a

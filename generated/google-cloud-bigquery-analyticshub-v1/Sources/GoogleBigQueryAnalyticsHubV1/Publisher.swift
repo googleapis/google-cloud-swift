@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Contains details of the listing publisher.
 public struct Publisher: Codable, Equatable, GoogleCloudWkt._AnyPackable,

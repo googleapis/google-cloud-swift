@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The response message from importing YUM artifacts.
 public struct ImportYumArtifactsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

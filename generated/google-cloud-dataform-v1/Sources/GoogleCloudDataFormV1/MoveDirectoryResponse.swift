@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// `MoveDirectory` response message.
 public struct MoveDirectoryResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

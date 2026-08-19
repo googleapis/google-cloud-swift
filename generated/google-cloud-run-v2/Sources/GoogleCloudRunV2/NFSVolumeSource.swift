@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents an NFS mount.
 public struct NFSVolumeSource: Codable, Equatable, GoogleCloudWkt._AnyPackable,

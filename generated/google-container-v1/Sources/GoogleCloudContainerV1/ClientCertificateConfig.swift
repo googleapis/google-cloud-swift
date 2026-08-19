@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configuration for client certificates on the cluster.
 public struct ClientCertificateConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

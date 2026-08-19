@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Malicious URI filter settings.
 public struct MaliciousUriFilterSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,

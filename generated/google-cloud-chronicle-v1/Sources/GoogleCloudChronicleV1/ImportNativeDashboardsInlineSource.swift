@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Inline source for importing dashboards.
 public struct ImportNativeDashboardsInlineSource: Codable, Equatable, GoogleCloudWkt._AnyPackable,

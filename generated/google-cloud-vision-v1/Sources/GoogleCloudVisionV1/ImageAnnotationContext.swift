@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// If an image was produced from a file (e.g. a PDF), this message gives
 /// information about the source of that image.

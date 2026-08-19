@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Disk usage sample. Values are across all disks.
 public struct DiskUsageSample: Codable, Equatable, GoogleCloudWkt._AnyPackable,

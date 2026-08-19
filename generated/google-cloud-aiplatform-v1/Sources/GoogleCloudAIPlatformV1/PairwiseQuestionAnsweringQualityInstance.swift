@@ -16,7 +16,7 @@
 
 #if EvaluationService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Spec for pairwise question answering quality instance.
   public struct PairwiseQuestionAnsweringQualityInstance: Codable, Equatable, GoogleCloudWkt

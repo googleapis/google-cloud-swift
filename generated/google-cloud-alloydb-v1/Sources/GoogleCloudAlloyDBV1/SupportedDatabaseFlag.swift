@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// SupportedDatabaseFlag gives general information about a database flag,
 /// like type and allowed values. This is a static value that is defined

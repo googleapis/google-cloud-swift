@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Literal data.
 public struct Literal: Codable, Equatable, GoogleCloudWkt._AnyPackable,

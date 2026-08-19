@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Response to export registered parties request.
 public struct ExportRegisteredPartiesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

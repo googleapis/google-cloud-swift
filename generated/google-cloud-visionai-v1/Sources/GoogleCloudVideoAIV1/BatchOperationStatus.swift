@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The batch operation status.
 public struct BatchOperationStatus: Codable, Equatable, GoogleCloudWkt._AnyPackable,

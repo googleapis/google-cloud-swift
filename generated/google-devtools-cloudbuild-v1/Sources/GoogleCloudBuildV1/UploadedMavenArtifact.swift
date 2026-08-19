@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A Maven artifact uploaded using the MavenArtifact directive.
 public struct UploadedMavenArtifact: Codable, Equatable, GoogleCloudWkt._AnyPackable,

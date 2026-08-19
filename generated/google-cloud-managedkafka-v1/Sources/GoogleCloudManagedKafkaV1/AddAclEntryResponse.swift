@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Response for AddAclEntry.
 public struct AddAclEntryResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

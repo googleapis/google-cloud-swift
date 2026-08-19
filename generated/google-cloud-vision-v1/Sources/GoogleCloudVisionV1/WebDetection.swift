@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Relevant information for the image from the Internet.
 public struct WebDetection: Codable, Equatable, GoogleCloudWkt._AnyPackable,

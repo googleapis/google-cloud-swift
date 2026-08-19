@@ -16,7 +16,7 @@
 
 #if GlobalPublicDelegatedPrefixes || PublicDelegatedPrefixes
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// A PublicDelegatedPrefix resource represents an IP block within a
   /// PublicAdvertisedPrefix that is configured within a single cloud scope

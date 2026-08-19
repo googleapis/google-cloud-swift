@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Output format for Personal Protective Equipment Detection Operator.
 public struct PersonalProtectiveEquipmentDetectionOutput: Codable, Equatable, GoogleCloudWkt

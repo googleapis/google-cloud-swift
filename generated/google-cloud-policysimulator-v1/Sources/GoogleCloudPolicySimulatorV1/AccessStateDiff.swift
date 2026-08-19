@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A summary and comparison of the principal's access under the current
 /// (baseline) policies and the proposed (simulated) policies for a single

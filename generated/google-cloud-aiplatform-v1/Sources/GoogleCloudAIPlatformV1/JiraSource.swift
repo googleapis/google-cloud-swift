@@ -16,7 +16,7 @@
 
 #if VertexRagDataService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The Jira source for the ImportRagFilesRequest.
   public struct JiraSource: Codable, Equatable, GoogleCloudWkt._AnyPackable,

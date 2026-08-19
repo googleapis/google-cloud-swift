@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Metadata for UploadAsset.
 public struct UploadAssetMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,

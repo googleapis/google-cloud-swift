@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// TerraformBlueprint describes the source of a Terraform root module which
 /// describes the resources and configs to be deployed.

@@ -16,7 +16,7 @@
 
 import Foundation
 import GoogleCloudOSLoginCommon
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The user profile information used for logging in to a virtual machine on
 /// Google Compute Engine.

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Describes details about the progress of the job.
 public struct Counters: Codable, Equatable, GoogleCloudWkt._AnyPackable,

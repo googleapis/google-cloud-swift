@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Googet patching is performed by running `googet update`.
 public struct GooSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,

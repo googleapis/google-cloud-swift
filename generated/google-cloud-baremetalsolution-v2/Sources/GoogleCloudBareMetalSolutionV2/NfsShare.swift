@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// An NFS share.
 public struct NfsShare: Codable, Equatable, GoogleCloudWkt._AnyPackable,

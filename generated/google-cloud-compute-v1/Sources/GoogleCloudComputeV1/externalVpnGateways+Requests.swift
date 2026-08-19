@@ -16,7 +16,7 @@
 
 #if ExternalVpnGateways
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   extension ExternalVpnGatewaysClient {
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.externalVpnGateways.delete] method.

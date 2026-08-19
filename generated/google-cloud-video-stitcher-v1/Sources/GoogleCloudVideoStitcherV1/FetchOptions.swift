@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Options on how fetches should be made.
 public struct FetchOptions: Codable, Equatable, GoogleCloudWkt._AnyPackable,

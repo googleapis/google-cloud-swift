@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Rules to generate time breaks for a vehicle (e.g. lunch breaks). A break
 /// is a contiguous period of time during which the vehicle remains idle at its

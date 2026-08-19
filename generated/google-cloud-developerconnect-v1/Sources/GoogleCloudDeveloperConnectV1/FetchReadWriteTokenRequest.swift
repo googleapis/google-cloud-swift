@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message for fetching SCM read/write token.
 public struct FetchReadWriteTokenRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

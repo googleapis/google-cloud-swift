@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Filter for fixed point number data types such as NUMERIC/NUMBER
 public struct SourceNumericFilter: Codable, Equatable, GoogleCloudWkt._AnyPackable,

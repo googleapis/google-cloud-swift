@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Response message from resetting a server.
 public struct ResetInstanceResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if IdentityMappingStoreService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// IdentityMappingEntry LongRunningOperation metadata for
   /// [IdentityMappingStoreService.ImportIdentityMappings][google.cloud.discoveryengine.v1.IdentityMappingStoreService.ImportIdentityMappings]

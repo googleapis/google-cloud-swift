@@ -16,7 +16,7 @@
 
 #if GlobalVmExtensionPolicies
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct VmExtensionPoliciesScopedList: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable

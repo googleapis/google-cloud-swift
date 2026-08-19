@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Payload for EgressRequest.
 public struct Payload: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// AcceleratorConfig represents a Hardware Accelerator request.
 public struct AcceleratorConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

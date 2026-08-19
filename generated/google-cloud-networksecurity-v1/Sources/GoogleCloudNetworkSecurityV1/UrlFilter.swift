@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A URL filter defines an action to take for some URL match.
 public struct UrlFilter: Codable, Equatable, GoogleCloudWkt._AnyPackable,

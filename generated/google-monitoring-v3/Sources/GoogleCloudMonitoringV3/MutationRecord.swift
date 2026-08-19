@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Describes a change made to a configuration.
 public struct MutationRecord: Codable, Equatable, GoogleCloudWkt._AnyPackable,

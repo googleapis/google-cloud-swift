@@ -16,7 +16,7 @@
 
 #if Sessions || TestCases
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The result of calling a tool's action that has been executed by the client.
   public struct ToolCallResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,

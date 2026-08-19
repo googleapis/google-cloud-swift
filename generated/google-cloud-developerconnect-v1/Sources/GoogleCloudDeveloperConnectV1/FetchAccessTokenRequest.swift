@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message for fetching an OAuth access token.
 public struct FetchAccessTokenRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

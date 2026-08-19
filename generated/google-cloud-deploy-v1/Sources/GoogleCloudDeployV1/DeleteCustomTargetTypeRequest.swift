@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The request object for `DeleteCustomTargetType`.
 public struct DeleteCustomTargetTypeRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

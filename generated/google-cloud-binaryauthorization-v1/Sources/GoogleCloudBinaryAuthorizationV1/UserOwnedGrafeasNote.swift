@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// An [user owned Grafeas
 /// note][google.cloud.binaryauthorization.v1.UserOwnedGrafeasNote] references a

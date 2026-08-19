@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudGax
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudGax
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message for response to the listing of subscriptions.
 public struct ListSubscriptionsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

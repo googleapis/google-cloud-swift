@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Defines what action to take for a specific threat_id match.
 public struct ThreatOverride: Codable, Equatable, GoogleCloudWkt._AnyPackable,

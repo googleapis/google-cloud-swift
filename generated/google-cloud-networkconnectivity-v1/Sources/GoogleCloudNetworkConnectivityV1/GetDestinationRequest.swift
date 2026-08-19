@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message to get the details of a `Destination` resource.
 public struct GetDestinationRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

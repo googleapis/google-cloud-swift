@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for 'GetDiskMigrationJob' request.
 public struct GetDiskMigrationJobRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

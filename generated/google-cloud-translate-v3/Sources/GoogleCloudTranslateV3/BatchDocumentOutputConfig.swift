@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Output configuration for BatchTranslateDocument request.
 public struct BatchDocumentOutputConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

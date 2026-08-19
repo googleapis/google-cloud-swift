@@ -16,7 +16,7 @@
 
 #if GroundedGenerationService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Request message for
   /// [GroundedGenerationService.CheckGrounding][google.cloud.discoveryengine.v1.GroundedGenerationService.CheckGrounding]

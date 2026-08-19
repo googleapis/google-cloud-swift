@@ -16,7 +16,7 @@
 
 #if RegionUrlMaps || UrlMaps
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Specification for how requests are aborted as part of fault injection.
   public struct HttpFaultAbort: Codable, Equatable, GoogleCloudWkt._AnyPackable,

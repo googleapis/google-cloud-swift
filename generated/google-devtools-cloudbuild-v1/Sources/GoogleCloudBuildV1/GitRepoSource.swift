@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// GitRepoSource describes a repo and ref of a code repository.
 public struct GitRepoSource: Codable, Equatable, GoogleCloudWkt._AnyPackable,

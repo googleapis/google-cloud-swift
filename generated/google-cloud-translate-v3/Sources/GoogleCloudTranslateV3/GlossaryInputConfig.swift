@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Input configuration for glossaries.
 public struct GlossaryInputConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if SessionService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Request message for
   /// [SessionService.ListEvents][google.cloud.aiplatform.v1.SessionService.ListEvents].

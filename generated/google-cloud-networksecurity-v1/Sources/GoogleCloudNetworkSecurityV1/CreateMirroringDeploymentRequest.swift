@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for CreateMirroringDeployment.
 public struct CreateMirroringDeploymentRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

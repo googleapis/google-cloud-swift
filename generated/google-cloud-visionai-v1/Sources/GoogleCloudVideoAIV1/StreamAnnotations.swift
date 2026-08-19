@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A wrapper of repeated StreamAnnotation.
 public struct StreamAnnotations: Codable, Equatable, GoogleCloudWkt._AnyPackable,

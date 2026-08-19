@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The request message to list related account groups.
 public struct ListRelatedAccountGroupsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

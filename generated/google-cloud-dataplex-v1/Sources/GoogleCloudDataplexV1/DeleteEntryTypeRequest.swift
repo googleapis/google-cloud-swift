@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Delete EntryType Request.
 public struct DeleteEntryTypeRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

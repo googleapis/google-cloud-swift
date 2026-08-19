@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configuration for sync Secret Manager secrets as k8s secrets.
 public struct SecretSyncConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

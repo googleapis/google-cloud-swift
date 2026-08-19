@@ -16,7 +16,7 @@
 
 #if BackendBuckets || BackendServices || Disks || FirewallPolicies || Images || InstanceTemplates || Instances || InstantSnapshotGroups || InstantSnapshots || InterconnectAttachmentGroups || InterconnectGroups || LicenseCodes || Licenses || MachineImages || NetworkAttachments || NetworkFirewallPolicies || NodeGroups || NodeTemplates || RegionBackendBuckets || RegionBackendServices || RegionDisks || RegionInstantSnapshotGroups || RegionInstantSnapshots || RegionNetworkFirewallPolicies || RegionSnapshots || ReservationBlocks || ReservationSubBlocks || Reservations || ResourcePolicies || ServiceAttachments || Snapshots || StoragePools || Subnetworks
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Associates `members`, or principals, with a `role`.
   public struct Binding: Codable, Equatable, GoogleCloudWkt._AnyPackable,

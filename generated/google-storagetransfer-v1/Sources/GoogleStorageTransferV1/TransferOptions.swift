@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// TransferOptions define the actions to be performed on objects in a transfer.
 public struct TransferOptions: Codable, Equatable, GoogleCloudWkt._AnyPackable,

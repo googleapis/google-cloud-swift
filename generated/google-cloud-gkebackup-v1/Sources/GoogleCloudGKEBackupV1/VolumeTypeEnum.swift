@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message to encapsulate VolumeType enum.
 public struct VolumeTypeEnum: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// An SLI measuring performance on a well-known service type. Performance will
 /// be computed on the basis of pre-defined metrics. The type of the

@@ -16,7 +16,7 @@
 
 #if VertexRagDataService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Specifies the size and overlap of chunks for RagFiles.
   public struct RagFileChunkingConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

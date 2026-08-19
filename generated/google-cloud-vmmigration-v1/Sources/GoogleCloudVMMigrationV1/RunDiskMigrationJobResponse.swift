@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Response message for 'RunDiskMigrationJob' request.
 public struct RunDiskMigrationJobResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

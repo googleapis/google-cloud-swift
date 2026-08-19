@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Properties of the audio format.
 public struct AudioFormat: Codable, Equatable, GoogleCloudWkt._AnyPackable,

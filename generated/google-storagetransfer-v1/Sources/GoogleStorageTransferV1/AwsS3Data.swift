@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// An AwsS3Data resource can be a data source, but not a data sink.
 /// In an AwsS3Data resource, an object's name is the S3 object's key name.

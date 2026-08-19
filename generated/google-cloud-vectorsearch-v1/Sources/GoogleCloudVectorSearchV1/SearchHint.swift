@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents a hint to the search index engine.
 public struct SearchHint: Codable, Equatable, GoogleCloudWkt._AnyPackable,

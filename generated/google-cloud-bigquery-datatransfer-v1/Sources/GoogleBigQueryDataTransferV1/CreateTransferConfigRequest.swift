@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A request to create a data transfer configuration. If new credentials are
 /// needed for this transfer configuration, authorization info must be provided.

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A note that indicates a type of analysis a provider would perform. This note
 /// exists in a provider's project. A `Discovery` occurrence is created in a

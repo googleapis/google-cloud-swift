@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The runtime logging config of the job.
 public struct LoggingConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// All the findings for a single scanned item.
 public struct InspectResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,

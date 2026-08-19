@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Constraint is not used as an independent entity, it is retrieved
 /// as part of another entity such as Table or View.

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The input config for BigQuery tables.
 public struct BigQueryInputConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

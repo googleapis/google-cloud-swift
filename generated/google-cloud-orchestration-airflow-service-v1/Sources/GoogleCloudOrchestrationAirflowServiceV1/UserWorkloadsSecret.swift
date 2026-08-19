@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// User workloads Secret used by Airflow tasks that run with Kubernetes executor
 /// or KubernetesPodOperator.

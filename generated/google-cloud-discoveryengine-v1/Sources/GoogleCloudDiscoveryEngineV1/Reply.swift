@@ -16,7 +16,7 @@
 
 #if ConversationalSearchService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Defines a reply message to user.
   public struct Reply: Codable, Equatable, GoogleCloudWkt._AnyPackable,

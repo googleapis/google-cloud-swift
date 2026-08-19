@@ -16,7 +16,7 @@
 
 #if AcceleratorTypes
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents an Accelerator Type resource.
   ///

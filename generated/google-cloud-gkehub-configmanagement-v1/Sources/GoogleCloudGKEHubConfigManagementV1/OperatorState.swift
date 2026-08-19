@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// State information for an ACM's Operator
 public struct OperatorState: Codable, Equatable, GoogleCloudWkt._AnyPackable,

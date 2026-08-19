@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for ApiGatewayService.DeleteApi
 public struct DeleteApiRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

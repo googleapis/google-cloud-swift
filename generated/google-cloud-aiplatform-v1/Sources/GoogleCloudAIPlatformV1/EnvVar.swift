@@ -16,7 +16,7 @@
 
 #if DatasetService || JobService || ModelGardenService || ModelService || NotebookService || PipelineService || ReasoningEngineService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents an environment variable present in a Container or Python Module.
   public struct EnvVar: Codable, Equatable, GoogleCloudWkt._AnyPackable,

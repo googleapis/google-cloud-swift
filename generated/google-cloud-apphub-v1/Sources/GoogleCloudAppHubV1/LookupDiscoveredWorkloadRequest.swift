@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request for LookupDiscoveredWorkload.
 public struct LookupDiscoveredWorkloadRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Rules to match an HTTP request and dispatch that request to a service.
 public struct UrlDispatchRule: Codable, Equatable, GoogleCloudWkt._AnyPackable,

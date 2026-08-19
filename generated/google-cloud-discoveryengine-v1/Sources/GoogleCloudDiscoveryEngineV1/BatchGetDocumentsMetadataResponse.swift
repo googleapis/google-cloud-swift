@@ -16,7 +16,7 @@
 
 #if DocumentService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Response message for
   /// [DocumentService.BatchGetDocumentsMetadata][google.cloud.discoveryengine.v1.DocumentService.BatchGetDocumentsMetadata]

@@ -16,7 +16,7 @@
 
 #if EvaluationService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Spec for bleu instance.
   public struct BleuInstance: Codable, Equatable, GoogleCloudWkt._AnyPackable,

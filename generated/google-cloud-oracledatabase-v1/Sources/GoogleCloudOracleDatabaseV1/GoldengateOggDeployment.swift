@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The Ogg data of the GoldengateDeployment.
 public struct GoldengateOggDeployment: Codable, Equatable, GoogleCloudWkt._AnyPackable,

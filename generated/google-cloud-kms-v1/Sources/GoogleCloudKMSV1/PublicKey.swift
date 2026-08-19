@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The public keys for a given
 /// [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]. Obtained via

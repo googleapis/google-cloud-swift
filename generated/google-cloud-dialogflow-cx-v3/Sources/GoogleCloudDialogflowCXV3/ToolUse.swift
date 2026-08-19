@@ -16,7 +16,7 @@
 
 #if Examples || Playbooks || Sessions
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Stores metadata of the invocation of an action supported by a tool.
   public struct ToolUse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

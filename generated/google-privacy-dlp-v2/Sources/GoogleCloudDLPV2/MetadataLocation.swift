@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Metadata Location
 public struct MetadataLocation: Codable, Equatable, GoogleCloudWkt._AnyPackable,

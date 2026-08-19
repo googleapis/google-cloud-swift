@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Identity lets the user provide the type of identity to use, and outputs
 /// the identity string that can be used for IAM policy changes.

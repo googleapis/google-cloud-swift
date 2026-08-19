@@ -16,7 +16,7 @@
 
 #if VertexRagDataService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Config for the Vertex AI Search.
   public struct VertexAiSearchConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

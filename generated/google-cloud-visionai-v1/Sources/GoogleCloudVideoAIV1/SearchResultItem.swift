@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Search result contains asset name and corresponding time ranges.
 public struct SearchResultItem: Codable, Equatable, GoogleCloudWkt._AnyPackable,

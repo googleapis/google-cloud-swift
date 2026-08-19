@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Log entry that describes a report from Network Analyzer.
 public struct Report: Codable, Equatable, GoogleCloudWkt._AnyPackable,

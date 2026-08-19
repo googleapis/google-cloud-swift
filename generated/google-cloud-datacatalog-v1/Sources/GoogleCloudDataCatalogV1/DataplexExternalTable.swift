@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// External table registered by Dataplex.
 /// Dataplex publishes data discovered from an asset into multiple other systems

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message for requesting list of grants.
 public struct ListGrantsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

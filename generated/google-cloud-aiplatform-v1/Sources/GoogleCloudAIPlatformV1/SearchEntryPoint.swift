@@ -16,7 +16,7 @@
 
 #if PredictionService || SessionService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Google search entry point.
   public struct SearchEntryPoint: Codable, Equatable, GoogleCloudWkt._AnyPackable,

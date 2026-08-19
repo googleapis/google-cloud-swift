@@ -16,7 +16,7 @@
 
 #if InstanceGroupManagers || RegionInstanceGroupManagers
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents the change that you want to make to the instance properties.
   public struct InstancePropertiesPatch: Codable, Equatable, GoogleCloudWkt._AnyPackable,

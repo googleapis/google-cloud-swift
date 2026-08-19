@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Details of the derived image portion of the DockerImage relationship. This
 /// image would be produced from a Dockerfile with FROM <DockerImage.Basis in

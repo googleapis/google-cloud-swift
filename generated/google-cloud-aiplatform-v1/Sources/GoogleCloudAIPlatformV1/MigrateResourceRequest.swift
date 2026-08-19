@@ -16,7 +16,7 @@
 
 #if MigrationService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Config of migrating one resource from automl.googleapis.com,
   /// datalabeling.googleapis.com and ml.googleapis.com to Vertex AI.

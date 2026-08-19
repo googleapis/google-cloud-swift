@@ -16,7 +16,7 @@
 
 #if Agents && AnswerRecords && Contexts && ConversationDatasets && ConversationModels && ConversationProfiles && Conversations && Documents && EncryptionSpecService && EntityTypes && Environments && Fulfillments && GeneratorEvaluations && Generators && Intents && KnowledgeBases && Participants && SessionEntityTypes && Sessions && SipTrunks && Tools && Versions
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The request message for a webhook call.
   public struct WebhookRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

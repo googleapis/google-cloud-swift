@@ -16,7 +16,7 @@
 
 #if SqlUsersService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// User level password validation policy.
   public struct UserPasswordValidationPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,

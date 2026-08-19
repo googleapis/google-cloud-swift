@@ -16,7 +16,7 @@
 
 #if SqlInstancesService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Instance perform disk shrink request.
   public struct SqlInstancesPerformDiskShrinkRequest: Codable, Equatable, GoogleCloudWkt

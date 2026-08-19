@@ -16,7 +16,7 @@
 
 #if AssistantService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Response for the
   /// [AssistantService.StreamAssist][google.cloud.discoveryengine.v1.AssistantService.StreamAssist]

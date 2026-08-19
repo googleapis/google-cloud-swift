@@ -16,7 +16,7 @@
 
 #if Deployments
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The request message for
   /// [Deployments.ListDeployments][google.cloud.dialogflow.cx.v3.Deployments.ListDeployments].

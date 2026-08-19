@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Parameters that can be configured on Linux nodes.
 public struct LinuxNodeConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

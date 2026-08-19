@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Usage metrics represent approximate total resources consumed by a workload.
 public struct UsageMetrics: Codable, Equatable, GoogleCloudWkt._AnyPackable,

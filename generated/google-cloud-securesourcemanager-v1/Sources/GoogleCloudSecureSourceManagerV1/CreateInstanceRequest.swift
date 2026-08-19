@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// CreateInstanceRequest is the request for creating an instance.
 public struct CreateInstanceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

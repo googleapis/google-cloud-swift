@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// An IndexedAsset is an asset that the index is built upon.
 public struct IndexedAsset: Codable, Equatable, GoogleCloudWkt._AnyPackable,

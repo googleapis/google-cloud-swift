@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// `Visibility` restricts service consumer's access to service elements,
 /// such as whether an application can call a visibility-restricted method.

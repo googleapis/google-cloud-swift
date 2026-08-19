@@ -16,7 +16,7 @@
 
 #if ReservationSlots
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents a reservation slot resource.
   public struct ReservationSlot: Codable, Equatable, GoogleCloudWkt._AnyPackable,

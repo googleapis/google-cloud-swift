@@ -16,7 +16,7 @@
 
 #if InstantSnapshots
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   extension InstantSnapshotsClient {
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.instantSnapshots.aggregatedList] method.

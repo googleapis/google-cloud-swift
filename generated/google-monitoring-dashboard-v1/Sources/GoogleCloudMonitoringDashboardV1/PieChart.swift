@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A widget that displays timeseries data as a pie or a donut.
 public struct PieChart: Codable, Equatable, GoogleCloudWkt._AnyPackable,

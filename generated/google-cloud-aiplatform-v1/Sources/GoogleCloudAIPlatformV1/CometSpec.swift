@@ -16,7 +16,7 @@
 
 #if EvaluationService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Spec for Comet metric.
   public struct CometSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,

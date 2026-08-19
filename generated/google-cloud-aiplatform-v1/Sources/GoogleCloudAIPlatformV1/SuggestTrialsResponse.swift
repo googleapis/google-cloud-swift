@@ -16,7 +16,7 @@
 
 #if VizierService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Response message for
   /// [VizierService.SuggestTrials][google.cloud.aiplatform.v1.VizierService.SuggestTrials].

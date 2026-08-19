@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Volume represents a named volume in a container.
 public struct Volume: Codable, Equatable, GoogleCloudWkt._AnyPackable,

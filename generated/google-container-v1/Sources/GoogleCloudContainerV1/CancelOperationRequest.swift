@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// CancelOperationRequest cancels a single operation.
 public struct CancelOperationRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

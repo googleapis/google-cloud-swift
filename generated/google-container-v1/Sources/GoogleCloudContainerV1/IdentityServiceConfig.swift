@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// IdentityServiceConfig is configuration for Identity Service which allows
 /// customers to use external identity providers with the K8S API

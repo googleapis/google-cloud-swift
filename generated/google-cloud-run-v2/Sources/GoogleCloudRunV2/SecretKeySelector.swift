@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// SecretEnvVarSource represents a source for the value of an EnvVar.
 public struct SecretKeySelector: Codable, Equatable, GoogleCloudWkt._AnyPackable,

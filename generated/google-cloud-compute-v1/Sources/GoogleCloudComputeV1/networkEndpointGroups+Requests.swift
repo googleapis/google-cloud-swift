@@ -16,7 +16,7 @@
 
 #if NetworkEndpointGroups
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   extension NetworkEndpointGroupsClient {
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.networkEndpointGroups.aggregatedList] method.

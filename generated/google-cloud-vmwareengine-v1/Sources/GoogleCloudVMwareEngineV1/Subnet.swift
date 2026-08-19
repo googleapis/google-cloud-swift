@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Subnet in a private cloud. Either `management` subnets (such as vMotion) that
 /// are read-only, or `userDefined`, which can also be updated.

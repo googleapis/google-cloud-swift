@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 import GoogleIAMV1
 
 /// Details about how a specific IAM [Policy][google.iam.v1.Policy] contributed

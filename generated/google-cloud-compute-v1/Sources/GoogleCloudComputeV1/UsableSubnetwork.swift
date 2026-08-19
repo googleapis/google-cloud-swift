@@ -16,7 +16,7 @@
 
 #if Subnetworks
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Subnetwork which the current user has compute.subnetworks.use permission on.
   public struct UsableSubnetwork: Codable, Equatable, GoogleCloudWkt._AnyPackable,

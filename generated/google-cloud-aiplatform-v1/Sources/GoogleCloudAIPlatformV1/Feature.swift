@@ -16,7 +16,7 @@
 
 #if FeatureRegistryService || FeaturestoreService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Feature Metadata information.
   /// For example, color is a feature that describes an apple.

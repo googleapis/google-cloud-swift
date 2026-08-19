@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Metadata for a VOD session. The session expires 4 hours after its creation.
 public struct VodSession: Codable, Equatable, GoogleCloudWkt._AnyPackable,

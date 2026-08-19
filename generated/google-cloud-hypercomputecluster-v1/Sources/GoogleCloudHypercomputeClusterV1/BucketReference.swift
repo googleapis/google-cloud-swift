@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A reference to a [Google Cloud Storage](https://cloud.google.com/storage)
 /// bucket.

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Bot information and metadata.
 public struct Bot: Codable, Equatable, GoogleCloudWkt._AnyPackable,

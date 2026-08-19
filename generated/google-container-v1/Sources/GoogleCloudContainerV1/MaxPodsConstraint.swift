@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Constraints applied to pods.
 public struct MaxPodsConstraint: Codable, Equatable, GoogleCloudWkt._AnyPackable,

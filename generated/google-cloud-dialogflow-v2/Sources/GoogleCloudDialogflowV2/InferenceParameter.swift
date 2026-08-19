@@ -16,7 +16,7 @@
 
 #if Conversations || GeneratorEvaluations || Generators
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The parameters of inference.
   public struct InferenceParameter: Codable, Equatable, GoogleCloudWkt._AnyPackable,

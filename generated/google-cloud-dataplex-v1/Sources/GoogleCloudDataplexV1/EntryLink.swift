@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// EntryLink represents a link between two Entries.
 public struct EntryLink: Codable, Equatable, GoogleCloudWkt._AnyPackable,

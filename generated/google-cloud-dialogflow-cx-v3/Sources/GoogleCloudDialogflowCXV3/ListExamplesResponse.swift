@@ -16,8 +16,8 @@
 
 #if Examples
   import Foundation
-  import GoogleCloudGax
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudGax
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The response message for
   /// [Examples.ListExamples][google.cloud.dialogflow.cx.v3.Examples.ListExamples].

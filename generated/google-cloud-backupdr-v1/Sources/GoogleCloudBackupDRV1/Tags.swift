@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A set of instance tags.
 public struct Tags: Codable, Equatable, GoogleCloudWkt._AnyPackable,

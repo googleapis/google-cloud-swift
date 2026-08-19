@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Artifact policy configuration for repository cleanup policies.
 public struct CleanupPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,

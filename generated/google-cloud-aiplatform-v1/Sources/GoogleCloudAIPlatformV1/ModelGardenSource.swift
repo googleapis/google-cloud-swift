@@ -16,7 +16,7 @@
 
 #if DatasetService || ModelService || PipelineService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Contains information about the source of the models generated from Model
   /// Garden.

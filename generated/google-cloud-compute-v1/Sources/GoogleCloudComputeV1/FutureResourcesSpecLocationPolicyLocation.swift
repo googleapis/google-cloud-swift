@@ -16,7 +16,7 @@
 
 #if Advice
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Preference for a single specified location.
   public struct FutureResourcesSpecLocationPolicyLocation: Codable, Equatable, GoogleCloudWkt

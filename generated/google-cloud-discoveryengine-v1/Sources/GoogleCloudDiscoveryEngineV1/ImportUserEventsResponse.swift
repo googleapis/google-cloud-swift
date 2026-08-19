@@ -16,7 +16,7 @@
 
 #if UserEventService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
   import GoogleRpc
 
   /// Response of the ImportUserEventsRequest. If the long running

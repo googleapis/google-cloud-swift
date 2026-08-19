@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A listing is what gets published into a data exchange that a subscriber can
 /// subscribe to. It contains a reference to the data source along with

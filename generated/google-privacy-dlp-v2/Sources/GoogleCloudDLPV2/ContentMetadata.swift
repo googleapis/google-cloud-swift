@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Metadata on content to be scanned.
 public struct ContentMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,

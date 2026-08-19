@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// ClosePullRequestRequest is the request to close a pull request.
 public struct ClosePullRequestRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

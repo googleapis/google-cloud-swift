@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// ReleaseInfo contains extra information about the `ResourceBundle` release
 /// e.g., link to an artifact registry OCI image.

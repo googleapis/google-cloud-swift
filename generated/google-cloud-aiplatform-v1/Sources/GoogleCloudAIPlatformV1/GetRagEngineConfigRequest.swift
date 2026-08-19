@@ -16,7 +16,7 @@
 
 #if VertexRagDataService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Request message for
   /// [VertexRagDataService.GetRagEngineConfig][google.cloud.aiplatform.v1.VertexRagDataService.GetRagEngineConfig]

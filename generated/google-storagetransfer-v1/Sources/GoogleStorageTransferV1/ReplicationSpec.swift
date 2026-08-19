@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Specifies the configuration for a cross-bucket replication job. Cross-bucket
 /// replication copies new or updated objects from a source Cloud Storage bucket

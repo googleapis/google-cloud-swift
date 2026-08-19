@@ -16,7 +16,7 @@
 
 #if NotebookService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Colab image of the runtime.
   public struct ColabImage: Codable, Equatable, GoogleCloudWkt._AnyPackable,

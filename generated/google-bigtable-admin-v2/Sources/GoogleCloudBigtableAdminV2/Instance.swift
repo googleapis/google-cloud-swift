@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A collection of Bigtable [Tables][google.bigtable.admin.v2.Table] and
 /// the resources that serve them.

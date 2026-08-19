@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// WorkerPoolRevisionTemplate describes the data a worker pool revision should
 /// have when created from a template.

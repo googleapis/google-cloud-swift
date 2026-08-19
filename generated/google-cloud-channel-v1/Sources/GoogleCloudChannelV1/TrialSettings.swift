@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Settings for trial offers.
 public struct TrialSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,

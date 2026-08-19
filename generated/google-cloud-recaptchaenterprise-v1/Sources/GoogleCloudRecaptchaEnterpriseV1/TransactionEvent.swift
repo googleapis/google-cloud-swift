@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Describes an event in the lifecycle of a payment transaction.
 public struct TransactionEvent: Codable, Equatable, GoogleCloudWkt._AnyPackable,

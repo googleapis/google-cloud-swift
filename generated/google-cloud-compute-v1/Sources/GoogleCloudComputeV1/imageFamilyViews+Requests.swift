@@ -16,7 +16,7 @@
 
 #if ImageFamilyViews
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   extension ImageFamilyViewsClient {
     /// Synthetic request message for the [get()][google.cloud.compute.v1.imageFamilyViews.get] method.

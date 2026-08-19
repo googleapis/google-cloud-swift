@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// RepairPhase tracks the repair attempts that have been made for
 /// each `RepairPhaseConfig` specified in the `Automation` resource.

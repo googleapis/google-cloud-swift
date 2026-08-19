@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Video context and/or feature-specific parameters.
 public struct VideoContext: Codable, Equatable, GoogleCloudWkt._AnyPackable,

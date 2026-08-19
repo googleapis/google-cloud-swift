@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A vertex represents a 2D point in the image.
 /// NOTE: the normalized vertex coordinates are relative to the original image

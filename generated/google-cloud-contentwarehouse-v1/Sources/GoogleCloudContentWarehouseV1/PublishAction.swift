@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents the action responsible for publishing messages to a Pub/Sub topic.
 public struct PublishAction: Codable, Equatable, GoogleCloudWkt._AnyPackable,

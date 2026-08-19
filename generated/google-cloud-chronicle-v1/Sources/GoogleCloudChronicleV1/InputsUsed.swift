@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// InputsUsed is a convenience field that tells us which sources
 /// of events (if any) were used in the rule.

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for `AuthorizedDomains.ListAuthorizedDomains`.
 public struct ListAuthorizedDomainsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

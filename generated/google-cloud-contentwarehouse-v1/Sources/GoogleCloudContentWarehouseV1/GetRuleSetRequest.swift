@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for RuleSetService.GetRuleSet.
 public struct GetRuleSetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

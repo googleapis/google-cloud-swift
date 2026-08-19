@@ -16,7 +16,7 @@
 
 #if GlobalVmExtensionPolicies || ZoneVmExtensionPolicies
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Defines how to select VMs to apply a zone VM extension policy.
   public struct VmExtensionPolicyInstanceSelector: Codable, Equatable, GoogleCloudWkt._AnyPackable,

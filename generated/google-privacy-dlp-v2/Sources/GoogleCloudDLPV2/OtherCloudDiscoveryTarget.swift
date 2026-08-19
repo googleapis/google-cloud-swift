@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Target used to match against for discovery of resources from other clouds.
 /// An [AWS connector in Security Command Center

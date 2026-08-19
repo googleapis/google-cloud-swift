@@ -16,7 +16,7 @@
 
 #if SqlInstancesService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Request for Pre-checks for MVU
   public struct SqlInstancesPreCheckMajorVersionUpgradeRequest: Codable, Equatable, GoogleCloudWkt

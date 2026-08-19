@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Defines the HTTP configuration for an API service. It contains a list of
 /// [HttpRule][google.api.HttpRule], each specifying the mapping of an RPC method

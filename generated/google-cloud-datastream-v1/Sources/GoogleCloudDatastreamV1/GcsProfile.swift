@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Cloud Storage bucket profile.
 public struct GcsProfile: Codable, Equatable, GoogleCloudWkt._AnyPackable,

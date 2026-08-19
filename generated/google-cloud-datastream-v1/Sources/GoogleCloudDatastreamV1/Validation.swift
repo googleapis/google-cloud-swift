@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A validation to perform on a stream.
 public struct Validation: Codable, Equatable, GoogleCloudWkt._AnyPackable,

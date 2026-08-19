@@ -16,7 +16,7 @@
 
 #if GroundedGenerationService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Response for the `GenerateGroundedContent` method.
   public struct GenerateGroundedContentResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

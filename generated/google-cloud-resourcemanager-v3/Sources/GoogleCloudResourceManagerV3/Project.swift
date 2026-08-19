@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A project is a high-level Google Cloud entity. It is a
 /// container for ACLs, APIs, App Engine Apps, VMs, and other

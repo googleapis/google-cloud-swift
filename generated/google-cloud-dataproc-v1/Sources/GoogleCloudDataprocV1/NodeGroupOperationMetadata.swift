@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Metadata describing the node group operation.
 public struct NodeGroupOperationMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,

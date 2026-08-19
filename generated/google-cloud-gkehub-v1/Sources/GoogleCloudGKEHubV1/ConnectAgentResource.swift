@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// ConnectAgentResource represents a Kubernetes resource manifest for Connect
 /// Agent deployment.

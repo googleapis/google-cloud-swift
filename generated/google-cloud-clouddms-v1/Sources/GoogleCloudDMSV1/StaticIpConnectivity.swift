@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The source database will allow incoming connections from the public IP of the
 /// destination database. You can retrieve the public IP of the Cloud SQL

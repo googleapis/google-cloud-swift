@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for `AttachedClusters.UpdateAttachedCluster` method.
 public struct UpdateAttachedClusterRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

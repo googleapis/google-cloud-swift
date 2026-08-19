@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// An HdfsData resource specifies a path within an HDFS entity (e.g. a cluster).
 /// All cluster-specific settings, such as namenodes and ports, are configured on

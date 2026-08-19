@@ -16,7 +16,7 @@
 
 #if ReservationSubBlocks
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct ReservationSubBlocksGetVersionRequest: Codable, Equatable, GoogleCloudWkt
       ._AnyPackable,

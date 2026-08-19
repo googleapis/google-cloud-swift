@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Location of the source in an archive file in Google Cloud Storage.
 public struct StorageSource: Codable, Equatable, GoogleCloudWkt._AnyPackable,

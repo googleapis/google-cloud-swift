@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A collection of turns for multi-speaker synthesis.
 public struct MultiSpeakerMarkup: Codable, Equatable, GoogleCloudWkt._AnyPackable,

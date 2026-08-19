@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// CSAM (Child Safety Abuse Material) Filter Result
 public struct CsamFilterResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,

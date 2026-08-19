@@ -16,7 +16,7 @@
 
 #if OrganizationSecurityPolicies || RegionSecurityPolicies || SecurityPolicies
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Configurations to specifc granular traffic units processed by
   /// Adaptive Protection.

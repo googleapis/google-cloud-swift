@@ -16,7 +16,7 @@
 
 #if JobService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents the spec of a worker pool in a job.
   public struct WorkerPoolSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A materialized view object that can be referenced in SQL queries.
 public struct MaterializedView: Codable, Equatable, GoogleCloudWkt._AnyPackable,

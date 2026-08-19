@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request to delete a private connection.
 public struct DeletePrivateConnectionRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

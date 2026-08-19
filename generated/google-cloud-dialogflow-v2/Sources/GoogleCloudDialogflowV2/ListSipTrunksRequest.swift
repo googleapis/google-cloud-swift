@@ -16,7 +16,7 @@
 
 #if SipTrunks
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The request message for
   /// [SipTrunks.ListSipTrunks][google.cloud.dialogflow.v2.SipTrunks.ListSipTrunks].

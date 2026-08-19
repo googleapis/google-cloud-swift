@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message to set a specified branch as new default_branch.
 public struct SetDefaultBranchRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

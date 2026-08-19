@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Mapping of backing Cloud Storage path to the directory where the user lands
 /// in the SFTP server. If directory is not specified, it'll default to '/'.

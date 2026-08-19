@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Poll Airflow Command request.
 public struct PollAirflowCommandRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

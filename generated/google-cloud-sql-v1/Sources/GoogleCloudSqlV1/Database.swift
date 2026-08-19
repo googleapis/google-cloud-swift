@@ -16,7 +16,7 @@
 
 #if SqlDatabasesService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents a SQL database on the Cloud SQL instance.
   public struct Database: Codable, Equatable, GoogleCloudWkt._AnyPackable,

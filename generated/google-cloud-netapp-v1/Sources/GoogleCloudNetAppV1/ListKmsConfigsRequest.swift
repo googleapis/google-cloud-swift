@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// ListKmsConfigsRequest lists KMS Configs.
 public struct ListKmsConfigsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

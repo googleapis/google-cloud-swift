@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// UpdateQuotaRuleRequest for updating a quota rule.
 public struct UpdateQuotaRuleRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

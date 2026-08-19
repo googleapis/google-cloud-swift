@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// An endpoint group is a consumer frontend for a deployment group (backend).
 /// In order to configure mirroring for a network, consumers must create:

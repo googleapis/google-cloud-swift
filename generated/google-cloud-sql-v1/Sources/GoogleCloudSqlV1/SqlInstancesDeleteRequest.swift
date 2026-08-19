@@ -16,7 +16,7 @@
 
 #if SqlInstancesService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Instance delete request.
   public struct SqlInstancesDeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

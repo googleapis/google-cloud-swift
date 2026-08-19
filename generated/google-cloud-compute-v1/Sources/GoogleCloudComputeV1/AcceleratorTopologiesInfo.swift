@@ -16,7 +16,7 @@
 
 #if ReservationSubBlocks
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Info for accelerator topologies within a densely packed reservation.
   public struct AcceleratorTopologiesInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,

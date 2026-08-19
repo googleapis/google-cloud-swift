@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Connection information for a particular membership.
 public struct GenerateCredentialsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

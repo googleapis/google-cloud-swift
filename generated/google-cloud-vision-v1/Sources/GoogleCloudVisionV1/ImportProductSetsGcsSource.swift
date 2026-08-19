@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The Google Cloud Storage location for a csv file which preserves a list of
 /// ImportProductSetRequests in each line.

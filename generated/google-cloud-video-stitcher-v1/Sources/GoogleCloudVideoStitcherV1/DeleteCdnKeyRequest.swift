@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for VideoStitcherService.deleteCdnKey.
 public struct DeleteCdnKeyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

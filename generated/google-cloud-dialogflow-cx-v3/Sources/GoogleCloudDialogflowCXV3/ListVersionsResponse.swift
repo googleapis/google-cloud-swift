@@ -16,8 +16,8 @@
 
 #if Versions
   import Foundation
-  import GoogleCloudGax
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudGax
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The response message for
   /// [Versions.ListVersions][google.cloud.dialogflow.cx.v3.Versions.ListVersions].

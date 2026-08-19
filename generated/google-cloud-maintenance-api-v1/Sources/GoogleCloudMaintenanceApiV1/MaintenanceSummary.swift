@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// MaintenanceSummary contains maintenance statistics calculated based on
 /// ResourceMaintenances within the scope: project and location.

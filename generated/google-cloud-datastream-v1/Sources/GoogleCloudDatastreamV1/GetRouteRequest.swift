@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Route get request.
 public struct GetRouteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

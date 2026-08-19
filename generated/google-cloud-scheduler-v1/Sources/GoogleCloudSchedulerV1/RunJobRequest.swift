@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for forcing a job to run now using
 /// [RunJob][google.cloud.scheduler.v1.CloudScheduler.RunJob].

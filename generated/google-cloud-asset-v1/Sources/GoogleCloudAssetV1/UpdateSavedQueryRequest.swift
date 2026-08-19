@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request to update a saved query.
 public struct UpdateSavedQueryRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

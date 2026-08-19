@@ -16,7 +16,7 @@
 
 #if ModelService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Request message for
   /// [ModelService.ListModelVersionCheckpoints][google.cloud.aiplatform.v1.ModelService.ListModelVersionCheckpoints].

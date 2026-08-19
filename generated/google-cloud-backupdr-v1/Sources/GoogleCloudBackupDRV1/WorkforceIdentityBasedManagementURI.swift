@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// ManagementURI depending on the Workforce Identity i.e. either 1p or 3p.
 public struct WorkforceIdentityBasedManagementURI: Codable, Equatable, GoogleCloudWkt._AnyPackable,

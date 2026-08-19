@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message to uninstall a developer mode deployment.
 public struct UninstallDeploymentRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

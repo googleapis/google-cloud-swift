@@ -16,7 +16,7 @@
 
 #if PublicAdvertisedPrefixes
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// A public advertised prefix represents an aggregated IP prefix or netblock
   /// which customers bring to cloud. The IP prefix is a single unit of route

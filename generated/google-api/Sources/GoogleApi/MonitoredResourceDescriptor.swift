@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// An object that describes the schema of a
 /// [MonitoredResource][google.api.MonitoredResource] object using a type name

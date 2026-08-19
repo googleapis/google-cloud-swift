@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A request message for updating a deployment group
 public struct UpdateDeploymentGroupRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

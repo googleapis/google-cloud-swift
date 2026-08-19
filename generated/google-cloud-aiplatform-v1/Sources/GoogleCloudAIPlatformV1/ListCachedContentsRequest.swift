@@ -16,7 +16,7 @@
 
 #if GenAiCacheService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Request to list CachedContents.
   public struct ListCachedContentsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

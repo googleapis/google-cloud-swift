@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configuration of the Master Authorized Network that support multiple CIDRs
 public struct MasterAuthorizedNetworksConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

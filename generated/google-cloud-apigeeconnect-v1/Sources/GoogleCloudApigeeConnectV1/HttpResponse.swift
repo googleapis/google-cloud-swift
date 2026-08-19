@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The proto definition of http response.
 public struct HttpResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

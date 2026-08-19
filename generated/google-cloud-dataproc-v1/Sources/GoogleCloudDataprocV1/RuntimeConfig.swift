@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Runtime configuration for a workload.
 public struct RuntimeConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

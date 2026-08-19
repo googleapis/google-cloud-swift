@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// `Type` represents the type of data that is written to, read from, or stored
 /// in Bigtable. It is heavily based on the GoogleSQL standard to help maintain

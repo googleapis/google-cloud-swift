@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Pronunciation customization for a phrase.
 public struct CustomPronunciationParams: Codable, Equatable, GoogleCloudWkt._AnyPackable,

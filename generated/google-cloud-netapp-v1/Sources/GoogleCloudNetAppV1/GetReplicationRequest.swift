@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// GetReplicationRequest gets the state of a replication.
 public struct GetReplicationRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

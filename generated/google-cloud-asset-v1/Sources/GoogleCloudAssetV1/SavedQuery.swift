@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A saved query which can be shared with others or used later.
 public struct SavedQuery: Codable, Equatable, GoogleCloudWkt._AnyPackable,

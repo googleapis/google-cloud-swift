@@ -16,7 +16,7 @@
 
 #if PersistentResourceService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents the spec of a group of resources of the same type,
   /// for example machine type, disk, and accelerators, in a PersistentResource.

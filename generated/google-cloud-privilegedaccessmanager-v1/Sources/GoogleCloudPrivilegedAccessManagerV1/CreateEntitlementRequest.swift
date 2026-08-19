@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message for creating an entitlement.
 public struct CreateEntitlementRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

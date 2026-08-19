@@ -16,7 +16,7 @@
 
 #if RegionCommitments || Reservations
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Contains Properties set for the reservation.
   public struct AllocationResourceStatusSpecificSKUAllocation: Codable, Equatable, GoogleCloudWkt

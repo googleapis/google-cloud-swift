@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// `WriteFile` request message.
 public struct WriteFileRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

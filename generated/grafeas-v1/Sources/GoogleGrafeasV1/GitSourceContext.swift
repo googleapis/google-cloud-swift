@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A GitSourceContext denotes a particular revision in a third party Git
 /// repository (e.g., GitHub).

@@ -16,7 +16,7 @@
 
 #if ReservationSlots
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct ReservationSlotStatus: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// AuthorizedViews represent subsets of a particular Cloud Bigtable table. Users
 /// can configure access to each Authorized View independently from the table and

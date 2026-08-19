@@ -16,8 +16,8 @@
 
 #if ModelService
   import Foundation
-  import GoogleCloudGax
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudGax
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Response message for
   /// [ModelService.ListModels][google.cloud.aiplatform.v1.ModelService.ListModels]

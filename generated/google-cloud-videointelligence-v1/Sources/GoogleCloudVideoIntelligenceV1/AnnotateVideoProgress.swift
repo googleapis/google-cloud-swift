@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Video annotation progress. Included in the `metadata`
 /// field of the `Operation` returned by the `GetOperation`

@@ -16,7 +16,7 @@
 
 #if ServiceAttachments || Subnetworks
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct Uint128: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable

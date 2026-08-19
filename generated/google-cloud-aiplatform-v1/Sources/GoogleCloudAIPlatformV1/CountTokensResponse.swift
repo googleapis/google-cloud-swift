@@ -16,7 +16,7 @@
 
 #if LlmUtilityService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Response message for [PredictionService.CountTokens][].
   public struct CountTokensResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

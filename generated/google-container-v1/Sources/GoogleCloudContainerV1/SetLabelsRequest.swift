@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// SetLabelsRequest sets the Google Cloud Platform labels on a Google Container
 /// Engine cluster, which will in turn set them for Google Compute Engine

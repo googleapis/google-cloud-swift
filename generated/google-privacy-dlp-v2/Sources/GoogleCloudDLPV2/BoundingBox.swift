@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Bounding box encompassing detected text within an image.
 public struct BoundingBox: Codable, Equatable, GoogleCloudWkt._AnyPackable,

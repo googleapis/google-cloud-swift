@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudGax
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudGax
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A response message for listing the instances details for a patch job.
 public struct ListPatchJobInstanceDetailsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

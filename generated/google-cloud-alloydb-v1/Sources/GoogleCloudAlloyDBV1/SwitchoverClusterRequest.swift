@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message for switching over to a cluster
 public struct SwitchoverClusterRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

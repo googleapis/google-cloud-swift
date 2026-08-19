@@ -16,7 +16,7 @@
 
 #if EncryptionSpecService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Metadata for initializing a location-level encryption specification.
   public struct InitializeEncryptionSpecMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,

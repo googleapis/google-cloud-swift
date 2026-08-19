@@ -16,7 +16,7 @@
 
 #if SessionService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Metadata associated with the
   /// [SessionService.CreateSession][google.cloud.aiplatform.v1.SessionService.CreateSession]

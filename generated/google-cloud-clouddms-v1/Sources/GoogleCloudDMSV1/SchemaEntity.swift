@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Schema typically has no parent entity, but can have a parent entity
 /// DatabaseInstance (for database engines which support it).  For some database

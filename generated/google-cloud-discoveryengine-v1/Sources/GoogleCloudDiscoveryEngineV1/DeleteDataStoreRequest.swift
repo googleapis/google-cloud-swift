@@ -16,7 +16,7 @@
 
 #if DataStoreService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Request message for
   /// [DataStoreService.DeleteDataStore][google.cloud.discoveryengine.v1.DataStoreService.DeleteDataStore]

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request to generate a YAML of the RBAC policies for the specified
 /// RoleBinding and its associated impersonation resources.

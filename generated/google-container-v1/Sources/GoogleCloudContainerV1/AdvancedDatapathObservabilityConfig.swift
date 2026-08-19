@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// AdvancedDatapathObservabilityConfig specifies configuration of observability
 /// features of advanced datapath.

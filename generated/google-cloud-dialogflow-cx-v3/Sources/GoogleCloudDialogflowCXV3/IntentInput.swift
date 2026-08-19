@@ -16,7 +16,7 @@
 
 #if Sessions || TestCases
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents the intent to trigger programmatically rather than as a result of
   /// natural language processing.

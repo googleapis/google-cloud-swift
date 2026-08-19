@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A user principal for an RBAC policy.
 public struct ClusterUser: Codable, Equatable, GoogleCloudWkt._AnyPackable,

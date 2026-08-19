@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// TcpRoute is the resource defining how TCP traffic should be routed by a
 /// Mesh/Gateway resource.

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Response message of RunPipeline method.
 public struct RunPipelineResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

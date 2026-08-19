@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Encapsulates a set of optional conditions to satisfy when calculating
 /// vehicle routes. This is similar to `RouteModifiers` in the Google Maps

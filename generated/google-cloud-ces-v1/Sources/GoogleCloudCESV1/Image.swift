@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents an image input or output in the conversation.
 public struct Image: Codable, Equatable, GoogleCloudWkt._AnyPackable,

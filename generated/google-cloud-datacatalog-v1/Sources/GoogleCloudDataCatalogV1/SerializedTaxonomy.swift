@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A nested protocol buffer that represents a taxonomy and the hierarchy of its
 /// policy tags. Used for taxonomy replacement, import, and

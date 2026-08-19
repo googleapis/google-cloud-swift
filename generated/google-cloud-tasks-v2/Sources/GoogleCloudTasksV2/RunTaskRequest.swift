@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for forcing a task to run now using
 /// [RunTask][google.cloud.tasks.v2.CloudTasks.RunTask].

@@ -16,7 +16,7 @@
 
 #if PipelineService || ScheduleService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
   import GoogleRpc
 
   /// An instance of a machine learning PipelineJob.

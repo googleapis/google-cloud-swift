@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// VerifyConfidentialGkeResponse response is returened once a Confidential GKE
 /// attestation has been successfully verified, containing a signed OIDC token.

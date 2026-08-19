@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The request object for `DeleteDeployPolicy`.
 public struct DeleteDeployPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if Participants
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents a smart reply answer.
   public struct SmartReplyAnswer: Codable, Equatable, GoogleCloudWkt._AnyPackable,

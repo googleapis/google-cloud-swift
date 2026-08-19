@@ -16,7 +16,7 @@
 
 #if FeatureOnlineStoreService || FeaturestoreOnlineServingService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// A list of double values.
   public struct DoubleArray: Codable, Equatable, GoogleCloudWkt._AnyPackable,

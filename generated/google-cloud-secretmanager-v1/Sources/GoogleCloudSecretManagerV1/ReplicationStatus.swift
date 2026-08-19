@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The replication status of a
 /// [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].

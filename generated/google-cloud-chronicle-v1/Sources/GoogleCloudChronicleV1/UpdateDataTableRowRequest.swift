@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request to update data table row.
 public struct UpdateDataTableRowRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

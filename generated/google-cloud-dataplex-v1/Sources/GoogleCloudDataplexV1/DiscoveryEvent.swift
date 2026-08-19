@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The payload associated with Discovery data processing.
 public struct DiscoveryEvent: Codable, Equatable, GoogleCloudWkt._AnyPackable,

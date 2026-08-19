@@ -16,7 +16,7 @@
 
 #if StoragePoolTypes
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct StoragePoolType: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable

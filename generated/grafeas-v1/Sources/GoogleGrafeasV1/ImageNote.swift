@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Basis describes the base image portion (Note) of the DockerImage
 /// relationship. Linked occurrences are derived from this or an equivalent image

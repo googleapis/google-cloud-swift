@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The parameters to ListMonitoredResourceDescriptors
 public struct ListMonitoredResourceDescriptorsRequest: Codable, Equatable, GoogleCloudWkt

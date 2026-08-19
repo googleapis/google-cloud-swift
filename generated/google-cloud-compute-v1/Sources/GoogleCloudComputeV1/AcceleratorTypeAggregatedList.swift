@@ -16,8 +16,8 @@
 
 #if AcceleratorTypes
   import Foundation
-  import GoogleCloudGax
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudGax
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct AcceleratorTypeAggregatedList: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,

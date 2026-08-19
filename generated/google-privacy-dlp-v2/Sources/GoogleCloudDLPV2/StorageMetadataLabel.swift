@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Storage metadata label to indicate which metadata entry contains findings.
 public struct StorageMetadataLabel: Codable, Equatable, GoogleCloudWkt._AnyPackable,

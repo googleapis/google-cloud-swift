@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The request to delete a phrase matcher.
 public struct DeletePhraseMatcherRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

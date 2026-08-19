@@ -16,7 +16,7 @@
 
 #if RegionInstanceTemplates
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   extension RegionInstanceTemplatesClient {
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.regionInstanceTemplates.delete] method.

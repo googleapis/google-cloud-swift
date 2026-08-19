@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// CreateNodePoolRequest creates a node pool for a cluster.
 public struct CreateNodePoolRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

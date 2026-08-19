@@ -16,7 +16,7 @@
 
 #if InstanceTemplates || Instances || MachineImages || Projects || RegionInstanceTemplates || RegionInstances
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// A metadata key/value entry.
   public struct Metadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Parameters for crop hints annotation request.
 public struct CropHintsParams: Codable, Equatable, GoogleCloudWkt._AnyPackable,

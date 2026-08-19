@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A change made on a line item.
 public struct LineItemChange: Codable, Equatable, GoogleCloudWkt._AnyPackable,

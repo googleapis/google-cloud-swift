@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A container for [services][google.cloud.servicedirectory.v1.Service].
 /// Namespaces allow administrators to group services together and define

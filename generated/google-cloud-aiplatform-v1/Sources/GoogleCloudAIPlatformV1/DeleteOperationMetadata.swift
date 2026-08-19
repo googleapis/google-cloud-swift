@@ -16,7 +16,7 @@
 
 #if DatasetService || DeploymentResourcePoolService || EndpointService || FeatureOnlineStoreAdminService || FeatureRegistryService || FeaturestoreService || IndexEndpointService || IndexService || JobService || MetadataService || ModelService || NotebookService || PersistentResourceService || PipelineService || ReasoningEngineService || ScheduleService || SessionService || SpecialistPoolService || TensorboardService || VertexRagDataService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Details of operations that perform deletes of any entities.
   public struct DeleteOperationMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,

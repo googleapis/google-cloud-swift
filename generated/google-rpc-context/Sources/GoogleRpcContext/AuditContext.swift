@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// `AuditContext` provides information that is needed for audit logging.
 public struct AuditContext: Codable, Equatable, GoogleCloudWkt._AnyPackable,

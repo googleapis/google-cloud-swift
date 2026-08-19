@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// MongoDB Field.
 public struct MongodbField: Codable, Equatable, GoogleCloudWkt._AnyPackable,

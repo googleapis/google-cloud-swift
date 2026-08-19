@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The request sent to the `SearchOrganizations` method.
 public struct SearchOrganizationsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

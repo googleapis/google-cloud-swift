@@ -16,7 +16,7 @@
 
 #if DatasetService || DeploymentResourcePoolService || EndpointService || JobService || ModelService || PipelineService || PredictionService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Noise sigma by features. Noise sigma represents the standard deviation of the
   /// gaussian kernel that will be used to add noise to interpolated inputs prior

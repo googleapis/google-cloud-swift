@@ -16,7 +16,7 @@
 
 #if MigrationService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents one resource that exists in automl.googleapis.com,
   /// datalabeling.googleapis.com or ml.googleapis.com.

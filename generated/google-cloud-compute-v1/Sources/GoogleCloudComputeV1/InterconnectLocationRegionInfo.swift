@@ -16,7 +16,7 @@
 
 #if InterconnectLocations
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Information about any potential InterconnectAttachments between an
   /// Interconnect at a specific InterconnectLocation, and a specific Cloud

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Final results returned inline in the recognition response.
 public struct InlineResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,

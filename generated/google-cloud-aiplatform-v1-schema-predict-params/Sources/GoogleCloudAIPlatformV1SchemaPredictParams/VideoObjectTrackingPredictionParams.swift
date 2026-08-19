@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Prediction model parameters for Video Object Tracking.
 public struct VideoObjectTrackingPredictionParams: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request used with the ListHttpRoutes method.
 public struct ListHttpRoutesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

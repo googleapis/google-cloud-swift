@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// `StreamingSynthesizeResponse` is the only message returned to the
 /// client by `StreamingSynthesize` method. A series of zero or more

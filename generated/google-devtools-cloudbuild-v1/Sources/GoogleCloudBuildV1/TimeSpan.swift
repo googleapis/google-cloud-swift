@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Start and end times for a build execution phase.
 public struct TimeSpan: Codable, Equatable, GoogleCloudWkt._AnyPackable,

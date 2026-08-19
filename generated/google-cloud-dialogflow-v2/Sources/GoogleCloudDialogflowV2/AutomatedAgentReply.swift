@@ -16,7 +16,7 @@
 
 #if Participants
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents a response from an automated agent.
   public struct AutomatedAgentReply: Codable, Equatable, GoogleCloudWkt._AnyPackable,

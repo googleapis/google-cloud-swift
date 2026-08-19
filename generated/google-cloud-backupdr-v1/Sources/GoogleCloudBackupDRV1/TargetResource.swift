@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Details of the target resource created/modified as part of restore.
 public struct TargetResource: Codable, Equatable, GoogleCloudWkt._AnyPackable,

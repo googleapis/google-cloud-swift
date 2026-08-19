@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The body of a version resource. A version resource represents a
 /// collection of components, such as files and other data. This may correspond

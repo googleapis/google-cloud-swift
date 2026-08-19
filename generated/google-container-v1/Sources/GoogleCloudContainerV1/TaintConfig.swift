@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// TaintConfig contains the configuration for the taints of the node pool.
 public struct TaintConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

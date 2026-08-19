@@ -16,7 +16,7 @@
 
 #if EvaluationService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Response message for EvaluationService.EvaluateInstances.
   public struct EvaluateInstancesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Metadata pertaining to the folder move process.
 public struct MoveFolderMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if Disks || RegionDisks || RegionSnapshots || Snapshots
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Additional snapshot params.
   public struct SnapshotParams: Codable, Equatable, GoogleCloudWkt._AnyPackable,

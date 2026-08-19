@@ -16,7 +16,7 @@
 
 #if DataStoreService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Configuration data for advance site search.
   public struct AdvancedSiteSearchConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

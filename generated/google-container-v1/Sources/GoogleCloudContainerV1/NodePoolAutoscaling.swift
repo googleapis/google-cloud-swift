@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// NodePoolAutoscaling contains information required by cluster autoscaler to
 /// adjust the size of the node pool to the current cluster usage.

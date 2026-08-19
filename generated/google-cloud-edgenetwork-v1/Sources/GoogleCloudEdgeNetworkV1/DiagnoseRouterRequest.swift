@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message for requesting diagnostics of a router within a specific zone.
 public struct DiagnoseRouterRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

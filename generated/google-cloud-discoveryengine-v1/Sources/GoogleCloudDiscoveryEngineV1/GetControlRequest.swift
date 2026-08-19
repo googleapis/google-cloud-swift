@@ -16,7 +16,7 @@
 
 #if ControlService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Request for GetControl method.
   public struct GetControlRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

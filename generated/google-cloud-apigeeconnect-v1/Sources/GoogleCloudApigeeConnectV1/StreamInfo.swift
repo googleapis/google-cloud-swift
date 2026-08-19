@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The Information of bi-directional stream.
 public struct StreamInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,

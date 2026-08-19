@@ -16,7 +16,7 @@
 
 #if SpecialistPoolService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// SpecialistPool represents customers' own workforce to work on their data
   /// labeling jobs. It includes a group of specialist managers and workers.

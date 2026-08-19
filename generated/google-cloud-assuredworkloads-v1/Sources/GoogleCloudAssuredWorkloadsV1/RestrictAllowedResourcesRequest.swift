@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request for restricting list of available resources in Workload environment.
 public struct RestrictAllowedResourcesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

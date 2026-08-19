@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for GetPolicyBinding method.
 public struct GetPolicyBindingRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// AuthorizationPolicy is a resource that specifies how a server
 /// should authorize incoming connections. This resource in itself does

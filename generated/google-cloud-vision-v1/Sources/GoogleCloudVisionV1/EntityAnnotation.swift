@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Set of detected entity features.
 public struct EntityAnnotation: Codable, Equatable, GoogleCloudWkt._AnyPackable,

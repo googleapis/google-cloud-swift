@@ -16,8 +16,8 @@
 
 #if Interconnects
   import Foundation
-  import GoogleCloudGax
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudGax
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Response to the list request, and contains a list of interconnects.
   public struct InterconnectList: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message for responding to starting an OAuth flow.
 public struct StartOAuthResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

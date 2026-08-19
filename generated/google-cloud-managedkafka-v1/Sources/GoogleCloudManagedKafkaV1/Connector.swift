@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A Kafka Connect connector in a given ConnectCluster.
 public struct Connector: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if Generators
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Generators contain prompt to be sent to the LLM model to generate text. The
   /// prompt can contain parameters which will be resolved before calling the

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request for fetching a specific stream object.
 public struct GetStreamObjectRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

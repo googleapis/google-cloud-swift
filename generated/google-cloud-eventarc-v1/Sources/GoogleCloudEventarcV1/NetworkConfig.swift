@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Network Configuration that can be inherited by other protos.
 public struct NetworkConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

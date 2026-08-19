@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Structured response of a single validation unit.
 public struct LintResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A request to get a Resource from a 'GetResource' call.
 public struct GetResourceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

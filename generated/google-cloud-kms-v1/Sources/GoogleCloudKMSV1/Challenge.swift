@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A challenge to be signed by a 2FA key.
 public struct Challenge: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// AuthConfig represents the authentication information.
 public struct AuthConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

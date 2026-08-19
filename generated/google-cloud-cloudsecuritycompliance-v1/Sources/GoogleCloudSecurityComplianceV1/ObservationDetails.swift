@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The observation details for a finding.
 public struct ObservationDetails: Codable, Equatable, GoogleCloudWkt._AnyPackable,

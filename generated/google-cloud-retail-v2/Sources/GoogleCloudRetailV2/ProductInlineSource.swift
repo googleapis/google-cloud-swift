@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The inline source for the input config for ImportProducts method.
 public struct ProductInlineSource: Codable, Equatable, GoogleCloudWkt._AnyPackable,

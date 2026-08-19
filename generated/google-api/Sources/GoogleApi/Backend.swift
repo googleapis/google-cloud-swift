@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// `Backend` defines the backend configuration for a service.
 public struct Backend: Codable, Equatable, GoogleCloudWkt._AnyPackable,

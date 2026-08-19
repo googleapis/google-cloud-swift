@@ -16,7 +16,7 @@
 
 #if ModelGardenService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// A Model Garden Publisher Model.
   public struct PublisherModel: Codable, Equatable, GoogleCloudWkt._AnyPackable,

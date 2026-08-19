@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// LoggingVariantConfig specifies the behaviour of the logging component.
 public struct LoggingVariantConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

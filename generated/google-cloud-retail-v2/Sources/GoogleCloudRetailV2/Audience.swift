@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// An intended audience of the [Product][google.cloud.retail.v2.Product] for
 /// whom it's sold.

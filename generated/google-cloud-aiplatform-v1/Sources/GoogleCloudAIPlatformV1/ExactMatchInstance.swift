@@ -16,7 +16,7 @@
 
 #if EvaluationService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Spec for exact match instance.
   public struct ExactMatchInstance: Codable, Equatable, GoogleCloudWkt._AnyPackable,

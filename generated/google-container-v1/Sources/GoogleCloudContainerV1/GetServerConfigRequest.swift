@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Gets the current Kubernetes Engine service configuration.
 public struct GetServerConfigRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

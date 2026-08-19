@@ -16,7 +16,7 @@
 
 #if SqlInstancesService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Database Instance truncate log context.
   public struct TruncateLogContext: Codable, Equatable, GoogleCloudWkt._AnyPackable,

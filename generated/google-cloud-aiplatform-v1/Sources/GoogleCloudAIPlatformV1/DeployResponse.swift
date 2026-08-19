@@ -16,7 +16,7 @@
 
 #if ModelGardenService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Response message for
   /// [ModelGardenService.Deploy][google.cloud.aiplatform.v1.ModelGardenService.Deploy].

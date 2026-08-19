@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Response message for duplicating chart in a dashboard.
 public struct DuplicateChartResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

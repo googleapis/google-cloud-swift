@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The request message to create a TagBinding.
 public struct CreateTagBindingRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

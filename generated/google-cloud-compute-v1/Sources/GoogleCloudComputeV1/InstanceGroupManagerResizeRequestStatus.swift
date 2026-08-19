@@ -16,7 +16,7 @@
 
 #if InstanceGroupManagerResizeRequests || RegionInstanceGroupManagerResizeRequests
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct InstanceGroupManagerResizeRequestStatus: Codable, Equatable, GoogleCloudWkt
       ._AnyPackable,

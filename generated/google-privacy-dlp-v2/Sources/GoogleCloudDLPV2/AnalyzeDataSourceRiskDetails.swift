@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Result of a risk analysis operation request.
 public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleCloudWkt._AnyPackable,

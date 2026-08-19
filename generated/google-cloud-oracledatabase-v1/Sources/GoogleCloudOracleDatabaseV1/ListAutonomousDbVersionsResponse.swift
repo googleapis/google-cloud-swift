@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudGax
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudGax
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The response for `AutonomousDbVersion.List`.
 public struct ListAutonomousDbVersionsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

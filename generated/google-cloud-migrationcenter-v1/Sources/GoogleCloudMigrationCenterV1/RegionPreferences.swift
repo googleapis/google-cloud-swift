@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The user preferences relating to target regions.
 public struct RegionPreferences: Codable, Equatable, GoogleCloudWkt._AnyPackable,

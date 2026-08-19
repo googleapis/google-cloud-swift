@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The create assessment request message.
 public struct CreateAssessmentRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

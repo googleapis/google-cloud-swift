@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configuration for NetworkPolicy. This only tracks whether the addon
 /// is enabled or not on the Master, it does not track whether network policy

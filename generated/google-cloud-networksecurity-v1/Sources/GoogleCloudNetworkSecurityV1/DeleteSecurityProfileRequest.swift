@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request used by the DeleteSecurityProfile method.
 public struct DeleteSecurityProfileRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Oracle SCN position
 public struct OracleScnPosition: Codable, Equatable, GoogleCloudWkt._AnyPackable,

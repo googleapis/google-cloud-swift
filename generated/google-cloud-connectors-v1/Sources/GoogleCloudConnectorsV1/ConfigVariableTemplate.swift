@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// ConfigVariableTemplate provides metadata about a `ConfigVariable` that is
 /// used in a Connection.

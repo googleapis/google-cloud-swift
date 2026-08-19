@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Reference object to a data access label.
 public struct DataAccessLabelReference: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if FeaturestoreService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The storage details for TFRecord output content.
   public struct TFRecordDestination: Codable, Equatable, GoogleCloudWkt._AnyPackable,

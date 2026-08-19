@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// DataSourceGcpResource is used for protected resources that are Google Cloud
 /// Resources. This name is easeier to understand than GcpResourceDataSource or

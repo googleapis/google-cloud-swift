@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Using raw keys is prone to security risks due to accidentally
 /// leaking the key. Choose another type of key if possible.

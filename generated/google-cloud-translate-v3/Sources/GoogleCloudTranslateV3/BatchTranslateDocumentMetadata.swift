@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// State metadata for the batch translation operation.
 public struct BatchTranslateDocumentMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,

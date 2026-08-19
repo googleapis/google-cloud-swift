@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Service is an App Hub data model that contains a discovered service, which
 /// represents a network or API interface that exposes some functionality to

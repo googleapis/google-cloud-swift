@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// PullRequestComment represents a comment on a pull request.
 public struct PullRequestComment: Codable, Equatable, GoogleCloudWkt._AnyPackable,

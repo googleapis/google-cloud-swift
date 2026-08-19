@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents an identifier of an object in the data source.
 public struct SourceObjectIdentifier: Codable, Equatable, GoogleCloudWkt._AnyPackable,

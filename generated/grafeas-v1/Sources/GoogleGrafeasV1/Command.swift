@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Command describes a step performed as part of the build pipeline.
 public struct Command: Codable, Equatable, GoogleCloudWkt._AnyPackable,

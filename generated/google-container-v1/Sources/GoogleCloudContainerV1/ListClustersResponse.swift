@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// ListClustersResponse is the result of ListClustersRequest.
 public struct ListClustersResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

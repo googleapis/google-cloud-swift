@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A [project being
 /// monitored](https://cloud.google.com/monitoring/settings/multiple-projects#create-multi)

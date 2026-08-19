@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// AzureVmsDetails describes VMs in Azure.
 public struct AzureVmsDetails: Codable, Equatable, GoogleCloudWkt._AnyPackable,

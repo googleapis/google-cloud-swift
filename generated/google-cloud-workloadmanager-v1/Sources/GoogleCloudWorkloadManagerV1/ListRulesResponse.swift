@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Response message for the ListRules RPC.
 public struct ListRulesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

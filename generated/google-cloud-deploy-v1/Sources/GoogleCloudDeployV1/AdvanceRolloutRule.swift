@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The `AdvanceRollout` automation rule will automatically advance a successful
 /// Rollout to the next phase.

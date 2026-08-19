@@ -16,7 +16,7 @@
 
 #if Generators
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Text input which can be used for prompt or banned phrases.
   public struct Phrase: Codable, Equatable, GoogleCloudWkt._AnyPackable,

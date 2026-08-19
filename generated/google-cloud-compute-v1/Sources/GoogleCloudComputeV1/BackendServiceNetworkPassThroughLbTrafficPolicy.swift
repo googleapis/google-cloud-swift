@@ -16,7 +16,7 @@
 
 #if BackendServices || RegionBackendServices
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct BackendServiceNetworkPassThroughLbTrafficPolicy: Codable, Equatable, GoogleCloudWkt
       ._AnyPackable,

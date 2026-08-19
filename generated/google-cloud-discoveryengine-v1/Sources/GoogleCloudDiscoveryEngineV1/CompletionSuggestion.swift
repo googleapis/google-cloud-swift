@@ -16,7 +16,7 @@
 
 #if CompletionService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Autocomplete suggestions that are imported from Customer.
   public struct CompletionSuggestion: Codable, Equatable, GoogleCloudWkt._AnyPackable,

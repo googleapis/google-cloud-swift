@@ -16,7 +16,7 @@
 
 #if Instances || RegionInstances
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Per-zone constraints on location policy for this zone.
   public struct LocationPolicyLocationConstraints: Codable, Equatable, GoogleCloudWkt._AnyPackable,

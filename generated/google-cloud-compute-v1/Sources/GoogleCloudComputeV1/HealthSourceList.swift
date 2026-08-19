@@ -16,8 +16,8 @@
 
 #if RegionHealthSources
   import Foundation
-  import GoogleCloudGax
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudGax
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct HealthSourceList: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,

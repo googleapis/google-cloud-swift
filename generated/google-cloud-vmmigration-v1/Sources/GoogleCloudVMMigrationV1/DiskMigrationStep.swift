@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// DiskMigrationStep holds information about the disk migration step progress.
 public struct DiskMigrationStep: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The data for an issue match annotation.
 public struct IssueMatchData: Codable, Equatable, GoogleCloudWkt._AnyPackable,

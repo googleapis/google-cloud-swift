@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Include to use an existing data crypto key wrapped by KMS.
 /// The wrapped key must be a 128-, 192-, or 256-bit key.

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The request for
 /// [ReservationService.DeleteReservationGroup][google.cloud.bigquery.reservation.v1.ReservationService.DeleteReservationGroup].

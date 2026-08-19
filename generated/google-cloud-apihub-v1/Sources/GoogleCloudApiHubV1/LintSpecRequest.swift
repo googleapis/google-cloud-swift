@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The [LintSpec][google.cloud.apihub.v1.LintingService.LintSpec] method's
 /// request.

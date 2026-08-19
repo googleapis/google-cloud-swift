@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message for subscribing to a listing.
 public struct SubscribeListingRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

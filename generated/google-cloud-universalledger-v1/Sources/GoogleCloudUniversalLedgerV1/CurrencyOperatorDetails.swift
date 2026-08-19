@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Details specific to a Currency Operator.
 public struct CurrencyOperatorDetails: Codable, Equatable, GoogleCloudWkt._AnyPackable,

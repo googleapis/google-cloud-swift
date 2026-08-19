@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Add-on configuration that is shared across all add-on host applications.
 public struct CommonAddOnManifest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Secret key is used only in legacy reCAPTCHA. It must be used in a 3rd party
 /// integration with legacy reCAPTCHA.

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configuration controlling usage of a service.
 public struct Usage: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Certificate of the execution of a round by a specific validator.
 public struct RoundCertificate: Codable, Equatable, GoogleCloudWkt._AnyPackable,

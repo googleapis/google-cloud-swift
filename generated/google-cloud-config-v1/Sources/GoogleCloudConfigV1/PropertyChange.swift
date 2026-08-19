@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A property change represents a change to a property in the state file.
 public struct PropertyChange: Codable, Equatable, GoogleCloudWkt._AnyPackable,

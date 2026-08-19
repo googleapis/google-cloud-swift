@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A router appliance instance is a Compute Engine virtual machine (VM) instance
 /// that acts as a BGP speaker. A router appliance instance is specified by the

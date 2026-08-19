@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Options to configure rule type ConditionalColumnSetValue.
 /// The rule is used to transform the data which is being replicated/migrated.

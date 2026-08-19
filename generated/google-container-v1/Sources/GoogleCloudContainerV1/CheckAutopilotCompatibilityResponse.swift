@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// CheckAutopilotCompatibilityResponse has a list of compatibility issues.
 public struct CheckAutopilotCompatibilityResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

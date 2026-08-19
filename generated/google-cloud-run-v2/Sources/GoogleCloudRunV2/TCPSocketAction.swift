@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// TCPSocketAction describes an action based on opening a socket
 public struct TCPSocketAction: Codable, Equatable, GoogleCloudWkt._AnyPackable,

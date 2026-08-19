@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Entry Type is a template for creating Entries.
 public struct EntryType: Codable, Equatable, GoogleCloudWkt._AnyPackable,

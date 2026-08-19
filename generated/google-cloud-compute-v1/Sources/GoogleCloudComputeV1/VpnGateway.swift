@@ -16,7 +16,7 @@
 
 #if VpnGateways
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents a HA VPN gateway.
   ///

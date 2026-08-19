@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// CustomMetadata contains information from a user-defined operation.
 public struct CustomMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,

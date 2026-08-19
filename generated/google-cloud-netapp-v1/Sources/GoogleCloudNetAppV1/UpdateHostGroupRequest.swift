@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// UpdateHostGroupRequest for updating a host group.
 public struct UpdateHostGroupRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

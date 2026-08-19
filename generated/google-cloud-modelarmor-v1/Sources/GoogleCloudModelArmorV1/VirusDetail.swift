@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Details of an identified virus
 public struct VirusDetail: Codable, Equatable, GoogleCloudWkt._AnyPackable,

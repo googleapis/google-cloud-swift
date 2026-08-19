@@ -16,7 +16,7 @@
 
 #if Disks || Instances || InstantSnapshotGroups || InstantSnapshots || NodeGroups || Reservations || StoragePools
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct ZoneSetPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message to add chart in a dashboard.
 public struct AddChartRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

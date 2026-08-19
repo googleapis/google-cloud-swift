@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Endpoint config for this cluster
 public struct EndpointConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

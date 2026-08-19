@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// DockerImage represents a docker artifact.
 /// The following fields are returned as untyped metadata in the Version

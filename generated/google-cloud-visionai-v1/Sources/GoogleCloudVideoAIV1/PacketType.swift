@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The message that represents the data type of a packet.
 public struct PacketType: Codable, Equatable, GoogleCloudWkt._AnyPackable,

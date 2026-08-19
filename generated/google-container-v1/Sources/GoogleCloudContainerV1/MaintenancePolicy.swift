@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// MaintenancePolicy defines the maintenance policy to be used for the cluster.
 public struct MaintenancePolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,

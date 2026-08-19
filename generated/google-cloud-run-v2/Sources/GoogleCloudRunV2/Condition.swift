@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Defines a status condition for a resource.
 public struct Condition: Codable, Equatable, GoogleCloudWkt._AnyPackable,

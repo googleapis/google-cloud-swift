@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Holds a single traffic routing entry for the Service. Allocations can be done
 /// to a specific Revision name, or pointing to the latest Ready Revision.

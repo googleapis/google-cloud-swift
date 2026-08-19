@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudGax
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudGax
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A response to a 'ListResources' call. Contains a list of Resources.
 public struct ListResourcesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

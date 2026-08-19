@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request for the `MarkRecommendationSucceeded` Method.
 public struct MarkRecommendationSucceededRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

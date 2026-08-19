@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The Data Fusion version. This proto message stores information about certain
 /// Data Fusion version, which is used for Data Fusion version upgrade.

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// An SSL certificate that a user has been authorized to administer. A user
 /// is authorized to administer any certificate that applies to one of their

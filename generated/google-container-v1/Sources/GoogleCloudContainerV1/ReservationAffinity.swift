@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// [ReservationAffinity](https://cloud.google.com/compute/docs/instances/reserving-zonal-resources)
 /// is the configuration of desired reservation which instances could take

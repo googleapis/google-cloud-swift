@@ -16,7 +16,7 @@
 
 #if NetworkAttachments
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// NetworkAttachments
   /// A network attachment resource ...

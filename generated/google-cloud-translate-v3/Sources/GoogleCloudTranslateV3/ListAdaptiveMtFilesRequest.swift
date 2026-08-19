@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The request to list all AdaptiveMt files under a given dataset.
 public struct ListAdaptiveMtFilesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

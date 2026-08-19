@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request for getting the access requests associated with a workload.
 public struct ListAccessApprovalRequestsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

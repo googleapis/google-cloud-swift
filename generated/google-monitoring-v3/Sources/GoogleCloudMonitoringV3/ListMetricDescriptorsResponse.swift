@@ -16,8 +16,8 @@
 
 import Foundation
 import GoogleApi
-import GoogleCloudGax
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudGax
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The `ListMetricDescriptors` response.
 public struct ListMetricDescriptorsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

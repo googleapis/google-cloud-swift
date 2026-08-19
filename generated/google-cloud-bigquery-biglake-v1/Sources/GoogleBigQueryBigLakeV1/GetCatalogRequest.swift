@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for the GetCatalog method.
 public struct GetCatalogRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

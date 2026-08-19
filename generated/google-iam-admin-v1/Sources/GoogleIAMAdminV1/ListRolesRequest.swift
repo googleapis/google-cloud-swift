@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The request to get all roles defined under a resource.
 public struct ListRolesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

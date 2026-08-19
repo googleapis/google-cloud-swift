@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A snapshot of the app.
 public struct AppSnapshot: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if FeaturestoreService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The storage details for CSV input content.
   public struct CsvSource: Codable, Equatable, GoogleCloudWkt._AnyPackable,

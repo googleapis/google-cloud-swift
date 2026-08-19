@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents information regarding a quota operation.
 public struct QuotaOperation: Codable, Equatable, GoogleCloudWkt._AnyPackable,

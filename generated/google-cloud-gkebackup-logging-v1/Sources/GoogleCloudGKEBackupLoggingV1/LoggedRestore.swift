@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Restore as stored in Platform log. It's used to log the update details of a
 /// updateRestore request, so only mutable and non-output_only fields are

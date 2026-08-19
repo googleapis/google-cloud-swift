@@ -16,7 +16,7 @@
 
 #if FeaturestoreService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Configuration of how features in Featurestore are monitored.
   public struct FeaturestoreMonitoringConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

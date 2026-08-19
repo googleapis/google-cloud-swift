@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// An app serves as a top-level container for a group of agents, including the
 /// root agent and its sub-agents, along with their associated configurations.

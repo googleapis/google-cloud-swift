@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The soft reference to everything you can attach a lineage event to.
 public struct EntityReference: Codable, Equatable, GoogleCloudWkt._AnyPackable,

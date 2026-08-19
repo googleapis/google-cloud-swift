@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// An entry in a reference list.
 public struct ReferenceListEntry: Codable, Equatable, GoogleCloudWkt._AnyPackable,

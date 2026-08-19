@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// ListJobRunsRequest is the request object used by `ListJobRuns`.
 public struct ListJobRunsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

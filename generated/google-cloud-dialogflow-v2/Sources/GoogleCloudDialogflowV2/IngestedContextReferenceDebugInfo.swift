@@ -16,7 +16,7 @@
 
 #if Conversations || Participants
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Debug information related to ingested context reference.
   public struct IngestedContextReferenceDebugInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,

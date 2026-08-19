@@ -16,7 +16,7 @@
 
 #if BackendServices || RegionBackendServices
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Container for either a built-in LB policy supported by gRPC or Envoy or
   /// a custom one implemented by the end user.

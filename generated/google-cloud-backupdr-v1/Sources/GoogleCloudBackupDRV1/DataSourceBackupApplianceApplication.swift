@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// BackupApplianceApplication describes a Source Resource when it is an
 /// application backed up by a BackupAppliance.

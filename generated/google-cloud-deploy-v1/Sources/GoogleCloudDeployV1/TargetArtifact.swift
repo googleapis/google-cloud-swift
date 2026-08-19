@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The artifacts produced by a target render operation.
 public struct TargetArtifact: Codable, Equatable, GoogleCloudWkt._AnyPackable,

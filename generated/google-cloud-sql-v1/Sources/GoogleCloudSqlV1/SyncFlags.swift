@@ -16,7 +16,7 @@
 
 #if SqlInstancesService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Initial sync flags for certain Cloud SQL APIs.
   /// Currently used for the MySQL external server initial dump.

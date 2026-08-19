@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Make a snapshot every week e.g. at Monday 04:00, Wednesday 05:20, Sunday
 /// 23:50

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Apply a hash function on the value.
 public struct ApplyHash: Codable, Equatable, GoogleCloudWkt._AnyPackable,

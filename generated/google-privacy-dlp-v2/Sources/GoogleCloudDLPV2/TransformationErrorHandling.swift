@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// How to handle transformation errors during de-identification. A
 /// transformation error occurs when the requested transformation is incompatible

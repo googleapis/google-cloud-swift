@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudGax
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudGax
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The protocol for the `ListAlertPolicies` response.
 public struct ListAlertPoliciesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

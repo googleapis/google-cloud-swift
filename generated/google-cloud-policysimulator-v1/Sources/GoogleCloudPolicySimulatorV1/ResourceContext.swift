@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// ResourceContext provides the context we know about a resource.
 /// It is similar in concept to google.cloud.asset.v1.Resource, but focuses

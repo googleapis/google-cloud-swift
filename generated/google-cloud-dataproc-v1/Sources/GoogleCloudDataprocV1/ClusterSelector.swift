@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A selector that chooses target cluster for jobs based on metadata.
 public struct ClusterSelector: Codable, Equatable, GoogleCloudWkt._AnyPackable,

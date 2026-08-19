@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Defines a threshold for categorizing time series values.
 public struct Threshold: Codable, Equatable, GoogleCloudWkt._AnyPackable,

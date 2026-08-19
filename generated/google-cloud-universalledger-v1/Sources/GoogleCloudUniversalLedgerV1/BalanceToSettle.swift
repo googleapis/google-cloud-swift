@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A balance to settle between two token managers.
 public struct BalanceToSettle: Codable, Equatable, GoogleCloudWkt._AnyPackable,

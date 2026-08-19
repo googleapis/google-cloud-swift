@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configuration for a single speaker in a Gemini TTS multi-speaker setup.
 /// Enables dialogue between two speakers.

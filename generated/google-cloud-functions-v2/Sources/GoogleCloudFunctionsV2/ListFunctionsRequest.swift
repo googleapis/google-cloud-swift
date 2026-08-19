@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request for the `ListFunctions` method.
 public struct ListFunctionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

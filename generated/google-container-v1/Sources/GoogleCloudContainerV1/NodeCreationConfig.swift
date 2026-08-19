@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// NodeCreationConfig defines the settings of node creation mode.
 public struct NodeCreationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

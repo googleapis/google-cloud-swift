@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The rule to exclude image findings based on spatial relationships with
 /// other image findings. For example, exclude an image finding if it overlaps

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Overrides associated with a given tool in a Toolset.
 /// This enables "pinning" or "overriding" of tool definitions from the external

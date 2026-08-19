@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// IP Management configuration.
 public struct SqlIpConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

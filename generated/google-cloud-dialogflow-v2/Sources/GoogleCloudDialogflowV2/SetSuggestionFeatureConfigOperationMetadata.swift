@@ -16,7 +16,7 @@
 
 #if ConversationProfiles
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Metadata for a
   /// [ConversationProfiles.SetSuggestionFeatureConfig][google.cloud.dialogflow.v2.ConversationProfiles.SetSuggestionFeatureConfig]

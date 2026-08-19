@@ -16,7 +16,7 @@
 
 #if SqlInstancesService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// External primary instance migration setting error/warning.
   public struct SqlExternalSyncSettingError: Codable, Equatable, GoogleCloudWkt._AnyPackable,

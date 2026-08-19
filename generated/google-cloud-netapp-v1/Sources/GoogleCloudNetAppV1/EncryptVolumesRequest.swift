@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// EncryptVolumesRequest specifies the KMS config to encrypt existing volumes.
 public struct EncryptVolumesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

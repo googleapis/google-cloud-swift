@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Defines rebalancing behavior of a Kafka cluster.
 public struct RebalanceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

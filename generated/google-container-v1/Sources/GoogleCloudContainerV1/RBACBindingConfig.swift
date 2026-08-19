@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// RBACBindingConfig allows user to restrict ClusterRoleBindings an RoleBindings
 /// that can be created.

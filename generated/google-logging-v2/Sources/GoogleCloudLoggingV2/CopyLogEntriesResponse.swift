@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Response type for CopyLogEntries long running operations.
 public struct CopyLogEntriesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

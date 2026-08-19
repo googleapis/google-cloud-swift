@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// How often existing tables should have their profiles refreshed.
 /// New tables are scanned as quickly as possible depending on system

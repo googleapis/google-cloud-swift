@@ -16,7 +16,7 @@
 
 #if RegionUrlMaps || UrlMaps
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// A path-matching rule for a URL. If matched, will use the specifiedBackendService to handle the traffic arriving at this URL.
   public struct PathRule: Codable, Equatable, GoogleCloudWkt._AnyPackable,

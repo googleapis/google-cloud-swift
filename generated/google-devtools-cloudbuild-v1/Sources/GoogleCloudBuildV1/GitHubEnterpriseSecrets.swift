@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// GitHubEnterpriseSecrets represents the names of all necessary secrets in
 /// Secret Manager for a GitHub Enterprise server.

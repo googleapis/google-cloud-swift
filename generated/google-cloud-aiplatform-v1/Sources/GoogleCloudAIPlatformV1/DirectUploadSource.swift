@@ -16,7 +16,7 @@
 
 #if VertexRagDataService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The input content is encapsulated and uploaded in the request.
   public struct DirectUploadSource: Codable, Equatable, GoogleCloudWkt._AnyPackable,

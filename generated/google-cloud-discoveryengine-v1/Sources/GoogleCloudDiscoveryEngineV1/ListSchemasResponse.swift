@@ -16,8 +16,8 @@
 
 #if SchemaService
   import Foundation
-  import GoogleCloudGax
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudGax
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Response message for
   /// [SchemaService.ListSchemas][google.cloud.discoveryengine.v1.SchemaService.ListSchemas]

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configuration for tag parsing.
 public struct TagParsingConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

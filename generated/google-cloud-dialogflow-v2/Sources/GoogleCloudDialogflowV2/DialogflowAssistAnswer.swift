@@ -16,7 +16,7 @@
 
 #if AnswerRecords
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents a Dialogflow assist answer.
   public struct DialogflowAssistAnswer: Codable, Equatable, GoogleCloudWkt._AnyPackable,

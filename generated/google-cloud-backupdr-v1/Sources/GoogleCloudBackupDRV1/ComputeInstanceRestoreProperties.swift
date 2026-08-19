@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// ComputeInstanceRestoreProperties represents Compute Engine instance
 /// properties to be overridden during restore.

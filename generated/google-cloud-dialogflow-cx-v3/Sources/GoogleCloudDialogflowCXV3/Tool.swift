@@ -16,7 +16,7 @@
 
 #if Tools
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// A tool provides a list of actions which are available to the
   /// [Playbook][google.cloud.dialogflow.cx.v3.Playbook] to attain its goal. A Tool

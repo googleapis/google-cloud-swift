@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A request to get the settings.
 public struct GetSettingsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

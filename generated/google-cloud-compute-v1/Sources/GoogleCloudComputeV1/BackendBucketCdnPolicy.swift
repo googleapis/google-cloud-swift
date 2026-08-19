@@ -16,7 +16,7 @@
 
 #if BackendBuckets || RegionBackendBuckets
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Message containing Cloud CDN configuration for a backend bucket.
   public struct BackendBucketCdnPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,

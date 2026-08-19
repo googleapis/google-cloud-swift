@@ -16,7 +16,7 @@
 
 #if Agents && Changelogs && Deployments && EntityTypes && Environments && Examples && Experiments && Flows && Generators && Intents && Pages && Playbooks && SecuritySettingsService && SessionEntityTypes && Sessions && TestCases && Tools && TransitionRouteGroups && Versions && Webhooks
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents the language information of the request.
   public struct LanguageInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,

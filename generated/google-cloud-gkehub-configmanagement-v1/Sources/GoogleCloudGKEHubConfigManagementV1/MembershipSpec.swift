@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// **Anthos Config Management**: Configuration for a single cluster.
 /// Intended to parallel the ConfigManagement CR.

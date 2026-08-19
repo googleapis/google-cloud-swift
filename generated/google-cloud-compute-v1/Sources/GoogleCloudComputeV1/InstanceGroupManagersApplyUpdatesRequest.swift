@@ -16,7 +16,7 @@
 
 #if InstanceGroupManagers
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// InstanceGroupManagers.applyUpdatesToInstances
   public struct InstanceGroupManagersApplyUpdatesRequest: Codable, Equatable, GoogleCloudWkt

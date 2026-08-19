@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudGax
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudGax
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Response for ListIpOverrides.
 public struct ListIpOverridesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

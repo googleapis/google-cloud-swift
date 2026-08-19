@@ -16,7 +16,7 @@
 
 #if Playbooks
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The response message for
   /// [Playbooks.ImportPlaybook][google.cloud.dialogflow.cx.v3.Playbooks.ImportPlaybook].

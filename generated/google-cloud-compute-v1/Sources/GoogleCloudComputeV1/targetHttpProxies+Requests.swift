@@ -16,7 +16,7 @@
 
 #if TargetHttpProxies
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   extension TargetHttpProxiesClient {
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.targetHttpProxies.aggregatedList] method.

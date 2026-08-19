@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configuration for the Lustre CSI driver.
 public struct LustreCsiDriverConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

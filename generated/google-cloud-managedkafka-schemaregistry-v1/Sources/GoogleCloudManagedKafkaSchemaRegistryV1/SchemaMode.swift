@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// SchemaMode represents the mode of a schema registry or a specific subject.
 /// Four modes are supported:

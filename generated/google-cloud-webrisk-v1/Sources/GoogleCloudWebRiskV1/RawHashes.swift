@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The uncompressed threat entries in hash format.
 /// Hashes can be anywhere from 4 to 32 bytes in size. A large majority are 4

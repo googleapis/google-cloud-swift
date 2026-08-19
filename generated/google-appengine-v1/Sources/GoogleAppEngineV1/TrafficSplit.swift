@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Traffic routing configuration for versions within a single service. Traffic
 /// splits define how traffic directed to the service is assigned to versions.

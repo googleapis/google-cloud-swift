@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A BeyondCorp AppGateway resource represents a BeyondCorp protected AppGateway
 /// to a remote application. It creates all the necessary GCP components needed

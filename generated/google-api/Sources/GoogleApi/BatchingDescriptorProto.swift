@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// `BatchingDescriptorProto` specifies the fields of the request message to be
 /// used for batching, and, optionally, the fields of the response message to be

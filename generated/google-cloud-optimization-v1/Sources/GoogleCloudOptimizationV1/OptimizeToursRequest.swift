@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request to be given to a tour optimization solver which defines the
 /// shipment model to solve as well as optimization parameters.

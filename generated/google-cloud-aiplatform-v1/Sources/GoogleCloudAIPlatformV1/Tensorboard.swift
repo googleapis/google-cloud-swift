@@ -16,7 +16,7 @@
 
 #if TensorboardService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Tensorboard is a physical database that stores users' training metrics.
   /// A default Tensorboard is provided in each region of a Google Cloud project.

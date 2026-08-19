@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for fetching a tree structure from a repository.
 public struct FetchTreeRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

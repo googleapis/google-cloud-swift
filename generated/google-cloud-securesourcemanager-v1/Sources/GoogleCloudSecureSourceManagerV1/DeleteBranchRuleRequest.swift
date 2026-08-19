@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// DeleteBranchRuleRequest is the request to delete a branch rule.
 public struct DeleteBranchRuleRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

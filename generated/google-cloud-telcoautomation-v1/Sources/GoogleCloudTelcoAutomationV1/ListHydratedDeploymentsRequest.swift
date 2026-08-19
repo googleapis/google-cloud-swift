@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request object for `ListHydratedDeployments`.
 public struct ListHydratedDeploymentsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

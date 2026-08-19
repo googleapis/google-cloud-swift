@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A resource that represents Google Cloud Platform location.
 public struct Location: Codable, Equatable, GoogleCloudWkt._AnyPackable,

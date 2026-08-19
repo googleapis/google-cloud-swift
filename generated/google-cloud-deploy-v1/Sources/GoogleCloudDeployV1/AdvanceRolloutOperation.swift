@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Contains the information of an automated advance-rollout operation.
 public struct AdvanceRolloutOperation: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Contains details of the data provider.
 public struct DataProvider: Codable, Equatable, GoogleCloudWkt._AnyPackable,

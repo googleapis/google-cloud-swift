@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A reCAPTCHA Enterprise assessment resource.
 public struct Assessment: Codable, Equatable, GoogleCloudWkt._AnyPackable,

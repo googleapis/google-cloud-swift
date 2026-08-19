@@ -16,7 +16,7 @@
 
 #if InstanceTemplates || Instances || MachineImages || RegionInstanceTemplates || RegionInstances
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// An instance-attached disk resource.
   public struct AttachedDisk: Codable, Equatable, GoogleCloudWkt._AnyPackable,

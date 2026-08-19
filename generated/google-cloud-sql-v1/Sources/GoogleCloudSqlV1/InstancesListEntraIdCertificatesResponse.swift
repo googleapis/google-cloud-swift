@@ -16,7 +16,7 @@
 
 #if SqlInstancesService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Instances ListEntraIdCertificates response.
   public struct InstancesListEntraIdCertificatesResponse: Codable, Equatable, GoogleCloudWkt

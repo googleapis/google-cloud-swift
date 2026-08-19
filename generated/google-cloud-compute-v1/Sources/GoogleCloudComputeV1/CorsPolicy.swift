@@ -16,7 +16,7 @@
 
 #if RegionUrlMaps || UrlMaps
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The specification for allowing client-side cross-origin requests. For more
   /// information about the W3C recommendation for cross-origin resource sharing

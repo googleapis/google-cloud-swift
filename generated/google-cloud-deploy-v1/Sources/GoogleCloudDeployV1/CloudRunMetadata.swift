@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// CloudRunMetadata contains information from a Cloud Run deployment.
 public struct CloudRunMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,

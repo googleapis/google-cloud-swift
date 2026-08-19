@@ -16,7 +16,7 @@
 
 #if InstanceGroupManagerResizeRequests || InstanceGroupManagers || RegionInstanceGroupManagerResizeRequests || RegionInstanceGroupManagers
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct PreservedStatePreservedNetworkIp: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable

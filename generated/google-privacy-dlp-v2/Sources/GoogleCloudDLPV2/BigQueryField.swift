@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message defining a field of a BigQuery table.
 public struct BigQueryField: Codable, Equatable, GoogleCloudWkt._AnyPackable,

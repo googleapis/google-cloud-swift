@@ -16,7 +16,7 @@
 
 #if NetworkAttachments
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// [Output Only] A connection connected to this network attachment.
   public struct NetworkAttachmentConnectedEndpoint: Codable, Equatable, GoogleCloudWkt._AnyPackable,

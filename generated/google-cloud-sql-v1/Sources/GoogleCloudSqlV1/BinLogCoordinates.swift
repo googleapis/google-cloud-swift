@@ -16,7 +16,7 @@
 
 #if SqlInstancesService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Binary log coordinates.
   public struct BinLogCoordinates: Codable, Equatable, GoogleCloudWkt._AnyPackable,

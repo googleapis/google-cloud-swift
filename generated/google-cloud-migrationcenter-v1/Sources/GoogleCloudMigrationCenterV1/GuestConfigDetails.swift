@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Guest OS config information.
 public struct GuestConfigDetails: Codable, Equatable, GoogleCloudWkt._AnyPackable,

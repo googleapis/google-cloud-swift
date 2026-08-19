@@ -16,7 +16,7 @@
 
 #if RegionSnapshotSettings || SnapshotSettings
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct SnapshotSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable

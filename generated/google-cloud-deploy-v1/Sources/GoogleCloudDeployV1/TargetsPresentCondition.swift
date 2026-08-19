@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// `TargetsPresentCondition` contains information on any Targets referenced in
 /// the Delivery Pipeline that do not actually exist.

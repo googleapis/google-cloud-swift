@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Create a metadata entity request.
 public struct CreateEntityRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

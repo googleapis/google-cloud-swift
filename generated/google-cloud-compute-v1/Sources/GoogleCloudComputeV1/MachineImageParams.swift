@@ -16,7 +16,7 @@
 
 #if MachineImages
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Machine Image parameters
   public struct MachineImageParams: Codable, Equatable, GoogleCloudWkt._AnyPackable,

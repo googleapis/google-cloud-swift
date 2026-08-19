@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// This resource represents the BigQuery export configuration for a Chronicle
 /// instance which includes Google Cloud Platform resources like Cloud Storage

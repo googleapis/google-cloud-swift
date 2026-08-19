@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A verify Job.
 public struct VerifyJob: Codable, Equatable, GoogleCloudWkt._AnyPackable,

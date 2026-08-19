@@ -16,7 +16,7 @@
 
 #if RegionTargetTcpProxies
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   extension RegionTargetTcpProxiesClient {
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.regionTargetTcpProxies.delete] method.

@@ -16,7 +16,7 @@
 
 #if EvaluationService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Input for bleu metric.
   public struct BleuInput: Codable, Equatable, GoogleCloudWkt._AnyPackable,

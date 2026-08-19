@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Details of the deployment where APIs are hosted.
 /// A deployment could represent an Apigee proxy, API gateway, other Google Cloud

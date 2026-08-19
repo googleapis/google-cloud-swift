@@ -16,7 +16,7 @@
 
 #if AssistantService || ConversationalSearchService || SessionService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Multi-modal content.
   public struct AssistantContent: Codable, Equatable, GoogleCloudWkt._AnyPackable,

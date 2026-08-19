@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// An OS policy defines the desired state configuration for a VM.
 public struct OSPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Details about files that caused a compliance check to fail.
 public struct NonCompliantFile: Codable, Equatable, GoogleCloudWkt._AnyPackable,

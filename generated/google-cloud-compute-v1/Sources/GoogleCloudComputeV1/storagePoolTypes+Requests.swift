@@ -16,7 +16,7 @@
 
 #if StoragePoolTypes
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   extension StoragePoolTypesClient {
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.storagePoolTypes.aggregatedList] method.

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Metadata of a BranchRule. BranchRule is the protection rule to enforce
 /// pre-defined rules on designated branches within a repository.

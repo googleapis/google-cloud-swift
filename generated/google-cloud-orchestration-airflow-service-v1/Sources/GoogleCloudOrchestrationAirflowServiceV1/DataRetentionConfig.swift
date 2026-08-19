@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The configuration setting for Airflow database data retention mechanism.
 public struct DataRetentionConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

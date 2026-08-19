@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A backend rule provides configuration for an individual API element.
 public struct BackendRule: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A policy that defines the replication and encryption configuration of data.
 public struct Replication: Codable, Equatable, GoogleCloudWkt._AnyPackable,

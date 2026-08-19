@@ -16,7 +16,7 @@
 
 #if EvaluationService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Spec for summarization helpfulness score metric.
   public struct SummarizationHelpfulnessSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,

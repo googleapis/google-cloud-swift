@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Device information collected from the job seeker, candidate, or
 /// other entity conducting the job search. Providing this information improves

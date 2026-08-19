@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudGax
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudGax
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Response message for 'ListConversionWorkspaces' request.
 public struct ListConversionWorkspacesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

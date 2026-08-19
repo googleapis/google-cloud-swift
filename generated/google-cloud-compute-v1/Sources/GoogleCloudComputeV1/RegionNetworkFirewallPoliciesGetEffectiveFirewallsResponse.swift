@@ -16,7 +16,7 @@
 
 #if RegionNetworkFirewallPolicies
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponse: Codable, Equatable,
     GoogleCloudWkt._AnyPackable,

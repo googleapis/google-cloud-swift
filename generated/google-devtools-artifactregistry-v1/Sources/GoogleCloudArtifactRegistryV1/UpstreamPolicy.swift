@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Artifact policy configuration for the repository contents.
 public struct UpstreamPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,

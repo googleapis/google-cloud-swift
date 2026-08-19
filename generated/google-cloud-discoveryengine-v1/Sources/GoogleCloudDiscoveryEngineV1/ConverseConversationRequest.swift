@@ -16,7 +16,7 @@
 
 #if ConversationalSearchService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Request message for
   /// [ConversationalSearchService.ConverseConversation][google.cloud.discoveryengine.v1.ConversationalSearchService.ConverseConversation]

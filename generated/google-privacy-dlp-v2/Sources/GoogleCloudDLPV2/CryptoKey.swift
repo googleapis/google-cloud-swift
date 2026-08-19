@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// This is a data encryption key (DEK) (as opposed to
 /// a key encryption key (KEK) stored by Cloud Key Management Service

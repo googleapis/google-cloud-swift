@@ -16,7 +16,7 @@
 
 import Foundation
 import GoogleApi
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The parameters to WriteLogEntries.
 public struct WriteLogEntriesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

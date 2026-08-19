@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request for retrieving a specific Instance resource.
 public struct GetInstanceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

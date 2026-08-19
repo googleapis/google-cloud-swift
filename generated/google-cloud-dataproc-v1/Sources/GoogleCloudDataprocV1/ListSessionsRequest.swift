@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A request to list sessions in a project.
 public struct ListSessionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

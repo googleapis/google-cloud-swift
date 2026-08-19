@@ -16,8 +16,8 @@
 
 #if TargetPools
   import Foundation
-  import GoogleCloudGax
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudGax
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Contains a list of TargetPool resources.
   public struct TargetPoolList: Codable, Equatable, GoogleCloudWkt._AnyPackable,

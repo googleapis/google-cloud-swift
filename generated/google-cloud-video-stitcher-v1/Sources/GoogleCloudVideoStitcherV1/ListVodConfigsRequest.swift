@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for VideoStitcherService.listVodConfig.
 public struct ListVodConfigsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

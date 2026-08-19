@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents a denominated amount in a currency.
 public struct AmountValue: Codable, Equatable, GoogleCloudWkt._AnyPackable,

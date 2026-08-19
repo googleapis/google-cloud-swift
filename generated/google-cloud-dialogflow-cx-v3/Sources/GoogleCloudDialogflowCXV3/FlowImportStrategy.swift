@@ -16,7 +16,7 @@
 
 #if Flows
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The flow import strategy used for resource conflict resolution associated
   /// with an [ImportFlowRequest][google.cloud.dialogflow.cx.v3.ImportFlowRequest].

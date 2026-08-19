@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Specifies the reservations that this instance can consume from.
 public struct AllocationAffinity: Codable, Equatable, GoogleCloudWkt._AnyPackable,

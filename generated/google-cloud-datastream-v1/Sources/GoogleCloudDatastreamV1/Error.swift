@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represent a user-facing Error.
 public struct Error: Codable, Equatable, GoogleCloudWkt._AnyPackable,

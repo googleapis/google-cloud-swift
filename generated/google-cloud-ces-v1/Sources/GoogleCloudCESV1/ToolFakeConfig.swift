@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configuration for tool behavior in fake mode.
 public struct ToolFakeConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The rule to exclude findings based on a hotword. For record inspection of
 /// tables, column names are considered hotwords. An example of this is to

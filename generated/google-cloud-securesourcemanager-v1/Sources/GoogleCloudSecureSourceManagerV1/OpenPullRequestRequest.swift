@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// OpenPullRequestRequest is the request to open a pull request.
 public struct OpenPullRequestRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

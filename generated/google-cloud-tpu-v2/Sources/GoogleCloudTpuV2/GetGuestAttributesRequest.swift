@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request for [GetGuestAttributes][google.cloud.tpu.v2.Tpu.GetGuestAttributes].
 ///

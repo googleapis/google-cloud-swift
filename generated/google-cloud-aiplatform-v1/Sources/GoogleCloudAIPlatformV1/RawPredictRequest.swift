@@ -17,7 +17,7 @@
 #if PredictionService
   import Foundation
   import GoogleApi
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Request message for
   /// [PredictionService.RawPredict][google.cloud.aiplatform.v1.PredictionService.RawPredict].

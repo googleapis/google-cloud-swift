@@ -16,7 +16,7 @@
 
 #if TargetSslProxies
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   extension TargetSslProxiesClient {
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.targetSslProxies.delete] method.

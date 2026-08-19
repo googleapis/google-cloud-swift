@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A TaskGroup defines one or more Tasks that all share the same TaskSpec.
 public struct TaskGroup: Codable, Equatable, GoogleCloudWkt._AnyPackable,

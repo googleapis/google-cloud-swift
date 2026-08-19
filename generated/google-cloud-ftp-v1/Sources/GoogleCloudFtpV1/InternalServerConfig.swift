@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configuration for private server accessible via PSC.
 public struct InternalServerConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

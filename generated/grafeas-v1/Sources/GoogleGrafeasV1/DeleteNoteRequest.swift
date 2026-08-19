@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request to delete a note.
 public struct DeleteNoteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

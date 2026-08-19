@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// LoggingComponentConfig is cluster logging component configuration.
 public struct LoggingComponentConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

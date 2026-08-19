@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message for materializing a channel.
 public struct MaterializeChannelRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

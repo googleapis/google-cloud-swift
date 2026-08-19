@@ -16,7 +16,7 @@
 
 #if InstanceGroupManagers || RegionInstanceGroupManagers
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents a Managed Instance Group resource.
   ///

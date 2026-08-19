@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Output configuration for export IAM policy analysis destination.
 public struct IamPolicyAnalysisOutputConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

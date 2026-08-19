@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Describes options for object retention update.
 public struct ObjectRetention: Codable, Equatable, GoogleCloudWkt._AnyPackable,

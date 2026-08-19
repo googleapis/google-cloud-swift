@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message item to report information, warning or error messages.
 public struct MessageItem: Codable, Equatable, GoogleCloudWkt._AnyPackable,

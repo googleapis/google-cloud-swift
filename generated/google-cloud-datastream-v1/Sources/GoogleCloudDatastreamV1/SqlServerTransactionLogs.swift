@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configuration to use Transaction Logs CDC read method.
 public struct SqlServerTransactionLogs: Codable, Equatable, GoogleCloudWkt._AnyPackable,

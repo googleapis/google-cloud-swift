@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// MUST match
 /// https://github.com/secure-systems-lab/dsse/blob/master/envelope.proto. An

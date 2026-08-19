@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Buckets values based on fixed size ranges. The
 /// Bucketing transformation can provide all of this functionality,

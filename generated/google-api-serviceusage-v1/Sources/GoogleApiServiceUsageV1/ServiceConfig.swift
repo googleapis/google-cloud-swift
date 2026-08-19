@@ -16,7 +16,7 @@
 
 import Foundation
 import GoogleApi
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The configuration of the service.
 public struct ServiceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Verifiers (e.g. Kritis implementations) MUST verify signatures
 /// with respect to the trust anchors defined in policy (e.g. a Kritis policy).

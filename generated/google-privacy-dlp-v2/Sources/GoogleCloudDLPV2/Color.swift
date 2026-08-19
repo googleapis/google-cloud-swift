@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents a color in the RGB color space.
 public struct Color: Codable, Equatable, GoogleCloudWkt._AnyPackable,

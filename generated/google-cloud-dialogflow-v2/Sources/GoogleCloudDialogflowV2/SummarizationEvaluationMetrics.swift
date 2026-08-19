@@ -16,7 +16,7 @@
 
 #if GeneratorEvaluations
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Evaluation metrics for summarization generator.
   public struct SummarizationEvaluationMetrics: Codable, Equatable, GoogleCloudWkt._AnyPackable,

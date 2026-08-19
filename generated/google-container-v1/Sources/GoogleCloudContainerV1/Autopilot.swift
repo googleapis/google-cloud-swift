@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Autopilot is the configuration for Autopilot settings on the cluster.
 public struct Autopilot: Codable, Equatable, GoogleCloudWkt._AnyPackable,

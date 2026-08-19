@@ -16,7 +16,7 @@
 
 #if FeatureRegistryService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Vertex AI Feature Group.
   public struct FeatureGroup: Codable, Equatable, GoogleCloudWkt._AnyPackable,

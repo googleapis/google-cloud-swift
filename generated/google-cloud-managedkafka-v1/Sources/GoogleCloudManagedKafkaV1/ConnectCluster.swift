@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// An Apache Kafka Connect cluster deployed in a location.
 public struct ConnectCluster: Codable, Equatable, GoogleCloudWkt._AnyPackable,

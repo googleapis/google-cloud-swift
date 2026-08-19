@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A set of columns within a table which share a common configuration.
 public struct ColumnFamily: Codable, Equatable, GoogleCloudWkt._AnyPackable,

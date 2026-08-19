@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message for requesting a list of volume snapshots.
 public struct ListVolumeSnapshotsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

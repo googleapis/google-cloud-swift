@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents additional details of a status event.
 public struct EventDetails: Codable, Equatable, GoogleCloudWkt._AnyPackable,

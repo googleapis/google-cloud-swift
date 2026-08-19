@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The other cloud starting location for discovery.
 public struct OtherCloudDiscoveryStartingLocation: Codable, Equatable, GoogleCloudWkt._AnyPackable,

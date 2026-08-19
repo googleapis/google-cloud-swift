@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message for detach specific LUN from an Instance.
 public struct DetachLunRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

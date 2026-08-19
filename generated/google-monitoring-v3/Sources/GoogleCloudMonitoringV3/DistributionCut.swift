@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A `DistributionCut` defines a `TimeSeries` and thresholds used for measuring
 /// good service and total service. The `TimeSeries` must have `ValueType =

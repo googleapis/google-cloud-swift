@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configuration for retention of output files.
 public struct RetentionConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

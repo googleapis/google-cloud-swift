@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Artifacts created by preview.
 public struct PreviewArtifacts: Codable, Equatable, GoogleCloudWkt._AnyPackable,

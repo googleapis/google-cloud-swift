@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The response to a ExportFindings request. Contains the LRO information.
 public struct ExportFindingsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

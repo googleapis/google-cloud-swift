@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request to update access approval settings.
 public struct UpdateAccessApprovalSettingsMessage: Codable, Equatable, GoogleCloudWkt._AnyPackable,

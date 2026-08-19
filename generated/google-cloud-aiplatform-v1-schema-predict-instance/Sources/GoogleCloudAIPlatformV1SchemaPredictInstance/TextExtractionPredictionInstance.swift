@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Prediction input format for Text Extraction.
 public struct TextExtractionPredictionInstance: Codable, Equatable, GoogleCloudWkt._AnyPackable,

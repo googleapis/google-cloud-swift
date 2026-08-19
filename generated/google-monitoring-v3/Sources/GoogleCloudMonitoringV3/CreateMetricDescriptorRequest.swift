@@ -16,7 +16,7 @@
 
 import Foundation
 import GoogleApi
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The `CreateMetricDescriptor` request.
 public struct CreateMetricDescriptorRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

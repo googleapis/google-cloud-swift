@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A configuration to customize the generation of insights.
 /// Eg, customizing the lookback period considered when generating a

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Defines a search operation using a query vector.
 public struct VectorSearch: Codable, Equatable, GoogleCloudWkt._AnyPackable,

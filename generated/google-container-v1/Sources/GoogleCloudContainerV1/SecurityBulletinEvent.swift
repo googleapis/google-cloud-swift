@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// SecurityBulletinEvent is a notification sent to customers when a security
 /// bulletin has been posted that they are vulnerable to.

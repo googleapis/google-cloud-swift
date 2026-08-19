@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// HttpRoute is the resource defining how HTTP traffic should be routed by a
 /// Mesh or Gateway resource.

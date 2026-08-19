@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Stores a contract on the ledger.
 public struct CreateContract: Codable, Equatable, GoogleCloudWkt._AnyPackable,

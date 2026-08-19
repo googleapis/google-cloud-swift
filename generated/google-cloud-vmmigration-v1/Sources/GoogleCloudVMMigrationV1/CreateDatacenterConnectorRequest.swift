@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for 'CreateDatacenterConnector' request.
 public struct CreateDatacenterConnectorRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

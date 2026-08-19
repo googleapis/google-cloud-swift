@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request for the `DeleteConnectivityTest` method.
 public struct DeleteConnectivityTestRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

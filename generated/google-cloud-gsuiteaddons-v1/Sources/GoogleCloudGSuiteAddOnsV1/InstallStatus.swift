@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Developer mode install status of a deployment
 public struct InstallStatus: Codable, Equatable, GoogleCloudWkt._AnyPackable,

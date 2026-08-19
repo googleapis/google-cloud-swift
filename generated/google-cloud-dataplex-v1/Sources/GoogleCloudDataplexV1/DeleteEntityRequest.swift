@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Delete a metadata entity request.
 public struct DeleteEntityRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

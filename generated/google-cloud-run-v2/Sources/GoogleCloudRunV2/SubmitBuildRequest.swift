@@ -16,7 +16,7 @@
 
 import Foundation
 import GoogleApi
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for submitting a Build.
 public struct SubmitBuildRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

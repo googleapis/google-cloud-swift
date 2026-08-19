@@ -16,7 +16,7 @@
 
 #if Interconnects
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Describes a pre-shared key used to setup MACsec in static connectivity
   /// association key (CAK) mode.

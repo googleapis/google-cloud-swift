@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The Pluggable Database Node Level Details.
 public struct PluggableDatabaseNodeLevelDetails: Codable, Equatable, GoogleCloudWkt._AnyPackable,

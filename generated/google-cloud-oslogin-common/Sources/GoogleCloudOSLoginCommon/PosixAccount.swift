@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The POSIX account information associated with a Google account.
 public struct PosixAccount: Codable, Equatable, GoogleCloudWkt._AnyPackable,

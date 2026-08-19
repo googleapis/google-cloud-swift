@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// ExternalProtectionLevelOptions stores a group of additional fields for
 /// configuring a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] that

@@ -16,7 +16,7 @@
 
 #if VertexRagDataService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Config for the embedding model to use for RAG.
   public struct RagEmbeddingModelConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

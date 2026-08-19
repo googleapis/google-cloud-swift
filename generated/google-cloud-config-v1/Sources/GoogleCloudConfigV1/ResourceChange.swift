@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A resource change represents a change to a resource in the state file.
 public struct ResourceChange: Codable, Equatable, GoogleCloudWkt._AnyPackable,

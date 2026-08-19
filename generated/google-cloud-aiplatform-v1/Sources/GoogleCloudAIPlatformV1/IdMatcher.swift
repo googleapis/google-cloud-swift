@@ -16,7 +16,7 @@
 
 #if FeaturestoreOnlineServingService || FeaturestoreService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Matcher for Features of an EntityType by Feature ID.
   public struct IdMatcher: Codable, Equatable, GoogleCloudWkt._AnyPackable,

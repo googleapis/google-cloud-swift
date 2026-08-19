@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The protocol for the `ListAlertPolicies` request.
 public struct ListAlertPoliciesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

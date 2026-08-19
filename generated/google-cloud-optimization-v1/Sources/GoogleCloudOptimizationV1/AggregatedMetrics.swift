@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Aggregated metrics for
 /// [ShipmentRoute][google.cloud.optimization.v1.ShipmentRoute] (resp. for

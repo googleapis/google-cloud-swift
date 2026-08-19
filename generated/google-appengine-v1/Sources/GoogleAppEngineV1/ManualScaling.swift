@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A service with manual scaling runs continuously, allowing you to perform
 /// complex initialization and rely on the state of its memory over time.

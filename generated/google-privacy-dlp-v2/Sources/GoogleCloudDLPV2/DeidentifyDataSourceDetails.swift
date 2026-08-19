@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The results of a [Deidentify][google.privacy.dlp.v2.Action.Deidentify] action
 /// from an inspect job.

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A request to start a cluster.
 public struct StartClusterRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

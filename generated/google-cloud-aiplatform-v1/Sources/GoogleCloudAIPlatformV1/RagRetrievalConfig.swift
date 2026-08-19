@@ -16,7 +16,7 @@
 
 #if GenAiCacheService || LlmUtilityService || PredictionService || VertexRagService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Specifies the context retrieval config.
   public struct RagRetrievalConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

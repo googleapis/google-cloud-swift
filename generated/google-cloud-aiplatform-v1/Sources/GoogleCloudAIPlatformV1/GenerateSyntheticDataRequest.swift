@@ -16,7 +16,7 @@
 
 #if DataFoundryService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Request message for DataFoundryService.GenerateSyntheticData.
   public struct GenerateSyntheticDataRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

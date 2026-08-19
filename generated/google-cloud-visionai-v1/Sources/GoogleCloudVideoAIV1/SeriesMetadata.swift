@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The message that represents series metadata.
 public struct SeriesMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,

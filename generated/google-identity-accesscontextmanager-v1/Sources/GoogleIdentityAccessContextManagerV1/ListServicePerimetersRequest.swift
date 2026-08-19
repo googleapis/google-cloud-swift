@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A request to list all `ServicePerimeters` in an `AccessPolicy`.
 public struct ListServicePerimetersRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

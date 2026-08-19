@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Container for workload onboarding information.
 public struct WorkloadOnboardingStep: Codable, Equatable, GoogleCloudWkt._AnyPackable,

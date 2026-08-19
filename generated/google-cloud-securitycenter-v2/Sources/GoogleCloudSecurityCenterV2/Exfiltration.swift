@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Exfiltration represents a data exfiltration attempt from one or more sources
 /// to one or more targets. The `sources` attribute lists the sources of the

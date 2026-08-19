@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Creates a new
 /// [ExternalAccountKey][google.cloud.security.publicca.v1.ExternalAccountKey] in

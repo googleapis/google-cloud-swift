@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// DeleteBackupRequest deletes a backup.
 public struct DeleteBackupRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

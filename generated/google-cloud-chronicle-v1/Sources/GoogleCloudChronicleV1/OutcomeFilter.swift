@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Outcome filter for the findings refinement. This is used to filter the
 /// findings refinement based on the outcome variable values.

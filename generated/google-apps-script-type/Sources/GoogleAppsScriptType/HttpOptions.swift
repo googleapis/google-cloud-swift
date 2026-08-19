@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Options for sending requests to add-on HTTP endpoints
 public struct HttpOptions: Codable, Equatable, GoogleCloudWkt._AnyPackable,

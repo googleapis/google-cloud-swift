@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The parameters to `CreateView`.
 public struct CreateViewRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

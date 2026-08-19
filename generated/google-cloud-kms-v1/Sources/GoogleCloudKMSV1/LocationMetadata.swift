@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Cloud KMS metadata for the given
 /// [google.cloud.location.Location][google.cloud.location.Location].

@@ -16,7 +16,7 @@
 
 #if RegionDiskTypes
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   extension RegionDiskTypesClient {
     /// Synthetic request message for the [get()][google.cloud.compute.v1.regionDiskTypes.get] method.

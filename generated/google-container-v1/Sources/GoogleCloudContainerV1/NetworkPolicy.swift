@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configuration options for the NetworkPolicy feature.
 /// https://kubernetes.io/docs/concepts/services-networking/networkpolicies/

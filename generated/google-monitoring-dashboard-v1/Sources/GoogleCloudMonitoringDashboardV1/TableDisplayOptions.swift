@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Table display options that can be reused.
 public struct TableDisplayOptions: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The response message for [AggregateFrameworkComplianceReport][].
 public struct AggregateFrameworkComplianceReportResponse: Codable, Equatable, GoogleCloudWkt

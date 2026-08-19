@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Action that is taken when a certain precondition is met.
 public struct TriggerAction: Codable, Equatable, GoogleCloudWkt._AnyPackable,

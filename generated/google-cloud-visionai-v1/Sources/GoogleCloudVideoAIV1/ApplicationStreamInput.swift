@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message about a single stream input config.
 public struct ApplicationStreamInput: Codable, Equatable, GoogleCloudWkt._AnyPackable,

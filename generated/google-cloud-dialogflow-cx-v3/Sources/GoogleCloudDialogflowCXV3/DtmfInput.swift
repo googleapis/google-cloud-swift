@@ -16,7 +16,7 @@
 
 #if Sessions || TestCases
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents the input for dtmf event.
   public struct DtmfInput: Codable, Equatable, GoogleCloudWkt._AnyPackable,

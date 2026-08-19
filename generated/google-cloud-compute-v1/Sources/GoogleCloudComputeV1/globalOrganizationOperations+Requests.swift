@@ -16,7 +16,7 @@
 
 #if GlobalOrganizationOperations
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   extension GlobalOrganizationOperationsClient {
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.globalOrganizationOperations.delete] method.

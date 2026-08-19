@@ -16,7 +16,7 @@
 
 #if Routers
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct RouterMd5AuthenticationKey: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable

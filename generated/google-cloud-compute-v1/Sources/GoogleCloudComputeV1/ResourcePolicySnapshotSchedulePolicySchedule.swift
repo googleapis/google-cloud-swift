@@ -16,7 +16,7 @@
 
 #if ResourcePolicies
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// A schedule for disks where the schedueled operations are performed.
   public struct ResourcePolicySnapshotSchedulePolicySchedule: Codable, Equatable, GoogleCloudWkt

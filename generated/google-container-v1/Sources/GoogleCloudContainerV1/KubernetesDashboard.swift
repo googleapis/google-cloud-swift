@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configuration for the Kubernetes Dashboard.
 public struct KubernetesDashboard: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Markdown config for a dashboard tile.
 public struct Markdown: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// ClusterInfo represents status of a resource bundle rollout for a cluster.
 public struct ClusterInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if JobService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// ModelDeploymentMonitoringObjectiveConfig contains the pair of
   /// deployed_model_id to ModelMonitoringObjectiveConfig.

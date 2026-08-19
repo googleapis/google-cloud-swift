@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Cancel task jobs.
 public struct CancelJobRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

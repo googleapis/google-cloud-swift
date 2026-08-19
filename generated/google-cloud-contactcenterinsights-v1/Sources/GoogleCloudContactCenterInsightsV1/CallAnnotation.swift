@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A piece of metadata that applies to a window of a call.
 public struct CallAnnotation: Codable, Equatable, GoogleCloudWkt._AnyPackable,

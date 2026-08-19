@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// `PullGitCommits` request message.
 public struct PullGitCommitsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

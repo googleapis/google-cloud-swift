@@ -16,7 +16,7 @@
 
 #if ModelService || PredictionService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Explanation of a prediction (provided in
   /// [PredictResponse.predictions][google.cloud.aiplatform.v1.PredictResponse.predictions])

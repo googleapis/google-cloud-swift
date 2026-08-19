@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// This field specifies the tile information including an attribute key,
 /// attribute value. More fields will be added in the future, eg: product id

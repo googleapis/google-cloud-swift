@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Terraform info of a ResourceChange.
 public struct ResourceDriftTerraformInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,

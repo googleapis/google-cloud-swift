@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Defines renewal, billing, and transfer settings for a `Registration`.
 public struct ManagementSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,

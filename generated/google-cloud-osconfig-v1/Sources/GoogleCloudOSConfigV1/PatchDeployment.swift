@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Patch deployments are configurations that individual patch jobs use to
 /// complete a patch. These configurations include instance filter, package

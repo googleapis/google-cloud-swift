@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A description of resources that are dedicated to a DeployedModel, and
 /// that need a higher degree of manual configuration.

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents the action responsible for properties update operations.
 public struct DataUpdateAction: Codable, Equatable, GoogleCloudWkt._AnyPackable,

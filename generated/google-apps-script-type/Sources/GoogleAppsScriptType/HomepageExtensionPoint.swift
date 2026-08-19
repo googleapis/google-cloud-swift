@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Common format for declaring an add-on's home-page view.
 public struct HomepageExtensionPoint: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if VizierService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// A message representing a Study.
   public struct Study: Codable, Equatable, GoogleCloudWkt._AnyPackable,

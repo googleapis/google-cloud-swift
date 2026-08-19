@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// ComputeEngineDisksTargetDefaults is a collection of details for creating
 /// Persistent Disks in a target Compute Engine project.

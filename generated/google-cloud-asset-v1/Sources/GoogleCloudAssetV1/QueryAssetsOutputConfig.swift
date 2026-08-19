@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Output configuration query assets.
 public struct QueryAssetsOutputConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

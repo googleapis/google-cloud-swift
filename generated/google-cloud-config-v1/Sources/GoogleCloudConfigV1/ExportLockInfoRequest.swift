@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A request to get a state file lock info passed to a 'ExportLockInfo' call.
 public struct ExportLockInfoRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

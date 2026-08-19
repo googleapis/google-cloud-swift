@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Virtual repository configuration.
 public struct VirtualRepositoryConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

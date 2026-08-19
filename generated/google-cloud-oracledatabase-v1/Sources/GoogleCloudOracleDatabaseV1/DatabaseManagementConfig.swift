@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The configuration of the Database Management service.
 public struct DatabaseManagementConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

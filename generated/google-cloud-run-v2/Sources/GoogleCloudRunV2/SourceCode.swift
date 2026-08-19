@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Source type for the container.
 public struct SourceCode: Codable, Equatable, GoogleCloudWkt._AnyPackable,

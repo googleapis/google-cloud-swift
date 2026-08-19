@@ -16,7 +16,7 @@
 
 #if BackendServices || RegionBackendServices
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Custom Metrics are used for WEIGHTED_ROUND_ROBIN
   /// locality_lb_policy.

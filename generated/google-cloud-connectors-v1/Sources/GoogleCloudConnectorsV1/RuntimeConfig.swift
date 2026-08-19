@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// RuntimeConfig is the singleton resource of each location.
 /// It includes generic resource configs consumed by control plane and runtime

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for `Firewall.ListIngressRules`.
 public struct ListIngressRulesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

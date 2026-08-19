@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A reference to a [Filestore](https://cloud.google.com/filestore) instance.
 public struct FilestoreReference: Codable, Equatable, GoogleCloudWkt._AnyPackable,

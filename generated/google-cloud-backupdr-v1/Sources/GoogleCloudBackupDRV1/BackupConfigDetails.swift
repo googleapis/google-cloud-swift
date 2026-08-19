@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// BackupConfigDetails has information about how the resource is configured
 /// for backups and about the most recent backup taken for this configuration.

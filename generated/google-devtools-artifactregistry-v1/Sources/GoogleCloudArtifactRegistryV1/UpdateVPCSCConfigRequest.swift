@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Sets the VPCSC config of the project.
 public struct UpdateVPCSCConfigRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

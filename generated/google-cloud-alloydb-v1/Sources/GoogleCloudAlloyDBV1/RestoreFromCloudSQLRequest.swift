@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message for registering Restoring from CloudSQL resource.
 public struct RestoreFromCloudSQLRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

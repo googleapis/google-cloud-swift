@@ -16,7 +16,7 @@
 
 #if Subnetworks
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct SubnetworksSetPrivateIpGoogleAccessRequest: Codable, Equatable, GoogleCloudWkt
       ._AnyPackable,

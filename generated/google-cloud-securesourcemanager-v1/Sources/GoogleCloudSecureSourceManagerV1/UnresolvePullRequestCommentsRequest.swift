@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The request to unresolve multiple pull request comments.
 public struct UnresolvePullRequestCommentsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

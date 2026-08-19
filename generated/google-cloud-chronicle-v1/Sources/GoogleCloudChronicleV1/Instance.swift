@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A Instance represents an instantiation of the Instance product.
 public struct Instance: Codable, Equatable, GoogleCloudWkt._AnyPackable,

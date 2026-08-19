@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The request to get python packages.
 public struct GetPythonPackageRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

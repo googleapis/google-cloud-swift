@@ -16,8 +16,8 @@
 
 #if HttpsHealthChecks
   import Foundation
-  import GoogleCloudGax
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudGax
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Contains a list of HttpsHealthCheck resources.
   public struct HttpsHealthCheckList: Codable, Equatable, GoogleCloudWkt._AnyPackable,

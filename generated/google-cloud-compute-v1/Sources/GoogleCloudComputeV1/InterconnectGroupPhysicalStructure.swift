@@ -16,7 +16,7 @@
 
 #if InterconnectGroups
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// [Output Only] An analysis of the physical layout of Interconnects in this
   /// group. Every Interconnect in the group is shown once in this structure.

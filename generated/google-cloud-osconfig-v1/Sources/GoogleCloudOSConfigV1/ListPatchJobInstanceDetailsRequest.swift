@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request to list details for all instances that are part of a patch job.
 public struct ListPatchJobInstanceDetailsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

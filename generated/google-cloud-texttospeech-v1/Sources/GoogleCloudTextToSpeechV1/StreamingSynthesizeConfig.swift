@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Provides configuration information for the StreamingSynthesize request.
 public struct StreamingSynthesizeConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

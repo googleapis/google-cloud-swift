@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Settings for keys that are configured through their Policy.
 public struct UniversalKeySettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,

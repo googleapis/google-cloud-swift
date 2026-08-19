@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents a blob input or output in the conversation.
 public struct Blob: Codable, Equatable, GoogleCloudWkt._AnyPackable,

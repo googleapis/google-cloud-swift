@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// AllAtOnceStrategy causes all clusters to be updated concurrently.
 public struct AllAtOnceStrategy: Codable, Equatable, GoogleCloudWkt._AnyPackable,

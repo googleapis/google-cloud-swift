@@ -16,7 +16,7 @@
 
 #if Networks
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Additional network parameters.
   public struct NetworkParams: Codable, Equatable, GoogleCloudWkt._AnyPackable,

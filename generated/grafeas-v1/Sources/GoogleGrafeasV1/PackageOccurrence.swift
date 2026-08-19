@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Details on how a particular software package was installed on a system.
 public struct PackageOccurrence: Codable, Equatable, GoogleCloudWkt._AnyPackable,

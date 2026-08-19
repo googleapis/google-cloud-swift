@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Properties of the audio stream.
 public struct AudioStreamProperty: Codable, Equatable, GoogleCloudWkt._AnyPackable,

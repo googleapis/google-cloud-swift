@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A detailed representation of a Yum artifact.
 public struct YumArtifact: Codable, Equatable, GoogleCloudWkt._AnyPackable,

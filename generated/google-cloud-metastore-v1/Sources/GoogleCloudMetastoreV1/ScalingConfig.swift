@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents the scaling configuration of a metastore service.
 public struct ScalingConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Metadata of Access Context Manager's Long Running Operations.
 public struct AccessContextManagerOperationMetadata: Codable, Equatable, GoogleCloudWkt

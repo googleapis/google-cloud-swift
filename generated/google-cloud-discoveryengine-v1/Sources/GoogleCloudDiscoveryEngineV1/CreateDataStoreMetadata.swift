@@ -16,7 +16,7 @@
 
 #if DataStoreService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Metadata related to the progress of the
   /// [DataStoreService.CreateDataStore][google.cloud.discoveryengine.v1.DataStoreService.CreateDataStore]

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A status object which is used as the `metadata` field for the `Operation`
 /// returned by `UndeleteFolder`.

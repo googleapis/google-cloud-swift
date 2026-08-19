@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Filter for text-based data types like varchar.
 public struct SourceTextFilter: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A collection of counters that report the progress of a transfer operation.
 public struct TransferCounters: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if Experiments
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The request message for
   /// [Experiments.GetExperiment][google.cloud.dialogflow.cx.v3.Experiments.GetExperiment].

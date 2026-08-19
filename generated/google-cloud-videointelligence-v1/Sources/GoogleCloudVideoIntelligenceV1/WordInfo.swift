@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Word-specific information for recognized words. Word information is only
 /// included in the response when certain request parameters are set, such

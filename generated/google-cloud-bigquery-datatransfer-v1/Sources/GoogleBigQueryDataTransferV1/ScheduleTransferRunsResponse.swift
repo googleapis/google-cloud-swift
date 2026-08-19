@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A response to schedule transfer runs for a time range.
 public struct ScheduleTransferRunsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The long-running operation metadata for the
 /// [DisableProcessor][google.cloud.documentai.v1.DocumentProcessorService.DisableProcessor]

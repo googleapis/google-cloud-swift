@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A ChannelProfile configures the agent's behavior for a specific communication
 /// channel, such as web UI or telephony.

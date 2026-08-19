@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Response to ExecuteAirflowCommandRequest.
 public struct ExecuteAirflowCommandResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

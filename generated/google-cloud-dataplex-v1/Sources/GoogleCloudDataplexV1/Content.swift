@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Content represents a user-visible notebook or a sql script
 public struct Content: Codable, Equatable, GoogleCloudWkt._AnyPackable,

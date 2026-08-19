@@ -16,7 +16,7 @@
 
 #if SqlInstancesService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Backup Reencryption Config
   public struct BackupReencryptionConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

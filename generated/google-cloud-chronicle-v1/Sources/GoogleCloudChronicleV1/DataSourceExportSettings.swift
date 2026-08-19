@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The export settings for a data source.
 public struct DataSourceExportSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,

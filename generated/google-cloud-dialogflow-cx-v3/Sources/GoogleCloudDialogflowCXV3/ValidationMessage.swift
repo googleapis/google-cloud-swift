@@ -16,7 +16,7 @@
 
 #if Agents || Flows
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Agent/flow validation message.
   public struct ValidationMessage: Codable, Equatable, GoogleCloudWkt._AnyPackable,

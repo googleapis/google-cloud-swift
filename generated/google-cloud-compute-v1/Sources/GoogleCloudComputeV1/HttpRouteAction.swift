@@ -16,7 +16,7 @@
 
 #if RegionUrlMaps || UrlMaps
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct HttpRouteAction: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable

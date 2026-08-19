@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A reference to a namespaced resource in Kubernetes.
 public struct NamespacedName: Codable, Equatable, GoogleCloudWkt._AnyPackable,

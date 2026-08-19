@@ -16,7 +16,7 @@
 
 #if Subnetworks
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The available logging options for this subnetwork.
   public struct SubnetworkLogConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

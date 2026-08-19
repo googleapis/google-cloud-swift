@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message of ListPublicOperatorsRequest API.
 public struct ListPublicOperatorsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

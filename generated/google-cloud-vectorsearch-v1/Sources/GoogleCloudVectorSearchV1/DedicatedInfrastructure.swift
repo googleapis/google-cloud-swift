@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents dedicated infrastructure for the index.
 public struct DedicatedInfrastructure: Codable, Equatable, GoogleCloudWkt._AnyPackable,

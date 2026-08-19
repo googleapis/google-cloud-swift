@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// ClusterUpgradeInfo contains the upgrade information of a cluster.
 public struct ClusterUpgradeInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if Conversations || GeneratorEvaluations || Generators
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Spec of CES app that the generator can choose from.
   public struct CesAppSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,

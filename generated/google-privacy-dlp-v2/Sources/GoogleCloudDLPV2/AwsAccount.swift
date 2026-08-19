@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// AWS account.
 public struct AwsAccount: Codable, Equatable, GoogleCloudWkt._AnyPackable,

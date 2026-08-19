@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Speech recognition result for the audio input.
 public struct RecognitionResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,

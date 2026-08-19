@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// ListSnapshotsRequest lists snapshots.
 public struct ListSnapshotsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Marks an account as `ACCOUNT_STATUS_ACTIVE`. The sender must be the account
 /// manager of the account to activate.

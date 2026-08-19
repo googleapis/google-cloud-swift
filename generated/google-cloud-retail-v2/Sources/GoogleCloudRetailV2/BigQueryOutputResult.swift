@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A BigQuery output result.
 public struct BigQueryOutputResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,

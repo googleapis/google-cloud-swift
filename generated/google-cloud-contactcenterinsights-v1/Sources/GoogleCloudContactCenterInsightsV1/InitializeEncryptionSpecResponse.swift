@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The response to initialize a location-level encryption specification.
 public struct InitializeEncryptionSpecResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

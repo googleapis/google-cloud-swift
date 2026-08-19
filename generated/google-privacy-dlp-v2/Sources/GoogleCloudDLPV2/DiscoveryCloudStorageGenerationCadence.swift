@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// How often existing buckets should have their profiles refreshed.
 /// New buckets are scanned as quickly as possible depending on system

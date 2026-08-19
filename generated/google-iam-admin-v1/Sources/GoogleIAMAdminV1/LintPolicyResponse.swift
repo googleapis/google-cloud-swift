@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The response of a lint operation. An empty response indicates
 /// the operation was able to fully execute and no lint issue was found.

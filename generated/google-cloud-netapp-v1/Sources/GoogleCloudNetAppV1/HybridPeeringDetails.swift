@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// HybridPeeringDetails contains details about the hybrid peering.
 public struct HybridPeeringDetails: Codable, Equatable, GoogleCloudWkt._AnyPackable,

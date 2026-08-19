@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// `BatchingConfigProto` defines the batching configuration for an API method.
 public struct BatchingConfigProto: Codable, Equatable, GoogleCloudWkt._AnyPackable,

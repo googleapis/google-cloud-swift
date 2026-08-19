@@ -16,7 +16,7 @@
 
 #if DatasetService || DeploymentResourcePoolService || EndpointService || JobService || ModelService || PipelineService || PredictionService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Parameters to configure explaining for Model's predictions.
   public struct ExplanationParameters: Codable, Equatable, GoogleCloudWkt._AnyPackable,

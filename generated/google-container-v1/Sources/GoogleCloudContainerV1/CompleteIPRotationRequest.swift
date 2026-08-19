@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// CompleteIPRotationRequest moves the cluster master back into single-IP mode.
 public struct CompleteIPRotationRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Artifacts created by the build pipeline.
 public struct Results: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// CloneStep holds information about the clone step progress.
 public struct CloneStep: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Action represents an issue requiring administrator action for resolution.
 public struct Action: Codable, Equatable, GoogleCloudWkt._AnyPackable,

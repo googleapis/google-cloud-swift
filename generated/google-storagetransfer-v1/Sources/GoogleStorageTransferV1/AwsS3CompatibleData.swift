@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// An AwsS3CompatibleData resource.
 public struct AwsS3CompatibleData: Codable, Equatable, GoogleCloudWkt._AnyPackable,

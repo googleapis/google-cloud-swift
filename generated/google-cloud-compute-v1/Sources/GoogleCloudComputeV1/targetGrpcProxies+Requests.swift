@@ -16,7 +16,7 @@
 
 #if TargetGrpcProxies
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   extension TargetGrpcProxiesClient {
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.targetGrpcProxies.delete] method.

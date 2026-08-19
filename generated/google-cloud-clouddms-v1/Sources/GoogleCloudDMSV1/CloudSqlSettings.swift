@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Settings for creating a Cloud SQL database instance.
 public struct CloudSqlSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,

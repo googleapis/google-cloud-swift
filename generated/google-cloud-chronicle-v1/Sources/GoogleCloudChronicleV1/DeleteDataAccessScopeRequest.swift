@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message to delete a data access scope.
 public struct DeleteDataAccessScopeRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

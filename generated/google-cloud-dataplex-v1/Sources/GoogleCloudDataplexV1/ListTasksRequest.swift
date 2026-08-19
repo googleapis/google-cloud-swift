@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// List tasks request.
 public struct ListTasksRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

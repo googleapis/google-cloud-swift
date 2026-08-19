@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message for current status of the Major Version Upgrade operation.
 public struct UpgradeClusterStatus: Codable, Equatable, GoogleCloudWkt._AnyPackable,

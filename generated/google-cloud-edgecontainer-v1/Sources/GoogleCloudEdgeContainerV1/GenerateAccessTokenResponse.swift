@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// An access token for a cluster.
 public struct GenerateAccessTokenResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

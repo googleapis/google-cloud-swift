@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents a generic name-value label. A label has separate name and value
 /// fields to support filtering with the `contains()` function. For more

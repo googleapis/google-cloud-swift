@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Information needed to create an Admin User for Google Workspace.
 public struct AdminUser: Codable, Equatable, GoogleCloudWkt._AnyPackable,

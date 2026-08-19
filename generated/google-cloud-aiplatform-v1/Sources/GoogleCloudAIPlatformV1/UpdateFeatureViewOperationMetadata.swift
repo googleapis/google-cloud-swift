@@ -16,7 +16,7 @@
 
 #if FeatureOnlineStoreAdminService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Details of operations that perform update FeatureView.
   public struct UpdateFeatureViewOperationMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,

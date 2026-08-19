@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// **RBAC RoleBinding Actuation**: An empty state left as an example Hub-wide
 /// Feature state.

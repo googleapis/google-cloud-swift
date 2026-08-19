@@ -16,8 +16,8 @@
 
 #if PublicAdvertisedPrefixes
   import Foundation
-  import GoogleCloudGax
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudGax
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct PublicAdvertisedPrefixList: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,

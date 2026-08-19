@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents a binding between a network and the management DNS zone.
 /// A management DNS zone is the Cloud DNS cross-project binding zone that

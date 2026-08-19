@@ -16,7 +16,7 @@
 
 #if Experiments
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// A list of flow version variants.
   public struct VersionVariants: Codable, Equatable, GoogleCloudWkt._AnyPackable,

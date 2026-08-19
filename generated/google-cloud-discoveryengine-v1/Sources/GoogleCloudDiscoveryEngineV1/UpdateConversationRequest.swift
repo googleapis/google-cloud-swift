@@ -16,7 +16,7 @@
 
 #if ConversationalSearchService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Request for UpdateConversation method.
   public struct UpdateConversationRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

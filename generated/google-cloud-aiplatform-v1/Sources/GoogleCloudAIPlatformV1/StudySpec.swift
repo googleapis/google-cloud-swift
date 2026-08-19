@@ -16,7 +16,7 @@
 
 #if JobService || VizierService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents specification of a Study.
   public struct StudySpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,

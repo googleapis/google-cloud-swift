@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message for importing data to Lustre.
 public struct ImportDataRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

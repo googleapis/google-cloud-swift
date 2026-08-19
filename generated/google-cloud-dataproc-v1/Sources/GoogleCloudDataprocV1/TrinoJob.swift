@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A Dataproc job for running [Trino](https://trino.io/) queries.
 /// **IMPORTANT**: The [Dataproc Trino Optional

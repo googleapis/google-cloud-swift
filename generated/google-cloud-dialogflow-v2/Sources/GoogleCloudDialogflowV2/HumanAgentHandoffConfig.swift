@@ -16,7 +16,7 @@
 
 #if ConversationProfiles || Conversations
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Defines the hand off to a live agent, typically on which external agent
   /// service provider to connect to a conversation.

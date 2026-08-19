@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// `FetchFileGitStatuses` response message.
 public struct FetchFileGitStatusesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

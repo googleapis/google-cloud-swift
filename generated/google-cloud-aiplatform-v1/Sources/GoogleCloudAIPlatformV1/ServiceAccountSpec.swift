@@ -16,7 +16,7 @@
 
 #if PersistentResourceService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Configuration for the use of custom service account to run the workloads.
   public struct ServiceAccountSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,

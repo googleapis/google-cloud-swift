@@ -16,7 +16,7 @@
 
 #if AcceleratorTypes
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct AcceleratorTypesScopedList: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable

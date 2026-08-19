@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// MessageBus for the messages flowing through the system. The admin has
 /// visibility and control over the messages being published and consumed and can

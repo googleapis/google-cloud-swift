@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A Recognizer message. Stores recognition configuration and metadata.
 public struct Recognizer: Codable, Equatable, GoogleCloudWkt._AnyPackable,

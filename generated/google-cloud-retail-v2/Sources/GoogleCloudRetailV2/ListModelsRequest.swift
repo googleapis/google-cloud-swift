@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request for listing models associated with a resource.
 public struct ListModelsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

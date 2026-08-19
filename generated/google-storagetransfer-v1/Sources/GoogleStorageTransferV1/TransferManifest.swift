@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Specifies where the manifest is located.
 public struct TransferManifest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

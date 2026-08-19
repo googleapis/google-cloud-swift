@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Private password leak verification info.
 public struct PrivatePasswordLeakVerification: Codable, Equatable, GoogleCloudWkt._AnyPackable,

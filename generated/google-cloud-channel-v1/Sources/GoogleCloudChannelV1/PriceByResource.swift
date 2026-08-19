@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents price by resource type.
 public struct PriceByResource: Codable, Equatable, GoogleCloudWkt._AnyPackable,

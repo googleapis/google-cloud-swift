@@ -16,7 +16,7 @@
 
 #if SiteSearchEngineService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Request message for
   /// [SiteSearchEngineService.FetchDomainVerificationStatus][google.cloud.discoveryengine.v1.SiteSearchEngineService.FetchDomainVerificationStatus]

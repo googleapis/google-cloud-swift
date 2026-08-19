@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A DataStore resource in Vertex AI Search.
 public struct DataStore: Codable, Equatable, GoogleCloudWkt._AnyPackable,

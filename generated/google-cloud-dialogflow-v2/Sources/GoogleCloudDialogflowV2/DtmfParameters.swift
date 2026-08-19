@@ -16,7 +16,7 @@
 
 #if Participants
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The message in the response that indicates the parameters of DTMF.
   public struct DtmfParameters: Codable, Equatable, GoogleCloudWkt._AnyPackable,

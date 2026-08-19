@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The [ListCurations][ApiHub.ListCurations] method's request.
 public struct ListCurationsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

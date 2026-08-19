@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents constraints required to purchase the Offer for a customer.
 public struct CustomerConstraints: Codable, Equatable, GoogleCloudWkt._AnyPackable,

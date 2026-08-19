@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// When set in OperationStep, indicates that a nodeset should be updated.
 public struct UpdateNodeset: Codable, Equatable, GoogleCloudWkt._AnyPackable,

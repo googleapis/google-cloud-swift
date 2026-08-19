@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// ListUsableSubnetworksRequest requests the list of usable subnetworks
 /// available to a user for creating clusters.

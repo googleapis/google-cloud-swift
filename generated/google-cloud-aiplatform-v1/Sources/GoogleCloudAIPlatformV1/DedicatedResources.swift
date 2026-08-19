@@ -16,7 +16,7 @@
 
 #if DeploymentResourcePoolService || EndpointService || IndexEndpointService || ModelGardenService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// A description of resources that are dedicated to a DeployedModel or
   /// DeployedIndex, and that need a higher degree of manual configuration.

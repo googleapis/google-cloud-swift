@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Supported runtime features of a connector version. This is passed to the
 /// management layer to add a new connector version by the connector developer.

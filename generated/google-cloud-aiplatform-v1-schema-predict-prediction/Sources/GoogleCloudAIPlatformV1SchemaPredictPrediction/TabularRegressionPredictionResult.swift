@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Prediction output format for Tabular Regression.
 public struct TabularRegressionPredictionResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,

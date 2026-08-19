@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The software configuration for this Dataproc cluster running on Kubernetes.
 public struct KubernetesSoftwareConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

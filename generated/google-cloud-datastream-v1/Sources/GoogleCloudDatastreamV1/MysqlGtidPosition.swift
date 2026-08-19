@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// MySQL GTID position
 public struct MysqlGtidPosition: Codable, Equatable, GoogleCloudWkt._AnyPackable,

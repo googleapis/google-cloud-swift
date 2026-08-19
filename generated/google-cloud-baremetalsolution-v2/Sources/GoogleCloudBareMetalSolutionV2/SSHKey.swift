@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// An SSH key, used for authorizing with the interactive serial console feature.
 public struct SSHKey: Codable, Equatable, GoogleCloudWkt._AnyPackable,

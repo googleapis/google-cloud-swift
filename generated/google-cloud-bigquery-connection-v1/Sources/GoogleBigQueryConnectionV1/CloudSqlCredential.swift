@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Credential info for the Cloud SQL.
 public struct CloudSqlCredential: Codable, Equatable, GoogleCloudWkt._AnyPackable,

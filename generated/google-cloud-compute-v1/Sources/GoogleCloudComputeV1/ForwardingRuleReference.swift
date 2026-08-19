@@ -16,7 +16,7 @@
 
 #if GlobalNetworkEndpointGroups || NetworkEndpointGroups || RegionNetworkEndpointGroups
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct ForwardingRuleReference: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable

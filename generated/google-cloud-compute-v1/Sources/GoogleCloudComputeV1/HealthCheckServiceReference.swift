@@ -16,7 +16,7 @@
 
 #if GlobalNetworkEndpointGroups || NetworkEndpointGroups || RegionNetworkEndpointGroups
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// A full or valid partial URL to a health check service. For example, the
   /// following are valid URLs:

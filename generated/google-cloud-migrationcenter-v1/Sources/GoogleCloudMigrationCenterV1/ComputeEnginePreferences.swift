@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The user preferences relating to Compute Engine target platform.
 public struct ComputeEnginePreferences: Codable, Equatable, GoogleCloudWkt._AnyPackable,

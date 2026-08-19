@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A key-value pair in the Metadata.
 public struct KeyValueMetadataProperty: Codable, Equatable, GoogleCloudWkt._AnyPackable,

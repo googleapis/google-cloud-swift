@@ -16,7 +16,7 @@
 
 #if RegionSnapshotSettings || SnapshotSettings
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// A structure for specifying an allowed target region.
   public struct SnapshotSettingsAccessLocationAccessLocationPreference: Codable, Equatable,

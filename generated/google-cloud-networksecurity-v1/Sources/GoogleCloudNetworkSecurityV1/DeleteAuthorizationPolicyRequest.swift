@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request used by the DeleteAuthorizationPolicy method.
 public struct DeleteAuthorizationPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

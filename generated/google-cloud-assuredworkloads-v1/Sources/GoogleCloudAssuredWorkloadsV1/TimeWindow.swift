@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Interval defining a time window.
 public struct TimeWindow: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Probe describes a health check to be performed against a container to
 /// determine whether it is alive or ready to receive traffic.

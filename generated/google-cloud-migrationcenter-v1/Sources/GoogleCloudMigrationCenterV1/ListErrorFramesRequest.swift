@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A request to list error frames for a source.
 public struct ListErrorFramesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if Agents || Flows
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Resource name and display name.
   public struct ResourceName: Codable, Equatable, GoogleCloudWkt._AnyPackable,

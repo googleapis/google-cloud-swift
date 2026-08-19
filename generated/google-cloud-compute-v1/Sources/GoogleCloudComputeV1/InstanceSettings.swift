@@ -16,7 +16,7 @@
 
 #if InstanceSettings
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents a Instance Settings resource. You can use instance settings to
   /// configure default settings for Compute Engine VM instances. For example, you

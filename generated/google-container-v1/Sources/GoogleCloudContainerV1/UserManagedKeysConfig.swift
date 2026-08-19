@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// UserManagedKeysConfig holds the resource address to Keys which are used
 /// for signing certs and token that are used for communication within cluster.

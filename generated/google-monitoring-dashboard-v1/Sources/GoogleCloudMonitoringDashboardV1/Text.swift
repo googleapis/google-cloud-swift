@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A widget that displays textual content.
 public struct Text: Codable, Equatable, GoogleCloudWkt._AnyPackable,

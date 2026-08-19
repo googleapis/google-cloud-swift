@@ -16,7 +16,7 @@
 
 #if VpnGateways
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// A VPN gateway interface.
   public struct VpnGatewayVpnGatewayInterface: Codable, Equatable, GoogleCloudWkt._AnyPackable,

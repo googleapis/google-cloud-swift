@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Batch get assets history request.
 public struct BatchGetAssetsHistoryRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

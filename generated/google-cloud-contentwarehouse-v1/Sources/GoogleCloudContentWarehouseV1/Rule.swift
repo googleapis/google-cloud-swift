@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents the rule for a content warehouse trigger.
 public struct Rule: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// An entry describing an error that has occurred.
 public struct ErrorLogEntry: Codable, Equatable, GoogleCloudWkt._AnyPackable,

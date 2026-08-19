@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// SerialPipeline defines a sequential set of stages for a `DeliveryPipeline`.
 public struct SerialPipeline: Codable, Equatable, GoogleCloudWkt._AnyPackable,

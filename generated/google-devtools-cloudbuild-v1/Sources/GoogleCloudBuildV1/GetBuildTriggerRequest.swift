@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Returns the `BuildTrigger` with the specified ID.
 public struct GetBuildTriggerRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if DocumentService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Cloud SQL source import data from.
   public struct CloudSqlSource: Codable, Equatable, GoogleCloudWkt._AnyPackable,

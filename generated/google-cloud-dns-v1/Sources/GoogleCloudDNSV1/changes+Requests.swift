@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 extension ChangesClient {
   /// Synthetic request message for the [create()][.changes.create] method.

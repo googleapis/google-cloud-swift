@@ -16,7 +16,7 @@
 
 import Foundation
 import GoogleApi
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A description of a notification channel. The descriptor includes
 /// the properties of the channel and the set of labels or fields that

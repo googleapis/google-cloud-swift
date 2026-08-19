@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// VmwareEngine specific metadata for the given
 /// [google.cloud.location.Location][google.cloud.location.Location]. It is

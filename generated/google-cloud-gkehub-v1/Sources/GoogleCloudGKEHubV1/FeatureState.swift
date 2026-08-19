@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// FeatureState describes the high-level state of a Feature. It may be used to
 /// describe a Feature's state at the environ-level, or per-membershop, depending

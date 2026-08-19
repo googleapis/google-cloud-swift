@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message describing an aggregation. The message includes the aggregation type,
 /// parameters, and the field on which to perform the aggregation.

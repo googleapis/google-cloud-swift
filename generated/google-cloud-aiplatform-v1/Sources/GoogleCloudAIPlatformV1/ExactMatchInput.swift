@@ -16,7 +16,7 @@
 
 #if EvaluationService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Input for exact match metric.
   public struct ExactMatchInput: Codable, Equatable, GoogleCloudWkt._AnyPackable,

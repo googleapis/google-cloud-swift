@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Response message with data table rows that replaced existing data table rows.
 public struct BulkReplaceDataTableRowsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

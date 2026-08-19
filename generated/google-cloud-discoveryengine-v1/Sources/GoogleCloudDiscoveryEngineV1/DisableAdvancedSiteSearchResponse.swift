@@ -16,7 +16,7 @@
 
 #if SiteSearchEngineService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Response message for
   /// [SiteSearchEngineService.DisableAdvancedSiteSearch][google.cloud.discoveryengine.v1.SiteSearchEngineService.DisableAdvancedSiteSearch]

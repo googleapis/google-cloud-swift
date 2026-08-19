@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Response for restricting the list of allowed resources.
 public struct RestrictAllowedResourcesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

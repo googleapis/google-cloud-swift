@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A request to create DataTable.
 public struct CreateDataTableRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

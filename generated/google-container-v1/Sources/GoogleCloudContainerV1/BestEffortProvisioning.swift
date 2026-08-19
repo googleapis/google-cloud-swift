@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Best effort provisioning.
 public struct BestEffortProvisioning: Codable, Equatable, GoogleCloudWkt._AnyPackable,

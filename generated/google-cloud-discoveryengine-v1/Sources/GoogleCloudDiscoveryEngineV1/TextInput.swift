@@ -16,7 +16,7 @@
 
 #if ConversationalSearchService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Defines text input.
   public struct TextInput: Codable, Equatable, GoogleCloudWkt._AnyPackable,

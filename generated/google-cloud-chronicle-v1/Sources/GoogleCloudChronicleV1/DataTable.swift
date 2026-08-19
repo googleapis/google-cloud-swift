@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// DataTable represents the data table resource.
 public struct DataTable: Codable, Equatable, GoogleCloudWkt._AnyPackable,

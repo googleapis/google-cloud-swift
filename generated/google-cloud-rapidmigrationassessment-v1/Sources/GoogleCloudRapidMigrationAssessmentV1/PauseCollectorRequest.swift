@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message for pausing a Collector.
 public struct PauseCollectorRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

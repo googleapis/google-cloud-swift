@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for ListRestoreChannels.
 public struct ListRestoreChannelsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

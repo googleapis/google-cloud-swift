@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The request for `GoldengateDeployment.Get`.
 public struct GetGoldengateDeploymentRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

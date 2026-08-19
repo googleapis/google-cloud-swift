@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A conversation represents an interaction between an end user and the CES app.
 public struct Conversation: Codable, Equatable, GoogleCloudWkt._AnyPackable,

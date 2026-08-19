@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request to load a snapshot into a Cloud Composer environment.
 public struct LoadSnapshotRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Common format for declaring a Sheets add-on's triggers.
 public struct SheetsExtensionPoint: Codable, Equatable, GoogleCloudWkt._AnyPackable,

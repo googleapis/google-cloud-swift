@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Holds information for the Mounted Images log
 public struct MountedImage: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -16,8 +16,8 @@
 
 #if NodeTypes
   import Foundation
-  import GoogleCloudGax
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudGax
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Contains a list of node types.
   public struct NodeTypeList: Codable, Equatable, GoogleCloudWkt._AnyPackable,

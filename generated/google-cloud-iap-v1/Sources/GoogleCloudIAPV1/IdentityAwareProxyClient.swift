@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Contains the data that describes an Identity Aware Proxy owned client.
 public struct IdentityAwareProxyClient: Codable, Equatable, GoogleCloudWkt._AnyPackable,

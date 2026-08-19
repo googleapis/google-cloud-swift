@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configures a `RRSetRoutingPolicy` that routes based on the geo location of the querying user.
 public struct RRSetRoutingPolicyGeoPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,

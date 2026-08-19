@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A filter for matching Compute Engine instances.
 public struct GceInstanceFilter: Codable, Equatable, GoogleCloudWkt._AnyPackable,

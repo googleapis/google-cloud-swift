@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message for revoking a subscription.
 public struct RevokeSubscriptionRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// EndpointPolicy is a resource that helps apply desired configuration
 /// on the endpoints that match specific criteria.

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Card layout properties shared across all add-on host applications.
 public struct LayoutProperties: Codable, Equatable, GoogleCloudWkt._AnyPackable,

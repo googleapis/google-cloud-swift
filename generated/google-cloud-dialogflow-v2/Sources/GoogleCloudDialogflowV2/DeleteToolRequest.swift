@@ -16,7 +16,7 @@
 
 #if Tools
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Request of DeleteTool.
   public struct DeleteToolRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

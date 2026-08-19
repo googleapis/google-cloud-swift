@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents a Kafka bootstrap server with host name, optional port defaults to
 /// 9092, and an optional private ip.

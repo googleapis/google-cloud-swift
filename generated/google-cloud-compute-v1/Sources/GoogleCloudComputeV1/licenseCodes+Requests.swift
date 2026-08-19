@@ -16,7 +16,7 @@
 
 #if LicenseCodes
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   extension LicenseCodesClient {
     /// Synthetic request message for the [get()][google.cloud.compute.v1.licenseCodes.get] method.

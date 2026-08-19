@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The metadata for an `UploadConversation` operation.
 public struct UploadConversationMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,

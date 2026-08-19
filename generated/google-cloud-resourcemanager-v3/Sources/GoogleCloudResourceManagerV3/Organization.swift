@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The root node in the resource hierarchy to which a particular entity's
 /// (a company, for example) resources belong.

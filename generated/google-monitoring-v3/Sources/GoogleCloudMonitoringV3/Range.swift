@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Range of numerical values within `min` and `max`.
 public struct Range: Codable, Equatable, GoogleCloudWkt._AnyPackable,

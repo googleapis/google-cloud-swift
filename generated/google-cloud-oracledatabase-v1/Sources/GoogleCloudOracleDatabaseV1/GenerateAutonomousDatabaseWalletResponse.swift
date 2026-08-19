@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The response for `AutonomousDatabase.GenerateWallet`.
 public struct GenerateAutonomousDatabaseWalletResponse: Codable, Equatable, GoogleCloudWkt

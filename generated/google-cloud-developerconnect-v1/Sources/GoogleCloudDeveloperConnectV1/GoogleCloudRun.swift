@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// GoogleCloudRun represents the Cloud Run runtime.
 public struct GoogleCloudRun: Codable, Equatable, GoogleCloudWkt._AnyPackable,

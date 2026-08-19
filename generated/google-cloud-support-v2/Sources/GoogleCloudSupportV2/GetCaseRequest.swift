@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The request message for the GetCase endpoint.
 public struct GetCaseRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

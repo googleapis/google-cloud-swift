@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Instance AUTH string details.
 public struct InstanceAuthString: Codable, Equatable, GoogleCloudWkt._AnyPackable,

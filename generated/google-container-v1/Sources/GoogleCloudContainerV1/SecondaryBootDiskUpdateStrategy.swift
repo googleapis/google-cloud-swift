@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// SecondaryBootDiskUpdateStrategy is a placeholder which will be extended
 /// in the future to define different options for updating secondary boot disks.

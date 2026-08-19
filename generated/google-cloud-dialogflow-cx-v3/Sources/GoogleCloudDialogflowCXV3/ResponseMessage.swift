@@ -16,7 +16,7 @@
 
 #if Flows || Pages || Playbooks || Sessions || TestCases || TransitionRouteGroups
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents a response message that can be returned by a conversational agent.
   ///

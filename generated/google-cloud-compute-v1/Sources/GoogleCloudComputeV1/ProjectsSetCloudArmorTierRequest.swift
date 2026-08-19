@@ -16,7 +16,7 @@
 
 #if Projects
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct ProjectsSetCloudArmorTierRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable

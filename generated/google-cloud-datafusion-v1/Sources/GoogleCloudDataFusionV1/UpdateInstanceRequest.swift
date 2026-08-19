@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for updating a Data Fusion instance.
 /// Data Fusion allows updating the labels, options, and stack driver settings.

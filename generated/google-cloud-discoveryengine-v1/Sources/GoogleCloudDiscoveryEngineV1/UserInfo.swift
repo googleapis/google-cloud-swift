@@ -16,7 +16,7 @@
 
 #if AssistantService || ConversationalSearchService || RecommendationService || SearchService || ServingConfigService || UserEventService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Information of an end user.
   public struct UserInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,

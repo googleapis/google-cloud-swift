@@ -16,7 +16,7 @@
 
 #if PersistentResourceService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Persistent Cluster runtime information as output
   public struct ResourceRuntime: Codable, Equatable, GoogleCloudWkt._AnyPackable,

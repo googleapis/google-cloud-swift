@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message for requesting storage lun information.
 public struct GetLunRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

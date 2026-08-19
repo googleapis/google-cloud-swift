@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configuration for discovery to scan resources for profile generation.
 /// Only one discovery configuration may exist per organization, folder,

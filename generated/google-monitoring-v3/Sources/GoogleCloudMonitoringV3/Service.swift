@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A `Service` is a discrete, autonomous, and network-accessible unit, designed
 /// to solve an individual concern

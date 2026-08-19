@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The cadence at which to update data profiles when a table is modified.
 public struct DiscoveryTableModifiedCadence: Codable, Equatable, GoogleCloudWkt._AnyPackable,

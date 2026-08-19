@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for
 /// [GetEntryGroup][google.cloud.datacatalog.v1.DataCatalog.GetEntryGroup].

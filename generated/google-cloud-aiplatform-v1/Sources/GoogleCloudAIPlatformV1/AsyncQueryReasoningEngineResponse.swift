@@ -16,7 +16,7 @@
 
 #if ReasoningEngineExecutionService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Response message for
   /// [ReasoningEngineExecutionService.AsyncQueryReasoningEngine][google.cloud.aiplatform.v1.ReasoningEngineExecutionService.AsyncQueryReasoningEngine].

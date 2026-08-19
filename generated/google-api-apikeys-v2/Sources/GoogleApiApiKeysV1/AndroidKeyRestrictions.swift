@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The Android apps that are allowed to use the key.
 public struct AndroidKeyRestrictions: Codable, Equatable, GoogleCloudWkt._AnyPackable,

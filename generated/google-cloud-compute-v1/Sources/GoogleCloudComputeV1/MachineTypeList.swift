@@ -16,8 +16,8 @@
 
 #if MachineTypes
   import Foundation
-  import GoogleCloudGax
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudGax
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Contains a list of machine types.
   public struct MachineTypeList: Codable, Equatable, GoogleCloudWkt._AnyPackable,

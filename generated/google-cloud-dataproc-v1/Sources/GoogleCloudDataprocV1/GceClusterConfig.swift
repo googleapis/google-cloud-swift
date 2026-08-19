@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Common config settings for resources of Compute Engine cluster
 /// instances, applicable to all instances in the cluster.

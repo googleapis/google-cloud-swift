@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The properties of GoldengateOciObjectStorageConnection.
 public struct GoldengateOciObjectStorageConnectionProperties: Codable, Equatable, GoogleCloudWkt

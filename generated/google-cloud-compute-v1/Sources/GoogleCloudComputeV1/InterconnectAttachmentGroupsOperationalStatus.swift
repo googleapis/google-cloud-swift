@@ -16,7 +16,7 @@
 
 #if InterconnectAttachmentGroups
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct InterconnectAttachmentGroupsOperationalStatus: Codable, Equatable, GoogleCloudWkt
       ._AnyPackable,

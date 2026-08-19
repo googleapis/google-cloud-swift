@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Long-running operation metadata for Edge Container API methods.
 public struct OperationMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,

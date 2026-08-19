@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Git repo configuration for a single cluster.
 public struct GitConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

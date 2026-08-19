@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudGax
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudGax
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A response to a request to list autoscaling policies in a project.
 public struct ListAutoscalingPoliciesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

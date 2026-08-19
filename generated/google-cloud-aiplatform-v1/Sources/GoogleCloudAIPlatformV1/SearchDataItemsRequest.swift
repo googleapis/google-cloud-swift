@@ -16,7 +16,7 @@
 
 #if DatasetService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Request message for
   /// [DatasetService.SearchDataItems][google.cloud.aiplatform.v1.DatasetService.SearchDataItems].

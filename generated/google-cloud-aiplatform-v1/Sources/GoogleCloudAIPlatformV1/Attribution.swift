@@ -16,7 +16,7 @@
 
 #if ModelService || PredictionService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Attribution that explains a particular prediction output.
   public struct Attribution: Codable, Equatable, GoogleCloudWkt._AnyPackable,

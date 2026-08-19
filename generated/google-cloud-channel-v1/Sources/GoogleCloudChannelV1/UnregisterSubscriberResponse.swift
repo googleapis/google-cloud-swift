@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Response Message for UnregisterSubscriber.
 public struct UnregisterSubscriberResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

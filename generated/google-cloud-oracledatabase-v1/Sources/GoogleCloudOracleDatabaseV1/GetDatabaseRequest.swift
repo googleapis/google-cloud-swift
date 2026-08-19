@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The request for `Database.Get`.
 public struct GetDatabaseRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if Instances
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Array of guest attribute namespace/key/value tuples.
   public struct GuestAttributesValue: Codable, Equatable, GoogleCloudWkt._AnyPackable,

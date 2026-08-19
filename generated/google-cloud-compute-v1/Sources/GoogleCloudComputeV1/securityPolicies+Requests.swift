@@ -16,7 +16,7 @@
 
 #if SecurityPolicies
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   extension SecurityPoliciesClient {
     /// Synthetic request message for the [addRule()][google.cloud.compute.v1.securityPolicies.addRule] method.

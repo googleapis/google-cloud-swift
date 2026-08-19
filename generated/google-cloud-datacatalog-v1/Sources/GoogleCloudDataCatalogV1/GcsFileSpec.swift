@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Specification of a single file in Cloud Storage.
 public struct GcsFileSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,

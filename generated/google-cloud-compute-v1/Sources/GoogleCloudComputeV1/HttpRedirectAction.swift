@@ -16,7 +16,7 @@
 
 #if RegionUrlMaps || UrlMaps
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Specifies settings for an HTTP redirect.
   public struct HttpRedirectAction: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Describes options to update object hold.
 public struct PutObjectHold: Codable, Equatable, GoogleCloudWkt._AnyPackable,

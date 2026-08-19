@@ -16,7 +16,7 @@
 
 #if DataStoreService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Configuration for Natural Language Query Understanding.
   public struct NaturalLanguageQueryUnderstandingConfig: Codable, Equatable, GoogleCloudWkt

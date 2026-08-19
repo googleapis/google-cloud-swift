@@ -16,7 +16,7 @@
 
 #if ResourcePolicies
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// A GroupPlacementPolicy specifies resource placement configuration.
   /// It specifies the failure bucket separation

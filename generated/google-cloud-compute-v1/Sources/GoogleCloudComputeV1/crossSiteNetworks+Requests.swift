@@ -16,7 +16,7 @@
 
 #if CrossSiteNetworks
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   extension CrossSiteNetworksClient {
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.crossSiteNetworks.delete] method.

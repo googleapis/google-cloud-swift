@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// TlsRoute defines how traffic should be routed based on SNI and other matching
 /// L3 attributes.

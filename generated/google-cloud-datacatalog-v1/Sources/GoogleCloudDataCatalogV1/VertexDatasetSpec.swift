@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Specification for vertex dataset resources.
 public struct VertexDatasetSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,

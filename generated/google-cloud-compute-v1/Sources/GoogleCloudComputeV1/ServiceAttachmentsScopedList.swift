@@ -16,7 +16,7 @@
 
 #if ServiceAttachments
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct ServiceAttachmentsScopedList: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable

@@ -16,8 +16,8 @@
 
 #if RegionAutoscalers
   import Foundation
-  import GoogleCloudGax
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudGax
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Contains a list of autoscalers.
   public struct RegionAutoscalerList: Codable, Equatable, GoogleCloudWkt._AnyPackable,

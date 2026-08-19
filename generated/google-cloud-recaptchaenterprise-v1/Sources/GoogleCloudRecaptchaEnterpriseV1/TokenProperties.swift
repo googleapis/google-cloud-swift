@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Properties of the provided event token.
 public struct TokenProperties: Codable, Equatable, GoogleCloudWkt._AnyPackable,

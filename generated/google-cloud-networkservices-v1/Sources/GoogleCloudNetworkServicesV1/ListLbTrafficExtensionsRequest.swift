@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message for requesting list of `LbTrafficExtension` resources.
 public struct ListLbTrafficExtensionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if Instances
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Effective values of predefined metadata keys for an instance.
   public struct ResourceStatusEffectiveInstanceMetadata: Codable, Equatable, GoogleCloudWkt

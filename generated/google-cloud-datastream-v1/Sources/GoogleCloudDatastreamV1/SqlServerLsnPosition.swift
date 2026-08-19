@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// SQL Server LSN position
 public struct SqlServerLsnPosition: Codable, Equatable, GoogleCloudWkt._AnyPackable,

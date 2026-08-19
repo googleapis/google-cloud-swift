@@ -16,7 +16,7 @@
 
 #if ConversationProfiles || Conversations || Participants
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents a conversation participant (human agent, virtual agent, end-user).
   public struct Participant: Codable, Equatable, GoogleCloudWkt._AnyPackable,

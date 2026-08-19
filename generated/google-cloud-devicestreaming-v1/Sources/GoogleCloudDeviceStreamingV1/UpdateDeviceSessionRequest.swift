@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for DirectAccessService.UpdateDeviceSession.
 public struct UpdateDeviceSessionRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

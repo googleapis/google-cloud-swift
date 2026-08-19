@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The user preferences relating to Google Cloud VMware Engine target platform.
 public struct VmwareEnginePreferences: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// OS policy assignment operation metadata provided by OS policy assignment API
 /// methods that return long running operations.

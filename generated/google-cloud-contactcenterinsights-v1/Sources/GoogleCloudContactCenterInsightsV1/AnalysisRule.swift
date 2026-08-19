@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The CCAI Insights project wide analysis rule. This rule will be applied to
 /// all conversations that match the filter defined in the rule. For a

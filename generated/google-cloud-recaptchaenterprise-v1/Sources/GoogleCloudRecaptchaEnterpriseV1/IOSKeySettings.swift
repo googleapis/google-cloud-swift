@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Settings specific to keys that can be used by iOS apps.
 public struct IOSKeySettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,

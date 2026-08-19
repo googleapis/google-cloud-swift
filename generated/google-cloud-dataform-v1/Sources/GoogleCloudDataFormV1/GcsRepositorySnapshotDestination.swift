@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configures the destination for a repository snapshot.
 public struct GcsRepositorySnapshotDestination: Codable, Equatable, GoogleCloudWkt._AnyPackable,

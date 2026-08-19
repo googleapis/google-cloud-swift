@@ -16,7 +16,7 @@
 
 #if EndpointService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Runtime operation information for
   /// [EndpointService.UpdateEndpointLongRunning][google.cloud.aiplatform.v1.EndpointService.UpdateEndpointLongRunning].

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Information of backup configuration on the DataSource.
 public struct DataSourceBackupConfigInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,

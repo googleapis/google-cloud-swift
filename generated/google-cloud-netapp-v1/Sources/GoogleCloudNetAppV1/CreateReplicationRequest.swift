@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// CreateReplicationRequest creates a replication.
 public struct CreateReplicationRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

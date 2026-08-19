@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message for listing subscriptions of a shared resource.
 public struct ListSharedResourceSubscriptionsRequest: Codable, Equatable, GoogleCloudWkt

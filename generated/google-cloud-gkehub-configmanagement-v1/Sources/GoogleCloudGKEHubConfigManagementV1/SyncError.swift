@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// An ACM created error representing a problem syncing configurations
 public struct SyncError: Codable, Equatable, GoogleCloudWkt._AnyPackable,

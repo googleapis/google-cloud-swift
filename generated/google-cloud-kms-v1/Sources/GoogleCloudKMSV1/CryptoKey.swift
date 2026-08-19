@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A [CryptoKey][google.cloud.kms.v1.CryptoKey] represents a logical key that
 /// can be used for cryptographic operations.

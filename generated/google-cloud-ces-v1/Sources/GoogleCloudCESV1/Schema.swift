@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents a select subset of an OpenAPI 3.0 schema object.
 public struct Schema: Codable, Equatable, GoogleCloudWkt._AnyPackable,

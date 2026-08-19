@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A request for the customer to approve access to a resource.
 public struct ApprovalRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

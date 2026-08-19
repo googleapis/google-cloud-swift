@@ -16,7 +16,7 @@
 
 #if DataFoundryService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Defines a specification for a single output field.
   public struct OutputFieldSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,

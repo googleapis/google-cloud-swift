@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A document schema used to define document structure.
 public struct DocumentSchema: Codable, Equatable, GoogleCloudWkt._AnyPackable,

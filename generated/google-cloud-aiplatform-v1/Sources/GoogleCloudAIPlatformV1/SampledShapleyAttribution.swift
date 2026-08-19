@@ -16,7 +16,7 @@
 
 #if DatasetService || DeploymentResourcePoolService || EndpointService || JobService || ModelService || PipelineService || PredictionService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// An attribution method that approximates Shapley values for features that
   /// contribute to the label being predicted. A sampling strategy is used to

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// SyncReplicationRequest syncs the replication from source to destination.
 public struct SyncReplicationRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

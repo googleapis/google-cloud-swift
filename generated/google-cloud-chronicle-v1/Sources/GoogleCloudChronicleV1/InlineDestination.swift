@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// InlineDestination for exporting a dashboard.
 public struct InlineDestination: Codable, Equatable, GoogleCloudWkt._AnyPackable,

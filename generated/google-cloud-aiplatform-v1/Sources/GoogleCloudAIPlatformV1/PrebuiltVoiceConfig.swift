@@ -16,7 +16,7 @@
 
 #if GenAiTuningService || LlmUtilityService || PredictionService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Configuration for a prebuilt voice.
   public struct PrebuiltVoiceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

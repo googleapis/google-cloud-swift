@@ -16,7 +16,7 @@
 
 #if ConversationProfiles || Conversations
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Defines the Automated Agent to connect to a conversation.
   public struct AutomatedAgentConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

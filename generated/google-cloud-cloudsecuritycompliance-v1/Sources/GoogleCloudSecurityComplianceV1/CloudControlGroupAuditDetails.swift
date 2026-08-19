@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The details for a cloud control group.
 public struct CloudControlGroupAuditDetails: Codable, Equatable, GoogleCloudWkt._AnyPackable,

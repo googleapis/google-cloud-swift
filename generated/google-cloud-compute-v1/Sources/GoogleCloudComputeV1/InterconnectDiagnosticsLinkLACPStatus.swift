@@ -16,7 +16,7 @@
 
 #if InterconnectGroups || Interconnects
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct InterconnectDiagnosticsLinkLACPStatus: Codable, Equatable, GoogleCloudWkt
       ._AnyPackable,

@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudGax
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudGax
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// ListActiveDirectoriesResponse contains all the active directories requested.
 public struct ListActiveDirectoriesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Autoscaling Policy config associated with the cluster.
 public struct AutoscalingConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

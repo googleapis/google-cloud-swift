@@ -16,8 +16,8 @@
 
 #if Tools
   import Foundation
-  import GoogleCloudGax
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudGax
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Response of ListTools.
   public struct ListToolsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

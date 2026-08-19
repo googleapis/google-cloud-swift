@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// TransferableSku represents information a reseller needs to view existing
 /// provisioned services for a customer that they do not own.

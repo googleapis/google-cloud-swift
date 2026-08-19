@@ -16,8 +16,8 @@
 
 #if VpnGateways
   import Foundation
-  import GoogleCloudGax
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudGax
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Contains a list of VpnGateway resources.
   public struct VpnGatewayList: Codable, Equatable, GoogleCloudWkt._AnyPackable,

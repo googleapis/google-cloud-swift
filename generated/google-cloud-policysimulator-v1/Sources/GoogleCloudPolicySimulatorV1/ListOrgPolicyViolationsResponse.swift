@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudGax
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudGax
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// ListOrgPolicyViolationsResponse is the response message for
 /// [OrgPolicyViolationsPreviewService.ListOrgPolicyViolations][google.cloud.policysimulator.v1.OrgPolicyViolationsPreviewService.ListOrgPolicyViolations]

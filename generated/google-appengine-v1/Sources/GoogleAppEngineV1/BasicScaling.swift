@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A service with basic scaling will create an instance when the application
 /// receives a request. The instance will be turned down when the app becomes

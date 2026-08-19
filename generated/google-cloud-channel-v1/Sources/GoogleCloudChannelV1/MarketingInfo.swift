@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents the marketing information for a Product, SKU or Offer.
 public struct MarketingInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,

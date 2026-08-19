@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The response for a bulk delete conversations operation.
 public struct BulkDeleteConversationsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

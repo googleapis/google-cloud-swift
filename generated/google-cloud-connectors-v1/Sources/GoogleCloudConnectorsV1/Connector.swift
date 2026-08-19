@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Connectors indicates a specific connector type, e.x. Salesforce, SAP etc.
 public struct Connector: Codable, Equatable, GoogleCloudWkt._AnyPackable,

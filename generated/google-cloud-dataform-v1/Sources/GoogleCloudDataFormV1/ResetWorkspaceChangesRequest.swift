@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// `ResetWorkspaceChanges` request message.
 public struct ResetWorkspaceChangesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

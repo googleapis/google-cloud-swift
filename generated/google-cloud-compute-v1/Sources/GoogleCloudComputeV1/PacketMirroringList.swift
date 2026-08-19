@@ -16,8 +16,8 @@
 
 #if PacketMirrorings
   import Foundation
-  import GoogleCloudGax
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudGax
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Contains a list of PacketMirroring resources.
   public struct PacketMirroringList: Codable, Equatable, GoogleCloudWkt._AnyPackable,

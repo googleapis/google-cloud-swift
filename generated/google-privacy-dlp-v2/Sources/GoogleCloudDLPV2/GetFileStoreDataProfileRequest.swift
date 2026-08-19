@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request to get a file store data profile.
 public struct GetFileStoreDataProfileRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

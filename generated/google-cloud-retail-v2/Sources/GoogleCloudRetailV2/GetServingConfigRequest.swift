@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request for GetServingConfig method.
 public struct GetServingConfigRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

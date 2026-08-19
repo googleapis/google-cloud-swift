@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// For display only. Metadata associated with a Compute Engine VPN tunnel.
 public struct VpnTunnelInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message to remove chart from a dashboard.
 public struct RemoveChartRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

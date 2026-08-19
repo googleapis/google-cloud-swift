@@ -16,7 +16,7 @@
 
 import Foundation
 import GoogleApi
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Describes a Synthetic Monitor to be invoked by Uptime.
 public struct SyntheticMonitorTarget: Codable, Equatable, GoogleCloudWkt._AnyPackable,

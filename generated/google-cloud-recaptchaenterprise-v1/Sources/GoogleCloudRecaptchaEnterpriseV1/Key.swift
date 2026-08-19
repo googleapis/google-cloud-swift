@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A key used to identify and configure applications (web and/or mobile) that
 /// use reCAPTCHA Enterprise.

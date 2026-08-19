@@ -16,7 +16,7 @@
 
 #if InterconnectAttachments
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Two-level VLAN-to-Appliance mapping rule.
   public struct InterconnectAttachmentL2ForwardingApplianceMapping: Codable, Equatable,

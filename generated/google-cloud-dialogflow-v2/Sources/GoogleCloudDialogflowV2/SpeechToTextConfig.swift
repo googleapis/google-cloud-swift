@@ -16,7 +16,7 @@
 
 #if ConversationProfiles || Conversations
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Configures speech transcription for
   /// [ConversationProfile][google.cloud.dialogflow.v2.ConversationProfile].

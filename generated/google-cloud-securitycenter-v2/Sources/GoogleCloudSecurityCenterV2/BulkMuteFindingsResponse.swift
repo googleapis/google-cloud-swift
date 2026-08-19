@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The response to a BulkMute request. Contains the LRO information.
 public struct BulkMuteFindingsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

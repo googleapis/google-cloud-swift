@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// ReleaseChannel indicates which release channel a cluster is
 /// subscribed to. Release channels are arranged in order of risk.

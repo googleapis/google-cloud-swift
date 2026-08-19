@@ -16,7 +16,7 @@
 
 #if FirewallPolicies || Instances || NetworkFirewallPolicies || Networks || RegionNetworkFirewallPolicies
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct FirewallPolicyRuleSecureTag: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable

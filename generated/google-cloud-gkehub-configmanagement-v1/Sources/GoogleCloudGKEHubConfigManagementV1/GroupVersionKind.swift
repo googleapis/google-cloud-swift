@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A Kubernetes object's GVK
 public struct GroupVersionKind: Codable, Equatable, GoogleCloudWkt._AnyPackable,

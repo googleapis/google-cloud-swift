@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// OpenApiSpecDetails contains the details parsed from an OpenAPI spec in
 /// addition to the fields mentioned in

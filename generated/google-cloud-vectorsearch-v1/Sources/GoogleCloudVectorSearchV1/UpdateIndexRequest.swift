@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message for updating an Index.
 public struct UpdateIndexRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

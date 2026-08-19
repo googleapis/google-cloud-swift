@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A domain represents a thematic category that a data profile can fall under.
 public struct Domain: Codable, Equatable, GoogleCloudWkt._AnyPackable,

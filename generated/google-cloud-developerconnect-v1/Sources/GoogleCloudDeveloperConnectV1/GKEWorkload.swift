@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// GKEWorkload represents the Google Kubernetes Engine runtime.
 public struct GKEWorkload: Codable, Equatable, GoogleCloudWkt._AnyPackable,

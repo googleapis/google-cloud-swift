@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// When set in a
 /// [ComputeResourceConfig][google.cloud.hypercomputecluster.v1.ComputeResourceConfig],

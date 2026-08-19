@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Feature represents the settings and status of any Fleet Feature.
 public struct Feature: Codable, Equatable, GoogleCloudWkt._AnyPackable,

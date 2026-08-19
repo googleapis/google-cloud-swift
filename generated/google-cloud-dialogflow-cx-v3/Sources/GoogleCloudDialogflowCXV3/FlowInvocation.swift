@@ -16,7 +16,7 @@
 
 #if Examples || Playbooks || Sessions
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Stores metadata of the invocation of a CX flow.
   public struct FlowInvocation: Codable, Equatable, GoogleCloudWkt._AnyPackable,

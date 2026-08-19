@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Contains info about a Terraform state file
 public struct Statefile: Codable, Equatable, GoogleCloudWkt._AnyPackable,

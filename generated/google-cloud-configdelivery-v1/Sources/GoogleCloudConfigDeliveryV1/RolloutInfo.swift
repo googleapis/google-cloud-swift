@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// RolloutInfo represents the state of the `FleetPackage` at all the
 /// clusters the rollout is targeting.

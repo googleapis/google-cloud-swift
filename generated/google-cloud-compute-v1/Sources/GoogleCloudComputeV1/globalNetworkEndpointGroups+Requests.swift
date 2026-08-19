@@ -16,7 +16,7 @@
 
 #if GlobalNetworkEndpointGroups
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   extension GlobalNetworkEndpointGroupsClient {
     /// Synthetic request message for the [attachNetworkEndpoints()][google.cloud.compute.v1.globalNetworkEndpointGroups.attachNetworkEndpoints] method.

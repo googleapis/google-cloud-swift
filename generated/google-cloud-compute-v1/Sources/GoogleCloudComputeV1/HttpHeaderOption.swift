@@ -16,7 +16,7 @@
 
 #if RegionUrlMaps || UrlMaps
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Specification determining how headers are added to requests or responses.
   public struct HttpHeaderOption: Codable, Equatable, GoogleCloudWkt._AnyPackable,

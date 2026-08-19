@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Scope represents a Scope in a Fleet.
 public struct Scope: Codable, Equatable, GoogleCloudWkt._AnyPackable,

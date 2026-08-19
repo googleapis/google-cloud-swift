@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Response message for 'SearchBackgroundJobs' request.
 public struct SearchBackgroundJobsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

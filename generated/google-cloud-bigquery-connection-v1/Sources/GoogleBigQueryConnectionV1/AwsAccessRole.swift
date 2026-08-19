@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Authentication method for Amazon Web Services (AWS) that uses Google owned
 /// Google service account to assume into customer's AWS IAM Role.

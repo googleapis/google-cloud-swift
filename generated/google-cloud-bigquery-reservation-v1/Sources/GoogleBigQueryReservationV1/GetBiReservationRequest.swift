@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A request to get a singleton BI reservation.
 public struct GetBiReservationRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

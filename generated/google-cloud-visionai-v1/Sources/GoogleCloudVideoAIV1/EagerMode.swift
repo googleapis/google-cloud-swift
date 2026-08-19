@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The options for receiver under the eager mode.
 public struct EagerMode: Codable, Equatable, GoogleCloudWkt._AnyPackable,

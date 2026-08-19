@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Details of the Database character set resource.
 public struct DatabaseCharacterSet: Codable, Equatable, GoogleCloudWkt._AnyPackable,

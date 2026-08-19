@@ -16,7 +16,7 @@
 
 #if SqlUsersService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents a Sql Server user on the Cloud SQL instance.
   public struct SqlServerUserDetails: Codable, Equatable, GoogleCloudWkt._AnyPackable,

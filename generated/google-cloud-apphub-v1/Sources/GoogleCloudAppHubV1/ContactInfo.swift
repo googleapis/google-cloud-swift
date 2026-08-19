@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Contact information of stakeholders.
 public struct ContactInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,

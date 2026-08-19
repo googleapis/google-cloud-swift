@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A GoogleChannelConfig is a resource that stores the custom settings
 /// respected by Eventarc first-party triggers in the matching region.

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// An [admission allowlist
 /// pattern][google.cloud.binaryauthorization.v1.AdmissionWhitelistPattern]

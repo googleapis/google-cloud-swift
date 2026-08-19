@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request for listing all revisions of a deployment.
 public struct ListDeploymentRevisionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

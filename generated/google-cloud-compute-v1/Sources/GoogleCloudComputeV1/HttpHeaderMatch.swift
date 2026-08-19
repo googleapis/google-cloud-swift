@@ -16,7 +16,7 @@
 
 #if RegionUrlMaps || UrlMaps
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// matchRule criteria for request header matches.
   public struct HttpHeaderMatch: Codable, Equatable, GoogleCloudWkt._AnyPackable,

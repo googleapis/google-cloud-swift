@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// DeleteNodePoolRequest deletes a node pool for a cluster.
 public struct DeleteNodePoolRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

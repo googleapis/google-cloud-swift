@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The workflow graph.
 public struct WorkflowGraph: Codable, Equatable, GoogleCloudWkt._AnyPackable,

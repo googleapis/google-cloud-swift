@@ -16,7 +16,7 @@
 
 #if RegionHealthAggregationPolicies
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   extension RegionHealthAggregationPoliciesClient {
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.regionHealthAggregationPolicies.aggregatedList] method.

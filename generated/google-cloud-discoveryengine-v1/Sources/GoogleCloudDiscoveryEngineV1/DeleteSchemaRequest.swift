@@ -16,7 +16,7 @@
 
 #if SchemaService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Request message for
   /// [SchemaService.DeleteSchema][google.cloud.discoveryengine.v1.SchemaService.DeleteSchema]

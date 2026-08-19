@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// DefaultSnatStatus contains the desired state of whether default sNAT should
 /// be disabled on the cluster.

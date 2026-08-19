@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A type of transformation that is applied over images.
 public struct ImageTransformations: Codable, Equatable, GoogleCloudWkt._AnyPackable,

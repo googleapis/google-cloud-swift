@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// GetQuotaRuleRequest for getting a quota rule.
 public struct GetQuotaRuleRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

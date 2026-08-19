@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configuration for the AgentSandbox addon.
 public struct AgentSandboxConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

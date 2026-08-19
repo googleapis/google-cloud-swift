@@ -16,7 +16,7 @@
 
 #if VertexRagService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The fact used in grounding.
   public struct Fact: Codable, Equatable, GoogleCloudWkt._AnyPackable,

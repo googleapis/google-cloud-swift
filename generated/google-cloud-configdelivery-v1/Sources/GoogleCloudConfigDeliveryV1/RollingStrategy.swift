@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// RollingStrategy causes a specified number of clusters to be updated
 /// concurrently until all clusters are updated.

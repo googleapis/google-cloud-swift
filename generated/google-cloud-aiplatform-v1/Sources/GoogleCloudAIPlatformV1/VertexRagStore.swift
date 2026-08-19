@@ -16,7 +16,7 @@
 
 #if GenAiCacheService || LlmUtilityService || PredictionService || VertexRagService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Retrieve from Vertex RAG Store for grounding.
   public struct VertexRagStore: Codable, Equatable, GoogleCloudWkt._AnyPackable,

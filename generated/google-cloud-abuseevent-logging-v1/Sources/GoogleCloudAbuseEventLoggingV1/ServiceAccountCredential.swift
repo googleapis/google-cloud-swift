@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Information about leaked service accounts.
 public struct ServiceAccountCredential: Codable, Equatable, GoogleCloudWkt._AnyPackable,

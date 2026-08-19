@@ -16,8 +16,8 @@
 
 #if NetworkEdgeSecurityServices
   import Foundation
-  import GoogleCloudGax
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudGax
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct NetworkEdgeSecurityServiceAggregatedList: Codable, Equatable, GoogleCloudWkt
       ._AnyPackable,

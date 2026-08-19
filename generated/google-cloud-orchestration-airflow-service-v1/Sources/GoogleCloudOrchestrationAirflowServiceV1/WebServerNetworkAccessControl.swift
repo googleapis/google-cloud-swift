@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Network-level access control policy for the Airflow web server.
 public struct WebServerNetworkAccessControl: Codable, Equatable, GoogleCloudWkt._AnyPackable,

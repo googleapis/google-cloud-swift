@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A single romanization response.
 public struct Romanization: Codable, Equatable, GoogleCloudWkt._AnyPackable,

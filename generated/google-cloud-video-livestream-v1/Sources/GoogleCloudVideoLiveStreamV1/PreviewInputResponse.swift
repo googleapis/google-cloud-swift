@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Response message for "LivestreamService.PreviewInput"
 public struct PreviewInputResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

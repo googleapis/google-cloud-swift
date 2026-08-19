@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A type that represents the various adjustments you can apply to a bill.
 public struct RepricingAdjustment: Codable, Equatable, GoogleCloudWkt._AnyPackable,

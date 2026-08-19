@@ -16,7 +16,7 @@
 
 #if ModelService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The Container Registry location for the container image.
   public struct ContainerRegistryDestination: Codable, Equatable, GoogleCloudWkt._AnyPackable,

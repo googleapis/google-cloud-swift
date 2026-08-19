@@ -16,7 +16,7 @@
 
 #if SqlBackupRunsService || SqlBackupsService || SqlDatabasesService || SqlInstancesService || SqlOperationsService || SqlSslCertsService || SqlUsersService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Structured PreCheckResponse containing message, type, and required
   /// actions.

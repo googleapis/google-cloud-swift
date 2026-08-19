@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Defines the Reciprocal Rank Fusion (RRF) algorithm for result ranking.
 public struct ReciprocalRankFusion: Codable, Equatable, GoogleCloudWkt._AnyPackable,

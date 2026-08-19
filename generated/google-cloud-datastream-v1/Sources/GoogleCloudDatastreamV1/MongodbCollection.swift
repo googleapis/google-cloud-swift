@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// MongoDB Collection.
 public struct MongodbCollection: Codable, Equatable, GoogleCloudWkt._AnyPackable,

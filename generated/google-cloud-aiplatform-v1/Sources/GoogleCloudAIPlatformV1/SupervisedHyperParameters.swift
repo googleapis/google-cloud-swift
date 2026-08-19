@@ -16,7 +16,7 @@
 
 #if GenAiTuningService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Hyperparameters for SFT.
   public struct SupervisedHyperParameters: Codable, Equatable, GoogleCloudWkt._AnyPackable,

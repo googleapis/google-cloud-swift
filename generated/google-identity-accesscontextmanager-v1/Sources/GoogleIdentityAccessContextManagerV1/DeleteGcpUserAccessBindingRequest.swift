@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request of [DeleteGcpUserAccessBinding]
 /// [google.identity.accesscontextmanager.v1.AccessContextManager.DeleteGcpUserAccessBinding].

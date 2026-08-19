@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Security patches are only applied when a function is redeployed.
 public struct OnDeployUpdatePolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,

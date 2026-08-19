@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A deployment represents an immutable, queryable version of the app.
 /// It is used to deploy an app version with a specific channel profile.

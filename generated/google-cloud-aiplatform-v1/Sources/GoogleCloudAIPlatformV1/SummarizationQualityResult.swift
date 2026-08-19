@@ -16,7 +16,7 @@
 
 #if EvaluationService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Spec for summarization quality result.
   public struct SummarizationQualityResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,

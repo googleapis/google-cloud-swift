@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Patch rollout configuration specifications. Contains details on the
 /// concurrency control when applying patch(es) to all targeted VMs.

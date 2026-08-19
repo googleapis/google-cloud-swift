@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Oracle table.
 public struct OracleTable: Codable, Equatable, GoogleCloudWkt._AnyPackable,

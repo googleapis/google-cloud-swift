@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request for UpdateConsumerGroup.
 public struct UpdateConsumerGroupRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

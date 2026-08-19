@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// ServiceProjectAttachment represents an attachment from a service project to a
 /// host project. Service projects contain the underlying cloud

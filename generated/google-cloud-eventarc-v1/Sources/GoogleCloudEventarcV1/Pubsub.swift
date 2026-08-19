@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents a Pub/Sub transport.
 public struct Pubsub: Codable, Equatable, GoogleCloudWkt._AnyPackable,

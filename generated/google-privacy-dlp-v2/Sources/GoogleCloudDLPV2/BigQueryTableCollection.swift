@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Specifies a collection of BigQuery tables. Used for Discovery.
 public struct BigQueryTableCollection: Codable, Equatable, GoogleCloudWkt._AnyPackable,

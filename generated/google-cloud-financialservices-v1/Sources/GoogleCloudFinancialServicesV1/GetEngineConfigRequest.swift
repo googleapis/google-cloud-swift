@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request for retrieving a specific EngineConfig resource.
 public struct GetEngineConfigRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

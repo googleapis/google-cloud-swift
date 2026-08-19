@@ -16,7 +16,7 @@
 
 #if ReservationBlocks || ReservationSubBlocks
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct ZoneSetNestedPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable

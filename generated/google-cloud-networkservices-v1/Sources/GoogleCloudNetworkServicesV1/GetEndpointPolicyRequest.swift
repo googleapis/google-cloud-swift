@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request used with the GetEndpointPolicy method.
 public struct GetEndpointPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

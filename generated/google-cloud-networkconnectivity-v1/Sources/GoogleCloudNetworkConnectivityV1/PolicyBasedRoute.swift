@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Policy-based routes route L4 network traffic based on not just destination IP
 /// address, but also source IP address, protocol, and more. If a policy-based

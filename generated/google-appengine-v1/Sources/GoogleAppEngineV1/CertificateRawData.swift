@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// An SSL certificate obtained from a certificate authority.
 public struct CertificateRawData: Codable, Equatable, GoogleCloudWkt._AnyPackable,

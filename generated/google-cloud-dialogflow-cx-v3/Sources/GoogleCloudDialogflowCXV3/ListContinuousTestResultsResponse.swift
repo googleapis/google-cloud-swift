@@ -16,8 +16,8 @@
 
 #if Environments
   import Foundation
-  import GoogleCloudGax
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudGax
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The response message for [Environments.ListTestCaseResults][].
   public struct ListContinuousTestResultsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if Environments || Fulfillments
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// By default, your agent responds to a matched intent with a static response.
   /// As an alternative, you can provide a more dynamic response by using

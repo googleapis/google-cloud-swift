@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A [CertificateConfig][google.cloud.security.privateca.v1.CertificateConfig]
 /// describes an X.509 certificate or CSR that is to be created, as an

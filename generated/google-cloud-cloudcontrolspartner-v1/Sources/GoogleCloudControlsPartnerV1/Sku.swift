@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents the SKU a partner owns inside Google Cloud to sell to customers.
 public struct Sku: Codable, Equatable, GoogleCloudWkt._AnyPackable,

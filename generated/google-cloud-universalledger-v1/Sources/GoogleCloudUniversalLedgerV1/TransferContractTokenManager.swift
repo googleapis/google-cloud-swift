@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Transfers the ownership of the contract token manager to a new account. The
 /// sender must be the current currency operator for the currency.

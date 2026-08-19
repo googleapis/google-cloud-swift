@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Structural unit of text representing a number of words in certain order.
 public struct Paragraph: Codable, Equatable, GoogleCloudWkt._AnyPackable,

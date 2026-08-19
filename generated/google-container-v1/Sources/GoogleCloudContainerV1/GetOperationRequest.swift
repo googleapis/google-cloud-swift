@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// GetOperationRequest gets a single operation.
 public struct GetOperationRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

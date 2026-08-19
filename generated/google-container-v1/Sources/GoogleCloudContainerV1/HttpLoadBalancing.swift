@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configuration options for the HTTP (L7) load balancing controller addon,
 /// which makes it easy to set up HTTP load balancers for services in a cluster.

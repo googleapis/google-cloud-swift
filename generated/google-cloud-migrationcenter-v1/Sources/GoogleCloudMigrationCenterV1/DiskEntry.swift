@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Single disk entry.
 public struct DiskEntry: Codable, Equatable, GoogleCloudWkt._AnyPackable,

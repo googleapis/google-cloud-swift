@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Pairs a set of secret environment variables containing encrypted
 /// values with the Cloud KMS key to use to decrypt the value.

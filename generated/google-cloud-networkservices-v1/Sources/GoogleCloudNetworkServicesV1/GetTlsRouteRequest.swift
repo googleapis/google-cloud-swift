@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request used by the GetTlsRoute method.
 public struct GetTlsRouteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

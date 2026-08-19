@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A scanned resource.
 public struct ScannedResource: Codable, Equatable, GoogleCloudWkt._AnyPackable,

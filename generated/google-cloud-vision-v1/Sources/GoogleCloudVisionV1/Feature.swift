@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The type of Google Cloud Vision API detection to perform, and the maximum
 /// number of results to return for that type. Multiple `Feature` objects can

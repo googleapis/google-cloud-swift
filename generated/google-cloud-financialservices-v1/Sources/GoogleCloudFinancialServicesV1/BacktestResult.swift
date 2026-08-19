@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// BacktestResult is created to test the performance of a model on a dataset.
 public struct BacktestResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,

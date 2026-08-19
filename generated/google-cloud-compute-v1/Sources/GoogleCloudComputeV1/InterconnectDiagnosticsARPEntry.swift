@@ -16,7 +16,7 @@
 
 #if InterconnectGroups || Interconnects
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Describing the ARP neighbor entries seen on this link
   public struct InterconnectDiagnosticsARPEntry: Codable, Equatable, GoogleCloudWkt._AnyPackable,

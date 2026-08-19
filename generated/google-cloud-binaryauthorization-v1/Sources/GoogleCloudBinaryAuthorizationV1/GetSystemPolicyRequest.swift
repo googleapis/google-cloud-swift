@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request to read the current system policy.
 public struct GetSystemPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

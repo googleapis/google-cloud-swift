@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// **Multi-cluster Ingress**: The configuration for the MultiClusterIngress
 /// feature.

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request to return full hashes matched by the provided hash prefixes.
 public struct SearchHashesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

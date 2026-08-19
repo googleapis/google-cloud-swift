@@ -16,7 +16,7 @@
 
 #if Sessions || TestCases
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents the event to trigger.
   public struct EventInput: Codable, Equatable, GoogleCloudWkt._AnyPackable,

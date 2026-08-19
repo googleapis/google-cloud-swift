@@ -16,7 +16,7 @@
 
 import Foundation
 import GoogleAppsScriptType
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A trigger that activates when user is composing an email.
 public struct ComposeTrigger: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Readiness checking configuration for VM instances. Unhealthy instances
 /// are removed from traffic rotation.

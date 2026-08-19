@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message describing the progress of a cluster mutation long-running operation.
 public struct OperationProgress: Codable, Equatable, GoogleCloudWkt._AnyPackable,

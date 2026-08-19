@@ -16,7 +16,7 @@
 
 #if ResourcePolicies
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct ResourcePolicyResourceStatusInstanceSchedulePolicyStatus: Codable, Equatable,
     GoogleCloudWkt._AnyPackable,

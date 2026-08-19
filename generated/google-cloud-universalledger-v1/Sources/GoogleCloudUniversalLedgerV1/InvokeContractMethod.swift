@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Invokes the execution of a contract method.
 public struct InvokeContractMethod: Codable, Equatable, GoogleCloudWkt._AnyPackable,

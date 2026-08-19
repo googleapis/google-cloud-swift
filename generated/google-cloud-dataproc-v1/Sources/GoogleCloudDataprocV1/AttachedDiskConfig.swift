@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Specifies the config of attached disk options for single VM instance.
 public struct AttachedDiskConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

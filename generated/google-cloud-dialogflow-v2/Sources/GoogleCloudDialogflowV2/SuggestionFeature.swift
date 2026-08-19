@@ -16,7 +16,7 @@
 
 #if ConversationProfiles || Conversations
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The type of Human Agent Assistant API suggestion to perform, and the maximum
   /// number of results to return for that type. Multiple `Feature` objects can

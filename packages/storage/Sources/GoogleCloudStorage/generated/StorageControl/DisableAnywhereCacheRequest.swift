@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for DisableAnywhereCache.
 public struct DisableAnywhereCacheRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

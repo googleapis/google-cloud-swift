@@ -16,7 +16,7 @@
 
 #if InterconnectAttachments
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The inner VLAN-to-Appliance mapping.
   public struct InterconnectAttachmentL2ForwardingApplianceMappingInnerVlanToApplianceMapping:

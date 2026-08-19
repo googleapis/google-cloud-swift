@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudGax
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudGax
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The response object from `ListDeliveryPipelines`.
 public struct ListDeliveryPipelinesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

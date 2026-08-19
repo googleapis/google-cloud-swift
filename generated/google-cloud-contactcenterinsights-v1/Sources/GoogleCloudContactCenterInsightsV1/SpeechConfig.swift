@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Speech-to-Text configuration.
 /// Speech-to-Text settings are applied to conversations ingested from the

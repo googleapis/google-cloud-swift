@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Project/Location level security settings for CES.
 public struct SecuritySettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,

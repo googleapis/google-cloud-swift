@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The configuration used for encrypting data at rest.
 public struct EncryptionSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,

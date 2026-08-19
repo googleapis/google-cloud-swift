@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message encapsulating a value that can be either absolute ("fixed") or
 /// relative ("percent") to a value.

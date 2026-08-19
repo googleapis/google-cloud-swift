@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// MITRE ATT&CK tactics and techniques related to this finding.
 /// See: https://attack.mitre.org

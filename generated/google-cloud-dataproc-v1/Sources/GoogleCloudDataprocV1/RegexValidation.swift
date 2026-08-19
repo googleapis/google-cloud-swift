@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Validation based on regular expressions.
 public struct RegexValidation: Codable, Equatable, GoogleCloudWkt._AnyPackable,

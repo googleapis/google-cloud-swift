@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A request to lock a deployment passed to a 'LockDeployment' call.
 public struct LockDeploymentRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

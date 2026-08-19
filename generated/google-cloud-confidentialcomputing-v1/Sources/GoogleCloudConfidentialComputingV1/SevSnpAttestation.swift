@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// An SEV-SNP Attestation Report.
 /// Contains the attestation report and the certificate bundle that the client

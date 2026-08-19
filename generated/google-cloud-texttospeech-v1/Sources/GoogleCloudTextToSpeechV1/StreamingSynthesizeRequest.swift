@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for the `StreamingSynthesize` method. Multiple
 /// `StreamingSynthesizeRequest` messages are sent in one call.

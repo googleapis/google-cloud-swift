@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// When set in OperationStep, indicates that an orchestrator should be created.
 public struct CreateOrchestrator: Codable, Equatable, GoogleCloudWkt._AnyPackable,

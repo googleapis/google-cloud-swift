@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A domain serving an App Engine application.
 public struct DomainMapping: Codable, Equatable, GoogleCloudWkt._AnyPackable,

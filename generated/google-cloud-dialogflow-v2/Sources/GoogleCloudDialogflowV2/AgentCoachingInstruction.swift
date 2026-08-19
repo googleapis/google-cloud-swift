@@ -16,7 +16,7 @@
 
 #if AnswerRecords || Conversations || GeneratorEvaluations || Generators || Participants
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Agent Coaching instructions that customer can configure.
   public struct AgentCoachingInstruction: Codable, Equatable, GoogleCloudWkt._AnyPackable,

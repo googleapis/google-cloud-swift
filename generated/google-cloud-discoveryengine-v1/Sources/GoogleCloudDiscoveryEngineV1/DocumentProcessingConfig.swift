@@ -16,7 +16,7 @@
 
 #if DataStoreService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// A singleton resource of
   /// [DataStore][google.cloud.discoveryengine.v1.DataStore]. If it's empty when

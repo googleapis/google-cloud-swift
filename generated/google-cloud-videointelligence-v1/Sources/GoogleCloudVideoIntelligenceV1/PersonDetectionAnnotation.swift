@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Person detection annotation per video.
 public struct PersonDetectionAnnotation: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if EvaluationService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Spec for question answering quality score metric.
   public struct QuestionAnsweringQualitySpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,

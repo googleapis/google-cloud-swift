@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Information about the digital signature of the resource.
 public struct SignatureInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,

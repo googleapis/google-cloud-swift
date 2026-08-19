@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents the locations impacted by the event.
 public struct Location: Codable, Equatable, GoogleCloudWkt._AnyPackable,

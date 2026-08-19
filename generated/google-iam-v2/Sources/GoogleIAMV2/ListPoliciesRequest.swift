@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for `ListPolicies`.
 public struct ListPoliciesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

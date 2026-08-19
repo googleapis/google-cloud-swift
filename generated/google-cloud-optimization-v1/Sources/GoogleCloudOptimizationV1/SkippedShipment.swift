@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Specifies details of unperformed shipments in a solution. For trivial cases
 /// and/or if we are able to identify the cause for skipping, we report the

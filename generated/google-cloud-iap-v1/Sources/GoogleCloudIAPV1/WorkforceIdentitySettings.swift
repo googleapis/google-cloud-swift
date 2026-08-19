@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// WorkforceIdentitySettings allows customers to configure workforce pools and
 /// OAuth 2.0 settings to gate their applications using a third-party IdP with

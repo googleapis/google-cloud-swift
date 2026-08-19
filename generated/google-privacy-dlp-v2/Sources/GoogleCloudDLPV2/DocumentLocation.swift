@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Location of a finding within a document.
 public struct DocumentLocation: Codable, Equatable, GoogleCloudWkt._AnyPackable,

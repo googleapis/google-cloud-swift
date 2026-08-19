@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Scheduling information for VM on maintenance/restart behaviour and
 /// node allocation in sole tenant nodes.

@@ -16,7 +16,7 @@
 
 import Foundation
 import GoogleCloudOSLoginCommon
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A request message for creating an SSH public key.
 public struct CreateSshPublicKeyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

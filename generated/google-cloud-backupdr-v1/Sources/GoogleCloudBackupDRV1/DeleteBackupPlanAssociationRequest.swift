@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for deleting a backup plan association.
 public struct DeleteBackupPlanAssociationRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

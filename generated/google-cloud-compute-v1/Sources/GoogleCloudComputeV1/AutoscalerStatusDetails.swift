@@ -16,7 +16,7 @@
 
 #if Autoscalers || RegionAutoscalers
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct AutoscalerStatusDetails: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Custom content configuration for access denied page.
 /// IAP allows customers to define a custom URI to use as the error page when

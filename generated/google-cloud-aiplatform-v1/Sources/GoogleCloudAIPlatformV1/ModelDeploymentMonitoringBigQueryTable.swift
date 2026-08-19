@@ -16,7 +16,7 @@
 
 #if JobService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// ModelDeploymentMonitoringBigQueryTable specifies the BigQuery table name
   /// as well as some information of the logs stored in this table.

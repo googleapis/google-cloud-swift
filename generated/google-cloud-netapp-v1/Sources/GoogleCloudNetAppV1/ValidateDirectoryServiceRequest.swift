@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// ValidateDirectoryServiceRequest validates the directory service policy
 /// attached to the storage pool.

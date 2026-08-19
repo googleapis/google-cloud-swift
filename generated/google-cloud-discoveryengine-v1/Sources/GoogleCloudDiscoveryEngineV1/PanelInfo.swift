@@ -16,7 +16,7 @@
 
 #if RecommendationService || UserEventService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Detailed panel information associated with a user event.
   public struct PanelInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,

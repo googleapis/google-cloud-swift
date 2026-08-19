@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Command specifies the type of command to execute.
 public struct Command: Codable, Equatable, GoogleCloudWkt._AnyPackable,

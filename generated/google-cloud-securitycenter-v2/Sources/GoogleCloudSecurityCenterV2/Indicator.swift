@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents what's commonly known as an _indicator of compromise_ (IoC) in
 /// computer forensics. This is an artifact observed on a network or in an

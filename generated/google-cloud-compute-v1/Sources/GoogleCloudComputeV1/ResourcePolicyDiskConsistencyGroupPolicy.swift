@@ -16,7 +16,7 @@
 
 #if ResourcePolicies
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Resource policy for disk consistency groups.
   public struct ResourcePolicyDiskConsistencyGroupPolicy: Codable, Equatable, GoogleCloudWkt

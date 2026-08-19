@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// ScopeLifecycleState describes the state of a Scope resource.
 public struct ScopeLifecycleState: Codable, Equatable, GoogleCloudWkt._AnyPackable,

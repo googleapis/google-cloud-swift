@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Response message for `ExecuteOntapDelete` API.
 public struct ExecuteOntapDeleteResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

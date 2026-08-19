@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// An alias to a repo revision.
 public struct AliasContext: Codable, Equatable, GoogleCloudWkt._AnyPackable,

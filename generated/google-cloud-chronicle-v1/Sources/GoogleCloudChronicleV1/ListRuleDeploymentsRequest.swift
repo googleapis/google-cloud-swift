@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for ListRuleDeployments.
 public struct ListRuleDeploymentsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

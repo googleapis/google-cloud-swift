@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// List of allocated/assigned network addresses.
 public struct NetworkAddressList: Codable, Equatable, GoogleCloudWkt._AnyPackable,

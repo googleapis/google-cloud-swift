@@ -16,7 +16,7 @@
 
 #if StoragePools
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// [Output Only] Contains output only fields.
   public struct StoragePoolResourceStatus: Codable, Equatable, GoogleCloudWkt._AnyPackable,

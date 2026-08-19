@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// This message configures the settings for publishing [Google Cloud Client
 /// libraries](https://cloud.google.com/apis/docs/cloud-client-libraries)

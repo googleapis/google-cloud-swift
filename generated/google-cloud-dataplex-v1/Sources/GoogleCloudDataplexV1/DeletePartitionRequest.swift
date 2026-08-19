@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Delete metadata partition request.
 public struct DeletePartitionRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

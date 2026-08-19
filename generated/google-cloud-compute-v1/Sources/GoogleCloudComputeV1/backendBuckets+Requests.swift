@@ -16,7 +16,7 @@
 
 #if BackendBuckets
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   extension BackendBucketsClient {
     /// Synthetic request message for the [addSignedUrlKey()][google.cloud.compute.v1.backendBuckets.addSignedUrlKey] method.

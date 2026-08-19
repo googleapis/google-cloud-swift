@@ -16,7 +16,7 @@
 
 #if InstanceGroupManagers || RegionInstanceGroupManagers
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// A Managed Instance resource.
   public struct ManagedInstance: Codable, Equatable, GoogleCloudWkt._AnyPackable,

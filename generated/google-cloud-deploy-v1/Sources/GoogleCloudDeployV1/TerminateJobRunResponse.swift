@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The response object from `TerminateJobRun`.
 public struct TerminateJobRunResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

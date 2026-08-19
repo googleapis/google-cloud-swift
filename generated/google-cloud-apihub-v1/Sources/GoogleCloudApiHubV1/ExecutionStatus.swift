@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The execution status for the plugin instance.
 public struct ExecutionStatus: Codable, Equatable, GoogleCloudWkt._AnyPackable,

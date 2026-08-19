@@ -16,7 +16,7 @@
 
 #if Agents
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents a single validation error.
   public struct ValidationError: Codable, Equatable, GoogleCloudWkt._AnyPackable,

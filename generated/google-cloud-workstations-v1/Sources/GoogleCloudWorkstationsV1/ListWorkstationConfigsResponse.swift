@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudGax
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudGax
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Response message for ListWorkstationConfigs.
 public struct ListWorkstationConfigsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

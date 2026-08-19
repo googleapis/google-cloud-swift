@@ -16,7 +16,7 @@
 
 #if PipelineService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Assigns input data to training, validation, and test sets based on a
   /// provided timestamps. The youngest data pieces are assigned to training set,

@@ -16,7 +16,7 @@
 
 #if Sessions || TestCases
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents the natural language text to be processed.
   public struct TextInput: Codable, Equatable, GoogleCloudWkt._AnyPackable,

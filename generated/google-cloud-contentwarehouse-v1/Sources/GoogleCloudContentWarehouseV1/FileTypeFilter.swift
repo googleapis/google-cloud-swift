@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Filter for the specific types of documents returned.
 public struct FileTypeFilter: Codable, Equatable, GoogleCloudWkt._AnyPackable,

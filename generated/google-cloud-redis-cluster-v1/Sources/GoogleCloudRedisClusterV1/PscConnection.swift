@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Details of consumer resources in a PSC connection.
 public struct PscConnection: Codable, Equatable, GoogleCloudWkt._AnyPackable,

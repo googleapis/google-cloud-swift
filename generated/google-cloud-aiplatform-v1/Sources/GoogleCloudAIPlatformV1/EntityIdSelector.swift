@@ -16,7 +16,7 @@
 
 #if FeaturestoreService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Selector for entityId. Getting ids from the given source.
   public struct EntityIdSelector: Codable, Equatable, GoogleCloudWkt._AnyPackable,

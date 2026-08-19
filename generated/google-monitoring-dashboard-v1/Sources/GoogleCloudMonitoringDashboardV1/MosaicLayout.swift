@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A mosaic layout divides the available space into a grid of blocks, and
 /// overlays the grid with tiles. Unlike `GridLayout`, tiles may span multiple

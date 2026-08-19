@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Connection profile update message.
 public struct UpdateConnectionProfileRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

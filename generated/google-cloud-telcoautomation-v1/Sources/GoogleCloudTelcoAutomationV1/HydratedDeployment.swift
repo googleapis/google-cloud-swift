@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A collection of kubernetes yaml files which are deployed on a Workload
 /// Cluster. Hydrated Deployments are created by TNA intent based automation.

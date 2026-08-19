@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message to delete a `Destination` resource.
 public struct DeleteDestinationRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

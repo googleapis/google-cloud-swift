@@ -16,8 +16,8 @@
 
 #if EngineService
   import Foundation
-  import GoogleCloudGax
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudGax
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Response message for
   /// [EngineService.ListEngines][google.cloud.discoveryengine.v1.EngineService.ListEngines]

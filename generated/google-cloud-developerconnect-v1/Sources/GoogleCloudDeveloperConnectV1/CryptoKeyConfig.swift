@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The crypto key configuration. This field is used by the Customer-managed
 /// encryption keys (CMEK) feature.

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// VerifyReferenceList request message.
 public struct VerifyReferenceListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Alternative hypotheses (a.k.a. n-best list).
 public struct SpeechRecognitionAlternative: Codable, Equatable, GoogleCloudWkt._AnyPackable,

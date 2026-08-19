@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// NetworkInterface represents a NIC of a VM.
 public struct NetworkInterface: Codable, Equatable, GoogleCloudWkt._AnyPackable,

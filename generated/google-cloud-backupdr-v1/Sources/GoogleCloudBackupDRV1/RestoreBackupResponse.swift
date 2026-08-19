@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Response message for restoring from a Backup.
 public struct RestoreBackupResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

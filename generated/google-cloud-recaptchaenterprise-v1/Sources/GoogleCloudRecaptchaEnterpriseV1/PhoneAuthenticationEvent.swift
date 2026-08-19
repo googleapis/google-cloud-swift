@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Details on a phone authentication event
 public struct PhoneAuthenticationEvent: Codable, Equatable, GoogleCloudWkt._AnyPackable,

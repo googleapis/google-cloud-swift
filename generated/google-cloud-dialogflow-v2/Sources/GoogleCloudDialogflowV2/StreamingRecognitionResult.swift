@@ -16,7 +16,7 @@
 
 #if Participants || Sessions
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Contains a speech recognition result corresponding to a portion of the audio
   /// that is currently being processed or an indication that this is the end

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Additional result info for the question-answering feature.
 public struct QAResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,

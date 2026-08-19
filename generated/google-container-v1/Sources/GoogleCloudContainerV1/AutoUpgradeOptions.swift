@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// AutoUpgradeOptions defines the set of options for the user to control how
 /// the Auto Upgrades will proceed.

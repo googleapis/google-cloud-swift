@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Options customizing the data transfer schedule.
 public struct ScheduleOptions: Codable, Equatable, GoogleCloudWkt._AnyPackable,

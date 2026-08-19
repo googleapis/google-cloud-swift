@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Cloud repository for storing output.
 public struct OutputStorageConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

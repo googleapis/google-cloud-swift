@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message to execute a dashboard query.
 public struct ExecuteDashboardQueryRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

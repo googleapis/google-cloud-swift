@@ -16,7 +16,7 @@
 
 #if AnswerRecords || Conversations || GeneratorEvaluations || Generators || Participants
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The result of calling a tool's action.
   public struct ToolCallResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,

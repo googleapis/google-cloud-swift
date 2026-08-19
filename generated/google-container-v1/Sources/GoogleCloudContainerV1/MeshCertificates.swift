@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configuration for issuance of mTLS keys and certificates to Kubernetes pods.
 public struct MeshCertificates: Codable, Equatable, GoogleCloudWkt._AnyPackable,

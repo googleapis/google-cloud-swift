@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A request to create an `ImportDataFile` resource.
 public struct CreateImportDataFileRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

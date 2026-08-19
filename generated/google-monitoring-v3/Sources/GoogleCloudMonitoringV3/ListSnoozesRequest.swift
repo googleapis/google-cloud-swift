@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The message definition for listing `Snooze`s associated with the given
 /// `parent`, satisfying the optional `filter`.

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configuration for the use of Kubernetes Service Accounts in IAM policies.
 public struct WorkloadIdentityConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// UpdateHookRequest is the request to update a hook.
 public struct UpdateHookRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

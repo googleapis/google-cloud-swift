@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A request for an attestation token, providing all the necessary information
 /// needed for this service to verify the platform state of the requestor.

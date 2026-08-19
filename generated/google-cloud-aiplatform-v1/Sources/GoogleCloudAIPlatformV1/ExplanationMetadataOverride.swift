@@ -16,7 +16,7 @@
 
 #if PredictionService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The [ExplanationMetadata][google.cloud.aiplatform.v1.ExplanationMetadata]
   /// entries that can be overridden at [online

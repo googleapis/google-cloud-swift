@@ -16,7 +16,7 @@
 
 #if GenAiTuningService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The tuning data statistic values for
   /// [TuningJob][google.cloud.aiplatform.v1.TuningJob].

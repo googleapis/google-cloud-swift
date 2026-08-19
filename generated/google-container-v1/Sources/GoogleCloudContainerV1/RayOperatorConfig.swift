@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configuration options for the Ray Operator add-on.
 public struct RayOperatorConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

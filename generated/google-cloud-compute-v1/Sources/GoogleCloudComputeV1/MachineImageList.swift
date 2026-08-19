@@ -16,8 +16,8 @@
 
 #if MachineImages
   import Foundation
-  import GoogleCloudGax
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudGax
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// A list of machine images.
   public struct MachineImageList: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents service health events that may affect Google Cloud products.
 /// Event resource is a read-only view and does not allow any modifications. All

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Config for SHOT_CHANGE_DETECTION.
 public struct ShotChangeDetectionConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

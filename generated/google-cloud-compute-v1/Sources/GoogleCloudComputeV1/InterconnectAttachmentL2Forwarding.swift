@@ -16,7 +16,7 @@
 
 #if InterconnectAttachments
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// L2 Interconnect Attachment related configuration.
   public struct InterconnectAttachmentL2Forwarding: Codable, Equatable, GoogleCloudWkt._AnyPackable,

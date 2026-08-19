@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A collection of VLAN attachment resources. These resources should
 /// be redundant attachments that all advertise the same prefixes to Google

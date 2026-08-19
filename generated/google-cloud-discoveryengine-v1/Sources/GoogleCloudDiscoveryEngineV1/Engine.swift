@@ -16,7 +16,7 @@
 
 #if EngineService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Metadata that describes the training and serving parameters of an
   /// [Engine][google.cloud.discoveryengine.v1.Engine].

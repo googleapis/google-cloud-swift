@@ -16,7 +16,7 @@
 
 #if MetadataService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Response message for
   /// [MetadataService.RemoveContextChildren][google.cloud.aiplatform.v1.MetadataService.RemoveContextChildren].

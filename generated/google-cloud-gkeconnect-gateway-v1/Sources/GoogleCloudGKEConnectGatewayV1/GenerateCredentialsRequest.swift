@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A request for connection information for a particular membership.
 public struct GenerateCredentialsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

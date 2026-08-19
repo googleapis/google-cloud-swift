@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// An Nvidia attestation report for GPU and NVSwitch devices.
 /// Contains necessary attestation evidence that the client collects for

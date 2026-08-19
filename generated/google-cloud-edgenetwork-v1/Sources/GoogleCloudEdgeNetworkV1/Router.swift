@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message describing Router object
 public struct Router: Codable, Equatable, GoogleCloudWkt._AnyPackable,

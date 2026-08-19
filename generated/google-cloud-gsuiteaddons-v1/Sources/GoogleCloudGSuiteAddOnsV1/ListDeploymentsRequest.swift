@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message to list deployments for a project.
 public struct ListDeploymentsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

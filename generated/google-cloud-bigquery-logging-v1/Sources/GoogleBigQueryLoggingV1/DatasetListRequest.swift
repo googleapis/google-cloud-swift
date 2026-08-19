@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Dataset list request.
 public struct DatasetListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

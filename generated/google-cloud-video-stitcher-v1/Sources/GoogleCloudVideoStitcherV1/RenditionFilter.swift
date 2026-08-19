@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Filters for a video or muxed redition.
 public struct RenditionFilter: Codable, Equatable, GoogleCloudWkt._AnyPackable,

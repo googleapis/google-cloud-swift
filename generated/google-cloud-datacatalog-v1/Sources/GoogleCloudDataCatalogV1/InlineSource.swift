@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Inline source containing taxonomies to import.
 public struct InlineSource: Codable, Equatable, GoogleCloudWkt._AnyPackable,

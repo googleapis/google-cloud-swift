@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A table that displays time series data.
 public struct TimeSeriesTable: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Generic specification of a source configuration file
 public struct ConfigFile: Codable, Equatable, GoogleCloudWkt._AnyPackable,

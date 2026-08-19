@@ -16,7 +16,7 @@
 
 #if Instances
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// A Shielded Instance Identity.
   public struct ShieldedInstanceIdentity: Codable, Equatable, GoogleCloudWkt._AnyPackable,

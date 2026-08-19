@@ -16,7 +16,7 @@
 
 #if GlobalPublicDelegatedPrefixes
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   extension GlobalPublicDelegatedPrefixesClient {
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.globalPublicDelegatedPrefixes.delete] method.

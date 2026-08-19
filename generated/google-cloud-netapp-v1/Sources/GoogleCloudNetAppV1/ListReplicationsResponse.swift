@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudGax
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudGax
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// ListReplicationsResponse is the result of ListReplicationsRequest.
 public struct ListReplicationsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

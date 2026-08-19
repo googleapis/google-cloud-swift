@@ -16,7 +16,7 @@
 
 #if Conversations
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents a SearchKnowledge answer.
   public struct SearchKnowledgeAnswer: Codable, Equatable, GoogleCloudWkt._AnyPackable,

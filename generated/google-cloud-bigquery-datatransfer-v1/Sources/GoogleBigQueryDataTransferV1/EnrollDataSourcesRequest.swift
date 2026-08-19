@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A request to enroll a set of data sources so they are visible in the
 /// BigQuery UI's `Transfer` tab.

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A configuration for running an
 /// [Apache SparkR](https://spark.apache.org/docs/latest/sparkr.html)

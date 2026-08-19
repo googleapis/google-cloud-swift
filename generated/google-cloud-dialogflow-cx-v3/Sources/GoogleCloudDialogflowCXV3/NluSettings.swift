@@ -16,7 +16,7 @@
 
 #if Flows || Sessions || TestCases || Versions
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Settings related to NLU.
   public struct NluSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,

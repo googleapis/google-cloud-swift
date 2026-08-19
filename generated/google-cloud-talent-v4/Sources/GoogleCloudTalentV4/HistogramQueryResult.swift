@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Histogram result that matches
 /// [HistogramQuery][google.cloud.talent.v4.HistogramQuery] specified in

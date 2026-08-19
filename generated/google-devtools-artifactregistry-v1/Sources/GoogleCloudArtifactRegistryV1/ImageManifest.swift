@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Details of a single image manifest within a multi-arch image.
 public struct ImageManifest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

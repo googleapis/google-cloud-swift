@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// An event issued when an end user interacts with the application that
 /// implements Cloud Talent Solution. Providing this information improves the

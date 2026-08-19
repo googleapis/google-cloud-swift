@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// OAuth scopes are a way to define data and permissions on data. For example,
 /// there are scopes defined for "Read-only access to Google Calendar" and

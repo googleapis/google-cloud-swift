@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Mock tool calls configuration for the session.
 public struct MockConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

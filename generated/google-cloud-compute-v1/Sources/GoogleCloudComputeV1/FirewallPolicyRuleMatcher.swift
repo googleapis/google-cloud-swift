@@ -16,7 +16,7 @@
 
 #if FirewallPolicies || Instances || NetworkFirewallPolicies || Networks || RegionNetworkFirewallPolicies
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents a match condition that incoming traffic is evaluated against.
   /// Exactly one field must be specified.

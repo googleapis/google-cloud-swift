@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request to send a potentially malicious URI to WebRisk.
 public struct SubmitUriRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

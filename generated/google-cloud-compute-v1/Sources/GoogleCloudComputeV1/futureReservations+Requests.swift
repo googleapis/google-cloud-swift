@@ -16,7 +16,7 @@
 
 #if FutureReservations
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   extension FutureReservationsClient {
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.futureReservations.aggregatedList] method.

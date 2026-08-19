@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A TagValue is a child of a particular TagKey. This is used to group
 /// cloud resources for the purpose of controlling them using policies.

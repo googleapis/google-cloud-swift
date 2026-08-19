@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// RestorePlan as stored in Platform log. It's used to log the details of
 /// a createRestorePlan/updateRestorePlan request, so only fields that can be

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Gets the redirection status for a project.
 public struct GetProjectSettingsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A CollectionItem is an item in a collection.
 /// Each item is a reference to the original resource in a collection.

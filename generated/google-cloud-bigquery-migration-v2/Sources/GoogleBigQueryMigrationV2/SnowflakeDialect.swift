@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The dialect definition for Snowflake.
 public struct SnowflakeDialect: Codable, Equatable, GoogleCloudWkt._AnyPackable,

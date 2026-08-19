@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for
 /// [EkmService.CreateEkmConnection][google.cloud.kms.v1.EkmService.CreateEkmConnection].

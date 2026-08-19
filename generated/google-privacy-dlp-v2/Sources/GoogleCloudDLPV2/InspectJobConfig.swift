@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Controls what and how to inspect for findings.
 public struct InspectJobConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

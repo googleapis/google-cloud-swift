@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// List EncryptionConfigs Request
 public struct ListEncryptionConfigsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

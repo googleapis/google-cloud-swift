@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The request message for the EscalateCase endpoint.
 public struct EscalateCaseRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

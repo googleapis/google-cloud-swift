@@ -16,7 +16,7 @@
 
 #if InstanceGroupManagers || RegionInstanceGroupManagers
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Configuration of preserved resources.
   public struct StatefulPolicyPreservedState: Codable, Equatable, GoogleCloudWkt._AnyPackable,

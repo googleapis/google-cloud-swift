@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configuration options for the Config Connector add-on.
 public struct ConfigConnectorConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

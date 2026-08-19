@@ -16,7 +16,7 @@
 
 #if ConversationModels
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Metadata for smart reply models.
   public struct SmartReplyModelMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,

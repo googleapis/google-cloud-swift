@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// `AzureClient` resources hold client authentication information needed by the
 /// Anthos Multi-Cloud API to manage Azure resources on your Azure subscription.

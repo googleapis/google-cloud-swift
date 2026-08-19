@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// ListOperationsResponse is the result of ListOperationsRequest.
 public struct ListOperationsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

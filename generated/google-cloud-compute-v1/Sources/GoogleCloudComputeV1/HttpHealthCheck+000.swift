@@ -16,7 +16,7 @@
 
 #if HttpHealthChecks
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents a legacy HTTP Health Check resource.
   ///

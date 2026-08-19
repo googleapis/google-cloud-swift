@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The [data profile](https://cloud.google.com/dlp/docs/data-profiles)
 /// associated with the finding.

@@ -16,7 +16,7 @@
 
 #if SecuritySettingsService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The request message for [SecuritySettings.DeleteSecuritySettings][].
   public struct DeleteSecuritySettingsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

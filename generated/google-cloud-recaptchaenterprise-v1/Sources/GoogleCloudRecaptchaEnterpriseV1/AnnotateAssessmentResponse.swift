@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Empty response for AnnotateAssessment.
 public struct AnnotateAssessmentResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

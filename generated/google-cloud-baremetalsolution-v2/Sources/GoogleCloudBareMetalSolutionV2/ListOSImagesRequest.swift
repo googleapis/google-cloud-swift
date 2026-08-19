@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request for getting all available OS images.
 public struct ListOSImagesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

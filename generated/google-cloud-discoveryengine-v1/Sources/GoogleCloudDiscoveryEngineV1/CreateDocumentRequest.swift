@@ -16,7 +16,7 @@
 
 #if DocumentService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Request message for
   /// [DocumentService.CreateDocument][google.cloud.discoveryengine.v1.DocumentService.CreateDocument]

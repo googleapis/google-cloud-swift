@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Holds information for the Protected Resource
 public struct ProtectedResource: Codable, Equatable, GoogleCloudWkt._AnyPackable,

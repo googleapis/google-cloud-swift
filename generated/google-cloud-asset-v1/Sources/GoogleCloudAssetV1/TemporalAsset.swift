@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// An asset in Google Cloud and its temporal metadata, including the time window
 /// when it was observed and its status during that window.

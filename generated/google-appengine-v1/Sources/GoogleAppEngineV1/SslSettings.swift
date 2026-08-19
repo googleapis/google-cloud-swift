@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// SSL configuration for a `DomainMapping` resource.
 public struct SslSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,

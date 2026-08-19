@@ -16,7 +16,7 @@
 
 #if AssistantService || ConversationalSearchService || SessionService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Defines a user inputed query.
   public struct Query: Codable, Equatable, GoogleCloudWkt._AnyPackable,

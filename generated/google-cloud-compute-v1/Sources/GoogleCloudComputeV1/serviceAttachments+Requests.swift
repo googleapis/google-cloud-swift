@@ -16,7 +16,7 @@
 
 #if ServiceAttachments
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   extension ServiceAttachmentsClient {
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.serviceAttachments.aggregatedList] method.

@@ -16,7 +16,7 @@
 
 #if SessionService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Metadata relating to a LLM response event.
   public struct EventMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,

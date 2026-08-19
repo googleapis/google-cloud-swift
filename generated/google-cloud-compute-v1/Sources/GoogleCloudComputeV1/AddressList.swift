@@ -16,8 +16,8 @@
 
 #if Addresses || GlobalAddresses
   import Foundation
-  import GoogleCloudGax
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudGax
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Contains a list of addresses.
   public struct AddressList: Codable, Equatable, GoogleCloudWkt._AnyPackable,

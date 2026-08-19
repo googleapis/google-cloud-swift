@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// [SubjectAltNames][google.cloud.security.privateca.v1.SubjectAltNames]
 /// corresponds to a more modern way of listing what the asserted identity is in

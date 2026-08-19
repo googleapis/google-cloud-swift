@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message representing the config for the Speech-to-Text API. This includes an
 /// optional [KMS key](https://cloud.google.com/kms/docs/resource-hierarchy#keys)

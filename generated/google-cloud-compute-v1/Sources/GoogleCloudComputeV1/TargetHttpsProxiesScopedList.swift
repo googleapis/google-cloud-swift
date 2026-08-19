@@ -16,7 +16,7 @@
 
 #if TargetHttpsProxies
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct TargetHttpsProxiesScopedList: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable

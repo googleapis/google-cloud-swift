@@ -16,7 +16,7 @@
 
 #if UserEventService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Metadata related to the progress of the PurgeUserEvents operation.
   /// This will be returned by the google.longrunning.Operation.metadata field.

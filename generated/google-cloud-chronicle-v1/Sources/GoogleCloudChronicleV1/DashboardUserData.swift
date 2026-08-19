@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// User Data for Native Dashboard
 public struct DashboardUserData: Codable, Equatable, GoogleCloudWkt._AnyPackable,

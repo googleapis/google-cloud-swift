@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for `TranscoderService.GetJob`.
 public struct GetJobRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

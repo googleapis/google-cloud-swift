@@ -16,7 +16,7 @@
 
 #if VertexRagDataService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Configuration message for RagManagedDb used by RagEngine.
   public struct RagManagedDbConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

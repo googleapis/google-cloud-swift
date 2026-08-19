@@ -16,7 +16,7 @@
 
 #if SecuritySettingsService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The request message for [SecuritySettings.CreateSecuritySettings][].
   public struct CreateSecuritySettingsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

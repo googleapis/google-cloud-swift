@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// DataProfileResult defines the output of DataProfileScan. Each field of the
 /// table will have field type specific profile result.

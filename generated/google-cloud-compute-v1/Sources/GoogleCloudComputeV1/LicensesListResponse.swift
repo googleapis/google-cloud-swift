@@ -16,8 +16,8 @@
 
 #if Licenses
   import Foundation
-  import GoogleCloudGax
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudGax
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct LicensesListResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,

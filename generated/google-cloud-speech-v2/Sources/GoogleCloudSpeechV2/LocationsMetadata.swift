@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Main metadata for the Locations API for STT V2. Currently this is just the
 /// metadata about locales, models, and features

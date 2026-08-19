@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The data for a silence annotation.
 public struct SilenceData: Codable, Equatable, GoogleCloudWkt._AnyPackable,

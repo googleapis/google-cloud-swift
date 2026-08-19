@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Input for the session.
 public struct SessionInput: Codable, Equatable, GoogleCloudWkt._AnyPackable,

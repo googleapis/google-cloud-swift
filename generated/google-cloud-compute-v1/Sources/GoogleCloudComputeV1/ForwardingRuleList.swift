@@ -16,8 +16,8 @@
 
 #if ForwardingRules || GlobalForwardingRules
   import Foundation
-  import GoogleCloudGax
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudGax
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Contains a list of ForwardingRule resources.
   public struct ForwardingRuleList: Codable, Equatable, GoogleCloudWkt._AnyPackable,

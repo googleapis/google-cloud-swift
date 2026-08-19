@@ -16,7 +16,7 @@
 
 #if TestCases
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Transition route group coverage represents the percentage of all possible
   /// transition routes present within any of a parent's test cases. The results

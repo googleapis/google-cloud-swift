@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// ListStoragePoolsRequest lists Storage Pools.
 public struct ListStoragePoolsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

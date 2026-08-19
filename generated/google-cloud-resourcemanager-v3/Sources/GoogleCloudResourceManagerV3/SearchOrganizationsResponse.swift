@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudGax
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudGax
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The response returned from the `SearchOrganizations` method.
 public struct SearchOrganizationsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

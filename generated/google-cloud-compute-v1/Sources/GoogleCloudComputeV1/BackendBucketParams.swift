@@ -16,7 +16,7 @@
 
 #if BackendBuckets || RegionBackendBuckets
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Additional Backend Bucket parameters.
   public struct BackendBucketParams: Codable, Equatable, GoogleCloudWkt._AnyPackable,

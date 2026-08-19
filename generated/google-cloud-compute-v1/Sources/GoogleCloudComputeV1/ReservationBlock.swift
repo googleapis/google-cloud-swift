@@ -16,7 +16,7 @@
 
 #if ReservationBlocks
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents a reservation block resource.
   public struct ReservationBlock: Codable, Equatable, GoogleCloudWkt._AnyPackable,

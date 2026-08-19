@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A `NotificationChannel` is a medium through which an alert is
 /// delivered when a policy violation is detected. Examples of channels

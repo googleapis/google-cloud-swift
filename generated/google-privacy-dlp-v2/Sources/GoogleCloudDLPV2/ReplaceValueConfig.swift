@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Replace each input value with a given `Value`.
 public struct ReplaceValueConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A request to get details about a preview.
 public struct GetPreviewRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

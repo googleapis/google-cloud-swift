@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The IAP configurable settings.
 public struct IapSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,

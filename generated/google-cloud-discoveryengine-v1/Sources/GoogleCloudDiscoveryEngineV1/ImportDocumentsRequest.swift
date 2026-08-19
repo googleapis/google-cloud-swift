@@ -16,7 +16,7 @@
 
 #if DocumentService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Request message for Import methods.
   public struct ImportDocumentsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

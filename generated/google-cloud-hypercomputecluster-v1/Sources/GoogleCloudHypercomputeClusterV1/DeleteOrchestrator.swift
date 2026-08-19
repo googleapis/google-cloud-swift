@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// When set in OperationStep, indicates that an orchestrator should be deleted.
 public struct DeleteOrchestrator: Codable, Equatable, GoogleCloudWkt._AnyPackable,

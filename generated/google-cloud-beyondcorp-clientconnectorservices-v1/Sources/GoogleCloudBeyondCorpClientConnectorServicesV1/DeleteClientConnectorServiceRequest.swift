@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message for deleting a ClientConnectorService.
 public struct DeleteClientConnectorServiceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

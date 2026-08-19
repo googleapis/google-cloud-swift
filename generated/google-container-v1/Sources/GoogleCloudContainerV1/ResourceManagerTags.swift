@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A map of resource manager tag keys and values to be attached to the nodes
 /// for managing Compute Engine firewalls using Network Firewall Policies.

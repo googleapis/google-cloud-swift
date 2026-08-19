@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request for the `CreateCertificate` method.
 public struct CreateCertificateRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

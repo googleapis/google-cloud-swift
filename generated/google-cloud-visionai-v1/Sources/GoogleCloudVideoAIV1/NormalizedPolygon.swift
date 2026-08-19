@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Normalized Polygon.
 public struct NormalizedPolygon: Codable, Equatable, GoogleCloudWkt._AnyPackable,

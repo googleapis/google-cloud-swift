@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Provides contextual information about a
 /// [google.longrunning.Operation][google.longrunning.Operation].

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// An artifact that was uploaded during a build. This
 /// is a single record in the artifact manifest JSON file.

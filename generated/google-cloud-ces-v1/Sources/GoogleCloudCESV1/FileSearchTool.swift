@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The file search tool allows the agent to search across the files uploaded by
 /// the app/agent developer. It has presets to give relatively good quality

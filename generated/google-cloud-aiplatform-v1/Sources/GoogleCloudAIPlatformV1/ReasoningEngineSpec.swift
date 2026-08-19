@@ -16,7 +16,7 @@
 
 #if ReasoningEngineService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// ReasoningEngine configurations
   public struct ReasoningEngineSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,

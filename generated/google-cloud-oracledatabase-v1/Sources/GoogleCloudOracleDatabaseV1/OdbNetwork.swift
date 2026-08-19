@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents OdbNetwork resource.
 public struct OdbNetwork: Codable, Equatable, GoogleCloudWkt._AnyPackable,

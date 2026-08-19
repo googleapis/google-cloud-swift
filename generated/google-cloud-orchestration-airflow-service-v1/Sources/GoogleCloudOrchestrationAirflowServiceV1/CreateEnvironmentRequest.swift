@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Create a new environment.
 public struct CreateEnvironmentRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

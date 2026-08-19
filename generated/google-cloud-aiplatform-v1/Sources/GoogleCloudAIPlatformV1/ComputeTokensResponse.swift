@@ -16,7 +16,7 @@
 
 #if LlmUtilityService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Response message for ComputeTokens RPC call.
   public struct ComputeTokensResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

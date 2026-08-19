@@ -16,7 +16,7 @@
 
 #if EvaluationService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Input for fulfillment metric.
   public struct FulfillmentInput: Codable, Equatable, GoogleCloudWkt._AnyPackable,

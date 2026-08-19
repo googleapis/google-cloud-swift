@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// An `AccessLevel` is a label that can be applied to requests to Google Cloud
 /// services, along with a list of requirements necessary for the label to be

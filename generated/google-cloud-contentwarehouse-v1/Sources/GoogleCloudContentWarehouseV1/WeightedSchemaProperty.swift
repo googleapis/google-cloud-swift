@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Specifies the schema property name.
 public struct WeightedSchemaProperty: Codable, Equatable, GoogleCloudWkt._AnyPackable,

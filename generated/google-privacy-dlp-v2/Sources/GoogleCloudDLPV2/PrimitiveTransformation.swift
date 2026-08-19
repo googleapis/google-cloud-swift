@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A rule for transforming a value.
 public struct PrimitiveTransformation: Codable, Equatable, GoogleCloudWkt._AnyPackable,

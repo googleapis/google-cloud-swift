@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudGax
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudGax
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// List of node pools in a cluster.
 public struct ListNodePoolsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

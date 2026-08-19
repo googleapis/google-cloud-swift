@@ -16,7 +16,7 @@
 
 #if BackendBuckets || BackendServices
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents a customer-supplied Signing Key used by Cloud CDN Signed URLs
   public struct SignedUrlKey: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Auxiliary metadata for a [MonitoredResource][google.api.MonitoredResource]
 /// object. [MonitoredResource][google.api.MonitoredResource] objects contain the

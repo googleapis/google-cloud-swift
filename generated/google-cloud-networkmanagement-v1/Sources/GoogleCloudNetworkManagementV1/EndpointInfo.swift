@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// For display only. The specification of the endpoints for the test.
 /// EndpointInfo is derived from source and destination Endpoint and validated

@@ -16,7 +16,7 @@
 
 #if SqlBackupsService || SqlInstancesService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Gemini instance configuration.
   public struct GeminiInstanceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

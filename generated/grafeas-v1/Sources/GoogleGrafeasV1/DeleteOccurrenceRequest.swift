@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request to delete an occurrence.
 public struct DeleteOccurrenceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

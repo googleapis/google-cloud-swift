@@ -16,8 +16,8 @@
 
 #if BackendServices || RegionBackendServices
   import Foundation
-  import GoogleCloudGax
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudGax
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Contains a list of BackendService resources.
   public struct BackendServiceList: Codable, Equatable, GoogleCloudWkt._AnyPackable,

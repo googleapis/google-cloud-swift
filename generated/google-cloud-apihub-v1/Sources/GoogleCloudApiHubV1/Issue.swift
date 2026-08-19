@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Issue contains the details of a single issue found by the linter.
 public struct Issue: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if GroundedGenerationService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Specification for the grounding check.
   public struct CheckGroundingSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,

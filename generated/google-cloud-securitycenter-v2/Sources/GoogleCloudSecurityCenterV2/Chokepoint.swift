@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Contains details about a chokepoint, which is a resource or resource group
 /// where high-risk attack paths converge, based on [attack path simulations]

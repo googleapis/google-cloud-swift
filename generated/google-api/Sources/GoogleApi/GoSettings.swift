@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Settings for Go client libraries.
 public struct GoSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,

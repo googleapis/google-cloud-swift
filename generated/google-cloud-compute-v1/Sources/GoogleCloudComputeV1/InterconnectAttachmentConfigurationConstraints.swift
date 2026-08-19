@@ -16,7 +16,7 @@
 
 #if InterconnectAttachments || InterconnectRemoteLocations
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct InterconnectAttachmentConfigurationConstraints: Codable, Equatable, GoogleCloudWkt
       ._AnyPackable,

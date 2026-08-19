@@ -16,7 +16,7 @@
 
 #if InstanceGroups
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   extension InstanceGroupsClient {
     /// Synthetic request message for the [addInstances()][google.cloud.compute.v1.instanceGroups.addInstances] method.

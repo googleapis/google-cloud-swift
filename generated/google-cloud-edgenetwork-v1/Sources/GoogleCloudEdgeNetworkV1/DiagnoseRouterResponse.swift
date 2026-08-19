@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// DiagnoseRouterResponse contains the current status for a specific router.
 public struct DiagnoseRouterResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

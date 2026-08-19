@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The preferences that apply to all assets in a given context.
 public struct PreferenceSet: Codable, Equatable, GoogleCloudWkt._AnyPackable,

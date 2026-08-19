@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configuration for the GKE Node Readiness Controller.
 public struct NodeReadinessConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

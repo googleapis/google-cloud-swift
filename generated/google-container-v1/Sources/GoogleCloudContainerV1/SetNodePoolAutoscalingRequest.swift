@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// SetNodePoolAutoscalingRequest sets the autoscaler settings of a node pool.
 public struct SetNodePoolAutoscalingRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

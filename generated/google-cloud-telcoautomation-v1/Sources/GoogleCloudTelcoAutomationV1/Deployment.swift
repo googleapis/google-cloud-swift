@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Deployment contains a collection of YAML files (This collection is also known
 /// as package) that can to applied on an orchestration cluster (GKE cluster with

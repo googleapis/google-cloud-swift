@@ -16,7 +16,7 @@
 
 #if RegionCommitments
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// [Output Only] Contains output only fields.
   public struct CommitmentResourceStatus: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A reservation group is a container for reservations.
 public struct ReservationGroup: Codable, Equatable, GoogleCloudWkt._AnyPackable,

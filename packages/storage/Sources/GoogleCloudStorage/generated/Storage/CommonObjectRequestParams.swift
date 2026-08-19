@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Parameters that can be passed to any object request.
 public struct CommonObjectRequestParams: Codable, Equatable, GoogleCloudWkt._AnyPackable,

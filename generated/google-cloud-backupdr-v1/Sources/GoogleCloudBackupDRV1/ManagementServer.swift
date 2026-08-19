@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// ManagementServer describes a single BackupDR ManagementServer instance.
 public struct ManagementServer: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A managed folder.
 public struct ManagedFolder: Codable, Equatable, GoogleCloudWkt._AnyPackable,

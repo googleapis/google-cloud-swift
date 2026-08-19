@@ -16,7 +16,7 @@
 
 #if RegionAutoscalers
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   extension RegionAutoscalersClient {
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.regionAutoscalers.delete] method.

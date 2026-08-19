@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// BucketOperation represents a bucket-level breakdown of a Job.
 public struct BucketOperation: Codable, Equatable, GoogleCloudWkt._AnyPackable,

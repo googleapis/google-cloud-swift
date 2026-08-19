@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for running the processes in a batch.
 public struct BatchRunProcessRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

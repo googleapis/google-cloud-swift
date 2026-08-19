@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A SourceContext referring to a Gerrit project.
 public struct GerritSourceContext: Codable, Equatable, GoogleCloudWkt._AnyPackable,

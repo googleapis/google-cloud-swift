@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// `TimedPromoteReleaseCondition` contains conditions specific to an Automation
 /// with a Timed Promote Release rule defined.

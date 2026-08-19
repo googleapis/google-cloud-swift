@@ -16,7 +16,7 @@
 
 #if NetworkFirewallPolicies
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   extension NetworkFirewallPoliciesClient {
     /// Synthetic request message for the [addAssociation()][google.cloud.compute.v1.networkFirewallPolicies.addAssociation] method.

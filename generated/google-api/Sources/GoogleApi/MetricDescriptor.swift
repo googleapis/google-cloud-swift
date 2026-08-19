@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Defines a metric type and its schema. Once a metric descriptor is created,
 /// deleting or altering it stops data collection and makes the metric type's

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for the `CreateProductSet` method.
 public struct CreateProductSetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

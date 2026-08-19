@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Endpoint describes a single IDS endpoint. It defines a forwarding rule to
 /// which packets can be sent for IDS inspection.

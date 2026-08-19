@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// UsableSubnetwork resource returns the subnetwork name, its associated network
 /// and the primary CIDR range.

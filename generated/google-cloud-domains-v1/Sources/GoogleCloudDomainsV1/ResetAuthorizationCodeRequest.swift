@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request for the `ResetAuthorizationCode` method.
 public struct ResetAuthorizationCodeRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

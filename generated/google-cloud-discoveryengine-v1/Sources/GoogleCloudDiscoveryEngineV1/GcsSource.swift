@@ -16,7 +16,7 @@
 
 #if CompletionService || DocumentService || UserEventService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Cloud Storage location for input content.
   public struct GcsSource: Codable, Equatable, GoogleCloudWkt._AnyPackable,

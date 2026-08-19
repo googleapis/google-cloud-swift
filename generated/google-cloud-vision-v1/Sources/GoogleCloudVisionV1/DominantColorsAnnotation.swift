@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Set of dominant colors and their corresponding scores.
 public struct DominantColorsAnnotation: Codable, Equatable, GoogleCloudWkt._AnyPackable,

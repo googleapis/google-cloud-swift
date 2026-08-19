@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A constraint describes a way to restrict resource's configuration. For
 /// example, you could enforce a constraint that controls which Google Cloud

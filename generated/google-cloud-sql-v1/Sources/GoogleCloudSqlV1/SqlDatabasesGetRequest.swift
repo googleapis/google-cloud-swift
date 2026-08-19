@@ -16,7 +16,7 @@
 
 #if SqlDatabasesService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Database get request.
   public struct SqlDatabasesGetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Information about a Kubernetes Secret
 public struct KubernetesSecret: Codable, Equatable, GoogleCloudWkt._AnyPackable,

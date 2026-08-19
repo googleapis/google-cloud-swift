@@ -16,7 +16,7 @@
 
 #if Instances || RegionInstances
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct LocationPolicyZoneConfiguration: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A snapshot of a volume. Only boot volumes can have snapshots.
 public struct VolumeSnapshot: Codable, Equatable, GoogleCloudWkt._AnyPackable,

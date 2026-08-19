@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A Dataproc job for running Apache Flink applications on YARN.
 public struct FlinkJob: Codable, Equatable, GoogleCloudWkt._AnyPackable,

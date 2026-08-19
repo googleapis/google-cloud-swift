@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// This approach uses total unique user count for billing.
 public struct UserCountBillingInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,

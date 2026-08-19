@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// StoragePool is a container for volumes with a service level and capacity.
 /// Volumes can be created in a pool of sufficient available capacity.

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Standard connection format.
 public struct StandardConnectionFormat: Codable, Equatable, GoogleCloudWkt._AnyPackable,

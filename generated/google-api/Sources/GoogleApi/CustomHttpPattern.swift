@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A custom pattern is used for defining custom HTTP verb.
 public struct CustomHttpPattern: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if ConversationProfiles || Conversations
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Settings for Responsible AI checks.
   public struct RaiSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,

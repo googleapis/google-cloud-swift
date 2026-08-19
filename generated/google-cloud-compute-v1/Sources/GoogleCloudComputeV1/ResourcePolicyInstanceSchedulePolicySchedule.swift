@@ -16,7 +16,7 @@
 
 #if ResourcePolicies
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Schedule for an instance operation.
   public struct ResourcePolicyInstanceSchedulePolicySchedule: Codable, Equatable, GoogleCloudWkt

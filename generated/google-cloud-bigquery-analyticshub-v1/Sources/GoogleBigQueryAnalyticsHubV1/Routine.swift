@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents a bigquery routine.
 public struct Routine: Codable, Equatable, GoogleCloudWkt._AnyPackable,

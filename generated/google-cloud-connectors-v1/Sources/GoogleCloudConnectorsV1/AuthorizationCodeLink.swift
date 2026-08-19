@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// This configuration captures the details required to render an authorization
 /// link for the OAuth Authorization Code Flow.

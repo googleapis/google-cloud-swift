@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A DeploymentGroupRevision represents a snapshot of a
 /// [DeploymentGroup][google.cloud.config.v1.DeploymentGroup] at a given point in

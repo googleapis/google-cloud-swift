@@ -16,7 +16,7 @@
 
 #if Routers
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Contain information of Nat mapping for a VM endpoint (i.e., NIC).
   public struct VmEndpointNatMappings: Codable, Equatable, GoogleCloudWkt._AnyPackable,

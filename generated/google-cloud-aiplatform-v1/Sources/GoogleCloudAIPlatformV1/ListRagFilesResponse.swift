@@ -16,8 +16,8 @@
 
 #if VertexRagDataService
   import Foundation
-  import GoogleCloudGax
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudGax
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Response message for
   /// [VertexRagDataService.ListRagFiles][google.cloud.aiplatform.v1.VertexRagDataService.ListRagFiles].

@@ -16,7 +16,7 @@
 
 #if SqlInstancesService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Instance create ephemeral certificate request.
   public struct SqlInstancesCreateEphemeralCertRequest: Codable, Equatable, GoogleCloudWkt

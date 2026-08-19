@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The types of BigQuery tables supported by Cloud DLP.
 public struct BigQueryTableTypes: Codable, Equatable, GoogleCloudWkt._AnyPackable,

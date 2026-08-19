@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A type of analysis that can be done for a resource.
 public struct Note: Codable, Equatable, GoogleCloudWkt._AnyPackable,

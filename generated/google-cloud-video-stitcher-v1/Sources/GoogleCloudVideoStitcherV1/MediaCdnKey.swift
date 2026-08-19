@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configuration for a Media CDN key.
 public struct MediaCdnKey: Codable, Equatable, GoogleCloudWkt._AnyPackable,

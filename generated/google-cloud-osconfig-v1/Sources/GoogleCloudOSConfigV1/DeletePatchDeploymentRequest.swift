@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A request message for deleting a patch deployment.
 public struct DeletePatchDeploymentRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

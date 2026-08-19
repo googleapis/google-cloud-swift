@@ -16,7 +16,7 @@
 
 #if Interconnects
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Specify configuration for StrictPriorityPolicy.
   public struct InterconnectApplicationAwareInterconnectStrictPriorityPolicy: Codable, Equatable,

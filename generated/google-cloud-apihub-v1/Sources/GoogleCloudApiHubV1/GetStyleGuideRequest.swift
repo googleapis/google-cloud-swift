@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The [GetStyleGuide][google.cloud.apihub.v1.LintingService.GetStyleGuide]
 /// method's request.

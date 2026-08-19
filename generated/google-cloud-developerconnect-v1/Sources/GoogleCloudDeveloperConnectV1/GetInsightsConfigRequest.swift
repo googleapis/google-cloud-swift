@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request for getting an InsightsConfig.
 public struct GetInsightsConfigRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

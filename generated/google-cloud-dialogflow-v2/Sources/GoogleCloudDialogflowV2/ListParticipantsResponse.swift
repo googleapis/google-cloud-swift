@@ -16,8 +16,8 @@
 
 #if Participants
   import Foundation
-  import GoogleCloudGax
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudGax
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The response message for
   /// [Participants.ListParticipants][google.cloud.dialogflow.v2.Participants.ListParticipants].

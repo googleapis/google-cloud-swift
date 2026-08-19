@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudGax
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudGax
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Response message containing the list of storage volume luns.
 public struct ListLunsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The Autoscaler's status, including its state and other details.
 public struct AutoscalerStatus: Codable, Equatable, GoogleCloudWkt._AnyPackable,

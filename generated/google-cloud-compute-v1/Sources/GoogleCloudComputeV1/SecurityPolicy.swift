@@ -16,7 +16,7 @@
 
 #if OrganizationSecurityPolicies || RegionSecurityPolicies || SecurityPolicies
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents a Google Cloud Armor security policy resource.
   ///

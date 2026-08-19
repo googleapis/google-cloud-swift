@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents a conversational session where the finding occurred.
 public struct AgentSession: Codable, Equatable, GoogleCloudWkt._AnyPackable,

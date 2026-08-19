@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The schema of data to be saved to the BigQuery table when the
 /// `DataProfileAction` is enabled.

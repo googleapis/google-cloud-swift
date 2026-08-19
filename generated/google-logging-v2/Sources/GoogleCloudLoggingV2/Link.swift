@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Describes a link connected to an analytics enabled bucket.
 public struct Link: Codable, Equatable, GoogleCloudWkt._AnyPackable,

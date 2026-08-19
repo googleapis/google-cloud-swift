@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for GetServiceRollout method.
 public struct GetServiceRolloutRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The curation information for this plugin instance.
 public struct CurationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

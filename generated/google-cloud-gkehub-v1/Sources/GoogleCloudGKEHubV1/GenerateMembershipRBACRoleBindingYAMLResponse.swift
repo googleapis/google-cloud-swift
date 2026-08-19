@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Response for GenerateRBACRoleBindingYAML.
 public struct GenerateMembershipRBACRoleBindingYAMLResponse: Codable, Equatable, GoogleCloudWkt

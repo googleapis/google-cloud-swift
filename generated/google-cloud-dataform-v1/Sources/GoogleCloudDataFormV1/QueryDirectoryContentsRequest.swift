@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// `QueryDirectoryContents` request message.
 public struct QueryDirectoryContentsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

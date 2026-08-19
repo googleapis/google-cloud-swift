@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message to list `MulticloudDataTransferConfig` resources.
 public struct ListMulticloudDataTransferConfigsRequest: Codable, Equatable, GoogleCloudWkt

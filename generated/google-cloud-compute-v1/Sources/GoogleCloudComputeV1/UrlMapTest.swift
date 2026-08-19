@@ -16,7 +16,7 @@
 
 #if RegionUrlMaps || UrlMaps
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Message for the expected URL mappings.
   public struct UrlMapTest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

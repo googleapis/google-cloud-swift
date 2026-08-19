@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Button config for a chart.
 public struct Button: Codable, Equatable, GoogleCloudWkt._AnyPackable,

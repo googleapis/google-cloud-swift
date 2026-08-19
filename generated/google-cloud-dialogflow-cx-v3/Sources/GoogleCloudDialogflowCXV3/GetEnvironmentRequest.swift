@@ -16,7 +16,7 @@
 
 #if Environments
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The request message for
   /// [Environments.GetEnvironment][google.cloud.dialogflow.cx.v3.Environments.GetEnvironment].

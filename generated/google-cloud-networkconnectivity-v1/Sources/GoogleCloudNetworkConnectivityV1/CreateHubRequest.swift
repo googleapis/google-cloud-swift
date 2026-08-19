@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request for
 /// [HubService.CreateHub][google.cloud.networkconnectivity.v1.HubService.CreateHub]

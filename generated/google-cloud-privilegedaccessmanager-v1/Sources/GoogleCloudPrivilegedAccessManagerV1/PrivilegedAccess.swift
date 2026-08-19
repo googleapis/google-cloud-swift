@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Privileged access that this service can be used to gate.
 public struct PrivilegedAccess: Codable, Equatable, GoogleCloudWkt._AnyPackable,

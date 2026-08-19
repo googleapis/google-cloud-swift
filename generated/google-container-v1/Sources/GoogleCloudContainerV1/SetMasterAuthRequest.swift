@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// SetMasterAuthRequest updates the admin password of a cluster.
 public struct SetMasterAuthRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

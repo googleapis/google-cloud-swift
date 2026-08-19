@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// An inlined file.
 public struct FileInputSource: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request to list occurrences for a note.
 public struct ListNoteOccurrencesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

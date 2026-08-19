@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request sent to IAP Expression Linter endpoint.
 public struct ValidateIapAttributeExpressionRequest: Codable, Equatable, GoogleCloudWkt

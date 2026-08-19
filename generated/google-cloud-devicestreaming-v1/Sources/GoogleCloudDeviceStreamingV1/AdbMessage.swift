@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A message to an ADB server.
 public struct AdbMessage: Codable, Equatable, GoogleCloudWkt._AnyPackable,

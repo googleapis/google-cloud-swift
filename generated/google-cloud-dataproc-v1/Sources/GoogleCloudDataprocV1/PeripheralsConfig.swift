@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Auxiliary services configuration for a workload.
 public struct PeripheralsConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

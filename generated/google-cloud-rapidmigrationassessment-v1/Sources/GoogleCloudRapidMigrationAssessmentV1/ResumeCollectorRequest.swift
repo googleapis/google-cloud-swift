@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message for resuming a Collector.
 public struct ResumeCollectorRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Information about DDoS attack volume and classification.
 public struct Attack: Codable, Equatable, GoogleCloudWkt._AnyPackable,

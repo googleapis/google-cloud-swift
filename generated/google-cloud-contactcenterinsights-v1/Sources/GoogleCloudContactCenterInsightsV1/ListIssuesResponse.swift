@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The response of listing issues.
 public struct ListIssuesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

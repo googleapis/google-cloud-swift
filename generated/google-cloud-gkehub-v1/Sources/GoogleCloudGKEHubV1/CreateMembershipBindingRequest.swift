@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request to create a MembershipBinding.
 public struct CreateMembershipBindingRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if GenAiTuningService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// TunedModel Reference for legacy model migration.
   public struct TunedModelRef: Codable, Equatable, GoogleCloudWkt._AnyPackable,

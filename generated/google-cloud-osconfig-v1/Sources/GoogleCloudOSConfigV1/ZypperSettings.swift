@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Zypper patching is performed by running `zypper patch`.
 /// See also https://en.opensuse.org/SDB:Zypper_manual.

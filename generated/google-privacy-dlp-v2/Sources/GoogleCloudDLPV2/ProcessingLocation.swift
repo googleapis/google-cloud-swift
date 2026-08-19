@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configure processing location for discovery and inspection. For example,
 /// image OCR is only provided in limited regions but configuring

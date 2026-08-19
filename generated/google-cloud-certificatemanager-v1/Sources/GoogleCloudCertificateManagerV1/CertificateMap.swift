@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Defines a collection of certificate configurations.
 public struct CertificateMap: Codable, Equatable, GoogleCloudWkt._AnyPackable,

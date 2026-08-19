@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Execution result summary per rule.
 public struct RuleExecutionResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,

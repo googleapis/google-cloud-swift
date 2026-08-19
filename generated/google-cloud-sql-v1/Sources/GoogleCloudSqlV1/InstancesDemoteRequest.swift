@@ -16,7 +16,7 @@
 
 #if SqlInstancesService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// This request is used to demote an existing standalone instance to be a
   /// Cloud SQL read replica for an external database server.

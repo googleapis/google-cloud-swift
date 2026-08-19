@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents the category hierarchy of a SKU.
 public struct Category: Codable, Equatable, GoogleCloudWkt._AnyPackable,

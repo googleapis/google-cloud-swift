@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A text object containing the English text and its localized copies.
 public struct Text: Codable, Equatable, GoogleCloudWkt._AnyPackable,

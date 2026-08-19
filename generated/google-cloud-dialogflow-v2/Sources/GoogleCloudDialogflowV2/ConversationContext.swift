@@ -16,7 +16,7 @@
 
 #if Conversations || GeneratorEvaluations || Generators
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Context of the conversation, including transcripts.
   public struct ConversationContext: Codable, Equatable, GoogleCloudWkt._AnyPackable,

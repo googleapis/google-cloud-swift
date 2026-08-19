@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Sanitized Model Response Response.
 public struct SanitizeModelResponseResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

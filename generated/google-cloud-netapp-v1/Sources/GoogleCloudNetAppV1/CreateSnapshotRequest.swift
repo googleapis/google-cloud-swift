@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// CreateSnapshotRequest creates a snapshot.
 public struct CreateSnapshotRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -16,8 +16,8 @@
 
 #if RegionInstanceGroupManagerResizeRequests
   import Foundation
-  import GoogleCloudGax
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudGax
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct RegionInstanceGroupManagerResizeRequestsListResponse: Codable, Equatable,
     GoogleCloudWkt._AnyPackable,

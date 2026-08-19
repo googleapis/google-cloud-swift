@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 @available(*, deprecated)
 public struct GenerateAwsClusterAgentTokenRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

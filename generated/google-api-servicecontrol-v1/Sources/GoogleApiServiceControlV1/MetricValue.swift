@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents a single metric value.
 public struct MetricValue: Codable, Equatable, GoogleCloudWkt._AnyPackable,

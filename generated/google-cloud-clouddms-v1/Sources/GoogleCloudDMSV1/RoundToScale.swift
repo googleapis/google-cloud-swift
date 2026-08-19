@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// This allows the data to change scale, for example if the source is 2 digits
 /// after the decimal point, specify round to scale value = 2. If for example the

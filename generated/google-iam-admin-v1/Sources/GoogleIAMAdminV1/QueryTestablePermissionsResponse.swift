@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudGax
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudGax
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The response containing permissions which can be tested on a resource.
 public struct QueryTestablePermissionsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

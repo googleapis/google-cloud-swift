@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for the ListTables method.
 public struct ListTablesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

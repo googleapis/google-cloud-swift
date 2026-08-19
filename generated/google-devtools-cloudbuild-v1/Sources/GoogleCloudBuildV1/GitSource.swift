@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Location of the source in any accessible Git repository.
 public struct GitSource: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents a HTTP endpoint destination.
 public struct HttpEndpoint: Codable, Equatable, GoogleCloudWkt._AnyPackable,

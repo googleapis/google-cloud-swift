@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configuration options for private clusters.
 public struct PrivateClusterConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

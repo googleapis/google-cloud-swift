@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Details of the final state "deliver" and associated resource.
 public struct DeliverInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,

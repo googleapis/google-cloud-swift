@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents a range of throughput values in tokens per second.
 public struct TokensPerSecondRange: Codable, Equatable, GoogleCloudWkt._AnyPackable,

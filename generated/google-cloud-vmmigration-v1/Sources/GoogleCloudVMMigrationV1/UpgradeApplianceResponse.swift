@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Response message for 'UpgradeAppliance' request.
 public struct UpgradeApplianceResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

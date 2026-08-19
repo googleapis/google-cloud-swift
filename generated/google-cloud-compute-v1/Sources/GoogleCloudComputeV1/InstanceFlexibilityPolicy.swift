@@ -16,7 +16,7 @@
 
 #if Instances || RegionInstances
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// A flexible specification of machine types for instances to create.
   public struct InstanceFlexibilityPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,

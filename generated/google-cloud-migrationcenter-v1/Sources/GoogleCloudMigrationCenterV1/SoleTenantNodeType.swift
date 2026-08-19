@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A Sole Tenant node type.
 public struct SoleTenantNodeType: Codable, Equatable, GoogleCloudWkt._AnyPackable,

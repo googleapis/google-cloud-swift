@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// An entitlement defines the eligibility of a set of users to obtain
 /// predefined access for some time possibly after going through an approval

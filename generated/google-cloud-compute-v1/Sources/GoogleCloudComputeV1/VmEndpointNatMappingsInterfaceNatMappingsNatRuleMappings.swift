@@ -16,7 +16,7 @@
 
 #if Routers
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Contains information of NAT Mappings provided by a NAT Rule.
   public struct VmEndpointNatMappingsInterfaceNatMappingsNatRuleMappings: Codable, Equatable,

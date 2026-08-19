@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Point within the file (line and character).
 public struct Point: Codable, Equatable, GoogleCloudWkt._AnyPackable,

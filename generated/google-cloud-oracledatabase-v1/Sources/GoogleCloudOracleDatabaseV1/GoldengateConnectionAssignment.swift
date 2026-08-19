@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents the metadata of a Goldengate Connection Assignment.
 public struct GoldengateConnectionAssignment: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 extension ProjectsClient {
   /// Synthetic request message for the [get()][.projects.get] method.

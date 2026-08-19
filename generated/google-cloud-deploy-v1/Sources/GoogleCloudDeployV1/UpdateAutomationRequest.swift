@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The request object for `UpdateAutomation`.
 public struct UpdateAutomationRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

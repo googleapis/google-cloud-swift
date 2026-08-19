@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Backup of a cluster.
 public struct Backup: Codable, Equatable, GoogleCloudWkt._AnyPackable,

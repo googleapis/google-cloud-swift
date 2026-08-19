@@ -16,7 +16,7 @@
 
 import Foundation
 import GoogleCloudLoggingType
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// An individual log entry.
 public struct LogEntry: Codable, Equatable, GoogleCloudWkt._AnyPackable,

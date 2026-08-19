@@ -16,7 +16,7 @@
 
 #if InstanceGroupManagers || RegionInstanceGroupManagers
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Bulk instance operation is the creation of VMs in a MIG when the
   /// targetSizePolicy.mode is set to BULK.

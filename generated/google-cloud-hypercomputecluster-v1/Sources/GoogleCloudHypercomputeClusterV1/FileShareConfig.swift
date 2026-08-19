@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message describing filestore configuration
 public struct FileShareConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

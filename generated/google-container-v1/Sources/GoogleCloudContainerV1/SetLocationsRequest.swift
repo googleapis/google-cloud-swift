@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// SetLocationsRequest sets the locations of the cluster.
 public struct SetLocationsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

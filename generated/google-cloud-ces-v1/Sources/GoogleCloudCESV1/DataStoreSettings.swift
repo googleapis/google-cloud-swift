@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Data store related settings for the app.
 public struct DataStoreSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,

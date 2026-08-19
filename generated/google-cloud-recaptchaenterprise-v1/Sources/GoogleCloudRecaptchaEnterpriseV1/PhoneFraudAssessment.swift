@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Assessment for Phone Fraud
 public struct PhoneFraudAssessment: Codable, Equatable, GoogleCloudWkt._AnyPackable,

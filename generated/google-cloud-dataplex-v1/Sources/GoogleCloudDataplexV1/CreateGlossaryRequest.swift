@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Create Glossary Request
 public struct CreateGlossaryRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

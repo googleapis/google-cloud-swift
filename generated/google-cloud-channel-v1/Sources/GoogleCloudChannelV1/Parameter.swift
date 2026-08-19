@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Definition for extended entitlement parameters.
 public struct Parameter: Codable, Equatable, GoogleCloudWkt._AnyPackable,

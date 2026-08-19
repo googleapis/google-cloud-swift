@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Requests list of events that affect an organization.
 public struct ListOrganizationEventsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

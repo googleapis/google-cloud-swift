@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// For use with `Date`, `Timestamp`, and `TimeOfDay`, extract or preserve a
 /// portion of the value.

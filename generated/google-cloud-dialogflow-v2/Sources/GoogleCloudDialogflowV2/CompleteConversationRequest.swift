@@ -16,7 +16,7 @@
 
 #if Conversations
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The request message for
   /// [Conversations.CompleteConversation][google.cloud.dialogflow.v2.Conversations.CompleteConversation].

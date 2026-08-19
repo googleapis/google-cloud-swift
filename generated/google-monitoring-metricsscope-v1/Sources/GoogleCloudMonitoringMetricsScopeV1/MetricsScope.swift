@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents a [Metrics
 /// Scope](https://cloud.google.com/monitoring/settings#concept-scope) in Cloud

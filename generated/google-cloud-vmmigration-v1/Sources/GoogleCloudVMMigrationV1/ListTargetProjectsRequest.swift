@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for 'ListTargetProjects' call.
 public struct ListTargetProjectsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

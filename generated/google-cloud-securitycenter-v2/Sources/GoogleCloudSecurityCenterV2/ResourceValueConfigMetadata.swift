@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Metadata about a ResourceValueConfig. For example, id and name.
 public struct ResourceValueConfigMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,

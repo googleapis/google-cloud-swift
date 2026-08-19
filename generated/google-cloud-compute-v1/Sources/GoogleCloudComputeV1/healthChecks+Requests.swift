@@ -16,7 +16,7 @@
 
 #if HealthChecks
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   extension HealthChecksClient {
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.healthChecks.aggregatedList] method.

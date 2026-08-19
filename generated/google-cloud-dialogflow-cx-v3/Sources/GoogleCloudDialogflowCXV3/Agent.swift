@@ -16,7 +16,7 @@
 
 #if Agents
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Agents are best described as Natural Language Understanding (NLU) modules
   /// that transform user requests into actionable data. You can include agents

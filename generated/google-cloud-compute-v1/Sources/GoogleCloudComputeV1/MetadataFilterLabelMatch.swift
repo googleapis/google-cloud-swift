@@ -16,7 +16,7 @@
 
 #if ForwardingRules || GlobalForwardingRules || RegionUrlMaps || UrlMaps
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// MetadataFilter label name value pairs that are expected
   /// to match corresponding labels presented as metadata to the load balancer.

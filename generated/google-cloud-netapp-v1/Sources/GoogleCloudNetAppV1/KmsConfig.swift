@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// KmsConfig is the customer-managed encryption key(CMEK) configuration.
 public struct KmsConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

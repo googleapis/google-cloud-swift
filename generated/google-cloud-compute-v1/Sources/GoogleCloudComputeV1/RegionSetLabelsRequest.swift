@@ -16,7 +16,7 @@
 
 #if Addresses || ForwardingRules || InterconnectAttachments || RegionDisks || RegionInstantSnapshots || RegionSecurityPolicies || RegionSnapshots || TargetVpnGateways || VpnGateways || VpnTunnels
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct RegionSetLabelsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable

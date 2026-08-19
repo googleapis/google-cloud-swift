@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// InitializingImageImportStep contains specific step details.
 public struct InitializingImageImportStep: Codable, Equatable, GoogleCloudWkt._AnyPackable,

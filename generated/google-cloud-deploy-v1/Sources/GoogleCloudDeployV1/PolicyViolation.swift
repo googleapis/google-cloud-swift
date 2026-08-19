@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Returned from an action if one or more policies were
 /// violated, and therefore the action was prevented. Contains information about

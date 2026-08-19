@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Secrets and secret environment variables.
 public struct Secrets: Codable, Equatable, GoogleCloudWkt._AnyPackable,

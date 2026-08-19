@@ -16,7 +16,7 @@
 
 #if Versions
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Metadata associated with the long running operation for
   /// [Versions.CreateVersion][google.cloud.dialogflow.cx.v3.Versions.CreateVersion].

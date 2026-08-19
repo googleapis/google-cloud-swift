@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Describes the format of the data within its storage location.
 public struct StorageFormat: Codable, Equatable, GoogleCloudWkt._AnyPackable,

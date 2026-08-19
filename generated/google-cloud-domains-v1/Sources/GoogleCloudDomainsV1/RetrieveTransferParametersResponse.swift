@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Response for the `RetrieveTransferParameters` method.
 public struct RetrieveTransferParametersResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudGax
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudGax
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The response for listing all AdaptiveMt files under a given dataset.
 public struct ListAdaptiveMtFilesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Grants permissions to the contract by the transaction sender.
 /// If `delegate_contract_id` is specified, the permissions and corresponding

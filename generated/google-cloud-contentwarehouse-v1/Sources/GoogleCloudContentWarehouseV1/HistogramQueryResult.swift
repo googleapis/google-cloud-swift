@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Histogram result that matches
 /// [HistogramQuery][google.cloud.contentwarehouse.v1.HistogramQuery] specified

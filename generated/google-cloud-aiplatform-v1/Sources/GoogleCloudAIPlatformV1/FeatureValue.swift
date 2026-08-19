@@ -16,7 +16,7 @@
 
 #if FeatureOnlineStoreService || FeaturestoreOnlineServingService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Value for a feature.
   public struct FeatureValue: Codable, Equatable, GoogleCloudWkt._AnyPackable,

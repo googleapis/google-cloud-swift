@@ -16,7 +16,7 @@
 
 #if InterconnectAttachmentGroups
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// [Output Only] The metros of Attachments in this group in this region.
   public struct InterconnectAttachmentGroupLogicalStructureRegionMetro: Codable, Equatable,

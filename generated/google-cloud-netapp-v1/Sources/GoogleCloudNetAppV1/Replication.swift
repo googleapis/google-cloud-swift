@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Replication is a nested resource under Volume, that describes a
 /// cross-region replication relationship between 2 volumes in different

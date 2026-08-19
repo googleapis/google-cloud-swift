@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The cluster operation triggered by a workflow.
 public struct ClusterOperation: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Details of the final state "drop" and associated resource.
 public struct DropInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,

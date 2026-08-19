@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for DocumentSchemaService.ListDocumentSchemas.
 public struct ListDocumentSchemasRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

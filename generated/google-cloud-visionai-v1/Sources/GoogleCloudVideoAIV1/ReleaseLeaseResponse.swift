@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Response message for release lease.
 public struct ReleaseLeaseResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

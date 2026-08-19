@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Details about resources affected by this finding.
 public struct AffectedResources: Codable, Equatable, GoogleCloudWkt._AnyPackable,

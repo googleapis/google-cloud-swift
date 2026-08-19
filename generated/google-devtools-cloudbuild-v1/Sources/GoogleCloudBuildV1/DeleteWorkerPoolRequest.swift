@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request to delete a `WorkerPool`.
 public struct DeleteWorkerPoolRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

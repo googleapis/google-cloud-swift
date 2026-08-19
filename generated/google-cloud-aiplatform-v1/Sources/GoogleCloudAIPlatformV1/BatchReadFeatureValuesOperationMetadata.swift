@@ -16,7 +16,7 @@
 
 #if FeaturestoreService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Details of operations that batch reads Feature values.
   public struct BatchReadFeatureValuesOperationMetadata: Codable, Equatable, GoogleCloudWkt

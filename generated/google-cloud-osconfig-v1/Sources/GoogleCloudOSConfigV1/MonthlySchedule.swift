@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents a monthly schedule. An example of a valid monthly schedule is
 /// "on the third Tuesday of the month" or "on the 15th of the month".

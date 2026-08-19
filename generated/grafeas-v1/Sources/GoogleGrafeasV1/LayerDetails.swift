@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Details about the layer a package was found in.
 public struct LayerDetails: Codable, Equatable, GoogleCloudWkt._AnyPackable,

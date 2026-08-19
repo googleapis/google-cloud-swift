@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Specifies the override to conditionally apply.
 public struct ConditionalOverride: Codable, Equatable, GoogleCloudWkt._AnyPackable,

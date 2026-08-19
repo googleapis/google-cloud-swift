@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message for creating a QueryTemplate.
 public struct GetQueryTemplateRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

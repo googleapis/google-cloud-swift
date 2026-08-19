@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configuration for a V1 `PrivatePool`.
 public struct PrivatePoolV1Config: Codable, Equatable, GoogleCloudWkt._AnyPackable,

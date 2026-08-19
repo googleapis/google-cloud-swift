@@ -16,7 +16,7 @@
 
 #if Deployments
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents a deployment in an environment. A deployment happens when a flow
   /// version configured to be active in the environment. You can configure running

@@ -16,7 +16,7 @@
 
 #if SqlInstancesService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Instance demote request.
   public struct SqlInstancesDemoteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// An Attachment refers to additional metadata that can be attached to
 /// artifacts in Artifact Registry. An attachment consists of one or more files.

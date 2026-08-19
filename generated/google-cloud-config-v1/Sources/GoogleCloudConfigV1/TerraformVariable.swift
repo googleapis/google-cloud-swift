@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A Terraform input variable.
 public struct TerraformVariable: Codable, Equatable, GoogleCloudWkt._AnyPackable,

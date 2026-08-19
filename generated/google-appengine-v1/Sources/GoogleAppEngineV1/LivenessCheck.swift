@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Health checking configuration for VM instances. Unhealthy instances
 /// are killed and replaced with new instances.

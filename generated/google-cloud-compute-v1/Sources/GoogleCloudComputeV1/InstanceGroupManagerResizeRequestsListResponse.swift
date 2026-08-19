@@ -16,8 +16,8 @@
 
 #if InstanceGroupManagerResizeRequests
   import Foundation
-  import GoogleCloudGax
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudGax
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// [Output Only] A list of resize requests.
   public struct InstanceGroupManagerResizeRequestsListResponse: Codable, Equatable, GoogleCloudWkt

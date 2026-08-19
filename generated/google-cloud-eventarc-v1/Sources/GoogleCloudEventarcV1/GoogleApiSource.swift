@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A GoogleApiSource represents a subscription of 1P events from a MessageBus.
 public struct GoogleApiSource: Codable, Equatable, GoogleCloudWkt._AnyPackable,

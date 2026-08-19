@@ -16,7 +16,7 @@
 
 #if VizierService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// This message will be placed in the metadata field of a
   /// google.longrunning.Operation associated with a CheckTrialEarlyStoppingState

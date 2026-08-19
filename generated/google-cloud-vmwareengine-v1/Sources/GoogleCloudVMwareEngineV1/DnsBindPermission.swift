@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// DnsBindPermission resource that contains the accounts having the consumer DNS
 /// bind permission on the corresponding intranet VPC of the consumer project.

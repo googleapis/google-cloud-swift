@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Response message for requesting access to a Data Product.
 public struct RequestDataProductAccessResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

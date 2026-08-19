@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// This is an event
 public struct Event: Codable, Equatable, GoogleCloudWkt._AnyPackable,

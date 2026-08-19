@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Orchestration cluster represents a GKE cluster with config controller and
 /// TNA specific components installed on it.

@@ -16,8 +16,8 @@
 
 #if VpnTunnels
   import Foundation
-  import GoogleCloudGax
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudGax
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Contains a list of VpnTunnel resources.
   public struct VpnTunnelList: Codable, Equatable, GoogleCloudWkt._AnyPackable,

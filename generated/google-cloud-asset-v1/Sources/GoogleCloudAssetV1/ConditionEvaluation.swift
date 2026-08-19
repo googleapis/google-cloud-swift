@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The condition evaluation.
 public struct ConditionEvaluation: Codable, Equatable, GoogleCloudWkt._AnyPackable,

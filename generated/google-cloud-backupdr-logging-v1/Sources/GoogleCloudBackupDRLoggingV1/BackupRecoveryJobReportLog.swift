@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// This is a BackupRecoveryJobReportLog published as part of GCBDR Reporting.
 public struct BackupRecoveryJobReportLog: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudGax
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudGax
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Response of ListViolations endpoint.
 public struct ListViolationsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

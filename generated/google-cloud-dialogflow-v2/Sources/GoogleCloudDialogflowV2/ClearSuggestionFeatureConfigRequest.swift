@@ -16,7 +16,7 @@
 
 #if ConversationProfiles
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The request message for
   /// [ConversationProfiles.ClearSuggestionFeatureConfig][google.cloud.dialogflow.v2.ConversationProfiles.ClearSuggestionFeatureConfig].

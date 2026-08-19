@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Indices map key to value. For example, `keys[0]` key maps to `values[0]`.
 public struct DictValue: Codable, Equatable, GoogleCloudWkt._AnyPackable,

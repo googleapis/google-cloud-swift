@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The call participant speaking for a given utterance.
 public struct ConversationParticipant: Codable, Equatable, GoogleCloudWkt._AnyPackable,

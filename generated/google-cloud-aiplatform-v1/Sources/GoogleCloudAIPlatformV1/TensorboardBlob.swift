@@ -16,7 +16,7 @@
 
 #if TensorboardService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// One blob (e.g, image, graph) viewable on a blob metric plot.
   public struct TensorboardBlob: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if Sessions
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Metadata of the playbook trace.
   public struct PlaybookTraceMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,

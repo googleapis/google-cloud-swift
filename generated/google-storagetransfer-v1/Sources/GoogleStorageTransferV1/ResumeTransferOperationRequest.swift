@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request passed to ResumeTransferOperation.
 public struct ResumeTransferOperationRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

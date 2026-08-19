@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Cloud SQL connection properties.
 public struct CloudSqlProperties: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Subscription information.
 public struct Subscription: Codable, Equatable, GoogleCloudWkt._AnyPackable,

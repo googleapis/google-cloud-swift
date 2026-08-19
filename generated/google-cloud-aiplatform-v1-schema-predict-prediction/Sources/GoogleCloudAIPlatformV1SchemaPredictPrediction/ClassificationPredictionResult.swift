@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Prediction output format for Image and Text Classification.
 public struct ClassificationPredictionResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,

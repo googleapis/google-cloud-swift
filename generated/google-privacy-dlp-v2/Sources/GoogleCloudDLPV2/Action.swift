@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A task to execute on the completion of a job.
 /// See https://cloud.google.com/sensitive-data-protection/docs/concepts-actions

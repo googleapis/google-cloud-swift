@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Kubernetes taint is composed of three fields: key, value, and effect. Effect
 /// can only be one of three types:  NoSchedule, PreferNoSchedule or NoExecute.

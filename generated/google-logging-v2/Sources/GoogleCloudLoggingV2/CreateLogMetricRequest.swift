@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The parameters to CreateLogMetric.
 public struct CreateLogMetricRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

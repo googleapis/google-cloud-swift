@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A collection of virtual machines and connected resources forming a
 /// high-performance computing cluster capable of running large-scale, tightly

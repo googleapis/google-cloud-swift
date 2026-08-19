@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Commitment settings for commitment-based offers.
 public struct CommitmentSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,

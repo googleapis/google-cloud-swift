@@ -16,7 +16,7 @@
 
 #if Documents
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Google Cloud Storage location for the output.
   public struct GcsDestination: Codable, Equatable, GoogleCloudWkt._AnyPackable,

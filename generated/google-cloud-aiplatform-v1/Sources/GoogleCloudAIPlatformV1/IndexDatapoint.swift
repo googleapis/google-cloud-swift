@@ -16,7 +16,7 @@
 
 #if IndexService || MatchService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// A datapoint of Index.
   public struct IndexDatapoint: Codable, Equatable, GoogleCloudWkt._AnyPackable,

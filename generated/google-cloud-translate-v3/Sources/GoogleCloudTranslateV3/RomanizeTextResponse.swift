@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The response message for synchronous romanization.
 public struct RomanizeTextResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

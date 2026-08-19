@@ -16,7 +16,7 @@
 
 #if ConversationDatasets
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
   import GoogleRpc
 
   /// Metadata for a

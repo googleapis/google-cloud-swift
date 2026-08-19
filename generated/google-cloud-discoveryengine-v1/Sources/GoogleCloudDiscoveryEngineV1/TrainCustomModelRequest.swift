@@ -16,7 +16,7 @@
 
 #if SearchTuningService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Request message for
   /// [SearchTuningService.TrainCustomModel][google.cloud.discoveryengine.v1.SearchTuningService.TrainCustomModel]

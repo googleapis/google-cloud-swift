@@ -16,7 +16,7 @@
 
 #if AnswerRecords || Conversations || GeneratorEvaluations || Generators || Participants
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Suggested summary of the conversation.
   public struct SummarySuggestion: Codable, Equatable, GoogleCloudWkt._AnyPackable,

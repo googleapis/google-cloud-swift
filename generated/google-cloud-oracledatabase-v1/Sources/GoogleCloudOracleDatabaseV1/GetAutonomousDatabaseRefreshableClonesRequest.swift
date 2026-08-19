@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for getting refreshable clones for an Autonomous Database.
 public struct GetAutonomousDatabaseRefreshableClonesRequest: Codable, Equatable, GoogleCloudWkt

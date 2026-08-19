@@ -16,7 +16,7 @@
 
 #if PersistentResourceService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Configuration for the Ray metrics.
   public struct RayMetricSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,

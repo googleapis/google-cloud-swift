@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A subscription represents a subscribers' access to a particular set of
 /// published data. It contains references to associated listings,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// For display only. Metadata associated with a Cloud SQL instance.
 public struct CloudSQLInstanceInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,

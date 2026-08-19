@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request used by the HttpRoute method.
 public struct CreateHttpRouteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

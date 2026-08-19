@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Expression condition based on session state.
 public struct ExpressionCondition: Codable, Equatable, GoogleCloudWkt._AnyPackable,

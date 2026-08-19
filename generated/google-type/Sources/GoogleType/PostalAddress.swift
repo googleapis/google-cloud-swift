@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents a postal address, such as for postal delivery or payments
 /// addresses. With a postal address, a postal service can deliver items to a

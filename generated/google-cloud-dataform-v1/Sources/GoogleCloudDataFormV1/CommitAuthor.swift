@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents the author of a Git commit.
 public struct CommitAuthor: Codable, Equatable, GoogleCloudWkt._AnyPackable,

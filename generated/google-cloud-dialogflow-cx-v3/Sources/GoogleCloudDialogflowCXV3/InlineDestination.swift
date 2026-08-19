@@ -16,7 +16,7 @@
 
 #if EntityTypes || Intents
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Inline destination for a Dialogflow operation that writes or exports objects
   /// (e.g. [intents][google.cloud.dialogflow.cx.v3.Intent]) outside of Dialogflow.

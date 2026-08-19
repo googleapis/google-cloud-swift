@@ -16,7 +16,7 @@
 
 #if ScheduleService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Request message for
   /// [ScheduleService.UpdateSchedule][google.cloud.aiplatform.v1.ScheduleService.UpdateSchedule].

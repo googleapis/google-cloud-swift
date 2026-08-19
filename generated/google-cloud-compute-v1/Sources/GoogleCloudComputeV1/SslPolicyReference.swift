@@ -16,7 +16,7 @@
 
 #if TargetHttpsProxies || TargetSslProxies
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct SslPolicyReference: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable

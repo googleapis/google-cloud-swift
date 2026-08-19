@@ -16,7 +16,7 @@
 
 #if DatasetService || DeploymentResourcePoolService || EndpointService || FeatureOnlineStoreAdminService || FeatureRegistryService || FeaturestoreService || GenAiTuningService || IndexEndpointService || IndexService || JobService || MetadataService || MigrationService || ModelGardenService || ModelService || NotebookService || PersistentResourceService || PipelineService || ReasoningEngineExecutionService || ReasoningEngineService || ScheduleService || SessionService || SpecialistPoolService || TensorboardService || VertexRagDataService || VertexRagService || VizierService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
   import GoogleRpc
 
   /// Generic Metadata shared by all operations.

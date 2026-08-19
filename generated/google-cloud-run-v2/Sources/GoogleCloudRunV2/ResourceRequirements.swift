@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// ResourceRequirements describes the compute resource requirements.
 public struct ResourceRequirements: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if ZoneOperations
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   extension ZoneOperationsClient {
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.zoneOperations.delete] method.

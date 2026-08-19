@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Metadata message for UpdateIndexRequest
 public struct UpdateIndexMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,

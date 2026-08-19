@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents the input to API methods.
 public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,

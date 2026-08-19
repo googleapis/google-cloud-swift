@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Options that change functionality of a sink exporting data to BigQuery.
 public struct BigQueryOptions: Codable, Equatable, GoogleCloudWkt._AnyPackable,

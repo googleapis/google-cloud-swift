@@ -16,7 +16,7 @@
 
 #if Participants || Sessions
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Configures the types of sentiment analysis to perform.
   public struct SentimentAnalysisRequestConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

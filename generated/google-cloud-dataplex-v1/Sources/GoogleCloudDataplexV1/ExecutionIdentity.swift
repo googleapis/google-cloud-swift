@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The identity to run the datascan.
 public struct ExecutionIdentity: Codable, Equatable, GoogleCloudWkt._AnyPackable,

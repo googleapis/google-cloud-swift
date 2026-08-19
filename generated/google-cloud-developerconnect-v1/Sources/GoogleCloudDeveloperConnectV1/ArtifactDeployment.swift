@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The ArtifactDeployment resource represents the deployment of the artifact
 /// within the InsightsConfig resource.

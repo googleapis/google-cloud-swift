@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Pseudonymization method that generates deterministic encryption for the given
 /// input. Outputs a base64 encoded representation of the encrypted output.

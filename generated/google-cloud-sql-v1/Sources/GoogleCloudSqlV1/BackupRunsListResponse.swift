@@ -16,8 +16,8 @@
 
 #if SqlBackupRunsService
   import Foundation
-  import GoogleCloudGax
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudGax
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Backup run list results.
   public struct BackupRunsListResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

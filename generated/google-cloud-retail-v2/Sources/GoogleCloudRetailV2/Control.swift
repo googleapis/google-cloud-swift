@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configures dynamic metadata that can be linked to a
 /// [ServingConfig][google.cloud.retail.v2.ServingConfig] and affect search or

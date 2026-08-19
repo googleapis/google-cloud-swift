@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// User information associated with a request protected by reCAPTCHA Enterprise.
 public struct UserInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,

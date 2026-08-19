@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Metadata of a PullRequest. PullRequest is the request
 /// from a user to merge a branch (head) into another branch (base).

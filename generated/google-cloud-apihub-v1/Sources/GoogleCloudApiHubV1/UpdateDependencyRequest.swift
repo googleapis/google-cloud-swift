@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The
 /// [UpdateDependency][google.cloud.apihub.v1.ApiHubDependencies.UpdateDependency]

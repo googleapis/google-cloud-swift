@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The authentication information for accessing the master endpoint.
 /// Authentication can be done using HTTP basic auth or using client

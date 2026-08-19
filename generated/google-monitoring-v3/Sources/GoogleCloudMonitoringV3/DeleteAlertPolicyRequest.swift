@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The protocol for the `DeleteAlertPolicy` request.
 public struct DeleteAlertPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

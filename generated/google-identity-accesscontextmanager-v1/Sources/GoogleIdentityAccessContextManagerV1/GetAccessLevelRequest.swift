@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A request to get a particular `AccessLevel`.
 public struct GetAccessLevelRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

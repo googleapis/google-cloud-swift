@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// NativeDashboardWithChartsAndQueries for exporting a dashboard.
 public struct NativeDashboardWithChartsAndQueries: Codable, Equatable, GoogleCloudWkt._AnyPackable,

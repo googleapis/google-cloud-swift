@@ -16,7 +16,7 @@
 
 #if MigrationService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Describes a successfully migrated resource.
   public struct MigrateResourceResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

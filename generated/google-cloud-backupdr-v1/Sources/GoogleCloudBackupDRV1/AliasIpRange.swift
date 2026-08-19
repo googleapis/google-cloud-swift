@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// An alias IP range attached to an instance's network interface.
 public struct AliasIpRange: Codable, Equatable, GoogleCloudWkt._AnyPackable,

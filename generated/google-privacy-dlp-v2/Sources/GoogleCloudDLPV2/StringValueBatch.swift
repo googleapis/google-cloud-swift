@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents a batch of string values to inspect or redact.
 public struct StringValueBatch: Codable, Equatable, GoogleCloudWkt._AnyPackable,

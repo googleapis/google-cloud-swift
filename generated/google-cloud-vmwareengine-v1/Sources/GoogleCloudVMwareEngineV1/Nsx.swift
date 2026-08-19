@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Details about a NSX Manager appliance.
 public struct Nsx: Codable, Equatable, GoogleCloudWkt._AnyPackable,

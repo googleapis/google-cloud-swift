@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request passed to RunTransferJob.
 public struct RunTransferJobRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

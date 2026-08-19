@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// List ImageVersions in a project and location.
 public struct ListImageVersionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

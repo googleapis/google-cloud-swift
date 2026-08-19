@@ -16,8 +16,8 @@
 
 #if ConversationalSearchService || SessionService
   import Foundation
-  import GoogleCloudGax
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudGax
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Response for ListSessions method.
   public struct ListSessionsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Execute a SQL statement response.
 public struct ExecuteSqlResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

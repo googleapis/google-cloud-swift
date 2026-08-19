@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The authorization information used when invoking deployment endpoints.
 public struct Authorization: Codable, Equatable, GoogleCloudWkt._AnyPackable,

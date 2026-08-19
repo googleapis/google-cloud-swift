@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message for undeploying an Application.
 public struct UndeployApplicationRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

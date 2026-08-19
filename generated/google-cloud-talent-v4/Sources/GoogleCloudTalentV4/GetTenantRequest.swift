@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request for getting a tenant by name.
 public struct GetTenantRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if Sessions
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Request of [FulfillIntent][]
   public struct FulfillIntentRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

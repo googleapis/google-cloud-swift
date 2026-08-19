@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configures various aspects of Dataform notebook runtime.
 public struct NotebookRuntimeOptions: Codable, Equatable, GoogleCloudWkt._AnyPackable,

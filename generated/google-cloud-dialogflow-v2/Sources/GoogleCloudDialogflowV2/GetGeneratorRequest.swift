@@ -16,7 +16,7 @@
 
 #if Generators
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Request message of GetGenerator.
   public struct GetGeneratorRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

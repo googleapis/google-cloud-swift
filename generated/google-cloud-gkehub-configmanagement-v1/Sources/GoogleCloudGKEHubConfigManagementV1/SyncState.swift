@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// State indicating an ACM's progress syncing configurations to a cluster
 public struct SyncState: Codable, Equatable, GoogleCloudWkt._AnyPackable,

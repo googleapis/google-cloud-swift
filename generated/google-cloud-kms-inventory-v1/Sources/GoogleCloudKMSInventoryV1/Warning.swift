@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A warning message that indicates potential problems with the response data.
 public struct Warning: Codable, Equatable, GoogleCloudWkt._AnyPackable,

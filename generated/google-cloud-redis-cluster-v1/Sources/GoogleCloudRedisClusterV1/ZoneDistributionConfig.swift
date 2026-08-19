@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Zone distribution config for allocation of cluster resources.
 public struct ZoneDistributionConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

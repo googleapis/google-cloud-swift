@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Generalization function that buckets values based on ranges. The ranges and
 /// replacement values are dynamically provided by the user for custom behavior,

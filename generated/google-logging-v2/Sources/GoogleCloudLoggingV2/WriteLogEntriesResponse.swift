@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Result returned from WriteLogEntries.
 public struct WriteLogEntriesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

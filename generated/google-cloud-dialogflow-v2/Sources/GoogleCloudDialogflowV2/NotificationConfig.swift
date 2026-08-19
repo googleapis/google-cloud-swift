@@ -16,7 +16,7 @@
 
 #if ConversationProfiles || Conversations
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Defines notification behavior.
   public struct NotificationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if InstanceTemplates || Instances || MachineImages || RegionInstanceTemplates || RegionInstances
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// [Input Only] Specifies the parameters for a new disk that will be created
   /// alongside the new instance. Use initialization parameters to create boot

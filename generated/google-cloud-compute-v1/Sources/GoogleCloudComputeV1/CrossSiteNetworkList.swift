@@ -16,8 +16,8 @@
 
 #if CrossSiteNetworks
   import Foundation
-  import GoogleCloudGax
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudGax
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Response to the list request that contains a list of cross-site networks.
   public struct CrossSiteNetworkList: Codable, Equatable, GoogleCloudWkt._AnyPackable,

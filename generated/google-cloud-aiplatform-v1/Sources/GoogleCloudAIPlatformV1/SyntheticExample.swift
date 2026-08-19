@@ -16,7 +16,7 @@
 
 #if DataFoundryService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents a single synthetic example, composed of multiple fields.
   /// Used for providing few-shot examples in the request and for returning

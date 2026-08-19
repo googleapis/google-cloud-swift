@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Maintenance window configuration
 public struct MaintenanceWindow: Codable, Equatable, GoogleCloudWkt._AnyPackable,

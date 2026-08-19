@@ -16,8 +16,8 @@
 
 #if GlobalVmExtensionPolicies
   import Foundation
-  import GoogleCloudGax
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudGax
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Response for the aggregated list of VM extension policies.
   public struct VmExtensionPolicyAggregatedListResponse: Codable, Equatable, GoogleCloudWkt

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A data source consists of multiple [Event][google.cloud.timeseriesinsights.v1.Event] objects stored on
 /// Cloud Storage.  Each Event should be in JSON format, with one Event

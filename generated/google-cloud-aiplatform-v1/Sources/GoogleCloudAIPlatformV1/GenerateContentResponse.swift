@@ -16,7 +16,7 @@
 
 #if PredictionService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Response message for [PredictionService.GenerateContent].
   public struct GenerateContentResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

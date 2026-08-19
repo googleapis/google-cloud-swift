@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// All contexts of an object grouped by type.
 public struct ObjectContexts: Codable, Equatable, GoogleCloudWkt._AnyPackable,

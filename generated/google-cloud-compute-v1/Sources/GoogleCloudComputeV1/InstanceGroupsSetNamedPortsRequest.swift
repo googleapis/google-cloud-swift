@@ -16,7 +16,7 @@
 
 #if InstanceGroups
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct InstanceGroupsSetNamedPortsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for the ListEvaluations RPC.
 public struct ListEvaluationsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if TensorboardService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// A TensorboardExperiment is a group of TensorboardRuns, that are typically the
   /// results of a training job run, in a Tensorboard.

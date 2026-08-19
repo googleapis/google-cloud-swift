@@ -16,7 +16,7 @@
 
 #if ReliabilityRisks
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Detailed insights for a global DNS reliability risk.
   public struct RiskDetailsGlobalDnsInsight: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Complete conversation or slice of a conversation.
 /// It is assumed that all included messages are contiguous and ordered in

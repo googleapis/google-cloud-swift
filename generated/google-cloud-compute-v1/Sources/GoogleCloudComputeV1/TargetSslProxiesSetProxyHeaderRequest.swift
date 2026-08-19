@@ -16,7 +16,7 @@
 
 #if TargetSslProxies
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct TargetSslProxiesSetProxyHeaderRequest: Codable, Equatable, GoogleCloudWkt
       ._AnyPackable,

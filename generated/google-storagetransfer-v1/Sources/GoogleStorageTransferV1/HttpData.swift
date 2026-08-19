@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// An HttpData resource specifies a list of objects on the web to be
 ///  transferred over HTTP.  The information of the objects to be transferred is

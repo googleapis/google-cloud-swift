@@ -16,7 +16,7 @@
 
 #if ConversationalSearchService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Request for DeleteConversation method.
   public struct DeleteConversationRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

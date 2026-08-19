@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configuration for a Google Cloud CDN key.
 public struct GoogleCdnKey: Codable, Equatable, GoogleCloudWkt._AnyPackable,

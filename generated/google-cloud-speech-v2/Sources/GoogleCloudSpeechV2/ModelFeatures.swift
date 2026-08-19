@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents the collection of features belonging to a model
 public struct ModelFeatures: Codable, Equatable, GoogleCloudWkt._AnyPackable,

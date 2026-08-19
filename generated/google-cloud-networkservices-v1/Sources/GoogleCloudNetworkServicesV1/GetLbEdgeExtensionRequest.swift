@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message for getting a `LbEdgeExtension` resource.
 public struct GetLbEdgeExtensionRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

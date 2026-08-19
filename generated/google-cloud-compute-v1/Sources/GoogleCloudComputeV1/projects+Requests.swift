@@ -16,7 +16,7 @@
 
 #if Projects
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   extension ProjectsClient {
     /// Synthetic request message for the [disableXpnHost()][google.cloud.compute.v1.projects.disableXpnHost] method.

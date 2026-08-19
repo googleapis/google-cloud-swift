@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Contains text input to be synthesized. Either `text` or `ssml` must be
 /// supplied. Supplying both or neither returns

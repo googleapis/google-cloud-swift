@@ -16,8 +16,8 @@
 
 #if InstanceTemplates || RegionInstanceTemplates
   import Foundation
-  import GoogleCloudGax
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudGax
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// A list of instance templates.
   public struct InstanceTemplateList: Codable, Equatable, GoogleCloudWkt._AnyPackable,

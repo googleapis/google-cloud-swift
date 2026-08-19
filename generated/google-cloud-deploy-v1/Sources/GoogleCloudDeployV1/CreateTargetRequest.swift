@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The request object for `CreateTarget`.
 public struct CreateTargetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

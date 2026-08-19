@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Performance requirements for a profile and or model deployment.
 public struct PerformanceRequirements: Codable, Equatable, GoogleCloudWkt._AnyPackable,

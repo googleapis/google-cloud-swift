@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Details for a disk only migration.
 public struct DisksMigrationDisksTargetDefaults: Codable, Equatable, GoogleCloudWkt._AnyPackable,

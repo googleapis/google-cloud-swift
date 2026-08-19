@@ -16,7 +16,7 @@
 
 import Foundation
 import GoogleApi
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The update message for the `UpdateIcebergTable` API.
 public struct UpdateIcebergTableRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

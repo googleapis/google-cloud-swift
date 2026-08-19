@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The reference to a cloud control deployment.
 public struct CloudControlDeploymentReference: Codable, Equatable, GoogleCloudWkt._AnyPackable,

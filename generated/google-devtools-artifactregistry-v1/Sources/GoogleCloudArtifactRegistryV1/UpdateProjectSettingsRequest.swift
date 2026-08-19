@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Sets the settings of the project.
 public struct UpdateProjectSettingsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

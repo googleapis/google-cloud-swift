@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Allows customers to configure tenant IDs for a Cloud Identity Platform (GCIP)
 /// instance for each application.

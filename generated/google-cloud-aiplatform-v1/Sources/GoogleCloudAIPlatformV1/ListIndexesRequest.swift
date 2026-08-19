@@ -16,7 +16,7 @@
 
 #if IndexService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Request message for
   /// [IndexService.ListIndexes][google.cloud.aiplatform.v1.IndexService.ListIndexes].

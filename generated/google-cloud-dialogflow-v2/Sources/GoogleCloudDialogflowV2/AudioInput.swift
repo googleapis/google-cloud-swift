@@ -16,7 +16,7 @@
 
 #if Participants
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents the natural language speech audio to be processed.
   public struct AudioInput: Codable, Equatable, GoogleCloudWkt._AnyPackable,

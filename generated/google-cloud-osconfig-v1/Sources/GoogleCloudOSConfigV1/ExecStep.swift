@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A step that runs an executable for a PatchJob.
 public struct ExecStep: Codable, Equatable, GoogleCloudWkt._AnyPackable,

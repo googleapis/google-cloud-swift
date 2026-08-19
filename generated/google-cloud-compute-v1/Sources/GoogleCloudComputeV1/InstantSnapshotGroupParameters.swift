@@ -16,7 +16,7 @@
 
 #if Disks || RegionDisks
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct InstantSnapshotGroupParameters: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable

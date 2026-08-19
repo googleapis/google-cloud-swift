@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request for listing preference sets.
 public struct ListPreferenceSetsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A request to delete a job.
 public struct DeleteJobRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

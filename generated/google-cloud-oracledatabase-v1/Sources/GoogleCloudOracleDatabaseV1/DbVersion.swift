@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A valid Oracle Database version.
 public struct DbVersion: Codable, Equatable, GoogleCloudWkt._AnyPackable,

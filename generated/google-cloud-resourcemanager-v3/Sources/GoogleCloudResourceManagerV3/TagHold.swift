@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A TagHold represents the use of a TagValue that is not captured by
 /// TagBindings. If a TagValue has any TagHolds, deletion will be blocked.

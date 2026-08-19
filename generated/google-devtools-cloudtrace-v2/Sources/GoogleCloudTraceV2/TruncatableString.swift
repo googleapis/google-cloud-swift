@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents a string that might be shortened to a specified length.
 public struct TruncatableString: Codable, Equatable, GoogleCloudWkt._AnyPackable,

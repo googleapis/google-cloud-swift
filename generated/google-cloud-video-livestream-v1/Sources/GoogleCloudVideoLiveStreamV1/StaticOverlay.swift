@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configuration for the static overlay.
 public struct StaticOverlay: Codable, Equatable, GoogleCloudWkt._AnyPackable,

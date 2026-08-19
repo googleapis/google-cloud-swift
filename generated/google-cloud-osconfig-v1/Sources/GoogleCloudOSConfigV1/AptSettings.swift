@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Apt patching is completed by executing `apt-get update && apt-get
 /// upgrade`. Additional options can be set to control how this is executed.

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// AdditionalPodRangesConfig is the configuration for additional pod secondary
 /// ranges supporting the ClusterUpdate message.

@@ -16,7 +16,7 @@
 
 #if FeaturestoreService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Vertex AI Feature Store provides a centralized repository for organizing,
   /// storing, and serving ML features. The Featurestore is a top-level container

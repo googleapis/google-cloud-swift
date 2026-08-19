@@ -16,7 +16,7 @@
 
 #if HealthChecks
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct HealthChecksScopedList: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable

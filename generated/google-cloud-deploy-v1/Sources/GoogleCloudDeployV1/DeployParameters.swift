@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// DeployParameters contains deploy parameters information.
 public struct DeployParameters: Codable, Equatable, GoogleCloudWkt._AnyPackable,

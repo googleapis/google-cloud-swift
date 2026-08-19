@@ -16,7 +16,7 @@
 
 #if MetadataService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Details of operations that perform
   /// [MetadataService.DeleteMetadataStore][google.cloud.aiplatform.v1.MetadataService.DeleteMetadataStore].

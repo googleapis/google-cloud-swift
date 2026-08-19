@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Synonym's parent is a schema.
 public struct SynonymEntity: Codable, Equatable, GoogleCloudWkt._AnyPackable,

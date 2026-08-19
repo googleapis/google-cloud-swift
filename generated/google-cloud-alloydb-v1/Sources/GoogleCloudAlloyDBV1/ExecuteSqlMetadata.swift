@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Any additional metadata information regarding the execution of the SQL
 public struct ExecuteSqlMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,

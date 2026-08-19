@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Options defining BigQuery table and row identifiers.
 public struct BigQueryOptions: Codable, Equatable, GoogleCloudWkt._AnyPackable,

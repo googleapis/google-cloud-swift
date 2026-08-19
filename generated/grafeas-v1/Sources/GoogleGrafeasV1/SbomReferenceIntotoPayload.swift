@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The actual payload that contains the SBOM Reference data.
 /// The payload follows the intoto statement specification. See

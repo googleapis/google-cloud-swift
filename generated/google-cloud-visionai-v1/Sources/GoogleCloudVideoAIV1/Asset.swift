@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// An asset is a resource in corpus. It represents a media object inside corpus,
 /// contains metadata and another resource annotation. Different feature could be

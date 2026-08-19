@@ -16,7 +16,7 @@
 
 #if VertexRagService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Claim that is extracted from the input text and facts that support it.
   public struct Claim: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if NotebookService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Request message for [NotebookService.DeleteNotebookExecutionJob]
   public struct DeleteNotebookExecutionJobRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

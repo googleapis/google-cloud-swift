@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents a protobuf schema.
 public struct ProtoSchema: Codable, Equatable, GoogleCloudWkt._AnyPackable,

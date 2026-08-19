@@ -16,7 +16,7 @@
 
 #if OrganizationSecurityPolicies || RegionSecurityPolicies || SecurityPolicies
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents a rule that describes one or more match conditions along with
   /// the action to be taken when traffic matches this condition (allow or deny).

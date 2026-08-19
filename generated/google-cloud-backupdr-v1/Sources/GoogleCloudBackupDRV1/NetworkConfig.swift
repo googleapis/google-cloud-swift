@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Network configuration for ManagementServer instance.
 public struct NetworkConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

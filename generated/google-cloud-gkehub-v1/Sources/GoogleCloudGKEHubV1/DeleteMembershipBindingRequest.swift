@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request to delete a Binding.
 public struct DeleteMembershipBindingRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

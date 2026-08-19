@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The request message for [GetFrameworkAudit][].
 public struct GetFrameworkAuditRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

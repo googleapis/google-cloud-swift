@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A Merkle tree with a cryptographic digest of the root node.
 public struct MerkleTree: Codable, Equatable, GoogleCloudWkt._AnyPackable,

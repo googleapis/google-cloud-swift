@@ -16,7 +16,7 @@
 
 #if Versions
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents a version of a flow.
   public struct Version: Codable, Equatable, GoogleCloudWkt._AnyPackable,

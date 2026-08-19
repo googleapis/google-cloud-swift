@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Compute Engine storage option descriptor.
 public struct ComputeStorageDescriptor: Codable, Equatable, GoogleCloudWkt._AnyPackable,

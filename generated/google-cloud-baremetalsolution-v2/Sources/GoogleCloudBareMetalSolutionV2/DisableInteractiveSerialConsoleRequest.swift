@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message for disabling the interactive serial console on an instance.
 public struct DisableInteractiveSerialConsoleRequest: Codable, Equatable, GoogleCloudWkt

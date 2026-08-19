@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudGax
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudGax
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Response for retrieving a list of EngineConfigs
 public struct ListEngineConfigsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

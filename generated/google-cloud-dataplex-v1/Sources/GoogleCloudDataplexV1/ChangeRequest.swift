@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents a proposed change to a metadata resource.
 public struct ChangeRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

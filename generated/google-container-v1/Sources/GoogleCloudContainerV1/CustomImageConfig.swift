@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// CustomImageConfig contains the information r
 public struct CustomImageConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

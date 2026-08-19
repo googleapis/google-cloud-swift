@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Normal BigQuery table specification.
 public struct TableSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,

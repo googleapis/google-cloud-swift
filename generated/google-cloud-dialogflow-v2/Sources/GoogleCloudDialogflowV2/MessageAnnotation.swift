@@ -16,7 +16,7 @@
 
 #if Conversations || Participants
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents the result of annotation for the message.
   public struct MessageAnnotation: Codable, Equatable, GoogleCloudWkt._AnyPackable,

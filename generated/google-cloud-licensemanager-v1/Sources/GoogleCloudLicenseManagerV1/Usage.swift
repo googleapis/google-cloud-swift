@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message describing total counts of users who accessed a VM.
 public struct Usage: Codable, Equatable, GoogleCloudWkt._AnyPackable,

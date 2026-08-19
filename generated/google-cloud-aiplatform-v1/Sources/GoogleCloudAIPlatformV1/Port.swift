@@ -16,7 +16,7 @@
 
 #if DatasetService || JobService || ModelGardenService || ModelService || PipelineService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents a network port in a container.
   public struct Port: Codable, Equatable, GoogleCloudWkt._AnyPackable,

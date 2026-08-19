@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Identifies a subset of entities in a project. This is specified as
 /// combinations of kinds and namespaces (either or both of which may be all, as

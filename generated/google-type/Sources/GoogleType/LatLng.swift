@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// An object that represents a latitude/longitude pair. This is expressed as a
 /// pair of doubles to represent degrees latitude and degrees longitude. Unless

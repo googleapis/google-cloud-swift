@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A document-link between source and target document.
 public struct DocumentLink: Codable, Equatable, GoogleCloudWkt._AnyPackable,

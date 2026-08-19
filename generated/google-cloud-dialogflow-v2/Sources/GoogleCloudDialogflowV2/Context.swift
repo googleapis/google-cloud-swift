@@ -16,7 +16,7 @@
 
 #if AnswerRecords || Contexts || Intents || Participants || Sessions
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Dialogflow contexts are similar to natural language context. If a person says
   /// to you "they are orange", you need context in order to understand what "they"

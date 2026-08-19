@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// GlossaryTerms are the core of Glossary.
 /// A GlossaryTerm holds a rich text description that can be attached to Entries

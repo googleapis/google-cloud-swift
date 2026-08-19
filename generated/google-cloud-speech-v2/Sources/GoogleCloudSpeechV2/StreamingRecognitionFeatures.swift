@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Available recognition features specific to streaming recognition requests.
 public struct StreamingRecognitionFeatures: Codable, Equatable, GoogleCloudWkt._AnyPackable,

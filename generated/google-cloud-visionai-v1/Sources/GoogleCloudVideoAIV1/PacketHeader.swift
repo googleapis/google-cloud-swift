@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The message that represents packet header.
 public struct PacketHeader: Codable, Equatable, GoogleCloudWkt._AnyPackable,

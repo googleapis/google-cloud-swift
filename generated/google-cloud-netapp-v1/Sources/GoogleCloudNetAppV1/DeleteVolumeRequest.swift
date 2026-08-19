@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message for deleting a Volume
 public struct DeleteVolumeRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Indicates the location at which a package was found.
 public struct FileLocation: Codable, Equatable, GoogleCloudWkt._AnyPackable,

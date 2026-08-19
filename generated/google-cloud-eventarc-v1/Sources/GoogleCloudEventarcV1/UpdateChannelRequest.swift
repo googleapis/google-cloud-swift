@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The request message for the UpdateChannel method.
 public struct UpdateChannelRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Database is the container of tables.
 public struct Database: Codable, Equatable, GoogleCloudWkt._AnyPackable,

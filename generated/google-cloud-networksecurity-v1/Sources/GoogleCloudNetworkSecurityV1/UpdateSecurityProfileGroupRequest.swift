@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request used by the UpdateSecurityProfileGroup method.
 public struct UpdateSecurityProfileGroupRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

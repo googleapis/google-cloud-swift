@@ -16,7 +16,7 @@
 
 #if ImageFamilyViews || Images || InstanceTemplates || Instances || MachineImages || RegionInstanceTemplates || RegionInstances
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Initial State for shielded instance,
   /// these are public keys which are safe to store in public

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The request object used by `ApproveRollout`.
 public struct ApproveRolloutRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The inspectTemplate contains a configuration (set of types of sensitive data
 /// to be detected) to be used anywhere you otherwise would normally specify

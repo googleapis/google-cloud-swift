@@ -16,7 +16,7 @@
 
 #if InterconnectAttachmentGroups
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// [Output Only] An analysis of the logical layout of Attachments in this
   /// group. Every Attachment in the group is shown once in this structure.

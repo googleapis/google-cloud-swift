@@ -16,7 +16,7 @@
 
 import Foundation
 import GoogleAppsScriptType
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Sheets add-on manifest.
 public struct SheetsAddOnManifest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

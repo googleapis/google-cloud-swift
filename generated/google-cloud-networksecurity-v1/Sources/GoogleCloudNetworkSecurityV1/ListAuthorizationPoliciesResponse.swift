@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudGax
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudGax
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Response returned by the ListAuthorizationPolicies method.
 public struct ListAuthorizationPoliciesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

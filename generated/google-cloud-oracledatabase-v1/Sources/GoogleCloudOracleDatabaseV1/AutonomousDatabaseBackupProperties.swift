@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Properties of the Autonomous Database Backup resource.
 public struct AutonomousDatabaseBackupProperties: Codable, Equatable, GoogleCloudWkt._AnyPackable,

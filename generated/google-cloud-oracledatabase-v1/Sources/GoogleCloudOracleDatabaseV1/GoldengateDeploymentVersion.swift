@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Details of the Goldengate Deployment Version resource.
 public struct GoldengateDeploymentVersion: Codable, Equatable, GoogleCloudWkt._AnyPackable,

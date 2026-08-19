@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for CreateEntryLink.
 public struct CreateEntryLinkRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

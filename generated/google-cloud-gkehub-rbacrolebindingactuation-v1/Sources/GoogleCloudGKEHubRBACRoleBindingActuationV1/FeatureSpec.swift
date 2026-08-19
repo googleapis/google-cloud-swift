@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// **RBAC RoleBinding Actuation**: The Hub-wide input for the
 /// RBACRoleBindingActuation feature.

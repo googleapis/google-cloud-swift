@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Users/Service accounts which have access for DNS binding on the intranet
 /// VPC corresponding to the consumer project.

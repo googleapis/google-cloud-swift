@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A membership in a group of related accounts.
 public struct RelatedAccountGroupMembership: Codable, Equatable, GoogleCloudWkt._AnyPackable,

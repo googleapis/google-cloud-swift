@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// `CreateCompilationResult` request message.
 public struct CreateCompilationResultRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

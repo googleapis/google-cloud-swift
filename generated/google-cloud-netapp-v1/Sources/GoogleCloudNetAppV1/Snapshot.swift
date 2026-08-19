@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Snapshot is a point-in-time version of a Volume's content.
 public struct Snapshot: Codable, Equatable, GoogleCloudWkt._AnyPackable,

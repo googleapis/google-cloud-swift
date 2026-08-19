@@ -16,7 +16,7 @@
 
 #if RolloutPlans
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The validation to be performed before progressing to the next wave.
   public struct RolloutPlanWaveValidation: Codable, Equatable, GoogleCloudWkt._AnyPackable,

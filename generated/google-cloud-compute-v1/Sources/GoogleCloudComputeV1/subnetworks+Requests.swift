@@ -16,7 +16,7 @@
 
 #if Subnetworks
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   extension SubnetworksClient {
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.subnetworks.aggregatedList] method.

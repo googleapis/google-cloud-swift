@@ -16,7 +16,7 @@
 
 #if ConversationDatasets || Documents
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Google Cloud Storage location for the inputs.
   public struct GcsSources: Codable, Equatable, GoogleCloudWkt._AnyPackable,

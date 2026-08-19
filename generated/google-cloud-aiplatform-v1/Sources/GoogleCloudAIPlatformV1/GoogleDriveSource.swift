@@ -16,7 +16,7 @@
 
 #if VertexRagDataService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The Google Drive location for the input content.
   public struct GoogleDriveSource: Codable, Equatable, GoogleCloudWkt._AnyPackable,

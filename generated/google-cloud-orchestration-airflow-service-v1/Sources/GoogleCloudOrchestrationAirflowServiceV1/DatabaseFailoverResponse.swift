@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Response for DatabaseFailoverRequest.
 public struct DatabaseFailoverResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

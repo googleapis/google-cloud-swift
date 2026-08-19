@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message for requesting the list of data exchanges.
 public struct ListDataExchangesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

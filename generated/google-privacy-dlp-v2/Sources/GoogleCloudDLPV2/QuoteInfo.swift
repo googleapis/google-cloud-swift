@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message for infoType-dependent details parsed from quote.
 public struct QuoteInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,

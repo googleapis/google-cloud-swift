@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents the pricing information for a SKU at a single point of time.
 public struct PricingInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,

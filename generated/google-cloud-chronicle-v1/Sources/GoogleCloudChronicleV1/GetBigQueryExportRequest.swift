@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The request message to fetch BigQuery Export configuration.
 public struct GetBigQueryExportRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

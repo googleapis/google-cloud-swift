@@ -16,7 +16,7 @@
 
 #if GenAiTuningService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Evaluation Config for Tuning Job.
   public struct EvaluationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

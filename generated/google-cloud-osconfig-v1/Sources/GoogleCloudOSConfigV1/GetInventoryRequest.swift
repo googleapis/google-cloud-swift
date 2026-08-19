@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A request message for getting inventory data for the specified VM.
 public struct GetInventoryRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

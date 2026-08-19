@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Memory usage sample.
 public struct MemoryUsageSample: Codable, Equatable, GoogleCloudWkt._AnyPackable,

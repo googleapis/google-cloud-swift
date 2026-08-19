@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Identifies a single Cloud Storage bucket.
 public struct CloudStorageResourceReference: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Contains the set of entries to remove from a local database.
 public struct ThreatEntryRemovals: Codable, Equatable, GoogleCloudWkt._AnyPackable,

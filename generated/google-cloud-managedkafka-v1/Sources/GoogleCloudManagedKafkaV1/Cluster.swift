@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// An Apache Kafka cluster deployed in a location.
 public struct Cluster: Codable, Equatable, GoogleCloudWkt._AnyPackable,

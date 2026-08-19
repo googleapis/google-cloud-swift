@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// `DeleteTeamFolder` request message.
 public struct DeleteTeamFolderRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

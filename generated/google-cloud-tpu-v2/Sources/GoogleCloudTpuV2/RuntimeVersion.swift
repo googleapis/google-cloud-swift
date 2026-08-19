@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A runtime version that a Node can be configured with.
 public struct RuntimeVersion: Codable, Equatable, GoogleCloudWkt._AnyPackable,

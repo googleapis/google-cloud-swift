@@ -16,7 +16,7 @@
 
 #if ResourcePolicies
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// A snapshot schedule policy specifies when and how frequently snapshots are
   /// to be created for the target disk. Also specifies how many and how long

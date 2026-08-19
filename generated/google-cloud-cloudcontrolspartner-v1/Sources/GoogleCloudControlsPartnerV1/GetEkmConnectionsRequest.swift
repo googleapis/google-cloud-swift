@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request for getting the EKM connections associated with a workload
 public struct GetEkmConnectionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

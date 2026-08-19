@@ -16,7 +16,7 @@
 
 #if VpnTunnels
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents a Cloud VPN Tunnel resource.
   ///

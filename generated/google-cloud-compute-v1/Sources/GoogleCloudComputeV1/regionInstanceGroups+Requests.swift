@@ -16,7 +16,7 @@
 
 #if RegionInstanceGroups
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   extension RegionInstanceGroupsClient {
     /// Synthetic request message for the [get()][google.cloud.compute.v1.regionInstanceGroups.get] method.

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Autoscaling settings define the rules used by VMware Engine to
 /// automatically scale-out and scale-in the clusters in a private cloud.

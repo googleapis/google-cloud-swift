@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for ActivateJobTrigger.
 public struct ActivateJobTriggerRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

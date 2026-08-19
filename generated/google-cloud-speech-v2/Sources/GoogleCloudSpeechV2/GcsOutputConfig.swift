@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Output configurations for Cloud Storage.
 public struct GcsOutputConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents the action responsible for data validation operations.
 public struct DataValidationAction: Codable, Equatable, GoogleCloudWkt._AnyPackable,

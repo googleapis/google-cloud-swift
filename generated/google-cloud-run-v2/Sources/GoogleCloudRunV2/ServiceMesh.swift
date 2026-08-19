@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Settings for Cloud Service Mesh. For more information see
 /// https://cloud.google.com/service-mesh/docs/overview.

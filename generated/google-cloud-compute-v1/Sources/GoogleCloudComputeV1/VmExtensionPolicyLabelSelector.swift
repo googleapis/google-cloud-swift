@@ -16,7 +16,7 @@
 
 #if GlobalVmExtensionPolicies || ZoneVmExtensionPolicies
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// A LabelSelector is applied to a VM only if it matches all the specified
   /// labels.

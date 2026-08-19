@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// An [X509Parameters][google.cloud.security.privateca.v1.X509Parameters] is
 /// used to describe certain fields of an X.509 certificate, such as the key

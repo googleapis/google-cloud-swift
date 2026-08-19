@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A list of values to filter by in ConditionalColumnSetValue
 public struct ValueListFilter: Codable, Equatable, GoogleCloudWkt._AnyPackable,

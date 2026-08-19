@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Autotuning configuration of the workload.
 public struct AutotuningConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

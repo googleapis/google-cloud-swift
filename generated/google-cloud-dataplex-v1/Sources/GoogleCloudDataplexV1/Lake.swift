@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A lake is a centralized repository for managing enterprise data across the
 /// organization distributed across many cloud projects, and stored in a variety

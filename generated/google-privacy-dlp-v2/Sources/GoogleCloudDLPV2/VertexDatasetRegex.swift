@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A pattern to match against one or more dataset resources.
 public struct VertexDatasetRegex: Codable, Equatable, GoogleCloudWkt._AnyPackable,

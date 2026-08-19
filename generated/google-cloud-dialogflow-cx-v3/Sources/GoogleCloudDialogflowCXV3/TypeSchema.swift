@@ -16,7 +16,7 @@
 
 #if Flows || Playbooks || Sessions || TestCases
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Encapsulates different type schema variations: either a reference to an
   /// a schema that's already defined by a tool, or an inline definition.

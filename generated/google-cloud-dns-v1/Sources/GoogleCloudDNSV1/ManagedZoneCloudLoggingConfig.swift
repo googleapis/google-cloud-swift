@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Cloud Logging configurations for publicly visible zones.
 public struct ManagedZoneCloudLoggingConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

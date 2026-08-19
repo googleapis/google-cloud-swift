@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Structured content to inspect. Up to 50,000 `Value`s per request allowed. See
 /// https://cloud.google.com/sensitive-data-protection/docs/inspecting-structured-text#inspecting_a_table

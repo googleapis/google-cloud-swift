@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The state of an attempted transaction submission.
 public struct TransactionAttempt: Codable, Equatable, GoogleCloudWkt._AnyPackable,

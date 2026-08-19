@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message for deleting named Volume snapshot.
 public struct DeleteVolumeSnapshotRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

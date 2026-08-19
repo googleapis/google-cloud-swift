@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudGax
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudGax
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The response returned from the [ListCustomConstraints]
 /// [google.cloud.orgpolicy.v2.OrgPolicy.ListCustomConstraints] method. It will

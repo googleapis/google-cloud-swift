@@ -16,7 +16,7 @@
 
 #if OrganizationSecurityPolicies || RegionSecurityPolicies || SecurityPolicies
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfigThresholdConfig:
     Codable, Equatable, GoogleCloudWkt._AnyPackable,

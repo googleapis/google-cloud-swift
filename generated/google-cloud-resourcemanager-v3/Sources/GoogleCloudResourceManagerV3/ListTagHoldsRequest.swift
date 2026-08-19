@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The request message for listing the TagHolds under a TagValue.
 public struct ListTagHoldsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

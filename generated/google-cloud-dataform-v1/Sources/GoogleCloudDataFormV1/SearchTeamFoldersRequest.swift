@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// `SearchTeamFolders` request message.
 public struct SearchTeamFoldersRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

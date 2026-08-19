@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message for deleting a QueryTemplate.
 public struct DeleteQueryTemplateRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

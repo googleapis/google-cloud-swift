@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for
 /// [VectorSearchService.ImportDataObjects][google.cloud.vectorsearch.v1.VectorSearchService.ImportDataObjects].

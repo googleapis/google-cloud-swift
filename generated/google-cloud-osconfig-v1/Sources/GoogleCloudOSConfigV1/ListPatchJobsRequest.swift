@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A request message for listing patch jobs.
 public struct ListPatchJobsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

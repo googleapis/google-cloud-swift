@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Validation based on a list of allowed values.
 public struct ValueValidation: Codable, Equatable, GoogleCloudWkt._AnyPackable,

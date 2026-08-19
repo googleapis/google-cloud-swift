@@ -16,7 +16,7 @@
 
 #if GlobalPublicDelegatedPrefixes || PublicDelegatedPrefixes
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents a sub PublicDelegatedPrefix.
   public struct PublicDelegatedPrefixPublicDelegatedSubPrefix: Codable, Equatable, GoogleCloudWkt

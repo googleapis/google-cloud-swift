@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A test message for `enum` fields.
 public struct MessageWithEnum: Codable, Equatable, GoogleCloudWkt._AnyPackable,

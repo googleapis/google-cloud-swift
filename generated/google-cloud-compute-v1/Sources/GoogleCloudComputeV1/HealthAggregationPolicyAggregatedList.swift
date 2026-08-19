@@ -16,8 +16,8 @@
 
 #if RegionHealthAggregationPolicies
   import Foundation
-  import GoogleCloudGax
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudGax
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Contains a list of HealthAggregationPoliciesScopedList.
   public struct HealthAggregationPolicyAggregatedList: Codable, Equatable, GoogleCloudWkt

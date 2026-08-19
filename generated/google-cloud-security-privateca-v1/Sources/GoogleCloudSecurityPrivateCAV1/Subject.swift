@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// [Subject][google.cloud.security.privateca.v1.Subject] describes parts of a
 /// distinguished name that, in turn, describes the subject of the certificate.

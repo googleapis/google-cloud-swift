@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request for `CreateSACRealm` method.
 public struct CreateSACRealmRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

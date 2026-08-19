@@ -16,7 +16,7 @@
 
 #if FeaturestoreOnlineServingService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Request message for
   /// [FeaturestoreOnlineServingService.WriteFeatureValues][google.cloud.aiplatform.v1.FeaturestoreOnlineServingService.WriteFeatureValues].

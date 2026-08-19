@@ -16,7 +16,7 @@
 
 #if JobService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents a mount configuration for Network File System (NFS) to mount.
   public struct NfsMount: Codable, Equatable, GoogleCloudWkt._AnyPackable,

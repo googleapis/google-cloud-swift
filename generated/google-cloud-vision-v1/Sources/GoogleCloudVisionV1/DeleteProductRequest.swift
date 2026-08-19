@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for the `DeleteProduct` method.
 public struct DeleteProductRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

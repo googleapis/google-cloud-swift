@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// IP rules associated with the finding.
 public struct IpRules: Codable, Equatable, GoogleCloudWkt._AnyPackable,

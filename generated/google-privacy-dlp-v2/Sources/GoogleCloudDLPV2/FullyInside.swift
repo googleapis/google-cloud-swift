@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Defines a condition where one bounding box is fully inside another.
 public struct FullyInside: Codable, Equatable, GoogleCloudWkt._AnyPackable,

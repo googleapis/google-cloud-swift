@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request for the client or the agent to execute the specified tool.
 public struct ToolCall: Codable, Equatable, GoogleCloudWkt._AnyPackable,

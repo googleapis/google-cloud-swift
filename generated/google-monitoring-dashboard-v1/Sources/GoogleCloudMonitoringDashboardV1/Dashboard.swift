@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A Google Stackdriver dashboard. Dashboards define the content and layout
 /// of pages in the Stackdriver web application.

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Details about data retention deletion violations, in which the data is
 /// non-compliant based on their retention or deletion time, as defined in the

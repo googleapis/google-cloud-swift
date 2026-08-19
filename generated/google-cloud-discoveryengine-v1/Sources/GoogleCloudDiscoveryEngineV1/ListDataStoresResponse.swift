@@ -16,8 +16,8 @@
 
 #if DataStoreService
   import Foundation
-  import GoogleCloudGax
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudGax
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Response message for
   /// [DataStoreService.ListDataStores][google.cloud.discoveryengine.v1.DataStoreService.ListDataStores]

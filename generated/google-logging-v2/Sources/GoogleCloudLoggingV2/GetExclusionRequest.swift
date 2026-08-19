@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The parameters to `GetExclusion`.
 public struct GetExclusionRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// `QuotaLimit` defines a specific limit that applies over a specified duration
 /// for a limit type. There can be at most one limit for a duration and limit

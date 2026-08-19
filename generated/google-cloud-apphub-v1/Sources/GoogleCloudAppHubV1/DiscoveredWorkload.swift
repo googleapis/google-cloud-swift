@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// DiscoveredWorkload is a binary deployment (such as managed instance groups
 /// (MIGs) and GKE deployments) that performs the smallest logical subset of

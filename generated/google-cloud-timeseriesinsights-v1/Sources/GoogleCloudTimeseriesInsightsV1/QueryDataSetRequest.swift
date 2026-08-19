@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request for performing a query against a loaded DataSet.
 public struct QueryDataSetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

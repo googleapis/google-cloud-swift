@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for DeleteStoredInfoType.
 public struct DeleteStoredInfoTypeRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

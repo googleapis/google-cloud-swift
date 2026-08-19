@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Collection of Kubernetes [node
 /// taints](https://kubernetes.io/docs/concepts/configuration/taint-and-toleration).

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// AgentGateway represents the agent gateway resource.
 public struct AgentGateway: Codable, Equatable, GoogleCloudWkt._AnyPackable,

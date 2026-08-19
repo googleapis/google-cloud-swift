@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Target used to match against for discovery with Vertex AI datasets.
 public struct VertexDatasetDiscoveryTarget: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A representation of a decimal value, such as 2.5. Clients may convert values
 /// into language-native decimal formats, such as Java's

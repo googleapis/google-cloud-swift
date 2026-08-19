@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Contains the alias and the aliased resource name of processor version.
 public struct ProcessorVersionAlias: Codable, Equatable, GoogleCloudWkt._AnyPackable,

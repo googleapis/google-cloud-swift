@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Group of operations that need to be performed atomically.
 public struct OperationGroup: Codable, Equatable, GoogleCloudWkt._AnyPackable,

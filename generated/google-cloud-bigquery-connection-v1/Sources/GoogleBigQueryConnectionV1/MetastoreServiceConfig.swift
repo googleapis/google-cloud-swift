@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configuration of the Dataproc Metastore Service.
 public struct MetastoreServiceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

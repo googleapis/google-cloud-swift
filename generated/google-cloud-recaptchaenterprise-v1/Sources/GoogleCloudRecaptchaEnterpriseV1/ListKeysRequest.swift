@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The list keys request message.
 public struct ListKeysRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

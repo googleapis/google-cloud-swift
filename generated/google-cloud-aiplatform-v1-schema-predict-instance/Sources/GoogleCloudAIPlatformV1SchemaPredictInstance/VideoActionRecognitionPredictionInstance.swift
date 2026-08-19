@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Prediction input format for Video Action Recognition.
 public struct VideoActionRecognitionPredictionInstance: Codable, Equatable, GoogleCloudWkt

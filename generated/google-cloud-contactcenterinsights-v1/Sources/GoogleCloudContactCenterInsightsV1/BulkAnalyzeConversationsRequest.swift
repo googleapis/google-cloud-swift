@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The request to analyze conversations in bulk.
 public struct BulkAnalyzeConversationsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

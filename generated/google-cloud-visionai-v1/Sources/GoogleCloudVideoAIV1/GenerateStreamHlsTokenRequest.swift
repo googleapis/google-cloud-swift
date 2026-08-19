@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for getting the auth token to access the stream HLS contents.
 public struct GenerateStreamHlsTokenRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if GenAiCacheService || LlmUtilityService || PredictionService || VertexRagService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Structured representation of a function declaration as defined by the
   /// [OpenAPI 3.0 specification](https://spec.openapis.org/oas/v3.0.3). Included

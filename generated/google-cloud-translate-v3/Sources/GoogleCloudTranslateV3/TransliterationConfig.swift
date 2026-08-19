@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configures transliteration feature on top of translation.
 public struct TransliterationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

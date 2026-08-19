@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// RoutingVPC contains information about the VPC networks associated
 /// with the spokes of a Network Connectivity Center hub.

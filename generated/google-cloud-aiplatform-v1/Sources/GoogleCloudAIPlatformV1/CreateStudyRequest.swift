@@ -16,7 +16,7 @@
 
 #if VizierService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Request message for
   /// [VizierService.CreateStudy][google.cloud.aiplatform.v1.VizierService.CreateStudy].

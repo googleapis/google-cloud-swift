@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// V2 options customizing different types of data transfer schedule.
 /// This field supports existing time-based and manual transfer schedule. Also

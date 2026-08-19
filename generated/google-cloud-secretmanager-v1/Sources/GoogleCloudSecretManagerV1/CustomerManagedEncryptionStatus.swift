@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Describes the status of customer-managed encryption.
 public struct CustomerManagedEncryptionStatus: Codable, Equatable, GoogleCloudWkt._AnyPackable,

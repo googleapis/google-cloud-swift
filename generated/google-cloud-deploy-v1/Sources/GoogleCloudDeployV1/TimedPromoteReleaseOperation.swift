@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Contains the information of an automated timed promote-release operation.
 public struct TimedPromoteReleaseOperation: Codable, Equatable, GoogleCloudWkt._AnyPackable,

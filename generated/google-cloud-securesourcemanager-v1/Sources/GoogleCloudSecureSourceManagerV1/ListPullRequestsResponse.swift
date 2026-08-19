@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudGax
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudGax
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// ListPullRequestsResponse is the response to list pull requests.
 public struct ListPullRequestsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

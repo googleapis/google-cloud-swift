@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// EncryptionConfig describes the encryption config of a cluster or a backup
 /// that is encrypted with a CMEK (customer-managed encryption key).

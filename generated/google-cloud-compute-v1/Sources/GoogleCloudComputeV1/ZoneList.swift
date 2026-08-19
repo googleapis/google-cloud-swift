@@ -16,8 +16,8 @@
 
 #if RegionZones || Zones
   import Foundation
-  import GoogleCloudGax
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudGax
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Contains a list of zone resources.
   public struct ZoneList: Codable, Equatable, GoogleCloudWkt._AnyPackable,

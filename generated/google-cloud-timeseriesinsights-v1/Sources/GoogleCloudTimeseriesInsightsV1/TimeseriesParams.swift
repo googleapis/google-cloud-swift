@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Parameters that control how we construct the time series for each slice.
 public struct TimeseriesParams: Codable, Equatable, GoogleCloudWkt._AnyPackable,

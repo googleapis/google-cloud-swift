@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The [DeleteVersion][google.cloud.apihub.v1.ApiHub.DeleteVersion] method's
 /// request.

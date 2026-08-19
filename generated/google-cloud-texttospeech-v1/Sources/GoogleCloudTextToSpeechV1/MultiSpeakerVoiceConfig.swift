@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configuration for a multi-speaker text-to-speech setup. Enables the use of up
 /// to two distinct voices in a single synthesis request.

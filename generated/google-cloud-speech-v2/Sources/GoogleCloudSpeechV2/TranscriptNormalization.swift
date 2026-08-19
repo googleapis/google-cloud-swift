@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Transcription normalization configuration. Use transcription normalization
 /// to automatically replace parts of the transcript with phrases of your

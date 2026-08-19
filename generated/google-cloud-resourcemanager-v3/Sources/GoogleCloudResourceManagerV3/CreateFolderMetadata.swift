@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Metadata pertaining to the Folder creation process.
 public struct CreateFolderMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,

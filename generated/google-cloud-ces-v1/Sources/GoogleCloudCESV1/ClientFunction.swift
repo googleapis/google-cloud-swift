@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents a client-side function that the agent can invoke. When the
 /// tool is chosen by the agent, control is handed off to the client.

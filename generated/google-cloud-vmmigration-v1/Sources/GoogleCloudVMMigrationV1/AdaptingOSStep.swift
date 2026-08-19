@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// AdaptingOSStep contains specific step details.
 public struct AdaptingOSStep: Codable, Equatable, GoogleCloudWkt._AnyPackable,

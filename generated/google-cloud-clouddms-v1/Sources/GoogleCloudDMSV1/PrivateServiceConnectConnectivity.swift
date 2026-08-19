@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// [Private Service Connect
 /// connectivity](https://cloud.google.com/vpc/docs/private-service-connect#service-attachments)

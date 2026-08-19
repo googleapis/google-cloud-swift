@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// GPUDirectConfig specifies the GPU direct strategy on the node pool.
 public struct GPUDirectConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Config for SPEECH_TRANSCRIPTION.
 public struct SpeechTranscriptionConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

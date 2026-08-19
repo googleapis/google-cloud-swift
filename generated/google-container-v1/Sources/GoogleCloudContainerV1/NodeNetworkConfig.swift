@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Parameters for node pool-level network config.
 public struct NodeNetworkConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

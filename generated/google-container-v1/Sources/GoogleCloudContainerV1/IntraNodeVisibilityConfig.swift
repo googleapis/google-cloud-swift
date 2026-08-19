@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// IntraNodeVisibilityConfig contains the desired config of the intra-node
 /// visibility on this cluster.

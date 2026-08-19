@@ -16,7 +16,7 @@
 
 #if InterconnectRemoteLocations
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct InterconnectRemoteLocationPermittedConnections: Codable, Equatable, GoogleCloudWkt
       ._AnyPackable,

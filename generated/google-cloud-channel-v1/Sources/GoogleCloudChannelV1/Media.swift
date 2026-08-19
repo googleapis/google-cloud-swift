@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents media information.
 public struct Media: Codable, Equatable, GoogleCloudWkt._AnyPackable,

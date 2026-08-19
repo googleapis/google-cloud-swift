@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// This represents a particular channel of distribution for a given package.
 /// E.g., Debian's jessie-backports dpkg mirror.

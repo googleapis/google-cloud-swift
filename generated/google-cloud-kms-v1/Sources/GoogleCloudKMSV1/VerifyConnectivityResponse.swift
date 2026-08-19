@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Response message for
 /// [EkmService.VerifyConnectivity][google.cloud.kms.v1.EkmService.VerifyConnectivity].

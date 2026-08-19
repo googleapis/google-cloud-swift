@@ -16,7 +16,7 @@
 
 #if PredictionService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Logprobs Result
   public struct LogprobsResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,

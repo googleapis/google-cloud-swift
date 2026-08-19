@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The `CreateDashboard` request.
 public struct CreateDashboardRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

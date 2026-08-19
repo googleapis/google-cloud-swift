@@ -16,7 +16,7 @@
 
 #if JobService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// All parameters related to queuing and scheduling of custom jobs.
   public struct Scheduling: Codable, Equatable, GoogleCloudWkt._AnyPackable,

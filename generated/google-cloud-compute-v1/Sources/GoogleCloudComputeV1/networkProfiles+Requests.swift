@@ -16,7 +16,7 @@
 
 #if NetworkProfiles
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   extension NetworkProfilesClient {
     /// Synthetic request message for the [get()][google.cloud.compute.v1.networkProfiles.get] method.

@@ -16,8 +16,8 @@
 
 #if IdentityMappingStoreService
   import Foundation
-  import GoogleCloudGax
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudGax
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Response message for
   /// [IdentityMappingStoreService.ListIdentityMappingStores][google.cloud.discoveryengine.v1.IdentityMappingStoreService.ListIdentityMappingStores]

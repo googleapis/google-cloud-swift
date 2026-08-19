@@ -16,7 +16,7 @@
 
 #if Flows
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The request message for
   /// [Flows.CreateFlow][google.cloud.dialogflow.cx.v3.Flows.CreateFlow].

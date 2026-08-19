@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Errors pertaining to the installation of ACM
 public struct InstallError: Codable, Equatable, GoogleCloudWkt._AnyPackable,

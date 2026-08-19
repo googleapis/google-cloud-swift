@@ -16,7 +16,7 @@
 
 #if EvaluationService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Spec for summarization verbosity result.
   public struct SummarizationVerbosityResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,

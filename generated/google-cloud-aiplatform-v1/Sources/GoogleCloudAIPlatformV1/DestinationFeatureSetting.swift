@@ -16,7 +16,7 @@
 
 #if FeaturestoreService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct DestinationFeatureSetting: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable

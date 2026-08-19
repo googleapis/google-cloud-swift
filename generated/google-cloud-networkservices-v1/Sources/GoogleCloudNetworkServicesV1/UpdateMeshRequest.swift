@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request used by the UpdateMesh method.
 public struct UpdateMeshRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

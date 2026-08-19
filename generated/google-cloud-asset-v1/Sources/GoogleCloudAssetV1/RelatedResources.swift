@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The related resources of the primary resource.
 public struct RelatedResources: Codable, Equatable, GoogleCloudWkt._AnyPackable,

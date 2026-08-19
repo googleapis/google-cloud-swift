@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Specification of a TLS certificate provider instance. Workloads may have one
 /// or more CertificateProvider instances (plugins) and one of them is enabled

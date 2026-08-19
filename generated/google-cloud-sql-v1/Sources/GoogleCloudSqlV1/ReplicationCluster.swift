@@ -16,7 +16,7 @@
 
 #if SqlBackupsService || SqlInstancesService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// A primary instance and disaster recovery (DR) replica pair.
   /// A DR replica is a cross-region replica that you designate for failover in

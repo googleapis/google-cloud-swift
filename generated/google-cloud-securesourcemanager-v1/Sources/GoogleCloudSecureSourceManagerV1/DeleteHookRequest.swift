@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// DeleteHookRequest is the request to delete a hook.
 public struct DeleteHookRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

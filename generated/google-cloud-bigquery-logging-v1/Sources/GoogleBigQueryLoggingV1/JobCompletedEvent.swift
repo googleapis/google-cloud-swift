@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Query job completed event.
 public struct JobCompletedEvent: Codable, Equatable, GoogleCloudWkt._AnyPackable,

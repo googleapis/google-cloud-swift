@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A dependency resource defined in the API hub describes a dependency directed
 /// from a consumer to a supplier entity. A dependency can be defined between two

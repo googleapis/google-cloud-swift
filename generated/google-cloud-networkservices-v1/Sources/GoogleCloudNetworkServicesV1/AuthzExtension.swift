@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// `AuthzExtension` is a resource that allows traffic forwarding
 /// to a callout backend service to make an authorization decision.

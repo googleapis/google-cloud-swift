@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The request sent to the [ListCustomConstraints]
 /// [google.cloud.orgpolicy.v2.OrgPolicy.ListCustomConstraints] method.

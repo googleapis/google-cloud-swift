@@ -16,7 +16,7 @@
 
 #if TargetGrpcProxies
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents a Target gRPC Proxy resource.
   ///

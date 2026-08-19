@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configuration for returning group information from authenticators.
 public struct AuthenticatorGroupsConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Stop Airflow Command request.
 public struct StopAirflowCommandRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

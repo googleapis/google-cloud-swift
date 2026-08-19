@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Schema of a runtime action.
 public struct RuntimeActionSchema: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Metadata related to the progress of the Import operation. This is
 /// returned by the google.longrunning.Operation.metadata field.

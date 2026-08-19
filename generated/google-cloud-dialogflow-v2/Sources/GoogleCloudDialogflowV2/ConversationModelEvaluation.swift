@@ -16,7 +16,7 @@
 
 #if ConversationModels
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents evaluation result of a conversation model.
   public struct ConversationModelEvaluation: Codable, Equatable, GoogleCloudWkt._AnyPackable,

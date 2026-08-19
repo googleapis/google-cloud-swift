@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The response message from importing APT artifacts.
 public struct ImportAptArtifactsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

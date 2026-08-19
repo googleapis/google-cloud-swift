@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// PostgreSQL database structure.
 public struct PostgresqlRdbms: Codable, Equatable, GoogleCloudWkt._AnyPackable,

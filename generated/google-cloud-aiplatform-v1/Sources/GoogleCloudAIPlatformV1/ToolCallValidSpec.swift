@@ -16,7 +16,7 @@
 
 #if EvaluationService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Spec for tool call valid metric.
   public struct ToolCallValidSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,

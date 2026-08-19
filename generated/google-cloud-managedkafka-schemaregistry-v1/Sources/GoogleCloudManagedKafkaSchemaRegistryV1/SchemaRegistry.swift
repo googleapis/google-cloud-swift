@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// SchemaRegistry is a schema registry instance.
 public struct SchemaRegistry: Codable, Equatable, GoogleCloudWkt._AnyPackable,

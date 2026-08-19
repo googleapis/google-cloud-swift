@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request used by the DeleteGatewaySecurityPolicy method.
 public struct DeleteGatewaySecurityPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

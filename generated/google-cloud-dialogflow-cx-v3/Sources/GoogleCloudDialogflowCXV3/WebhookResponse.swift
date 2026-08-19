@@ -16,7 +16,7 @@
 
 #if Agents && Changelogs && Deployments && EntityTypes && Environments && Examples && Experiments && Flows && Generators && Intents && Pages && Playbooks && SecuritySettingsService && SessionEntityTypes && Sessions && TestCases && Tools && TransitionRouteGroups && Versions && Webhooks
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The response message for a webhook call.
   public struct WebhookResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

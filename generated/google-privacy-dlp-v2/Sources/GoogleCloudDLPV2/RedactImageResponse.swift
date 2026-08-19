@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Results of redacting an image.
 public struct RedactImageResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

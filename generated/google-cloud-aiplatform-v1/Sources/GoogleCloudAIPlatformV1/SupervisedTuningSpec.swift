@@ -16,7 +16,7 @@
 
 #if GenAiTuningService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Tuning Spec for Supervised Tuning for first party models.
   public struct SupervisedTuningSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,

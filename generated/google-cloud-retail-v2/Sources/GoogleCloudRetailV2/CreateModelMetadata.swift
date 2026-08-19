@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Metadata associated with a create operation.
 public struct CreateModelMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configuration for PyPi repository
 public struct PyPiRepositoryConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

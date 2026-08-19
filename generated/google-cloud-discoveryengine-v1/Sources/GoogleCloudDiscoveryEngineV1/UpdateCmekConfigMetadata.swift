@@ -16,7 +16,7 @@
 
 #if CmekConfigService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Metadata related to the progress of the
   /// [CmekConfigService.UpdateCmekConfig][google.cloud.discoveryengine.v1.CmekConfigService.UpdateCmekConfig]

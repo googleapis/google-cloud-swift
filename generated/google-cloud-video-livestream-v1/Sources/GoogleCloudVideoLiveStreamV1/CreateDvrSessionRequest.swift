@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for "LivestreamService.CreateDvrSession".
 public struct CreateDvrSessionRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

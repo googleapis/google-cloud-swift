@@ -16,7 +16,7 @@
 
 #if Environments || Webhooks
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Webhooks host the developer's business logic. During a session, webhooks
   /// allow the developer to use the data extracted by Dialogflow's natural

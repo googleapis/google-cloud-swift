@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A framework is a collection of cloud controls and regulatory controls
 /// that represent security best practices or industry-defined standards such as

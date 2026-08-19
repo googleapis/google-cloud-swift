@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Metadata for long-running `Policy` operations.
 public struct PolicyOperationMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,

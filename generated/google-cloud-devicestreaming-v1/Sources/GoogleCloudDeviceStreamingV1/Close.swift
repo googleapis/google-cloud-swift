@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message signifying that the stream closed.
 public struct Close: Codable, Equatable, GoogleCloudWkt._AnyPackable,

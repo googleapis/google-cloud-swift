@@ -16,7 +16,7 @@
 
 #if AssistantService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// User metadata of the request.
   public struct AssistUserMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,

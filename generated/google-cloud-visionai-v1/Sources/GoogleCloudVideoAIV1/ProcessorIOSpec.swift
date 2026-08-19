@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message describing the input / output specifications of a processor.
 public struct ProcessorIOSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,

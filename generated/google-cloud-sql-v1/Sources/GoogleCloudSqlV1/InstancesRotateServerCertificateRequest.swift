@@ -16,7 +16,7 @@
 
 #if SqlInstancesService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Rotate server certificate request.
   public struct InstancesRotateServerCertificateRequest: Codable, Equatable, GoogleCloudWkt

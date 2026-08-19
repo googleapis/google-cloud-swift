@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A request message for deleting a POSIX account entry.
 public struct DeletePosixAccountRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

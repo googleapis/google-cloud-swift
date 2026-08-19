@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Spec defined at
 /// https://github.com/in-toto/attestation/tree/main/spec#statement The

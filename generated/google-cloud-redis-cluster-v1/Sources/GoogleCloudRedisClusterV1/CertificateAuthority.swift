@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Redis cluster certificate authority
 public struct CertificateAuthority: Codable, Equatable, GoogleCloudWkt._AnyPackable,

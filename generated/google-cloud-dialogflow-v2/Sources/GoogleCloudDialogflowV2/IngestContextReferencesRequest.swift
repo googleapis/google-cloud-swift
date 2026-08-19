@@ -16,7 +16,7 @@
 
 #if Conversations
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The request message for [ConversationsService.IngestContextReferences][].
   public struct IngestContextReferencesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

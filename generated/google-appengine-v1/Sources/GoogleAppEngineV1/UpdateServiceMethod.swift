@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Detailed information about UpdateService call.
 public struct UpdateServiceMethod: Codable, Equatable, GoogleCloudWkt._AnyPackable,

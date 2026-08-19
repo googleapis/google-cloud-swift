@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Occurrence that represents a single "attestation". The authenticity of an
 /// attestation can be verified using the attached signature. If the verifier

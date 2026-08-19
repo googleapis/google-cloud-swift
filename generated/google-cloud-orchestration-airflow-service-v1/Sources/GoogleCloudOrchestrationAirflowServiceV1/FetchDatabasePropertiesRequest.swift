@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request to fetch properties of environment's database.
 public struct FetchDatabasePropertiesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

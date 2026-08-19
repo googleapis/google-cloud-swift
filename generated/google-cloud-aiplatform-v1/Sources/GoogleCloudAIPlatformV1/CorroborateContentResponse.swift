@@ -16,7 +16,7 @@
 
 #if VertexRagService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Response message for CorroborateContent.
   public struct CorroborateContentResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if PipelineService || ScheduleService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
   import GoogleRpc
 
   /// The runtime detail of a task execution.

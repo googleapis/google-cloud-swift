@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents the action triggered by Rule Engine when the rule is true.
 public struct Action: Codable, Equatable, GoogleCloudWkt._AnyPackable,

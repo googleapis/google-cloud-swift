@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// CleanupPolicyCondition is a set of conditions attached to a CleanupPolicy.
 /// If multiple entries are set, all must be satisfied for the condition to be

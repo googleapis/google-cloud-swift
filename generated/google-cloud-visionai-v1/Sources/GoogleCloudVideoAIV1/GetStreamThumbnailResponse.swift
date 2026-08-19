@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message for the response of GetStreamThumbnail. The empty response message
 /// indicates the thumbnail image has been uploaded to GCS successfully.

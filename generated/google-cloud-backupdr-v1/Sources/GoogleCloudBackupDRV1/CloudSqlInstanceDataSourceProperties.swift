@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// CloudSqlInstanceDataSourceProperties represents the properties of a
 /// Cloud SQL resource that are stored in the DataSource.

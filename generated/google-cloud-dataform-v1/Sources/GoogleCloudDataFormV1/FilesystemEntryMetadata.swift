@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents metadata for a single entry in a filesystem.
 public struct FilesystemEntryMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,

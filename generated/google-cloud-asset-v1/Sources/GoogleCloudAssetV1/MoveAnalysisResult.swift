@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// An analysis result including blockers and warnings.
 public struct MoveAnalysisResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A request to list jobs in a project.
 public struct ListJobsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

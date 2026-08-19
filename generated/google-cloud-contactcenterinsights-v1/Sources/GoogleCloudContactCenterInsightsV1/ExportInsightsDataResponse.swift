@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Response for an export insights operation.
 public struct ExportInsightsDataResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

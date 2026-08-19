@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 public struct PoliciesUpdateResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   Sendable

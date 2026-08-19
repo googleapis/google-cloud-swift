@@ -22,7 +22,7 @@ import GoogleAppsScriptTypeDrive
 import GoogleAppsScriptTypeGmail
 import GoogleAppsScriptTypeSheets
 import GoogleAppsScriptTypeSlides
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A Google Workspace add-on configuration.
 public struct AddOns: Codable, Equatable, GoogleCloudWkt._AnyPackable,

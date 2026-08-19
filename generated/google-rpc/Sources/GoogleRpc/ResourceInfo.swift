@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Describes the resource that is being accessed.
 public struct ResourceInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,

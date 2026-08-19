@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// SecurityBulletin are notifications of vulnerabilities of Google products.
 public struct SecurityBulletin: Codable, Equatable, GoogleCloudWkt._AnyPackable,

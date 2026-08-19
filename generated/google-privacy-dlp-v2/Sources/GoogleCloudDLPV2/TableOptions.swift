@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Instructions regarding the table content being inspected.
 public struct TableOptions: Codable, Equatable, GoogleCloudWkt._AnyPackable,

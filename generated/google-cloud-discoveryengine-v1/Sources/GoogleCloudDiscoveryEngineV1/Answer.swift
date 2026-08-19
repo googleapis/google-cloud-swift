@@ -16,7 +16,7 @@
 
 #if ConversationalSearchService || SessionService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Defines an answer.
   public struct Answer: Codable, Equatable, GoogleCloudWkt._AnyPackable,

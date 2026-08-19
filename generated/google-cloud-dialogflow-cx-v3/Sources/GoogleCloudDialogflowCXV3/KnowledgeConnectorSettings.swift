@@ -16,7 +16,7 @@
 
 #if Flows || Pages || Sessions || TestCases
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The Knowledge Connector settings for this page or flow.
   /// This includes information such as the attached Knowledge Bases, and the way

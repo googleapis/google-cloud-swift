@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Response for exporting Model metadata.
 public struct ExportModelMetadataResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

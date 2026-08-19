@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message for deleting an SSH key from a project.
 public struct DeleteSSHKeyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

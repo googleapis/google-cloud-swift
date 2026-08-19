@@ -16,7 +16,7 @@
 
 #if ConversationalSearchService || SessionService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Request for CreateSession method.
   public struct CreateSessionRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

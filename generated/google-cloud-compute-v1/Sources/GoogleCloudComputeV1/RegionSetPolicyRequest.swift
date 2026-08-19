@@ -16,7 +16,7 @@
 
 #if NetworkAttachments || NodeTemplates || RegionBackendBuckets || RegionBackendServices || RegionDisks || RegionInstantSnapshotGroups || RegionInstantSnapshots || RegionNetworkFirewallPolicies || RegionSnapshots || ResourcePolicies || ServiceAttachments || Subnetworks
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct RegionSetPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable

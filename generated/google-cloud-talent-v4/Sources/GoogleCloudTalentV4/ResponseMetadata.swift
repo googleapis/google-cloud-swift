@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Additional information returned to client, such as debugging information.
 public struct ResponseMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,

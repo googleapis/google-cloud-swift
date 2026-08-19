@@ -16,7 +16,7 @@
 
 #if FeatureRegistryService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Request message for
   /// [FeatureRegistryService.DeleteFeatureGroup][google.cloud.aiplatform.v1.FeatureRegistryService.DeleteFeatureGroup].

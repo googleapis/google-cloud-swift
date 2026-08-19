@@ -16,7 +16,7 @@
 
 #if EvaluationService || GenAiTuningService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Rouge metric value for an instance.
   public struct RougeMetricValue: Codable, Equatable, GoogleCloudWkt._AnyPackable,

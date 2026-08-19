@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents both a request to Restore some portion of a Backup into
 /// a target GKE cluster and a record of the restore operation itself.

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Authentication information required for API calls.
 public struct ApiAuthentication: Codable, Equatable, GoogleCloudWkt._AnyPackable,

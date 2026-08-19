@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Settings to describe the conversation logging behaviors for the app.
 public struct ConversationLoggingSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,

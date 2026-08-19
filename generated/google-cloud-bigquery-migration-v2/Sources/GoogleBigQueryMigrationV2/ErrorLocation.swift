@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Holds information about where the error is located.
 public struct ErrorLocation: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Encoding of a text stream. For example, closed captions or subtitles.
 public struct TextStream: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// `CommitRepositoryChanges` response message.
 public struct CommitRepositoryChangesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

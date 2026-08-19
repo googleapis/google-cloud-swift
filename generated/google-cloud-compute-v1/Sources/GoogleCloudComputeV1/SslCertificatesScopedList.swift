@@ -16,7 +16,7 @@
 
 #if SslCertificates
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct SslCertificatesScopedList: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable

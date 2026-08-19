@@ -16,7 +16,7 @@
 
 #if DeploymentResourcePoolService || EndpointService || IndexEndpointService || JobService || ModelGardenService || NotebookService || PersistentResourceService || ScheduleService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// A ReservationAffinity can be used to configure a Vertex AI resource (e.g., a
   /// DeployedModel) to draw its Compute Engine resources from a Shared

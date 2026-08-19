@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A request to delete a previously created migration workflow.
 public struct DeleteMigrationWorkflowRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

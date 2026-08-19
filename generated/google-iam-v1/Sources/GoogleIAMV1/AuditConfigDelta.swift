@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// One delta entry for AuditConfig. Each individual change (only one
 /// exempted_member in each entry) to a AuditConfig will be a separate entry.

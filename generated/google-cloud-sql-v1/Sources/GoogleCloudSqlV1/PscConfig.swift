@@ -16,7 +16,7 @@
 
 #if SqlBackupsService || SqlInstancesService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// PSC settings for a Cloud SQL instance.
   public struct PscConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

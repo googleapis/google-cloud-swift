@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// KubernetesResource contains the YAML manifests and configuration for
 /// Membership Kubernetes resources in the cluster. After CreateMembership or

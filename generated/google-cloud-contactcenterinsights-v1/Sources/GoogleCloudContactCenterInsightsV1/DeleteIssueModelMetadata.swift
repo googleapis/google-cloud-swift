@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Metadata for deleting an issue model.
 public struct DeleteIssueModelMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,

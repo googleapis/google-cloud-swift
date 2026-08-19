@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents a category returned from the text classifier.
 public struct ClassificationCategory: Codable, Equatable, GoogleCloudWkt._AnyPackable,

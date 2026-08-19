@@ -16,7 +16,7 @@
 
 #if SqlInstancesService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Instance failover request.
   public struct InstancesFailoverRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

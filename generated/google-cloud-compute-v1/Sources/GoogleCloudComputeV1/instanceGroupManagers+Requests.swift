@@ -16,7 +16,7 @@
 
 #if InstanceGroupManagers
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   extension InstanceGroupManagersClient {
     /// Synthetic request message for the [abandonInstances()][google.cloud.compute.v1.instanceGroupManagers.abandonInstances] method.

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Metadata for used to register live configs.
 public struct LiveConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

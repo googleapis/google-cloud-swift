@@ -16,7 +16,7 @@
 
 #if JobService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Manual batch tuning parameters.
   public struct ManualBatchTuningParameters: Codable, Equatable, GoogleCloudWkt._AnyPackable,

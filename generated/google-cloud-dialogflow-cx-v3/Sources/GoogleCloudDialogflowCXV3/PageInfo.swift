@@ -16,7 +16,7 @@
 
 #if Agents && Changelogs && Deployments && EntityTypes && Environments && Examples && Experiments && Flows && Generators && Intents && Pages && Playbooks && SecuritySettingsService && SessionEntityTypes && Sessions && TestCases && Tools && TransitionRouteGroups && Versions && Webhooks
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents page information communicated to and from the webhook.
   public struct PageInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,

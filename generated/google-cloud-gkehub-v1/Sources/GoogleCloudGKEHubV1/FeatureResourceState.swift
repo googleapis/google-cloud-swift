@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// FeatureResourceState describes the state of a Feature *resource* in the
 /// GkeHub API. See `FeatureState` for the "running state" of the Feature in the

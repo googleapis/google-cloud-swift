@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Describes a BigQuery table.
 /// See the [Table](/bigquery/docs/reference/v2/tables) API resource

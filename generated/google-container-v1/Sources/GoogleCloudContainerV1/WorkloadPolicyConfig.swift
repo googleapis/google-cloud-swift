@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// WorkloadPolicyConfig is the configuration related to GCW workload policy
 public struct WorkloadPolicyConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

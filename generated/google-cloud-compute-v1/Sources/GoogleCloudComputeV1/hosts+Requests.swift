@@ -16,7 +16,7 @@
 
 #if Hosts
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   extension HostsClient {
     /// Synthetic request message for the [get()][google.cloud.compute.v1.hosts.get] method.

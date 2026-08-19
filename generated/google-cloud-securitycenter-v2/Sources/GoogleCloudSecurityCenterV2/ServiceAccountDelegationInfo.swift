@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Identity delegation history of an authenticated service account.
 public struct ServiceAccountDelegationInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,

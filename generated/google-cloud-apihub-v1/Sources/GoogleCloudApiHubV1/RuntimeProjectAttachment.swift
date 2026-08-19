@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Runtime project attachment represents an attachment from the runtime project
 /// to the host project. Api Hub looks for deployments in the attached runtime

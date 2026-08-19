@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Reconciliation log for session ttl event.
 public struct ReconciliationLog: Codable, Equatable, GoogleCloudWkt._AnyPackable,

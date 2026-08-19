@@ -16,7 +16,7 @@
 
 #if RegionCompositeHealthChecks
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents a composite health check.
   ///

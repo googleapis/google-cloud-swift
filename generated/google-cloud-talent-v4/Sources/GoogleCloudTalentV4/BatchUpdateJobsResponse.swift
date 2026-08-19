@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The result of
 /// [JobService.BatchUpdateJobs][google.cloud.talent.v4.JobService.BatchUpdateJobs].

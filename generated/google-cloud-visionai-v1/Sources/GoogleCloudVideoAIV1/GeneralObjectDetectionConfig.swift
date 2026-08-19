@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message of configurations for General Object Detection processor.
 public struct GeneralObjectDetectionConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

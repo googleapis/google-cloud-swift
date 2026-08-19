@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Resource represents a Google Cloud Platform resource actuated by IM.
 /// Resources are child resources of Revisions.

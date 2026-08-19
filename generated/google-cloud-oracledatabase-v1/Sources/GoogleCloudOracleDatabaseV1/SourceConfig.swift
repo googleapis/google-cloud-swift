@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The source configuration for the standby Autonomous Database.
 public struct SourceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

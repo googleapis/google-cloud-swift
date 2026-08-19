@@ -16,7 +16,7 @@
 
 #if EndpointService || FeatureOnlineStoreAdminService || IndexEndpointService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// PSC config that is used to automatically create PSC endpoints in the user
   /// projects.

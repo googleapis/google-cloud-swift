@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// An occurrence of a particular package installation found within a system's
 /// filesystem. E.g., glibc was found in `/var/lib/dpkg/status`.

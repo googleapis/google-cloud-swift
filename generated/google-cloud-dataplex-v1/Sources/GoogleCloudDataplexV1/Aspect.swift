@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents a single piece of metadata describing an entry or entry link.
 public struct Aspect: Codable, Equatable, GoogleCloudWkt._AnyPackable,

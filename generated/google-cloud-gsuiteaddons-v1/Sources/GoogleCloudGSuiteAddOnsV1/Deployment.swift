@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A Google Workspace add-on deployment
 public struct Deployment: Codable, Equatable, GoogleCloudWkt._AnyPackable,

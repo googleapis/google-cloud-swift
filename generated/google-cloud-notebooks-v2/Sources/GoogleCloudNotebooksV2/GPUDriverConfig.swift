@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A GPU driver configuration
 public struct GPUDriverConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

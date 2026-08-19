@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The parameters to
 /// [UpdateSettings][google.logging.v2.ConfigServiceV2.UpdateSettings].

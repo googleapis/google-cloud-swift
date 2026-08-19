@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Delete GlossaryTerm Request
 public struct DeleteGlossaryTermRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

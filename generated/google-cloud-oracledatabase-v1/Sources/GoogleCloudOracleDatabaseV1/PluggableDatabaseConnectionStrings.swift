@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The connection strings used to connect to the Oracle Database.
 public struct PluggableDatabaseConnectionStrings: Codable, Equatable, GoogleCloudWkt._AnyPackable,

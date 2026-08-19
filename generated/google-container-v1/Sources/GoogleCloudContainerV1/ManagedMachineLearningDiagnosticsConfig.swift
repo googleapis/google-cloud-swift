@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// ManagedMachineLearningDiagnosticsConfig is the configuration for the GKE
 /// Managed Machine Learning Diagnostics pipeline.

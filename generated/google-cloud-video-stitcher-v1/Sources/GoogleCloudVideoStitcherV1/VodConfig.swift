@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Metadata used to register VOD configs.
 public struct VodConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

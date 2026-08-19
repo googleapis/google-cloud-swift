@@ -16,7 +16,7 @@
 
 #if SqlInstancesService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Read-replica configuration specific to MySQL databases.
   public struct DemoteMasterMySqlReplicaConfiguration: Codable, Equatable, GoogleCloudWkt

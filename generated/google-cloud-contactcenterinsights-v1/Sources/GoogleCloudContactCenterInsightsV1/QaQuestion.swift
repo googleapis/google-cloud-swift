@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A single question to be scored by the Insights QA feature.
 public struct QaQuestion: Codable, Equatable, GoogleCloudWkt._AnyPackable,

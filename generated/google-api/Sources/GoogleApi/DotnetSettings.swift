@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Settings for Dotnet client libraries.
 public struct DotnetSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,

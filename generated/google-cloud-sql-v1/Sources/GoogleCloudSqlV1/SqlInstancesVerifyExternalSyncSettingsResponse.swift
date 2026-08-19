@@ -16,7 +16,7 @@
 
 #if SqlInstancesService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Instance verify external sync settings response.
   public struct SqlInstancesVerifyExternalSyncSettingsResponse: Codable, Equatable, GoogleCloudWkt

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// message describing AiPlatformFloorSetting
 public struct AiPlatformFloorSetting: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message for requesting aggregate of Usage per configuration.
 public struct AggregateUsageRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

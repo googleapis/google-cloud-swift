@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request used by the CreateGrpcRoute method.
 public struct CreateGrpcRouteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

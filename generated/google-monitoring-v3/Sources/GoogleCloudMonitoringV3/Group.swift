@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The description of a dynamic collection of monitored resources. Each group
 /// has a filter that is matched against monitored resources and their associated

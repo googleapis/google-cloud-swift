@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Contains criteria for selecting Targets. This could be used to select targets
 /// for a Deploy Policy or for an Automation.

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for GetSupportEventSubscription.
 public struct GetSupportEventSubscriptionRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

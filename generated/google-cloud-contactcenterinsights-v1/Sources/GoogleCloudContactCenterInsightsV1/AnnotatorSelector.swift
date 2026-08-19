@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Selector of all available annotators and phrase matchers to run.
 public struct AnnotatorSelector: Codable, Equatable, GoogleCloudWkt._AnyPackable,

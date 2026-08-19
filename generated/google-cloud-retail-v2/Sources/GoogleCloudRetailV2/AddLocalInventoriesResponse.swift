@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Response of the
 /// [ProductService.AddLocalInventories][google.cloud.retail.v2.ProductService.AddLocalInventories]

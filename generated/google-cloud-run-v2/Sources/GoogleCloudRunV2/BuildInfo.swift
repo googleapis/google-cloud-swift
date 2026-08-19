@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Build information of the image.
 public struct BuildInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,

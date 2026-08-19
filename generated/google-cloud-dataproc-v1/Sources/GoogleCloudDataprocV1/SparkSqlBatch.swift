@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A configuration for running
 /// [Apache Spark SQL](https://spark.apache.org/sql/) queries as a batch

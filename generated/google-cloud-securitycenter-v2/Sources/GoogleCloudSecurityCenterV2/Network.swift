@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Contains information about a VPC network associated with the finding.
 public struct Network: Codable, Equatable, GoogleCloudWkt._AnyPackable,

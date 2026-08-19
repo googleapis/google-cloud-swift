@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Information related to the details for one ad tag. This resource is only
 /// available for VOD sessions that do not implement Google Ad Manager ad

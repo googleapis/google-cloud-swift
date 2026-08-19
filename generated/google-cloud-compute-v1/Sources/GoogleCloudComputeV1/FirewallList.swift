@@ -16,8 +16,8 @@
 
 #if Firewalls
   import Foundation
-  import GoogleCloudGax
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudGax
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Contains a list of firewalls.
   public struct FirewallList: Codable, Equatable, GoogleCloudWkt._AnyPackable,

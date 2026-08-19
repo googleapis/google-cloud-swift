@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Table's parent is a schema.
 public struct TableEntity: Codable, Equatable, GoogleCloudWkt._AnyPackable,

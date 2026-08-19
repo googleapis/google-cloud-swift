@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents a Dataform TeamFolder. This is a resource that sits at the project
 /// level and is used to organize Repositories and Folders with hierarchical

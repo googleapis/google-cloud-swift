@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// An instance-attached disk resource.
 public struct DataDisk: Codable, Equatable, GoogleCloudWkt._AnyPackable,

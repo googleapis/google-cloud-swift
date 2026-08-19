@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A DataScanJob represents an instance of DataScan execution.
 public struct DataScanJob: Codable, Equatable, GoogleCloudWkt._AnyPackable,

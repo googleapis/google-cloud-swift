@@ -16,7 +16,7 @@
 
 #if Flows || Pages || Playbooks || Sessions || TestCases || TransitionRouteGroups
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// A fulfillment can do one or more of the following actions at the same time:
   ///

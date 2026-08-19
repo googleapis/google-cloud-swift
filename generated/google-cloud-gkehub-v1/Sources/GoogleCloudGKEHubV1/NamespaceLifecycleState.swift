@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// NamespaceLifecycleState describes the state of a Namespace resource.
 public struct NamespaceLifecycleState: Codable, Equatable, GoogleCloudWkt._AnyPackable,

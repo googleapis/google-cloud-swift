@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Schema for a Kafka message.
 public struct Schema: Codable, Equatable, GoogleCloudWkt._AnyPackable,

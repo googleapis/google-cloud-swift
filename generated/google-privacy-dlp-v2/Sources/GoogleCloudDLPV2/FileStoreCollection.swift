@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Match file stores (e.g. buckets) using filters.
 public struct FileStoreCollection: Codable, Equatable, GoogleCloudWkt._AnyPackable,

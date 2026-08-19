@@ -16,7 +16,7 @@
 
 #if RegionHealthAggregationPolicies
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents a health aggregation policy.
   ///

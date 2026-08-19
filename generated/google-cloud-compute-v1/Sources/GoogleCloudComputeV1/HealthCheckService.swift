@@ -16,7 +16,7 @@
 
 #if RegionHealthCheckServices
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents a Health-Check as a Service resource.
   public struct HealthCheckService: Codable, Equatable, GoogleCloudWkt._AnyPackable,

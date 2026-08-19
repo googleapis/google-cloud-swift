@@ -16,7 +16,7 @@
 
 #if Flows || Sessions || TestCases
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Flows represents the conversation flows when you build your chatbot agent.
   ///

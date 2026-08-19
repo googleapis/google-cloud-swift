@@ -16,7 +16,7 @@
 
 #if AssistantService || ConversationalSearchService || SessionService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// A piece of content and possibly its grounding information.
   ///

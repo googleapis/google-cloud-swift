@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Selects a repo using a Google Cloud Platform project ID
 /// (e.g. winged-cargo-31) and a repo name within that project.

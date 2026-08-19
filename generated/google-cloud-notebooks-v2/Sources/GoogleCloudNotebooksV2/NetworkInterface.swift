@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The definition of a network interface resource attached to a VM.
 public struct NetworkInterface: Codable, Equatable, GoogleCloudWkt._AnyPackable,

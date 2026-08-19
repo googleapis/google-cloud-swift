@@ -16,7 +16,7 @@
 
 import Foundation
 import GoogleAppsScriptType
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Drive add-on manifest.
 public struct DriveAddOnManifest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if SearchTuningService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Response message for
   /// [SearchTuningService.ListCustomModels][google.cloud.discoveryengine.v1.SearchTuningService.ListCustomModels]

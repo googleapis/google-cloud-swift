@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Contains data reported from an inventory source on an asset.
 public struct AssetFrame: Codable, Equatable, GoogleCloudWkt._AnyPackable,

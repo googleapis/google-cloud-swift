@@ -16,7 +16,7 @@
 
 #if RegionHealthAggregationPolicies
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct HealthAggregationPoliciesScopedList: Codable, Equatable, GoogleCloudWkt
       ._AnyPackable,

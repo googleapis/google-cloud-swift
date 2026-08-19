@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Notification configurations.
 public struct JobNotification: Codable, Equatable, GoogleCloudWkt._AnyPackable,

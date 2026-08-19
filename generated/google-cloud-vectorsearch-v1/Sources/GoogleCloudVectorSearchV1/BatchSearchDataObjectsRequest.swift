@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A request to perform a batch of search operations.
 public struct BatchSearchDataObjectsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

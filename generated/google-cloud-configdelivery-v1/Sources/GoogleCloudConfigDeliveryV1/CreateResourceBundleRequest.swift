@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message for creating a ResourceBundle.
 public struct CreateResourceBundleRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

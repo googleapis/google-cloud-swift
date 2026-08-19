@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Specifies a set of documents on Cloud Storage.
 public struct GcsDocuments: Codable, Equatable, GoogleCloudWkt._AnyPackable,

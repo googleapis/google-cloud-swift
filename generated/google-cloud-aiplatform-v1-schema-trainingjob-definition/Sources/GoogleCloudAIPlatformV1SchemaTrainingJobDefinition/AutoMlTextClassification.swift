@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A TrainingJob that trains and uploads an AutoML Text Classification Model.
 public struct AutoMlTextClassification: Codable, Equatable, GoogleCloudWkt._AnyPackable,

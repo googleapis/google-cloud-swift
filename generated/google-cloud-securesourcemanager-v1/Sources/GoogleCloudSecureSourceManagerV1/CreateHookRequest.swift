@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// CreateHookRequest is the request for creating a hook.
 public struct CreateHookRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

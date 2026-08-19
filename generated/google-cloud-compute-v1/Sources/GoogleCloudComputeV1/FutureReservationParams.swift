@@ -16,7 +16,7 @@
 
 #if FutureReservations
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Additional future reservation params.
   public struct FutureReservationParams: Codable, Equatable, GoogleCloudWkt._AnyPackable,

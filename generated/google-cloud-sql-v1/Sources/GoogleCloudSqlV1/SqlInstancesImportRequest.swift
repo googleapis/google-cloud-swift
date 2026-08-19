@@ -16,7 +16,7 @@
 
 #if SqlInstancesService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Instance import request.
   public struct SqlInstancesImportRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents an MCP Server. MCP Servers act as endpoints that expose a
 /// collection of tools that can be invoked by agents.

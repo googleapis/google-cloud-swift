@@ -16,7 +16,7 @@
 
 #if Tools
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Tool version is a snapshot of the tool at certain timestamp.
   public struct ToolVersion: Codable, Equatable, GoogleCloudWkt._AnyPackable,

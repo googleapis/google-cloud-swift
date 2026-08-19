@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// EnvVarSource represents a source for the value of an EnvVar.
 public struct EnvVarSource: Codable, Equatable, GoogleCloudWkt._AnyPackable,

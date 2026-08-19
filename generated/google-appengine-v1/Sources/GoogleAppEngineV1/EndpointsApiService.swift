@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// [Cloud Endpoints](https://cloud.google.com/endpoints) configuration.
 /// The Endpoints API Service provides tooling for serving Open API and gRPC

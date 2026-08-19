@@ -16,7 +16,7 @@
 
 #if InterconnectGroups || Interconnects
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Describes the status of MACsec encryption on the link.
   public struct InterconnectDiagnosticsMacsecStatus: Codable, Equatable, GoogleCloudWkt

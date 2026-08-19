@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// MongoDB Cluster structure.
 public struct MongodbCluster: Codable, Equatable, GoogleCloudWkt._AnyPackable,

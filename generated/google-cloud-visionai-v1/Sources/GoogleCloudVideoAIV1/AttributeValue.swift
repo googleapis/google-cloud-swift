@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents an actual value of an operator attribute.
 public struct AttributeValue: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Settings for custom client certificates.
 public struct ClientCertificateSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,

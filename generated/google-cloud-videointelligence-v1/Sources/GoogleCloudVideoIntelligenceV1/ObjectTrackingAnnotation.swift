@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Annotations corresponding to one tracked object.
 public struct ObjectTrackingAnnotation: Codable, Equatable, GoogleCloudWkt._AnyPackable,

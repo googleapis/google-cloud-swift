@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// DNS64 policies
 public struct PolicyDns64Config: Codable, Equatable, GoogleCloudWkt._AnyPackable,

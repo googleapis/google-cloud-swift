@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The option enables the Kubernetes NUMA-aware Memory Manager feature.
 /// Detailed description about the feature can be found

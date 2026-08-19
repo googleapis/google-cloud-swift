@@ -16,7 +16,7 @@
 
 #if EvaluationService || GenAiTuningService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Spec for bleu score metric - calculates the precision of n-grams in the
   /// prediction as compared to reference - returns a score ranging between 0 to 1.

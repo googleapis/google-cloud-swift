@@ -16,7 +16,7 @@
 
 #if SiteSearchEngineService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Metadata related to the progress of the
   /// [SiteSearchEngineService.DeleteTargetSite][google.cloud.discoveryengine.v1.SiteSearchEngineService.DeleteTargetSite]

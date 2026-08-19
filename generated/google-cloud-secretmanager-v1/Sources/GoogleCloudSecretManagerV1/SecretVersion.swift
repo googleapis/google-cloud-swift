@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A secret version resource in the Secret Manager API.
 public struct SecretVersion: Codable, Equatable, GoogleCloudWkt._AnyPackable,

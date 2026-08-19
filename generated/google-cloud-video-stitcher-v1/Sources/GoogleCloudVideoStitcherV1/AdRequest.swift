@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Details of an ad request to an ad server.
 public struct AdRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

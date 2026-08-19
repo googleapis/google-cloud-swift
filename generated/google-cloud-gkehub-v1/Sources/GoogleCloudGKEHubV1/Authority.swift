@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Authority encodes how Google will recognize identities from this Membership.
 /// See the workload identity documentation for more details:

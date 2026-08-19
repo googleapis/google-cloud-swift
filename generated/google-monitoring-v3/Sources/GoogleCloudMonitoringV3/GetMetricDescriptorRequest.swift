@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The `GetMetricDescriptor` request.
 public struct GetMetricDescriptorRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

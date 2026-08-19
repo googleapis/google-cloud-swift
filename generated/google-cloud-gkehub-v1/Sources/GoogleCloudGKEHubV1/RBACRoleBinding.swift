@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// RBACRoleBinding represents a rbacrolebinding across the Fleet
 public struct RBACRoleBinding: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Describes the source info for a custom processor.
 public struct CustomProcessorSourceInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,

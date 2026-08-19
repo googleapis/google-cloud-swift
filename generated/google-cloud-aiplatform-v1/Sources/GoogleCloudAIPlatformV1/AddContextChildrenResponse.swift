@@ -16,7 +16,7 @@
 
 #if MetadataService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Response message for
   /// [MetadataService.AddContextChildren][google.cloud.aiplatform.v1.MetadataService.AddContextChildren].

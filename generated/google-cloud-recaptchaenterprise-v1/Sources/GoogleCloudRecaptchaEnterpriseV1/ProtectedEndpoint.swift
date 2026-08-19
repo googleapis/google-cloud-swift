@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configuration for an API endpoint to protect with reCAPTCHA.
 public struct ProtectedEndpoint: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Specifies the metadata options for running a transfer.
 public struct MetadataOptions: Codable, Equatable, GoogleCloudWkt._AnyPackable,

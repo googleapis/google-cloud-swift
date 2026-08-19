@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A DNSSEC key pair.
 public struct DnsKey: Codable, Equatable, GoogleCloudWkt._AnyPackable,

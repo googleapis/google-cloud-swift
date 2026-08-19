@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A queue is a container of related tasks. Queues are configured to manage
 /// how those tasks are dispatched. Configurable properties include rate limits,

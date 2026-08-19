@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Settings to describe how errors should be handled in the app.
 public struct ErrorHandlingSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,

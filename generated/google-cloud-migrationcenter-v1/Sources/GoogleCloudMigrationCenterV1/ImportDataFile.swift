@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A resource that represents a payload file in an import job.
 public struct ImportDataFile: Codable, Equatable, GoogleCloudWkt._AnyPackable,

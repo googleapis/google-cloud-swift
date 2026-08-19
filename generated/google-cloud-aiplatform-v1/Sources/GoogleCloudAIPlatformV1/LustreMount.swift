@@ -16,7 +16,7 @@
 
 #if JobService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents a mount configuration for Lustre file system.
   public struct LustreMount: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Overview of the modifications that occurred.
 public struct TransformationOverview: Codable, Equatable, GoogleCloudWkt._AnyPackable,

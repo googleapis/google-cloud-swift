@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Details of a build occurrence.
 public struct BuildOccurrence: Codable, Equatable, GoogleCloudWkt._AnyPackable,

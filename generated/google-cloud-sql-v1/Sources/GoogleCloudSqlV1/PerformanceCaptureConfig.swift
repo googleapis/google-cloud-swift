@@ -16,7 +16,7 @@
 
 #if SqlBackupsService || SqlInstancesService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Performance capture configuration.
   public struct PerformanceCaptureConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

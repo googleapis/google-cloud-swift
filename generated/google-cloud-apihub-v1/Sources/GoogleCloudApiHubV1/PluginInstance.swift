@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents a plugin instance resource in the API Hub.
 /// A PluginInstance is a specific instance of a hub plugin with its own

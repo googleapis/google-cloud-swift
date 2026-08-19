@@ -16,7 +16,7 @@
 
 import Foundation
 import GoogleAppsScriptType
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Calendar add-on manifest.
 public struct CalendarAddOnManifest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

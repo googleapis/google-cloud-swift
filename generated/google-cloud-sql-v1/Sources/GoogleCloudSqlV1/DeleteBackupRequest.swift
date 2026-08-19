@@ -16,7 +16,7 @@
 
 #if SqlBackupsService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The request payload to delete the backup.
   public struct DeleteBackupRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

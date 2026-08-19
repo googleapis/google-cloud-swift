@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Match discovery resources not covered by any other filter.
 public struct AllOtherResources: Codable, Equatable, GoogleCloudWkt._AnyPackable,

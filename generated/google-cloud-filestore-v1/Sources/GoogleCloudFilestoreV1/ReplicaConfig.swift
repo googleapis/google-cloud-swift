@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Replica configuration for the instance.
 public struct ReplicaConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

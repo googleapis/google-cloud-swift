@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Details of the self-managed source instance.
 public struct SelfManagedSource: Codable, Equatable, GoogleCloudWkt._AnyPackable,

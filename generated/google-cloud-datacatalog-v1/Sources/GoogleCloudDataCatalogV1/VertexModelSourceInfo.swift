@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Detail description of the source information of a Vertex model.
 public struct VertexModelSourceInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,

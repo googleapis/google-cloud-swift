@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Details the properties of the underlying storage.
 public struct StorageProperties: Codable, Equatable, GoogleCloudWkt._AnyPackable,

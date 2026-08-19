@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A capacity configuration of a Kafka cluster.
 public struct CapacityConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

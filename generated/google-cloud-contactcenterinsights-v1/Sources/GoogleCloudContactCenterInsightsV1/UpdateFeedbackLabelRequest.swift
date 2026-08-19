@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The request for updating a feedback label.
 public struct UpdateFeedbackLabelRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

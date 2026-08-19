@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message to show which branch is currently the default branch.
 public struct GetDefaultBranchRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

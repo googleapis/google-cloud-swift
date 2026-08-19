@@ -16,7 +16,7 @@
 
 #if Intents
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct BatchUpdateIntentsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable

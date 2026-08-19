@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Google Cloud Storage location where the artifacts currently reside.
 public struct ImportAptArtifactsGcsSource: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// CreateBranchRuleRequest is the request to create a branch rule.
 public struct CreateBranchRuleRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

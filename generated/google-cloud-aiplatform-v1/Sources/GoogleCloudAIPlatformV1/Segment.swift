@@ -16,7 +16,7 @@
 
 #if PredictionService || SessionService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Segment of the content.
   public struct Segment: Codable, Equatable, GoogleCloudWkt._AnyPackable,

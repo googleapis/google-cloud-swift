@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A property drift represents a drift to a property in the state file.
 public struct PropertyDrift: Codable, Equatable, GoogleCloudWkt._AnyPackable,

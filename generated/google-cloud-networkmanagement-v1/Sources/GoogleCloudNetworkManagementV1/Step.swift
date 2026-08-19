@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A simulated forwarding path is composed of multiple steps.
 /// Each step has a well-defined state and an associated configuration.

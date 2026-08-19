@@ -16,8 +16,8 @@
 
 #if InstanceGroupManagers
   import Foundation
-  import GoogleCloudGax
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudGax
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// [Output Only] A list of managed instance groups.
   public struct InstanceGroupManagerList: Codable, Equatable, GoogleCloudWkt._AnyPackable,

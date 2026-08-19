@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Latency percentile rank and value.
 public struct LatencyPercentile: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if ScheduleService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// An instance of a Schedule periodically schedules runs to make API calls based
   /// on user specified time specification and API request type.

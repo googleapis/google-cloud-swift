@@ -16,7 +16,7 @@
 
 #if IndexEndpointService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// PscAutomatedEndpoints defines the output of the forwarding rule
   /// automatically created by each PscAutomationConfig.

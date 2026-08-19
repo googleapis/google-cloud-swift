@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for CreatePrincipalAccessBoundaryPolicyRequest method.
 public struct CreatePrincipalAccessBoundaryPolicyRequest: Codable, Equatable, GoogleCloudWkt

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A route next hop that leads to a VPN tunnel resource.
 public struct NextHopVPNTunnel: Codable, Equatable, GoogleCloudWkt._AnyPackable,

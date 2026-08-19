@@ -16,7 +16,7 @@
 
 #if AnswerRecords
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Answer records are records to manage answer history and feedbacks for
   /// Dialogflow.

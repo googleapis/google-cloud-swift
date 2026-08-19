@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The response to an IngestConversations operation.
 public struct IngestConversationsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

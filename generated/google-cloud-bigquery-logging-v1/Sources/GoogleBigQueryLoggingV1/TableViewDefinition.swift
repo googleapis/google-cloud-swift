@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Describes a virtual table defined by a SQL query.
 public struct TableViewDefinition: Codable, Equatable, GoogleCloudWkt._AnyPackable,

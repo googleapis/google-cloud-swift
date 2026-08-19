@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A recommendation along with a suggested action. E.g., a rightsizing
 /// recommendation for an underutilized VM, IAM role recommendations, etc

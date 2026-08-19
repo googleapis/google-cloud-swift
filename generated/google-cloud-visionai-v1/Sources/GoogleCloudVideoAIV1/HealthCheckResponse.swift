@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// HealthCheckResponse is the response message for Check.
 public struct HealthCheckResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

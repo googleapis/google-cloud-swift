@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The ListIpOverrides request message.
 public struct ListIpOverridesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

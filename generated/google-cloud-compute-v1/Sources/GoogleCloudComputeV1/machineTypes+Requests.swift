@@ -16,7 +16,7 @@
 
 #if MachineTypes
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   extension MachineTypesClient {
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.machineTypes.aggregatedList] method.

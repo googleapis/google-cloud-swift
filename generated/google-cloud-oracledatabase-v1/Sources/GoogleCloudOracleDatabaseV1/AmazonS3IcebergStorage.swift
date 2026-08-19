@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The Amazon S3 Iceberg storage.
 public struct AmazonS3IcebergStorage: Codable, Equatable, GoogleCloudWkt._AnyPackable,

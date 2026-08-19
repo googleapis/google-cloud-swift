@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The [CreateSpec][google.cloud.apihub.v1.ApiHub.CreateSpec] method's request.
 ///

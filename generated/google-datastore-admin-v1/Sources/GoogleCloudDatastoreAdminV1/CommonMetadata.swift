@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Metadata common to all Datastore Admin operations.
 public struct CommonMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,

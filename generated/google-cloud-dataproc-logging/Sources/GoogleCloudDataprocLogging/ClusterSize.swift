@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The short version of cluster configuration for Cloud Logging.
 public struct ClusterSize: Codable, Equatable, GoogleCloudWkt._AnyPackable,

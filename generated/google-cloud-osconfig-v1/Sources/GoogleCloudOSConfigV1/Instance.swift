@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Namespace for instance state enums.
 public struct Instance: Codable, Equatable, GoogleCloudWkt._AnyPackable,

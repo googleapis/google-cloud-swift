@@ -16,8 +16,8 @@
 
 #if SecuritySettingsService
   import Foundation
-  import GoogleCloudGax
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudGax
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The response message for [SecuritySettings.ListSecuritySettings][].
   public struct ListSecuritySettingsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

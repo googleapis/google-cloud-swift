@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Summary of what was modified during a transformation.
 public struct DeidentifyDataSourceStats: Codable, Equatable, GoogleCloudWkt._AnyPackable,

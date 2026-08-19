@@ -16,7 +16,7 @@
 
 #if Conversations || GeneratorEvaluations || Generators
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents a message entry of a conversation.
   public struct MessageEntry: Codable, Equatable, GoogleCloudWkt._AnyPackable,

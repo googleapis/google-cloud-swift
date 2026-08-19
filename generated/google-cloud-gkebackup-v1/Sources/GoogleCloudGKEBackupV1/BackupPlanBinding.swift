@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A BackupPlanBinding binds a BackupPlan with a BackupChannel.
 /// This resource is created automatically when a BackupPlan is created using a

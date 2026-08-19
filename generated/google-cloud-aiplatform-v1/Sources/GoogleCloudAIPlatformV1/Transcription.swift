@@ -16,7 +16,7 @@
 
 #if SessionService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Audio transcription in Server Content.
   public struct Transcription: Codable, Equatable, GoogleCloudWkt._AnyPackable,

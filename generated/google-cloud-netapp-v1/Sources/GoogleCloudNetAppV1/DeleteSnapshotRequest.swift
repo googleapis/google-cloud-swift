@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// DeleteSnapshotRequest deletes a snapshot.
 public struct DeleteSnapshotRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

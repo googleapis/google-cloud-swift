@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Config for tiered storage.
 /// A valid config must have a valid TieredStorageRule. Otherwise the whole

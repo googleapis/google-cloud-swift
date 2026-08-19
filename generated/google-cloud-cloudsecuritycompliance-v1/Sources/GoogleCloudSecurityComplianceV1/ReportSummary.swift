@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Additional information for an audit operation.
 public struct ReportSummary: Codable, Equatable, GoogleCloudWkt._AnyPackable,

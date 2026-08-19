@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// This field informs Fleet-based applications/services/UIs with the necessary
 /// information for where each underlying Cluster reports its metrics.

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A hash of file content.
 public struct Hash: Codable, Equatable, GoogleCloudWkt._AnyPackable,

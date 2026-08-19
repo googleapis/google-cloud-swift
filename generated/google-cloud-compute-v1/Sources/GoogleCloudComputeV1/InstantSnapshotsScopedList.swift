@@ -16,7 +16,7 @@
 
 #if InstantSnapshots
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct InstantSnapshotsScopedList: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable

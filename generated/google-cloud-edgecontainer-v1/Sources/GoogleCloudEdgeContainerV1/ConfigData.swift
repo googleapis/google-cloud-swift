@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Config data holds all the config related data for the zone.
 public struct ConfigData: Codable, Equatable, GoogleCloudWkt._AnyPackable,

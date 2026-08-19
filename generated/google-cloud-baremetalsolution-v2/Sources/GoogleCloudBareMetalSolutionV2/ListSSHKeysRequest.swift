@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message for listing the public SSH keys in a project.
 public struct ListSSHKeysRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

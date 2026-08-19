@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The policy used to specify data masking rule.
 public struct DataMaskingPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,

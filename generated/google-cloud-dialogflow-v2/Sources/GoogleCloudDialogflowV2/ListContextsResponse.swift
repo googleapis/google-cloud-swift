@@ -16,8 +16,8 @@
 
 #if Contexts
   import Foundation
-  import GoogleCloudGax
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudGax
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The response message for
   /// [Contexts.ListContexts][google.cloud.dialogflow.v2.Contexts.ListContexts].

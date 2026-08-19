@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A list of account IDs.
 public struct AccountIdList: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Metadata for active A/B testing experiment.
 public struct ExperimentInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,

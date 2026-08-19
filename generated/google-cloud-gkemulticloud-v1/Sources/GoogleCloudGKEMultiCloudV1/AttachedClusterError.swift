@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// AttachedClusterError describes errors found on attached clusters.
 public struct AttachedClusterError: Codable, Equatable, GoogleCloudWkt._AnyPackable,

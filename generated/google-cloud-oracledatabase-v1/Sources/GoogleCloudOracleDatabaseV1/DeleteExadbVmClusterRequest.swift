@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The request for `ExadbVmCluster.Delete`.
 public struct DeleteExadbVmClusterRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for DeleteMirroringEndpointGroup.
 public struct DeleteMirroringEndpointGroupRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

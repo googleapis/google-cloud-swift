@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// AccountConnector encapsulates what a platform administrator needs to
 /// configure for users to connect to the service providers, which includes,

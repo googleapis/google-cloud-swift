@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents the encryption configuration for a transfer.
 public struct EncryptionConfiguration: Codable, Equatable, GoogleCloudWkt._AnyPackable,

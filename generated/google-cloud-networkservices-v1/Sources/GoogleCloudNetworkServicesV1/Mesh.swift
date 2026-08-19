@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Mesh represents a logical configuration grouping for workload to workload
 /// communication within a service mesh. Routes that point to mesh dictate how

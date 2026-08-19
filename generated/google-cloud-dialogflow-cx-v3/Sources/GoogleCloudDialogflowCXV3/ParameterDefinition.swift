@@ -16,7 +16,7 @@
 
 #if Flows || Playbooks || Sessions || TestCases
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Defines the properties of a parameter.
   /// Used to define parameters used in the agent and the

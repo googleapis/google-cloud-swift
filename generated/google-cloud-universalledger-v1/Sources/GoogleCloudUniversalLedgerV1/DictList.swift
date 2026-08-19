@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A list of dictionaries.
 public struct DictList: Codable, Equatable, GoogleCloudWkt._AnyPackable,

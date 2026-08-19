@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The metadata for DeleteAsset API that embeds in
 /// [metadata][google.longrunning.Operation.metadata] field.

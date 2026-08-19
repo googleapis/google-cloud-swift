@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A common proto for logging HTTP requests. Only contains semantics
 /// defined by the HTTP specification. Product-specific logging

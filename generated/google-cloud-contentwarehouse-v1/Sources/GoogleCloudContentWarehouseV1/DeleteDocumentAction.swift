@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents the action responsible for deleting the document.
 public struct DeleteDocumentAction: Codable, Equatable, GoogleCloudWkt._AnyPackable,

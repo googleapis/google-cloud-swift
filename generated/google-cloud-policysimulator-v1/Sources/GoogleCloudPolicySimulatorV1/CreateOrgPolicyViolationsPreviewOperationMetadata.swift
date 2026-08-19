@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// CreateOrgPolicyViolationsPreviewOperationMetadata is metadata about an
 /// OrgPolicyViolationsPreview generations operation.

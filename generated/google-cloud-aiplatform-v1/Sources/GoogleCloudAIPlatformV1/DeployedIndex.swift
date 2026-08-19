@@ -16,7 +16,7 @@
 
 #if IndexEndpointService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// A deployment of an Index. IndexEndpoints contain one or more DeployedIndexes.
   public struct DeployedIndex: Codable, Equatable, GoogleCloudWkt._AnyPackable,

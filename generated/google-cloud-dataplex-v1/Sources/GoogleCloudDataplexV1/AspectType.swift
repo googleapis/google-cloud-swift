@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// AspectType is a template for creating Aspects, and represents the
 /// JSON-schema for a given Entry, for example, BigQuery Table Schema.

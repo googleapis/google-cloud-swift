@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// GRPCAction describes an action involving a GRPC port.
 public struct GRPCAction: Codable, Equatable, GoogleCloudWkt._AnyPackable,

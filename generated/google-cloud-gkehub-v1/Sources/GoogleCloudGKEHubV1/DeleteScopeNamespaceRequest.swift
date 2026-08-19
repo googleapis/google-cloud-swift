@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request to delete a fleet namespace.
 public struct DeleteScopeNamespaceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

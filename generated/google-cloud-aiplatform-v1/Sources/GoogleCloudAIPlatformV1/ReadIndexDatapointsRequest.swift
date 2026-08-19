@@ -16,7 +16,7 @@
 
 #if MatchService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The request message for
   /// [MatchService.ReadIndexDatapoints][google.cloud.aiplatform.v1.MatchService.ReadIndexDatapoints].

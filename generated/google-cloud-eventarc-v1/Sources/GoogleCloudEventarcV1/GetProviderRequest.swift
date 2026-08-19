@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The request message for the GetProvider method.
 public struct GetProviderRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

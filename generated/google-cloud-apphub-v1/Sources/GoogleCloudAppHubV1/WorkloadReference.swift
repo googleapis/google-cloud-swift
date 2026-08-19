@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Reference of an underlying compute resource represented by the Workload.
 public struct WorkloadReference: Codable, Equatable, GoogleCloudWkt._AnyPackable,

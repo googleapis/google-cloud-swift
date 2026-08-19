@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configuration of destination for Import related errors.
 public struct ImportErrorsConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

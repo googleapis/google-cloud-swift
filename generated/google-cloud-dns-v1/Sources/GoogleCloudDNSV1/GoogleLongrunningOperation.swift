@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// This resource represents a long-running operation that is the result of a network API call.
 public struct GoogleLongrunningOperation: Codable, Equatable, GoogleCloudWkt._AnyPackable,

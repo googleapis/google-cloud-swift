@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A Dialogflow source of conversation data.
 public struct DialogflowSource: Codable, Equatable, GoogleCloudWkt._AnyPackable,

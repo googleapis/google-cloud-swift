@@ -16,7 +16,7 @@
 
 #if SslCertificates
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   extension SslCertificatesClient {
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.sslCertificates.aggregatedList] method.

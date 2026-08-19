@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The request to import new yum artifacts.
 public struct ImportYumArtifactsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

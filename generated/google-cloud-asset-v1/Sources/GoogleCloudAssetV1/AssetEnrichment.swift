@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The enhanced metadata information for a resource.
 public struct AssetEnrichment: Codable, Equatable, GoogleCloudWkt._AnyPackable,

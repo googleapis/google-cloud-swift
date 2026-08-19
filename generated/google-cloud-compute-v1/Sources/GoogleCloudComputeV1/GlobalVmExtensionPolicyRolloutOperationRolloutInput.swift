@@ -16,7 +16,7 @@
 
 #if GlobalVmExtensionPolicies
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct GlobalVmExtensionPolicyRolloutOperationRolloutInput: Codable, Equatable,
     GoogleCloudWkt._AnyPackable,

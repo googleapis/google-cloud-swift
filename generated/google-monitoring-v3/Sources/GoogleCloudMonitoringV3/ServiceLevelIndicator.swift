@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A Service-Level Indicator (SLI) describes the "performance" of a service. For
 /// some services, the SLI is well-defined. In such cases, the SLI can be

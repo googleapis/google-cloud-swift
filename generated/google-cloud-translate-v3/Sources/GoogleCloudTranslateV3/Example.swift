@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A sentence pair.
 public struct Example: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Specification of certificate provider. Defines the mechanism to obtain the
 /// certificate and private key for peer to peer authentication.

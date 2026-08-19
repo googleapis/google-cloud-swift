@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A vehicle's route can be decomposed, along the time axis, like this (we
 /// assume there are n visits):

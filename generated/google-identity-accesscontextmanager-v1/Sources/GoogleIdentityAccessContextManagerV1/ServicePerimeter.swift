@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// `ServicePerimeter` describes a set of Google Cloud resources which can freely
 /// import and export data amongst themselves, but not export outside of the

@@ -16,8 +16,8 @@
 
 #if DeploymentResourcePoolService
   import Foundation
-  import GoogleCloudGax
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudGax
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Response message for QueryDeployedModels method.
   public struct QueryDeployedModelsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

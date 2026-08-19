@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// PostgreSQL database profile.
 public struct PostgresqlProfile: Codable, Equatable, GoogleCloudWkt._AnyPackable,

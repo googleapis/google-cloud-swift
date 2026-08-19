@@ -16,7 +16,7 @@
 
 #if VertexRagDataService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// RagFile status.
   public struct FileStatus: Codable, Equatable, GoogleCloudWkt._AnyPackable,

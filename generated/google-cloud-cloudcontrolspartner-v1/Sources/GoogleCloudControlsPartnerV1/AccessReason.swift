@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Reason for the access.
 public struct AccessReason: Codable, Equatable, GoogleCloudWkt._AnyPackable,

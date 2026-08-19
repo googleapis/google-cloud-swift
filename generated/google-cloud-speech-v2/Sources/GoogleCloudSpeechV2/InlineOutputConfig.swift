@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Output configurations for inline response.
 public struct InlineOutputConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if Participants
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents a Knowledge Assist answer.
   public struct KnowledgeAssistAnswer: Codable, Equatable, GoogleCloudWkt._AnyPackable,

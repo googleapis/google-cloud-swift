@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message for requesting a list of networks.
 public struct ListNetworksRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

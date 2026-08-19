@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A request to delete a batch workload.
 public struct DeleteBatchRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

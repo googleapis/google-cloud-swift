@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The status of publishing the data scan result as Dataplex Universal Catalog
 /// metadata. Multiple DataScan log events may exist, each with different

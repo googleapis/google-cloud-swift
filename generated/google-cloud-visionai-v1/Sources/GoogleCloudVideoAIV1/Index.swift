@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// An Index is a resource in Corpus. It contains an indexed version of the
 /// assets and annotations. When deployed to an endpoint, it will allow users to

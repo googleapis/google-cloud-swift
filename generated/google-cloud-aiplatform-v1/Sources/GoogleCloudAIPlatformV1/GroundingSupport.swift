@@ -16,7 +16,7 @@
 
 #if PredictionService || SessionService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Grounding support.
   public struct GroundingSupport: Codable, Equatable, GoogleCloudWkt._AnyPackable,

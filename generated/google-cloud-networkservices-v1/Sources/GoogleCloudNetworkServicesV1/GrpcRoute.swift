@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// GrpcRoute is the resource defining how gRPC traffic routed by a Mesh
 /// or Gateway resource is routed.

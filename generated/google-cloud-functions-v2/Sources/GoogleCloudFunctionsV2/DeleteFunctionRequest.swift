@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request for the `DeleteFunction` method.
 public struct DeleteFunctionRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

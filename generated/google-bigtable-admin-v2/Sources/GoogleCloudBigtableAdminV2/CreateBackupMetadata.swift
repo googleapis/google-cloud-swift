@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Metadata type for the operation returned by
 /// [CreateBackup][google.bigtable.admin.v2.BigtableTableAdmin.CreateBackup].

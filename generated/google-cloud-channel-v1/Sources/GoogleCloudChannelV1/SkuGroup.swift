@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents the SKU group information.
 public struct SkuGroup: Codable, Equatable, GoogleCloudWkt._AnyPackable,

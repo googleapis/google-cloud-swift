@@ -16,7 +16,7 @@
 
 #if PersistentResourceService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Request message for
   /// [PersistentResourceService.GetPersistentResource][google.cloud.aiplatform.v1.PersistentResourceService.GetPersistentResource].

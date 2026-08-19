@@ -16,7 +16,7 @@
 
 #if InstanceGroupManagers || RegionInstanceGroupManagers
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Configuration for VM repairs in the MIG.
   public struct InstanceGroupManagerInstanceLifecyclePolicyOnRepair: Codable, Equatable,

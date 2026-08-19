@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Metrics related to scoring.
 public struct ScoreMetrics: Codable, Equatable, GoogleCloudWkt._AnyPackable,

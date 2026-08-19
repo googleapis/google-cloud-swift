@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// NotificationConfig defines the mechanisms to notify instance agent.
 public struct NotificationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

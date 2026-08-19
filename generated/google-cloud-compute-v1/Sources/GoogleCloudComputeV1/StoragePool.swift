@@ -16,7 +16,7 @@
 
 #if StoragePools
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents a zonal storage pool resource.
   public struct StoragePool: Codable, Equatable, GoogleCloudWkt._AnyPackable,

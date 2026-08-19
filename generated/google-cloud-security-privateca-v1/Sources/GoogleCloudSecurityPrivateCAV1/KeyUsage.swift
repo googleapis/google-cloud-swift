@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A [KeyUsage][google.cloud.security.privateca.v1.KeyUsage] describes key usage
 /// values that may appear in an X.509 certificate.

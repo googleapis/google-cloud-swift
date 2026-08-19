@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Auth token for the instance.
 public struct AuthToken: Codable, Equatable, GoogleCloudWkt._AnyPackable,

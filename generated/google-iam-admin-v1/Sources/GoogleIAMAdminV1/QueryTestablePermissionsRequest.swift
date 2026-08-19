@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A request to get permissions which can be tested on a resource.
 public struct QueryTestablePermissionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

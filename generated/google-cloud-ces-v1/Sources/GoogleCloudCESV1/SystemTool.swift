@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Pre-defined system tool.
 public struct SystemTool: Codable, Equatable, GoogleCloudWkt._AnyPackable,

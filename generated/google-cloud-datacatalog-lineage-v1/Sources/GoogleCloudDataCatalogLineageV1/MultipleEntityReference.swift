@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Multiple entity reference for SearchLinksRequest.
 public struct MultipleEntityReference: Codable, Equatable, GoogleCloudWkt._AnyPackable,

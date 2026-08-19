@@ -16,7 +16,7 @@
 
 #if FeaturestoreOnlineServingService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Contains Feature values to be written for a specific entity.
   public struct WriteFeatureValuesPayload: Codable, Equatable, GoogleCloudWkt._AnyPackable,

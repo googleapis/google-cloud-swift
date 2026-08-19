@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Required Edu Attributes
 public struct EduData: Codable, Equatable, GoogleCloudWkt._AnyPackable,

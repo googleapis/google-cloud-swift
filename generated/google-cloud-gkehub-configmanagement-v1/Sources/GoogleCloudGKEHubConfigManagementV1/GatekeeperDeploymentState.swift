@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// State of Policy Controller installation.
 public struct GatekeeperDeploymentState: Codable, Equatable, GoogleCloudWkt._AnyPackable,

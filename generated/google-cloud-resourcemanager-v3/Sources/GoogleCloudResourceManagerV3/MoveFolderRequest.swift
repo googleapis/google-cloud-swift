@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The MoveFolder request message.
 public struct MoveFolderRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

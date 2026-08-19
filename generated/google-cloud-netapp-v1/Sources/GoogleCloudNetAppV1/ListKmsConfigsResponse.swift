@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudGax
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudGax
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// ListKmsConfigsResponse is the response to a ListKmsConfigsRequest.
 public struct ListKmsConfigsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

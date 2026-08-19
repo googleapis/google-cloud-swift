@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A list of int64s.
 public struct Int64List: Codable, Equatable, GoogleCloudWkt._AnyPackable,

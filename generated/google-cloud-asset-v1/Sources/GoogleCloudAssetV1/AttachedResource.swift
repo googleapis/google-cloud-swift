@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Attached resource representation, which is defined by the corresponding
 /// service provider. It represents an attached resource's payload.

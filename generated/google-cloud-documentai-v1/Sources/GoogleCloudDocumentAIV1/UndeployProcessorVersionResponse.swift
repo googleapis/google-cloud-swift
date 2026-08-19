@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Response message for the
 /// [UndeployProcessorVersion][google.cloud.documentai.v1.DocumentProcessorService.UndeployProcessorVersion]

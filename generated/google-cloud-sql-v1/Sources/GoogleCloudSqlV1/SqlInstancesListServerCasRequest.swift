@@ -16,7 +16,7 @@
 
 #if SqlInstancesService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Instance list server CAs request.
   public struct SqlInstancesListServerCasRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

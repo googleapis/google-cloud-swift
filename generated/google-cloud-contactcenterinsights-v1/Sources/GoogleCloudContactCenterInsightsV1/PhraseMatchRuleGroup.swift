@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A message representing a rule in the phrase matcher.
 public struct PhraseMatchRuleGroup: Codable, Equatable, GoogleCloudWkt._AnyPackable,

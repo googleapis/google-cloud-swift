@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Tags contain custom metadata and are attached to Data Catalog resources. Tags
 /// conform with the specification of their tag template.

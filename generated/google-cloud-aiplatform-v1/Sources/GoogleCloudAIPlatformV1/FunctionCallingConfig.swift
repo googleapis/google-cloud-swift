@@ -16,7 +16,7 @@
 
 #if GenAiCacheService || PredictionService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Function calling config.
   public struct FunctionCallingConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

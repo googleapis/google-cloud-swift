@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request for listing notebook instances.
 public struct ListInstancesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if Disks || RegionDisks
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Additional disk params.
   public struct DiskParams: Codable, Equatable, GoogleCloudWkt._AnyPackable,

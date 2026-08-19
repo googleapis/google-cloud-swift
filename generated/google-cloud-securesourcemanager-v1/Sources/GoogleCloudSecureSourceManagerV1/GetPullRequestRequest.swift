@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// GetPullRequestRequest is the request to get a pull request.
 public struct GetPullRequestRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

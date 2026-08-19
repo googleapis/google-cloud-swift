@@ -16,7 +16,7 @@
 
 #if EntityTypes || Intents
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Inline source for a Dialogflow operation that reads or imports objects
   /// (e.g. [intents][google.cloud.dialogflow.cx.v3.Intent]) into Dialogflow.

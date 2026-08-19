@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A bounding polygon for the detected image annotation.
 public struct BoundingPoly: Codable, Equatable, GoogleCloudWkt._AnyPackable,

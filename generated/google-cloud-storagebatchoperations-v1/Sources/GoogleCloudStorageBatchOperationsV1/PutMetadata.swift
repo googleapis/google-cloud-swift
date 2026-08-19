@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Describes options for object metadata update.
 public struct PutMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for the
 /// [TrainProcessorVersion][google.cloud.documentai.v1.DocumentProcessorService.TrainProcessorVersion]

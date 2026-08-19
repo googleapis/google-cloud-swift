@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Parameters for web detection request.
 public struct WebDetectionParams: Codable, Equatable, GoogleCloudWkt._AnyPackable,

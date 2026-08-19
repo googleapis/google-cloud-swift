@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// An annotation that was generated during the customer and agent interaction.
 public struct RuntimeAnnotation: Codable, Equatable, GoogleCloudWkt._AnyPackable,

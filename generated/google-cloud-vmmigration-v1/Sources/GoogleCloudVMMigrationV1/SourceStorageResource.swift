@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// SourceStorageResource describes a storage resource in the source.
 public struct SourceStorageResource: Codable, Equatable, GoogleCloudWkt._AnyPackable,

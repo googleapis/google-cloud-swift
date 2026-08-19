@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents a request to perform a single point-in-time capture of
 /// some portion of the state of a GKE cluster, the record of the backup

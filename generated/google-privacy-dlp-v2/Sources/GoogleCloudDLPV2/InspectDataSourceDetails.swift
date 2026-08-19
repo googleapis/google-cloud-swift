@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The results of an inspect DataSource job.
 public struct InspectDataSourceDetails: Codable, Equatable, GoogleCloudWkt._AnyPackable,

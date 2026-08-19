@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents a diagnostic message (error or warning)
 public struct Diagnostic: Codable, Equatable, GoogleCloudWkt._AnyPackable,

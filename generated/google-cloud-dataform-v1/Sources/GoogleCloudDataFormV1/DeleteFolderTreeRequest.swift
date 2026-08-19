@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// `DeleteFolderTree` request message.
 public struct DeleteFolderTreeRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// SetNodePoolSizeRequest sets the size of a node pool.
 public struct SetNodePoolSizeRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Output configurations for serialized `BatchRecognizeResults` protos.
 public struct NativeOutputFileFormatConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

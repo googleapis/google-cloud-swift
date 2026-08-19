@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configuration for the migration of an instance.
 public struct MigrationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

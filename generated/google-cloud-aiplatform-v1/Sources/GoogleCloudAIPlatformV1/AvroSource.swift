@@ -16,7 +16,7 @@
 
 #if FeaturestoreService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The storage details for Avro input content.
   public struct AvroSource: Codable, Equatable, GoogleCloudWkt._AnyPackable,

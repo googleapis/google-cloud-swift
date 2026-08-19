@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Measures the progress of a particular metric.
 public struct Progress: Codable, Equatable, GoogleCloudWkt._AnyPackable,

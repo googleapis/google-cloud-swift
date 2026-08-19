@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// GenericArtifact represents a generic artifact
 public struct GenericArtifact: Codable, Equatable, GoogleCloudWkt._AnyPackable,

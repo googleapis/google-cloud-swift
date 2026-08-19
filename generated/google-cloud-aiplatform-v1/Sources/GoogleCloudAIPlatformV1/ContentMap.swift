@@ -16,7 +16,7 @@
 
 #if EvaluationService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Map of placeholder in metric prompt template to contents of model input.
   public struct ContentMap: Codable, Equatable, GoogleCloudWkt._AnyPackable,

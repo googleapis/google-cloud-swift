@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A rollout resource that defines how service configuration versions are pushed
 /// to control plane systems. Typically, you create a new version of the

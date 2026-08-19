@@ -16,7 +16,7 @@
 
 #if Routers
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Next free: 15
   public struct BfdStatus: Codable, Equatable, GoogleCloudWkt._AnyPackable,

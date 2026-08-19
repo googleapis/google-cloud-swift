@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The schema details derived from the spec. Currently, this entity is supported
 /// for OpenAPI spec only.

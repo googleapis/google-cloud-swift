@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for SynonymSetService.UpdateSynonymSet.
 /// Removes the SynonymSet for the specified context and replaces

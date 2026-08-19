@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Details about the Cloud Data Loss Prevention (Cloud DLP) [inspection
 /// job](https://cloud.google.com/dlp/docs/concepts-job-triggers) that produced

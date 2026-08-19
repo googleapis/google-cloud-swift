@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Extra GCF specific location information.
 public struct LocationMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,

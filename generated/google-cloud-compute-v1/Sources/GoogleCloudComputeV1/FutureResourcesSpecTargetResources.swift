@@ -16,7 +16,7 @@
 
 #if Advice
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Specification of reserved resources.
   public struct FutureResourcesSpecTargetResources: Codable, Equatable, GoogleCloudWkt._AnyPackable,

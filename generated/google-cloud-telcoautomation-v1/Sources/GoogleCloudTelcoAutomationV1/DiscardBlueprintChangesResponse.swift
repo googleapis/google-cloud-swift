@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Response object for `DiscardBlueprintChanges`.
 public struct DiscardBlueprintChangesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

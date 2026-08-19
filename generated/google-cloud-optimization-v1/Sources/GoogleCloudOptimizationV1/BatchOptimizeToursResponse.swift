@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Response to a `BatchOptimizeToursRequest`. This is returned in
 /// the LRO Operation after the operation is complete.

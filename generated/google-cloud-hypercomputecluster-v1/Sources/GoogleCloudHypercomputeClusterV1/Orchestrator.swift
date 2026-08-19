@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The component responsible for scheduling and running workloads on the
 /// cluster as well as providing the user interface for interacting with the

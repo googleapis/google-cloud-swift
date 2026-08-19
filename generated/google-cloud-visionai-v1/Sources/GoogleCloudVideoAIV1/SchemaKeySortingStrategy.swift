@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A strategy to specify how to sort by data schema key.
 public struct SchemaKeySortingStrategy: Codable, Equatable, GoogleCloudWkt._AnyPackable,

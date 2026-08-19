@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Information about the IP or IP range override.
 public struct IpOverrideData: Codable, Equatable, GoogleCloudWkt._AnyPackable,

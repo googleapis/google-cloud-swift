@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message requesting rename of a server.
 public struct RenameVolumeRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

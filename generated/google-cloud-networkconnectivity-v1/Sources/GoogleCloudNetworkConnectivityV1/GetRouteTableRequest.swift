@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The request for
 /// [HubService.GetRouteTable][google.cloud.networkconnectivity.v1.HubService.GetRouteTable].

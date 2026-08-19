@@ -16,7 +16,7 @@
 
 #if ConversationalSearchService || SessionService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// External session proto definition.
   public struct Session: Codable, Equatable, GoogleCloudWkt._AnyPackable,

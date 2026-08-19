@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request to create a new `WorkerPool`.
 public struct CreateWorkerPoolRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

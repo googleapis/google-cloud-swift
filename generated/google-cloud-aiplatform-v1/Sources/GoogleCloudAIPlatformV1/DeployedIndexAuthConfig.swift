@@ -16,7 +16,7 @@
 
 #if IndexEndpointService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Used to set up the auth on the DeployedIndex's private endpoint.
   public struct DeployedIndexAuthConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

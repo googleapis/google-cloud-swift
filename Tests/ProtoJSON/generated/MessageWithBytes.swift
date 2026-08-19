@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A test message for bytes.
 public struct MessageWithBytes: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// TimeSeriesQuery collects the set of supported methods for querying time
 /// series data from the Stackdriver metrics API.

@@ -16,7 +16,7 @@
 
 #if Environments
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents an environment for an agent. You can create multiple versions
   /// of your agent and publish them to separate environments. When you edit an

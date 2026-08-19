@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A task represents a user-visible job.
 public struct Task: Codable, Equatable, GoogleCloudWkt._AnyPackable,

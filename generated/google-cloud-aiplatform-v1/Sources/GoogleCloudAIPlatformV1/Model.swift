@@ -16,7 +16,7 @@
 
 #if DatasetService || ModelService || PipelineService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// A trained machine learning Model.
   public struct Model: Codable, Equatable, GoogleCloudWkt._AnyPackable,

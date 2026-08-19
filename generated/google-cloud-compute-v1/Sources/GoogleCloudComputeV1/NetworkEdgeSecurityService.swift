@@ -16,7 +16,7 @@
 
 #if NetworkEdgeSecurityServices
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents a Google Cloud Armor network edge security service resource.
   public struct NetworkEdgeSecurityService: Codable, Equatable, GoogleCloudWkt._AnyPackable,

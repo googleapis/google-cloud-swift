@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A [PublicKey][google.cloud.security.privateca.v1.PublicKey] describes a
 /// public key.

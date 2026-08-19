@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Native schema used by a resource represented as an entry. Used by query
 /// engines for deserializing and parsing source data.

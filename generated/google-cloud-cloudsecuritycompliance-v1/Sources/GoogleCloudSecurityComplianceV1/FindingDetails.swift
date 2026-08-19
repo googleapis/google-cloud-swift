@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The details for a finding.
 public struct FindingDetails: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// NodePoolLoggingConfig specifies logging configuration for node pools.
 public struct NodePoolLoggingConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

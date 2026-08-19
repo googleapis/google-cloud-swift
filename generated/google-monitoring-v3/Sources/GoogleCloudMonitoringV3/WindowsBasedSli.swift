@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A `WindowsBasedSli` defines `good_service` as the count of time windows for
 /// which the provided service was of good quality. Criteria for determining

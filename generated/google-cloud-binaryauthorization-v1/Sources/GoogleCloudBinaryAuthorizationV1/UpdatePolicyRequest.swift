@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for
 /// [BinauthzManagementServiceV1.UpdatePolicy][google.cloud.binaryauthorization.v1.BinauthzManagementServiceV1.UpdatePolicy].

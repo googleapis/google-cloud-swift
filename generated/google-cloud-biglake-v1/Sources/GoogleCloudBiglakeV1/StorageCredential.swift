@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The storage credential for a path in the table.
 public struct StorageCredential: Codable, Equatable, GoogleCloudWkt._AnyPackable,

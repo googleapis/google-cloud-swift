@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Limits associated with a Project.
 public struct Quota: Codable, Equatable, GoogleCloudWkt._AnyPackable,

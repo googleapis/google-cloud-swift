@@ -16,7 +16,7 @@
 
 #if DeploymentResourcePoolService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Runtime operation information for UpdateDeploymentResourcePool method.
   public struct UpdateDeploymentResourcePoolOperationMetadata: Codable, Equatable, GoogleCloudWkt

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A collection of user data indexed by row, column, and timestamp.
 /// Each table is served using the resources of its parent cluster.

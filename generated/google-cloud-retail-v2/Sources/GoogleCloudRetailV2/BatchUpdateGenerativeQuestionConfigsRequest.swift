@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request for BatchUpdateGenerativeQuestionConfig method.
 public struct BatchUpdateGenerativeQuestionConfigsRequest: Codable, Equatable, GoogleCloudWkt

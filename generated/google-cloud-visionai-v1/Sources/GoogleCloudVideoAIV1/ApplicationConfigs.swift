@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message storing the graph of the application.
 public struct ApplicationConfigs: Codable, Equatable, GoogleCloudWkt._AnyPackable,

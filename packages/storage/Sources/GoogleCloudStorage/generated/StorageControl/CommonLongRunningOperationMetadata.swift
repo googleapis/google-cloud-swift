@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The message contains metadata that is common to all Storage Control
 /// long-running operations, present in its `google.longrunning.Operation`

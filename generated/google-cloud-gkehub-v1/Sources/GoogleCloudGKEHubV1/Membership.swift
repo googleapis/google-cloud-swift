@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Membership contains information about a member cluster.
 public struct Membership: Codable, Equatable, GoogleCloudWkt._AnyPackable,

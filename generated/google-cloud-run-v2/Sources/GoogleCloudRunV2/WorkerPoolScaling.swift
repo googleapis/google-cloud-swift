@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Worker pool scaling settings.
 public struct WorkerPoolScaling: Codable, Equatable, GoogleCloudWkt._AnyPackable,

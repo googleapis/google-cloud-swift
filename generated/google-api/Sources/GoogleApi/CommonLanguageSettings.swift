@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Required information for every language.
 public struct CommonLanguageSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,

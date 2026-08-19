@@ -16,7 +16,7 @@
 
 #if GenAiTuningService || LlmUtilityService || PredictionService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Generation config.
   public struct GenerationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

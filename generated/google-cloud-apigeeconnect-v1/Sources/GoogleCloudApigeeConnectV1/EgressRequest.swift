@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// gRPC request payload for tether.
 public struct EgressRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

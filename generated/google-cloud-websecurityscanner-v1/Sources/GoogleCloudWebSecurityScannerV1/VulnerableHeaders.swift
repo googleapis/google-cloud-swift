@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Information about vulnerable or missing HTTP Headers.
 public struct VulnerableHeaders: Codable, Equatable, GoogleCloudWkt._AnyPackable,

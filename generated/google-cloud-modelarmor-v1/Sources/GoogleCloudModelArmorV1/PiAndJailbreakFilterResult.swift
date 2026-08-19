@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Prompt injection and Jailbreak Filter Result.
 public struct PiAndJailbreakFilterResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,

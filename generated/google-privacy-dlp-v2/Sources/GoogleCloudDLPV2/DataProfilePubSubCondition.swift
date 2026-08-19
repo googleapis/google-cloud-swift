@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A condition for determining whether a Pub/Sub should be triggered.
 public struct DataProfilePubSubCondition: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// List asset actions request.
 public struct ListAssetActionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

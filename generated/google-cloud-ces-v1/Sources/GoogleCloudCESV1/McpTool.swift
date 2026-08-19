@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// An MCP tool.
 /// See https://modelcontextprotocol.io/specification/2025-06-18/server/tools for

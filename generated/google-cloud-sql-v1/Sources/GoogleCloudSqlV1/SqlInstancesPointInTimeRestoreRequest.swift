@@ -16,7 +16,7 @@
 
 #if SqlInstancesService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Request to perform a point in time restore on a Google Cloud Backup and
   /// Disaster Recovery managed instance.

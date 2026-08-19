@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Information regarding the discovered file extension.
 public struct FileExtensionInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,

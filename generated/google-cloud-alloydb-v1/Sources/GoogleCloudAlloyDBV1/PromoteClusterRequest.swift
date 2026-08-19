@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message for promoting a Cluster
 public struct PromoteClusterRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

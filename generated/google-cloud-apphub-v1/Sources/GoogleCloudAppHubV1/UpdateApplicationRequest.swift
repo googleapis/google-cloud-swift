@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request for UpdateApplication.
 public struct UpdateApplicationRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

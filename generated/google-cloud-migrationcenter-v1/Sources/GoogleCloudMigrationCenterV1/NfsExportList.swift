@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// NFS exports.
 public struct NfsExportList: Codable, Equatable, GoogleCloudWkt._AnyPackable,

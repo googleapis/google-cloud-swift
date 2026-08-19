@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configuration for a secret volume. It has the information necessary to fetch
 /// the secret value from secret manager and make it available as files mounted

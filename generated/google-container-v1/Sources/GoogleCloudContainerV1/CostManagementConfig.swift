@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configuration for fine-grained cost management feature.
 public struct CostManagementConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

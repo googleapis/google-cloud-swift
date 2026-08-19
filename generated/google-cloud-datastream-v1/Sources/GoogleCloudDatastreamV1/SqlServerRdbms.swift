@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// SQLServer database structure.
 public struct SqlServerRdbms: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request for the `GetScanRun` method.
 public struct GetScanRunRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A TrainingJob that trains and uploads an AutoML Video ObjectTracking Model.
 public struct AutoMlVideoObjectTracking: Codable, Equatable, GoogleCloudWkt._AnyPackable,

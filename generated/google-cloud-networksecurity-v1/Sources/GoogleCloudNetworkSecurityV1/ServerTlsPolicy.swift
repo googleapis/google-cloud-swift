@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// ServerTlsPolicy is a resource that specifies how a server should authenticate
 /// incoming requests. This resource itself does not affect configuration unless

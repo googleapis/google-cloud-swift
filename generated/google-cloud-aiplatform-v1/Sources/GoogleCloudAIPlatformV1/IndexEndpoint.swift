@@ -16,7 +16,7 @@
 
 #if IndexEndpointService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Indexes are deployed into it. An IndexEndpoint can have multiple
   /// DeployedIndexes.

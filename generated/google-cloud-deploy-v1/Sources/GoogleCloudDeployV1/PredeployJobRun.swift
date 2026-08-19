@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// PredeployJobRun contains information specific to a predeploy `JobRun`.
 public struct PredeployJobRun: Codable, Equatable, GoogleCloudWkt._AnyPackable,

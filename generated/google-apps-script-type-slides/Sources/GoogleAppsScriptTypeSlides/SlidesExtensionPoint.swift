@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Common format for declaring a Slides add-on's triggers.
 public struct SlidesExtensionPoint: Codable, Equatable, GoogleCloudWkt._AnyPackable,

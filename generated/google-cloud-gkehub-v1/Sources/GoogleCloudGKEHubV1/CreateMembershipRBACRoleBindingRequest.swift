@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request to create a rbacrolebindings.
 public struct CreateMembershipRBACRoleBindingRequest: Codable, Equatable, GoogleCloudWkt

@@ -16,7 +16,7 @@
 
 #if ConversationalSearchService || SearchService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Double list.
   public struct DoubleList: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if ReasoningEngineExecutionService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Request message for [ReasoningEngineExecutionService.StreamQuery][].
   public struct StreamQueryReasoningEngineRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

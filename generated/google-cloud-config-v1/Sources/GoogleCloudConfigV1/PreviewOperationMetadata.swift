@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Ephemeral metadata content describing the state of a preview operation.
 public struct PreviewOperationMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,

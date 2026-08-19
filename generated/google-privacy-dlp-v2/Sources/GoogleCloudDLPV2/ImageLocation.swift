@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Location of the finding within an image.
 public struct ImageLocation: Codable, Equatable, GoogleCloudWkt._AnyPackable,

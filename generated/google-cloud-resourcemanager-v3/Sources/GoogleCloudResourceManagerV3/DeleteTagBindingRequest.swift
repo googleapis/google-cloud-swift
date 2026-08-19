@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The request message to delete a TagBinding.
 public struct DeleteTagBindingRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

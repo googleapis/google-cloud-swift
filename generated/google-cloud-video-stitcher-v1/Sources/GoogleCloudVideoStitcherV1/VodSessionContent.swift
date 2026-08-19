@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Metadata for the entire stitched content in a VOD session.
 public struct VodSessionContent: Codable, Equatable, GoogleCloudWkt._AnyPackable,

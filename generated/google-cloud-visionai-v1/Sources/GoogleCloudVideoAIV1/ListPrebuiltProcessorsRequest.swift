@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request Message for listing Prebuilt Processors.
 public struct ListPrebuiltProcessorsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

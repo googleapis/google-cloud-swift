@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message for updating a Listing.
 public struct UpdateListingRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

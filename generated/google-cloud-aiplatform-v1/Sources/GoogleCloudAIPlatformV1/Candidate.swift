@@ -16,7 +16,7 @@
 
 #if PredictionService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// A response candidate generated from the model.
   public struct Candidate: Codable, Equatable, GoogleCloudWkt._AnyPackable,

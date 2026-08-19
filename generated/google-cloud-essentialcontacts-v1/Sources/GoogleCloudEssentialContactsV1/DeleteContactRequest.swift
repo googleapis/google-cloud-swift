@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for the DeleteContact method.
 public struct DeleteContactRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

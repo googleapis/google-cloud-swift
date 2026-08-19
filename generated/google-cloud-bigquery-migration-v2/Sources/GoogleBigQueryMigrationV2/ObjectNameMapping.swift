@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents a key-value pair of NameMappingKey to NameMappingValue to
 /// represent the mapping of SQL names from the input value to desired output.

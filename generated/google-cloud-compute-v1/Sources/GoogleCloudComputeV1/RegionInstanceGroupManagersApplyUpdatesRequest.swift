@@ -16,7 +16,7 @@
 
 #if RegionInstanceGroupManagers
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// RegionInstanceGroupManagers.applyUpdatesToInstances
   public struct RegionInstanceGroupManagersApplyUpdatesRequest: Codable, Equatable, GoogleCloudWkt

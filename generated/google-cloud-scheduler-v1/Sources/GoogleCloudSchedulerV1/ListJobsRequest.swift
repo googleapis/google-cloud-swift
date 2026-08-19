@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for listing jobs using
 /// [ListJobs][google.cloud.scheduler.v1.CloudScheduler.ListJobs].

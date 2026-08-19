@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudGax
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudGax
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The user workloads Secrets for a given environment.
 public struct ListUserWorkloadsSecretsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

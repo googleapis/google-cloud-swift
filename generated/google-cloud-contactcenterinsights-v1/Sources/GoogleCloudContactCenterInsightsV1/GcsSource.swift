@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A Cloud Storage source of conversation data.
 public struct GcsSource: Codable, Equatable, GoogleCloudWkt._AnyPackable,

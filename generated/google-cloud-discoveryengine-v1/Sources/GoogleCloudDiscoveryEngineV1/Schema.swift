@@ -16,7 +16,7 @@
 
 #if DataStoreService || SchemaService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Defines the structure and layout of a type of document data.
   public struct Schema: Codable, Equatable, GoogleCloudWkt._AnyPackable,

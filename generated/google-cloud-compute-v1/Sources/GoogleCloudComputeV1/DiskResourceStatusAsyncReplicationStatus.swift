@@ -16,7 +16,7 @@
 
 #if Disks || RegionDisks
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct DiskResourceStatusAsyncReplicationStatus: Codable, Equatable, GoogleCloudWkt
       ._AnyPackable,

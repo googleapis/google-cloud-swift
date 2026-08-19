@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The lifecycle status of an Evaluation resource.
 public struct ResourceStatus: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if EncryptionSpecService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The request to get location-level encryption specification.
   public struct GetEncryptionSpecRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

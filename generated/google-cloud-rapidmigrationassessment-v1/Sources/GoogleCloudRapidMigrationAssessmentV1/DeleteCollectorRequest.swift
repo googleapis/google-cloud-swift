@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message for deleting a Collector.
 public struct DeleteCollectorRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

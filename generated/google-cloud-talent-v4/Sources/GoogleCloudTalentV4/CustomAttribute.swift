@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Custom attribute values that are either filterable or non-filterable.
 public struct CustomAttribute: Codable, Equatable, GoogleCloudWkt._AnyPackable,

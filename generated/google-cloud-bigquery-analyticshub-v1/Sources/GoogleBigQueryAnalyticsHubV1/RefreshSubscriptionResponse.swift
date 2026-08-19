@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message for response when you refresh a subscription.
 public struct RefreshSubscriptionResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

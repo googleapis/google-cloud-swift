@@ -16,7 +16,7 @@
 
 #if InstanceTemplates || Instances || MachineImages || RegionInstanceTemplates || RegionInstances
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Defines the behaviour for instances with the instance_termination_actionSTOP.
   public struct SchedulingOnInstanceStopAction: Codable, Equatable, GoogleCloudWkt._AnyPackable,

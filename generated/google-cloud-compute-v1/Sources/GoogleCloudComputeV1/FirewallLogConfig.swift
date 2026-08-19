@@ -16,7 +16,7 @@
 
 #if Firewalls || Instances || Networks || RegionNetworkFirewallPolicies
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The available logging options for a firewall rule.
   public struct FirewallLogConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

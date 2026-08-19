@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The request message for the GetEnrollment method.
 public struct GetEnrollmentRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The request message for
 /// [RegistrationService.ListServices][google.cloud.servicedirectory.v1.RegistrationService.ListServices].

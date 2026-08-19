@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Use IAM authentication to connect. This requires the Cloud SQL IAM feature
 /// to be enabled on the instance, which is not the default for Cloud SQL.

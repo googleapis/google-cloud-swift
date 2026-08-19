@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A single value in a row from a sql result.
 public struct SqlResultValue: Codable, Equatable, GoogleCloudWkt._AnyPackable,

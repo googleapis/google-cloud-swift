@@ -16,7 +16,7 @@
 
 #if Subnetworks
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents a secondary IP range of a subnetwork.
   public struct SubnetworkSecondaryRange: Codable, Equatable, GoogleCloudWkt._AnyPackable,

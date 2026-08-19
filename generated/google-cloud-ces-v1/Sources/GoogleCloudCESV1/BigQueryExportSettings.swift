@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Settings to describe the BigQuery export behaviors for the app.
 public struct BigQueryExportSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A request to create a preview.
 public struct CreatePreviewRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

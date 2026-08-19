@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The protocol for the `ListUptimeCheckIps` request.
 public struct ListUptimeCheckIpsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Description of a voice supported by the TTS service.
 public struct Voice: Codable, Equatable, GoogleCloudWkt._AnyPackable,

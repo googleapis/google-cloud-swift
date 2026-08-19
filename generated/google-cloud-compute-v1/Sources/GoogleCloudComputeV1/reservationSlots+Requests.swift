@@ -16,7 +16,7 @@
 
 #if ReservationSlots
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   extension ReservationSlotsClient {
     /// Synthetic request message for the [get()][google.cloud.compute.v1.reservationSlots.get] method.

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A call stack appearing in a trace.
 public struct StackTrace: Codable, Equatable, GoogleCloudWkt._AnyPackable,

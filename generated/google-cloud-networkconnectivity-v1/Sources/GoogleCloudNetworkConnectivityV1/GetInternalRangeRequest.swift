@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request for InternalRangeService.GetInternalRange
 public struct GetInternalRangeRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

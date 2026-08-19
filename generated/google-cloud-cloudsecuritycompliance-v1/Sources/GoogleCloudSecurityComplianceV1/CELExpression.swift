@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A Common Expression Language (CEL) expression that's used to create a rule.
 public struct CELExpression: Codable, Equatable, GoogleCloudWkt._AnyPackable,

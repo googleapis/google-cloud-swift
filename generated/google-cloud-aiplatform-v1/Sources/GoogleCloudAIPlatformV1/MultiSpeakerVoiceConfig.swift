@@ -16,7 +16,7 @@
 
 #if GenAiTuningService || LlmUtilityService || PredictionService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Configuration for a multi-speaker text-to-speech request.
   public struct MultiSpeakerVoiceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

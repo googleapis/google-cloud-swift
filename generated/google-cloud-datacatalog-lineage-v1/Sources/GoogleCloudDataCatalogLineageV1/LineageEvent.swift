@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A lineage event represents an operation on assets. Within the operation, the
 /// data flows from the source to the target defined in the links field.

@@ -16,7 +16,7 @@
 
 #if GeneratorEvaluations
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Metadata for a
   /// [GeneratorEvaluations.CreateGeneratorEvaluation][google.cloud.dialogflow.v2.GeneratorEvaluations.CreateGeneratorEvaluation]

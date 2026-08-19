@@ -16,7 +16,7 @@
 
 #if InstanceTemplates || Instances || MachineImages || RegionInstanceTemplates || RegionInstances
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// A network interface resource attached to an instance.
   public struct NetworkInterface: Codable, Equatable, GoogleCloudWkt._AnyPackable,

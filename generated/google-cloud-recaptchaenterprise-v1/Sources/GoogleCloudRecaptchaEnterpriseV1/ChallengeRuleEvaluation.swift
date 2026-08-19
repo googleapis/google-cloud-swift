@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Information about the evaluation of a `ChallengeRule`.
 public struct ChallengeRuleEvaluation: Codable, Equatable, GoogleCloudWkt._AnyPackable,

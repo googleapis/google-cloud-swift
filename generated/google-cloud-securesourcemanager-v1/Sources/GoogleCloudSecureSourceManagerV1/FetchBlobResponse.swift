@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Response message containing the content of a blob.
 public struct FetchBlobResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

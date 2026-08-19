@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A request to unlock a state file passed to a 'UnlockDeployment' call.
 public struct UnlockDeploymentRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

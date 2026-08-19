@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// ListPullRequestsRequest is the request to list pull requests.
 public struct ListPullRequestsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

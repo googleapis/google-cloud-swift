@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request used by the ServiceLbPolicy method.
 public struct CreateServiceLbPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

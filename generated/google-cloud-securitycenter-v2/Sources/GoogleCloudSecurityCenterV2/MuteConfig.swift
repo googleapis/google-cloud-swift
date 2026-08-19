@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A mute config is a Cloud SCC resource that contains the configuration
 /// to mute create/update events of findings.

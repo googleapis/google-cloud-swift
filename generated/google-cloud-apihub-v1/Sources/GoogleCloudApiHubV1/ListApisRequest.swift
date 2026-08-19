@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The [ListApis][google.cloud.apihub.v1.ApiHub.ListApis] method's request.
 ///

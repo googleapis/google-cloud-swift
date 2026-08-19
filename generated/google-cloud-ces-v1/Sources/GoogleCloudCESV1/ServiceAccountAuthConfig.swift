@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configurations for authentication using a custom service account.
 public struct ServiceAccountAuthConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

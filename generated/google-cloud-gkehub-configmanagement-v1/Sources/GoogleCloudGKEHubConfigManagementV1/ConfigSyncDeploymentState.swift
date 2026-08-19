@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The state of ConfigSync's deployment on a cluster
 public struct ConfigSyncDeploymentState: Codable, Equatable, GoogleCloudWkt._AnyPackable,

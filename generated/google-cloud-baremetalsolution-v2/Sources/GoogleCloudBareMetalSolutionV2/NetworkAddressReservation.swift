@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A reservation of one or more addresses in a network.
 public struct NetworkAddressReservation: Codable, Equatable, GoogleCloudWkt._AnyPackable,

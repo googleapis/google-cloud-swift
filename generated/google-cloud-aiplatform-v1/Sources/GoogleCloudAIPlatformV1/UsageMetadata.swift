@@ -16,7 +16,7 @@
 
 #if PredictionService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Usage metadata about the content generation request and response.
   /// This message provides a detailed breakdown of token usage and other

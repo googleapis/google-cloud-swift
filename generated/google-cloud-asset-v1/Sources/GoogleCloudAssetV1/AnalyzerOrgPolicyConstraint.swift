@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The organization policy constraint definition.
 public struct AnalyzerOrgPolicyConstraint: Codable, Equatable, GoogleCloudWkt._AnyPackable,

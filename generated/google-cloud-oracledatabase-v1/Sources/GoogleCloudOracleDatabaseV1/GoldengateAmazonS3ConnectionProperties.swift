@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The properties of GoldengateAmazonS3Connection.
 public struct GoldengateAmazonS3ConnectionProperties: Codable, Equatable, GoogleCloudWkt

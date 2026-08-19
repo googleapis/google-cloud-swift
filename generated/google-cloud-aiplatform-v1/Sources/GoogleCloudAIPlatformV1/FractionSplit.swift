@@ -16,7 +16,7 @@
 
 #if PipelineService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Assigns the input data to training, validation, and test sets as per the
   /// given fractions. Any of `training_fraction`, `validation_fraction` and

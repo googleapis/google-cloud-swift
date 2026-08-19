@@ -16,7 +16,7 @@
 
 #if DatasetService || ModelService || PipelineService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Describes the machine learning model version checkpoint.
   public struct Checkpoint: Codable, Equatable, GoogleCloudWkt._AnyPackable,

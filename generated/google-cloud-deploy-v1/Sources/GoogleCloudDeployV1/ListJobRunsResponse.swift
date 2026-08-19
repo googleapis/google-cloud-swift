@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudGax
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudGax
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// ListJobRunsResponse is the response object returned by `ListJobRuns`.
 public struct ListJobRunsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

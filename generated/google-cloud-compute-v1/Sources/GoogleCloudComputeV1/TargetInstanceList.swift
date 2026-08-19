@@ -16,8 +16,8 @@
 
 #if TargetInstances
   import Foundation
-  import GoogleCloudGax
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudGax
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Contains a list of TargetInstance resources.
   public struct TargetInstanceList: Codable, Equatable, GoogleCloudWkt._AnyPackable,

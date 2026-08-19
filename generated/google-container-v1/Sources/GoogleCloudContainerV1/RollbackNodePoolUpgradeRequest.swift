@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// RollbackNodePoolUpgradeRequest rollbacks the previously Aborted or Failed
 ///  NodePool upgrade. This will be an no-op if the last upgrade successfully

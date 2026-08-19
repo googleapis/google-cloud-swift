@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Metadata for CreateCorpus API.
 public struct CreateCorpusMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,

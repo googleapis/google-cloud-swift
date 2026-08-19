@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Details of machine disks.
 public struct MachineDiskDetails: Codable, Equatable, GoogleCloudWkt._AnyPackable,

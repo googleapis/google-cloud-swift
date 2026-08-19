@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Sensitive Data Protection Advanced configuration.
 public struct SdpAdvancedConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

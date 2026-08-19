@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Defines an authorization code.
 public struct AuthorizationCode: Codable, Equatable, GoogleCloudWkt._AnyPackable,

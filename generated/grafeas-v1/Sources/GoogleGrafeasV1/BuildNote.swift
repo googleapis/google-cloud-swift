@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Note holding the version of the provider's builder and the signature of the
 /// provenance message in the build details occurrence.

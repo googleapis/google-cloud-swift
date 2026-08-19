@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Returns the default service account that will be used for `Builds`.
 public struct GetDefaultServiceAccountRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

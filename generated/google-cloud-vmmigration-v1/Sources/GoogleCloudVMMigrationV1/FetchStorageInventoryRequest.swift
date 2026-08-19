@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for
 /// [fetchStorageInventory][google.cloud.vmmigration.v1.VmMigration.FetchStorageInventory].

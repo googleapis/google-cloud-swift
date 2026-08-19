@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Egress control config for connector runtime. These configurations define the
 /// rules to identify which outbound domains/hosts needs to be whitelisted. It

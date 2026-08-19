@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A ScanConfig resource contains the configurations to launch a scan.
 public struct ScanConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

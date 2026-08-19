@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Physical location of an entry.
 public struct DataSource: Codable, Equatable, GoogleCloudWkt._AnyPackable,

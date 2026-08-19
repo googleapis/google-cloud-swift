@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configuration parameters for a new volume.
 public struct VolumeConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

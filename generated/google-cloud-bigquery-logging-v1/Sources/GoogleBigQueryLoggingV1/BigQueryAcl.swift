@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// An access control list.
 public struct BigQueryAcl: Codable, Equatable, GoogleCloudWkt._AnyPackable,

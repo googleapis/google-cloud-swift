@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// AppHubWorkload represents the App Hub Workload.
 public struct AppHubWorkload: Codable, Equatable, GoogleCloudWkt._AnyPackable,

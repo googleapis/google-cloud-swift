@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The configuration for the suggestion if requested as a target type.
 public struct SuggestionConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

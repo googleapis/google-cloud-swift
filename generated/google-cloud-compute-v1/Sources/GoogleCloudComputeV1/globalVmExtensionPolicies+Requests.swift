@@ -16,7 +16,7 @@
 
 #if GlobalVmExtensionPolicies
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   extension GlobalVmExtensionPoliciesClient {
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.globalVmExtensionPolicies.aggregatedList] method.

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// For display only. Metadata associated with a hybrid subnet.
 public struct HybridSubnetInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,

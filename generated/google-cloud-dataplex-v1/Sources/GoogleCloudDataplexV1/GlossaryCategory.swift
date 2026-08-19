@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A GlossaryCategory represents a collection of GlossaryCategories and
 /// GlossaryTerms within a Glossary that are related to each other.

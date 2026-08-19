@@ -16,7 +16,7 @@
 
 #if DatasetService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Describes the dataset version.
   public struct DatasetVersion: Codable, Equatable, GoogleCloudWkt._AnyPackable,

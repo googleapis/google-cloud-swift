@@ -16,7 +16,7 @@
 
 #if InstanceGroupManagers || RegionInstanceGroupManagers
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct InstanceGroupManagerInstanceLifecyclePolicy: Codable, Equatable, GoogleCloudWkt
       ._AnyPackable,

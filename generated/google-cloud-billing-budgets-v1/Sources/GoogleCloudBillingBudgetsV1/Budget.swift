@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A budget is a plan that describes what you expect to spend on Cloud
 /// projects, plus the rules to execute as spend is tracked against that plan,

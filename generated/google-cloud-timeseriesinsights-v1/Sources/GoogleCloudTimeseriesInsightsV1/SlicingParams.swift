@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Parameters that control how we slice the dataset and, optionally, filter
 /// slices that have some specific values on some dimensions (pinned dimensions).

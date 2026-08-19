@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The PrivateConnection resource is used to establish private connectivity
 /// between Datastream and a customer's network.

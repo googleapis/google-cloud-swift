@@ -16,7 +16,7 @@
 
 #if RegionInstanceGroupManagers
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct RegionInstanceGroupManagersSetTargetPoolsRequest: Codable, Equatable, GoogleCloudWkt
       ._AnyPackable,

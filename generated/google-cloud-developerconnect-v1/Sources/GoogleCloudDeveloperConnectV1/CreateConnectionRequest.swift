@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message for creating a Connection
 public struct CreateConnectionRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

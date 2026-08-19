@@ -16,7 +16,7 @@
 
 #if LicenseCodes
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct LicenseCodeLicenseAlias: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable

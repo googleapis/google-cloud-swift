@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for `DomainMappings.CreateDomainMapping`.
 public struct CreateDomainMappingRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

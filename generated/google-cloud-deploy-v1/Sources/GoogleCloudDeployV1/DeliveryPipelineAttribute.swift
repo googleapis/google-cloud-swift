@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Contains criteria for selecting DeliveryPipelines.
 public struct DeliveryPipelineAttribute: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if RegionCommitments || Reservations
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// [Output Only] Contains output only fields.
   public struct AllocationResourceStatus: Codable, Equatable, GoogleCloudWkt._AnyPackable,

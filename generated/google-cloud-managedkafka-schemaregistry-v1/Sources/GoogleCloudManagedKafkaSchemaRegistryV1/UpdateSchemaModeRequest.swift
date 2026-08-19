@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request for updating schema registry or subject mode.
 public struct UpdateSchemaModeRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

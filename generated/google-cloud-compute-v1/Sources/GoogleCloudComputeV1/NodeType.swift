@@ -16,7 +16,7 @@
 
 #if NodeTypes
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represent a sole-tenant Node Type resource.
   ///

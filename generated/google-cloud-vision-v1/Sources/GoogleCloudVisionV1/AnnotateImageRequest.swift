@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request for performing Google Cloud Vision API tasks over a user-provided
 /// image, with user-requested features, and with context information.

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Basic algorithm for autoscaling.
 public struct BasicAutoscalingAlgorithm: Codable, Equatable, GoogleCloudWkt._AnyPackable,

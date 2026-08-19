@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A BeyondCorp connector resource that represents an application facing
 /// component deployed proximal to and with direct access to the application

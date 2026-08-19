@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configurations for authentication with [ID
 /// token](https://cloud.google.com/docs/authentication/token-types#id) generated

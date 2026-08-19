@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// UpdateClusterRequest updates the settings of a cluster.
 public struct UpdateClusterRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

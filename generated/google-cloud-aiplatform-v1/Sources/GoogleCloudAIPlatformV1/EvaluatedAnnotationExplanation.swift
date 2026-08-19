@@ -16,7 +16,7 @@
 
 #if ModelService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Explanation result of the prediction produced by the Model.
   public struct EvaluatedAnnotationExplanation: Codable, Equatable, GoogleCloudWkt._AnyPackable,

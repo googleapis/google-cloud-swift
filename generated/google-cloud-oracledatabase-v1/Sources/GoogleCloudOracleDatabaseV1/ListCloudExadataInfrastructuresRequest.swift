@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The request for `CloudExadataInfrastructures.List`.
 public struct ListCloudExadataInfrastructuresRequest: Codable, Equatable, GoogleCloudWkt

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Contains the value and additional information on a field within
 /// a [Tag][google.cloud.datacatalog.v1.Tag].

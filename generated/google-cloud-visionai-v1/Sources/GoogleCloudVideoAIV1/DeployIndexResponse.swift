@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// DeployIndex response once the operation is done.
 public struct DeployIndexResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

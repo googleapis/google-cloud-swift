@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The data that will be profiled.
 public struct DataProfileLocation: Codable, Equatable, GoogleCloudWkt._AnyPackable,

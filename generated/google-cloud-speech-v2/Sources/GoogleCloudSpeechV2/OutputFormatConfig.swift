@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configuration for the format of the results stored to `output`.
 public struct OutputFormatConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

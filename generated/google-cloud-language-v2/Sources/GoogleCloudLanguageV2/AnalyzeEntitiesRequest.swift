@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The entity analysis request message.
 public struct AnalyzeEntitiesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

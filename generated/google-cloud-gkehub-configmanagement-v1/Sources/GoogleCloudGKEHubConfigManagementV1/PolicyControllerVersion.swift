@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The build version of Gatekeeper Policy Controller is using.
 public struct PolicyControllerVersion: Codable, Equatable, GoogleCloudWkt._AnyPackable,

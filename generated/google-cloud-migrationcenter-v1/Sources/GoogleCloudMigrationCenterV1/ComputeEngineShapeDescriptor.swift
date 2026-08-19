@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Compute Engine target shape descriptor.
 public struct ComputeEngineShapeDescriptor: Codable, Equatable, GoogleCloudWkt._AnyPackable,

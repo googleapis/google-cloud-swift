@@ -16,7 +16,7 @@
 
 #if EndpointService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Configurations (e.g. inference timeout) that are applied on your endpoints.
   public struct ClientConnectionConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

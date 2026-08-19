@@ -16,8 +16,8 @@
 
 #if PublicDelegatedPrefixes
   import Foundation
-  import GoogleCloudGax
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudGax
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct PublicDelegatedPrefixAggregatedList: Codable, Equatable, GoogleCloudWkt
       ._AnyPackable,

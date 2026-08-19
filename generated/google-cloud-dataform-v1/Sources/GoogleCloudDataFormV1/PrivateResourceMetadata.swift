@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Metadata used to identify if a resource is user scoped.
 public struct PrivateResourceMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,

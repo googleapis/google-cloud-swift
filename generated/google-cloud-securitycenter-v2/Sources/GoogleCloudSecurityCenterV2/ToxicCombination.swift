@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Contains details about a group of security issues that, when the issues
 /// occur together, represent a greater risk than when the issues occur

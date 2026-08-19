@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Delete lake request.
 public struct DeleteLakeRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

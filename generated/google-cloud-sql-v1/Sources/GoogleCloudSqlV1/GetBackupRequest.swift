@@ -16,7 +16,7 @@
 
 #if SqlBackupsService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The request payload to get the backup.
   public struct GetBackupRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

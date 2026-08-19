@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// TypeMeta is the type information needed for content unmarshalling of
 /// Kubernetes resources in the manifest.

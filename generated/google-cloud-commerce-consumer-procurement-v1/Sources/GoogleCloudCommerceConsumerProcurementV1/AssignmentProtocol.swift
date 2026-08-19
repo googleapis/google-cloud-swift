@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Assignment protocol for a license pool.
 public struct AssignmentProtocol: Codable, Equatable, GoogleCloudWkt._AnyPackable,

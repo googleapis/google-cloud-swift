@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A filter to reduce the amount of data charted in relevant widgets.
 public struct DashboardFilter: Codable, Equatable, GoogleCloudWkt._AnyPackable,

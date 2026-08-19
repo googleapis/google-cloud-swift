@@ -16,8 +16,8 @@
 
 #if InstanceGroups
   import Foundation
-  import GoogleCloudGax
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudGax
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// A list of InstanceGroup resources.
   public struct InstanceGroupList: Codable, Equatable, GoogleCloudWkt._AnyPackable,

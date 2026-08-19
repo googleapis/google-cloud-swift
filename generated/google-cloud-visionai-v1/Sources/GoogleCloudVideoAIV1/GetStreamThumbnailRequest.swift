@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message for getting the thumbnail of a Stream.
 public struct GetStreamThumbnailRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

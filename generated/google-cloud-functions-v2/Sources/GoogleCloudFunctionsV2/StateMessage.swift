@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Informational messages about the state of the Cloud Function or Operation.
 public struct StateMessage: Codable, Equatable, GoogleCloudWkt._AnyPackable,

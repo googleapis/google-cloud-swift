@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message for requesting network information.
 public struct GetNetworkRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

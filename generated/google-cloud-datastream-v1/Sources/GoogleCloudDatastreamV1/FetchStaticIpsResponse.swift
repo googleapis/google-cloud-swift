@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Response message for a 'FetchStaticIps' response.
 public struct FetchStaticIpsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

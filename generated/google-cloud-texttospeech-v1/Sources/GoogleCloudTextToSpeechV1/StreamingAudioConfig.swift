@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Description of the desired output audio data.
 public struct StreamingAudioConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

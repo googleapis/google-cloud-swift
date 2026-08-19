@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The preferred quota configuration.
 public struct QuotaConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

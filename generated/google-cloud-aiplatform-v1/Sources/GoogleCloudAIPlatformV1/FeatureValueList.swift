@@ -16,7 +16,7 @@
 
 #if FeaturestoreOnlineServingService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Container for list of values.
   public struct FeatureValueList: Codable, Equatable, GoogleCloudWkt._AnyPackable,

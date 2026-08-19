@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configuration to enable custom prompt in chirp3.
 public struct CustomPromptConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if ConversationModels
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The evaluation metrics for smart reply model.
   public struct SmartReplyMetrics: Codable, Equatable, GoogleCloudWkt._AnyPackable,

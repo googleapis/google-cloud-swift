@@ -16,7 +16,7 @@
 
 #if DataStoreService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// DataStore captures global settings and configs at the DataStore level.
   public struct DataStore: Codable, Equatable, GoogleCloudWkt._AnyPackable,

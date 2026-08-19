@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A type of transformation that will scan unstructured text and
 /// apply various `PrimitiveTransformation`s to each finding, where the

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// An IAM principal access boundary policy resource.
 public struct PrincipalAccessBoundaryPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,

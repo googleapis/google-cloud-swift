@@ -16,7 +16,7 @@
 
 #if WireGroups
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   extension WireGroupsClient {
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.wireGroups.delete] method.

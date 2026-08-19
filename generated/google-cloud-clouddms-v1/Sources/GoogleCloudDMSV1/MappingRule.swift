@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Definition of a transformation that is to be applied to a group of entities
 /// in the source schema. Several such transformations can be applied to an

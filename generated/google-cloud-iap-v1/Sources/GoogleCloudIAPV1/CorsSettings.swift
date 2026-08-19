@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Allows customers to configure HTTP request paths that'll allow HTTP
 /// `OPTIONS` call to bypass authentication and authorization.

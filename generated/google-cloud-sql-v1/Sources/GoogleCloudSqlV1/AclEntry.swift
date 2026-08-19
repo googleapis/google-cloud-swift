@@ -16,7 +16,7 @@
 
 #if SqlBackupsService || SqlInstancesService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// An entry for an Access Control list.
   public struct AclEntry: Codable, Equatable, GoogleCloudWkt._AnyPackable,

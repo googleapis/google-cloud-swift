@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Response after solving a tour optimization problem containing the routes
 /// followed by each vehicle, the shipments which have been skipped and the

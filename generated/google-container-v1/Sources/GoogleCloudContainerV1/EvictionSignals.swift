@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Eviction signals are the current state of a particular resource at a specific
 /// point in time. The kubelet uses eviction signals to make eviction decisions

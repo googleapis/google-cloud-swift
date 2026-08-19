@@ -16,8 +16,8 @@
 
 #if Images
   import Foundation
-  import GoogleCloudGax
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudGax
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Contains a list of images.
   public struct ImageList: Codable, Equatable, GoogleCloudWkt._AnyPackable,

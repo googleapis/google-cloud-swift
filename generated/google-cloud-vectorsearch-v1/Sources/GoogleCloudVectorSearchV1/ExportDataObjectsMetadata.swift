@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Metadata for the ExportDataObjects LRO.
 public struct ExportDataObjectsMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A response to a request to aggregated assets values.
 public struct AggregateAssetsValuesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

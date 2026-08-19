@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// An EffectiveTag represents a tag that applies to a resource during policy
 /// evaluation. Tags can be either directly bound to a resource or inherited from

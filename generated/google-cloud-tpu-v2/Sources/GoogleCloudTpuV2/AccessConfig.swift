@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// An access config attached to the TPU worker.
 public struct AccessConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

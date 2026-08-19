@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Lookup Context response.
 public struct LookupContextResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Encapsulates the full scoping used to reference a job.
 public struct JobReference: Codable, Equatable, GoogleCloudWkt._AnyPackable,

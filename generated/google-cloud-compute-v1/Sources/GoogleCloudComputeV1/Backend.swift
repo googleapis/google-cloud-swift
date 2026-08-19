@@ -16,7 +16,7 @@
 
 #if BackendServices || RegionBackendServices
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Message containing information of one individual backend.
   public struct Backend: Codable, Equatable, GoogleCloudWkt._AnyPackable,

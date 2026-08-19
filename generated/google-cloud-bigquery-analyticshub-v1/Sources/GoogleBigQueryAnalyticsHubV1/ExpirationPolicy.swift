@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A policy that specifies the conditions for resource expiration (i.e.,
 /// automatic resource deletion).

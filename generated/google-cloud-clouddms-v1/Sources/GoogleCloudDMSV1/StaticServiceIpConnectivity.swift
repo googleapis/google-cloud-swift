@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Static IP address connectivity configured on service project.
 public struct StaticServiceIpConnectivity: Codable, Equatable, GoogleCloudWkt._AnyPackable,

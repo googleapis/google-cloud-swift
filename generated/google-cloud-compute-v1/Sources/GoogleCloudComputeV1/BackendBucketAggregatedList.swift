@@ -16,8 +16,8 @@
 
 #if BackendBuckets
   import Foundation
-  import GoogleCloudGax
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudGax
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct BackendBucketAggregatedList: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     GoogleCloudGax._PaginatedResponse,

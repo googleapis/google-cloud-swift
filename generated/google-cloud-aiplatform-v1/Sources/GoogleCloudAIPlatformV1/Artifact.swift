@@ -16,7 +16,7 @@
 
 #if MetadataService || PipelineService || ScheduleService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Instance of a general artifact.
   public struct Artifact: Codable, Equatable, GoogleCloudWkt._AnyPackable,

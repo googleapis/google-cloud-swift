@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Version of a schema.
 public struct SchemaVersion: Codable, Equatable, GoogleCloudWkt._AnyPackable,

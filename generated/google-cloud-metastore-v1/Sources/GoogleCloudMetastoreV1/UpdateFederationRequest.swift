@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for UpdateFederation.
 public struct UpdateFederationRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

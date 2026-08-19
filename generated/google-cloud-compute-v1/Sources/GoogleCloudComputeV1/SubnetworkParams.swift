@@ -16,7 +16,7 @@
 
 #if Subnetworks
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Additional subnetwork parameters.
   public struct SubnetworkParams: Codable, Equatable, GoogleCloudWkt._AnyPackable,

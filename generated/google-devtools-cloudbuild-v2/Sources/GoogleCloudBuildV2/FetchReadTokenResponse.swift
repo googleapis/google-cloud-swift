@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message for responding to get read token.
 public struct FetchReadTokenResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

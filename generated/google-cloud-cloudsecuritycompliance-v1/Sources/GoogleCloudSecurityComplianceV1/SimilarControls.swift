@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The similar controls.
 public struct SimilarControls: Codable, Equatable, GoogleCloudWkt._AnyPackable,

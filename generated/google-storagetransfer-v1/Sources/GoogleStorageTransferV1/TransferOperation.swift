@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A description of the execution of a transfer.
 public struct TransferOperation: Codable, Equatable, GoogleCloudWkt._AnyPackable,

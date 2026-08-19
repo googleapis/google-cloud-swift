@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request used by the DeleteAddressGroup method.
 public struct DeleteAddressGroupRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

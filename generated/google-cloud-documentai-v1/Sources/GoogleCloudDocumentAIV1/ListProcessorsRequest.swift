@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for list all processors belongs to a project.
 public struct ListProcessorsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

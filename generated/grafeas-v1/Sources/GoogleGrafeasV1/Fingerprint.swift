@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A set of properties that uniquely identify a given Docker image.
 public struct Fingerprint: Codable, Equatable, GoogleCloudWkt._AnyPackable,

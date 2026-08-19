@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// TimeZone settings of the app.
 public struct TimeZoneSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,

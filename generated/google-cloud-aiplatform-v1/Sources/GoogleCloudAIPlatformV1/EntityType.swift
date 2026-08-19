@@ -16,7 +16,7 @@
 
 #if FeaturestoreService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// An entity type is a type of object in a system that needs to be modeled and
   /// have stored information about. For example, driver is an entity type, and

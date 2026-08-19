@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Deprecated. [Migrate to Service Account Credentials
 /// API](https://cloud.google.com/iam/help/credentials/migrate-api).

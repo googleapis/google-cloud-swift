@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Details of operations that perform deletes of any entities.
 public struct DeleteOperationMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,

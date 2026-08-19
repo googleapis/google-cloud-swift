@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Lookup Entry request using permissions in the source system.
 public struct LookupEntryRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

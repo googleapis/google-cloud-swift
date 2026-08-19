@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Credentials for a private cloud.
 public struct Credentials: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if FutureReservations || RegionCommitments || Reservations
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct AllocationAggregateReservationReservedResourceInfoAccelerator: Codable, Equatable,
     GoogleCloudWkt._AnyPackable,

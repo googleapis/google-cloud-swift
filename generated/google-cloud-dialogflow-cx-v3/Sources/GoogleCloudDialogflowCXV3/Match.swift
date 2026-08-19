@@ -16,7 +16,7 @@
 
 #if Sessions
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents one match result of [MatchIntent][].
   public struct Match: Codable, Equatable, GoogleCloudWkt._AnyPackable,

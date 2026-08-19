@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Justification represents a justification for requesting access.
 public struct Justification: Codable, Equatable, GoogleCloudWkt._AnyPackable,

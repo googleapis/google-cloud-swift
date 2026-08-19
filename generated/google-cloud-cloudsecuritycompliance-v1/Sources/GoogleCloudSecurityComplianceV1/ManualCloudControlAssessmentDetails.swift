@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The details for a manual cloud control assessment.
 public struct ManualCloudControlAssessmentDetails: Codable, Equatable, GoogleCloudWkt._AnyPackable,

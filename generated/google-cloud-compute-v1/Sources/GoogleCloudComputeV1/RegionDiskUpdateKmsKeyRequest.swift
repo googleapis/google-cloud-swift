@@ -16,7 +16,7 @@
 
 #if RegionDisks
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct RegionDiskUpdateKmsKeyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable

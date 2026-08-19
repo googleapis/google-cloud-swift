@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The storage details of the ExascaleDbStorageVault.
 public struct ExascaleDbStorageDetails: Codable, Equatable, GoogleCloudWkt._AnyPackable,

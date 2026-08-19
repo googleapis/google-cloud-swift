@@ -16,7 +16,7 @@
 
 #if Documents
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Metadata related to the Export Data Operations (e.g. ExportDocument).
   public struct ExportOperationMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,

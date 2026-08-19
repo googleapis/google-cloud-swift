@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The GCP resource that the DataSource is associated with.
 public struct DataSourceGcpResourceInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,

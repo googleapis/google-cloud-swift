@@ -16,8 +16,8 @@
 
 #if RegionSnapshots || Snapshots
   import Foundation
-  import GoogleCloudGax
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudGax
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Contains a list of Snapshot resources.
   public struct SnapshotList: Codable, Equatable, GoogleCloudWkt._AnyPackable,

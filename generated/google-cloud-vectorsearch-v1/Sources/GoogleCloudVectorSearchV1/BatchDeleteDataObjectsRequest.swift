@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for
 /// [DataObjectService.BatchDeleteDataObjects][google.cloud.vectorsearch.v1.DataObjectService.BatchDeleteDataObjects].

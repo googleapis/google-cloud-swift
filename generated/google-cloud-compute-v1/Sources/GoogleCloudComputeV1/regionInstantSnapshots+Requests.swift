@@ -16,7 +16,7 @@
 
 #if RegionInstantSnapshots
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   extension RegionInstantSnapshotsClient {
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.regionInstantSnapshots.delete] method.

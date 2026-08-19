@@ -16,7 +16,7 @@
 
 #if Instances
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Additional instance params.
   public struct InstanceParams: Codable, Equatable, GoogleCloudWkt._AnyPackable,

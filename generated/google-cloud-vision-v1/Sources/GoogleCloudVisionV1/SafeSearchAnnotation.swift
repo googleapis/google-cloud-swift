@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Set of features pertaining to the image, computed by computer vision
 /// methods over safe-search verticals (for example, adult, spoof, medical,

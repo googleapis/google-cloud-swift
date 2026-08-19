@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The reference of a framework, in one of the following formats:
 /// - `organizations/{organization}/locations/{location}/frameworks/{framework}`

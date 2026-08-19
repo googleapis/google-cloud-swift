@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Normalized bounding polygon for text (that might not be aligned with axis).
 /// Contains list of the corner points in clockwise order starting from

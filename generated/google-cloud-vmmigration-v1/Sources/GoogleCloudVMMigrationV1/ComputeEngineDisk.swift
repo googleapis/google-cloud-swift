@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Compute Engine disk target details.
 public struct ComputeEngineDisk: Codable, Equatable, GoogleCloudWkt._AnyPackable,

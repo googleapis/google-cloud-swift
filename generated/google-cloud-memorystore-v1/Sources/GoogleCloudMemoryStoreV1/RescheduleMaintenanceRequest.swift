@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request for rescheduling instance maintenance.
 public struct RescheduleMaintenanceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

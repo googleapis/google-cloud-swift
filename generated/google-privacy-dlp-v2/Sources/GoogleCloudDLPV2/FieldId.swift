@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// General identifier of a data field in a storage service.
 public struct FieldId: Codable, Equatable, GoogleCloudWkt._AnyPackable,

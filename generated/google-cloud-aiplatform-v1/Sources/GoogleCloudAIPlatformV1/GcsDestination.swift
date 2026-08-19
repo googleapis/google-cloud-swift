@@ -16,7 +16,7 @@
 
 #if DatasetService || FeaturestoreService || GenAiTuningService || JobService || ModelService || PipelineService || VertexRagDataService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The Google Cloud Storage location where the output is to be written to.
   public struct GcsDestination: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if EndpointService || FeatureOnlineStoreAdminService || IndexEndpointService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents configuration for private service connect.
   public struct PrivateServiceConnectConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

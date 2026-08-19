@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Guest installed application list.
 public struct GuestInstalledApplicationList: Codable, Equatable, GoogleCloudWkt._AnyPackable,

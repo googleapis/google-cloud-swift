@@ -16,7 +16,7 @@
 
 #if Pages
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The request message for
   /// [Pages.UpdatePage][google.cloud.dialogflow.cx.v3.Pages.UpdatePage].

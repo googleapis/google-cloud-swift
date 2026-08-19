@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A Cloud Storage location.
 public struct GcsDestination: Codable, Equatable, GoogleCloudWkt._AnyPackable,

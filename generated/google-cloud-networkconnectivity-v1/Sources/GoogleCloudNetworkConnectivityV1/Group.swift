@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A group represents a subset of spokes attached to a hub.
 public struct Group: Codable, Equatable, GoogleCloudWkt._AnyPackable,

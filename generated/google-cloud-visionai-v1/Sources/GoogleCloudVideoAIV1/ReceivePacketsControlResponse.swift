@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Control message for a ReceivePacketsResponse.
 public struct ReceivePacketsControlResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

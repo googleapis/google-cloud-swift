@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A single DDL statement for a specific entity
 public struct EntityDdl: Codable, Equatable, GoogleCloudWkt._AnyPackable,

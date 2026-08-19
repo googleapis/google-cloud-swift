@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Describes the Migration Center settings related to the project.
 public struct Settings: Codable, Equatable, GoogleCloudWkt._AnyPackable,

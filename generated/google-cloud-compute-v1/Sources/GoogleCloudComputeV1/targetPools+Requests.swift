@@ -16,7 +16,7 @@
 
 #if TargetPools
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   extension TargetPoolsClient {
     /// Synthetic request message for the [addHealthCheck()][google.cloud.compute.v1.targetPools.addHealthCheck] method.

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for `SearchEntitlements` method.
 public struct SearchEntitlementsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

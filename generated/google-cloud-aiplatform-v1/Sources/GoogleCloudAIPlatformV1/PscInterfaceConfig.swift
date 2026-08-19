@@ -16,7 +16,7 @@
 
 #if JobService || PersistentResourceService || PipelineService || ReasoningEngineService || ScheduleService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Configuration for PSC-I.
   public struct PscInterfaceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

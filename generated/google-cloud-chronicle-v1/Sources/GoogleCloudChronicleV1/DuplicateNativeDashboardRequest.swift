@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message to duplicate a dashboard.
 public struct DuplicateNativeDashboardRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

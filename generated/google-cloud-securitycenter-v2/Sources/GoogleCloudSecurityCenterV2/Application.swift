@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents an application associated with a finding.
 public struct Application: Codable, Equatable, GoogleCloudWkt._AnyPackable,

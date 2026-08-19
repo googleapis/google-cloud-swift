@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The minimum set of fields needed to represent a simulated finding from a
 /// Security Health Analytics custom module.

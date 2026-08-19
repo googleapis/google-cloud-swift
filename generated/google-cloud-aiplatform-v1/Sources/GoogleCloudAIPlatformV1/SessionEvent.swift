@@ -16,7 +16,7 @@
 
 #if SessionService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// An event represents a message from either the user or agent.
   public struct SessionEvent: Codable, Equatable, GoogleCloudWkt._AnyPackable,

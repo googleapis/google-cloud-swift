@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// CreateRepositoryRequest is the request for creating a repository.
 public struct CreateRepositoryRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

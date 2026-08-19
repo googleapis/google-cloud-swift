@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Describes encryption properties for a table or a job
 public struct EncryptionInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,

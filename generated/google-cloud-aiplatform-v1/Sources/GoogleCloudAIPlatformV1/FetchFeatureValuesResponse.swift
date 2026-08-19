@@ -16,7 +16,7 @@
 
 #if FeatureOnlineStoreService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Response message for
   /// [FeatureOnlineStoreService.FetchFeatureValues][google.cloud.aiplatform.v1.FeatureOnlineStoreService.FetchFeatureValues]

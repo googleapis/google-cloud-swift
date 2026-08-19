@@ -16,7 +16,7 @@
 
 #if JobService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Request message for
   /// [JobService.GetDataLabelingJob][google.cloud.aiplatform.v1.JobService.GetDataLabelingJob].

@@ -16,7 +16,7 @@
 
 #if Interconnects
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Description of a planned outage on this Interconnect.
   public struct InterconnectOutageNotification: Codable, Equatable, GoogleCloudWkt._AnyPackable,

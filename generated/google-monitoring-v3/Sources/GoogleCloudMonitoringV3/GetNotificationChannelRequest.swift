@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The `GetNotificationChannel` request.
 public struct GetNotificationChannelRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

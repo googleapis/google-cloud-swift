@@ -16,7 +16,7 @@
 
 #if Conversations || GeneratorEvaluations || Generators
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Free form generator context that customer can configure.
   public struct FreeFormContext: Codable, Equatable, GoogleCloudWkt._AnyPackable,

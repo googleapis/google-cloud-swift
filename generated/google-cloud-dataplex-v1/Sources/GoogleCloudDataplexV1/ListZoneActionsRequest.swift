@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// List zone actions request.
 public struct ListZoneActionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

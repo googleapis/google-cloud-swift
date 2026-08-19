@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Config for storing transformation details.
 public struct TransformationDetailsStorageConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Docker image that is used to create a container and start a VM instance for
 /// the version that you deploy. Only applicable for instances running in the App

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Metadata of the timestamp column.
 public struct TimestampMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,

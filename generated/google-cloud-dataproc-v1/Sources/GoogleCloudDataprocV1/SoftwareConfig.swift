@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Specifies the selection and config of software inside the cluster.
 public struct SoftwareConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

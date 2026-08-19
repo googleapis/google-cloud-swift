@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Information specifying a Custom Target.
 public struct CustomTarget: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// DiscoveredService is a network or API interface that exposes some
 /// functionality to clients for consumption over the network. A discovered

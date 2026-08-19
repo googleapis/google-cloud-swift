@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents the operation of restoring a volume from a VolumeBackup.
 public struct VolumeRestore: Codable, Equatable, GoogleCloudWkt._AnyPackable,

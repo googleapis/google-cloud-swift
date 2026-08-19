@@ -16,7 +16,7 @@
 
 #if DataStoreService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Request for
   /// [DataStoreService.CreateDataStore][google.cloud.discoveryengine.v1.DataStoreService.CreateDataStore]

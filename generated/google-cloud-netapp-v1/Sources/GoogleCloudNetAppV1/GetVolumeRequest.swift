@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message for getting a Volume
 public struct GetVolumeRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

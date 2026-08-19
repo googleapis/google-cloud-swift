@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Details about mirroring in a specific cloud location.
 public struct MirroringLocation: Codable, Equatable, GoogleCloudWkt._AnyPackable,

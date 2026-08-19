@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Response for updating a list of assets.
 public struct BatchUpdateAssetsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

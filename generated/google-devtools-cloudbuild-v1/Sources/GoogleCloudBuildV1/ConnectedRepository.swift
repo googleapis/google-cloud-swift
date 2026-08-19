@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Location of the source in a 2nd-gen Google Cloud Build repository resource.
 public struct ConnectedRepository: Codable, Equatable, GoogleCloudWkt._AnyPackable,

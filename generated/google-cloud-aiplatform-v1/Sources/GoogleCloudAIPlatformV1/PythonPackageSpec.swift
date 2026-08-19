@@ -16,7 +16,7 @@
 
 #if JobService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The spec of a Python packaged code.
   public struct PythonPackageSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,

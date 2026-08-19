@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Sanitized User Prompt Response.
 public struct SanitizeUserPromptResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

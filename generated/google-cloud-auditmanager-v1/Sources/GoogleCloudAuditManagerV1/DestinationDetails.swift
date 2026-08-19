@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Cloud Storage bucket where the audit report is uploaded to.
 public struct DestinationDetails: Codable, Equatable, GoogleCloudWkt._AnyPackable,

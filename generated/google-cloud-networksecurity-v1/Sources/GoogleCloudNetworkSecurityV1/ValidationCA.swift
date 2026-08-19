@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Specification of ValidationCA. Defines the mechanism to obtain the
 /// Certificate Authority certificate to validate the peer certificate.

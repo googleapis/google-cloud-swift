@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// GetAzureServerConfigRequest gets the server config of GKE cluster on Azure.
 @available(*, deprecated)

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request for updating schema config.
 /// On a SchemaSubject-level SchemaConfig, an unset field will be removed from

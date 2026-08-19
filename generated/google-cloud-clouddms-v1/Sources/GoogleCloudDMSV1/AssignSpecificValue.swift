@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Set to a specific value (value is converted to fit the target data type)
 public struct AssignSpecificValue: Codable, Equatable, GoogleCloudWkt._AnyPackable,

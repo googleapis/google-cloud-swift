@@ -16,7 +16,7 @@
 
 #if EntityTypes || Participants || SessionEntityTypes || Sessions
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Each intent parameter has a type, called the entity type, which dictates
   /// exactly how data from an end-user expression is extracted.

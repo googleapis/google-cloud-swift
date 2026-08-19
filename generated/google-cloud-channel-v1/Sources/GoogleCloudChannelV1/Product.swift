@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A Product is the entity a customer uses when placing an order. For example,
 /// Google Workspace, Google Voice, etc.

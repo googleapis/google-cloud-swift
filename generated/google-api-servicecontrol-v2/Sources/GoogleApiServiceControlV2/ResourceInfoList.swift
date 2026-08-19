@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message containing resource details in a batch mode.
 public struct ResourceInfoList: Codable, Equatable, GoogleCloudWkt._AnyPackable,

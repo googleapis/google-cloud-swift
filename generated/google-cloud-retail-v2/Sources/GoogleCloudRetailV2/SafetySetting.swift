@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Safety settings.
 public struct SafetySetting: Codable, Equatable, GoogleCloudWkt._AnyPackable,

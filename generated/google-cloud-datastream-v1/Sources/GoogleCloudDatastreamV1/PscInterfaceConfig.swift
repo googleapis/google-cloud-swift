@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The PSC Interface configuration is used to create PSC Interface between
 /// Datastream and the consumer's PSC.

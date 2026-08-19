@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Rule for determining which cells to delete during garbage collection.
 public struct GcRule: Codable, Equatable, GoogleCloudWkt._AnyPackable,

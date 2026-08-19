@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Payload associated with Governance related log events.
 public struct GovernanceEvent: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -16,8 +16,8 @@
 
 #if Generators
   import Foundation
-  import GoogleCloudGax
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudGax
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Response of ListGenerators.
   public struct ListGeneratorsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

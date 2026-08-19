@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A [CryptoKeyVersionTemplate][google.cloud.kms.v1.CryptoKeyVersionTemplate]
 /// specifies the properties to use when creating a new

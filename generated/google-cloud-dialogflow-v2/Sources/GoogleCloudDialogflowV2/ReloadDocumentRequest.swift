@@ -16,7 +16,7 @@
 
 #if Documents
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Request message for
   /// [Documents.ReloadDocument][google.cloud.dialogflow.v2.Documents.ReloadDocument].

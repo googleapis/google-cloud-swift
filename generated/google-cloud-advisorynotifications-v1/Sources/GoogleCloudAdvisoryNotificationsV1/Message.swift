@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A message which contains notification details.
 public struct Message: Codable, Equatable, GoogleCloudWkt._AnyPackable,

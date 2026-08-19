@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Describes measured latency distribution.
 public struct LatencyDistribution: Codable, Equatable, GoogleCloudWkt._AnyPackable,

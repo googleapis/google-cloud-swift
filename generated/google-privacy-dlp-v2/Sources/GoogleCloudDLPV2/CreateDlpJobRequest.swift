@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for CreateDlpJobRequest. Used to initiate long running
 /// jobs such as calculating risk metrics or inspecting Google Cloud

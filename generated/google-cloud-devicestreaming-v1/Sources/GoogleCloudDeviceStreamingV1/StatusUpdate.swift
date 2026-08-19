@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A StatusUpdate message given over the ADB protocol for the device state.
 public struct StatusUpdate: Codable, Equatable, GoogleCloudWkt._AnyPackable,

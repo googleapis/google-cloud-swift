@@ -16,7 +16,7 @@
 
 #if SqlTiersService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Tiers list request.
   public struct SqlTiersListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

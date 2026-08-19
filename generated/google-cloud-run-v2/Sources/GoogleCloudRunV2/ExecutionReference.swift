@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Reference to an Execution. Use /Executions.GetExecution with the given name
 /// to get full execution including the latest status.

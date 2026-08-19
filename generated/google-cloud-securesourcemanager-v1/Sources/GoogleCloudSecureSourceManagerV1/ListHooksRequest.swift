@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// ListHooksRequest is request to list hooks.
 public struct ListHooksRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if RolloutPlans
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Options to control the pace of orchestration of a wave. These options are
   /// required only if the resource being rolled out follows the Orchestrated

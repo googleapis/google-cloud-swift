@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudGax
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudGax
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message for response to listing GoldengateDeploymentTypes
 public struct ListGoldengateDeploymentTypesResponse: Codable, Equatable, GoogleCloudWkt

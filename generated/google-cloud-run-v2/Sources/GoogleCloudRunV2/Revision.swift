@@ -16,7 +16,7 @@
 
 import Foundation
 import GoogleApi
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A Revision is an immutable snapshot of code and configuration.  A Revision
 /// references a container image. Revisions are only created by updates to its

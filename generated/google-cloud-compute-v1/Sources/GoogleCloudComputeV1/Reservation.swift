@@ -16,7 +16,7 @@
 
 #if RegionCommitments || Reservations
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents a reservation resource.  A reservation ensures that capacity is
   /// held in a specific zone even if the reserved VMs are not running. For more

@@ -16,7 +16,7 @@
 
 #if SqlDatabasesService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Database delete request.
   public struct SqlDatabasesDeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if ResourcePolicies
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents the workload policy.
   public struct ResourcePolicyWorkloadPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,

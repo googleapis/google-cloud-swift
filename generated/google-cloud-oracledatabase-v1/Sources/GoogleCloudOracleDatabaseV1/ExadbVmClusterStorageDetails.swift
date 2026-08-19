@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The storage allocation for the exadbvmcluster, in gigabytes (GB).
 public struct ExadbVmClusterStorageDetails: Codable, Equatable, GoogleCloudWkt._AnyPackable,

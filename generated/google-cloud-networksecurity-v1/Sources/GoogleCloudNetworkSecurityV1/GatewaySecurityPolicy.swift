@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The GatewaySecurityPolicy resource contains a collection of
 /// GatewaySecurityPolicyRules and associated metadata.

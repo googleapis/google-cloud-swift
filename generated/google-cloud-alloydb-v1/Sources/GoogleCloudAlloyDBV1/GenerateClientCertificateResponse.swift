@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message returned by a GenerateClientCertificate operation.
 public struct GenerateClientCertificateResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

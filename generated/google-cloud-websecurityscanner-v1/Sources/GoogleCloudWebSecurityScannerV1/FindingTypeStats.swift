@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A FindingTypeStats resource represents stats regarding a specific FindingType
 /// of Findings under a given ScanRun.

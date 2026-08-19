@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// PipelineCondition contains all conditions relevant to a Delivery Pipeline.
 public struct PipelineCondition: Codable, Equatable, GoogleCloudWkt._AnyPackable,

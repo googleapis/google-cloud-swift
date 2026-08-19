@@ -16,7 +16,7 @@
 
 #if Changelogs
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The request message for
   /// [Changelogs.GetChangelog][google.cloud.dialogflow.cx.v3.Changelogs.GetChangelog].

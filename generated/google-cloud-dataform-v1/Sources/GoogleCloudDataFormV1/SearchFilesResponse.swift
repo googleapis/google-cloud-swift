@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudGax
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudGax
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Client-facing representation of a file search response.
 public struct SearchFilesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

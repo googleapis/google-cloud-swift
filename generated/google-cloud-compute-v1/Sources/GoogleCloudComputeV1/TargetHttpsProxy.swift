@@ -16,7 +16,7 @@
 
 #if RegionTargetHttpsProxies || TargetHttpsProxies
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents a Target HTTPS Proxy resource.
   ///

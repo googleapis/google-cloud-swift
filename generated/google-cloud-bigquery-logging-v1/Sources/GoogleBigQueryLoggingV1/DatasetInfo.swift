@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// User-provided metadata for a dataset.
 public struct DatasetInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,

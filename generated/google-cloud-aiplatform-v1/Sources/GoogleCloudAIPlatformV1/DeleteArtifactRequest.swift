@@ -16,7 +16,7 @@
 
 #if MetadataService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Request message for
   /// [MetadataService.DeleteArtifact][google.cloud.aiplatform.v1.MetadataService.DeleteArtifact].

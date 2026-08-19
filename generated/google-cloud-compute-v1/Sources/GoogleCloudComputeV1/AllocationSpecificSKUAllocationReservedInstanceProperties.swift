@@ -16,7 +16,7 @@
 
 #if FutureReservations || RegionCommitments || Reservations
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Properties of the SKU instances being reserved.
   /// Next ID: 10

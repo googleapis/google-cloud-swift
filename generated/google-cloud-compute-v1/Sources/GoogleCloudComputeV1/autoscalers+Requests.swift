@@ -16,7 +16,7 @@
 
 #if Autoscalers
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   extension AutoscalersClient {
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.autoscalers.aggregatedList] method.

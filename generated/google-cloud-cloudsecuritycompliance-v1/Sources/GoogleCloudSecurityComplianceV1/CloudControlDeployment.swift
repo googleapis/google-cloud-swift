@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A cloud control deployment represents the deployment of a particular cloud
 /// control on a target resource. Supported target resources are

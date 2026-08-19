@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configuration for Slurm partitions in the cluster. Partitions are groups of
 /// nodesets, and are how clients specify where their workloads should be run.

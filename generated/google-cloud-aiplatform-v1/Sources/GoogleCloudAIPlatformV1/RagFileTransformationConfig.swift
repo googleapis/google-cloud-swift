@@ -16,7 +16,7 @@
 
 #if VertexRagDataService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Specifies the transformation config for RagFiles.
   public struct RagFileTransformationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// URL pattern and description of how the URL should be handled. App Engine can
 /// handle URLs by executing application code or by serving static files

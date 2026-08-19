@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Custom information type provided by the user. Used to find domain-specific
 /// sensitive information configurable to the data in question.

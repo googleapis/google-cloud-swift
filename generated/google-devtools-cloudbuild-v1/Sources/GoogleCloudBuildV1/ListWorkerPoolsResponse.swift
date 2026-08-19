@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudGax
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudGax
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Response containing existing `WorkerPools`.
 public struct ListWorkerPoolsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

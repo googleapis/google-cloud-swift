@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Describes how to combine multiple time series to provide a different view of
 /// the data.  Aggregation of time series is done in two steps. First, each time

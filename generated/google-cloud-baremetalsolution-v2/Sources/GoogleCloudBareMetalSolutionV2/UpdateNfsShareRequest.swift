@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message requesting to updating an NFS share.
 public struct UpdateNfsShareRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

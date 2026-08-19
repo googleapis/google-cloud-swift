@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Catalog level attribute config for an attribute. For example, if customers
 /// want to enable/disable facet for a specific attribute.

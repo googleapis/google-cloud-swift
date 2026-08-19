@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Configuration information for a Kerberos principal.
 public struct KerberosConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -16,7 +16,7 @@
 
 #if GlobalNetworkEndpointGroups
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct GlobalNetworkEndpointGroupsAttachEndpointsRequest: Codable, Equatable,
     GoogleCloudWkt._AnyPackable,

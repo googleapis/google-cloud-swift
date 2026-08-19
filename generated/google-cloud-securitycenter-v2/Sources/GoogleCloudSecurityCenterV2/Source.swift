@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Security Command Center finding source. A finding source
 /// is an entity or a mechanism that can produce a finding. A source is like a

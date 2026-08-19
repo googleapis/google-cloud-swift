@@ -16,7 +16,7 @@
 
 #if ReasoningEngineService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Request message for
   /// [ReasoningEngineService.GetReasoningEngine][google.cloud.aiplatform.v1.ReasoningEngineService.GetReasoningEngine].

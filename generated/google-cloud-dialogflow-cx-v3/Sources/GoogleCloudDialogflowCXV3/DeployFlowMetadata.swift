@@ -16,7 +16,7 @@
 
 #if Environments
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Metadata returned for the
   /// [Environments.DeployFlow][google.cloud.dialogflow.cx.v3.Environments.DeployFlow]

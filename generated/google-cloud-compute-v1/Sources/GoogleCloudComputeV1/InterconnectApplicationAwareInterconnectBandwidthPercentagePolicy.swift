@@ -16,7 +16,7 @@
 
 #if Interconnects
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct InterconnectApplicationAwareInterconnectBandwidthPercentagePolicy: Codable,
     Equatable, GoogleCloudWkt._AnyPackable,

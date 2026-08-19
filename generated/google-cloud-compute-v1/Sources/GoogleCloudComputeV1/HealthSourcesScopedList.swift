@@ -16,7 +16,7 @@
 
 #if RegionHealthSources
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct HealthSourcesScopedList: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable

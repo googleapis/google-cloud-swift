@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A set of (label, value) pairs that were removed from a Distribution
 /// time series during aggregation and then added as an attachment to a

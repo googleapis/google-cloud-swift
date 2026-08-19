@@ -16,7 +16,7 @@
 
 #if SiteSearchEngineService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Request message for
   /// [SiteSearchEngineService.GetSiteSearchEngine][google.cloud.discoveryengine.v1.SiteSearchEngineService.GetSiteSearchEngine]

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A descriptor for defining project properties for a service. One service may
 /// have many consumer projects, and the service may want to behave differently

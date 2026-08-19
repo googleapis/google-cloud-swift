@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudGax
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudGax
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The response message to requesting a list of DnsThreatDetectors.
 public struct ListDnsThreatDetectorsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// `FetchGitAheadBehind` response message.
 public struct FetchGitAheadBehindResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

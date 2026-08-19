@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Source describes the location of the source used for the build.
 public struct Source: Codable, Equatable, GoogleCloudWkt._AnyPackable,

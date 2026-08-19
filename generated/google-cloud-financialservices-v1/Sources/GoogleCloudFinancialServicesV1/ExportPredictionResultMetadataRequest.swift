@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request for exporting PredictionResult metadata.
 public struct ExportPredictionResultMetadataRequest: Codable, Equatable, GoogleCloudWkt

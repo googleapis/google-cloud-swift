@@ -16,7 +16,7 @@
 
 #if GenAiTuningService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The Model Registry Model and Online Prediction Endpoint associated with
   /// this [TuningJob][google.cloud.aiplatform.v1.TuningJob].

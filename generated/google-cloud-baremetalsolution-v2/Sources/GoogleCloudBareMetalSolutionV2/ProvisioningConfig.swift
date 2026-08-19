@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A provisioning configuration.
 public struct ProvisioningConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

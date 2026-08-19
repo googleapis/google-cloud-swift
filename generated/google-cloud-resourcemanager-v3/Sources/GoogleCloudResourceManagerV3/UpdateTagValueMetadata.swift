@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Runtime operation information for updating a TagValue.
 public struct UpdateTagValueMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,

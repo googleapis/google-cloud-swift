@@ -16,7 +16,7 @@
 
 #if EvaluationService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Spec for fluency score metric.
   public struct FluencySpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,8 +15,8 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudGax
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudGax
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Response message of ListPublicOperators API.
 public struct ListPublicOperatorsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

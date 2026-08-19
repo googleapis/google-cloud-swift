@@ -16,7 +16,7 @@
 
 #if PredictionService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Restrictions namespace for example-based explanations overrides.
   public struct ExamplesRestrictionsNamespace: Codable, Equatable, GoogleCloudWkt._AnyPackable,

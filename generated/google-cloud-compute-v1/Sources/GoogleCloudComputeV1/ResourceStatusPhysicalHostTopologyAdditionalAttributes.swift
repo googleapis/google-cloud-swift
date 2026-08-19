@@ -16,7 +16,7 @@
 
 #if Instances
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Additional location information of the running instance.
   public struct ResourceStatusPhysicalHostTopologyAdditionalAttributes: Codable, Equatable,

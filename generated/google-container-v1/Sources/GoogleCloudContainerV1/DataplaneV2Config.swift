@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// DataplaneV2Config is the configuration for DPv2.
 public struct DataplaneV2Config: Codable, Equatable, GoogleCloudWkt._AnyPackable,

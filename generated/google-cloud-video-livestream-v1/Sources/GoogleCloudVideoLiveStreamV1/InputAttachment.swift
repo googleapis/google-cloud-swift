@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A group of information for attaching an input resource to this channel.
 public struct InputAttachment: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The [DeleteCuration][ApiHub.DeleteCuration] method's request.
 public struct DeleteCurationRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

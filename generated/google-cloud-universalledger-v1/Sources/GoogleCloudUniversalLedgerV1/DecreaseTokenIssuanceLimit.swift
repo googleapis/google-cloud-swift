@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Notifies the network that the target account wishes to withdraw reserve funds
 /// and decreases its token issuance limit. The sender must be a clearinghouse

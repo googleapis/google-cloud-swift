@@ -16,7 +16,7 @@
 
 #if PredictionService || SessionService || VertexRagService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// A RagChunk includes the content of a chunk of a RagFile, and associated
   /// metadata.

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Sets the time for a one time patch deployment. Timestamp is in
 /// [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.

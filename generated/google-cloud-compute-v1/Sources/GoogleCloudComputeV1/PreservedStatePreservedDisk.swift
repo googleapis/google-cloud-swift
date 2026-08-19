@@ -16,7 +16,7 @@
 
 #if InstanceGroupManagerResizeRequests || InstanceGroupManagers || RegionInstanceGroupManagerResizeRequests || RegionInstanceGroupManagers
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct PreservedStatePreservedDisk: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable

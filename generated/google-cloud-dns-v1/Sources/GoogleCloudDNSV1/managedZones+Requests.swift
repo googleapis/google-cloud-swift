@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 extension ManagedZonesClient {
   /// Synthetic request message for the [create()][.managedZones.create] method.

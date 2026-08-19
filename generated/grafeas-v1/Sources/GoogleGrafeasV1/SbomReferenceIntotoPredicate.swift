@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A predicate which describes the SBOM being referenced.
 public struct SbomReferenceIntotoPredicate: Codable, Equatable, GoogleCloudWkt._AnyPackable,

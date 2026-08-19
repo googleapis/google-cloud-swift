@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Specifies the cluster auto-delete schedule configuration.
 public struct LifecycleConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

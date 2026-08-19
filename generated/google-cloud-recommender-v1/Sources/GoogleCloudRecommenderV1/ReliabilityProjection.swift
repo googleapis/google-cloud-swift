@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Contains information on the impact of a reliability recommendation.
 public struct ReliabilityProjection: Codable, Equatable, GoogleCloudWkt._AnyPackable,

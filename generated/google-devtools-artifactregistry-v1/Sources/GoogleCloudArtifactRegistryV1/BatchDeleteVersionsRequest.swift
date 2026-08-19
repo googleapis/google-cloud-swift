@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The request to delete multiple versions across a repository.
 public struct BatchDeleteVersionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

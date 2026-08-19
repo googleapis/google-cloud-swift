@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Represents a reference to a specific OpenTelemetry invocation.
 public struct InvocationReference: Codable, Equatable, GoogleCloudWkt._AnyPackable,

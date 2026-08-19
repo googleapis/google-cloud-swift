@@ -16,7 +16,7 @@
 
 #if Sessions
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Search configuration for UCS search queries.
   public struct SearchConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

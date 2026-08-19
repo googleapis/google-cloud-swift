@@ -16,7 +16,7 @@
 
 #if GenAiTuningService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Request message for
   /// [GenAiTuningService.ListTuningJobs][google.cloud.aiplatform.v1.GenAiTuningService.ListTuningJobs].

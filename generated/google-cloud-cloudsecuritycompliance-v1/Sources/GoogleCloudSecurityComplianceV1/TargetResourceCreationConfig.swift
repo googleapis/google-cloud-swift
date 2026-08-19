@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The configuration that's required to create a target resource.
 public struct TargetResourceCreationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

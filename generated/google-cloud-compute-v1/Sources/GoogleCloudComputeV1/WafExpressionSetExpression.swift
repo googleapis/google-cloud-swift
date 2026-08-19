@@ -16,7 +16,7 @@
 
 #if OrganizationSecurityPolicies || SecurityPolicies
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   public struct WafExpressionSetExpression: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     Sendable

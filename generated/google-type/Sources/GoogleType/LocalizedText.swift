@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Localized variant of a text in a particular language.
 public struct LocalizedText: Codable, Equatable, GoogleCloudWkt._AnyPackable,

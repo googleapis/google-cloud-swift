@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Retries the failed job.
 public struct Retry: Codable, Equatable, GoogleCloudWkt._AnyPackable,

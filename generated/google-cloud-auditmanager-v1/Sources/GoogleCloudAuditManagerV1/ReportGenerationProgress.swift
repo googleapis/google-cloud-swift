@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Details about the current status of the report-generation process.
 public struct ReportGenerationProgress: Codable, Equatable, GoogleCloudWkt._AnyPackable,

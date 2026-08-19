@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Message representing a frame which failed to be processed due to an error.
 public struct ErrorFrame: Codable, Equatable, GoogleCloudWkt._AnyPackable,

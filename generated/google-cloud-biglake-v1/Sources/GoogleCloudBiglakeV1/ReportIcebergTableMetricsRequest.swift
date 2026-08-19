@@ -16,7 +16,7 @@
 
 import Foundation
 import GoogleApi
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The request message for the `ReportIcebergTableMetrics` API.
 public struct ReportIcebergTableMetricsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

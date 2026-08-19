@@ -16,7 +16,7 @@
 
 #if Versions
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// You can create multiple versions of your agent and publish them to separate
   /// environments.

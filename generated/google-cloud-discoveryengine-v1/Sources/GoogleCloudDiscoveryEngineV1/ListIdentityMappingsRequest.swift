@@ -16,7 +16,7 @@
 
 #if IdentityMappingStoreService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Request message for
   /// [IdentityMappingStoreService.ListIdentityMappings][google.cloud.discoveryengine.v1.IdentityMappingStoreService.ListIdentityMappings]

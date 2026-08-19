@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A TagKey, used to group a set of TagValues.
 public struct TagKey: Codable, Equatable, GoogleCloudWkt._AnyPackable,

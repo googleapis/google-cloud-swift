@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Location of a data profile finding within a resource.
 public struct DataProfileFindingLocation: Codable, Equatable, GoogleCloudWkt._AnyPackable,

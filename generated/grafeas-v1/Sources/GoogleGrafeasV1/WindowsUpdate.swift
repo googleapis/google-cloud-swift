@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Windows Update represents the metadata about the update for the Windows
 /// operating system. The fields in this message come from the Windows Update API

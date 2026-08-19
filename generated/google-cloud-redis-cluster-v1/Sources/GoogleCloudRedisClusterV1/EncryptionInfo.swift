@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// EncryptionInfo describes the encryption information of a cluster or a backup.
 public struct EncryptionInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,

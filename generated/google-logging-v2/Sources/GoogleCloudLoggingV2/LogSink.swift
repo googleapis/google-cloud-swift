@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Describes a sink used to export log entries to one of the following
 /// destinations in any project: a Cloud Storage bucket, a BigQuery dataset, a

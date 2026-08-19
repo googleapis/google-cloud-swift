@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// InstantiatingMigratedVMStep contains specific step details.
 public struct InstantiatingMigratedVMStep: Codable, Equatable, GoogleCloudWkt._AnyPackable,

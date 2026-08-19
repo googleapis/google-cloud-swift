@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request to update an existing `BuildTrigger`.
 public struct UpdateBuildTriggerRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

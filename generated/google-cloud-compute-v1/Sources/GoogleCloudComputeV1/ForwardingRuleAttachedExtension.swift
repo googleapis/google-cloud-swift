@@ -16,7 +16,7 @@
 
 #if ForwardingRules || GlobalForwardingRules
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Reference to an extension resource that is attached to this ForwardingRule.
   public struct ForwardingRuleAttachedExtension: Codable, Equatable, GoogleCloudWkt._AnyPackable,

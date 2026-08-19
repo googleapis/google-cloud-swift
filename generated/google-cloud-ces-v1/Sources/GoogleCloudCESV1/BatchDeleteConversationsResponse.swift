@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Response message for
 /// [AgentService.BatchDeleteConversations][google.cloud.ces.v1.AgentService.BatchDeleteConversations].

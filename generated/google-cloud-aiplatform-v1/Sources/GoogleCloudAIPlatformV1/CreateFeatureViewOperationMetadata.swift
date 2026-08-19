@@ -16,7 +16,7 @@
 
 #if FeatureOnlineStoreAdminService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Details of operations that perform create FeatureView.
   public struct CreateFeatureViewOperationMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,

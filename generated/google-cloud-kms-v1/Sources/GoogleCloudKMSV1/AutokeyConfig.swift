@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Cloud KMS Autokey configuration for a folder.
 public struct AutokeyConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

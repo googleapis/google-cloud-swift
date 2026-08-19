@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Dataproc job config.
 public struct JobPlacement: Codable, Equatable, GoogleCloudWkt._AnyPackable,

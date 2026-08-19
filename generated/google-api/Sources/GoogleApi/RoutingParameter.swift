@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A projection from an input message to the GRPC or REST header.
 public struct RoutingParameter: Codable, Equatable, GoogleCloudWkt._AnyPackable,

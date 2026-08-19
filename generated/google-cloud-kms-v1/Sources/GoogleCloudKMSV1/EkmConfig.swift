@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// An [EkmConfig][google.cloud.kms.v1.EkmConfig] is a singleton resource that
 /// represents configuration parameters that apply to all

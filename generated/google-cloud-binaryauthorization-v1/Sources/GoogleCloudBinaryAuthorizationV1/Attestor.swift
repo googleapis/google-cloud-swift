@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// An [attestor][google.cloud.binaryauthorization.v1.Attestor] that attests to
 /// container image artifacts. An existing attestor cannot be modified except

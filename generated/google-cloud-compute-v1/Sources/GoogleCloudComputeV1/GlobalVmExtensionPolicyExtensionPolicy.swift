@@ -16,7 +16,7 @@
 
 #if GlobalVmExtensionPolicies
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Policy for a single extension.
   public struct GlobalVmExtensionPolicyExtensionPolicy: Codable, Equatable, GoogleCloudWkt

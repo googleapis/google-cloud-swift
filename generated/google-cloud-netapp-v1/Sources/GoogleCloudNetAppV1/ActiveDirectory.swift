@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// ActiveDirectory is the public representation of the active directory config.
 public struct ActiveDirectory: Codable, Equatable, GoogleCloudWkt._AnyPackable,

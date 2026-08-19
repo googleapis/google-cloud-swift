@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// message about annotations about Vision AI stream resource.
 public struct StreamAnnotation: Codable, Equatable, GoogleCloudWkt._AnyPackable,

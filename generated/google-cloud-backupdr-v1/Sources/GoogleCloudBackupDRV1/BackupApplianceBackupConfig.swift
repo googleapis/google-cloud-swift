@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// BackupApplianceBackupConfig captures the backup configuration for
 /// applications that are protected by Backup Appliances.

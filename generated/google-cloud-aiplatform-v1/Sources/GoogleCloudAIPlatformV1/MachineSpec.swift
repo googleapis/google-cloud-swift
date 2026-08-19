@@ -16,7 +16,7 @@
 
 #if DeploymentResourcePoolService || EndpointService || IndexEndpointService || JobService || ModelGardenService || NotebookService || PersistentResourceService || ScheduleService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Specification of a single machine.
   public struct MachineSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,

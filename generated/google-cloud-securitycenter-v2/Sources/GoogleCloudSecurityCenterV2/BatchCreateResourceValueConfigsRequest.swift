@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message to create multiple resource value configs
 public struct BatchCreateResourceValueConfigsRequest: Codable, Equatable, GoogleCloudWkt

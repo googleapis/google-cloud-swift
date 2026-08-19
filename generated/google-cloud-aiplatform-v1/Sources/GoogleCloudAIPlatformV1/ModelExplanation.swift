@@ -16,7 +16,7 @@
 
 #if ModelService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Aggregated explanation metrics for a Model over a set of instances.
   public struct ModelExplanation: Codable, Equatable, GoogleCloudWkt._AnyPackable,

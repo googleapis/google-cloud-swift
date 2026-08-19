@@ -16,7 +16,7 @@
 
 #if SqlInstancesService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Instance stop replica request.
   public struct SqlInstancesStopReplicaRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

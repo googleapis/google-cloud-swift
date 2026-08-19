@@ -16,7 +16,7 @@
 
 #if Sessions
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Boost specification to boost certain documents.
   /// A copy of google.cloud.discoveryengine.v1main.BoostSpec, field documentation

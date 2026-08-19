@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// SecondaryBootDisk represents a persistent disk attached to a node
 /// with special configurations based on its mode.

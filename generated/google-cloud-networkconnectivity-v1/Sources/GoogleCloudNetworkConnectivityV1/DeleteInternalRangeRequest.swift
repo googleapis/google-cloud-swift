@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request for InternalRangeService.DeleteInternalRange
 public struct DeleteInternalRangeRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

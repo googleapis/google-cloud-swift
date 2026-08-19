@@ -16,8 +16,8 @@
 
 #if ReasoningEngineService
   import Foundation
-  import GoogleCloudGax
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudGax
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Response message for
   /// [ReasoningEngineService.ListReasoningEngines][google.cloud.aiplatform.v1.ReasoningEngineService.ListReasoningEngines]

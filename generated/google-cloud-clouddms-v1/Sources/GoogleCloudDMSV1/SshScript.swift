@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Response message for 'GenerateSshScript' request.
 public struct SshScript: Codable, Equatable, GoogleCloudWkt._AnyPackable,

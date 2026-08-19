@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Retrieves a list of evaluations for a given
 /// [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion].

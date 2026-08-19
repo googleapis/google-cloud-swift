@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// An HTTP-based API Operation, sometimes called a "REST" Operation.
 public struct HttpOperationDetails: Codable, Equatable, GoogleCloudWkt._AnyPackable,

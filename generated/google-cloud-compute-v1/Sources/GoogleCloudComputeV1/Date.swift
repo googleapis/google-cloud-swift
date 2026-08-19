@@ -16,7 +16,7 @@
 
 #if PreviewFeatures
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Represents a whole or partial calendar date, such as a birthday. The time of
   /// day and time zone are either specified elsewhere or are insignificant. The

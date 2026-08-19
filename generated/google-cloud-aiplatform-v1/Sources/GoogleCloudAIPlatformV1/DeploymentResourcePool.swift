@@ -16,7 +16,7 @@
 
 #if DeploymentResourcePoolService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// A description of resources that can be shared by multiple DeployedModels,
   /// whose underlying specification consists of a DedicatedResources.

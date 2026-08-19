@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Video stream resource.
 public struct VideoStream: Codable, Equatable, GoogleCloudWkt._AnyPackable,

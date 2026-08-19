@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Holds information needed by Mudbray to use partner EKMs for workloads.
 public struct EkmMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,

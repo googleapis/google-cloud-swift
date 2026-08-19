@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A unit of data that is returned by the DNS servers.
 public struct ResourceRecordSet: Codable, Equatable, GoogleCloudWkt._AnyPackable,

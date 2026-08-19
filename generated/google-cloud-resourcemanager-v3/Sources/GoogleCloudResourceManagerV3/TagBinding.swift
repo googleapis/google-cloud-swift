@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A TagBinding represents a connection between a TagValue and a cloud
 /// resource Once a TagBinding is created, the TagValue is applied to all the

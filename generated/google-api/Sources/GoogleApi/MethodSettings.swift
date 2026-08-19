@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Describes the generator configuration for a method.
 public struct MethodSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,

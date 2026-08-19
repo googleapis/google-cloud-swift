@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The properties of Goldengate Oracle Database Connection.
 public struct GoldengateOracleConnectionProperties: Codable, Equatable, GoogleCloudWkt._AnyPackable,

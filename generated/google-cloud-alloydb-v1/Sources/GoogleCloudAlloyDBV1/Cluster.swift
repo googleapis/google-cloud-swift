@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A cluster is a collection of regional AlloyDB resources. It can include a
 /// primary instance and one or more read pool instances.

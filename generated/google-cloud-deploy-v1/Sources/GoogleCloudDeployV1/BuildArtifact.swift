@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Description of an a image to use during Skaffold rendering.
 public struct BuildArtifact: Codable, Equatable, GoogleCloudWkt._AnyPackable,

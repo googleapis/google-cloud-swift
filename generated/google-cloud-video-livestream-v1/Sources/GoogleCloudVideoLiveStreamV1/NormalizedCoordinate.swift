@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// 2D normalized coordinates.
 public struct NormalizedCoordinate: Codable, Equatable, GoogleCloudWkt._AnyPackable,

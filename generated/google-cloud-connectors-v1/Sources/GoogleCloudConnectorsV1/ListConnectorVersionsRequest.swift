@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for Connectors.ListConnectorVersions.
 public struct ListConnectorVersionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

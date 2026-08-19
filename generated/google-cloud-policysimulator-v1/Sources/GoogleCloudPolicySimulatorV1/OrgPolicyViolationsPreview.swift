@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// OrgPolicyViolationsPreview is a resource providing a preview of the
 /// violations that will exist if an OrgPolicy change is made.

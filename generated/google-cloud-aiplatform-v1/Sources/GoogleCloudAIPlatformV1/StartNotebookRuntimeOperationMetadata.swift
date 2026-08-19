@@ -16,7 +16,7 @@
 
 #if NotebookService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Metadata information for
   /// [NotebookService.StartNotebookRuntime][google.cloud.aiplatform.v1.NotebookService.StartNotebookRuntime].

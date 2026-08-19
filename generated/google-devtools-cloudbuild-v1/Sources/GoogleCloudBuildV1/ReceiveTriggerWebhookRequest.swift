@@ -16,7 +16,7 @@
 
 import Foundation
 import GoogleApi
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// ReceiveTriggerWebhookRequest [Experimental] is the request object accepted by
 /// the ReceiveTriggerWebhook method.

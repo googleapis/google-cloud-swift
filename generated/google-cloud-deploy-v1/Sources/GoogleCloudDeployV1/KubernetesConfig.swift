@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// KubernetesConfig contains the Kubernetes runtime configuration.
 public struct KubernetesConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

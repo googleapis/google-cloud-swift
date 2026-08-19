@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message for `TestIamPermissions` method.
 public struct GoogleIamV1TestIamPermissionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

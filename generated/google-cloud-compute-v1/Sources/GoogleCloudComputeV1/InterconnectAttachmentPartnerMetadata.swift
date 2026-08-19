@@ -16,7 +16,7 @@
 
 #if InterconnectAttachments
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Informational metadata about Partner attachments from Partners to display
   /// to customers.  These fields are propagated from PARTNER_PROVIDER

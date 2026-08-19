@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request to update an occurrence.
 public struct UpdateOccurrenceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

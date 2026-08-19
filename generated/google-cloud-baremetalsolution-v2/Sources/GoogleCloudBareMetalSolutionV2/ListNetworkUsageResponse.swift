@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Response with Networks with IPs
 public struct ListNetworkUsageResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,

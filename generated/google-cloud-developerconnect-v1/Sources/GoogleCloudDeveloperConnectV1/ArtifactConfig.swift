@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The artifact config of the artifact that is deployed.
 public struct ArtifactConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,

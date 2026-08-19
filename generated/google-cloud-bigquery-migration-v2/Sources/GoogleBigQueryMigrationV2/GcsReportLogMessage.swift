@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A record in the aggregate CSV report for a migration workflow
 public struct GcsReportLogMessage: Codable, Equatable, GoogleCloudWkt._AnyPackable,

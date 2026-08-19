@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The metric specification that defines the target resource utilization
 /// (CPU utilization, accelerator's duty cycle, and so on) for calculating the

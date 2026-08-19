@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Home office and physical location of the principal.
 public struct AccessLocations: Codable, Equatable, GoogleCloudWkt._AnyPackable,

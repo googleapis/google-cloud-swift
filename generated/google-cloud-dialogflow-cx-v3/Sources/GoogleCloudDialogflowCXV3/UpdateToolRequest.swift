@@ -16,7 +16,7 @@
 
 #if Tools
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// The request message for
   /// [Tools.UpdateTool][google.cloud.dialogflow.cx.v3.Tools.UpdateTool].

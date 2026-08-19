@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message to get Google Workspace add-ons authorization information.
 public struct GetAuthorizationRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Replaces an identifier with a surrogate using Format Preserving Encryption
 /// (FPE) with the FFX mode of operation; however when used in the

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// Request message to create or replace a deployment.
 public struct ReplaceDeploymentRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

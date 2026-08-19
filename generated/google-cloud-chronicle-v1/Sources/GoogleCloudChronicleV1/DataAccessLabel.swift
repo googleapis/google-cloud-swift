@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// A DataAccessLabel is a label on events to define user access to data.
 public struct DataAccessLabel: Codable, Equatable, GoogleCloudWkt._AnyPackable,

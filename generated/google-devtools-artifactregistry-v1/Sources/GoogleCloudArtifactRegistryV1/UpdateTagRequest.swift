@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// The request to create or update a tag.
 public struct UpdateTagRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,

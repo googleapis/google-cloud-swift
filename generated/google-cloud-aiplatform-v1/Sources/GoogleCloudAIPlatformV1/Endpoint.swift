@@ -16,7 +16,7 @@
 
 #if EndpointService
   import Foundation
-  import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWkt
 
   /// Models are deployed into it, and afterwards Endpoint is called to obtain
   /// predictions and explanations.

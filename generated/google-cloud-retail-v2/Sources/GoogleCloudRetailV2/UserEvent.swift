@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 
 /// UserEvent captures all metadata information Retail API needs to know about
 /// how end users interact with customers' website.
