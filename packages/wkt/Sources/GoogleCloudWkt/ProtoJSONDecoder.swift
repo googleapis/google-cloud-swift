@@ -261,7 +261,14 @@ extension InternalUnkeyedDecodingContainer: UnkeyedDecodingContainer {
   }
 }
 
-/// An error indicating problems with
+/// An error indicating problems while decoding from a `ProtoJSON` message.
+///
+/// Google Cloud encodes messages using [ProtoJSON], a specialized form of JSON to represent
+/// [Protobuf] data types. This error indicates that it was impossible to decode a data type from
+/// the JSON representation.
+///
+/// [ProtoJSON]: https://protobuf.dev/programming-guides/json/
+/// [Protobuf]: https://protobuf.dev/
 public enum ProtoJSONError: Error {
   case unsupportedType(String)
 }
