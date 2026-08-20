@@ -32,36 +32,27 @@ jobs:
         uses: ./.github/actions/install-swift
       - name: Build Documentation
         run: |
-          mkdir -p .render
           args=(
-            --allow-writing-to-directory .render
             --transform-for-static-hosting
             --disable-indexing
           )
-          swift package generate-documentation "${args[@]}" \
-            --target UserGuide \
-            --hosting-base-path google-cloud-swift/guide \
-            --output-path ./.render/guide
-          swift package generate-documentation "${args[@]}" \
-            --target GoogleCloudWkt \
-            --hosting-base-path google-cloud-swift/wkt \
-            --output-path ./.render/wkt
-          swift package generate-documentation "${args[@]}" \
-            --target GoogleCloudGax \
-            --hosting-base-path google-cloud-swift/gax \
-            --output-path ./.render/gax
-          swift package generate-documentation "${args[@]}" \
-            --target GoogleCloudAuth \
-            --hosting-base-path google-cloud-swift/auth \
-            --output-path ./.render/auth
-          swift package generate-documentation "${args[@]}" \
-            --target GoogleCloudStorage \
-            --hosting-base-path google-cloud-swift/storage \
-            --output-path ./.render/storage
-          swift package generate-documentation "${args[@]}" \
-            --target GoogleCloudSecretManagerV1 \
-            --hosting-base-path google-cloud-swift/google-cloud-secretmanager-v1 \
-            --output-path ./.render/google-cloud-secretmanager-v1
+          targets=(
+            [UserGuide]=guide
+            [GoogleCloudWkt]=wkt
+            [GoogleCloudGax]=gax
+            [GoogleCloudAuth]=auth
+            [GoogleCloudStorage]=storage
+            [GoogleCloudSecretManagerV1]=google-cloud-secretmanager-v1
+          )
+          for target in "${!targets[@]}"; do
+            dir="${target[$key]}"
+            mkdir -p .render/${dir}
+            swift package generate-documentation "${args[@]}" \
+              --allow-writing-to-directory .render/${dir} \
+              --target ${key} \
+              --hosting-base-path google-cloud-swift/${dir} \
+              --output-path .render/${dir}
+          done
           # Replace the top-level index file with a redirect, as we only host
           # one target. Otherwise users have to find the hidden directory.
           cat >.render/index.html <<_EOF_
