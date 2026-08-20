@@ -32,6 +32,7 @@ jobs:
         uses: ./.github/actions/install-swift
       - name: Build Documentation
         run: |
+          set -ev
           args=(
             --transform-for-static-hosting
             --disable-indexing
