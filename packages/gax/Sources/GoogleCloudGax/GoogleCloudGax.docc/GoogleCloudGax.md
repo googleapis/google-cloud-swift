@@ -56,7 +56,7 @@ Likewise, there are two orhogonal controls for the polling loop:
 - Types conforming to the ``PollingErrorPolicy`` protocol control what polling
   errors are retryable (as opposed to stopping the loop).
   ``BasePollingErrorPolicy`` is a good default that works for most APIs.
-  Remember to limit the number of attemtps or the maximum time spent in the
+  Remember to limit the number of attempts or the maximum time spent in the
   polling loop using ``PollingErrorPolicy/withAttemptLimit(_:)`` and/or
   ``PollingErrorPolicy/withTimeLimit(_:)``.
 - Types conforming to the ``BackoffPolicy`` protocol (the same protocol used for
