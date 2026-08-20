@@ -84,8 +84,10 @@ import Testing
           $0.parent = bucketResource
           $0.prefix = uniquePrefix
         }
-        let finalListing = try await controlClient.listObjects(request: verifyRequest, options: .init())
-        #expect(finalListing.objects.isEmpty, "Expected prefix to be empty after deleting all objects")
+        let finalListing = try await controlClient.listObjects(
+          request: verifyRequest, options: .init())
+        #expect(
+          finalListing.objects.isEmpty, "Expected prefix to be empty after deleting all objects")
       } catch {
         // Cleanup remaining objects on failure
         for file in [file1, file2] {
@@ -151,7 +153,8 @@ import Testing
           $0.prefix = "\(uniquePrefix)/"
           $0.delimiter = "/"
         }
-        let delimiterPage = try await controlClient.listObjects(request: delimiterRequest, options: .init())
+        let delimiterPage = try await controlClient.listObjects(
+          request: delimiterRequest, options: .init())
         #expect(delimiterPage.prefixes.contains("\(uniquePrefix)/sub/"))
       } catch {
         for file in [file1, file2, file3] {
@@ -367,7 +370,8 @@ import Testing
           "storage.objects.get",
         ]
       }
-      let permResponse = try await controlClient.testIamPermissions(request: testPermsReq, options: .init())
+      let permResponse = try await controlClient.testIamPermissions(
+        request: testPermsReq, options: .init())
       #expect(permResponse.permissions.contains("storage.buckets.get"))
       #expect(permResponse.permissions.contains("storage.objects.list"))
     }
@@ -393,7 +397,8 @@ import Testing
         $0.managedFolderId = folderId
         $0.managedFolder = ManagedFolder()
       }
-      let created = try await controlClient.createManagedFolder(request: createReq, options: .init())
+      let created = try await controlClient.createManagedFolder(
+        request: createReq, options: .init())
       #expect(created.name.contains(folderId))
 
       do {
@@ -409,9 +414,11 @@ import Testing
         let listReq = ListManagedFoldersRequest().with {
           $0.parent = bucketResource
         }
-        let listResponse = try await controlClient.listManagedFolders(request: listReq, options: .init())
+        let listResponse = try await controlClient.listManagedFolders(
+          request: listReq, options: .init())
         let foundFolder = listResponse.managedFolders.contains { $0.name.contains(folderId) }
-        #expect(foundFolder, "Expected listManagedFolders to contain newly created folder \(folderId)")
+        #expect(
+          foundFolder, "Expected listManagedFolders to contain newly created folder \(folderId)")
 
         // Delete Managed Folder
         let deleteReq = DeleteManagedFolderRequest().with {
