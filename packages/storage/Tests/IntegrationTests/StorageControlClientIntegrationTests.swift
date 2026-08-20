@@ -204,8 +204,8 @@ import Testing
         let fetched = try await controlClient.getObject(request: getReq, options: .init())
         #expect(fetched.name == originalName)
         #expect(fetched.size == Int64(data.count))
-        #expect(fetched.generation > 0)
-        #expect(fetched.metageneration >= 1)
+        #expect(fetched.generation == uploaded.generation)
+        #expect(fetched.metageneration == uploaded.metageneration)
 
         // Patch object metadata via gRPC UpdateObject
         let updateReq = UpdateObjectRequest().with {
