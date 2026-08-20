@@ -16,7 +16,9 @@
 
 # Performs a repository subtree split using `git subtree split` for specified
 # package paths (e.g., packages/auth, generated/google-rpc) while preserving
-# commit history and placing the subtree contents at the root of the split history.
+# full commit history, placing the subtree contents at the root, and ensuring
+# essential root files (LICENSE, CODE_OF_CONDUCT.md, CONTRIBUTING.md) are
+# preserved on every commit across the split history.
 
 set -euo pipefail
 
@@ -26,6 +28,9 @@ else
     SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
     REPO_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
 fi
+
+# Default root files to preserve on every commit in each split repository
+DEFAULT_ROOT_FILES=("LICENSE" "CODE_OF_CONDUCT.md" "CONTRIBUTING.md")
 
 # Colors for terminal output
 if [[ -t 1 ]]; then
@@ -73,6 +78,11 @@ ${COLOR_BOLD}DESCRIPTION${COLOR_RESET}
     commit histories using 'git subtree split', placing the subtree contents at the root.
     Preserves commit history, author info, dates, and messages.
 
+    By default, it preserves the monorepo root files on ${COLOR_BOLD}every commit${COLOR_RESET} in the split history:
+      - LICENSE
+      - CODE_OF_CONDUCT.md
+      - CONTRIBUTING.md
+
 ${COLOR_BOLD}TARGET SELECTION${COLOR_RESET}
     [PATH_OR_PACKAGE...]        Positional paths or package names to split.
     -p, --prefix <path>         Subdirectory path in repository (e.g. 'packages/auth', 'generated/google-rpc').
@@ -81,6 +91,12 @@ ${COLOR_BOLD}TARGET SELECTION${COLOR_RESET}
                                 Can be specified multiple times.
     --all                       Split all packages found in 'packages/'.
     --all-generated             Split all generated packages found in 'generated/'.
+
+${COLOR_BOLD}ROOT FILES OPTIONS${COLOR_RESET}
+    --include-root-file <file>  Additional monorepo root file to preserve on every commit in the split repository.
+                                Can be specified multiple times.
+    --no-root-files             Do not include root files (perform pure subtree split only).
+    --root-files <file1,file2>  Override list of root files to preserve (comma-separated).
 
 ${COLOR_BOLD}GIT SPLIT OPTIONS${COLOR_RESET}
     -o, --origin <commit-ish>   Source commit or branch in the monorepo to split from (default: HEAD).
@@ -103,19 +119,19 @@ ${COLOR_BOLD}OUTPUT OPTIONS${COLOR_RESET}
     -h, --help                  Show this help message.
 
 ${COLOR_BOLD}EXAMPLES${COLOR_RESET}
-    # 1. Split 'packages/auth' and output the commit SHA:
+    # 1. Split 'packages/auth' with root LICENSE/CODE_OF_CONDUCT/CONTRIBUTING on every commit:
     ${0##*/} packages/auth
 
     # 2. Split a generated package 'generated/google-rpc':
     ${0##*/} generated/google-rpc
 
-    # 3. Split by package name shorthand:
+    # 3. Split by package shorthand and update branch:
     ${0##*/} --package google-rpc -b split/google-rpc
 
     # 4. Split multiple packages at once:
     ${0##*/} packages/auth generated/google-rpc
 
-    # 5. Split and push a generated package to GitHub:
+    # 5. Split and push to a remote repo:
     ${0##*/} generated/google-rpc --remote git@github.com:googleapis/google-cloud-swift-google-rpc.git --remote-branch main
 
     # 6. Split from a release tag and create a tag on the remote split repo:
@@ -149,6 +165,87 @@ resolve_package_path() {
     return 1
 }
 
+# Rewrites every commit in the split history to include specified root files (e.g. LICENSE, CONTRIBUTING.md, CODE_OF_CONDUCT.md)
+rewrite_history_with_root_files() {
+    local raw_sha="$1"
+    local origin_ref="$2"
+    shift 2
+    local files_to_include=("$@")
+
+    if [[ ${#files_to_include[@]} -eq 0 ]]; then
+        echo "${raw_sha}"
+        return 0
+    fi
+
+    # Extract tree entries for the requested root files from origin_ref
+    local root_entries=()
+    for f in "${files_to_include[@]}"; do
+        local entry
+        entry="$(git ls-tree "${origin_ref}" -- "${f}" 2>/dev/null || true)"
+        if [[ -n "${entry}" ]]; then
+            root_entries+=("${entry}")
+        fi
+    done
+
+    if [[ ${#root_entries[@]} -eq 0 ]]; then
+        echo "${raw_sha}"
+        return 0
+    fi
+
+    # Retrieve all commits in topological order (oldest to newest)
+    local commits
+    commits="$(git rev-list --reverse --topo-order "${raw_sha}")"
+
+    # Temporary directory for commit mapping (portable across Bash 3.x / 4.x / 5.x)
+    local map_dir
+    map_dir="$(mktemp -d "${TMPDIR:-/tmp}/split-map-XXXXXX")"
+    trap 'rm -rf "${map_dir}"' RETURN
+
+    local last_new_c=""
+    for c in ${commits}; do
+        local current_entries
+        current_entries="$(git ls-tree "${c}")"
+
+        # Remove any pre-existing entry for the root files from current commit tree
+        for f in "${files_to_include[@]}"; do
+            current_entries="$(echo "${current_entries}" | grep -v "[[:space:]]${f}$" || true)"
+        done
+
+        local combined_input
+        combined_input="$(printf "%s\n" "${current_entries}" "${root_entries[@]}" | sed '/^$/d')"
+
+        local new_tree
+        new_tree="$(echo "${combined_input}" | git mktree)"
+
+        # Map parent commits to their newly rewritten commit SHAs
+        local parent_args=()
+        local p
+        for p in $(git log --pretty=%P -n 1 "${c}"); do
+            local mapped_p="${p}"
+            if [[ -f "${map_dir}/${p}" ]]; then
+                mapped_p="$(<"${map_dir}/${p}")"
+            fi
+            parent_args+=("-p" "${mapped_p}")
+        done
+
+        export GIT_AUTHOR_NAME="$(git log -n 1 --pretty=format:%an "${c}")"
+        export GIT_AUTHOR_EMAIL="$(git log -n 1 --pretty=format:%ae "${c}")"
+        export GIT_AUTHOR_DATE="$(git log -n 1 --pretty=format:%ad "${c}")"
+        export GIT_COMMITTER_NAME="$(git log -n 1 --pretty=format:%cn "${c}")"
+        export GIT_COMMITTER_EMAIL="$(git log -n 1 --pretty=format:%ce "${c}")"
+        export GIT_COMMITTER_DATE="$(git log -n 1 --pretty=format:%cd "${c}")"
+        local commit_msg
+        commit_msg="$(git log -n 1 --pretty=format:%B "${c}")"
+
+        local new_c
+        new_c="$(echo "${commit_msg}" | git -c commit.gpgsign=false commit-tree "${new_tree}" "${parent_args[@]}")"
+        echo "${new_c}" > "${map_dir}/${c}"
+        last_new_c="${new_c}"
+    done
+
+    echo "${last_new_c}"
+}
+
 # Perform the subtree split for a single prefix path
 split_single_prefix() {
     local prefix="$1"
@@ -161,6 +258,8 @@ split_single_prefix() {
     local force="$8"
     local dry_run="$9"
     local sha_only="${10}"
+    shift 10
+    local root_files=("$@")
 
     # Normalize prefix (strip leading/trailing slashes)
     prefix="${prefix#/}"
@@ -188,6 +287,12 @@ split_single_prefix() {
         return 1
     fi
 
+    # Rewrite every commit in history to preserve monorepo root files if enabled
+    if [[ ${#root_files[@]} -gt 0 ]]; then
+        local raw_sha="${split_sha}"
+        split_sha="$(rewrite_history_with_root_files "${raw_sha}" "${origin}" "${root_files[@]}")"
+    fi
+
     if [[ "${sha_only}" == "true" ]]; then
         echo "${split_sha}"
         return 0
@@ -197,7 +302,7 @@ split_single_prefix() {
 
     local commit_count
     commit_count="$(git rev-list --count "${split_sha}")"
-    log_info "Split history contains ${COLOR_BOLD}${commit_count}${COLOR_RESET} commit(s)."
+    log_info "Split history contains ${COLOR_BOLD}${commit_count}${COLOR_RESET} commit(s) (with root files preserved on each commit)."
 
     # Update local branch if requested
     if [[ -n "${branch}" ]]; then
@@ -277,6 +382,8 @@ main() {
     local sha_only="false"
     local all_packages="false"
     local all_generated="false"
+    local root_files=("${DEFAULT_ROOT_FILES[@]}")
+    local custom_root_files="false"
     VERBOSE="false"
 
     while [[ $# -gt 0 ]]; do
@@ -315,6 +422,20 @@ main() {
                 ;;
             --push-tag)
                 push_tag="true"
+                shift
+                ;;
+            --include-root-file)
+                root_files+=("$2")
+                shift 2
+                ;;
+            --root-files)
+                IFS=',' read -r -a root_files <<< "$2"
+                custom_root_files="true"
+                shift 2
+                ;;
+            --no-root-files)
+                root_files=()
+                custom_root_files="true"
                 shift
                 ;;
             -f|--force)
@@ -410,7 +531,7 @@ main() {
             single_remote="${remote_base%/}/google-cloud-swift-${pkg_base}.git"
         fi
 
-        split_single_prefix "${single_target}" "${origin}" "${branch}" "${tag}" "${single_remote}" "${remote_branch}" "${push_tag}" "${force}" "${dry_run}" "${sha_only}"
+        split_single_prefix "${single_target}" "${origin}" "${branch}" "${tag}" "${single_remote}" "${remote_branch}" "${push_tag}" "${force}" "${dry_run}" "${sha_only}" "${root_files[@]}"
         exit $?
     fi
 
@@ -436,7 +557,7 @@ main() {
 
         echo "::group:: --- Splitting ${pkg_path} ---"
         local split_sha
-        if split_sha="$(split_single_prefix "${pkg_path}" "${origin}" "${pkg_branch}" "${tag}" "${pkg_remote}" "${remote_branch}" "${push_tag}" "${force}" "${dry_run}" "true")"; then
+        if split_sha="$(split_single_prefix "${pkg_path}" "${origin}" "${pkg_branch}" "${tag}" "${pkg_remote}" "${remote_branch}" "${push_tag}" "${force}" "${dry_run}" "true" "${root_files[@]}")"; then
             echo "::endgroup::"
             log_success "✓ ${pkg_path} -> ${split_sha}"
             summary_results+=("${pkg_path}|${split_sha}")
