@@ -45,11 +45,11 @@ jobs:
             [GoogleCloudSecretManagerV1]=google-cloud-secretmanager-v1
           )
           for target in "${!targets[@]}"; do
-            dir="${target[$key]}"
+            dir="${target[${target}]}"
             mkdir -p .render/${dir}
             swift package generate-documentation "${args[@]}" \
               --allow-writing-to-directory .render/${dir} \
-              --target ${key} \
+              --target ${target} \
               --hosting-base-path google-cloud-swift/${dir} \
               --output-path .render/${dir}
           done
