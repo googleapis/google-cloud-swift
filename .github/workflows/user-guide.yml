@@ -36,7 +36,7 @@ jobs:
             --transform-for-static-hosting
             --disable-indexing
           )
-          targets=(
+          declare -A targets=(
             [UserGuide]=guide
             [GoogleCloudWkt]=wkt
             [GoogleCloudGax]=gax
@@ -44,6 +44,7 @@ jobs:
             [GoogleCloudStorage]=storage
             [GoogleCloudSecretManagerV1]=google-cloud-secretmanager-v1
           )
+          echo DEBBUG DEBUG "${!targets[@]}"
           for target in "${!targets[@]}"; do
             dir="${target[${target}]}"
             mkdir -p .render/${dir}
