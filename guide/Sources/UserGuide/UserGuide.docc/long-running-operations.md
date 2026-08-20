@@ -19,7 +19,7 @@ service periodically until the operation completes.
 
 The Google Cloud client libraries for Swift simplify interacting with LROs by
 providing helper methods that handle polling and exponential backoff
-automatically.
+automatically. This guide will show you how to use these helpers.
 
 ## Prerequisites
 
@@ -42,9 +42,11 @@ operation completes, returning the created `Workflow` object.
    @Snippet(path: "LongRunningOperations", slice: "function")
 3. Initialize the client using the default options:
    @Snippet(path: "LongRunningOperations", slice: "client")
-4. Start the long-running operation to create the workflow:
+4. Start the long-running operation to create the workflow. Note the return type
+   is an operation:
    @Snippet(path: "LongRunningOperations", slice: "call")
-5. Wait for the operation to complete:
+5. Wait for the operation to complete. Note the return type is the created
+   workflow:
    @Snippet(path: "LongRunningOperations", slice: "wait")
 
 ## Next steps
@@ -53,5 +55,5 @@ operation completes, returning the created `Workflow` object.
   describes how to configure custom credentials such as API keys.
 * [Override the default endpoint](override-endpoint.md) describes how to change
   the default endpoint used by the Swift client libraries.
-<!-- TODO(https://github.com/googleapis/google-cloud-swift/issues/144) - lint the retry policy override guide -->
-<!-- TODO(https://github.com/googleapis/google-cloud-swift/issues/145) - lint the polling policy override guide -->
+<!-- TODO(https://github.com/googleapis/google-cloud-swift/issues/144) - link the retry policy override guide -->
+<!-- TODO(https://github.com/googleapis/google-cloud-swift/issues/145) - link the polling policy override guide -->
