@@ -46,5 +46,5 @@ In most Google Cloud environments a default initialized `Credentials` can find
 the right authentication method for that environment.
 
 Some applications may wish to initialize the credentials from data obtained
-programmatically. In that case, use ``CredentialsConfig`` to initialize the
-`Credentials` object.
+programmatically. In that case, use ``CredentialsConfiguration`` to initialize
+the `Credentials` object.
