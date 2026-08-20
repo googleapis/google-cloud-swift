@@ -62,8 +62,15 @@ jobs:
           <!DOCTYPE html>
           <html>
           <head>
-              <meta http-equiv="refresh" content="0; url=./UserGuide/documentation/userguide">
+              <meta http-equiv="refresh" content="10; url=./UserGuide/documentation/userguide">
           </head>
+          <body>
+          _EOF_
+          for target in "${!targets[@]}"; do
+            printf '  <li><a href=\"%s/documentation/%s\">%s</a></li>\n' "${target}" "${target,,}" "${target}" >>.render/index.html
+          done
+          cat >>.render/index.html <<_EOF_
+          </body>
           </html>
           _EOF_
       - name: Upload user guide
