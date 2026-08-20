@@ -14,9 +14,9 @@
 
 import Foundation
 import Testing
-@testable import GoogleCloudGax
 import GoogleCloudWkt
 import GoogleRpc
+@testable import GoogleCloudGax
 
 @Suite struct StatusDetailTests {
   @Test func badRequest() throws {
@@ -138,17 +138,7 @@ import GoogleRpc
   }
 
   @Test func other() throws {
-    struct BadRetryInfo: Codable, GoogleCloudWkt._AnyPackable {
-      static var _anyTypeUrl: String { return "type.googleapis.com/google.rpc.BadRetryInfo" }
-      var retryDelay: String = "invalid"
-      func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
-      }
-      init() {}
-      init(fromAny any: GoogleCloudWkt.`Any`) throws { fatalError() }
-    }
-
-    let input = BadRetryInfo()
+    let input = GoogleCloudWkt.Api()  // A valid message, but unexpected in status details.
     let asAny = try GoogleCloudWkt.`Any`(fromMessage: input)
     let detail = StatusDetail(from: asAny)
     guard case let .other(got) = detail else {
