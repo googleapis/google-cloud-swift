@@ -45,8 +45,8 @@ the type that contains the field, maybe indirectly through some intermediate
 data type. To avoid defining structs of infinite size, such fields are wrapped
 in the ``Recursive`` wrapper.
 
-## API instrospection
+## API introspection
 
 Rarely some APIs consume API definitions as part of their requests or responses.
-We don't provide a full list here as the types are so rarely used. If currious,
-the root type to look for is ``Api``.
+We don't provide a full list here as the types are so rarely used. If this is
+of interest a good place to start is the ``Api`` type.
