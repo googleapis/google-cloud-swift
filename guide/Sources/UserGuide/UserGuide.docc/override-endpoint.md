@@ -48,5 +48,7 @@ services that support them.
 
 * [Override the default credentials](override-credentials.md) describes how to
   change the default credentials used by the Swift client libraries.
+* [Long-running operations](long-running-operations.md) describes how to make
+  API requests that use long-running operations.
 <!-- TODO(https://github.com/googleapis/google-cloud-swift/issues/144) - lint the retry policy override guide -->
 <!-- TODO(https://github.com/googleapis/google-cloud-swift/issues/145) - lint the polling policy override guide -->

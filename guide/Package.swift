@@ -29,6 +29,7 @@ let package = Package(
     .package(path: "../packages/auth"),
     .package(path: "../generated/google-cloud-secretmanager-v1"),
     .package(path: "../generated/google-cloud-language-v2"),
+    .package(path: "../generated/google-cloud-workflows-v1"),
     .package(url: "https://github.com/apple/swift-log", from: "1.12.0"),
   ],
   targets: [
@@ -39,6 +40,7 @@ let package = Package(
         .product(name: "GoogleCloudGax", package: "gax"),
         .product(name: "GoogleCloudSecretManagerV1", package: "google-cloud-secretmanager-v1"),
         .product(name: "GoogleCloudLanguageV2", package: "google-cloud-language-v2"),
+        .product(name: "GoogleCloudWorkflowsV1", package: "google-cloud-workflows-v1"),
         .product(name: "Logging", package: "swift-log"),
       ]
     )
