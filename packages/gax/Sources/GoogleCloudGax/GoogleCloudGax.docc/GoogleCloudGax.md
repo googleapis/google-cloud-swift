@@ -51,7 +51,7 @@ There are three orthogonal controls for the retry loop:
 
 ## Polling loop control
 
-Likewise, there are two orhogonal controls for the polling loop:
+Likewise, there are two orthogonal controls for the polling loop:
 
 - Types conforming to the ``PollingErrorPolicy`` protocol control what polling
   errors are retryable (as opposed to stopping the loop).
