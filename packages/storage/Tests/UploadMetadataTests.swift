@@ -15,7 +15,7 @@
 import Foundation
 import GoogleCloudAuth
 @_spi(GoogleCloudInternal) import GoogleCloudGax
-import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWkt
 @_spi(GoogleCloudInternal) @testable import GoogleCloudStorage
 import Testing
 
