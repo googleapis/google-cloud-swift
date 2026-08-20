@@ -52,7 +52,7 @@ jobs:
               --allow-writing-to-directory .render/${dir} \
               generate-documentation "${args[@]}" \
               --target ${target} \
-              --hosting-base-path google-cloud-swift/${dir} \
+              --hosting-base-path google-cloud-swift/${target} \
               --output-path .render/${dir}
           done
           # Replace the top-level index file with a redirect, as we only host
@@ -61,7 +61,7 @@ jobs:
           <!DOCTYPE html>
           <html>
           <head>
-              <meta http-equiv="refresh" content="0; url=./guide/documentation/userguide">
+              <meta http-equiv="refresh" content="0; url=./UserGuide/documentation/userguide">
           </head>
           </html>
           _EOF_
