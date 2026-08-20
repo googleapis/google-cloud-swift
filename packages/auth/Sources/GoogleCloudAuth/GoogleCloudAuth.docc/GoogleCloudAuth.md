@@ -24,8 +24,10 @@ request may originate from.
 Note that the library does not perform authentication nor authorization: that
 functionality always reside in the service.
 
-The main type is ``Credentials``, this class supports several different
-authentication methods, including [API keys] and external accounts.
+The main type is ``Credentials``, this class generates a set of headers with the
+authentication tokens or api keys that authenticate the request. The class
+supports several different authentication methods, including [API keys] and
+external accounts.
 
 A default-initialized `Credentials` type uses [Application default credentials]
 (ADC). The first time you use the client libraries you may need to [Set-up ADC]
@@ -41,4 +43,8 @@ perform relatively heavy cryptographic computations to generate the credentials.
 The `Credentials` type caches such credentials while they have not expired.
 
 In most Google Cloud environments a default initialized `Credentials` can find
-the right authentication method for that environment. Typically
+the right authentication method for that environment.
+
+Some applications may wish to initialize the credentials from data obtained
+programmatically. In that case, use ``CredentialsConfig`` to initialize the
+`Credentials` object.
