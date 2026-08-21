@@ -37,7 +37,7 @@ export GOOGLE_CLOUD_SWIFT_TEST_BUCKET=${GOOGLE_CLOUD_PROJECT}-test-bucket
 errors=0
 count=1
 echo "--- Running top-level integration tests ---"
-if swift test "${flags[@]}" --quiet --traits IntegrationTests; then
+if swift test "${flags[@]}" --quiet; then
     echo; echo "✓ integration tests passed"
 else
     echo; echo "✗ integration tests failed"

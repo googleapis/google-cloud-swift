@@ -24,9 +24,6 @@ let package = Package(
   products: [
     .library(name: "GoogleCloudStorage", targets: ["GoogleCloudStorage"])
   ],
-  traits: [
-    "IntegrationTests"
-  ],
   dependencies: [
     .package(path: "../auth"),
     .package(path: "../gax"),

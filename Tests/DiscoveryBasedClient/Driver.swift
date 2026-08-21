@@ -17,18 +17,15 @@ import Testing
 import GoogleCloudGax
 import GoogleCloudTestHelpers
 
-// All the code is compiled by default. The driver to run the code is only enabled when the
-// `IntegrationTests` package trait is enabled.
+// All the code is compiled by default.
+//
+// The functions are only invoked if the `GOOGLE_CLOUD_PROJECT` environment variable is set.
 @Suite struct DiscoveryBasedClient {
-  @Test func images() async throws {
-    #if IntegrationTests
-      try await runLoggedTest(#function, { try await Images.run($0) })
-    #endif
+  @Test(.enabled(if: (try? projectId()) != nil)) func images() async throws {
+    try await runLoggedTest(#function, { try await Images.run($0) })
   }
 
-  @Test func instances() async throws {
-    #if IntegrationTests
-      try await runLoggedTest(#function, { try await Instances.run($0) })
-    #endif
+  @Test(.enabled(if: (try? projectId()) != nil)) func instances() async throws {
+    try await runLoggedTest(#function, { try await Instances.run($0) })
   }
 }

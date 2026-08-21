@@ -45,18 +45,10 @@ let package = Package(
   platforms: [
     .macOS(.v15)
   ],
-  traits: [
-    "IntegrationTests"
-  ],
   dependencies: [
     // Reference local packages via paths
     .package(path: "./packages/auth"),
-    .package(
-      path: "./packages/gax",
-      traits: [
-        .trait(name: "IntegrationTests", condition: .when(traits: ["IntegrationTests"]))
-      ],
-    ),
+    .package(path: "./packages/gax"),
     .package(path: "./packages/test-helpers"),
     .package(path: "./packages/wkt"),
     .package(path: "./packages/storage"),

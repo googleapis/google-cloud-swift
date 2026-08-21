@@ -26,5 +26,5 @@ This document outlines critical rules, coding standards, and workflow practices 
 - **Global Validation**: To perform full validation on all packages (formatting, linting, test coverage), examine the workflow scripts in the `ci/` directory (`ci/lint.sh`, `ci/test.sh`).
 - **Integration Tests**: Integration tests require explicit Google Cloud credentials and are restricted behind traits. Use:
   ```bash
-  env GOOGLE_CLOUD_PROJECT="<your-project>" swift test --traits IntegrationTests
+  env GOOGLE_CLOUD_PROJECT="<your-project>" swift test
   ```

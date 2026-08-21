@@ -212,12 +212,12 @@ P_ID="$(gcloud config get project)"
 env GOOGLE_CLOUD_PROJECT=${P_ID} \
   GOOGLE_CLOUD_SWIFT_TEST_BUCKET="${P_ID}-bucket" \
   GOOGLE_CLOUD_SWIFT_TEST_SERVICE_ACCOUNT=swift-sdk-test@${P_ID}.iam.gserviceaccount.com \
-  swift test --traits IntegrationTests
+  swift test
 
 env GOOGLE_CLOUD_PROJECT=${P_ID} \
   GOOGLE_CLOUD_SWIFT_TEST_BUCKET="${P_ID}-bucket" \
   GOOGLE_CLOUD_SWIFT_TEST_SERVICE_ACCOUNT=swift-sdk-test@${P_ID}.iam.gserviceaccount.com \
-  swift test --traits IntegrationTests --package-path packages/storage
+  swift test --package-path packages/storage
 ```
 
 ## Preview Documentation

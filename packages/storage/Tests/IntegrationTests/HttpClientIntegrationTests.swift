@@ -18,33 +18,30 @@ import GoogleCloudAuth
 @_spi(GoogleCloudInternal) @testable import GoogleCloudStorage
 import Testing
 
-#if IntegrationTests
-
-  @Suite struct HTTPClientIntegrationTests {
-    @Test func concurrentRequests() async {
-      func runOnce() async {
-        do {
-          let options = ClientOptions().with {
-            $0.credentials = try? Credentials(configuration: .anonymous)
-          }
-          let client = try _HTTPClient(from: options, withDefaultEndpoint: "https://www.google.com")
-          let request = try await client.newRequest(percentEncodedPath: "", query: [])
-          let response = try await request.execute()
-          #expect(response.status.code == 200)
-        } catch {
-          Issue.record("Request failed: \(error)")
+@Suite(.enabled(if: ProcessInfo.processInfo.environment["GOOGLE_CLOUD_PROJECT"] != nil))
+struct HTTPClientIntegrationTests {
+  @Test func concurrentRequests() async {
+    func runOnce() async {
+      do {
+        let options = ClientOptions().with {
+          $0.credentials = try? Credentials(configuration: .anonymous)
         }
+        let client = try _HTTPClient(from: options, withDefaultEndpoint: "https://www.google.com")
+        let request = try await client.newRequest(percentEncodedPath: "", query: [])
+        let response = try await request.execute()
+        #expect(response.status.code == 200)
+      } catch {
+        Issue.record("Request failed: \(error)")
       }
-
-      let iterations = 100
-      print("Starting concurrent requests stress tests for (\(iterations) iterations)...")
-      for _ in 1...iterations {
-        await runOnce()
-        // Give it a tiny sleep to allow concurrent scheduling
-        try? await Task.sleep(for: .milliseconds(10))
-      }
-      print("Finished \(iterations) iterations without crashing.")
     }
-  }
 
-#endif
+    let iterations = 100
+    print("Starting concurrent requests stress tests for (\(iterations) iterations)...")
+    for _ in 1...iterations {
+      await runOnce()
+      // Give it a tiny sleep to allow concurrent scheduling
+      try? await Task.sleep(for: .milliseconds(10))
+    }
+    print("Finished \(iterations) iterations without crashing.")
+  }
+}

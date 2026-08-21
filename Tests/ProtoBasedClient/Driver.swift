@@ -18,23 +18,22 @@ import Testing
 import GoogleCloudGax
 import GoogleCloudTestHelpers
 
-// All the code is compiled by default. The driver to run the code is only enabled when the
-// `IntegrationTests` package trait is enabled.
-#if IntegrationTests
-  @Suite struct ProtoBasedClient {
-    @Test func globalEndpoint() async throws {
-      await cleanupStaleSecrets()
-      try await runLoggedTest(#function, { try await GlobalEndpoint.run($0) })
-    }
-
-    @Test func logging() async throws {
-      await cleanupStaleSecrets()
-      try await runLoggedTest(#function, { try await Logging.run($0) })
-    }
-
-    @Test func longRunningOperations() async throws {
-      await cleanUpStaleWorkflows()
-      try await runLoggedTest(#function, { try await LongrunningOperations.run($0) })
-    }
+// All the code is compiled by default.
+//
+// The functions are only invoked if the `GOOGLE_CLOUD_PROJECT` environment variable is set.
+@Suite(.enabled(if: (try? projectId()) != nil)) struct ProtoBasedClient {
+  @Test func globalEndpoint() async throws {
+    await cleanupStaleSecrets()
+    try await runLoggedTest(#function, { try await GlobalEndpoint.run($0) })
   }
-#endif
+
+  @Test func logging() async throws {
+    await cleanupStaleSecrets()
+    try await runLoggedTest(#function, { try await Logging.run($0) })
+  }
+
+  @Test func longRunningOperations() async throws {
+    await cleanUpStaleWorkflows()
+    try await runLoggedTest(#function, { try await LongrunningOperations.run($0) })
+  }
+}
