@@ -13,10 +13,10 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudGax
 import GoogleRpc
 import Synchronization
 import Testing
+@_spi(GoogleCloudInternal) import GoogleCloudGax
 
 @Suite struct RetryLoopTest {
   func permanent() -> RequestError {

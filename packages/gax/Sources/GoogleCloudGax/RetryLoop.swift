@@ -22,7 +22,7 @@ import Foundation
 ///
 /// In between calls the function waits the amount of time prescribed by the backoff policy, using
 /// `sleep` to implement any sleep.
-public struct _RetryLoop: Sendable {
+@_spi(GoogleCloudInternal) public struct _RetryLoop: Sendable {
   let retryPolicy: any RetryPolicy
   let backoffPolicy: any BackoffPolicy
   let retryThrottler: any RetryThrottler
