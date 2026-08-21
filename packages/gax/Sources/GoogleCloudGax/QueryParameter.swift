@@ -46,17 +46,6 @@ import Foundation
   }
 }
 
-// TODO(https://github.com/googleapis/google-cloud-swift/issues/13) - remove once the generator stops using it
-@_spi(GoogleCloudInternal) public class QueryParameterEncoder {
-  public init() {}
-
-  public func encode<T: Encodable>(_ value: T, prefix: String) throws -> [URLQueryItem] {
-    let encoder = InternalEncoder(prefix: prefix)
-    try value.encode(to: encoder)
-    return encoder.queryItems
-  }
-}
-
 private struct StringKey: CodingKey {
   var stringValue: String
   var intValue: Int? { nil }
