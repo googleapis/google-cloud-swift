@@ -21,7 +21,7 @@ import GoogleCloudTestHelpers
 // All the code is compiled by default.
 //
 // The functions are only invoked if the `GOOGLE_CLOUD_PROJECT` environment variable is set.
-@Suite(.enabled(if: (try? projectId()) != nil)) struct ProtoBasedClient {
+@Suite(.enabled(if: protoBasedClientEnabled())) struct ProtoBasedClient {
   @Test func globalEndpoint() async throws {
     await cleanupStaleSecrets()
     try await runLoggedTest(#function, { try await GlobalEndpoint.run($0) })
@@ -36,4 +36,8 @@ import GoogleCloudTestHelpers
     await cleanUpStaleWorkflows()
     try await runLoggedTest(#function, { try await LongrunningOperations.run($0) })
   }
+}
+
+func protoBasedClientEnabled() -> Bool {
+  return ((try? projectId()) != nil) && ((try? testServiceAccount()) != nil)
 }
