@@ -39,5 +39,6 @@ import GoogleCloudTestHelpers
 }
 
 func protoBasedClientEnabled() -> Bool {
+  // These functions test two separate environment variables used in the integration tests.
   return ((try? projectId()) != nil) && ((try? testServiceAccount()) != nil)
 }

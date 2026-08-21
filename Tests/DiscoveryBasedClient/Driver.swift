@@ -20,12 +20,17 @@ import GoogleCloudTestHelpers
 // All the code is compiled by default.
 //
 // The functions are only invoked if the `GOOGLE_CLOUD_PROJECT` environment variable is set.
-@Suite struct DiscoveryBasedClient {
-  @Test(.enabled(if: (try? projectId()) != nil)) func images() async throws {
+@Suite(.enabled(if: discoveryBasedClientEnabled())) struct DiscoveryBasedClient {
+  @Test func images() async throws {
     try await runLoggedTest(#function, { try await Images.run($0) })
   }
 
-  @Test(.enabled(if: (try? projectId()) != nil)) func instances() async throws {
+  @Test func instances() async throws {
     try await runLoggedTest(#function, { try await Instances.run($0) })
   }
+}
+
+func discoveryBasedClientEnabled() -> Bool {
+  // These functions test two separate environment variables used in the integration tests.
+  return ((try? projectId()) != nil) && ((try? testServiceAccount()) != nil)
 }
