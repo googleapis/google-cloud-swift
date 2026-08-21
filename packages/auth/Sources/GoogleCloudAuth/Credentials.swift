@@ -25,46 +25,6 @@ package let defaultUniverseDomain = "googleapis.com"
 /// Formatted as an array of key-value tuples to natively support duplicate header names.
 public typealias AuthHeaders = [(String, String)]
 
-/// Represents any error occurring during credentials resolution or initialization.
-public enum CredentialsError: Error, Sendable, Hashable {
-  /// Indicates that the requested operation or credential type is not supported by the current backend.
-  case notSupported(String)
-
-  /// Indicates a failure while parsing or decoding configuration data (e.g., malformed JSON key).
-  case parseError(String)
-
-  /// Application Default Credentials (ADC) could not resolve a valid configuration.
-  ///
-  /// ## Troubleshooting
-  ///
-  /// Could not fetch an auth token to authenticate with Google Cloud. The most common reason
-  /// for this problem is that you are not running in a Google Cloud environment and you have
-  /// not configured local credentials for development and testing.
-  ///
-  /// To setup local credentials, run `gcloud auth application-default login`. More information
-  /// on how to authenticate client libraries can be found at
-  /// https://cloud.google.com/docs/authentication/client-libraries
-  case missingEnvironmentConfiguration(String)
-}
-
-extension CredentialsError: LocalizedError {
-  public var errorDescription: String? {
-    switch self {
-    case .notSupported(let detail):
-      return "Operation not supported: \(detail)"
-    case .parseError(let detail):
-      return "Configuration parse error: \(detail)"
-    case .missingEnvironmentConfiguration(let context):
-      return """
-        Could not fetch an auth token to authenticate with Google Cloud. The most common reason for this problem is that you are not running in a Google Cloud environment and you have not configured local credentials for development and testing.
-        To setup local credentials, run `gcloud auth application-default login`. More information on how to authenticate client libraries can be found at https://cloud.google.com/docs/authentication/client-libraries
-
-        Context: \(context)
-        """
-    }
-  }
-}
-
 /// Represents the access specifier for a service account based token,
 /// specifying either OAuth 2.0 scopes or a JWT audience.
 ///

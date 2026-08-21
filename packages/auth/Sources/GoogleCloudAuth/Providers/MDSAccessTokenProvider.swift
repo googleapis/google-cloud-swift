@@ -26,6 +26,8 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
   let retryConfiguration: RetryConfiguration?
   let environment: [String: String]
 
+  static let defaultEndpoint = "http://metadata.google.internal"
+
   init(
     endpoint: URL? = nil,
     quotaProjectID: String? = nil,
@@ -51,15 +53,6 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
     return true
   }
 
-  private func missingConfigurationError(targetURL: URL, underlyingError: AuthHTTPError)
-    -> CredentialsError
-  {
-    let envKeys = self.environment.keys.filter { $0.contains("GOOGLE") || $0.contains("GCE") }
-    return .missingEnvironmentConfiguration(
-      "MDS environment probe failed for target URL: \(targetURL). GCE_METADATA_HOST environment variable not found. Found environment keys: \(envKeys). Underlying error: \(underlyingError)"
-    )
-  }
-
   func fetchToken() async throws -> Token {
     let hostEnv = self.environment["GCE_METADATA_HOST"]
 
@@ -70,7 +63,7 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
       let hostString = hostEnv.hasPrefix("http") ? hostEnv : "http://\(hostEnv)"
       baseEndpoint = URL(string: hostString)!
     } else {
-      baseEndpoint = URL(string: "http://metadata.google.internal")!
+      baseEndpoint = URL(string: Self.defaultEndpoint)!
     }
 
     var urlComponents = URLComponents(url: baseEndpoint, resolvingAgainstBaseURL: false)!
@@ -110,18 +103,8 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
           operation: fetchOperation
         )
       }
-    } catch let error as AuthHTTPError {
-      if self.fromADC && hostEnv == nil {
-        if case .transportError = error {
-          throw self.missingConfigurationError(targetURL: url, underlyingError: error)
-        }
-        if case .unsuccessfulResponse(let response) = error, response.status == .notFound {
-          throw self.missingConfigurationError(targetURL: url, underlyingError: error)
-        }
-      }
-      throw error
     } catch {
-      throw error
+      throw CredentialsError.cannotFetchToken(adc: self.fromADC, env: hostEnv, source: error)
     }
   }
 }

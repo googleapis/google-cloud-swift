@@ -149,18 +149,11 @@ import Testing
     let provider = MDSCredentials(client: client, fromADC: true, environment: [:])
     let error = await #expect(throws: CredentialsError.self) { _ = try await provider.headers() }
 
-    if let error = error {
-      #expect(
-        error.localizedDescription.contains("application-default"),
-        "Localized description lacks application-default troubleshooting context: \(error.localizedDescription)"
-      )
-
-      if case let .missingEnvironmentConfiguration(payload) = error {
-        #expect(
-          payload.contains("GCE_METADATA_HOST"),
-          "Error payload lacks specific environment diagnostic info: \(payload)"
-        )
-      }
+    if case let .cannotFetchToken(adc, env, _) = error {
+      #expect(adc == true, "Error details: \(error)")
+      #expect(env == nil, "Error details: \(error)")
+    } else {
+      Issue.record("Unexpected error type: \(error)")
     }
   }
 
@@ -173,8 +166,15 @@ import Testing
     ])
     let client = AuthHTTPClient(mock: mock)
     let provider = MDSCredentials(
-      client: client, fromADC: true, environment: ["GCE_METADATA_HOST": "127.0.0.1:8080"])
-    let error = await #expect(throws: AuthHTTPError.self) { _ = try await provider.headers() }
+      client: client, fromADC: true, environment: ["GCE_METADATA_HOST": "127.0.0.1:1"])
+    let credentialsError = await #expect(throws: CredentialsError.self) {
+      _ = try await provider.headers()
+    }
+    let error = #expect(throws: AuthHTTPError.self) {
+      if case let .cannotFetchToken(_, _, source) = credentialsError {
+        throw source
+      }
+    }
     if case let .transportError(urlError) = error {
       #expect(
         urlError.code == .cannotConnectToHost, "Expected cannotConnectToHost, got \(urlError.code)")
@@ -268,9 +268,14 @@ import Testing
     let client = AuthHTTPClient(mock: mock)
     let provider = MDSCredentials(retryConfiguration: retryConfig, client: client, environment: [:])
 
-    await #expect(throws: AuthHTTPError.self) {
+    let error = await #expect(throws: CredentialsError.self) {
       _ = try await provider.headers()
     }
+    guard case let .cannotFetchToken(_, _, source) = error else {
+      Issue.record("expected a .cannotFetchToken error, got=\(error)")
+      return
+    }
+    #expect(source is AuthHTTPError, "expected AuthHTTPError as the source, got \(source)")
     let count = attempts.getCount()
     #expect(count == 1, "Expected no retries on permanent HTTP 404 error, got \(count) calls")
   }

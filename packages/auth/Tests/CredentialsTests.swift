@@ -41,6 +41,32 @@ import Testing
     )
   }
 
+  @Test func adcNotFoundError() async throws {
+    let fileManager = FileManager.default
+    let tempDirectoryURL = fileManager.temporaryDirectory
+      .appendingPathComponent(UUID().uuidString, isDirectory: true)
+    try fileManager.createDirectory(
+      at: tempDirectoryURL, withIntermediateDirectories: true, attributes: nil)
+    defer {
+      try? fileManager.removeItem(at: tempDirectoryURL)
+    }
+    // Run with an environment that will fail.
+    let credentials = try Credentials(
+      configuration: try .adc(environment: [
+        "GCE_METADATA_HOST": "https://not-valid.internal.:1",
+        "HOME": tempDirectoryURL.absoluteString,
+        "__TEST_SIMULATE_ADC": "true",
+      ]))
+
+    let error = await #expect(throws: CredentialsError.self) {
+      try await credentials.headers()
+    }
+    guard case .cannotFetchToken = error else {
+      Issue.record("unexpected error type \(error)")
+      return
+    }
+  }
+
   @Test func resolveProviderForUserCredentials() async throws {
     let mockJSON = """
       {

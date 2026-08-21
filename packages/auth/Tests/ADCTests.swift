@@ -14,10 +14,7 @@
 
 import Foundation
 import Testing
-
 @testable import GoogleCloudAuth
-
-// MARK: - Suite: ADCTest
 
 @Suite struct ADCTest {
   @Test func resolvesToMDSCredentials() async throws {
