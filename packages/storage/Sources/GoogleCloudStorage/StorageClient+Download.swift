@@ -35,6 +35,14 @@ extension StorageClient {
       ?? clientOptions.retryPolicy
     let effectiveBackoffPolicy =
       options.backoffPolicy ?? self.options.download.backoffPolicy ?? clientOptions.backoffPolicy
+    let effectiveResumePolicy: any ResumePolicy
+    if let explicitResume = options.resumePolicy ?? self.options.download.resumePolicy {
+      effectiveResumePolicy = explicitResume
+    } else if !options.autoResume || effectiveRetryPolicy is NeverRetry {
+      effectiveResumePolicy = NeverResume()
+    } else {
+      effectiveResumePolicy = StopOnConsecutiveErrors()
+    }
     let retryLoop = _RetryLoop(
       retryPolicy: effectiveRetryPolicy,
       backoffPolicy: effectiveBackoffPolicy,
@@ -47,7 +55,9 @@ extension StorageClient {
       object: object,
       options: options,
       httpClient: inner,
-      retryLoop: retryLoop
+      retryLoop: retryLoop,
+      resumePolicy: effectiveResumePolicy,
+      backoffPolicy: effectiveBackoffPolicy
     )
     return ReadObjectTask(coordinator: coordinator)
   }

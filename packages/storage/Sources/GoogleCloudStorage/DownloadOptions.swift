@@ -220,6 +220,9 @@ public struct ReadObjectOptions: Sendable {
   /// Flag to enable transparent auto-resumption on transient network failures. Defaults to `true`.
   public var autoResume: Bool = true
 
+  /// Overrides the resume policy for this download.
+  public var resumePolicy: (any ResumePolicy)? = nil
+
   /// Overrides the retry policy for this download.
   public var retryPolicy: (any RetryPolicy)? = nil
 
@@ -369,6 +372,8 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
   let options: ReadObjectOptions
   let httpClient: GoogleCloudGax._HTTPClient
   let retryLoop: _RetryLoop
+  let resumePolicy: any ResumePolicy
+  let backoffPolicy: any BackoffPolicy
 
   private let lock = NSLock()
   private var isInitialFetched: Bool = false
@@ -377,6 +382,7 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
   private var bodyIterator: _HTTPResponseBody.AsyncIterator?
   private var streamIterator: AsyncThrowingStream<NIOCore.ByteBuffer, Error>.AsyncIterator?
   private var bytesReceived: UInt64 = 0
+  private var resumeState: ResumeState
   private var isFinished: Bool = false
   private var isCancelled: Bool = false
   private var crc32cCalculator: CRC32CCalculator?
@@ -388,13 +394,18 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
     object: String,
     options: ReadObjectOptions,
     httpClient: GoogleCloudGax._HTTPClient,
-    retryLoop: _RetryLoop
+    retryLoop: _RetryLoop,
+    resumePolicy: any ResumePolicy,
+    backoffPolicy: any BackoffPolicy
   ) {
     self.bucket = bucket
     self.object = object
     self.options = options
     self.httpClient = httpClient
     self.retryLoop = retryLoop
+    self.resumePolicy = resumePolicy
+    self.backoffPolicy = backoffPolicy
+    self.resumeState = ResumeState()
     if options.checksums.crc32c != nil {
       self.crc32cCalculator = CRC32CCalculator()
     }
@@ -460,6 +471,7 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
           self.streamIterator = it
           if let chunk {
             bytesReceived += UInt64(chunk.readableBytes)
+            resumePolicy.onProgress(state: &resumeState, bytesAdvanced: UInt64(chunk.readableBytes))
             updateChecksums(with: chunk)
             return chunk
           } else {
@@ -472,6 +484,7 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
           self.bodyIterator = it
           if let chunk {
             bytesReceived += UInt64(chunk.readableBytes)
+            resumePolicy.onProgress(state: &resumeState, bytesAdvanced: UInt64(chunk.readableBytes))
             updateChecksums(with: chunk)
             return chunk
           } else {
@@ -494,7 +507,28 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
           throw error
         }
 
-        try await resumeDownload(underlyingError: error)
+        let reqError = (error as? RequestError) ?? .io(error)
+        resumeState.consecutiveErrorCount += 1
+        resumeState.totalResumeCount += 1
+        let decision = resumePolicy.onError(state: resumeState, error: reqError)
+        switch decision {
+        case .permanent(let err), .exhausted(let err):
+          isFinished = true
+          if case .http(let details) = err {
+            let message = String(data: details.payload, encoding: .utf8) ?? ""
+            throw DownloadError.unexpectedServerResponse(
+              statusCode: details.http_status_code, message: message)
+          }
+          throw DownloadError.resumeFailed(
+            bytesReceived: bytesReceived, message: err.localizedDescription)
+        case .resume:
+          let retryState = RetryState().with { $0.attemptCount = resumeState.consecutiveErrorCount }
+          let delay = backoffPolicy.backoffDelayFor(retryState)
+          if delay > .zero {
+            try await Task.sleep(for: delay)
+          }
+          try await resumeDownload(underlyingError: reqError)
+        }
       }
     }
 
@@ -598,6 +632,9 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
         do {
           resp = try await request.execute()
         } catch {
+          if let reqError = error as? RequestError {
+            throw reqError
+          }
           throw RequestError.io(error)
         }
         let statusCode = Int(resp.status.code)
@@ -657,6 +694,9 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
         do {
           response = try await request.execute()
         } catch {
+          if let reqError = error as? RequestError {
+            throw reqError
+          }
           throw RequestError.io(error)
         }
         let statusCode = Int(response.status.code)

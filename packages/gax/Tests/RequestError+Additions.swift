@@ -24,7 +24,7 @@ extension RequestError: Equatable {
       if let el = l as? RequestError, let er = r as? RequestError {
         return el == er
       }
-      return false
+      return (l as NSError) == (r as NSError)
     case (.service(let l), .service(let r)): return l == r
     case (.unimplemented, .unimplemented): return true
     case (.exhausted(let l), .exhausted(let r)): return l == r
