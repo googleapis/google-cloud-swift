@@ -23,7 +23,7 @@ options:
   logging: CLOUD_LOGGING_ONLY
   env:
     - GOOGLE_CLOUD_SWIFT_TEST_RUNNING_ON_GCB=1
-    - GOOGLE_CLOUD_PROJECT=${PROJECT_ID}
+    - PROJECT_ID=${PROJECT_ID}
     - GCB_TRIGGER_NAME=${TRIGGER_NAME}
   workerPool: 'projects/${PROJECT_ID}/locations/${_POOL_REGION}/workerPools/${_POOL_ID}'
 serviceAccount: 'projects/${PROJECT_ID}/serviceAccounts/integration-test-runner@${PROJECT_ID}.iam.gserviceaccount.com'

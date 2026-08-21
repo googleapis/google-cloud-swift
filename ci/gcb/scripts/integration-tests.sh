@@ -27,10 +27,11 @@ flags=(
     --scratch-path "/workspace/.build-cache"
     --build-path   "/workspace/.build"
 )
-if [[ -z "${GOOGLE_CLOUD_PROJECT:-}" ]]; then
-    echo "✗ missing GOOGLE_CLOUD_PROJECT environment variable"
+if [[ -z "${PROJECT_ID:-}" ]]; then
+    echo "✗ missing PROJECT_ID environment variable"
     exit 1
 fi
+export GOOGLE_CLOUD_PROJECT="${PROJECT_ID}"
 export GOOGLE_CLOUD_SWIFT_TEST_SERVICE_ACCOUNT=swift-sdk-test@${GOOGLE_CLOUD_PROJECT}.iam.gserviceaccount.com
 export GOOGLE_CLOUD_SWIFT_TEST_BUCKET=${GOOGLE_CLOUD_PROJECT}-test-bucket
 
