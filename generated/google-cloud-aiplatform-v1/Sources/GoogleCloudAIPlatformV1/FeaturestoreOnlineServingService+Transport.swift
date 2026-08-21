@@ -117,7 +117,7 @@
         var query = [
           URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
         ]
-        let encoder = GoogleCloudGax.QueryParameterEncoder()
+        let encoder = GoogleCloudGax._QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.filter, prefix: "filter"))
         query.append(contentsOf: try encoder.encode(request.pageSize, prefix: "pageSize"))
         query.append(contentsOf: try encoder.encode(request.pageToken, prefix: "pageToken"))
@@ -182,7 +182,7 @@
         var query = [
           URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
         ]
-        let encoder = GoogleCloudGax.QueryParameterEncoder()
+        let encoder = GoogleCloudGax._QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.options, prefix: "options"))
         var req = try await self.inner.newRequest(path: path, query: query)
         req.setMethod(.POST)
@@ -204,7 +204,7 @@
         var query = [
           URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
         ]
-        let encoder = GoogleCloudGax.QueryParameterEncoder()
+        let encoder = GoogleCloudGax._QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.permissions, prefix: "permissions"))
         var req = try await self.inner.newRequest(path: path, query: query)
         req.setMethod(.POST)
@@ -226,7 +226,7 @@
         var query = [
           URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
         ]
-        let encoder = GoogleCloudGax.QueryParameterEncoder()
+        let encoder = GoogleCloudGax._QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.filter, prefix: "filter"))
         query.append(contentsOf: try encoder.encode(request.pageSize, prefix: "pageSize"))
         query.append(contentsOf: try encoder.encode(request.pageToken, prefix: "pageToken"))
@@ -313,7 +313,7 @@
         var query = [
           URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
         ]
-        let encoder = GoogleCloudGax.QueryParameterEncoder()
+        let encoder = GoogleCloudGax._QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.timeout, prefix: "timeout"))
         var req = try await self.inner.newRequest(path: path, query: query)
         req.setMethod(.POST)

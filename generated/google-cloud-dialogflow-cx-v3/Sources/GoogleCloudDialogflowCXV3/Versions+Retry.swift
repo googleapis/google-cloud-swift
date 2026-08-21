@@ -23,7 +23,7 @@
   import GoogleCloudWkt
   import GoogleLongRunning
   import GoogleRpc
-  import GoogleCloudGax
+  @_spi(GoogleCloudInternal) import GoogleCloudGax
 
   extension Clients {
     final class VersionsRetry: VersionsStub {

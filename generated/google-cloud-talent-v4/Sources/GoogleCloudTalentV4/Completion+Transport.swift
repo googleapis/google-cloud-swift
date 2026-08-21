@@ -45,7 +45,7 @@ extension Clients {
       var query = [
         URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
       ]
-      let encoder = GoogleCloudGax.QueryParameterEncoder()
+      let encoder = GoogleCloudGax._QueryParameterEncoder()
       query.append(contentsOf: try encoder.encode(request.query, prefix: "query"))
       query.append(contentsOf: try encoder.encode(request.languageCodes, prefix: "languageCodes"))
       query.append(contentsOf: try encoder.encode(request.pageSize, prefix: "pageSize"))

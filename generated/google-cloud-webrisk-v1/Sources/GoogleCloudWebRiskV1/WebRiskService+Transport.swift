@@ -43,7 +43,7 @@ extension Clients {
       var query = [
         URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
       ]
-      let encoder = GoogleCloudGax.QueryParameterEncoder()
+      let encoder = GoogleCloudGax._QueryParameterEncoder()
       query.append(contentsOf: try encoder.encode(request.threatType, prefix: "threatType"))
       query.append(contentsOf: try encoder.encode(request.versionToken, prefix: "versionToken"))
       query.append(contentsOf: try encoder.encode(request.constraints, prefix: "constraints"))
@@ -64,7 +64,7 @@ extension Clients {
       var query = [
         URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
       ]
-      let encoder = GoogleCloudGax.QueryParameterEncoder()
+      let encoder = GoogleCloudGax._QueryParameterEncoder()
       query.append(contentsOf: try encoder.encode(request.uri, prefix: "uri"))
       query.append(contentsOf: try encoder.encode(request.threatTypes, prefix: "threatTypes"))
       var req = try await self.inner.newRequest(path: path, query: query)
@@ -84,7 +84,7 @@ extension Clients {
       var query = [
         URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
       ]
-      let encoder = GoogleCloudGax.QueryParameterEncoder()
+      let encoder = GoogleCloudGax._QueryParameterEncoder()
       query.append(contentsOf: try encoder.encode(request.hashPrefix, prefix: "hashPrefix"))
       query.append(contentsOf: try encoder.encode(request.threatTypes, prefix: "threatTypes"))
       var req = try await self.inner.newRequest(path: path, query: query)
@@ -151,7 +151,7 @@ extension Clients {
       var query = [
         URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
       ]
-      let encoder = GoogleCloudGax.QueryParameterEncoder()
+      let encoder = GoogleCloudGax._QueryParameterEncoder()
       query.append(contentsOf: try encoder.encode(request.filter, prefix: "filter"))
       query.append(contentsOf: try encoder.encode(request.pageSize, prefix: "pageSize"))
       query.append(contentsOf: try encoder.encode(request.pageToken, prefix: "pageToken"))

@@ -22,7 +22,7 @@ import GoogleCloudWkt
 import GoogleLongRunning
 import GoogleRpc
 import GoogleType
-import GoogleCloudGax
+@_spi(GoogleCloudInternal) import GoogleCloudGax
 
 extension Clients {
   final class DomainsRetry: DomainsStub {

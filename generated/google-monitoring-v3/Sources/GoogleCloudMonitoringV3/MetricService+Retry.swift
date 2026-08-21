@@ -20,7 +20,7 @@ import Foundation
 #endif
 import GoogleApi
 import GoogleCloudWkt
-import GoogleCloudGax
+@_spi(GoogleCloudInternal) import GoogleCloudGax
 
 extension Clients {
   final class MetricServiceRetry: MetricServiceStub {

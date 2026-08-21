@@ -42,7 +42,7 @@
         var query = [
           URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
         ]
-        let encoder = GoogleCloudGax.QueryParameterEncoder()
+        let encoder = GoogleCloudGax._QueryParameterEncoder()
         query.append(
           contentsOf: try encoder.encode(request.databaseVersion, prefix: "databaseVersion"))
         query.append(contentsOf: try encoder.encode(request.flagScope, prefix: "flagScope"))

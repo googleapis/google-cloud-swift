@@ -24,7 +24,7 @@
   import GoogleCloudWkt
   import GoogleIAMV1
   import GoogleLongRunning
-  import GoogleCloudGax
+  @_spi(GoogleCloudInternal) import GoogleCloudGax
 
   extension Clients {
     final class PredictionServiceRetry: PredictionServiceStub {

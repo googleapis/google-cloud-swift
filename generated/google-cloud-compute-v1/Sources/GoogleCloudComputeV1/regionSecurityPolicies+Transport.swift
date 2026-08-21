@@ -54,7 +54,7 @@
         var query = [
           URLQueryItem(name: "$alt", value: "json")
         ]
-        let encoder = GoogleCloudGax.QueryParameterEncoder()
+        let encoder = GoogleCloudGax._QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.validateOnly, prefix: "validateOnly"))
         var req = try await self.inner.newRequest(path: path, query: query)
         req.setMethod(.POST)
@@ -88,7 +88,7 @@
         var query = [
           URLQueryItem(name: "$alt", value: "json")
         ]
-        let encoder = GoogleCloudGax.QueryParameterEncoder()
+        let encoder = GoogleCloudGax._QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.requestId, prefix: "requestId"))
         var req = try await self.inner.newRequest(path: path, query: query)
         req.setMethod(.DELETE)
@@ -148,7 +148,7 @@
         var query = [
           URLQueryItem(name: "$alt", value: "json")
         ]
-        let encoder = GoogleCloudGax.QueryParameterEncoder()
+        let encoder = GoogleCloudGax._QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.priority, prefix: "priority"))
         var req = try await self.inner.newRequest(path: path, query: query)
         req.setMethod(.GET)
@@ -173,7 +173,7 @@
         var query = [
           URLQueryItem(name: "$alt", value: "json")
         ]
-        let encoder = GoogleCloudGax.QueryParameterEncoder()
+        let encoder = GoogleCloudGax._QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.requestId, prefix: "requestId"))
         query.append(contentsOf: try encoder.encode(request.validateOnly, prefix: "validateOnly"))
         var req = try await self.inner.newRequest(path: path, query: query)
@@ -202,7 +202,7 @@
         var query = [
           URLQueryItem(name: "$alt", value: "json")
         ]
-        let encoder = GoogleCloudGax.QueryParameterEncoder()
+        let encoder = GoogleCloudGax._QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.filter, prefix: "filter"))
         query.append(contentsOf: try encoder.encode(request.maxResults, prefix: "maxResults"))
         query.append(contentsOf: try encoder.encode(request.orderBy, prefix: "orderBy"))
@@ -239,7 +239,7 @@
         var query = [
           URLQueryItem(name: "$alt", value: "json")
         ]
-        let encoder = GoogleCloudGax.QueryParameterEncoder()
+        let encoder = GoogleCloudGax._QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.requestId, prefix: "requestId"))
         query.append(contentsOf: try encoder.encode(request.updateMask, prefix: "updateMask"))
         var req = try await self.inner.newRequest(path: path, query: query)
@@ -275,7 +275,7 @@
         var query = [
           URLQueryItem(name: "$alt", value: "json")
         ]
-        let encoder = GoogleCloudGax.QueryParameterEncoder()
+        let encoder = GoogleCloudGax._QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.priority, prefix: "priority"))
         query.append(contentsOf: try encoder.encode(request.updateMask, prefix: "updateMask"))
         query.append(contentsOf: try encoder.encode(request.validateOnly, prefix: "validateOnly"))
@@ -312,7 +312,7 @@
         var query = [
           URLQueryItem(name: "$alt", value: "json")
         ]
-        let encoder = GoogleCloudGax.QueryParameterEncoder()
+        let encoder = GoogleCloudGax._QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.priority, prefix: "priority"))
         var req = try await self.inner.newRequest(path: path, query: query)
         req.setMethod(.POST)
@@ -342,7 +342,7 @@
         var query = [
           URLQueryItem(name: "$alt", value: "json")
         ]
-        let encoder = GoogleCloudGax.QueryParameterEncoder()
+        let encoder = GoogleCloudGax._QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.requestId, prefix: "requestId"))
         var req = try await self.inner.newRequest(path: path, query: query)
         req.setMethod(.POST)

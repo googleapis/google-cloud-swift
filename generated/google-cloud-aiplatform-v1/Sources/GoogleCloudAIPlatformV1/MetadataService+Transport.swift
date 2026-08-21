@@ -49,7 +49,7 @@
         var query = [
           URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
         ]
-        let encoder = GoogleCloudGax.QueryParameterEncoder()
+        let encoder = GoogleCloudGax._QueryParameterEncoder()
         query.append(
           contentsOf: try encoder.encode(request.metadataStoreId, prefix: "metadataStoreId"))
         var req = try await self.inner.newRequest(path: path, query: query)
@@ -95,7 +95,7 @@
         var query = [
           URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
         ]
-        let encoder = GoogleCloudGax.QueryParameterEncoder()
+        let encoder = GoogleCloudGax._QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.pageSize, prefix: "pageSize"))
         query.append(contentsOf: try encoder.encode(request.pageToken, prefix: "pageToken"))
         var req = try await self.inner.newRequest(path: path, query: query)
@@ -118,7 +118,7 @@
         var query = [
           URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
         ]
-        let encoder = GoogleCloudGax.QueryParameterEncoder()
+        let encoder = GoogleCloudGax._QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.force, prefix: "force"))
         var req = try await self.inner.newRequest(path: path, query: query)
         req.setMethod(.DELETE)
@@ -140,7 +140,7 @@
         var query = [
           URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
         ]
-        let encoder = GoogleCloudGax.QueryParameterEncoder()
+        let encoder = GoogleCloudGax._QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.artifactId, prefix: "artifactId"))
         var req = try await self.inner.newRequest(path: path, query: query)
         req.setMethod(.POST)
@@ -185,7 +185,7 @@
         var query = [
           URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
         ]
-        let encoder = GoogleCloudGax.QueryParameterEncoder()
+        let encoder = GoogleCloudGax._QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.pageSize, prefix: "pageSize"))
         query.append(contentsOf: try encoder.encode(request.pageToken, prefix: "pageToken"))
         query.append(contentsOf: try encoder.encode(request.filter, prefix: "filter"))
@@ -211,7 +211,7 @@
         var query = [
           URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
         ]
-        let encoder = GoogleCloudGax.QueryParameterEncoder()
+        let encoder = GoogleCloudGax._QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.updateMask, prefix: "updateMask"))
         query.append(contentsOf: try encoder.encode(request.allowMissing, prefix: "allowMissing"))
         var req = try await self.inner.newRequest(path: path, query: query)
@@ -237,7 +237,7 @@
         var query = [
           URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
         ]
-        let encoder = GoogleCloudGax.QueryParameterEncoder()
+        let encoder = GoogleCloudGax._QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.etag, prefix: "etag"))
         var req = try await self.inner.newRequest(path: path, query: query)
         req.setMethod(.DELETE)
@@ -280,7 +280,7 @@
         var query = [
           URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
         ]
-        let encoder = GoogleCloudGax.QueryParameterEncoder()
+        let encoder = GoogleCloudGax._QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.contextId, prefix: "contextId"))
         var req = try await self.inner.newRequest(path: path, query: query)
         req.setMethod(.POST)
@@ -325,7 +325,7 @@
         var query = [
           URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
         ]
-        let encoder = GoogleCloudGax.QueryParameterEncoder()
+        let encoder = GoogleCloudGax._QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.pageSize, prefix: "pageSize"))
         query.append(contentsOf: try encoder.encode(request.pageToken, prefix: "pageToken"))
         query.append(contentsOf: try encoder.encode(request.filter, prefix: "filter"))
@@ -351,7 +351,7 @@
         var query = [
           URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
         ]
-        let encoder = GoogleCloudGax.QueryParameterEncoder()
+        let encoder = GoogleCloudGax._QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.updateMask, prefix: "updateMask"))
         query.append(contentsOf: try encoder.encode(request.allowMissing, prefix: "allowMissing"))
         var req = try await self.inner.newRequest(path: path, query: query)
@@ -377,7 +377,7 @@
         var query = [
           URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
         ]
-        let encoder = GoogleCloudGax.QueryParameterEncoder()
+        let encoder = GoogleCloudGax._QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.force, prefix: "force"))
         query.append(contentsOf: try encoder.encode(request.etag, prefix: "etag"))
         var req = try await self.inner.newRequest(path: path, query: query)
@@ -506,7 +506,7 @@
         var query = [
           URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
         ]
-        let encoder = GoogleCloudGax.QueryParameterEncoder()
+        let encoder = GoogleCloudGax._QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.executionId, prefix: "executionId"))
         var req = try await self.inner.newRequest(path: path, query: query)
         req.setMethod(.POST)
@@ -551,7 +551,7 @@
         var query = [
           URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
         ]
-        let encoder = GoogleCloudGax.QueryParameterEncoder()
+        let encoder = GoogleCloudGax._QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.pageSize, prefix: "pageSize"))
         query.append(contentsOf: try encoder.encode(request.pageToken, prefix: "pageToken"))
         query.append(contentsOf: try encoder.encode(request.filter, prefix: "filter"))
@@ -578,7 +578,7 @@
         var query = [
           URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
         ]
-        let encoder = GoogleCloudGax.QueryParameterEncoder()
+        let encoder = GoogleCloudGax._QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.updateMask, prefix: "updateMask"))
         query.append(contentsOf: try encoder.encode(request.allowMissing, prefix: "allowMissing"))
         var req = try await self.inner.newRequest(path: path, query: query)
@@ -604,7 +604,7 @@
         var query = [
           URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
         ]
-        let encoder = GoogleCloudGax.QueryParameterEncoder()
+        let encoder = GoogleCloudGax._QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.etag, prefix: "etag"))
         var req = try await self.inner.newRequest(path: path, query: query)
         req.setMethod(.DELETE)
@@ -690,7 +690,7 @@
         var query = [
           URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
         ]
-        let encoder = GoogleCloudGax.QueryParameterEncoder()
+        let encoder = GoogleCloudGax._QueryParameterEncoder()
         query.append(
           contentsOf: try encoder.encode(request.metadataSchemaId, prefix: "metadataSchemaId"))
         var req = try await self.inner.newRequest(path: path, query: query)
@@ -736,7 +736,7 @@
         var query = [
           URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
         ]
-        let encoder = GoogleCloudGax.QueryParameterEncoder()
+        let encoder = GoogleCloudGax._QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.pageSize, prefix: "pageSize"))
         query.append(contentsOf: try encoder.encode(request.pageToken, prefix: "pageToken"))
         query.append(contentsOf: try encoder.encode(request.filter, prefix: "filter"))
@@ -760,7 +760,7 @@
         var query = [
           URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
         ]
-        let encoder = GoogleCloudGax.QueryParameterEncoder()
+        let encoder = GoogleCloudGax._QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.maxHops, prefix: "maxHops"))
         query.append(contentsOf: try encoder.encode(request.filter, prefix: "filter"))
         var req = try await self.inner.newRequest(path: path, query: query)
@@ -783,7 +783,7 @@
         var query = [
           URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
         ]
-        let encoder = GoogleCloudGax.QueryParameterEncoder()
+        let encoder = GoogleCloudGax._QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.filter, prefix: "filter"))
         query.append(contentsOf: try encoder.encode(request.pageSize, prefix: "pageSize"))
         query.append(contentsOf: try encoder.encode(request.pageToken, prefix: "pageToken"))
@@ -848,7 +848,7 @@
         var query = [
           URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
         ]
-        let encoder = GoogleCloudGax.QueryParameterEncoder()
+        let encoder = GoogleCloudGax._QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.options, prefix: "options"))
         var req = try await self.inner.newRequest(path: path, query: query)
         req.setMethod(.POST)
@@ -870,7 +870,7 @@
         var query = [
           URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
         ]
-        let encoder = GoogleCloudGax.QueryParameterEncoder()
+        let encoder = GoogleCloudGax._QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.permissions, prefix: "permissions"))
         var req = try await self.inner.newRequest(path: path, query: query)
         req.setMethod(.POST)
@@ -892,7 +892,7 @@
         var query = [
           URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
         ]
-        let encoder = GoogleCloudGax.QueryParameterEncoder()
+        let encoder = GoogleCloudGax._QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.filter, prefix: "filter"))
         query.append(contentsOf: try encoder.encode(request.pageSize, prefix: "pageSize"))
         query.append(contentsOf: try encoder.encode(request.pageToken, prefix: "pageToken"))
@@ -979,7 +979,7 @@
         var query = [
           URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
         ]
-        let encoder = GoogleCloudGax.QueryParameterEncoder()
+        let encoder = GoogleCloudGax._QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.timeout, prefix: "timeout"))
         var req = try await self.inner.newRequest(path: path, query: query)
         req.setMethod(.POST)

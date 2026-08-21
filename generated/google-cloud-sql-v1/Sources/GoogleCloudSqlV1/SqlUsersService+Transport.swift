@@ -48,7 +48,7 @@
         var query = [
           URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
         ]
-        let encoder = GoogleCloudGax.QueryParameterEncoder()
+        let encoder = GoogleCloudGax._QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.host, prefix: "host"))
         query.append(contentsOf: try encoder.encode(request.name, prefix: "name"))
         var req = try await self.inner.newRequest(path: path, query: query)
@@ -77,7 +77,7 @@
         var query = [
           URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
         ]
-        let encoder = GoogleCloudGax.QueryParameterEncoder()
+        let encoder = GoogleCloudGax._QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.host, prefix: "host"))
         var req = try await self.inner.newRequest(path: path, query: query)
         req.setMethod(.GET)
@@ -151,7 +151,7 @@
         var query = [
           URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
         ]
-        let encoder = GoogleCloudGax.QueryParameterEncoder()
+        let encoder = GoogleCloudGax._QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.host, prefix: "host"))
         query.append(contentsOf: try encoder.encode(request.name, prefix: "name"))
         query.append(contentsOf: try encoder.encode(request.databaseRoles, prefix: "databaseRoles"))

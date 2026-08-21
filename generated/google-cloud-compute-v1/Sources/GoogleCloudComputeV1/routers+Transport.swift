@@ -45,7 +45,7 @@
         var query = [
           URLQueryItem(name: "$alt", value: "json")
         ]
-        let encoder = GoogleCloudGax.QueryParameterEncoder()
+        let encoder = GoogleCloudGax._QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.filter, prefix: "filter"))
         query.append(
           contentsOf: try encoder.encode(request.includeAllScopes, prefix: "includeAllScopes"))
@@ -85,7 +85,7 @@
         var query = [
           URLQueryItem(name: "$alt", value: "json")
         ]
-        let encoder = GoogleCloudGax.QueryParameterEncoder()
+        let encoder = GoogleCloudGax._QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.requestId, prefix: "requestId"))
         var req = try await self.inner.newRequest(path: path, query: query)
         req.setMethod(.DELETE)
@@ -114,7 +114,7 @@
         var query = [
           URLQueryItem(name: "$alt", value: "json")
         ]
-        let encoder = GoogleCloudGax.QueryParameterEncoder()
+        let encoder = GoogleCloudGax._QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.namedSet, prefix: "namedSet"))
         query.append(contentsOf: try encoder.encode(request.requestId, prefix: "requestId"))
         var req = try await self.inner.newRequest(path: path, query: query)
@@ -144,7 +144,7 @@
         var query = [
           URLQueryItem(name: "$alt", value: "json")
         ]
-        let encoder = GoogleCloudGax.QueryParameterEncoder()
+        let encoder = GoogleCloudGax._QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.policy, prefix: "policy"))
         query.append(contentsOf: try encoder.encode(request.requestId, prefix: "requestId"))
         var req = try await self.inner.newRequest(path: path, query: query)
@@ -201,7 +201,7 @@
         var query = [
           URLQueryItem(name: "$alt", value: "json")
         ]
-        let encoder = GoogleCloudGax.QueryParameterEncoder()
+        let encoder = GoogleCloudGax._QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.namedSet, prefix: "namedSet"))
         var req = try await self.inner.newRequest(path: path, query: query)
         req.setMethod(.GET)
@@ -230,7 +230,7 @@
         var query = [
           URLQueryItem(name: "$alt", value: "json")
         ]
-        let encoder = GoogleCloudGax.QueryParameterEncoder()
+        let encoder = GoogleCloudGax._QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.natName, prefix: "natName"))
         var req = try await self.inner.newRequest(path: path, query: query)
         req.setMethod(.GET)
@@ -259,7 +259,7 @@
         var query = [
           URLQueryItem(name: "$alt", value: "json")
         ]
-        let encoder = GoogleCloudGax.QueryParameterEncoder()
+        let encoder = GoogleCloudGax._QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.filter, prefix: "filter"))
         query.append(contentsOf: try encoder.encode(request.maxResults, prefix: "maxResults"))
         query.append(contentsOf: try encoder.encode(request.natName, prefix: "natName"))
@@ -295,7 +295,7 @@
         var query = [
           URLQueryItem(name: "$alt", value: "json")
         ]
-        let encoder = GoogleCloudGax.QueryParameterEncoder()
+        let encoder = GoogleCloudGax._QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.policy, prefix: "policy"))
         var req = try await self.inner.newRequest(path: path, query: query)
         req.setMethod(.GET)
@@ -347,7 +347,7 @@
         var query = [
           URLQueryItem(name: "$alt", value: "json")
         ]
-        let encoder = GoogleCloudGax.QueryParameterEncoder()
+        let encoder = GoogleCloudGax._QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.requestId, prefix: "requestId"))
         var req = try await self.inner.newRequest(path: path, query: query)
         req.setMethod(.POST)
@@ -375,7 +375,7 @@
         var query = [
           URLQueryItem(name: "$alt", value: "json")
         ]
-        let encoder = GoogleCloudGax.QueryParameterEncoder()
+        let encoder = GoogleCloudGax._QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.filter, prefix: "filter"))
         query.append(contentsOf: try encoder.encode(request.maxResults, prefix: "maxResults"))
         query.append(contentsOf: try encoder.encode(request.orderBy, prefix: "orderBy"))
@@ -410,7 +410,7 @@
         var query = [
           URLQueryItem(name: "$alt", value: "json")
         ]
-        let encoder = GoogleCloudGax.QueryParameterEncoder()
+        let encoder = GoogleCloudGax._QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.addressFamily, prefix: "addressFamily"))
         query.append(
           contentsOf: try encoder.encode(request.destinationPrefix, prefix: "destinationPrefix"))
@@ -451,7 +451,7 @@
         var query = [
           URLQueryItem(name: "$alt", value: "json")
         ]
-        let encoder = GoogleCloudGax.QueryParameterEncoder()
+        let encoder = GoogleCloudGax._QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.filter, prefix: "filter"))
         query.append(contentsOf: try encoder.encode(request.maxResults, prefix: "maxResults"))
         query.append(contentsOf: try encoder.encode(request.orderBy, prefix: "orderBy"))
@@ -486,7 +486,7 @@
         var query = [
           URLQueryItem(name: "$alt", value: "json")
         ]
-        let encoder = GoogleCloudGax.QueryParameterEncoder()
+        let encoder = GoogleCloudGax._QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.filter, prefix: "filter"))
         query.append(contentsOf: try encoder.encode(request.maxResults, prefix: "maxResults"))
         query.append(contentsOf: try encoder.encode(request.orderBy, prefix: "orderBy"))
@@ -521,7 +521,7 @@
         var query = [
           URLQueryItem(name: "$alt", value: "json")
         ]
-        let encoder = GoogleCloudGax.QueryParameterEncoder()
+        let encoder = GoogleCloudGax._QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.requestId, prefix: "requestId"))
         var req = try await self.inner.newRequest(path: path, query: query)
         req.setMethod(.PATCH)
@@ -553,7 +553,7 @@
         var query = [
           URLQueryItem(name: "$alt", value: "json")
         ]
-        let encoder = GoogleCloudGax.QueryParameterEncoder()
+        let encoder = GoogleCloudGax._QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.requestId, prefix: "requestId"))
         var req = try await self.inner.newRequest(path: path, query: query)
         req.setMethod(.POST)
@@ -585,7 +585,7 @@
         var query = [
           URLQueryItem(name: "$alt", value: "json")
         ]
-        let encoder = GoogleCloudGax.QueryParameterEncoder()
+        let encoder = GoogleCloudGax._QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.requestId, prefix: "requestId"))
         var req = try await self.inner.newRequest(path: path, query: query)
         req.setMethod(.POST)
@@ -647,7 +647,7 @@
         var query = [
           URLQueryItem(name: "$alt", value: "json")
         ]
-        let encoder = GoogleCloudGax.QueryParameterEncoder()
+        let encoder = GoogleCloudGax._QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.requestId, prefix: "requestId"))
         var req = try await self.inner.newRequest(path: path, query: query)
         req.setMethod(.PUT)
@@ -679,7 +679,7 @@
         var query = [
           URLQueryItem(name: "$alt", value: "json")
         ]
-        let encoder = GoogleCloudGax.QueryParameterEncoder()
+        let encoder = GoogleCloudGax._QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.requestId, prefix: "requestId"))
         var req = try await self.inner.newRequest(path: path, query: query)
         req.setMethod(.POST)
@@ -711,7 +711,7 @@
         var query = [
           URLQueryItem(name: "$alt", value: "json")
         ]
-        let encoder = GoogleCloudGax.QueryParameterEncoder()
+        let encoder = GoogleCloudGax._QueryParameterEncoder()
         query.append(contentsOf: try encoder.encode(request.requestId, prefix: "requestId"))
         var req = try await self.inner.newRequest(path: path, query: query)
         req.setMethod(.POST)

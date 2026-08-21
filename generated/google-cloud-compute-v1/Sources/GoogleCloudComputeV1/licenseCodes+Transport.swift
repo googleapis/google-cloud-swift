@@ -74,7 +74,7 @@
         var query = [
           URLQueryItem(name: "$alt", value: "json")
         ]
-        let encoder = GoogleCloudGax.QueryParameterEncoder()
+        let encoder = GoogleCloudGax._QueryParameterEncoder()
         query.append(
           contentsOf: try encoder.encode(
             request.optionsRequestedPolicyVersion, prefix: "optionsRequestedPolicyVersion"))

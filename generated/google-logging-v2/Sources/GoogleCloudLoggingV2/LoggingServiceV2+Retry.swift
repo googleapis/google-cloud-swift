@@ -21,7 +21,7 @@ import Foundation
 import GoogleApi
 import GoogleCloudWkt
 import GoogleLongRunning
-import GoogleCloudGax
+@_spi(GoogleCloudInternal) import GoogleCloudGax
 
 extension Clients {
   final class LoggingServiceV2Retry: LoggingServiceV2Stub {
