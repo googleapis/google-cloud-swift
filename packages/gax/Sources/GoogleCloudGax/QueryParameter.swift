@@ -22,7 +22,7 @@ import Foundation
 ///     <https://github.com/googleapis/googleapis/blob/16b4737e7b870914e0c384b87f0e50ed388aa225/google/api/http.proto#L87-L118>
 ///
 /// This type implements the rules for any encodable type, including well-known types.
-@_spi(GoogleCloudInternal) public class QueryParameterEncoder {
+@_spi(GoogleCloudInternal) public class _QueryParameterEncoder {
   public init() {}
 
   /// Encodes `value` as an array of query parameters with `prefix` as the base name.
@@ -39,6 +39,17 @@ import Foundation
   ///     of each field in the struct.
   ///
   /// - Throws: an error if the value cannot be serialized, though this should be rare.
+  public func encode<T: Encodable>(_ value: T, prefix: String) throws -> [URLQueryItem] {
+    let encoder = InternalEncoder(prefix: prefix)
+    try value.encode(to: encoder)
+    return encoder.queryItems
+  }
+}
+
+// TODO(https://github.com/googleapis/google-cloud-swift/issues/13) - remove once the generator stops using it
+@_spi(GoogleCloudInternal) public class QueryParameterEncoder {
+  public init() {}
+
   public func encode<T: Encodable>(_ value: T, prefix: String) throws -> [URLQueryItem] {
     let encoder = InternalEncoder(prefix: prefix)
     try value.encode(to: encoder)

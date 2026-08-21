@@ -35,7 +35,7 @@ struct WellKnown: Encodable {
     maskMany: [mask]
   )
 
-  let encoder = QueryParameterEncoder()
+  let encoder = _QueryParameterEncoder()
   let items = try encoder.encode(value, prefix: "fieldName")
   let sortedItems = items.sorted { $0.name < $1.name }
 
@@ -57,7 +57,7 @@ struct WellKnown: Encodable {
     maskMany: []
   )
 
-  let encoder = QueryParameterEncoder()
+  let encoder = _QueryParameterEncoder()
   let items = try encoder.encode(value, prefix: "fieldName")
   #expect(items == [URLQueryItem(name: "fieldName.duration", value: "123.450s")])
 }
@@ -71,7 +71,7 @@ struct WellKnown: Encodable {
     maskMany: []
   )
 
-  let encoder = QueryParameterEncoder()
+  let encoder = _QueryParameterEncoder()
   let items = try encoder.encode(value, prefix: "fieldName")
   #expect(items == [URLQueryItem(name: "fieldName.mask", value: "userId")])
 }
@@ -86,7 +86,7 @@ struct WellKnown: Encodable {
     }
   }
 
-  let encoder = QueryParameterEncoder()
+  let encoder = _QueryParameterEncoder()
   let items = try encoder.encode(request, prefix: "fieldName")
   let sortedItems = items.sorted { $0.name < $1.name }
 
@@ -105,7 +105,7 @@ struct WellKnown: Encodable {
     $0.externalAccountKey = nil
   }
 
-  let encoder = QueryParameterEncoder()
+  let encoder = _QueryParameterEncoder()
   let items = try encoder.encode(request, prefix: "fieldName")
   #expect(
     items == [URLQueryItem(name: "fieldName.parent", value: "projects/my-project/locations/global")]
@@ -113,7 +113,7 @@ struct WellKnown: Encodable {
 }
 
 @Test func testPrefixSerialization() throws {
-  let encoder = QueryParameterEncoder()
+  let encoder = _QueryParameterEncoder()
   let duration = try GoogleCloudWkt.Duration(seconds: 123, nanos: 450_000_000)
 
   let items = try encoder.encode(duration, prefix: "myPrefix")

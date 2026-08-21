@@ -290,7 +290,7 @@ import NIOHTTP1
     var query = [
       URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
     ]
-    let encoder = GoogleCloudGax.QueryParameterEncoder()
+    let encoder = GoogleCloudGax._QueryParameterEncoder()
     query.append(contentsOf: try encoder.encode("test-only-thing-id", prefix: "thingId"))
     var req = try await client.newRequest(path: path, query: query)
     req.setMethod(.POST)

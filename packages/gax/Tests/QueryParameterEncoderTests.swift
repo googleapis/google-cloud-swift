@@ -18,7 +18,7 @@ import Testing
 
 @Suite struct QueryParameterEncoderTests {
   @Test func encodeSimpleTypes() throws {
-    let encoder = QueryParameterEncoder()
+    let encoder = _QueryParameterEncoder()
 
     let stringItems = try encoder.encode("hello", prefix: "field")
     #expect(stringItems == [URLQueryItem(name: "field", value: "hello")])
@@ -41,7 +41,7 @@ import Testing
   }
 
   @Test func encodeRecursiveTypes() throws {
-    let encoder = QueryParameterEncoder()
+    let encoder = _QueryParameterEncoder()
     let user = User(name: "Bob", address: Address(city: "Seattle"), roles: ["admin", "editor"])
 
     let items = try encoder.encode(user, prefix: "test")
