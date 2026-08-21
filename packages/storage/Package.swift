@@ -91,16 +91,14 @@ let package = Package(
     .target(
       name: "StorageControlProtos",
       dependencies: [
-        .product(name: "SwiftProtobuf", package: "swift-protobuf"),
-        .product(name: "GRPC", package: "grpc-swift"),
+        .product(name: "SwiftProtobuf", package: "swift-protobuf")
       ],
       path: "Sources/generated/StorageControlProtos"
     ),
     .target(
       name: "StorageProtos",
       dependencies: [
-        .product(name: "SwiftProtobuf", package: "swift-protobuf"),
-        .product(name: "GRPC", package: "grpc-swift"),
+        .product(name: "SwiftProtobuf", package: "swift-protobuf")
       ],
       path: "Sources/generated/StorageProtos"
     ),
