@@ -36,14 +36,10 @@ Before running code generation, verify that all required tools and compilers are
    ```
    *Requirement*: `protoc` >= v23.0 in `$PATH`.
 
-4. **Swift Protobuf Plugins**:
+4. **Swift Protobuf Plugin**:
    - `protoc-gen-swift` (version 1.38.1):
      ```bash
      protoc-gen-swift --version
-     ```
-   - `protoc-gen-grpc-swift` (version 1.23.0):
-     ```bash
-     protoc-gen-grpc-swift --version
      ```
    *Installation if missing*:
    ```bash
@@ -51,8 +47,6 @@ Before running code generation, verify that all required tools and compilers are
    BUILD_DIR=$(mktemp -d)
    git clone --depth 1 --branch "1.38.1" https://github.com/apple/swift-protobuf.git "${BUILD_DIR}/swift-protobuf"
    (cd "${BUILD_DIR}/swift-protobuf" && swift build -c release && cp .build/release/protoc-gen-swift "${HOME}/.local/bin/")
-   git clone --depth 1 --branch "1.23.0" https://github.com/grpc/grpc-swift.git "${BUILD_DIR}/grpc-swift"
-   (cd "${BUILD_DIR}/grpc-swift" && swift build -c release --product protoc-gen-grpc-swift && cp .build/release/protoc-gen-grpc-swift "${HOME}/.local/bin/")
    rm -rf "${BUILD_DIR}"
    export PATH="${HOME}/.local/bin:${PATH}"
    ```
