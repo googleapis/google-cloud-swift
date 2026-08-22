@@ -110,11 +110,13 @@ public struct BenchmarkRunner: Sendable {
       try? await Task.sleep(for: delay)
     }
 
+    let credentials: Credentials
     let storageClient: StorageClient
     let controlClient: StorageControlClient
     do {
-      storageClient = try StorageClient()
-      controlClient = try StorageControlClient()
+      credentials = try Credentials()
+      storageClient = try StorageClient(StorageClientOptions().with { $0.client = .init().with { $0.credentials = credentials }})
+      controlClient = try StorageControlClient(ClientOptions().with { $0.credentials = credentials })
     } catch {
       logToStderr("Failed to initialize Storage clients for task \(taskIndex): \(error)")
       return
@@ -233,6 +235,7 @@ public struct BenchmarkRunner: Sendable {
 
           do {
             try await StorageOperations.batchDelete(
+              credentials: credentials,
               bucketName: bucketName,
               objects: currentBatch
             )
@@ -266,6 +269,7 @@ public struct BenchmarkRunner: Sendable {
 
       do {
         try await StorageOperations.batchDelete(
+          credentials: credentials,
           bucketName: bucketName,
           objects: finalBatch
         )
@@ -285,7 +289,9 @@ public struct BenchmarkRunner: Sendable {
   }
 
   private static func emitSample(_ sample: Sample) {
-    print(sample.toRow())
+    if sample.result != .ok {
+      print(sample.toRow())
+    }
   }
 
   private static func generateRandomBuffer(size: Int) -> Data {
