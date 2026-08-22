@@ -58,6 +58,22 @@ for dir in packages/*; do
     fi
 done
 
+count=$((count + 1))
+echo "--- Smoke testing the StorageW1R3 benchmark ---"
+benchmark_args=(
+    --bucket-name "${GOOGLE_CLOUD_SWIFT_TEST_BUCKET}"
+    --min-object-size 0KiB
+    --max-object-size 16KiB
+    --task-count 1
+    --iterations 4
+)
+if swift run "${flags[@]}" StorageW1R3 "${benchmark_args[@]}" >/dev/null; then
+    echo; echo "✓ StorageW1R3 passed"
+else
+    echo; echo "✗ StorageW1R3 failed"
+    errors=$((errors + 1))
+fi
+
 echo; echo; echo "${count} local package(s) tested, ${errors} failure(s)."
 
 if [[ ${errors} -gt 0 ]]; then
