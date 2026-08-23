@@ -21,10 +21,43 @@ struct StorageW1R3: AsyncParsableCommand {
     commandName: "StorageW1R3",
     abstract: "W1R3 Benchmark for Google Cloud Storage Swift client library.",
     discussion: """
-      Benchmarks the Cloud Storage client library. The benchmark uploads an object and
-      reads it multiple times (default 3), reporting single-stream upload and download bandwidth.
+      The benchmark uploads an object and reads it multiple times (default 3), reporting
+      the time it takes to perform each of these operations to stdout. Usually the results are
+      analyzed using an external script or coLab notebook.
+
+      The benchmark runs multiple concurrrent tasks performing all these operations. This reduces
+      the time to collect enough samples for statistical analysis. If running the benchmark with
+      hundreds or a few thousand tasks, consider a rampup period between them to avoid contention
+      on the credentials.
+
+      To avoid biasing the results, the benchmark randomizes the upload size, the type of upload
+      (resumable vs. single-shot), and even the name of the object. If you want to use an specific
+      object size, set the range accordingly.
+
+      The benchmark cleans up after itself by deleting the objects it uploads. Deleting these
+      objects can become a bottleneck when using many small objects. The benchmark can be configured
+      to delete the objects in batches. The size of the batch is selected at random, from a range
+      specified in the commend line. You can also disable deletion altogether.
       """
   )
+
+  func run() async throws {
+    let runner = BenchmarkRunner(
+      bucketName: bucketName,
+      minObjectSize: minObjectSize,
+      maxObjectSize: maxObjectSize,
+      taskCount: taskCount,
+      iterations: iterations,
+      minDeleteBatch: minDeleteBatch,
+      maxDeleteBatch: maxDeleteBatch,
+      rampupPeriod: rampupPeriod,
+      readCount: readCount,
+      // The double negative is annoying, but that makes it easier define the default argument value.
+      delete: !noDelete,
+      skipOkSamples: skipOkSamples,
+    )
+    try await runner.execute()
+  }
 
   @Option(
     name: .customLong("bucket-name"),
@@ -44,7 +77,7 @@ struct StorageW1R3: AsyncParsableCommand {
     help: "The maximum object size (e.g. 128KiB, 1MiB, 16MiB).",
     transform: SizeParser.parse
   )
-  var maxObjectSize: Int = 0
+  var maxObjectSize: Int = 128 * 1024
 
   @Option(
     name: .customLong("task-count"),
@@ -71,20 +104,6 @@ struct StorageW1R3: AsyncParsableCommand {
   var maxDeleteBatch: Int = 20
 
   @Option(
-    name: .customLong("retry-timeout"),
-    help: "The maximum time for the retry loop (e.g. 900s).",
-    transform: DurationParser.parse
-  )
-  var retryTimeout: Duration?
-
-  @Option(
-    name: .customLong("attempt-timeout"),
-    help: "The maximum time for each attempt (e.g. 30s).",
-    transform: DurationParser.parse
-  )
-  var attemptTimeout: Duration = .seconds(30)
-
-  @Option(
     name: .customLong("rampup-period"),
     help: "The rampup period between new tasks (e.g. 500ms).",
     transform: DurationParser.parse
@@ -104,10 +123,10 @@ struct StorageW1R3: AsyncParsableCommand {
   var noDelete: Bool = false
 
   @Flag(
-    name: .customLong("debug-retry"),
-    help: "Enable debug logs for retry policies."
+    name: .customLong("skip-ok-samples"),
+    help: "Only print samples that failed."
   )
-  var debugRetry: Bool = false
+  var skipOkSamples: Bool = false
 
   func validate() throws {
     guard minObjectSize <= maxObjectSize else {
@@ -127,21 +146,5 @@ struct StorageW1R3: AsyncParsableCommand {
     guard readCount >= 0 else {
       throw ValidationError("read-count must be non-negative")
     }
-  }
-
-  func run() async throws {
-    let runner = BenchmarkRunner(
-      bucketName: bucketName,
-      minObjectSize: minObjectSize,
-      maxObjectSize: maxObjectSize,
-      taskCount: taskCount,
-      iterations: iterations,
-      minDeleteBatch: minDeleteBatch,
-      maxDeleteBatch: maxDeleteBatch,
-      rampupPeriod: rampupPeriod,
-      readCount: readCount,
-      noDelete: noDelete
-    )
-    try await runner.execute()
   }
 }

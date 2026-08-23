@@ -28,7 +28,8 @@ public struct BenchmarkRunner: Sendable {
   public let maxDeleteBatch: Int
   public let rampupPeriod: Duration
   public let readCount: Int
-  public let noDelete: Bool
+  public let delete: Bool
+  public let skipOkSamples: Bool
 
   public init(
     bucketName: String,
@@ -40,7 +41,8 @@ public struct BenchmarkRunner: Sendable {
     maxDeleteBatch: Int,
     rampupPeriod: Duration,
     readCount: Int,
-    noDelete: Bool
+    delete: Bool,
+    skipOkSamples: Bool,
   ) {
     self.bucketName = bucketName
     self.minObjectSize = minObjectSize
@@ -51,12 +53,13 @@ public struct BenchmarkRunner: Sendable {
     self.maxDeleteBatch = maxDeleteBatch
     self.rampupPeriod = rampupPeriod
     self.readCount = readCount
-    self.noDelete = noDelete
+    self.delete = delete
+    self.skipOkSamples = skipOkSamples
   }
 
   public func execute() async throws {
     logToStderr(
-      "Starting W1R3 benchmark with bucket: \(bucketName), tasks: \(taskCount), iterations: \(iterations)"
+      "# Starting W1R3 benchmark with bucket: \(bucketName), tasks: \(taskCount), iterations: \(iterations)"
     )
 
     let counters = BenchmarkCounters()
@@ -65,10 +68,10 @@ public struct BenchmarkRunner: Sendable {
     let randomBuffer = Self.generateRandomBuffer(size: maxObjectSize)
     logToStderr("Random payload buffer ready.")
 
-    // Print CSV header to stdout
+    // Print CSV header to stdout.
     print(Sample.header)
 
-    // Start background periodic counter reporting to stderr
+    // Start a background task to periodically report the counters to stderr.
     let monitorTask = Task {
       while !Task.isCancelled {
         try? await Task.sleep(for: .seconds(5))
@@ -125,7 +128,7 @@ public struct BenchmarkRunner: Sendable {
     }
 
     let taskStartInstant = clock.now
-    var deletes = [String]()
+    var deletes = [GoogleCloudStorage.Object]()
     var batchSize =
       minDeleteBatch == maxDeleteBatch
       ? minDeleteBatch
@@ -163,13 +166,13 @@ public struct BenchmarkRunner: Sendable {
         )
         uploadedObject = object
         let sample = uploadBuilder.success()
-        Self.emitSample(sample)
+        self.emitSample(sample)
         await counters.incrementWrite()
         await counters.incrementSample()
       } catch {
         let details = await counters.errorDetails(error: error)
         let sample = uploadBuilder.error(details: details)
-        Self.emitSample(sample)
+        self.emitSample(sample)
         await counters.incrementWrite()
         await counters.incrementWriteError()
         await counters.incrementSample()
@@ -199,101 +202,104 @@ public struct BenchmarkRunner: Sendable {
           let details = await counters.errorDetails(error: error)
           if transferSize > 0 {
             let sample = readBuilder.interrupted(transferSize: transferSize, details: details)
-            Self.emitSample(sample)
+            self.emitSample(sample)
           } else {
             let sample = readBuilder.error(details: details)
-            Self.emitSample(sample)
+            self.emitSample(sample)
           }
           await counters.incrementRead()
           await counters.incrementReadError()
           await counters.incrementSample()
         } else {
           let sample = readBuilder.success(transferSize: transferSize)
-          Self.emitSample(sample)
+          self.emitSample(sample)
           await counters.incrementRead()
           await counters.incrementSample()
         }
       }
 
-      // Deletion queueing
-      if !noDelete {
-        deletes.append(objectName)
-        if deletes.count >= batchSize {
-          let currentBatch = deletes
-          deletes.removeAll(keepingCapacity: true)
-          batchSize =
-            minDeleteBatch == maxDeleteBatch
-            ? minDeleteBatch
-            : Int.random(in: minDeleteBatch...maxDeleteBatch)
+      if !delete {
+        continue
+      }
+      if let object = uploadedObject {
+        deletes.append(object)
+      }
+      if deletes.count >= batchSize {
+        // Pick the next batch size and delete the current batch.
+        batchSize =
+          minDeleteBatch == maxDeleteBatch
+          ? minDeleteBatch
+          : Int.random(in: minDeleteBatch...maxDeleteBatch)
+        let currentBatch = deletes
+        deletes.removeAll(keepingCapacity: true)
 
-          let deleteBuilder = SampleBuilder(
-            task: taskIndex,
-            taskStartInstant: taskStartInstant,
-            iteration: iteration,
-            op: .delete,
-            targetSize: currentBatch.count,
-            object: objectName
-          )
-
-          do {
-            try await StorageOperations.batchDelete(
-              credentials: credentials,
-              bucketName: bucketName,
-              objects: currentBatch
-            )
-            let sample = deleteBuilder.success()
-            Self.emitSample(sample)
-            await counters.incrementDelete()
-            await counters.incrementSample()
-          } catch {
-            let details = await counters.errorDetails(error: error)
-            let sample = deleteBuilder.error(details: details)
-            Self.emitSample(sample)
-            await counters.incrementDelete()
-            await counters.incrementDeleteError()
-            await counters.incrementSample()
-          }
-        }
+        await self.deleteBatch(
+          taskIndex: taskIndex,
+          counters: counters,
+          taskStartInstant: taskStartInstant,
+          iteration: iterations,
+          credentials: credentials,
+          batch: currentBatch
+        )
       }
     }
 
     // Flush remaining deletes
-    if !noDelete && !deletes.isEmpty {
-      let finalBatch = deletes
-      let deleteBuilder = SampleBuilder(
-        task: taskIndex,
+    if delete {
+      await self.deleteBatch(
+        taskIndex: taskIndex,
+        counters: counters,
         taskStartInstant: taskStartInstant,
         iteration: iterations,
-        op: .delete,
-        targetSize: finalBatch.count,
-        object: "N/A"
+        credentials: credentials,
+        batch: deletes
       )
-
-      do {
-        try await StorageOperations.batchDelete(
-          credentials: credentials,
-          bucketName: bucketName,
-          objects: finalBatch
-        )
-        let sample = deleteBuilder.success()
-        Self.emitSample(sample)
-        await counters.incrementDelete()
-        await counters.incrementSample()
-      } catch {
-        let details = await counters.errorDetails(error: error)
-        let sample = deleteBuilder.error(details: details)
-        Self.emitSample(sample)
-        await counters.incrementDelete()
-        await counters.incrementDeleteError()
-        await counters.incrementSample()
-      }
     }
   }
 
-  private static func emitSample(_ sample: Sample) {
-    if sample.result != .ok {
-      print(sample.toRow())
+  private func deleteBatch(
+    taskIndex: Int,
+    counters: BenchmarkCounters,
+    taskStartInstant: ContinuousClock.Instant,
+    iteration: Int,
+    credentials: GoogleCloudAuth.Credentials,
+    batch: [GoogleCloudStorage.Object],
+  ) async {
+    if batch.isEmpty {
+      return
     }
+    let deleteBuilder = SampleBuilder(
+      task: taskIndex,
+      taskStartInstant: taskStartInstant,
+      iteration: iteration,
+      op: .delete,
+      targetSize: batch.count,
+      object: batch[0].name,
+    )
+
+    do {
+      try await StorageOperations.batchDelete(
+        credentials: credentials, batch: batch
+      )
+      let sample = deleteBuilder.success()
+      self.emitSample(sample)
+      await counters.incrementDelete()
+      await counters.incrementSample()
+    } catch {
+      let details = await counters.errorDetails(error: error)
+      let sample = deleteBuilder.error(details: details)
+      self.emitSample(sample)
+      await counters.incrementDelete()
+      await counters.incrementDeleteError()
+      await counters.incrementSample()
+    }
+  }
+
+  private func emitSample(_ sample: Sample) {
+    if self.skipOkSamples && sample.result == .ok {
+      return
+    }
+    print(sample.toRow())
   }
 
   private static func generateRandomBuffer(size: Int) -> Data {
