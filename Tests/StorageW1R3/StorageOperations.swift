@@ -92,7 +92,8 @@ enum StorageOperations {
     try await withThrowingTaskGroup(of: Void.self) { group in
       for objectName in objects {
         group.addTask {
-          let client = try StorageControlClient(ClientOptions().with { $0.credentials = credentials })
+          let client = try StorageControlClient(
+            ClientOptions().with { $0.credentials = credentials })
           let deleteReq = DeleteObjectRequest().with {
             $0.bucket = "projects/_/buckets/\(bucketName)"
             $0.object = objectName

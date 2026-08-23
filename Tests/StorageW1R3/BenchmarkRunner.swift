@@ -115,8 +115,10 @@ public struct BenchmarkRunner: Sendable {
     let controlClient: StorageControlClient
     do {
       credentials = try Credentials()
-      storageClient = try StorageClient(StorageClientOptions().with { $0.client = .init().with { $0.credentials = credentials }})
-      controlClient = try StorageControlClient(ClientOptions().with { $0.credentials = credentials })
+      storageClient = try StorageClient(
+        StorageClientOptions().with { $0.client = .init().with { $0.credentials = credentials } })
+      controlClient = try StorageControlClient(
+        ClientOptions().with { $0.credentials = credentials })
     } catch {
       logToStderr("Failed to initialize Storage clients for task \(taskIndex): \(error)")
       return
@@ -296,16 +298,23 @@ public struct BenchmarkRunner: Sendable {
 
   private static func generateRandomBuffer(size: Int) -> Data {
     guard size > 0 else { return Data() }
-    var bytes = [UInt8](repeating: 0, count: size)
-    var offset = 0
-    while offset < size {
-      var val = UInt64.random(in: .min ... .max)
-      let count = min(8, size - offset)
-      for i in 0..<count {
-        bytes[offset + i] = UInt8(truncatingIfNeeded: val)
-        val >>= 8
+    // There is a lot going on here. Sometimes the benchmark is used with really large buffers,
+    // 256MiB and 2GiB are not uncommon. To efficiently initialized the buffer with random data
+    // we create an array of the desired size.
+    let bytes = [UInt8](unsafeUninitializedCapacity: size) { buffer, initializedCount in
+      var offset = 0
+      while offset < size {
+        // Fetch a full word at a time. We could use UInt8.random to make the code simpler, but
+        // that discards 7 bytes of (expensively computed) random data.
+        var val = UInt64.random(in: .min ... .max)
+        let count = min(8, size - offset)
+        for i in 0..<count {
+          buffer[offset + i] = UInt8(truncatingIfNeeded: val)
+          val >>= 8
+        }
+        offset += count
       }
-      offset += count
+      initializedCount = size
     }
     return Data(bytes)
   }
