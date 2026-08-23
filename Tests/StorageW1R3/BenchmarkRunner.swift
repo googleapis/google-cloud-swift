@@ -129,10 +129,11 @@ public struct BenchmarkRunner: Sendable {
 
     let taskStartInstant = clock.now
     var deletes = [GoogleCloudStorage.Object]()
-    var batchSize =
-      minDeleteBatch == maxDeleteBatch
-      ? minDeleteBatch
-      : Int.random(in: minDeleteBatch...maxDeleteBatch)
+    let pickBatchSize = { () -> Int in
+      if minDeleteBatch == maxDeleteBatch { return minDeleteBatch }
+      return Int.random(in: minDeleteBatch...maxDeleteBatch)
+    }
+    var batchSize = pickBatchSize()
 
     for iteration in 0..<iterations {
       let size =
@@ -225,11 +226,7 @@ public struct BenchmarkRunner: Sendable {
         deletes.append(object)
       }
       if deletes.count >= batchSize {
-        // Pick the next batch size and delete the current batch.
-        batchSize =
-          minDeleteBatch == maxDeleteBatch
-          ? minDeleteBatch
-          : Int.random(in: minDeleteBatch...maxDeleteBatch)
+        batchSize = pickBatchSize()
         let currentBatch = deletes
         deletes.removeAll(keepingCapacity: true)
 
