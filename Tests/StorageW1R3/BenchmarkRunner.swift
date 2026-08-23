@@ -133,108 +133,56 @@ public struct BenchmarkRunner: Sendable {
       if minDeleteBatch == maxDeleteBatch { return minDeleteBatch }
       return Int.random(in: minDeleteBatch...maxDeleteBatch)
     }
+    let pickObjectSize = { () -> Int in
+      if minObjectSize == maxObjectSize { return minObjectSize }
+      return Int.random(in: minObjectSize...maxObjectSize)
+    }
     var batchSize = pickBatchSize()
 
     for iteration in 0..<iterations {
-      let size =
-        minObjectSize == maxObjectSize
-        ? minObjectSize
-        : Int.random(in: minObjectSize...maxObjectSize)
+      let size = pickObjectSize()
       let objectName = Self.randomObjectName()
       let isResumable = Bool.random()
-      let uploadOp: Operation = isResumable ? .resumable : .singleShot
-
-      let uploadBuilder = SampleBuilder(
-        task: taskIndex,
-        taskStartInstant: taskStartInstant,
-        iteration: iteration,
-        op: uploadOp,
-        targetSize: size,
-        object: objectName
-      )
-
       let uploadSlice = size > 0 ? buffer.prefix(size) : Data()
+      let iterationId = IterationId(
+        task: taskIndex, taskStartInstant: taskStartInstant, iteration: iteration)
 
-      var uploadedObject: GoogleCloudStorage.Object? = nil
-      do {
-        let object = try await StorageOperations.upload(
-          client: storageClient,
+      guard
+        let uploadedObject = await self.sampleUpload(
+          iterationId: iterationId,
+          counters: counters,
+          storageClient: storageClient,
           controlClient: controlClient,
           bucketName: bucketName,
           objectName: objectName,
           data: uploadSlice,
-          isResumable: isResumable
-        )
-        uploadedObject = object
-        let sample = uploadBuilder.success()
-        self.emitSample(sample)
-        await counters.incrementWrite()
-        await counters.incrementSample()
-      } catch {
-        let details = await counters.errorDetails(error: error)
-        let sample = uploadBuilder.error(details: details)
-        self.emitSample(sample)
-        await counters.incrementWrite()
-        await counters.incrementWriteError()
-        await counters.incrementSample()
+          isResumable: isResumable)
+      else {
         continue
       }
 
-      // Download / Read loop
       for readIndex in 0..<readCount {
-        let readOp = Operation.read(readIndex)
-        let readBuilder = SampleBuilder(
-          task: taskIndex,
-          taskStartInstant: taskStartInstant,
-          iteration: iteration,
-          op: readOp,
-          targetSize: size,
-          object: objectName
-        )
-
-        let (transferSize, readError) = await StorageOperations.download(
+        await self.sampleDownload(
+          iterationId: iterationId,
+          counters: counters,
+          readIndex: readIndex,
           client: storageClient,
-          bucketName: bucketName,
-          objectName: objectName,
-          generation: uploadedObject?.generation
-        )
-
-        if let error = readError {
-          let details = await counters.errorDetails(error: error)
-          if transferSize > 0 {
-            let sample = readBuilder.interrupted(transferSize: transferSize, details: details)
-            self.emitSample(sample)
-          } else {
-            let sample = readBuilder.error(details: details)
-            self.emitSample(sample)
-          }
-          await counters.incrementRead()
-          await counters.incrementReadError()
-          await counters.incrementSample()
-        } else {
-          let sample = readBuilder.success(transferSize: transferSize)
-          self.emitSample(sample)
-          await counters.incrementRead()
-          await counters.incrementSample()
-        }
+          object: uploadedObject,
+          size: size)
       }
 
       if !delete {
         continue
       }
-      if let object = uploadedObject {
-        deletes.append(object)
-      }
+      deletes.append(uploadedObject)
       if deletes.count >= batchSize {
         batchSize = pickBatchSize()
         let currentBatch = deletes
         deletes.removeAll(keepingCapacity: true)
 
         await self.deleteBatch(
-          taskIndex: taskIndex,
+          iterationId: iterationId,
           counters: counters,
-          taskStartInstant: taskStartInstant,
-          iteration: iterations,
           credentials: credentials,
           batch: currentBatch
         )
@@ -244,21 +192,99 @@ public struct BenchmarkRunner: Sendable {
     // Flush remaining deletes
     if delete {
       await self.deleteBatch(
-        taskIndex: taskIndex,
+        iterationId: IterationId(
+          task: taskIndex, taskStartInstant: taskStartInstant, iteration: iterations),
         counters: counters,
-        taskStartInstant: taskStartInstant,
-        iteration: iterations,
         credentials: credentials,
         batch: deletes
       )
     }
   }
 
-  private func deleteBatch(
-    taskIndex: Int,
+  private func sampleUpload(
+    iterationId: IterationId,
     counters: BenchmarkCounters,
-    taskStartInstant: ContinuousClock.Instant,
-    iteration: Int,
+    storageClient: StorageClient,
+    controlClient: StorageControlClient,
+    bucketName: String,
+    objectName: String,
+    data: Data,
+    isResumable: Bool
+  ) async -> GoogleCloudStorage.Object? {
+    let uploadOp: Operation = isResumable ? .resumable : .singleShot
+
+    let uploadBuilder = SampleBuilder(
+      iterationId: iterationId,
+      op: uploadOp,
+      targetSize: data.count,
+      object: objectName
+    )
+    do {
+      let object = try await StorageOperations.upload(
+        client: storageClient,
+        controlClient: controlClient,
+        bucketName: bucketName,
+        objectName: objectName,
+        data: data,
+        isResumable: isResumable
+      )
+      let sample = uploadBuilder.success()
+      self.emitSample(sample)
+      await counters.incrementWrite()
+      await counters.incrementSample()
+      return object
+    } catch {
+      let details = await counters.errorDetails(error: error)
+      let sample = uploadBuilder.error(details: details)
+      self.emitSample(sample)
+      await counters.incrementWrite()
+      await counters.incrementWriteError()
+      await counters.incrementSample()
+    }
+    return nil
+  }
+
+  private func sampleDownload(
+    iterationId: IterationId,
+    counters: BenchmarkCounters,
+    readIndex: Int,
+    client: StorageClient,
+    object: GoogleCloudStorage.Object,
+    size: Int,
+  ) async {
+    let readOp = Operation.read(readIndex)
+    let readBuilder = SampleBuilder(
+      iterationId: iterationId,
+      op: readOp,
+      targetSize: size,
+      object: object.name
+    )
+
+    let (transferSize, readError) = await StorageOperations.download(client: client, object: object)
+
+    if let error = readError {
+      let details = await counters.errorDetails(error: error)
+      if transferSize > 0 {
+        let sample = readBuilder.interrupted(transferSize: transferSize, details: details)
+        self.emitSample(sample)
+      } else {
+        let sample = readBuilder.error(details: details)
+        self.emitSample(sample)
+      }
+      await counters.incrementRead()
+      await counters.incrementReadError()
+      await counters.incrementSample()
+    } else {
+      let sample = readBuilder.success(transferSize: transferSize)
+      self.emitSample(sample)
+      await counters.incrementRead()
+      await counters.incrementSample()
+    }
+  }
+
+  private func deleteBatch(
+    iterationId: IterationId,
+    counters: BenchmarkCounters,
     credentials: GoogleCloudAuth.Credentials,
     batch: [GoogleCloudStorage.Object],
   ) async {
@@ -266,9 +292,7 @@ public struct BenchmarkRunner: Sendable {
       return
     }
     let deleteBuilder = SampleBuilder(
-      task: taskIndex,
-      taskStartInstant: taskStartInstant,
-      iteration: iteration,
+      iterationId: iterationId,
       op: .delete,
       targetSize: batch.count,
       object: batch[0].name,

@@ -26,21 +26,19 @@ public struct SampleBuilder: Sendable {
   public let object: String
 
   public init(
-    task: Int,
-    taskStartInstant: ContinuousClock.Instant,
-    iteration: Int,
+    iterationId: IterationId,
     op: Operation,
     targetSize: Int,
     object: String
   ) {
-    self.task = task
+    self.task = iterationId.task
     self.clock = ContinuousClock()
     let now = clock.now
-    let relDuration = taskStartInstant.duration(to: now)
+    let relDuration = iterationId.taskStartInstant.duration(to: now)
     self.relativeStartMicros =
       relDuration.components.seconds * 1_000_000 + relDuration.components.attoseconds
       / 1_000_000_000_000
-    self.iteration = iteration
+    self.iteration = iterationId.iteration
     self.startInstant = now
     self.op = op
     self.targetSize = targetSize

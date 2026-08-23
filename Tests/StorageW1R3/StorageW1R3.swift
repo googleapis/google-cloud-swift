@@ -16,25 +16,29 @@ import ArgumentParser
 import Foundation
 
 @main
-struct StorageW1R3: AsyncParsableCommand {
+struct StorageW1R3: AsyncParsableCommand, Sendable {
   static let configuration = CommandConfiguration(
     commandName: "StorageW1R3",
     abstract: "W1R3 Benchmark for Google Cloud Storage Swift client library.",
     discussion: """
-      The benchmark uploads an object and reads it multiple times (default 3), reporting
-      the time it takes to perform each of these operations to stdout. Usually the results are
-      analyzed using an external script or coLab notebook.
+      This program is a benchmark for the Google Cloud Storage client library.
+
+      The benchmark uploads an object and reads it multiple times (default 3), reporting the time it
+      takes to perform each of these operations to stdout. Usually the results are analyzed using an
+      external script or coLab notebook.
 
       The benchmark runs multiple concurrrent tasks performing all these operations. This reduces
       the time to collect enough samples for statistical analysis. If running the benchmark with
       hundreds or a few thousand tasks, consider a rampup period between them to avoid contention
-      on the credentials.
+      on the credentials and other resources used during initialization (e.g. DNS).
 
       To avoid biasing the results, the benchmark randomizes the upload size, the type of upload
-      (resumable vs. single-shot), and even the name of the object. If you want to use an specific
-      object size, set the range accordingly.
+      (resumable vs. single-shot), and even the name of the object. This also removes some of the
+      problems associated with seasonal / diurnal variation in performance for the service.
 
-      The benchmark cleans up after itself by deleting the objects it uploads. Deleting these
+      If you want to use an specific object size, set the range accordingly.
+
+      The benchmark cleans up after itself by deleting the objects it creates. Deleting these
       objects can become a bottleneck when using many small objects. The benchmark can be configured
       to delete the objects in batches. The size of the batch is selected at random, from a range
       specified in the commend line. You can also disable deletion altogether.

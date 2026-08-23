@@ -51,7 +51,10 @@ enum StorageOperations {
           $0.bucket = "projects/_/buckets/\(bucketName)"
           $0.object = objectName
         }
-        return try await controlClient.getObject(request: getReq, options: .init())
+        var object = try await controlClient.getObject(request: getReq, options: .init())
+        // TODO(https://github.com/googleapis/google-cloud-swift/issues/517) - cleanup this code
+        object.bucket.replace("projects/_/buckets/", with: "")
+        return object
       }
       throw error
     }
@@ -59,17 +62,14 @@ enum StorageOperations {
 
   /// Downloads (reads) an object from Cloud Storage, returning total bytes transferred.
   static func download(
-    client: StorageClient,
-    bucketName: String,
-    objectName: String,
-    generation: Int64?
+    client: StorageClient, object: GoogleCloudStorage.Object
   ) async -> (transferSize: Int, error: (any Error)?) {
     var options = ReadObjectOptions()
-    if let gen = generation, gen > 0 {
-      options.generation = UInt64(gen)
+    if object.generation > 0 {
+      options.generation = UInt64(object.generation)
     }
 
-    let readTask = client.readObject(from: bucketName, object: objectName, options: options)
+    let readTask = client.readObject(from: object.bucket, object: object.name, options: options)
     var transferSize = 0
     do {
       for try await chunk in readTask.body {
@@ -94,6 +94,7 @@ enum StorageOperations {
           let client = try StorageControlClient(
             ClientOptions().with { $0.credentials = credentials })
           let deleteReq = DeleteObjectRequest().with {
+            // TODO(https://github.com/googleapis/google-cloud-swift/issues/517) - cleanup this code
             $0.bucket = "projects/_/buckets/\(object.bucket)"
             $0.object = object.name
             $0.generation = object.generation
