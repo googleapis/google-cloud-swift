@@ -89,7 +89,7 @@ extension StorageW1R3 {
           size: size)
       }
 
-      if !self.noDelete {
+      if self.noDelete {
         continue
       }
       deletes.append(uploadedObject)
@@ -108,15 +108,16 @@ extension StorageW1R3 {
     }
 
     // Flush remaining deletes
-    if !self.noDelete {
-      await self.deleteBatch(
-        iterationId: IterationId(
-          task: taskIndex, taskStartInstant: taskStartInstant, iteration: iterations),
-        counters: counters,
-        credentials: credentials,
-        batch: deletes
-      )
+    if self.noDelete {
+      return
     }
+    await self.deleteBatch(
+      iterationId: IterationId(
+        task: taskIndex, taskStartInstant: taskStartInstant, iteration: iterations),
+      counters: counters,
+      credentials: credentials,
+      batch: deletes
+    )
   }
 
   private func sampleUpload(
