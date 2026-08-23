@@ -107,10 +107,10 @@ extension StorageW1R3 {
       }
     }
 
-    // Flush remaining deletes
     if self.noDelete {
       return
     }
+    // Flush remaining deletes
     await self.deleteBatch(
       iterationId: IterationId(
         task: taskIndex, taskStartInstant: taskStartInstant, iteration: iterations),
