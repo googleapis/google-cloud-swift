@@ -46,21 +46,47 @@ struct StorageW1R3: AsyncParsableCommand, Sendable {
   )
 
   func run() async throws {
-    let runner = BenchmarkRunner(
-      bucketName: bucketName,
-      minObjectSize: minObjectSize,
-      maxObjectSize: maxObjectSize,
-      taskCount: taskCount,
-      iterations: iterations,
-      minDeleteBatch: minDeleteBatch,
-      maxDeleteBatch: maxDeleteBatch,
-      rampupPeriod: rampupPeriod,
-      readCount: readCount,
-      // The double negative is annoying, but that makes it easier define the default argument value.
-      delete: !noDelete,
-      skipOkSamples: skipOkSamples,
+    logToStderr(
+      "# Starting W1R3 benchmark with bucket: \(bucketName), tasks: \(taskCount), iterations: \(iterations)"
     )
-    try await runner.execute()
+
+    let counters = BenchmarkCounters()
+
+    logToStderr("Generating random payload buffer (\(maxObjectSize) bytes)...")
+    let randomBuffer = self.generateRandomBuffer()
+    logToStderr("Random payload buffer ready.")
+
+    // Print CSV header to stdout.
+    print(Sample.header)
+
+    // Start a background task to periodically report the counters to stderr.
+    let monitorTask = Task {
+      while !Task.isCancelled {
+        try? await Task.sleep(for: .seconds(5))
+        if Task.isCancelled { break }
+        let summary = await counters.formattedDescription()
+        logToStderr(summary)
+      }
+    }
+    defer {
+      monitorTask.cancel()
+    }
+
+    try await withThrowingTaskGroup(of: Void.self) { group in
+      for taskIndex in 0..<taskCount {
+        group.addTask {
+          await self.runWorker(
+            taskIndex: taskIndex,
+            counters: counters,
+            buffer: randomBuffer
+          )
+        }
+      }
+      try await group.waitForAll()
+    }
+
+    let finalSummary = await counters.formattedDescription()
+    logToStderr("DONE. Final \(finalSummary)")
   }
 
   @Option(

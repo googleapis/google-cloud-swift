@@ -18,90 +18,8 @@ import GoogleCloudGax
 import GoogleCloudStorage
 
 /// Orchestrates the execution of the W1R3 benchmark across concurrent worker tasks.
-public struct BenchmarkRunner: Sendable {
-  public let bucketName: String
-  public let minObjectSize: Int
-  public let maxObjectSize: Int
-  public let taskCount: Int
-  public let iterations: Int
-  public let minDeleteBatch: Int
-  public let maxDeleteBatch: Int
-  public let rampupPeriod: Duration
-  public let readCount: Int
-  public let delete: Bool
-  public let skipOkSamples: Bool
-
-  public init(
-    bucketName: String,
-    minObjectSize: Int,
-    maxObjectSize: Int,
-    taskCount: Int,
-    iterations: Int,
-    minDeleteBatch: Int,
-    maxDeleteBatch: Int,
-    rampupPeriod: Duration,
-    readCount: Int,
-    delete: Bool,
-    skipOkSamples: Bool,
-  ) {
-    self.bucketName = bucketName
-    self.minObjectSize = minObjectSize
-    self.maxObjectSize = maxObjectSize
-    self.taskCount = taskCount
-    self.iterations = iterations
-    self.minDeleteBatch = minDeleteBatch
-    self.maxDeleteBatch = maxDeleteBatch
-    self.rampupPeriod = rampupPeriod
-    self.readCount = readCount
-    self.delete = delete
-    self.skipOkSamples = skipOkSamples
-  }
-
-  public func execute() async throws {
-    logToStderr(
-      "# Starting W1R3 benchmark with bucket: \(bucketName), tasks: \(taskCount), iterations: \(iterations)"
-    )
-
-    let counters = BenchmarkCounters()
-
-    logToStderr("Generating random payload buffer (\(maxObjectSize) bytes)...")
-    let randomBuffer = Self.generateRandomBuffer(size: maxObjectSize)
-    logToStderr("Random payload buffer ready.")
-
-    // Print CSV header to stdout.
-    print(Sample.header)
-
-    // Start a background task to periodically report the counters to stderr.
-    let monitorTask = Task {
-      while !Task.isCancelled {
-        try? await Task.sleep(for: .seconds(5))
-        if Task.isCancelled { break }
-        let summary = await counters.formattedDescription()
-        logToStderr(summary)
-      }
-    }
-    defer {
-      monitorTask.cancel()
-    }
-
-    try await withThrowingTaskGroup(of: Void.self) { group in
-      for taskIndex in 0..<taskCount {
-        group.addTask {
-          await self.runWorker(
-            taskIndex: taskIndex,
-            counters: counters,
-            buffer: randomBuffer
-          )
-        }
-      }
-      try await group.waitForAll()
-    }
-
-    let finalSummary = await counters.formattedDescription()
-    logToStderr("DONE. Final \(finalSummary)")
-  }
-
-  private func runWorker(
+extension StorageW1R3 {
+  func runWorker(
     taskIndex: Int,
     counters: BenchmarkCounters,
     buffer: Data
@@ -171,7 +89,7 @@ public struct BenchmarkRunner: Sendable {
           size: size)
       }
 
-      if !delete {
+      if !self.noDelete {
         continue
       }
       deletes.append(uploadedObject)
@@ -190,7 +108,7 @@ public struct BenchmarkRunner: Sendable {
     }
 
     // Flush remaining deletes
-    if delete {
+    if !self.noDelete {
       await self.deleteBatch(
         iterationId: IterationId(
           task: taskIndex, taskStartInstant: taskStartInstant, iteration: iterations),
@@ -323,7 +241,8 @@ public struct BenchmarkRunner: Sendable {
     print(sample.toRow())
   }
 
-  private static func generateRandomBuffer(size: Int) -> Data {
+  func generateRandomBuffer() -> Data {
+    let size = self.maxObjectSize
     guard size > 0 else { return Data() }
     // There is a lot going on here. Sometimes the benchmark is used with really large buffers,
     // 256MiB and 2GiB are not uncommon. To efficiently initialized the buffer with random data
