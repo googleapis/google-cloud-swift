@@ -119,10 +119,10 @@ ${COLOR_BOLD}EXAMPLES${COLOR_RESET}
     ${0##*/} -p packages/auth -b split/auth
 
     # 4. Split and push directly to a standalone GitHub repository:
-    ${0##*/} generated/google-rpc --remote git@github.com:googleapis/google-cloud-swift-google-rpc.git --remote-branch main
+    ${0##*/} generated/google-rpc --remote git@github.com:googleapis/swift-google-rpc.git --remote-branch main
 
     # 5. Split from a release tag and push with a tag:
-    ${0##*/} packages/auth -o v1.0.0 --tag v1.0.0 -r git@github.com:googleapis/google-cloud-swift-auth.git --push-tag
+    ${0##*/} packages/auth -o v1.0.0 --tag v1.0.0 -r git@github.com:googleapis/swift-google-cloud-auth.git --push-tag
 EOF
 }
 
