@@ -463,7 +463,8 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
           self.streamIterator = it
           if let chunk {
             bytesReceived += UInt64(chunk.readableBytes)
-            resumeLoop.onProgress(state: &resumeState, bytesAdvanced: UInt64(chunk.readableBytes))
+            resumeState.bytesDownloaded = bytesReceived
+            resumeLoop.onProgress(state: resumeState)
             updateChecksums(with: chunk)
             return chunk
           } else {

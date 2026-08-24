@@ -42,14 +42,9 @@ public final class DownloadResumeState: ResumeState, @unchecked Sendable {
     super.init(start: start)
   }
 
-  /// Override specific values using the `Then` idiom.
-  ///
-  /// ## Example
-  /// ```
-  /// let state = DownloadResumeState().with { $0.bytesDownloaded = 1024 }
-  /// ```
+  /// Override specific values on this download state.
   @discardableResult
-  public func with(_ config: (DownloadResumeState) -> Void) -> Self {
+  public func configure(_ config: (DownloadResumeState) -> Void) -> Self {
     config(self)
     return self
   }

@@ -42,14 +42,9 @@ public final class UploadResumeState: ResumeState, @unchecked Sendable {
     super.init(start: start)
   }
 
-  /// Override specific values using the `Then` idiom.
-  ///
-  /// ## Example
-  /// ```
-  /// let state = UploadResumeState().with { $0.bytesUploaded = 1024 }
-  /// ```
+  /// Override specific values on this upload state.
   @discardableResult
-  public func with(_ config: (UploadResumeState) -> Void) -> Self {
+  public func configure(_ config: (UploadResumeState) -> Void) -> Self {
     config(self)
     return self
   }
