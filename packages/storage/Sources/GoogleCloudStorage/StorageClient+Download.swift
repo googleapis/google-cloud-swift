@@ -35,7 +35,7 @@ extension StorageClient {
     let effectiveResumePolicy: any ResumePolicy
     if let explicitResume = options.resumePolicy ?? self.options.download.resumePolicy {
       effectiveResumePolicy = explicitResume
-    } else if !options.autoResume || clientOptions.retryPolicy is NeverRetry {
+    } else if !options.autoResume {
       effectiveResumePolicy = NeverResume()
     } else {
       effectiveResumePolicy = StopOnConsecutiveErrors()
