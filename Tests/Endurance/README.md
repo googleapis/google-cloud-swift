@@ -53,9 +53,12 @@ for i in $(seq 0 19); do
 done
 ```
 
+If the resources already exist these commands will fail, you can ignore those errors.
+
 ## Deployment
 
-On a GCE instance, install the Swift development tools (e.g. via swiftly or official Swift packages), git, and build tools:
+On a single GCE instance, install the Swift development tools (e.g. via swiftly
+or official Swift packages), git, and build tools:
 
 ```shell
 sudo apt update && sudo apt install -y git curl binutils libcurl4-openssl-dev libssl-dev gpg build-essential
@@ -102,6 +105,10 @@ sudo systemctl enable --now endurance-test.service
 sudo systemctl status endurance-test.service
 ```
 
+The benchmark is tuned to use all the API quota in a single project. If you run
+more than one copy of the test you will see a much higher failure rate than
+expected.
+
 ## Future Work
 
 It would be nice to report metrics, such as successful request counts and
@@ -113,3 +120,10 @@ and Cloud Build to automatically deploy new versions.
 It may be easier to deploy this by building a docker image (there is a Swift
 plugin to do this locally), and then deploy the image to an instance
 configured with the Container-Optimized OS image.
+
+Alternatively, we could configure configure the VM using Terraform and use a
+`metadata_startup_script` to do all the work.
+
+However, this benchmark is executed rarely, once every few of years, if that.
+Before investing on a lot of automation consider whether there is a return on
+it.
