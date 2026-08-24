@@ -32,7 +32,8 @@ let package = Package(
     .package(url: "https://github.com/apple/swift-collections", from: "1.6.0"),
     .package(url: "https://github.com/apple/swift-nio", from: "2.101.0"),
     .package(url: "https://github.com/apple/swift-protobuf.git", from: "1.28.2"),
-    .package(url: "https://github.com/grpc/grpc-swift.git", from: "1.23.0"),
+    .package(url: "https://github.com/grpc/grpc-swift-2.git", from: "2.3.0"),
+    .package(url: "https://github.com/grpc/grpc-swift-nio-transport.git", from: "2.3.0"),
     .package(url: "https://github.com/swift-server/async-http-client.git", from: "1.36.0"),
   ],
   targets: [
@@ -52,7 +53,8 @@ let package = Package(
       dependencies: [
         "GoogleCloudGax",
         .product(name: "GoogleCloudAuth", package: "auth"),
-        .product(name: "GRPC", package: "grpc-swift"),
+        .product(name: "GRPCCore", package: "grpc-swift-2"),
+        .product(name: "GRPCNIOTransportHTTP2Posix", package: "grpc-swift-nio-transport"),
         .product(name: "NIOCore", package: "swift-nio"),
         .product(name: "SwiftProtobuf", package: "swift-protobuf"),
       ]

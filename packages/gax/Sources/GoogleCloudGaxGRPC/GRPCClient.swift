@@ -13,16 +13,32 @@
 // limitations under the License.
 
 import Foundation
-import GRPC
+import GRPCCore
+import GRPCNIOTransportHTTP2Posix
 import GoogleCloudAuth
 @_spi(GoogleCloudInternal) import GoogleCloudGax
-import NIO
 import SwiftProtobuf
 
 /// Implements a generic gRPC client for the Swift SDK client libraries.
+///
+/// ## Usage and Lifecycle Guidelines
+/// - **Resource Management**: Each `_GRPCClient` manages an underlying HTTP/2 transport connection
+///   loop running inside a background `Task`.
+/// - **Shutdown**:
+///   - Calling ``close()`` initiates a graceful shutdown (`beginGracefulShutdown()`). In-flight RPCs
+///     are allowed to finish executing, while any new RPCs will be rejected.
+///   - If ``close()`` is not explicitly called, the background connection task is automatically shut down
+///     when the `_GRPCClient` instance is deallocated (`deinit`).
+/// - **Async Invariants & Lifetimes**:
+///   - Calls to ``execute(path:request:options:clientHeader:routingParams:)`` retain the `_GRPCClient`
+///     instance for the duration of the asynchronous execution, so the instance will not be deallocated
+///     while an RPC is in flight.
+///   - Calling ``close()`` will allow active in-flight RPCs to drain, but any subsequent calls to
+///     ``execute`` will fail.
 @_spi(GoogleCloudInternal)
-public struct _GRPCClient: Sendable {
-  let connection: ClientConnection
+public final class _GRPCClient: Sendable {
+  let client: GRPCClient<HTTP2ClientTransport.Posix>
+  let connectionTask: Task<Void, any Error>
   let credentials: GoogleCloudAuth.Credentials
 
   public init(from options: ClientOptions, withDefaultEndpoint defaultEndpoint: String) throws {
@@ -38,13 +54,31 @@ public struct _GRPCClient: Sendable {
 
     let isSecure = components.scheme == "https"
     let port = components.port ?? (isSecure ? 443 : 80)
-    let group = MultiThreadedEventLoopGroup.singleton
-    let builder =
-      isSecure
-      ? ClientConnection.usingPlatformAppropriateTLS(for: group)
-      : ClientConnection.insecure(group: group)
+    let transportSecurity: HTTP2ClientTransport.Posix.TransportSecurity =
+      isSecure ? .tls : .plaintext
 
-    self.connection = builder.connect(host: host, port: port)
+    let transport = try HTTP2ClientTransport.Posix(
+      target: .dns(host: host, port: port),
+      transportSecurity: transportSecurity
+    )
+
+    let client = GRPCClient(transport: transport)
+    self.client = client
+    self.connectionTask = Task {
+      try await client.runConnections()
+    }
+  }
+
+  /// Initiates graceful shutdown of the client connection.
+  ///
+  /// In-flight RPCs are allowed to finish, but no new requests will be accepted.
+  public func close() {
+    self.client.beginGracefulShutdown()
+  }
+
+  deinit {
+    self.client.beginGracefulShutdown()
+    self.connectionTask.cancel()
   }
 
   /// Executes a generic unary gRPC request.
@@ -63,30 +97,48 @@ public struct _GRPCClient: Sendable {
     clientHeader: String,
     routingParams: [String] = []
   ) async throws -> Resp {
-    var callOptions = CallOptions()
-
+    var callOptions = CallOptions.defaults
     if let attemptTimeout = options.attemptTimeout {
-      callOptions.timeLimit = .timeout(.nanoseconds(Int64(attemptTimeout / .nanoseconds(1))))
+      callOptions.timeout = attemptTimeout
     }
 
+    var metadata = Metadata()
     let authHeaders = try await self.credentials.headers()
     for (key, value) in authHeaders {
-      callOptions.customMetadata.add(name: key, value: value)
+      metadata.addString(value, forKey: key)
     }
 
-    callOptions.customMetadata.add(name: _HeaderNames.apiClient, value: clientHeader)
+    metadata.addString(clientHeader, forKey: _HeaderNames.apiClient)
     if !routingParams.isEmpty {
-      callOptions.customMetadata.add(
-        name: _HeaderNames.requestParams,
-        value: routingParams.joined(separator: "&")
+      metadata.addString(
+        routingParams.joined(separator: "&"),
+        forKey: _HeaderNames.requestParams
       )
     }
 
-    let call: UnaryCall<Req, Resp> = self.connection.makeUnaryCall(
-      path: path,
-      request: request,
-      callOptions: callOptions
+    let normalizedPath = path.hasPrefix("/") ? String(path.dropFirst()) : path
+    let parts = normalizedPath.split(separator: "/", maxSplits: 1, omittingEmptySubsequences: true)
+    guard parts.count == 2 else {
+      throw ClientError.invalidEndpoint("Invalid gRPC path: \(path)")
+    }
+    let service = String(parts[0])
+    let method = String(parts[1])
+
+    let descriptor = MethodDescriptor(
+      service: ServiceDescriptor(fullyQualifiedService: service),
+      method: method
     )
-    return try await call.response.get()
+
+    let clientRequest = ClientRequest(message: request, metadata: metadata)
+    return try await self.client.unary(
+      request: clientRequest,
+      descriptor: descriptor,
+      serializer: ProtobufSerializer<Req>(),
+      deserializer: ProtobufDeserializer<Resp>(),
+      options: callOptions,
+      onResponse: { response in
+        try response.message
+      }
+    )
   }
 }

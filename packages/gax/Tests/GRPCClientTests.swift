@@ -24,7 +24,7 @@ import GoogleCloudGax
     let options = ClientOptions().with { $0.credentials = credentials }
     let client = try _GRPCClient(
       from: options, withDefaultEndpoint: "https://storage.googleapis.com")
-    _ = client.connection.close()
+    client.close()
   }
 
   @Test func customEndpoints() throws {
@@ -37,7 +37,7 @@ import GoogleCloudGax
     }
     let secureClient = try _GRPCClient(
       from: secureOptions, withDefaultEndpoint: "https://storage.googleapis.com")
-    _ = secureClient.connection.close()
+    secureClient.close()
 
     // With explicit http (insecure emulator)
     let insecureOptions = ClientOptions().with {
@@ -46,7 +46,7 @@ import GoogleCloudGax
     }
     let insecureClient = try _GRPCClient(
       from: insecureOptions, withDefaultEndpoint: "https://storage.googleapis.com")
-    _ = insecureClient.connection.close()
+    insecureClient.close()
 
     // Without scheme (auto https)
     let bareOptions = ClientOptions().with {
@@ -55,7 +55,7 @@ import GoogleCloudGax
     }
     let bareClient = try _GRPCClient(
       from: bareOptions, withDefaultEndpoint: "https://storage.googleapis.com")
-    _ = bareClient.connection.close()
+    bareClient.close()
   }
 
   @Test(arguments: [
@@ -71,7 +71,7 @@ import GoogleCloudGax
     #expect(throws: ClientError.self) {
       let client = try _GRPCClient(
         from: options, withDefaultEndpoint: "https://storage.googleapis.com")
-      _ = client.connection.close()
+      client.close()
     }
   }
 }
