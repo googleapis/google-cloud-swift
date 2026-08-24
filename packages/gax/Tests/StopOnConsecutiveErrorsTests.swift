@@ -27,7 +27,8 @@ import Testing
     let defaultPolicy: StopOnConsecutiveErrors<Void> = .stopOnConsecutiveErrors()
     #expect(defaultPolicy.maxConsecutiveErrors == 3)
 
-    let customPolicy: StopOnConsecutiveErrors<Void> = .stopOnConsecutiveErrors(maxConsecutiveErrors: 5)
+    let customPolicy: StopOnConsecutiveErrors<Void> = .stopOnConsecutiveErrors(
+      maxConsecutiveErrors: 5)
     #expect(customPolicy.maxConsecutiveErrors == 5)
   }
 

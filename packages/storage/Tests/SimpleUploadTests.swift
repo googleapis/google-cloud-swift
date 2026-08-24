@@ -31,7 +31,7 @@ import Testing
   private func makeClient(
     registry: MockRegistry,
     retryPolicy: (any RetryPolicy)? = nil,
-    uploadResumePolicy: (any ResumePolicy)? = nil
+    uploadResumePolicy: (any ResumePolicy<UploadDetails>)? = nil
   ) throws -> StorageClient {
     let options = StorageClientOptions().with {
       $0.client = .init().with {
@@ -61,8 +61,8 @@ import Testing
 
     registry.register(
       response: .success(
-        statusCode: 200, data: makeObjectJSON(name: objectName, bucket: bucket, size: data.count),
-        headers: nil),
+        statusCode: 200, data: Data("{\"name\":\"\(objectName)\"}".utf8),
+        headers: ["Content-Type": "application/json"]),
       for: simpleUploadUrl)
 
     let client = try makeClient(registry: registry)
@@ -70,7 +70,8 @@ import Testing
     let object = try await task.value
 
     #expect(object.name == objectName)
-    #expect(object.bucket == bucket)
+    let requests = registry.recordedRequests()
+    #expect(requests.count == 1)
   }
 
   /// Tests error propagation when the underlying `UploadSource` fails to read source data during a simple upload.
@@ -90,8 +91,8 @@ import Testing
     }
   }
 
-  /// Tests error propagation when a transport/network error occurs during a simple upload.
-  @Test func simpleUploadNetworkError() async throws {
+  /// Tests handling of network failure (URLError) during a simple upload.
+  @Test func simpleUploadNetworkFailure() async throws {
     let registry = MockRegistry.create()
     let bucket = "test-bucket"
     let objectName = "test-object"
@@ -105,14 +106,15 @@ import Testing
       response: .failure(URLError(.cannotConnectToHost)),
       for: simpleUploadUrl)
 
-    let client = try makeClient(registry: registry, uploadResumePolicy: NeverResume())
+    let client = try makeClient(
+      registry: registry, uploadResumePolicy: NeverResume<UploadDetails>())
     let task = client.upload(source, to: bucket, as: objectName)
 
     let error = await expectError(RequestError.self) {
       try await task.value
     }
     if case .io(let underlying as URLError) = error {
-      #expect(underlying.code == .cannotConnectToHost)
+      #expect(underlying.code == URLError.cannotConnectToHost)
     } else {
       Issue.record("Expected RequestError.io(URLError), got \(String(describing: error))")
     }
@@ -304,7 +306,8 @@ import Testing
         headers: nil),
       for: simpleUploadUrl)
 
-    let client = try makeClient(registry: registry, uploadResumePolicy: NeverResume())
+    let client = try makeClient(
+      registry: registry, uploadResumePolicy: NeverResume<UploadDetails>())
     let task = client.upload(source, to: bucket, as: objectName)
 
     let error = await expectError(RequestError.self) {

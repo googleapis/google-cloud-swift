@@ -839,7 +839,7 @@ import Testing
 
     let client = try makeClient(
       registry: registry,
-      downloadOptions: ReadObjectOptions().with { $0.resumePolicy = NeverResume() }
+      downloadOptions: ReadObjectOptions().with { $0.resumePolicy = NeverResume<DownloadDetails>() }
     )
 
     let err = await expectError(DownloadError.self) {
@@ -865,7 +865,7 @@ import Testing
 
     let client = try makeClient(registry: registry)
     let options = ReadObjectOptions().with {
-      $0.resumePolicy = NeverResume()
+      $0.resumePolicy = NeverResume<DownloadDetails>()
     }
 
     let err = await expectError(DownloadError.self) {
@@ -891,7 +891,7 @@ import Testing
 
     let client = try makeClient(
       registry: registry,
-      downloadOptions: ReadObjectOptions().with { $0.resumePolicy = NeverResume() }
+      downloadOptions: ReadObjectOptions().with { $0.resumePolicy = NeverResume<DownloadDetails>() }
     )
 
     let err = await expectError(DownloadError.self) {

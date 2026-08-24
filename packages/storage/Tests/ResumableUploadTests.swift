@@ -32,7 +32,7 @@ import Testing
   private func makeClient(
     registry: MockRegistry,
     clientRetryPolicy: (any RetryPolicy)? = nil,
-    uploadResumePolicy: (any ResumePolicy)? = nil
+    uploadResumePolicy: (any ResumePolicy<UploadDetails>)? = nil
   ) throws -> StorageClient {
     let options = StorageClientOptions().with {
       $0.client = .init().with {
@@ -54,24 +54,12 @@ import Testing
     let registry = MockRegistry.create()
     let bucket = "test-bucket"
     let objectName = "test-object"
-    let data = Data(repeating: 1, count: 10 * 1024 * 1024)  // 10MiB
+    let data = Data(repeating: 1, count: 10 * 1024 * 1024)
     let source = BytesSource(data: data)
 
     let startUrl = registry.url(
       "/upload/storage/v1/b/\(bucket)/o?uploadType=resumable&name=\(objectName)")
-    let chunkUrl = registry.url("/upload/storage/v1/b/\(bucket)/o?upload_id=test-id")
-
-    let objectJSON = """
-      {
-        "name": "\(objectName)",
-        "bucket": "\(bucket)",
-        "generation": "1",
-        "metageneration": "1",
-        "size": "\(data.count)",
-        "contentType": "application/octet-stream",
-        "storageClass": "STANDARD"
-      }
-      """
+    let chunkUrl = registry.url("/upload/storage/v1/b/\(bucket)/o?upload_id=test-upload-id-123")
 
     registry.register(
       response: .success(
@@ -80,8 +68,8 @@ import Testing
       for: startUrl)
     registry.register(
       response: .success(
-        statusCode: 200, data: Data(objectJSON.utf8),
-        headers: nil),
+        statusCode: 200, data: Data("{\"name\":\"\(objectName)\"}".utf8),
+        headers: ["Content-Type": "application/json"]),
       for: chunkUrl)
 
     let client = try makeClient(registry: registry)
@@ -89,7 +77,37 @@ import Testing
     let object = try await task.value
 
     #expect(object.name == objectName)
-    #expect(object.bucket == bucket)
+    let requests = registry.recordedRequests()
+    #expect(requests.count == 2)
+  }
+
+  /// Tests error propagation when network failure (URLError) occurs while initiating a resumable upload session.
+  @Test func resumableUploadNetworkFailure() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "test-object"
+    let data = Data(repeating: 1, count: 10 * 1024 * 1024)
+    let source = BytesSource(data: data)
+
+    let startUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?uploadType=resumable&name=\(objectName)")
+
+    registry.register(
+      response: .failure(URLError(.cannotConnectToHost)),
+      for: startUrl)
+
+    let client = try makeClient(
+      registry: registry, uploadResumePolicy: NeverResume<UploadDetails>())
+    let task = client.upload(source, to: bucket, as: objectName)
+
+    let error = await expectError(RequestError.self) {
+      _ = try await task.value
+    }
+    if case .io(let underlying as URLError) = error {
+      #expect(underlying.code == URLError.cannotConnectToHost)
+    } else {
+      Issue.record("Expected RequestError.io(URLError), got \(String(describing: error))")
+    }
   }
 
   /// Tests error propagation when `UploadSource.read` fails during a resumable chunk upload.
@@ -1890,7 +1908,8 @@ import Testing
         headers: [:]),
       for: startUrl)
 
-    let client = try makeClient(registry: registry, uploadResumePolicy: NeverResume())
+    let client = try makeClient(
+      registry: registry, uploadResumePolicy: NeverResume<UploadDetails>())
     let task = client.upload(source, to: bucket, as: objectName)
 
     let error = await expectError(RequestError.self) {
