@@ -43,11 +43,9 @@ extension StorageClient {
     } else {
       effectiveResumePolicy = StopOnConsecutiveErrors()
     }
-    let retryLoop = _RetryLoop(
-      retryPolicy: effectiveRetryPolicy,
-      backoffPolicy: effectiveBackoffPolicy,
-      retryThrottler: clientOptions.retryThrottler,
-      idempotent: true
+    let resumeLoop = _ResumeLoop(
+      resumePolicy: effectiveResumePolicy,
+      backoffPolicy: effectiveBackoffPolicy
     )
 
     let coordinator = ReadObjectCoordinator(
@@ -55,9 +53,7 @@ extension StorageClient {
       object: object,
       options: options,
       httpClient: inner,
-      retryLoop: retryLoop,
-      resumePolicy: effectiveResumePolicy,
-      backoffPolicy: effectiveBackoffPolicy
+      resumeLoop: resumeLoop
     )
     return ReadObjectTask(coordinator: coordinator)
   }

@@ -58,11 +58,9 @@ extension StorageClient {
     } else {
       effectiveResumePolicy = StopOnConsecutiveErrors()
     }
-    let retryLoop = _RetryLoop(
-      retryPolicy: effectiveRetryPolicy,
-      backoffPolicy: effectiveBackoffPolicy,
-      retryThrottler: clientOptions.retryThrottler,
-      idempotent: true
+    let resumeLoop = _ResumeLoop(
+      resumePolicy: effectiveResumePolicy,
+      backoffPolicy: effectiveBackoffPolicy
     )
     let httpClient = self.inner
     return UploadTask.create { continuation in
@@ -83,7 +81,7 @@ extension StorageClient {
           options: options,
           totalSize: totalSize,
           continuation: continuation,
-          retryLoop: retryLoop
+          resumeLoop: resumeLoop
         )
       } else {
         return try await Self.continueStreamingUpload(
@@ -98,9 +96,7 @@ extension StorageClient {
           totalSize: totalSize,
           options: options,
           continuation: continuation,
-          resumePolicy: effectiveResumePolicy,
-          backoffPolicy: effectiveBackoffPolicy,
-          retryLoop: retryLoop
+          resumeLoop: resumeLoop
         )
       }
     }
@@ -134,11 +130,9 @@ extension StorageClient {
     } else {
       effectiveResumePolicy = StopOnConsecutiveErrors()
     }
-    let retryLoop = _RetryLoop(
-      retryPolicy: effectiveRetryPolicy,
-      backoffPolicy: effectiveBackoffPolicy,
-      retryThrottler: clientOptions.retryThrottler,
-      idempotent: true
+    let resumeLoop = _ResumeLoop(
+      resumePolicy: effectiveResumePolicy,
+      backoffPolicy: effectiveBackoffPolicy
     )
     let httpClient = self.inner
     return UploadTask.create { continuation in
@@ -159,7 +153,7 @@ extension StorageClient {
           options: options,
           totalSize: totalSize,
           continuation: continuation,
-          retryLoop: retryLoop
+          resumeLoop: resumeLoop
         )
       } else {
         return try await Self.continueResumableSeekableUpload(
@@ -174,9 +168,7 @@ extension StorageClient {
           totalSize: totalSize,
           options: options,
           continuation: continuation,
-          resumePolicy: effectiveResumePolicy,
-          backoffPolicy: effectiveBackoffPolicy,
-          retryLoop: retryLoop
+          resumeLoop: resumeLoop
         )
       }
     }
@@ -191,7 +183,7 @@ extension StorageClient {
     options: UploadOptions,
     totalSize: Int64?,
     continuation: AsyncStream<UploadStatus>.Continuation,
-    retryLoop: _RetryLoop
+    resumeLoop: _ResumeLoop
   ) async throws -> Object {
     guard let data = try await source.read(maxBytes: Int(totalSize ?? 0)) else {
       throw UploadError.internalError("Failed to read data from source")
@@ -207,7 +199,7 @@ extension StorageClient {
       checksum: checksum
     )
 
-    return try await retryLoop.run { _ in
+    return try await resumeLoop.run { _ in
       let response: _HTTPClientResponse
       do {
         response = try await request.execute()
@@ -396,9 +388,7 @@ extension StorageClient {
     totalSize: Int64?,
     options: UploadOptions,
     continuation: AsyncStream<UploadStatus>.Continuation,
-    resumePolicy: any ResumePolicy,
-    backoffPolicy: any BackoffPolicy,
-    retryLoop: _RetryLoop
+    resumeLoop: _ResumeLoop
   ) async throws -> Object {
     var options = options
     var uploadStatus = initialStatus
@@ -425,7 +415,7 @@ extension StorageClient {
           throw UploadError.internalError(
             "Missing bucket or object name to start resumable upload")
         }
-        let location = try await retryLoop.run { _ in
+        let location = try await resumeLoop.run(state: &resumeState) { _ in
           try await startResumableSession(
             httpClient: httpClient,
             bucket: bucket,
@@ -448,7 +438,7 @@ extension StorageClient {
           uploadStatus = queryResult.status
           if case .inprogress(let committedBytes) = uploadStatus {
             if committedBytes > resumeState.bytesTransferred {
-              resumePolicy.onProgress(
+              resumeLoop.onProgress(
                 state: &resumeState,
                 bytesAdvanced: committedBytes - resumeState.bytesTransferred
               )
@@ -459,25 +449,8 @@ extension StorageClient {
                 uploadId: activeUploadId))
           }
         } catch {
-          guard let requestError = error as? RequestError else {
-            throw error
-          }
-          resumeState.consecutiveErrorCount += 1
-          resumeState.totalResumeCount += 1
-          let decision = resumePolicy.onError(state: resumeState, error: requestError)
-          switch decision {
-          case .permanent(let e), .exhausted(let e):
-            throw e
-          case .resume:
-            let retryState = RetryState().with {
-              $0.attemptCount = resumeState.consecutiveErrorCount
-            }
-            let delay = backoffPolicy.backoffDelayFor(retryState)
-            if delay > .zero {
-              try await Task.sleep(for: delay)
-            }
-            continue
-          }
+          try await resumeLoop.handleError(state: &resumeState, error: error)
+          continue
         }
       }
 
@@ -527,25 +500,8 @@ extension StorageClient {
             continuation: continuation
           )
         } catch {
-          guard let requestError = error as? RequestError else {
-            throw error
-          }
-          resumeState.consecutiveErrorCount += 1
-          resumeState.totalResumeCount += 1
-          let decision = resumePolicy.onError(state: resumeState, error: requestError)
-          switch decision {
-          case .permanent(let e), .exhausted(let e):
-            throw e
-          case .resume:
-            let retryState = RetryState().with {
-              $0.attemptCount = resumeState.consecutiveErrorCount
-            }
-            let delay = backoffPolicy.backoffDelayFor(retryState)
-            if delay > .zero {
-              try await Task.sleep(for: delay)
-            }
-            continue
-          }
+          try await resumeLoop.handleError(state: &resumeState, error: error)
+          continue
         }
 
         if case .done(let object) = chunkResult.status {
@@ -554,7 +510,7 @@ extension StorageClient {
         uploadStatus = chunkResult.status
         if case .inprogress(let nextBytes) = chunkResult.status {
           if nextBytes > resumeState.bytesTransferred {
-            resumePolicy.onProgress(
+            resumeLoop.onProgress(
               state: &resumeState,
               bytesAdvanced: nextBytes - resumeState.bytesTransferred
             )
@@ -578,9 +534,7 @@ extension StorageClient {
     totalSize: Int64?,
     options: UploadOptions,
     continuation: AsyncStream<UploadStatus>.Continuation,
-    resumePolicy: any ResumePolicy,
-    backoffPolicy: any BackoffPolicy,
-    retryLoop: _RetryLoop
+    resumeLoop: _ResumeLoop
   ) async throws -> Object {
     var options = options
     var uploadStatus = initialStatus
@@ -607,7 +561,7 @@ extension StorageClient {
           throw UploadError.internalError(
             "Missing bucket or object name to start resumable upload")
         }
-        let location = try await retryLoop.run { _ in
+        let location = try await resumeLoop.run(state: &resumeState) { _ in
           try await startResumableSession(
             httpClient: httpClient,
             bucket: bucket,
@@ -633,7 +587,7 @@ extension StorageClient {
           }
           if case .inprogress(let committedBytes) = uploadStatus {
             if committedBytes > resumeState.bytesTransferred {
-              resumePolicy.onProgress(
+              resumeLoop.onProgress(
                 state: &resumeState,
                 bytesAdvanced: committedBytes - resumeState.bytesTransferred
               )
@@ -644,25 +598,8 @@ extension StorageClient {
                 uploadId: activeUploadId))
           }
         } catch {
-          guard let requestError = error as? RequestError else {
-            throw error
-          }
-          resumeState.consecutiveErrorCount += 1
-          resumeState.totalResumeCount += 1
-          let decision = resumePolicy.onError(state: resumeState, error: requestError)
-          switch decision {
-          case .permanent(let e), .exhausted(let e):
-            throw e
-          case .resume:
-            let retryState = RetryState().with {
-              $0.attemptCount = resumeState.consecutiveErrorCount
-            }
-            let delay = backoffPolicy.backoffDelayFor(retryState)
-            if delay > .zero {
-              try await Task.sleep(for: delay)
-            }
-            continue
-          }
+          try await resumeLoop.handleError(state: &resumeState, error: error)
+          continue
         }
       }
 
@@ -715,25 +652,8 @@ extension StorageClient {
             continuation: continuation
           )
         } catch {
-          guard let requestError = error as? RequestError else {
-            throw error
-          }
-          resumeState.consecutiveErrorCount += 1
-          resumeState.totalResumeCount += 1
-          let decision = resumePolicy.onError(state: resumeState, error: requestError)
-          switch decision {
-          case .permanent(let e), .exhausted(let e):
-            throw e
-          case .resume:
-            let retryState = RetryState().with {
-              $0.attemptCount = resumeState.consecutiveErrorCount
-            }
-            let delay = backoffPolicy.backoffDelayFor(retryState)
-            if delay > .zero {
-              try await Task.sleep(for: delay)
-            }
-            continue
-          }
+          try await resumeLoop.handleError(state: &resumeState, error: error)
+          continue
         }
 
         if case .done(let object) = chunkResult.status {
@@ -742,7 +662,7 @@ extension StorageClient {
         uploadStatus = chunkResult.status
         if case .inprogress(let nextBytes) = chunkResult.status {
           if nextBytes > resumeState.bytesTransferred {
-            resumePolicy.onProgress(
+            resumeLoop.onProgress(
               state: &resumeState,
               bytesAdvanced: nextBytes - resumeState.bytesTransferred
             )
@@ -781,11 +701,9 @@ extension StorageClient {
     } else {
       effectiveResumePolicy = StopOnConsecutiveErrors()
     }
-    let retryLoop = _RetryLoop(
-      retryPolicy: effectiveRetryPolicy,
-      backoffPolicy: effectiveBackoffPolicy,
-      retryThrottler: clientOptions.retryThrottler,
-      idempotent: true
+    let resumeLoop = _ResumeLoop(
+      resumePolicy: effectiveResumePolicy,
+      backoffPolicy: effectiveBackoffPolicy
     )
     let httpClient = self.inner
     return UploadTask.create { continuation in
@@ -804,9 +722,7 @@ extension StorageClient {
         totalSize: totalSize,
         options: options,
         continuation: continuation,
-        resumePolicy: effectiveResumePolicy,
-        backoffPolicy: effectiveBackoffPolicy,
-        retryLoop: retryLoop
+        resumeLoop: resumeLoop
       )
     }
   }
