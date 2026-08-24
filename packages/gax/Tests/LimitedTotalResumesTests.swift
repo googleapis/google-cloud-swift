@@ -18,18 +18,18 @@ import Testing
 
 @Suite struct LimitedTotalResumesTests {
   @Test func defaults() {
-    let policy = LimitedTotalResumes()
+    let policy = LimitedTotalResumes<Void>()
     #expect(policy.maxTotalResumes == 10)
     #expect(policy.remainingTime(state: ResumeState()) == nil)
   }
 
   @Test func staticFactories() {
-    let customPolicy: LimitedTotalResumes = .limitedTotalResumes(5)
+    let customPolicy: LimitedTotalResumes<Void> = .limitedTotalResumes(5)
     #expect(customPolicy.maxTotalResumes == 5)
   }
 
   @Test func totalResumeLimit() {
-    let policy = LimitedTotalResumes(maxTotalResumes: 2)
+    let policy = LimitedTotalResumes<Void>(maxTotalResumes: 2)
     let state = ResumeState()
     let transient503 = RequestError.http(HTTPDetails(http_status_code: 503, headers: [:]))
     let permanent403 = RequestError.http(HTTPDetails(http_status_code: 403, headers: [:]))

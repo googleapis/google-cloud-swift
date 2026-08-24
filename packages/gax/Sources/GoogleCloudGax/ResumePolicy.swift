@@ -19,34 +19,37 @@ import Foundation
 /// Unlike a `RetryPolicy` which operates on a single atomic RPC attempt, a `ResumePolicy` controls
 /// a series of API calls spanning an entire operation (e.g. uploads and downloads). It tracks forward
 /// progress and handles recovery across transient network interruptions, failures, or dropped streams.
-public protocol ResumePolicy: Sendable {
+public protocol ResumePolicy<Details>: Sendable {
+  /// The type of domain-specific details associated with this resume policy. Defaults to `Void`.
+  associatedtype Details: Sendable = Void
+
   /// Queries the policy after an error during an operation.
   ///
   /// - Parameters:
   ///   - state: The current state of the operation.
   ///   - error: The last error encountered.
   /// - Returns: The resume decision (`.permanent`, `.exhausted`, or `.resume`).
-  func onError(state: ResumeState, error: RequestError) -> ResumeResult
+  func onError(state: ResumeState<Details>, error: RequestError) -> ResumeResult
 
   /// Called when forward progress is made.
   ///
   /// - Parameter state: The current state of the operation to update.
-  func onProgress(state: ResumeState)
+  func onProgress(state: ResumeState<Details>)
 
   /// Returns the remaining duration for time-bounded resume policies.
   ///
   /// - Parameter state: The current state of the operation.
   /// - Returns: Remaining duration, or `nil` if the policy is not time-based.
-  func remainingTime(state: ResumeState) -> Duration?
+  func remainingTime(state: ResumeState<Details>) -> Duration?
 }
 
 extension ResumePolicy {
-  public func onProgress(state: ResumeState) {
+  public func onProgress(state: ResumeState<Details>) {
     state.consecutiveErrorCount = 0
     state.lastProgressTime = .now
   }
 
-  public func remainingTime(state: ResumeState) -> Duration? {
+  public func remainingTime(state: ResumeState<Details>) -> Duration? {
     nil
   }
 }

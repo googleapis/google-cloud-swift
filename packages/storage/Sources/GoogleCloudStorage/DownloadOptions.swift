@@ -221,7 +221,7 @@ public struct ReadObjectOptions: Sendable {
   public var autoResume: Bool = true
 
   /// Overrides the resume policy for this download.
-  public var resumePolicy: (any ResumePolicy)? = nil
+  public var resumePolicy: (any ResumePolicy<DownloadDetails>)? = nil
 
   /// Overrides the backoff policy for this download.
   public var backoffPolicy: (any BackoffPolicy)? = nil
@@ -368,7 +368,7 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
   let object: String
   let options: ReadObjectOptions
   let httpClient: GoogleCloudGax._HTTPClient
-  let resumeLoop: _ResumeLoop
+  let resumeLoop: _ResumeLoop<DownloadDetails>
 
   private let lock = NSLock()
   private var isInitialFetched: Bool = false
@@ -377,7 +377,7 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
   private var bodyIterator: _HTTPResponseBody.AsyncIterator?
   private var streamIterator: AsyncThrowingStream<NIOCore.ByteBuffer, Error>.AsyncIterator?
   private var bytesReceived: UInt64 = 0
-  private let resumeState: DownloadResumeState
+  private let resumeState: ResumeState<DownloadDetails>
   private var isFinished: Bool = false
   private var isCancelled: Bool = false
   private var crc32cCalculator: CRC32CCalculator?
@@ -389,14 +389,14 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
     object: String,
     options: ReadObjectOptions,
     httpClient: GoogleCloudGax._HTTPClient,
-    resumeLoop: _ResumeLoop
+    resumeLoop: _ResumeLoop<DownloadDetails>
   ) {
     self.bucket = bucket
     self.object = object
     self.options = options
     self.httpClient = httpClient
     self.resumeLoop = resumeLoop
-    self.resumeState = DownloadResumeState()
+    self.resumeState = ResumeState(details: DownloadDetails())
     if options.checksums.crc32c != nil {
       self.crc32cCalculator = CRC32CCalculator()
     }
@@ -460,7 +460,7 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
           self.streamIterator = it
           if let chunk {
             bytesReceived += UInt64(chunk.readableBytes)
-            resumeState.bytesDownloaded = bytesReceived
+            resumeState.details.bytesDownloaded = bytesReceived
             resumeLoop.onProgress(state: resumeState)
             updateChecksums(with: chunk)
             return chunk
@@ -474,7 +474,7 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
           self.bodyIterator = it
           if let chunk {
             bytesReceived += UInt64(chunk.readableBytes)
-            resumeState.bytesDownloaded = bytesReceived
+            resumeState.details.bytesDownloaded = bytesReceived
             resumeLoop.onProgress(state: resumeState)
             updateChecksums(with: chunk)
             return chunk
@@ -663,8 +663,8 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
     bucket: String,
     object: String,
     options: ReadObjectOptions,
-    resumeLoop: _ResumeLoop,
-    resumeState: DownloadResumeState
+    resumeLoop: _ResumeLoop<DownloadDetails>,
+    resumeState: ResumeState<DownloadDetails>
   ) async throws -> (_HTTPClientResponse, ReadObjectMetadata) {
     if case .bounded(let start, let end) = options.range {
       guard start <= end else {

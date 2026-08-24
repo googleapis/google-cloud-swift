@@ -18,7 +18,7 @@ import Foundation
 /// is made, halting only when consecutive errors occur without advancing any bytes.
 ///
 /// This is the recommended default policy for resumable transfers like Cloud Storage uploads and downloads.
-public struct StopOnConsecutiveErrors: ResumePolicy, Sendable, Equatable {
+public struct StopOnConsecutiveErrors<Details: Sendable>: ResumePolicy, Sendable, Equatable {
   /// The maximum number of consecutive errors permitted before the transfer is abandoned.
   public let maxConsecutiveErrors: UInt32
 
@@ -29,7 +29,7 @@ public struct StopOnConsecutiveErrors: ResumePolicy, Sendable, Equatable {
     self.maxConsecutiveErrors = maxConsecutiveErrors
   }
 
-  public func onError(state: ResumeState, error: RequestError) -> ResumeResult {
+  public func onError(state: ResumeState<Details>, error: RequestError) -> ResumeResult {
     guard error.isRecoverableForResume else {
       return .permanent(error)
     }
@@ -42,15 +42,10 @@ public struct StopOnConsecutiveErrors: ResumePolicy, Sendable, Equatable {
   }
 }
 
-extension ResumePolicy where Self == StopOnConsecutiveErrors {
-  /// A `StopOnConsecutiveErrors` resume policy with default settings (max 3 consecutive errors).
-  public static var stopOnConsecutiveErrors: StopOnConsecutiveErrors {
-    StopOnConsecutiveErrors()
-  }
-
-  /// Creates a `StopOnConsecutiveErrors` resume policy with a custom consecutive error threshold.
-  public static func stopOnConsecutiveErrors(maxConsecutiveErrors: UInt32)
-    -> StopOnConsecutiveErrors
+extension ResumePolicy {
+  /// Creates a `StopOnConsecutiveErrors` resume policy with default settings (max 3 consecutive errors).
+  public static func stopOnConsecutiveErrors<D: Sendable>(maxConsecutiveErrors: UInt32 = 3)
+    -> StopOnConsecutiveErrors<D> where Self == StopOnConsecutiveErrors<D>
   {
     StopOnConsecutiveErrors(maxConsecutiveErrors: maxConsecutiveErrors)
   }

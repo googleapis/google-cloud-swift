@@ -47,7 +47,7 @@ extension StorageClient {
     let clientOptions = self.options.client
     let effectiveBackoffPolicy =
       options.backoffPolicy ?? self.options.upload.backoffPolicy ?? clientOptions.backoffPolicy
-    let effectiveResumePolicy: any ResumePolicy
+    let effectiveResumePolicy: any ResumePolicy<UploadDetails>
     if let explicitResume = options.resumePolicy ?? self.options.upload.resumePolicy {
       effectiveResumePolicy = explicitResume
     } else {
@@ -114,7 +114,7 @@ extension StorageClient {
     let clientOptions = self.options.client
     let effectiveBackoffPolicy =
       options.backoffPolicy ?? self.options.upload.backoffPolicy ?? clientOptions.backoffPolicy
-    let effectiveResumePolicy: any ResumePolicy
+    let effectiveResumePolicy: any ResumePolicy<UploadDetails>
     if let explicitResume = options.resumePolicy ?? self.options.upload.resumePolicy {
       effectiveResumePolicy = explicitResume
     } else {
@@ -173,7 +173,7 @@ extension StorageClient {
     options: UploadOptions,
     totalSize: Int64?,
     continuation: AsyncStream<UploadStatus>.Continuation,
-    resumeLoop: _ResumeLoop
+    resumeLoop: _ResumeLoop<UploadDetails>
   ) async throws -> Object {
     guard let data = try await source.read(maxBytes: Int(totalSize ?? 0)) else {
       throw UploadError.internalError("Failed to read data from source")
@@ -189,7 +189,8 @@ extension StorageClient {
       checksum: checksum
     )
 
-    return try await resumeLoop.run { _ in
+    let resumeState = ResumeState(details: UploadDetails(bytesUploaded: 0, totalBytes: totalSize))
+    return try await resumeLoop.run(state: resumeState) { _ in
       let response: _HTTPClientResponse
       do {
         response = try await request.execute()
@@ -378,7 +379,7 @@ extension StorageClient {
     totalSize: Int64?,
     options: UploadOptions,
     continuation: AsyncStream<UploadStatus>.Continuation,
-    resumeLoop: _ResumeLoop
+    resumeLoop: _ResumeLoop<UploadDetails>
   ) async throws -> Object {
     var options = options
     var uploadStatus = initialStatus
@@ -391,9 +392,11 @@ extension StorageClient {
     } else {
       initialBytes = 0
     }
-    let resumeState = UploadResumeState(
-      bytesUploaded: initialBytes,
-      totalBytes: totalSize
+    let resumeState = ResumeState(
+      details: UploadDetails(
+        bytesUploaded: initialBytes,
+        totalBytes: totalSize
+      )
     )
 
     while true {
@@ -427,8 +430,8 @@ extension StorageClient {
             httpClient: httpClient, uploadId: activeUploadId, options: options)
           uploadStatus = queryResult.status
           if case .inprogress(let committedBytes) = uploadStatus {
-            if committedBytes > resumeState.bytesUploaded {
-              resumeState.bytesUploaded = committedBytes
+            if committedBytes > resumeState.details.bytesUploaded {
+              resumeState.details.bytesUploaded = committedBytes
               resumeLoop.onProgress(state: resumeState)
             }
             continuation.yield(
@@ -497,8 +500,8 @@ extension StorageClient {
         }
         uploadStatus = chunkResult.status
         if case .inprogress(let nextBytes) = chunkResult.status {
-          if nextBytes > resumeState.bytesUploaded {
-            resumeState.bytesUploaded = nextBytes
+          if nextBytes > resumeState.details.bytesUploaded {
+            resumeState.details.bytesUploaded = nextBytes
             resumeLoop.onProgress(state: resumeState)
           }
           lastCommittedBytes = nextBytes
@@ -520,7 +523,7 @@ extension StorageClient {
     totalSize: Int64?,
     options: UploadOptions,
     continuation: AsyncStream<UploadStatus>.Continuation,
-    resumeLoop: _ResumeLoop
+    resumeLoop: _ResumeLoop<UploadDetails>
   ) async throws -> Object {
     var options = options
     var uploadStatus = initialStatus
@@ -533,9 +536,11 @@ extension StorageClient {
     } else {
       initialBytes = 0
     }
-    let resumeState = UploadResumeState(
-      bytesUploaded: initialBytes,
-      totalBytes: totalSize
+    let resumeState = ResumeState(
+      details: UploadDetails(
+        bytesUploaded: initialBytes,
+        totalBytes: totalSize
+      )
     )
 
     while true {
@@ -572,8 +577,8 @@ extension StorageClient {
             crc32cSeed = seed
           }
           if case .inprogress(let committedBytes) = uploadStatus {
-            if committedBytes > resumeState.bytesUploaded {
-              resumeState.bytesUploaded = committedBytes
+            if committedBytes > resumeState.details.bytesUploaded {
+              resumeState.details.bytesUploaded = committedBytes
               resumeLoop.onProgress(state: resumeState)
             }
             continuation.yield(
@@ -645,8 +650,8 @@ extension StorageClient {
         }
         uploadStatus = chunkResult.status
         if case .inprogress(let nextBytes) = chunkResult.status {
-          if nextBytes > resumeState.bytesUploaded {
-            resumeState.bytesUploaded = nextBytes
+          if nextBytes > resumeState.details.bytesUploaded {
+            resumeState.details.bytesUploaded = nextBytes
             resumeLoop.onProgress(state: resumeState)
           }
         }
@@ -672,7 +677,7 @@ extension StorageClient {
     let clientOptions = self.options.client
     let effectiveBackoffPolicy =
       options.backoffPolicy ?? self.options.upload.backoffPolicy ?? clientOptions.backoffPolicy
-    let effectiveResumePolicy: any ResumePolicy
+    let effectiveResumePolicy: any ResumePolicy<UploadDetails>
     if let explicitResume = options.resumePolicy ?? self.options.upload.resumePolicy {
       effectiveResumePolicy = explicitResume
     } else {

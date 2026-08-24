@@ -15,17 +15,17 @@
 import Foundation
 
 /// A ``ResumePolicy`` that halts the transfer immediately on the first error encountered.
-public struct NeverResume: ResumePolicy, Sendable, Equatable {
+public struct NeverResume<Details: Sendable>: ResumePolicy, Sendable, Equatable {
   public init() {}
 
-  public func onError(state: ResumeState, error: RequestError) -> ResumeResult {
+  public func onError(state: ResumeState<Details>, error: RequestError) -> ResumeResult {
     .permanent(error)
   }
 }
 
-extension ResumePolicy where Self == NeverResume {
+extension ResumePolicy {
   /// A `NeverResume` policy that disables auto-resumption.
-  public static var never: NeverResume {
-    NeverResume()
+  public static func never<D: Sendable>() -> NeverResume<D> where Self == NeverResume<D> {
+    NeverResume<D>()
   }
 }

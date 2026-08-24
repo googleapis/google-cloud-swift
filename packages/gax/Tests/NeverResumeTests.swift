@@ -18,7 +18,7 @@ import Testing
 
 @Suite struct NeverResumeTests {
   @Test func neverResume() {
-    let policy = NeverResume()
+    let policy = NeverResume<Void>()
     let state = ResumeState()
     let transient503 = RequestError.http(HTTPDetails(http_status_code: 503, headers: [:]))
     let ioError = RequestError.io(NSError(domain: "test", code: -1))
@@ -29,7 +29,7 @@ import Testing
   }
 
   @Test func staticFactory() {
-    let policy: NeverResume = .never
+    let policy: NeverResume<Void> = .never()
     let state = ResumeState()
     let transient503 = RequestError.http(HTTPDetails(http_status_code: 503, headers: [:]))
     #expect(policy.onError(state: state, error: transient503) == .permanent(transient503))

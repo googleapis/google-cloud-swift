@@ -13,39 +13,25 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudGax
 
-/// The state of an ongoing download operation.
-///
-/// Tracks the number of bytes successfully downloaded from Cloud Storage, the total object size,
-/// and consecutive errors and resume counts managed by the ``ResumePolicy``.
-package final class DownloadResumeState: ResumeState, @unchecked Sendable {
+/// Progress and size details for an ongoing download operation.
+package struct DownloadDetails: Sendable, Equatable {
   /// The total number of bytes successfully downloaded so far.
   package var bytesDownloaded: UInt64
 
   /// The total size of the object to download in bytes, if known.
   package var totalBytes: Int64?
 
-  /// Creates a new `DownloadResumeState` instance.
+  /// Creates a new `DownloadDetails` instance.
   ///
   /// - Parameters:
   ///   - bytesDownloaded: Initial bytes downloaded. Defaults to 0.
   ///   - totalBytes: Total object size in bytes if known. Defaults to `nil`.
-  ///   - start: The clock instant when the operation started. Defaults to `.now`.
   package init(
     bytesDownloaded: UInt64 = 0,
-    totalBytes: Int64? = nil,
-    start: ContinuousClock.Instant = .now
+    totalBytes: Int64? = nil
   ) {
     self.bytesDownloaded = bytesDownloaded
     self.totalBytes = totalBytes
-    super.init(start: start)
-  }
-
-  /// Override specific values on this download state.
-  @discardableResult
-  package func configure(_ config: (DownloadResumeState) -> Void) -> Self {
-    config(self)
-    return self
   }
 }

@@ -18,8 +18,8 @@ import Foundation
 ///
 /// On an error or forward progress event, the client library updates and provides an instance of this
 /// class to the ``ResumePolicy``. Specific domains or operations (such as storage uploads and downloads)
-/// can subclass `ResumeState` to include domain-specific state.
-open class ResumeState: @unchecked Sendable, Equatable {
+/// provide domain-specific metadata via the `Details` generic parameter.
+public final class ResumeState<Details: Sendable>: @unchecked Sendable {
   /// The number of consecutive errors encountered without making forward progress.
   ///
   /// This count is reset to 0 whenever forward progress is made.
@@ -34,32 +34,53 @@ open class ResumeState: @unchecked Sendable, Equatable {
   /// The time when forward progress was last made (or start time if no progress yet).
   public var lastProgressTime: ContinuousClock.Instant
 
-  /// Creates a new `ResumeState` instance.
+  /// Domain-specific progress and context details.
+  public var details: Details
+
+  /// Creates a new `ResumeState` instance with domain-specific details.
   ///
-  /// - Parameter start: The clock instant when the operation started. Defaults to `.now`.
-  public init(start: ContinuousClock.Instant = .now) {
+  /// - Parameters:
+  ///   - details: Domain-specific progress details.
+  ///   - start: The clock instant when the operation started. Defaults to `.now`.
+  public init(
+    details: Details,
+    start: ContinuousClock.Instant = .now
+  ) {
     self.consecutiveErrorCount = 0
     self.totalResumeCount = 0
     self.start = start
     self.lastProgressTime = start
+    self.details = details
   }
 
   /// Override specific values using the `Then` idiom.
   ///
   /// ## Example
   /// ```
-  /// let state = ResumeState().with { $0.consecutiveErrorCount = 2 }
+  /// let state = ResumeState(details: ()).with { $0.consecutiveErrorCount = 2 }
   /// ```
   @discardableResult
-  public func with(_ config: (ResumeState) -> Void) -> Self {
+  public func with(_ config: (ResumeState<Details>) -> Void) -> Self {
     config(self)
     return self
   }
+}
 
-  public static func == (lhs: ResumeState, rhs: ResumeState) -> Bool {
+extension ResumeState where Details == Void {
+  /// Creates a new `ResumeState` instance with `Void` details.
+  ///
+  /// - Parameter start: The clock instant when the operation started. Defaults to `.now`.
+  public convenience init(start: ContinuousClock.Instant = .now) {
+    self.init(details: (), start: start)
+  }
+}
+
+extension ResumeState: Equatable where Details: Equatable {
+  public static func == (lhs: ResumeState<Details>, rhs: ResumeState<Details>) -> Bool {
     lhs.consecutiveErrorCount == rhs.consecutiveErrorCount
       && lhs.totalResumeCount == rhs.totalResumeCount
       && lhs.start == rhs.start
       && lhs.lastProgressTime == rhs.lastProgressTime
+      && lhs.details == rhs.details
   }
 }

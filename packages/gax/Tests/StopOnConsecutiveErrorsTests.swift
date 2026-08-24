@@ -18,21 +18,21 @@ import Testing
 
 @Suite struct StopOnConsecutiveErrorsTests {
   @Test func defaults() {
-    let policy = StopOnConsecutiveErrors()
+    let policy = StopOnConsecutiveErrors<Void>()
     #expect(policy.maxConsecutiveErrors == 3)
     #expect(policy.remainingTime(state: ResumeState()) == nil)
   }
 
   @Test func staticFactories() {
-    let defaultPolicy: StopOnConsecutiveErrors = .stopOnConsecutiveErrors
+    let defaultPolicy: StopOnConsecutiveErrors<Void> = .stopOnConsecutiveErrors()
     #expect(defaultPolicy.maxConsecutiveErrors == 3)
 
-    let customPolicy: StopOnConsecutiveErrors = .stopOnConsecutiveErrors(maxConsecutiveErrors: 5)
+    let customPolicy: StopOnConsecutiveErrors<Void> = .stopOnConsecutiveErrors(maxConsecutiveErrors: 5)
     #expect(customPolicy.maxConsecutiveErrors == 5)
   }
 
   @Test func recoverableVsPermanentErrors() {
-    let policy = StopOnConsecutiveErrors(maxConsecutiveErrors: 2)
+    let policy = StopOnConsecutiveErrors<Void>(maxConsecutiveErrors: 2)
     let state = ResumeState()
 
     let transient503 = RequestError.http(HTTPDetails(http_status_code: 503, headers: [:]))

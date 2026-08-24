@@ -15,7 +15,7 @@
 import Foundation
 
 /// A ``ResumePolicy`` that caps the total number of resume attempts across the entire transfer operation.
-public struct LimitedTotalResumes: ResumePolicy, Sendable, Equatable {
+public struct LimitedTotalResumes<Details: Sendable>: ResumePolicy, Sendable, Equatable {
   /// The maximum number of total resume attempts allowed across the transfer.
   public let maxTotalResumes: UInt32
 
@@ -26,7 +26,7 @@ public struct LimitedTotalResumes: ResumePolicy, Sendable, Equatable {
     self.maxTotalResumes = maxTotalResumes
   }
 
-  public func onError(state: ResumeState, error: RequestError) -> ResumeResult {
+  public func onError(state: ResumeState<Details>, error: RequestError) -> ResumeResult {
     guard error.isRecoverableForResume else {
       return .permanent(error)
     }
@@ -39,9 +39,11 @@ public struct LimitedTotalResumes: ResumePolicy, Sendable, Equatable {
   }
 }
 
-extension ResumePolicy where Self == LimitedTotalResumes {
+extension ResumePolicy {
   /// Creates a `LimitedTotalResumes` resume policy with a specified limit.
-  public static func limitedTotalResumes(_ maxTotalResumes: UInt32) -> LimitedTotalResumes {
+  public static func limitedTotalResumes<D: Sendable>(_ maxTotalResumes: UInt32)
+    -> LimitedTotalResumes<D> where Self == LimitedTotalResumes<D>
+  {
     LimitedTotalResumes(maxTotalResumes: maxTotalResumes)
   }
 }

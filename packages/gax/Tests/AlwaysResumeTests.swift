@@ -18,8 +18,8 @@ import Testing
 
 @Suite struct AlwaysResumeTests {
   @Test func alwaysResume() {
-    let policy = AlwaysResume()
-    var state = ResumeState()
+    let policy = AlwaysResume<Void>()
+    let state = ResumeState()
     let transient503 = RequestError.http(HTTPDetails(http_status_code: 503, headers: [:]))
     let permanent400 = RequestError.http(HTTPDetails(http_status_code: 400, headers: [:]))
 
@@ -32,7 +32,7 @@ import Testing
   }
 
   @Test func staticFactory() {
-    let policy: AlwaysResume = .always
+    let policy: AlwaysResume<Void> = .always()
     let state = ResumeState()
     let transient503 = RequestError.http(HTTPDetails(http_status_code: 503, headers: [:]))
     #expect(policy.onError(state: state, error: transient503) == .resume(transient503))

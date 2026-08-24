@@ -51,7 +51,7 @@ import Testing
   }
 
   @Test func progressUpdatesState() {
-    let policy = StopOnConsecutiveErrors()
+    let policy = StopOnConsecutiveErrors<Void>()
     let state = ResumeState().with {
       $0.consecutiveErrorCount = 3
     }
@@ -64,18 +64,22 @@ import Testing
     #expect(state.consecutiveErrorCount == 0)
   }
 
-  @Test func subclassing() {
-    final class CustomState: ResumeState, @unchecked Sendable {
-      var customField: String = "test"
+  @Test func genericDetails() {
+    struct CustomDetails: Sendable, Equatable {
+      var bytes: UInt64
     }
 
-    let custom = CustomState()
-    #expect(custom.customField == "test")
-    #expect(custom.consecutiveErrorCount == 0)
+    let state = ResumeState(details: CustomDetails(bytes: 1024))
+    #expect(state.details.bytes == 1024)
+    #expect(state.consecutiveErrorCount == 0)
 
-    let policy = StopOnConsecutiveErrors()
-    custom.consecutiveErrorCount = 4
-    policy.onProgress(state: custom)
-    #expect(custom.consecutiveErrorCount == 0)
+    let policy = StopOnConsecutiveErrors<CustomDetails>()
+    state.consecutiveErrorCount = 4
+    policy.onProgress(state: state)
+    #expect(state.consecutiveErrorCount == 0)
+
+    let copy = ResumeState(details: CustomDetails(bytes: 1024), start: state.start)
+    copy.lastProgressTime = state.lastProgressTime
+    #expect(state == copy)
   }
 }

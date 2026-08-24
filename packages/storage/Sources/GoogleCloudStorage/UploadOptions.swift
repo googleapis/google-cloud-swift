@@ -494,7 +494,7 @@ public struct UploadOptions: Sendable {
   public var predefinedAcl: PredefinedAcl?
 
   /// Overrides the resume policy for this upload.
-  public var resumePolicy: (any ResumePolicy)? = nil
+  public var resumePolicy: (any ResumePolicy<UploadDetails>)? = nil
 
   /// Overrides the backoff policy for this upload.
   public var backoffPolicy: (any BackoffPolicy)? = nil
