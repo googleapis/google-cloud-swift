@@ -848,10 +848,10 @@ import Testing
     #expect(requests.count == 1)
   }
 
-  @Test func downloadObjectWithCustomReadObjectOptionsRetryPolicyOverridesClient() async throws {
+  @Test func downloadObjectWithCustomReadObjectOptionsResumePolicyOverridesClient() async throws {
     let registry = MockRegistry.create()
     let bucket = "test-bucket"
-    let objectName = "test-override-retry.txt"
+    let objectName = "test-override-resume.txt"
 
     let downloadUrl = registry.url("/storage/v1/b/\(bucket)/o/\(objectName)?alt=media")
 
@@ -862,7 +862,7 @@ import Testing
 
     let client = try makeClient(registry: registry)
     let options = ReadObjectOptions().with {
-      $0.retryPolicy = NeverRetry()
+      $0.resumePolicy = NeverResume()
     }
 
     let err = await expectError(DownloadError.self) {
@@ -874,7 +874,7 @@ import Testing
     #expect(requests.count == 1)
   }
 
-  @Test func downloadObjectWithClientDownloadOptionsRetryPolicyOverridesDefault() async throws {
+  @Test func downloadObjectWithClientDownloadOptionsResumePolicyOverridesDefault() async throws {
     let registry = MockRegistry.create()
     let bucket = "test-bucket"
     let objectName = "test-client-override.txt"
@@ -888,7 +888,7 @@ import Testing
 
     let client = try makeClient(
       registry: registry,
-      downloadOptions: ReadObjectOptions().with { $0.retryPolicy = NeverRetry() }
+      downloadOptions: ReadObjectOptions().with { $0.resumePolicy = NeverResume() }
     )
 
     let err = await expectError(DownloadError.self) {

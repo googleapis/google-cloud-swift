@@ -45,15 +45,12 @@ extension StorageClient {
     options: UploadOptions = .default
   ) -> UploadTask {
     let clientOptions = self.options.client
-    let effectiveRetryPolicy =
-      options.retryPolicy ?? self.options.upload.retryPolicy
-      ?? clientOptions.retryPolicy
     let effectiveBackoffPolicy =
       options.backoffPolicy ?? self.options.upload.backoffPolicy ?? clientOptions.backoffPolicy
     let effectiveResumePolicy: any ResumePolicy
     if let explicitResume = options.resumePolicy ?? self.options.upload.resumePolicy {
       effectiveResumePolicy = explicitResume
-    } else if effectiveRetryPolicy is NeverRetry {
+    } else if clientOptions.retryPolicy is NeverRetry {
       effectiveResumePolicy = NeverResume()
     } else {
       effectiveResumePolicy = StopOnConsecutiveErrors()
@@ -117,15 +114,12 @@ extension StorageClient {
     options: UploadOptions = .default
   ) -> UploadTask {
     let clientOptions = self.options.client
-    let effectiveRetryPolicy =
-      options.retryPolicy ?? self.options.upload.retryPolicy
-      ?? clientOptions.retryPolicy
     let effectiveBackoffPolicy =
       options.backoffPolicy ?? self.options.upload.backoffPolicy ?? clientOptions.backoffPolicy
     let effectiveResumePolicy: any ResumePolicy
     if let explicitResume = options.resumePolicy ?? self.options.upload.resumePolicy {
       effectiveResumePolicy = explicitResume
-    } else if effectiveRetryPolicy is NeverRetry {
+    } else if clientOptions.retryPolicy is NeverRetry {
       effectiveResumePolicy = NeverResume()
     } else {
       effectiveResumePolicy = StopOnConsecutiveErrors()
@@ -680,15 +674,12 @@ extension StorageClient {
     options: UploadOptions = .default
   ) -> UploadTask {
     let clientOptions = self.options.client
-    let effectiveRetryPolicy =
-      options.retryPolicy ?? self.options.upload.retryPolicy
-      ?? clientOptions.retryPolicy
     let effectiveBackoffPolicy =
       options.backoffPolicy ?? self.options.upload.backoffPolicy ?? clientOptions.backoffPolicy
     let effectiveResumePolicy: any ResumePolicy
     if let explicitResume = options.resumePolicy ?? self.options.upload.resumePolicy {
       effectiveResumePolicy = explicitResume
-    } else if effectiveRetryPolicy is NeverRetry {
+    } else if clientOptions.retryPolicy is NeverRetry {
       effectiveResumePolicy = NeverResume()
     } else {
       effectiveResumePolicy = StopOnConsecutiveErrors()

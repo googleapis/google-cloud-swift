@@ -223,9 +223,6 @@ public struct ReadObjectOptions: Sendable {
   /// Overrides the resume policy for this download.
   public var resumePolicy: (any ResumePolicy)? = nil
 
-  /// Overrides the retry policy for this download.
-  public var retryPolicy: (any RetryPolicy)? = nil
-
   /// Overrides the backoff policy for this download.
   public var backoffPolicy: (any BackoffPolicy)? = nil
 

@@ -264,13 +264,12 @@ import Testing
 
     let downloadOptions = ReadObjectOptions().with {
       $0.resumePolicy = NeverResume()
-      $0.retryPolicy = NeverRetry()
     }
     let task = client.readObject(from: bucket, object: object, options: downloadOptions)
 
     do {
       _ = try await task.metadata
-      Issue.record("Expected download with NeverRetry to throw on 503")
+      Issue.record("Expected download with NeverResume to throw on 503")
     } catch {}
   }
 

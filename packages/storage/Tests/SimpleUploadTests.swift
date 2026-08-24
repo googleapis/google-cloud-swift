@@ -310,11 +310,11 @@ import Testing
     #expect(requests.count == 1)
   }
 
-  /// Tests that configuring retryPolicy on UploadOptions overrides client-level retry policy for simple uploads.
-  @Test func simpleUploadWithCustomUploadOptionsRetryPolicyOverridesClient() async throws {
+  /// Tests that configuring resumePolicy on UploadOptions overrides client-level retry policy for simple uploads.
+  @Test func simpleUploadWithCustomUploadOptionsResumePolicyOverridesClient() async throws {
     let registry = MockRegistry.create()
     let bucket = "test-bucket"
-    let objectName = "test-simple-override-retry"
+    let objectName = "test-simple-override-resume"
     let data = Data(repeating: 0x42, count: 1024)
     let source = BytesSource(data: data)
 
@@ -329,7 +329,7 @@ import Testing
 
     let client = try makeClient(registry: registry)
     let uploadOptions = UploadOptions().with {
-      $0.retryPolicy = NeverRetry()
+      $0.resumePolicy = NeverResume()
     }
     let task = client.upload(source, to: bucket, as: objectName, options: uploadOptions)
 
