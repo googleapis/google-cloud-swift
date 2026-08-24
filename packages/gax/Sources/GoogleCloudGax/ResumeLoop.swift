@@ -56,7 +56,9 @@ public struct _ResumeLoop: Sendable {
     error: any Error,
     sleep: (Duration) async throws -> Void = { (d: Duration) in try await Task.sleep(for: d) }
   ) async throws {
-    let requestError = (error as? RequestError) ?? .io(error)
+    guard let requestError = error as? RequestError else {
+      throw error
+    }
     state.consecutiveErrorCount += 1
     state.totalResumeCount += 1
 

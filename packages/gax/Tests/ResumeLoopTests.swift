@@ -123,9 +123,11 @@ import Testing
     let sleepCount = Mutex<Int>(0)
 
     // 1st transient error handled
-    try await loop.handleError(state: &state, error: transientError(), sleep: { _ in
-      sleepCount.withLock { $0 += 1 }
-    })
+    try await loop.handleError(
+      state: &state, error: transientError(),
+      sleep: { _ in
+        sleepCount.withLock { $0 += 1 }
+      })
     #expect(state.consecutiveErrorCount == 1)
     #expect(state.totalResumeCount == 1)
     #expect(sleepCount.withLock { $0 } == 1)
@@ -137,9 +139,11 @@ import Testing
     #expect(state.totalResumeCount == 1)
 
     // Error after progress is now count 1
-    try await loop.handleError(state: &state, error: transientError(), sleep: { _ in
-      sleepCount.withLock { $0 += 1 }
-    })
+    try await loop.handleError(
+      state: &state, error: transientError(),
+      sleep: { _ in
+        sleepCount.withLock { $0 += 1 }
+      })
     #expect(state.consecutiveErrorCount == 1)
     #expect(state.totalResumeCount == 2)
   }
