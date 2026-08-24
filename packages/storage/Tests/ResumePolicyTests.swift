@@ -19,70 +19,80 @@ import GoogleCloudAuth
 import Testing
 
 @Suite struct ResumePolicyTests {
-  @Test func uploadResumeStateDefaults() {
-    let state = UploadResumeState()
-    #expect(state.bytesUploaded == 0)
-    #expect(state.totalBytes == nil)
+  @Test func uploadDetailsDefaults() {
+    let details = UploadDetails()
+    #expect(details.bytesUploaded == 0)
+    #expect(details.totalBytes == nil)
+
+    let state = ResumeState(details: details)
+    #expect(state.details.bytesUploaded == 0)
+    #expect(state.details.totalBytes == nil)
     #expect(state.consecutiveErrorCount == 0)
     #expect(state.totalResumeCount == 0)
   }
 
-  @Test func uploadResumeStateCustomInitializationAndBuilder() {
+  @Test func uploadDetailsCustomInitializationAndBuilder() {
     let now = ContinuousClock.now
-    let state = UploadResumeState(bytesUploaded: 1024, totalBytes: 4096, start: now).with {
+    let details = UploadDetails(bytesUploaded: 1024, totalBytes: 4096)
+    let state = ResumeState(details: details, start: now).with {
       $0.consecutiveErrorCount = 2
       $0.totalResumeCount = 5
     }
 
-    #expect(state.bytesUploaded == 1024)
-    #expect(state.totalBytes == 4096)
+    #expect(state.details.bytesUploaded == 1024)
+    #expect(state.details.totalBytes == 4096)
     #expect(state.consecutiveErrorCount == 2)
     #expect(state.totalResumeCount == 5)
     #expect(state.start == now)
   }
 
-  @Test func downloadResumeStateDefaults() {
-    let state = DownloadResumeState()
-    #expect(state.bytesDownloaded == 0)
-    #expect(state.totalBytes == nil)
+  @Test func downloadDetailsDefaults() {
+    let details = DownloadDetails()
+    #expect(details.bytesDownloaded == 0)
+    #expect(details.totalBytes == nil)
+
+    let state = ResumeState(details: details)
+    #expect(state.details.bytesDownloaded == 0)
+    #expect(state.details.totalBytes == nil)
     #expect(state.consecutiveErrorCount == 0)
     #expect(state.totalResumeCount == 0)
   }
 
-  @Test func downloadResumeStateCustomInitializationAndBuilder() {
+  @Test func downloadDetailsCustomInitializationAndBuilder() {
     let now = ContinuousClock.now
-    let state = DownloadResumeState(bytesDownloaded: 2048, totalBytes: 8192, start: now).with {
+    let details = DownloadDetails(bytesDownloaded: 2048, totalBytes: 8192)
+    let state = ResumeState(details: details, start: now).with {
       $0.consecutiveErrorCount = 1
       $0.totalResumeCount = 3
     }
 
-    #expect(state.bytesDownloaded == 2048)
-    #expect(state.totalBytes == 8192)
+    #expect(state.details.bytesDownloaded == 2048)
+    #expect(state.details.totalBytes == 8192)
     #expect(state.consecutiveErrorCount == 1)
     #expect(state.totalResumeCount == 3)
     #expect(state.start == now)
   }
 
   @Test func resumePolicyProgressUpdatesState() {
-    let policy = StopOnConsecutiveErrors()
-    let state = UploadResumeState(bytesUploaded: 0, totalBytes: 1000).with {
+    let policy = StopOnConsecutiveErrors<UploadDetails>()
+    let state = ResumeState(details: UploadDetails(bytesUploaded: 0, totalBytes: 1000)).with {
       $0.consecutiveErrorCount = 3
     }
 
-    state.bytesUploaded = 250
+    state.details.bytesUploaded = 250
     policy.onProgress(state: state)
-    #expect(state.bytesUploaded == 250)
+    #expect(state.details.bytesUploaded == 250)
     #expect(state.consecutiveErrorCount == 0)
 
-    state.bytesUploaded = 500
+    state.details.bytesUploaded = 500
     state.consecutiveErrorCount = 2
     policy.onProgress(state: state)
-    #expect(state.bytesUploaded == 500)
+    #expect(state.details.bytesUploaded == 500)
     #expect(state.consecutiveErrorCount == 0)
   }
 
   @Test func stopOnConsecutiveErrorsPolicy() {
-    let policy = StopOnConsecutiveErrors(maxConsecutiveErrors: 2)
+    let policy = StopOnConsecutiveErrors<Void>(maxConsecutiveErrors: 2)
     let state = ResumeState()
 
     let transientError = RequestError.http(HTTPDetails(http_status_code: 503, headers: [:]))
@@ -128,7 +138,7 @@ import Testing
   }
 
   @Test func limitedTotalResumesPolicy() {
-    let policy = LimitedTotalResumes(maxTotalResumes: 2)
+    let policy = LimitedTotalResumes<Void>(maxTotalResumes: 2)
     let state = ResumeState()
 
     let transientError = RequestError.http(HTTPDetails(http_status_code: 503, headers: [:]))
@@ -160,7 +170,7 @@ import Testing
   }
 
   @Test func neverResumePolicy() {
-    let policy = NeverResume()
+    let policy = NeverResume<Void>()
     let state = ResumeState()
     let transientError = RequestError.http(HTTPDetails(http_status_code: 503, headers: [:]))
     let ioError = RequestError.io(NSError(domain: "test", code: -1))
@@ -176,7 +186,7 @@ import Testing
   }
 
   @Test func alwaysResumePolicy() {
-    let policy = AlwaysResume()
+    let policy = AlwaysResume<Void>()
     let state = ResumeState()
     let transientError = RequestError.http(HTTPDetails(http_status_code: 503, headers: [:]))
     let permanentError = RequestError.http(HTTPDetails(http_status_code: 400, headers: [:]))

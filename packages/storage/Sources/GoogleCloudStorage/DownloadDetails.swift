@@ -15,19 +15,19 @@
 import Foundation
 
 /// Progress and size details for an ongoing download operation.
-package struct DownloadDetails: Sendable, Equatable {
+public struct DownloadDetails: Sendable, Equatable {
   /// The total number of bytes successfully downloaded so far.
-  package var bytesDownloaded: UInt64
+  public var bytesDownloaded: UInt64
 
   /// The total size of the object to download in bytes, if known.
-  package var totalBytes: Int64?
+  public var totalBytes: Int64?
 
   /// Creates a new `DownloadDetails` instance.
   ///
   /// - Parameters:
   ///   - bytesDownloaded: Initial bytes downloaded. Defaults to 0.
   ///   - totalBytes: Total object size in bytes if known. Defaults to `nil`.
-  package init(
+  public init(
     bytesDownloaded: UInt64 = 0,
     totalBytes: Int64? = nil
   ) {

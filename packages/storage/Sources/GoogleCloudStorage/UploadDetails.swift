@@ -15,19 +15,19 @@
 import Foundation
 
 /// Progress and size details for an ongoing upload operation.
-package struct UploadDetails: Sendable, Equatable {
+public struct UploadDetails: Sendable, Equatable {
   /// The total number of bytes successfully uploaded or committed so far.
-  package var bytesUploaded: UInt64
+  public var bytesUploaded: UInt64
 
   /// The total size of the object to upload in bytes, if known.
-  package var totalBytes: Int64?
+  public var totalBytes: Int64?
 
   /// Creates a new `UploadDetails` instance.
   ///
   /// - Parameters:
   ///   - bytesUploaded: Initial bytes uploaded. Defaults to 0.
   ///   - totalBytes: Total object size in bytes if known. Defaults to `nil`.
-  package init(
+  public init(
     bytesUploaded: UInt64 = 0,
     totalBytes: Int64? = nil
   ) {
