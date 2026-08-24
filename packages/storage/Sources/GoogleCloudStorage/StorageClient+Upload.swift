@@ -50,8 +50,6 @@ extension StorageClient {
     let effectiveResumePolicy: any ResumePolicy
     if let explicitResume = options.resumePolicy ?? self.options.upload.resumePolicy {
       effectiveResumePolicy = explicitResume
-    } else if clientOptions.retryPolicy is NeverRetry {
-      effectiveResumePolicy = NeverResume()
     } else {
       effectiveResumePolicy = StopOnConsecutiveErrors()
     }
@@ -677,8 +675,6 @@ extension StorageClient {
     let effectiveResumePolicy: any ResumePolicy
     if let explicitResume = options.resumePolicy ?? self.options.upload.resumePolicy {
       effectiveResumePolicy = explicitResume
-    } else if clientOptions.retryPolicy is NeverRetry {
-      effectiveResumePolicy = NeverResume()
     } else {
       effectiveResumePolicy = StopOnConsecutiveErrors()
     }

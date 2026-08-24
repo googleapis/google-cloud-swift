@@ -825,10 +825,10 @@ import Testing
     #expect(requests.count == 2)
   }
 
-  @Test func downloadObjectTransientFailureWithNeverRetryFails() async throws {
+  @Test func downloadObjectTransientFailureWithNeverResumeFails() async throws {
     let registry = MockRegistry.create()
     let bucket = "test-bucket"
-    let objectName = "test-never-retry.txt"
+    let objectName = "test-never-resume.txt"
 
     let downloadUrl = registry.url("/storage/v1/b/\(bucket)/o/\(objectName)?alt=media")
 
@@ -837,7 +837,10 @@ import Testing
       for: downloadUrl
     )
 
-    let client = try makeClient(registry: registry, retryPolicy: NeverRetry())
+    let client = try makeClient(
+      registry: registry,
+      downloadOptions: ReadObjectOptions().with { $0.resumePolicy = NeverResume() }
+    )
 
     let err = await expectError(DownloadError.self) {
       try await client.readObject(from: bucket, object: objectName).metadata

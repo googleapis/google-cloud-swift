@@ -134,7 +134,7 @@ import Testing
       response: .failure(URLError(.cannotConnectToHost)),
       for: startUrl)
 
-    let client = try makeClient(registry: registry, clientRetryPolicy: NeverRetry())
+    let client = try makeClient(registry: registry, uploadResumePolicy: NeverResume())
     let task = client.upload(source, to: bucket, as: objectName)
 
     let error = await expectError(RequestError.self) {

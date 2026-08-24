@@ -19,12 +19,12 @@ import GoogleCloudGax
 ///
 /// Tracks the number of bytes successfully downloaded from Cloud Storage, the total object size,
 /// and consecutive errors and resume counts managed by the ``ResumePolicy``.
-public final class DownloadResumeState: ResumeState, @unchecked Sendable {
+package final class DownloadResumeState: ResumeState, @unchecked Sendable {
   /// The total number of bytes successfully downloaded so far.
-  public var bytesDownloaded: UInt64
+  package var bytesDownloaded: UInt64
 
   /// The total size of the object to download in bytes, if known.
-  public var totalBytes: Int64?
+  package var totalBytes: Int64?
 
   /// Creates a new `DownloadResumeState` instance.
   ///
@@ -32,7 +32,7 @@ public final class DownloadResumeState: ResumeState, @unchecked Sendable {
   ///   - bytesDownloaded: Initial bytes downloaded. Defaults to 0.
   ///   - totalBytes: Total object size in bytes if known. Defaults to `nil`.
   ///   - start: The clock instant when the operation started. Defaults to `.now`.
-  public init(
+  package init(
     bytesDownloaded: UInt64 = 0,
     totalBytes: Int64? = nil,
     start: ContinuousClock.Instant = .now
@@ -44,7 +44,7 @@ public final class DownloadResumeState: ResumeState, @unchecked Sendable {
 
   /// Override specific values on this download state.
   @discardableResult
-  public func configure(_ config: (DownloadResumeState) -> Void) -> Self {
+  package func configure(_ config: (DownloadResumeState) -> Void) -> Self {
     config(self)
     return self
   }

@@ -19,12 +19,12 @@ import GoogleCloudGax
 ///
 /// Tracks the number of bytes successfully uploaded/committed to Cloud Storage, the total object size,
 /// and consecutive errors and resume counts managed by the ``ResumePolicy``.
-public final class UploadResumeState: ResumeState, @unchecked Sendable {
+package final class UploadResumeState: ResumeState, @unchecked Sendable {
   /// The total number of bytes successfully uploaded or committed so far.
-  public var bytesUploaded: UInt64
+  package var bytesUploaded: UInt64
 
   /// The total size of the object to upload in bytes, if known.
-  public var totalBytes: Int64?
+  package var totalBytes: Int64?
 
   /// Creates a new `UploadResumeState` instance.
   ///
@@ -32,7 +32,7 @@ public final class UploadResumeState: ResumeState, @unchecked Sendable {
   ///   - bytesUploaded: Initial bytes uploaded. Defaults to 0.
   ///   - totalBytes: Total object size in bytes if known. Defaults to `nil`.
   ///   - start: The clock instant when the operation started. Defaults to `.now`.
-  public init(
+  package init(
     bytesUploaded: UInt64 = 0,
     totalBytes: Int64? = nil,
     start: ContinuousClock.Instant = .now
@@ -44,7 +44,7 @@ public final class UploadResumeState: ResumeState, @unchecked Sendable {
 
   /// Override specific values on this upload state.
   @discardableResult
-  public func configure(_ config: (UploadResumeState) -> Void) -> Self {
+  package func configure(_ config: (UploadResumeState) -> Void) -> Self {
     config(self)
     return self
   }

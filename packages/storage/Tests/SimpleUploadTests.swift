@@ -28,9 +28,11 @@ import Testing
     return (keyData, keyBase64, keyHashBase64)
   }
 
-  private func makeClient(registry: MockRegistry, retryPolicy: (any RetryPolicy)? = nil) throws
-    -> StorageClient
-  {
+  private func makeClient(
+    registry: MockRegistry,
+    retryPolicy: (any RetryPolicy)? = nil,
+    uploadResumePolicy: (any ResumePolicy)? = nil
+  ) throws -> StorageClient {
     let options = StorageClientOptions().with {
       $0.client = .init().with {
         $0.endpoint = registry.endpoint
@@ -38,6 +40,9 @@ import Testing
         if let retryPolicy {
           $0.retryPolicy = retryPolicy
         }
+      }
+      if let uploadResumePolicy {
+        $0.upload.resumePolicy = uploadResumePolicy
       }
     }
     return try StorageClient(options, mock: registry)
@@ -100,7 +105,7 @@ import Testing
       response: .failure(URLError(.cannotConnectToHost)),
       for: simpleUploadUrl)
 
-    let client = try makeClient(registry: registry, retryPolicy: NeverRetry())
+    let client = try makeClient(registry: registry, uploadResumePolicy: NeverResume())
     let task = client.upload(source, to: bucket, as: objectName)
 
     let error = await expectError(RequestError.self) {
@@ -282,11 +287,11 @@ import Testing
     #expect(requests.count == 2)
   }
 
-  /// Tests that a 503 error with NeverRetry policy throws immediately without retrying.
-  @Test func simpleUploadTransientFailureWithNeverRetryFails() async throws {
+  /// Tests that a 503 error with NeverResume policy throws immediately without retrying.
+  @Test func simpleUploadTransientFailureWithNeverResumeFails() async throws {
     let registry = MockRegistry.create()
     let bucket = "test-bucket"
-    let objectName = "test-simple-never-retry"
+    let objectName = "test-simple-never-resume"
     let data = Data(repeating: 0x42, count: 1024)
     let source = BytesSource(data: data)
 
@@ -299,7 +304,7 @@ import Testing
         headers: nil),
       for: simpleUploadUrl)
 
-    let client = try makeClient(registry: registry, retryPolicy: NeverRetry())
+    let client = try makeClient(registry: registry, uploadResumePolicy: NeverResume())
     let task = client.upload(source, to: bucket, as: objectName)
 
     let error = await expectError(RequestError.self) {
