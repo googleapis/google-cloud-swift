@@ -48,10 +48,10 @@ import Testing
     )
 
     let attempts = Mutex<Int>(0)
-    var state = ResumeState()
+    let state = ResumeState()
 
     let response = try await loop.run(
-      state: &state,
+      state: state,
       attempt: { _ in
         let count = attempts.withLock { count in
           count += 1
@@ -76,12 +76,12 @@ import Testing
       backoffPolicy: MockBackoff()
     )
 
-    var state = ResumeState()
+    let state = ResumeState()
     let err = permanentError()
 
     await #expect(throws: RequestError.self) {
       try await loop.run(
-        state: &state,
+        state: state,
         attempt: { _ in
           throw err
         },
@@ -96,12 +96,12 @@ import Testing
       backoffPolicy: MockBackoff()
     )
 
-    var state = ResumeState()
+    let state = ResumeState()
     let err = transientError()
 
     await #expect(throws: RequestError.self) {
       try await loop.run(
-        state: &state,
+        state: state,
         attempt: { _ in
           throw err
         },
@@ -119,12 +119,12 @@ import Testing
       backoffPolicy: MockBackoff(delay: .milliseconds(10))
     )
 
-    var state = ResumeState()
+    let state = ResumeState()
     let sleepCount = Mutex<Int>(0)
 
     // 1st transient error handled
     try await loop.handleError(
-      state: &state, error: transientError(),
+      state: state, error: transientError(),
       sleep: { _ in
         sleepCount.withLock { $0 += 1 }
       })
@@ -133,14 +133,13 @@ import Testing
     #expect(sleepCount.withLock { $0 } == 1)
 
     // Making progress resets consecutive error count
-    loop.onProgress(state: &state, bytesAdvanced: 1024)
-    #expect(state.bytesTransferred == 1024)
+    loop.onProgress(state: state)
     #expect(state.consecutiveErrorCount == 0)
     #expect(state.totalResumeCount == 1)
 
     // Error after progress is now count 1
     try await loop.handleError(
-      state: &state, error: transientError(),
+      state: state, error: transientError(),
       sleep: { _ in
         sleepCount.withLock { $0 += 1 }
       })

@@ -380,7 +380,7 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
   private var bodyIterator: _HTTPResponseBody.AsyncIterator?
   private var streamIterator: AsyncThrowingStream<NIOCore.ByteBuffer, Error>.AsyncIterator?
   private var bytesReceived: UInt64 = 0
-  private var resumeState: ResumeState
+  private let resumeState: DownloadResumeState
   private var isFinished: Bool = false
   private var isCancelled: Bool = false
   private var crc32cCalculator: CRC32CCalculator?
@@ -399,7 +399,7 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
     self.options = options
     self.httpClient = httpClient
     self.resumeLoop = resumeLoop
-    self.resumeState = ResumeState()
+    self.resumeState = DownloadResumeState()
     if options.checksums.crc32c != nil {
       self.crc32cCalculator = CRC32CCalculator()
     }
@@ -409,21 +409,18 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
   }
 
   private func ensureInitialFetch() async throws -> ReadObjectMetadata {
-    if isCancelled {
-      throw CancellationError()
-    }
-    let task = lock.withLock {
-      if let existingTask = initialFetchTask {
-        return existingTask
+    let task = lock.withLock { () -> Task<ReadObjectMetadata, Error> in
+      if let existing = self.initialFetchTask {
+        return existing
       }
-      let newTask = Task { () -> ReadObjectMetadata in
+      let newTask = Task { () throws -> ReadObjectMetadata in
         let (response, metadata) = try await Self.fetchInitial(
           httpClient: self.httpClient,
           bucket: self.bucket,
           object: self.object,
           options: self.options,
           resumeLoop: self.resumeLoop,
-          resumeState: &self.resumeState
+          resumeState: self.resumeState
         )
         self.lock.withLock {
           self.metadata = metadata
@@ -479,7 +476,8 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
           self.bodyIterator = it
           if let chunk {
             bytesReceived += UInt64(chunk.readableBytes)
-            resumeLoop.onProgress(state: &resumeState, bytesAdvanced: UInt64(chunk.readableBytes))
+            resumeState.bytesDownloaded = bytesReceived
+            resumeLoop.onProgress(state: resumeState)
             updateChecksums(with: chunk)
             return chunk
           } else {
@@ -504,7 +502,7 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
 
         let reqError = (error as? RequestError) ?? .io(error)
         do {
-          try await resumeLoop.handleError(state: &resumeState, error: reqError)
+          try await resumeLoop.handleError(state: resumeState, error: reqError)
         } catch let err as RequestError {
           isFinished = true
           if case .http(let details) = err {
@@ -613,7 +611,7 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
     let object = self.object
 
     do {
-      let response = try await resumeLoop.run(state: &resumeState) { _ in
+      let response = try await resumeLoop.run(state: resumeState) { _ in
         let request = try await httpClient.buildReadObjectRequest(
           bucket: bucket, object: object, options: resumeOptions)
         let resp: _HTTPClientResponse
@@ -668,7 +666,7 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
     object: String,
     options: ReadObjectOptions,
     resumeLoop: _ResumeLoop,
-    resumeState: inout ResumeState
+    resumeState: DownloadResumeState
   ) async throws -> (_HTTPClientResponse, ReadObjectMetadata) {
     if case .bounded(let start, let end) = options.range {
       guard start <= end else {
@@ -676,7 +674,7 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
       }
     }
     do {
-      return try await resumeLoop.run(state: &resumeState) { _ in
+      return try await resumeLoop.run(state: resumeState) { _ in
         let request = try await httpClient.buildReadObjectRequest(
           bucket: bucket, object: object, options: options)
         let response: _HTTPClientResponse

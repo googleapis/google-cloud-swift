@@ -14,25 +14,21 @@
 
 import Foundation
 
-/// The state of an ongoing resumable transfer operation (such as an upload or download).
+/// The input into a resume policy query, tracking progress and error state of an ongoing resumable operation.
 ///
-/// Passed to ``ResumePolicy`` methods to decide whether and how to resume after an error.
-public struct ResumeState: Sendable, Equatable {
-  /// The total number of bytes successfully transferred or committed so far.
-  public var bytesTransferred: UInt64
-
-  /// The total size of the object in bytes, if known.
-  public var totalBytes: Int64?
-
+/// On an error or forward progress event, the client library updates and provides an instance of this
+/// class to the ``ResumePolicy``. Specific domains or operations (such as storage uploads and downloads)
+/// can subclass `ResumeState` to include domain-specific state.
+open class ResumeState: @unchecked Sendable, Equatable {
   /// The number of consecutive errors encountered without making forward progress.
   ///
-  /// This count is reset to 0 whenever forward progress (bytes transferred) is made.
+  /// This count is reset to 0 whenever forward progress is made.
   public var consecutiveErrorCount: UInt32
 
-  /// The total number of resume attempts across the entire transfer operation.
+  /// The total number of resume attempts across the entire operation.
   public var totalResumeCount: UInt32
 
-  /// The time when the transfer operation originally started.
+  /// The time when the operation originally started.
   public var start: ContinuousClock.Instant
 
   /// The time when forward progress was last made (or start time if no progress yet).
@@ -40,17 +36,8 @@ public struct ResumeState: Sendable, Equatable {
 
   /// Creates a new `ResumeState` instance.
   ///
-  /// - Parameters:
-  ///   - bytesTransferred: Initial bytes transferred. Defaults to 0.
-  ///   - totalBytes: Total object size in bytes if known. Defaults to `nil`.
-  ///   - start: The clock instant when the operation started. Defaults to `.now`.
-  public init(
-    bytesTransferred: UInt64 = 0,
-    totalBytes: Int64? = nil,
-    start: ContinuousClock.Instant = .now
-  ) {
-    self.bytesTransferred = bytesTransferred
-    self.totalBytes = totalBytes
+  /// - Parameter start: The clock instant when the operation started. Defaults to `.now`.
+  public init(start: ContinuousClock.Instant = .now) {
     self.consecutiveErrorCount = 0
     self.totalResumeCount = 0
     self.start = start
@@ -61,11 +48,18 @@ public struct ResumeState: Sendable, Equatable {
   ///
   /// ## Example
   /// ```
-  /// let state = ResumeState().with { $0.bytesTransferred = 1024 }
+  /// let state = ResumeState().with { $0.consecutiveErrorCount = 2 }
   /// ```
-  public func with(_ config: (inout Self) -> Void) -> Self {
-    var copy = self
-    config(&copy)
-    return copy
+  @discardableResult
+  public func with(_ config: (ResumeState) -> Void) -> Self {
+    config(self)
+    return self
+  }
+
+  public static func == (lhs: ResumeState, rhs: ResumeState) -> Bool {
+    lhs.consecutiveErrorCount == rhs.consecutiveErrorCount
+      && lhs.totalResumeCount == rhs.totalResumeCount
+      && lhs.start == rhs.start
+      && lhs.lastProgressTime == rhs.lastProgressTime
   }
 }

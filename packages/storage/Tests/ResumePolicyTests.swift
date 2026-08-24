@@ -19,46 +19,71 @@ import GoogleCloudAuth
 import Testing
 
 @Suite struct ResumePolicyTests {
-  @Test func resumeStateDefaults() {
-    let state = ResumeState()
-    #expect(state.bytesTransferred == 0)
+  @Test func uploadResumeStateDefaults() {
+    let state = UploadResumeState()
+    #expect(state.bytesUploaded == 0)
     #expect(state.totalBytes == nil)
     #expect(state.consecutiveErrorCount == 0)
     #expect(state.totalResumeCount == 0)
   }
 
-  @Test func resumeStateCustomInitializationAndBuilder() {
+  @Test func uploadResumeStateCustomInitializationAndBuilder() {
     let now = ContinuousClock.now
-    let state = ResumeState(bytesTransferred: 1024, totalBytes: 4096, start: now).with {
+    let state = UploadResumeState(bytesUploaded: 1024, totalBytes: 4096, start: now).with {
       $0.consecutiveErrorCount = 2
       $0.totalResumeCount = 5
     }
 
-    #expect(state.bytesTransferred == 1024)
+    #expect(state.bytesUploaded == 1024)
     #expect(state.totalBytes == 4096)
     #expect(state.consecutiveErrorCount == 2)
     #expect(state.totalResumeCount == 5)
     #expect(state.start == now)
   }
 
+  @Test func downloadResumeStateDefaults() {
+    let state = DownloadResumeState()
+    #expect(state.bytesDownloaded == 0)
+    #expect(state.totalBytes == nil)
+    #expect(state.consecutiveErrorCount == 0)
+    #expect(state.totalResumeCount == 0)
+  }
+
+  @Test func downloadResumeStateCustomInitializationAndBuilder() {
+    let now = ContinuousClock.now
+    let state = DownloadResumeState(bytesDownloaded: 2048, totalBytes: 8192, start: now).with {
+      $0.consecutiveErrorCount = 1
+      $0.totalResumeCount = 3
+    }
+
+    #expect(state.bytesDownloaded == 2048)
+    #expect(state.totalBytes == 8192)
+    #expect(state.consecutiveErrorCount == 1)
+    #expect(state.totalResumeCount == 3)
+    #expect(state.start == now)
+  }
+
   @Test func resumePolicyProgressUpdatesState() {
     let policy = StopOnConsecutiveErrors()
-    var state = ResumeState(bytesTransferred: 0, totalBytes: 1000).with {
+    let state = UploadResumeState(bytesUploaded: 0, totalBytes: 1000).with {
       $0.consecutiveErrorCount = 3
     }
 
-    policy.onProgress(state: &state, bytesAdvanced: 250)
-    #expect(state.bytesTransferred == 250)
+    state.bytesUploaded = 250
+    policy.onProgress(state: state)
+    #expect(state.bytesUploaded == 250)
     #expect(state.consecutiveErrorCount == 0)
 
-    policy.onProgress(state: &state, bytesAdvanced: 250)
-    #expect(state.bytesTransferred == 500)
+    state.bytesUploaded = 500
+    state.consecutiveErrorCount = 2
+    policy.onProgress(state: state)
+    #expect(state.bytesUploaded == 500)
     #expect(state.consecutiveErrorCount == 0)
   }
 
   @Test func stopOnConsecutiveErrorsPolicy() {
     let policy = StopOnConsecutiveErrors(maxConsecutiveErrors: 2)
-    var state = ResumeState()
+    let state = ResumeState()
 
     let transientError = RequestError.http(HTTPDetails(http_status_code: 503, headers: [:]))
     let permanentError = RequestError.http(HTTPDetails(http_status_code: 404, headers: [:]))
@@ -84,7 +109,7 @@ import Testing
     }
 
     // Progress resets consecutive errors
-    policy.onProgress(state: &state, bytesAdvanced: 500)
+    policy.onProgress(state: state)
     #expect(state.consecutiveErrorCount == 0)
 
     // Consecutive error 1 after progress resumes
@@ -104,7 +129,7 @@ import Testing
 
   @Test func limitedTotalResumesPolicy() {
     let policy = LimitedTotalResumes(maxTotalResumes: 2)
-    var state = ResumeState()
+    let state = ResumeState()
 
     let transientError = RequestError.http(HTTPDetails(http_status_code: 503, headers: [:]))
     let permanentError = RequestError.http(HTTPDetails(http_status_code: 403, headers: [:]))
@@ -123,7 +148,7 @@ import Testing
     }
 
     // Making progress doesn't reset total resume count
-    policy.onProgress(state: &state, bytesAdvanced: 500)
+    policy.onProgress(state: state)
     #expect(state.totalResumeCount == 1)
 
     // 2nd resume hits max and exhausts
@@ -152,7 +177,7 @@ import Testing
 
   @Test func alwaysResumePolicy() {
     let policy = AlwaysResume()
-    var state = ResumeState()
+    let state = ResumeState()
     let transientError = RequestError.http(HTTPDetails(http_status_code: 503, headers: [:]))
     let permanentError = RequestError.http(HTTPDetails(http_status_code: 400, headers: [:]))
 

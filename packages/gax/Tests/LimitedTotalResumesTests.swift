@@ -30,7 +30,7 @@ import Testing
 
   @Test func totalResumeLimit() {
     let policy = LimitedTotalResumes(maxTotalResumes: 2)
-    var state = ResumeState()
+    let state = ResumeState()
     let transient503 = RequestError.http(HTTPDetails(http_status_code: 503, headers: [:]))
     let permanent403 = RequestError.http(HTTPDetails(http_status_code: 403, headers: [:]))
 
@@ -42,7 +42,7 @@ import Testing
     #expect(policy.onError(state: state, error: transient503) == .resume(transient503))
 
     // Making progress doesn't reset total resumes
-    policy.onProgress(state: &state, bytesAdvanced: 1000)
+    policy.onProgress(state: state)
     #expect(state.totalResumeCount == 1)
 
     // 2nd attempt exhausts

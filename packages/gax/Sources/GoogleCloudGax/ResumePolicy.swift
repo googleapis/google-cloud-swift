@@ -14,37 +14,34 @@
 
 import Foundation
 
-/// Determines how errors are handled and when to resume in long-running resumable transfers (e.g. uploads and downloads).
+/// Determines how errors are handled and when to resume in long-running resumable operations.
 ///
 /// Unlike a `RetryPolicy` which operates on a single atomic RPC attempt, a `ResumePolicy` controls
-/// a series of API calls spanning an entire transfer. It tracks forward progress (bytes transferred)
-/// and handles recovery across transient network interruptions, chunk failures, or dropped streams.
+/// a series of API calls spanning an entire operation (e.g. uploads and downloads). It tracks forward
+/// progress and handles recovery across transient network interruptions, failures, or dropped streams.
 public protocol ResumePolicy: Sendable {
-  /// Queries the policy after an error during a transfer operation.
+  /// Queries the policy after an error during an operation.
   ///
   /// - Parameters:
-  ///   - state: The current state of the transfer.
+  ///   - state: The current state of the operation.
   ///   - error: The last error encountered.
   /// - Returns: The resume decision (`.permanent`, `.exhausted`, or `.resume`).
   func onError(state: ResumeState, error: RequestError) -> ResumeResult
 
-  /// Called when forward progress (bytes transferred / committed) is made.
+  /// Called when forward progress is made.
   ///
-  /// - Parameters:
-  ///   - state: The current state of the transfer to update.
-  ///   - bytesAdvanced: The number of new bytes committed or read.
-  func onProgress(state: inout ResumeState, bytesAdvanced: UInt64)
+  /// - Parameter state: The current state of the operation to update.
+  func onProgress(state: ResumeState)
 
   /// Returns the remaining duration for time-bounded resume policies.
   ///
-  /// - Parameter state: The current state of the transfer.
+  /// - Parameter state: The current state of the operation.
   /// - Returns: Remaining duration, or `nil` if the policy is not time-based.
   func remainingTime(state: ResumeState) -> Duration?
 }
 
 extension ResumePolicy {
-  public func onProgress(state: inout ResumeState, bytesAdvanced: UInt64) {
-    state.bytesTransferred += bytesAdvanced
+  public func onProgress(state: ResumeState) {
     state.consecutiveErrorCount = 0
     state.lastProgressTime = .now
   }

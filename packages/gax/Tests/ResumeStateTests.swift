@@ -20,8 +20,6 @@ import Testing
   @Test func defaults() {
     let now = ContinuousClock.now
     let state = ResumeState()
-    #expect(state.bytesTransferred == 0)
-    #expect(state.totalBytes == nil)
     #expect(state.consecutiveErrorCount == 0)
     #expect(state.totalResumeCount == 0)
     #expect(state.start >= now)
@@ -30,9 +28,7 @@ import Testing
 
   @Test func customInitialization() {
     let start = ContinuousClock.now - .seconds(10)
-    let state = ResumeState(bytesTransferred: 2048, totalBytes: 8192, start: start)
-    #expect(state.bytesTransferred == 2048)
-    #expect(state.totalBytes == 8192)
+    let state = ResumeState(start: start)
     #expect(state.consecutiveErrorCount == 0)
     #expect(state.totalResumeCount == 0)
     #expect(state.start == start)
@@ -43,15 +39,11 @@ import Testing
     let start = ContinuousClock.now - .seconds(100)
     let progressTime = ContinuousClock.now - .seconds(10)
     let state = ResumeState().with {
-      $0.bytesTransferred = 1024
-      $0.totalBytes = 4096
       $0.consecutiveErrorCount = 2
       $0.totalResumeCount = 5
       $0.start = start
       $0.lastProgressTime = progressTime
     }
-    #expect(state.bytesTransferred == 1024)
-    #expect(state.totalBytes == 4096)
     #expect(state.consecutiveErrorCount == 2)
     #expect(state.totalResumeCount == 5)
     #expect(state.start == start)
@@ -60,16 +52,30 @@ import Testing
 
   @Test func progressUpdatesState() {
     let policy = StopOnConsecutiveErrors()
-    var state = ResumeState().with {
+    let state = ResumeState().with {
       $0.consecutiveErrorCount = 3
     }
 
-    policy.onProgress(state: &state, bytesAdvanced: 512)
-    #expect(state.bytesTransferred == 512)
+    policy.onProgress(state: state)
     #expect(state.consecutiveErrorCount == 0)
 
-    policy.onProgress(state: &state, bytesAdvanced: 256)
-    #expect(state.bytesTransferred == 768)
+    state.consecutiveErrorCount = 2
+    policy.onProgress(state: state)
     #expect(state.consecutiveErrorCount == 0)
+  }
+
+  @Test func subclassing() {
+    final class CustomState: ResumeState, @unchecked Sendable {
+      var customField: String = "test"
+    }
+
+    let custom = CustomState()
+    #expect(custom.customField == "test")
+    #expect(custom.consecutiveErrorCount == 0)
+
+    let policy = StopOnConsecutiveErrors()
+    custom.consecutiveErrorCount = 4
+    policy.onProgress(state: custom)
+    #expect(custom.consecutiveErrorCount == 0)
   }
 }
