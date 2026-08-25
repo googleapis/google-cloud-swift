@@ -13,10 +13,16 @@
 // limitations under the License.
 
 import Foundation
+import GoogleCloudGax
+@_spi(GoogleCloudInternal) import GoogleCloudStorage
 import GoogleRpc
 import Synchronization
 import Testing
-@_spi(GoogleCloudInternal) import GoogleCloudGax
+
+private struct MockBackoff: BackoffPolicy {
+  var delay: Duration = .zero
+  func backoffDelayFor(_ state: RetryState) -> Duration { delay }
+}
 
 @Suite struct ResumeLoopTests {
   private func permanentError() -> RequestError {

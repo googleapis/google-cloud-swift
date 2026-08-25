@@ -13,6 +13,7 @@
 // limitations under the License.
 
 import Foundation
+import GoogleCloudGax
 
 /// Runs a resume loop for long-running or multi-step operations (such as resumable uploads and downloads).
 ///

@@ -14,11 +14,10 @@
 
 import Foundation
 import GoogleCloudGax
+import GoogleCloudStorage
 
 struct MockResumePolicy<Details: Sendable>: ResumePolicy {
-  var onError: @Sendable (ResumeState<Details>, RequestError) -> ResumeResult = { _, e in
-    .permanent(e)
-  }
+  var onError: @Sendable (ResumeState<Details>, RequestError) -> ResumeResult = { _, e in .permanent(e) }
   var onProgress: (@Sendable (inout ResumeState<Details>) -> Void)? = nil
   var remainingTime: @Sendable (ResumeState<Details>) -> Duration? = { _ in nil }
 

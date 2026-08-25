@@ -14,6 +14,7 @@
 
 import Foundation
 import GoogleCloudGax
+import GoogleCloudStorage
 import Testing
 
 @Suite struct AlwaysResumeTests {

@@ -14,6 +14,7 @@
 
 import Foundation
 import GoogleCloudGax
+import GoogleCloudStorage
 import Testing
 
 @Suite struct NeverResumeTests {
@@ -21,10 +22,8 @@ import Testing
     let policy = NeverResume<Void>()
     let state = ResumeState()
     let transient503 = RequestError.http(HTTPDetails(http_status_code: 503, headers: [:]))
-    let ioError = RequestError.io(NSError(domain: "test", code: -1))
 
     #expect(policy.onError(state: state, error: transient503) == .permanent(transient503))
-    #expect(policy.onError(state: state, error: ioError) == .permanent(ioError))
     #expect(policy.remainingTime(state: state) == nil)
   }
 

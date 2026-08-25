@@ -13,33 +13,31 @@
 // limitations under the License.
 
 import Foundation
+import GoogleCloudGax
 
-/// Determines how errors are handled and when to resume in long-running resumable operations.
-///
-/// Unlike a `RetryPolicy` which operates on a single atomic RPC attempt, a `ResumePolicy` controls
-/// a series of API calls spanning an entire operation (e.g. uploads and downloads). It tracks forward
-/// progress and handles recovery across transient network interruptions, failures, or dropped streams.
+/// Defines the strategy for resuming an interrupted multi-step or long-running operation
+/// (such as resumable uploads and downloads).
 public protocol ResumePolicy<Details>: Sendable {
-  /// The type of domain-specific details associated with this resume policy. Defaults to `Void`.
+  /// The domain-specific details type associated with the transfer state.
   associatedtype Details: Sendable = Void
 
-  /// Queries the policy after an error during an operation.
+  /// Evaluates an error and decides whether to resume or halt the transfer.
   ///
   /// - Parameters:
-  ///   - state: The current state of the operation.
-  ///   - error: The last error encountered.
-  /// - Returns: The resume decision (`.permanent`, `.exhausted`, or `.resume`).
+  ///   - state: The current `ResumeState`.
+  ///   - error: The error encountered during the operation.
+  /// - Returns: A `ResumeResult` indicating whether to resume, fail permanently, or exhaust attempts.
   func onError(state: ResumeState<Details>, error: RequestError) -> ResumeResult
 
-  /// Called when forward progress is made.
+  /// Updates policy state when forward progress is made.
   ///
-  /// - Parameter state: The current state of the operation to update.
+  /// - Parameter state: The `ResumeState` to update.
   func onProgress(state: inout ResumeState<Details>)
 
-  /// Returns the remaining duration for time-bounded resume policies.
+  /// Returns the remaining time allowed by this policy, or `nil` if unbounded.
   ///
-  /// - Parameter state: The current state of the operation.
-  /// - Returns: Remaining duration, or `nil` if the policy is not time-based.
+  /// - Parameter state: The current `ResumeState`.
+  /// - Returns: The remaining duration, or `nil`.
   func remainingTime(state: ResumeState<Details>) -> Duration?
 }
 

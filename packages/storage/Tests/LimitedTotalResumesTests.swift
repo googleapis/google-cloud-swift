@@ -14,42 +14,47 @@
 
 import Foundation
 import GoogleCloudGax
+import GoogleCloudStorage
 import Testing
 
-@Suite struct StopOnConsecutiveErrorsTests {
+@Suite struct LimitedTotalResumesTests {
   @Test func defaultsAndDelegation() {
     let mock = MockResumePolicy<Void>(onError: { _, e in .resume(e) })
-    let policy = mock.stopOnConsecutiveErrors(3)
-    #expect(policy.maxConsecutiveErrors == 3)
+    let policy = mock.withTotalResumeLimit(10)
+    #expect(policy.maxTotalResumes == 10)
     #expect(policy.remainingTime(state: ResumeState()) == nil)
   }
 
-  @Test func consecutiveLimitReached() {
+  @Test func totalResumeLimit() {
     let mock = MockResumePolicy<Void>(onError: { _, e in .resume(e) })
-    let policy = mock.stopOnConsecutiveErrors(2)
+    let policy = mock.withTotalResumeLimit(2)
     var state = ResumeState()
     let error = RequestError.http(HTTPDetails(http_status_code: 503, headers: [:]))
 
-    // 0 errors -> resumes
+    // 0 resumes
     #expect(policy.onError(state: state, error: error) == .resume(error))
 
-    // 1 error -> resumes
-    state.consecutiveErrorCount = 1
+    // 1st attempt resumes
+    state.totalResumeCount = 1
     #expect(policy.onError(state: state, error: error) == .resume(error))
 
-    // 2 errors -> exhausted
-    state.consecutiveErrorCount = 2
+    // Making progress doesn't reset total resumes
+    policy.onProgress(state: &state)
+    #expect(state.totalResumeCount == 1)
+
+    // 2nd attempt exhausts
+    state.totalResumeCount = 2
     #expect(policy.onError(state: state, error: error) == .exhausted(error))
 
-    // 3 errors -> exhausted
-    state.consecutiveErrorCount = 3
+    // 3rd attempt exhausts
+    state.totalResumeCount = 3
     #expect(policy.onError(state: state, error: error) == .exhausted(error))
   }
 
   @Test func innerPermanentPassesThrough() {
-    let permanentError = RequestError.http(HTTPDetails(http_status_code: 400, headers: [:]))
+    let permanentError = RequestError.http(HTTPDetails(http_status_code: 403, headers: [:]))
     let mock = MockResumePolicy<Void>(onError: { _, e in .permanent(e) })
-    let policy = mock.stopOnConsecutiveErrors(5)
+    let policy = mock.withTotalResumeLimit(5)
     let state = ResumeState()
 
     #expect(policy.onError(state: state, error: permanentError) == .permanent(permanentError))
@@ -58,7 +63,7 @@ import Testing
   @Test func innerExhaustedPassesThrough() {
     let exhaustedError = RequestError.http(HTTPDetails(http_status_code: 503, headers: [:]))
     let mock = MockResumePolicy<Void>(onError: { _, e in .exhausted(e) })
-    let policy = mock.stopOnConsecutiveErrors(5)
+    let policy = mock.withTotalResumeLimit(5)
     let state = ResumeState()
 
     #expect(policy.onError(state: state, error: exhaustedError) == .exhausted(exhaustedError))
@@ -71,7 +76,7 @@ import Testing
         state.consecutiveErrorCount = 0
       }
     )
-    let policy = mock.stopOnConsecutiveErrors(3)
+    let policy = mock.withTotalResumeLimit(3)
     var state = ResumeState().with { $0.consecutiveErrorCount = 2 }
 
     policy.onProgress(state: &state)
@@ -83,7 +88,7 @@ import Testing
       onError: { _, e in .resume(e) },
       remainingTime: { _ in .seconds(42) }
     )
-    let policy = mock.stopOnConsecutiveErrors(3)
+    let policy = mock.withTotalResumeLimit(3)
     let state = ResumeState()
 
     #expect(policy.remainingTime(state: state) == .seconds(42))

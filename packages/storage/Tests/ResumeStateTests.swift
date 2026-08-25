@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudGax
+import GoogleCloudStorage
 import Testing
 
 @Suite struct ResumeStateTests {

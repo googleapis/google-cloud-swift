@@ -12,15 +12,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import Foundation
 import GoogleCloudGax
 
-extension ResumeResult: Equatable {
-  public static func == (lhs: ResumeResult, rhs: ResumeResult) -> Bool {
-    switch (lhs, rhs) {
-    case (.permanent(let l), .permanent(let r)): return l == r
-    case (.exhausted(let l), .exhausted(let r)): return l == r
-    case (.resume(let l), .resume(let r)): return l == r
-    default: return false
-    }
-  }
+/// The result of evaluating an error with a ``ResumePolicy``.
+public enum ResumeResult: Sendable {
+  /// Resume the transfer from the last verified progress point.
+  case resume(RequestError)
+
+  /// The error is permanent; the transfer cannot be resumed and should fail immediately.
+  case permanent(RequestError)
+
+  /// The policy's retry or time limits have been exhausted.
+  case exhausted(RequestError)
 }
