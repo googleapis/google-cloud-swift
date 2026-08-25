@@ -373,7 +373,7 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
   private var bodyIterator: _HTTPResponseBody.AsyncIterator?
   private var streamIterator: AsyncThrowingStream<NIOCore.ByteBuffer, Error>.AsyncIterator?
   private var bytesReceived: UInt64 = 0
-  private let resumeState: ResumeState<DownloadDetails>
+  private var resumeState: ResumeState<DownloadDetails>
   private var isFinished: Bool = false
   private var isCancelled: Bool = false
   private var crc32cCalculator: CRC32CCalculator?
@@ -457,7 +457,7 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
           if let chunk {
             bytesReceived += UInt64(chunk.readableBytes)
             resumeState.details.bytesDownloaded = bytesReceived
-            resumeLoop.onProgress(state: resumeState)
+            resumeLoop.onProgress(state: &resumeState)
             updateChecksums(with: chunk)
             return chunk
           } else {
@@ -471,7 +471,7 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
           if let chunk {
             bytesReceived += UInt64(chunk.readableBytes)
             resumeState.details.bytesDownloaded = bytesReceived
-            resumeLoop.onProgress(state: resumeState)
+            resumeLoop.onProgress(state: &resumeState)
             updateChecksums(with: chunk)
             return chunk
           } else {
@@ -492,7 +492,7 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
 
         let reqError = (error as? RequestError) ?? .io(error)
         do {
-          try await resumeLoop.handleError(state: resumeState, error: reqError)
+          try await resumeLoop.handleError(state: &resumeState, error: reqError)
         } catch let err as RequestError {
           isFinished = true
           if case .http(let details) = err {
@@ -601,7 +601,7 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
     let object = self.object
 
     do {
-      let response = try await resumeLoop.run(state: resumeState) { _ in
+      let response = try await resumeLoop.run(state: &resumeState) { _ in
         let request = try await httpClient.buildReadObjectRequest(
           bucket: bucket, object: object, options: resumeOptions)
         let resp: _HTTPClientResponse

@@ -17,9 +17,9 @@ import Foundation
 /// The input into a resume policy query, tracking progress and error state of an ongoing resumable operation.
 ///
 /// On an error or forward progress event, the client library updates and provides an instance of this
-/// class to the ``ResumePolicy``. Specific domains or operations (such as storage uploads and downloads)
+/// struct to the ``ResumePolicy``. Specific domains or operations (such as storage uploads and downloads)
 /// provide domain-specific metadata via the `Details` generic parameter.
-public final class ResumeState<Details: Sendable>: @unchecked Sendable {
+public struct ResumeState<Details: Sendable>: Sendable {
   /// The number of consecutive errors encountered without making forward progress.
   ///
   /// This count is reset to 0 whenever forward progress is made.
@@ -59,10 +59,10 @@ public final class ResumeState<Details: Sendable>: @unchecked Sendable {
   /// ```
   /// let state = ResumeState(details: ()).with { $0.consecutiveErrorCount = 2 }
   /// ```
-  @discardableResult
-  public func with(_ config: (ResumeState<Details>) -> Void) -> Self {
-    config(self)
-    return self
+  public func with(_ config: (inout Self) -> Void) -> Self {
+    var copy = self
+    config(&copy)
+    return copy
   }
 }
 
@@ -70,17 +70,9 @@ extension ResumeState where Details == Void {
   /// Creates a new `ResumeState` instance with `Void` details.
   ///
   /// - Parameter start: The clock instant when the operation started. Defaults to `.now`.
-  public convenience init(start: ContinuousClock.Instant = .now) {
+  public init(start: ContinuousClock.Instant = .now) {
     self.init(details: (), start: start)
   }
 }
 
-extension ResumeState: Equatable where Details: Equatable {
-  public static func == (lhs: ResumeState<Details>, rhs: ResumeState<Details>) -> Bool {
-    lhs.consecutiveErrorCount == rhs.consecutiveErrorCount
-      && lhs.totalResumeCount == rhs.totalResumeCount
-      && lhs.start == rhs.start
-      && lhs.lastProgressTime == rhs.lastProgressTime
-      && lhs.details == rhs.details
-  }
-}
+extension ResumeState: Equatable where Details: Equatable {}

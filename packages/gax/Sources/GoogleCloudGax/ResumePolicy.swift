@@ -34,7 +34,7 @@ public protocol ResumePolicy<Details>: Sendable {
   /// Called when forward progress is made.
   ///
   /// - Parameter state: The current state of the operation to update.
-  func onProgress(state: ResumeState<Details>)
+  func onProgress(state: inout ResumeState<Details>)
 
   /// Returns the remaining duration for time-bounded resume policies.
   ///
@@ -44,7 +44,7 @@ public protocol ResumePolicy<Details>: Sendable {
 }
 
 extension ResumePolicy {
-  public func onProgress(state: ResumeState<Details>) {
+  public func onProgress(state: inout ResumeState<Details>) {
     state.consecutiveErrorCount = 0
     state.lastProgressTime = .now
   }

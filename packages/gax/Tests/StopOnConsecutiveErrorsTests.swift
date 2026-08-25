@@ -34,7 +34,7 @@ import Testing
 
   @Test func recoverableVsPermanentErrors() {
     let policy = StopOnConsecutiveErrors<Void>(maxConsecutiveErrors: 2)
-    let state = ResumeState()
+    var state = ResumeState()
 
     let transient503 = RequestError.http(HTTPDetails(http_status_code: 503, headers: [:]))
     let transient408 = RequestError.http(HTTPDetails(http_status_code: 408, headers: [:]))

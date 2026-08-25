@@ -52,15 +52,15 @@ import Testing
 
   @Test func progressUpdatesState() {
     let policy = StopOnConsecutiveErrors<Void>()
-    let state = ResumeState().with {
+    var state = ResumeState().with {
       $0.consecutiveErrorCount = 3
     }
 
-    policy.onProgress(state: state)
+    policy.onProgress(state: &state)
     #expect(state.consecutiveErrorCount == 0)
 
     state.consecutiveErrorCount = 2
-    policy.onProgress(state: state)
+    policy.onProgress(state: &state)
     #expect(state.consecutiveErrorCount == 0)
   }
 
@@ -69,16 +69,16 @@ import Testing
       var bytes: UInt64
     }
 
-    let state = ResumeState(details: CustomDetails(bytes: 1024))
+    var state = ResumeState(details: CustomDetails(bytes: 1024))
     #expect(state.details.bytes == 1024)
     #expect(state.consecutiveErrorCount == 0)
 
     let policy = StopOnConsecutiveErrors<CustomDetails>()
     state.consecutiveErrorCount = 4
-    policy.onProgress(state: state)
+    policy.onProgress(state: &state)
     #expect(state.consecutiveErrorCount == 0)
 
-    let copy = ResumeState(details: CustomDetails(bytes: 1024), start: state.start)
+    var copy = ResumeState(details: CustomDetails(bytes: 1024), start: state.start)
     copy.lastProgressTime = state.lastProgressTime
     #expect(state == copy)
   }

@@ -393,7 +393,7 @@ extension StorageClient {
     } else {
       initialBytes = 0
     }
-    let resumeState = ResumeState(
+    var resumeState = ResumeState(
       details: UploadDetails(
         bytesUploaded: initialBytes,
         totalBytes: totalSize
@@ -409,7 +409,7 @@ extension StorageClient {
           throw UploadError.internalError(
             "Missing bucket or object name to start resumable upload")
         }
-        let location = try await resumeLoop.run(state: resumeState) { _ in
+        let location = try await resumeLoop.run(state: &resumeState) { _ in
           try await startResumableSession(
             httpClient: httpClient,
             bucket: bucket,
@@ -433,7 +433,7 @@ extension StorageClient {
           if case .inprogress(let committedBytes) = uploadStatus {
             if committedBytes > resumeState.details.bytesUploaded {
               resumeState.details.bytesUploaded = committedBytes
-              resumeLoop.onProgress(state: resumeState)
+              resumeLoop.onProgress(state: &resumeState)
             }
             continuation.yield(
               UploadStatus(
@@ -441,7 +441,7 @@ extension StorageClient {
                 uploadId: activeUploadId))
           }
         } catch {
-          try await resumeLoop.handleError(state: resumeState, error: error)
+          try await resumeLoop.handleError(state: &resumeState, error: error)
           continue
         }
       }
@@ -492,7 +492,7 @@ extension StorageClient {
             continuation: continuation
           )
         } catch {
-          try await resumeLoop.handleError(state: resumeState, error: error)
+          try await resumeLoop.handleError(state: &resumeState, error: error)
           continue
         }
 
@@ -503,7 +503,7 @@ extension StorageClient {
         if case .inprogress(let nextBytes) = chunkResult.status {
           if nextBytes > resumeState.details.bytesUploaded {
             resumeState.details.bytesUploaded = nextBytes
-            resumeLoop.onProgress(state: resumeState)
+            resumeLoop.onProgress(state: &resumeState)
           }
           lastCommittedBytes = nextBytes
         }
@@ -537,7 +537,7 @@ extension StorageClient {
     } else {
       initialBytes = 0
     }
-    let resumeState = ResumeState(
+    var resumeState = ResumeState(
       details: UploadDetails(
         bytesUploaded: initialBytes,
         totalBytes: totalSize
@@ -553,7 +553,7 @@ extension StorageClient {
           throw UploadError.internalError(
             "Missing bucket or object name to start resumable upload")
         }
-        let location = try await resumeLoop.run(state: resumeState) { _ in
+        let location = try await resumeLoop.run(state: &resumeState) { _ in
           try await startResumableSession(
             httpClient: httpClient,
             bucket: bucket,
@@ -580,7 +580,7 @@ extension StorageClient {
           if case .inprogress(let committedBytes) = uploadStatus {
             if committedBytes > resumeState.details.bytesUploaded {
               resumeState.details.bytesUploaded = committedBytes
-              resumeLoop.onProgress(state: resumeState)
+              resumeLoop.onProgress(state: &resumeState)
             }
             continuation.yield(
               UploadStatus(
@@ -588,7 +588,7 @@ extension StorageClient {
                 uploadId: activeUploadId))
           }
         } catch {
-          try await resumeLoop.handleError(state: resumeState, error: error)
+          try await resumeLoop.handleError(state: &resumeState, error: error)
           continue
         }
       }
@@ -642,7 +642,7 @@ extension StorageClient {
             continuation: continuation
           )
         } catch {
-          try await resumeLoop.handleError(state: resumeState, error: error)
+          try await resumeLoop.handleError(state: &resumeState, error: error)
           continue
         }
 
@@ -653,7 +653,7 @@ extension StorageClient {
         if case .inprogress(let nextBytes) = chunkResult.status {
           if nextBytes > resumeState.details.bytesUploaded {
             resumeState.details.bytesUploaded = nextBytes
-            resumeLoop.onProgress(state: resumeState)
+            resumeLoop.onProgress(state: &resumeState)
           }
         }
         if let seed = chunkResult.crc32cSeed {

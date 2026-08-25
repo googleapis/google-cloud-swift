@@ -19,7 +19,7 @@ import Testing
 @Suite struct AlwaysResumeTests {
   @Test func alwaysResume() {
     let policy = AlwaysResume<Void>()
-    let state = ResumeState()
+    var state = ResumeState()
     let transient503 = RequestError.http(HTTPDetails(http_status_code: 503, headers: [:]))
     let permanent400 = RequestError.http(HTTPDetails(http_status_code: 400, headers: [:]))
 

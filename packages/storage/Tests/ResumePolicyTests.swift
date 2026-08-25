@@ -75,25 +75,25 @@ import Testing
 
   @Test func resumePolicyProgressUpdatesState() {
     let policy = StopOnConsecutiveErrors<UploadDetails>()
-    let state = ResumeState(details: UploadDetails(bytesUploaded: 0, totalBytes: 1000)).with {
+    var state = ResumeState(details: UploadDetails(bytesUploaded: 0, totalBytes: 1000)).with {
       $0.consecutiveErrorCount = 3
     }
 
     state.details.bytesUploaded = 250
-    policy.onProgress(state: state)
+    policy.onProgress(state: &state)
     #expect(state.details.bytesUploaded == 250)
     #expect(state.consecutiveErrorCount == 0)
 
     state.details.bytesUploaded = 500
     state.consecutiveErrorCount = 2
-    policy.onProgress(state: state)
+    policy.onProgress(state: &state)
     #expect(state.details.bytesUploaded == 500)
     #expect(state.consecutiveErrorCount == 0)
   }
 
   @Test func stopOnConsecutiveErrorsPolicy() {
     let policy = StopOnConsecutiveErrors<Void>(maxConsecutiveErrors: 2)
-    let state = ResumeState()
+    var state = ResumeState()
 
     let transientError = RequestError.http(HTTPDetails(http_status_code: 503, headers: [:]))
     let permanentError = RequestError.http(HTTPDetails(http_status_code: 404, headers: [:]))
@@ -119,7 +119,7 @@ import Testing
     }
 
     // Progress resets consecutive errors
-    policy.onProgress(state: state)
+    policy.onProgress(state: &state)
     #expect(state.consecutiveErrorCount == 0)
 
     // Consecutive error 1 after progress resumes
@@ -139,7 +139,7 @@ import Testing
 
   @Test func limitedTotalResumesPolicy() {
     let policy = LimitedTotalResumes<Void>(maxTotalResumes: 2)
-    let state = ResumeState()
+    var state = ResumeState()
 
     let transientError = RequestError.http(HTTPDetails(http_status_code: 503, headers: [:]))
     let permanentError = RequestError.http(HTTPDetails(http_status_code: 403, headers: [:]))
@@ -158,7 +158,7 @@ import Testing
     }
 
     // Making progress doesn't reset total resume count
-    policy.onProgress(state: state)
+    policy.onProgress(state: &state)
     #expect(state.totalResumeCount == 1)
 
     // 2nd resume hits max and exhausts
@@ -187,7 +187,7 @@ import Testing
 
   @Test func alwaysResumePolicy() {
     let policy = AlwaysResume<Void>()
-    let state = ResumeState()
+    var state = ResumeState()
     let transientError = RequestError.http(HTTPDetails(http_status_code: 503, headers: [:]))
     let permanentError = RequestError.http(HTTPDetails(http_status_code: 400, headers: [:]))
 
