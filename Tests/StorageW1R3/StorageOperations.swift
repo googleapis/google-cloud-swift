@@ -31,9 +31,12 @@ enum StorageOperations {
       $0.preconditions = StoragePreconditions().with {
         $0.ifGenerationMatch = 0
       }
-      // If resumable, chunk size is set to 8MB; if simple, threshold handles it
+      // If resumable, chunk size is set to 32MiB; if simple, threshold handles it
       if isResumable {
-        $0.chunkSize = 8 * 1024 * 1024
+        $0.chunkSize = 32 * 1024 * 1024
+        $0.resumableUploadThreshold = data.count
+      } else {
+        $0.resumableUploadThreshold = data.count + 256 * 1024
       }
     }
 
