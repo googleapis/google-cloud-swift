@@ -22,7 +22,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol MemorystoreStub {
+  protocol MemorystoreStub: Sendable {
     func listInstances(
       request: ListInstancesRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudMemoryStoreV1.ListInstancesResponse

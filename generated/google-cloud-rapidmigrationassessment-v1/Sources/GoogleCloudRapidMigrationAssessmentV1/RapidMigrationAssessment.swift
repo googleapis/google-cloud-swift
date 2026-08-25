@@ -27,7 +27,9 @@ import GoogleCloudGax
 /// Service describing handlers for resources.
 ///
 /// @Snippet(path: "RapidMigrationAssessmentQuickstart")
-public class RapidMigrationAssessmentClient: Clients.RapidMigrationAssessmentProtocol {
+public final class RapidMigrationAssessmentClient: Clients.RapidMigrationAssessmentProtocol,
+  Sendable
+{
   let inner: any Clients.RapidMigrationAssessmentStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

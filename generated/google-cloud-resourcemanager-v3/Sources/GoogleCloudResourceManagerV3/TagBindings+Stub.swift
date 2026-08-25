@@ -21,7 +21,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol TagBindingsStub {
+  protocol TagBindingsStub: Sendable {
     func listTagBindings(
       request: ListTagBindingsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudResourceManagerV3.ListTagBindingsResponse

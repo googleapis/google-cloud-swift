@@ -22,7 +22,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol BareMetalSolutionStub {
+  protocol BareMetalSolutionStub: Sendable {
     func listInstances(
       request: ListInstancesRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudBareMetalSolutionV2.ListInstancesResponse

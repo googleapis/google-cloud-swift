@@ -30,7 +30,7 @@
   /// [google.cloud.dialogflow.v2.Conversation]: <doc:Conversation>
   ///
   /// @Snippet(path: "ConversationsQuickstart")
-  public class ConversationsClient: Clients.ConversationsProtocol {
+  public final class ConversationsClient: Clients.ConversationsProtocol, Sendable {
     let inner: any Clients.ConversationsStub
 
     /// Creates a new `ConversationsClient` instance.

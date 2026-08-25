@@ -25,7 +25,7 @@
   /// Service for the `diskTypes` resource.
   ///
   /// @Snippet(path: "diskTypesQuickstart")
-  public class DiskTypesClient: Clients.DiskTypesProtocol {
+  public final class DiskTypesClient: Clients.DiskTypesProtocol, Sendable {
     let inner: any Clients.DiskTypesStub
 
     /// Creates a new `DiskTypesClient` instance.

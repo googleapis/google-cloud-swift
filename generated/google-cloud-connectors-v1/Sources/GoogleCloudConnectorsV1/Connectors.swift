@@ -28,7 +28,7 @@ import GoogleCloudGax
 /// Connectors is the interface for managing Connectors.
 ///
 /// @Snippet(path: "ConnectorsQuickstart")
-public class ConnectorsClient: Clients.ConnectorsProtocol {
+public final class ConnectorsClient: Clients.ConnectorsProtocol, Sendable {
   let inner: any Clients.ConnectorsStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

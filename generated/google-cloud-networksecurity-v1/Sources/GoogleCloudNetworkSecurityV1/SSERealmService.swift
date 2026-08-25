@@ -28,7 +28,7 @@ import GoogleCloudGax
 /// Service describing handlers for resources
 ///
 /// @Snippet(path: "SSERealmServiceQuickstart")
-public class SSERealmServiceClient: Clients.SSERealmServiceProtocol {
+public final class SSERealmServiceClient: Clients.SSERealmServiceProtocol, Sendable {
   let inner: any Clients.SSERealmServiceStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

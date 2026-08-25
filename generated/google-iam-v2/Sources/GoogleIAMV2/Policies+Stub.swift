@@ -21,7 +21,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol PoliciesStub {
+  protocol PoliciesStub: Sendable {
     func listPolicies(
       request: ListPoliciesRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleIAMV2.ListPoliciesResponse

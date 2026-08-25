@@ -23,7 +23,8 @@
   @_spi(GoogleCloudInternal) import GoogleCloudGax
 
   extension Clients {
-    class InstanceGroupManagerResizeRequestsTransport: InstanceGroupManagerResizeRequestsStub {
+    final class InstanceGroupManagerResizeRequestsTransport: InstanceGroupManagerResizeRequestsStub
+    {
       let inner: GoogleCloudGax._HTTPClient
 
       public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {

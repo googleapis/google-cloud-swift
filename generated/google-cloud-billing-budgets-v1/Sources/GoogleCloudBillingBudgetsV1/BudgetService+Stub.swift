@@ -19,7 +19,7 @@ import GoogleCloudWkt
 import GoogleCloudGax
 
 extension Clients {
-  protocol BudgetServiceStub {
+  protocol BudgetServiceStub: Sendable {
     func createBudget(
       request: CreateBudgetRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudBillingBudgetsV1.Budget

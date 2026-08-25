@@ -27,7 +27,7 @@ import GoogleCloudGax
 /// projects and AWS accounts.
 ///
 /// @Snippet(path: "MetricsScopesQuickstart")
-public class MetricsScopesClient: Clients.MetricsScopesProtocol {
+public final class MetricsScopesClient: Clients.MetricsScopesProtocol, Sendable {
   let inner: any Clients.MetricsScopesStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

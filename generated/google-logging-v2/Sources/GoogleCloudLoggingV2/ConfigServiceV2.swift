@@ -26,7 +26,7 @@ import GoogleCloudGax
 /// Service for configuring sinks used to route log entries.
 ///
 /// @Snippet(path: "ConfigServiceV2Quickstart")
-public class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol {
+public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Sendable {
   let inner: any Clients.ConfigServiceV2Stub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

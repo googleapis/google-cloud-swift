@@ -21,7 +21,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol CloudChannelServiceStub {
+  protocol CloudChannelServiceStub: Sendable {
     func listCustomers(
       request: ListCustomersRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.ListCustomersResponse

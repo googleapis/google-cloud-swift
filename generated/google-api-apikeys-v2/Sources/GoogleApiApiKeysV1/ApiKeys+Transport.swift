@@ -24,7 +24,7 @@ import GoogleRpc
 @_spi(GoogleCloudInternal) import GoogleCloudGax
 
 extension Clients {
-  class ApiKeysTransport: ApiKeysStub {
+  final class ApiKeysTransport: ApiKeysStub {
     let inner: GoogleCloudGax._HTTPClient
 
     public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {

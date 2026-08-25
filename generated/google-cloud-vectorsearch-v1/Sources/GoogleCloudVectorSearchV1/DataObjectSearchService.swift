@@ -26,7 +26,8 @@ import GoogleCloudGax
 /// Service for searching data objects.
 ///
 /// @Snippet(path: "DataObjectSearchServiceQuickstart")
-public class DataObjectSearchServiceClient: Clients.DataObjectSearchServiceProtocol {
+public final class DataObjectSearchServiceClient: Clients.DataObjectSearchServiceProtocol, Sendable
+{
   let inner: any Clients.DataObjectSearchServiceStub
 
   /// Creates a new `DataObjectSearchServiceClient` instance.

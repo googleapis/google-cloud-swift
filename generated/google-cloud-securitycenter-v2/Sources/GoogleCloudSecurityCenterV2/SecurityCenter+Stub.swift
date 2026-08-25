@@ -22,7 +22,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol SecurityCenterStub {
+  protocol SecurityCenterStub: Sendable {
     func batchCreateResourceValueConfigs(
       request: BatchCreateResourceValueConfigsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterV2.BatchCreateResourceValueConfigsResponse

@@ -23,7 +23,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol GeneratorEvaluationsStub {
+    protocol GeneratorEvaluationsStub: Sendable {
       func createGeneratorEvaluation(
         request: CreateGeneratorEvaluationRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation

@@ -22,7 +22,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol HypercomputeClusterStub {
+  protocol HypercomputeClusterStub: Sendable {
     func listClusters(
       request: ListClustersRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudHypercomputeClusterV1.ListClustersResponse

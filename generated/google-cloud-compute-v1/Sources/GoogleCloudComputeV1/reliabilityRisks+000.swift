@@ -25,7 +25,7 @@
   /// Service for the `reliabilityRisks` resource.
   ///
   /// @Snippet(path: "reliabilityRisksQuickstart")
-  public class ReliabilityRisksClient: Clients.ReliabilityRisksProtocol {
+  public final class ReliabilityRisksClient: Clients.ReliabilityRisksProtocol, Sendable {
     let inner: any Clients.ReliabilityRisksStub
 
     /// Creates a new `ReliabilityRisksClient` instance.

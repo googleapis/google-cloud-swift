@@ -27,7 +27,7 @@ import GoogleCloudGax
 /// Service describing handlers for resources
 ///
 /// @Snippet(path: "StorageInsightsQuickstart")
-public class StorageInsightsClient: Clients.StorageInsightsProtocol {
+public final class StorageInsightsClient: Clients.StorageInsightsProtocol, Sendable {
   let inner: any Clients.StorageInsightsStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

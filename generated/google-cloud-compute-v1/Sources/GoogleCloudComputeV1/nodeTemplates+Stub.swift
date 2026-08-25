@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol NodeTemplatesStub {
+    protocol NodeTemplatesStub: Sendable {
       func aggregatedList(
         request: NodeTemplatesClient.AggregatedListRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.NodeTemplateAggregatedList

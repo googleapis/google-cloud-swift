@@ -29,7 +29,7 @@
   /// [google.cloud.dialogflow.v2.SipTrunk]: <doc:SipTrunk>
   ///
   /// @Snippet(path: "SipTrunksQuickstart")
-  public class SipTrunksClient: Clients.SipTrunksProtocol {
+  public final class SipTrunksClient: Clients.SipTrunksProtocol, Sendable {
     let inner: any Clients.SipTrunksStub
 
     /// Creates a new `SipTrunksClient` instance.

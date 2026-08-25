@@ -29,7 +29,7 @@
   /// [google.cloud.dialogflow.cx.v3.Experiment]: <doc:Experiment>
   ///
   /// @Snippet(path: "ExperimentsQuickstart")
-  public class ExperimentsClient: Clients.ExperimentsProtocol {
+  public final class ExperimentsClient: Clients.ExperimentsProtocol, Sendable {
     let inner: any Clients.ExperimentsStub
 
     /// Creates a new `ExperimentsClient` instance.

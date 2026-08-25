@@ -21,7 +21,7 @@ import GoogleLongRunning
 import GoogleCloudGax
 
 extension Clients {
-  protocol RuntimeProjectAttachmentServiceStub {
+  protocol RuntimeProjectAttachmentServiceStub: Sendable {
     func createRuntimeProjectAttachment(
       request: CreateRuntimeProjectAttachmentRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudApiHubV1.RuntimeProjectAttachment

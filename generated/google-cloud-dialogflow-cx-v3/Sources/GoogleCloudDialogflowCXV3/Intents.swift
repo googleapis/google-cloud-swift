@@ -30,7 +30,7 @@
   /// [google.cloud.dialogflow.cx.v3.Intent]: <doc:Intent>
   ///
   /// @Snippet(path: "IntentsQuickstart")
-  public class IntentsClient: Clients.IntentsProtocol {
+  public final class IntentsClient: Clients.IntentsProtocol, Sendable {
     let inner: any Clients.IntentsStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

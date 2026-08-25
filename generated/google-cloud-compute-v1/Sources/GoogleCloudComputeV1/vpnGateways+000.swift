@@ -25,7 +25,7 @@
   /// Service for the `vpnGateways` resource.
   ///
   /// @Snippet(path: "vpnGatewaysQuickstart")
-  public class VpnGatewaysClient: Clients.VpnGatewaysProtocol {
+  public final class VpnGatewaysClient: Clients.VpnGatewaysProtocol, Sendable {
     let inner: any Clients.VpnGatewaysStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

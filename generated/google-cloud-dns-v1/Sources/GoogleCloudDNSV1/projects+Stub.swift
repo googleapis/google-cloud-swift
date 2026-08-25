@@ -19,7 +19,7 @@ import GoogleCloudWkt
 import GoogleCloudGax
 
 extension Clients {
-  protocol ProjectsStub {
+  protocol ProjectsStub: Sendable {
     func `get`(
       request: ProjectsClient.GetRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> Project

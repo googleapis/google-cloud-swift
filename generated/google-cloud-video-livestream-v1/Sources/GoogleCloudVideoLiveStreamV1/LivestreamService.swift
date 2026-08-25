@@ -31,7 +31,7 @@ import GoogleCloudGax
 /// Protocol (RTMP) and Secure Reliable Transport (SRT).
 ///
 /// @Snippet(path: "LivestreamServiceQuickstart")
-public class LivestreamServiceClient: Clients.LivestreamServiceProtocol {
+public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, Sendable {
   let inner: any Clients.LivestreamServiceStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

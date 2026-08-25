@@ -21,7 +21,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol VideoStitcherServiceStub {
+  protocol VideoStitcherServiceStub: Sendable {
     func createCdnKey(
       request: CreateCdnKeyRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

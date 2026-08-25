@@ -57,7 +57,9 @@ import GoogleCloudGax
 ///  * Must be unique within the customer project.
 ///
 /// @Snippet(path: "ManagedIdentitiesServiceQuickstart")
-public class ManagedIdentitiesServiceClient: Clients.ManagedIdentitiesServiceProtocol {
+public final class ManagedIdentitiesServiceClient: Clients.ManagedIdentitiesServiceProtocol,
+  Sendable
+{
   let inner: any Clients.ManagedIdentitiesServiceStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

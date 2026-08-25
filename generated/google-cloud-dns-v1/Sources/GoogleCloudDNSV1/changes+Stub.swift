@@ -19,7 +19,7 @@ import GoogleCloudWkt
 import GoogleCloudGax
 
 extension Clients {
-  protocol ChangesStub {
+  protocol ChangesStub: Sendable {
     func create(
       request: ChangesClient.CreateRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> Change

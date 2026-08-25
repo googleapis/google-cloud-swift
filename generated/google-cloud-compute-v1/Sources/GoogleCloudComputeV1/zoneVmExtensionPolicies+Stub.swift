@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol ZoneVmExtensionPoliciesStub {
+    protocol ZoneVmExtensionPoliciesStub: Sendable {
       func delete(
         request: ZoneVmExtensionPoliciesClient.DeleteRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation

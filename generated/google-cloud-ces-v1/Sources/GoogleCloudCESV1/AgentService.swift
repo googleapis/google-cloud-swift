@@ -28,7 +28,7 @@ import GoogleCloudGax
 /// Customer Engagement (CES).
 ///
 /// @Snippet(path: "AgentServiceQuickstart")
-public class AgentServiceClient: Clients.AgentServiceProtocol {
+public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
   let inner: any Clients.AgentServiceStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

@@ -24,7 +24,9 @@ import GoogleCloudGax
 /// Manages contacts for important Google Cloud notifications.
 ///
 /// @Snippet(path: "EssentialContactsServiceQuickstart")
-public class EssentialContactsServiceClient: Clients.EssentialContactsServiceProtocol {
+public final class EssentialContactsServiceClient: Clients.EssentialContactsServiceProtocol,
+  Sendable
+{
   let inner: any Clients.EssentialContactsServiceStub
 
   /// Creates a new `EssentialContactsServiceClient` instance.

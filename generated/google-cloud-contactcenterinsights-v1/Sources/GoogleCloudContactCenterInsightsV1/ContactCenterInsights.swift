@@ -26,7 +26,7 @@ import GoogleCloudGax
 /// An API that lets users analyze and explore their business conversation data.
 ///
 /// @Snippet(path: "ContactCenterInsightsQuickstart")
-public class ContactCenterInsightsClient: Clients.ContactCenterInsightsProtocol {
+public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsProtocol, Sendable {
   let inner: any Clients.ContactCenterInsightsStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

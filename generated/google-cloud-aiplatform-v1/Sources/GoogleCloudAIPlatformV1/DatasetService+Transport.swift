@@ -27,7 +27,7 @@
   @_spi(GoogleCloudInternal) import GoogleCloudGax
 
   extension Clients {
-    class DatasetServiceTransport: DatasetServiceStub {
+    final class DatasetServiceTransport: DatasetServiceStub {
       let inner: GoogleCloudGax._HTTPClient
 
       public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {

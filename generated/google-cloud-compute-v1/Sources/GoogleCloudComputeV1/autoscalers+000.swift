@@ -25,7 +25,7 @@
   /// Service for the `autoscalers` resource.
   ///
   /// @Snippet(path: "autoscalersQuickstart")
-  public class AutoscalersClient: Clients.AutoscalersProtocol {
+  public final class AutoscalersClient: Clients.AutoscalersProtocol, Sendable {
     let inner: any Clients.AutoscalersStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

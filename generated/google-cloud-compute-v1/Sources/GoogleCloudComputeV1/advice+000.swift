@@ -25,7 +25,7 @@
   /// Service for the `advice` resource.
   ///
   /// @Snippet(path: "adviceQuickstart")
-  public class AdviceClient: Clients.AdviceProtocol {
+  public final class AdviceClient: Clients.AdviceProtocol, Sendable {
     let inner: any Clients.AdviceStub
 
     /// Creates a new `AdviceClient` instance.

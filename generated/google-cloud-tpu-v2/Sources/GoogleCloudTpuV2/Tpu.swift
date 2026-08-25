@@ -29,7 +29,7 @@ import GoogleCloudGax
 /// TPU API v2
 ///
 /// @Snippet(path: "TpuQuickstart")
-public class TpuClient: Clients.TpuProtocol {
+public final class TpuClient: Clients.TpuProtocol, Sendable {
   let inner: any Clients.TpuStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

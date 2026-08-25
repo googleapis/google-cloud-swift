@@ -23,7 +23,9 @@ import GoogleCloudGax
 
 ///
 /// @Snippet(path: "TimeseriesInsightsControllerQuickstart")
-public class TimeseriesInsightsControllerClient: Clients.TimeseriesInsightsControllerProtocol {
+public final class TimeseriesInsightsControllerClient: Clients.TimeseriesInsightsControllerProtocol,
+  Sendable
+{
   let inner: any Clients.TimeseriesInsightsControllerStub
 
   /// Creates a new `TimeseriesInsightsControllerClient` instance.

@@ -27,7 +27,7 @@ import GoogleCloudGax
 /// The JobController provides methods to manage jobs.
 ///
 /// @Snippet(path: "JobControllerQuickstart")
-public class JobControllerClient: Clients.JobControllerProtocol {
+public final class JobControllerClient: Clients.JobControllerProtocol, Sendable {
   let inner: any Clients.JobControllerStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

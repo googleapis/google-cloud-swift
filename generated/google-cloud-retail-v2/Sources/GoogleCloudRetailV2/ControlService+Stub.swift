@@ -20,7 +20,7 @@ import GoogleLongRunning
 import GoogleCloudGax
 
 extension Clients {
-  protocol ControlServiceStub {
+  protocol ControlServiceStub: Sendable {
     func createControl(
       request: CreateControlRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudRetailV2.Control

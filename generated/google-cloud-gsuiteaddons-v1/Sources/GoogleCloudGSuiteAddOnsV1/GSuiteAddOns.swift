@@ -51,7 +51,7 @@ import GoogleCloudGax
 /// for details.
 ///
 /// @Snippet(path: "GSuiteAddOnsQuickstart")
-public class GSuiteAddOnsClient: Clients.GSuiteAddOnsProtocol {
+public final class GSuiteAddOnsClient: Clients.GSuiteAddOnsProtocol, Sendable {
   let inner: any Clients.GSuiteAddOnsStub
 
   /// Creates a new `GSuiteAddOnsClient` instance.

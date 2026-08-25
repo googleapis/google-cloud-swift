@@ -25,7 +25,7 @@
   /// Service for the `networkAttachments` resource.
   ///
   /// @Snippet(path: "networkAttachmentsQuickstart")
-  public class NetworkAttachmentsClient: Clients.NetworkAttachmentsProtocol {
+  public final class NetworkAttachmentsClient: Clients.NetworkAttachmentsProtocol, Sendable {
     let inner: any Clients.NetworkAttachmentsStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

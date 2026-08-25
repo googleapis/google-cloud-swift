@@ -40,7 +40,7 @@ import GoogleCloudGax
 ///   or Version.
 ///
 /// @Snippet(path: "ArtifactRegistryQuickstart")
-public class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol {
+public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sendable {
   let inner: any Clients.ArtifactRegistryStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

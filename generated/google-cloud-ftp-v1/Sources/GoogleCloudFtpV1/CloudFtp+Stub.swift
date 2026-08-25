@@ -22,7 +22,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol CloudFtpStub {
+  protocol CloudFtpStub: Sendable {
     func listServers(
       request: ListServersRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudFtpV1.ListServersResponse

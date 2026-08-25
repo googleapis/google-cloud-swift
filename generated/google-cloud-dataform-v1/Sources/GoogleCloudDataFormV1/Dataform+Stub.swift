@@ -23,7 +23,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol DataformStub {
+  protocol DataformStub: Sendable {
     func getTeamFolder(
       request: GetTeamFolderRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.TeamFolder

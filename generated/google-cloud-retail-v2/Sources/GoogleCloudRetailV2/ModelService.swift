@@ -37,7 +37,7 @@ import GoogleCloudGax
 /// * Control their tuning schedule.
 ///
 /// @Snippet(path: "ModelServiceQuickstart")
-public class ModelServiceClient: Clients.ModelServiceProtocol {
+public final class ModelServiceClient: Clients.ModelServiceProtocol, Sendable {
   let inner: any Clients.ModelServiceStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

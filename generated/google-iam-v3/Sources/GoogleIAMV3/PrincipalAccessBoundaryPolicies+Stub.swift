@@ -21,7 +21,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol PrincipalAccessBoundaryPoliciesStub {
+  protocol PrincipalAccessBoundaryPoliciesStub: Sendable {
     func createPrincipalAccessBoundaryPolicy(
       request: CreatePrincipalAccessBoundaryPolicyRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

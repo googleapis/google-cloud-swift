@@ -26,7 +26,7 @@ import GoogleCloudGax
 /// Session service provides APIs for interacting with CES agents.
 ///
 /// @Snippet(path: "SessionServiceQuickstart")
-public class SessionServiceClient: Clients.SessionServiceProtocol {
+public final class SessionServiceClient: Clients.SessionServiceProtocol, Sendable {
   let inner: any Clients.SessionServiceStub
 
   /// Creates a new `SessionServiceClient` instance.

@@ -27,7 +27,7 @@ import GoogleCloudGax
 /// Service describing handlers for resources
 ///
 /// @Snippet(path: "AuditQuickstart")
-public class AuditClient: Clients.AuditProtocol {
+public final class AuditClient: Clients.AuditProtocol, Sendable {
   let inner: any Clients.AuditStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

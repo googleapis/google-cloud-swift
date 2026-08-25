@@ -22,7 +22,7 @@ import GoogleLongRunning
 import GoogleCloudGax
 
 extension Clients {
-  protocol ManagedSchemaRegistryStub {
+  protocol ManagedSchemaRegistryStub: Sendable {
     func getSchemaRegistry(
       request: GetSchemaRegistryRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaRegistry

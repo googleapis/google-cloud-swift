@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol SslCertificatesStub {
+    protocol SslCertificatesStub: Sendable {
       func aggregatedList(
         request: SslCertificatesClient.AggregatedListRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.SslCertificateAggregatedList

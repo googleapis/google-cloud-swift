@@ -22,7 +22,7 @@ import GoogleLongRunning
 import GoogleCloudGax
 
 extension Clients {
-  protocol ComplianceStub {
+  protocol ComplianceStub: Sendable {
     func repeatDataBody(
       request: RepeatRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleShowcaseV1Beta1.RepeatResponse

@@ -25,7 +25,7 @@ import GoogleCloudGax
 /// Service describing handlers for resources
 ///
 /// @Snippet(path: "ConfidentialComputingQuickstart")
-public class ConfidentialComputingClient: Clients.ConfidentialComputingProtocol {
+public final class ConfidentialComputingClient: Clients.ConfidentialComputingProtocol, Sendable {
   let inner: any Clients.ConfidentialComputingStub
 
   /// Creates a new `ConfidentialComputingClient` instance.

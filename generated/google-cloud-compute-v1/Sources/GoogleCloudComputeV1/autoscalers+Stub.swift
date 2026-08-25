@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol AutoscalersStub {
+    protocol AutoscalersStub: Sendable {
       func aggregatedList(
         request: AutoscalersClient.AggregatedListRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.AutoscalerAggregatedList

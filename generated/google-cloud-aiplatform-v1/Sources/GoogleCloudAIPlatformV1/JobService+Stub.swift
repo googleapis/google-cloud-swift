@@ -24,7 +24,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol JobServiceStub {
+    protocol JobServiceStub: Sendable {
       func createCustomJob(
         request: CreateCustomJobRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.CustomJob

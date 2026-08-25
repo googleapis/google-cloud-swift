@@ -28,7 +28,7 @@ import GoogleCloudGax
 /// VMwareEngine manages VMware's private clusters in the Cloud.
 ///
 /// @Snippet(path: "VmwareEngineQuickstart")
-public class VmwareEngineClient: Clients.VmwareEngineProtocol {
+public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   let inner: any Clients.VmwareEngineStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

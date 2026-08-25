@@ -29,7 +29,7 @@
   /// A service for managing user data for RAG.
   ///
   /// @Snippet(path: "VertexRagDataServiceQuickstart")
-  public class VertexRagDataServiceClient: Clients.VertexRagDataServiceProtocol {
+  public final class VertexRagDataServiceClient: Clients.VertexRagDataServiceProtocol, Sendable {
     let inner: any Clients.VertexRagDataServiceStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

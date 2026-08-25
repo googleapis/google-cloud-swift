@@ -30,7 +30,7 @@ import GoogleCloudGax
 /// e2e solution for customer to build their own computer vision application.
 ///
 /// @Snippet(path: "StreamsServiceQuickstart")
-public class StreamsServiceClient: Clients.StreamsServiceProtocol {
+public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendable {
   let inner: any Clients.StreamsServiceStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

@@ -23,7 +23,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol DataTaxonomyServiceStub {
+  protocol DataTaxonomyServiceStub: Sendable {
     func createDataTaxonomy(
       request: CreateDataTaxonomyRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

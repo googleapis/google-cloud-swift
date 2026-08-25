@@ -21,7 +21,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol ServiceUsageStub {
+  protocol ServiceUsageStub: Sendable {
     func enableService(
       request: EnableServiceRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

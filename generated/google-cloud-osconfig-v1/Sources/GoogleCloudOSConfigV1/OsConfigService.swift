@@ -28,7 +28,7 @@ import GoogleCloudGax
 /// manage package installations and patch jobs for virtual machine instances.
 ///
 /// @Snippet(path: "OsConfigServiceQuickstart")
-public class OsConfigServiceClient: Clients.OsConfigServiceProtocol {
+public final class OsConfigServiceClient: Clients.OsConfigServiceProtocol, Sendable {
   let inner: any Clients.OsConfigServiceStub
 
   /// Creates a new `OsConfigServiceClient` instance.

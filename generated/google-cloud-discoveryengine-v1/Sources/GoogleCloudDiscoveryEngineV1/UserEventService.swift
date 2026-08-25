@@ -28,7 +28,7 @@
   /// Service for ingesting end user actions on a website to Discovery Engine API.
   ///
   /// @Snippet(path: "UserEventServiceQuickstart")
-  public class UserEventServiceClient: Clients.UserEventServiceProtocol {
+  public final class UserEventServiceClient: Clients.UserEventServiceProtocol, Sendable {
     let inner: any Clients.UserEventServiceStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

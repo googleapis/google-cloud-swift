@@ -28,7 +28,7 @@ import GoogleCloudGax
 ///
 /// @Snippet(path: "AwsClustersQuickstart")
 @available(*, deprecated)
-public class AwsClustersClient: Clients.AwsClustersProtocol {
+public final class AwsClustersClient: Clients.AwsClustersProtocol, Sendable {
   let inner: any Clients.AwsClustersStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

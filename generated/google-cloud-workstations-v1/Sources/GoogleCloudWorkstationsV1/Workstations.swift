@@ -27,7 +27,7 @@ import GoogleCloudGax
 /// Service for interacting with Cloud Workstations.
 ///
 /// @Snippet(path: "WorkstationsQuickstart")
-public class WorkstationsClient: Clients.WorkstationsProtocol {
+public final class WorkstationsClient: Clients.WorkstationsProtocol, Sendable {
   let inner: any Clients.WorkstationsStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

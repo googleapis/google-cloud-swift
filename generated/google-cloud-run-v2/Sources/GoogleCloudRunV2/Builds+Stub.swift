@@ -20,7 +20,7 @@ import GoogleLongRunning
 import GoogleCloudGax
 
 extension Clients {
-  protocol BuildsStub {
+  protocol BuildsStub: Sendable {
     func submitBuild(
       request: SubmitBuildRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudRunV2.SubmitBuildResponse

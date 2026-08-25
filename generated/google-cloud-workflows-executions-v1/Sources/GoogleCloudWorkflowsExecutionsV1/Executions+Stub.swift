@@ -19,7 +19,7 @@ import GoogleCloudWkt
 import GoogleCloudGax
 
 extension Clients {
-  protocol ExecutionsStub {
+  protocol ExecutionsStub: Sendable {
     func listExecutions(
       request: ListExecutionsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudWorkflowsExecutionsV1.ListExecutionsResponse

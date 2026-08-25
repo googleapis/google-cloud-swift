@@ -33,7 +33,7 @@ import GoogleCloudGax
 /// * Each database has a collection of tables: `/tables/*`
 ///
 /// @Snippet(path: "MetastoreServiceQuickstart")
-public class MetastoreServiceClient: Clients.MetastoreServiceProtocol {
+public final class MetastoreServiceClient: Clients.MetastoreServiceProtocol, Sendable {
   let inner: any Clients.MetastoreServiceStub
 
   /// Creates a new `MetastoreServiceClient` instance.

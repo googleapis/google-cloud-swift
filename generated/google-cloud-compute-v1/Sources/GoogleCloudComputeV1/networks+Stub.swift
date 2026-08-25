@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol NetworksStub {
+    protocol NetworksStub: Sendable {
       func addPeering(
         request: NetworksClient.AddPeeringRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation

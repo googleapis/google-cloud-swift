@@ -30,8 +30,8 @@
   /// A service for executing queries on Reasoning Engine.
   ///
   /// @Snippet(path: "ReasoningEngineExecutionServiceQuickstart")
-  public class ReasoningEngineExecutionServiceClient: Clients
-      .ReasoningEngineExecutionServiceProtocol
+  public final class ReasoningEngineExecutionServiceClient: Clients
+      .ReasoningEngineExecutionServiceProtocol, Sendable
   {
     let inner: any Clients.ReasoningEngineExecutionServiceStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy

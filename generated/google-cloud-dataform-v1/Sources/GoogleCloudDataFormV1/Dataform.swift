@@ -29,7 +29,7 @@ import GoogleCloudGax
 /// tables in BigQuery.
 ///
 /// @Snippet(path: "DataformQuickstart")
-public class DataformClient: Clients.DataformProtocol {
+public final class DataformClient: Clients.DataformProtocol, Sendable {
   let inner: any Clients.DataformStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

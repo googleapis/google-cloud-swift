@@ -28,7 +28,7 @@ import GoogleCloudGax
 /// Service for managing Firewall Endpoints and Associations.
 ///
 /// @Snippet(path: "FirewallActivationQuickstart")
-public class FirewallActivationClient: Clients.FirewallActivationProtocol {
+public final class FirewallActivationClient: Clients.FirewallActivationProtocol, Sendable {
   let inner: any Clients.FirewallActivationStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

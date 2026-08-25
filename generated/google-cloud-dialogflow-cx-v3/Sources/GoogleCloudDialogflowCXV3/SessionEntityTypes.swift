@@ -30,7 +30,7 @@
   /// [google.cloud.dialogflow.cx.v3.SessionEntityType]: <doc:SessionEntityType>
   ///
   /// @Snippet(path: "SessionEntityTypesQuickstart")
-  public class SessionEntityTypesClient: Clients.SessionEntityTypesProtocol {
+  public final class SessionEntityTypesClient: Clients.SessionEntityTypesProtocol, Sendable {
     let inner: any Clients.SessionEntityTypesStub
 
     /// Creates a new `SessionEntityTypesClient` instance.

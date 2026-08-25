@@ -22,7 +22,7 @@ import GoogleLongRunning
 import GoogleCloudGax
 
 extension Clients {
-  protocol ContentServiceStub {
+  protocol ContentServiceStub: Sendable {
     func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse

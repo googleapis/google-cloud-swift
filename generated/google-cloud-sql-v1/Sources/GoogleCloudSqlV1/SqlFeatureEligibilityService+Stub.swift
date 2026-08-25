@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol SqlFeatureEligibilityServiceStub {
+    protocol SqlFeatureEligibilityServiceStub: Sendable {
     }
   }
 #endif

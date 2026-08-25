@@ -25,7 +25,7 @@ import GoogleCloudGax
 /// Service for managing BigQuery export configurations for Chronicle instances.
 ///
 /// @Snippet(path: "BigQueryExportServiceQuickstart")
-public class BigQueryExportServiceClient: Clients.BigQueryExportServiceProtocol {
+public final class BigQueryExportServiceClient: Clients.BigQueryExportServiceProtocol, Sendable {
   let inner: any Clients.BigQueryExportServiceStub
 
   /// Creates a new `BigQueryExportServiceClient` instance.

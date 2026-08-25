@@ -27,7 +27,7 @@ import GoogleCloudGax
 /// Service for interactions with CloudSQL.
 ///
 /// @Snippet(path: "AlloyDBCSQLAdminQuickstart")
-public class AlloyDBCSQLAdminClient: Clients.AlloyDBCSQLAdminProtocol {
+public final class AlloyDBCSQLAdminClient: Clients.AlloyDBCSQLAdminProtocol, Sendable {
   let inner: any Clients.AlloyDBCSQLAdminStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

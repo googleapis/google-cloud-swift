@@ -25,7 +25,7 @@ import GoogleCloudGax
 /// A service providing functionality for managing dashboards' queries.
 ///
 /// @Snippet(path: "DashboardQueryServiceQuickstart")
-public class DashboardQueryServiceClient: Clients.DashboardQueryServiceProtocol {
+public final class DashboardQueryServiceClient: Clients.DashboardQueryServiceProtocol, Sendable {
   let inner: any Clients.DashboardQueryServiceStub
 
   /// Creates a new `DashboardQueryServiceClient` instance.

@@ -29,7 +29,7 @@
   /// A service for managing Vertex AI's IndexEndpoints.
   ///
   /// @Snippet(path: "IndexEndpointServiceQuickstart")
-  public class IndexEndpointServiceClient: Clients.IndexEndpointServiceProtocol {
+  public final class IndexEndpointServiceClient: Clients.IndexEndpointServiceProtocol, Sendable {
     let inner: any Clients.IndexEndpointServiceStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

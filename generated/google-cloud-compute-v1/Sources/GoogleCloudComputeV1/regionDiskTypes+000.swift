@@ -25,7 +25,7 @@
   /// Service for the `regionDiskTypes` resource.
   ///
   /// @Snippet(path: "regionDiskTypesQuickstart")
-  public class RegionDiskTypesClient: Clients.RegionDiskTypesProtocol {
+  public final class RegionDiskTypesClient: Clients.RegionDiskTypesProtocol, Sendable {
     let inner: any Clients.RegionDiskTypesStub
 
     /// Creates a new `RegionDiskTypesClient` instance.

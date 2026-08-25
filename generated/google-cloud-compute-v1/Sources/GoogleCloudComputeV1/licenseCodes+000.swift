@@ -25,7 +25,7 @@
   /// Service for the `licenseCodes` resource.
   ///
   /// @Snippet(path: "licenseCodesQuickstart")
-  public class LicenseCodesClient: Clients.LicenseCodesProtocol {
+  public final class LicenseCodesClient: Clients.LicenseCodesProtocol, Sendable {
     let inner: any Clients.LicenseCodesStub
 
     /// Creates a new `LicenseCodesClient` instance.

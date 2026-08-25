@@ -23,7 +23,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol DataFoundryServiceStub {
+    protocol DataFoundryServiceStub: Sendable {
       func generateSyntheticData(
         request: GenerateSyntheticDataRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.GenerateSyntheticDataResponse

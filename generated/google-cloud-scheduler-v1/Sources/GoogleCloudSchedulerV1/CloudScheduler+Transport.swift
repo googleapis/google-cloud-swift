@@ -23,7 +23,7 @@ import GoogleCloudWkt
 @_spi(GoogleCloudInternal) import GoogleCloudGax
 
 extension Clients {
-  class CloudSchedulerTransport: CloudSchedulerStub {
+  final class CloudSchedulerTransport: CloudSchedulerStub {
     let inner: GoogleCloudGax._HTTPClient
 
     public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {

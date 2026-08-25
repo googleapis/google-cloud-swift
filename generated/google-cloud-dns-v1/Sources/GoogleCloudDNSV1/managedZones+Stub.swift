@@ -19,7 +19,7 @@ import GoogleCloudWkt
 import GoogleCloudGax
 
 extension Clients {
-  protocol ManagedZonesStub {
+  protocol ManagedZonesStub: Sendable {
     func create(
       request: ManagedZonesClient.CreateRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> ManagedZone

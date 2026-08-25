@@ -44,7 +44,7 @@ import GoogleCloudGax
 /// [google.cloud.servicedirectory.v1.Service]: <doc:Service>
 ///
 /// @Snippet(path: "RegistrationServiceQuickstart")
-public class RegistrationServiceClient: Clients.RegistrationServiceProtocol {
+public final class RegistrationServiceClient: Clients.RegistrationServiceProtocol, Sendable {
   let inner: any Clients.RegistrationServiceStub
 
   /// Creates a new `RegistrationServiceClient` instance.

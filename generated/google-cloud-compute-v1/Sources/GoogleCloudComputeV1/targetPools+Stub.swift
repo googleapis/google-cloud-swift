@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol TargetPoolsStub {
+    protocol TargetPoolsStub: Sendable {
       func addHealthCheck(
         request: TargetPoolsClient.AddHealthCheckRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation

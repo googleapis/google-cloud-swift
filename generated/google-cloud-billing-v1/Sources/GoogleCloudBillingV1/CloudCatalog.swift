@@ -26,7 +26,7 @@ import GoogleCloudGax
 /// and SKUs.
 ///
 /// @Snippet(path: "CloudCatalogQuickstart")
-public class CloudCatalogClient: Clients.CloudCatalogProtocol {
+public final class CloudCatalogClient: Clients.CloudCatalogProtocol, Sendable {
   let inner: any Clients.CloudCatalogStub
 
   /// Creates a new `CloudCatalogClient` instance.

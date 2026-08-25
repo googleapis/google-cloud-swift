@@ -30,7 +30,7 @@
   /// [google.cloud.dialogflow.cx.v3.Version]: <doc:Version>
   ///
   /// @Snippet(path: "VersionsQuickstart")
-  public class VersionsClient: Clients.VersionsProtocol {
+  public final class VersionsClient: Clients.VersionsProtocol, Sendable {
     let inner: any Clients.VersionsStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

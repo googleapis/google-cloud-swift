@@ -27,7 +27,7 @@ import GoogleCloudGax
 /// Service describing handlers for resources
 ///
 /// @Snippet(path: "OracleDatabaseQuickstart")
-public class OracleDatabaseClient: Clients.OracleDatabaseProtocol {
+public final class OracleDatabaseClient: Clients.OracleDatabaseProtocol, Sendable {
   let inner: any Clients.OracleDatabaseStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

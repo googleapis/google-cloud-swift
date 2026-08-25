@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol SqlOperationsServiceStub {
+    protocol SqlOperationsServiceStub: Sendable {
       func `get`(
         request: SqlOperationsGetRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.Operation

@@ -28,7 +28,7 @@
   /// Service for managing Vertex AI's CachedContent resource.
   ///
   /// @Snippet(path: "GenAiCacheServiceQuickstart")
-  public class GenAiCacheServiceClient: Clients.GenAiCacheServiceProtocol {
+  public final class GenAiCacheServiceClient: Clients.GenAiCacheServiceProtocol, Sendable {
     let inner: any Clients.GenAiCacheServiceStub
 
     /// Creates a new `GenAiCacheServiceClient` instance.

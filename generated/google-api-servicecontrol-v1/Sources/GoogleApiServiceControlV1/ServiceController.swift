@@ -28,7 +28,7 @@ import GoogleCloudGax
 /// service](https://cloud.google.com/service-management/reference/rpc/google.api/servicemanagement.v1#google.api.servicemanagement.v1.ManagedService).
 ///
 /// @Snippet(path: "ServiceControllerQuickstart")
-public class ServiceControllerClient: Clients.ServiceControllerProtocol {
+public final class ServiceControllerClient: Clients.ServiceControllerProtocol, Sendable {
   let inner: any Clients.ServiceControllerStub
 
   /// Creates a new `ServiceControllerClient` instance.

@@ -22,7 +22,7 @@ import GoogleLongRunning
 import GoogleCloudGax
 
 extension Clients {
-  protocol TestingStub {
+  protocol TestingStub: Sendable {
     func createSession(
       request: CreateSessionRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleShowcaseV1Beta1.Session

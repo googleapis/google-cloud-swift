@@ -25,7 +25,7 @@
   /// Service for the `targetSslProxies` resource.
   ///
   /// @Snippet(path: "targetSslProxiesQuickstart")
-  public class TargetSslProxiesClient: Clients.TargetSslProxiesProtocol {
+  public final class TargetSslProxiesClient: Clients.TargetSslProxiesProtocol, Sendable {
     let inner: any Clients.TargetSslProxiesStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

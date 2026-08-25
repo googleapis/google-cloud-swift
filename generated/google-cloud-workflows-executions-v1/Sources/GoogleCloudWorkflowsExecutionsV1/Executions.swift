@@ -25,7 +25,7 @@ import GoogleCloudGax
 /// [Workflows][google.cloud.workflows.v1.Workflow] called executions.
 ///
 /// @Snippet(path: "ExecutionsQuickstart")
-public class ExecutionsClient: Clients.ExecutionsProtocol {
+public final class ExecutionsClient: Clients.ExecutionsProtocol, Sendable {
   let inner: any Clients.ExecutionsStub
 
   /// Creates a new `ExecutionsClient` instance.

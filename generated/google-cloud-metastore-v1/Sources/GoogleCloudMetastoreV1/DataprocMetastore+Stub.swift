@@ -23,7 +23,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol DataprocMetastoreStub {
+  protocol DataprocMetastoreStub: Sendable {
     func listServices(
       request: ListServicesRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudMetastoreV1.ListServicesResponse

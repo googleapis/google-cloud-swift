@@ -25,7 +25,7 @@
   /// Service for the `machineImages` resource.
   ///
   /// @Snippet(path: "machineImagesQuickstart")
-  public class MachineImagesClient: Clients.MachineImagesProtocol {
+  public final class MachineImagesClient: Clients.MachineImagesProtocol, Sendable {
     let inner: any Clients.MachineImagesStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

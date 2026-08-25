@@ -30,7 +30,7 @@ import GoogleCloudGax
 /// through a simple, centralized connectivity management model.
 ///
 /// @Snippet(path: "HubServiceQuickstart")
-public class HubServiceClient: Clients.HubServiceProtocol {
+public final class HubServiceClient: Clients.HubServiceProtocol, Sendable {
   let inner: any Clients.HubServiceStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

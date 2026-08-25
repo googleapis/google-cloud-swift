@@ -23,7 +23,7 @@
   @_spi(GoogleCloudInternal) import GoogleCloudGax
 
   extension Clients {
-    class RegionInstantSnapshotsTransport: RegionInstantSnapshotsStub {
+    final class RegionInstantSnapshotsTransport: RegionInstantSnapshotsStub {
       let inner: GoogleCloudGax._HTTPClient
 
       public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {

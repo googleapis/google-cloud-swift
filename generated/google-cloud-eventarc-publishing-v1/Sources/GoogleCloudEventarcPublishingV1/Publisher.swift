@@ -52,7 +52,7 @@ import GoogleCloudGax
 /// Publisher allows an event provider to publish events to Eventarc.
 ///
 /// @Snippet(path: "PublisherQuickstart")
-public class PublisherClient: Clients.PublisherProtocol {
+public final class PublisherClient: Clients.PublisherProtocol, Sendable {
   let inner: any Clients.PublisherStub
 
   /// Creates a new `PublisherClient` instance.

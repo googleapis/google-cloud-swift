@@ -23,7 +23,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol NetworkServicesStub {
+  protocol NetworkServicesStub: Sendable {
     func listEndpointPolicies(
       request: ListEndpointPoliciesRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudNetworkServicesV1.ListEndpointPoliciesResponse

@@ -25,7 +25,7 @@
   /// Service for the `regionHealthSources` resource.
   ///
   /// @Snippet(path: "regionHealthSourcesQuickstart")
-  public class RegionHealthSourcesClient: Clients.RegionHealthSourcesProtocol {
+  public final class RegionHealthSourcesClient: Clients.RegionHealthSourcesProtocol, Sendable {
     let inner: any Clients.RegionHealthSourcesStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

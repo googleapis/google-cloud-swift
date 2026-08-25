@@ -33,7 +33,7 @@ import GoogleCloudGax
 /// https://developer.android.com/studio/preview/android-device-streaming
 ///
 /// @Snippet(path: "DirectAccessServiceQuickstart")
-public class DirectAccessServiceClient: Clients.DirectAccessServiceProtocol {
+public final class DirectAccessServiceClient: Clients.DirectAccessServiceProtocol, Sendable {
   let inner: any Clients.DirectAccessServiceStub
 
   /// Creates a new `DirectAccessServiceClient` instance.

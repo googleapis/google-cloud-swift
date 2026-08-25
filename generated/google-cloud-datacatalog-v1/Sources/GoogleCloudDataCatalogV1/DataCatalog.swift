@@ -31,7 +31,7 @@ import GoogleCloudGax
 ///
 /// @Snippet(path: "DataCatalogQuickstart")
 @available(*, deprecated)
-public class DataCatalogClient: Clients.DataCatalogProtocol {
+public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   let inner: any Clients.DataCatalogStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

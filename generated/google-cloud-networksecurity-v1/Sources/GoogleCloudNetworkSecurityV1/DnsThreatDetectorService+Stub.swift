@@ -22,7 +22,7 @@ import GoogleLongRunning
 import GoogleCloudGax
 
 extension Clients {
-  protocol DnsThreatDetectorServiceStub {
+  protocol DnsThreatDetectorServiceStub: Sendable {
     func listDnsThreatDetectors(
       request: ListDnsThreatDetectorsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudNetworkSecurityV1.ListDnsThreatDetectorsResponse

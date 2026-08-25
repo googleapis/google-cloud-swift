@@ -25,7 +25,7 @@
   /// Cloud SQL connect service.
   ///
   /// @Snippet(path: "SqlConnectServiceQuickstart")
-  public class SqlConnectServiceClient: Clients.SqlConnectServiceProtocol {
+  public final class SqlConnectServiceClient: Clients.SqlConnectServiceProtocol, Sendable {
     let inner: any Clients.SqlConnectServiceStub
 
     /// Creates a new `SqlConnectServiceClient` instance.

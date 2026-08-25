@@ -22,7 +22,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol AnalyticsHubServiceStub {
+  protocol AnalyticsHubServiceStub: Sendable {
     func listDataExchanges(
       request: ListDataExchangesRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleBigQueryAnalyticsHubV1.ListDataExchangesResponse

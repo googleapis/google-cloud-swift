@@ -30,7 +30,8 @@
   /// FeatureOnlineStore.
   ///
   /// @Snippet(path: "FeatureOnlineStoreAdminServiceQuickstart")
-  public class FeatureOnlineStoreAdminServiceClient: Clients.FeatureOnlineStoreAdminServiceProtocol
+  public final class FeatureOnlineStoreAdminServiceClient: Clients
+      .FeatureOnlineStoreAdminServiceProtocol, Sendable
   {
     let inner: any Clients.FeatureOnlineStoreAdminServiceStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy

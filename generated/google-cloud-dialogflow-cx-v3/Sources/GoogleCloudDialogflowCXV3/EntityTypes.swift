@@ -30,7 +30,7 @@
   /// [google.cloud.dialogflow.cx.v3.EntityType]: <doc:EntityType>
   ///
   /// @Snippet(path: "EntityTypesQuickstart")
-  public class EntityTypesClient: Clients.EntityTypesProtocol {
+  public final class EntityTypesClient: Clients.EntityTypesProtocol, Sendable {
     let inner: any Clients.EntityTypesStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

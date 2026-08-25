@@ -24,7 +24,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol ScheduleServiceStub {
+    protocol ScheduleServiceStub: Sendable {
       func createSchedule(
         request: CreateScheduleRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.Schedule

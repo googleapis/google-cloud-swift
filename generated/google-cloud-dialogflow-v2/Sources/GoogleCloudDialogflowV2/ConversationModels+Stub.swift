@@ -23,7 +23,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol ConversationModelsStub {
+    protocol ConversationModelsStub: Sendable {
       func createConversationModel(
         request: CreateConversationModelRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation

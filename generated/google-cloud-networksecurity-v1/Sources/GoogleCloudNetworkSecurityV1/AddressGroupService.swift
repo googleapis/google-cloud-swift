@@ -30,7 +30,7 @@ import GoogleCloudGax
 /// all the IP or Domain Names from the Address Group.
 ///
 /// @Snippet(path: "AddressGroupServiceQuickstart")
-public class AddressGroupServiceClient: Clients.AddressGroupServiceProtocol {
+public final class AddressGroupServiceClient: Clients.AddressGroupServiceProtocol, Sendable {
   let inner: any Clients.AddressGroupServiceStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

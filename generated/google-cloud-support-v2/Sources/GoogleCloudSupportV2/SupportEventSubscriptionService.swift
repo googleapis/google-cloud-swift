@@ -24,7 +24,8 @@ import GoogleCloudGax
 /// Service for managing customer support event subscriptions.
 ///
 /// @Snippet(path: "SupportEventSubscriptionServiceQuickstart")
-public class SupportEventSubscriptionServiceClient: Clients.SupportEventSubscriptionServiceProtocol
+public final class SupportEventSubscriptionServiceClient: Clients
+    .SupportEventSubscriptionServiceProtocol, Sendable
 {
   let inner: any Clients.SupportEventSubscriptionServiceStub
 

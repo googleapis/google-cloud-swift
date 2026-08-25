@@ -25,7 +25,9 @@
   /// Service for the `interconnectAttachments` resource.
   ///
   /// @Snippet(path: "interconnectAttachmentsQuickstart")
-  public class InterconnectAttachmentsClient: Clients.InterconnectAttachmentsProtocol {
+  public final class InterconnectAttachmentsClient: Clients.InterconnectAttachmentsProtocol,
+    Sendable
+  {
     let inner: any Clients.InterconnectAttachmentsStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

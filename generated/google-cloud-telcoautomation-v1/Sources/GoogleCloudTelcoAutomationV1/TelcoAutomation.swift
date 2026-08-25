@@ -31,7 +31,7 @@ import GoogleCloudGax
 /// functions.
 ///
 /// @Snippet(path: "TelcoAutomationQuickstart")
-public class TelcoAutomationClient: Clients.TelcoAutomationProtocol {
+public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Sendable {
   let inner: any Clients.TelcoAutomationStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

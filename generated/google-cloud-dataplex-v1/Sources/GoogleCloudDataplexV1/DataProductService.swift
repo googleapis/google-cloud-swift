@@ -29,7 +29,7 @@ import GoogleCloudGax
 /// the underlying data assets.
 ///
 /// @Snippet(path: "DataProductServiceQuickstart")
-public class DataProductServiceClient: Clients.DataProductServiceProtocol {
+public final class DataProductServiceClient: Clients.DataProductServiceProtocol, Sendable {
   let inner: any Clients.DataProductServiceStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

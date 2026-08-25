@@ -20,7 +20,7 @@ import GoogleLongRunning
 import GoogleCloudGax
 
 extension Clients {
-  protocol RuleExecutionErrorServiceStub {
+  protocol RuleExecutionErrorServiceStub: Sendable {
     func listRuleExecutionErrors(
       request: ListRuleExecutionErrorsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.ListRuleExecutionErrorsResponse

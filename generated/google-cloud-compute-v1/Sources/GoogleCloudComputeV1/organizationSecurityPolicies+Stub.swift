@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol OrganizationSecurityPoliciesStub {
+    protocol OrganizationSecurityPoliciesStub: Sendable {
       func addAssociation(
         request: OrganizationSecurityPoliciesClient.AddAssociationRequest,
         options: GoogleCloudGax.RequestOptions

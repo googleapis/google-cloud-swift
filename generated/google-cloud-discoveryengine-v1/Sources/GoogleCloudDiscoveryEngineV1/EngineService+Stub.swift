@@ -22,7 +22,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol EngineServiceStub {
+    protocol EngineServiceStub: Sendable {
       func createEngine(
         request: CreateEngineRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation

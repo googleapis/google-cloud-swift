@@ -26,7 +26,7 @@ import GoogleCloudGax
 /// The IDS Service
 ///
 /// @Snippet(path: "IDSQuickstart")
-public class IDSClient: Clients.IDSProtocol {
+public final class IDSClient: Clients.IDSProtocol, Sendable {
   let inner: any Clients.IDSStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

@@ -25,7 +25,7 @@
   /// Service for the `reservations` resource.
   ///
   /// @Snippet(path: "reservationsQuickstart")
-  public class ReservationsClient: Clients.ReservationsProtocol {
+  public final class ReservationsClient: Clients.ReservationsProtocol, Sendable {
     let inner: any Clients.ReservationsStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

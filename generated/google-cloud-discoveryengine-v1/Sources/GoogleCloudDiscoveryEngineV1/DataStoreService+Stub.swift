@@ -22,7 +22,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol DataStoreServiceStub {
+    protocol DataStoreServiceStub: Sendable {
       func createDataStore(
         request: CreateDataStoreRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation

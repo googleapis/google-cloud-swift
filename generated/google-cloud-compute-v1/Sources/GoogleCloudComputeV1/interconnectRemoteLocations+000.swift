@@ -25,7 +25,9 @@
   /// Service for the `interconnectRemoteLocations` resource.
   ///
   /// @Snippet(path: "interconnectRemoteLocationsQuickstart")
-  public class InterconnectRemoteLocationsClient: Clients.InterconnectRemoteLocationsProtocol {
+  public final class InterconnectRemoteLocationsClient: Clients.InterconnectRemoteLocationsProtocol,
+    Sendable
+  {
     let inner: any Clients.InterconnectRemoteLocationsStub
 
     /// Creates a new `InterconnectRemoteLocationsClient` instance.

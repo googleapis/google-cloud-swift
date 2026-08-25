@@ -23,7 +23,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol DocumentsStub {
+    protocol DocumentsStub: Sendable {
       func listDocuments(
         request: ListDocumentsRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.ListDocumentsResponse

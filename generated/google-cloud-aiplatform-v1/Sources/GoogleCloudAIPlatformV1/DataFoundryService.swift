@@ -28,7 +28,7 @@
   /// Service for generating and preparing datasets for Gen AI evaluation.
   ///
   /// @Snippet(path: "DataFoundryServiceQuickstart")
-  public class DataFoundryServiceClient: Clients.DataFoundryServiceProtocol {
+  public final class DataFoundryServiceClient: Clients.DataFoundryServiceProtocol, Sendable {
     let inner: any Clients.DataFoundryServiceStub
 
     /// Creates a new `DataFoundryServiceClient` instance.

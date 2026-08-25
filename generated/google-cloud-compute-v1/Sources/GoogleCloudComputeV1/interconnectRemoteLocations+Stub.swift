@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol InterconnectRemoteLocationsStub {
+    protocol InterconnectRemoteLocationsStub: Sendable {
       func `get`(
         request: InterconnectRemoteLocationsClient.GetRequest,
         options: GoogleCloudGax.RequestOptions

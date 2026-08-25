@@ -29,7 +29,7 @@ import GoogleCloudGax
 /// [google.cloud.apihub.v1.Dependency]: <doc:Dependency>
 ///
 /// @Snippet(path: "ApiHubDependenciesQuickstart")
-public class ApiHubDependenciesClient: Clients.ApiHubDependenciesProtocol {
+public final class ApiHubDependenciesClient: Clients.ApiHubDependenciesProtocol, Sendable {
   let inner: any Clients.ApiHubDependenciesStub
 
   /// Creates a new `ApiHubDependenciesClient` instance.

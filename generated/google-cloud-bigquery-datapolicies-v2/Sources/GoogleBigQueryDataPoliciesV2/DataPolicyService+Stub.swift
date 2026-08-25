@@ -20,7 +20,7 @@ import GoogleIAMV1
 import GoogleCloudGax
 
 extension Clients {
-  protocol DataPolicyServiceStub {
+  protocol DataPolicyServiceStub: Sendable {
     func createDataPolicy(
       request: CreateDataPolicyRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleBigQueryDataPoliciesV2.DataPolicy

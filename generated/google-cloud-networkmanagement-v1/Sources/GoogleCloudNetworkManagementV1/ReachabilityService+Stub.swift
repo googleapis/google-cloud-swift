@@ -23,7 +23,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol ReachabilityServiceStub {
+  protocol ReachabilityServiceStub: Sendable {
     func listConnectivityTests(
       request: ListConnectivityTestsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudNetworkManagementV1.ListConnectivityTestsResponse

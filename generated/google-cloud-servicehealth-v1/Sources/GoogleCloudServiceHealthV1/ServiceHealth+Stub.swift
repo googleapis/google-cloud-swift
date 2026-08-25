@@ -20,7 +20,7 @@ import GoogleCloudWkt
 import GoogleCloudGax
 
 extension Clients {
-  protocol ServiceHealthStub {
+  protocol ServiceHealthStub: Sendable {
     func listEvents(
       request: ListEventsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudServiceHealthV1.ListEventsResponse

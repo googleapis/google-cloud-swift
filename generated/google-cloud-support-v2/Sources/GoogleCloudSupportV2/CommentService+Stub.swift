@@ -19,7 +19,7 @@ import GoogleCloudWkt
 import GoogleCloudGax
 
 extension Clients {
-  protocol CommentServiceStub {
+  protocol CommentServiceStub: Sendable {
     func listComments(
       request: ListCommentsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudSupportV2.ListCommentsResponse

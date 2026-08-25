@@ -24,7 +24,7 @@ import GoogleCloudGax
 /// Service for the `policies` resource.
 ///
 /// @Snippet(path: "policiesQuickstart")
-public class PoliciesClient: Clients.PoliciesProtocol {
+public final class PoliciesClient: Clients.PoliciesProtocol, Sendable {
   let inner: any Clients.PoliciesStub
 
   /// Creates a new `PoliciesClient` instance.

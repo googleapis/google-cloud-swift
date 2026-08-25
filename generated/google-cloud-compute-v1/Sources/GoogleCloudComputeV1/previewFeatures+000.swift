@@ -25,7 +25,7 @@
   /// Service for the `previewFeatures` resource.
   ///
   /// @Snippet(path: "previewFeaturesQuickstart")
-  public class PreviewFeaturesClient: Clients.PreviewFeaturesProtocol {
+  public final class PreviewFeaturesClient: Clients.PreviewFeaturesProtocol, Sendable {
     let inner: any Clients.PreviewFeaturesStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

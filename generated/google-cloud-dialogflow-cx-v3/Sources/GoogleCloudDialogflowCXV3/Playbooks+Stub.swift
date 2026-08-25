@@ -23,7 +23,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol PlaybooksStub {
+    protocol PlaybooksStub: Sendable {
       func createPlaybook(
         request: CreatePlaybookRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowCXV3.Playbook

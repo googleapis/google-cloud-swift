@@ -28,7 +28,7 @@ import GoogleCloudGax
 /// Service describing handlers for resources.
 ///
 /// @Snippet(path: "DepServiceQuickstart")
-public class DepServiceClient: Clients.DepServiceProtocol {
+public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   let inner: any Clients.DepServiceStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

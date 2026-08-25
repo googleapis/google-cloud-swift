@@ -26,7 +26,7 @@ import GoogleCloudGax
 /// time series data.
 ///
 /// @Snippet(path: "MetricServiceQuickstart")
-public class MetricServiceClient: Clients.MetricServiceProtocol {
+public final class MetricServiceClient: Clients.MetricServiceProtocol, Sendable {
   let inner: any Clients.MetricServiceStub
 
   /// Creates a new `MetricServiceClient` instance.

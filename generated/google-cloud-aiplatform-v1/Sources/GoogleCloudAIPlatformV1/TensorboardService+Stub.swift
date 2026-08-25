@@ -24,7 +24,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol TensorboardServiceStub {
+    protocol TensorboardServiceStub: Sendable {
       func createTensorboard(
         request: CreateTensorboardRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation

@@ -36,7 +36,7 @@ import GoogleCloudGax
 /// from the infrastructure.
 ///
 /// @Snippet(path: "GroupServiceQuickstart")
-public class GroupServiceClient: Clients.GroupServiceProtocol {
+public final class GroupServiceClient: Clients.GroupServiceProtocol, Sendable {
   let inner: any Clients.GroupServiceStub
 
   /// Creates a new `GroupServiceClient` instance.

@@ -20,7 +20,7 @@ import GoogleLongRunning
 import GoogleCloudGax
 
 extension Clients {
-  protocol ConversationalSearchServiceStub {
+  protocol ConversationalSearchServiceStub: Sendable {
     func conversationalSearch(
       request: ConversationalSearchRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudRetailV2.ConversationalSearchResponse

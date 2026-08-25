@@ -30,7 +30,7 @@
   /// [google.cloud.dialogflow.v2.KnowledgeBase]: <doc:KnowledgeBase>
   ///
   /// @Snippet(path: "KnowledgeBasesQuickstart")
-  public class KnowledgeBasesClient: Clients.KnowledgeBasesProtocol {
+  public final class KnowledgeBasesClient: Clients.KnowledgeBasesProtocol, Sendable {
     let inner: any Clients.KnowledgeBasesStub
 
     /// Creates a new `KnowledgeBasesClient` instance.

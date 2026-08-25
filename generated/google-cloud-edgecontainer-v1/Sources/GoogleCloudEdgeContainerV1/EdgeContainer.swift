@@ -28,7 +28,7 @@ import GoogleCloudGax
 /// Cloud deployments.
 ///
 /// @Snippet(path: "EdgeContainerQuickstart")
-public class EdgeContainerClient: Clients.EdgeContainerProtocol {
+public final class EdgeContainerClient: Clients.EdgeContainerProtocol, Sendable {
   let inner: any Clients.EdgeContainerStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

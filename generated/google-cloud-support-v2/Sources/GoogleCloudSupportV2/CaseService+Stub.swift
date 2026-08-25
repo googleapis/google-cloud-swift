@@ -19,7 +19,7 @@ import GoogleCloudWkt
 import GoogleCloudGax
 
 extension Clients {
-  protocol CaseServiceStub {
+  protocol CaseServiceStub: Sendable {
     func getCase(
       request: GetCaseRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudSupportV2.Case

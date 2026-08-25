@@ -25,7 +25,7 @@ import GoogleCloudGax
 /// A service that handles company management, including CRUD and enumeration.
 ///
 /// @Snippet(path: "CompanyServiceQuickstart")
-public class CompanyServiceClient: Clients.CompanyServiceProtocol {
+public final class CompanyServiceClient: Clients.CompanyServiceProtocol, Sendable {
   let inner: any Clients.CompanyServiceStub
 
   /// Creates a new `CompanyServiceClient` instance.

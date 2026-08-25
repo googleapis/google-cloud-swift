@@ -21,7 +21,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol OrgPolicyViolationsPreviewServiceStub {
+  protocol OrgPolicyViolationsPreviewServiceStub: Sendable {
     func listOrgPolicyViolationsPreviews(
       request: ListOrgPolicyViolationsPreviewsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudPolicySimulatorV1.ListOrgPolicyViolationsPreviewsResponse

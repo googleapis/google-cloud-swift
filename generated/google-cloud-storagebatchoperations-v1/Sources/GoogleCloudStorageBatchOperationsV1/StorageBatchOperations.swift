@@ -30,7 +30,7 @@ import GoogleCloudGax
 /// performed on Cloud Storage objects.
 ///
 /// @Snippet(path: "StorageBatchOperationsQuickstart")
-public class StorageBatchOperationsClient: Clients.StorageBatchOperationsProtocol {
+public final class StorageBatchOperationsClient: Clients.StorageBatchOperationsProtocol, Sendable {
   let inner: any Clients.StorageBatchOperationsStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

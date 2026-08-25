@@ -25,7 +25,7 @@
   /// Service for the `packetMirrorings` resource.
   ///
   /// @Snippet(path: "packetMirroringsQuickstart")
-  public class PacketMirroringsClient: Clients.PacketMirroringsProtocol {
+  public final class PacketMirroringsClient: Clients.PacketMirroringsProtocol, Sendable {
     let inner: any Clients.PacketMirroringsStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

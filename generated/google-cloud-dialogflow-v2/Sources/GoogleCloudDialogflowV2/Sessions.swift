@@ -30,7 +30,7 @@
   /// guide](https://cloud.google.com/dialogflow/docs/api-overview).
   ///
   /// @Snippet(path: "SessionsQuickstart")
-  public class SessionsClient: Clients.SessionsProtocol {
+  public final class SessionsClient: Clients.SessionsProtocol, Sendable {
     let inner: any Clients.SessionsStub
 
     /// Creates a new `SessionsClient` instance.

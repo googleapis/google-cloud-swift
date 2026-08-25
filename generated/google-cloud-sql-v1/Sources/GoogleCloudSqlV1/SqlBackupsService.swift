@@ -24,7 +24,7 @@
 
   ///
   /// @Snippet(path: "SqlBackupsServiceQuickstart")
-  public class SqlBackupsServiceClient: Clients.SqlBackupsServiceProtocol {
+  public final class SqlBackupsServiceClient: Clients.SqlBackupsServiceProtocol, Sendable {
     let inner: any Clients.SqlBackupsServiceStub
 
     /// Creates a new `SqlBackupsServiceClient` instance.

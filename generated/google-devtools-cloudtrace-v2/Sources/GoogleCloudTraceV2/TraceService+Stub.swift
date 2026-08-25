@@ -19,7 +19,7 @@ import GoogleCloudWkt
 import GoogleCloudGax
 
 extension Clients {
-  protocol TraceServiceStub {
+  protocol TraceServiceStub: Sendable {
     func batchWriteSpans(
       request: BatchWriteSpansRequest, options: GoogleCloudGax.RequestOptions
     ) async throws

@@ -22,7 +22,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol WorkerPoolsStub {
+  protocol WorkerPoolsStub: Sendable {
     func createWorkerPool(
       request: CreateWorkerPoolRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

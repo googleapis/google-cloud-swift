@@ -20,7 +20,7 @@ import GoogleLongRunning
 import GoogleCloudGax
 
 extension Clients {
-  protocol ReferenceListServiceStub {
+  protocol ReferenceListServiceStub: Sendable {
     func getReferenceList(
       request: GetReferenceListRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.ReferenceList

@@ -26,7 +26,7 @@ import GoogleCloudGax
 /// This service provides all methods related to the API hub.
 ///
 /// @Snippet(path: "ApiHubQuickstart")
-public class ApiHubClient: Clients.ApiHubProtocol {
+public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   let inner: any Clients.ApiHubStub
 
   /// Creates a new `ApiHubClient` instance.

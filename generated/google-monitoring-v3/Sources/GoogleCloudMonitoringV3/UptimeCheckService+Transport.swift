@@ -22,7 +22,7 @@ import GoogleCloudWkt
 @_spi(GoogleCloudInternal) import GoogleCloudGax
 
 extension Clients {
-  class UptimeCheckServiceTransport: UptimeCheckServiceStub {
+  final class UptimeCheckServiceTransport: UptimeCheckServiceStub {
     let inner: GoogleCloudGax._HTTPClient
 
     public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {

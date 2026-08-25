@@ -22,7 +22,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol WorkflowsStub {
+  protocol WorkflowsStub: Sendable {
     func listWorkflows(
       request: ListWorkflowsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudWorkflowsV1.ListWorkflowsResponse

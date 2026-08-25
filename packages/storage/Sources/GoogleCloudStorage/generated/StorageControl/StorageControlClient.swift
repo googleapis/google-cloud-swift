@@ -25,7 +25,7 @@ import GoogleRpc
 
 /// A client for Google Cloud Storage control-plane and administrative operations that unifies bucket lifecycle,
 /// IAM access control, object metadata, and control-plane features (folders, caches, intelligence).
-public class StorageControlClient: StorageControlProtocol {
+public final class StorageControlClient: StorageControlProtocol, Sendable {
   private let storage: any Clients.StorageStub
   private let control: any Clients.StorageControlStub
 

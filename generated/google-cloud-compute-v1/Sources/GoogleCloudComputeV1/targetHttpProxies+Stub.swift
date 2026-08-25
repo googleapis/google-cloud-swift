@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol TargetHttpProxiesStub {
+    protocol TargetHttpProxiesStub: Sendable {
       func aggregatedList(
         request: TargetHttpProxiesClient.AggregatedListRequest,
         options: GoogleCloudGax.RequestOptions

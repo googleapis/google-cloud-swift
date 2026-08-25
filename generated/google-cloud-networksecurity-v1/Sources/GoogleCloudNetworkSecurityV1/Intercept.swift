@@ -29,7 +29,7 @@ import GoogleCloudGax
 /// TPPI is the "in-band" flavor of the Network Security Integrations product.
 ///
 /// @Snippet(path: "InterceptQuickstart")
-public class InterceptClient: Clients.InterceptProtocol {
+public final class InterceptClient: Clients.InterceptProtocol, Sendable {
   let inner: any Clients.InterceptStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

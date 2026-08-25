@@ -23,7 +23,7 @@
   @_spi(GoogleCloudInternal) import GoogleCloudGax
 
   extension Clients {
-    class RegionNetworkFirewallPoliciesTransport: RegionNetworkFirewallPoliciesStub {
+    final class RegionNetworkFirewallPoliciesTransport: RegionNetworkFirewallPoliciesStub {
       let inner: GoogleCloudGax._HTTPClient
 
       public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {

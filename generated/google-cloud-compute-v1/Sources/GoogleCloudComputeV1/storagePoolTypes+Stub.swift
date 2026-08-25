@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol StoragePoolTypesStub {
+    protocol StoragePoolTypesStub: Sendable {
       func aggregatedList(
         request: StoragePoolTypesClient.AggregatedListRequest,
         options: GoogleCloudGax.RequestOptions

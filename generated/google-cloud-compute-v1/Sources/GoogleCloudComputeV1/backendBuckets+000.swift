@@ -25,7 +25,7 @@
   /// Service for the `backendBuckets` resource.
   ///
   /// @Snippet(path: "backendBucketsQuickstart")
-  public class BackendBucketsClient: Clients.BackendBucketsProtocol {
+  public final class BackendBucketsClient: Clients.BackendBucketsProtocol, Sendable {
     let inner: any Clients.BackendBucketsStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

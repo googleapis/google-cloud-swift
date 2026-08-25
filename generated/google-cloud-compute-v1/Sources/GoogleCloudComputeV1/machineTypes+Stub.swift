@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol MachineTypesStub {
+    protocol MachineTypesStub: Sendable {
       func aggregatedList(
         request: MachineTypesClient.AggregatedListRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.MachineTypeAggregatedList

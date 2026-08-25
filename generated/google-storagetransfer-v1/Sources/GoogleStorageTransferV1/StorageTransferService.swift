@@ -28,7 +28,7 @@ import GoogleCloudGax
 /// source external to Google to a Cloud Storage bucket.
 ///
 /// @Snippet(path: "StorageTransferServiceQuickstart")
-public class StorageTransferServiceClient: Clients.StorageTransferServiceProtocol {
+public final class StorageTransferServiceClient: Clients.StorageTransferServiceProtocol, Sendable {
   let inner: any Clients.StorageTransferServiceStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

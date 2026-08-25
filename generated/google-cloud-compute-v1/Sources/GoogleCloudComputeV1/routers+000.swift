@@ -25,7 +25,7 @@
   /// Service for the `routers` resource.
   ///
   /// @Snippet(path: "routersQuickstart")
-  public class RoutersClient: Clients.RoutersProtocol {
+  public final class RoutersClient: Clients.RoutersProtocol, Sendable {
     let inner: any Clients.RoutersStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

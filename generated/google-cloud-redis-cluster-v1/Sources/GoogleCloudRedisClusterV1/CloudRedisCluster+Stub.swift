@@ -22,7 +22,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol CloudRedisClusterStub {
+  protocol CloudRedisClusterStub: Sendable {
     func listClusters(
       request: ListClustersRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudRedisClusterV1.ListClustersResponse

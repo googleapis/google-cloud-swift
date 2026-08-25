@@ -19,7 +19,7 @@ import GoogleCloudWkt
 import GoogleCloudGax
 
 extension Clients {
-  protocol DirectAccessServiceStub {
+  protocol DirectAccessServiceStub: Sendable {
     func createDeviceSession(
       request: CreateDeviceSessionRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudDeviceStreamingV1.DeviceSession

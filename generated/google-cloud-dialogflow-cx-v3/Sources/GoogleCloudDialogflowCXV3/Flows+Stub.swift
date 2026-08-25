@@ -23,7 +23,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol FlowsStub {
+    protocol FlowsStub: Sendable {
       func createFlow(
         request: CreateFlowRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowCXV3.Flow

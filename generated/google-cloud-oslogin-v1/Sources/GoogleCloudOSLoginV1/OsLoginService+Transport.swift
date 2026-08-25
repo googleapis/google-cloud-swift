@@ -23,7 +23,7 @@ import GoogleCloudWkt
 @_spi(GoogleCloudInternal) import GoogleCloudGax
 
 extension Clients {
-  class OsLoginServiceTransport: OsLoginServiceStub {
+  final class OsLoginServiceTransport: OsLoginServiceStub {
     let inner: GoogleCloudGax._HTTPClient
 
     public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {

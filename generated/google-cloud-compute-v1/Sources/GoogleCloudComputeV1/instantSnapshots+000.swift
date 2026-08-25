@@ -25,7 +25,7 @@
   /// Service for the `instantSnapshots` resource.
   ///
   /// @Snippet(path: "instantSnapshotsQuickstart")
-  public class InstantSnapshotsClient: Clients.InstantSnapshotsProtocol {
+  public final class InstantSnapshotsClient: Clients.InstantSnapshotsProtocol, Sendable {
     let inner: any Clients.InstantSnapshotsStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

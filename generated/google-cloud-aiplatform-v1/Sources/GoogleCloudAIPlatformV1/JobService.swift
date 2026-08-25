@@ -29,7 +29,7 @@
   /// A service for creating and managing Vertex AI's jobs.
   ///
   /// @Snippet(path: "JobServiceQuickstart")
-  public class JobServiceClient: Clients.JobServiceProtocol {
+  public final class JobServiceClient: Clients.JobServiceProtocol, Sendable {
     let inner: any Clients.JobServiceStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

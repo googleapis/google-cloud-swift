@@ -24,7 +24,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol FeatureRegistryServiceStub {
+    protocol FeatureRegistryServiceStub: Sendable {
       func createFeatureGroup(
         request: CreateFeatureGroupRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation

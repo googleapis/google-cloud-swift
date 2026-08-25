@@ -19,7 +19,7 @@ import GoogleCloudWkt
 import GoogleCloudGax
 
 extension Clients {
-  protocol PublicCertificateAuthorityServiceStub {
+  protocol PublicCertificateAuthorityServiceStub: Sendable {
     func createExternalAccountKey(
       request: CreateExternalAccountKeyRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudSecurityPublicCAV1.ExternalAccountKey

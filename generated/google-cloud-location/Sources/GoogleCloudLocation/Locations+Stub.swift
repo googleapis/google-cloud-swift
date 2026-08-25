@@ -19,7 +19,7 @@ import GoogleCloudWkt
 import GoogleCloudGax
 
 extension Clients {
-  protocol LocationsStub {
+  protocol LocationsStub: Sendable {
     func listLocations(
       request: ListLocationsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse

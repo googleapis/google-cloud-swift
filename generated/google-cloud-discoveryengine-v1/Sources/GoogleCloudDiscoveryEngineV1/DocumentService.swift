@@ -30,7 +30,7 @@
   /// [google.cloud.discoveryengine.v1.Document]: <doc:Document>
   ///
   /// @Snippet(path: "DocumentServiceQuickstart")
-  public class DocumentServiceClient: Clients.DocumentServiceProtocol {
+  public final class DocumentServiceClient: Clients.DocumentServiceProtocol, Sendable {
     let inner: any Clients.DocumentServiceStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

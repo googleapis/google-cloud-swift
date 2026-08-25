@@ -19,6 +19,6 @@ import GoogleCloudWkt
 import GoogleCloudGax
 
 extension Clients {
-  protocol TetherStub {
+  protocol TetherStub: Sendable {
   }
 }

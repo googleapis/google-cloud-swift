@@ -25,7 +25,7 @@ import GoogleCloudGax
 /// Service for making recommendation prediction.
 ///
 /// @Snippet(path: "PredictionServiceQuickstart")
-public class PredictionServiceClient: Clients.PredictionServiceProtocol {
+public final class PredictionServiceClient: Clients.PredictionServiceProtocol, Sendable {
   let inner: any Clients.PredictionServiceStub
 
   /// Creates a new `PredictionServiceClient` instance.

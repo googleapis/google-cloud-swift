@@ -26,7 +26,7 @@ import GoogleCloudGax
 /// Allows users to manage their organization resources.
 ///
 /// @Snippet(path: "OrganizationsQuickstart")
-public class OrganizationsClient: Clients.OrganizationsProtocol {
+public final class OrganizationsClient: Clients.OrganizationsProtocol, Sendable {
   let inner: any Clients.OrganizationsStub
 
   /// Creates a new `OrganizationsClient` instance.

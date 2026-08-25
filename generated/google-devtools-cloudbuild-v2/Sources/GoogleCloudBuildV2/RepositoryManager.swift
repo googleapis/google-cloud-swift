@@ -27,7 +27,7 @@ import GoogleCloudGax
 /// Manages connections to source code repositories.
 ///
 /// @Snippet(path: "RepositoryManagerQuickstart")
-public class RepositoryManagerClient: Clients.RepositoryManagerProtocol {
+public final class RepositoryManagerClient: Clients.RepositoryManagerProtocol, Sendable {
   let inner: any Clients.RepositoryManagerStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

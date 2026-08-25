@@ -28,7 +28,9 @@ import GoogleCloudGax
 /// Taxonomy is a hierarchical group of policy tags.
 ///
 /// @Snippet(path: "PolicyTagManagerSerializationQuickstart")
-public class PolicyTagManagerSerializationClient: Clients.PolicyTagManagerSerializationProtocol {
+public final class PolicyTagManagerSerializationClient: Clients
+    .PolicyTagManagerSerializationProtocol, Sendable
+{
   let inner: any Clients.PolicyTagManagerSerializationStub
 
   /// Creates a new `PolicyTagManagerSerializationClient` instance.

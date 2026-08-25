@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol RegionTargetHttpsProxiesStub {
+    protocol RegionTargetHttpsProxiesStub: Sendable {
       func delete(
         request: RegionTargetHttpsProxiesClient.DeleteRequest,
         options: GoogleCloudGax.RequestOptions

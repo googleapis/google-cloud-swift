@@ -25,7 +25,7 @@ import GoogleCloudGax
 /// A service providing functionality for managing native dashboards.
 ///
 /// @Snippet(path: "NativeDashboardServiceQuickstart")
-public class NativeDashboardServiceClient: Clients.NativeDashboardServiceProtocol {
+public final class NativeDashboardServiceClient: Clients.NativeDashboardServiceProtocol, Sendable {
   let inner: any Clients.NativeDashboardServiceStub
 
   /// Creates a new `NativeDashboardServiceClient` instance.

@@ -30,7 +30,7 @@
   /// [google.cloud.dialogflow.cx.v3.Playbook]: <doc:Playbook>
   ///
   /// @Snippet(path: "PlaybooksQuickstart")
-  public class PlaybooksClient: Clients.PlaybooksProtocol {
+  public final class PlaybooksClient: Clients.PlaybooksProtocol, Sendable {
     let inner: any Clients.PlaybooksStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

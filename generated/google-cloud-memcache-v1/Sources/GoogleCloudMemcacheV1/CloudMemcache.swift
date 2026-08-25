@@ -41,7 +41,7 @@ import GoogleCloudGax
 /// * `projects/my-memcached-project/locations/us-central1/instances/my-memcached`
 ///
 /// @Snippet(path: "CloudMemcacheQuickstart")
-public class CloudMemcacheClient: Clients.CloudMemcacheProtocol {
+public final class CloudMemcacheClient: Clients.CloudMemcacheProtocol, Sendable {
   let inner: any Clients.CloudMemcacheStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

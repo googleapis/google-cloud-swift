@@ -24,7 +24,7 @@ import GoogleLongRunning
 @_spi(GoogleCloudInternal) import GoogleCloudGax
 
 extension Clients {
-  class ApiHubDiscoveryTransport: ApiHubDiscoveryStub {
+  final class ApiHubDiscoveryTransport: ApiHubDiscoveryStub {
     let inner: GoogleCloudGax._HTTPClient
 
     public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {

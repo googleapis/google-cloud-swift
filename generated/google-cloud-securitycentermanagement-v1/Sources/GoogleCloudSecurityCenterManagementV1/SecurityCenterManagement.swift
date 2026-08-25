@@ -25,7 +25,9 @@ import GoogleCloudGax
 /// Service describing handlers for resources
 ///
 /// @Snippet(path: "SecurityCenterManagementQuickstart")
-public class SecurityCenterManagementClient: Clients.SecurityCenterManagementProtocol {
+public final class SecurityCenterManagementClient: Clients.SecurityCenterManagementProtocol,
+  Sendable
+{
   let inner: any Clients.SecurityCenterManagementStub
 
   /// Creates a new `SecurityCenterManagementClient` instance.

@@ -19,7 +19,7 @@ import GoogleCloudWkt
 import GoogleCloudGax
 
 extension Clients {
-  protocol CloudQuotasStub {
+  protocol CloudQuotasStub: Sendable {
     func listQuotaInfos(
       request: ListQuotaInfosRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleApiCloudQuotasV1.ListQuotaInfosResponse

@@ -19,7 +19,7 @@ import GoogleCloudWkt
 import GoogleCloudGax
 
 extension Clients {
-  protocol GrafeasStub {
+  protocol GrafeasStub: Sendable {
     func getOccurrence(
       request: GetOccurrenceRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleGrafeasV1.Occurrence

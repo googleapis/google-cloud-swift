@@ -23,7 +23,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol ServiceManagerStub {
+  protocol ServiceManagerStub: Sendable {
     func listServices(
       request: ListServicesRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleApiServiceManagementV1.ListServicesResponse

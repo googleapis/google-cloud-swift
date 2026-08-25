@@ -23,7 +23,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol CloudFilestoreManagerStub {
+  protocol CloudFilestoreManagerStub: Sendable {
     func listInstances(
       request: ListInstancesRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudFilestoreV1.ListInstancesResponse

@@ -44,7 +44,7 @@ import GoogleCloudGax
 ///   `/projects/{project_number}/locations/{location_id}/services/{service_id}`.
 ///
 /// @Snippet(path: "DataprocMetastoreQuickstart")
-public class DataprocMetastoreClient: Clients.DataprocMetastoreProtocol {
+public final class DataprocMetastoreClient: Clients.DataprocMetastoreProtocol, Sendable {
   let inner: any Clients.DataprocMetastoreStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

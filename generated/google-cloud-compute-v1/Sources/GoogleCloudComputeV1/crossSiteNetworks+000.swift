@@ -25,7 +25,7 @@
   /// Service for the `crossSiteNetworks` resource.
   ///
   /// @Snippet(path: "crossSiteNetworksQuickstart")
-  public class CrossSiteNetworksClient: Clients.CrossSiteNetworksProtocol {
+  public final class CrossSiteNetworksClient: Clients.CrossSiteNetworksProtocol, Sendable {
     let inner: any Clients.CrossSiteNetworksStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

@@ -27,7 +27,7 @@ import GoogleCloudGax
 /// work in their applications.
 ///
 /// @Snippet(path: "CloudTasksQuickstart")
-public class CloudTasksClient: Clients.CloudTasksProtocol {
+public final class CloudTasksClient: Clients.CloudTasksProtocol, Sendable {
   let inner: any Clients.CloudTasksStub
 
   /// Creates a new `CloudTasksClient` instance.

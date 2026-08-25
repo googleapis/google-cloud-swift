@@ -21,7 +21,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol VersionsStub {
+  protocol VersionsStub: Sendable {
     func listVersions(
       request: ListVersionsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleAppEngineV1.ListVersionsResponse

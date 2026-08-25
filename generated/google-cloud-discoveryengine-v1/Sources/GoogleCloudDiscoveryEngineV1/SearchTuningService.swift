@@ -27,7 +27,7 @@
   /// Service for search tuning.
   ///
   /// @Snippet(path: "SearchTuningServiceQuickstart")
-  public class SearchTuningServiceClient: Clients.SearchTuningServiceProtocol {
+  public final class SearchTuningServiceClient: Clients.SearchTuningServiceProtocol, Sendable {
     let inner: any Clients.SearchTuningServiceStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

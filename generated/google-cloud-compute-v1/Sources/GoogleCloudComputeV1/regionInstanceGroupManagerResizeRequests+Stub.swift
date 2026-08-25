@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol RegionInstanceGroupManagerResizeRequestsStub {
+    protocol RegionInstanceGroupManagerResizeRequestsStub: Sendable {
       func cancel(
         request: RegionInstanceGroupManagerResizeRequestsClient.CancelRequest,
         options: GoogleCloudGax.RequestOptions

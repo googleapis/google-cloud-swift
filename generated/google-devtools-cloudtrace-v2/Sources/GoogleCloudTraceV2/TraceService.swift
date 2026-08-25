@@ -30,7 +30,7 @@ import GoogleCloudGax
 /// A single trace can contain spans from multiple services.
 ///
 /// @Snippet(path: "TraceServiceQuickstart")
-public class TraceServiceClient: Clients.TraceServiceProtocol {
+public final class TraceServiceClient: Clients.TraceServiceProtocol, Sendable {
   let inner: any Clients.TraceServiceStub
 
   /// Creates a new `TraceServiceClient` instance.

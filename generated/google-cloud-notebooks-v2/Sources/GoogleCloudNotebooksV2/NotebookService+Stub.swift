@@ -23,7 +23,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol NotebookServiceStub {
+  protocol NotebookServiceStub: Sendable {
     func listInstances(
       request: ListInstancesRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudNotebooksV2.ListInstancesResponse

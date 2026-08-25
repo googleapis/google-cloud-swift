@@ -25,7 +25,7 @@ import GoogleCloudGax
 /// Unified Maintenance service
 ///
 /// @Snippet(path: "MaintenanceQuickstart")
-public class MaintenanceClient: Clients.MaintenanceProtocol {
+public final class MaintenanceClient: Clients.MaintenanceProtocol, Sendable {
   let inner: any Clients.MaintenanceStub
 
   /// Creates a new `MaintenanceClient` instance.

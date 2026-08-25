@@ -25,7 +25,7 @@ import GoogleCloudGax
 /// A service providing functionality for managing dashboards' charts.
 ///
 /// @Snippet(path: "DashboardChartServiceQuickstart")
-public class DashboardChartServiceClient: Clients.DashboardChartServiceProtocol {
+public final class DashboardChartServiceClient: Clients.DashboardChartServiceProtocol, Sendable {
   let inner: any Clients.DashboardChartServiceStub
 
   /// Creates a new `DashboardChartServiceClient` instance.

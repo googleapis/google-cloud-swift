@@ -21,7 +21,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol ManagedIdentitiesServiceStub {
+  protocol ManagedIdentitiesServiceStub: Sendable {
     func createMicrosoftAdDomain(
       request: CreateMicrosoftAdDomainRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

@@ -24,7 +24,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol SpecialistPoolServiceStub {
+    protocol SpecialistPoolServiceStub: Sendable {
       func createSpecialistPool(
         request: CreateSpecialistPoolRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation

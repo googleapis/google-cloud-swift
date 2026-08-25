@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol NetworkEdgeSecurityServicesStub {
+    protocol NetworkEdgeSecurityServicesStub: Sendable {
       func aggregatedList(
         request: NetworkEdgeSecurityServicesClient.AggregatedListRequest,
         options: GoogleCloudGax.RequestOptions

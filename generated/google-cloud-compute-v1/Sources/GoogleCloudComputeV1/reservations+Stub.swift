@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol ReservationsStub {
+    protocol ReservationsStub: Sendable {
       func aggregatedList(
         request: ReservationsClient.AggregatedListRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.ReservationAggregatedList

@@ -21,7 +21,7 @@ import GoogleLongRunning
 import GoogleCloudGax
 
 extension Clients {
-  protocol OrganizationsStub {
+  protocol OrganizationsStub: Sendable {
     func getOrganization(
       request: GetOrganizationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudResourceManagerV3.Organization

@@ -30,7 +30,7 @@
   /// [google.cloud.dialogflow.cx.v3.Agent]: <doc:Agent>
   ///
   /// @Snippet(path: "AgentsQuickstart")
-  public class AgentsClient: Clients.AgentsProtocol {
+  public final class AgentsClient: Clients.AgentsProtocol, Sendable {
     let inner: any Clients.AgentsStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

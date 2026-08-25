@@ -23,7 +23,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol SecureSourceManagerStub {
+  protocol SecureSourceManagerStub: Sendable {
     func listInstances(
       request: ListInstancesRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudSecureSourceManagerV1.ListInstancesResponse

@@ -25,7 +25,7 @@
   /// Service to manage SSL certs for Cloud SQL instances.
   ///
   /// @Snippet(path: "SqlSslCertsServiceQuickstart")
-  public class SqlSslCertsServiceClient: Clients.SqlSslCertsServiceProtocol {
+  public final class SqlSslCertsServiceClient: Clients.SqlSslCertsServiceProtocol, Sendable {
     let inner: any Clients.SqlSslCertsServiceStub
 
     /// Creates a new `SqlSslCertsServiceClient` instance.

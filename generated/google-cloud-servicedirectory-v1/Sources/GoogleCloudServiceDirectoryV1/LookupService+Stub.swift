@@ -20,7 +20,7 @@ import GoogleCloudWkt
 import GoogleCloudGax
 
 extension Clients {
-  protocol LookupServiceStub {
+  protocol LookupServiceStub: Sendable {
     func resolveService(
       request: ResolveServiceRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudServiceDirectoryV1.ResolveServiceResponse

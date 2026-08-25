@@ -27,7 +27,7 @@ import GoogleCloudGax
 /// Service describing handlers for resources
 ///
 /// @Snippet(path: "LustreQuickstart")
-public class LustreClient: Clients.LustreProtocol {
+public final class LustreClient: Clients.LustreProtocol, Sendable {
   let inner: any Clients.LustreStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

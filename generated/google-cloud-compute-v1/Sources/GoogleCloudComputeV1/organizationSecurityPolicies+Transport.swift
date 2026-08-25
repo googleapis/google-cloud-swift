@@ -23,7 +23,7 @@
   @_spi(GoogleCloudInternal) import GoogleCloudGax
 
   extension Clients {
-    class OrganizationSecurityPoliciesTransport: OrganizationSecurityPoliciesStub {
+    final class OrganizationSecurityPoliciesTransport: OrganizationSecurityPoliciesStub {
       let inner: GoogleCloudGax._HTTPClient
 
       public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {

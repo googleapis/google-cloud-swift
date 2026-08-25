@@ -23,7 +23,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol SecurityProfileGroupServiceStub {
+  protocol SecurityProfileGroupServiceStub: Sendable {
     func listSecurityProfileGroups(
       request: ListSecurityProfileGroupsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudNetworkSecurityV1.ListSecurityProfileGroupsResponse

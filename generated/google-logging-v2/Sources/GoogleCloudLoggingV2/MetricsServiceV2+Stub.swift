@@ -20,7 +20,7 @@ import GoogleLongRunning
 import GoogleCloudGax
 
 extension Clients {
-  protocol MetricsServiceV2Stub {
+  protocol MetricsServiceV2Stub: Sendable {
     func listLogMetrics(
       request: ListLogMetricsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudLoggingV2.ListLogMetricsResponse

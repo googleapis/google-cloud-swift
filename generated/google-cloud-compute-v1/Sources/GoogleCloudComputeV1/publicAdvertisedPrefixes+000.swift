@@ -25,7 +25,9 @@
   /// Service for the `publicAdvertisedPrefixes` resource.
   ///
   /// @Snippet(path: "publicAdvertisedPrefixesQuickstart")
-  public class PublicAdvertisedPrefixesClient: Clients.PublicAdvertisedPrefixesProtocol {
+  public final class PublicAdvertisedPrefixesClient: Clients.PublicAdvertisedPrefixesProtocol,
+    Sendable
+  {
     let inner: any Clients.PublicAdvertisedPrefixesStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

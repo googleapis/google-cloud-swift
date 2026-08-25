@@ -26,7 +26,7 @@
   /// Service for ranking text records.
   ///
   /// @Snippet(path: "RankServiceQuickstart")
-  public class RankServiceClient: Clients.RankServiceProtocol {
+  public final class RankServiceClient: Clients.RankServiceProtocol, Sendable {
     let inner: any Clients.RankServiceStub
 
     /// Creates a new `RankServiceClient` instance.

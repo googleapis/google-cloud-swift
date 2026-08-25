@@ -26,7 +26,7 @@ import GoogleCloudGax
 /// attempts to exercise as many user inputs and event handlers as possible.
 ///
 /// @Snippet(path: "WebSecurityScannerQuickstart")
-public class WebSecurityScannerClient: Clients.WebSecurityScannerProtocol {
+public final class WebSecurityScannerClient: Clients.WebSecurityScannerProtocol, Sendable {
   let inner: any Clients.WebSecurityScannerStub
 
   /// Creates a new `WebSecurityScannerClient` instance.

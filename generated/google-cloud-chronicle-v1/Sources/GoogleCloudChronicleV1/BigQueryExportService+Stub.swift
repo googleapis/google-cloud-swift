@@ -20,7 +20,7 @@ import GoogleLongRunning
 import GoogleCloudGax
 
 extension Clients {
-  protocol BigQueryExportServiceStub {
+  protocol BigQueryExportServiceStub: Sendable {
     func getBigQueryExport(
       request: GetBigQueryExportRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.BigQueryExport

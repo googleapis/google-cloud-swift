@@ -44,7 +44,7 @@ import GoogleCloudGax
 /// [google.cloud.kms.v1.KeyRing]: <doc:KeyRing>
 ///
 /// @Snippet(path: "KeyManagementServiceQuickstart")
-public class KeyManagementServiceClient: Clients.KeyManagementServiceProtocol {
+public final class KeyManagementServiceClient: Clients.KeyManagementServiceProtocol, Sendable {
   let inner: any Clients.KeyManagementServiceStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

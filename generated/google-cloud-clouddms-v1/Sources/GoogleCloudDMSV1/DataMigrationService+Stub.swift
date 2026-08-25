@@ -23,7 +23,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol DataMigrationServiceStub {
+  protocol DataMigrationServiceStub: Sendable {
     func listMigrationJobs(
       request: ListMigrationJobsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudDMSV1.ListMigrationJobsResponse

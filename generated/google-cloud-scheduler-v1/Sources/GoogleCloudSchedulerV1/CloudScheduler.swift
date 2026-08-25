@@ -26,7 +26,7 @@ import GoogleCloudGax
 /// schedule asynchronous jobs.
 ///
 /// @Snippet(path: "CloudSchedulerQuickstart")
-public class CloudSchedulerClient: Clients.CloudSchedulerProtocol {
+public final class CloudSchedulerClient: Clients.CloudSchedulerProtocol, Sendable {
   let inner: any Clients.CloudSchedulerStub
 
   /// Creates a new `CloudSchedulerClient` instance.

@@ -22,7 +22,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol SchemaServiceStub {
+    protocol SchemaServiceStub: Sendable {
       func getSchema(
         request: GetSchemaRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudDiscoveryEngineV1.Schema

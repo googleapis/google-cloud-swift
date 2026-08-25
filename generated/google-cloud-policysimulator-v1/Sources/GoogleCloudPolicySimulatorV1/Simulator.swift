@@ -39,7 +39,7 @@ import GoogleCloudGax
 /// [google.cloud.policysimulator.v1.Replay]: <doc:Replay>
 ///
 /// @Snippet(path: "SimulatorQuickstart")
-public class SimulatorClient: Clients.SimulatorProtocol {
+public final class SimulatorClient: Clients.SimulatorProtocol, Sendable {
   let inner: any Clients.SimulatorStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

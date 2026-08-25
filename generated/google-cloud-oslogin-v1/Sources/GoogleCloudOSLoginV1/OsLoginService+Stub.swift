@@ -20,7 +20,7 @@ import GoogleCloudWkt
 import GoogleCloudGax
 
 extension Clients {
-  protocol OsLoginServiceStub {
+  protocol OsLoginServiceStub: Sendable {
     func createSshPublicKey(
       request: CreateSshPublicKeyRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudOSLoginCommon.SshPublicKey

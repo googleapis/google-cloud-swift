@@ -20,7 +20,7 @@ import GoogleCloudWkt
 import GoogleCloudGax
 
 extension Clients {
-  protocol ParameterManagerStub {
+  protocol ParameterManagerStub: Sendable {
     func listParameters(
       request: ListParametersRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudParameterManagerV1.ListParametersResponse

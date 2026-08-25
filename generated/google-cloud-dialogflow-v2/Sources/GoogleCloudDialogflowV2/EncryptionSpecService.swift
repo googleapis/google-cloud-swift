@@ -28,7 +28,7 @@
   /// Manages encryption spec settings for Dialogflow and Agent Assist.
   ///
   /// @Snippet(path: "EncryptionSpecServiceQuickstart")
-  public class EncryptionSpecServiceClient: Clients.EncryptionSpecServiceProtocol {
+  public final class EncryptionSpecServiceClient: Clients.EncryptionSpecServiceProtocol, Sendable {
     let inner: any Clients.EncryptionSpecServiceStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

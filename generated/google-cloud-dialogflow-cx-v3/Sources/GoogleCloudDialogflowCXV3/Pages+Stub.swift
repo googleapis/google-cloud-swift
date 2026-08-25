@@ -22,7 +22,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol PagesStub {
+    protocol PagesStub: Sendable {
       func listPages(
         request: ListPagesRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowCXV3.ListPagesResponse

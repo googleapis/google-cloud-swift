@@ -29,7 +29,7 @@
   /// The service that manages Vertex AI Dataset and its child resources.
   ///
   /// @Snippet(path: "DatasetServiceQuickstart")
-  public class DatasetServiceClient: Clients.DatasetServiceProtocol {
+  public final class DatasetServiceClient: Clients.DatasetServiceProtocol, Sendable {
     let inner: any Clients.DatasetServiceStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

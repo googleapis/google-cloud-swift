@@ -25,7 +25,7 @@
   /// Service for the `nodeGroups` resource.
   ///
   /// @Snippet(path: "nodeGroupsQuickstart")
-  public class NodeGroupsClient: Clients.NodeGroupsProtocol {
+  public final class NodeGroupsClient: Clients.NodeGroupsProtocol, Sendable {
     let inner: any Clients.NodeGroupsStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

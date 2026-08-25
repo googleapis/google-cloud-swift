@@ -25,7 +25,7 @@
   /// Service for the `images` resource.
   ///
   /// @Snippet(path: "imagesQuickstart")
-  public class ImagesClient: Clients.ImagesProtocol {
+  public final class ImagesClient: Clients.ImagesProtocol, Sendable {
     let inner: any Clients.ImagesStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

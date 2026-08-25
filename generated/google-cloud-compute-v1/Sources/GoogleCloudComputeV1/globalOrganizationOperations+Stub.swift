@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol GlobalOrganizationOperationsStub {
+    protocol GlobalOrganizationOperationsStub: Sendable {
       func delete(
         request: GlobalOrganizationOperationsClient.DeleteRequest,
         options: GoogleCloudGax.RequestOptions

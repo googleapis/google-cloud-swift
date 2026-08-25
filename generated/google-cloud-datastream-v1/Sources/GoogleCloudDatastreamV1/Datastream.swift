@@ -27,7 +27,7 @@ import GoogleCloudGax
 /// Datastream service
 ///
 /// @Snippet(path: "DatastreamQuickstart")
-public class DatastreamClient: Clients.DatastreamProtocol {
+public final class DatastreamClient: Clients.DatastreamProtocol, Sendable {
   let inner: any Clients.DatastreamStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

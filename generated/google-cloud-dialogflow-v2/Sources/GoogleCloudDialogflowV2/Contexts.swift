@@ -29,7 +29,7 @@
   /// [google.cloud.dialogflow.v2.Context]: <doc:Context>
   ///
   /// @Snippet(path: "ContextsQuickstart")
-  public class ContextsClient: Clients.ContextsProtocol {
+  public final class ContextsClient: Clients.ContextsProtocol, Sendable {
     let inner: any Clients.ContextsStub
 
     /// Creates a new `ContextsClient` instance.

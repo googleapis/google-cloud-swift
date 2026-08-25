@@ -22,7 +22,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol AlloyDBCSQLAdminStub {
+  protocol AlloyDBCSQLAdminStub: Sendable {
     func restoreFromCloudSql(
       request: RestoreFromCloudSQLRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

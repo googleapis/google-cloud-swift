@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol NodeGroupsStub {
+    protocol NodeGroupsStub: Sendable {
       func addNodes(
         request: NodeGroupsClient.AddNodesRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation

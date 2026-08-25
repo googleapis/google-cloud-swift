@@ -23,7 +23,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol HsmManagementStub {
+  protocol HsmManagementStub: Sendable {
     func listSingleTenantHsmInstances(
       request: ListSingleTenantHsmInstancesRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudKMSV1.ListSingleTenantHsmInstancesResponse

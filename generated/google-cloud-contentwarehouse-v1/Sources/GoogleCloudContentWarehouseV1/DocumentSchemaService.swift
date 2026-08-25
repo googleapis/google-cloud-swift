@@ -25,7 +25,7 @@ import GoogleCloudGax
 /// This service lets you manage document schema.
 ///
 /// @Snippet(path: "DocumentSchemaServiceQuickstart")
-public class DocumentSchemaServiceClient: Clients.DocumentSchemaServiceProtocol {
+public final class DocumentSchemaServiceClient: Clients.DocumentSchemaServiceProtocol, Sendable {
   let inner: any Clients.DocumentSchemaServiceStub
 
   /// Creates a new `DocumentSchemaServiceClient` instance.

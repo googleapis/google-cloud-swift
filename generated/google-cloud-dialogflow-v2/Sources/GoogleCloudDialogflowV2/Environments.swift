@@ -29,7 +29,7 @@
   /// [google.cloud.dialogflow.v2.Environment]: <doc:Environment>
   ///
   /// @Snippet(path: "EnvironmentsQuickstart")
-  public class EnvironmentsClient: Clients.EnvironmentsProtocol {
+  public final class EnvironmentsClient: Clients.EnvironmentsProtocol, Sendable {
     let inner: any Clients.EnvironmentsStub
 
     /// Creates a new `EnvironmentsClient` instance.

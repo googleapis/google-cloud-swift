@@ -23,7 +23,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol TestCasesStub {
+    protocol TestCasesStub: Sendable {
       func listTestCases(
         request: ListTestCasesRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowCXV3.ListTestCasesResponse

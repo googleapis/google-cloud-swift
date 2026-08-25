@@ -27,7 +27,9 @@
   /// Service for managing security settings for Dialogflow.
   ///
   /// @Snippet(path: "SecuritySettingsServiceQuickstart")
-  public class SecuritySettingsServiceClient: Clients.SecuritySettingsServiceProtocol {
+  public final class SecuritySettingsServiceClient: Clients.SecuritySettingsServiceProtocol,
+    Sendable
+  {
     let inner: any Clients.SecuritySettingsServiceStub
 
     /// Creates a new `SecuritySettingsServiceClient` instance.

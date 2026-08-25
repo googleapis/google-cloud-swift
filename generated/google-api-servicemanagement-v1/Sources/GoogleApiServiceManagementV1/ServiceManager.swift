@@ -29,7 +29,7 @@ import GoogleCloudGax
 /// API](https://cloud.google.com/service-infrastructure/docs/overview)
 ///
 /// @Snippet(path: "ServiceManagerQuickstart")
-public class ServiceManagerClient: Clients.ServiceManagerProtocol {
+public final class ServiceManagerClient: Clients.ServiceManagerProtocol, Sendable {
   let inner: any Clients.ServiceManagerStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

@@ -21,7 +21,7 @@ import GoogleLongRunning
 import GoogleCloudGax
 
 extension Clients {
-  protocol ApiHubDiscoveryStub {
+  protocol ApiHubDiscoveryStub: Sendable {
     func listDiscoveredApiObservations(
       request: ListDiscoveredApiObservationsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudApiHubV1.ListDiscoveredApiObservationsResponse

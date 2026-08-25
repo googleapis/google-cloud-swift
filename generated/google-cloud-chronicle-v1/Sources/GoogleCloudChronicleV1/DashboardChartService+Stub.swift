@@ -20,7 +20,7 @@ import GoogleLongRunning
 import GoogleCloudGax
 
 extension Clients {
-  protocol DashboardChartServiceStub {
+  protocol DashboardChartServiceStub: Sendable {
     func getDashboardChart(
       request: GetDashboardChartRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.DashboardChart

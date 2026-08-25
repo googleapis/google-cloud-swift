@@ -22,7 +22,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol BatchControllerStub {
+  protocol BatchControllerStub: Sendable {
     func createBatch(
       request: CreateBatchRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

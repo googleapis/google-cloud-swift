@@ -27,7 +27,7 @@ import GoogleCloudGax
 /// Cloud Run Job Control Plane API.
 ///
 /// @Snippet(path: "JobsQuickstart")
-public class JobsClient: Clients.JobsProtocol {
+public final class JobsClient: Clients.JobsProtocol, Sendable {
   let inner: any Clients.JobsStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

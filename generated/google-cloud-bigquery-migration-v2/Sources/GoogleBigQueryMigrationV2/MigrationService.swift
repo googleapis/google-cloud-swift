@@ -24,7 +24,7 @@ import GoogleCloudGax
 /// Service to handle EDW migrations.
 ///
 /// @Snippet(path: "MigrationServiceQuickstart")
-public class MigrationServiceClient: Clients.MigrationServiceProtocol {
+public final class MigrationServiceClient: Clients.MigrationServiceProtocol, Sendable {
   let inner: any Clients.MigrationServiceStub
 
   /// Creates a new `MigrationServiceClient` instance.

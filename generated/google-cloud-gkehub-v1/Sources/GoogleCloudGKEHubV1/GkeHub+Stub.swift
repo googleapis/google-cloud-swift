@@ -21,7 +21,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol GkeHubStub {
+  protocol GkeHubStub: Sendable {
     func listMemberships(
       request: ListMembershipsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudGKEHubV1.ListMembershipsResponse

@@ -22,7 +22,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol AccessContextManagerStub {
+  protocol AccessContextManagerStub: Sendable {
     func listAccessPolicies(
       request: ListAccessPoliciesRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleIdentityAccessContextManagerV1.ListAccessPoliciesResponse

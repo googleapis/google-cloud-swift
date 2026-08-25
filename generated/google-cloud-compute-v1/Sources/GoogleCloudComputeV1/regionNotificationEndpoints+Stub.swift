@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol RegionNotificationEndpointsStub {
+    protocol RegionNotificationEndpointsStub: Sendable {
       func aggregatedList(
         request: RegionNotificationEndpointsClient.AggregatedListRequest,
         options: GoogleCloudGax.RequestOptions

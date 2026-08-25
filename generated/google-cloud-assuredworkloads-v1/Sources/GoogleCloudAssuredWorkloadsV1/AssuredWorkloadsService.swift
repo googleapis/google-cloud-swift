@@ -26,7 +26,8 @@ import GoogleCloudGax
 /// Service to manage AssuredWorkloads.
 ///
 /// @Snippet(path: "AssuredWorkloadsServiceQuickstart")
-public class AssuredWorkloadsServiceClient: Clients.AssuredWorkloadsServiceProtocol {
+public final class AssuredWorkloadsServiceClient: Clients.AssuredWorkloadsServiceProtocol, Sendable
+{
   let inner: any Clients.AssuredWorkloadsServiceStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

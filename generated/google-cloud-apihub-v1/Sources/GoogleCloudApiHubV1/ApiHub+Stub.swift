@@ -21,7 +21,7 @@ import GoogleLongRunning
 import GoogleCloudGax
 
 extension Clients {
-  protocol ApiHubStub {
+  protocol ApiHubStub: Sendable {
     func createApi(
       request: CreateApiRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudApiHubV1.Api

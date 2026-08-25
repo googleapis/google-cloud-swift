@@ -25,7 +25,7 @@
   /// Service for managing database backups.
   ///
   /// @Snippet(path: "SqlBackupRunsServiceQuickstart")
-  public class SqlBackupRunsServiceClient: Clients.SqlBackupRunsServiceProtocol {
+  public final class SqlBackupRunsServiceClient: Clients.SqlBackupRunsServiceProtocol, Sendable {
     let inner: any Clients.SqlBackupRunsServiceStub
 
     /// Creates a new `SqlBackupRunsServiceClient` instance.

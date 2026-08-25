@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol SqlEventsServiceStub {
+    protocol SqlEventsServiceStub: Sendable {
     }
   }
 #endif

@@ -23,7 +23,7 @@ import GoogleCloudWkt
 @_spi(GoogleCloudInternal) import GoogleCloudGax
 
 extension Clients {
-  class ServiceHealthTransport: ServiceHealthStub {
+  final class ServiceHealthTransport: ServiceHealthStub {
     let inner: GoogleCloudGax._HTTPClient
 
     public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {

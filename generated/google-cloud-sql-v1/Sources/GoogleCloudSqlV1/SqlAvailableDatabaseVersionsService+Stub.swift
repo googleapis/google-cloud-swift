@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol SqlAvailableDatabaseVersionsServiceStub {
+    protocol SqlAvailableDatabaseVersionsServiceStub: Sendable {
     }
   }
 #endif

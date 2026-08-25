@@ -19,7 +19,7 @@ import GoogleCloudWkt
 import GoogleCloudGax
 
 extension Clients {
-  protocol PublisherStub {
+  protocol PublisherStub: Sendable {
     func publishChannelConnectionEvents(
       request: PublishChannelConnectionEventsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudEventarcPublishingV1.PublishChannelConnectionEventsResponse

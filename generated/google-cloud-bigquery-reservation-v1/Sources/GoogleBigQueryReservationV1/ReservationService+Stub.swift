@@ -20,7 +20,7 @@ import GoogleIAMV1
 import GoogleCloudGax
 
 extension Clients {
-  protocol ReservationServiceStub {
+  protocol ReservationServiceStub: Sendable {
     func createReservation(
       request: CreateReservationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleBigQueryReservationV1.Reservation

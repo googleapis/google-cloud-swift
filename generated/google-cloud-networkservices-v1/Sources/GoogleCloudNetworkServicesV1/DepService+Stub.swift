@@ -23,7 +23,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol DepServiceStub {
+  protocol DepServiceStub: Sendable {
     func listLbTrafficExtensions(
       request: ListLbTrafficExtensionsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudNetworkServicesV1.ListLbTrafficExtensionsResponse

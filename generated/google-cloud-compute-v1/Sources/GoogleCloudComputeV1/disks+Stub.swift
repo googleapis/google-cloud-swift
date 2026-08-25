@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol DisksStub {
+    protocol DisksStub: Sendable {
       func addResourcePolicies(
         request: DisksClient.AddResourcePoliciesRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation

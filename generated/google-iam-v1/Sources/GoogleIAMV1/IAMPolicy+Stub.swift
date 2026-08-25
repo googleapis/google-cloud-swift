@@ -19,7 +19,7 @@ import GoogleCloudWkt
 import GoogleCloudGax
 
 extension Clients {
-  protocol IAMPolicyStub {
+  protocol IAMPolicyStub: Sendable {
     func setIamPolicy(
       request: SetIamPolicyRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy

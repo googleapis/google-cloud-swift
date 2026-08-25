@@ -24,7 +24,7 @@ import GoogleCloudGax
 /// Service for the `managedZoneOperations` resource.
 ///
 /// @Snippet(path: "managedZoneOperationsQuickstart")
-public class ManagedZoneOperationsClient: Clients.ManagedZoneOperationsProtocol {
+public final class ManagedZoneOperationsClient: Clients.ManagedZoneOperationsProtocol, Sendable {
   let inner: any Clients.ManagedZoneOperationsStub
 
   /// Creates a new `ManagedZoneOperationsClient` instance.

@@ -21,7 +21,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol DatastoreAdminStub {
+  protocol DatastoreAdminStub: Sendable {
     func exportEntities(
       request: ExportEntitiesRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

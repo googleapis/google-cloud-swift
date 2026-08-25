@@ -22,7 +22,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol TelcoAutomationStub {
+  protocol TelcoAutomationStub: Sendable {
     func listOrchestrationClusters(
       request: ListOrchestrationClustersRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudTelcoAutomationV1.ListOrchestrationClustersResponse

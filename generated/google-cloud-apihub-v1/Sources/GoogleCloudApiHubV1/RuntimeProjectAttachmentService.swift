@@ -26,7 +26,8 @@ import GoogleCloudGax
 /// This service is used for managing the runtime project attachments.
 ///
 /// @Snippet(path: "RuntimeProjectAttachmentServiceQuickstart")
-public class RuntimeProjectAttachmentServiceClient: Clients.RuntimeProjectAttachmentServiceProtocol
+public final class RuntimeProjectAttachmentServiceClient: Clients
+    .RuntimeProjectAttachmentServiceProtocol, Sendable
 {
   let inner: any Clients.RuntimeProjectAttachmentServiceStub
 

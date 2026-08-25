@@ -25,7 +25,9 @@
   /// Service for the `regionNetworkEndpointGroups` resource.
   ///
   /// @Snippet(path: "regionNetworkEndpointGroupsQuickstart")
-  public class RegionNetworkEndpointGroupsClient: Clients.RegionNetworkEndpointGroupsProtocol {
+  public final class RegionNetworkEndpointGroupsClient: Clients.RegionNetworkEndpointGroupsProtocol,
+    Sendable
+  {
     let inner: any Clients.RegionNetworkEndpointGroupsStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

@@ -21,7 +21,7 @@ import GoogleLongRunning
 import GoogleCloudGax
 
 extension Clients {
-  protocol HealthCheckServiceStub {
+  protocol HealthCheckServiceStub: Sendable {
     func healthCheck(
       request: HealthCheckRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.HealthCheckResponse

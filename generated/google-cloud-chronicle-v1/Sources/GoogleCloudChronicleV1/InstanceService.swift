@@ -25,7 +25,7 @@ import GoogleCloudGax
 /// InstanceService provides the entry interface for the Chronicle API.
 ///
 /// @Snippet(path: "InstanceServiceQuickstart")
-public class InstanceServiceClient: Clients.InstanceServiceProtocol {
+public final class InstanceServiceClient: Clients.InstanceServiceProtocol, Sendable {
   let inner: any Clients.InstanceServiceStub
 
   /// Creates a new `InstanceServiceClient` instance.

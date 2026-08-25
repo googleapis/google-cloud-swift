@@ -26,7 +26,7 @@ import GoogleCloudGax
 /// Cloud Run Execution Control Plane API.
 ///
 /// @Snippet(path: "ExecutionsQuickstart")
-public class ExecutionsClient: Clients.ExecutionsProtocol {
+public final class ExecutionsClient: Clients.ExecutionsProtocol, Sendable {
   let inner: any Clients.ExecutionsStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

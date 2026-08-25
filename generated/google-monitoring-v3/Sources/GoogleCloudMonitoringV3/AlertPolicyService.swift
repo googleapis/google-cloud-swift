@@ -32,7 +32,7 @@ import GoogleCloudGax
 /// [Cloud console](https://console.cloud.google.com/).
 ///
 /// @Snippet(path: "AlertPolicyServiceQuickstart")
-public class AlertPolicyServiceClient: Clients.AlertPolicyServiceProtocol {
+public final class AlertPolicyServiceClient: Clients.AlertPolicyServiceProtocol, Sendable {
   let inner: any Clients.AlertPolicyServiceStub
 
   /// Creates a new `AlertPolicyServiceClient` instance.

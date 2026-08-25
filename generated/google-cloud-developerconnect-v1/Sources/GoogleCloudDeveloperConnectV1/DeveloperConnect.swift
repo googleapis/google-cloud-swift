@@ -27,7 +27,7 @@ import GoogleCloudGax
 /// Service describing handlers for resources
 ///
 /// @Snippet(path: "DeveloperConnectQuickstart")
-public class DeveloperConnectClient: Clients.DeveloperConnectProtocol {
+public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sendable {
   let inner: any Clients.DeveloperConnectStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

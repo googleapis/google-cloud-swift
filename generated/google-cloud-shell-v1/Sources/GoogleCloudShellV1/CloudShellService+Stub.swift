@@ -21,7 +21,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol CloudShellServiceStub {
+  protocol CloudShellServiceStub: Sendable {
     func getEnvironment(
       request: GetEnvironmentRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudShellV1.Environment

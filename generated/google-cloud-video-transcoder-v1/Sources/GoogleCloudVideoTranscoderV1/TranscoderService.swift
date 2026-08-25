@@ -29,7 +29,7 @@ import GoogleCloudGax
 /// concatenation, and digital ad-stitch ready content generation.
 ///
 /// @Snippet(path: "TranscoderServiceQuickstart")
-public class TranscoderServiceClient: Clients.TranscoderServiceProtocol {
+public final class TranscoderServiceClient: Clients.TranscoderServiceProtocol, Sendable {
   let inner: any Clients.TranscoderServiceStub
 
   /// Creates a new `TranscoderServiceClient` instance.

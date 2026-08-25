@@ -21,7 +21,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol ModelServiceStub {
+  protocol ModelServiceStub: Sendable {
     func createModel(
       request: CreateModelRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

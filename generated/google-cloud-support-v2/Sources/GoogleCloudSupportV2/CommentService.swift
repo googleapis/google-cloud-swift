@@ -24,7 +24,7 @@ import GoogleCloudGax
 /// A service to manage comments on cases.
 ///
 /// @Snippet(path: "CommentServiceQuickstart")
-public class CommentServiceClient: Clients.CommentServiceProtocol {
+public final class CommentServiceClient: Clients.CommentServiceProtocol, Sendable {
   let inner: any Clients.CommentServiceStub
 
   /// Creates a new `CommentServiceClient` instance.

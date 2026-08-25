@@ -21,7 +21,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol RecommendationServiceStub {
+    protocol RecommendationServiceStub: Sendable {
       func recommend(
         request: RecommendRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudDiscoveryEngineV1.RecommendResponse

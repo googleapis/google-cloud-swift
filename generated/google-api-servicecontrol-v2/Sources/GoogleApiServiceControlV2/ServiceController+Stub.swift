@@ -19,7 +19,7 @@ import GoogleCloudWkt
 import GoogleCloudGax
 
 extension Clients {
-  protocol ServiceControllerStub {
+  protocol ServiceControllerStub: Sendable {
     func check(
       request: CheckRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleApiServiceControlV2.CheckResponse

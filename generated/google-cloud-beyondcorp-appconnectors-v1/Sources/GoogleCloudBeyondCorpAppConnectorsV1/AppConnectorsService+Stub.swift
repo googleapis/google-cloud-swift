@@ -23,7 +23,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol AppConnectorsServiceStub {
+  protocol AppConnectorsServiceStub: Sendable {
     func listAppConnectors(
       request: ListAppConnectorsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudBeyondCorpAppConnectorsV1.ListAppConnectorsResponse

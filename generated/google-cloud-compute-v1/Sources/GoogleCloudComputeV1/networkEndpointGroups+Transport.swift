@@ -23,7 +23,7 @@
   @_spi(GoogleCloudInternal) import GoogleCloudGax
 
   extension Clients {
-    class NetworkEndpointGroupsTransport: NetworkEndpointGroupsStub {
+    final class NetworkEndpointGroupsTransport: NetworkEndpointGroupsStub {
       let inner: GoogleCloudGax._HTTPClient
 
       public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {

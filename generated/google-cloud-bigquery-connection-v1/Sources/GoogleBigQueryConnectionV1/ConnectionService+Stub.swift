@@ -20,7 +20,7 @@ import GoogleIAMV1
 import GoogleCloudGax
 
 extension Clients {
-  protocol ConnectionServiceStub {
+  protocol ConnectionServiceStub: Sendable {
     func createConnection(
       request: CreateConnectionRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleBigQueryConnectionV1.Connection

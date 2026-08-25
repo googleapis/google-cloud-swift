@@ -19,7 +19,7 @@ import GoogleCloudWkt
 import GoogleCloudGax
 
 extension Clients {
-  protocol EssentialContactsServiceStub {
+  protocol EssentialContactsServiceStub: Sendable {
     func createContact(
       request: CreateContactRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudEssentialContactsV1.Contact

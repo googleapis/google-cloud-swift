@@ -25,7 +25,7 @@ import GoogleCloudGax
 /// widgets in a specific layout.
 ///
 /// @Snippet(path: "DashboardsServiceQuickstart")
-public class DashboardsServiceClient: Clients.DashboardsServiceProtocol {
+public final class DashboardsServiceClient: Clients.DashboardsServiceProtocol, Sendable {
   let inner: any Clients.DashboardsServiceStub
 
   /// Creates a new `DashboardsServiceClient` instance.

@@ -26,7 +26,7 @@ import GoogleCloudGax
 /// RuleService provides interface for user-created rules.
 ///
 /// @Snippet(path: "RuleServiceQuickstart")
-public class RuleServiceClient: Clients.RuleServiceProtocol {
+public final class RuleServiceClient: Clients.RuleServiceProtocol, Sendable {
   let inner: any Clients.RuleServiceStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

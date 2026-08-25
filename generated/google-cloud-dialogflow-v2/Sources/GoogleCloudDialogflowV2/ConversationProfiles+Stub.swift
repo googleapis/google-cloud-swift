@@ -23,7 +23,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol ConversationProfilesStub {
+    protocol ConversationProfilesStub: Sendable {
       func listConversationProfiles(
         request: ListConversationProfilesRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.ListConversationProfilesResponse

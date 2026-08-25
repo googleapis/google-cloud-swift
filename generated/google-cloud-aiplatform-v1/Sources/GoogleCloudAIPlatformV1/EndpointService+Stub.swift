@@ -24,7 +24,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol EndpointServiceStub {
+    protocol EndpointServiceStub: Sendable {
       func createEndpoint(
         request: CreateEndpointRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation

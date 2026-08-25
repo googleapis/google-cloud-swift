@@ -23,7 +23,7 @@ import GoogleIAMV1
 @_spi(GoogleCloudInternal) import GoogleCloudGax
 
 extension Clients {
-  class DataPolicyServiceTransport: DataPolicyServiceStub {
+  final class DataPolicyServiceTransport: DataPolicyServiceStub {
     let inner: GoogleCloudGax._HTTPClient
 
     public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {

@@ -29,7 +29,7 @@ import GoogleCloudGax
 /// organization and to control the policies applied to groups of resources.
 ///
 /// @Snippet(path: "FoldersQuickstart")
-public class FoldersClient: Clients.FoldersProtocol {
+public final class FoldersClient: Clients.FoldersProtocol, Sendable {
   let inner: any Clients.FoldersStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

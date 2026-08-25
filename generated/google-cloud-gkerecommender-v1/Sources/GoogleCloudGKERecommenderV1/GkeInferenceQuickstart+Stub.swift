@@ -19,7 +19,7 @@ import GoogleCloudWkt
 import GoogleCloudGax
 
 extension Clients {
-  protocol GkeInferenceQuickstartStub {
+  protocol GkeInferenceQuickstartStub: Sendable {
     func fetchModels(
       request: FetchModelsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudGKERecommenderV1.FetchModelsResponse

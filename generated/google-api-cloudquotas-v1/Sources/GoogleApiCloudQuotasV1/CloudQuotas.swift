@@ -30,7 +30,7 @@ import GoogleCloudGax
 /// - List/Get pending and historical quota preference.
 ///
 /// @Snippet(path: "CloudQuotasQuickstart")
-public class CloudQuotasClient: Clients.CloudQuotasProtocol {
+public final class CloudQuotasClient: Clients.CloudQuotasProtocol, Sendable {
   let inner: any Clients.CloudQuotasStub
 
   /// Creates a new `CloudQuotasClient` instance.

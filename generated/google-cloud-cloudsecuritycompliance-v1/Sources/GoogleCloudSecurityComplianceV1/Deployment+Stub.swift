@@ -22,7 +22,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol DeploymentStub {
+  protocol DeploymentStub: Sendable {
     func createFrameworkDeployment(
       request: CreateFrameworkDeploymentRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

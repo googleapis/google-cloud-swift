@@ -27,7 +27,7 @@ import GoogleCloudGax
 /// The BatchController provides methods to manage batch workloads.
 ///
 /// @Snippet(path: "BatchControllerQuickstart")
-public class BatchControllerClient: Clients.BatchControllerProtocol {
+public final class BatchControllerClient: Clients.BatchControllerProtocol, Sendable {
   let inner: any Clients.BatchControllerStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

@@ -29,7 +29,7 @@ import GoogleCloudGax
 /// correctly.
 ///
 /// @Snippet(path: "ComplianceQuickstart")
-public class ComplianceClient: Clients.ComplianceProtocol {
+public final class ComplianceClient: Clients.ComplianceProtocol, Sendable {
   let inner: any Clients.ComplianceStub
 
   /// Creates a new `ComplianceClient` instance.

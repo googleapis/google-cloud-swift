@@ -25,7 +25,7 @@
   /// Service for the `sslPolicies` resource.
   ///
   /// @Snippet(path: "sslPoliciesQuickstart")
-  public class SslPoliciesClient: Clients.SslPoliciesProtocol {
+  public final class SslPoliciesClient: Clients.SslPoliciesProtocol, Sendable {
     let inner: any Clients.SslPoliciesStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

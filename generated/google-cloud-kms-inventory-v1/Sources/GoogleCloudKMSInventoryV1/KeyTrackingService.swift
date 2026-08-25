@@ -25,7 +25,7 @@ import GoogleCloudGax
 /// given Cloud KMS key via CMEK.
 ///
 /// @Snippet(path: "KeyTrackingServiceQuickstart")
-public class KeyTrackingServiceClient: Clients.KeyTrackingServiceProtocol {
+public final class KeyTrackingServiceClient: Clients.KeyTrackingServiceProtocol, Sendable {
   let inner: any Clients.KeyTrackingServiceStub
 
   /// Creates a new `KeyTrackingServiceClient` instance.

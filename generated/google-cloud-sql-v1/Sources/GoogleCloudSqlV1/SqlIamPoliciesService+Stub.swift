@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol SqlIamPoliciesServiceStub {
+    protocol SqlIamPoliciesServiceStub: Sendable {
     }
   }
 #endif

@@ -25,7 +25,7 @@
   /// Service to manage database flags for Cloud SQL instances.
   ///
   /// @Snippet(path: "SqlFlagsServiceQuickstart")
-  public class SqlFlagsServiceClient: Clients.SqlFlagsServiceProtocol {
+  public final class SqlFlagsServiceClient: Clients.SqlFlagsServiceProtocol, Sendable {
     let inner: any Clients.SqlFlagsServiceStub
 
     /// Creates a new `SqlFlagsServiceClient` instance.

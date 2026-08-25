@@ -22,7 +22,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol CmekConfigServiceStub {
+    protocol CmekConfigServiceStub: Sendable {
       func updateCmekConfig(
         request: UpdateCmekConfigRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation

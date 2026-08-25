@@ -22,7 +22,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol LivestreamServiceStub {
+  protocol LivestreamServiceStub: Sendable {
     func createChannel(
       request: CreateChannelRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

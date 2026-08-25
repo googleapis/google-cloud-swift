@@ -24,7 +24,9 @@ import GoogleCloudGax
 /// Service to manage Security and Privacy Notifications.
 ///
 /// @Snippet(path: "AdvisoryNotificationsServiceQuickstart")
-public class AdvisoryNotificationsServiceClient: Clients.AdvisoryNotificationsServiceProtocol {
+public final class AdvisoryNotificationsServiceClient: Clients.AdvisoryNotificationsServiceProtocol,
+  Sendable
+{
   let inner: any Clients.AdvisoryNotificationsServiceStub
 
   /// Creates a new `AdvisoryNotificationsServiceClient` instance.

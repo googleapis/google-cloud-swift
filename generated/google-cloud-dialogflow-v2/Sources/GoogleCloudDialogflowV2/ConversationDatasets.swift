@@ -31,7 +31,7 @@
   /// customizable metadata that can be used for model training.
   ///
   /// @Snippet(path: "ConversationDatasetsQuickstart")
-  public class ConversationDatasetsClient: Clients.ConversationDatasetsProtocol {
+  public final class ConversationDatasetsClient: Clients.ConversationDatasetsProtocol, Sendable {
     let inner: any Clients.ConversationDatasetsStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

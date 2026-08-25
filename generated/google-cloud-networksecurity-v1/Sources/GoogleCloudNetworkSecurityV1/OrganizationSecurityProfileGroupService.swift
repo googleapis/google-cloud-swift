@@ -28,8 +28,8 @@ import GoogleCloudGax
 /// Organization SecurityProfileGroup is created under organization.
 ///
 /// @Snippet(path: "OrganizationSecurityProfileGroupServiceQuickstart")
-public class OrganizationSecurityProfileGroupServiceClient: Clients
-    .OrganizationSecurityProfileGroupServiceProtocol
+public final class OrganizationSecurityProfileGroupServiceClient: Clients
+    .OrganizationSecurityProfileGroupServiceProtocol, Sendable
 {
   let inner: any Clients.OrganizationSecurityProfileGroupServiceStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy

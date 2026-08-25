@@ -32,7 +32,7 @@
   /// [google.cloud.dialogflow.cx.v3.TestCaseResult]: <doc:TestCaseResult>
   ///
   /// @Snippet(path: "TestCasesQuickstart")
-  public class TestCasesClient: Clients.TestCasesProtocol {
+  public final class TestCasesClient: Clients.TestCasesProtocol, Sendable {
     let inner: any Clients.TestCasesStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

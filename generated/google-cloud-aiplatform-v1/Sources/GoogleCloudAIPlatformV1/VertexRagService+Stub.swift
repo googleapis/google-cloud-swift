@@ -24,7 +24,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol VertexRagServiceStub {
+    protocol VertexRagServiceStub: Sendable {
       func retrieveContexts(
         request: RetrieveContextsRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.RetrieveContextsResponse

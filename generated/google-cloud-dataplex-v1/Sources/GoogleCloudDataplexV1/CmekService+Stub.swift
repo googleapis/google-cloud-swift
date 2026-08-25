@@ -23,7 +23,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol CmekServiceStub {
+  protocol CmekServiceStub: Sendable {
     func createEncryptionConfig(
       request: CreateEncryptionConfigRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

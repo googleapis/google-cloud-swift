@@ -28,7 +28,7 @@ import GoogleCloudGax
 /// The App Hub API allows you to manage App Hub resources.
 ///
 /// @Snippet(path: "AppHubQuickstart")
-public class AppHubClient: Clients.AppHubProtocol {
+public final class AppHubClient: Clients.AppHubProtocol, Sendable {
   let inner: any Clients.AppHubStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

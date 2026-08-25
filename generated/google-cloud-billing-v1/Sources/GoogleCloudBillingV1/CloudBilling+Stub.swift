@@ -20,7 +20,7 @@ import GoogleIAMV1
 import GoogleCloudGax
 
 extension Clients {
-  protocol CloudBillingStub {
+  protocol CloudBillingStub: Sendable {
     func getBillingAccount(
       request: GetBillingAccountRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudBillingV1.BillingAccount

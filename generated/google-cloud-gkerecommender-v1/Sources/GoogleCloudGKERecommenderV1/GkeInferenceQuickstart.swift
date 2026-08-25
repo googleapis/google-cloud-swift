@@ -27,7 +27,7 @@ import GoogleCloudGax
 /// on GKE.
 ///
 /// @Snippet(path: "GkeInferenceQuickstartQuickstart")
-public class GkeInferenceQuickstartClient: Clients.GkeInferenceQuickstartProtocol {
+public final class GkeInferenceQuickstartClient: Clients.GkeInferenceQuickstartProtocol, Sendable {
   let inner: any Clients.GkeInferenceQuickstartStub
 
   /// Creates a new `GkeInferenceQuickstartClient` instance.

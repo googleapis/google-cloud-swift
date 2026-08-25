@@ -28,7 +28,7 @@ import GoogleCloudGax
 /// and can be used to create, read, and delete blockchain nodes.
 ///
 /// @Snippet(path: "BlockchainNodeEngineQuickstart")
-public class BlockchainNodeEngineClient: Clients.BlockchainNodeEngineProtocol {
+public final class BlockchainNodeEngineClient: Clients.BlockchainNodeEngineProtocol, Sendable {
   let inner: any Clients.BlockchainNodeEngineStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

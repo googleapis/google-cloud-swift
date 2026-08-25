@@ -25,7 +25,7 @@ import GoogleCloudGax
 /// Request service health events relevant to your Google Cloud project.
 ///
 /// @Snippet(path: "ServiceHealthQuickstart")
-public class ServiceHealthClient: Clients.ServiceHealthProtocol {
+public final class ServiceHealthClient: Clients.ServiceHealthProtocol, Sendable {
   let inner: any Clients.ServiceHealthStub
 
   /// Creates a new `ServiceHealthClient` instance.

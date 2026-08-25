@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol RegionHealthCheckServicesStub {
+    protocol RegionHealthCheckServicesStub: Sendable {
       func aggregatedList(
         request: RegionHealthCheckServicesClient.AggregatedListRequest,
         options: GoogleCloudGax.RequestOptions

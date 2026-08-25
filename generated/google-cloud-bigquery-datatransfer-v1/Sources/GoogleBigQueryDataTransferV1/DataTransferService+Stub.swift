@@ -20,7 +20,7 @@ import GoogleCloudWkt
 import GoogleCloudGax
 
 extension Clients {
-  protocol DataTransferServiceStub {
+  protocol DataTransferServiceStub: Sendable {
     func getDataSource(
       request: GetDataSourceRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleBigQueryDataTransferV1.DataSource

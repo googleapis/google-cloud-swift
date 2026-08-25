@@ -22,7 +22,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol TranslationServiceStub {
+  protocol TranslationServiceStub: Sendable {
     func translateText(
       request: TranslateTextRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudTranslateV3.TranslateTextResponse

@@ -23,7 +23,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol PolicyBasedRoutingServiceStub {
+  protocol PolicyBasedRoutingServiceStub: Sendable {
     func listPolicyBasedRoutes(
       request: ListPolicyBasedRoutesRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudNetworkConnectivityV1.ListPolicyBasedRoutesResponse

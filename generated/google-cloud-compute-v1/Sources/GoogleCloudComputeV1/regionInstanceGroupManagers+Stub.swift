@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol RegionInstanceGroupManagersStub {
+    protocol RegionInstanceGroupManagersStub: Sendable {
       func abandonInstances(
         request: RegionInstanceGroupManagersClient.AbandonInstancesRequest,
         options: GoogleCloudGax.RequestOptions

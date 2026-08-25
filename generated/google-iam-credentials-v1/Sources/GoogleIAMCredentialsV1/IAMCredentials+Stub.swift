@@ -19,7 +19,7 @@ import GoogleCloudWkt
 import GoogleCloudGax
 
 extension Clients {
-  protocol IAMCredentialsStub {
+  protocol IAMCredentialsStub: Sendable {
     func generateAccessToken(
       request: GenerateAccessTokenRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleIAMCredentialsV1.GenerateAccessTokenResponse

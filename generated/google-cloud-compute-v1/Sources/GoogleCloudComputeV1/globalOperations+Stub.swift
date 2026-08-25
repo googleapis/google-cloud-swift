@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol GlobalOperationsStub {
+    protocol GlobalOperationsStub: Sendable {
       func aggregatedList(
         request: GlobalOperationsClient.AggregatedListRequest,
         options: GoogleCloudGax.RequestOptions

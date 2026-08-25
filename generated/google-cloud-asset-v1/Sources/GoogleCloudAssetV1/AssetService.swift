@@ -26,7 +26,7 @@ import GoogleCloudGax
 /// Asset service definition.
 ///
 /// @Snippet(path: "AssetServiceQuickstart")
-public class AssetServiceClient: Clients.AssetServiceProtocol {
+public final class AssetServiceClient: Clients.AssetServiceProtocol, Sendable {
   let inner: any Clients.AssetServiceStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

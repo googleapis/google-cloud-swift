@@ -34,7 +34,7 @@
   /// CrowdCompute console.
   ///
   /// @Snippet(path: "SpecialistPoolServiceQuickstart")
-  public class SpecialistPoolServiceClient: Clients.SpecialistPoolServiceProtocol {
+  public final class SpecialistPoolServiceClient: Clients.SpecialistPoolServiceProtocol, Sendable {
     let inner: any Clients.SpecialistPoolServiceStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

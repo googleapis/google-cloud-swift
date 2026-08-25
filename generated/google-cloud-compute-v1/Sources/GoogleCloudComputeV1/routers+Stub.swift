@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol RoutersStub {
+    protocol RoutersStub: Sendable {
       func aggregatedList(
         request: RoutersClient.AggregatedListRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.RouterAggregatedList

@@ -22,7 +22,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol ProjectServiceStub {
+    protocol ProjectServiceStub: Sendable {
       func provisionProject(
         request: ProvisionProjectRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation

@@ -27,7 +27,7 @@ import GoogleCloudGax
 /// VM Migration Service
 ///
 /// @Snippet(path: "VmMigrationQuickstart")
-public class VmMigrationClient: Clients.VmMigrationProtocol {
+public final class VmMigrationClient: Clients.VmMigrationProtocol, Sendable {
   let inner: any Clients.VmMigrationStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

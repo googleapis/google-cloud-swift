@@ -21,7 +21,7 @@ import GoogleIAMV1
 import GoogleCloudGax
 
 extension Clients {
-  protocol SecretManagerServiceStub {
+  protocol SecretManagerServiceStub: Sendable {
     func listSecrets(
       request: ListSecretsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudSecretManagerV1.ListSecretsResponse

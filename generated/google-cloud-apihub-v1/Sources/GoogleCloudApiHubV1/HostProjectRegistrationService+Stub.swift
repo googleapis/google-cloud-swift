@@ -21,7 +21,7 @@ import GoogleLongRunning
 import GoogleCloudGax
 
 extension Clients {
-  protocol HostProjectRegistrationServiceStub {
+  protocol HostProjectRegistrationServiceStub: Sendable {
     func createHostProjectRegistration(
       request: CreateHostProjectRegistrationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudApiHubV1.HostProjectRegistration

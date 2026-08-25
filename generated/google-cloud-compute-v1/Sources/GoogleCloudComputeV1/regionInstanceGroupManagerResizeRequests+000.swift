@@ -25,8 +25,8 @@
   /// Service for the `regionInstanceGroupManagerResizeRequests` resource.
   ///
   /// @Snippet(path: "regionInstanceGroupManagerResizeRequestsQuickstart")
-  public class RegionInstanceGroupManagerResizeRequestsClient: Clients
-      .RegionInstanceGroupManagerResizeRequestsProtocol
+  public final class RegionInstanceGroupManagerResizeRequestsClient: Clients
+      .RegionInstanceGroupManagerResizeRequestsProtocol, Sendable
   {
     let inner: any Clients.RegionInstanceGroupManagerResizeRequestsStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy

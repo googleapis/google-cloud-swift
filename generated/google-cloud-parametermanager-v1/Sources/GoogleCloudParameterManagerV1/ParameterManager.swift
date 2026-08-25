@@ -25,7 +25,7 @@ import GoogleCloudGax
 /// Service describing handlers for resources
 ///
 /// @Snippet(path: "ParameterManagerQuickstart")
-public class ParameterManagerClient: Clients.ParameterManagerProtocol {
+public final class ParameterManagerClient: Clients.ParameterManagerProtocol, Sendable {
   let inner: any Clients.ParameterManagerStub
 
   /// Creates a new `ParameterManagerClient` instance.

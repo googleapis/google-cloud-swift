@@ -21,7 +21,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol PolicyBindingsStub {
+  protocol PolicyBindingsStub: Sendable {
     func createPolicyBinding(
       request: CreatePolicyBindingRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

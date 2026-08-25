@@ -25,7 +25,7 @@
   /// Service for the `globalAddresses` resource.
   ///
   /// @Snippet(path: "globalAddressesQuickstart")
-  public class GlobalAddressesClient: Clients.GlobalAddressesProtocol {
+  public final class GlobalAddressesClient: Clients.GlobalAddressesProtocol, Sendable {
     let inner: any Clients.GlobalAddressesStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

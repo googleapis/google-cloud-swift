@@ -25,7 +25,7 @@
   /// Service for the `zoneOperations` resource.
   ///
   /// @Snippet(path: "zoneOperationsQuickstart")
-  public class ZoneOperationsClient: Clients.ZoneOperationsProtocol {
+  public final class ZoneOperationsClient: Clients.ZoneOperationsProtocol, Sendable {
     let inner: any Clients.ZoneOperationsStub
 
     /// Creates a new `ZoneOperationsClient` instance.

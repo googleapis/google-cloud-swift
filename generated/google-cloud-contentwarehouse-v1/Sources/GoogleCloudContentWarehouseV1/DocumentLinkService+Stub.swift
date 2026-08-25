@@ -20,7 +20,7 @@ import GoogleLongRunning
 import GoogleCloudGax
 
 extension Clients {
-  protocol DocumentLinkServiceStub {
+  protocol DocumentLinkServiceStub: Sendable {
     func listLinkedTargets(
       request: ListLinkedTargetsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudContentWarehouseV1.ListLinkedTargetsResponse

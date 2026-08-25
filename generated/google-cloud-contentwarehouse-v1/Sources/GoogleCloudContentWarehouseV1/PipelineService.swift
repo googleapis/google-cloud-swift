@@ -26,7 +26,7 @@ import GoogleCloudGax
 /// This service lets you manage pipelines.
 ///
 /// @Snippet(path: "PipelineServiceQuickstart")
-public class PipelineServiceClient: Clients.PipelineServiceProtocol {
+public final class PipelineServiceClient: Clients.PipelineServiceProtocol, Sendable {
   let inner: any Clients.PipelineServiceStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

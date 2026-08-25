@@ -24,7 +24,7 @@ import GoogleCloudGax
 /// GatewayControl is the control plane API for Connect Gateway.
 ///
 /// @Snippet(path: "GatewayControlQuickstart")
-public class GatewayControlClient: Clients.GatewayControlProtocol {
+public final class GatewayControlClient: Clients.GatewayControlProtocol, Sendable {
   let inner: any Clients.GatewayControlStub
 
   /// Creates a new `GatewayControlClient` instance.

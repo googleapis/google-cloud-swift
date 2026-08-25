@@ -22,7 +22,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol WebhooksStub {
+    protocol WebhooksStub: Sendable {
       func listWebhooks(
         request: ListWebhooksRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowCXV3.ListWebhooksResponse

@@ -26,7 +26,7 @@ import GoogleCloudGax
 /// Data.
 ///
 /// @Snippet(path: "CloudApiRegistryQuickstart")
-public class CloudApiRegistryClient: Clients.CloudApiRegistryProtocol {
+public final class CloudApiRegistryClient: Clients.CloudApiRegistryProtocol, Sendable {
   let inner: any Clients.CloudApiRegistryStub
 
   /// Creates a new `CloudApiRegistryClient` instance.

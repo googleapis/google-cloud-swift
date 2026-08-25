@@ -26,7 +26,7 @@ import GoogleCloudGax
 /// This service helps you troubleshoot access issues for Google Cloud resources.
 ///
 /// @Snippet(path: "IamCheckerQuickstart")
-public class IamCheckerClient: Clients.IamCheckerProtocol {
+public final class IamCheckerClient: Clients.IamCheckerProtocol, Sendable {
   let inner: any Clients.IamCheckerStub
 
   /// Creates a new `IamCheckerClient` instance.

@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol SqlConnectServiceStub {
+    protocol SqlConnectServiceStub: Sendable {
       func getConnectSettings(
         request: GetConnectSettingsRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.ConnectSettings

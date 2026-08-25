@@ -23,7 +23,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol InterceptStub {
+  protocol InterceptStub: Sendable {
     func listInterceptEndpointGroups(
       request: ListInterceptEndpointGroupsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudNetworkSecurityV1.ListInterceptEndpointGroupsResponse

@@ -25,7 +25,7 @@
   /// Service for the `nodeTemplates` resource.
   ///
   /// @Snippet(path: "nodeTemplatesQuickstart")
-  public class NodeTemplatesClient: Clients.NodeTemplatesProtocol {
+  public final class NodeTemplatesClient: Clients.NodeTemplatesProtocol, Sendable {
     let inner: any Clients.NodeTemplatesStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

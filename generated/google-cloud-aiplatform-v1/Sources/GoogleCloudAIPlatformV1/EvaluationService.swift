@@ -28,7 +28,7 @@
   /// Vertex AI Online Evaluation Service.
   ///
   /// @Snippet(path: "EvaluationServiceQuickstart")
-  public class EvaluationServiceClient: Clients.EvaluationServiceProtocol {
+  public final class EvaluationServiceClient: Clients.EvaluationServiceProtocol, Sendable {
     let inner: any Clients.EvaluationServiceStub
 
     /// Creates a new `EvaluationServiceClient` instance.

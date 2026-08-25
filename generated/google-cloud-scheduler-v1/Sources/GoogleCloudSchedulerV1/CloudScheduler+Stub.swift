@@ -20,7 +20,7 @@ import GoogleCloudWkt
 import GoogleCloudGax
 
 extension Clients {
-  protocol CloudSchedulerStub {
+  protocol CloudSchedulerStub: Sendable {
     func listJobs(
       request: ListJobsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudSchedulerV1.ListJobsResponse

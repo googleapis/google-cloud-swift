@@ -25,7 +25,7 @@
   /// Service for the `snapshots` resource.
   ///
   /// @Snippet(path: "snapshotsQuickstart")
-  public class SnapshotsClient: Clients.SnapshotsProtocol {
+  public final class SnapshotsClient: Clients.SnapshotsProtocol, Sendable {
     let inner: any Clients.SnapshotsStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

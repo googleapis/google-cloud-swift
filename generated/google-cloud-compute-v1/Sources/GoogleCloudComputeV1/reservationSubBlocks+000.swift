@@ -25,7 +25,7 @@
   /// Service for the `reservationSubBlocks` resource.
   ///
   /// @Snippet(path: "reservationSubBlocksQuickstart")
-  public class ReservationSubBlocksClient: Clients.ReservationSubBlocksProtocol {
+  public final class ReservationSubBlocksClient: Clients.ReservationSubBlocksProtocol, Sendable {
     let inner: any Clients.ReservationSubBlocksStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

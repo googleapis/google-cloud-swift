@@ -20,7 +20,7 @@ import GoogleCloudWkt
 import GoogleCloudGax
 
 extension Clients {
-  protocol MetricServiceStub {
+  protocol MetricServiceStub: Sendable {
     func listMonitoredResourceDescriptors(
       request: ListMonitoredResourceDescriptorsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.ListMonitoredResourceDescriptorsResponse

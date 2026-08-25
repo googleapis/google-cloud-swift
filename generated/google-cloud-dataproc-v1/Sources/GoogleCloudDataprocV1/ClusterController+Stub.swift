@@ -22,7 +22,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol ClusterControllerStub {
+  protocol ClusterControllerStub: Sendable {
     func createCluster(
       request: CreateClusterRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

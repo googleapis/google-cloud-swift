@@ -21,7 +21,7 @@ import GoogleIAMV1
 import GoogleCloudGax
 
 extension Clients {
-  protocol RegistrationServiceStub {
+  protocol RegistrationServiceStub: Sendable {
     func createNamespace(
       request: CreateNamespaceRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudServiceDirectoryV1.Namespace

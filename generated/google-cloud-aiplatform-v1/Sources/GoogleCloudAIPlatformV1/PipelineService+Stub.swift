@@ -24,7 +24,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol PipelineServiceStub {
+    protocol PipelineServiceStub: Sendable {
       func createTrainingPipeline(
         request: CreateTrainingPipelineRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.TrainingPipeline

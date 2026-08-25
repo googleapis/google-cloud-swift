@@ -24,7 +24,7 @@ import GoogleCloudGax
 /// Service for the `changes` resource.
 ///
 /// @Snippet(path: "changesQuickstart")
-public class ChangesClient: Clients.ChangesProtocol {
+public final class ChangesClient: Clients.ChangesProtocol, Sendable {
   let inner: any Clients.ChangesStub
 
   /// Creates a new `ChangesClient` instance.

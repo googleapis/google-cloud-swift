@@ -27,7 +27,9 @@ import GoogleCloudGax
 /// Dataproc API.
 ///
 /// @Snippet(path: "AutoscalingPolicyServiceQuickstart")
-public class AutoscalingPolicyServiceClient: Clients.AutoscalingPolicyServiceProtocol {
+public final class AutoscalingPolicyServiceClient: Clients.AutoscalingPolicyServiceProtocol,
+  Sendable
+{
   let inner: any Clients.AutoscalingPolicyServiceStub
 
   /// Creates a new `AutoscalingPolicyServiceClient` instance.

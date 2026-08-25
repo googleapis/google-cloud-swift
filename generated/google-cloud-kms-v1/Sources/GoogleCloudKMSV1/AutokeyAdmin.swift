@@ -38,7 +38,7 @@ import GoogleCloudGax
 /// [google.cloud.kms.v1.CryptoKey]: <doc:CryptoKey>
 ///
 /// @Snippet(path: "AutokeyAdminQuickstart")
-public class AutokeyAdminClient: Clients.AutokeyAdminProtocol {
+public final class AutokeyAdminClient: Clients.AutokeyAdminProtocol, Sendable {
   let inner: any Clients.AutokeyAdminStub
 
   /// Creates a new `AutokeyAdminClient` instance.

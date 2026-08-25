@@ -27,7 +27,7 @@ import GoogleCloudGax
 /// Cloud Run WorkerPool Control Plane API.
 ///
 /// @Snippet(path: "WorkerPoolsQuickstart")
-public class WorkerPoolsClient: Clients.WorkerPoolsProtocol {
+public final class WorkerPoolsClient: Clients.WorkerPoolsProtocol, Sendable {
   let inner: any Clients.WorkerPoolsStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

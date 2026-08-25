@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol RegionDiskTypesStub {
+    protocol RegionDiskTypesStub: Sendable {
       func `get`(
         request: RegionDiskTypesClient.GetRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.DiskType

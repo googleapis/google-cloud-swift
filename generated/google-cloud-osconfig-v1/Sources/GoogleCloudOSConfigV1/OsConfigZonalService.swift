@@ -29,7 +29,7 @@ import GoogleCloudGax
 /// manage package installations and patch jobs for Compute Engine VM instances.
 ///
 /// @Snippet(path: "OsConfigZonalServiceQuickstart")
-public class OsConfigZonalServiceClient: Clients.OsConfigZonalServiceProtocol {
+public final class OsConfigZonalServiceClient: Clients.OsConfigZonalServiceProtocol, Sendable {
   let inner: any Clients.OsConfigZonalServiceStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

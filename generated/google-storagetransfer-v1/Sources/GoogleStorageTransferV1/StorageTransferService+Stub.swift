@@ -21,7 +21,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol StorageTransferServiceStub {
+  protocol StorageTransferServiceStub: Sendable {
     func getGoogleServiceAccount(
       request: GetGoogleServiceAccountRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleStorageTransferV1.GoogleServiceAccount

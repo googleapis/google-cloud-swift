@@ -23,7 +23,7 @@ import GoogleLongRunning
 @_spi(GoogleCloudInternal) import GoogleCloudGax
 
 extension Clients {
-  class PolicyTagManagerSerializationTransport: PolicyTagManagerSerializationStub {
+  final class PolicyTagManagerSerializationTransport: PolicyTagManagerSerializationStub {
     let inner: GoogleCloudGax._HTTPClient
 
     public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {

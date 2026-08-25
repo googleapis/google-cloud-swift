@@ -29,7 +29,7 @@ import GoogleCloudGax
 /// [google.cloud.retail.v2.Product]: <doc:Product>
 ///
 /// @Snippet(path: "ProductServiceQuickstart")
-public class ProductServiceClient: Clients.ProductServiceProtocol {
+public final class ProductServiceClient: Clients.ProductServiceProtocol, Sendable {
   let inner: any Clients.ProductServiceStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

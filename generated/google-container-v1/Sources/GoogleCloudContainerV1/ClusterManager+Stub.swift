@@ -19,7 +19,7 @@ import GoogleCloudWkt
 import GoogleCloudGax
 
 extension Clients {
-  protocol ClusterManagerStub {
+  protocol ClusterManagerStub: Sendable {
     func listClusters(
       request: ListClustersRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudContainerV1.ListClustersResponse

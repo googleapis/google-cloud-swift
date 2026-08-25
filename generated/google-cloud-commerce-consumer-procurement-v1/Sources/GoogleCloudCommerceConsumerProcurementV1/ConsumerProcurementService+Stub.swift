@@ -21,7 +21,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol ConsumerProcurementServiceStub {
+  protocol ConsumerProcurementServiceStub: Sendable {
     func placeOrder(
       request: PlaceOrderRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

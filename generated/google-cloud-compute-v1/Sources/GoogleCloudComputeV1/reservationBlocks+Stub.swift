@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol ReservationBlocksStub {
+    protocol ReservationBlocksStub: Sendable {
       func `get`(
         request: ReservationBlocksClient.GetRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.ReservationBlocksGetResponse

@@ -24,7 +24,7 @@ import GoogleCloudGax
 /// A service to manage file attachments for Google Cloud support cases.
 ///
 /// @Snippet(path: "CaseAttachmentServiceQuickstart")
-public class CaseAttachmentServiceClient: Clients.CaseAttachmentServiceProtocol {
+public final class CaseAttachmentServiceClient: Clients.CaseAttachmentServiceProtocol, Sendable {
   let inner: any Clients.CaseAttachmentServiceStub
 
   /// Creates a new `CaseAttachmentServiceClient` instance.

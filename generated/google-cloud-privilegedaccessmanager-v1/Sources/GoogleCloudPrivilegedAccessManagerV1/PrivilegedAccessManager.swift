@@ -46,7 +46,8 @@ import GoogleCloudGax
 ///   taken back after the requested duration is over.
 ///
 /// @Snippet(path: "PrivilegedAccessManagerQuickstart")
-public class PrivilegedAccessManagerClient: Clients.PrivilegedAccessManagerProtocol {
+public final class PrivilegedAccessManagerClient: Clients.PrivilegedAccessManagerProtocol, Sendable
+{
   let inner: any Clients.PrivilegedAccessManagerStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

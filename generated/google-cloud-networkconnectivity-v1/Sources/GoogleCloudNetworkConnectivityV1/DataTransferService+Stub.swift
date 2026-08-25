@@ -23,7 +23,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol DataTransferServiceStub {
+  protocol DataTransferServiceStub: Sendable {
     func listMulticloudDataTransferConfigs(
       request: ListMulticloudDataTransferConfigsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudNetworkConnectivityV1.ListMulticloudDataTransferConfigsResponse

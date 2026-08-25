@@ -21,7 +21,7 @@ import GoogleIAMV1
 import GoogleCloudGax
 
 extension Clients {
-  protocol CloudTasksStub {
+  protocol CloudTasksStub: Sendable {
     func listQueues(
       request: ListQueuesRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudTasksV2.ListQueuesResponse

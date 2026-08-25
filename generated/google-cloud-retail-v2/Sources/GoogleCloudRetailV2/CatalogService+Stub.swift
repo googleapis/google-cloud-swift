@@ -20,7 +20,7 @@ import GoogleLongRunning
 import GoogleCloudGax
 
 extension Clients {
-  protocol CatalogServiceStub {
+  protocol CatalogServiceStub: Sendable {
     func listCatalogs(
       request: ListCatalogsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudRetailV2.ListCatalogsResponse

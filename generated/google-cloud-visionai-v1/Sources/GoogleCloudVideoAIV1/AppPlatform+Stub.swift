@@ -22,7 +22,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol AppPlatformStub {
+  protocol AppPlatformStub: Sendable {
     func listApplications(
       request: ListApplicationsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.ListApplicationsResponse

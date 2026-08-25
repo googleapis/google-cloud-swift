@@ -29,7 +29,7 @@
   /// A service for retrieving relevant contexts.
   ///
   /// @Snippet(path: "VertexRagServiceQuickstart")
-  public class VertexRagServiceClient: Clients.VertexRagServiceProtocol {
+  public final class VertexRagServiceClient: Clients.VertexRagServiceProtocol, Sendable {
     let inner: any Clients.VertexRagServiceStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

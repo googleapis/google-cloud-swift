@@ -25,7 +25,7 @@
   /// Service for the `regionOperations` resource.
   ///
   /// @Snippet(path: "regionOperationsQuickstart")
-  public class RegionOperationsClient: Clients.RegionOperationsProtocol {
+  public final class RegionOperationsClient: Clients.RegionOperationsProtocol, Sendable {
     let inner: any Clients.RegionOperationsStub
 
     /// Creates a new `RegionOperationsClient` instance.

@@ -26,7 +26,7 @@ import GoogleRpc
 @_spi(GoogleCloudInternal) import GoogleCloudGax
 
 extension Clients {
-  class OrganizationSecurityProfileGroupServiceTransport:
+  final class OrganizationSecurityProfileGroupServiceTransport:
     OrganizationSecurityProfileGroupServiceStub
   {
     let inner: GoogleCloudGax._HTTPClient

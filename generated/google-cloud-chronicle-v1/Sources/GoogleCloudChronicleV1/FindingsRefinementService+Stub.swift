@@ -20,7 +20,7 @@ import GoogleLongRunning
 import GoogleCloudGax
 
 extension Clients {
-  protocol FindingsRefinementServiceStub {
+  protocol FindingsRefinementServiceStub: Sendable {
     func getFindingsRefinement(
       request: GetFindingsRefinementRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.FindingsRefinement

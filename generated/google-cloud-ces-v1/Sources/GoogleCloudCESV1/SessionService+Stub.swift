@@ -21,7 +21,7 @@ import GoogleLongRunning
 import GoogleCloudGax
 
 extension Clients {
-  protocol SessionServiceStub {
+  protocol SessionServiceStub: Sendable {
     func runSession(
       request: RunSessionRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudCESV1.RunSessionResponse

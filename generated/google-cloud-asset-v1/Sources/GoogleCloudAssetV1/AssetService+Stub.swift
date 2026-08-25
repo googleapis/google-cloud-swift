@@ -21,7 +21,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol AssetServiceStub {
+  protocol AssetServiceStub: Sendable {
     func exportAssets(
       request: ExportAssetsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

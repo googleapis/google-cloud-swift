@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol LicensesStub {
+    protocol LicensesStub: Sendable {
       func delete(
         request: LicensesClient.DeleteRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation

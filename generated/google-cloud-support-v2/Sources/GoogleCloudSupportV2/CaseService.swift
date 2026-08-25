@@ -24,7 +24,7 @@ import GoogleCloudGax
 /// A service to manage Google Cloud support cases.
 ///
 /// @Snippet(path: "CaseServiceQuickstart")
-public class CaseServiceClient: Clients.CaseServiceProtocol {
+public final class CaseServiceClient: Clients.CaseServiceProtocol, Sendable {
   let inner: any Clients.CaseServiceStub
 
   /// Creates a new `CaseServiceClient` instance.

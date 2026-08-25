@@ -22,7 +22,7 @@ import GoogleCloudWkt
 @_spi(GoogleCloudInternal) import GoogleCloudGax
 
 extension Clients {
-  class QuotaAdjusterSettingsManagerTransport: QuotaAdjusterSettingsManagerStub {
+  final class QuotaAdjusterSettingsManagerTransport: QuotaAdjusterSettingsManagerStub {
     let inner: GoogleCloudGax._HTTPClient
 
     public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {

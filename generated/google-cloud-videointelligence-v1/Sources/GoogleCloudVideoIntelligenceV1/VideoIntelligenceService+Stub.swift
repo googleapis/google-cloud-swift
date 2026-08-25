@@ -21,7 +21,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol VideoIntelligenceServiceStub {
+  protocol VideoIntelligenceServiceStub: Sendable {
     func annotateVideo(
       request: AnnotateVideoRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

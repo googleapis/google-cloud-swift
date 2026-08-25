@@ -29,7 +29,7 @@
   /// [google.cloud.dialogflow.v2.Participant]: <doc:Participant>
   ///
   /// @Snippet(path: "ParticipantsQuickstart")
-  public class ParticipantsClient: Clients.ParticipantsProtocol {
+  public final class ParticipantsClient: Clients.ParticipantsProtocol, Sendable {
     let inner: any Clients.ParticipantsStub
 
     /// Creates a new `ParticipantsClient` instance.

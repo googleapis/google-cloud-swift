@@ -23,7 +23,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol LlmUtilityServiceStub {
+    protocol LlmUtilityServiceStub: Sendable {
       func countTokens(
         request: CountTokensRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.CountTokensResponse

@@ -26,7 +26,7 @@ import GoogleCloudGax
 /// or more alert policies should not fire alerts for the specified duration.
 ///
 /// @Snippet(path: "SnoozeServiceQuickstart")
-public class SnoozeServiceClient: Clients.SnoozeServiceProtocol {
+public final class SnoozeServiceClient: Clients.SnoozeServiceProtocol, Sendable {
   let inner: any Clients.SnoozeServiceStub
 
   /// Creates a new `SnoozeServiceClient` instance.

@@ -25,7 +25,9 @@
   /// Service for the `zoneVmExtensionPolicies` resource.
   ///
   /// @Snippet(path: "zoneVmExtensionPoliciesQuickstart")
-  public class ZoneVmExtensionPoliciesClient: Clients.ZoneVmExtensionPoliciesProtocol {
+  public final class ZoneVmExtensionPoliciesClient: Clients.ZoneVmExtensionPoliciesProtocol,
+    Sendable
+  {
     let inner: any Clients.ZoneVmExtensionPoliciesStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

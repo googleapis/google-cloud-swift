@@ -30,7 +30,9 @@ import GoogleCloudGax
 /// structured information from unstructured or semi-structured documents.
 ///
 /// @Snippet(path: "DocumentProcessorServiceQuickstart")
-public class DocumentProcessorServiceClient: Clients.DocumentProcessorServiceProtocol {
+public final class DocumentProcessorServiceClient: Clients.DocumentProcessorServiceProtocol,
+  Sendable
+{
   let inner: any Clients.DocumentProcessorServiceStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

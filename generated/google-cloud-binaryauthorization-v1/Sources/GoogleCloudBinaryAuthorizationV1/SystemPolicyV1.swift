@@ -25,7 +25,7 @@ import GoogleCloudGax
 /// API for working with the system policy.
 ///
 /// @Snippet(path: "SystemPolicyV1Quickstart")
-public class SystemPolicyV1Client: Clients.SystemPolicyV1Protocol {
+public final class SystemPolicyV1Client: Clients.SystemPolicyV1Protocol, Sendable {
   let inner: any Clients.SystemPolicyV1Stub
 
   /// Creates a new `SystemPolicyV1Client` instance.

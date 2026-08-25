@@ -29,7 +29,7 @@
   /// request.
   ///
   /// @Snippet(path: "ControlServiceQuickstart")
-  public class ControlServiceClient: Clients.ControlServiceProtocol {
+  public final class ControlServiceClient: Clients.ControlServiceProtocol, Sendable {
     let inner: any Clients.ControlServiceStub
 
     /// Creates a new `ControlServiceClient` instance.

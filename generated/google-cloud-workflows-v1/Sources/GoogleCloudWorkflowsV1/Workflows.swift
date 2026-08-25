@@ -29,7 +29,7 @@ import GoogleCloudGax
 /// networking interruptions.
 ///
 /// @Snippet(path: "WorkflowsQuickstart")
-public class WorkflowsClient: Clients.WorkflowsProtocol {
+public final class WorkflowsClient: Clients.WorkflowsProtocol, Sendable {
   let inner: any Clients.WorkflowsStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

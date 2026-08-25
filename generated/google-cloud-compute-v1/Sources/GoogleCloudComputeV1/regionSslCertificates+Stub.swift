@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol RegionSslCertificatesStub {
+    protocol RegionSslCertificatesStub: Sendable {
       func delete(
         request: RegionSslCertificatesClient.DeleteRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation

@@ -31,7 +31,7 @@ import GoogleCloudGax
 /// the tables.
 ///
 /// @Snippet(path: "BigtableTableAdminQuickstart")
-public class BigtableTableAdminClient: Clients.BigtableTableAdminProtocol {
+public final class BigtableTableAdminClient: Clients.BigtableTableAdminProtocol, Sendable {
   let inner: any Clients.BigtableTableAdminStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

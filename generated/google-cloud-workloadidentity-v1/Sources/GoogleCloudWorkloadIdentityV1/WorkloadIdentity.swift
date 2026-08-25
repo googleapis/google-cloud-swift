@@ -27,7 +27,7 @@ import GoogleCloudGax
 /// Service describing handlers for resources
 ///
 /// @Snippet(path: "WorkloadIdentityQuickstart")
-public class WorkloadIdentityClient: Clients.WorkloadIdentityProtocol {
+public final class WorkloadIdentityClient: Clients.WorkloadIdentityProtocol, Sendable {
   let inner: any Clients.WorkloadIdentityStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

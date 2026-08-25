@@ -22,7 +22,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol PrivilegedAccessManagerStub {
+  protocol PrivilegedAccessManagerStub: Sendable {
     func checkOnboardingStatus(
       request: CheckOnboardingStatusRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudPrivilegedAccessManagerV1.CheckOnboardingStatusResponse

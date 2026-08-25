@@ -27,7 +27,7 @@ import GoogleCloudGax
 /// Provides natural language translation operations.
 ///
 /// @Snippet(path: "TranslationServiceQuickstart")
-public class TranslationServiceClient: Clients.TranslationServiceProtocol {
+public final class TranslationServiceClient: Clients.TranslationServiceProtocol, Sendable {
   let inner: any Clients.TranslationServiceStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

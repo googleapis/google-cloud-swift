@@ -20,7 +20,7 @@ import GoogleCloudWkt
 import GoogleCloudGax
 
 extension Clients {
-  protocol MaintenanceStub {
+  protocol MaintenanceStub: Sendable {
     func summarizeMaintenances(
       request: SummarizeMaintenancesRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudMaintenanceApiV1.SummarizeMaintenancesResponse

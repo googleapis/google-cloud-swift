@@ -23,7 +23,7 @@ import GoogleLongRunning
 @_spi(GoogleCloudInternal) import GoogleCloudGax
 
 extension Clients {
-  class FindingsRefinementServiceTransport: FindingsRefinementServiceStub {
+  final class FindingsRefinementServiceTransport: FindingsRefinementServiceStub {
     let inner: GoogleCloudGax._HTTPClient
 
     public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {

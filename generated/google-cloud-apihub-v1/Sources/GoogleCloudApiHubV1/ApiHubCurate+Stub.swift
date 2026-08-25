@@ -21,7 +21,7 @@ import GoogleLongRunning
 import GoogleCloudGax
 
 extension Clients {
-  protocol ApiHubCurateStub {
+  protocol ApiHubCurateStub: Sendable {
     func createCuration(
       request: CreateCurationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudApiHubV1.Curation

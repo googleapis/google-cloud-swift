@@ -25,7 +25,7 @@ import GoogleCloudGax
 /// ReferenceListService provides an interface for managing reference lists.
 ///
 /// @Snippet(path: "ReferenceListServiceQuickstart")
-public class ReferenceListServiceClient: Clients.ReferenceListServiceProtocol {
+public final class ReferenceListServiceClient: Clients.ReferenceListServiceProtocol, Sendable {
   let inner: any Clients.ReferenceListServiceStub
 
   /// Creates a new `ReferenceListServiceClient` instance.

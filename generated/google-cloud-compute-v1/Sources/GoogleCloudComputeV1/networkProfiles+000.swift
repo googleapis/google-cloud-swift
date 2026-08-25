@@ -25,7 +25,7 @@
   /// Service for the `networkProfiles` resource.
   ///
   /// @Snippet(path: "networkProfilesQuickstart")
-  public class NetworkProfilesClient: Clients.NetworkProfilesProtocol {
+  public final class NetworkProfilesClient: Clients.NetworkProfilesProtocol, Sendable {
     let inner: any Clients.NetworkProfilesStub
 
     /// Creates a new `NetworkProfilesClient` instance.

@@ -27,7 +27,9 @@ import GoogleCloudGax
 /// taxonomy of categorized Health Metrics.
 ///
 /// @Snippet(path: "ServiceMonitoringServiceQuickstart")
-public class ServiceMonitoringServiceClient: Clients.ServiceMonitoringServiceProtocol {
+public final class ServiceMonitoringServiceClient: Clients.ServiceMonitoringServiceProtocol,
+  Sendable
+{
   let inner: any Clients.ServiceMonitoringServiceStub
 
   /// Creates a new `ServiceMonitoringServiceClient` instance.

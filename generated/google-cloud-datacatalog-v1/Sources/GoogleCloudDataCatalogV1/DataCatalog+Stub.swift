@@ -22,7 +22,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol DataCatalogStub {
+  protocol DataCatalogStub: Sendable {
     func searchCatalog(
       request: SearchCatalogRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudDataCatalogV1.SearchCatalogResponse

@@ -22,7 +22,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol AlloyDBAdminStub {
+  protocol AlloyDBAdminStub: Sendable {
     func listClusters(
       request: ListClustersRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudAlloyDBV1.ListClustersResponse

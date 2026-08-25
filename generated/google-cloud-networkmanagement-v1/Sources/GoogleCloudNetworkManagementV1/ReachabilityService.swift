@@ -35,7 +35,7 @@ import GoogleCloudGax
 /// to troubleshoot connectivity issues.
 ///
 /// @Snippet(path: "ReachabilityServiceQuickstart")
-public class ReachabilityServiceClient: Clients.ReachabilityServiceProtocol {
+public final class ReachabilityServiceClient: Clients.ReachabilityServiceProtocol, Sendable {
   let inner: any Clients.ReachabilityServiceStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

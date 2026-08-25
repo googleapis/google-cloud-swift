@@ -21,7 +21,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol ServingConfigServiceStub {
+    protocol ServingConfigServiceStub: Sendable {
       func updateServingConfig(
         request: UpdateServingConfigRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudDiscoveryEngineV1.ServingConfig

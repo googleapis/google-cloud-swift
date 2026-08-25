@@ -29,7 +29,7 @@ import GoogleCloudGax
 /// Engine VM instances to run the jobs.
 ///
 /// @Snippet(path: "BatchServiceQuickstart")
-public class BatchServiceClient: Clients.BatchServiceProtocol {
+public final class BatchServiceClient: Clients.BatchServiceProtocol, Sendable {
   let inner: any Clients.BatchServiceStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

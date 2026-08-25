@@ -22,7 +22,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol EdgeNetworkStub {
+  protocol EdgeNetworkStub: Sendable {
     func initializeZone(
       request: InitializeZoneRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudEdgeNetworkV1.InitializeZoneResponse

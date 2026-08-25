@@ -37,7 +37,7 @@ import GoogleCloudGax
 /// AccessPolicies
 ///
 /// @Snippet(path: "AccessContextManagerQuickstart")
-public class AccessContextManagerClient: Clients.AccessContextManagerProtocol {
+public final class AccessContextManagerClient: Clients.AccessContextManagerProtocol, Sendable {
   let inner: any Clients.AccessContextManagerStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

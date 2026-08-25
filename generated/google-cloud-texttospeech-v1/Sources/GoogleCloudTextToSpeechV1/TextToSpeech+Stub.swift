@@ -20,7 +20,7 @@ import GoogleLongRunning
 import GoogleCloudGax
 
 extension Clients {
-  protocol TextToSpeechStub {
+  protocol TextToSpeechStub: Sendable {
     func listVoices(
       request: ListVoicesRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudTextToSpeechV1.ListVoicesResponse

@@ -29,7 +29,7 @@ import GoogleCloudGax
 /// manage backup and restore operations for their GKE clusters.
 ///
 /// @Snippet(path: "BackupForGKEQuickstart")
-public class BackupForGKEClient: Clients.BackupForGKEProtocol {
+public final class BackupForGKEClient: Clients.BackupForGKEProtocol, Sendable {
   let inner: any Clients.BackupForGKEStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

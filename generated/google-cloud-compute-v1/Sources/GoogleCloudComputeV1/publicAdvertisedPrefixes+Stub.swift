@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol PublicAdvertisedPrefixesStub {
+    protocol PublicAdvertisedPrefixesStub: Sendable {
       func announce(
         request: PublicAdvertisedPrefixesClient.AnnounceRequest,
         options: GoogleCloudGax.RequestOptions

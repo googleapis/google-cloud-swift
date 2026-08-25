@@ -21,7 +21,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol SearchServiceStub {
+    protocol SearchServiceStub: Sendable {
       func search(
         request: SearchRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudDiscoveryEngineV1.SearchResponse

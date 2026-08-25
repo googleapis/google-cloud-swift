@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol SqlBackupRunsServiceStub {
+    protocol SqlBackupRunsServiceStub: Sendable {
       func delete(
         request: SqlBackupRunsDeleteRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.Operation

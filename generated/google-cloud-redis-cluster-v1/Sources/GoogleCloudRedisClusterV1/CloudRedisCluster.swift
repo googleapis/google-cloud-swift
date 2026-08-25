@@ -41,7 +41,7 @@ import GoogleCloudGax
 /// * `projects/redpepper-1290/locations/us-central1/clusters/my-redis`
 ///
 /// @Snippet(path: "CloudRedisClusterQuickstart")
-public class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol {
+public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, Sendable {
   let inner: any Clients.CloudRedisClusterStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

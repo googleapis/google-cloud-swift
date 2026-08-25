@@ -25,7 +25,7 @@ import GoogleCloudGax
 /// Readonly service to query available ImageVersions.
 ///
 /// @Snippet(path: "ImageVersionsQuickstart")
-public class ImageVersionsClient: Clients.ImageVersionsProtocol {
+public final class ImageVersionsClient: Clients.ImageVersionsProtocol, Sendable {
   let inner: any Clients.ImageVersionsStub
 
   /// Creates a new `ImageVersionsClient` instance.

@@ -27,7 +27,7 @@
   @_spi(GoogleCloudInternal) import GoogleCloudGax
 
   extension Clients {
-    class ReasoningEngineServiceTransport: ReasoningEngineServiceStub {
+    final class ReasoningEngineServiceTransport: ReasoningEngineServiceStub {
       let inner: GoogleCloudGax._HTTPClient
 
       public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {

@@ -27,7 +27,7 @@ import GoogleCloudGax
 /// Retail recommendation business metric is currently not available.
 ///
 /// @Snippet(path: "AnalyticsServiceQuickstart")
-public class AnalyticsServiceClient: Clients.AnalyticsServiceProtocol {
+public final class AnalyticsServiceClient: Clients.AnalyticsServiceProtocol, Sendable {
   let inner: any Clients.AnalyticsServiceStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

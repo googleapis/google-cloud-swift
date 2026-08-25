@@ -30,7 +30,7 @@
   /// datalabeling.googleapis.com and ml.googleapis.com to Vertex AI.
   ///
   /// @Snippet(path: "MigrationServiceQuickstart")
-  public class MigrationServiceClient: Clients.MigrationServiceProtocol {
+  public final class MigrationServiceClient: Clients.MigrationServiceProtocol, Sendable {
     let inner: any Clients.MigrationServiceStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

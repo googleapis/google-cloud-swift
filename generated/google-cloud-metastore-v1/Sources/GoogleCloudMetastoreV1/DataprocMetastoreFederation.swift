@@ -40,7 +40,9 @@ import GoogleCloudGax
 /// `projects/{project_number}/locations/{location_id}/federations/{federation_id}`.
 ///
 /// @Snippet(path: "DataprocMetastoreFederationQuickstart")
-public class DataprocMetastoreFederationClient: Clients.DataprocMetastoreFederationProtocol {
+public final class DataprocMetastoreFederationClient: Clients.DataprocMetastoreFederationProtocol,
+  Sendable
+{
   let inner: any Clients.DataprocMetastoreFederationStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

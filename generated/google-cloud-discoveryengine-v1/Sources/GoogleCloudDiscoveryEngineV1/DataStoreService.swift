@@ -30,7 +30,7 @@
   /// [google.cloud.discoveryengine.v1.DataStore]: <doc:DataStore>
   ///
   /// @Snippet(path: "DataStoreServiceQuickstart")
-  public class DataStoreServiceClient: Clients.DataStoreServiceProtocol {
+  public final class DataStoreServiceClient: Clients.DataStoreServiceProtocol, Sendable {
     let inner: any Clients.DataStoreServiceStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

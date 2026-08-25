@@ -27,7 +27,7 @@ import GoogleCloudGax
 /// bindings.
 ///
 /// @Snippet(path: "PolicyBindingsQuickstart")
-public class PolicyBindingsClient: Clients.PolicyBindingsProtocol {
+public final class PolicyBindingsClient: Clients.PolicyBindingsProtocol, Sendable {
   let inner: any Clients.PolicyBindingsStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

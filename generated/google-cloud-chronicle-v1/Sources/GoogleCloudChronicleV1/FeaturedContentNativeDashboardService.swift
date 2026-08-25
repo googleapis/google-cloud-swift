@@ -26,8 +26,8 @@ import GoogleCloudGax
 /// FeaturedContentNativeDashboard.
 ///
 /// @Snippet(path: "FeaturedContentNativeDashboardServiceQuickstart")
-public class FeaturedContentNativeDashboardServiceClient: Clients
-    .FeaturedContentNativeDashboardServiceProtocol
+public final class FeaturedContentNativeDashboardServiceClient: Clients
+    .FeaturedContentNativeDashboardServiceProtocol, Sendable
 {
   let inner: any Clients.FeaturedContentNativeDashboardServiceStub
 

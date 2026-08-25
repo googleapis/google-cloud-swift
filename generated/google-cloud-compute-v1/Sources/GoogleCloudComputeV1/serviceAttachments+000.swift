@@ -25,7 +25,7 @@
   /// Service for the `serviceAttachments` resource.
   ///
   /// @Snippet(path: "serviceAttachmentsQuickstart")
-  public class ServiceAttachmentsClient: Clients.ServiceAttachmentsProtocol {
+  public final class ServiceAttachmentsClient: Clients.ServiceAttachmentsProtocol, Sendable {
     let inner: any Clients.ServiceAttachmentsStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

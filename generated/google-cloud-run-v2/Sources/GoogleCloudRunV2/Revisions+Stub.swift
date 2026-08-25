@@ -21,7 +21,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol RevisionsStub {
+  protocol RevisionsStub: Sendable {
     func getRevision(
       request: GetRevisionRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudRunV2.Revision

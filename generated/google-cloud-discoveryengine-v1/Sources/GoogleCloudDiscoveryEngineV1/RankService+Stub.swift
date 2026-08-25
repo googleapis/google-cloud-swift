@@ -21,7 +21,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol RankServiceStub {
+    protocol RankServiceStub: Sendable {
       func rank(
         request: RankRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudDiscoveryEngineV1.RankResponse

@@ -20,7 +20,7 @@ import GoogleLongRunning
 import GoogleCloudGax
 
 extension Clients {
-  protocol AuthorizedCertificatesStub {
+  protocol AuthorizedCertificatesStub: Sendable {
     func listAuthorizedCertificates(
       request: ListAuthorizedCertificatesRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleAppEngineV1.ListAuthorizedCertificatesResponse

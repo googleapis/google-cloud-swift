@@ -22,7 +22,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol UserEventServiceStub {
+  protocol UserEventServiceStub: Sendable {
     func writeUserEvent(
       request: WriteUserEventRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudRetailV2.UserEvent

@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol RegionSecurityPoliciesStub {
+    protocol RegionSecurityPoliciesStub: Sendable {
       func addRule(
         request: RegionSecurityPoliciesClient.AddRuleRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation

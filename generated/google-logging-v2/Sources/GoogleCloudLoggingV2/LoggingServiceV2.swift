@@ -26,7 +26,7 @@ import GoogleCloudGax
 /// Service for ingesting and querying logs.
 ///
 /// @Snippet(path: "LoggingServiceV2Quickstart")
-public class LoggingServiceV2Client: Clients.LoggingServiceV2Protocol {
+public final class LoggingServiceV2Client: Clients.LoggingServiceV2Protocol, Sendable {
   let inner: any Clients.LoggingServiceV2Stub
 
   /// Creates a new `LoggingServiceV2Client` instance.

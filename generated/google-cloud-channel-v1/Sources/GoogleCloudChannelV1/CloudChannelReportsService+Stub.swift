@@ -21,7 +21,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol CloudChannelReportsServiceStub {
+  protocol CloudChannelReportsServiceStub: Sendable {
     func runReportJob(
       request: RunReportJobRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

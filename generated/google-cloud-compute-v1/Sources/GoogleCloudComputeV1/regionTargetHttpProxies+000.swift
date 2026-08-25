@@ -25,7 +25,9 @@
   /// Service for the `regionTargetHttpProxies` resource.
   ///
   /// @Snippet(path: "regionTargetHttpProxiesQuickstart")
-  public class RegionTargetHttpProxiesClient: Clients.RegionTargetHttpProxiesProtocol {
+  public final class RegionTargetHttpProxiesClient: Clients.RegionTargetHttpProxiesProtocol,
+    Sendable
+  {
     let inner: any Clients.RegionTargetHttpProxiesStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

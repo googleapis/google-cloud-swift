@@ -25,7 +25,7 @@
   /// Service for the `targetPools` resource.
   ///
   /// @Snippet(path: "targetPoolsQuickstart")
-  public class TargetPoolsClient: Clients.TargetPoolsProtocol {
+  public final class TargetPoolsClient: Clients.TargetPoolsProtocol, Sendable {
     let inner: any Clients.TargetPoolsStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

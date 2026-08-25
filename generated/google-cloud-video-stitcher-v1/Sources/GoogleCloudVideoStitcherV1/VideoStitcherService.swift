@@ -30,7 +30,7 @@ import GoogleCloudGax
 /// content with any standard VMAP compliant ad server.
 ///
 /// @Snippet(path: "VideoStitcherServiceQuickstart")
-public class VideoStitcherServiceClient: Clients.VideoStitcherServiceProtocol {
+public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProtocol, Sendable {
   let inner: any Clients.VideoStitcherServiceStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

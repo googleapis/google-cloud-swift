@@ -19,7 +19,7 @@ import GoogleCloudWkt
 import GoogleCloudGax
 
 extension Clients {
-  protocol ResponsePolicyRulesStub {
+  protocol ResponsePolicyRulesStub: Sendable {
     func create(
       request: ResponsePolicyRulesClient.CreateRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> ResponsePolicyRule

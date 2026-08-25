@@ -29,7 +29,7 @@
   /// [google.cloud.dialogflow.cx.v3.Generator]: <doc:Generator>
   ///
   /// @Snippet(path: "GeneratorsQuickstart")
-  public class GeneratorsClient: Clients.GeneratorsProtocol {
+  public final class GeneratorsClient: Clients.GeneratorsProtocol, Sendable {
     let inner: any Clients.GeneratorsStub
 
     /// Creates a new `GeneratorsClient` instance.

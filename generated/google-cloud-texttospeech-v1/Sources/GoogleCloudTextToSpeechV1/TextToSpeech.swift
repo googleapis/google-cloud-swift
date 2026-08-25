@@ -25,7 +25,7 @@ import GoogleCloudGax
 /// Service that implements Google Cloud Text-to-Speech API.
 ///
 /// @Snippet(path: "TextToSpeechQuickstart")
-public class TextToSpeechClient: Clients.TextToSpeechProtocol {
+public final class TextToSpeechClient: Clients.TextToSpeechProtocol, Sendable {
   let inner: any Clients.TextToSpeechStub
 
   /// Creates a new `TextToSpeechClient` instance.

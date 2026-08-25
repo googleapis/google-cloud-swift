@@ -22,7 +22,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol JobControllerStub {
+  protocol JobControllerStub: Sendable {
     func submitJob(
       request: SubmitJobRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudDataprocV1.Job

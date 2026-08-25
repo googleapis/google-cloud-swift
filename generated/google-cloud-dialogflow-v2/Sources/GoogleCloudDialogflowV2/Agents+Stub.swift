@@ -23,7 +23,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol AgentsStub {
+    protocol AgentsStub: Sendable {
       func getAgent(
         request: GetAgentRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.Agent

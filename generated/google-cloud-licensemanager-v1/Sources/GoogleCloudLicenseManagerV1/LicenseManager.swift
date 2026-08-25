@@ -27,7 +27,7 @@ import GoogleCloudGax
 /// Service describing handlers for resources
 ///
 /// @Snippet(path: "LicenseManagerQuickstart")
-public class LicenseManagerClient: Clients.LicenseManagerProtocol {
+public final class LicenseManagerClient: Clients.LicenseManagerProtocol, Sendable {
   let inner: any Clients.LicenseManagerStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

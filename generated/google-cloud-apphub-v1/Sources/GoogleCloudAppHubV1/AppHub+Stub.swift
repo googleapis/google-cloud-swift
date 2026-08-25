@@ -23,7 +23,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol AppHubStub {
+  protocol AppHubStub: Sendable {
     func lookupServiceProjectAttachment(
       request: LookupServiceProjectAttachmentRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudAppHubV1.LookupServiceProjectAttachmentResponse

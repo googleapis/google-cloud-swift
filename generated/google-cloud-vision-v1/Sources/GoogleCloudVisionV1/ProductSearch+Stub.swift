@@ -21,7 +21,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol ProductSearchStub {
+  protocol ProductSearchStub: Sendable {
     func createProductSet(
       request: CreateProductSetRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudVisionV1.ProductSet

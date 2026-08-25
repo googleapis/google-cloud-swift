@@ -27,7 +27,7 @@ import GoogleCloudGax
 /// Service that manages media content + metadata for streaming.
 ///
 /// @Snippet(path: "WarehouseQuickstart")
-public class WarehouseClient: Clients.WarehouseProtocol {
+public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   let inner: any Clients.WarehouseStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

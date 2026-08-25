@@ -25,7 +25,7 @@ import GoogleRpc
 @_spi(GoogleCloudInternal) import GoogleCloudGax
 
 extension Clients {
-  class WorkflowTemplateServiceTransport: WorkflowTemplateServiceStub {
+  final class WorkflowTemplateServiceTransport: WorkflowTemplateServiceStub {
     let inner: GoogleCloudGax._HTTPClient
 
     public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {

@@ -23,7 +23,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol VmwareEngineStub {
+  protocol VmwareEngineStub: Sendable {
     func listPrivateClouds(
       request: ListPrivateCloudsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudVMwareEngineV1.ListPrivateCloudsResponse

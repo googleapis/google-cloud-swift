@@ -28,7 +28,7 @@ import GoogleCloudGax
 /// Service describing handlers for resources.
 ///
 /// @Snippet(path: "NetworkServicesQuickstart")
-public class NetworkServicesClient: Clients.NetworkServicesProtocol {
+public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Sendable {
   let inner: any Clients.NetworkServicesStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

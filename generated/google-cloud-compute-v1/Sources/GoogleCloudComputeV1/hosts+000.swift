@@ -25,7 +25,7 @@
   /// Service for the `hosts` resource.
   ///
   /// @Snippet(path: "hostsQuickstart")
-  public class HostsClient: Clients.HostsProtocol {
+  public final class HostsClient: Clients.HostsProtocol, Sendable {
     let inner: any Clients.HostsStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

@@ -31,7 +31,7 @@ import GoogleCloudGax
 /// Monitoring, and then clicking on "Uptime".
 ///
 /// @Snippet(path: "UptimeCheckServiceQuickstart")
-public class UptimeCheckServiceClient: Clients.UptimeCheckServiceProtocol {
+public final class UptimeCheckServiceClient: Clients.UptimeCheckServiceProtocol, Sendable {
   let inner: any Clients.UptimeCheckServiceStub
 
   /// Creates a new `UptimeCheckServiceClient` instance.

@@ -25,7 +25,7 @@
   /// Service to fetch operations for database instances.
   ///
   /// @Snippet(path: "SqlOperationsServiceQuickstart")
-  public class SqlOperationsServiceClient: Clients.SqlOperationsServiceProtocol {
+  public final class SqlOperationsServiceClient: Clients.SqlOperationsServiceProtocol, Sendable {
     let inner: any Clients.SqlOperationsServiceStub
 
     /// Creates a new `SqlOperationsServiceClient` instance.

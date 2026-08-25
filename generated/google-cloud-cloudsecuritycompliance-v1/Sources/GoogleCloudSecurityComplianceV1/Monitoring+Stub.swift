@@ -21,7 +21,7 @@ import GoogleLongRunning
 import GoogleCloudGax
 
 extension Clients {
-  protocol MonitoringStub {
+  protocol MonitoringStub: Sendable {
     func listFrameworkComplianceSummaries(
       request: ListFrameworkComplianceSummariesRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudSecurityComplianceV1.ListFrameworkComplianceSummariesResponse

@@ -25,7 +25,7 @@
   @_spi(GoogleCloudInternal) import GoogleCloudGax
 
   extension Clients {
-    class ProjectServiceTransport: ProjectServiceStub {
+    final class ProjectServiceTransport: ProjectServiceStub {
       let inner: GoogleCloudGax._HTTPClient
 
       public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {

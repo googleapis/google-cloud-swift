@@ -27,7 +27,7 @@ import GoogleCloudGax
 /// Service describing handlers for resources
 ///
 /// @Snippet(path: "HypercomputeClusterQuickstart")
-public class HypercomputeClusterClient: Clients.HypercomputeClusterProtocol {
+public final class HypercomputeClusterClient: Clients.HypercomputeClusterProtocol, Sendable {
   let inner: any Clients.HypercomputeClusterStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

@@ -53,7 +53,7 @@ import GoogleCloudGax
 /// received.
 ///
 /// @Snippet(path: "IAMQuickstart")
-public class IAMClient: Clients.IAMProtocol {
+public final class IAMClient: Clients.IAMProtocol, Sendable {
   let inner: any Clients.IAMStub
 
   /// Creates a new `IAMClient` instance.

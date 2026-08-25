@@ -24,7 +24,9 @@ import GoogleCloudGax
 /// Service describing handlers for resources
 ///
 /// @Snippet(path: "CloudControlsPartnerCoreQuickstart")
-public class CloudControlsPartnerCoreClient: Clients.CloudControlsPartnerCoreProtocol {
+public final class CloudControlsPartnerCoreClient: Clients.CloudControlsPartnerCoreProtocol,
+  Sendable
+{
   let inner: any Clients.CloudControlsPartnerCoreStub
 
   /// Creates a new `CloudControlsPartnerCoreClient` instance.

@@ -20,7 +20,7 @@ import GoogleLongRunning
 import GoogleCloudGax
 
 extension Clients {
-  protocol TenantServiceStub {
+  protocol TenantServiceStub: Sendable {
     func createTenant(
       request: CreateTenantRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudTalentV4.Tenant

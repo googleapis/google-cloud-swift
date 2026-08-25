@@ -29,7 +29,7 @@
   /// [google.cloud.discoveryengine.v1.Schema]: <doc:Schema>
   ///
   /// @Snippet(path: "SchemaServiceQuickstart")
-  public class SchemaServiceClient: Clients.SchemaServiceProtocol {
+  public final class SchemaServiceClient: Clients.SchemaServiceProtocol, Sendable {
     let inner: any Clients.SchemaServiceStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

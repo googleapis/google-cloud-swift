@@ -24,7 +24,7 @@ import GoogleIAMV1
 @_spi(GoogleCloudInternal) import GoogleCloudGax
 
 extension Clients {
-  class CloudTasksTransport: CloudTasksStub {
+  final class CloudTasksTransport: CloudTasksStub {
     let inner: GoogleCloudGax._HTTPClient
 
     public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {

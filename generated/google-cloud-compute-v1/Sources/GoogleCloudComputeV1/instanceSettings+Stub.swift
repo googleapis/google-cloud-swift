@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol InstanceSettingsStub {
+    protocol InstanceSettingsStub: Sendable {
       func `get`(
         request: InstanceSettingsClient.GetRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.InstanceSettings

@@ -24,7 +24,7 @@
 
   ///
   /// @Snippet(path: "SqlInstancesServiceQuickstart")
-  public class SqlInstancesServiceClient: Clients.SqlInstancesServiceProtocol {
+  public final class SqlInstancesServiceClient: Clients.SqlInstancesServiceProtocol, Sendable {
     let inner: any Clients.SqlInstancesServiceStub
 
     /// Creates a new `SqlInstancesServiceClient` instance.

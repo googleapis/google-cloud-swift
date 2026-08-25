@@ -23,7 +23,7 @@ import GoogleIAMV1
 @_spi(GoogleCloudInternal) import GoogleCloudGax
 
 extension Clients {
-  class ContainerAnalysisTransport: ContainerAnalysisStub {
+  final class ContainerAnalysisTransport: ContainerAnalysisStub {
     let inner: GoogleCloudGax._HTTPClient
 
     public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {

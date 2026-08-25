@@ -27,7 +27,9 @@
   /// Service for managing Identity Mapping Stores.
   ///
   /// @Snippet(path: "IdentityMappingStoreServiceQuickstart")
-  public class IdentityMappingStoreServiceClient: Clients.IdentityMappingStoreServiceProtocol {
+  public final class IdentityMappingStoreServiceClient: Clients.IdentityMappingStoreServiceProtocol,
+    Sendable
+  {
     let inner: any Clients.IdentityMappingStoreServiceStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

@@ -28,8 +28,8 @@
   /// A service for serving online feature values.
   ///
   /// @Snippet(path: "FeaturestoreOnlineServingServiceQuickstart")
-  public class FeaturestoreOnlineServingServiceClient: Clients
-      .FeaturestoreOnlineServingServiceProtocol
+  public final class FeaturestoreOnlineServingServiceClient: Clients
+      .FeaturestoreOnlineServingServiceProtocol, Sendable
   {
     let inner: any Clients.FeaturestoreOnlineServingServiceStub
 

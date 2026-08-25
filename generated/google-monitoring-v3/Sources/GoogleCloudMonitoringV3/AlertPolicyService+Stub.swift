@@ -19,7 +19,7 @@ import GoogleCloudWkt
 import GoogleCloudGax
 
 extension Clients {
-  protocol AlertPolicyServiceStub {
+  protocol AlertPolicyServiceStub: Sendable {
     func listAlertPolicies(
       request: ListAlertPoliciesRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.ListAlertPoliciesResponse

@@ -25,7 +25,7 @@
   /// Service for the `machineTypes` resource.
   ///
   /// @Snippet(path: "machineTypesQuickstart")
-  public class MachineTypesClient: Clients.MachineTypesProtocol {
+  public final class MachineTypesClient: Clients.MachineTypesProtocol, Sendable {
     let inner: any Clients.MachineTypesStub
 
     /// Creates a new `MachineTypesClient` instance.

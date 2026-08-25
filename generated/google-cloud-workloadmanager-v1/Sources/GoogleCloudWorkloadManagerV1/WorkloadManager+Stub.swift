@@ -22,7 +22,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol WorkloadManagerStub {
+  protocol WorkloadManagerStub: Sendable {
     func listEvaluations(
       request: ListEvaluationsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudWorkloadManagerV1.ListEvaluationsResponse

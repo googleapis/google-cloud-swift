@@ -27,7 +27,7 @@
   /// Service for managing User Licenses.
   ///
   /// @Snippet(path: "UserLicenseServiceQuickstart")
-  public class UserLicenseServiceClient: Clients.UserLicenseServiceProtocol {
+  public final class UserLicenseServiceClient: Clients.UserLicenseServiceProtocol, Sendable {
     let inner: any Clients.UserLicenseServiceStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

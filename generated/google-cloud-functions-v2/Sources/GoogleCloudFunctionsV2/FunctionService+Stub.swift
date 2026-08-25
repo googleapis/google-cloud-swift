@@ -23,7 +23,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol FunctionServiceStub {
+  protocol FunctionServiceStub: Sendable {
     func getFunction(
       request: GetFunctionRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudFunctionsV2.Function

@@ -28,7 +28,9 @@
   /// A service for fetching feature values from the online store.
   ///
   /// @Snippet(path: "FeatureOnlineStoreServiceQuickstart")
-  public class FeatureOnlineStoreServiceClient: Clients.FeatureOnlineStoreServiceProtocol {
+  public final class FeatureOnlineStoreServiceClient: Clients.FeatureOnlineStoreServiceProtocol,
+    Sendable
+  {
     let inner: any Clients.FeatureOnlineStoreServiceStub
 
     /// Creates a new `FeatureOnlineStoreServiceClient` instance.

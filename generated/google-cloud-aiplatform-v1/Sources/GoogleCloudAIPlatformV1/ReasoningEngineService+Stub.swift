@@ -24,7 +24,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol ReasoningEngineServiceStub {
+    protocol ReasoningEngineServiceStub: Sendable {
       func createReasoningEngine(
         request: CreateReasoningEngineRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation

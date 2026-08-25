@@ -34,7 +34,7 @@ import GoogleCloudGax
 /// echoed in the response headers.
 ///
 /// @Snippet(path: "EchoQuickstart")
-public class EchoClient: Clients.EchoProtocol {
+public final class EchoClient: Clients.EchoProtocol, Sendable {
   let inner: any Clients.EchoStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

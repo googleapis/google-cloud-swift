@@ -22,7 +22,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol CertificateManagerStub {
+  protocol CertificateManagerStub: Sendable {
     func listCertificates(
       request: ListCertificatesRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudCertificateManagerV1.ListCertificatesResponse

@@ -32,7 +32,7 @@ import GoogleCloudGax
 /// systems including Cloud Storage and BigQuery.
 ///
 /// @Snippet(path: "DataplexServiceQuickstart")
-public class DataplexServiceClient: Clients.DataplexServiceProtocol {
+public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Sendable {
   let inner: any Clients.DataplexServiceStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

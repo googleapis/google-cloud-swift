@@ -30,7 +30,7 @@ import GoogleCloudGax
 /// information.
 ///
 /// @Snippet(path: "NetworkSecurityQuickstart")
-public class NetworkSecurityClient: Clients.NetworkSecurityProtocol {
+public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Sendable {
   let inner: any Clients.NetworkSecurityStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

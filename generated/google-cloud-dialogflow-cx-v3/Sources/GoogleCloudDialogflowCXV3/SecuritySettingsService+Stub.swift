@@ -22,7 +22,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol SecuritySettingsServiceStub {
+    protocol SecuritySettingsServiceStub: Sendable {
       func createSecuritySettings(
         request: CreateSecuritySettingsRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowCXV3.SecuritySettings

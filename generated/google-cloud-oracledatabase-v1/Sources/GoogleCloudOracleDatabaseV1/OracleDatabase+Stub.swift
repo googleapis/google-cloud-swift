@@ -22,7 +22,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol OracleDatabaseStub {
+  protocol OracleDatabaseStub: Sendable {
     func listCloudExadataInfrastructures(
       request: ListCloudExadataInfrastructuresRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudOracleDatabaseV1.ListCloudExadataInfrastructuresResponse

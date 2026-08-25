@@ -25,7 +25,8 @@
   /// Service for the `regionSecurityPolicies` resource.
   ///
   /// @Snippet(path: "regionSecurityPoliciesQuickstart")
-  public class RegionSecurityPoliciesClient: Clients.RegionSecurityPoliciesProtocol {
+  public final class RegionSecurityPoliciesClient: Clients.RegionSecurityPoliciesProtocol, Sendable
+  {
     let inner: any Clients.RegionSecurityPoliciesStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

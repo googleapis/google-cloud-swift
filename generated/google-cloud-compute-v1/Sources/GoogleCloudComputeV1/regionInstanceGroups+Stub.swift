@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol RegionInstanceGroupsStub {
+    protocol RegionInstanceGroupsStub: Sendable {
       func `get`(
         request: RegionInstanceGroupsClient.GetRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.InstanceGroup

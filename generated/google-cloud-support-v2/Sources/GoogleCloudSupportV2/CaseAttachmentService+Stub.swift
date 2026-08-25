@@ -19,7 +19,7 @@ import GoogleCloudWkt
 import GoogleCloudGax
 
 extension Clients {
-  protocol CaseAttachmentServiceStub {
+  protocol CaseAttachmentServiceStub: Sendable {
     func listAttachments(
       request: ListAttachmentsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudSupportV2.ListAttachmentsResponse

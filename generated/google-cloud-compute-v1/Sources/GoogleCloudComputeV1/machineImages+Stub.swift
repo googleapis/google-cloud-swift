@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol MachineImagesStub {
+    protocol MachineImagesStub: Sendable {
       func delete(
         request: MachineImagesClient.DeleteRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation

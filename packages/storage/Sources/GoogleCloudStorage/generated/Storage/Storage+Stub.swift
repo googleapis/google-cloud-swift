@@ -19,7 +19,7 @@ import GoogleCloudWkt
 import GoogleCloudGax
 
 extension Clients {
-  protocol StorageStub {
+  protocol StorageStub: Sendable {
     func deleteBucket(
       request: DeleteBucketRequest, options: GoogleCloudGax.RequestOptions
     ) async throws

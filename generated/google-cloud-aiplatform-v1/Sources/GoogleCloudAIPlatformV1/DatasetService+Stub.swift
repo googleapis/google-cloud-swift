@@ -24,7 +24,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol DatasetServiceStub {
+    protocol DatasetServiceStub: Sendable {
       func createDataset(
         request: CreateDatasetRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation

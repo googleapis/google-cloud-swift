@@ -30,7 +30,7 @@
   /// [google.cloud.discoveryengine.v1.Engine]: <doc:Engine>
   ///
   /// @Snippet(path: "EngineServiceQuickstart")
-  public class EngineServiceClient: Clients.EngineServiceProtocol {
+  public final class EngineServiceClient: Clients.EngineServiceProtocol, Sendable {
     let inner: any Clients.EngineServiceStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

@@ -27,7 +27,7 @@ import GoogleCloudGax
 /// Service describing handlers for resources.
 ///
 /// @Snippet(path: "SecurityPostureQuickstart")
-public class SecurityPostureClient: Clients.SecurityPostureProtocol {
+public final class SecurityPostureClient: Clients.SecurityPostureProtocol, Sendable {
   let inner: any Clients.SecurityPostureStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

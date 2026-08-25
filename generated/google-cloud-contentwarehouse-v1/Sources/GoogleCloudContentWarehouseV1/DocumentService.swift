@@ -26,7 +26,7 @@ import GoogleCloudGax
 /// This service lets you manage document.
 ///
 /// @Snippet(path: "DocumentServiceQuickstart")
-public class DocumentServiceClient: Clients.DocumentServiceProtocol {
+public final class DocumentServiceClient: Clients.DocumentServiceProtocol, Sendable {
   let inner: any Clients.DocumentServiceStub
 
   /// Creates a new `DocumentServiceClient` instance.

@@ -19,7 +19,7 @@ import GoogleCloudWkt
 import GoogleCloudGax
 
 extension Clients {
-  protocol NotificationChannelServiceStub {
+  protocol NotificationChannelServiceStub: Sendable {
     func listNotificationChannelDescriptors(
       request: ListNotificationChannelDescriptorsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.ListNotificationChannelDescriptorsResponse

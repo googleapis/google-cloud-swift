@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol HealthChecksStub {
+    protocol HealthChecksStub: Sendable {
       func aggregatedList(
         request: HealthChecksClient.AggregatedListRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.HealthChecksAggregatedList

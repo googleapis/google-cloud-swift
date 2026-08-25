@@ -22,7 +22,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol NetAppStub {
+  protocol NetAppStub: Sendable {
     func listStoragePools(
       request: ListStoragePoolsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudNetAppV1.ListStoragePoolsResponse

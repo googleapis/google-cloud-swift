@@ -28,7 +28,9 @@ import GoogleCloudGax
 /// The service for CrossNetworkAutomation resources.
 ///
 /// @Snippet(path: "CrossNetworkAutomationServiceQuickstart")
-public class CrossNetworkAutomationServiceClient: Clients.CrossNetworkAutomationServiceProtocol {
+public final class CrossNetworkAutomationServiceClient: Clients
+    .CrossNetworkAutomationServiceProtocol, Sendable
+{
   let inner: any Clients.CrossNetworkAutomationServiceStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

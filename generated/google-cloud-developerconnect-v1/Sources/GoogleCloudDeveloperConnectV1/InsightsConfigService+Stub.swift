@@ -22,7 +22,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol InsightsConfigServiceStub {
+  protocol InsightsConfigServiceStub: Sendable {
     func listInsightsConfigs(
       request: ListInsightsConfigsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudDeveloperConnectV1.ListInsightsConfigsResponse

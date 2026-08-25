@@ -24,7 +24,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol IndexEndpointServiceStub {
+    protocol IndexEndpointServiceStub: Sendable {
       func createIndexEndpoint(
         request: CreateIndexEndpointRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation

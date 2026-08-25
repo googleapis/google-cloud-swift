@@ -22,7 +22,7 @@ import GoogleLongRunning
 import GoogleCloudGax
 
 extension Clients {
-  protocol BackupDrProtectionSummaryStub {
+  protocol BackupDrProtectionSummaryStub: Sendable {
     func listResourceBackupConfigs(
       request: ListResourceBackupConfigsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudBackupDRV1.ListResourceBackupConfigsResponse

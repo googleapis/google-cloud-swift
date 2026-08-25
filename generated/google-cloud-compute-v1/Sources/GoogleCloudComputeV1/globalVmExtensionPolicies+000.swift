@@ -25,7 +25,9 @@
   /// Service for the `globalVmExtensionPolicies` resource.
   ///
   /// @Snippet(path: "globalVmExtensionPoliciesQuickstart")
-  public class GlobalVmExtensionPoliciesClient: Clients.GlobalVmExtensionPoliciesProtocol {
+  public final class GlobalVmExtensionPoliciesClient: Clients.GlobalVmExtensionPoliciesProtocol,
+    Sendable
+  {
     let inner: any Clients.GlobalVmExtensionPoliciesStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

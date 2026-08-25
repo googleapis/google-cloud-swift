@@ -28,7 +28,7 @@ import GoogleCloudGax
 /// [google.cloud.location.Location.metadata]: <doc:Location/metadata>
 ///
 /// @Snippet(path: "LocationsQuickstart")
-public class LocationsClient: Clients.LocationsProtocol {
+public final class LocationsClient: Clients.LocationsProtocol, Sendable {
   let inner: any Clients.LocationsStub
 
   /// Creates a new `LocationsClient` instance.

@@ -22,7 +22,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol VectorSearchServiceStub {
+  protocol VectorSearchServiceStub: Sendable {
     func listCollections(
       request: ListCollectionsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudVectorSearchV1.ListCollectionsResponse

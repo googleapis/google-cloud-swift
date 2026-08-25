@@ -28,7 +28,7 @@ import GoogleCloudGax
 /// Cloud Controls on a target resource.
 ///
 /// @Snippet(path: "DeploymentQuickstart")
-public class DeploymentClient: Clients.DeploymentProtocol {
+public final class DeploymentClient: Clients.DeploymentProtocol, Sendable {
   let inner: any Clients.DeploymentStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

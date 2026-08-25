@@ -19,7 +19,7 @@ import GoogleCloudWkt
 import GoogleCloudGax
 
 extension Clients {
-  protocol AdvisoryNotificationsServiceStub {
+  protocol AdvisoryNotificationsServiceStub: Sendable {
     func listNotifications(
       request: ListNotificationsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudAdvisoryNotificationsV1.ListNotificationsResponse

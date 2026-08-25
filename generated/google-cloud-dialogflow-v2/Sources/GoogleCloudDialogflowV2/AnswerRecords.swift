@@ -30,7 +30,7 @@
   /// [google.cloud.dialogflow.v2.AnswerRecord]: <doc:AnswerRecord>
   ///
   /// @Snippet(path: "AnswerRecordsQuickstart")
-  public class AnswerRecordsClient: Clients.AnswerRecordsProtocol {
+  public final class AnswerRecordsClient: Clients.AnswerRecordsProtocol, Sendable {
     let inner: any Clients.AnswerRecordsStub
 
     /// Creates a new `AnswerRecordsClient` instance.

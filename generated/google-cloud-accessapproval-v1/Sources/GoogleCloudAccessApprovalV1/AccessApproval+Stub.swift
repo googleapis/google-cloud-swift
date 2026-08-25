@@ -19,7 +19,7 @@ import GoogleCloudWkt
 import GoogleCloudGax
 
 extension Clients {
-  protocol AccessApprovalStub {
+  protocol AccessApprovalStub: Sendable {
     func listApprovalRequests(
       request: ListApprovalRequestsMessage, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudAccessApprovalV1.ListApprovalRequestsResponse

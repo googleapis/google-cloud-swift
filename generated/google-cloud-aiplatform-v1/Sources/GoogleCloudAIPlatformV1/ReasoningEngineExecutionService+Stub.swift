@@ -25,7 +25,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol ReasoningEngineExecutionServiceStub {
+    protocol ReasoningEngineExecutionServiceStub: Sendable {
       func queryReasoningEngine(
         request: QueryReasoningEngineRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.QueryReasoningEngineResponse

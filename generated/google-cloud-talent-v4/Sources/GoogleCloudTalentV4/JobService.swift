@@ -26,7 +26,7 @@ import GoogleCloudGax
 /// A service handles job management, including job CRUD, enumeration and search.
 ///
 /// @Snippet(path: "JobServiceQuickstart")
-public class JobServiceClient: Clients.JobServiceProtocol {
+public final class JobServiceClient: Clients.JobServiceProtocol, Sendable {
   let inner: any Clients.JobServiceStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

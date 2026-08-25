@@ -22,7 +22,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol BlockchainNodeEngineStub {
+  protocol BlockchainNodeEngineStub: Sendable {
     func listBlockchainNodes(
       request: ListBlockchainNodesRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudBlockChainNodeEngineV1.ListBlockchainNodesResponse

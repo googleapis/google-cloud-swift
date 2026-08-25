@@ -25,7 +25,7 @@
   /// Service for the `regionDisks` resource.
   ///
   /// @Snippet(path: "regionDisksQuickstart")
-  public class RegionDisksClient: Clients.RegionDisksProtocol {
+  public final class RegionDisksClient: Clients.RegionDisksProtocol, Sendable {
     let inner: any Clients.RegionDisksStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

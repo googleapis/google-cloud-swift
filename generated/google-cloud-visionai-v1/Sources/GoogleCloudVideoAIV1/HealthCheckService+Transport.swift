@@ -24,7 +24,7 @@ import GoogleLongRunning
 @_spi(GoogleCloudInternal) import GoogleCloudGax
 
 extension Clients {
-  class HealthCheckServiceTransport: HealthCheckServiceStub {
+  final class HealthCheckServiceTransport: HealthCheckServiceStub {
     let inner: GoogleCloudGax._HTTPClient
 
     public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {

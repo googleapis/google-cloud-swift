@@ -22,7 +22,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol AgentServiceStub {
+  protocol AgentServiceStub: Sendable {
     func listApps(
       request: ListAppsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudCESV1.ListAppsResponse

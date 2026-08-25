@@ -27,7 +27,7 @@ import GoogleCloudGax
 /// NetApp Files Google Cloud Service
 ///
 /// @Snippet(path: "NetAppQuickstart")
-public class NetAppClient: Clients.NetAppProtocol {
+public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   let inner: any Clients.NetAppStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

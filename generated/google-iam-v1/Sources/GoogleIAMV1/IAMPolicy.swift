@@ -48,7 +48,7 @@ import GoogleCloudGax
 /// attached.
 ///
 /// @Snippet(path: "IAMPolicyQuickstart")
-public class IAMPolicyClient: Clients.IAMPolicyProtocol {
+public final class IAMPolicyClient: Clients.IAMPolicyProtocol, Sendable {
   let inner: any Clients.IAMPolicyStub
 
   /// Creates a new `IAMPolicyClient` instance.

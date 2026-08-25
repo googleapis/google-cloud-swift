@@ -26,7 +26,7 @@ import GoogleCloudGax
 /// This service helps you troubleshoot access issues for Google Cloud resources.
 ///
 /// @Snippet(path: "PolicyTroubleshooterQuickstart")
-public class PolicyTroubleshooterClient: Clients.PolicyTroubleshooterProtocol {
+public final class PolicyTroubleshooterClient: Clients.PolicyTroubleshooterProtocol, Sendable {
   let inner: any Clients.PolicyTroubleshooterStub
 
   /// Creates a new `PolicyTroubleshooterClient` instance.

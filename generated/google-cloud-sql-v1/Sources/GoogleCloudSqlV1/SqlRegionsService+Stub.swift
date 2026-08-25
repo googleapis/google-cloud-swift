@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol SqlRegionsServiceStub {
+    protocol SqlRegionsServiceStub: Sendable {
     }
   }
 #endif

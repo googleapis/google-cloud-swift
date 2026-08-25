@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol AcceleratorTypesStub {
+    protocol AcceleratorTypesStub: Sendable {
       func aggregatedList(
         request: AcceleratorTypesClient.AggregatedListRequest,
         options: GoogleCloudGax.RequestOptions

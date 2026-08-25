@@ -19,7 +19,7 @@ import GoogleCloudWkt
 import GoogleCloudGax
 
 extension Clients {
-  protocol RecaptchaEnterpriseServiceStub {
+  protocol RecaptchaEnterpriseServiceStub: Sendable {
     func createAssessment(
       request: CreateAssessmentRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudRecaptchaEnterpriseV1.Assessment

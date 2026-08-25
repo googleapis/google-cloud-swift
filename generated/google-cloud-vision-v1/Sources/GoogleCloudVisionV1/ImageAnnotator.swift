@@ -28,7 +28,7 @@ import GoogleCloudGax
 /// ImageAnnotator service returns detected entities from the images.
 ///
 /// @Snippet(path: "ImageAnnotatorQuickstart")
-public class ImageAnnotatorClient: Clients.ImageAnnotatorProtocol {
+public final class ImageAnnotatorClient: Clients.ImageAnnotatorProtocol, Sendable {
   let inner: any Clients.ImageAnnotatorStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

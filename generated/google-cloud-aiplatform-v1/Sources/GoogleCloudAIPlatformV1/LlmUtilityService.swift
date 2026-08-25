@@ -28,7 +28,7 @@
   /// Service for LLM related utility functions.
   ///
   /// @Snippet(path: "LlmUtilityServiceQuickstart")
-  public class LlmUtilityServiceClient: Clients.LlmUtilityServiceProtocol {
+  public final class LlmUtilityServiceClient: Clients.LlmUtilityServiceProtocol, Sendable {
     let inner: any Clients.LlmUtilityServiceStub
 
     /// Creates a new `LlmUtilityServiceClient` instance.

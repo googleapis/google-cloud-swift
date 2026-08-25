@@ -21,7 +21,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol JobServiceStub {
+  protocol JobServiceStub: Sendable {
     func createJob(
       request: CreateJobRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudTalentV4.Job

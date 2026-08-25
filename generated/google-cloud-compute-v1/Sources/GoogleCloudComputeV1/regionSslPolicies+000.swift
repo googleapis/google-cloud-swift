@@ -25,7 +25,7 @@
   /// Service for the `regionSslPolicies` resource.
   ///
   /// @Snippet(path: "regionSslPoliciesQuickstart")
-  public class RegionSslPoliciesClient: Clients.RegionSslPoliciesProtocol {
+  public final class RegionSslPoliciesClient: Clients.RegionSslPoliciesProtocol, Sendable {
     let inner: any Clients.RegionSslPoliciesStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

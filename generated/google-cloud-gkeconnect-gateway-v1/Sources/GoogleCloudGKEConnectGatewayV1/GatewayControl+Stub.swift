@@ -19,7 +19,7 @@ import GoogleCloudWkt
 import GoogleCloudGax
 
 extension Clients {
-  protocol GatewayControlStub {
+  protocol GatewayControlStub: Sendable {
     func generateCredentials(
       request: GenerateCredentialsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudGKEConnectGatewayV1.GenerateCredentialsResponse

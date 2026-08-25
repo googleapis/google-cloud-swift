@@ -25,7 +25,7 @@
   /// Service to manage databases.
   ///
   /// @Snippet(path: "SqlDatabasesServiceQuickstart")
-  public class SqlDatabasesServiceClient: Clients.SqlDatabasesServiceProtocol {
+  public final class SqlDatabasesServiceClient: Clients.SqlDatabasesServiceProtocol, Sendable {
     let inner: any Clients.SqlDatabasesServiceStub
 
     /// Creates a new `SqlDatabasesServiceClient` instance.

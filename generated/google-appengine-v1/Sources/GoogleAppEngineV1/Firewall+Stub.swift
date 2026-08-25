@@ -20,7 +20,7 @@ import GoogleLongRunning
 import GoogleCloudGax
 
 extension Clients {
-  protocol FirewallStub {
+  protocol FirewallStub: Sendable {
     func listIngressRules(
       request: ListIngressRulesRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleAppEngineV1.ListIngressRulesResponse

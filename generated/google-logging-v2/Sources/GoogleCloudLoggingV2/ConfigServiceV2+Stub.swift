@@ -21,7 +21,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol ConfigServiceV2Stub {
+  protocol ConfigServiceV2Stub: Sendable {
     func listBuckets(
       request: ListBucketsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudLoggingV2.ListBucketsResponse

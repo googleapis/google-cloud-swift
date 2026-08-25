@@ -25,7 +25,9 @@
   /// Service for the `globalNetworkEndpointGroups` resource.
   ///
   /// @Snippet(path: "globalNetworkEndpointGroupsQuickstart")
-  public class GlobalNetworkEndpointGroupsClient: Clients.GlobalNetworkEndpointGroupsProtocol {
+  public final class GlobalNetworkEndpointGroupsClient: Clients.GlobalNetworkEndpointGroupsProtocol,
+    Sendable
+  {
     let inner: any Clients.GlobalNetworkEndpointGroupsStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

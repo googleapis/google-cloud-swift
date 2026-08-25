@@ -33,7 +33,7 @@ import GoogleCloudGax
 /// [google.cloud.kms.v1.EkmConnection]: <doc:EkmConnection>
 ///
 /// @Snippet(path: "EkmServiceQuickstart")
-public class EkmServiceClient: Clients.EkmServiceProtocol {
+public final class EkmServiceClient: Clients.EkmServiceProtocol, Sendable {
   let inner: any Clients.EkmServiceStub
 
   /// Creates a new `EkmServiceClient` instance.

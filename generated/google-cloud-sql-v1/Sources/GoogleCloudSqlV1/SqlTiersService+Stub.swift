@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol SqlTiersServiceStub {
+    protocol SqlTiersServiceStub: Sendable {
       func list(
         request: SqlTiersListRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.TiersListResponse
