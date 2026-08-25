@@ -15,7 +15,7 @@
 import Foundation
 
 /// Utility class for working with Google Cloud Storage bucket resource names and identifiers.
-public final class BucketName: Sendable {
+package final class BucketName: Sendable {
   private init() {}
 
   /// Formats a bucket name or resource path into the canonical resource name format
@@ -24,7 +24,7 @@ public final class BucketName: Sendable {
   /// If `bucket` is empty, this returns an empty string. If `bucket` is already in a
   /// `projects/...` format, it is returned unmodified. Otherwise, `projects/_/buckets/`
   /// is prepended.
-  public static func formatResourceName(_ bucket: String) -> String {
+  package static func formatResourceName(_ bucket: String) -> String {
     guard !bucket.isEmpty else { return "" }
     if bucket.hasPrefix("projects/") {
       return bucket
@@ -34,19 +34,19 @@ public final class BucketName: Sendable {
 
   /// Formats a project and bucket name into the canonical resource name format
   /// (`projects/<project>/buckets/<bucket>`).
-  public static func format(project: String = "_", bucket: String) -> String {
+  package static func format(project: String = "_", bucket: String) -> String {
     guard !bucket.isEmpty else { return "" }
     let proj = project.isEmpty ? "_" : project
     return "projects/\(proj)/buckets/\(bucket)"
   }
 
   /// Alias for `formatResourceName(_:)`.
-  public static func formatBucketResourceName(_ bucket: String) -> String {
+  package static func formatBucketResourceName(_ bucket: String) -> String {
     formatResourceName(bucket)
   }
 
   /// Alias for `formatResourceName(_:)`.
-  public static func format(_ bucket: String) -> String {
+  package static func format(_ bucket: String) -> String {
     formatResourceName(bucket)
   }
 
@@ -54,7 +54,7 @@ public final class BucketName: Sendable {
   ///
   /// If `bucket` is in a format such as `projects/_/buckets/<bucket>` or `projects/<project>/buckets/<bucket>`,
   /// this returns `<bucket>`. Otherwise, it returns `bucket` as-is.
-  public static func extractBucketName(_ bucket: String) -> String {
+  package static func extractBucketName(_ bucket: String) -> String {
     guard !bucket.isEmpty else { return "" }
     if bucket.hasPrefix("projects/") {
       if let range = bucket.range(of: "/buckets/") {
@@ -69,7 +69,7 @@ public final class BucketName: Sendable {
   }
 
   /// Alias for `extractBucketName(_:)`.
-  public static func extract(_ bucket: String) -> String {
+  package static func extract(_ bucket: String) -> String {
     extractBucketName(bucket)
   }
 
@@ -77,7 +77,7 @@ public final class BucketName: Sendable {
   ///
   /// For example, given `projects/12345/buckets/my-bucket`, returns `"12345"`.
   /// If the string is not a resource name or does not contain a project, returns `nil`.
-  public static func extractProject(_ bucket: String) -> String? {
+  package static func extractProject(_ bucket: String) -> String? {
     guard bucket.hasPrefix("projects/") else { return nil }
     let remainder = bucket.dropFirst("projects/".count)
     guard let slashIndex = remainder.firstIndex(of: "/") else { return nil }
