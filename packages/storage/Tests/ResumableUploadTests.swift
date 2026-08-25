@@ -2317,6 +2317,138 @@ import Testing
     #expect(requests.first?.url?.absoluteString == initUrl.absoluteString)
     #expect(requests.last?.url?.absoluteString == sessionUrl.absoluteString)
   }
+
+  /// Tests resumable upload of 0-byte Data payload using BytesSource when threshold is 0.
+  @Test func resumableUploadZeroByteBytesSourceSuccess() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "test-resumable-empty-bytes"
+    let data = Data()
+    let source = BytesSource(data: data)
+
+    let initUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?uploadType=resumable&name=\(objectName)")
+    let sessionUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?uploadType=resumable&upload_id=zero-bytes-source-id")
+
+    registry.register(
+      response: .success(
+        statusCode: 200, data: Data(),
+        headers: ["Location": sessionUrl.absoluteString]),
+      for: initUrl)
+
+    registry.register(
+      response: .success(
+        statusCode: 200, data: makeObjectJSON(name: objectName, bucket: bucket, size: 0),
+        headers: nil),
+      for: sessionUrl)
+
+    let client = try makeClient(registry: registry)
+    let uploadOptions = UploadOptions().with {
+      $0.resumableUploadThreshold = 0
+    }
+    let task = client.upload(source, to: bucket, as: objectName, options: uploadOptions)
+    let object = try await task.value
+
+    #expect(object.name == objectName)
+    #expect(object.bucket == bucket)
+    #expect(object.size == 0)
+
+    let requests = registry.recordedRequests()
+    #expect(requests.count == 2)
+    #expect(requests[1].value(forHTTPHeaderField: "Content-Range") == "bytes */0")
+    #expect(requests[1].value(forHTTPHeaderField: "x-goog-hash") == "crc32c=AAAAAA==")
+  }
+
+  /// Tests resumable upload of 0-byte Data payload with preconditions when threshold is 0.
+  @Test func resumableUploadZeroByteDataWithPreconditions() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "test-resumable-empty-preconditions"
+    let data = Data()
+
+    let initUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?uploadType=resumable&name=\(objectName)&ifGenerationMatch=0"
+    )
+    let sessionUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?uploadType=resumable&upload_id=zero-data-precond-id")
+
+    registry.register(
+      response: .success(
+        statusCode: 200, data: Data(),
+        headers: ["Location": sessionUrl.absoluteString]),
+      for: initUrl)
+
+    registry.register(
+      response: .success(
+        statusCode: 200, data: makeObjectJSON(name: objectName, bucket: bucket, size: 0),
+        headers: nil),
+      for: sessionUrl)
+
+    let client = try makeClient(registry: registry)
+    let uploadOptions = UploadOptions().with {
+      $0.resumableUploadThreshold = 0
+      $0.preconditions = StoragePreconditions().with {
+        $0.ifGenerationMatch = 0
+      }
+    }
+    let task = client.upload(data, to: bucket, as: objectName, options: uploadOptions)
+    let object = try await task.value
+
+    #expect(object.name == objectName)
+    #expect(object.bucket == bucket)
+    #expect(object.size == 0)
+
+    let requests = registry.recordedRequests()
+    #expect(requests.count == 2)
+    #expect(requests[1].value(forHTTPHeaderField: "Content-Range") == "bytes */0")
+    #expect(requests[1].value(forHTTPHeaderField: "x-goog-hash") == "crc32c=AAAAAA==")
+  }
+
+  /// Tests resumable upload of an empty local file (0 bytes) when threshold is 0.
+  @Test func resumableUploadZeroByteFileSourceSuccess() async throws {
+    let tempDirectory = FileManager.default.temporaryDirectory
+    let fileURL = tempDirectory.appendingPathComponent("empty_resumable_\(UUID().uuidString).txt")
+    try Data().write(to: fileURL)
+    defer { try? FileManager.default.removeItem(at: fileURL) }
+
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "test-resumable-empty-file"
+
+    let initUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?uploadType=resumable&name=\(objectName)")
+    let sessionUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?uploadType=resumable&upload_id=zero-file-id")
+
+    registry.register(
+      response: .success(
+        statusCode: 200, data: Data(),
+        headers: ["Location": sessionUrl.absoluteString]),
+      for: initUrl)
+
+    registry.register(
+      response: .success(
+        statusCode: 200, data: makeObjectJSON(name: objectName, bucket: bucket, size: 0),
+        headers: nil),
+      for: sessionUrl)
+
+    let client = try makeClient(registry: registry)
+    let uploadOptions = UploadOptions().with {
+      $0.resumableUploadThreshold = 0
+    }
+    let task = client.upload(fileURL, to: bucket, as: objectName, options: uploadOptions)
+    let object = try await task.value
+
+    #expect(object.name == objectName)
+    #expect(object.bucket == bucket)
+    #expect(object.size == 0)
+
+    let requests = registry.recordedRequests()
+    #expect(requests.count == 2)
+    #expect(requests[1].value(forHTTPHeaderField: "Content-Range") == "bytes */0")
+    #expect(requests[1].value(forHTTPHeaderField: "x-goog-hash") == "crc32c=AAAAAA==")
+  }
 }
 
 // MARK: - Test Helper Sources

@@ -436,4 +436,95 @@ import Testing
     #expect(requests.count == 1)
     #expect(requests.first?.url?.absoluteString == simpleUploadUrl.absoluteString)
   }
+
+  /// Tests a successful simple upload for a 0-byte payload using BytesSource.
+  @Test func simpleUploadZeroByteSuccess() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "test-empty-object"
+    let data = Data()
+    let source = BytesSource(data: data)
+
+    let simpleUploadUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?uploadType=multipart&name=\(objectName)")
+
+    registry.register(
+      response: .success(
+        statusCode: 200, data: makeObjectJSON(name: objectName, bucket: bucket, size: 0),
+        headers: nil),
+      for: simpleUploadUrl)
+
+    let client = try makeClient(registry: registry)
+    let task = client.upload(source, to: bucket, as: objectName)
+    let object = try await task.value
+
+    #expect(object.name == objectName)
+    #expect(object.bucket == bucket)
+    #expect(object.size == 0)
+
+    let requests = registry.recordedRequests()
+    #expect(requests.count == 1)
+    let req = requests.first!
+    #expect(req.value(forHTTPHeaderField: "x-goog-hash") == "crc32c=AAAAAA==")
+  }
+
+  /// Tests convenience upload of in-memory Data with 0 bytes and preconditions.
+  @Test func simpleUploadZeroByteDataWithPreconditions() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "test-empty-data"
+    let data = Data()
+
+    let simpleUploadUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?uploadType=multipart&name=\(objectName)&ifGenerationMatch=0"
+    )
+
+    registry.register(
+      response: .success(
+        statusCode: 200, data: makeObjectJSON(name: objectName, bucket: bucket, size: 0),
+        headers: nil),
+      for: simpleUploadUrl)
+
+    let client = try makeClient(registry: registry)
+    let options = UploadOptions().with {
+      $0.preconditions = StoragePreconditions().with {
+        $0.ifGenerationMatch = 0
+      }
+    }
+    let task = client.upload(data, to: bucket, as: objectName, options: options)
+    let object = try await task.value
+
+    #expect(object.name == objectName)
+    #expect(object.bucket == bucket)
+    #expect(object.size == 0)
+  }
+
+  /// Tests uploading an empty local file via FileSource.
+  @Test func simpleUploadZeroByteFileSource() async throws {
+    let tempDirectory = FileManager.default.temporaryDirectory
+    let fileURL = tempDirectory.appendingPathComponent("empty_\(UUID().uuidString).txt")
+    try Data().write(to: fileURL)
+    defer { try? FileManager.default.removeItem(at: fileURL) }
+
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "test-empty-file"
+
+    let simpleUploadUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?uploadType=multipart&name=\(objectName)")
+
+    registry.register(
+      response: .success(
+        statusCode: 200, data: makeObjectJSON(name: objectName, bucket: bucket, size: 0),
+        headers: nil),
+      for: simpleUploadUrl)
+
+    let client = try makeClient(registry: registry)
+    let task = client.upload(fileURL, to: bucket, as: objectName)
+    let object = try await task.value
+
+    #expect(object.name == objectName)
+    #expect(object.bucket == bucket)
+    #expect(object.size == 0)
+  }
 }
