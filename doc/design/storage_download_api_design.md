@@ -61,7 +61,6 @@ for try await chunk in response.body {
 ```swift
 let options = ReadObjectOptions().with {
   $0.range = .bounded(start: 0, end: 1024)
-  $0.autoResume = true
 }
 
 let response = try await client.readObject(from: "my-bucket", object: "file.txt", options: options)
@@ -199,9 +198,9 @@ Transient network failures during large object downloads should not require rest
 
 ### Resumption Protocol Strategy
 1. **Offset Tracking:** As chunks of `Data` are yielded by the `AsyncIterator`, the iterator tracks total `bytesReceived`.
-2. **Re-connection Range:** On a transient connection drop or socket error, if `autoResume` is enabled (default `true`), the iterator transparently initiates a new HTTP GET request requesting range `bytes={rangeStart + bytesReceived}-`.
+2. **Re-connection Range:** On a transient connection drop or socket error, if resumption is permitted by the configured `resumePolicy` (defaulting to `StopOnConsecutiveErrors`), the iterator transparently initiates a new HTTP GET request requesting range `bytes={rangeStart + bytesReceived}-`.
 3. **Generation Pinning (`generation=X`):** Upon receiving the initial HTTP response, the client captures the object's exact `generation` (`X`) from response headers (or `metadata.generation`). If a transient failure occurs and resumption is triggered, all subsequent range requests explicitly set the `generation=X` parameter. This guarantees that even if the object is overwritten, updated, or soft-deleted in GCS mid-download, the client continues downloading the original version `X` seamlessly without encountering `412 Precondition Failed` errors.
-4. **Failure Handling:** If resumption fails (e.g., generation `X` expired/purged, non-retryable status), a `DownloadError.resumeFailed` error is thrown through the stream.
+4. **Failure Handling:** If resumption fails (e.g., generation `X` expired/purged, non-retryable status, or policy limits exhausted), a `DownloadError.resumeFailed` error is thrown through the stream.
 
 ---
 
@@ -232,7 +231,8 @@ public struct ReadObjectOptions: Sendable {
 
   public var enableDecompressiveTranscoding: Bool = true
   public var checksums: ChecksumOptions = .default
-  public var autoResume: Bool = true
+  public var resumePolicy: (any ResumePolicy<DownloadDetails>)? = nil
+  public var backoffPolicy: (any BackoffPolicy)? = nil
 
   public static var `default`: ReadObjectOptions { ReadObjectOptions() }
 
@@ -358,7 +358,7 @@ extension StorageClient {
 
 ### Option C: Explicit Resume Token / Manual Handshake
 - *Description:* Require developers to catch errors and manually initiate resume downloads with an offset token.
-- *Why Rejected:* Unnecessary boilerplate for developers. Encapsulating transparent auto-resumption inside `ReadObjectSequence.AsyncIterator` ensures high reliability out of the box while allowing manual control when `autoResume = false`.
+- *Why Rejected:* Unnecessary boilerplate for developers. Encapsulating transparent auto-resumption inside `ReadObjectSequence.AsyncIterator` ensures high reliability out of the box while allowing resumption to be disabled via `resumePolicy = NeverResume()`.
 
 ### Option D: Opaque Return Type (`some AsyncSequence<Data, any Error> & Sendable`)
 - *Description:* Use Swift 5.7+ opaque return types (`func readObject(...) -> some AsyncSequence<Data, any Error> & Sendable`) instead of exposing `ReadObjectSequence`.

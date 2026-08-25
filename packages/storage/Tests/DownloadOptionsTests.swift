@@ -35,8 +35,9 @@ import Testing
     #expect(defaultOptions.customerEncryptionKey == nil)
     #expect(defaultOptions.range == .entire)
     #expect(defaultOptions.enableDecompressiveTranscoding == true)
-    #expect(defaultOptions.autoResume == true)
     #expect(defaultOptions.checksums == .default)
+    #expect(defaultOptions.resumePolicy == nil)
+    #expect(defaultOptions.backoffPolicy == nil)
   }
 
   @Test func readObjectOptionsWithBuilder() throws {
@@ -50,7 +51,7 @@ import Testing
       $0.customerEncryptionKey = csek
       $0.range = .bounded(start: 0, end: 1024)
       $0.enableDecompressiveTranscoding = false
-      $0.autoResume = false
+      $0.resumePolicy = NeverResume<DownloadDetails>()
       $0.checksums = .none
     }
 
@@ -59,7 +60,7 @@ import Testing
     #expect(options.customerEncryptionKey == csek)
     #expect(options.range == .bounded(start: 0, end: 1024))
     #expect(options.enableDecompressiveTranscoding == false)
-    #expect(options.autoResume == false)
+    #expect(options.resumePolicy != nil)
     #expect(options.checksums == .none)
   }
 

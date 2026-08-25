@@ -114,7 +114,6 @@ struct HttpContentRange: Sendable, Hashable, Equatable {
 /// ```swift
 /// let options = ReadObjectOptions().with {
 ///   $0.range = .bounded(start: 0, end: 1024)
-///   $0.autoResume = true
 /// }
 /// ```
 ///
@@ -209,16 +208,13 @@ public struct ReadObjectOptions: Sendable {
   /// Flag to enable automatic decompressive transcoding by GCS. Defaults to `true`.
   public var enableDecompressiveTranscoding: Bool = true
 
-  /// Checksum options for validating downloaded data integrity.
+  /// Configures client-side checksum validation for the downloaded object payload.
   ///
-  /// Defaults to `.default`, which automatically calculates and validates CRC32C
+  /// By default, `.default` enables auto-validation which automatically verifies CRC32C and/or MD5
   /// checksums against the object's server metadata upon reaching EOF.
   ///
   /// If a checksum mismatch is detected, `DownloadError.checksumMismatch` is thrown.
   public var checksums: ChecksumOptions = .default
-
-  /// Flag to enable transparent auto-resumption on transient network failures. Defaults to `true`.
-  public var autoResume: Bool = true
 
   /// Overrides the resume policy for this download.
   public var resumePolicy: (any ResumePolicy<DownloadDetails>)? = nil
@@ -490,10 +486,6 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
         }
       } catch {
         if error is DownloadError {
-          isFinished = true
-          throw error
-        }
-        guard options.autoResume else {
           isFinished = true
           throw error
         }

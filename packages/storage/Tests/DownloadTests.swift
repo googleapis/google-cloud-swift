@@ -1093,8 +1093,7 @@ import Testing
     #expect(requests[1].value(forHTTPHeaderField: "Range") == "bytes=20-29")
   }
 
-  @Test func downloadObjectStreamingWithAutoResumeDisabledThrowsOnStreamInterruption() async throws
-  {
+  @Test func downloadObjectStreamingWithNeverResumeThrowsOnStreamInterruption() async throws {
     let registry = MockRegistry.create()
     let bucket = "test-bucket"
     let objectName = "no-resume.bin"
@@ -1117,14 +1116,14 @@ import Testing
 
     let client = try makeClient(registry: registry)
     let options = ReadObjectOptions().with {
-      $0.autoResume = false
+      $0.resumePolicy = NeverResume<DownloadDetails>()
     }
 
     let result = client.readObject(from: bucket, object: objectName, options: options)
 
     do {
       for try await _ in result.body {}
-      Issue.record("Expected error to be thrown when autoResume is false")
+      Issue.record("Expected error to be thrown when resumePolicy is NeverResume")
     } catch is MockNetworkError {
       // Expected
     } catch {

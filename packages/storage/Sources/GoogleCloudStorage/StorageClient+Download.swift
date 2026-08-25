@@ -32,14 +32,9 @@ extension StorageClient {
     let clientOptions = self.options.client
     let effectiveBackoffPolicy =
       options.backoffPolicy ?? self.options.download.backoffPolicy ?? clientOptions.backoffPolicy
-    let effectiveResumePolicy: any ResumePolicy<DownloadDetails>
-    if let explicitResume = options.resumePolicy ?? self.options.download.resumePolicy {
-      effectiveResumePolicy = explicitResume
-    } else if !options.autoResume {
-      effectiveResumePolicy = NeverResume()
-    } else {
-      effectiveResumePolicy = StopOnConsecutiveErrors()
-    }
+    let effectiveResumePolicy =
+      options.resumePolicy ?? self.options.download.resumePolicy
+      ?? StopOnConsecutiveErrors<DownloadDetails>()
     let resumeLoop = _ResumeLoop(
       resumePolicy: effectiveResumePolicy,
       backoffPolicy: effectiveBackoffPolicy
