@@ -18,9 +18,12 @@ import Testing
 
 @Suite struct UploadOptionsTests {
   @Test func uploadOptionsDefaults() {
+    #expect(UploadOptions.defaultResumableUploadThreshold == 8 * 1024 * 1024)
+    #expect(UploadOptions.defaultChunkSize == 8 * 1024 * 1024)
+
     let options = UploadOptions.default
     #expect(options.resumableUploadThreshold == nil)
-    #expect(options.chunkSize == 8 * 1024 * 1024)
+    #expect(options.chunkSize == UploadOptions.defaultChunkSize)
     #expect(options.preconditions == nil)
     #expect(options.kmsKeyName == nil)
     #expect(options.customerEncryptionKey == nil)

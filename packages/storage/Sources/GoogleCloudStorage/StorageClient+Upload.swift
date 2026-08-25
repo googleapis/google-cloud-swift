@@ -56,10 +56,9 @@ extension StorageClient {
       retryThrottler: clientOptions.retryThrottler,
       idempotent: true
     )
-    let defaultThreshold = 8 * 1024 * 1024  // 8MB default threshold
     let effectiveThreshold = Int64(
       options.resumableUploadThreshold ?? self.options.upload.resumableUploadThreshold
-        ?? defaultThreshold)
+        ?? UploadOptions.defaultResumableUploadThreshold)
     let httpClient = self.inner
     return UploadTask.create { continuation in
       var source = source
@@ -125,10 +124,9 @@ extension StorageClient {
       retryThrottler: clientOptions.retryThrottler,
       idempotent: true
     )
-    let defaultThreshold = 8 * 1024 * 1024  // 8MB default threshold
     let effectiveThreshold = Int64(
       options.resumableUploadThreshold ?? self.options.upload.resumableUploadThreshold
-        ?? defaultThreshold)
+        ?? UploadOptions.defaultResumableUploadThreshold)
     let httpClient = self.inner
     return UploadTask.create { continuation in
       var source = source
