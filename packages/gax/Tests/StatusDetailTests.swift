@@ -14,14 +14,14 @@
 
 import Foundation
 import Testing
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleRpc
 @testable import GoogleCloudGax
 
 @Suite struct StatusDetailTests {
   @Test func badRequest() throws {
     let input = BadRequest()
-    let asAny = try GoogleCloudWkt.`Any`(fromMessage: input)
+    let asAny = try GoogleCloudWKT.`Any`(fromMessage: input)
     let detail = StatusDetail(from: asAny)
     guard case let .badRequest(got) = detail else {
       Issue.record("Expected .badRequest, detail=\(detail), asAny=\(asAny), input=\(input)")
@@ -32,7 +32,7 @@ import GoogleRpc
 
   @Test func debugInfo() throws {
     let input = DebugInfo()
-    let asAny = try GoogleCloudWkt.`Any`(fromMessage: input)
+    let asAny = try GoogleCloudWKT.`Any`(fromMessage: input)
     let detail = StatusDetail(from: asAny)
     guard case let .debugInfo(got) = detail else {
       Issue.record("Expected .debugInfo, detail=\(detail), asAny=\(asAny), input=\(input)")
@@ -43,7 +43,7 @@ import GoogleRpc
 
   @Test func errorInfo() throws {
     let input = ErrorInfo()
-    let asAny = try GoogleCloudWkt.`Any`(fromMessage: input)
+    let asAny = try GoogleCloudWKT.`Any`(fromMessage: input)
     let detail = StatusDetail(from: asAny)
     guard case let .errorInfo(got) = detail else {
       Issue.record("Expected .errorInfo, detail=\(detail), asAny=\(asAny), input=\(input)")
@@ -54,7 +54,7 @@ import GoogleRpc
 
   @Test func help() throws {
     let input = Help()
-    let asAny = try GoogleCloudWkt.`Any`(fromMessage: input)
+    let asAny = try GoogleCloudWKT.`Any`(fromMessage: input)
     let detail = StatusDetail(from: asAny)
     guard case let .help(got) = detail else {
       Issue.record("Expected .help, detail=\(detail), asAny=\(asAny), input=\(input)")
@@ -65,7 +65,7 @@ import GoogleRpc
 
   @Test func localizedMessage() throws {
     let input = LocalizedMessage()
-    let asAny = try GoogleCloudWkt.`Any`(fromMessage: input)
+    let asAny = try GoogleCloudWKT.`Any`(fromMessage: input)
     let detail = StatusDetail(from: asAny)
     guard case let .localizedMessage(got) = detail else {
       Issue.record("Expected .localizedMessage, detail=\(detail), asAny=\(asAny), input=\(input)")
@@ -76,7 +76,7 @@ import GoogleRpc
 
   @Test func preconditionFailure() throws {
     let input = PreconditionFailure()
-    let asAny = try GoogleCloudWkt.`Any`(fromMessage: input)
+    let asAny = try GoogleCloudWKT.`Any`(fromMessage: input)
     let detail = StatusDetail(from: asAny)
     guard case let .preconditionFailure(got) = detail else {
       Issue.record(
@@ -95,7 +95,7 @@ import GoogleRpc
         $0.apiService = "service"
       }
     ]
-    let asAny = try GoogleCloudWkt.`Any`(fromMessage: input)
+    let asAny = try GoogleCloudWKT.`Any`(fromMessage: input)
     let detail = StatusDetail(from: asAny)
     guard case let .quotaFailure(got) = detail else {
       Issue.record("Expected .quotaFailure, detail=\(detail), asAny=\(asAny), input=\(input)")
@@ -106,7 +106,7 @@ import GoogleRpc
 
   @Test func requestInfo() throws {
     let input = RequestInfo()
-    let asAny = try GoogleCloudWkt.`Any`(fromMessage: input)
+    let asAny = try GoogleCloudWKT.`Any`(fromMessage: input)
     let detail = StatusDetail(from: asAny)
     guard case let .requestInfo(got) = detail else {
       Issue.record("Expected .requestInfo, detail=\(detail), asAny=\(asAny), input=\(input)")
@@ -117,7 +117,7 @@ import GoogleRpc
 
   @Test func resourceInfo() throws {
     let input = ResourceInfo()
-    let asAny = try GoogleCloudWkt.`Any`(fromMessage: input)
+    let asAny = try GoogleCloudWKT.`Any`(fromMessage: input)
     let detail = StatusDetail(from: asAny)
     guard case let .resourceInfo(got) = detail else {
       Issue.record("Expected .resourceInfo, detail=\(detail), asAny=\(asAny), input=\(input)")
@@ -128,7 +128,7 @@ import GoogleRpc
 
   @Test func retryInfo() throws {
     let input = RetryInfo()
-    let asAny = try GoogleCloudWkt.`Any`(fromMessage: input)
+    let asAny = try GoogleCloudWKT.`Any`(fromMessage: input)
     let detail = StatusDetail(from: asAny)
     guard case let .retryInfo(got) = detail else {
       Issue.record("Expected .retryInfo, detail=\(detail), asAny=\(asAny), input=\(input)")
@@ -138,8 +138,8 @@ import GoogleRpc
   }
 
   @Test func other() throws {
-    let input = GoogleCloudWkt.Api()  // A valid message, but unexpected in status details.
-    let asAny = try GoogleCloudWkt.`Any`(fromMessage: input)
+    let input = GoogleCloudWKT.Api()  // A valid message, but unexpected in status details.
+    let asAny = try GoogleCloudWKT.`Any`(fromMessage: input)
     let detail = StatusDetail(from: asAny)
     guard case let .other(got) = detail else {
       Issue.record("Expected .other, detail=\(detail), asAny=\(asAny), input=\(input)")

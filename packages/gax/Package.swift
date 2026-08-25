@@ -27,6 +27,7 @@ let package = Package(
   ],
   dependencies: [
     .package(path: "../auth"),
+    .package(path: "../wkt"),
     .package(path: "../../generated/google-rpc"),
     .package(url: "https://github.com/apple/swift-log", from: "1.14.0"),
     .package(url: "https://github.com/apple/swift-collections", from: "1.6.0"),
@@ -42,6 +43,7 @@ let package = Package(
       dependencies: [
         .product(name: "AsyncHTTPClient", package: "async-http-client"),
         .product(name: "GoogleCloudAuth", package: "auth"),
+        .product(name: "GoogleCloudWKT", package: "wkt"),
         .product(name: "GoogleRpc", package: "google-rpc"),
         .product(name: "Logging", package: "swift-log"),
         .product(name: "NIOCore", package: "swift-nio"),
@@ -53,6 +55,7 @@ let package = Package(
       dependencies: [
         "GoogleCloudGax",
         .product(name: "GoogleCloudAuth", package: "auth"),
+        .product(name: "GoogleCloudWKT", package: "wkt"),
         .product(name: "GRPCCore", package: "grpc-swift-2"),
         .product(name: "GRPCNIOTransportHTTP2Posix", package: "grpc-swift-nio-transport"),
         .product(name: "NIOCore", package: "swift-nio"),
@@ -66,6 +69,7 @@ let package = Package(
         "GoogleCloudGaxGRPC",
         .product(name: "DequeModule", package: "swift-collections"),
         .product(name: "GoogleRpc", package: "google-rpc"),
+        .product(name: "GoogleCloudWkt", package: "wkt"),
       ],
       path: "Tests",
     ),

@@ -18,7 +18,7 @@ import struct Logging.Logger
 @_spi(GoogleCloudInternal) @testable import GoogleCloudGax
 import GoogleCloudAuth
 import GoogleRpc
-import struct GoogleCloudWkt.Empty
+import struct GoogleCloudWKT.Empty
 import AsyncHTTPClient
 import NIOCore
 import NIOHTTP1
@@ -400,7 +400,7 @@ import NIOHTTP1
     var req = try await client.newRequest(path: path, query: query)
     req.setMethod(.GET)
     req.addHeader(name: _HeaderNames.apiClient, value: clientHeader)
-    _ = try await req.rpc(GoogleCloudWkt.Empty.self).get()
+    _ = try await req.rpc(GoogleCloudWKT.Empty.self).get()
   }
 
   @Test("verify the client when used as GAPICs do for Delete-like operations")
@@ -451,7 +451,7 @@ import NIOHTTP1
     req.setMethod(.GET)
     req.addHeader(name: _HeaderNames.apiClient, value: clientHeader)
     let e = await #expect(throws: GoogleCloudGax.RequestError.self) {
-      _ = try (await req.rpc(GoogleCloudWkt.Empty.self)).get()
+      _ = try (await req.rpc(GoogleCloudWKT.Empty.self)).get()
     }
     guard case .service(let serviceError) = e else {
       Issue.record("expected service error , got \(e)")
@@ -514,7 +514,7 @@ import NIOHTTP1
     req.setMethod(.GET)
     req.addHeader(name: _HeaderNames.apiClient, value: clientHeader)
     let e = await #expect(throws: GoogleCloudGax.RequestError.self) {
-      _ = try (await req.rpc(GoogleCloudWkt.Empty.self)).get()
+      _ = try (await req.rpc(GoogleCloudWKT.Empty.self)).get()
     }
     guard case .http(let httpError) = e else {
       Issue.record("expected service error , got \(e)")
