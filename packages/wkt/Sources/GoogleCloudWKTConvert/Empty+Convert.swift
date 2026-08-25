@@ -12,18 +12,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import SwiftProtobuf
 
-extension GoogleCloudWkt.`Any` {
-  public init(proto: SwiftProtobuf.Google_Protobuf_Any) throws {
-    let json = try proto.jsonUTF8Data()
-    self = try JSONDecoder().decode(GoogleCloudWkt.`Any`.self, from: json)
+extension GoogleCloudWKT.Empty {
+  public init(proto: SwiftProtobuf.Google_Protobuf_Empty) throws {
+    self.init()
   }
 
-  public func toProto() throws -> SwiftProtobuf.Google_Protobuf_Any {
-    let json = try JSONEncoder().encode(self)
-    return try SwiftProtobuf.Google_Protobuf_Any(jsonUTF8Data: json)
+  public func toProto() throws -> SwiftProtobuf.Google_Protobuf_Empty {
+    return SwiftProtobuf.Google_Protobuf_Empty()
   }
 }

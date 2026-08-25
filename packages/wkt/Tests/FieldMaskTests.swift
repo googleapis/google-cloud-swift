@@ -13,12 +13,12 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import Testing
 
 @Suite struct FieldMaskTests {
   struct WrappedFieldMask: Encodable {
-    let value: GoogleCloudWkt.FieldMask
+    let value: GoogleCloudWKT.FieldMask
   }
 
   @Test(
@@ -31,7 +31,7 @@ import Testing
       (["author_profile.avatar_url"], "{\"value\":\"authorProfile.avatarUrl\"}"),
     ])
   func encodeJSON(_ paths: [String], _ expected: String) throws {
-    let fieldMask = GoogleCloudWkt.FieldMask(paths: paths)
+    let fieldMask = GoogleCloudWKT.FieldMask(paths: paths)
     let wrapped = WrappedFieldMask(value: fieldMask)
     let encoder = JSONEncoder()
     let data = try encoder.encode(wrapped)
@@ -40,7 +40,7 @@ import Testing
   }
 
   struct WrappedFieldMaskDecode: Decodable {
-    let value: GoogleCloudWkt.FieldMask
+    let value: GoogleCloudWKT.FieldMask
   }
 
   @Test(

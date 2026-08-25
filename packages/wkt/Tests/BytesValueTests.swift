@@ -13,12 +13,12 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import Testing
 
 @Suite struct BytesValueTests {
   struct WrappedBytesValueEncode: Encodable {
-    let value: GoogleCloudWkt.BytesValue?
+    let value: GoogleCloudWKT.BytesValue?
   }
 
   @Test(
@@ -45,7 +45,7 @@ import Testing
   }
 
   struct WrappedBytesValueDecode: Decodable {
-    let value: GoogleCloudWkt.BytesValue?
+    let value: GoogleCloudWKT.BytesValue?
   }
 
   @Test(
@@ -70,7 +70,7 @@ import Testing
   }
 
   struct WrappedAny: Codable {
-    let content: GoogleCloudWkt.`Any`
+    let content: GoogleCloudWKT.`Any`
   }
 
   @Test("Unpack BytesValue from Any")

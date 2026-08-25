@@ -13,18 +13,18 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import Testing
 
 @Suite struct RecursiveTests {
   // A co-recursive dummy struct to test compile and serialization.
   struct DummyNode: Codable, Equatable, Sendable {
     var name: String
-    var next: GoogleCloudWkt.Recursive<DummyNode>?
+    var next: GoogleCloudWKT.Recursive<DummyNode>?
 
     init(name: String, next: DummyNode? = nil) {
       self.name = name
-      self.next = next.map { GoogleCloudWkt.Recursive(value: $0) }
+      self.next = next.map { GoogleCloudWKT.Recursive(value: $0) }
     }
   }
 

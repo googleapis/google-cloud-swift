@@ -14,7 +14,7 @@
 
 import Foundation
 import Testing
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 extension ProtoJSONDecoderTest {
   // Only test the types that appear in sidekick messages

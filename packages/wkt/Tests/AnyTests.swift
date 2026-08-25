@@ -13,12 +13,12 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import Testing
 
 @Suite struct AnyTests {
   struct WrappedAny: Codable {
-    let content: GoogleCloudWkt.`Any`
+    let content: GoogleCloudWKT.`Any`
   }
 
   // Storing an Any into an Any is probably a bad idea, but that won't stop them.

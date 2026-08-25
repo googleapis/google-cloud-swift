@@ -13,17 +13,17 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import Testing
 
 @Suite struct EmptyTests {
   struct WrappedEmptyEncode: Encodable {
-    let value: GoogleCloudWkt.Empty
+    let value: GoogleCloudWKT.Empty
   }
 
   @Test("Empty JSON Encoding")
   func encodingJSON() throws {
-    let wrapped = WrappedEmptyEncode(value: GoogleCloudWkt.Empty())
+    let wrapped = WrappedEmptyEncode(value: GoogleCloudWKT.Empty())
     let encoder = JSONEncoder()
     let data = try encoder.encode(wrapped)
     let jsonString = String(data: data, encoding: .utf8)
@@ -31,7 +31,7 @@ import Testing
   }
 
   struct WrappedEmptyDecode: Decodable {
-    let value: GoogleCloudWkt.Empty
+    let value: GoogleCloudWKT.Empty
   }
 
   @Test("Empty JSON Decoding")

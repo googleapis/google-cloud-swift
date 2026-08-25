@@ -13,12 +13,12 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import Testing
 
 @Suite struct Int32ValueTests {
   struct WrappedInt32ValueEncode: Encodable {
-    let value: GoogleCloudWkt.Int32Value?
+    let value: GoogleCloudWKT.Int32Value?
   }
 
   @Test(
@@ -45,7 +45,7 @@ import Testing
   }
 
   struct WrappedInt32ValueDecode: Decodable {
-    let value: GoogleCloudWkt.Int32Value?
+    let value: GoogleCloudWKT.Int32Value?
   }
 
   @Test(
@@ -70,7 +70,7 @@ import Testing
   }
 
   struct WrappedAny: Codable {
-    let content: GoogleCloudWkt.`Any`
+    let content: GoogleCloudWKT.`Any`
   }
 
   @Test("Unpack Int32Value from Any")

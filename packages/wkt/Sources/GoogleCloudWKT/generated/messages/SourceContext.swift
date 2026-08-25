@@ -16,29 +16,16 @@
 
 import Foundation
 
-/// Enum type definition.
-public struct Enum: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+/// `SourceContext` represents information about the source of a
+/// protobuf element, like the file in which it is defined.
+public struct SourceContext: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
-  /// Enum type name.
-  public var name: Swift.String = Swift.String()
+  /// The path-qualified name of the .proto file that contained the associated
+  /// protobuf element.  For example: `"google/protobuf/source_context.proto"`.
+  public var fileName: Swift.String = Swift.String()
 
-  /// Enum value definitions.
-  public var enumvalue: [EnumValue] = []
-
-  /// Protocol buffer options.
-  public var options: [Option] = []
-
-  /// The source context.
-  public var sourceContext: SourceContext? = nil
-
-  /// The source syntax.
-  public var syntax: Syntax = Syntax()
-
-  /// The source edition string, only valid when syntax is SYNTAX_EDITIONS.
-  public var edition: Swift.String = Swift.String()
-
-  /// Initialize a new instance of `Enum`.
+  /// Initialize a new instance of `SourceContext`.
   public init() {}
 
   /// Use `config` to return a new instance of this object, with some fields updated.
@@ -46,7 +33,7 @@ public struct Enum: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// Commonly used to initialize the value, for example:
   ///
   /// ```
-  /// let value = Enum().with { $0.name = ... }
+  /// let value = SourceContext().with { $0.fileName = ... }
   /// ```
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
@@ -55,12 +42,12 @@ public struct Enum: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   public static var _anyTypeUrl: Swift.String {
-    return "type.googleapis.com/google.protobuf.Enum"
+    return "type.googleapis.com/google.protobuf.SourceContext"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

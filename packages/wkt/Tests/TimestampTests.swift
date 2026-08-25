@@ -15,25 +15,25 @@
 import Foundation
 import Testing
 
-@testable import GoogleCloudWkt
+@testable import GoogleCloudWKT
 
 @Suite struct TimestampTests {
   @Test(
     "Timestamp detect out of range seconds",
     arguments: [
-      GoogleCloudWkt.Timestamp.maxSeconds + 1,
-      GoogleCloudWkt.Timestamp.minSeconds - 1,
+      GoogleCloudWKT.Timestamp.maxSeconds + 1,
+      GoogleCloudWKT.Timestamp.minSeconds - 1,
     ])
   func outOfRangeSeconds(_ seconds: Int64) throws {
-    #expect(throws: GoogleCloudWkt.TimestampError.outOfRange) {
-      try GoogleCloudWkt.Timestamp(seconds: seconds, nanos: 0)
+    #expect(throws: GoogleCloudWKT.TimestampError.outOfRange) {
+      try GoogleCloudWKT.Timestamp(seconds: seconds, nanos: 0)
     }
   }
 
   @Test(
     "Timestamp parsing of known values",
     arguments: [
-      ("0001-01-01T00:00:00Z", GoogleCloudWkt.Timestamp.minSeconds, 0),
+      ("0001-01-01T00:00:00Z", GoogleCloudWKT.Timestamp.minSeconds, 0),
       ("1970-01-01T00:00:00Z", 0, 0),
       ("1970-01-01T00:00:12Z", 12, 0),
       ("1970-01-01T00:00:12.34Z", 12, 340_000_000),
@@ -41,7 +41,7 @@ import Testing
       ("1970-01-01T00:00:12.345678912Z", 12, 345_678_912),
       ("1969-12-31T23:59:59Z", -1, 0),
       ("1969-12-31T23:59:48.123456789Z", -12, 123_456_789),
-      ("9999-12-31T23:59:59Z", GoogleCloudWkt.Timestamp.maxSeconds, 0),
+      ("9999-12-31T23:59:59Z", GoogleCloudWKT.Timestamp.maxSeconds, 0),
       ("1970-01-01T01:00:00+01:00", 0, 0),
       ("1970-01-01T00:00:00+01:00", -3600, 0),
       ("1969-12-31T23:00:00-01:00", 0, 0),
@@ -88,7 +88,7 @@ import Testing
     ]
   )
   func roundtripString(_ input: String) throws {
-    let ts = try GoogleCloudWkt.Timestamp(fromString: input)
+    let ts = try GoogleCloudWKT.Timestamp(fromString: input)
     let formatted = ts.toString()
     #expect(input == formatted)
   }
@@ -107,7 +107,7 @@ import Testing
     ]
   )
   func roundtripWithOffset(input: String, expected: String) throws {
-    let ts = try GoogleCloudWkt.Timestamp(fromString: input)
+    let ts = try GoogleCloudWKT.Timestamp(fromString: input)
     let formatted = ts.toString()
     #expect(formatted == expected)
   }
@@ -192,7 +192,7 @@ import Testing
       (12, 340_000_000, "{\"value\":\"1970-01-01T00:00:12.340Z\"}"),
       (12, 345_678_912, "{\"value\":\"1970-01-01T00:00:12.345678912Z\"}"),
       (-1, 0, "{\"value\":\"1969-12-31T23:59:59Z\"}"),
-      (GoogleCloudWkt.Timestamp.minSeconds, 0, "{\"value\":\"0001-01-01T00:00:00Z\"}"),
+      (GoogleCloudWKT.Timestamp.minSeconds, 0, "{\"value\":\"0001-01-01T00:00:00Z\"}"),
     ]
   )
   func encodeJSON(_ args: (Int64, Int64, String)) throws {
@@ -211,7 +211,7 @@ import Testing
       ("{\"value\":\"1970-01-01T00:00:12.34Z\"}", 12, 340_000_000),
       ("{\"value\":\"1970-01-01T00:00:12.345678912Z\"}", 12, 345_678_912),
       ("{\"value\":\"1969-12-31T23:59:59Z\"}", -1, 0),
-      ("{\"value\":\"0001-01-01T00:00:00Z\"}", GoogleCloudWkt.Timestamp.minSeconds, 0),
+      ("{\"value\":\"0001-01-01T00:00:00Z\"}", GoogleCloudWKT.Timestamp.minSeconds, 0),
       ("{\"value\":\"1970-01-01T01:00:00+01:00\"}", 0, 0),
     ]
   )

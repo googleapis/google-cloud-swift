@@ -1,4 +1,4 @@
-# ``GoogleCloudWkt``
+# ``GoogleCloudWKT``
 
 This package provides core types used in the Google Cloud Client Libraries for
 Swift.

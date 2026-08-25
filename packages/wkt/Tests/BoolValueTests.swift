@@ -13,12 +13,12 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import Testing
 
 @Suite struct BoolValueTests {
   struct WrappedBoolValueEncode: Encodable {
-    let value: GoogleCloudWkt.BoolValue?
+    let value: GoogleCloudWKT.BoolValue?
   }
 
   @Test(
@@ -45,7 +45,7 @@ import Testing
   }
 
   struct WrappedBoolValueDecode: Decodable {
-    let value: GoogleCloudWkt.BoolValue?
+    let value: GoogleCloudWKT.BoolValue?
   }
 
   @Test(
@@ -70,7 +70,7 @@ import Testing
   }
 
   struct WrappedAny: Codable {
-    let content: GoogleCloudWkt.`Any`
+    let content: GoogleCloudWKT.`Any`
   }
 
   @Test("Unpack BoolValue from Any")

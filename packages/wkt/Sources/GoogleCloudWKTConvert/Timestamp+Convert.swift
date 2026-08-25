@@ -12,10 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import GoogleCloudWkt
+import GoogleCloudWKT
 import SwiftProtobuf
 
-extension GoogleCloudWkt.Timestamp {
+extension GoogleCloudWKT.Timestamp {
   public init(proto: SwiftProtobuf.Google_Protobuf_Timestamp) throws {
     try self.init(seconds: proto.seconds, nanos: Int64(proto.nanos))
   }

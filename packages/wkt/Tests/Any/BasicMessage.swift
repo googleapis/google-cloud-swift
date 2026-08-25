@@ -14,7 +14,7 @@
 
 import Foundation
 import Testing
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 extension AnyTests {
   struct BasicMessage: Codable, Equatable, Sendable {
@@ -68,10 +68,10 @@ extension AnyTests.BasicMessage: _AnyPackable {
   }
 
   public init(fromAny any: `Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
 
   public func _pack() throws -> Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }
