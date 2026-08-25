@@ -19,7 +19,7 @@ import Foundation
 /// Unlike `_RetryLoop` which manages atomic single-RPC retries with `RetryPolicy`, `_ResumeLoop`
 /// tracks forward progress and handles transient error recovery, session resumption,
 /// and backoff across an entire operation using a `ResumePolicy` and `BackoffPolicy`.
-public struct _ResumeLoop<Details: Sendable>: Sendable {
+@_spi(GoogleCloudInternal) public struct _ResumeLoop<Details: Sendable>: Sendable {
   public let resumePolicy: any ResumePolicy<Details>
   public let backoffPolicy: any BackoffPolicy
 
@@ -114,7 +114,7 @@ public struct _ResumeLoop<Details: Sendable>: Sendable {
   }
 }
 
-extension _ResumeLoop where Details == Void {
+@_spi(GoogleCloudInternal) extension _ResumeLoop where Details == Void {
   /// Runs an async attempt closure starting with a fresh default `ResumeState`.
   public func run<Response>(
     attempt: (_ remainingTime: Duration?) async throws -> Response
