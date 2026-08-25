@@ -13,6 +13,7 @@
 // limitations under the License.
 
 import Foundation
+import GoogleCloudGax
 @testable import GoogleCloudStorage
 import Testing
 
@@ -58,7 +59,7 @@ import Testing
     #expect(options.generation == 456)
     #expect(options.preconditions?.ifGenerationMatch == 123)
     #expect(options.customerEncryptionKey == csek)
-    #expect(options.range == .bounded(start: 0, end: 1024))
+    #expect(options.range == ReadObjectRange.bounded(start: 0, end: 1024))
     #expect(options.enableDecompressiveTranscoding == false)
     #expect(options.resumePolicy != nil)
     #expect(options.checksums == .none)

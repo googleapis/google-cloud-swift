@@ -1124,10 +1124,10 @@ import Testing
     do {
       for try await _ in result.body {}
       Issue.record("Expected error to be thrown when resumePolicy is NeverResume")
-    } catch is MockNetworkError {
-      // Expected
+    } catch DownloadError.resumeFailed(let bytesReceived, _) {
+      #expect(bytesReceived == UInt64(chunk1.count))
     } catch {
-      Issue.record("Expected MockNetworkError, but got \(error)")
+      Issue.record("Expected DownloadError.resumeFailed, but got \(error)")
     }
 
     let requests = registry.recordedRequests()
