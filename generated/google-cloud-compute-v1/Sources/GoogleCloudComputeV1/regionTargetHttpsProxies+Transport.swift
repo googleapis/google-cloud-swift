@@ -23,7 +23,7 @@
   @_spi(GoogleCloudInternal) import GoogleCloudGax
 
   extension Clients {
-    class RegionTargetHttpsProxiesTransport: RegionTargetHttpsProxiesStub {
+    final class RegionTargetHttpsProxiesTransport: RegionTargetHttpsProxiesStub {
       let inner: GoogleCloudGax._HTTPClient
 
       public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {

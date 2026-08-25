@@ -45,7 +45,7 @@ import GoogleCloudGax
 /// [google.cloud.vision.v1.ReferenceImage]: <doc:ReferenceImage>
 ///
 /// @Snippet(path: "ProductSearchQuickstart")
-public class ProductSearchClient: Clients.ProductSearchProtocol {
+public final class ProductSearchClient: Clients.ProductSearchProtocol, Sendable {
   let inner: any Clients.ProductSearchStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

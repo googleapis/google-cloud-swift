@@ -27,7 +27,7 @@ import GoogleCloudGax
 /// Service for ingesting end user actions on the customer website.
 ///
 /// @Snippet(path: "UserEventServiceQuickstart")
-public class UserEventServiceClient: Clients.UserEventServiceProtocol {
+public final class UserEventServiceClient: Clients.UserEventServiceProtocol, Sendable {
   let inner: any Clients.UserEventServiceStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol SqlSslCertsServiceStub {
+    protocol SqlSslCertsServiceStub: Sendable {
       func delete(
         request: SqlSslCertsDeleteRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.Operation

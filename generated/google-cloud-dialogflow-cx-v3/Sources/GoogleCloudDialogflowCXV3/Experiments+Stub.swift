@@ -22,7 +22,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol ExperimentsStub {
+    protocol ExperimentsStub: Sendable {
       func listExperiments(
         request: ListExperimentsRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowCXV3.ListExperimentsResponse

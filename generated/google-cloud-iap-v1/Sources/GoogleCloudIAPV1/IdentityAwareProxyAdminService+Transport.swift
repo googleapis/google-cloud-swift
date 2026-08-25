@@ -23,7 +23,7 @@ import GoogleIAMV1
 @_spi(GoogleCloudInternal) import GoogleCloudGax
 
 extension Clients {
-  class IdentityAwareProxyAdminServiceTransport: IdentityAwareProxyAdminServiceStub {
+  final class IdentityAwareProxyAdminServiceTransport: IdentityAwareProxyAdminServiceStub {
     let inner: GoogleCloudGax._HTTPClient
 
     public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {

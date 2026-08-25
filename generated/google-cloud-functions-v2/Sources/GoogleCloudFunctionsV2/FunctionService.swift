@@ -33,7 +33,7 @@ import GoogleCloudGax
 /// executed and how it is triggered.
 ///
 /// @Snippet(path: "FunctionServiceQuickstart")
-public class FunctionServiceClient: Clients.FunctionServiceProtocol {
+public final class FunctionServiceClient: Clients.FunctionServiceProtocol, Sendable {
   let inner: any Clients.FunctionServiceStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

@@ -19,7 +19,7 @@ import GoogleCloudWkt
 import GoogleCloudGax
 
 extension Clients {
-  protocol MetastoreServiceStub {
+  protocol MetastoreServiceStub: Sendable {
     func createCatalog(
       request: CreateCatalogRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleBigQueryBigLakeV1.Catalog

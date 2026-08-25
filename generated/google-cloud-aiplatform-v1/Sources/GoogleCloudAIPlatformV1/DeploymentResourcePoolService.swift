@@ -29,7 +29,9 @@
   /// A service that manages the DeploymentResourcePool resource.
   ///
   /// @Snippet(path: "DeploymentResourcePoolServiceQuickstart")
-  public class DeploymentResourcePoolServiceClient: Clients.DeploymentResourcePoolServiceProtocol {
+  public final class DeploymentResourcePoolServiceClient: Clients
+      .DeploymentResourcePoolServiceProtocol, Sendable
+  {
     let inner: any Clients.DeploymentResourcePoolServiceStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

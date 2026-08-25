@@ -58,7 +58,7 @@ import GoogleCloudGax
 /// [google.cloud.accessapproval.v1.ApprovalRequest]: <doc:ApprovalRequest>
 ///
 /// @Snippet(path: "AccessApprovalQuickstart")
-public class AccessApprovalClient: Clients.AccessApprovalProtocol {
+public final class AccessApprovalClient: Clients.AccessApprovalProtocol, Sendable {
   let inner: any Clients.AccessApprovalStub
 
   /// Creates a new `AccessApprovalClient` instance.

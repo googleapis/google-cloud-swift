@@ -49,7 +49,7 @@ import GoogleCloudGax
 /// [google.cloud.channel.v1.Entitlement]: <doc:Entitlement>
 ///
 /// @Snippet(path: "CloudChannelServiceQuickstart")
-public class CloudChannelServiceClient: Clients.CloudChannelServiceProtocol {
+public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtocol, Sendable {
   let inner: any Clients.CloudChannelServiceStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

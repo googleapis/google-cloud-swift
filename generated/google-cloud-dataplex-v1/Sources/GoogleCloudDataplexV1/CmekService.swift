@@ -28,7 +28,7 @@ import GoogleCloudGax
 /// Dataplex Universal Catalog Customer Managed Encryption Keys (CMEK) Service
 ///
 /// @Snippet(path: "CmekServiceQuickstart")
-public class CmekServiceClient: Clients.CmekServiceProtocol {
+public final class CmekServiceClient: Clients.CmekServiceProtocol, Sendable {
   let inner: any Clients.CmekServiceStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

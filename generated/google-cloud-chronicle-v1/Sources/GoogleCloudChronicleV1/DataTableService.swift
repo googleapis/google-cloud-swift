@@ -25,7 +25,7 @@ import GoogleCloudGax
 /// DataTableManager provides an interface for managing data tables.
 ///
 /// @Snippet(path: "DataTableServiceQuickstart")
-public class DataTableServiceClient: Clients.DataTableServiceProtocol {
+public final class DataTableServiceClient: Clients.DataTableServiceProtocol, Sendable {
   let inner: any Clients.DataTableServiceStub
 
   /// Creates a new `DataTableServiceClient` instance.

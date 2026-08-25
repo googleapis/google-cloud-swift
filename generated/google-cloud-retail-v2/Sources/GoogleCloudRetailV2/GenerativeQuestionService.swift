@@ -25,7 +25,9 @@ import GoogleCloudGax
 /// Service for managing LLM generated questions in search serving.
 ///
 /// @Snippet(path: "GenerativeQuestionServiceQuickstart")
-public class GenerativeQuestionServiceClient: Clients.GenerativeQuestionServiceProtocol {
+public final class GenerativeQuestionServiceClient: Clients.GenerativeQuestionServiceProtocol,
+  Sendable
+{
   let inner: any Clients.GenerativeQuestionServiceStub
 
   /// Creates a new `GenerativeQuestionServiceClient` instance.

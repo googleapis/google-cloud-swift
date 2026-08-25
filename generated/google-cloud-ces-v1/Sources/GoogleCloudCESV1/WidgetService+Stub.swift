@@ -21,7 +21,7 @@ import GoogleLongRunning
 import GoogleCloudGax
 
 extension Clients {
-  protocol WidgetServiceStub {
+  protocol WidgetServiceStub: Sendable {
     func generateChatToken(
       request: GenerateChatTokenRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudCESV1.GenerateChatTokenResponse

@@ -19,7 +19,7 @@ import GoogleCloudWkt
 import GoogleCloudGax
 
 extension Clients {
-  protocol SnoozeServiceStub {
+  protocol SnoozeServiceStub: Sendable {
     func createSnooze(
       request: CreateSnoozeRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.Snooze

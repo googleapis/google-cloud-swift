@@ -27,7 +27,7 @@ import GoogleCloudGax
 /// from collect layer.
 ///
 /// @Snippet(path: "ApiHubCurateQuickstart")
-public class ApiHubCurateClient: Clients.ApiHubCurateProtocol {
+public final class ApiHubCurateClient: Clients.ApiHubCurateProtocol, Sendable {
   let inner: any Clients.ApiHubCurateStub
 
   /// Creates a new `ApiHubCurateClient` instance.

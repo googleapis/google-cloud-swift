@@ -21,7 +21,7 @@ import GoogleLongRunning
 import GoogleCloudGax
 
 extension Clients {
-  protocol ToolServiceStub {
+  protocol ToolServiceStub: Sendable {
     func executeTool(
       request: ExecuteToolRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudCESV1.ExecuteToolResponse

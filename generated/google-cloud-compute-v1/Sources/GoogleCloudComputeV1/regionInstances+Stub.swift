@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol RegionInstancesStub {
+    protocol RegionInstancesStub: Sendable {
       func bulkInsert(
         request: RegionInstancesClient.BulkInsertRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation

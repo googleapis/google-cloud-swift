@@ -27,7 +27,7 @@ import GoogleCloudGax
 /// Service describing handlers for resources.
 ///
 /// @Snippet(path: "MigrationCenterQuickstart")
-public class MigrationCenterClient: Clients.MigrationCenterProtocol {
+public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Sendable {
   let inner: any Clients.MigrationCenterStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

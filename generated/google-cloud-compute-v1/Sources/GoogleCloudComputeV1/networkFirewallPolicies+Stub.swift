@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol NetworkFirewallPoliciesStub {
+    protocol NetworkFirewallPoliciesStub: Sendable {
       func addAssociation(
         request: NetworkFirewallPoliciesClient.AddAssociationRequest,
         options: GoogleCloudGax.RequestOptions

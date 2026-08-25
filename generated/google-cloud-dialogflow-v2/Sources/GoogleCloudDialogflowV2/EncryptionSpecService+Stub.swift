@@ -23,7 +23,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol EncryptionSpecServiceStub {
+    protocol EncryptionSpecServiceStub: Sendable {
       func getEncryptionSpec(
         request: GetEncryptionSpecRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.EncryptionSpec

@@ -25,7 +25,7 @@ import GoogleLongRunning
 @_spi(GoogleCloudInternal) import GoogleCloudGax
 
 extension Clients {
-  class ManagedSchemaRegistryTransport: ManagedSchemaRegistryStub {
+  final class ManagedSchemaRegistryTransport: ManagedSchemaRegistryStub {
     let inner: GoogleCloudGax._HTTPClient
 
     public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {

@@ -26,8 +26,8 @@ import GoogleCloudGax
 /// the public certificate authority service.
 ///
 /// @Snippet(path: "PublicCertificateAuthorityServiceQuickstart")
-public class PublicCertificateAuthorityServiceClient: Clients
-    .PublicCertificateAuthorityServiceProtocol
+public final class PublicCertificateAuthorityServiceClient: Clients
+    .PublicCertificateAuthorityServiceProtocol, Sendable
 {
   let inner: any Clients.PublicCertificateAuthorityServiceStub
 

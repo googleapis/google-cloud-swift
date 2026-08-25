@@ -21,7 +21,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol DomainMappingsStub {
+  protocol DomainMappingsStub: Sendable {
     func listDomainMappings(
       request: ListDomainMappingsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleAppEngineV1.ListDomainMappingsResponse

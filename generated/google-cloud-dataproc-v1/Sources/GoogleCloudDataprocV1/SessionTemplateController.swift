@@ -26,7 +26,9 @@ import GoogleCloudGax
 /// The SessionTemplateController provides methods to manage session templates.
 ///
 /// @Snippet(path: "SessionTemplateControllerQuickstart")
-public class SessionTemplateControllerClient: Clients.SessionTemplateControllerProtocol {
+public final class SessionTemplateControllerClient: Clients.SessionTemplateControllerProtocol,
+  Sendable
+{
   let inner: any Clients.SessionTemplateControllerStub
 
   /// Creates a new `SessionTemplateControllerClient` instance.

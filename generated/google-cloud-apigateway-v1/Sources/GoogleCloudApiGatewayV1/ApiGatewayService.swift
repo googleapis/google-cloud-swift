@@ -26,7 +26,7 @@ import GoogleCloudGax
 /// The API Gateway Service is the interface for managing API Gateways.
 ///
 /// @Snippet(path: "ApiGatewayServiceQuickstart")
-public class ApiGatewayServiceClient: Clients.ApiGatewayServiceProtocol {
+public final class ApiGatewayServiceClient: Clients.ApiGatewayServiceProtocol, Sendable {
   let inner: any Clients.ApiGatewayServiceStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

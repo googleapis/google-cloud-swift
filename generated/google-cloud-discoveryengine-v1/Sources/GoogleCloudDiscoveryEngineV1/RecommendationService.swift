@@ -26,7 +26,7 @@
   /// Service for making recommendations.
   ///
   /// @Snippet(path: "RecommendationServiceQuickstart")
-  public class RecommendationServiceClient: Clients.RecommendationServiceProtocol {
+  public final class RecommendationServiceClient: Clients.RecommendationServiceProtocol, Sendable {
     let inner: any Clients.RecommendationServiceStub
 
     /// Creates a new `RecommendationServiceClient` instance.

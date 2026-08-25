@@ -27,7 +27,7 @@ import GoogleCloudGax
 /// Allow users to create and manage tag values.
 ///
 /// @Snippet(path: "TagValuesQuickstart")
-public class TagValuesClient: Clients.TagValuesProtocol {
+public final class TagValuesClient: Clients.TagValuesProtocol, Sendable {
   let inner: any Clients.TagValuesStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

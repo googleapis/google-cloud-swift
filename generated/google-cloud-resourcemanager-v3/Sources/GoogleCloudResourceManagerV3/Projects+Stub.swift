@@ -22,7 +22,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol ProjectsStub {
+  protocol ProjectsStub: Sendable {
     func getProject(
       request: GetProjectRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudResourceManagerV3.Project

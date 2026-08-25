@@ -27,7 +27,7 @@ import GoogleCloudGax
 /// Enables speech transcription and resource management.
 ///
 /// @Snippet(path: "SpeechQuickstart")
-public class SpeechClient: Clients.SpeechProtocol {
+public final class SpeechClient: Clients.SpeechProtocol, Sendable {
   let inner: any Clients.SpeechStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

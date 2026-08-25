@@ -29,7 +29,7 @@ import GoogleCloudGax
 /// Virtual Private Cloud networks.
 ///
 /// @Snippet(path: "VpcAccessServiceQuickstart")
-public class VpcAccessServiceClient: Clients.VpcAccessServiceProtocol {
+public final class VpcAccessServiceClient: Clients.VpcAccessServiceProtocol, Sendable {
   let inner: any Clients.VpcAccessServiceStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol InterconnectAttachmentGroupsStub {
+    protocol InterconnectAttachmentGroupsStub: Sendable {
       func delete(
         request: InterconnectAttachmentGroupsClient.DeleteRequest,
         options: GoogleCloudGax.RequestOptions

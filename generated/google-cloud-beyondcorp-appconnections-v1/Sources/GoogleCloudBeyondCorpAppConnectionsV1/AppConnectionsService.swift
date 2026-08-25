@@ -41,7 +41,7 @@ import GoogleCloudGax
 /// (create/read/update/delete) BeyondCorp AppConnections.
 ///
 /// @Snippet(path: "AppConnectionsServiceQuickstart")
-public class AppConnectionsServiceClient: Clients.AppConnectionsServiceProtocol {
+public final class AppConnectionsServiceClient: Clients.AppConnectionsServiceProtocol, Sendable {
   let inner: any Clients.AppConnectionsServiceStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

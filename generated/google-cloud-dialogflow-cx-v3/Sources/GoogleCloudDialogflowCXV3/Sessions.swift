@@ -32,7 +32,7 @@
   /// [google.cloud.dialogflow.cx.v3.Sessions.DetectIntent]: <doc:SessionsClient/detectIntent(request:options:)>
   ///
   /// @Snippet(path: "SessionsQuickstart")
-  public class SessionsClient: Clients.SessionsProtocol {
+  public final class SessionsClient: Clients.SessionsProtocol, Sendable {
     let inner: any Clients.SessionsStub
 
     /// Creates a new `SessionsClient` instance.

@@ -24,7 +24,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol ModelServiceStub {
+    protocol ModelServiceStub: Sendable {
       func uploadModel(
         request: UploadModelRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation

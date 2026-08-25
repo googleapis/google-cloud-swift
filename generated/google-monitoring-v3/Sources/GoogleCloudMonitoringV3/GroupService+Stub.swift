@@ -20,7 +20,7 @@ import GoogleCloudWkt
 import GoogleCloudGax
 
 extension Clients {
-  protocol GroupServiceStub {
+  protocol GroupServiceStub: Sendable {
     func listGroups(
       request: ListGroupsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.ListGroupsResponse

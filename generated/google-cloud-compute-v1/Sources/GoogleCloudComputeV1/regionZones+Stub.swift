@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol RegionZonesStub {
+    protocol RegionZonesStub: Sendable {
       func list(
         request: RegionZonesClient.ListRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.ZoneList

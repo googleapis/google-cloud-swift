@@ -31,7 +31,7 @@ import GoogleCloudGax
 /// classify data along a common axis.
 ///
 /// @Snippet(path: "PolicyTagManagerQuickstart")
-public class PolicyTagManagerClient: Clients.PolicyTagManagerProtocol {
+public final class PolicyTagManagerClient: Clients.PolicyTagManagerProtocol, Sendable {
   let inner: any Clients.PolicyTagManagerStub
 
   /// Creates a new `PolicyTagManagerClient` instance.

@@ -22,7 +22,7 @@ import GoogleCloudWkt
 @_spi(GoogleCloudInternal) import GoogleCloudGax
 
 extension Clients {
-  class IdentityAwareProxyOAuthServiceTransport: IdentityAwareProxyOAuthServiceStub {
+  final class IdentityAwareProxyOAuthServiceTransport: IdentityAwareProxyOAuthServiceStub {
     let inner: GoogleCloudGax._HTTPClient
 
     public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {

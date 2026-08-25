@@ -27,7 +27,7 @@ import GoogleCloudGax
 /// Cloud Run Service Control Plane API
 ///
 /// @Snippet(path: "ServicesQuickstart")
-public class ServicesClient: Clients.ServicesProtocol {
+public final class ServicesClient: Clients.ServicesProtocol, Sendable {
   let inner: any Clients.ServicesStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

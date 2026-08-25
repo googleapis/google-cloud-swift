@@ -25,7 +25,7 @@
   /// Service for the `instanceGroupManagers` resource.
   ///
   /// @Snippet(path: "instanceGroupManagersQuickstart")
-  public class InstanceGroupManagersClient: Clients.InstanceGroupManagersProtocol {
+  public final class InstanceGroupManagersClient: Clients.InstanceGroupManagersProtocol, Sendable {
     let inner: any Clients.InstanceGroupManagersStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

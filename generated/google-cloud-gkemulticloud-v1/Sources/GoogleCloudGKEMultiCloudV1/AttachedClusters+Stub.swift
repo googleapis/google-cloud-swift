@@ -21,7 +21,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol AttachedClustersStub {
+  protocol AttachedClustersStub: Sendable {
     func createAttachedCluster(
       request: CreateAttachedClusterRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

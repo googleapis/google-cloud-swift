@@ -39,7 +39,7 @@ import GoogleCloudGax
 ///   `projects/myproject/locations/US/capacityCommitments/id`.
 ///
 /// @Snippet(path: "ReservationServiceQuickstart")
-public class ReservationServiceClient: Clients.ReservationServiceProtocol {
+public final class ReservationServiceClient: Clients.ReservationServiceProtocol, Sendable {
   let inner: any Clients.ReservationServiceStub
 
   /// Creates a new `ReservationServiceClient` instance.

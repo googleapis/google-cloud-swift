@@ -29,7 +29,7 @@
   /// [google.cloud.dialogflow.cx.v3.Page]: <doc:Page>
   ///
   /// @Snippet(path: "PagesQuickstart")
-  public class PagesClient: Clients.PagesProtocol {
+  public final class PagesClient: Clients.PagesProtocol, Sendable {
     let inner: any Clients.PagesStub
 
     /// Creates a new `PagesClient` instance.

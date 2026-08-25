@@ -23,7 +23,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol MessagingStub {
+  protocol MessagingStub: Sendable {
     func createRoom(
       request: CreateRoomRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleShowcaseV1Beta1.Room

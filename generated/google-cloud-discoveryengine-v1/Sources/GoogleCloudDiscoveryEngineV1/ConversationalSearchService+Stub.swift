@@ -21,7 +21,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol ConversationalSearchServiceStub {
+    protocol ConversationalSearchServiceStub: Sendable {
       func converseConversation(
         request: ConverseConversationRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudDiscoveryEngineV1.ConverseConversationResponse

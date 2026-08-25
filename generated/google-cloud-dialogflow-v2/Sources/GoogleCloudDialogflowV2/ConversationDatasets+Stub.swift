@@ -23,7 +23,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol ConversationDatasetsStub {
+    protocol ConversationDatasetsStub: Sendable {
       func createConversationDataset(
         request: CreateConversationDatasetRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation

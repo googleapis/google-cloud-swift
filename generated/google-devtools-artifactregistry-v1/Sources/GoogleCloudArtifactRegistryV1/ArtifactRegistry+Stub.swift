@@ -23,7 +23,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol ArtifactRegistryStub {
+  protocol ArtifactRegistryStub: Sendable {
     func listDockerImages(
       request: ListDockerImagesRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudArtifactRegistryV1.ListDockerImagesResponse

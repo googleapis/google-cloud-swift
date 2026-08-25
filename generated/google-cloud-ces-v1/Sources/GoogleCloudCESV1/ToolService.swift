@@ -26,7 +26,7 @@ import GoogleCloudGax
 /// Tool service provides APIs for interacting with CES tools.
 ///
 /// @Snippet(path: "ToolServiceQuickstart")
-public class ToolServiceClient: Clients.ToolServiceProtocol {
+public final class ToolServiceClient: Clients.ToolServiceProtocol, Sendable {
   let inner: any Clients.ToolServiceStub
 
   /// Creates a new `ToolServiceClient` instance.

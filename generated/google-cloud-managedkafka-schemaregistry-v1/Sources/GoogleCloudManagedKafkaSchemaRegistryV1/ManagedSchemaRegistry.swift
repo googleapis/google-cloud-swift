@@ -75,7 +75,7 @@ import GoogleCloudGax
 /// operations on the schema for data importing purposes.
 ///
 /// @Snippet(path: "ManagedSchemaRegistryQuickstart")
-public class ManagedSchemaRegistryClient: Clients.ManagedSchemaRegistryProtocol {
+public final class ManagedSchemaRegistryClient: Clients.ManagedSchemaRegistryProtocol, Sendable {
   let inner: any Clients.ManagedSchemaRegistryStub
 
   /// Creates a new `ManagedSchemaRegistryClient` instance.

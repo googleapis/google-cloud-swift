@@ -23,7 +23,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol NetworkSecurityStub {
+  protocol NetworkSecurityStub: Sendable {
     func listAuthorizationPolicies(
       request: ListAuthorizationPoliciesRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudNetworkSecurityV1.ListAuthorizationPoliciesResponse

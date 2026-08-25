@@ -28,7 +28,7 @@ import GoogleCloudGax
 /// Catalog.
 ///
 /// @Snippet(path: "ContentServiceQuickstart")
-public class ContentServiceClient: Clients.ContentServiceProtocol {
+public final class ContentServiceClient: Clients.ContentServiceProtocol, Sendable {
   let inner: any Clients.ContentServiceStub
 
   /// Creates a new `ContentServiceClient` instance.

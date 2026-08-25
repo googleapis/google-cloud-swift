@@ -29,7 +29,7 @@ import GoogleCloudGax
 /// Google Cloud services and forward them to supported destinations.
 ///
 /// @Snippet(path: "EventarcQuickstart")
-public class EventarcClient: Clients.EventarcProtocol {
+public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   let inner: any Clients.EventarcStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

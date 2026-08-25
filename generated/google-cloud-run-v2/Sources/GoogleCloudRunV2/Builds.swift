@@ -25,7 +25,7 @@ import GoogleCloudGax
 /// Cloud Run Build Control Plane API
 ///
 /// @Snippet(path: "BuildsQuickstart")
-public class BuildsClient: Clients.BuildsProtocol {
+public final class BuildsClient: Clients.BuildsProtocol, Sendable {
   let inner: any Clients.BuildsStub
 
   /// Creates a new `BuildsClient` instance.

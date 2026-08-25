@@ -34,7 +34,7 @@ import GoogleCloudGax
 /// [google.longrunning.Operation]: <doc:Operation>
 ///
 /// @Snippet(path: "OperationsQuickstart")
-public class OperationsClient: Clients.OperationsProtocol {
+public final class OperationsClient: Clients.OperationsProtocol, Sendable {
   let inner: any Clients.OperationsStub
 
   /// Creates a new `OperationsClient` instance.

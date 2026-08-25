@@ -30,4 +30,10 @@ import Testing
     let client = try StorageClient(options)
     #expect(client.options.client.endpoint == "https://override.googleapis.com")
   }
+
+  static func assertSendable<T: Sendable>(_ type: T.Type) {}
+
+  @Test func clientIsSendable() {
+    Self.assertSendable(StorageClient.self)
+  }
 }

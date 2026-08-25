@@ -20,7 +20,7 @@ import GoogleLongRunning
 import GoogleCloudGax
 
 extension Clients {
-  protocol EntityServiceStub {
+  protocol EntityServiceStub: Sendable {
     func getWatchlist(
       request: GetWatchlistRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.Watchlist

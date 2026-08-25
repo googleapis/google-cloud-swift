@@ -28,7 +28,7 @@ import GoogleCloudGax
 /// PM2 is the "out-of-band" flavor of the Network Security Integrations product.
 ///
 /// @Snippet(path: "MirroringQuickstart")
-public class MirroringClient: Clients.MirroringProtocol {
+public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   let inner: any Clients.MirroringStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

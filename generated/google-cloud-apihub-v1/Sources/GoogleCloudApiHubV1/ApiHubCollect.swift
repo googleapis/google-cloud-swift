@@ -29,7 +29,7 @@ import GoogleCloudGax
 /// layer.
 ///
 /// @Snippet(path: "ApiHubCollectQuickstart")
-public class ApiHubCollectClient: Clients.ApiHubCollectProtocol {
+public final class ApiHubCollectClient: Clients.ApiHubCollectProtocol, Sendable {
   let inner: any Clients.ApiHubCollectStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

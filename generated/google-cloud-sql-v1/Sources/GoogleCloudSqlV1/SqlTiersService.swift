@@ -25,7 +25,7 @@
   /// Service for providing machine types (tiers) for Cloud SQL instances.
   ///
   /// @Snippet(path: "SqlTiersServiceQuickstart")
-  public class SqlTiersServiceClient: Clients.SqlTiersServiceProtocol {
+  public final class SqlTiersServiceClient: Clients.SqlTiersServiceProtocol, Sendable {
     let inner: any Clients.SqlTiersServiceStub
 
     /// Creates a new `SqlTiersServiceClient` instance.

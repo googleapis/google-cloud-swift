@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol FirewallsStub {
+    protocol FirewallsStub: Sendable {
       func delete(
         request: FirewallsClient.DeleteRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation

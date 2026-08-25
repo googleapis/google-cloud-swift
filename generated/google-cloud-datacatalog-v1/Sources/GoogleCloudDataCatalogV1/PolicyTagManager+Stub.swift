@@ -21,7 +21,7 @@ import GoogleLongRunning
 import GoogleCloudGax
 
 extension Clients {
-  protocol PolicyTagManagerStub {
+  protocol PolicyTagManagerStub: Sendable {
     func createTaxonomy(
       request: CreateTaxonomyRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudDataCatalogV1.Taxonomy

@@ -31,7 +31,7 @@ import GoogleCloudGax
 /// within a Collection.
 ///
 /// @Snippet(path: "VectorSearchServiceQuickstart")
-public class VectorSearchServiceClient: Clients.VectorSearchServiceProtocol {
+public final class VectorSearchServiceClient: Clients.VectorSearchServiceProtocol, Sendable {
   let inner: any Clients.VectorSearchServiceStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

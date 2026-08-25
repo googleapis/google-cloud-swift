@@ -21,7 +21,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol AnalyticsServiceStub {
+  protocol AnalyticsServiceStub: Sendable {
     func exportAnalyticsMetrics(
       request: ExportAnalyticsMetricsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

@@ -19,7 +19,7 @@ import GoogleCloudWkt
 import GoogleCloudGax
 
 extension Clients {
-  protocol ConnectionServiceStub {
+  protocol ConnectionServiceStub: Sendable {
     func listConnections(
       request: ListConnectionsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudApigeeConnectV1.ListConnectionsResponse

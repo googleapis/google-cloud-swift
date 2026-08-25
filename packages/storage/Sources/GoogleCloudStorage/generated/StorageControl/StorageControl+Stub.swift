@@ -22,7 +22,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol StorageControlStub {
+  protocol StorageControlStub: Sendable {
     func createFolder(
       request: CreateFolderRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> Folder

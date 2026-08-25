@@ -25,7 +25,9 @@ import GoogleCloudGax
 /// controls how messages related to incidents are sent.
 ///
 /// @Snippet(path: "NotificationChannelServiceQuickstart")
-public class NotificationChannelServiceClient: Clients.NotificationChannelServiceProtocol {
+public final class NotificationChannelServiceClient: Clients.NotificationChannelServiceProtocol,
+  Sendable
+{
   let inner: any Clients.NotificationChannelServiceStub
 
   /// Creates a new `NotificationChannelServiceClient` instance.

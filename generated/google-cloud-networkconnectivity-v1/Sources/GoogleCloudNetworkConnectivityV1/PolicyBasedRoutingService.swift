@@ -29,7 +29,9 @@ import GoogleCloudGax
 /// policies for Layer 4 traffic traversing through the connected service.
 ///
 /// @Snippet(path: "PolicyBasedRoutingServiceQuickstart")
-public class PolicyBasedRoutingServiceClient: Clients.PolicyBasedRoutingServiceProtocol {
+public final class PolicyBasedRoutingServiceClient: Clients.PolicyBasedRoutingServiceProtocol,
+  Sendable
+{
   let inner: any Clients.PolicyBasedRoutingServiceStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

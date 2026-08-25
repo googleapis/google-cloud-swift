@@ -30,7 +30,7 @@
   /// periodically launch shceudled runs to make API calls.
   ///
   /// @Snippet(path: "ScheduleServiceQuickstart")
-  public class ScheduleServiceClient: Clients.ScheduleServiceProtocol {
+  public final class ScheduleServiceClient: Clients.ScheduleServiceProtocol, Sendable {
     let inner: any Clients.ScheduleServiceStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

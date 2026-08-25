@@ -27,7 +27,7 @@ import GoogleCloudGax
 /// Allow users to create and manage tag keys.
 ///
 /// @Snippet(path: "TagKeysQuickstart")
-public class TagKeysClient: Clients.TagKeysProtocol {
+public final class TagKeysClient: Clients.TagKeysProtocol, Sendable {
   let inner: any Clients.TagKeysStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

@@ -22,7 +22,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol SpeechStub {
+  protocol SpeechStub: Sendable {
     func createRecognizer(
       request: CreateRecognizerRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

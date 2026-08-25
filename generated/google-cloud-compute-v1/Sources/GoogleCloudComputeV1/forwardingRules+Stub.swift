@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol ForwardingRulesStub {
+    protocol ForwardingRulesStub: Sendable {
       func aggregatedList(
         request: ForwardingRulesClient.AggregatedListRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.ForwardingRuleAggregatedList

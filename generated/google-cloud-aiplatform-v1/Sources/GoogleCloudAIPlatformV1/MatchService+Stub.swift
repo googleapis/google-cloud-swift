@@ -23,7 +23,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol MatchServiceStub {
+    protocol MatchServiceStub: Sendable {
       func findNeighbors(
         request: FindNeighborsRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.FindNeighborsResponse

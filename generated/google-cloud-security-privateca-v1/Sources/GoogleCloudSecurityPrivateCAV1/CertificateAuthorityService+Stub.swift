@@ -23,7 +23,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol CertificateAuthorityServiceStub {
+  protocol CertificateAuthorityServiceStub: Sendable {
     func createCertificate(
       request: CreateCertificateRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudSecurityPrivateCAV1.Certificate

@@ -19,7 +19,7 @@ import GoogleCloudWkt
 import GoogleCloudGax
 
 extension Clients {
-  protocol RecommenderStub {
+  protocol RecommenderStub: Sendable {
     func listInsights(
       request: ListInsightsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudRecommenderV1.ListInsightsResponse

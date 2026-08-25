@@ -27,7 +27,7 @@ import GoogleCloudGax
 /// based on analysis of user resources, configuration and monitoring metrics.
 ///
 /// @Snippet(path: "RecommenderQuickstart")
-public class RecommenderClient: Clients.RecommenderProtocol {
+public final class RecommenderClient: Clients.RecommenderProtocol, Sendable {
   let inner: any Clients.RecommenderStub
 
   /// Creates a new `RecommenderClient` instance.

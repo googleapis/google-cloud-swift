@@ -21,7 +21,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol WebRiskServiceStub {
+  protocol WebRiskServiceStub: Sendable {
     func computeThreatListDiff(
       request: ComputeThreatListDiffRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudWebRiskV1.ComputeThreatListDiffResponse

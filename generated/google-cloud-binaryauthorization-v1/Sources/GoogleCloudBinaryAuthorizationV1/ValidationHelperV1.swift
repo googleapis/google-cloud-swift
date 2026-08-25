@@ -25,7 +25,7 @@ import GoogleCloudGax
 /// BinAuthz Attestor verification
 ///
 /// @Snippet(path: "ValidationHelperV1Quickstart")
-public class ValidationHelperV1Client: Clients.ValidationHelperV1Protocol {
+public final class ValidationHelperV1Client: Clients.ValidationHelperV1Protocol, Sendable {
   let inner: any Clients.ValidationHelperV1Stub
 
   /// Creates a new `ValidationHelperV1Client` instance.

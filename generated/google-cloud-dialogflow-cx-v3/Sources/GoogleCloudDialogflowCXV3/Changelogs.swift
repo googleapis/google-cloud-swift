@@ -29,7 +29,7 @@
   /// [google.cloud.dialogflow.cx.v3.Changelog]: <doc:Changelog>
   ///
   /// @Snippet(path: "ChangelogsQuickstart")
-  public class ChangelogsClient: Clients.ChangelogsProtocol {
+  public final class ChangelogsClient: Clients.ChangelogsProtocol, Sendable {
     let inner: any Clients.ChangelogsStub
 
     /// Creates a new `ChangelogsClient` instance.

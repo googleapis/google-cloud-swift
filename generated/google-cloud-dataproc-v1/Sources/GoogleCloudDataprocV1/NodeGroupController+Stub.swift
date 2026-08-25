@@ -22,7 +22,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol NodeGroupControllerStub {
+  protocol NodeGroupControllerStub: Sendable {
     func createNodeGroup(
       request: CreateNodeGroupRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

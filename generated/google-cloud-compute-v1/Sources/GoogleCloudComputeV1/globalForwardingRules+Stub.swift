@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol GlobalForwardingRulesStub {
+    protocol GlobalForwardingRulesStub: Sendable {
       func delete(
         request: GlobalForwardingRulesClient.DeleteRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation

@@ -24,7 +24,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol VizierServiceStub {
+    protocol VizierServiceStub: Sendable {
       func createStudy(
         request: CreateStudyRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.Study

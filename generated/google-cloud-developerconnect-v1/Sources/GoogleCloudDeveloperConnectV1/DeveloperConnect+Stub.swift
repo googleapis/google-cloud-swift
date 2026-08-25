@@ -22,7 +22,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol DeveloperConnectStub {
+  protocol DeveloperConnectStub: Sendable {
     func listConnections(
       request: ListConnectionsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudDeveloperConnectV1.ListConnectionsResponse

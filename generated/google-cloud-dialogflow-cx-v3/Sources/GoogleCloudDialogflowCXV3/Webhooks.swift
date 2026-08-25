@@ -29,7 +29,7 @@
   /// [google.cloud.dialogflow.cx.v3.Webhook]: <doc:Webhook>
   ///
   /// @Snippet(path: "WebhooksQuickstart")
-  public class WebhooksClient: Clients.WebhooksProtocol {
+  public final class WebhooksClient: Clients.WebhooksProtocol, Sendable {
     let inner: any Clients.WebhooksStub
 
     /// Creates a new `WebhooksClient` instance.

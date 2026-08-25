@@ -20,7 +20,7 @@ import GoogleLongRunning
 import GoogleCloudGax
 
 extension Clients {
-  protocol NativeDashboardServiceStub {
+  protocol NativeDashboardServiceStub: Sendable {
     func createNativeDashboard(
       request: CreateNativeDashboardRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.NativeDashboard

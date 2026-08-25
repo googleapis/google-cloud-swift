@@ -21,7 +21,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol GroundedGenerationServiceStub {
+    protocol GroundedGenerationServiceStub: Sendable {
       func streamGenerateGroundedContent(
         request: GenerateGroundedContentRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudDiscoveryEngineV1.GenerateGroundedContentResponse

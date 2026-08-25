@@ -25,7 +25,7 @@ import GoogleCloudGax
 /// Manages external data source connections and credentials.
 ///
 /// @Snippet(path: "ConnectionServiceQuickstart")
-public class ConnectionServiceClient: Clients.ConnectionServiceProtocol {
+public final class ConnectionServiceClient: Clients.ConnectionServiceProtocol, Sendable {
   let inner: any Clients.ConnectionServiceStub
 
   /// Creates a new `ConnectionServiceClient` instance.

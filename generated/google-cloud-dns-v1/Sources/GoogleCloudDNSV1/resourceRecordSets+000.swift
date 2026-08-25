@@ -24,7 +24,7 @@ import GoogleCloudGax
 /// Service for the `resourceRecordSets` resource.
 ///
 /// @Snippet(path: "resourceRecordSetsQuickstart")
-public class ResourceRecordSetsClient: Clients.ResourceRecordSetsProtocol {
+public final class ResourceRecordSetsClient: Clients.ResourceRecordSetsProtocol, Sendable {
   let inner: any Clients.ResourceRecordSetsStub
 
   /// Creates a new `ResourceRecordSetsClient` instance.

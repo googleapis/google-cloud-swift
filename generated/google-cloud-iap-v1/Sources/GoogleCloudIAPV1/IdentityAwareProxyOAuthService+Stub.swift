@@ -19,7 +19,7 @@ import GoogleCloudWkt
 import GoogleCloudGax
 
 extension Clients {
-  protocol IdentityAwareProxyOAuthServiceStub {
+  protocol IdentityAwareProxyOAuthServiceStub: Sendable {
     func listBrands(
       request: ListBrandsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudIAPV1.ListBrandsResponse

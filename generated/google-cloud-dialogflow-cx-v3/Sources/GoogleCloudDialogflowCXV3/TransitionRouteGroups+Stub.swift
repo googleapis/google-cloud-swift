@@ -22,7 +22,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol TransitionRouteGroupsStub {
+    protocol TransitionRouteGroupsStub: Sendable {
       func listTransitionRouteGroups(
         request: ListTransitionRouteGroupsRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowCXV3.ListTransitionRouteGroupsResponse

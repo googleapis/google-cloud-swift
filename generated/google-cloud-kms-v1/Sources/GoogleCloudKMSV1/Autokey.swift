@@ -50,7 +50,7 @@ import GoogleCloudGax
 /// [google.cloud.kms.v1.KeyHandle]: <doc:KeyHandle>
 ///
 /// @Snippet(path: "AutokeyQuickstart")
-public class AutokeyClient: Clients.AutokeyProtocol {
+public final class AutokeyClient: Clients.AutokeyProtocol, Sendable {
   let inner: any Clients.AutokeyStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

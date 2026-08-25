@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol InterconnectAttachmentsStub {
+    protocol InterconnectAttachmentsStub: Sendable {
       func aggregatedList(
         request: InterconnectAttachmentsClient.AggregatedListRequest,
         options: GoogleCloudGax.RequestOptions

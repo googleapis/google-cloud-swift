@@ -27,7 +27,7 @@ import GoogleCloudGax
 /// The Cloud Domains API enables management and configuration of domain names.
 ///
 /// @Snippet(path: "DomainsQuickstart")
-public class DomainsClient: Clients.DomainsProtocol {
+public final class DomainsClient: Clients.DomainsProtocol, Sendable {
   let inner: any Clients.DomainsStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

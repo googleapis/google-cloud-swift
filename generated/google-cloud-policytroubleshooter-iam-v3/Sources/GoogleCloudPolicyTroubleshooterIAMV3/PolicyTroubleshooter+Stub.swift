@@ -19,7 +19,7 @@ import GoogleCloudWkt
 import GoogleCloudGax
 
 extension Clients {
-  protocol PolicyTroubleshooterStub {
+  protocol PolicyTroubleshooterStub: Sendable {
     func troubleshootIamPolicy(
       request: TroubleshootIamPolicyRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudPolicyTroubleshooterIAMV3.TroubleshootIamPolicyResponse

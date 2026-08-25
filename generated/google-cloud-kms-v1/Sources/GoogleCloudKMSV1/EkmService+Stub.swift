@@ -22,7 +22,7 @@ import GoogleLongRunning
 import GoogleCloudGax
 
 extension Clients {
-  protocol EkmServiceStub {
+  protocol EkmServiceStub: Sendable {
     func listEkmConnections(
       request: ListEkmConnectionsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudKMSV1.ListEkmConnectionsResponse

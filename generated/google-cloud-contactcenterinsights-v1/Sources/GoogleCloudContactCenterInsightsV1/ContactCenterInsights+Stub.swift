@@ -21,7 +21,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol ContactCenterInsightsStub {
+  protocol ContactCenterInsightsStub: Sendable {
     func createConversation(
       request: CreateConversationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudContactCenterInsightsV1.Conversation

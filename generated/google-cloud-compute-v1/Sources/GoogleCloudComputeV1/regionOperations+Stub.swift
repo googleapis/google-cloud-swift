@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol RegionOperationsStub {
+    protocol RegionOperationsStub: Sendable {
       func delete(
         request: RegionOperationsClient.DeleteRequest, options: GoogleCloudGax.RequestOptions
       ) async throws

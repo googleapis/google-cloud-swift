@@ -25,7 +25,7 @@
   /// Service for the `addresses` resource.
   ///
   /// @Snippet(path: "addressesQuickstart")
-  public class AddressesClient: Clients.AddressesProtocol {
+  public final class AddressesClient: Clients.AddressesProtocol, Sendable {
     let inner: any Clients.AddressesStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

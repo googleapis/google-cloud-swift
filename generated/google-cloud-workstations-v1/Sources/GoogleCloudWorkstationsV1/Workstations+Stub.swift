@@ -22,7 +22,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol WorkstationsStub {
+  protocol WorkstationsStub: Sendable {
     func getWorkstationCluster(
       request: GetWorkstationClusterRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudWorkstationsV1.WorkstationCluster

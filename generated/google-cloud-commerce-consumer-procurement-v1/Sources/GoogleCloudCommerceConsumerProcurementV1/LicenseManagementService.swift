@@ -25,7 +25,9 @@ import GoogleCloudGax
 /// Service for managing licenses.
 ///
 /// @Snippet(path: "LicenseManagementServiceQuickstart")
-public class LicenseManagementServiceClient: Clients.LicenseManagementServiceProtocol {
+public final class LicenseManagementServiceClient: Clients.LicenseManagementServiceProtocol,
+  Sendable
+{
   let inner: any Clients.LicenseManagementServiceStub
 
   /// Creates a new `LicenseManagementServiceClient` instance.

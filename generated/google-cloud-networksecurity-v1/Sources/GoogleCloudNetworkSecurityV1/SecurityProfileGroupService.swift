@@ -29,7 +29,9 @@ import GoogleCloudGax
 /// signatures or severity levels.
 ///
 /// @Snippet(path: "SecurityProfileGroupServiceQuickstart")
-public class SecurityProfileGroupServiceClient: Clients.SecurityProfileGroupServiceProtocol {
+public final class SecurityProfileGroupServiceClient: Clients.SecurityProfileGroupServiceProtocol,
+  Sendable
+{
   let inner: any Clients.SecurityProfileGroupServiceStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

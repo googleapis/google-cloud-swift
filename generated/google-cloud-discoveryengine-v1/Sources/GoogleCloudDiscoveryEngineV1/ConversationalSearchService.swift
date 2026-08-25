@@ -26,7 +26,9 @@
   /// Service for conversational search.
   ///
   /// @Snippet(path: "ConversationalSearchServiceQuickstart")
-  public class ConversationalSearchServiceClient: Clients.ConversationalSearchServiceProtocol {
+  public final class ConversationalSearchServiceClient: Clients.ConversationalSearchServiceProtocol,
+    Sendable
+  {
     let inner: any Clients.ConversationalSearchServiceStub
 
     /// Creates a new `ConversationalSearchServiceClient` instance.

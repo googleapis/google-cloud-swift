@@ -19,7 +19,7 @@ import GoogleCloudWkt
 import GoogleCloudGax
 
 extension Clients {
-  protocol GSuiteAddOnsStub {
+  protocol GSuiteAddOnsStub: Sendable {
     func getAuthorization(
       request: GetAuthorizationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudGSuiteAddOnsV1.Authorization

@@ -20,7 +20,7 @@ import GoogleLongRunning
 import GoogleCloudGax
 
 extension Clients {
-  protocol AuthorizedDomainsStub {
+  protocol AuthorizedDomainsStub: Sendable {
     func listAuthorizedDomains(
       request: ListAuthorizedDomainsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleAppEngineV1.ListAuthorizedDomainsResponse

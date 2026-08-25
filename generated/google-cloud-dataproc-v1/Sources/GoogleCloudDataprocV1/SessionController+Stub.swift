@@ -22,7 +22,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol SessionControllerStub {
+  protocol SessionControllerStub: Sendable {
     func createSession(
       request: CreateSessionRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

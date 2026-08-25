@@ -23,7 +23,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol MirroringStub {
+  protocol MirroringStub: Sendable {
     func listMirroringEndpointGroups(
       request: ListMirroringEndpointGroupsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudNetworkSecurityV1.ListMirroringEndpointGroupsResponse

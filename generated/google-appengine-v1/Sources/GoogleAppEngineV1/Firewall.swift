@@ -34,7 +34,7 @@ import GoogleCloudGax
 /// set to "allow" if not otherwise specified by the user.
 ///
 /// @Snippet(path: "FirewallQuickstart")
-public class FirewallClient: Clients.FirewallProtocol {
+public final class FirewallClient: Clients.FirewallProtocol, Sendable {
   let inner: any Clients.FirewallStub
 
   /// Creates a new `FirewallClient` instance.

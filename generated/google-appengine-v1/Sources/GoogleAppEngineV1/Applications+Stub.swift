@@ -21,7 +21,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol ApplicationsStub {
+  protocol ApplicationsStub: Sendable {
     func getApplication(
       request: GetApplicationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleAppEngineV1.Application

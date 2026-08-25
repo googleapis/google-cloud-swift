@@ -25,7 +25,7 @@
   /// Service for the `licenses` resource.
   ///
   /// @Snippet(path: "licensesQuickstart")
-  public class LicensesClient: Clients.LicensesProtocol {
+  public final class LicensesClient: Clients.LicensesProtocol, Sendable {
     let inner: any Clients.LicensesStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

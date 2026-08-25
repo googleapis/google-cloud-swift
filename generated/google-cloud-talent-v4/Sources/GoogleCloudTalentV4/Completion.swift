@@ -25,7 +25,7 @@ import GoogleCloudGax
 /// A service handles auto completion.
 ///
 /// @Snippet(path: "CompletionQuickstart")
-public class CompletionClient: Clients.CompletionProtocol {
+public final class CompletionClient: Clients.CompletionProtocol, Sendable {
   let inner: any Clients.CompletionStub
 
   /// Creates a new `CompletionClient` instance.

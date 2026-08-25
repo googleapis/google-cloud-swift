@@ -31,7 +31,7 @@
   /// [google.cloud.dialogflow.v2.ConversationProfile]: <doc:ConversationProfile>
   ///
   /// @Snippet(path: "ConversationProfilesQuickstart")
-  public class ConversationProfilesClient: Clients.ConversationProfilesProtocol {
+  public final class ConversationProfilesClient: Clients.ConversationProfilesProtocol, Sendable {
     let inner: any Clients.ConversationProfilesStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

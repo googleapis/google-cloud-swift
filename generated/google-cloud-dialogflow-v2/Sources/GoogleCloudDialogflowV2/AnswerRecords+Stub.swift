@@ -22,7 +22,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol AnswerRecordsStub {
+    protocol AnswerRecordsStub: Sendable {
       func listAnswerRecords(
         request: ListAnswerRecordsRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.ListAnswerRecordsResponse

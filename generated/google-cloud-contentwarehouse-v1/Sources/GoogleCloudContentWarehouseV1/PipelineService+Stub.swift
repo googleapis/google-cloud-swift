@@ -21,7 +21,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol PipelineServiceStub {
+  protocol PipelineServiceStub: Sendable {
     func runPipeline(
       request: RunPipelineRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

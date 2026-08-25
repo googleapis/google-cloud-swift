@@ -28,7 +28,7 @@ import GoogleCloudGax
 /// of Compute Engine managed instances.
 ///
 /// @Snippet(path: "NodeGroupControllerQuickstart")
-public class NodeGroupControllerClient: Clients.NodeGroupControllerProtocol {
+public final class NodeGroupControllerClient: Clients.NodeGroupControllerProtocol, Sendable {
   let inner: any Clients.NodeGroupControllerStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

@@ -26,7 +26,9 @@ import GoogleCloudGax
 /// access control.
 ///
 /// @Snippet(path: "DataAccessControlServiceQuickstart")
-public class DataAccessControlServiceClient: Clients.DataAccessControlServiceProtocol {
+public final class DataAccessControlServiceClient: Clients.DataAccessControlServiceProtocol,
+  Sendable
+{
   let inner: any Clients.DataAccessControlServiceStub
 
   /// Creates a new `DataAccessControlServiceClient` instance.

@@ -21,7 +21,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol AssuredWorkloadsServiceStub {
+  protocol AssuredWorkloadsServiceStub: Sendable {
     func createWorkload(
       request: CreateWorkloadRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

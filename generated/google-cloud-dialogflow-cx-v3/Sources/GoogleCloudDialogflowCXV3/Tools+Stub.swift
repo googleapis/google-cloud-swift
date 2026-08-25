@@ -22,7 +22,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol ToolsStub {
+    protocol ToolsStub: Sendable {
       func createTool(
         request: CreateToolRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowCXV3.Tool

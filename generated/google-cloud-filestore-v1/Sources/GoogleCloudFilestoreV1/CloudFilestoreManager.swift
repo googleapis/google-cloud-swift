@@ -46,7 +46,7 @@ import GoogleCloudGax
 /// * `projects/12345/locations/us-central1/backups/my-backup`
 ///
 /// @Snippet(path: "CloudFilestoreManagerQuickstart")
-public class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerProtocol {
+public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerProtocol, Sendable {
   let inner: any Clients.CloudFilestoreManagerStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

@@ -22,7 +22,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol WorkloadIdentityStub {
+  protocol WorkloadIdentityStub: Sendable {
     func generateServiceAgents(
       request: GenerateServiceAgentsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

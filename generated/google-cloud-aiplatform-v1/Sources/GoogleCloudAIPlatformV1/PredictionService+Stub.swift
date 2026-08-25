@@ -24,7 +24,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol PredictionServiceStub {
+    protocol PredictionServiceStub: Sendable {
       func predict(
         request: PredictRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.PredictResponse

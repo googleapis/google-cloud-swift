@@ -25,7 +25,7 @@
   /// Service for the `sslCertificates` resource.
   ///
   /// @Snippet(path: "sslCertificatesQuickstart")
-  public class SslCertificatesClient: Clients.SslCertificatesProtocol {
+  public final class SslCertificatesClient: Clients.SslCertificatesProtocol, Sendable {
     let inner: any Clients.SslCertificatesStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

@@ -22,7 +22,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol VmMigrationStub {
+  protocol VmMigrationStub: Sendable {
     func listSources(
       request: ListSourcesRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudVMMigrationV1.ListSourcesResponse

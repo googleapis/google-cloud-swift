@@ -20,7 +20,7 @@ import GoogleLongRunning
 import GoogleCloudGax
 
 extension Clients {
-  protocol CompanyServiceStub {
+  protocol CompanyServiceStub: Sendable {
     func createCompany(
       request: CreateCompanyRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudTalentV4.Company

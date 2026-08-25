@@ -22,7 +22,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol AuditManagerStub {
+  protocol AuditManagerStub: Sendable {
     func enrollResource(
       request: EnrollResourceRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudAuditManagerV1.Enrollment

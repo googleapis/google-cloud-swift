@@ -26,7 +26,7 @@ import GoogleCloudGax
 /// administer any SSL certificates applicable to their authorized domains.
 ///
 /// @Snippet(path: "AuthorizedCertificatesQuickstart")
-public class AuthorizedCertificatesClient: Clients.AuthorizedCertificatesProtocol {
+public final class AuthorizedCertificatesClient: Clients.AuthorizedCertificatesProtocol, Sendable {
   let inner: any Clients.AuthorizedCertificatesStub
 
   /// Creates a new `AuthorizedCertificatesClient` instance.

@@ -27,7 +27,7 @@
   @_spi(GoogleCloudInternal) import GoogleCloudGax
 
   extension Clients {
-    class VertexRagDataServiceTransport: VertexRagDataServiceStub {
+    final class VertexRagDataServiceTransport: VertexRagDataServiceStub {
       let inner: GoogleCloudGax._HTTPClient
 
       public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {

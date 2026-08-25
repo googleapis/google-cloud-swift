@@ -28,7 +28,7 @@ import GoogleCloudGax
 /// API v2 service for Workbench Notebooks Instances.
 ///
 /// @Snippet(path: "NotebookServiceQuickstart")
-public class NotebookServiceClient: Clients.NotebookServiceProtocol {
+public final class NotebookServiceClient: Clients.NotebookServiceProtocol, Sendable {
   let inner: any Clients.NotebookServiceStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

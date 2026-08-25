@@ -33,7 +33,7 @@
   /// learning architectures.
   ///
   /// @Snippet(path: "VizierServiceQuickstart")
-  public class VizierServiceClient: Clients.VizierServiceProtocol {
+  public final class VizierServiceClient: Clients.VizierServiceProtocol, Sendable {
     let inner: any Clients.VizierServiceStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

@@ -25,7 +25,7 @@ import GoogleCloudGax
 /// This API allows users to manage their data transfers into BigQuery.
 ///
 /// @Snippet(path: "DataTransferServiceQuickstart")
-public class DataTransferServiceClient: Clients.DataTransferServiceProtocol {
+public final class DataTransferServiceClient: Clients.DataTransferServiceProtocol, Sendable {
   let inner: any Clients.DataTransferServiceStub
 
   /// Creates a new `DataTransferServiceClient` instance.

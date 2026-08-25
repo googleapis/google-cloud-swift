@@ -25,7 +25,7 @@ import GoogleCloudGax
 /// Provides a cross-region view of all Cloud KMS keys in a given Cloud project.
 ///
 /// @Snippet(path: "KeyDashboardServiceQuickstart")
-public class KeyDashboardServiceClient: Clients.KeyDashboardServiceProtocol {
+public final class KeyDashboardServiceClient: Clients.KeyDashboardServiceProtocol, Sendable {
   let inner: any Clients.KeyDashboardServiceStub
 
   /// Creates a new `KeyDashboardServiceClient` instance.

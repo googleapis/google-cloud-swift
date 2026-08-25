@@ -25,7 +25,7 @@
   /// Service for the `regionCommitments` resource.
   ///
   /// @Snippet(path: "regionCommitmentsQuickstart")
-  public class RegionCommitmentsClient: Clients.RegionCommitmentsProtocol {
+  public final class RegionCommitmentsClient: Clients.RegionCommitmentsProtocol, Sendable {
     let inner: any Clients.RegionCommitmentsStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

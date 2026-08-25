@@ -22,7 +22,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol CompletionServiceStub {
+    protocol CompletionServiceStub: Sendable {
       func completeQuery(
         request: CompleteQueryRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudDiscoveryEngineV1.CompleteQueryResponse

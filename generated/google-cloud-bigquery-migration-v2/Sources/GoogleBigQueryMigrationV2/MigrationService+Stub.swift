@@ -19,7 +19,7 @@ import GoogleCloudWkt
 import GoogleCloudGax
 
 extension Clients {
-  protocol MigrationServiceStub {
+  protocol MigrationServiceStub: Sendable {
     func createMigrationWorkflow(
       request: CreateMigrationWorkflowRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleBigQueryMigrationV2.MigrationWorkflow

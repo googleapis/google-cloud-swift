@@ -27,7 +27,7 @@ import GoogleCloudGax
 /// Check.
 ///
 /// @Snippet(path: "HealthCheckServiceQuickstart")
-public class HealthCheckServiceClient: Clients.HealthCheckServiceProtocol {
+public final class HealthCheckServiceClient: Clients.HealthCheckServiceProtocol, Sendable {
   let inner: any Clients.HealthCheckServiceStub
 
   /// Creates a new `HealthCheckServiceClient` instance.

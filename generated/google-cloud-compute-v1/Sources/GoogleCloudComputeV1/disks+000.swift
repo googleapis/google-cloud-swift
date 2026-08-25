@@ -25,7 +25,7 @@
   /// Service for the `disks` resource.
   ///
   /// @Snippet(path: "disksQuickstart")
-  public class DisksClient: Clients.DisksProtocol {
+  public final class DisksClient: Clients.DisksProtocol, Sendable {
     let inner: any Clients.DisksStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

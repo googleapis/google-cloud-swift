@@ -24,7 +24,7 @@ import GoogleCloudGax
 /// Service Interface for the Apigee Connect connection management APIs.
 ///
 /// @Snippet(path: "ConnectionServiceQuickstart")
-public class ConnectionServiceClient: Clients.ConnectionServiceProtocol {
+public final class ConnectionServiceClient: Clients.ConnectionServiceProtocol, Sendable {
   let inner: any Clients.ConnectionServiceStub
 
   /// Creates a new `ConnectionServiceClient` instance.

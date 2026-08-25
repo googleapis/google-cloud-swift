@@ -20,7 +20,7 @@ import GoogleLongRunning
 import GoogleCloudGax
 
 extension Clients {
-  protocol FeaturedContentNativeDashboardServiceStub {
+  protocol FeaturedContentNativeDashboardServiceStub: Sendable {
     func getFeaturedContentNativeDashboard(
       request: GetFeaturedContentNativeDashboardRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.FeaturedContentNativeDashboard

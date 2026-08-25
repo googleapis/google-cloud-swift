@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol AdviceStub {
+    protocol AdviceStub: Sendable {
       func calendarMode(
         request: AdviceClient.CalendarModeRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.CalendarModeAdviceResponse

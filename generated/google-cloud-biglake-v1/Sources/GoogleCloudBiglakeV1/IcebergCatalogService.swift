@@ -32,7 +32,7 @@ import GoogleCloudGax
 /// - FailoverIcebergCatalog
 ///
 /// @Snippet(path: "IcebergCatalogServiceQuickstart")
-public class IcebergCatalogServiceClient: Clients.IcebergCatalogServiceProtocol {
+public final class IcebergCatalogServiceClient: Clients.IcebergCatalogServiceProtocol, Sendable {
   let inner: any Clients.IcebergCatalogServiceStub
 
   /// Creates a new `IcebergCatalogServiceClient` instance.

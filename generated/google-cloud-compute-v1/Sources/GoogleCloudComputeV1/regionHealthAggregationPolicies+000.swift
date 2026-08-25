@@ -25,8 +25,8 @@
   /// Service for the `regionHealthAggregationPolicies` resource.
   ///
   /// @Snippet(path: "regionHealthAggregationPoliciesQuickstart")
-  public class RegionHealthAggregationPoliciesClient: Clients
-      .RegionHealthAggregationPoliciesProtocol
+  public final class RegionHealthAggregationPoliciesClient: Clients
+      .RegionHealthAggregationPoliciesProtocol, Sendable
   {
     let inner: any Clients.RegionHealthAggregationPoliciesStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy

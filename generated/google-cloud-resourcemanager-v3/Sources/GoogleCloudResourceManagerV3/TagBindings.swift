@@ -27,7 +27,7 @@ import GoogleCloudGax
 /// different Google Cloud resources throughout the GCP resource hierarchy.
 ///
 /// @Snippet(path: "TagBindingsQuickstart")
-public class TagBindingsClient: Clients.TagBindingsProtocol {
+public final class TagBindingsClient: Clients.TagBindingsProtocol, Sendable {
   let inner: any Clients.TagBindingsStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

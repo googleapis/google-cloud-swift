@@ -29,7 +29,7 @@
   /// [google.cloud.dialogflow.cx.v3.Tool]: <doc:Tool>
   ///
   /// @Snippet(path: "ToolsQuickstart")
-  public class ToolsClient: Clients.ToolsProtocol {
+  public final class ToolsClient: Clients.ToolsProtocol, Sendable {
     let inner: any Clients.ToolsStub
 
     /// Creates a new `ToolsClient` instance.

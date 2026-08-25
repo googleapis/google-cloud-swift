@@ -24,7 +24,7 @@ import GoogleCloudGax
 /// Google Kubernetes Engine Cluster Manager v1
 ///
 /// @Snippet(path: "ClusterManagerQuickstart")
-public class ClusterManagerClient: Clients.ClusterManagerProtocol {
+public final class ClusterManagerClient: Clients.ClusterManagerProtocol, Sendable {
   let inner: any Clients.ClusterManagerStub
 
   /// Creates a new `ClusterManagerClient` instance.

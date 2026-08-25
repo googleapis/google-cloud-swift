@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol HostsStub {
+    protocol HostsStub: Sendable {
       func `get`(
         request: HostsClient.GetRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Host

@@ -24,7 +24,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol SessionServiceStub {
+    protocol SessionServiceStub: Sendable {
       func createSession(
         request: CreateSessionRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation

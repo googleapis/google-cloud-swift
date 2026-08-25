@@ -25,7 +25,7 @@
   /// Service for the `futureReservations` resource.
   ///
   /// @Snippet(path: "futureReservationsQuickstart")
-  public class FutureReservationsClient: Clients.FutureReservationsProtocol {
+  public final class FutureReservationsClient: Clients.FutureReservationsProtocol, Sendable {
     let inner: any Clients.FutureReservationsStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

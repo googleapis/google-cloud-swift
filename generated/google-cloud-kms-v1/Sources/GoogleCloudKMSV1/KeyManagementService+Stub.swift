@@ -23,7 +23,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol KeyManagementServiceStub {
+  protocol KeyManagementServiceStub: Sendable {
     func listKeyRings(
       request: ListKeyRingsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudKMSV1.ListKeyRingsResponse

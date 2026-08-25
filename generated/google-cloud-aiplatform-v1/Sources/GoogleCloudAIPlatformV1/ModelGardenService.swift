@@ -29,7 +29,7 @@
   /// The interface of Model Garden Service.
   ///
   /// @Snippet(path: "ModelGardenServiceQuickstart")
-  public class ModelGardenServiceClient: Clients.ModelGardenServiceProtocol {
+  public final class ModelGardenServiceClient: Clients.ModelGardenServiceProtocol, Sendable {
     let inner: any Clients.ModelGardenServiceStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

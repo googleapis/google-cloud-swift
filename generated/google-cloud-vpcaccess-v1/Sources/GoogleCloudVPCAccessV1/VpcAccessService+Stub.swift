@@ -22,7 +22,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol VpcAccessServiceStub {
+  protocol VpcAccessServiceStub: Sendable {
     func createConnector(
       request: CreateConnectorRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

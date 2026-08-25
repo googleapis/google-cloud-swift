@@ -27,7 +27,7 @@ import GoogleCloudGax
 /// A simple identity service.
 ///
 /// @Snippet(path: "IdentityQuickstart")
-public class IdentityClient: Clients.IdentityProtocol {
+public final class IdentityClient: Clients.IdentityProtocol, Sendable {
   let inner: any Clients.IdentityStub
 
   /// Creates a new `IdentityClient` instance.

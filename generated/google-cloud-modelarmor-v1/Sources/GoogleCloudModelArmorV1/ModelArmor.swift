@@ -25,7 +25,7 @@ import GoogleCloudGax
 /// Service describing handlers for resources
 ///
 /// @Snippet(path: "ModelArmorQuickstart")
-public class ModelArmorClient: Clients.ModelArmorProtocol {
+public final class ModelArmorClient: Clients.ModelArmorProtocol, Sendable {
   let inner: any Clients.ModelArmorStub
 
   /// Creates a new `ModelArmorClient` instance.

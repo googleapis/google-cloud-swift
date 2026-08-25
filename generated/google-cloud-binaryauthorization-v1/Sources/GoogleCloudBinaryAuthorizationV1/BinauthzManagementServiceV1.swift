@@ -34,7 +34,9 @@ import GoogleCloudGax
 /// [google.cloud.binaryauthorization.v1.Policy]: <doc:Policy>
 ///
 /// @Snippet(path: "BinauthzManagementServiceV1Quickstart")
-public class BinauthzManagementServiceV1Client: Clients.BinauthzManagementServiceV1Protocol {
+public final class BinauthzManagementServiceV1Client: Clients.BinauthzManagementServiceV1Protocol,
+  Sendable
+{
   let inner: any Clients.BinauthzManagementServiceV1Stub
 
   /// Creates a new `BinauthzManagementServiceV1Client` instance.

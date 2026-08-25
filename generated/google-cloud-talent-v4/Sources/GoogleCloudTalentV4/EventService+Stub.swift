@@ -20,7 +20,7 @@ import GoogleLongRunning
 import GoogleCloudGax
 
 extension Clients {
-  protocol EventServiceStub {
+  protocol EventServiceStub: Sendable {
     func createClientEvent(
       request: CreateClientEventRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudTalentV4.ClientEvent

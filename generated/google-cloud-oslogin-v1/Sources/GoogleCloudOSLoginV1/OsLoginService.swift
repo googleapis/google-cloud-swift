@@ -28,7 +28,7 @@ import GoogleCloudGax
 /// public keys for logging into virtual machines on Google Cloud Platform.
 ///
 /// @Snippet(path: "OsLoginServiceQuickstart")
-public class OsLoginServiceClient: Clients.OsLoginServiceProtocol {
+public final class OsLoginServiceClient: Clients.OsLoginServiceProtocol, Sendable {
   let inner: any Clients.OsLoginServiceStub
 
   /// Creates a new `OsLoginServiceClient` instance.

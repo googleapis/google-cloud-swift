@@ -25,7 +25,7 @@ import GoogleCloudGax
 /// Data Policy Service provides APIs for managing the BigQuery Data Policy.
 ///
 /// @Snippet(path: "DataPolicyServiceQuickstart")
-public class DataPolicyServiceClient: Clients.DataPolicyServiceProtocol {
+public final class DataPolicyServiceClient: Clients.DataPolicyServiceProtocol, Sendable {
   let inner: any Clients.DataPolicyServiceStub
 
   /// Creates a new `DataPolicyServiceClient` instance.

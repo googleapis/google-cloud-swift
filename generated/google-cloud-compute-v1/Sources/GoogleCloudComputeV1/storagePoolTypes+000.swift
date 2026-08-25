@@ -25,7 +25,7 @@
   /// Service for the `storagePoolTypes` resource.
   ///
   /// @Snippet(path: "storagePoolTypesQuickstart")
-  public class StoragePoolTypesClient: Clients.StoragePoolTypesProtocol {
+  public final class StoragePoolTypesClient: Clients.StoragePoolTypesProtocol, Sendable {
     let inner: any Clients.StoragePoolTypesStub
 
     /// Creates a new `StoragePoolTypesClient` instance.

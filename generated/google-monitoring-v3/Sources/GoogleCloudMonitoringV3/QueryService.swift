@@ -26,7 +26,7 @@ import GoogleCloudGax
 /// the time-varying values of a metric.
 ///
 /// @Snippet(path: "QueryServiceQuickstart")
-public class QueryServiceClient: Clients.QueryServiceProtocol {
+public final class QueryServiceClient: Clients.QueryServiceProtocol, Sendable {
   let inner: any Clients.QueryServiceStub
 
   /// Creates a new `QueryServiceClient` instance.

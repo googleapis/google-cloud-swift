@@ -22,7 +22,7 @@ import GoogleCloudWkt
 @_spi(GoogleCloudInternal) import GoogleCloudGax
 
 extension Clients {
-  class CloudControlsPartnerCoreTransport: CloudControlsPartnerCoreStub {
+  final class CloudControlsPartnerCoreTransport: CloudControlsPartnerCoreStub {
     let inner: GoogleCloudGax._HTTPClient
 
     public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {

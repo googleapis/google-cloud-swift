@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol FutureReservationsStub {
+    protocol FutureReservationsStub: Sendable {
       func aggregatedList(
         request: FutureReservationsClient.AggregatedListRequest,
         options: GoogleCloudGax.RequestOptions

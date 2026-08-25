@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol InstantSnapshotsStub {
+    protocol InstantSnapshotsStub: Sendable {
       func aggregatedList(
         request: InstantSnapshotsClient.AggregatedListRequest,
         options: GoogleCloudGax.RequestOptions

@@ -30,7 +30,7 @@ import GoogleCloudGax
 /// See [Service Usage API](https://cloud.google.com/service-usage/docs/overview)
 ///
 /// @Snippet(path: "ServiceUsageQuickstart")
-public class ServiceUsageClient: Clients.ServiceUsageProtocol {
+public final class ServiceUsageClient: Clients.ServiceUsageProtocol, Sendable {
   let inner: any Clients.ServiceUsageStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

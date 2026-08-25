@@ -22,7 +22,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol KnowledgeBasesStub {
+    protocol KnowledgeBasesStub: Sendable {
       func listKnowledgeBases(
         request: ListKnowledgeBasesRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.ListKnowledgeBasesResponse

@@ -22,7 +22,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol TpuStub {
+  protocol TpuStub: Sendable {
     func listNodes(
       request: ListNodesRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudTpuV2.ListNodesResponse

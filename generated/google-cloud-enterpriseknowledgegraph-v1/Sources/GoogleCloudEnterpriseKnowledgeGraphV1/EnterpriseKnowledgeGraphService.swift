@@ -24,7 +24,8 @@ import GoogleCloudGax
 /// APIs for enterprise knowledge graph product.
 ///
 /// @Snippet(path: "EnterpriseKnowledgeGraphServiceQuickstart")
-public class EnterpriseKnowledgeGraphServiceClient: Clients.EnterpriseKnowledgeGraphServiceProtocol
+public final class EnterpriseKnowledgeGraphServiceClient: Clients
+    .EnterpriseKnowledgeGraphServiceProtocol, Sendable
 {
   let inner: any Clients.EnterpriseKnowledgeGraphServiceStub
 

@@ -20,7 +20,7 @@ import GoogleCloudWkt
 import GoogleCloudGax
 
 extension Clients {
-  protocol CloudApiRegistryStub {
+  protocol CloudApiRegistryStub: Sendable {
     func getMcpServer(
       request: GetMcpServerRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudApiRegistryV1.McpServer

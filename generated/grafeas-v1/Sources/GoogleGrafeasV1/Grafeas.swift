@@ -37,7 +37,7 @@ import GoogleCloudGax
 /// image with the vulnerability referring to that note.
 ///
 /// @Snippet(path: "GrafeasQuickstart")
-public class GrafeasClient: Clients.GrafeasProtocol {
+public final class GrafeasClient: Clients.GrafeasProtocol, Sendable {
   let inner: any Clients.GrafeasStub
 
   /// Creates a new `GrafeasClient` instance.

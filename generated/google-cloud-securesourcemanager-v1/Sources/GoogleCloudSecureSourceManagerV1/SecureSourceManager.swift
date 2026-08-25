@@ -30,7 +30,7 @@ import GoogleCloudGax
 /// Access Secure Source Manager instances, resources, and repositories.
 ///
 /// @Snippet(path: "SecureSourceManagerQuickstart")
-public class SecureSourceManagerClient: Clients.SecureSourceManagerProtocol {
+public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtocol, Sendable {
   let inner: any Clients.SecureSourceManagerStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

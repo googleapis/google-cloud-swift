@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol RegionInstantSnapshotsStub {
+    protocol RegionInstantSnapshotsStub: Sendable {
       func delete(
         request: RegionInstantSnapshotsClient.DeleteRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation

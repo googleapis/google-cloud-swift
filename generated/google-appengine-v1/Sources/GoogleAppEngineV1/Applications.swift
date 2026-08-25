@@ -26,7 +26,7 @@ import GoogleCloudGax
 /// Manages App Engine applications.
 ///
 /// @Snippet(path: "ApplicationsQuickstart")
-public class ApplicationsClient: Clients.ApplicationsProtocol {
+public final class ApplicationsClient: Clients.ApplicationsProtocol, Sendable {
   let inner: any Clients.ApplicationsStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

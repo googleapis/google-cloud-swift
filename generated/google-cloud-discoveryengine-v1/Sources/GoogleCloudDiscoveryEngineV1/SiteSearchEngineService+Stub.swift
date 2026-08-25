@@ -22,7 +22,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol SiteSearchEngineServiceStub {
+    protocol SiteSearchEngineServiceStub: Sendable {
       func getSiteSearchEngine(
         request: GetSiteSearchEngineRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudDiscoveryEngineV1.SiteSearchEngine

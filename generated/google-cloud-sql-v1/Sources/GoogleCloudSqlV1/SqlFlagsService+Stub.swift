@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol SqlFlagsServiceStub {
+    protocol SqlFlagsServiceStub: Sendable {
       func list(
         request: SqlFlagsListRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.FlagsListResponse

@@ -27,7 +27,7 @@ import GoogleCloudGax
 /// [Webmaster Central](https://www.google.com/webmasters/verification/home).
 ///
 /// @Snippet(path: "AuthorizedDomainsQuickstart")
-public class AuthorizedDomainsClient: Clients.AuthorizedDomainsProtocol {
+public final class AuthorizedDomainsClient: Clients.AuthorizedDomainsProtocol, Sendable {
   let inner: any Clients.AuthorizedDomainsStub
 
   /// Creates a new `AuthorizedDomainsClient` instance.

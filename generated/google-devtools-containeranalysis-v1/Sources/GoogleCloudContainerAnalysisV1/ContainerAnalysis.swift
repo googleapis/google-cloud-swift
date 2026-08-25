@@ -37,7 +37,7 @@ import GoogleCloudGax
 /// image with the vulnerability referring to that note.
 ///
 /// @Snippet(path: "ContainerAnalysisQuickstart")
-public class ContainerAnalysisClient: Clients.ContainerAnalysisProtocol {
+public final class ContainerAnalysisClient: Clients.ContainerAnalysisProtocol, Sendable {
   let inner: any Clients.ContainerAnalysisStub
 
   /// Creates a new `ContainerAnalysisClient` instance.

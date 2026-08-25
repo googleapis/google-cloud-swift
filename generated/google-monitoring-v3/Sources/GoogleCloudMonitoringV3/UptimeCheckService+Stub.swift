@@ -19,7 +19,7 @@ import GoogleCloudWkt
 import GoogleCloudGax
 
 extension Clients {
-  protocol UptimeCheckServiceStub {
+  protocol UptimeCheckServiceStub: Sendable {
     func listUptimeCheckConfigs(
       request: ListUptimeCheckConfigsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.ListUptimeCheckConfigsResponse

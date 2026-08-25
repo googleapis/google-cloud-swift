@@ -19,7 +19,7 @@ import GoogleCloudWkt
 import GoogleCloudGax
 
 extension Clients {
-  protocol ResourceRecordSetsStub {
+  protocol ResourceRecordSetsStub: Sendable {
     func create(
       request: ResourceRecordSetsClient.CreateRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> ResourceRecordSet

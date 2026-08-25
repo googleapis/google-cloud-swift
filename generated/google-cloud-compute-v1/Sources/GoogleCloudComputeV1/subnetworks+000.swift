@@ -25,7 +25,7 @@
   /// Service for the `subnetworks` resource.
   ///
   /// @Snippet(path: "subnetworksQuickstart")
-  public class SubnetworksClient: Clients.SubnetworksProtocol {
+  public final class SubnetworksClient: Clients.SubnetworksProtocol, Sendable {
     let inner: any Clients.SubnetworksStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

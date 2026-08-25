@@ -24,7 +24,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol GenAiTuningServiceStub {
+    protocol GenAiTuningServiceStub: Sendable {
       func createTuningJob(
         request: CreateTuningJobRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.TuningJob

@@ -22,7 +22,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol ApiHubPluginStub {
+  protocol ApiHubPluginStub: Sendable {
     func getPlugin(
       request: GetPluginRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudApiHubV1.Plugin

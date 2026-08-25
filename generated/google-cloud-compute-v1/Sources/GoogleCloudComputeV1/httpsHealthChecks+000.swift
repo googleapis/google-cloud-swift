@@ -25,7 +25,7 @@
   /// Service for the `httpsHealthChecks` resource.
   ///
   /// @Snippet(path: "httpsHealthChecksQuickstart")
-  public class HttpsHealthChecksClient: Clients.HttpsHealthChecksProtocol {
+  public final class HttpsHealthChecksClient: Clients.HttpsHealthChecksProtocol, Sendable {
     let inner: any Clients.HttpsHealthChecksStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

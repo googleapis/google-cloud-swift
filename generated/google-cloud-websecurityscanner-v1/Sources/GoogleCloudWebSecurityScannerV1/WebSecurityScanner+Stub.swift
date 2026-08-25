@@ -19,7 +19,7 @@ import GoogleCloudWkt
 import GoogleCloudGax
 
 extension Clients {
-  protocol WebSecurityScannerStub {
+  protocol WebSecurityScannerStub: Sendable {
     func createScanConfig(
       request: CreateScanConfigRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudWebSecurityScannerV1.ScanConfig

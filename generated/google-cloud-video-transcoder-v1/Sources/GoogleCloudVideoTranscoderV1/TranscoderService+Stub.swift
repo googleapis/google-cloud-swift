@@ -19,7 +19,7 @@ import GoogleCloudWkt
 import GoogleCloudGax
 
 extension Clients {
-  protocol TranscoderServiceStub {
+  protocol TranscoderServiceStub: Sendable {
     func createJob(
       request: CreateJobRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudVideoTranscoderV1.Job

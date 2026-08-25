@@ -23,7 +23,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol InternalRangeServiceStub {
+  protocol InternalRangeServiceStub: Sendable {
     func listInternalRanges(
       request: ListInternalRangesRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudNetworkConnectivityV1.ListInternalRangesResponse

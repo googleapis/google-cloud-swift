@@ -27,7 +27,7 @@ import GoogleCloudGax
 /// V2 APIs for Security Center service.
 ///
 /// @Snippet(path: "SecurityCenterQuickstart")
-public class SecurityCenterClient: Clients.SecurityCenterProtocol {
+public final class SecurityCenterClient: Clients.SecurityCenterProtocol, Sendable {
   let inner: any Clients.SecurityCenterStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

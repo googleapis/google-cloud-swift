@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol GlobalPublicDelegatedPrefixesStub {
+    protocol GlobalPublicDelegatedPrefixesStub: Sendable {
       func delete(
         request: GlobalPublicDelegatedPrefixesClient.DeleteRequest,
         options: GoogleCloudGax.RequestOptions

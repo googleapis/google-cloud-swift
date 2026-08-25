@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol PreviewFeaturesStub {
+    protocol PreviewFeaturesStub: Sendable {
       func `get`(
         request: PreviewFeaturesClient.GetRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.PreviewFeature

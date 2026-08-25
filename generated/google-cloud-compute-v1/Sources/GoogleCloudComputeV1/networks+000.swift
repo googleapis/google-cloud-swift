@@ -25,7 +25,7 @@
   /// Service for the `networks` resource.
   ///
   /// @Snippet(path: "networksQuickstart")
-  public class NetworksClient: Clients.NetworksProtocol {
+  public final class NetworksClient: Clients.NetworksProtocol, Sendable {
     let inner: any Clients.NetworksStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol CrossSiteNetworksStub {
+    protocol CrossSiteNetworksStub: Sendable {
       func delete(
         request: CrossSiteNetworksClient.DeleteRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation

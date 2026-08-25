@@ -32,7 +32,7 @@ import GoogleCloudGax
 /// dataset in your project.
 ///
 /// @Snippet(path: "AnalyticsHubServiceQuickstart")
-public class AnalyticsHubServiceClient: Clients.AnalyticsHubServiceProtocol {
+public final class AnalyticsHubServiceClient: Clients.AnalyticsHubServiceProtocol, Sendable {
   let inner: any Clients.AnalyticsHubServiceStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

@@ -28,7 +28,7 @@ import GoogleCloudGax
 /// DataTransferService is the service for the Data Transfer API.
 ///
 /// @Snippet(path: "DataTransferServiceQuickstart")
-public class DataTransferServiceClient: Clients.DataTransferServiceProtocol {
+public final class DataTransferServiceClient: Clients.DataTransferServiceProtocol, Sendable {
   let inner: any Clients.DataTransferServiceStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

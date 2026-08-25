@@ -22,7 +22,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol SessionsStub {
+    protocol SessionsStub: Sendable {
       func detectIntent(
         request: DetectIntentRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.DetectIntentResponse

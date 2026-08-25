@@ -29,7 +29,7 @@
   /// The service that handles CRUD and List for resources for Featurestore.
   ///
   /// @Snippet(path: "FeaturestoreServiceQuickstart")
-  public class FeaturestoreServiceClient: Clients.FeaturestoreServiceProtocol {
+  public final class FeaturestoreServiceClient: Clients.FeaturestoreServiceProtocol, Sendable {
     let inner: any Clients.FeaturestoreServiceStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

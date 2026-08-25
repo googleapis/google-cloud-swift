@@ -23,7 +23,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol OrganizationAddressGroupServiceStub {
+  protocol OrganizationAddressGroupServiceStub: Sendable {
     func listAddressGroups(
       request: ListAddressGroupsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudNetworkSecurityV1.ListAddressGroupsResponse

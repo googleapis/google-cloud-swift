@@ -25,7 +25,9 @@
   /// Cloud SQL instance names service.
   ///
   /// @Snippet(path: "SqlInstanceNamesServiceQuickstart")
-  public class SqlInstanceNamesServiceClient: Clients.SqlInstanceNamesServiceProtocol {
+  public final class SqlInstanceNamesServiceClient: Clients.SqlInstanceNamesServiceProtocol,
+    Sendable
+  {
     let inner: any Clients.SqlInstanceNamesServiceStub
 
     /// Creates a new `SqlInstanceNamesServiceClient` instance.

@@ -25,7 +25,8 @@
   /// Service for the `regionInstantSnapshots` resource.
   ///
   /// @Snippet(path: "regionInstantSnapshotsQuickstart")
-  public class RegionInstantSnapshotsClient: Clients.RegionInstantSnapshotsProtocol {
+  public final class RegionInstantSnapshotsClient: Clients.RegionInstantSnapshotsProtocol, Sendable
+  {
     let inner: any Clients.RegionInstantSnapshotsStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

@@ -22,7 +22,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol TagValuesStub {
+  protocol TagValuesStub: Sendable {
     func listTagValues(
       request: ListTagValuesRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudResourceManagerV3.ListTagValuesResponse

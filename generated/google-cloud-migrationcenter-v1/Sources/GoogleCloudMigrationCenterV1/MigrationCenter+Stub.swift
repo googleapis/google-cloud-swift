@@ -22,7 +22,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol MigrationCenterStub {
+  protocol MigrationCenterStub: Sendable {
     func listAssets(
       request: ListAssetsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudMigrationCenterV1.ListAssetsResponse

@@ -22,7 +22,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol DeploymentsStub {
+    protocol DeploymentsStub: Sendable {
       func listDeployments(
         request: ListDeploymentsRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowCXV3.ListDeploymentsResponse

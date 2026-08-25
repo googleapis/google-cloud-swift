@@ -72,7 +72,7 @@ import GoogleCloudGax
 /// service google.longrunning.Operations.
 ///
 /// @Snippet(path: "DatastoreAdminQuickstart")
-public class DatastoreAdminClient: Clients.DatastoreAdminProtocol {
+public final class DatastoreAdminClient: Clients.DatastoreAdminProtocol, Sendable {
   let inner: any Clients.DatastoreAdminStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

@@ -19,7 +19,7 @@ import GoogleCloudWkt
 import GoogleCloudGax
 
 extension Clients {
-  protocol QuotaAdjusterSettingsManagerStub {
+  protocol QuotaAdjusterSettingsManagerStub: Sendable {
     func updateQuotaAdjusterSettings(
       request: UpdateQuotaAdjusterSettingsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleApiCloudQuotasV1.QuotaAdjusterSettings

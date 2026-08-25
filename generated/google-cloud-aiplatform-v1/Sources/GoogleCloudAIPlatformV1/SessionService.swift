@@ -29,7 +29,7 @@
   /// The service that manages Vertex Session related resources.
   ///
   /// @Snippet(path: "SessionServiceQuickstart")
-  public class SessionServiceClient: Clients.SessionServiceProtocol {
+  public final class SessionServiceClient: Clients.SessionServiceProtocol, Sendable {
     let inner: any Clients.SessionServiceStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

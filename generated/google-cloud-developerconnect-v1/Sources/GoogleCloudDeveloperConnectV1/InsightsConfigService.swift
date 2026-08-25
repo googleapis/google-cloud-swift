@@ -35,7 +35,7 @@ import GoogleCloudGax
 /// the InsightsConfig.
 ///
 /// @Snippet(path: "InsightsConfigServiceQuickstart")
-public class InsightsConfigServiceClient: Clients.InsightsConfigServiceProtocol {
+public final class InsightsConfigServiceClient: Clients.InsightsConfigServiceProtocol, Sendable {
   let inner: any Clients.InsightsConfigServiceStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

@@ -22,7 +22,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol FulfillmentsStub {
+    protocol FulfillmentsStub: Sendable {
       func getFulfillment(
         request: GetFulfillmentRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.Fulfillment

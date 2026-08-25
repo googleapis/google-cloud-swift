@@ -54,6 +54,7 @@ let package = Package(
     .package(path: "./packages/storage"),
     .package(path: "./guide"),
     .package(url: "https://github.com/apple/swift-log", from: "1.12.0"),
+    .package(url: "https://github.com/apple/swift-argument-parser.git", from: "1.5.0"),
     // Only used for development.
     .package(url: "https://github.com/apple/swift-docc-plugin", from: "1.0.0"),
   ] + generatedDependencies,
@@ -132,6 +133,18 @@ let package = Package(
       ],
       path: "Tests/Endurance",
       exclude: ["README.md", "endurance-test.service"]
+    ),
+    .executableTarget(
+      name: "StorageW1R3",
+      dependencies: [
+        .product(name: "ArgumentParser", package: "swift-argument-parser"),
+        .product(name: "GoogleCloudStorage", package: "storage"),
+        .product(name: "GoogleCloudAuth", package: "auth"),
+        .product(name: "GoogleCloudGax", package: "gax"),
+        .product(name: "Logging", package: "swift-log"),
+      ],
+      path: "Tests/StorageW1R3",
+      exclude: ["README.md"]
     ),
   ]
 )

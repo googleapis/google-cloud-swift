@@ -19,7 +19,7 @@ import GoogleCloudWkt
 import GoogleCloudGax
 
 extension Clients {
-  protocol TimeseriesInsightsControllerStub {
+  protocol TimeseriesInsightsControllerStub: Sendable {
     func listDataSets(
       request: ListDataSetsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudTimeseriesInsightsV1.ListDataSetsResponse

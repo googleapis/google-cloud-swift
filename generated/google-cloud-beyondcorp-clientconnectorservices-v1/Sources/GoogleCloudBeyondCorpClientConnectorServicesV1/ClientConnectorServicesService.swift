@@ -38,7 +38,9 @@ import GoogleCloudGax
 ///   `projects/{project_id}/locations/{location_id}/client_connector_services/{client_connector_service_id}`.
 ///
 /// @Snippet(path: "ClientConnectorServicesServiceQuickstart")
-public class ClientConnectorServicesServiceClient: Clients.ClientConnectorServicesServiceProtocol {
+public final class ClientConnectorServicesServiceClient: Clients
+    .ClientConnectorServicesServiceProtocol, Sendable
+{
   let inner: any Clients.ClientConnectorServicesServiceStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

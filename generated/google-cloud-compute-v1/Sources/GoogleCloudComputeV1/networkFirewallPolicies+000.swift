@@ -25,7 +25,9 @@
   /// Service for the `networkFirewallPolicies` resource.
   ///
   /// @Snippet(path: "networkFirewallPoliciesQuickstart")
-  public class NetworkFirewallPoliciesClient: Clients.NetworkFirewallPoliciesProtocol {
+  public final class NetworkFirewallPoliciesClient: Clients.NetworkFirewallPoliciesProtocol,
+    Sendable
+  {
     let inner: any Clients.NetworkFirewallPoliciesStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

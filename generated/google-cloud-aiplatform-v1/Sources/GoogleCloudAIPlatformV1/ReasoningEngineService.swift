@@ -29,7 +29,8 @@
   /// A service for managing Vertex AI's Reasoning Engines.
   ///
   /// @Snippet(path: "ReasoningEngineServiceQuickstart")
-  public class ReasoningEngineServiceClient: Clients.ReasoningEngineServiceProtocol {
+  public final class ReasoningEngineServiceClient: Clients.ReasoningEngineServiceProtocol, Sendable
+  {
     let inner: any Clients.ReasoningEngineServiceStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

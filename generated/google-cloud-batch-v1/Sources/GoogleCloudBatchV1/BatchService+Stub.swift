@@ -22,7 +22,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol BatchServiceStub {
+  protocol BatchServiceStub: Sendable {
     func createJob(
       request: CreateJobRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudBatchV1.Job

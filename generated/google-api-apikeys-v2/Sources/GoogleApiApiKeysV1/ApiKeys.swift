@@ -26,7 +26,7 @@ import GoogleCloudGax
 /// Manages the API keys associated with projects.
 ///
 /// @Snippet(path: "ApiKeysQuickstart")
-public class ApiKeysClient: Clients.ApiKeysProtocol {
+public final class ApiKeysClient: Clients.ApiKeysProtocol, Sendable {
   let inner: any Clients.ApiKeysStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

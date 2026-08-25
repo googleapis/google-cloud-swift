@@ -32,7 +32,9 @@ import GoogleCloudGax
 /// [google.cloud.security.privateca.v1.CertificateAuthorityService]: <doc:CertificateAuthorityServiceClient>
 ///
 /// @Snippet(path: "CertificateAuthorityServiceQuickstart")
-public class CertificateAuthorityServiceClient: Clients.CertificateAuthorityServiceProtocol {
+public final class CertificateAuthorityServiceClient: Clients.CertificateAuthorityServiceProtocol,
+  Sendable
+{
   let inner: any Clients.CertificateAuthorityServiceStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

@@ -37,7 +37,7 @@ import GoogleCloudGax
 /// [google.cloud.kms.v1.SingleTenantHsmInstanceProposal]: <doc:SingleTenantHsmInstanceProposal>
 ///
 /// @Snippet(path: "HsmManagementQuickstart")
-public class HsmManagementClient: Clients.HsmManagementProtocol {
+public final class HsmManagementClient: Clients.HsmManagementProtocol, Sendable {
   let inner: any Clients.HsmManagementStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

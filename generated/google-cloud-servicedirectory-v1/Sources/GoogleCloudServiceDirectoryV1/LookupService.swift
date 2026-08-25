@@ -25,7 +25,7 @@ import GoogleCloudGax
 /// Service Directory API for looking up service data at runtime.
 ///
 /// @Snippet(path: "LookupServiceQuickstart")
-public class LookupServiceClient: Clients.LookupServiceProtocol {
+public final class LookupServiceClient: Clients.LookupServiceProtocol, Sendable {
   let inner: any Clients.LookupServiceStub
 
   /// Creates a new `LookupServiceClient` instance.

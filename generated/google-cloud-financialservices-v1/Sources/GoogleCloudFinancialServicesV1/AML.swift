@@ -28,7 +28,7 @@ import GoogleCloudGax
 /// operations on aml.
 ///
 /// @Snippet(path: "AMLQuickstart")
-public class AMLClient: Clients.AMLProtocol {
+public final class AMLClient: Clients.AMLProtocol, Sendable {
   let inner: any Clients.AMLStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

@@ -19,7 +19,7 @@ import GoogleCloudWkt
 import GoogleCloudGax
 
 extension Clients {
-  protocol UniversalLedgerStub {
+  protocol UniversalLedgerStub: Sendable {
     func submitTransaction(
       request: SubmitTransactionRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudUniversalLedgerV1.SubmitTransactionResponse

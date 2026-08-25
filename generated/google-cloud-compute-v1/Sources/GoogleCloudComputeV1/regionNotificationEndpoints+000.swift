@@ -25,7 +25,9 @@
   /// Service for the `regionNotificationEndpoints` resource.
   ///
   /// @Snippet(path: "regionNotificationEndpointsQuickstart")
-  public class RegionNotificationEndpointsClient: Clients.RegionNotificationEndpointsProtocol {
+  public final class RegionNotificationEndpointsClient: Clients.RegionNotificationEndpointsProtocol,
+    Sendable
+  {
     let inner: any Clients.RegionNotificationEndpointsStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

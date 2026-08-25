@@ -30,7 +30,7 @@ import GoogleCloudGax
 /// so that TagHolds can be managed in the same location as their usage.
 ///
 /// @Snippet(path: "TagHoldsQuickstart")
-public class TagHoldsClient: Clients.TagHoldsProtocol {
+public final class TagHoldsClient: Clients.TagHoldsProtocol, Sendable {
   let inner: any Clients.TagHoldsStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

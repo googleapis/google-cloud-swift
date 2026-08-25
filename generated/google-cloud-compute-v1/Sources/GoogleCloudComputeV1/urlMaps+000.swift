@@ -25,7 +25,7 @@
   /// Service for the `urlMaps` resource.
   ///
   /// @Snippet(path: "urlMapsQuickstart")
-  public class UrlMapsClient: Clients.UrlMapsProtocol {
+  public final class UrlMapsClient: Clients.UrlMapsProtocol, Sendable {
     let inner: any Clients.UrlMapsStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

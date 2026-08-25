@@ -23,7 +23,7 @@ import GoogleIAMV1
 @_spi(GoogleCloudInternal) import GoogleCloudGax
 
 extension Clients {
-  class ValidationHelperV1Transport: ValidationHelperV1Stub {
+  final class ValidationHelperV1Transport: ValidationHelperV1Stub {
     let inner: GoogleCloudGax._HTTPClient
 
     public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {

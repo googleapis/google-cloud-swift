@@ -22,7 +22,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol BigtableTableAdminStub {
+  protocol BigtableTableAdminStub: Sendable {
     func createTable(
       request: CreateTableRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudBigtableAdminV2.Table

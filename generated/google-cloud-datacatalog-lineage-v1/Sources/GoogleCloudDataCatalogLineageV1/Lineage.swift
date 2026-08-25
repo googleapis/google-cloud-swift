@@ -31,7 +31,7 @@ import GoogleCloudGax
 /// [google.cloud.datacatalog.lineage.v1.LineageEvent]: <doc:LineageEvent>
 ///
 /// @Snippet(path: "LineageQuickstart")
-public class LineageClient: Clients.LineageProtocol {
+public final class LineageClient: Clients.LineageProtocol, Sendable {
   let inner: any Clients.LineageStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

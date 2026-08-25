@@ -25,7 +25,7 @@
   /// Service for the `regionUrlMaps` resource.
   ///
   /// @Snippet(path: "regionUrlMapsQuickstart")
-  public class RegionUrlMapsClient: Clients.RegionUrlMapsProtocol {
+  public final class RegionUrlMapsClient: Clients.RegionUrlMapsProtocol, Sendable {
     let inner: any Clients.RegionUrlMapsStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

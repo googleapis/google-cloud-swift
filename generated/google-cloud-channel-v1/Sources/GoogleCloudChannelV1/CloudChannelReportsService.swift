@@ -34,7 +34,9 @@ import GoogleCloudGax
 ///
 /// @Snippet(path: "CloudChannelReportsServiceQuickstart")
 @available(*, deprecated)
-public class CloudChannelReportsServiceClient: Clients.CloudChannelReportsServiceProtocol {
+public final class CloudChannelReportsServiceClient: Clients.CloudChannelReportsServiceProtocol,
+  Sendable
+{
   let inner: any Clients.CloudChannelReportsServiceStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

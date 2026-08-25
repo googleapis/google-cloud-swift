@@ -30,7 +30,7 @@ import GoogleCloudGax
 /// resources created using this service are global.
 ///
 /// @Snippet(path: "VpcFlowLogsServiceQuickstart")
-public class VpcFlowLogsServiceClient: Clients.VpcFlowLogsServiceProtocol {
+public final class VpcFlowLogsServiceClient: Clients.VpcFlowLogsServiceProtocol, Sendable {
   let inner: any Clients.VpcFlowLogsServiceStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

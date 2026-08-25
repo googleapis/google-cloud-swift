@@ -21,7 +21,7 @@ import GoogleLongRunning
 import GoogleCloudGax
 
 extension Clients {
-  protocol LintingServiceStub {
+  protocol LintingServiceStub: Sendable {
     func getStyleGuide(
       request: GetStyleGuideRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudApiHubV1.StyleGuide

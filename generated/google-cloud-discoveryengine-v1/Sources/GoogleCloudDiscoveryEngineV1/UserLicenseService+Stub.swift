@@ -22,7 +22,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol UserLicenseServiceStub {
+    protocol UserLicenseServiceStub: Sendable {
       func listUserLicenses(
         request: ListUserLicensesRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudDiscoveryEngineV1.ListUserLicensesResponse

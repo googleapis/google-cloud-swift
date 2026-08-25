@@ -28,7 +28,7 @@
   /// Service for managing generator evaluations.
   ///
   /// @Snippet(path: "GeneratorEvaluationsQuickstart")
-  public class GeneratorEvaluationsClient: Clients.GeneratorEvaluationsProtocol {
+  public final class GeneratorEvaluationsClient: Clients.GeneratorEvaluationsProtocol, Sendable {
     let inner: any Clients.GeneratorEvaluationsStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

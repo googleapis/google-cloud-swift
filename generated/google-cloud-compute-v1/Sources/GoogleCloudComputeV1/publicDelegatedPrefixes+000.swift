@@ -25,7 +25,9 @@
   /// Service for the `publicDelegatedPrefixes` resource.
   ///
   /// @Snippet(path: "publicDelegatedPrefixesQuickstart")
-  public class PublicDelegatedPrefixesClient: Clients.PublicDelegatedPrefixesProtocol {
+  public final class PublicDelegatedPrefixesClient: Clients.PublicDelegatedPrefixesProtocol,
+    Sendable
+  {
     let inner: any Clients.PublicDelegatedPrefixesStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

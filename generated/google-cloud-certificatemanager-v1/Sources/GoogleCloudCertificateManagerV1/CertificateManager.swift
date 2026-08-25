@@ -52,7 +52,7 @@ import GoogleCloudGax
 /// Provides methods to manage Cloud Certificate Manager entities.
 ///
 /// @Snippet(path: "CertificateManagerQuickstart")
-public class CertificateManagerClient: Clients.CertificateManagerProtocol {
+public final class CertificateManagerClient: Clients.CertificateManagerProtocol, Sendable {
   let inner: any Clients.CertificateManagerStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

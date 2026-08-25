@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol RolloutsStub {
+    protocol RolloutsStub: Sendable {
       func advance(
         request: RolloutsClient.AdvanceRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation

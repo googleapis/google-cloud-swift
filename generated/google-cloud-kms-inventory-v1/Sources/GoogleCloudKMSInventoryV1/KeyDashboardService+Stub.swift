@@ -20,7 +20,7 @@ import GoogleCloudWkt
 import GoogleCloudGax
 
 extension Clients {
-  protocol KeyDashboardServiceStub {
+  protocol KeyDashboardServiceStub: Sendable {
     func listCryptoKeys(
       request: ListCryptoKeysRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudKMSInventoryV1.ListCryptoKeysResponse

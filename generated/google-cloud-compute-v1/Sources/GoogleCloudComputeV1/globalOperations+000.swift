@@ -25,7 +25,7 @@
   /// Service for the `globalOperations` resource.
   ///
   /// @Snippet(path: "globalOperationsQuickstart")
-  public class GlobalOperationsClient: Clients.GlobalOperationsProtocol {
+  public final class GlobalOperationsClient: Clients.GlobalOperationsProtocol, Sendable {
     let inner: any Clients.GlobalOperationsStub
 
     /// Creates a new `GlobalOperationsClient` instance.

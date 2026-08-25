@@ -22,7 +22,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol ManagedKafkaConnectStub {
+  protocol ManagedKafkaConnectStub: Sendable {
     func listConnectClusters(
       request: ListConnectClustersRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudManagedKafkaV1.ListConnectClustersResponse

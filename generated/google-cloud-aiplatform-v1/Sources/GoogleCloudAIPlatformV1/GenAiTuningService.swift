@@ -29,7 +29,7 @@
   /// A service for creating and managing GenAI Tuning Jobs.
   ///
   /// @Snippet(path: "GenAiTuningServiceQuickstart")
-  public class GenAiTuningServiceClient: Clients.GenAiTuningServiceProtocol {
+  public final class GenAiTuningServiceClient: Clients.GenAiTuningServiceProtocol, Sendable {
     let inner: any Clients.GenAiTuningServiceStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

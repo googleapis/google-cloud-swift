@@ -16,7 +16,7 @@ import Foundation
 import GoogleRpc
 import Synchronization
 import Testing
-@_spi(GoogleCloudInternal) import GoogleCloudGax
+@_spi(GoogleCloudInternal) @testable import GoogleCloudGax
 
 @Suite struct RetryLoopTest {
   func permanent() -> RequestError {
@@ -25,6 +25,62 @@ import Testing
 
   func transient() -> RequestError {
     RequestError.service(ServiceError(code: Code.unavailable, message: "try-again"))
+  }
+
+  @Test func retryPolicyFromDefault() {
+    let defaultOptions = ClientOptions().with { $0.retryPolicy = AlwaysRetry() }
+    let requestOptions = RequestOptions()
+    let loop = _RetryLoop(options: requestOptions, withDefault: defaultOptions, idempotent: true)
+    #expect(loop.retryPolicy is AlwaysRetry)
+  }
+
+  @Test func retryPolicyFromRequest() {
+    let defaultOptions = ClientOptions().with { $0.retryPolicy = AlwaysRetry() }
+    let requestOptions = RequestOptions().with { $0.retryPolicy = NeverRetry() }
+    let loop = _RetryLoop(options: requestOptions, withDefault: defaultOptions, idempotent: true)
+    #expect(loop.retryPolicy is NeverRetry)
+  }
+
+  @Test func backoffPolicyFromDefault() {
+    let defaultOptions = ClientOptions().with { $0.backoffPolicy = LinearBackoffPolicy() }
+    let requestOptions = RequestOptions()
+    let loop = _RetryLoop(options: requestOptions, withDefault: defaultOptions, idempotent: true)
+    #expect(loop.backoffPolicy is LinearBackoffPolicy)
+  }
+
+  @Test func backoffPolicyFromRequest() {
+    let defaultOptions = ClientOptions().with { $0.backoffPolicy = LinearBackoffPolicy() }
+    let requestOptions = RequestOptions().with { $0.backoffPolicy = ExponentialBackoff() }
+    let loop = _RetryLoop(options: requestOptions, withDefault: defaultOptions, idempotent: true)
+    #expect(loop.backoffPolicy is ExponentialBackoff)
+  }
+
+  @Test func throttlerFromDefault() {
+    let defaultOptions = ClientOptions().with { $0.retryThrottler = CircuitBreaker() }
+    let requestOptions = RequestOptions()
+    let loop = _RetryLoop(options: requestOptions, withDefault: defaultOptions, idempotent: true)
+    #expect(loop.retryThrottler is CircuitBreaker)
+  }
+
+  @Test func throttlerFromRequest() {
+    let defaultOptions = ClientOptions().with { $0.retryThrottler = CircuitBreaker() }
+    let requestOptions = RequestOptions().with { $0.retryThrottler = AdaptiveThrottler() }
+    let loop = _RetryLoop(options: requestOptions, withDefault: defaultOptions, idempotent: true)
+    #expect(loop.retryThrottler is AdaptiveThrottler)
+  }
+
+  @Test(arguments: [
+    (nil, true, true),
+    (nil, false, false),
+    (true, false, true),
+    (false, true, false),
+  ])
+  func idempotencyInitialization(override: Bool?, heuristic: Bool, want: Bool) {
+    let defaultOptions = ClientOptions()
+    let requestOptions = RequestOptions().with { $0.idempotency = override }
+    let loop = _RetryLoop(
+      options: requestOptions, withDefault: defaultOptions, idempotent: heuristic)
+    #expect(loop.idempotent == want)
   }
 
   @Test func immediateSuccess() async throws {

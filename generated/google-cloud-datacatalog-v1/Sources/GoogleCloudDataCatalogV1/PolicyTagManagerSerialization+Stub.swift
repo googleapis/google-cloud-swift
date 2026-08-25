@@ -20,7 +20,7 @@ import GoogleLongRunning
 import GoogleCloudGax
 
 extension Clients {
-  protocol PolicyTagManagerSerializationStub {
+  protocol PolicyTagManagerSerializationStub: Sendable {
     func replaceTaxonomy(
       request: ReplaceTaxonomyRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudDataCatalogV1.Taxonomy

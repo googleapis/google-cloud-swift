@@ -25,7 +25,7 @@
   /// Service for the `regionBackendServices` resource.
   ///
   /// @Snippet(path: "regionBackendServicesQuickstart")
-  public class RegionBackendServicesClient: Clients.RegionBackendServicesProtocol {
+  public final class RegionBackendServicesClient: Clients.RegionBackendServicesProtocol, Sendable {
     let inner: any Clients.RegionBackendServicesStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

@@ -29,7 +29,7 @@ import GoogleCloudGax
 /// operations within a VPC network.
 ///
 /// @Snippet(path: "InternalRangeServiceQuickstart")
-public class InternalRangeServiceClient: Clients.InternalRangeServiceProtocol {
+public final class InternalRangeServiceClient: Clients.InternalRangeServiceProtocol, Sendable {
   let inner: any Clients.InternalRangeServiceStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

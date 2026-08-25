@@ -20,7 +20,7 @@ import GoogleIAMV1
 import GoogleCloudGax
 
 extension Clients {
-  protocol IdentityAwareProxyAdminServiceStub {
+  protocol IdentityAwareProxyAdminServiceStub: Sendable {
     func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy

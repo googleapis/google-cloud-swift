@@ -26,7 +26,7 @@
   /// Service for managing Assistant configuration and assisting users.
   ///
   /// @Snippet(path: "AssistantServiceQuickstart")
-  public class AssistantServiceClient: Clients.AssistantServiceProtocol {
+  public final class AssistantServiceClient: Clients.AssistantServiceProtocol, Sendable {
     let inner: any Clients.AssistantServiceStub
 
     /// Creates a new `AssistantServiceClient` instance.

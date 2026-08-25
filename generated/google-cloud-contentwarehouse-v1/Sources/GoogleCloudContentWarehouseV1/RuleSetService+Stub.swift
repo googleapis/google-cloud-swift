@@ -20,7 +20,7 @@ import GoogleLongRunning
 import GoogleCloudGax
 
 extension Clients {
-  protocol RuleSetServiceStub {
+  protocol RuleSetServiceStub: Sendable {
     func createRuleSet(
       request: CreateRuleSetRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudContentWarehouseV1.RuleSet

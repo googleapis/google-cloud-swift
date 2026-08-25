@@ -25,7 +25,9 @@
   /// Service for the `networkEdgeSecurityServices` resource.
   ///
   /// @Snippet(path: "networkEdgeSecurityServicesQuickstart")
-  public class NetworkEdgeSecurityServicesClient: Clients.NetworkEdgeSecurityServicesProtocol {
+  public final class NetworkEdgeSecurityServicesClient: Clients.NetworkEdgeSecurityServicesProtocol,
+    Sendable
+  {
     let inner: any Clients.NetworkEdgeSecurityServicesStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

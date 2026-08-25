@@ -23,7 +23,7 @@
   @_spi(GoogleCloudInternal) import GoogleCloudGax
 
   extension Clients {
-    class SqlFeatureEligibilityServiceTransport: SqlFeatureEligibilityServiceStub {
+    final class SqlFeatureEligibilityServiceTransport: SqlFeatureEligibilityServiceStub {
       let inner: GoogleCloudGax._HTTPClient
 
       public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {

@@ -27,7 +27,7 @@ import GoogleCloudGax
 /// Manages Google Cloud Projects.
 ///
 /// @Snippet(path: "ProjectsQuickstart")
-public class ProjectsClient: Clients.ProjectsProtocol {
+public final class ProjectsClient: Clients.ProjectsProtocol, Sendable {
   let inner: any Clients.ProjectsStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

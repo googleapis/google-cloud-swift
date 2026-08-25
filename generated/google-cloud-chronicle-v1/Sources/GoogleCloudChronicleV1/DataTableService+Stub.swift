@@ -20,7 +20,7 @@ import GoogleLongRunning
 import GoogleCloudGax
 
 extension Clients {
-  protocol DataTableServiceStub {
+  protocol DataTableServiceStub: Sendable {
     func createDataTable(
       request: CreateDataTableRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.DataTable

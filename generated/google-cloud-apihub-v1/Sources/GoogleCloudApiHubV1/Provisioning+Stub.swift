@@ -22,7 +22,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol ProvisioningStub {
+  protocol ProvisioningStub: Sendable {
     func createApiHubInstance(
       request: CreateApiHubInstanceRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

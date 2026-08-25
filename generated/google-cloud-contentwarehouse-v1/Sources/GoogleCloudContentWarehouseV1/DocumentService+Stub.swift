@@ -21,7 +21,7 @@ import GoogleLongRunning
 import GoogleCloudGax
 
 extension Clients {
-  protocol DocumentServiceStub {
+  protocol DocumentServiceStub: Sendable {
     func createDocument(
       request: CreateDocumentRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudContentWarehouseV1.CreateDocumentResponse

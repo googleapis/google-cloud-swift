@@ -22,7 +22,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol RapidMigrationAssessmentStub {
+  protocol RapidMigrationAssessmentStub: Sendable {
     func createCollector(
       request: CreateCollectorRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

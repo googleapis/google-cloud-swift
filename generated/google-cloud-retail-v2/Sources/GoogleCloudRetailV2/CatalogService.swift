@@ -25,7 +25,7 @@ import GoogleCloudGax
 /// Service for managing catalog configuration.
 ///
 /// @Snippet(path: "CatalogServiceQuickstart")
-public class CatalogServiceClient: Clients.CatalogServiceProtocol {
+public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendable {
   let inner: any Clients.CatalogServiceStub
 
   /// Creates a new `CatalogServiceClient` instance.

@@ -22,7 +22,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol SessionEntityTypesStub {
+    protocol SessionEntityTypesStub: Sendable {
       func listSessionEntityTypes(
         request: ListSessionEntityTypesRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.ListSessionEntityTypesResponse

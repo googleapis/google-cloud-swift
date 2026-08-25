@@ -20,7 +20,7 @@ import GoogleLongRunning
 import GoogleCloudGax
 
 extension Clients {
-  protocol DataAccessControlServiceStub {
+  protocol DataAccessControlServiceStub: Sendable {
     func createDataAccessLabel(
       request: CreateDataAccessLabelRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.DataAccessLabel

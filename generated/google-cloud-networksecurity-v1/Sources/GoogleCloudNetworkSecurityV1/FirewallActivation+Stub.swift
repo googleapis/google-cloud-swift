@@ -23,7 +23,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol FirewallActivationStub {
+  protocol FirewallActivationStub: Sendable {
     func listFirewallEndpoints(
       request: ListFirewallEndpointsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudNetworkSecurityV1.ListFirewallEndpointsResponse

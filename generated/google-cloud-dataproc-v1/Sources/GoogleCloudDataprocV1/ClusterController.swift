@@ -28,7 +28,7 @@ import GoogleCloudGax
 /// of Compute Engine instances.
 ///
 /// @Snippet(path: "ClusterControllerQuickstart")
-public class ClusterControllerClient: Clients.ClusterControllerProtocol {
+public final class ClusterControllerClient: Clients.ClusterControllerProtocol, Sendable {
   let inner: any Clients.ClusterControllerStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

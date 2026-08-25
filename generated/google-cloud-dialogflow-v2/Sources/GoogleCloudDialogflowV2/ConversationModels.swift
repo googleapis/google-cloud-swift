@@ -28,7 +28,7 @@
   /// Manages a collection of models for human agent assistant.
   ///
   /// @Snippet(path: "ConversationModelsQuickstart")
-  public class ConversationModelsClient: Clients.ConversationModelsProtocol {
+  public final class ConversationModelsClient: Clients.ConversationModelsProtocol, Sendable {
     let inner: any Clients.ConversationModelsStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

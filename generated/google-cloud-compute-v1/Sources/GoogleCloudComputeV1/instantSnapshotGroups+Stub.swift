@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol InstantSnapshotGroupsStub {
+    protocol InstantSnapshotGroupsStub: Sendable {
       func delete(
         request: InstantSnapshotGroupsClient.DeleteRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation

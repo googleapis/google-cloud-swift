@@ -29,7 +29,7 @@ import GoogleCloudGax
 /// on Google Cloud Platform via Skaffold (https://skaffold.dev).
 ///
 /// @Snippet(path: "CloudDeployQuickstart")
-public class CloudDeployClient: Clients.CloudDeployProtocol {
+public final class CloudDeployClient: Clients.CloudDeployProtocol, Sendable {
   let inner: any Clients.CloudDeployStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

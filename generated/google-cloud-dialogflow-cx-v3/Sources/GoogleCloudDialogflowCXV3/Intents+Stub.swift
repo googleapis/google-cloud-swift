@@ -23,7 +23,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol IntentsStub {
+    protocol IntentsStub: Sendable {
       func listIntents(
         request: ListIntentsRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowCXV3.ListIntentsResponse

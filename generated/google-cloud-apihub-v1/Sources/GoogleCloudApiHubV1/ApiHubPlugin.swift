@@ -27,7 +27,7 @@ import GoogleCloudGax
 /// This service is used for managing plugins inside the API Hub.
 ///
 /// @Snippet(path: "ApiHubPluginQuickstart")
-public class ApiHubPluginClient: Clients.ApiHubPluginProtocol {
+public final class ApiHubPluginClient: Clients.ApiHubPluginProtocol, Sendable {
   let inner: any Clients.ApiHubPluginStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

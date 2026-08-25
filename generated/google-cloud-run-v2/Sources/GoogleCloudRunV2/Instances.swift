@@ -26,7 +26,7 @@ import GoogleCloudGax
 /// The Cloud Run Instances API allows you to manage Cloud Run Instances.
 ///
 /// @Snippet(path: "InstancesQuickstart")
-public class InstancesClient: Clients.InstancesProtocol {
+public final class InstancesClient: Clients.InstancesProtocol, Sendable {
   let inner: any Clients.InstancesStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

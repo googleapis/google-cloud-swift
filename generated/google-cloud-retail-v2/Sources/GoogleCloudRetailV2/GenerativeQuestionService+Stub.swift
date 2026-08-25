@@ -20,7 +20,7 @@ import GoogleLongRunning
 import GoogleCloudGax
 
 extension Clients {
-  protocol GenerativeQuestionServiceStub {
+  protocol GenerativeQuestionServiceStub: Sendable {
     func updateGenerativeQuestionsFeatureConfig(
       request: UpdateGenerativeQuestionsFeatureConfigRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudRetailV2.GenerativeQuestionsFeatureConfig

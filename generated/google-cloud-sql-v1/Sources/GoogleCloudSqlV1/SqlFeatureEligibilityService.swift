@@ -25,7 +25,9 @@
   /// Service to verify the eligibility of an instance for a given operation.
   ///
   /// @Snippet(path: "SqlFeatureEligibilityServiceQuickstart")
-  public class SqlFeatureEligibilityServiceClient: Clients.SqlFeatureEligibilityServiceProtocol {
+  public final class SqlFeatureEligibilityServiceClient: Clients
+      .SqlFeatureEligibilityServiceProtocol, Sendable
+  {
     let inner: any Clients.SqlFeatureEligibilityServiceStub
 
     /// Creates a new `SqlFeatureEligibilityServiceClient` instance.

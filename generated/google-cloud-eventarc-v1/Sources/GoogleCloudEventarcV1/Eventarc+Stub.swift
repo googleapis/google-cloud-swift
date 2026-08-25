@@ -23,7 +23,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol EventarcStub {
+  protocol EventarcStub: Sendable {
     func getTrigger(
       request: GetTriggerRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudEventarcV1.Trigger

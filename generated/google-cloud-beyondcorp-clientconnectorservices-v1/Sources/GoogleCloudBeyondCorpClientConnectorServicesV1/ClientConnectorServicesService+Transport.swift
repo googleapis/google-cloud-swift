@@ -26,7 +26,7 @@ import GoogleRpc
 @_spi(GoogleCloudInternal) import GoogleCloudGax
 
 extension Clients {
-  class ClientConnectorServicesServiceTransport: ClientConnectorServicesServiceStub {
+  final class ClientConnectorServicesServiceTransport: ClientConnectorServicesServiceStub {
     let inner: GoogleCloudGax._HTTPClient
 
     public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {

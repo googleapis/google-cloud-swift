@@ -20,7 +20,7 @@ import GoogleCloudWkt
 import GoogleCloudGax
 
 extension Clients {
-  protocol SecurityCenterManagementStub {
+  protocol SecurityCenterManagementStub: Sendable {
     func listEffectiveSecurityHealthAnalyticsCustomModules(
       request: ListEffectiveSecurityHealthAnalyticsCustomModulesRequest,
       options: GoogleCloudGax.RequestOptions

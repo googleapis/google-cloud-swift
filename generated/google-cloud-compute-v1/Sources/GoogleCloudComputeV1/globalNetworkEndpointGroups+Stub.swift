@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol GlobalNetworkEndpointGroupsStub {
+    protocol GlobalNetworkEndpointGroupsStub: Sendable {
       func attachNetworkEndpoints(
         request: GlobalNetworkEndpointGroupsClient.AttachNetworkEndpointsRequest,
         options: GoogleCloudGax.RequestOptions

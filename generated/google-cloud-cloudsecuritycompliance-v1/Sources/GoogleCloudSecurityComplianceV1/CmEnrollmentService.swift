@@ -27,7 +27,7 @@ import GoogleCloudGax
 /// complianceManager.
 ///
 /// @Snippet(path: "CmEnrollmentServiceQuickstart")
-public class CmEnrollmentServiceClient: Clients.CmEnrollmentServiceProtocol {
+public final class CmEnrollmentServiceClient: Clients.CmEnrollmentServiceProtocol, Sendable {
   let inner: any Clients.CmEnrollmentServiceStub
 
   /// Creates a new `CmEnrollmentServiceClient` instance.

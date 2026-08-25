@@ -19,7 +19,7 @@ import GoogleCloudWkt
 import GoogleCloudGax
 
 extension Clients {
-  protocol CloudControlsPartnerMonitoringStub {
+  protocol CloudControlsPartnerMonitoringStub: Sendable {
     func listViolations(
       request: ListViolationsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudControlsPartnerV1.ListViolationsResponse

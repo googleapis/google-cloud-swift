@@ -20,7 +20,7 @@ import GoogleCloudWkt
 import GoogleCloudGax
 
 extension Clients {
-  protocol ConfidentialComputingStub {
+  protocol ConfidentialComputingStub: Sendable {
     func createChallenge(
       request: CreateChallengeRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudConfidentialComputingV1.Challenge

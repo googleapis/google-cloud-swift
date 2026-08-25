@@ -26,7 +26,7 @@ import GoogleCloudGax
 /// Streaming service for receiving and sending packets.
 ///
 /// @Snippet(path: "StreamingServiceQuickstart")
-public class StreamingServiceClient: Clients.StreamingServiceProtocol {
+public final class StreamingServiceClient: Clients.StreamingServiceProtocol, Sendable {
   let inner: any Clients.StreamingServiceStub
 
   /// Creates a new `StreamingServiceClient` instance.

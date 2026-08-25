@@ -29,7 +29,9 @@ import GoogleCloudGax
 /// - Get the name of the configurations.
 ///
 /// @Snippet(path: "QuotaAdjusterSettingsManagerQuickstart")
-public class QuotaAdjusterSettingsManagerClient: Clients.QuotaAdjusterSettingsManagerProtocol {
+public final class QuotaAdjusterSettingsManagerClient: Clients.QuotaAdjusterSettingsManagerProtocol,
+  Sendable
+{
   let inner: any Clients.QuotaAdjusterSettingsManagerStub
 
   /// Creates a new `QuotaAdjusterSettingsManagerClient` instance.

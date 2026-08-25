@@ -26,7 +26,7 @@ import GoogleCloudGax
 /// requiring customers to open firewalls on their runtime plane.
 ///
 /// @Snippet(path: "TetherQuickstart")
-public class TetherClient: Clients.TetherProtocol {
+public final class TetherClient: Clients.TetherProtocol, Sendable {
   let inner: any Clients.TetherStub
 
   /// Creates a new `TetherClient` instance.

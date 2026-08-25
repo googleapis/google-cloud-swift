@@ -33,7 +33,8 @@ import GoogleCloudGax
 /// 3. GlossaryTerm
 ///
 /// @Snippet(path: "BusinessGlossaryServiceQuickstart")
-public class BusinessGlossaryServiceClient: Clients.BusinessGlossaryServiceProtocol {
+public final class BusinessGlossaryServiceClient: Clients.BusinessGlossaryServiceProtocol, Sendable
+{
   let inner: any Clients.BusinessGlossaryServiceStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

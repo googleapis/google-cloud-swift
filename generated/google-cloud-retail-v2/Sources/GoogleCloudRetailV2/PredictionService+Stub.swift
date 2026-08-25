@@ -20,7 +20,7 @@ import GoogleLongRunning
 import GoogleCloudGax
 
 extension Clients {
-  protocol PredictionServiceStub {
+  protocol PredictionServiceStub: Sendable {
     func predict(
       request: PredictRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudRetailV2.PredictResponse

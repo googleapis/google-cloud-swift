@@ -27,7 +27,9 @@
   /// Service for managing site search related resources.
   ///
   /// @Snippet(path: "SiteSearchEngineServiceQuickstart")
-  public class SiteSearchEngineServiceClient: Clients.SiteSearchEngineServiceProtocol {
+  public final class SiteSearchEngineServiceClient: Clients.SiteSearchEngineServiceProtocol,
+    Sendable
+  {
     let inner: any Clients.SiteSearchEngineServiceStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

@@ -37,7 +37,9 @@ import GoogleCloudGax
 /// [google.cloud.commerce.consumer.procurement.v1.ConsumerProcurementService]: <doc:ConsumerProcurementServiceClient>
 ///
 /// @Snippet(path: "ConsumerProcurementServiceQuickstart")
-public class ConsumerProcurementServiceClient: Clients.ConsumerProcurementServiceProtocol {
+public final class ConsumerProcurementServiceClient: Clients.ConsumerProcurementServiceProtocol,
+  Sendable
+{
   let inner: any Clients.ConsumerProcurementServiceStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

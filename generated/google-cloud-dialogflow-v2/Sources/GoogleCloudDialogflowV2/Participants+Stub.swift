@@ -22,7 +22,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol ParticipantsStub {
+    protocol ParticipantsStub: Sendable {
       func createParticipant(
         request: CreateParticipantRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.Participant

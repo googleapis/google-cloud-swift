@@ -20,7 +20,7 @@ import GoogleLongRunning
 import GoogleCloudGax
 
 extension Clients {
-  protocol ServingConfigServiceStub {
+  protocol ServingConfigServiceStub: Sendable {
     func createServingConfig(
       request: CreateServingConfigRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudRetailV2.ServingConfig

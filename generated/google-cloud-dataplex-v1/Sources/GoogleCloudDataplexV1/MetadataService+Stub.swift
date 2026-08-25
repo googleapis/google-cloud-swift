@@ -22,7 +22,7 @@ import GoogleLongRunning
 import GoogleCloudGax
 
 extension Clients {
-  protocol MetadataServiceStub {
+  protocol MetadataServiceStub: Sendable {
     func createEntity(
       request: CreateEntityRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudDataplexV1.Entity

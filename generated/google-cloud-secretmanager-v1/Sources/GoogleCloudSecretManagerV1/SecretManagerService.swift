@@ -35,7 +35,7 @@ import GoogleCloudGax
 /// [google.cloud.secretmanager.v1.SecretVersion]: <doc:SecretVersion>
 ///
 /// @Snippet(path: "SecretManagerServiceQuickstart")
-public class SecretManagerServiceClient: Clients.SecretManagerServiceProtocol {
+public final class SecretManagerServiceClient: Clients.SecretManagerServiceProtocol, Sendable {
   let inner: any Clients.SecretManagerServiceStub
 
   /// Creates a new `SecretManagerServiceClient` instance.

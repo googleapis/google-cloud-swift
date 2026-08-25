@@ -22,7 +22,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol SearchTuningServiceStub {
+    protocol SearchTuningServiceStub: Sendable {
       func trainCustomModel(
         request: TrainCustomModelRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation

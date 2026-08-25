@@ -30,7 +30,7 @@ import GoogleCloudGax
 ///
 /// @Snippet(path: "DataTaxonomyServiceQuickstart")
 @available(*, deprecated)
-public class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtocol {
+public final class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtocol, Sendable {
   let inner: any Clients.DataTaxonomyServiceStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

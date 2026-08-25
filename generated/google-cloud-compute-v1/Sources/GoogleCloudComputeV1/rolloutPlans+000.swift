@@ -25,7 +25,7 @@
   /// Service for the `rolloutPlans` resource.
   ///
   /// @Snippet(path: "rolloutPlansQuickstart")
-  public class RolloutPlansClient: Clients.RolloutPlansProtocol {
+  public final class RolloutPlansClient: Clients.RolloutPlansProtocol, Sendable {
     let inner: any Clients.RolloutPlansStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

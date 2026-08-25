@@ -29,7 +29,7 @@
   /// TensorboardService
   ///
   /// @Snippet(path: "TensorboardServiceQuickstart")
-  public class TensorboardServiceClient: Clients.TensorboardServiceProtocol {
+  public final class TensorboardServiceClient: Clients.TensorboardServiceProtocol, Sendable {
     let inner: any Clients.TensorboardServiceStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

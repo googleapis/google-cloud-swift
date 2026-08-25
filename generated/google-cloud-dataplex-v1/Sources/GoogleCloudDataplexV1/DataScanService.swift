@@ -30,7 +30,7 @@ import GoogleCloudGax
 /// Data Profile, Data Quality) for the data source.
 ///
 /// @Snippet(path: "DataScanServiceQuickstart")
-public class DataScanServiceClient: Clients.DataScanServiceProtocol {
+public final class DataScanServiceClient: Clients.DataScanServiceProtocol, Sendable {
   let inner: any Clients.DataScanServiceStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

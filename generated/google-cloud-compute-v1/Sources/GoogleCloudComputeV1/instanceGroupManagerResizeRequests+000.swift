@@ -25,8 +25,8 @@
   /// Service for the `instanceGroupManagerResizeRequests` resource.
   ///
   /// @Snippet(path: "instanceGroupManagerResizeRequestsQuickstart")
-  public class InstanceGroupManagerResizeRequestsClient: Clients
-      .InstanceGroupManagerResizeRequestsProtocol
+  public final class InstanceGroupManagerResizeRequestsClient: Clients
+      .InstanceGroupManagerResizeRequestsProtocol, Sendable
   {
     let inner: any Clients.InstanceGroupManagerResizeRequestsStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy

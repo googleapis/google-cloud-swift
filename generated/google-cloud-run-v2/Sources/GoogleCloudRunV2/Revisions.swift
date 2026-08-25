@@ -26,7 +26,7 @@ import GoogleCloudGax
 /// Cloud Run Revision Control Plane API.
 ///
 /// @Snippet(path: "RevisionsQuickstart")
-public class RevisionsClient: Clients.RevisionsProtocol {
+public final class RevisionsClient: Clients.RevisionsProtocol, Sendable {
   let inner: any Clients.RevisionsStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

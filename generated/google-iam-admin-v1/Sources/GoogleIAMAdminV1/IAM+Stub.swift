@@ -20,7 +20,7 @@ import GoogleIAMV1
 import GoogleCloudGax
 
 extension Clients {
-  protocol IAMStub {
+  protocol IAMStub: Sendable {
     func listServiceAccounts(
       request: ListServiceAccountsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleIAMAdminV1.ListServiceAccountsResponse

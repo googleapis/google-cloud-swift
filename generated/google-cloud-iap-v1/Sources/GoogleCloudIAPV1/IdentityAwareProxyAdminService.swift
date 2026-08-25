@@ -25,7 +25,9 @@ import GoogleCloudGax
 /// APIs for Identity-Aware Proxy Admin configurations.
 ///
 /// @Snippet(path: "IdentityAwareProxyAdminServiceQuickstart")
-public class IdentityAwareProxyAdminServiceClient: Clients.IdentityAwareProxyAdminServiceProtocol {
+public final class IdentityAwareProxyAdminServiceClient: Clients
+    .IdentityAwareProxyAdminServiceProtocol, Sendable
+{
   let inner: any Clients.IdentityAwareProxyAdminServiceStub
 
   /// Creates a new `IdentityAwareProxyAdminServiceClient` instance.

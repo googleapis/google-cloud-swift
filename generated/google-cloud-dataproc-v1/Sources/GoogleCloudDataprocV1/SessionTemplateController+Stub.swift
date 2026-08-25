@@ -21,7 +21,7 @@ import GoogleLongRunning
 import GoogleCloudGax
 
 extension Clients {
-  protocol SessionTemplateControllerStub {
+  protocol SessionTemplateControllerStub: Sendable {
     func createSessionTemplate(
       request: CreateSessionTemplateRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudDataprocV1.SessionTemplate

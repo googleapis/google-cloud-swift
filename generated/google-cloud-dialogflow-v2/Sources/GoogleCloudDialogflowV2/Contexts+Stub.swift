@@ -22,7 +22,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol ContextsStub {
+    protocol ContextsStub: Sendable {
       func listContexts(
         request: ListContextsRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.ListContextsResponse

@@ -20,7 +20,7 @@ import GoogleLongRunning
 import GoogleCloudGax
 
 extension Clients {
-  protocol OsConfigServiceStub {
+  protocol OsConfigServiceStub: Sendable {
     func executePatchJob(
       request: ExecutePatchJobRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudOSConfigV1.PatchJob

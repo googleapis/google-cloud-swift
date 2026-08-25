@@ -28,7 +28,7 @@ import GoogleCloudGax
 /// Enable Retail Search on Cloud Console before using this feature.
 ///
 /// @Snippet(path: "SearchServiceQuickstart")
-public class SearchServiceClient: Clients.SearchServiceProtocol {
+public final class SearchServiceClient: Clients.SearchServiceProtocol, Sendable {
   let inner: any Clients.SearchServiceStub
 
   /// Creates a new `SearchServiceClient` instance.

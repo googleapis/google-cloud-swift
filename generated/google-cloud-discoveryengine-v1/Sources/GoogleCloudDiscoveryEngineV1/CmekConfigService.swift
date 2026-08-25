@@ -27,7 +27,7 @@
   /// Service for managing CMEK related tasks
   ///
   /// @Snippet(path: "CmekConfigServiceQuickstart")
-  public class CmekConfigServiceClient: Clients.CmekConfigServiceProtocol {
+  public final class CmekConfigServiceClient: Clients.CmekConfigServiceProtocol, Sendable {
     let inner: any Clients.CmekConfigServiceStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

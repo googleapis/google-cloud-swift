@@ -21,7 +21,7 @@ import GoogleLongRunning
 import GoogleCloudGax
 
 extension Clients {
-  protocol AutoscalingPolicyServiceStub {
+  protocol AutoscalingPolicyServiceStub: Sendable {
     func createAutoscalingPolicy(
       request: CreateAutoscalingPolicyRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudDataprocV1.AutoscalingPolicy

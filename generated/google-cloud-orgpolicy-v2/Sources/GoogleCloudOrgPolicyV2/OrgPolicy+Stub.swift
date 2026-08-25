@@ -19,7 +19,7 @@ import GoogleCloudWkt
 import GoogleCloudGax
 
 extension Clients {
-  protocol OrgPolicyStub {
+  protocol OrgPolicyStub: Sendable {
     func listConstraints(
       request: ListConstraintsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudOrgPolicyV2.ListConstraintsResponse

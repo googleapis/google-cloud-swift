@@ -23,7 +23,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol FeaturestoreOnlineServingServiceStub {
+    protocol FeaturestoreOnlineServingServiceStub: Sendable {
       func readFeatureValues(
         request: ReadFeatureValuesRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.ReadFeatureValuesResponse

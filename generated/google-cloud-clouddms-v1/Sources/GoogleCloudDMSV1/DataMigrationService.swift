@@ -28,7 +28,7 @@ import GoogleCloudGax
 /// Database Migration service
 ///
 /// @Snippet(path: "DataMigrationServiceQuickstart")
-public class DataMigrationServiceClient: Clients.DataMigrationServiceProtocol {
+public final class DataMigrationServiceClient: Clients.DataMigrationServiceProtocol, Sendable {
   let inner: any Clients.DataMigrationServiceStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

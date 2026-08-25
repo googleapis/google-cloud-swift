@@ -41,7 +41,7 @@ import GoogleCloudGax
 /// (create/read/update/delete) BeyondCorp AppGateways.
 ///
 /// @Snippet(path: "AppGatewaysServiceQuickstart")
-public class AppGatewaysServiceClient: Clients.AppGatewaysServiceProtocol {
+public final class AppGatewaysServiceClient: Clients.AppGatewaysServiceProtocol, Sendable {
   let inner: any Clients.AppGatewaysServiceStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

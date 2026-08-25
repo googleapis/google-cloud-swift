@@ -27,7 +27,7 @@
   /// Service for Auto-Completion.
   ///
   /// @Snippet(path: "CompletionServiceQuickstart")
-  public class CompletionServiceClient: Clients.CompletionServiceProtocol {
+  public final class CompletionServiceClient: Clients.CompletionServiceProtocol, Sendable {
     let inner: any Clients.CompletionServiceStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

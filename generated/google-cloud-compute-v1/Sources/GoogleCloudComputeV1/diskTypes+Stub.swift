@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol DiskTypesStub {
+    protocol DiskTypesStub: Sendable {
       func aggregatedList(
         request: DiskTypesClient.AggregatedListRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.DiskTypeAggregatedList

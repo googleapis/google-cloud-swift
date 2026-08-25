@@ -32,7 +32,7 @@ import GoogleCloudGax
 /// client.
 ///
 /// @Snippet(path: "CloudShellServiceQuickstart")
-public class CloudShellServiceClient: Clients.CloudShellServiceProtocol {
+public final class CloudShellServiceClient: Clients.CloudShellServiceProtocol, Sendable {
   let inner: any Clients.CloudShellServiceStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

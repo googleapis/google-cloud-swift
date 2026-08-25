@@ -30,7 +30,7 @@
   /// [google.cloud.dialogflow.cx.v3.Flow]: <doc:Flow>
   ///
   /// @Snippet(path: "FlowsQuickstart")
-  public class FlowsClient: Clients.FlowsProtocol {
+  public final class FlowsClient: Clients.FlowsProtocol, Sendable {
     let inner: any Clients.FlowsStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

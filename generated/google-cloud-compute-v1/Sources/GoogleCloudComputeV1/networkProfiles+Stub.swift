@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol NetworkProfilesStub {
+    protocol NetworkProfilesStub: Sendable {
       func `get`(
         request: NetworkProfilesClient.GetRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.NetworkProfile

@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol VpnGatewaysStub {
+    protocol VpnGatewaysStub: Sendable {
       func aggregatedList(
         request: VpnGatewaysClient.AggregatedListRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.VpnGatewayAggregatedList

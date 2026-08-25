@@ -23,7 +23,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol EchoStub {
+  protocol EchoStub: Sendable {
     func echo(
       request: EchoRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleShowcaseV1Beta1.EchoResponse

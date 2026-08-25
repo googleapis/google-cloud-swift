@@ -21,7 +21,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol ProductServiceStub {
+  protocol ProductServiceStub: Sendable {
     func createProduct(
       request: CreateProductRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudRetailV2.Product

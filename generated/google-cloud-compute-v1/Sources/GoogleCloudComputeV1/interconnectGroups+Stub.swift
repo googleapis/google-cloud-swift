@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol InterconnectGroupsStub {
+    protocol InterconnectGroupsStub: Sendable {
       func createMembers(
         request: InterconnectGroupsClient.CreateMembersRequest,
         options: GoogleCloudGax.RequestOptions

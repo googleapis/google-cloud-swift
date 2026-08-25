@@ -25,7 +25,7 @@
   /// Service for the `instanceSettings` resource.
   ///
   /// @Snippet(path: "instanceSettingsQuickstart")
-  public class InstanceSettingsClient: Clients.InstanceSettingsProtocol {
+  public final class InstanceSettingsClient: Clients.InstanceSettingsProtocol, Sendable {
     let inner: any Clients.InstanceSettingsStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

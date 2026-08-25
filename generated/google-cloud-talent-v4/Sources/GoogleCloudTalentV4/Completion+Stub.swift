@@ -20,7 +20,7 @@ import GoogleLongRunning
 import GoogleCloudGax
 
 extension Clients {
-  protocol CompletionStub {
+  protocol CompletionStub: Sendable {
     func completeQuery(
       request: CompleteQueryRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudTalentV4.CompleteQueryResponse

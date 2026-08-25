@@ -22,7 +22,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol ConversationsStub {
+    protocol ConversationsStub: Sendable {
       func createConversation(
         request: CreateConversationRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.Conversation

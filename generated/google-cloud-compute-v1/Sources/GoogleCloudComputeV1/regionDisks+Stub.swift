@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol RegionDisksStub {
+    protocol RegionDisksStub: Sendable {
       func addResourcePolicies(
         request: RegionDisksClient.AddResourcePoliciesRequest,
         options: GoogleCloudGax.RequestOptions

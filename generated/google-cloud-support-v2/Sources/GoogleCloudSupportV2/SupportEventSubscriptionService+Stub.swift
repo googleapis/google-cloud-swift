@@ -19,7 +19,7 @@ import GoogleCloudWkt
 import GoogleCloudGax
 
 extension Clients {
-  protocol SupportEventSubscriptionServiceStub {
+  protocol SupportEventSubscriptionServiceStub: Sendable {
     func createSupportEventSubscription(
       request: CreateSupportEventSubscriptionRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudSupportV2.SupportEventSubscription

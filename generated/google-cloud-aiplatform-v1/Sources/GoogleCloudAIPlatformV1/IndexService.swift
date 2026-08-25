@@ -29,7 +29,7 @@
   /// A service for creating and managing Vertex AI's Index resources.
   ///
   /// @Snippet(path: "IndexServiceQuickstart")
-  public class IndexServiceClient: Clients.IndexServiceProtocol {
+  public final class IndexServiceClient: Clients.IndexServiceProtocol, Sendable {
     let inner: any Clients.IndexServiceStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

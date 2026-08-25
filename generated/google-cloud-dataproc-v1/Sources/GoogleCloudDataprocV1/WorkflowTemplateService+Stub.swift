@@ -22,7 +22,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol WorkflowTemplateServiceStub {
+  protocol WorkflowTemplateServiceStub: Sendable {
     func createWorkflowTemplate(
       request: CreateWorkflowTemplateRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudDataprocV1.WorkflowTemplate

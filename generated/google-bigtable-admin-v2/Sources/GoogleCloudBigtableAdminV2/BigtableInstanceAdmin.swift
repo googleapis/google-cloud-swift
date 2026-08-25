@@ -29,7 +29,7 @@ import GoogleCloudGax
 /// tables' metadata or data stored in those tables.
 ///
 /// @Snippet(path: "BigtableInstanceAdminQuickstart")
-public class BigtableInstanceAdminClient: Clients.BigtableInstanceAdminProtocol {
+public final class BigtableInstanceAdminClient: Clients.BigtableInstanceAdminProtocol, Sendable {
   let inner: any Clients.BigtableInstanceAdminStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

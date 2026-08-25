@@ -25,7 +25,7 @@ import GoogleCloudGax
 /// A Service that manage/custom customer specified SynonymSets.
 ///
 /// @Snippet(path: "SynonymSetServiceQuickstart")
-public class SynonymSetServiceClient: Clients.SynonymSetServiceProtocol {
+public final class SynonymSetServiceClient: Clients.SynonymSetServiceProtocol, Sendable {
   let inner: any Clients.SynonymSetServiceStub
 
   /// Creates a new `SynonymSetServiceClient` instance.

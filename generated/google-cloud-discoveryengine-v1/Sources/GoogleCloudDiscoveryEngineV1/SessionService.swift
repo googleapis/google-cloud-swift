@@ -26,7 +26,7 @@
   /// Service for managing Sessions and Session-related resources.
   ///
   /// @Snippet(path: "SessionServiceQuickstart")
-  public class SessionServiceClient: Clients.SessionServiceProtocol {
+  public final class SessionServiceClient: Clients.SessionServiceProtocol, Sendable {
     let inner: any Clients.SessionServiceStub
 
     /// Creates a new `SessionServiceClient` instance.

@@ -28,7 +28,7 @@ import GoogleCloudGax
 /// your workloads running on Google Cloud.
 ///
 /// @Snippet(path: "WorkloadManagerQuickstart")
-public class WorkloadManagerClient: Clients.WorkloadManagerProtocol {
+public final class WorkloadManagerClient: Clients.WorkloadManagerProtocol, Sendable {
   let inner: any Clients.WorkloadManagerStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

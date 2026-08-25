@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol SubnetworksStub {
+    protocol SubnetworksStub: Sendable {
       func aggregatedList(
         request: SubnetworksClient.AggregatedListRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.SubnetworkAggregatedList

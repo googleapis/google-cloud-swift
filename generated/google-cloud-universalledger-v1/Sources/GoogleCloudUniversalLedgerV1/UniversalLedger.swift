@@ -31,7 +31,7 @@ import GoogleCloudGax
 /// given network within the given region.
 ///
 /// @Snippet(path: "UniversalLedgerQuickstart")
-public class UniversalLedgerClient: Clients.UniversalLedgerProtocol {
+public final class UniversalLedgerClient: Clients.UniversalLedgerProtocol, Sendable {
   let inner: any Clients.UniversalLedgerStub
 
   /// Creates a new `UniversalLedgerClient` instance.

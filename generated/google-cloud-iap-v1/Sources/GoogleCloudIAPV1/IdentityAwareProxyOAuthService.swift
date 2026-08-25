@@ -26,7 +26,9 @@ import GoogleCloudGax
 /// clients.
 ///
 /// @Snippet(path: "IdentityAwareProxyOAuthServiceQuickstart")
-public class IdentityAwareProxyOAuthServiceClient: Clients.IdentityAwareProxyOAuthServiceProtocol {
+public final class IdentityAwareProxyOAuthServiceClient: Clients
+    .IdentityAwareProxyOAuthServiceProtocol, Sendable
+{
   let inner: any Clients.IdentityAwareProxyOAuthServiceStub
 
   /// Creates a new `IdentityAwareProxyOAuthServiceClient` instance.

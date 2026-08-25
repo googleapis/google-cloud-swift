@@ -21,7 +21,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol AccessPoliciesStub {
+  protocol AccessPoliciesStub: Sendable {
     func createAccessPolicy(
       request: CreateAccessPolicyRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

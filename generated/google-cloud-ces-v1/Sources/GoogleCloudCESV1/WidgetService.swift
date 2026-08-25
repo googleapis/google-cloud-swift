@@ -26,7 +26,7 @@ import GoogleCloudGax
 /// Provides APIs for widgets to interact with CES APIs.
 ///
 /// @Snippet(path: "WidgetServiceQuickstart")
-public class WidgetServiceClient: Clients.WidgetServiceProtocol {
+public final class WidgetServiceClient: Clients.WidgetServiceProtocol, Sendable {
   let inner: any Clients.WidgetServiceStub
 
   /// Creates a new `WidgetServiceClient` instance.

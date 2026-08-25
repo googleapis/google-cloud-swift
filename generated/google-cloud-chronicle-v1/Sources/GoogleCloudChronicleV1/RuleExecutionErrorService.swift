@@ -26,7 +26,9 @@ import GoogleCloudGax
 /// errors.
 ///
 /// @Snippet(path: "RuleExecutionErrorServiceQuickstart")
-public class RuleExecutionErrorServiceClient: Clients.RuleExecutionErrorServiceProtocol {
+public final class RuleExecutionErrorServiceClient: Clients.RuleExecutionErrorServiceProtocol,
+  Sendable
+{
   let inner: any Clients.RuleExecutionErrorServiceStub
 
   /// Creates a new `RuleExecutionErrorServiceClient` instance.

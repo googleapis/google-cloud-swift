@@ -25,7 +25,7 @@
   /// Service for the `acceleratorTypes` resource.
   ///
   /// @Snippet(path: "acceleratorTypesQuickstart")
-  public class AcceleratorTypesClient: Clients.AcceleratorTypesProtocol {
+  public final class AcceleratorTypesClient: Clients.AcceleratorTypesProtocol, Sendable {
     let inner: any Clients.AcceleratorTypesStub
 
     /// Creates a new `AcceleratorTypesClient` instance.

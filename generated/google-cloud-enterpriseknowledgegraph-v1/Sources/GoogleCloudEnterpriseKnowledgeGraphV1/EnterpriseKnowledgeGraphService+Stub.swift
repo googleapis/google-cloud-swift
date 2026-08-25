@@ -19,7 +19,7 @@ import GoogleCloudWkt
 import GoogleCloudGax
 
 extension Clients {
-  protocol EnterpriseKnowledgeGraphServiceStub {
+  protocol EnterpriseKnowledgeGraphServiceStub: Sendable {
     func createEntityReconciliationJob(
       request: CreateEntityReconciliationJobRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudEnterpriseKnowledgeGraphV1.EntityReconciliationJob

@@ -25,7 +25,7 @@
   /// Service for the `regionZones` resource.
   ///
   /// @Snippet(path: "regionZonesQuickstart")
-  public class RegionZonesClient: Clients.RegionZonesProtocol {
+  public final class RegionZonesClient: Clients.RegionZonesProtocol, Sendable {
     let inner: any Clients.RegionZonesStub
 
     /// Creates a new `RegionZonesClient` instance.

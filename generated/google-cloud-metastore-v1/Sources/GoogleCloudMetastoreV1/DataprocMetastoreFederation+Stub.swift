@@ -23,7 +23,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol DataprocMetastoreFederationStub {
+  protocol DataprocMetastoreFederationStub: Sendable {
     func listFederations(
       request: ListFederationsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudMetastoreV1.ListFederationsResponse

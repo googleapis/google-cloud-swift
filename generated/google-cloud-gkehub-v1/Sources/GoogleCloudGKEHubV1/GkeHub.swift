@@ -45,7 +45,7 @@ import GoogleCloudGax
 /// [google.cloud.gkehub.v1.Membership]: <doc:Membership>
 ///
 /// @Snippet(path: "GkeHubQuickstart")
-public class GkeHubClient: Clients.GkeHubProtocol {
+public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   let inner: any Clients.GkeHubStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

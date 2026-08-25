@@ -30,7 +30,8 @@ import GoogleCloudGax
 /// activation/quota/visibility check.
 ///
 /// @Snippet(path: "OrganizationAddressGroupServiceQuickstart")
-public class OrganizationAddressGroupServiceClient: Clients.OrganizationAddressGroupServiceProtocol
+public final class OrganizationAddressGroupServiceClient: Clients
+    .OrganizationAddressGroupServiceProtocol, Sendable
 {
   let inner: any Clients.OrganizationAddressGroupServiceStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy

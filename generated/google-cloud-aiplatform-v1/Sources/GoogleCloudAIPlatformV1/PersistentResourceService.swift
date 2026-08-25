@@ -29,7 +29,9 @@
   /// A service for managing Vertex AI's machine learning PersistentResource.
   ///
   /// @Snippet(path: "PersistentResourceServiceQuickstart")
-  public class PersistentResourceServiceClient: Clients.PersistentResourceServiceProtocol {
+  public final class PersistentResourceServiceClient: Clients.PersistentResourceServiceProtocol,
+    Sendable
+  {
     let inner: any Clients.PersistentResourceServiceStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

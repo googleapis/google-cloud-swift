@@ -26,7 +26,7 @@ import GoogleCloudGax
 /// An interface for managing Identity and Access Management (IAM) policies.
 ///
 /// @Snippet(path: "PoliciesQuickstart")
-public class PoliciesClient: Clients.PoliciesProtocol {
+public final class PoliciesClient: Clients.PoliciesProtocol, Sendable {
   let inner: any Clients.PoliciesStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

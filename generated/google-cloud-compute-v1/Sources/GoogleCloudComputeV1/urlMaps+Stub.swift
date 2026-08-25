@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol UrlMapsStub {
+    protocol UrlMapsStub: Sendable {
       func aggregatedList(
         request: UrlMapsClient.AggregatedListRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.UrlMapsAggregatedList

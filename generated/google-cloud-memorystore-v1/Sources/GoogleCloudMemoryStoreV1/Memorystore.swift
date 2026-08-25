@@ -27,7 +27,7 @@ import GoogleCloudGax
 /// Service describing handlers for resources
 ///
 /// @Snippet(path: "MemorystoreQuickstart")
-public class MemorystoreClient: Clients.MemorystoreProtocol {
+public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   let inner: any Clients.MemorystoreStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

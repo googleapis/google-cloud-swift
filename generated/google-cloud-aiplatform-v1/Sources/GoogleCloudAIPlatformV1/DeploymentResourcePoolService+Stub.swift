@@ -24,7 +24,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol DeploymentResourcePoolServiceStub {
+    protocol DeploymentResourcePoolServiceStub: Sendable {
       func createDeploymentResourcePool(
         request: CreateDeploymentResourcePoolRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation

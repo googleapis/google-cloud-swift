@@ -20,7 +20,7 @@ import GoogleCloudWkt
 import GoogleCloudGax
 
 extension Clients {
-  protocol ModelArmorStub {
+  protocol ModelArmorStub: Sendable {
     func listTemplates(
       request: ListTemplatesRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudModelArmorV1.ListTemplatesResponse

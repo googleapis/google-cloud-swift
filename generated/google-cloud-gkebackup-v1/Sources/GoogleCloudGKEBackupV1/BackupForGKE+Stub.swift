@@ -23,7 +23,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol BackupForGKEStub {
+  protocol BackupForGKEStub: Sendable {
     func createBackupPlan(
       request: CreateBackupPlanRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

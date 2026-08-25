@@ -25,7 +25,7 @@ import GoogleCloudGax
 /// Service for modifying ServingConfig.
 ///
 /// @Snippet(path: "ServingConfigServiceQuickstart")
-public class ServingConfigServiceClient: Clients.ServingConfigServiceProtocol {
+public final class ServingConfigServiceClient: Clients.ServingConfigServiceProtocol, Sendable {
   let inner: any Clients.ServingConfigServiceStub
 
   /// Creates a new `ServingConfigServiceClient` instance.

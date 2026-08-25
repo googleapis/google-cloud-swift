@@ -27,7 +27,7 @@ import GoogleCloudGax
 /// Service describing handlers for resources
 ///
 /// @Snippet(path: "AlloyDBAdminQuickstart")
-public class AlloyDBAdminClient: Clients.AlloyDBAdminProtocol {
+public final class AlloyDBAdminClient: Clients.AlloyDBAdminProtocol, Sendable {
   let inner: any Clients.AlloyDBAdminStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

@@ -25,7 +25,7 @@ import GoogleCloudGax
 /// A service that handles tenant management, including CRUD and enumeration.
 ///
 /// @Snippet(path: "TenantServiceQuickstart")
-public class TenantServiceClient: Clients.TenantServiceProtocol {
+public final class TenantServiceClient: Clients.TenantServiceProtocol, Sendable {
   let inner: any Clients.TenantServiceStub
 
   /// Creates a new `TenantServiceClient` instance.

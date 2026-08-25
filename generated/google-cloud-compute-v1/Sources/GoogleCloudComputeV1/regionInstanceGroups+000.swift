@@ -25,7 +25,7 @@
   /// Service for the `regionInstanceGroups` resource.
   ///
   /// @Snippet(path: "regionInstanceGroupsQuickstart")
-  public class RegionInstanceGroupsClient: Clients.RegionInstanceGroupsProtocol {
+  public final class RegionInstanceGroupsClient: Clients.RegionInstanceGroupsProtocol, Sendable {
     let inner: any Clients.RegionInstanceGroupsStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

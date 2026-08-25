@@ -21,7 +21,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol EnvironmentsStub {
+  protocol EnvironmentsStub: Sendable {
     func createEnvironment(
       request: CreateEnvironmentRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

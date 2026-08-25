@@ -19,7 +19,7 @@ import GoogleCloudWkt
 import GoogleCloudGax
 
 extension Clients {
-  protocol KeyTrackingServiceStub {
+  protocol KeyTrackingServiceStub: Sendable {
     func getProtectedResourcesSummary(
       request: GetProtectedResourcesSummaryRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudKMSInventoryV1.ProtectedResourcesSummary

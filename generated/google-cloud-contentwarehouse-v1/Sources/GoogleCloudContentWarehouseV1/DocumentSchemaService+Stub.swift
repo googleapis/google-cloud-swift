@@ -20,7 +20,7 @@ import GoogleLongRunning
 import GoogleCloudGax
 
 extension Clients {
-  protocol DocumentSchemaServiceStub {
+  protocol DocumentSchemaServiceStub: Sendable {
     func createDocumentSchema(
       request: CreateDocumentSchemaRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudContentWarehouseV1.DocumentSchema

@@ -22,7 +22,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol LicenseManagerStub {
+  protocol LicenseManagerStub: Sendable {
     func listConfigurations(
       request: ListConfigurationsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudLicenseManagerV1.ListConfigurationsResponse

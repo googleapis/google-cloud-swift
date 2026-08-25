@@ -19,7 +19,7 @@ import GoogleCloudWkt
 import GoogleCloudGax
 
 extension Clients {
-  protocol DnsKeysStub {
+  protocol DnsKeysStub: Sendable {
     func `get`(
       request: DnsKeysClient.GetRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> DnsKey

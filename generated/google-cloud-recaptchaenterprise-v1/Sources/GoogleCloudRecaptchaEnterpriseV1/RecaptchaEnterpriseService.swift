@@ -24,7 +24,9 @@ import GoogleCloudGax
 /// Service to determine the likelihood an event is legitimate.
 ///
 /// @Snippet(path: "RecaptchaEnterpriseServiceQuickstart")
-public class RecaptchaEnterpriseServiceClient: Clients.RecaptchaEnterpriseServiceProtocol {
+public final class RecaptchaEnterpriseServiceClient: Clients.RecaptchaEnterpriseServiceProtocol,
+  Sendable
+{
   let inner: any Clients.RecaptchaEnterpriseServiceStub
 
   /// Creates a new `RecaptchaEnterpriseServiceClient` instance.

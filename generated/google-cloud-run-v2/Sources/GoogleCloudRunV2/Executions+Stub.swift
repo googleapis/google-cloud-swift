@@ -21,7 +21,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol ExecutionsStub {
+  protocol ExecutionsStub: Sendable {
     func getExecution(
       request: GetExecutionRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudRunV2.Execution

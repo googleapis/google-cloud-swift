@@ -24,7 +24,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol NotebookServiceStub {
+    protocol NotebookServiceStub: Sendable {
       func createNotebookRuntimeTemplate(
         request: CreateNotebookRuntimeTemplateRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation

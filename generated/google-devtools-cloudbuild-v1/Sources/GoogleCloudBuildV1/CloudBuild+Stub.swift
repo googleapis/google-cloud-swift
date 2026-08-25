@@ -21,7 +21,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol CloudBuildStub {
+  protocol CloudBuildStub: Sendable {
     func createBuild(
       request: CreateBuildRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

@@ -25,7 +25,7 @@
   /// Service for the `nodeTypes` resource.
   ///
   /// @Snippet(path: "nodeTypesQuickstart")
-  public class NodeTypesClient: Clients.NodeTypesProtocol {
+  public final class NodeTypesClient: Clients.NodeTypesProtocol, Sendable {
     let inner: any Clients.NodeTypesStub
 
     /// Creates a new `NodeTypesClient` instance.

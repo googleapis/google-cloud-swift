@@ -32,7 +32,7 @@ import GoogleCloudGax
 /// more.
 ///
 /// @Snippet(path: "IAMCredentialsQuickstart")
-public class IAMCredentialsClient: Clients.IAMCredentialsProtocol {
+public final class IAMCredentialsClient: Clients.IAMCredentialsProtocol, Sendable {
   let inner: any Clients.IAMCredentialsStub
 
   /// Creates a new `IAMCredentialsClient` instance.

@@ -28,7 +28,7 @@ import GoogleCloudGax
 /// Live Video Analytics (LVA) on the streaming inputs.
 ///
 /// @Snippet(path: "LiveVideoAnalyticsQuickstart")
-public class LiveVideoAnalyticsClient: Clients.LiveVideoAnalyticsProtocol {
+public final class LiveVideoAnalyticsClient: Clients.LiveVideoAnalyticsProtocol, Sendable {
   let inner: any Clients.LiveVideoAnalyticsStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

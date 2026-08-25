@@ -19,7 +19,7 @@ import GoogleCloudWkt
 import GoogleCloudGax
 
 extension Clients {
-  protocol CloudControlsPartnerCoreStub {
+  protocol CloudControlsPartnerCoreStub: Sendable {
     func getWorkload(
       request: GetWorkloadRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudControlsPartnerV1.Workload

@@ -22,7 +22,7 @@ import GoogleLongRunning
 import GoogleCloudGax
 
 extension Clients {
-  protocol AutokeyAdminStub {
+  protocol AutokeyAdminStub: Sendable {
     func updateAutokeyConfig(
       request: UpdateAutokeyConfigRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudKMSV1.AutokeyConfig

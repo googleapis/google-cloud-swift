@@ -21,7 +21,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol RuleServiceStub {
+  protocol RuleServiceStub: Sendable {
     func createRule(
       request: CreateRuleRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.Rule

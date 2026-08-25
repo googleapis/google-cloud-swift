@@ -20,7 +20,7 @@ import GoogleLongRunning
 import GoogleCloudGax
 
 extension Clients {
-  protocol SynonymSetServiceStub {
+  protocol SynonymSetServiceStub: Sendable {
     func createSynonymSet(
       request: CreateSynonymSetRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudContentWarehouseV1.SynonymSet

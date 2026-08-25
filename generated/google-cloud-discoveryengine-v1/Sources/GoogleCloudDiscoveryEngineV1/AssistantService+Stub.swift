@@ -21,7 +21,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol AssistantServiceStub {
+    protocol AssistantServiceStub: Sendable {
       func streamAssist(
         request: StreamAssistRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudDiscoveryEngineV1.StreamAssistResponse

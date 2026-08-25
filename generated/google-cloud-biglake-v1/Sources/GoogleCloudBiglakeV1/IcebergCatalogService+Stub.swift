@@ -20,7 +20,7 @@ import GoogleCloudWkt
 import GoogleCloudGax
 
 extension Clients {
-  protocol IcebergCatalogServiceStub {
+  protocol IcebergCatalogServiceStub: Sendable {
     func getIcebergCatalogConfig(
       request: GetIcebergCatalogConfigRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudBiglakeV1.IcebergCatalogConfig

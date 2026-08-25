@@ -20,7 +20,7 @@ import GoogleIAMV1
 import GoogleCloudGax
 
 extension Clients {
-  protocol ValidationHelperV1Stub {
+  protocol ValidationHelperV1Stub: Sendable {
     func validateAttestationOccurrence(
       request: ValidateAttestationOccurrenceRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudBinaryAuthorizationV1.ValidateAttestationOccurrenceResponse

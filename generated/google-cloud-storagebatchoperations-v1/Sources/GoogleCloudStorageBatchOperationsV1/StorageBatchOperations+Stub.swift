@@ -22,7 +22,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol StorageBatchOperationsStub {
+  protocol StorageBatchOperationsStub: Sendable {
     func listJobs(
       request: ListJobsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudStorageBatchOperationsV1.ListJobsResponse

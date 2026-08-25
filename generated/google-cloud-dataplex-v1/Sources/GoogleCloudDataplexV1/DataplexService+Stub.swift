@@ -23,7 +23,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol DataplexServiceStub {
+  protocol DataplexServiceStub: Sendable {
     func createLake(
       request: CreateLakeRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

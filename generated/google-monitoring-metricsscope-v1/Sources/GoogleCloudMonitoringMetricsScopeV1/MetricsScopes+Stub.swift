@@ -21,7 +21,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol MetricsScopesStub {
+  protocol MetricsScopesStub: Sendable {
     func getMetricsScope(
       request: GetMetricsScopeRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringMetricsScopeV1.MetricsScope

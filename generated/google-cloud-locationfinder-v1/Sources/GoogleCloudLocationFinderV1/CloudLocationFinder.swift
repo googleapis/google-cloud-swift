@@ -25,7 +25,7 @@ import GoogleCloudGax
 /// Service describing handlers for resources
 ///
 /// @Snippet(path: "CloudLocationFinderQuickstart")
-public class CloudLocationFinderClient: Clients.CloudLocationFinderProtocol {
+public final class CloudLocationFinderClient: Clients.CloudLocationFinderProtocol, Sendable {
   let inner: any Clients.CloudLocationFinderStub
 
   /// Creates a new `CloudLocationFinderClient` instance.

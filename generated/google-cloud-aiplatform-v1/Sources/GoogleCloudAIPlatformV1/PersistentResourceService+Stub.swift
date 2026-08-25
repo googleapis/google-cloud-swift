@@ -24,7 +24,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol PersistentResourceServiceStub {
+    protocol PersistentResourceServiceStub: Sendable {
       func createPersistentResource(
         request: CreatePersistentResourceRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation

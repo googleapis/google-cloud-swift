@@ -27,7 +27,7 @@ import GoogleCloudGax
 /// Service describing handlers for resources
 ///
 /// @Snippet(path: "CloudFtpQuickstart")
-public class CloudFtpClient: Clients.CloudFtpProtocol {
+public final class CloudFtpClient: Clients.CloudFtpProtocol, Sendable {
   let inner: any Clients.CloudFtpStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

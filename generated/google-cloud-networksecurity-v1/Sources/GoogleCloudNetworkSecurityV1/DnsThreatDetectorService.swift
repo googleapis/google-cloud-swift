@@ -27,7 +27,9 @@ import GoogleCloudGax
 /// The Network Security API for DNS Threat Detectors.
 ///
 /// @Snippet(path: "DnsThreatDetectorServiceQuickstart")
-public class DnsThreatDetectorServiceClient: Clients.DnsThreatDetectorServiceProtocol {
+public final class DnsThreatDetectorServiceClient: Clients.DnsThreatDetectorServiceProtocol,
+  Sendable
+{
   let inner: any Clients.DnsThreatDetectorServiceStub
 
   /// Creates a new `DnsThreatDetectorServiceClient` instance.

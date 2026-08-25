@@ -23,7 +23,7 @@ import GoogleIAMV1
 @_spi(GoogleCloudInternal) import GoogleCloudGax
 
 extension Clients {
-  class BinauthzManagementServiceV1Transport: BinauthzManagementServiceV1Stub {
+  final class BinauthzManagementServiceV1Transport: BinauthzManagementServiceV1Stub {
     let inner: GoogleCloudGax._HTTPClient
 
     public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {

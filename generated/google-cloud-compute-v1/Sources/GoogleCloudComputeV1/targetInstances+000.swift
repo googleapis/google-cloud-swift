@@ -25,7 +25,7 @@
   /// Service for the `targetInstances` resource.
   ///
   /// @Snippet(path: "targetInstancesQuickstart")
-  public class TargetInstancesClient: Clients.TargetInstancesProtocol {
+  public final class TargetInstancesClient: Clients.TargetInstancesProtocol, Sendable {
     let inner: any Clients.TargetInstancesStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

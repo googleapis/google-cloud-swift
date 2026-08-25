@@ -27,7 +27,7 @@ import GoogleCloudGax
 /// This service is used for managing the data plane provisioning of the API hub.
 ///
 /// @Snippet(path: "ProvisioningQuickstart")
-public class ProvisioningClient: Clients.ProvisioningProtocol {
+public final class ProvisioningClient: Clients.ProvisioningProtocol, Sendable {
   let inner: any Clients.ProvisioningStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

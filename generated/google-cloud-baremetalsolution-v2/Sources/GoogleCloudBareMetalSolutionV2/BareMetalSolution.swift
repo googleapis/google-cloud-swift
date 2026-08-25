@@ -34,7 +34,7 @@ import GoogleCloudGax
 /// upon specific servers in your Bare Metal Solution environment.
 ///
 /// @Snippet(path: "BareMetalSolutionQuickstart")
-public class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol {
+public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, Sendable {
   let inner: any Clients.BareMetalSolutionStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

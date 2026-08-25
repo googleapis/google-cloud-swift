@@ -22,7 +22,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol ConfigDeliveryStub {
+  protocol ConfigDeliveryStub: Sendable {
     func listResourceBundles(
       request: ListResourceBundlesRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudConfigDeliveryV1.ListResourceBundlesResponse

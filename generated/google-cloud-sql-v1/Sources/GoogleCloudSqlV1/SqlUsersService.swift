@@ -25,7 +25,7 @@
   /// Cloud SQL users service.
   ///
   /// @Snippet(path: "SqlUsersServiceQuickstart")
-  public class SqlUsersServiceClient: Clients.SqlUsersServiceProtocol {
+  public final class SqlUsersServiceClient: Clients.SqlUsersServiceProtocol, Sendable {
     let inner: any Clients.SqlUsersServiceStub
 
     /// Creates a new `SqlUsersServiceClient` instance.

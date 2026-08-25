@@ -25,7 +25,7 @@ import GoogleCloudGax
 /// Service to manage customer specific RuleSets.
 ///
 /// @Snippet(path: "RuleSetServiceQuickstart")
-public class RuleSetServiceClient: Clients.RuleSetServiceProtocol {
+public final class RuleSetServiceClient: Clients.RuleSetServiceProtocol, Sendable {
   let inner: any Clients.RuleSetServiceStub
 
   /// Creates a new `RuleSetServiceClient` instance.

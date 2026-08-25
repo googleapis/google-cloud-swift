@@ -22,7 +22,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol GeneratorsStub {
+    protocol GeneratorsStub: Sendable {
       func createGenerator(
         request: CreateGeneratorRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.Generator

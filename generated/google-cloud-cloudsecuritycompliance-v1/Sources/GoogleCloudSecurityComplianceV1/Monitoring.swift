@@ -26,7 +26,7 @@ import GoogleCloudGax
 /// Service describing handlers for resources
 ///
 /// @Snippet(path: "MonitoringQuickstart")
-public class MonitoringClient: Clients.MonitoringProtocol {
+public final class MonitoringClient: Clients.MonitoringProtocol, Sendable {
   let inner: any Clients.MonitoringStub
 
   /// Creates a new `MonitoringClient` instance.

@@ -19,7 +19,7 @@ import GoogleCloudWkt
 import GoogleCloudGax
 
 extension Clients {
-  protocol QueryServiceStub {
+  protocol QueryServiceStub: Sendable {
     func queryTimeSeries(
       request: QueryTimeSeriesRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.QueryTimeSeriesResponse

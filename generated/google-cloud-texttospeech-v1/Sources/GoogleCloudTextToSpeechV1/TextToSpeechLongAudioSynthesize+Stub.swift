@@ -21,7 +21,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol TextToSpeechLongAudioSynthesizeStub {
+  protocol TextToSpeechLongAudioSynthesizeStub: Sendable {
     func synthesizeLongAudio(
       request: SynthesizeLongAudioRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

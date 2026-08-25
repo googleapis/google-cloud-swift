@@ -38,8 +38,8 @@ import GoogleCloudGax
 /// [google.cloud.policysimulator.v1.OrgPolicyViolationsPreview]: <doc:OrgPolicyViolationsPreview>
 ///
 /// @Snippet(path: "OrgPolicyViolationsPreviewServiceQuickstart")
-public class OrgPolicyViolationsPreviewServiceClient: Clients
-    .OrgPolicyViolationsPreviewServiceProtocol
+public final class OrgPolicyViolationsPreviewServiceClient: Clients
+    .OrgPolicyViolationsPreviewServiceProtocol, Sendable
 {
   let inner: any Clients.OrgPolicyViolationsPreviewServiceStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy

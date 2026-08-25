@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol ImageFamilyViewsStub {
+    protocol ImageFamilyViewsStub: Sendable {
       func `get`(
         request: ImageFamilyViewsClient.GetRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.ImageFamilyView

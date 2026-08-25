@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol BackendServicesStub {
+    protocol BackendServicesStub: Sendable {
       func addSignedUrlKey(
         request: BackendServicesClient.AddSignedUrlKeyRequest,
         options: GoogleCloudGax.RequestOptions

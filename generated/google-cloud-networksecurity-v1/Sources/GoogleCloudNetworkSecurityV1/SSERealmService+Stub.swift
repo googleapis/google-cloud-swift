@@ -23,7 +23,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol SSERealmServiceStub {
+  protocol SSERealmServiceStub: Sendable {
     func listSacrealms(
       request: ListSACRealmsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudNetworkSecurityV1.ListSACRealmsResponse

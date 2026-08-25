@@ -28,7 +28,7 @@ import GoogleCloudGax
 /// pipelines via a point-and-click UI.
 ///
 /// @Snippet(path: "DataFusionQuickstart")
-public class DataFusionClient: Clients.DataFusionProtocol {
+public final class DataFusionClient: Clients.DataFusionProtocol, Sendable {
   let inner: any Clients.DataFusionStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

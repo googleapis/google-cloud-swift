@@ -26,7 +26,7 @@ import GoogleCloudGax
 /// Manages instances of a version.
 ///
 /// @Snippet(path: "InstancesQuickstart")
-public class InstancesClient: Clients.InstancesProtocol {
+public final class InstancesClient: Clients.InstancesProtocol, Sendable {
   let inner: any Clients.InstancesStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

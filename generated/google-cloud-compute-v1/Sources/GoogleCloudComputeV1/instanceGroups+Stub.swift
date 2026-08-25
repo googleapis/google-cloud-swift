@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol InstanceGroupsStub {
+    protocol InstanceGroupsStub: Sendable {
       func addInstances(
         request: InstanceGroupsClient.AddInstancesRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation

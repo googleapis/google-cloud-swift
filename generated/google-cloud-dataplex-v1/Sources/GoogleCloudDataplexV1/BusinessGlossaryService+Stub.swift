@@ -23,7 +23,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol BusinessGlossaryServiceStub {
+  protocol BusinessGlossaryServiceStub: Sendable {
     func createGlossary(
       request: CreateGlossaryRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

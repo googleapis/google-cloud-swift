@@ -21,7 +21,7 @@ import GoogleLongRunning
 import GoogleCloudGax
 
 extension Clients {
-  protocol DataObjectSearchServiceStub {
+  protocol DataObjectSearchServiceStub: Sendable {
     func searchDataObjects(
       request: SearchDataObjectsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudVectorSearchV1.SearchDataObjectsResponse

@@ -24,7 +24,7 @@ import GoogleCloudGax
 /// Service for the `dnsKeys` resource.
 ///
 /// @Snippet(path: "dnsKeysQuickstart")
-public class DnsKeysClient: Clients.DnsKeysProtocol {
+public final class DnsKeysClient: Clients.DnsKeysProtocol, Sendable {
   let inner: any Clients.DnsKeysStub
 
   /// Creates a new `DnsKeysClient` instance.

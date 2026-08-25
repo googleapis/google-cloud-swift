@@ -25,7 +25,7 @@
   /// Service for the `projects` resource.
   ///
   /// @Snippet(path: "projectsQuickstart")
-  public class ProjectsClient: Clients.ProjectsProtocol {
+  public final class ProjectsClient: Clients.ProjectsProtocol, Sendable {
     let inner: any Clients.ProjectsStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

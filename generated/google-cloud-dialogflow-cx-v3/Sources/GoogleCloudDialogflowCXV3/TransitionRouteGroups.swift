@@ -30,7 +30,7 @@
   /// [google.cloud.dialogflow.cx.v3.TransitionRouteGroup]: <doc:TransitionRouteGroup>
   ///
   /// @Snippet(path: "TransitionRouteGroupsQuickstart")
-  public class TransitionRouteGroupsClient: Clients.TransitionRouteGroupsProtocol {
+  public final class TransitionRouteGroupsClient: Clients.TransitionRouteGroupsProtocol, Sendable {
     let inner: any Clients.TransitionRouteGroupsStub
 
     /// Creates a new `TransitionRouteGroupsClient` instance.

@@ -47,24 +47,23 @@ extension StorageClient {
     let clientOptions = self.options.client
     let effectiveBackoffPolicy =
       options.backoffPolicy ?? self.options.upload.backoffPolicy ?? clientOptions.backoffPolicy
-    let effectiveResumePolicy: any ResumePolicy<UploadDetails>
-    if let explicitResume = options.resumePolicy ?? self.options.upload.resumePolicy {
-      effectiveResumePolicy = explicitResume
-    } else {
-      effectiveResumePolicy = StopOnConsecutiveErrors()
-    }
+    let effectiveResumePolicy =
+      options.resumePolicy ?? self.options.upload.resumePolicy
+      ?? StopOnConsecutiveErrors<UploadDetails>()
     let resumeLoop = _ResumeLoop(
       resumePolicy: effectiveResumePolicy,
       backoffPolicy: effectiveBackoffPolicy
     )
+    let effectiveThreshold = Int64(
+      options.resumableUploadThreshold ?? self.options.upload.resumableUploadThreshold
+        ?? UploadOptions.defaultResumableUploadThreshold)
     let httpClient = self.inner
     return UploadTask.create { continuation in
       var source = source
       let totalSize = source.totalSize
 
       // Determine if simple or resumable
-      let threshold = 8 * 1024 * 1024  // 8MB default threshold
-      let useResumable = totalSize == nil || totalSize! >= threshold
+      let useResumable = totalSize == nil || totalSize! >= effectiveThreshold
 
       if !useResumable {
         return try await Self.performSimpleUpload(
@@ -124,14 +123,16 @@ extension StorageClient {
       resumePolicy: effectiveResumePolicy,
       backoffPolicy: effectiveBackoffPolicy
     )
+    let effectiveThreshold = Int64(
+      options.resumableUploadThreshold ?? self.options.upload.resumableUploadThreshold
+        ?? UploadOptions.defaultResumableUploadThreshold)
     let httpClient = self.inner
     return UploadTask.create { continuation in
       var source = source
       let totalSize = source.totalSize
 
       // Determine if simple or resumable
-      let threshold = 8 * 1024 * 1024  // 8MB default threshold
-      let useResumable = totalSize == nil || totalSize! >= threshold
+      let useResumable = totalSize == nil || totalSize! >= effectiveThreshold
 
       if !useResumable {
         return try await Self.performSimpleUpload(

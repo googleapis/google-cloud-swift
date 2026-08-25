@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol SqlInstancesServiceStub {
+    protocol SqlInstancesServiceStub: Sendable {
       func addServerCa(
         request: SqlInstancesAddServerCaRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.Operation

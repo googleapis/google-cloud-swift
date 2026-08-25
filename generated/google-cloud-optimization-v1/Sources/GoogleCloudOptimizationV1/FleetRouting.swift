@@ -42,7 +42,7 @@ import GoogleCloudGax
 ///     * at least one of latitude and longitude must be non-zero.
 ///
 /// @Snippet(path: "FleetRoutingQuickstart")
-public class FleetRoutingClient: Clients.FleetRoutingProtocol {
+public final class FleetRoutingClient: Clients.FleetRoutingProtocol, Sendable {
   let inner: any Clients.FleetRoutingStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

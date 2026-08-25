@@ -28,7 +28,7 @@ import GoogleCloudGax
 /// by specifying a specific, predictable sequence of responses from the service
 ///
 /// @Snippet(path: "SequenceServiceQuickstart")
-public class SequenceServiceClient: Clients.SequenceServiceProtocol {
+public final class SequenceServiceClient: Clients.SequenceServiceProtocol, Sendable {
   let inner: any Clients.SequenceServiceStub
 
   /// Creates a new `SequenceServiceClient` instance.

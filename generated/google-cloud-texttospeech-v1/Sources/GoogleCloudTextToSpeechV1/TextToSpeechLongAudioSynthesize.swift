@@ -26,7 +26,8 @@ import GoogleCloudGax
 /// Service that implements Google Cloud Text-to-Speech API.
 ///
 /// @Snippet(path: "TextToSpeechLongAudioSynthesizeQuickstart")
-public class TextToSpeechLongAudioSynthesizeClient: Clients.TextToSpeechLongAudioSynthesizeProtocol
+public final class TextToSpeechLongAudioSynthesizeClient: Clients
+    .TextToSpeechLongAudioSynthesizeProtocol, Sendable
 {
   let inner: any Clients.TextToSpeechLongAudioSynthesizeStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy

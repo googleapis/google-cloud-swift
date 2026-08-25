@@ -21,7 +21,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol ImageAnnotatorStub {
+  protocol ImageAnnotatorStub: Sendable {
     func batchAnnotateImages(
       request: BatchAnnotateImagesRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudVisionV1.BatchAnnotateImagesResponse

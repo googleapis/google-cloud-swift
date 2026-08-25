@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol HttpsHealthChecksStub {
+    protocol HttpsHealthChecksStub: Sendable {
       func delete(
         request: HttpsHealthChecksClient.DeleteRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation

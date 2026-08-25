@@ -26,7 +26,9 @@ import GoogleCloudGax
 /// Service that implements the Video Intelligence API.
 ///
 /// @Snippet(path: "VideoIntelligenceServiceQuickstart")
-public class VideoIntelligenceServiceClient: Clients.VideoIntelligenceServiceProtocol {
+public final class VideoIntelligenceServiceClient: Clients.VideoIntelligenceServiceProtocol,
+  Sendable
+{
   let inner: any Clients.VideoIntelligenceServiceStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

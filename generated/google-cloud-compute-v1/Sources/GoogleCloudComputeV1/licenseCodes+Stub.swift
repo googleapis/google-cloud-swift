@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol LicenseCodesStub {
+    protocol LicenseCodesStub: Sendable {
       func `get`(
         request: LicenseCodesClient.GetRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.LicenseCode

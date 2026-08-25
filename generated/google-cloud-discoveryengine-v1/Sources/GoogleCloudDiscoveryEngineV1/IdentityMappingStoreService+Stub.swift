@@ -22,7 +22,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol IdentityMappingStoreServiceStub {
+    protocol IdentityMappingStoreServiceStub: Sendable {
       func createIdentityMappingStore(
         request: CreateIdentityMappingStoreRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudDiscoveryEngineV1.IdentityMappingStore

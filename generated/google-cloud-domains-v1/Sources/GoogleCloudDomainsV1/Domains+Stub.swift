@@ -22,7 +22,7 @@ import GoogleType
 import GoogleCloudGax
 
 extension Clients {
-  protocol DomainsStub {
+  protocol DomainsStub: Sendable {
     func searchDomains(
       request: SearchDomainsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudDomainsV1.SearchDomainsResponse

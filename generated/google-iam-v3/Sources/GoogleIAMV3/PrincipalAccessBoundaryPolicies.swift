@@ -27,7 +27,8 @@ import GoogleCloudGax
 /// policies.
 ///
 /// @Snippet(path: "PrincipalAccessBoundaryPoliciesQuickstart")
-public class PrincipalAccessBoundaryPoliciesClient: Clients.PrincipalAccessBoundaryPoliciesProtocol
+public final class PrincipalAccessBoundaryPoliciesClient: Clients
+    .PrincipalAccessBoundaryPoliciesProtocol, Sendable
 {
   let inner: any Clients.PrincipalAccessBoundaryPoliciesStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy

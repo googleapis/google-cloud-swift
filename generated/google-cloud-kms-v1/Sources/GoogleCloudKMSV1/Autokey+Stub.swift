@@ -23,7 +23,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol AutokeyStub {
+  protocol AutokeyStub: Sendable {
     func createKeyHandle(
       request: CreateKeyHandleRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

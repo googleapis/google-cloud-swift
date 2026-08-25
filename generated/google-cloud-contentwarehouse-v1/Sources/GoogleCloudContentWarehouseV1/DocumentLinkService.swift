@@ -26,7 +26,7 @@ import GoogleCloudGax
 /// Document-Links are treated as sub-resources under source documents.
 ///
 /// @Snippet(path: "DocumentLinkServiceQuickstart")
-public class DocumentLinkServiceClient: Clients.DocumentLinkServiceProtocol {
+public final class DocumentLinkServiceClient: Clients.DocumentLinkServiceProtocol, Sendable {
   let inner: any Clients.DocumentLinkServiceStub
 
   /// Creates a new `DocumentLinkServiceClient` instance.

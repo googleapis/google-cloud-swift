@@ -29,7 +29,7 @@
   /// [google.cloud.dialogflow.v2.Fulfillment]: <doc:Fulfillment>
   ///
   /// @Snippet(path: "FulfillmentsQuickstart")
-  public class FulfillmentsClient: Clients.FulfillmentsProtocol {
+  public final class FulfillmentsClient: Clients.FulfillmentsProtocol, Sendable {
     let inner: any Clients.FulfillmentsStub
 
     /// Creates a new `FulfillmentsClient` instance.

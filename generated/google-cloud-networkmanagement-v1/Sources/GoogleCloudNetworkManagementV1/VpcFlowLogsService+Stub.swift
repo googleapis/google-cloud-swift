@@ -23,7 +23,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol VpcFlowLogsServiceStub {
+  protocol VpcFlowLogsServiceStub: Sendable {
     func listVpcFlowLogsConfigs(
       request: ListVpcFlowLogsConfigsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudNetworkManagementV1.ListVpcFlowLogsConfigsResponse

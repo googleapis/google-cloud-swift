@@ -26,7 +26,7 @@ import GoogleCloudGax
 /// Manages domains serving an application.
 ///
 /// @Snippet(path: "DomainMappingsQuickstart")
-public class DomainMappingsClient: Clients.DomainMappingsProtocol {
+public final class DomainMappingsClient: Clients.DomainMappingsProtocol, Sendable {
   let inner: any Clients.DomainMappingsStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

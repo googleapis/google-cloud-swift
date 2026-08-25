@@ -30,7 +30,7 @@ import GoogleCloudGax
 /// configure the network setup and property to meet the workload requirement.
 ///
 /// @Snippet(path: "EdgeNetworkQuickstart")
-public class EdgeNetworkClient: Clients.EdgeNetworkProtocol {
+public final class EdgeNetworkClient: Clients.EdgeNetworkProtocol, Sendable {
   let inner: any Clients.EdgeNetworkStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

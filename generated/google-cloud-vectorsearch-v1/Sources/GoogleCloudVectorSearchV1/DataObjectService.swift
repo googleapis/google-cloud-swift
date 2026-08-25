@@ -26,7 +26,7 @@ import GoogleCloudGax
 /// Service for creating and managing data objects.
 ///
 /// @Snippet(path: "DataObjectServiceQuickstart")
-public class DataObjectServiceClient: Clients.DataObjectServiceProtocol {
+public final class DataObjectServiceClient: Clients.DataObjectServiceProtocol, Sendable {
   let inner: any Clients.DataObjectServiceStub
 
   /// Creates a new `DataObjectServiceClient` instance.

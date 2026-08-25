@@ -24,7 +24,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol MigrationServiceStub {
+    protocol MigrationServiceStub: Sendable {
       func searchMigratableResources(
         request: SearchMigratableResourcesRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.SearchMigratableResourcesResponse

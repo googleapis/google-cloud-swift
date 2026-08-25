@@ -31,7 +31,7 @@
   /// [google.cloud.dialogflow.v2.Document]: <doc:Document>
   ///
   /// @Snippet(path: "DocumentsQuickstart")
-  public class DocumentsClient: Clients.DocumentsProtocol {
+  public final class DocumentsClient: Clients.DocumentsProtocol, Sendable {
     let inner: any Clients.DocumentsStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

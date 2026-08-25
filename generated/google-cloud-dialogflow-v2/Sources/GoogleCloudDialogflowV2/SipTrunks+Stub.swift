@@ -22,7 +22,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol SipTrunksStub {
+    protocol SipTrunksStub: Sendable {
       func createSipTrunk(
         request: CreateSipTrunkRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.SipTrunk

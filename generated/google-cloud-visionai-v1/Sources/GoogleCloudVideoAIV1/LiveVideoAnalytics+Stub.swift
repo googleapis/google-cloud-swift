@@ -22,7 +22,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol LiveVideoAnalyticsStub {
+  protocol LiveVideoAnalyticsStub: Sendable {
     func listPublicOperators(
       request: ListPublicOperatorsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.ListPublicOperatorsResponse

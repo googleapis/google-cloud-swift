@@ -28,7 +28,7 @@ import GoogleCloudGax
 /// The BackupDR Service
 ///
 /// @Snippet(path: "BackupDRQuickstart")
-public class BackupDRClient: Clients.BackupDRProtocol {
+public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   let inner: any Clients.BackupDRStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

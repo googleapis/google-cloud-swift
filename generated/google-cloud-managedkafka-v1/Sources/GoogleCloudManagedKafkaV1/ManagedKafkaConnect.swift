@@ -28,7 +28,7 @@ import GoogleCloudGax
 /// clusters and connectors.
 ///
 /// @Snippet(path: "ManagedKafkaConnectQuickstart")
-public class ManagedKafkaConnectClient: Clients.ManagedKafkaConnectProtocol {
+public final class ManagedKafkaConnectClient: Clients.ManagedKafkaConnectProtocol, Sendable {
   let inner: any Clients.ManagedKafkaConnectStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

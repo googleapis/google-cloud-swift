@@ -19,7 +19,7 @@ import GoogleCloudWkt
 import GoogleCloudGax
 
 extension Clients {
-  protocol DashboardsServiceStub {
+  protocol DashboardsServiceStub: Sendable {
     func createDashboard(
       request: CreateDashboardRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringDashboardV1.Dashboard

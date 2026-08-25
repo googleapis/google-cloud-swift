@@ -26,7 +26,7 @@ import GoogleCloudGax
 /// This service provides all methods related to the 1p Linter.
 ///
 /// @Snippet(path: "LintingServiceQuickstart")
-public class LintingServiceClient: Clients.LintingServiceProtocol {
+public final class LintingServiceClient: Clients.LintingServiceProtocol, Sendable {
   let inner: any Clients.LintingServiceStub
 
   /// Creates a new `LintingServiceClient` instance.

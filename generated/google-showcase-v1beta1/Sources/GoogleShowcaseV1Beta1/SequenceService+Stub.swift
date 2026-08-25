@@ -22,7 +22,7 @@ import GoogleLongRunning
 import GoogleCloudGax
 
 extension Clients {
-  protocol SequenceServiceStub {
+  protocol SequenceServiceStub: Sendable {
     func createSequence(
       request: CreateSequenceRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleShowcaseV1Beta1.Sequence

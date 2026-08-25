@@ -24,7 +24,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol VertexRagDataServiceStub {
+    protocol VertexRagDataServiceStub: Sendable {
       func createRagCorpus(
         request: CreateRagCorpusRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation

@@ -20,7 +20,7 @@ import GoogleIAMV1
 import GoogleCloudGax
 
 extension Clients {
-  protocol BinauthzManagementServiceV1Stub {
+  protocol BinauthzManagementServiceV1Stub: Sendable {
     func getPolicy(
       request: GetPolicyRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudBinaryAuthorizationV1.Policy

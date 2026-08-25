@@ -21,7 +21,7 @@ import GoogleLongRunning
 import GoogleCloudGax
 
 extension Clients {
-  protocol StreamingServiceStub {
+  protocol StreamingServiceStub: Sendable {
     func acquireLease(
       request: AcquireLeaseRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.Lease

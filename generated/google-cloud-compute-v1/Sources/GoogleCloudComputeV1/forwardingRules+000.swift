@@ -25,7 +25,7 @@
   /// Service for the `forwardingRules` resource.
   ///
   /// @Snippet(path: "forwardingRulesQuickstart")
-  public class ForwardingRulesClient: Clients.ForwardingRulesProtocol {
+  public final class ForwardingRulesClient: Clients.ForwardingRulesProtocol, Sendable {
     let inner: any Clients.ForwardingRulesStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

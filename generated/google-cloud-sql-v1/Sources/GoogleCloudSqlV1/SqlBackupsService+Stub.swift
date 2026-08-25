@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol SqlBackupsServiceStub {
+    protocol SqlBackupsServiceStub: Sendable {
       func createBackup(
         request: CreateBackupRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.Operation

@@ -22,7 +22,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol DocumentServiceStub {
+    protocol DocumentServiceStub: Sendable {
       func getDocument(
         request: GetDocumentRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudDiscoveryEngineV1.Document

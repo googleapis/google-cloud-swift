@@ -27,7 +27,9 @@ import GoogleCloudGax
 /// from triggering alerts or notifications.
 ///
 /// @Snippet(path: "FindingsRefinementServiceQuickstart")
-public class FindingsRefinementServiceClient: Clients.FindingsRefinementServiceProtocol {
+public final class FindingsRefinementServiceClient: Clients.FindingsRefinementServiceProtocol,
+  Sendable
+{
   let inner: any Clients.FindingsRefinementServiceStub
 
   /// Creates a new `FindingsRefinementServiceClient` instance.

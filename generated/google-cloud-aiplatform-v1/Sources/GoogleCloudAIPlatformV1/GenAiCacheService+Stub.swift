@@ -23,7 +23,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol GenAiCacheServiceStub {
+    protocol GenAiCacheServiceStub: Sendable {
       func createCachedContent(
         request: CreateCachedContentRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.CachedContent

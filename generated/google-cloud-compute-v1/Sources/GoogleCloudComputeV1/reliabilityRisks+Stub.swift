@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol ReliabilityRisksStub {
+    protocol ReliabilityRisksStub: Sendable {
       func `get`(
         request: ReliabilityRisksClient.GetRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.ReliabilityRisk

@@ -27,7 +27,7 @@ import GoogleCloudGax
 /// The `SessionController` provides methods to manage interactive sessions.
 ///
 /// @Snippet(path: "SessionControllerQuickstart")
-public class SessionControllerClient: Clients.SessionControllerProtocol {
+public final class SessionControllerClient: Clients.SessionControllerProtocol, Sendable {
   let inner: any Clients.SessionControllerStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol TargetSslProxiesStub {
+    protocol TargetSslProxiesStub: Sendable {
       func delete(
         request: TargetSslProxiesClient.DeleteRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation

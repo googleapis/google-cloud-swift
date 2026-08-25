@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol PublicDelegatedPrefixesStub {
+    protocol PublicDelegatedPrefixesStub: Sendable {
       func aggregatedList(
         request: PublicDelegatedPrefixesClient.AggregatedListRequest,
         options: GoogleCloudGax.RequestOptions

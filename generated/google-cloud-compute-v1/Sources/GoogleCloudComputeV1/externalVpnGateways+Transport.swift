@@ -23,7 +23,7 @@
   @_spi(GoogleCloudInternal) import GoogleCloudGax
 
   extension Clients {
-    class ExternalVpnGatewaysTransport: ExternalVpnGatewaysStub {
+    final class ExternalVpnGatewaysTransport: ExternalVpnGatewaysStub {
       let inner: GoogleCloudGax._HTTPClient
 
       public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {

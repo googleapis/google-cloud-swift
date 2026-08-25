@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol ResourcePoliciesStub {
+    protocol ResourcePoliciesStub: Sendable {
       func aggregatedList(
         request: ResourcePoliciesClient.AggregatedListRequest,
         options: GoogleCloudGax.RequestOptions

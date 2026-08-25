@@ -21,7 +21,7 @@ import GoogleLongRunning
 import GoogleCloudGax
 
 extension Clients {
-  protocol LoggingServiceV2Stub {
+  protocol LoggingServiceV2Stub: Sendable {
     func deleteLog(
       request: DeleteLogRequest, options: GoogleCloudGax.RequestOptions
     ) async throws

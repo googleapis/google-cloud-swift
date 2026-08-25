@@ -25,7 +25,7 @@ import GoogleCloudGax
 /// Cloud Run Task Control Plane API.
 ///
 /// @Snippet(path: "TasksQuickstart")
-public class TasksClient: Clients.TasksProtocol {
+public final class TasksClient: Clients.TasksProtocol, Sendable {
   let inner: any Clients.TasksStub
 
   /// Creates a new `TasksClient` instance.

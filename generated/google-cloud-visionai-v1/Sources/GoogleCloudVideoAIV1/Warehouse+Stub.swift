@@ -22,7 +22,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol WarehouseStub {
+  protocol WarehouseStub: Sendable {
     func createAsset(
       request: CreateAssetRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.Asset

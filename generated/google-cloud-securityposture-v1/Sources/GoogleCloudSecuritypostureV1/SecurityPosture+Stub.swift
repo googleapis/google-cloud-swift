@@ -22,7 +22,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol SecurityPostureStub {
+  protocol SecurityPostureStub: Sendable {
     func listPostures(
       request: ListPosturesRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudSecuritypostureV1.ListPosturesResponse

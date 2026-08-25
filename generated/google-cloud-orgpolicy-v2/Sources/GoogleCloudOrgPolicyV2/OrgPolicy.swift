@@ -43,7 +43,7 @@ import GoogleCloudGax
 /// particular resource and its child resources.
 ///
 /// @Snippet(path: "OrgPolicyQuickstart")
-public class OrgPolicyClient: Clients.OrgPolicyProtocol {
+public final class OrgPolicyClient: Clients.OrgPolicyProtocol, Sendable {
   let inner: any Clients.OrgPolicyStub
 
   /// Creates a new `OrgPolicyClient` instance.

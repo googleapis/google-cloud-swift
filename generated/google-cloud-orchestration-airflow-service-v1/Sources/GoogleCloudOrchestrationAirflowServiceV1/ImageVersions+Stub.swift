@@ -20,7 +20,7 @@ import GoogleLongRunning
 import GoogleCloudGax
 
 extension Clients {
-  protocol ImageVersionsStub {
+  protocol ImageVersionsStub: Sendable {
     func listImageVersions(
       request: ListImageVersionsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudOrchestrationAirflowServiceV1.ListImageVersionsResponse

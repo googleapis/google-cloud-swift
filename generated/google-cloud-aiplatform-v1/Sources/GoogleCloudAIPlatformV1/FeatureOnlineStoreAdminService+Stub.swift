@@ -24,7 +24,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol FeatureOnlineStoreAdminServiceStub {
+    protocol FeatureOnlineStoreAdminServiceStub: Sendable {
       func createFeatureOnlineStore(
         request: CreateFeatureOnlineStoreRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation

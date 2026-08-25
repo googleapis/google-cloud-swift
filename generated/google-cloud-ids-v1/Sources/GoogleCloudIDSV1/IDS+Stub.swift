@@ -21,7 +21,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol IDSStub {
+  protocol IDSStub: Sendable {
     func listEndpoints(
       request: ListEndpointsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudIDSV1.ListEndpointsResponse

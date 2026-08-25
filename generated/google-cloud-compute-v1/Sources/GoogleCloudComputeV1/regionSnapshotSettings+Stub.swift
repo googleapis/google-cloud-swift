@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol RegionSnapshotSettingsStub {
+    protocol RegionSnapshotSettingsStub: Sendable {
       func `get`(
         request: RegionSnapshotSettingsClient.GetRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.SnapshotSettings

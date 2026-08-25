@@ -32,7 +32,7 @@ import GoogleCloudGax
 /// including Cloud Storage and BigQuery.
 ///
 /// @Snippet(path: "CatalogServiceQuickstart")
-public class CatalogServiceClient: Clients.CatalogServiceProtocol {
+public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendable {
   let inner: any Clients.CatalogServiceStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

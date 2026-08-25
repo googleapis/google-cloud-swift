@@ -26,7 +26,7 @@ import GoogleCloudGax
 /// projects.
 ///
 /// @Snippet(path: "CloudBillingQuickstart")
-public class CloudBillingClient: Clients.CloudBillingProtocol {
+public final class CloudBillingClient: Clients.CloudBillingProtocol, Sendable {
   let inner: any Clients.CloudBillingStub
 
   /// Creates a new `CloudBillingClient` instance.

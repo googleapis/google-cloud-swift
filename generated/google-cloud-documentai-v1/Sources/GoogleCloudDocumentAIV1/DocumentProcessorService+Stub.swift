@@ -22,7 +22,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol DocumentProcessorServiceStub {
+  protocol DocumentProcessorServiceStub: Sendable {
     func processDocument(
       request: ProcessRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudDocumentAIV1.ProcessResponse

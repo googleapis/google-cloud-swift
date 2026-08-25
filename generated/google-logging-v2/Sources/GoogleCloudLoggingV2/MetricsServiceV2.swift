@@ -25,7 +25,7 @@ import GoogleCloudGax
 /// Service for configuring logs-based metrics.
 ///
 /// @Snippet(path: "MetricsServiceV2Quickstart")
-public class MetricsServiceV2Client: Clients.MetricsServiceV2Protocol {
+public final class MetricsServiceV2Client: Clients.MetricsServiceV2Protocol, Sendable {
   let inner: any Clients.MetricsServiceV2Stub
 
   /// Creates a new `MetricsServiceV2Client` instance.

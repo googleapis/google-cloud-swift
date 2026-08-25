@@ -23,7 +23,7 @@
   @_spi(GoogleCloudInternal) import GoogleCloudGax
 
   extension Clients {
-    class HttpsHealthChecksTransport: HttpsHealthChecksStub {
+    final class HttpsHealthChecksTransport: HttpsHealthChecksStub {
       let inner: GoogleCloudGax._HTTPClient
 
       public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {

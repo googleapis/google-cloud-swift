@@ -24,7 +24,7 @@ import GoogleCloudGax
 /// Service for the `managedZones` resource.
 ///
 /// @Snippet(path: "managedZonesQuickstart")
-public class ManagedZonesClient: Clients.ManagedZonesProtocol {
+public final class ManagedZonesClient: Clients.ManagedZonesProtocol, Sendable {
   let inner: any Clients.ManagedZonesStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

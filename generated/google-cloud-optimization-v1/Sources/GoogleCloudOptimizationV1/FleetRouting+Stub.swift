@@ -21,7 +21,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol FleetRoutingStub {
+  protocol FleetRoutingStub: Sendable {
     func optimizeTours(
       request: OptimizeToursRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudOptimizationV1.OptimizeToursResponse

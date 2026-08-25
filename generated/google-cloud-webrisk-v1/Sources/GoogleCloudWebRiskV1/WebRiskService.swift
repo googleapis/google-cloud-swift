@@ -27,7 +27,7 @@ import GoogleCloudGax
 /// website and in client applications.
 ///
 /// @Snippet(path: "WebRiskServiceQuickstart")
-public class WebRiskServiceClient: Clients.WebRiskServiceProtocol {
+public final class WebRiskServiceClient: Clients.WebRiskServiceProtocol, Sendable {
   let inner: any Clients.WebRiskServiceStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

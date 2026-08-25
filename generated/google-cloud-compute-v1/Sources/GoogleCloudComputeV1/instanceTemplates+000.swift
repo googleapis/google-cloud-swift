@@ -25,7 +25,7 @@
   /// Service for the `instanceTemplates` resource.
   ///
   /// @Snippet(path: "instanceTemplatesQuickstart")
-  public class InstanceTemplatesClient: Clients.InstanceTemplatesProtocol {
+  public final class InstanceTemplatesClient: Clients.InstanceTemplatesProtocol, Sendable {
     let inner: any Clients.InstanceTemplatesStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

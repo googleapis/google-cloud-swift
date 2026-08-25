@@ -19,7 +19,7 @@ import GoogleCloudWkt
 import GoogleCloudGax
 
 extension Clients {
-  protocol TraceServiceStub {
+  protocol TraceServiceStub: Sendable {
     func listTraces(
       request: ListTracesRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudTraceV1.ListTracesResponse

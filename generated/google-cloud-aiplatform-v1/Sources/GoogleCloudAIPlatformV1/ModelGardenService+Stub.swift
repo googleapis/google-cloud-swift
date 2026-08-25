@@ -24,7 +24,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol ModelGardenServiceStub {
+    protocol ModelGardenServiceStub: Sendable {
       func getPublisherModel(
         request: GetPublisherModelRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.PublisherModel

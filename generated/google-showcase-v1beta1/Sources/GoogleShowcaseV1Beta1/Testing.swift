@@ -31,7 +31,7 @@ import GoogleCloudGax
 /// 2) [Nonsense][]: `pokemon/*/psychic/*`
 ///
 /// @Snippet(path: "TestingQuickstart")
-public class TestingClient: Clients.TestingProtocol {
+public final class TestingClient: Clients.TestingProtocol, Sendable {
   let inner: any Clients.TestingStub
 
   /// Creates a new `TestingClient` instance.

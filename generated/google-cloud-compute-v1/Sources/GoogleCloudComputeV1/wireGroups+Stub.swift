@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol WireGroupsStub {
+    protocol WireGroupsStub: Sendable {
       func delete(
         request: WireGroupsClient.DeleteRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation

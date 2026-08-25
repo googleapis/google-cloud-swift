@@ -27,7 +27,9 @@ import GoogleCloudGax
 /// The Protection Summary service.
 ///
 /// @Snippet(path: "BackupDrProtectionSummaryQuickstart")
-public class BackupDrProtectionSummaryClient: Clients.BackupDrProtectionSummaryProtocol {
+public final class BackupDrProtectionSummaryClient: Clients.BackupDrProtectionSummaryProtocol,
+  Sendable
+{
   let inner: any Clients.BackupDrProtectionSummaryStub
 
   /// Creates a new `BackupDrProtectionSummaryClient` instance.

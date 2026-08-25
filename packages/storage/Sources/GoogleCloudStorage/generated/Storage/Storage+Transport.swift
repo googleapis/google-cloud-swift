@@ -24,7 +24,7 @@ internal import GoogleCloudWktConvert
 internal import SwiftProtobuf
 
 extension Clients {
-  class StorageTransport: StorageStub {
+  final class StorageTransport: StorageStub {
     let inner: GoogleCloudGaxGRPC._GRPCClient
 
     public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {

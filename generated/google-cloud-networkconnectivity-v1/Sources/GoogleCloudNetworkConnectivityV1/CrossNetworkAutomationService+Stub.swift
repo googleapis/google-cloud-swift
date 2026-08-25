@@ -23,7 +23,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol CrossNetworkAutomationServiceStub {
+  protocol CrossNetworkAutomationServiceStub: Sendable {
     func listServiceConnectionMaps(
       request: ListServiceConnectionMapsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudNetworkConnectivityV1.ListServiceConnectionMapsResponse

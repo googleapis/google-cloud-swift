@@ -21,7 +21,7 @@ import GoogleLongRunning
 import GoogleCloudGax
 
 extension Clients {
-  protocol CmEnrollmentServiceStub {
+  protocol CmEnrollmentServiceStub: Sendable {
     func updateCmEnrollment(
       request: UpdateCmEnrollmentRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudSecurityComplianceV1.CmEnrollment

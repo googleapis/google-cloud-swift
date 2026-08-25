@@ -27,7 +27,7 @@ import GoogleCloudGax
 /// and DiscoveredApiOperations.
 ///
 /// @Snippet(path: "ApiHubDiscoveryQuickstart")
-public class ApiHubDiscoveryClient: Clients.ApiHubDiscoveryProtocol {
+public final class ApiHubDiscoveryClient: Clients.ApiHubDiscoveryProtocol, Sendable {
   let inner: any Clients.ApiHubDiscoveryStub
 
   /// Creates a new `ApiHubDiscoveryClient` instance.

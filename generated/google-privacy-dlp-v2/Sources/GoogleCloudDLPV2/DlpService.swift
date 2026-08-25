@@ -28,7 +28,7 @@ import GoogleCloudGax
 /// https://cloud.google.com/sensitive-data-protection/docs/.
 ///
 /// @Snippet(path: "DlpServiceQuickstart")
-public class DlpServiceClient: Clients.DlpServiceProtocol {
+public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   let inner: any Clients.DlpServiceStub
 
   /// Creates a new `DlpServiceClient` instance.

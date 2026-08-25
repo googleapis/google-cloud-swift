@@ -23,7 +23,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol VersionsStub {
+    protocol VersionsStub: Sendable {
       func listVersions(
         request: ListVersionsRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowCXV3.ListVersionsResponse

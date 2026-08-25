@@ -25,7 +25,7 @@
   /// Service for the `imageFamilyViews` resource.
   ///
   /// @Snippet(path: "imageFamilyViewsQuickstart")
-  public class ImageFamilyViewsClient: Clients.ImageFamilyViewsProtocol {
+  public final class ImageFamilyViewsClient: Clients.ImageFamilyViewsProtocol, Sendable {
     let inner: any Clients.ImageFamilyViewsStub
 
     /// Creates a new `ImageFamilyViewsClient` instance.

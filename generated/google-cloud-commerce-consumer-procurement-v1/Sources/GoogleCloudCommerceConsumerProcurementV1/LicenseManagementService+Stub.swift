@@ -20,7 +20,7 @@ import GoogleLongRunning
 import GoogleCloudGax
 
 extension Clients {
-  protocol LicenseManagementServiceStub {
+  protocol LicenseManagementServiceStub: Sendable {
     func getLicensePool(
       request: GetLicensePoolRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudCommerceConsumerProcurementV1.LicensePool

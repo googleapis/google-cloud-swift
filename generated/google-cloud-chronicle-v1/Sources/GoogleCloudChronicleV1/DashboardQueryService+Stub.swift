@@ -20,7 +20,7 @@ import GoogleLongRunning
 import GoogleCloudGax
 
 extension Clients {
-  protocol DashboardQueryServiceStub {
+  protocol DashboardQueryServiceStub: Sendable {
     func getDashboardQuery(
       request: GetDashboardQueryRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.DashboardQuery

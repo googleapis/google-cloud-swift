@@ -23,7 +23,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol CloudDeployStub {
+  protocol CloudDeployStub: Sendable {
     func listDeliveryPipelines(
       request: ListDeliveryPipelinesRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudDeployV1.ListDeliveryPipelinesResponse

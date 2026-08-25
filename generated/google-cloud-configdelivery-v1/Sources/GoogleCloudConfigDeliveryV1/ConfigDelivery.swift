@@ -28,7 +28,7 @@ import GoogleCloudGax
 /// a fleet of kubernetes clusters.
 ///
 /// @Snippet(path: "ConfigDeliveryQuickstart")
-public class ConfigDeliveryClient: Clients.ConfigDeliveryProtocol {
+public final class ConfigDeliveryClient: Clients.ConfigDeliveryProtocol, Sendable {
   let inner: any Clients.ConfigDeliveryStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

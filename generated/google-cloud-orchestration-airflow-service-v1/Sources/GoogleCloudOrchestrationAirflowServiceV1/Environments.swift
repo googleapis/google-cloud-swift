@@ -26,7 +26,7 @@ import GoogleCloudGax
 /// Managed Apache Airflow Environments.
 ///
 /// @Snippet(path: "EnvironmentsQuickstart")
-public class EnvironmentsClient: Clients.EnvironmentsProtocol {
+public final class EnvironmentsClient: Clients.EnvironmentsProtocol, Sendable {
   let inner: any Clients.EnvironmentsStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol ExternalVpnGatewaysStub {
+    protocol ExternalVpnGatewaysStub: Sendable {
       func delete(
         request: ExternalVpnGatewaysClient.DeleteRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation

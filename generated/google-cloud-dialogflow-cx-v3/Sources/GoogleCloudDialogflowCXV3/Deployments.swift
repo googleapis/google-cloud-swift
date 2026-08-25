@@ -29,7 +29,7 @@
   /// [google.cloud.dialogflow.cx.v3.Deployment]: <doc:Deployment>
   ///
   /// @Snippet(path: "DeploymentsQuickstart")
-  public class DeploymentsClient: Clients.DeploymentsProtocol {
+  public final class DeploymentsClient: Clients.DeploymentsProtocol, Sendable {
     let inner: any Clients.DeploymentsStub
 
     /// Creates a new `DeploymentsClient` instance.

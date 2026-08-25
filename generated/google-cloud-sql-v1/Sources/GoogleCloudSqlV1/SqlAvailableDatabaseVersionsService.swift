@@ -26,8 +26,8 @@
   /// service is only used internally.
   ///
   /// @Snippet(path: "SqlAvailableDatabaseVersionsServiceQuickstart")
-  public class SqlAvailableDatabaseVersionsServiceClient: Clients
-      .SqlAvailableDatabaseVersionsServiceProtocol
+  public final class SqlAvailableDatabaseVersionsServiceClient: Clients
+      .SqlAvailableDatabaseVersionsServiceProtocol, Sendable
   {
     let inner: any Clients.SqlAvailableDatabaseVersionsServiceStub
 

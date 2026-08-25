@@ -28,7 +28,7 @@ import GoogleCloudGax
 /// infrastructure.
 ///
 /// @Snippet(path: "AttachedClustersQuickstart")
-public class AttachedClustersClient: Clients.AttachedClustersProtocol {
+public final class AttachedClustersClient: Clients.AttachedClustersProtocol, Sendable {
   let inner: any Clients.AttachedClustersStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

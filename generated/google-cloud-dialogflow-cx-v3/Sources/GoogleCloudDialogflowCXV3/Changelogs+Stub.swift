@@ -22,7 +22,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol ChangelogsStub {
+    protocol ChangelogsStub: Sendable {
       func listChangelogs(
         request: ListChangelogsRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowCXV3.ListChangelogsResponse

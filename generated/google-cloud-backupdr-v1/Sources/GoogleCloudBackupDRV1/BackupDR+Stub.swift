@@ -23,7 +23,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol BackupDRStub {
+  protocol BackupDRStub: Sendable {
     func listManagementServers(
       request: ListManagementServersRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudBackupDRV1.ListManagementServersResponse

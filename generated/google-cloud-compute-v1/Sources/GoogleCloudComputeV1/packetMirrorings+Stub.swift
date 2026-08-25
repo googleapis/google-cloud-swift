@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol PacketMirroringsStub {
+    protocol PacketMirroringsStub: Sendable {
       func aggregatedList(
         request: PacketMirroringsClient.AggregatedListRequest,
         options: GoogleCloudGax.RequestOptions

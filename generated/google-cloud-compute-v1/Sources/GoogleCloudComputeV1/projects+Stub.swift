@@ -20,7 +20,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol ProjectsStub {
+    protocol ProjectsStub: Sendable {
       func disableXpnHost(
         request: ProjectsClient.DisableXpnHostRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation

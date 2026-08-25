@@ -19,7 +19,7 @@ import GoogleCloudWkt
 import GoogleCloudGax
 
 extension Clients {
-  protocol LanguageServiceStub {
+  protocol LanguageServiceStub: Sendable {
     func analyzeSentiment(
       request: AnalyzeSentimentRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudLanguageV2.AnalyzeSentimentResponse

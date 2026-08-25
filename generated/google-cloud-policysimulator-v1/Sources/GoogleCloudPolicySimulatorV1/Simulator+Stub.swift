@@ -21,7 +21,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol SimulatorStub {
+  protocol SimulatorStub: Sendable {
     func getReplay(
       request: GetReplayRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudPolicySimulatorV1.Replay

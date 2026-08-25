@@ -21,7 +21,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol DataFusionStub {
+  protocol DataFusionStub: Sendable {
     func listAvailableVersions(
       request: ListAvailableVersionsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudDataFusionV1.ListAvailableVersionsResponse

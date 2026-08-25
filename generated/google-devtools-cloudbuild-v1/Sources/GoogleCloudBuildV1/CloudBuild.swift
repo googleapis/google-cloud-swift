@@ -33,7 +33,7 @@ import GoogleCloudGax
 /// determine the status of the build.
 ///
 /// @Snippet(path: "CloudBuildQuickstart")
-public class CloudBuildClient: Clients.CloudBuildProtocol {
+public final class CloudBuildClient: Clients.CloudBuildProtocol, Sendable {
   let inner: any Clients.CloudBuildStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

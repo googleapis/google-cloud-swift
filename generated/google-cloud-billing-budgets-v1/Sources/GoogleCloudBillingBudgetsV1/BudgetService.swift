@@ -25,7 +25,7 @@ import GoogleCloudGax
 /// budget plan and rules to execute as we track spend against that plan.
 ///
 /// @Snippet(path: "BudgetServiceQuickstart")
-public class BudgetServiceClient: Clients.BudgetServiceProtocol {
+public final class BudgetServiceClient: Clients.BudgetServiceProtocol, Sendable {
   let inner: any Clients.BudgetServiceStub
 
   /// Creates a new `BudgetServiceClient` instance.

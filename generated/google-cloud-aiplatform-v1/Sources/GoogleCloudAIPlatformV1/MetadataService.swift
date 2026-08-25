@@ -29,7 +29,7 @@
   /// Service for reading and writing metadata entries.
   ///
   /// @Snippet(path: "MetadataServiceQuickstart")
-  public class MetadataServiceClient: Clients.MetadataServiceProtocol {
+  public final class MetadataServiceClient: Clients.MetadataServiceProtocol, Sendable {
     let inner: any Clients.MetadataServiceStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

@@ -22,7 +22,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol AuditStub {
+  protocol AuditStub: Sendable {
     func generateFrameworkAuditScopeReport(
       request: GenerateFrameworkAuditScopeReportRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudSecurityComplianceV1.GenerateFrameworkAuditScopeReportResponse

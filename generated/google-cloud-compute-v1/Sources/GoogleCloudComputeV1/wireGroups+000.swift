@@ -25,7 +25,7 @@
   /// Service for the `wireGroups` resource.
   ///
   /// @Snippet(path: "wireGroupsQuickstart")
-  public class WireGroupsClient: Clients.WireGroupsProtocol {
+  public final class WireGroupsClient: Clients.WireGroupsProtocol, Sendable {
     let inner: any Clients.WireGroupsStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

@@ -27,7 +27,7 @@ import GoogleCloudGax
 /// service](https://cloud.google.com/service-management/reference/rpc/google.api/servicemanagement.v1#google.api.servicemanagement.v1.ManagedService).
 ///
 /// @Snippet(path: "QuotaControllerQuickstart")
-public class QuotaControllerClient: Clients.QuotaControllerProtocol {
+public final class QuotaControllerClient: Clients.QuotaControllerProtocol, Sendable {
   let inner: any Clients.QuotaControllerStub
 
   /// Creates a new `QuotaControllerClient` instance.

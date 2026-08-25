@@ -28,7 +28,7 @@ import GoogleCloudGax
 /// partitions.
 ///
 /// @Snippet(path: "MetadataServiceQuickstart")
-public class MetadataServiceClient: Clients.MetadataServiceProtocol {
+public final class MetadataServiceClient: Clients.MetadataServiceProtocol, Sendable {
   let inner: any Clients.MetadataServiceStub
 
   /// Creates a new `MetadataServiceClient` instance.

@@ -23,7 +23,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol EvaluationServiceStub {
+    protocol EvaluationServiceStub: Sendable {
       func evaluateInstances(
         request: EvaluateInstancesRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.EvaluateInstancesResponse

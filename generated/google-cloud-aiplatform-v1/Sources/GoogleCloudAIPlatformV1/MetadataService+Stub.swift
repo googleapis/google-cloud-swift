@@ -24,7 +24,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol MetadataServiceStub {
+    protocol MetadataServiceStub: Sendable {
       func createMetadataStore(
         request: CreateMetadataStoreRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation

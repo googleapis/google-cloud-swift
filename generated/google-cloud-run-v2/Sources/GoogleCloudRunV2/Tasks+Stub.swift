@@ -20,7 +20,7 @@ import GoogleLongRunning
 import GoogleCloudGax
 
 extension Clients {
-  protocol TasksStub {
+  protocol TasksStub: Sendable {
     func getTask(
       request: GetTaskRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudRunV2.Task

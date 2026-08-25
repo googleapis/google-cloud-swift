@@ -25,7 +25,7 @@ import GoogleCloudGax
 /// EntityService contains apis for finding entities.
 ///
 /// @Snippet(path: "EntityServiceQuickstart")
-public class EntityServiceClient: Clients.EntityServiceProtocol {
+public final class EntityServiceClient: Clients.EntityServiceProtocol, Sendable {
   let inner: any Clients.EntityServiceStub
 
   /// Creates a new `EntityServiceClient` instance.

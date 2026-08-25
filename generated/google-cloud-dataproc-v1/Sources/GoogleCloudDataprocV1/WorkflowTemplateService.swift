@@ -28,7 +28,8 @@ import GoogleCloudGax
 /// Dataproc API.
 ///
 /// @Snippet(path: "WorkflowTemplateServiceQuickstart")
-public class WorkflowTemplateServiceClient: Clients.WorkflowTemplateServiceProtocol {
+public final class WorkflowTemplateServiceClient: Clients.WorkflowTemplateServiceProtocol, Sendable
+{
   let inner: any Clients.WorkflowTemplateServiceStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

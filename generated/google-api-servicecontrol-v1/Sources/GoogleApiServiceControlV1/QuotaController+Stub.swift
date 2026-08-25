@@ -19,7 +19,7 @@ import GoogleCloudWkt
 import GoogleCloudGax
 
 extension Clients {
-  protocol QuotaControllerStub {
+  protocol QuotaControllerStub: Sendable {
     func allocateQuota(
       request: AllocateQuotaRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleApiServiceControlV1.AllocateQuotaResponse

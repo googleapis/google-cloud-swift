@@ -25,7 +25,7 @@ import GoogleCloudGax
 /// A service handles client event report.
 ///
 /// @Snippet(path: "EventServiceQuickstart")
-public class EventServiceClient: Clients.EventServiceProtocol {
+public final class EventServiceClient: Clients.EventServiceProtocol, Sendable {
   let inner: any Clients.EventServiceStub
 
   /// Creates a new `EventServiceClient` instance.

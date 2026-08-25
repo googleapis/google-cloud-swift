@@ -21,7 +21,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol LineageStub {
+  protocol LineageStub: Sendable {
     func processOpenLineageRunEvent(
       request: ProcessOpenLineageRunEventRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudDataCatalogLineageV1.ProcessOpenLineageRunEventResponse

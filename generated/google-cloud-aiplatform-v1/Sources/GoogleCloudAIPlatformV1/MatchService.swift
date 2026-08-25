@@ -29,7 +29,7 @@
   /// search at scale.
   ///
   /// @Snippet(path: "MatchServiceQuickstart")
-  public class MatchServiceClient: Clients.MatchServiceProtocol {
+  public final class MatchServiceClient: Clients.MatchServiceProtocol, Sendable {
     let inner: any Clients.MatchServiceStub
 
     /// Creates a new `MatchServiceClient` instance.

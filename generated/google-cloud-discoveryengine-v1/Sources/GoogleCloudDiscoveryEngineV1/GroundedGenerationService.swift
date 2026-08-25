@@ -26,7 +26,9 @@
   /// Service for grounded generation.
   ///
   /// @Snippet(path: "GroundedGenerationServiceQuickstart")
-  public class GroundedGenerationServiceClient: Clients.GroundedGenerationServiceProtocol {
+  public final class GroundedGenerationServiceClient: Clients.GroundedGenerationServiceProtocol,
+    Sendable
+  {
     let inner: any Clients.GroundedGenerationServiceStub
 
     /// Creates a new `GroundedGenerationServiceClient` instance.

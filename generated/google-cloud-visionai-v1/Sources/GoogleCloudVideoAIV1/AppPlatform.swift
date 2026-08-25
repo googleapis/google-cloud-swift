@@ -27,7 +27,7 @@ import GoogleCloudGax
 /// Service describing handlers for resources
 ///
 /// @Snippet(path: "AppPlatformQuickstart")
-public class AppPlatformClient: Clients.AppPlatformProtocol {
+public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   let inner: any Clients.AppPlatformStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

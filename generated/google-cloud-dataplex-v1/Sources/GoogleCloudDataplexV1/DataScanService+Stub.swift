@@ -23,7 +23,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol DataScanServiceStub {
+  protocol DataScanServiceStub: Sendable {
     func createDataScan(
       request: CreateDataScanRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

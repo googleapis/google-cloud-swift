@@ -23,7 +23,7 @@
   import GoogleCloudGax
 
   extension Clients {
-    protocol EnvironmentsStub {
+    protocol EnvironmentsStub: Sendable {
       func listEnvironments(
         request: ListEnvironmentsRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowCXV3.ListEnvironmentsResponse

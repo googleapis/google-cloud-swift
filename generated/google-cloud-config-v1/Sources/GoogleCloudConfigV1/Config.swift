@@ -29,7 +29,7 @@ import GoogleCloudGax
 /// management of Google Cloud infrastructure resources.
 ///
 /// @Snippet(path: "ConfigQuickstart")
-public class ConfigClient: Clients.ConfigProtocol {
+public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   let inner: any Clients.ConfigStub
   let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
   let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

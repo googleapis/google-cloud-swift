@@ -30,7 +30,8 @@
   /// FeatureRegistry.
   ///
   /// @Snippet(path: "FeatureRegistryServiceQuickstart")
-  public class FeatureRegistryServiceClient: Clients.FeatureRegistryServiceProtocol {
+  public final class FeatureRegistryServiceClient: Clients.FeatureRegistryServiceProtocol, Sendable
+  {
     let inner: any Clients.FeatureRegistryServiceStub
     let pollingErrorPolicy: GoogleCloudGax.PollingErrorPolicy
     let pollingBackoffPolicy: GoogleCloudGax.BackoffPolicy

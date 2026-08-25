@@ -25,7 +25,7 @@ import GoogleCloudGax
 /// recognition.
 ///
 /// @Snippet(path: "LanguageServiceQuickstart")
-public class LanguageServiceClient: Clients.LanguageServiceProtocol {
+public final class LanguageServiceClient: Clients.LanguageServiceProtocol, Sendable {
   let inner: any Clients.LanguageServiceStub
 
   /// Creates a new `LanguageServiceClient` instance.

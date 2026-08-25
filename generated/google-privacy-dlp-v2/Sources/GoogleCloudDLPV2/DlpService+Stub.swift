@@ -19,7 +19,7 @@ import GoogleCloudWkt
 import GoogleCloudGax
 
 extension Clients {
-  protocol DlpServiceStub {
+  protocol DlpServiceStub: Sendable {
     func inspectContent(
       request: InspectContentRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudDLPV2.InspectContentResponse

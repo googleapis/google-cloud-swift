@@ -21,7 +21,7 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol TagHoldsStub {
+  protocol TagHoldsStub: Sendable {
     func createTagHold(
       request: CreateTagHoldRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

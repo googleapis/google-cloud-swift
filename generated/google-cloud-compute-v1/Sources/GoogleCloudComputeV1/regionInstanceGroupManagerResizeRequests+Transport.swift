@@ -23,7 +23,7 @@
   @_spi(GoogleCloudInternal) import GoogleCloudGax
 
   extension Clients {
-    class RegionInstanceGroupManagerResizeRequestsTransport:
+    final class RegionInstanceGroupManagerResizeRequestsTransport:
       RegionInstanceGroupManagerResizeRequestsStub
     {
       let inner: GoogleCloudGax._HTTPClient

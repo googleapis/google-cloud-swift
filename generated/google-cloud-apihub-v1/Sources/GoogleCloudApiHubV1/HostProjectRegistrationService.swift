@@ -26,7 +26,9 @@ import GoogleCloudGax
 /// This service is used for managing the host project registrations.
 ///
 /// @Snippet(path: "HostProjectRegistrationServiceQuickstart")
-public class HostProjectRegistrationServiceClient: Clients.HostProjectRegistrationServiceProtocol {
+public final class HostProjectRegistrationServiceClient: Clients
+    .HostProjectRegistrationServiceProtocol, Sendable
+{
   let inner: any Clients.HostProjectRegistrationServiceStub
 
   /// Creates a new `HostProjectRegistrationServiceClient` instance.
