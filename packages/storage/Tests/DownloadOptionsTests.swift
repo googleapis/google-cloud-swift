@@ -24,9 +24,13 @@ import Testing
     #expect(ReadObjectRange.prefix(500).headerValue == "bytes=0-499")
     #expect(ReadObjectRange.prefix(0).headerValue == "bytes=0-0")
     #expect(ReadObjectRange.suffix(100).headerValue == "bytes=-100")
-    #expect(ReadObjectRange.bounded(start: 10, end: 50).headerValue == "bytes=10-50")
+    #expect(ReadObjectRange.bounded(10...50).headerValue == "bytes=10-50")
     #expect(ReadObjectRange(10...50).headerValue == "bytes=10-50")
-    #expect(ReadObjectRange(10...50) == ReadObjectRange.bounded(start: 10, end: 50))
+    #expect(ReadObjectRange(10...50) == ReadObjectRange.bounded(10...50))
+    #expect(ReadObjectRange(10...).headerValue == "bytes=10-")
+    #expect(ReadObjectRange(...50).headerValue == "bytes=0-50")
+    #expect(ReadObjectRange(start: 10, end: 50) == ReadObjectRange.bounded(10...50))
+    #expect(ReadObjectRange(start: 50, end: 10) == nil)
   }
 
   @Test func readObjectOptionsDefaults() throws {
@@ -50,7 +54,7 @@ import Testing
       $0.generation = 456
       $0.preconditions = preconditions
       $0.customerEncryptionKey = csek
-      $0.range = .bounded(start: 0, end: 1024)
+      $0.range = .bounded(0...1024)
       $0.enableDecompressiveTranscoding = false
       $0.resumePolicy = NeverResume<DownloadDetails>()
       $0.checksums = .none
@@ -59,7 +63,7 @@ import Testing
     #expect(options.generation == 456)
     #expect(options.preconditions?.ifGenerationMatch == 123)
     #expect(options.customerEncryptionKey == csek)
-    #expect(options.range == ReadObjectRange.bounded(start: 0, end: 1024))
+    #expect(options.range == ReadObjectRange.bounded(0...1024))
     #expect(options.enableDecompressiveTranscoding == false)
     #expect(options.resumePolicy != nil)
     #expect(options.checksums == .none)
@@ -115,7 +119,7 @@ import Testing
     // Prefix
     #expect(
       calculateResumeRange(originalRange: .prefix(100), bytesReceived: 40, totalSize: 1000)
-        == .bounded(start: 40, end: 99))
+        == .bounded(40...99))
     #expect(
       calculateResumeRange(originalRange: .prefix(100), bytesReceived: 100, totalSize: 1000) == nil)
     #expect(
@@ -124,16 +128,16 @@ import Testing
     // Bounded
     #expect(
       calculateResumeRange(
-        originalRange: .bounded(start: 10, end: 50), bytesReceived: 20, totalSize: 1000)
-        == .bounded(start: 30, end: 50))
+        originalRange: .bounded(10...50), bytesReceived: 20, totalSize: 1000)
+        == .bounded(30...50))
     #expect(
       calculateResumeRange(
-        originalRange: .bounded(start: 10, end: 50), bytesReceived: 41, totalSize: 1000) == nil)
+        originalRange: .bounded(10...50), bytesReceived: 41, totalSize: 1000) == nil)
 
     // Suffix
     #expect(
       calculateResumeRange(originalRange: .suffix(50), bytesReceived: 10, totalSize: 200)
-        == .bounded(start: 160, end: 199))
+        == .bounded(160...199))
     #expect(
       calculateResumeRange(originalRange: .suffix(50), bytesReceived: 50, totalSize: 200) == nil)
     #expect(

@@ -199,7 +199,7 @@ struct StorageClientDownloadChecksumIntegrationTests {
 
     // 1. Ranged download with default .auto skips full-object checksum verification
     let rangedAutoOptions = ReadObjectOptions().with {
-      $0.range = .bounded(start: 0, end: 9)
+      $0.range = .bounded(0...9)
     }
     let rangedAutoResult = storage.readObject(
       from: fixture.bucketName, object: fixture.objectName, options: rangedAutoOptions)
@@ -219,7 +219,7 @@ struct StorageClientDownloadChecksumIntegrationTests {
 
     // 2a. User-provided range CRC32C
     let rangedCrcOptions = ReadObjectOptions().with {
-      $0.range = .bounded(start: 0, end: 9)
+      $0.range = .bounded(0...9)
       $0.checksums = ChecksumOptions(crc32c: .value(rangeCrcBase64), md5: nil)
     }
     let rangedCrcResult = storage.readObject(
@@ -232,7 +232,7 @@ struct StorageClientDownloadChecksumIntegrationTests {
 
     // 2b. User-provided range MD5
     let rangedMd5Options = ReadObjectOptions().with {
-      $0.range = .bounded(start: 0, end: 9)
+      $0.range = .bounded(0...9)
       $0.checksums = ChecksumOptions(crc32c: nil, md5: .value(rangeMd5Base64))
     }
     let rangedMd5Result = storage.readObject(
@@ -257,7 +257,7 @@ struct StorageClientDownloadChecksumIntegrationTests {
     let storage = try StorageClient()
 
     let options = ReadObjectOptions().with {
-      $0.range = .bounded(start: 0, end: 9)
+      $0.range = .bounded(0...9)
       $0.checksums = checksums
     }
     let result = storage.readObject(

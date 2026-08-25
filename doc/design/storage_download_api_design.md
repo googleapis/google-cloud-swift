@@ -112,12 +112,12 @@ public enum ReadObjectRange: Sendable, Hashable, Equatable {
   /// Read the last `count` bytes of the object (HTTP `bytes=-N`).
   case suffix(UInt64)
 
-  /// Read a bounded range of bytes from `start` to `end` inclusive (HTTP `bytes=start-end`).
-  case bounded(start: UInt64, end: UInt64)
+  /// Read a bounded range of bytes from `range.lowerBound` to `range.upperBound` inclusive (HTTP `bytes=start-end`).
+  case bounded(ClosedRange<UInt64>)
 
   /// Convenience initializer for Swift `ClosedRange<UInt64>`.
   public init(_ range: ClosedRange<UInt64>) {
-    self = .bounded(start: range.lowerBound, end: range.upperBound)
+    self = .bounded(range)
   }
 
   /// Converts the range specification to an HTTP `Range` header value string.
@@ -129,8 +129,8 @@ public enum ReadObjectRange: Sendable, Hashable, Equatable {
       return "bytes=\(offset)-"
     case .suffix(let count):
       return "bytes=-\(count)"
-    case .bounded(let start, let end):
-      return "bytes=\(start)-\(end)"
+    case .bounded(let range):
+      return "bytes=\(range.lowerBound)-\(range.upperBound)"
     }
   }
 }
@@ -216,7 +216,7 @@ public enum ReadObjectRange: Sendable, Hashable, Equatable {
   case entire
   case fromOffset(UInt64)
   case suffix(UInt64)
-  case bounded(start: UInt64, end: UInt64)
+  case bounded(ClosedRange<UInt64>)
 
   public init(_ range: ClosedRange<UInt64>)
   public var headerValue: String? { get }

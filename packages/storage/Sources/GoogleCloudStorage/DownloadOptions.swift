@@ -30,12 +30,28 @@ public enum ReadObjectRange: Sendable, Hashable, Equatable {
   /// Read the last `count` bytes of the object (HTTP `bytes=-N`).
   case suffix(UInt64)
 
-  /// Read a bounded range of bytes from `start` to `end` inclusive (HTTP `bytes=start-end`).
-  case bounded(start: UInt64, end: UInt64)
+  /// Read a bounded range of bytes from `range.lowerBound` to `range.upperBound` inclusive (HTTP `bytes=start-end`).
+  case bounded(ClosedRange<UInt64>)
 
   /// Convenience initializer for Swift `ClosedRange<UInt64>`.
   public init(_ range: ClosedRange<UInt64>) {
-    self = .bounded(start: range.lowerBound, end: range.upperBound)
+    self = .bounded(range)
+  }
+
+  /// Convenience initializer for Swift `PartialRangeFrom<UInt64>` (e.g. `1024...`).
+  public init(_ range: PartialRangeFrom<UInt64>) {
+    self = .fromOffset(range.lowerBound)
+  }
+
+  /// Convenience initializer for Swift `PartialRangeThrough<UInt64>` (e.g. `...1024`).
+  public init(_ range: PartialRangeThrough<UInt64>) {
+    self = .bounded(0...range.upperBound)
+  }
+
+  /// Creates a bounded range from `start` to `end` inclusive, or returns `nil` if `end < start`.
+  public init?(start: UInt64, end: UInt64) {
+    guard start <= end else { return nil }
+    self = .bounded(start...end)
   }
 
   /// Converts the range specification to an HTTP `Range` header value string.
@@ -49,8 +65,8 @@ public enum ReadObjectRange: Sendable, Hashable, Equatable {
       return count > 0 ? "bytes=0-\(count - 1)" : "bytes=0-0"
     case .suffix(let count):
       return "bytes=-\(count)"
-    case .bounded(let start, let end):
-      return "bytes=\(start)-\(end)"
+    case .bounded(let range):
+      return "bytes=\(range.lowerBound)-\(range.upperBound)"
     }
   }
 }
@@ -113,7 +129,7 @@ struct HttpContentRange: Sendable, Hashable, Equatable {
 ///
 /// ```swift
 /// let options = ReadObjectOptions().with {
-///   $0.range = .bounded(start: 0, end: 1024)
+///   $0.range = .bounded(0...1024)
 /// }
 /// ```
 ///
@@ -255,11 +271,11 @@ package func calculateResumeRange(
     return .fromOffset(offset + bytesReceived)
   case .prefix(let count):
     guard count > bytesReceived else { return nil }
-    return .bounded(start: bytesReceived, end: count - 1)
-  case .bounded(let start, let end):
-    let newStart = start + bytesReceived
-    guard newStart <= end else { return nil }
-    return .bounded(start: newStart, end: end)
+    return .bounded(bytesReceived...(count - 1))
+  case .bounded(let range):
+    let newStart = range.lowerBound + bytesReceived
+    guard newStart <= range.upperBound else { return nil }
+    return .bounded(newStart...range.upperBound)
   case .suffix(let count):
     guard let totalSize = totalSize, totalSize > 0 else {
       return .fromOffset(bytesReceived)
@@ -267,7 +283,7 @@ package func calculateResumeRange(
     let startOffset = totalSize > count ? (totalSize - count) : 0
     let newStart = startOffset + bytesReceived
     guard newStart < totalSize else { return nil }
-    return .bounded(start: newStart, end: totalSize - 1)
+    return .bounded(newStart...(totalSize - 1))
   }
 }
 
@@ -658,11 +674,6 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
     resumeLoop: _ResumeLoop<DownloadDetails>,
     resumeState: ResumeState<DownloadDetails>
   ) async throws -> (_HTTPClientResponse, ReadObjectMetadata) {
-    if case .bounded(let start, let end) = options.range {
-      guard start <= end else {
-        throw DownloadError.invalidRangeHeader("Range start (\(start)) must be <= end (\(end)).")
-      }
-    }
     do {
       return try await resumeLoop.run(state: resumeState) { _ in
         let request = try await httpClient.buildReadObjectRequest(

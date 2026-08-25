@@ -489,7 +489,7 @@ import Testing
 
     let client = try makeClient(registry: registry)
     let options = ReadObjectOptions().with {
-      $0.range = .bounded(start: 10, end: 29)
+      $0.range = .bounded(10...29)
     }
 
     let result = client.readObject(from: bucket, object: objectName, options: options)
@@ -530,25 +530,6 @@ import Testing
     ).metadata
     #expect(
       registry.lastRequest(for: downloadUrl)?.value(forHTTPHeaderField: "Range") == "bytes=10-29")
-  }
-
-  @Test func rangedDownloadInvalidRangeThrows() async throws {
-    let registry = MockRegistry.create()
-    let client = try makeClient(registry: registry)
-    let options = ReadObjectOptions().with {
-      $0.range = .bounded(start: 30, end: 10)
-    }
-
-    do {
-      _ = try await client.readObject(from: "test-bucket", object: "test.txt", options: options)
-        .metadata
-      Issue.record("Expected invalidRangeHeader error to be thrown")
-    } catch let DownloadError.invalidRangeHeader(msg) {
-      #expect(msg.contains("30"))
-      #expect(msg.contains("10"))
-    } catch {
-      Issue.record("Expected invalidRangeHeader, but got \(error)")
-    }
   }
 
   @Test func rangedDownloadZeroCountRanges() async throws {
@@ -1075,7 +1056,7 @@ import Testing
 
     let client = try makeClient(registry: registry)
     let options = ReadObjectOptions().with {
-      $0.range = .bounded(start: 10, end: 29)
+      $0.range = .bounded(10...29)
     }
 
     let result = client.readObject(from: bucket, object: objectName, options: options)

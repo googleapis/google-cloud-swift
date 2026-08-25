@@ -516,7 +516,7 @@ import Testing
 
     let client = try makeClient(registry: registry)
     let options = ReadObjectOptions().with {
-      $0.range = .bounded(start: 0, end: 9)
+      $0.range = .bounded(0...9)
     }
     let result = client.readObject(from: bucket, object: objectName, options: options)
 
@@ -563,7 +563,7 @@ import Testing
 
     let client = try makeClient(registry: registry)
     let options = ReadObjectOptions().with {
-      $0.range = .bounded(start: 0, end: 9)
+      $0.range = .bounded(0...9)
       $0.checksums = ChecksumOptions(crc32c: .value(rangeCrcBase64), md5: nil)
     }
     let result = client.readObject(from: bucket, object: objectName, options: options)
@@ -576,7 +576,7 @@ import Testing
 
     // User provided wrong CRC for range throws mismatch
     let wrongOptions = ReadObjectOptions().with {
-      $0.range = .bounded(start: 0, end: 9)
+      $0.range = .bounded(0...9)
       $0.checksums = ChecksumOptions(crc32c: "wrong_range_crc", md5: nil)
     }
     let wrongResult = client.readObject(from: bucket, object: objectName, options: wrongOptions)

@@ -909,7 +909,7 @@ struct StorageClientRangedDownloadIntegrationTests {
   }
 
   @Test(arguments: [
-    (ReadObjectRange.bounded(start: 10, end: 19), "abcdefghij"),
+    (ReadObjectRange.bounded(10...19), "abcdefghij"),
     (ReadObjectRange.fromOffset(36), "ABCDEFGHIJKLMNOPQRSTUVWXYZ"),
     (ReadObjectRange.prefix(10), "0123456789"),
     (ReadObjectRange.suffix(10), "QRSTUVWXYZ"),
@@ -960,7 +960,7 @@ struct StorageClientRangedDownloadIntegrationTests {
   @Test(arguments: [
     ReadObjectRange.prefix(0),
     ReadObjectRange.suffix(0),
-    ReadObjectRange.bounded(start: 10, end: 19),
+    ReadObjectRange.bounded(10...19),
     ReadObjectRange.fromOffset(36),
     ReadObjectRange.prefix(10),
     ReadObjectRange.suffix(10),
