@@ -137,7 +137,7 @@ import Testing
     let object = try await task.value
 
     #expect(object.name == objectName)
-    #expect(object.bucket == bucket)
+    #expect(object.bucket == "projects/_/buckets/\(bucket)")
     #expect(object.contentType == "text/plain")
     #expect(object.contentEncoding == "gzip")
     #expect(object.metadata == ["author": "swift-sdk"])
@@ -378,7 +378,7 @@ import Testing
     let object = try await task.value
 
     #expect(object.name == objectName)
-    #expect(object.bucket == bucket)
+    #expect(object.bucket == "projects/_/buckets/\(bucket)")
     #expect(object.contexts?.custom["dept"]?.value == "engineering")
     #expect(object.contexts?.custom["environment"]?.value == "production")
 

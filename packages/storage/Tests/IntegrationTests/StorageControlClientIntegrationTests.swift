@@ -192,6 +192,7 @@ struct StorageControlClientIntegrationTests: Sendable {
     // Upload initial object
     let uploaded = try await storageClient.upload(data, to: bucketName, as: originalName).value
     #expect(uploaded.name == originalName)
+    #expect(uploaded.bucket == bucketResource)
 
     do {
       // Fetch object metadata via gRPC GetObject
@@ -201,6 +202,7 @@ struct StorageControlClientIntegrationTests: Sendable {
       }
       let fetched = try await controlClient.getObject(request: getReq, options: .init())
       #expect(fetched.name == originalName)
+      #expect(fetched.bucket == bucketResource)
       #expect(fetched.size == Int64(data.count))
       #expect(fetched.generation == uploaded.generation)
       #expect(fetched.metageneration == uploaded.metageneration)

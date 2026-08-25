@@ -78,7 +78,7 @@ import Testing
     let result = client.readObject(from: bucket, object: objectName)
     let metadata = try await result.metadata
 
-    #expect(metadata.bucket == bucket)
+    #expect(metadata.bucket == "projects/_/buckets/\(bucket)")
     #expect(metadata.object == objectName)
     #expect(metadata.size == UInt64(payload.count))
     #expect(metadata.generation == 17123456789)
@@ -127,7 +127,7 @@ import Testing
 
     let result = client.readObject(from: bucket, object: objectName, options: options)
     let metadata = try await result.metadata
-    #expect(metadata.bucket == bucket)
+    #expect(metadata.bucket == "projects/_/buckets/\(bucket)")
     #expect(metadata.object == objectName)
     #expect(metadata.size == UInt64(payload.count))
     #expect(metadata.generation == 42)
@@ -305,7 +305,7 @@ import Testing
     let result = client.readObject(from: bucket, object: objectName)
     let metadata = try await result.metadata
 
-    #expect(metadata.bucket == bucket)
+    #expect(metadata.bucket == "projects/_/buckets/\(bucket)")
     #expect(metadata.object == objectName)
 
     var downloaded = Data()
@@ -681,7 +681,7 @@ import Testing
     let result = client.readObject(from: bucket, object: objectName, options: options)
     let metadata = try await result.metadata
 
-    #expect(metadata.bucket == bucket)
+    #expect(metadata.bucket == "projects/_/buckets/\(bucket)")
     #expect(metadata.object == objectName)
     #expect(metadata.contentEncoding == "gzip")
     #expect(metadata.size == UInt64(payload.count))
@@ -727,7 +727,7 @@ import Testing
     let result = client.readObject(from: bucket, object: objectName, options: options)
     let metadata = try await result.metadata
 
-    #expect(metadata.bucket == bucket)
+    #expect(metadata.bucket == "projects/_/buckets/\(bucket)")
     #expect(metadata.object == objectName)
     #expect(metadata.size == UInt64(payload.count))
 
@@ -1299,5 +1299,47 @@ import Testing
     }
 
     #expect(receivedData == payload)
+  }
+
+  /// Tests downloading an object when bucket is specified as a canonical resource name (e.g. `projects/_/buckets/my-bucket`).
+  @Test func downloadObjectWithBucketResourceName() async throws {
+    let registry = MockRegistry.create()
+    let rawBucket = "download-resource-bucket"
+    let bucketResource = "projects/_/buckets/\(rawBucket)"
+    let objectName = "file.txt"
+    let payload = Data("Resource Name Download Content".utf8)
+
+    let downloadUrl = registry.url("/storage/v1/b/\(rawBucket)/o/\(objectName)?alt=media")
+
+    registry.register(
+      response: .success(
+        statusCode: 200,
+        data: payload,
+        headers: [
+          "Content-Length": String(payload.count),
+          "Content-Type": "text/plain",
+          "x-goog-generation": "999",
+        ]
+      ),
+      for: downloadUrl
+    )
+
+    let client = try makeClient(registry: registry)
+    let result = client.readObject(from: bucketResource, object: objectName)
+    let metadata = try await result.metadata
+
+    #expect(metadata.bucket == bucketResource)
+    #expect(metadata.object == objectName)
+    #expect(metadata.size == UInt64(payload.count))
+    #expect(metadata.generation == 999)
+
+    var receivedData = Data()
+    for try await chunk in result.body {
+      receivedData.append(contentsOf: chunk.readableBytesView)
+    }
+    #expect(receivedData == payload)
+
+    let lastReq = registry.lastRequest(for: downloadUrl)
+    #expect(lastReq != nil)
   }
 }

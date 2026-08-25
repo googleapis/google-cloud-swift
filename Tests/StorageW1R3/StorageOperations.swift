@@ -51,9 +51,7 @@ enum StorageOperations {
           $0.bucket = "projects/_/buckets/\(bucketName)"
           $0.object = objectName
         }
-        var object = try await controlClient.getObject(request: getReq, options: .init())
-        // TODO(https://github.com/googleapis/google-cloud-swift/issues/517) - cleanup this code
-        object.bucket.replace("projects/_/buckets/", with: "")
+        let object = try await controlClient.getObject(request: getReq, options: .init())
         return object
       }
       throw error
@@ -94,8 +92,7 @@ enum StorageOperations {
           let client = try StorageControlClient(
             ClientOptions().with { $0.credentials = credentials })
           let deleteReq = DeleteObjectRequest().with {
-            // TODO(https://github.com/googleapis/google-cloud-swift/issues/517) - cleanup this code
-            $0.bucket = "projects/_/buckets/\(object.bucket)"
+            $0.bucket = object.bucket
             $0.object = object.name
             $0.generation = object.generation
           }

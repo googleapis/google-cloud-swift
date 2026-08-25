@@ -86,7 +86,7 @@ package struct ObjectV1Response: Decodable, Sendable {
   package func toObject() -> Object {
     var obj = Object()
     obj.name = name ?? ""
-    obj.bucket = bucket ?? ""
+    obj.bucket = BucketName.formatResourceName(bucket ?? "")
     obj.etag = etag ?? ""
     obj.generation = generation?.value ?? 0
     obj.metageneration = metageneration?.value ?? 0

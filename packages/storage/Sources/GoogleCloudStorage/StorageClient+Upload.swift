@@ -783,8 +783,9 @@ extension StorageClient {
       queryItems.append(contentsOf: preconditions.queryItems)
     }
 
+    let bucketId = BucketName.extractBucketName(bucket)
     var request = try await httpClient.newRequest(
-      path: "/upload/storage/v1/b/\(bucket)/o", query: queryItems)
+      path: "/upload/storage/v1/b/\(bucketId)/o", query: queryItems)
     request.setMethod(.POST)
 
     if let checksum = checksum {
@@ -835,8 +836,9 @@ extension StorageClient {
       queryItems.append(contentsOf: preconditions.queryItems)
     }
 
+    let bucketId = BucketName.extractBucketName(bucket)
     var request = try await httpClient.newRequest(
-      path: "/upload/storage/v1/b/\(bucket)/o", query: queryItems)
+      path: "/upload/storage/v1/b/\(bucketId)/o", query: queryItems)
     request.setMethod(.POST)
     request.setHeader(name: "Content-Type", value: "application/json; charset=UTF-8")
 

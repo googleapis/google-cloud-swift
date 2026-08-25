@@ -286,7 +286,7 @@ import Testing
     let object = try await task.value
 
     #expect(object.name == objectName)
-    #expect(object.bucket == bucket)
+    #expect(object.bucket == "projects/_/buckets/\(bucket)")
     #expect(object.size == Int64(data.count))
 
     let requests = registry.recordedRequests()
@@ -378,7 +378,7 @@ import Testing
     let object = try await task.value
 
     #expect(object.name == objectName)
-    #expect(object.bucket == bucket)
+    #expect(object.bucket == "projects/_/buckets/\(bucket)")
     let requests = registry.recordedRequests()
     #expect(requests.count == 1)
     #expect(requests.first?.url?.absoluteString == simpleUploadUrl.absoluteString)
@@ -406,7 +406,7 @@ import Testing
     let object = try await task.value
 
     #expect(object.name == objectName)
-    #expect(object.bucket == bucket)
+    #expect(object.bucket == "projects/_/buckets/\(bucket)")
     let requests = registry.recordedRequests()
     #expect(requests.count == 1)
     #expect(requests.first?.url?.absoluteString == simpleUploadUrl.absoluteString)
@@ -438,7 +438,7 @@ import Testing
     let object = try await task.value
 
     #expect(object.name == objectName)
-    #expect(object.bucket == bucket)
+    #expect(object.bucket == "projects/_/buckets/\(bucket)")
     let requests = registry.recordedRequests()
     #expect(requests.count == 1)
     #expect(requests.first?.url?.absoluteString == simpleUploadUrl.absoluteString)
@@ -466,7 +466,7 @@ import Testing
     let object = try await task.value
 
     #expect(object.name == objectName)
-    #expect(object.bucket == bucket)
+    #expect(object.bucket == "projects/_/buckets/\(bucket)")
     #expect(object.size == 0)
 
     let requests = registry.recordedRequests()
@@ -502,7 +502,7 @@ import Testing
     let object = try await task.value
 
     #expect(object.name == objectName)
-    #expect(object.bucket == bucket)
+    #expect(object.bucket == "projects/_/buckets/\(bucket)")
     #expect(object.size == 0)
   }
 
@@ -531,7 +531,39 @@ import Testing
     let object = try await task.value
 
     #expect(object.name == objectName)
-    #expect(object.bucket == bucket)
+    #expect(object.bucket == "projects/_/buckets/\(bucket)")
     #expect(object.size == 0)
+  }
+
+  /// Tests that uploading using a bucket resource name (e.g. `projects/_/buckets/my-bucket`) extracts the bucket ID for the request and returns the resource name.
+  @Test func simpleUploadWithBucketResourceName() async throws {
+    let registry = MockRegistry.create()
+    let rawBucket = "my-bucket"
+    let bucketResource = "projects/_/buckets/\(rawBucket)"
+    let objectName = "test-resource-bucket-object"
+    let data = Data("Hello Resource Name".utf8)
+    let source = BytesSource(data: data)
+
+    let simpleUploadUrl = registry.url(
+      "/upload/storage/v1/b/\(rawBucket)/o?uploadType=multipart&name=\(objectName)")
+
+    registry.register(
+      response: .success(
+        statusCode: 200,
+        data: makeObjectJSON(name: objectName, bucket: rawBucket, size: data.count),
+        headers: nil),
+      for: simpleUploadUrl)
+
+    let client = try makeClient(registry: registry)
+    let task = client.upload(source, to: bucketResource, as: objectName)
+    let object = try await task.value
+
+    #expect(object.name == objectName)
+    #expect(object.bucket == bucketResource)
+    #expect(object.size == Int64(data.count))
+
+    let requests = registry.recordedRequests()
+    #expect(requests.count == 1)
+    #expect(requests.first?.url?.absoluteString == simpleUploadUrl.absoluteString)
   }
 }

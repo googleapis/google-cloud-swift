@@ -150,7 +150,7 @@ import Testing
     let v1Object = try decoder.decode(ObjectV1Response.self, from: data)
     let object = v1Object.toObject()
 
-    #expect(object.bucket == "test-bucket")
+    #expect(object.bucket == "projects/_/buckets/test-bucket")
     #expect(object.name == "folder/test.json")
     #expect(object.generation == 1234)
     #expect(object.metageneration == 1)

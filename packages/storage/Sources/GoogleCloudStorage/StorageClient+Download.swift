@@ -56,7 +56,7 @@ extension StorageClient {
     object: String
   ) throws -> ReadObjectMetadata {
     var metadata = ReadObjectMetadata()
-    metadata.bucket = bucket
+    metadata.bucket = BucketName.formatResourceName(bucket)
     metadata.object = object
 
     if let contentRangeHeader = headers.first(name: "Content-Range") {
@@ -169,8 +169,9 @@ extension GoogleCloudGax._HTTPClient {
       CharacterSet(charactersIn: "/"))
     let encodedObject =
       object.addingPercentEncoding(withAllowedCharacters: allowedObjectCharacters) ?? object
+    let bucketId = BucketName.extractBucketName(bucket)
     let encodedBucket =
-      bucket.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? bucket
+      bucketId.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? bucketId
     var request = try await self.newRequest(
       percentEncodedPath: "/storage/v1/b/\(encodedBucket)/o/\(encodedObject)", query: queryItems)
     request.setMethod(.GET)

@@ -43,7 +43,7 @@ struct StorageClientDownloadChecksumIntegrationTests {
     let storageClient = try StorageClient()
     let uploadTask = storageClient.upload(data, to: bucketName, as: objName)
     let obj = try await uploadTask.value
-    #expect(obj.bucket == bucketName)
+    #expect(obj.bucket == "projects/_/buckets/\(bucketName)")
     #expect(obj.name == objName)
 
     let computedCrc = _CRC32C.compute(data)

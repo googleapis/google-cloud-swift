@@ -243,7 +243,7 @@ import Testing
     let object = try await task.value
 
     #expect(object.name == objectName)
-    #expect(object.bucket == bucket)
+    #expect(object.bucket == "projects/_/buckets/\(bucket)")
   }
 
   /// Tests resuming an upload using `x-goog-running-hash` header to seed CRC32C without re-reading bytes 0..<offset locally.
@@ -379,7 +379,7 @@ import Testing
     let object = try await task.value
 
     #expect(object.name == objectName)
-    #expect(object.bucket == bucket)
+    #expect(object.bucket == "projects/_/buckets/\(bucket)")
     #expect(statuses.count >= 3)
     if let firstStatus = statuses.first, let lastStatus = statuses.last {
       #expect(firstStatus.bytesUploaded == 0)
@@ -408,7 +408,7 @@ import Testing
     let object = try await task.value
 
     #expect(object.name == objectName)
-    #expect(object.bucket == bucket)
+    #expect(object.bucket == "projects/_/buckets/\(bucket)")
   }
 
   /// Tests resuming an upload session where GCS returns HTTP 308 without a Range header (0 bytes received), restarting upload from byte 0.
@@ -437,7 +437,7 @@ import Testing
     let object = try await task.value
 
     #expect(object.name == objectName)
-    #expect(object.bucket == bucket)
+    #expect(object.bucket == "projects/_/buckets/\(bucket)")
   }
 
   /// Tests resuming an invalid or expired upload session ID, receiving HTTP 404 from GCS.
@@ -654,7 +654,7 @@ import Testing
     let object = try await task.value
 
     #expect(object.name == objectName)
-    #expect(object.bucket == bucket)
+    #expect(object.bucket == "projects/_/buckets/\(bucket)")
     #expect(object.size == Int64(data.count))
   }
 
@@ -688,7 +688,7 @@ import Testing
     let object = try await task.value
 
     #expect(object.name == objectName)
-    #expect(object.bucket == bucket)
+    #expect(object.bucket == "projects/_/buckets/\(bucket)")
 
     let requests = registry.recordedRequests()
     #expect(requests.count == 2)
@@ -737,7 +737,7 @@ import Testing
     let object = try await task.value
 
     #expect(object.name == objectName)
-    #expect(object.bucket == bucket)
+    #expect(object.bucket == "projects/_/buckets/\(bucket)")
     #expect(object.size == Int64(data.count))
   }
 
@@ -775,7 +775,7 @@ import Testing
     let object = try await task.value
 
     #expect(object.name == objectName)
-    #expect(object.bucket == bucket)
+    #expect(object.bucket == "projects/_/buckets/\(bucket)")
 
     let requests = registry.recordedRequests()
     #expect(requests.count == 2)
@@ -819,7 +819,7 @@ import Testing
     let object = try await task.value
 
     #expect(object.name == objectName)
-    #expect(object.bucket == bucket)
+    #expect(object.bucket == "projects/_/buckets/\(bucket)")
     #expect(object.size == totalSize)
   }
 
@@ -865,7 +865,7 @@ import Testing
     let object = try await task.value
 
     #expect(object.name == objectName)
-    #expect(object.bucket == bucket)
+    #expect(object.bucket == "projects/_/buckets/\(bucket)")
     #expect(object.size == expectedTotalSize)
 
     let requests = registry.recordedRequests()
@@ -910,7 +910,7 @@ import Testing
     let object = try await task.value
 
     #expect(object.name == objectName)
-    #expect(object.bucket == bucket)
+    #expect(object.bucket == "projects/_/buckets/\(bucket)")
     #expect(object.size == totalSize)
   }
 
@@ -950,7 +950,7 @@ import Testing
     let object = try await task.value
 
     #expect(object.name == objectName)
-    #expect(object.bucket == bucket)
+    #expect(object.bucket == "projects/_/buckets/\(bucket)")
     #expect(object.size == expectedTotalSize)
   }
 
@@ -988,7 +988,7 @@ import Testing
     let object = try await task.value
 
     #expect(object.name == objectName)
-    #expect(object.bucket == bucket)
+    #expect(object.bucket == "projects/_/buckets/\(bucket)")
     #expect(object.size == totalSize)
   }
 
@@ -1022,7 +1022,7 @@ import Testing
     let object = try await task.value
 
     #expect(object.name == objectName)
-    #expect(object.bucket == bucket)
+    #expect(object.bucket == "projects/_/buckets/\(bucket)")
     #expect(object.size == 0)
 
     let requests = registry.recordedRequests()
@@ -1079,7 +1079,7 @@ import Testing
     let object = try await task.value
 
     #expect(object.name == objectName)
-    #expect(object.bucket == bucket)
+    #expect(object.bucket == "projects/_/buckets/\(bucket)")
     #expect(object.size == expectedTotalSize)
 
     let requests = registry.recordedRequests()
@@ -1118,7 +1118,7 @@ import Testing
     let object = try await task.value
 
     #expect(object.name == objectName)
-    #expect(object.bucket == bucket)
+    #expect(object.bucket == "projects/_/buckets/\(bucket)")
     #expect(object.size == 0)
 
     let requests = registry.recordedRequests()
@@ -1292,7 +1292,7 @@ import Testing
     let object = try await task.value
 
     #expect(object.name == objectName)
-    #expect(object.bucket == bucket)
+    #expect(object.bucket == "projects/_/buckets/\(bucket)")
     #expect(object.size == Int64(data.count))
 
     let requests = registry.recordedRequests()
@@ -1381,7 +1381,7 @@ import Testing
     let object = try await task.value
 
     #expect(object.name == objectName)
-    #expect(object.bucket == bucket)
+    #expect(object.bucket == "projects/_/buckets/\(bucket)")
     #expect(object.size == Int64(totalSize))
 
     let requests = registry.recordedRequests()
@@ -1475,7 +1475,7 @@ import Testing
     let object = try await task.value
 
     #expect(object.name == objectName)
-    #expect(object.bucket == bucket)
+    #expect(object.bucket == "projects/_/buckets/\(bucket)")
     #expect(object.size == Int64(totalSize))
 
     let requests = registry.recordedRequests()
@@ -1534,7 +1534,7 @@ import Testing
     let object = try await task.value
 
     #expect(object.name == objectName)
-    #expect(object.bucket == bucket)
+    #expect(object.bucket == "projects/_/buckets/\(bucket)")
     #expect(object.size == Int64(data.count))
 
     let requests = registry.recordedRequests()
@@ -1589,7 +1589,7 @@ import Testing
     let object = try await task.value
 
     #expect(object.name == objectName)
-    #expect(object.bucket == bucket)
+    #expect(object.bucket == "projects/_/buckets/\(bucket)")
     #expect(object.size == Int64(data.count))
 
     let requests = registry.recordedRequests()
@@ -1682,7 +1682,7 @@ import Testing
     let object = try await task.value
 
     #expect(object.name == objectName)
-    #expect(object.bucket == bucket)
+    #expect(object.bucket == "projects/_/buckets/\(bucket)")
     #expect(object.size == Int64(totalSize))
 
     let requests = registry.recordedRequests()
@@ -1779,7 +1779,7 @@ import Testing
     let object = try await task.value
 
     #expect(object.name == objectName)
-    #expect(object.bucket == bucket)
+    #expect(object.bucket == "projects/_/buckets/\(bucket)")
     #expect(object.size == Int64(data.count))
 
     let requests = registry.recordedRequests()
@@ -1849,7 +1849,7 @@ import Testing
     let object = try await task.value
 
     #expect(object.name == objectName)
-    #expect(object.bucket == bucket)
+    #expect(object.bucket == "projects/_/buckets/\(bucket)")
     #expect(object.size == Int64(data.count))
 
     let requests = registry.recordedRequests()
@@ -1964,7 +1964,7 @@ import Testing
 
     let object = try await task.value
     #expect(object.name == objectName)
-    #expect(object.bucket == bucket)
+    #expect(object.bucket == "projects/_/buckets/\(bucket)")
     #expect(statuses.count == 3)
     #expect(statuses.map(\.bytesUploaded) == [0, Int64(chunkSize), Int64(fileSize)])
     #expect(statuses.map(\.totalBytes) == [Int64(fileSize), Int64(fileSize), Int64(fileSize)])
@@ -2008,7 +2008,7 @@ import Testing
 
     let object = try await task.value
     #expect(object.name == objectName)
-    #expect(object.bucket == bucket)
+    #expect(object.bucket == "projects/_/buckets/\(bucket)")
     #expect(statuses.count == 2)
     #expect(statuses.map(\.bytesUploaded) == [0, Int64(fileSize)])
     #expect(statuses.map(\.totalBytes) == [Int64(fileSize), Int64(fileSize)])
@@ -2051,7 +2051,7 @@ import Testing
 
     let object = try await task.value
     #expect(object.name == objectName)
-    #expect(object.bucket == bucket)
+    #expect(object.bucket == "projects/_/buckets/\(bucket)")
     #expect(statuses.count == 2)
     #expect(statuses.first?.bytesUploaded == Int64(committedBytes))
     #expect(statuses.map(\.bytesUploaded) == [Int64(committedBytes), Int64(fileSize)])
@@ -2117,7 +2117,7 @@ import Testing
 
     let object = try await task.value
     #expect(object.name == objectName)
-    #expect(object.bucket == bucket)
+    #expect(object.bucket == "projects/_/buckets/\(bucket)")
     #expect(statuses.count == 5)
     #expect(
       statuses.map(\.bytesUploaded) == [
@@ -2176,7 +2176,7 @@ import Testing
     let object = try await task.value
 
     #expect(object.name == objectName)
-    #expect(object.bucket == bucket)
+    #expect(object.bucket == "projects/_/buckets/\(bucket)")
     let requests = registry.recordedRequests()
     #expect(requests.count == 2)
     #expect(requests.first?.url?.absoluteString == initUrl.absoluteString)
@@ -2228,7 +2228,7 @@ import Testing
     let object = try await task.value
 
     #expect(object.name == objectName)
-    #expect(object.bucket == bucket)
+    #expect(object.bucket == "projects/_/buckets/\(bucket)")
     let requests = registry.recordedRequests()
     #expect(requests.count == 2)
     #expect(requests.first?.url?.absoluteString == initUrl.absoluteString)
@@ -2277,7 +2277,7 @@ import Testing
     let object = try await task.value
 
     #expect(object.name == objectName)
-    #expect(object.bucket == bucket)
+    #expect(object.bucket == "projects/_/buckets/\(bucket)")
     let requests = registry.recordedRequests()
     #expect(requests.count == 2)
     #expect(requests.first?.url?.absoluteString == initUrl.absoluteString)
@@ -2330,7 +2330,7 @@ import Testing
     let object = try await task.value
 
     #expect(object.name == objectName)
-    #expect(object.bucket == bucket)
+    #expect(object.bucket == "projects/_/buckets/\(bucket)")
     let requests = registry.recordedRequests()
     #expect(requests.count == 2)
     #expect(requests.first?.url?.absoluteString == initUrl.absoluteString)
@@ -2370,7 +2370,7 @@ import Testing
     let object = try await task.value
 
     #expect(object.name == objectName)
-    #expect(object.bucket == bucket)
+    #expect(object.bucket == "projects/_/buckets/\(bucket)")
     #expect(object.size == 0)
 
     let requests = registry.recordedRequests()
@@ -2415,7 +2415,7 @@ import Testing
     let object = try await task.value
 
     #expect(object.name == objectName)
-    #expect(object.bucket == bucket)
+    #expect(object.bucket == "projects/_/buckets/\(bucket)")
     #expect(object.size == 0)
 
     let requests = registry.recordedRequests()
@@ -2460,13 +2460,56 @@ import Testing
     let object = try await task.value
 
     #expect(object.name == objectName)
-    #expect(object.bucket == bucket)
+    #expect(object.bucket == "projects/_/buckets/\(bucket)")
     #expect(object.size == 0)
 
     let requests = registry.recordedRequests()
     #expect(requests.count == 2)
     #expect(requests[1].value(forHTTPHeaderField: "Content-Range") == "bytes */0")
     #expect(requests[1].value(forHTTPHeaderField: "x-goog-hash") == "crc32c=AAAAAA==")
+  }
+
+  /// Tests that resumable uploads work when the bucket is provided as a resource name (e.g., `projects/_/buckets/my-bucket`).
+  @Test func resumableUploadWithBucketResourceName() async throws {
+    let registry = MockRegistry.create()
+    let rawBucket = "resumable-resource-bucket"
+    let bucketResource = "projects/_/buckets/\(rawBucket)"
+    let objectName = "test-resumable-resource-object"
+    let data = Data(repeating: 0x42, count: 1024)
+    let source = BytesSource(data: data)
+
+    let initUrl = registry.url(
+      "/upload/storage/v1/b/\(rawBucket)/o?uploadType=resumable&name=\(objectName)")
+    let sessionUrl = registry.url(
+      "/upload/storage/v1/b/\(rawBucket)/o?uploadType=resumable&upload_id=test-session-id")
+
+    registry.register(
+      response: .success(
+        statusCode: 200, data: Data(),
+        headers: ["Location": sessionUrl.absoluteString]),
+      for: initUrl)
+
+    registry.register(
+      response: .success(
+        statusCode: 200,
+        data: makeObjectJSON(name: objectName, bucket: rawBucket, size: data.count),
+        headers: nil),
+      for: sessionUrl)
+
+    let client = try makeClient(registry: registry)
+    let uploadOptions = UploadOptions().with {
+      $0.resumableUploadThreshold = 0
+    }
+    let task = client.upload(source, to: bucketResource, as: objectName, options: uploadOptions)
+    let object = try await task.value
+
+    #expect(object.name == objectName)
+    #expect(object.bucket == bucketResource)
+    #expect(object.size == Int64(data.count))
+
+    let requests = registry.recordedRequests()
+    #expect(requests.count == 2)
+    #expect(requests.first?.url?.absoluteString == initUrl.absoluteString)
   }
 }
 

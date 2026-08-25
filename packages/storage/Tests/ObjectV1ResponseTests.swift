@@ -129,7 +129,7 @@ import Testing
     let object = v1.toObject()
 
     #expect(object.name == "photos/image.png")
-    #expect(object.bucket == "my-bucket")
+    #expect(object.bucket == "projects/_/buckets/my-bucket")
     #expect(object.etag == "etag-12345")
     #expect(object.generation == 1234567890)
     #expect(object.metageneration == 3)
@@ -336,11 +336,20 @@ import Testing
 
     let object = v1.toObject()
     #expect(object.name == "programmatic-object")
-    #expect(object.bucket == "programmatic-bucket")
+    #expect(object.bucket == "projects/_/buckets/programmatic-bucket")
     #expect(object.etag == "etag-abc")
     #expect(object.contentType == "text/plain")
     #expect(object.metadata == ["env": "test"])
     #expect(object.generation == 0)
     #expect(object.size == 0)
+  }
+
+  @Test func bucketFormattingVariants() throws {
+    var v1 = ObjectV1Response()
+    v1.bucket = "projects/_/buckets/already-prefixed"
+    #expect(v1.toObject().bucket == "projects/_/buckets/already-prefixed")
+
+    v1.bucket = "projects/my-proj/buckets/custom-project"
+    #expect(v1.toObject().bucket == "projects/my-proj/buckets/custom-project")
   }
 }
