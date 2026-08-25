@@ -15,7 +15,7 @@
 import Foundation
 
 /// A ``ResumePolicy`` that permits indefinite resumes across a transfer as long as forward progress
-/// is made, halting only when consecutive errors occur without advancing any bytes.
+/// is made, halting only when consecutive errors occur without making progress.
 ///
 /// This is the recommended default policy for resumable transfers like Cloud Storage uploads and downloads.
 public struct StopOnConsecutiveErrors<Details: Sendable>: ResumePolicy, Sendable, Equatable {
