@@ -40,6 +40,18 @@ public struct RequestOptions: Sendable {
   /// policy.
   public var attemptTimeout: Duration? = nil
 
+  /// Overrides the request idempotency.
+  ///
+  /// Use this option if the service documentation describes the request as idempotent under certain
+  /// conditions or if the heuristic used by the client libraries is overly conservative.
+  ///
+  /// The client libraries use a (conservative) heuristic to determine which requests are
+  /// idempotent: only `GET` and `PUT` requests are considered idempotent. In some services, the
+  /// idempotency depends on the request parameters. And in some services, `POST` or `DELETE`
+  /// requests are idempotent though in general they might not be. Use this setting to override the
+  /// default.
+  public var idempotency: Bool? = nil
+
   /// Overrides the default retry policy.
   ///
   /// Without an override, the request uses the retry policy configured in the client.

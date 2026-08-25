@@ -49,7 +49,7 @@ import Foundation
     self.retryPolicy = options.retryPolicy ?? withDefault.retryPolicy
     self.backoffPolicy = options.backoffPolicy ?? withDefault.backoffPolicy
     self.retryThrottler = options.retryThrottler ?? withDefault.retryThrottler
-    self.idempotent = idempotent
+    self.idempotent = options.idempotency ?? idempotent
   }
 
   /// Runs the retry loop.
