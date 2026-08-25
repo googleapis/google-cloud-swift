@@ -32,7 +32,8 @@ import Testing
   private func makeClient(
     registry: MockRegistry,
     clientRetryPolicy: (any RetryPolicy)? = nil,
-    uploadRetryPolicy: (any RetryPolicy)? = nil
+    uploadRetryPolicy: (any RetryPolicy)? = nil,
+    uploadThreshold: Int? = nil
   ) throws -> StorageClient {
     let options = StorageClientOptions().with {
       $0.client = .init().with {
@@ -44,6 +45,9 @@ import Testing
       }
       if let uploadRetryPolicy {
         $0.upload.retryPolicy = uploadRetryPolicy
+      }
+      if let uploadThreshold {
+        $0.upload.resumableUploadThreshold = uploadThreshold
       }
     }
     return try StorageClient(options, mock: registry)
@@ -2106,6 +2110,212 @@ import Testing
       ])
     #expect(statuses.map(\.totalBytes) == Array(repeating: Int64(fileSize), count: 5))
     #expect(statuses.allSatisfy { $0.uploadId == queryUrl.absoluteString })
+  }
+
+  /// Tests that configuring a lower `resumableUploadThreshold` on `UploadOptions` causes a payload < 8MB to use resumable upload.
+  @Test func resumableUploadWithCustomThresholdBelowDefault() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "test-resumable-custom-threshold"
+    let data = Data(repeating: 0xBC, count: 1 * 1024 * 1024)  // 1MB (< 8MB default threshold)
+    let source = BytesSource(data: data)
+
+    let initUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?uploadType=resumable&name=\(objectName)")
+    let sessionUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?uploadType=resumable&upload_id=custom-thresh-id")
+
+    registry.register(
+      response: .success(
+        statusCode: 200, data: Data(),
+        headers: ["Location": sessionUrl.absoluteString]),
+      for: initUrl)
+
+    let objectJSON = """
+      {
+        "name": "\(objectName)",
+        "bucket": "\(bucket)",
+        "generation": "1",
+        "metageneration": "1",
+        "size": "\(data.count)",
+        "contentType": "application/octet-stream",
+        "storageClass": "STANDARD"
+      }
+      """
+
+    registry.register(
+      response: .success(
+        statusCode: 200, data: Data(objectJSON.utf8),
+        headers: nil),
+      for: sessionUrl)
+
+    let client = try makeClient(registry: registry)
+    let uploadOptions = UploadOptions().with {
+      $0.resumableUploadThreshold = 512 * 1024  // 512KB threshold
+    }
+    let task = client.upload(source, to: bucket, as: objectName, options: uploadOptions)
+    let object = try await task.value
+
+    #expect(object.name == objectName)
+    #expect(object.bucket == bucket)
+    let requests = registry.recordedRequests()
+    #expect(requests.count == 2)
+    #expect(requests.first?.url?.absoluteString == initUrl.absoluteString)
+    #expect(requests.last?.url?.absoluteString == sessionUrl.absoluteString)
+  }
+
+  /// Tests that configuring `resumableUploadThreshold = 0` causes even small payloads to use resumable upload.
+  @Test func resumableUploadWithZeroThreshold() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "test-resumable-zero-threshold"
+    let data = Data(repeating: 0xCD, count: 100)
+    let source = BytesSource(data: data)
+
+    let initUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?uploadType=resumable&name=\(objectName)")
+    let sessionUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?uploadType=resumable&upload_id=zero-thresh-id")
+
+    registry.register(
+      response: .success(
+        statusCode: 200, data: Data(),
+        headers: ["Location": sessionUrl.absoluteString]),
+      for: initUrl)
+
+    let objectJSON = """
+      {
+        "name": "\(objectName)",
+        "bucket": "\(bucket)",
+        "generation": "1",
+        "metageneration": "1",
+        "size": "\(data.count)",
+        "contentType": "application/octet-stream",
+        "storageClass": "STANDARD"
+      }
+      """
+
+    registry.register(
+      response: .success(
+        statusCode: 200, data: Data(objectJSON.utf8),
+        headers: nil),
+      for: sessionUrl)
+
+    let client = try makeClient(registry: registry)
+    let uploadOptions = UploadOptions().with {
+      $0.resumableUploadThreshold = 0
+    }
+    let task = client.upload(source, to: bucket, as: objectName, options: uploadOptions)
+    let object = try await task.value
+
+    #expect(object.name == objectName)
+    #expect(object.bucket == bucket)
+    let requests = registry.recordedRequests()
+    #expect(requests.count == 2)
+    #expect(requests.first?.url?.absoluteString == initUrl.absoluteString)
+    #expect(requests.last?.url?.absoluteString == sessionUrl.absoluteString)
+  }
+
+  /// Tests that configuring `resumableUploadThreshold` on `StorageClientOptions.upload` (client level) causes a payload < 8MB to use resumable upload without specifying request options.
+  @Test func resumableUploadWithClientUploadOptionsThresholdBelowDefault() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "test-resumable-client-threshold"
+    let data = Data(repeating: 0xDE, count: 1 * 1024 * 1024)  // 1MB (< 8MB default threshold)
+    let source = BytesSource(data: data)
+
+    let initUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?uploadType=resumable&name=\(objectName)")
+    let sessionUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?uploadType=resumable&upload_id=client-thresh-id")
+
+    registry.register(
+      response: .success(
+        statusCode: 200, data: Data(),
+        headers: ["Location": sessionUrl.absoluteString]),
+      for: initUrl)
+
+    let objectJSON = """
+      {
+        "name": "\(objectName)",
+        "bucket": "\(bucket)",
+        "generation": "1",
+        "metageneration": "1",
+        "size": "\(data.count)",
+        "contentType": "application/octet-stream",
+        "storageClass": "STANDARD"
+      }
+      """
+
+    registry.register(
+      response: .success(
+        statusCode: 200, data: Data(objectJSON.utf8),
+        headers: nil),
+      for: sessionUrl)
+
+    let client = try makeClient(registry: registry, uploadThreshold: 512 * 1024)
+    let task = client.upload(source, to: bucket, as: objectName)
+    let object = try await task.value
+
+    #expect(object.name == objectName)
+    #expect(object.bucket == bucket)
+    let requests = registry.recordedRequests()
+    #expect(requests.count == 2)
+    #expect(requests.first?.url?.absoluteString == initUrl.absoluteString)
+    #expect(requests.last?.url?.absoluteString == sessionUrl.absoluteString)
+  }
+
+  /// Tests that provided `UploadOptions.resumableUploadThreshold` overrides client-level threshold to trigger resumable upload.
+  @Test func resumableUploadWithProvidedOptionsOverridingClientUploadOptions() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "test-resumable-override-client-threshold"
+    let data = Data(repeating: 0xEF, count: 2 * 1024 * 1024)  // 2MB
+    let source = BytesSource(data: data)
+
+    let initUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?uploadType=resumable&name=\(objectName)")
+    let sessionUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?uploadType=resumable&upload_id=override-client-thresh-id")
+
+    registry.register(
+      response: .success(
+        statusCode: 200, data: Data(),
+        headers: ["Location": sessionUrl.absoluteString]),
+      for: initUrl)
+
+    let objectJSON = """
+      {
+        "name": "\(objectName)",
+        "bucket": "\(bucket)",
+        "generation": "1",
+        "metageneration": "1",
+        "size": "\(data.count)",
+        "contentType": "application/octet-stream",
+        "storageClass": "STANDARD"
+      }
+      """
+
+    registry.register(
+      response: .success(
+        statusCode: 200, data: Data(objectJSON.utf8),
+        headers: nil),
+      for: sessionUrl)
+
+    // Client has high threshold (16MB), but call-level options sets 1MB -> resumable upload is chosen
+    let client = try makeClient(registry: registry, uploadThreshold: 16 * 1024 * 1024)
+    let uploadOptions = UploadOptions().with {
+      $0.resumableUploadThreshold = 1 * 1024 * 1024
+    }
+    let task = client.upload(source, to: bucket, as: objectName, options: uploadOptions)
+    let object = try await task.value
+
+    #expect(object.name == objectName)
+    #expect(object.bucket == bucket)
+    let requests = registry.recordedRequests()
+    #expect(requests.count == 2)
+    #expect(requests.first?.url?.absoluteString == initUrl.absoluteString)
+    #expect(requests.last?.url?.absoluteString == sessionUrl.absoluteString)
   }
 }
 

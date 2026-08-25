@@ -28,9 +28,11 @@ import Testing
     return (keyData, keyBase64, keyHashBase64)
   }
 
-  private func makeClient(registry: MockRegistry, retryPolicy: (any RetryPolicy)? = nil) throws
-    -> StorageClient
-  {
+  private func makeClient(
+    registry: MockRegistry,
+    retryPolicy: (any RetryPolicy)? = nil,
+    uploadThreshold: Int? = nil
+  ) throws -> StorageClient {
     let options = StorageClientOptions().with {
       $0.client = .init().with {
         $0.endpoint = registry.endpoint
@@ -38,6 +40,9 @@ import Testing
         if let retryPolicy {
           $0.retryPolicy = retryPolicy
         }
+      }
+      if let uploadThreshold {
+        $0.upload.resumableUploadThreshold = uploadThreshold
       }
     }
     return try StorageClient(options, mock: registry)
@@ -339,5 +344,96 @@ import Testing
     #expect(error != nil)
     let requests = registry.recordedRequests()
     #expect(requests.count == 1)
+  }
+
+  /// Tests that configuring a higher `resumableUploadThreshold` on `UploadOptions` allows a payload >= 8MB to use simple upload.
+  @Test func simpleUploadWithCustomThresholdAboveDefault() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "test-simple-custom-threshold"
+    let data = Data(repeating: 0xAB, count: 10 * 1024 * 1024)  // 10MB (> 8MB default threshold)
+    let source = BytesSource(data: data)
+
+    let simpleUploadUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?uploadType=multipart&name=\(objectName)")
+
+    registry.register(
+      response: .success(
+        statusCode: 200, data: makeObjectJSON(name: objectName, bucket: bucket, size: data.count),
+        headers: nil),
+      for: simpleUploadUrl)
+
+    let client = try makeClient(registry: registry)
+    let uploadOptions = UploadOptions().with {
+      $0.resumableUploadThreshold = 16 * 1024 * 1024  // 16MB threshold
+    }
+    let task = client.upload(source, to: bucket, as: objectName, options: uploadOptions)
+    let object = try await task.value
+
+    #expect(object.name == objectName)
+    #expect(object.bucket == bucket)
+    let requests = registry.recordedRequests()
+    #expect(requests.count == 1)
+    #expect(requests.first?.url?.absoluteString == simpleUploadUrl.absoluteString)
+  }
+
+  /// Tests that configuring `resumableUploadThreshold` on `StorageClientOptions.upload` (client level) allows a payload >= 8MB to use simple upload without specifying request options.
+  @Test func simpleUploadWithClientUploadOptionsThresholdAboveDefault() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "test-simple-client-threshold"
+    let data = Data(repeating: 0xAC, count: 10 * 1024 * 1024)  // 10MB (> 8MB default threshold)
+    let source = BytesSource(data: data)
+
+    let simpleUploadUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?uploadType=multipart&name=\(objectName)")
+
+    registry.register(
+      response: .success(
+        statusCode: 200, data: makeObjectJSON(name: objectName, bucket: bucket, size: data.count),
+        headers: nil),
+      for: simpleUploadUrl)
+
+    let client = try makeClient(registry: registry, uploadThreshold: 16 * 1024 * 1024)
+    let task = client.upload(source, to: bucket, as: objectName)
+    let object = try await task.value
+
+    #expect(object.name == objectName)
+    #expect(object.bucket == bucket)
+    let requests = registry.recordedRequests()
+    #expect(requests.count == 1)
+    #expect(requests.first?.url?.absoluteString == simpleUploadUrl.absoluteString)
+  }
+
+  /// Tests that provided `UploadOptions.resumableUploadThreshold` overrides client-level threshold.
+  @Test func simpleUploadWithProvidedOptionsOverridingClientUploadOptions() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "test-simple-override-client-threshold"
+    let data = Data(repeating: 0xAD, count: 10 * 1024 * 1024)  // 10MB
+    let source = BytesSource(data: data)
+
+    let simpleUploadUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?uploadType=multipart&name=\(objectName)")
+
+    registry.register(
+      response: .success(
+        statusCode: 200, data: makeObjectJSON(name: objectName, bucket: bucket, size: data.count),
+        headers: nil),
+      for: simpleUploadUrl)
+
+    // Client has lower threshold (4MB), but call-level options sets 16MB -> simple upload is chosen
+    let client = try makeClient(registry: registry, uploadThreshold: 4 * 1024 * 1024)
+    let uploadOptions = UploadOptions().with {
+      $0.resumableUploadThreshold = 16 * 1024 * 1024
+    }
+    let task = client.upload(source, to: bucket, as: objectName, options: uploadOptions)
+    let object = try await task.value
+
+    #expect(object.name == objectName)
+    #expect(object.bucket == bucket)
+    let requests = registry.recordedRequests()
+    #expect(requests.count == 1)
+    #expect(requests.first?.url?.absoluteString == simpleUploadUrl.absoluteString)
   }
 }

@@ -56,14 +56,17 @@ extension StorageClient {
       retryThrottler: clientOptions.retryThrottler,
       idempotent: true
     )
+    let defaultThreshold = 8 * 1024 * 1024  // 8MB default threshold
+    let effectiveThreshold = Int64(
+      options.resumableUploadThreshold ?? self.options.upload.resumableUploadThreshold
+        ?? defaultThreshold)
     let httpClient = self.inner
     return UploadTask.create { continuation in
       var source = source
       let totalSize = source.totalSize
 
       // Determine if simple or resumable
-      let threshold = 8 * 1024 * 1024  // 8MB default threshold
-      let useResumable = totalSize == nil || totalSize! >= threshold
+      let useResumable = totalSize == nil || totalSize! >= effectiveThreshold
 
       if !useResumable {
         return try await Self.performSimpleUpload(
@@ -122,14 +125,17 @@ extension StorageClient {
       retryThrottler: clientOptions.retryThrottler,
       idempotent: true
     )
+    let defaultThreshold = 8 * 1024 * 1024  // 8MB default threshold
+    let effectiveThreshold = Int64(
+      options.resumableUploadThreshold ?? self.options.upload.resumableUploadThreshold
+        ?? defaultThreshold)
     let httpClient = self.inner
     return UploadTask.create { continuation in
       var source = source
       let totalSize = source.totalSize
 
       // Determine if simple or resumable
-      let threshold = 8 * 1024 * 1024  // 8MB default threshold
-      let useResumable = totalSize == nil || totalSize! >= threshold
+      let useResumable = totalSize == nil || totalSize! >= effectiveThreshold
 
       if !useResumable {
         return try await Self.performSimpleUpload(
