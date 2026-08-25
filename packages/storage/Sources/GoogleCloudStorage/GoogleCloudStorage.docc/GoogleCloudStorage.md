@@ -20,5 +20,5 @@ Use ``StorageControlClient`` for other operations, including listing, deleting,
 updating object metadata, object rewrites, and object composition. The same
 type can be used to perform all operations on [buckets].
 
-Use ``StorageClientProtocol`` and ``StorageControlProtocol`` if you want
+Use ``StorageProtocol`` and ``StorageControlProtocol`` if you want
 to mock the clients in your tests.

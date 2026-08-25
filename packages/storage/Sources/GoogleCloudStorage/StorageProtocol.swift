@@ -15,7 +15,7 @@
 import Foundation
 
 /// Protocol defining the high-level object data-plane operations.
-public protocol StorageClientProtocol {
+public protocol StorageProtocol {
   /// Core upload method accepting any upload source.
   func upload(
     _ source: some UploadSource,

@@ -21,7 +21,7 @@ import GoogleCloudAuth
 /// Use this client to write (upload) and read (download) objects in the Cloud Storage service.
 ///
 /// [Cloud Storage]: https://docs.cloud.google.com/storage
-public final class StorageClient: StorageClientProtocol, Sendable {
+public final class StorageClient: StorageProtocol, Sendable {
   public static let defaultEndpoint = "https://storage.googleapis.com"
 
   let inner: GoogleCloudGax._HTTPClient

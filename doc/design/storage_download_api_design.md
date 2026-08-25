@@ -315,7 +315,7 @@ public struct ReadObjectTask: Sendable {
 ### StorageClient Extensions & Protocols
 
 ```swift
-public protocol StorageClientProtocol {
+public protocol StorageProtocol {
   func readObject(
     from bucket: String,
     object: String,
@@ -323,7 +323,7 @@ public protocol StorageClientProtocol {
   ) -> ReadObjectTask
 }
 
-extension StorageClientProtocol {
+extension StorageProtocol {
   public func readObject(
     from bucket: String,
     object: String
@@ -364,8 +364,8 @@ extension StorageClient {
 - *Description:* Use Swift 5.7+ opaque return types (`func readObject(...) -> some AsyncSequence<Data, any Error> & Sendable`) instead of exposing `ReadObjectSequence`.
 - *Trade-offs:*
   - *Pros:* Hides internal implementation details and allows changing the underlying stream implementation in future releases without breaking API signature compatibility.
-  - *Cons:* In Swift protocol declarations (`StorageClientProtocol`), returning `some` forces all conforming implementations (including test mocks) to use the exact same underlying concrete type, or requires adding an `associatedtype` requirement to the protocol.
-- *Recommendation:* If `StorageClientProtocol` needs flexibility across different mock implementations without complex protocol generic constraints, returning `ReadObjectSequence` or `any AsyncSequence<Data, any Error> & Sendable` (or an `AsyncThrowingStream<Data, Error>`) is preferable.
+  - *Cons:* In Swift protocol declarations (`StorageProtocol`), returning `some` forces all conforming implementations (including test mocks) to use the exact same underlying concrete type, or requires adding an `associatedtype` requirement to the protocol.
+- *Recommendation:* If `StorageProtocol` needs flexibility across different mock implementations without complex protocol generic constraints, returning `ReadObjectSequence` or `any AsyncSequence<Data, any Error> & Sendable` (or an `AsyncThrowingStream<Data, Error>`) is preferable.
 
 ### Option E: Returning `ReadObjectSequence` Directly (Without Metadata Container)
 - *Description:* Return `ReadObjectSequence` directly from `readObject` non-asynchronously without an initial handshake, deferring HTTP connection until iteration starts.
