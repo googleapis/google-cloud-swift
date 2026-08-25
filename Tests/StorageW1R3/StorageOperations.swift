@@ -99,7 +99,13 @@ enum StorageOperations {
             $0.generation = object.generation
           }
           do {
-            try await client.deleteObject(request: deleteReq, options: .init())
+            try await client.deleteObject(
+              request: deleteReq,
+              options: .init().with {
+                $0.idempotency = true
+                $0.retryPolicy = GoogleCloudGax.BaseRetryPolicy().withTimeLimit(.seconds(30))
+                $0.attemptTimeout = .seconds(10)
+              })
           } catch {
             // Ignore 404 / NOT_FOUND as it may be due to retry
             if let reqError = error as? RequestError {
