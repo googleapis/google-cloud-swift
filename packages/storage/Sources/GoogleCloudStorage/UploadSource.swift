@@ -86,7 +86,7 @@ public struct BytesSource: SeekableUploadSource {
   }
 
   public mutating func read(maxBytes: Int) async throws -> Data? {
-    guard offset < data.count else { return nil }
+    guard maxBytes > 0, offset < data.count else { return nil }
     let end = min(offset + Int64(maxBytes), Int64(data.count))
     let chunk = data.subdata(in: Int(offset)..<Int(end))
     offset = end
@@ -126,6 +126,7 @@ public struct StreamSource<S: AsyncSequence>: UploadSource where S.Element == Da
   }
 
   public mutating func read(maxBytes: Int) async throws -> Data? {
+    guard maxBytes > 0 else { return nil }
     while buffer.count < maxBytes {
       guard box.iterator != nil else {
         break

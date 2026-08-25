@@ -177,8 +177,25 @@ extension StorageClient {
     continuation: AsyncStream<UploadStatus>.Continuation,
     retryLoop: _RetryLoop
   ) async throws -> Object {
-    guard let data = try await source.read(maxBytes: Int(totalSize ?? 0)) else {
-      throw UploadError.internalError("Failed to read data from source")
+    var data = Data()
+    if let total = totalSize {
+      if total < 0 {
+        throw UploadError.internalError("Invalid source total size: \(total)")
+      }
+      while data.count < Int(total) {
+        let remaining = Int(total) - data.count
+        guard let chunk = try await source.read(maxBytes: remaining), !chunk.isEmpty else {
+          break
+        }
+        data.append(chunk)
+      }
+      if data.count < Int(total) {
+        throw UploadError.internalError("Failed to read data from source")
+      }
+    } else {
+      while let chunk = try await source.read(maxBytes: 1024 * 1024), !chunk.isEmpty {
+        data.append(chunk)
+      }
     }
     let checksum = try computeSimpleChecksum(data, options: options.checksums)
     let request = try await buildSimpleUploadRequest(
