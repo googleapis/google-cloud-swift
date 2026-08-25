@@ -37,13 +37,13 @@ public struct ResumeState<Details: Sendable>: Sendable {
     consecutiveErrorCount: UInt32 = 0,
     totalResumeCount: UInt32 = 0,
     start: ContinuousClock.Instant = .now,
-    lastProgressTime: ContinuousClock.Instant = .now
+    lastProgressTime: ContinuousClock.Instant? = nil
   ) {
     self.details = details
     self.consecutiveErrorCount = consecutiveErrorCount
     self.totalResumeCount = totalResumeCount
     self.start = start
-    self.lastProgressTime = lastProgressTime
+    self.lastProgressTime = lastProgressTime ?? start
   }
 
   /// Mutates `self` using a builder closure and returns the modified state.
@@ -60,7 +60,7 @@ extension ResumeState where Details == Void {
     consecutiveErrorCount: UInt32 = 0,
     totalResumeCount: UInt32 = 0,
     start: ContinuousClock.Instant = .now,
-    lastProgressTime: ContinuousClock.Instant = .now
+    lastProgressTime: ContinuousClock.Instant? = nil
   ) {
     self.init(
       details: (),

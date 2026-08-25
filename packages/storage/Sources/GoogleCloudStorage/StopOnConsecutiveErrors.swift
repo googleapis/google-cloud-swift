@@ -68,7 +68,9 @@ extension ResumePolicy {
   ///
   /// - Parameter maxConsecutiveErrors: The maximum consecutive error threshold. Defaults to 3.
   /// - Returns: A decorated resume policy.
-  public func stopOnConsecutiveErrors(_ maxConsecutiveErrors: UInt32 = 3) -> StopOnConsecutiveErrors<Self> {
+  public func stopOnConsecutiveErrors(_ maxConsecutiveErrors: UInt32 = 3)
+    -> StopOnConsecutiveErrors<Self>
+  {
     StopOnConsecutiveErrors(inner: self, maxConsecutiveErrors: maxConsecutiveErrors)
   }
 }
