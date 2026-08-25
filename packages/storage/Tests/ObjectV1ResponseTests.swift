@@ -348,8 +348,5 @@ import Testing
     var v1 = ObjectV1Response()
     v1.bucket = "projects/_/buckets/already-prefixed"
     #expect(v1.toObject().bucket == "projects/_/buckets/already-prefixed")
-
-    v1.bucket = "projects/my-proj/buckets/custom-project"
-    #expect(v1.toObject().bucket == "projects/my-proj/buckets/custom-project")
   }
 }

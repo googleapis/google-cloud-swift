@@ -22,22 +22,14 @@ package final class BucketName: Sendable {
   /// (`projects/_/buckets/<bucket>`).
   ///
   /// If `bucket` is empty, this returns an empty string. If `bucket` is already in a
-  /// `projects/...` format, it is returned unmodified. Otherwise, `projects/_/buckets/`
+  /// `projects/_/buckets/` format, it is returned unmodified. Otherwise, `projects/_/buckets/`
   /// is prepended.
   package static func formatResourceName(_ bucket: String) -> String {
     guard !bucket.isEmpty else { return "" }
-    if bucket.hasPrefix("projects/") {
+    if bucket.hasPrefix("projects/_/buckets/") {
       return bucket
     }
     return "projects/_/buckets/\(bucket)"
-  }
-
-  /// Formats a project and bucket name into the canonical resource name format
-  /// (`projects/<project>/buckets/<bucket>`).
-  package static func format(project: String = "_", bucket: String) -> String {
-    guard !bucket.isEmpty else { return "" }
-    let proj = project.isEmpty ? "_" : project
-    return "projects/\(proj)/buckets/\(bucket)"
   }
 
   /// Alias for `formatResourceName(_:)`.
@@ -50,20 +42,19 @@ package final class BucketName: Sendable {
     formatResourceName(bucket)
   }
 
-  /// Extracts the simple bucket name from a bucket resource name or plain bucket name.
+  /// Extracts the simple bucket name from a bucket resource name (`projects/_/buckets/<bucket>`)
+  /// or plain bucket name (`<bucket>`).
   ///
-  /// If `bucket` is in a format such as `projects/_/buckets/<bucket>` or `projects/<project>/buckets/<bucket>`,
-  /// this returns `<bucket>`. Otherwise, it returns `bucket` as-is.
+  /// If `bucket` is in a format such as `projects/_/buckets/<bucket>`, this returns `<bucket>`.
+  /// Otherwise, it returns `bucket` as-is.
   package static func extractBucketName(_ bucket: String) -> String {
     guard !bucket.isEmpty else { return "" }
-    if bucket.hasPrefix("projects/") {
-      if let range = bucket.range(of: "/buckets/") {
-        let remainder = bucket[range.upperBound...]
-        if let slashIndex = remainder.firstIndex(of: "/") {
-          return String(remainder[..<slashIndex])
-        }
-        return String(remainder)
+    if bucket.hasPrefix("projects/_/buckets/") {
+      let remainder = bucket.dropFirst("projects/_/buckets/".count)
+      if let slashIndex = remainder.firstIndex(of: "/") {
+        return String(remainder[..<slashIndex])
       }
+      return String(remainder)
     }
     return bucket
   }
@@ -71,17 +62,5 @@ package final class BucketName: Sendable {
   /// Alias for `extractBucketName(_:)`.
   package static func extract(_ bucket: String) -> String {
     extractBucketName(bucket)
-  }
-
-  /// Extracts the project ID or number from a bucket resource name, if present.
-  ///
-  /// For example, given `projects/12345/buckets/my-bucket`, returns `"12345"`.
-  /// If the string is not a resource name or does not contain a project, returns `nil`.
-  package static func extractProject(_ bucket: String) -> String? {
-    guard bucket.hasPrefix("projects/") else { return nil }
-    let remainder = bucket.dropFirst("projects/".count)
-    guard let slashIndex = remainder.firstIndex(of: "/") else { return nil }
-    let project = String(remainder[..<slashIndex])
-    return project.isEmpty ? nil : project
   }
 }
