@@ -27,6 +27,12 @@ import Testing
     let _ = try StorageControlClient(options)
   }
 
+  static func assertSendable<T: Sendable>(_ type: T.Type) {}
+
+  @Test func clientIsSendable() {
+    Self.assertSendable(StorageControlClient.self)
+  }
+
   @Test func initializationWithCustomEndpoints() throws {
     let credentials = try Credentials(configuration: .anonymous)
 
