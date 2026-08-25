@@ -14,36 +14,59 @@
 
 import Foundation
 
-/// A ``ResumePolicy`` that caps the total number of resume attempts across the entire transfer operation.
-public struct LimitedTotalResumes<Details: Sendable>: ResumePolicy, Sendable, Equatable {
+/// A ``ResumePolicy`` decorator that caps the total number of resume attempts across an entire operation.
+public struct LimitedTotalResumes<P: Sendable>: Sendable {
+  /// The inner resume policy being decorated.
+  public let inner: P
+
   /// The maximum number of total resume attempts allowed across the transfer.
   public let maxTotalResumes: UInt32
 
   /// Creates a new `LimitedTotalResumes` instance.
   ///
-  /// - Parameter maxTotalResumes: The maximum total resume count.
-  public init(maxTotalResumes: UInt32 = 10) {
+  /// - Parameters:
+  ///   - inner: The underlying resume policy.
+  ///   - maxTotalResumes: The maximum total resume count. Defaults to 10.
+  public init(inner: P, maxTotalResumes: UInt32 = 10) {
+    self.inner = inner
     self.maxTotalResumes = maxTotalResumes
-  }
-
-  public func onError(state: ResumeState<Details>, error: RequestError) -> ResumeResult {
-    guard error.isRecoverableForResume else {
-      return .permanent(error)
-    }
-
-    if state.totalResumeCount >= maxTotalResumes {
-      return .exhausted(error)
-    }
-
-    return .resume(error)
   }
 }
 
+extension LimitedTotalResumes: ResumePolicy where P: ResumePolicy & Sendable {
+  public typealias Details = P.Details
+
+  public func onError(state: ResumeState<Details>, error: RequestError) -> ResumeResult {
+    switch inner.onError(state: state, error: error) {
+    case .permanent(let e):
+      return .permanent(e)
+    case .exhausted(let e):
+      return .exhausted(e)
+    case .resume(let e):
+      if state.totalResumeCount >= maxTotalResumes {
+        return .exhausted(e)
+      }
+      return .resume(e)
+    }
+  }
+
+  public func onProgress(state: inout ResumeState<Details>) {
+    inner.onProgress(state: &state)
+  }
+
+  public func remainingTime(state: ResumeState<Details>) -> Duration? {
+    inner.remainingTime(state: state)
+  }
+}
+
+extension LimitedTotalResumes: Equatable where P: Equatable {}
+
 extension ResumePolicy {
-  /// Creates a `LimitedTotalResumes` resume policy with a specified limit.
-  public static func limitedTotalResumes<D: Sendable>(_ maxTotalResumes: UInt32)
-    -> LimitedTotalResumes<D> where Self == LimitedTotalResumes<D>
-  {
-    LimitedTotalResumes(maxTotalResumes: maxTotalResumes)
+  /// Decorates a `ResumePolicy` to limit total resume attempts.
+  ///
+  /// - Parameter maxTotalResumes: The maximum total resume count allowed. Defaults to 10.
+  /// - Returns: A decorated resume policy.
+  public func withTotalResumeLimit(_ maxTotalResumes: UInt32 = 10) -> LimitedTotalResumes<Self> {
+    LimitedTotalResumes(inner: self, maxTotalResumes: maxTotalResumes)
   }
 }

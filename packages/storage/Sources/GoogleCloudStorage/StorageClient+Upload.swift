@@ -49,7 +49,7 @@ extension StorageClient {
       options.backoffPolicy ?? self.options.upload.backoffPolicy ?? clientOptions.backoffPolicy
     let effectiveResumePolicy =
       options.resumePolicy ?? self.options.upload.resumePolicy
-      ?? StopOnConsecutiveErrors<UploadDetails>()
+      ?? StorageResumePolicy<UploadDetails>().stopOnConsecutiveErrors()
     let resumeLoop = _ResumeLoop(
       resumePolicy: effectiveResumePolicy,
       backoffPolicy: effectiveBackoffPolicy
@@ -117,7 +117,7 @@ extension StorageClient {
     if let explicitResume = options.resumePolicy ?? self.options.upload.resumePolicy {
       effectiveResumePolicy = explicitResume
     } else {
-      effectiveResumePolicy = StopOnConsecutiveErrors()
+      effectiveResumePolicy = StorageResumePolicy().stopOnConsecutiveErrors()
     }
     let resumeLoop = _ResumeLoop(
       resumePolicy: effectiveResumePolicy,
@@ -682,7 +682,7 @@ extension StorageClient {
     if let explicitResume = options.resumePolicy ?? self.options.upload.resumePolicy {
       effectiveResumePolicy = explicitResume
     } else {
-      effectiveResumePolicy = StopOnConsecutiveErrors()
+      effectiveResumePolicy = StorageResumePolicy().stopOnConsecutiveErrors()
     }
     let resumeLoop = _ResumeLoop(
       resumePolicy: effectiveResumePolicy,

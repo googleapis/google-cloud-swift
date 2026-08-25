@@ -17,59 +17,75 @@ import GoogleCloudGax
 import Testing
 
 @Suite struct StopOnConsecutiveErrorsTests {
-  @Test func defaults() {
-    let policy = StopOnConsecutiveErrors<Void>()
+  @Test func defaultsAndDelegation() {
+    let mock = MockResumePolicy<Void>(onError: { _, e in .resume(e) })
+    let policy = mock.stopOnConsecutiveErrors(3)
     #expect(policy.maxConsecutiveErrors == 3)
     #expect(policy.remainingTime(state: ResumeState()) == nil)
   }
 
-  @Test func staticFactories() {
-    let defaultPolicy: StopOnConsecutiveErrors<Void> = .stopOnConsecutiveErrors()
-    #expect(defaultPolicy.maxConsecutiveErrors == 3)
+  @Test func consecutiveLimitReached() {
+    let mock = MockResumePolicy<Void>(onError: { _, e in .resume(e) })
+    let policy = mock.stopOnConsecutiveErrors(2)
+    var state = ResumeState()
+    let error = RequestError.http(HTTPDetails(http_status_code: 503, headers: [:]))
 
-    let customPolicy: StopOnConsecutiveErrors<Void> = .stopOnConsecutiveErrors(
-      maxConsecutiveErrors: 5)
-    #expect(customPolicy.maxConsecutiveErrors == 5)
+    // 0 errors -> resumes
+    #expect(policy.onError(state: state, error: error) == .resume(error))
+
+    // 1 error -> resumes
+    state.consecutiveErrorCount = 1
+    #expect(policy.onError(state: state, error: error) == .resume(error))
+
+    // 2 errors -> exhausted
+    state.consecutiveErrorCount = 2
+    #expect(policy.onError(state: state, error: error) == .exhausted(error))
+
+    // 3 errors -> exhausted
+    state.consecutiveErrorCount = 3
+    #expect(policy.onError(state: state, error: error) == .exhausted(error))
   }
 
-  @Test func recoverableVsPermanentErrors() {
-    let policy = StopOnConsecutiveErrors<Void>(maxConsecutiveErrors: 2)
-    var state = ResumeState()
+  @Test func innerPermanentPassesThrough() {
+    let permanentError = RequestError.http(HTTPDetails(http_status_code: 400, headers: [:]))
+    let mock = MockResumePolicy<Void>(onError: { _, e in .permanent(e) })
+    let policy = mock.stopOnConsecutiveErrors(5)
+    let state = ResumeState()
 
-    let transient503 = RequestError.http(HTTPDetails(http_status_code: 503, headers: [:]))
-    let transient408 = RequestError.http(HTTPDetails(http_status_code: 408, headers: [:]))
-    let transient429 = RequestError.http(HTTPDetails(http_status_code: 429, headers: [:]))
-    let transient502 = RequestError.http(HTTPDetails(http_status_code: 502, headers: [:]))
-    let transient504 = RequestError.http(HTTPDetails(http_status_code: 504, headers: [:]))
-    let ioError = RequestError.io(NSError(domain: "test", code: -1))
-    let permanent404 = RequestError.http(HTTPDetails(http_status_code: 404, headers: [:]))
-    let permanent400 = RequestError.http(HTTPDetails(http_status_code: 400, headers: [:]))
-    let permanent401 = RequestError.http(HTTPDetails(http_status_code: 401, headers: [:]))
-    let permanent403 = RequestError.http(HTTPDetails(http_status_code: 403, headers: [:]))
-    let permanent412 = RequestError.http(HTTPDetails(http_status_code: 412, headers: [:]))
-    let permanent499 = RequestError.http(HTTPDetails(http_status_code: 499, headers: [:]))
-    let permanent500 = RequestError.http(HTTPDetails(http_status_code: 500, headers: [:]))
+    #expect(policy.onError(state: state, error: permanentError) == .permanent(permanentError))
+  }
 
-    // Permanent errors
-    #expect(policy.onError(state: state, error: permanent404) == .permanent(permanent404))
-    #expect(policy.onError(state: state, error: permanent400) == .permanent(permanent400))
-    #expect(policy.onError(state: state, error: permanent401) == .permanent(permanent401))
-    #expect(policy.onError(state: state, error: permanent403) == .permanent(permanent403))
-    #expect(policy.onError(state: state, error: permanent412) == .permanent(permanent412))
-    #expect(policy.onError(state: state, error: permanent499) == .permanent(permanent499))
-    #expect(policy.onError(state: state, error: permanent500) == .permanent(permanent500))
+  @Test func innerExhaustedPassesThrough() {
+    let exhaustedError = RequestError.http(HTTPDetails(http_status_code: 503, headers: [:]))
+    let mock = MockResumePolicy<Void>(onError: { _, e in .exhausted(e) })
+    let policy = mock.stopOnConsecutiveErrors(5)
+    let state = ResumeState()
 
-    // Recoverable errors when below threshold
-    state.consecutiveErrorCount = 1
-    #expect(policy.onError(state: state, error: transient503) == .resume(transient503))
-    #expect(policy.onError(state: state, error: transient408) == .resume(transient408))
-    #expect(policy.onError(state: state, error: transient429) == .resume(transient429))
-    #expect(policy.onError(state: state, error: transient502) == .resume(transient502))
-    #expect(policy.onError(state: state, error: transient504) == .resume(transient504))
-    #expect(policy.onError(state: state, error: ioError) == .resume(ioError))
+    #expect(policy.onError(state: state, error: exhaustedError) == .exhausted(exhaustedError))
+  }
 
-    // Reaching consecutive threshold exhausts
-    state.consecutiveErrorCount = 2
-    #expect(policy.onError(state: state, error: transient503) == .exhausted(transient503))
+  @Test func progressForwardsToInner() {
+    let mock = MockResumePolicy<Void>(
+      onError: { _, e in .resume(e) },
+      onProgress: { state in
+        state.consecutiveErrorCount = 0
+      }
+    )
+    let policy = mock.stopOnConsecutiveErrors(3)
+    var state = ResumeState().with { $0.consecutiveErrorCount = 2 }
+
+    policy.onProgress(state: &state)
+    #expect(state.consecutiveErrorCount == 0)
+  }
+
+  @Test func remainingTimeForwardsToInner() {
+    let mock = MockResumePolicy<Void>(
+      onError: { _, e in .resume(e) },
+      remainingTime: { _ in .seconds(42) }
+    )
+    let policy = mock.stopOnConsecutiveErrors(3)
+    let state = ResumeState()
+
+    #expect(policy.remainingTime(state: state) == .seconds(42))
   }
 }

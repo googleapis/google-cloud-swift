@@ -34,7 +34,7 @@ extension StorageClient {
       options.backoffPolicy ?? self.options.download.backoffPolicy ?? clientOptions.backoffPolicy
     let effectiveResumePolicy =
       options.resumePolicy ?? self.options.download.resumePolicy
-      ?? StopOnConsecutiveErrors<DownloadDetails>()
+      ?? StorageResumePolicy<DownloadDetails>().stopOnConsecutiveErrors()
     let resumeLoop = _ResumeLoop(
       resumePolicy: effectiveResumePolicy,
       backoffPolicy: effectiveBackoffPolicy

@@ -53,25 +53,3 @@ extension ResumePolicy {
     nil
   }
 }
-
-extension RequestError {
-  /// Indicates whether the error is transient and recoverable via session resumption.
-  public var isRecoverableForResume: Bool {
-    switch self {
-    case .io:
-      return true
-    case .http(let details):
-      let code = details.http_status_code
-      // 408 (Request Timeout), 429 (Too Many Requests), 502 (Bad Gateway),
-      // 503 (Service Unavailable), 504 (Gateway Timeout) are recoverable.
-      return code == 408 || code == 429 || code == 502 || code == 503 || code == 504
-    case .service(let details):
-      let code = details.code
-      return code == .unavailable || code == .resourceExhausted || code == .deadlineExceeded
-    case .binding, .exhausted, .unimplemented, .malformedResponse:
-      return false
-    @unknown default:
-      return false
-    }
-  }
-}

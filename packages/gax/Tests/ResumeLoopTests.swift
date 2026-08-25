@@ -29,7 +29,7 @@ import Testing
 
   @Test func immediateSuccess() async throws {
     let loop = _ResumeLoop(
-      resumePolicy: StopOnConsecutiveErrors<Void>(),
+      resumePolicy: AlwaysResume<Void>().stopOnConsecutiveErrors(),
       backoffPolicy: MockBackoff()
     )
 
@@ -43,7 +43,7 @@ import Testing
 
   @Test func transientFailureThenSuccess() async throws {
     let loop = _ResumeLoop(
-      resumePolicy: StopOnConsecutiveErrors<Void>(maxConsecutiveErrors: 3),
+      resumePolicy: AlwaysResume<Void>().stopOnConsecutiveErrors(3),
       backoffPolicy: MockBackoff(delay: .milliseconds(10))
     )
 
@@ -72,7 +72,7 @@ import Testing
 
   @Test func permanentErrorThrows() async throws {
     let loop = _ResumeLoop(
-      resumePolicy: StopOnConsecutiveErrors<Void>(),
+      resumePolicy: NeverResume<Void>(),
       backoffPolicy: MockBackoff()
     )
 
@@ -92,7 +92,7 @@ import Testing
 
   @Test func exhaustedConsecutiveErrorsThrows() async throws {
     let loop = _ResumeLoop(
-      resumePolicy: StopOnConsecutiveErrors<Void>(maxConsecutiveErrors: 2),
+      resumePolicy: AlwaysResume<Void>().stopOnConsecutiveErrors(2),
       backoffPolicy: MockBackoff()
     )
 
@@ -115,7 +115,7 @@ import Testing
 
   @Test func handleErrorAndProgress() async throws {
     let loop = _ResumeLoop(
-      resumePolicy: StopOnConsecutiveErrors<Void>(maxConsecutiveErrors: 2),
+      resumePolicy: AlwaysResume<Void>().stopOnConsecutiveErrors(2),
       backoffPolicy: MockBackoff(delay: .milliseconds(10))
     )
 

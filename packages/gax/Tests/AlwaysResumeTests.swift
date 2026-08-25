@@ -20,14 +20,16 @@ import Testing
   @Test func alwaysResume() {
     let policy = AlwaysResume<Void>()
     var state = ResumeState()
-    let transient503 = RequestError.http(HTTPDetails(http_status_code: 503, headers: [:]))
-    let permanent400 = RequestError.http(HTTPDetails(http_status_code: 400, headers: [:]))
+    let error503 = RequestError.http(HTTPDetails(http_status_code: 503, headers: [:]))
+    let error400 = RequestError.http(HTTPDetails(http_status_code: 400, headers: [:]))
+    let errorBinding = RequestError.binding("test error")
 
-    #expect(policy.onError(state: state, error: permanent400) == .permanent(permanent400))
+    #expect(policy.onError(state: state, error: error400) == .resume(error400))
+    #expect(policy.onError(state: state, error: errorBinding) == .resume(errorBinding))
 
     state.consecutiveErrorCount = 50
     state.totalResumeCount = 500
-    #expect(policy.onError(state: state, error: transient503) == .resume(transient503))
+    #expect(policy.onError(state: state, error: error503) == .resume(error503))
     #expect(policy.remainingTime(state: state) == nil)
   }
 

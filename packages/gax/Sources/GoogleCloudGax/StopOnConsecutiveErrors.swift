@@ -14,39 +14,62 @@
 
 import Foundation
 
-/// A ``ResumePolicy`` that permits indefinite resumes across a transfer as long as forward progress
-/// is made, halting only when consecutive errors occur without making progress.
-///
-/// This is the recommended default policy for resumable transfers like Cloud Storage uploads and downloads.
-public struct StopOnConsecutiveErrors<Details: Sendable>: ResumePolicy, Sendable, Equatable {
+/// A ``ResumePolicy`` decorator that permits resumes as long as forward progress
+/// is made, halting when consecutive errors reach a maximum threshold.
+public struct StopOnConsecutiveErrors<P: Sendable>: Sendable {
+  /// The inner resume policy being decorated.
+  public let inner: P
+
   /// The maximum number of consecutive errors permitted before the transfer is abandoned.
   public let maxConsecutiveErrors: UInt32
 
   /// Creates a new `StopOnConsecutiveErrors` instance.
   ///
-  /// - Parameter maxConsecutiveErrors: The maximum number of consecutive errors without forward progress. Defaults to 3.
-  public init(maxConsecutiveErrors: UInt32 = 3) {
+  /// - Parameters:
+  ///   - inner: The underlying resume policy.
+  ///   - maxConsecutiveErrors: The maximum number of consecutive errors without forward progress. Defaults to 3.
+  public init(inner: P, maxConsecutiveErrors: UInt32 = 3) {
+    self.inner = inner
     self.maxConsecutiveErrors = maxConsecutiveErrors
-  }
-
-  public func onError(state: ResumeState<Details>, error: RequestError) -> ResumeResult {
-    guard error.isRecoverableForResume else {
-      return .permanent(error)
-    }
-
-    if state.consecutiveErrorCount >= maxConsecutiveErrors {
-      return .exhausted(error)
-    }
-
-    return .resume(error)
   }
 }
 
+extension StopOnConsecutiveErrors: ResumePolicy where P: ResumePolicy & Sendable {
+  public typealias Details = P.Details
+
+  public func onError(state: ResumeState<Details>, error: RequestError) -> ResumeResult {
+    switch inner.onError(state: state, error: error) {
+    case .permanent(let e):
+      return .permanent(e)
+    case .exhausted(let e):
+      return .exhausted(e)
+    case .resume(let e):
+      if state.consecutiveErrorCount >= maxConsecutiveErrors {
+        return .exhausted(e)
+      }
+      return .resume(e)
+    }
+  }
+
+  public func onProgress(state: inout ResumeState<Details>) {
+    inner.onProgress(state: &state)
+  }
+
+  public func remainingTime(state: ResumeState<Details>) -> Duration? {
+    inner.remainingTime(state: state)
+  }
+}
+
+extension StopOnConsecutiveErrors: Equatable where P: Equatable {}
+
 extension ResumePolicy {
-  /// Creates a `StopOnConsecutiveErrors` resume policy with default settings (max 3 consecutive errors).
-  public static func stopOnConsecutiveErrors<D: Sendable>(maxConsecutiveErrors: UInt32 = 3)
-    -> StopOnConsecutiveErrors<D> where Self == StopOnConsecutiveErrors<D>
+  /// Decorates a `ResumePolicy` to halt when consecutive errors exceed a threshold without forward progress.
+  ///
+  /// - Parameter maxConsecutiveErrors: The maximum consecutive error threshold. Defaults to 3.
+  /// - Returns: A decorated resume policy.
+  public func stopOnConsecutiveErrors(_ maxConsecutiveErrors: UInt32 = 3)
+    -> StopOnConsecutiveErrors<Self>
   {
-    StopOnConsecutiveErrors(maxConsecutiveErrors: maxConsecutiveErrors)
+    StopOnConsecutiveErrors(inner: self, maxConsecutiveErrors: maxConsecutiveErrors)
   }
 }

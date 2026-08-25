@@ -19,6 +19,18 @@ import GoogleCloudAuth
 import Testing
 
 @Suite struct ResumePolicyTests {
+  private func isResume(_ result: ResumeResult) -> Bool {
+    if case .resume = result { true } else { false }
+  }
+
+  private func isPermanent(_ result: ResumeResult) -> Bool {
+    if case .permanent = result { true } else { false }
+  }
+
+  private func isExhausted(_ result: ResumeResult) -> Bool {
+    if case .exhausted = result { true } else { false }
+  }
+
   @Test func uploadDetailsDefaults() {
     let details = UploadDetails()
     #expect(details.bytesUploaded == 0)
@@ -74,7 +86,7 @@ import Testing
   }
 
   @Test func resumePolicyProgressUpdatesState() {
-    let policy = StopOnConsecutiveErrors<UploadDetails>()
+    let policy = StorageResumePolicy<UploadDetails>()
     var state = ResumeState(details: UploadDetails(bytesUploaded: 0, totalBytes: 1000)).with {
       $0.consecutiveErrorCount = 3
     }
@@ -91,8 +103,43 @@ import Testing
     #expect(state.consecutiveErrorCount == 0)
   }
 
-  @Test func stopOnConsecutiveErrorsPolicy() {
-    let policy = StopOnConsecutiveErrors<Void>(maxConsecutiveErrors: 2)
+  @Test func storageResumePolicy() {
+    let policy = StorageResumePolicy<Void>()
+    let state = ResumeState()
+
+    // Recoverable HTTP status codes
+    let err408 = RequestError.http(HTTPDetails(http_status_code: 408, headers: [:]))
+    let err429 = RequestError.http(HTTPDetails(http_status_code: 429, headers: [:]))
+    let err502 = RequestError.http(HTTPDetails(http_status_code: 502, headers: [:]))
+    let err503 = RequestError.http(HTTPDetails(http_status_code: 503, headers: [:]))
+    let err504 = RequestError.http(HTTPDetails(http_status_code: 504, headers: [:]))
+    let errIO = RequestError.io(NSError(domain: "test", code: -1))
+
+    #expect(isResume(policy.onError(state: state, error: err408)))
+    #expect(isResume(policy.onError(state: state, error: err429)))
+    #expect(isResume(policy.onError(state: state, error: err502)))
+    #expect(isResume(policy.onError(state: state, error: err503)))
+    #expect(isResume(policy.onError(state: state, error: err504)))
+    #expect(isResume(policy.onError(state: state, error: errIO)))
+
+    // Permanent HTTP status codes
+    let err400 = RequestError.http(HTTPDetails(http_status_code: 400, headers: [:]))
+    let err401 = RequestError.http(HTTPDetails(http_status_code: 401, headers: [:]))
+    let err403 = RequestError.http(HTTPDetails(http_status_code: 403, headers: [:]))
+    let err404 = RequestError.http(HTTPDetails(http_status_code: 404, headers: [:]))
+    let err412 = RequestError.http(HTTPDetails(http_status_code: 412, headers: [:]))
+    let err500 = RequestError.http(HTTPDetails(http_status_code: 500, headers: [:]))
+
+    #expect(isPermanent(policy.onError(state: state, error: err400)))
+    #expect(isPermanent(policy.onError(state: state, error: err401)))
+    #expect(isPermanent(policy.onError(state: state, error: err403)))
+    #expect(isPermanent(policy.onError(state: state, error: err404)))
+    #expect(isPermanent(policy.onError(state: state, error: err412)))
+    #expect(isPermanent(policy.onError(state: state, error: err500)))
+  }
+
+  @Test func storageResumePolicyConsecutiveErrors() {
+    let policy = StorageResumePolicy<Void>().stopOnConsecutiveErrors(2)
     var state = ResumeState()
 
     let transientError = RequestError.http(HTTPDetails(http_status_code: 503, headers: [:]))
@@ -101,22 +148,13 @@ import Testing
     let ioError = RequestError.io(NSError(domain: "test", code: -1))
 
     // Permanent errors halt immediately
-    if case .permanent = policy.onError(state: state, error: permanentError) {
-    } else {
-      Issue.record("Expected .permanent for 404")
-    }
-    if case .permanent = policy.onError(state: state, error: authError) {
-    } else {
-      Issue.record("Expected .permanent for 401")
-    }
+    #expect(isPermanent(policy.onError(state: state, error: permanentError)))
+    #expect(isPermanent(policy.onError(state: state, error: authError)))
 
     // 1st transient error resumes
     state.consecutiveErrorCount = 1
     state.totalResumeCount = 1
-    if case .resume = policy.onError(state: state, error: transientError) {
-    } else {
-      Issue.record("Expected .resume for 1st consecutive transient error")
-    }
+    #expect(isResume(policy.onError(state: state, error: transientError)))
 
     // Progress resets consecutive errors
     policy.onProgress(state: &state)
@@ -124,38 +162,26 @@ import Testing
 
     // Consecutive error 1 after progress resumes
     state.consecutiveErrorCount = 1
-    if case .resume = policy.onError(state: state, error: ioError) {
-    } else {
-      Issue.record("Expected .resume for io error")
-    }
+    #expect(isResume(policy.onError(state: state, error: ioError)))
 
     // Consecutive error 2 reaches threshold and exhausts
     state.consecutiveErrorCount = 2
-    if case .exhausted = policy.onError(state: state, error: transientError) {
-    } else {
-      Issue.record("Expected .exhausted after reaching maxConsecutiveErrors")
-    }
+    #expect(isExhausted(policy.onError(state: state, error: transientError)))
   }
 
   @Test func limitedTotalResumesPolicy() {
-    let policy = LimitedTotalResumes<Void>(maxTotalResumes: 2)
+    let policy = StorageResumePolicy<Void>().withTotalResumeLimit(2)
     var state = ResumeState()
 
     let transientError = RequestError.http(HTTPDetails(http_status_code: 503, headers: [:]))
     let permanentError = RequestError.http(HTTPDetails(http_status_code: 403, headers: [:]))
 
     // Permanent error
-    if case .permanent = policy.onError(state: state, error: permanentError) {
-    } else {
-      Issue.record("Expected .permanent for 403")
-    }
+    #expect(isPermanent(policy.onError(state: state, error: permanentError)))
 
     // 1st resume
     state.totalResumeCount = 1
-    if case .resume = policy.onError(state: state, error: transientError) {
-    } else {
-      Issue.record("Expected .resume for 1st resume attempt")
-    }
+    #expect(isResume(policy.onError(state: state, error: transientError)))
 
     // Making progress doesn't reset total resume count
     policy.onProgress(state: &state)
@@ -163,10 +189,7 @@ import Testing
 
     // 2nd resume hits max and exhausts
     state.totalResumeCount = 2
-    if case .exhausted = policy.onError(state: state, error: transientError) {
-    } else {
-      Issue.record("Expected .exhausted after maxTotalResumes reached")
-    }
+    #expect(isExhausted(policy.onError(state: state, error: transientError)))
   }
 
   @Test func neverResumePolicy() {
@@ -175,14 +198,8 @@ import Testing
     let transientError = RequestError.http(HTTPDetails(http_status_code: 503, headers: [:]))
     let ioError = RequestError.io(NSError(domain: "test", code: -1))
 
-    if case .permanent = policy.onError(state: state, error: transientError) {
-    } else {
-      Issue.record("Expected .permanent for NeverResume")
-    }
-    if case .permanent = policy.onError(state: state, error: ioError) {
-    } else {
-      Issue.record("Expected .permanent for NeverResume on IO error")
-    }
+    #expect(isPermanent(policy.onError(state: state, error: transientError)))
+    #expect(isPermanent(policy.onError(state: state, error: ioError)))
   }
 
   @Test func alwaysResumePolicy() {
@@ -191,17 +208,11 @@ import Testing
     let transientError = RequestError.http(HTTPDetails(http_status_code: 503, headers: [:]))
     let permanentError = RequestError.http(HTTPDetails(http_status_code: 400, headers: [:]))
 
-    if case .permanent = policy.onError(state: state, error: permanentError) {
-    } else {
-      Issue.record("Expected .permanent for 400")
-    }
+    #expect(isResume(policy.onError(state: state, error: permanentError)))
 
     state.consecutiveErrorCount = 100
     state.totalResumeCount = 500
-    if case .resume = policy.onError(state: state, error: transientError) {
-    } else {
-      Issue.record("Expected .resume for AlwaysResume even with high attempt counts")
-    }
+    #expect(isResume(policy.onError(state: state, error: transientError)))
   }
 
   @Test func uploadWithOptionsCustomResumePolicy() async throws {

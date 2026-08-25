@@ -14,21 +14,21 @@
 
 import Foundation
 
-/// A ``ResumePolicy`` that attempts to resume on all recoverable errors without imposing limits
+/// A ``ResumePolicy`` that attempts to resume on all errors without imposing limits
 /// on consecutive or total attempts.
+///
+/// This policy must be decorated to limit the number of consecutive errors, total resume attempts,
+/// or duration of the resume loop.
 public struct AlwaysResume<Details: Sendable>: ResumePolicy, Sendable, Equatable {
   public init() {}
 
   public func onError(state: ResumeState<Details>, error: RequestError) -> ResumeResult {
-    guard error.isRecoverableForResume else {
-      return .permanent(error)
-    }
-    return .resume(error)
+    .resume(error)
   }
 }
 
 extension ResumePolicy {
-  /// An `AlwaysResume` policy that attempts to resume on all recoverable errors indefinitely.
+  /// An `AlwaysResume` policy that attempts to resume on all errors indefinitely.
   public static func always<D: Sendable>() -> AlwaysResume<D> where Self == AlwaysResume<D> {
     AlwaysResume<D>()
   }
