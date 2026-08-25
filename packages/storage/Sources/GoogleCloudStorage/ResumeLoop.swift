@@ -20,12 +20,12 @@ import GoogleCloudGax
 /// Unlike `_RetryLoop` which manages atomic single-RPC retries with `RetryPolicy`, `_ResumeLoop`
 /// tracks forward progress and handles transient error recovery, session resumption,
 /// and backoff across an entire operation using a `ResumePolicy` and `BackoffPolicy`.
-@_spi(GoogleCloudInternal) public struct _ResumeLoop<Details: Sendable>: Sendable {
-  public let resumePolicy: any ResumePolicy<Details>
-  public let backoffPolicy: any BackoffPolicy
+package struct _ResumeLoop<Details: Sendable>: Sendable {
+  package let resumePolicy: any ResumePolicy<Details>
+  package let backoffPolicy: any BackoffPolicy
 
   /// Creates a new `_ResumeLoop` with the specified resume and backoff policies.
-  public init(
+  package init(
     resumePolicy: any ResumePolicy<Details>,
     backoffPolicy: any BackoffPolicy
   ) {
@@ -36,7 +36,7 @@ import GoogleCloudGax
   /// Updates forward progress, resetting consecutive errors and updating the last progress timestamp.
   ///
   /// - Parameter state: The `ResumeState` to update.
-  public func onProgress(state: inout ResumeState<Details>) {
+  package func onProgress(state: inout ResumeState<Details>) {
     resumePolicy.onProgress(state: &state)
   }
 
@@ -50,7 +50,7 @@ import GoogleCloudGax
   ///   - error: The error encountered.
   ///   - sleep: The sleep closure used to apply backoff delay. Defaults to `Task.sleep(for:)`.
   /// - Throws: The error if non-recoverable, or if the policy limits are exhausted.
-  public func handleError(
+  package func handleError(
     state: inout ResumeState<Details>,
     error: any Error,
     sleep: (Duration) async throws -> Void = { (d: Duration) in try await Task.sleep(for: d) }
@@ -88,7 +88,7 @@ import GoogleCloudGax
   ///   - attempt: The closure to execute. It receives the remaining duration (if time-bounded).
   /// - Returns: The value returned by the successful attempt.
   /// - Throws: The error if non-recoverable or if the resume policy is exhausted.
-  public func run<Response>(
+  package func run<Response>(
     state: inout ResumeState<Details>,
     attempt: (_ remainingTime: Duration?) async throws -> Response
   ) async throws -> Response {
@@ -98,7 +98,7 @@ import GoogleCloudGax
   }
 
   /// Runs an async attempt closure with a custom sleep function.
-  public func run<Response>(
+  package func run<Response>(
     state: inout ResumeState<Details>,
     attempt: (_ remainingTime: Duration?) async throws -> Response,
     sleep: (Duration) async throws -> Void
@@ -115,7 +115,7 @@ import GoogleCloudGax
   }
 
   /// Runs an async attempt closure with a value-passed `ResumeState`.
-  public func run<Response>(
+  package func run<Response>(
     state: ResumeState<Details>,
     attempt: (_ remainingTime: Duration?) async throws -> Response
   ) async throws -> Response {
@@ -124,7 +124,7 @@ import GoogleCloudGax
   }
 
   /// Runs an async attempt closure with a value-passed `ResumeState` and custom sleep function.
-  public func run<Response>(
+  package func run<Response>(
     state: ResumeState<Details>,
     attempt: (_ remainingTime: Duration?) async throws -> Response,
     sleep: (Duration) async throws -> Void
@@ -134,9 +134,9 @@ import GoogleCloudGax
   }
 }
 
-@_spi(GoogleCloudInternal) extension _ResumeLoop where Details == Void {
+extension _ResumeLoop where Details == Void {
   /// Runs an async attempt closure starting with a fresh default `ResumeState`.
-  public func run<Response>(
+  package func run<Response>(
     attempt: (_ remainingTime: Duration?) async throws -> Response
   ) async throws -> Response {
     var state = ResumeState()
@@ -144,7 +144,7 @@ import GoogleCloudGax
   }
 
   /// Runs an async attempt closure starting with a fresh default `ResumeState` and custom sleep function.
-  public func run<Response>(
+  package func run<Response>(
     attempt: (_ remainingTime: Duration?) async throws -> Response,
     sleep: (Duration) async throws -> Void
   ) async throws -> Response {

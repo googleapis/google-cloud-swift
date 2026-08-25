@@ -14,7 +14,7 @@
 
 import Foundation
 import GoogleCloudGax
-@_spi(GoogleCloudInternal) import GoogleCloudStorage
+import GoogleCloudStorage
 import GoogleRpc
 import Synchronization
 import Testing
