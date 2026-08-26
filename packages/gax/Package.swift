@@ -69,7 +69,7 @@ let package = Package(
         "GoogleCloudGaxGRPC",
         .product(name: "DequeModule", package: "swift-collections"),
         .product(name: "GoogleRpc", package: "google-rpc"),
-        .product(name: "GoogleCloudWkt", package: "wkt"),
+        .product(name: "GoogleCloudWKT", package: "wkt"),
       ],
       path: "Tests",
     ),
