@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A summary of findings generated for an organization, a folder, or a project.
-public struct FindingSummary: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct FindingSummary: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. The type of the finding.
@@ -34,11 +34,11 @@ public struct FindingSummary: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// Output only. The creation time of the earliest finding that this summary is
   /// based on.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time of the most recent update among all the findings that
   /// this summary is based on.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Severity of the finding.
   public var severity: FindingSeverity = FindingSeverity()
@@ -63,7 +63,7 @@ public struct FindingSummary: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Details about the `FindingSummary` resource.
-  public struct SummaryDetails: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct SummaryDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. The type of Cloud resource this summary detail applies to.
@@ -255,21 +255,21 @@ public struct FindingSummary: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.storage.control.v2.FindingSummary.SummaryDetails"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.storage.control.v2.FindingSummary"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

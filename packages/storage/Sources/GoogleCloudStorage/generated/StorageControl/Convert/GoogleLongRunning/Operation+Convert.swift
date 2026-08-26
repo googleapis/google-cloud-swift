@@ -18,10 +18,10 @@ import Foundation
 import GoogleCloudGax
 internal import StorageControlProtos
 internal import SwiftProtobuf
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
-internal import GoogleCloudWktConvert
+internal import GoogleCloudWKTConvert
 
 extension GoogleLongRunning.Operation {
   internal typealias ProtoType = StorageControlProtos.Google_Longrunning_Operation

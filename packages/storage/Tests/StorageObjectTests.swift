@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 @testable import GoogleCloudStorage
 import Testing
 
@@ -31,8 +31,8 @@ import Testing
   }
 
   @Test func storageObjectWithHelperAllFields() throws {
-    let timeCreated = try GoogleCloudWkt.Timestamp(seconds: 12345, nanos: 6789)
-    let updated = try GoogleCloudWkt.Timestamp(seconds: 67890, nanos: 1234)
+    let timeCreated = try GoogleCloudWKT.Timestamp(seconds: 12345, nanos: 6789)
+    let updated = try GoogleCloudWKT.Timestamp(seconds: 67890, nanos: 1234)
 
     let object = Object().with {
       $0.bucket = "my-bucket"
@@ -73,7 +73,7 @@ import Testing
       return
     }
 
-    let decoder = GoogleCloudWkt._ProtoJSONDecoder()
+    let decoder = GoogleCloudWKT._ProtoJSONDecoder()
     let object = try decoder.decode(Object.self, from: data)
 
     #expect(object.bucket == "test-bucket")
@@ -85,7 +85,7 @@ import Testing
     #expect(object.createTime != nil)
     #expect(object.updateTime != nil)
 
-    let expectedTime = try GoogleCloudWkt.Timestamp(seconds: 1, nanos: 2)
+    let expectedTime = try GoogleCloudWKT.Timestamp(seconds: 1, nanos: 2)
     #expect(object.createTime == expectedTime)
     #expect(object.updateTime == expectedTime)
   }
@@ -114,7 +114,7 @@ import Testing
       return
     }
 
-    let decoder = GoogleCloudWkt._ProtoJSONDecoder()
+    let decoder = GoogleCloudWKT._ProtoJSONDecoder()
     let object = try decoder.decode(Object.self, from: data)
 
     #expect(object.bucket == "my-bucket")
@@ -146,7 +146,7 @@ import Testing
       return
     }
 
-    let decoder = GoogleCloudWkt._ProtoJSONDecoder()
+    let decoder = GoogleCloudWKT._ProtoJSONDecoder()
     let v1Object = try decoder.decode(ObjectV1Response.self, from: data)
     let object = v1Object.toObject()
 
@@ -162,7 +162,7 @@ import Testing
     #expect(object.retentionExpireTime != nil)
     #expect(object.checksums != nil)
 
-    let expectedTime = try GoogleCloudWkt.Timestamp(seconds: 1, nanos: 2)
+    let expectedTime = try GoogleCloudWKT.Timestamp(seconds: 1, nanos: 2)
     #expect(object.createTime == expectedTime)
     #expect(object.updateTime == expectedTime)
   }

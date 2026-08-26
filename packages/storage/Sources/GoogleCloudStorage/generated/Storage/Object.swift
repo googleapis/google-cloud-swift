@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// An object.
-public struct Object: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Object: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Immutable. The name of this object. Nearly any sequence of unicode
@@ -86,10 +86,10 @@ public struct Object: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// Output only. If this object is noncurrent, this is the time when the object
   /// became noncurrent.
-  public var deleteTime: GoogleCloudWkt.Timestamp? = nil
+  public var deleteTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time when the object was finalized.
-  public var finalizeTime: GoogleCloudWkt.Timestamp? = nil
+  public var finalizeTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. Content-Type of the object data, matching
   /// [RFC 7231 §3.1.1.5](https://tools.ietf.org/html/rfc7231#section-3.1.1.5).
@@ -98,7 +98,7 @@ public struct Object: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var contentType: Swift.String = Swift.String()
 
   /// Output only. The creation time of the object.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Number of underlying components that make up this object.
   /// Components are accumulated by compose operations.
@@ -117,7 +117,7 @@ public struct Object: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// such as modifying custom metadata, as well as changes made by Cloud Storage
   /// on behalf of a requester, such as changing the storage class based on an
   /// Object Lifecycle Configuration.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. Cloud KMS Key used to encrypt this object, if the object is
   /// encrypted by such a key.
@@ -125,7 +125,7 @@ public struct Object: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// Output only. The time at which the object's storage class was last changed.
   /// When the object is initially created, it is set to `time_created`.
-  public var updateStorageClassTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateStorageClassTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. Whether an object is under temporary hold. While this flag is set
   /// to true, the object is protected against deletion and overwrites.  A common
@@ -141,7 +141,7 @@ public struct Object: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// unknown until the hold is removed. Note 2: This value can be provided even
   /// when temporary hold is set (so that the user can reason about policy
   /// without having to first unset the temporary hold).
-  public var retentionExpireTime: GoogleCloudWkt.Timestamp? = nil
+  public var retentionExpireTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. User-provided metadata, in key/value pairs.
   public var metadata: [Swift.String: Swift.String] = [:]
@@ -173,19 +173,19 @@ public struct Object: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var customerEncryption: CustomerEncryption? = nil
 
   /// Optional. A user-specified timestamp set on an object.
-  public var customTime: GoogleCloudWkt.Timestamp? = nil
+  public var customTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. This is the time when the object became soft-deleted.
   ///
   /// Soft-deleted objects are only accessible if a soft_delete_policy is
   /// enabled. Also see `hard_delete_time`.
-  public var softDeleteTime: GoogleCloudWkt.Timestamp? = nil
+  public var softDeleteTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time when the object is permanently deleted.
   ///
   /// Only set when an object becomes soft-deleted with a `soft_delete_policy`.
   /// Otherwise, the object is not accessible.
-  public var hardDeleteTime: GoogleCloudWkt.Timestamp? = nil
+  public var hardDeleteTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. Retention configuration of this object.
   /// Might only be configured if the bucket has object retention enabled.
@@ -209,7 +209,7 @@ public struct Object: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// Specifies retention parameters of the object. Objects under retention
   /// cannot be deleted or overwritten until their retention expires.
-  public struct Retention: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Retention: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. The mode of the Retention.
@@ -217,7 +217,7 @@ public struct Object: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Optional. The timestamp that the object needs to be retained until.
     /// Value cannot be set in the past or more than 100 years in the future.
-    public var retainUntilTime: GoogleCloudWkt.Timestamp? = nil
+    public var retainUntilTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Initialize a new instance of `Retention`.
     public init() {}
@@ -347,21 +347,21 @@ public struct Object: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.storage.v2.Object.Retention"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.storage.v2.Object"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

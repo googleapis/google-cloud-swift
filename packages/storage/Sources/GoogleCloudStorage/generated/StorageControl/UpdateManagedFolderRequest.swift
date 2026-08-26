@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message for UpdateManagedFolder.
-public struct UpdateManagedFolderRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct UpdateManagedFolderRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. Properties of the managed folder being updated. Currently, this
@@ -34,7 +34,7 @@ public struct UpdateManagedFolderRequest: Codable, Equatable, GoogleCloudWkt._An
   /// `rapid_cache_config.policies.<key>`, but patching is not supported for
   /// a field within `RapidCachePolicy.policies.<key>`, like
   /// rapid_cache_config.policies.[key].ingest_on_write.
-  public var updateMask: GoogleCloudWkt.FieldMask? = nil
+  public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
   /// Optional. The operation succeeds conditional on the managed folder's
   /// current metageneration matching the value here specified.
@@ -67,10 +67,10 @@ public struct UpdateManagedFolderRequest: Codable, Equatable, GoogleCloudWkt._An
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.storage.control.v2.UpdateManagedFolderRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -18,9 +18,9 @@ import Foundation
 import GoogleCloudGax
 internal import StorageControlProtos
 internal import SwiftProtobuf
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleType
-internal import GoogleCloudWktConvert
+internal import GoogleCloudWKTConvert
 
 extension GoogleType.Interval {
   internal typealias ProtoType = StorageControlProtos.Google_Type_Interval

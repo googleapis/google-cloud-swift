@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 package struct StringOrInt64: Decodable, Sendable {
   package let value: Int64
@@ -47,7 +47,7 @@ package struct StringOrInt32: Decodable, Sendable {
 
 package struct RetentionV1: Decodable, Sendable {
   package var mode: String?
-  package var retainUntilTime: GoogleCloudWkt.Timestamp?
+  package var retainUntilTime: GoogleCloudWKT.Timestamp?
 }
 
 package struct ObjectV1Response: Decodable, Sendable {
@@ -64,21 +64,21 @@ package struct ObjectV1Response: Decodable, Sendable {
   package var acl: [ObjectAccessControl]?
   package var contentLanguage: String?
   package var contentType: String?
-  package var timeCreated: GoogleCloudWkt.Timestamp?
+  package var timeCreated: GoogleCloudWKT.Timestamp?
   package var componentCount: StringOrInt32?
   package var crc32c: String?
   package var md5Hash: String?
-  package var updated: GoogleCloudWkt.Timestamp?
+  package var updated: GoogleCloudWKT.Timestamp?
   package var kmsKeyName: String?
-  package var timeStorageClassUpdated: GoogleCloudWkt.Timestamp?
+  package var timeStorageClassUpdated: GoogleCloudWKT.Timestamp?
   package var temporaryHold: Bool?
-  package var retentionExpirationTime: GoogleCloudWkt.Timestamp?
+  package var retentionExpirationTime: GoogleCloudWKT.Timestamp?
   package var metadata: [String: String]?
   package var contexts: ObjectContexts?
   package var eventBasedHold: Bool?
   package var owner: Owner?
   package var customerEncryption: CustomerEncryption?
-  package var customTime: GoogleCloudWkt.Timestamp?
+  package var customTime: GoogleCloudWKT.Timestamp?
   package var retention: RetentionV1?
 
   package init() {}

@@ -18,9 +18,9 @@ import Foundation
 import GoogleCloudGax
 internal import StorageControlProtos
 internal import SwiftProtobuf
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleRpc
-internal import GoogleCloudWktConvert
+internal import GoogleCloudWKTConvert
 
 extension GoogleRpc.Status {
   internal typealias ProtoType = StorageControlProtos.Google_Rpc_Status

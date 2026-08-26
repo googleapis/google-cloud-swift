@@ -16,7 +16,7 @@ import Foundation
 import GoogleCloudAuth
 import GoogleCloudGax
 @testable import GoogleCloudStorage
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 import Testing
 
@@ -215,7 +215,7 @@ struct StorageControlClientIntegrationTests: Sendable {
           $0.metadata = ["test-env": "integration", "sdk-lang": "swift"]
           $0.cacheControl = "public, max-age=3600"
         }
-        $0.updateMask = GoogleCloudWkt.FieldMask(paths: ["metadata", "cache_control"])
+        $0.updateMask = GoogleCloudWKT.FieldMask(paths: ["metadata", "cache_control"])
       }
       let updated = try await controlClient.updateObject(request: updateReq, options: .init())
       #expect(updated.metadata["test-env"] == "integration")

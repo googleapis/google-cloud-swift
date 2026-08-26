@@ -17,7 +17,7 @@
 import Foundation
 import GoogleCloudAuth
 import GoogleCloudGax
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 import GoogleLongRunning
 import GoogleRpc

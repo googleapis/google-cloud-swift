@@ -18,7 +18,7 @@ import Foundation
 import GoogleCloudAuth
 @_spi(GoogleCloudInternal) import GoogleCloudGax
 @_spi(GoogleCloudInternal) import GoogleCloudGaxGRPC
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 import GoogleLongRunning
 import GoogleRpc

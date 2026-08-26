@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message to update the `IntelligenceConfig` resource associated with
 /// your folder.
-public struct UpdateFolderIntelligenceConfigRequest: Codable, Equatable, GoogleCloudWkt
+public struct UpdateFolderIntelligenceConfigRequest: Codable, Equatable, GoogleCloudWKT
     ._AnyPackable,
   Sendable
 {
@@ -29,7 +29,7 @@ public struct UpdateFolderIntelligenceConfigRequest: Codable, Equatable, GoogleC
   /// Required. The `update_mask` that specifies the fields within the
   /// `IntelligenceConfig` resource that should be modified by this update. Only
   /// the listed fields are updated.
-  public var updateMask: GoogleCloudWkt.FieldMask? = nil
+  public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
   /// Optional. The ID that uniquely identifies the request, preventing duplicate
   /// processing.
@@ -54,10 +54,10 @@ public struct UpdateFolderIntelligenceConfigRequest: Codable, Equatable, GoogleC
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.storage.control.v2.UpdateFolderIntelligenceConfigRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

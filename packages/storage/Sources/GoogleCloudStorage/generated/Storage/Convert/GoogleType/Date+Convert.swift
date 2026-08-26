@@ -18,9 +18,9 @@ import Foundation
 import GoogleCloudGax
 internal import StorageProtos
 internal import SwiftProtobuf
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleType
-internal import GoogleCloudWktConvert
+internal import GoogleCloudWKTConvert
 
 extension GoogleType.Date {
   internal typealias ProtoType = StorageProtos.Google_Type_Date

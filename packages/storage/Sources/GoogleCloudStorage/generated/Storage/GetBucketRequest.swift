@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message for [GetBucket][google.storage.v2.Storage.GetBucket].
 ///
 /// [google.storage.v2.Storage.GetBucket]: <doc:StorageControlClient/getBucket(request:options:)>
-public struct GetBucketRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct GetBucketRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. Name of a bucket.
@@ -37,7 +37,7 @@ public struct GetBucketRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// Mask specifying which fields to read.
   /// A `*` field might be used to indicate all fields.
   /// If no mask is specified, it defaults to all fields.
-  public var readMask: GoogleCloudWkt.FieldMask? = nil
+  public var readMask: GoogleCloudWKT.FieldMask? = nil
 
   /// Initialize a new instance of `GetBucketRequest`.
   public init() {}
@@ -58,10 +58,10 @@ public struct GetBucketRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.storage.v2.GetBucketRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

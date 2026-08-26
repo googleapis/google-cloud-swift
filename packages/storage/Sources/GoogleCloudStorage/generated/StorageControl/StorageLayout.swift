@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The storage layout configuration of a bucket.
-public struct StorageLayout: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct StorageLayout: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. The name of the StorageLayout resource.
@@ -62,7 +62,7 @@ public struct StorageLayout: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// Configuration for Custom Dual Regions.  It should specify precisely two
   /// eligible regions within the same Multiregion. More information on regions
   /// may be found [here](https://cloud.google.com/storage/docs/locations).
-  public struct CustomPlacementConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct CustomPlacementConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// List of locations to use for data placement.
@@ -87,16 +87,16 @@ public struct StorageLayout: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.storage.control.v2.StorageLayout.CustomPlacementConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Configuration for a bucket's hierarchical namespace feature.
-  public struct HierarchicalNamespace: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct HierarchicalNamespace: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Enables the hierarchical namespace feature.
@@ -121,16 +121,16 @@ public struct StorageLayout: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.storage.control.v2.StorageLayout.HierarchicalNamespace"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// The Rapid Cache configuration for the bucket.
-  public struct RapidCacheInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct RapidCacheInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. The type of cache in the bucket. Set to `rapid-cache` or
@@ -156,21 +156,21 @@ public struct StorageLayout: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.storage.control.v2.StorageLayout.RapidCacheInfo"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.storage.control.v2.StorageLayout"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

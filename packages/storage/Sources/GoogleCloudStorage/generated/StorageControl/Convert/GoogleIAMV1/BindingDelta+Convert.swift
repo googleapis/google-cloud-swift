@@ -18,10 +18,10 @@ import Foundation
 import GoogleCloudGax
 internal import StorageControlProtos
 internal import SwiftProtobuf
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 import GoogleType
-internal import GoogleCloudWktConvert
+internal import GoogleCloudWKTConvert
 
 extension GoogleIAMV1.BindingDelta {
   internal typealias ProtoType = StorageControlProtos.Google_Iam_V1_BindingDelta

@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A folder resource. This resource can only exist in a hierarchical namespace
 /// enabled bucket.
-public struct Folder: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Folder: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. The name of this folder.
@@ -31,10 +31,10 @@ public struct Folder: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var metageneration: Swift.Int64 = Swift.Int64()
 
   /// Output only. The creation time of the folder.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The modification time of the folder.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Only present if the folder is part of an ongoing RenameFolder
   /// operation. Contains information which can be used to query the operation
@@ -62,10 +62,10 @@ public struct Folder: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.storage.control.v2.Folder"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

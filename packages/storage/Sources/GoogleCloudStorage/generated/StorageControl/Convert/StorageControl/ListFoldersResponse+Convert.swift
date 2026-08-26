@@ -18,8 +18,8 @@ import Foundation
 import GoogleCloudGax
 internal import StorageControlProtos
 internal import SwiftProtobuf
-import GoogleCloudWkt
-internal import GoogleCloudWktConvert
+import GoogleCloudWKT
+internal import GoogleCloudWKTConvert
 
 extension ListFoldersResponse {
   internal typealias ProtoType = StorageControlProtos.Google_Storage_Control_V2_ListFoldersResponse

@@ -18,12 +18,12 @@ import Foundation
 import GoogleCloudAuth
 @_spi(GoogleCloudInternal) import GoogleCloudGax
 @_spi(GoogleCloudInternal) import GoogleCloudGaxGRPC
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 import GoogleLongRunning
 import GoogleRpc
 internal import StorageControlProtos
-internal import GoogleCloudWktConvert
+internal import GoogleCloudWKTConvert
 internal import SwiftProtobuf
 
 extension Clients {

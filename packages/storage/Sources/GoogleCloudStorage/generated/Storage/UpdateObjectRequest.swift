@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message for [UpdateObject][google.storage.v2.Storage.UpdateObject].
 ///
 /// [google.storage.v2.Storage.UpdateObject]: <doc:StorageControlClient/updateObject(request:options:)>
-public struct UpdateObjectRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct UpdateObjectRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The object to update.
@@ -62,7 +62,7 @@ public struct UpdateObjectRequest: Codable, Equatable, GoogleCloudWkt._AnyPackab
   /// might accidentally reset the new field's value.
   ///
   /// Not specifying any fields is an error.
-  public var updateMask: GoogleCloudWkt.FieldMask? = nil
+  public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
   /// Optional. A set of parameters common to Storage API requests concerning an
   /// object.
@@ -90,10 +90,10 @@ public struct UpdateObjectRequest: Codable, Equatable, GoogleCloudWkt._AnyPackab
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.storage.v2.UpdateObjectRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

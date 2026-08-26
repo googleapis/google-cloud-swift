@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The `IntelligenceConfig` resource associated with your organization, folder,
 /// or project.
-public struct IntelligenceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct IntelligenceConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. The name of the `IntelligenceConfig` resource associated with
@@ -39,7 +39,7 @@ public struct IntelligenceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackabl
 
   /// Output only. The time at which the `IntelligenceConfig` resource is last
   /// updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. Filter over location and bucket.
   public var filter: IntelligenceConfig.Filter? = nil
@@ -70,7 +70,7 @@ public struct IntelligenceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   /// Filter over location and bucket using include or exclude semantics.
   /// Resources that match the include or exclude filter are exclusively included
   /// or excluded from the Storage Intelligence plan.
-  public struct Filter: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Filter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Bucket locations to include or exclude.
@@ -179,7 +179,7 @@ public struct IntelligenceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackabl
     }
 
     /// Collection of bucket locations.
-    public struct CloudStorageLocations: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct CloudStorageLocations: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Optional. Bucket locations. Location can be any of the Cloud Storage
@@ -207,16 +207,16 @@ public struct IntelligenceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackabl
         return
           "type.googleapis.com/google.storage.control.v2.IntelligenceConfig.Filter.CloudStorageLocations"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Collection of buckets.
-    public struct CloudStorageBuckets: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct CloudStorageBuckets: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Optional. A regex pattern for matching bucket names. Regex should
@@ -249,11 +249,11 @@ public struct IntelligenceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackabl
         return
           "type.googleapis.com/google.storage.control.v2.IntelligenceConfig.Filter.CloudStorageBuckets"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -276,16 +276,16 @@ public struct IntelligenceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackabl
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.storage.control.v2.IntelligenceConfig.Filter"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// The effective `IntelligenceConfig` for the resource.
-  public struct EffectiveIntelligenceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct EffectiveIntelligenceConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. The `IntelligenceConfig` edition that is applicable for the
@@ -423,20 +423,20 @@ public struct IntelligenceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackabl
       return
         "type.googleapis.com/google.storage.control.v2.IntelligenceConfig.EffectiveIntelligenceConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// The trial configuration of the `IntelligenceConfig` resource.
-  public struct TrialConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct TrialConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. The time at which the trial expires.
-    public var expireTime: GoogleCloudWkt.Timestamp? = nil
+    public var expireTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Initialize a new instance of `TrialConfig`.
     public init() {}
@@ -457,11 +457,11 @@ public struct IntelligenceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackabl
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.storage.control.v2.IntelligenceConfig.TrialConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -604,10 +604,10 @@ public struct IntelligenceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.storage.control.v2.IntelligenceConfig"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

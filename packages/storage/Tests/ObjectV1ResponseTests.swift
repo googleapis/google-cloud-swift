@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 @testable import GoogleCloudStorage
 import Testing
 
@@ -22,7 +22,7 @@ import Testing
     let jsonString = "{}"
     let data = try #require(jsonString.data(using: .utf8))
 
-    let decoder = GoogleCloudWkt._ProtoJSONDecoder()
+    let decoder = GoogleCloudWKT._ProtoJSONDecoder()
     let v1 = try decoder.decode(ObjectV1Response.self, from: data)
     let object = v1.toObject()
 
@@ -124,7 +124,7 @@ import Testing
       """
     let data = try #require(jsonString.data(using: .utf8))
 
-    let decoder = GoogleCloudWkt._ProtoJSONDecoder()
+    let decoder = GoogleCloudWKT._ProtoJSONDecoder()
     let v1 = try decoder.decode(ObjectV1Response.self, from: data)
     let object = v1.toObject()
 
@@ -188,7 +188,7 @@ import Testing
       """
     let data = try #require(jsonString.data(using: .utf8))
 
-    let decoder = GoogleCloudWkt._ProtoJSONDecoder()
+    let decoder = GoogleCloudWKT._ProtoJSONDecoder()
     let v1 = try decoder.decode(ObjectV1Response.self, from: data)
     let object = v1.toObject()
 
@@ -209,7 +209,7 @@ import Testing
       """
     let data = try #require(jsonString.data(using: .utf8))
 
-    let decoder = GoogleCloudWkt._ProtoJSONDecoder()
+    let decoder = GoogleCloudWKT._ProtoJSONDecoder()
     let v1 = try decoder.decode(ObjectV1Response.self, from: data)
     let object = v1.toObject()
 
@@ -230,7 +230,7 @@ import Testing
       """
     let data = try #require(jsonString.data(using: .utf8))
 
-    let decoder = GoogleCloudWkt._ProtoJSONDecoder()
+    let decoder = GoogleCloudWKT._ProtoJSONDecoder()
     let v1 = try decoder.decode(ObjectV1Response.self, from: data)
     let object = v1.toObject()
 
@@ -253,7 +253,7 @@ import Testing
       }
       """
     let data = try #require(json.data(using: .utf8))
-    let decoder = GoogleCloudWkt._ProtoJSONDecoder()
+    let decoder = GoogleCloudWKT._ProtoJSONDecoder()
     let v1 = try decoder.decode(ObjectV1Response.self, from: data)
     let object = v1.toObject()
 
@@ -270,7 +270,7 @@ import Testing
       }
       """
     let data = try #require(json.data(using: .utf8))
-    let decoder = GoogleCloudWkt._ProtoJSONDecoder()
+    let decoder = GoogleCloudWKT._ProtoJSONDecoder()
     let v1 = try decoder.decode(ObjectV1Response.self, from: data)
     let object = v1.toObject()
 
@@ -286,7 +286,7 @@ import Testing
       }
       """
     let data = try #require(json.data(using: .utf8))
-    let decoder = GoogleCloudWkt._ProtoJSONDecoder()
+    let decoder = GoogleCloudWKT._ProtoJSONDecoder()
     let v1 = try decoder.decode(ObjectV1Response.self, from: data)
     let object = v1.toObject()
 
@@ -318,7 +318,7 @@ import Testing
       }
       """
     let data = try #require(json.data(using: .utf8))
-    let decoder = GoogleCloudWkt._ProtoJSONDecoder()
+    let decoder = GoogleCloudWKT._ProtoJSONDecoder()
     let v1 = try decoder.decode(ObjectV1Response.self, from: data)
     let object = v1.toObject()
 

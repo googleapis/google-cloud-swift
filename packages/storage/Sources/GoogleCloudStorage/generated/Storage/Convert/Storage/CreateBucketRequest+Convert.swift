@@ -18,8 +18,8 @@ import Foundation
 import GoogleCloudGax
 internal import StorageProtos
 internal import SwiftProtobuf
-import GoogleCloudWkt
-internal import GoogleCloudWktConvert
+import GoogleCloudWKT
+internal import GoogleCloudWKTConvert
 
 extension CreateBucketRequest {
   internal typealias ProtoType = StorageProtos.Google_Storage_V2_CreateBucketRequest

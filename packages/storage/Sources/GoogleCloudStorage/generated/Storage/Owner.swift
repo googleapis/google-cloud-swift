@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The owner of a specific resource.
-public struct Owner: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Owner: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Optional. The entity, in the form `user-`*userId*.
@@ -46,10 +46,10 @@ public struct Owner: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.storage.v2.Owner"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

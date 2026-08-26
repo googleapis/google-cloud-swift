@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message for [ListObjects][google.storage.v2.Storage.ListObjects].
 ///
 /// [google.storage.v2.Storage.ListObjects]: <doc:StorageControlClient/listObjects(request:options:)>
-public struct ListObjectsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ListObjectsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. Name of the bucket in which to look for objects.
@@ -58,7 +58,7 @@ public struct ListObjectsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   /// If no mask is specified, defaults to all fields except `items.acl` and
   /// `items.owner`.
   /// `*` might be used to mean all fields.
-  public var readMask: GoogleCloudWkt.FieldMask? = nil
+  public var readMask: GoogleCloudWKT.FieldMask? = nil
 
   /// Optional. Filter results to objects whose names are lexicographically equal
   /// to or after `lexicographic_start`. If `lexicographic_end` is also set, the
@@ -136,7 +136,7 @@ public struct ListObjectsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackabl
       Swift.Bool.self, forKey: .includeTrailingDelimiter)
     self.`prefix` = try container.decode(Swift.String.self, forKey: .`prefix`)
     self.versions = try container.decode(Swift.Bool.self, forKey: .versions)
-    self.readMask = try container.decodeIfPresent(GoogleCloudWkt.FieldMask.self, forKey: .readMask)
+    self.readMask = try container.decodeIfPresent(GoogleCloudWKT.FieldMask.self, forKey: .readMask)
     self.lexicographicStart = try container.decode(Swift.String.self, forKey: .lexicographicStart)
     self.lexicographicEnd = try container.decode(Swift.String.self, forKey: .lexicographicEnd)
     self.softDeleted = try container.decode(Swift.Bool.self, forKey: .softDeleted)
@@ -167,10 +167,10 @@ public struct ListObjectsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.storage.v2.ListObjectsRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

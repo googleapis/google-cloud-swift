@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message for [ListBuckets][google.storage.v2.Storage.ListBuckets].
 ///
 /// [google.storage.v2.Storage.ListBuckets]: <doc:StorageControlClient/listBuckets(request:options:)>
-public struct ListBucketsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ListBucketsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The project whose buckets we are listing.
@@ -43,7 +43,7 @@ public struct ListBucketsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   /// If no mask is specified, it defaults to all fields except `items.
   /// owner`, `items.acl`, and `items.default_object_acl`.
   /// `*` might be used to mean "all fields".
-  public var readMask: GoogleCloudWkt.FieldMask? = nil
+  public var readMask: GoogleCloudWKT.FieldMask? = nil
 
   /// Optional. Allows listing of buckets, even if there are buckets that are
   /// unreachable.
@@ -80,7 +80,7 @@ public struct ListBucketsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackabl
     self.pageSize = try container.decode(Swift.Int32.self, forKey: .pageSize)
     self.pageToken = try container.decode(Swift.String.self, forKey: .pageToken)
     self.`prefix` = try container.decode(Swift.String.self, forKey: .`prefix`)
-    self.readMask = try container.decodeIfPresent(GoogleCloudWkt.FieldMask.self, forKey: .readMask)
+    self.readMask = try container.decodeIfPresent(GoogleCloudWKT.FieldMask.self, forKey: .readMask)
     self.returnPartialSuccess = try container.decode(Swift.Bool.self, forKey: .returnPartialSuccess)
   }
 
@@ -97,10 +97,10 @@ public struct ListBucketsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.storage.v2.ListBucketsRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

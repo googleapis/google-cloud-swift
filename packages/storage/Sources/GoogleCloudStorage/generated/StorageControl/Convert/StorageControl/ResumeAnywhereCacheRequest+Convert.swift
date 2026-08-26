@@ -18,8 +18,8 @@ import Foundation
 import GoogleCloudGax
 internal import StorageControlProtos
 internal import SwiftProtobuf
-import GoogleCloudWkt
-internal import GoogleCloudWktConvert
+import GoogleCloudWKT
+internal import GoogleCloudWKTConvert
 
 extension ResumeAnywhereCacheRequest {
   internal typealias ProtoType = StorageControlProtos

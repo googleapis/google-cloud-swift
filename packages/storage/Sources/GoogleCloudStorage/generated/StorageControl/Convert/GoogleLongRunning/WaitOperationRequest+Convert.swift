@@ -18,9 +18,9 @@ import Foundation
 import GoogleCloudGax
 internal import StorageControlProtos
 internal import SwiftProtobuf
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
-internal import GoogleCloudWktConvert
+internal import GoogleCloudWKTConvert
 
 extension GoogleLongRunning.WaitOperationRequest {
   internal typealias ProtoType = StorageControlProtos.Google_Longrunning_WaitOperationRequest

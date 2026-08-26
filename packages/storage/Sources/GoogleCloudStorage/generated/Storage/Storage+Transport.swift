@@ -18,9 +18,9 @@ import Foundation
 import GoogleCloudAuth
 @_spi(GoogleCloudInternal) import GoogleCloudGax
 @_spi(GoogleCloudInternal) import GoogleCloudGaxGRPC
-import GoogleCloudWkt
+import GoogleCloudWKT
 internal import StorageProtos
-internal import GoogleCloudWktConvert
+internal import GoogleCloudWKTConvert
 internal import SwiftProtobuf
 
 extension Clients {

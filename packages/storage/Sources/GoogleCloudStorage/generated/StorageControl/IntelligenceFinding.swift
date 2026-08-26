@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import GoogleRpc
 import GoogleType
 
 /// The `IntelligenceFinding` resource that represents a security, performance,
 /// or cost-related finding about a project or bucket.
-public struct IntelligenceFinding: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct IntelligenceFinding: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. The resource name of `IntelligenceFinding`.
@@ -42,10 +42,10 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleCloudWkt._AnyPackab
   public var severity: FindingSeverity = FindingSeverity()
 
   /// Output only. The time at which the finding was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time at which the finding was last updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The fully qualified resource name of the resource that this
   /// `IntelligenceFinding` applies to. eg:
@@ -108,9 +108,9 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleCloudWkt._AnyPackab
     self.category = try container.decode(FindingCategory.self, forKey: .category)
     self.severity = try container.decode(FindingSeverity.self, forKey: .severity)
     self.createTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .createTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .updateTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
     self.targetResource = try container.decode(Swift.String.self, forKey: .targetResource)
     self.associatedResources = try container.decode(
       [Swift.String].self, forKey: .associatedResources)
@@ -183,7 +183,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleCloudWkt._AnyPackab
   /// or Archive Cloud Storage objects.
   /// This corresponds to the `COLD_AND_ARCHIVAL_STORAGE_OPERATIONS_SPIKE`
   /// finding type.
-  public struct ColdlineAndArchivalStorageOperationsSpike: Codable, Equatable, GoogleCloudWkt
+  public struct ColdlineAndArchivalStorageOperationsSpike: Codable, Equatable, GoogleCloudWKT
       ._AnyPackable,
     Sendable
   {
@@ -215,7 +215,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleCloudWkt._AnyPackab
     }
 
     /// Represents the operation spike details for a bucket.
-    public struct BucketContribution: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct BucketContribution: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Output only. The name of the bucket.
@@ -303,7 +303,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleCloudWkt._AnyPackab
 
       /// Represents the contribution of the bucket towards the
       /// `IntelligenceFinding`.
-      public struct Contribution: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct Contribution: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Output only. A list of the top object prefixes driving the increase
@@ -329,7 +329,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleCloudWkt._AnyPackab
         }
 
         /// Represents the operation spike details for an object prefix.
-        public struct PrefixContribution: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+        public struct PrefixContribution: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           Sendable
         {
           /// Output only. The object prefix.
@@ -385,11 +385,11 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleCloudWkt._AnyPackab
             return
               "type.googleapis.com/google.storage.control.v2.IntelligenceFinding.ColdlineAndArchivalStorageOperationsSpike.BucketContribution.Contribution.PrefixContribution"
           }
-          public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-            self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+          public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+            self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
           }
-          public func _pack() throws -> GoogleCloudWkt.Struct {
-            return try GoogleCloudWkt._slowAnySerialize(message: self)
+          public func _pack() throws -> GoogleCloudWKT.Struct {
+            return try GoogleCloudWKT._slowAnySerialize(message: self)
           }
         }
 
@@ -397,11 +397,11 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleCloudWkt._AnyPackab
           return
             "type.googleapis.com/google.storage.control.v2.IntelligenceFinding.ColdlineAndArchivalStorageOperationsSpike.BucketContribution.Contribution"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
@@ -421,11 +421,11 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleCloudWkt._AnyPackab
         return
           "type.googleapis.com/google.storage.control.v2.IntelligenceFinding.ColdlineAndArchivalStorageOperationsSpike.BucketContribution"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -433,18 +433,18 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleCloudWkt._AnyPackab
       return
         "type.googleapis.com/google.storage.control.v2.IntelligenceFinding.ColdlineAndArchivalStorageOperationsSpike"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Represents a finding about a spike in cross-region egress from Cloud
   /// Storage.
   /// This corresponds to the `CROSS_REGION_EGRESS_SPIKE` finding type.
-  public struct CrossRegionEgressSpike: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct CrossRegionEgressSpike: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. The total cross-region egress volume in bytes across the
@@ -476,7 +476,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleCloudWkt._AnyPackab
     }
 
     /// Represents the cross-region egress spike details for a bucket.
-    public struct BucketContribution: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct BucketContribution: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Output only. The name of the bucket.
@@ -565,7 +565,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleCloudWkt._AnyPackab
 
       /// Represents the contribution of the bucket towards the
       /// `IntelligenceFinding`.
-      public struct Contribution: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct Contribution: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Output only. A list of the top object prefixes driving the increase
@@ -592,7 +592,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleCloudWkt._AnyPackab
 
         /// Represents the cross-region egress spike details for an object
         /// prefix.
-        public struct PrefixContribution: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+        public struct PrefixContribution: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           Sendable
         {
           /// Output only. The object prefix.
@@ -649,11 +649,11 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleCloudWkt._AnyPackab
             return
               "type.googleapis.com/google.storage.control.v2.IntelligenceFinding.CrossRegionEgressSpike.BucketContribution.Contribution.PrefixContribution"
           }
-          public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-            self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+          public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+            self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
           }
-          public func _pack() throws -> GoogleCloudWkt.Struct {
-            return try GoogleCloudWkt._slowAnySerialize(message: self)
+          public func _pack() throws -> GoogleCloudWKT.Struct {
+            return try GoogleCloudWKT._slowAnySerialize(message: self)
           }
         }
 
@@ -661,11 +661,11 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleCloudWkt._AnyPackab
           return
             "type.googleapis.com/google.storage.control.v2.IntelligenceFinding.CrossRegionEgressSpike.BucketContribution.Contribution"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
@@ -684,11 +684,11 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleCloudWkt._AnyPackab
         return
           "type.googleapis.com/google.storage.control.v2.IntelligenceFinding.CrossRegionEgressSpike.BucketContribution"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -696,18 +696,18 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleCloudWkt._AnyPackab
       return
         "type.googleapis.com/google.storage.control.v2.IntelligenceFinding.CrossRegionEgressSpike"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Represents a finding about a spike in throttled requests (429 errors)
   /// within a project.
   /// This corresponds to the `THROTTLED_REQUEST_SPIKE` finding type.
-  public struct ThrottledRequestSpike: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ThrottledRequestSpike: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. The count of throttled requests across the project.
@@ -738,7 +738,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleCloudWkt._AnyPackab
     }
 
     /// Represents the throttled requests details for a bucket.
-    public struct BucketContribution: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct BucketContribution: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Output only. The name of the bucket.
@@ -826,7 +826,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleCloudWkt._AnyPackab
 
       /// Represents the contribution of the bucket towards the
       /// `IntelligenceFinding`.
-      public struct Contribution: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct Contribution: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Output only. A list of top object prefixes driving the increase in
@@ -852,7 +852,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleCloudWkt._AnyPackab
         }
 
         /// Represents throttled requests details for an object prefix.
-        public struct PrefixContribution: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+        public struct PrefixContribution: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           Sendable
         {
           /// Output only. The object prefix.
@@ -908,11 +908,11 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleCloudWkt._AnyPackab
             return
               "type.googleapis.com/google.storage.control.v2.IntelligenceFinding.ThrottledRequestSpike.BucketContribution.Contribution.PrefixContribution"
           }
-          public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-            self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+          public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+            self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
           }
-          public func _pack() throws -> GoogleCloudWkt.Struct {
-            return try GoogleCloudWkt._slowAnySerialize(message: self)
+          public func _pack() throws -> GoogleCloudWKT.Struct {
+            return try GoogleCloudWKT._slowAnySerialize(message: self)
           }
         }
 
@@ -920,11 +920,11 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleCloudWkt._AnyPackab
           return
             "type.googleapis.com/google.storage.control.v2.IntelligenceFinding.ThrottledRequestSpike.BucketContribution.Contribution"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
@@ -943,11 +943,11 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleCloudWkt._AnyPackab
         return
           "type.googleapis.com/google.storage.control.v2.IntelligenceFinding.ThrottledRequestSpike.BucketContribution"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -955,17 +955,17 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleCloudWkt._AnyPackab
       return
         "type.googleapis.com/google.storage.control.v2.IntelligenceFinding.ThrottledRequestSpike"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Represents a finding about a storage growth above the expected trend.
   /// This corresponds to the `STORAGE_GROWTH_ABOVE_TREND` finding type.
-  public struct StorageGrowthAboveTrend: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct StorageGrowthAboveTrend: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. The total storage growth in bytes.
@@ -995,7 +995,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleCloudWkt._AnyPackab
     }
 
     /// Represents the storage growth details for a bucket.
-    public struct BucketContribution: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct BucketContribution: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Output only. The name of the bucket.
@@ -1084,11 +1084,11 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleCloudWkt._AnyPackab
         return
           "type.googleapis.com/google.storage.control.v2.IntelligenceFinding.StorageGrowthAboveTrend.BucketContribution"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -1096,11 +1096,11 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleCloudWkt._AnyPackab
       return
         "type.googleapis.com/google.storage.control.v2.IntelligenceFinding.StorageGrowthAboveTrend"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -1123,10 +1123,10 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleCloudWkt._AnyPackab
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.storage.control.v2.IntelligenceFinding"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

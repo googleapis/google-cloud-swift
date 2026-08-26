@@ -18,9 +18,9 @@ import Foundation
 import GoogleCloudGax
 internal import StorageControlProtos
 internal import SwiftProtobuf
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
-internal import GoogleCloudWktConvert
+internal import GoogleCloudWKTConvert
 
 extension GoogleIAMV1.TestIamPermissionsResponse {
   internal typealias ProtoType = StorageControlProtos.Google_Iam_V1_TestIamPermissionsResponse

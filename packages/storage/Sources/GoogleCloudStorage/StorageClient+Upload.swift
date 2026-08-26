@@ -17,7 +17,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudGax
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 @_spi(GoogleCloudInternal) import struct GoogleCloudGax._CRC32C
 import Crypto
 @_spi(GoogleCloudInternal) import GoogleCloudGax
@@ -933,7 +933,7 @@ extension StorageClient {
       throw await response.decodeError()
     }
     let data = try await response.data()
-    let decoder = GoogleCloudWkt._ProtoJSONDecoder()
+    let decoder = GoogleCloudWKT._ProtoJSONDecoder()
     let v1Object = try decoder.decode(ObjectV1Response.self, from: data)
     return v1Object.toObject()
   }

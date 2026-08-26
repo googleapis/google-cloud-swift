@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message for [GetObject][google.storage.v2.Storage.GetObject].
 ///
 /// [google.storage.v2.Storage.GetObject]: <doc:StorageControlClient/getObject(request:options:)>
-public struct GetObjectRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct GetObjectRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. Name of the bucket in which the object resides.
@@ -63,7 +63,7 @@ public struct GetObjectRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// If no mask is specified, it defaults to all fields except `metadata.
   /// acl` and `metadata.owner`.
   /// `*` might be used to mean "all fields".
-  public var readMask: GoogleCloudWkt.FieldMask? = nil
+  public var readMask: GoogleCloudWKT.FieldMask? = nil
 
   /// Optional. Restore token used to differentiate soft-deleted objects with the
   /// same name and generation. Only applicable for hierarchical namespace
@@ -91,10 +91,10 @@ public struct GetObjectRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.storage.v2.GetObjectRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

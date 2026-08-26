@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// An Anywhere Cache Instance.
-public struct AnywhereCache: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct AnywhereCache: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Immutable. The resource name of this AnywhereCache.
@@ -34,7 +34,7 @@ public struct AnywhereCache: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// that defines how long a cache entry can live. Default ttl value (24hrs)
   /// is applied if not specified in the create request. TTL must be in whole
   /// seconds.
-  public var ttl: GoogleCloudWkt.Duration? = nil
+  public var ttl: GoogleCloudWKT.Duration? = nil
 
   /// Cache admission policy. Valid policies includes:
   /// `admit-on-first-miss` and `admit-on-second-miss`. Defaults to
@@ -47,11 +47,11 @@ public struct AnywhereCache: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var state: Swift.String = Swift.String()
 
   /// Output only. Time when Anywhere cache instance is allocated.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Time when Anywhere cache instance is last updated, including
   /// creation.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. True if there is an active update operation against this cache
   /// instance. Subsequential update requests will be rejected if this field is
@@ -81,10 +81,10 @@ public struct AnywhereCache: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.storage.control.v2.AnywhereCache"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

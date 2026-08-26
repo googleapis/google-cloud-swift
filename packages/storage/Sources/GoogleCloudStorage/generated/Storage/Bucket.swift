@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import GoogleType
 
 /// A bucket.
-public struct Bucket: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Bucket: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. The name of the bucket.
@@ -87,14 +87,14 @@ public struct Bucket: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var lifecycle: Bucket.Lifecycle? = nil
 
   /// Output only. The creation time of the bucket.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. The bucket's [CORS](https://www.w3.org/TR/cors/)
   /// configuration.
   public var cors: [Bucket.Cors] = []
 
   /// Output only. The modification time of the bucket.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. The default value for event-based hold on newly created objects
   /// in this bucket.  Event-based hold is a way to retain objects indefinitely
@@ -197,7 +197,7 @@ public struct Bucket: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Billing properties of a bucket.
-  public struct Billing: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Billing: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. When set to true, Requester Pays is enabled for this bucket.
@@ -222,11 +222,11 @@ public struct Bucket: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.storage.v2.Bucket.Billing"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -234,7 +234,7 @@ public struct Bucket: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// For more on Cloud Storage and CORS, see
   /// https://cloud.google.com/storage/docs/cross-origin.
   /// For more on CORS in general, see https://tools.ietf.org/html/rfc6454.
-  public struct Cors: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Cors: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. The list of origins eligible to receive CORS response headers.
@@ -278,16 +278,16 @@ public struct Bucket: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.storage.v2.Bucket.Cors"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Encryption properties of a bucket.
-  public struct Encryption: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Encryption: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. The name of the Cloud KMS key that is used to encrypt objects
@@ -332,7 +332,7 @@ public struct Bucket: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     }
 
     /// Google Managed Encryption (GMEK) enforcement config of a bucket.
-    public struct GoogleManagedEncryptionEnforcementConfig: Codable, Equatable, GoogleCloudWkt
+    public struct GoogleManagedEncryptionEnforcementConfig: Codable, Equatable, GoogleCloudWKT
         ._AnyPackable,
       Sendable
     {
@@ -345,7 +345,7 @@ public struct Bucket: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       public var restrictionMode: Swift.String? = nil
 
       /// Time from which the config was effective. This is service-provided.
-      public var effectiveTime: GoogleCloudWkt.Timestamp? = nil
+      public var effectiveTime: GoogleCloudWKT.Timestamp? = nil
 
       /// Initialize a new instance of `GoogleManagedEncryptionEnforcementConfig`.
       public init() {}
@@ -367,16 +367,16 @@ public struct Bucket: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         return
           "type.googleapis.com/google.storage.v2.Bucket.Encryption.GoogleManagedEncryptionEnforcementConfig"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Customer Managed Encryption (CMEK) enforcement config of a bucket.
-    public struct CustomerManagedEncryptionEnforcementConfig: Codable, Equatable, GoogleCloudWkt
+    public struct CustomerManagedEncryptionEnforcementConfig: Codable, Equatable, GoogleCloudWKT
         ._AnyPackable,
       Sendable
     {
@@ -389,7 +389,7 @@ public struct Bucket: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       public var restrictionMode: Swift.String? = nil
 
       /// Time from which the config was effective. This is service-provided.
-      public var effectiveTime: GoogleCloudWkt.Timestamp? = nil
+      public var effectiveTime: GoogleCloudWKT.Timestamp? = nil
 
       /// Initialize a new instance of `CustomerManagedEncryptionEnforcementConfig`.
       public init() {}
@@ -411,16 +411,16 @@ public struct Bucket: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         return
           "type.googleapis.com/google.storage.v2.Bucket.Encryption.CustomerManagedEncryptionEnforcementConfig"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Customer Supplied Encryption (CSEK) enforcement config of a bucket.
-    public struct CustomerSuppliedEncryptionEnforcementConfig: Codable, Equatable, GoogleCloudWkt
+    public struct CustomerSuppliedEncryptionEnforcementConfig: Codable, Equatable, GoogleCloudWKT
         ._AnyPackable,
       Sendable
     {
@@ -434,7 +434,7 @@ public struct Bucket: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       public var restrictionMode: Swift.String? = nil
 
       /// Time from which the config was effective. This is service-provided.
-      public var effectiveTime: GoogleCloudWkt.Timestamp? = nil
+      public var effectiveTime: GoogleCloudWKT.Timestamp? = nil
 
       /// Initialize a new instance of `CustomerSuppliedEncryptionEnforcementConfig`.
       public init() {}
@@ -456,27 +456,27 @@ public struct Bucket: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         return
           "type.googleapis.com/google.storage.v2.Bucket.Encryption.CustomerSuppliedEncryptionEnforcementConfig"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.storage.v2.Bucket.Encryption"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Bucket restriction options.
-  public struct IamConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct IamConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. Bucket restriction options currently enforced on the bucket.
@@ -504,7 +504,7 @@ public struct Bucket: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Settings for Uniform Bucket level access.
     /// See https://cloud.google.com/storage/docs/uniform-bucket-level-access.
-    public struct UniformBucketLevelAccess: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct UniformBucketLevelAccess: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Optional. If set, access checks only use bucket-level IAM policies or
@@ -515,7 +515,7 @@ public struct Bucket: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       /// `iam_config.uniform_bucket_level_access.enabled` from `true` to
       /// `false`. Mutable until the specified deadline is reached, but not
       /// afterward.
-      public var lockTime: GoogleCloudWkt.Timestamp? = nil
+      public var lockTime: GoogleCloudWKT.Timestamp? = nil
 
       /// Initialize a new instance of `UniformBucketLevelAccess`.
       public init() {}
@@ -536,29 +536,29 @@ public struct Bucket: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.storage.v2.Bucket.IamConfig.UniformBucketLevelAccess"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.storage.v2.Bucket.IamConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Lifecycle properties of a bucket.
   /// For more information, see [Object Lifecycle
   /// Management](https://cloud.google.com/storage/docs/lifecycle).
-  public struct Lifecycle: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Lifecycle: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. A lifecycle management rule, which is made of an action to take
@@ -583,7 +583,7 @@ public struct Bucket: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// A lifecycle Rule, combining an action to take on an object and a
     /// condition which triggers that action.
-    public struct Rule: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Rule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Optional. The action to take.
@@ -609,7 +609,7 @@ public struct Bucket: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       }
 
       /// An action to take on an object.
-      public struct Action: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct Action: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Optional. Type of the action. Currently, only `Delete`,
@@ -640,16 +640,16 @@ public struct Bucket: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         public static var _anyTypeUrl: Swift.String {
           return "type.googleapis.com/google.storage.v2.Bucket.Lifecycle.Rule.Action"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// A condition of an object which triggers some action.
-      public struct Condition: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct Condition: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Age of an object (in days). This condition is satisfied when an
@@ -726,38 +726,38 @@ public struct Bucket: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         public static var _anyTypeUrl: Swift.String {
           return "type.googleapis.com/google.storage.v2.Bucket.Lifecycle.Rule.Condition"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.storage.v2.Bucket.Lifecycle.Rule"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.storage.v2.Bucket.Lifecycle"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Logging-related properties of a bucket.
-  public struct Logging: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Logging: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. The destination bucket where the current bucket's logs should
@@ -786,16 +786,16 @@ public struct Bucket: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.storage.v2.Bucket.Logging"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Object Retention related properties of a bucket.
-  public struct ObjectRetention: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ObjectRetention: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. Output only. If true, object retention is enabled for the
@@ -821,21 +821,21 @@ public struct Bucket: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.storage.v2.Bucket.ObjectRetention"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Retention policy properties of a bucket.
-  public struct RetentionPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct RetentionPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. Server-determined value that indicates the time from which
     /// policy was enforced and effective.
-    public var effectiveTime: GoogleCloudWkt.Timestamp? = nil
+    public var effectiveTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Optional. Once locked, an object retention policy cannot be modified.
     public var isLocked: Swift.Bool = Swift.Bool()
@@ -845,7 +845,7 @@ public struct Bucket: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// enforcement of retention periods less than a day is not guaranteed. Such
     /// periods should only be used for testing purposes. Any `nanos` value
     /// specified is rounded down to the nearest second.
-    public var retentionDuration: GoogleCloudWkt.Duration? = nil
+    public var retentionDuration: GoogleCloudWKT.Duration? = nil
 
     /// Initialize a new instance of `RetentionPolicy`.
     public init() {}
@@ -866,25 +866,25 @@ public struct Bucket: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.storage.v2.Bucket.RetentionPolicy"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Soft delete policy properties of a bucket.
-  public struct SoftDeletePolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct SoftDeletePolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The period of time that soft-deleted objects in the bucket must be
     /// retained and cannot be permanently deleted. The duration must be greater
     /// than or equal to 7 days and less than 1 year.
-    public var retentionDuration: GoogleCloudWkt.Duration? = nil
+    public var retentionDuration: GoogleCloudWKT.Duration? = nil
 
     /// Time from which the policy was effective. This is service-provided.
-    public var effectiveTime: GoogleCloudWkt.Timestamp? = nil
+    public var effectiveTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Initialize a new instance of `SoftDeletePolicy`.
     public init() {}
@@ -905,18 +905,18 @@ public struct Bucket: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.storage.v2.Bucket.SoftDeletePolicy"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Properties of a bucket related to versioning.
   /// For more information about Cloud Storage versioning, see [Object
   /// versioning](https://cloud.google.com/storage/docs/object-versioning).
-  public struct Versioning: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Versioning: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. While set to true, versioning is fully enabled for this bucket.
@@ -941,18 +941,18 @@ public struct Bucket: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.storage.v2.Bucket.Versioning"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Properties of a bucket related to accessing the contents as a static
   /// website. For details, see [hosting a static website using Cloud
   /// Storage](https://cloud.google.com/storage/docs/hosting-static-website).
-  public struct Website: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Website: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. If the requested object path is missing, the service ensures
@@ -987,11 +987,11 @@ public struct Bucket: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.storage.v2.Bucket.Website"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -1000,7 +1000,7 @@ public struct Bucket: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// should specify precisely two eligible regions within the same multi-region.
   /// For details, see
   /// [locations](https://cloud.google.com/storage/docs/locations).
-  public struct CustomPlacementConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct CustomPlacementConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. List of locations to use for data placement.
@@ -1025,16 +1025,16 @@ public struct Bucket: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.storage.v2.Bucket.CustomPlacementConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Configuration for a bucket's Autoclass feature.
-  public struct Autoclass: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Autoclass: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. Enables Autoclass.
@@ -1044,7 +1044,7 @@ public struct Bucket: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// after being disabled/unconfigured or set to false after being enabled. If
     /// Autoclass is enabled when the bucket is created, the value of the
     /// `toggle_time` field is set to the bucket `create_time`.
-    public var toggleTime: GoogleCloudWkt.Timestamp? = nil
+    public var toggleTime: GoogleCloudWKT.Timestamp? = nil
 
     /// An object in an Autoclass bucket eventually cools down to the
     /// terminal storage class if there is no access to the object.
@@ -1053,7 +1053,7 @@ public struct Bucket: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Output only. Latest instant at which the autoclass terminal storage class
     /// was updated.
-    public var terminalStorageClassUpdateTime: GoogleCloudWkt.Timestamp? = nil
+    public var terminalStorageClassUpdateTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Initialize a new instance of `Autoclass`.
     public init() {}
@@ -1074,11 +1074,11 @@ public struct Bucket: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.storage.v2.Bucket.Autoclass"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -1086,7 +1086,7 @@ public struct Bucket: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// filtering](https://cloud.google.com/storage/docs/ip-filtering-overview)
   /// configuration. Specifies the network sources that can access the bucket, as
   /// well as its underlying objects.
-  public struct IpFilter: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct IpFilter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The state of the IP filter configuration. Valid values are `Enabled` and
@@ -1132,7 +1132,7 @@ public struct Bucket: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// The public network IP address ranges that can access the bucket and its
     /// data.
-    public struct PublicNetworkSource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct PublicNetworkSource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Optional. The list of IPv4 and IPv6 cidr blocks that are allowed to
@@ -1158,16 +1158,16 @@ public struct Bucket: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.storage.v2.Bucket.IpFilter.PublicNetworkSource"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// The list of VPC networks that can access the bucket.
-    public struct VpcNetworkSource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct VpcNetworkSource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Name of the network.
@@ -1202,27 +1202,27 @@ public struct Bucket: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.storage.v2.Bucket.IpFilter.VpcNetworkSource"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.storage.v2.Bucket.IpFilter"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Configuration for a bucket's hierarchical namespace feature.
-  public struct HierarchicalNamespace: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct HierarchicalNamespace: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. Enables the hierarchical namespace feature.
@@ -1247,21 +1247,21 @@ public struct Bucket: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.storage.v2.Bucket.HierarchicalNamespace"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.storage.v2.Bucket"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

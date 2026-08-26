@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A managed folder.
-public struct ManagedFolder: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ManagedFolder: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. The name of this managed folder.
@@ -32,10 +32,10 @@ public struct ManagedFolder: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var metageneration: Swift.Int64 = Swift.Int64()
 
   /// Output only. The creation time of the managed folder.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The modification time of the managed folder.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Rapid Cache configuration for a managed prefix.
   public var rapidCacheConfig: ManagedFolder.RapidCacheConfig? = nil
@@ -59,7 +59,7 @@ public struct ManagedFolder: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// Rapid Cache configuration for a managed prefix. This configuration is used
   /// to determine how the rapid cache behaves for objects under the managed
   /// folder.
-  public struct RapidCacheConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct RapidCacheConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. A map of rapid_cache_id to RapidCachePolicy for this prefix.
@@ -86,7 +86,7 @@ public struct ManagedFolder: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     }
 
     /// Rapid Cache policy for a managed folder.
-    public struct RapidCachePolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct RapidCachePolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Required. The identifier for the rapid cache.
@@ -217,32 +217,32 @@ public struct ManagedFolder: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         return
           "type.googleapis.com/google.storage.control.v2.ManagedFolder.RapidCacheConfig.RapidCachePolicy"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.storage.control.v2.ManagedFolder.RapidCacheConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.storage.control.v2.ManagedFolder"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }
