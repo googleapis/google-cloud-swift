@@ -39,7 +39,7 @@ jobs:
           )
           declare -A targets=(
             [UserGuide]=guide
-            [GoogleCloudWkt]=wkt
+            [GoogleCloudWKT]=wkt
             [GoogleCloudGax]=gax
             [GoogleCloudAuth]=auth
             [GoogleCloudStorage]=storage
