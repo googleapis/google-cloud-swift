@@ -48,77 +48,77 @@ default:
   swift:
     dependencies:
       - name: GoogleApi
-        path: generated/google-api
+        path: generated/swift-google-api
         api_package: google.api
       - name: GoogleAppsScriptType
-        path: generated/google-apps-script-type
+        path: generated/swift-google-apps-script-type
         api_package: google.apps.script.type
       - name: GoogleAppsScriptTypeCalendar
-        path: generated/google-apps-script-type-calendar
+        path: generated/swift-google-apps-script-type-calendar
         api_package: google.apps.script.type.calendar
       - name: GoogleAppsScriptTypeDocs
-        path: generated/google-apps-script-type-docs
+        path: generated/swift-google-apps-script-type-docs
         api_package: google.apps.script.type.docs
       - name: GoogleAppsScriptTypeDrive
-        path: generated/google-apps-script-type-drive
+        path: generated/swift-google-apps-script-type-drive
         api_package: google.apps.script.type.drive
       - name: GoogleAppsScriptTypeGmail
-        path: generated/google-apps-script-type-gmail
+        path: generated/swift-google-apps-script-type-gmail
         api_package: google.apps.script.type.gmail
       - name: GoogleAppsScriptTypeSheets
-        path: generated/google-apps-script-type-sheets
+        path: generated/swift-google-apps-script-type-sheets
         api_package: google.apps.script.type.sheets
       - name: GoogleAppsScriptTypeSlides
-        path: generated/google-apps-script-type-slides
+        path: generated/swift-google-apps-script-type-slides
         api_package: google.apps.script.type.slides
       - name: GoogleCloudAuth
         path: packages/auth
         required_by_services: true
       - name: GoogleCloudCommon
-        path: generated/google-cloud-common
+        path: generated/swift-google-cloud-common
         api_package: google.cloud.common
       - name: GoogleCloudDatastreamV1
-        path: generated/google-cloud-datastream-v1
+        path: generated/swift-google-cloud-datastream-v1
         api_package: google.cloud.datastream.v1
       - name: GoogleCloudDocumentAIV1
-        path: generated/google-cloud-documentai-v1
+        path: generated/swift-google-cloud-documentai-v1
         api_package: google.cloud.documentai.v1
       - name: GoogleCloudGKEHubConfigManagementV1
-        path: generated/google-cloud-gkehub-configmanagement-v1
+        path: generated/swift-google-cloud-gkehub-configmanagement-v1
         api_package: google.cloud.gkehub.configmanagement.v1
       - name: GoogleCloudGKEHubMultiClusterIngressV1
-        path: generated/google-cloud-gkehub-multiclusteringress-v1
+        path: generated/swift-google-cloud-gkehub-multiclusteringress-v1
         api_package: google.cloud.gkehub.multiclusteringress.v1
       - name: GoogleCloudGKEHubRBACRoleBindingActuationV1
-        path: generated/google-cloud-gkehub-rbacrolebindingactuation-v1
+        path: generated/swift-google-cloud-gkehub-rbacrolebindingactuation-v1
         api_package: google.cloud.gkehub.rbacrolebindingactuation.v1
       - name: GoogleCloudGax
         path: packages/gax
         required_by_services: true
         spi: GoogleCloudInternal
       - name: GoogleCloudKMSV1
-        path: generated/google-cloud-kms-v1
+        path: generated/swift-google-cloud-kms-v1
         api_package: google.cloud.kms.v1
       - name: GoogleCloudLocation
-        path: generated/google-cloud-location
+        path: generated/swift-google-cloud-location
         api_package: google.cloud.location
       - name: GoogleCloudLoggingType
-        path: generated/google-logging-type
+        path: generated/swift-google-logging-type
         api_package: google.logging.type
       - name: GoogleCloudOSConfigV1
-        path: generated/google-cloud-osconfig-v1
+        path: generated/swift-google-cloud-osconfig-v1
         api_package: google.cloud.osconfig.v1
       - name: GoogleCloudOSLoginCommon
-        path: generated/google-cloud-oslogin-common
+        path: generated/swift-google-cloud-oslogin-common
         api_package: google.cloud.oslogin.common
       - name: GoogleCloudOrgPolicyV1
-        path: generated/google-cloud-orgpolicy-v1
+        path: generated/swift-google-cloud-orgpolicy-v1
         api_package: google.cloud.orgpolicy.v1
       - name: GoogleCloudOrgPolicyV2
-        path: generated/google-cloud-orgpolicy-v2
+        path: generated/swift-google-cloud-orgpolicy-v2
         api_package: google.cloud.orgpolicy.v2
       - name: GoogleCloudRecommenderV1
-        path: generated/google-cloud-recommender-v1
+        path: generated/swift-google-cloud-recommender-v1
         api_package: google.cloud.recommender.v1
       - name: GoogleCloudWKT
         path: packages/wkt
@@ -128,28 +128,28 @@ default:
         path: generated/grafeas-v1
         api_package: grafeas.v1
       - name: GoogleIAMV1
-        path: generated/google-iam-v1
+        path: generated/swift-google-iam-v1
         api_package: google.iam.v1
       - name: GoogleIAMV2
-        path: generated/google-iam-v2
+        path: generated/swift-google-iam-v2
         api_package: google.iam.v2
       - name: GoogleIdentityAccessContextManagerType
-        path: generated/google-identity-accesscontextmanager-type
+        path: generated/swift-google-identity-accesscontextmanager-type
         api_package: google.identity.accesscontextmanager.type
       - name: GoogleIdentityAccessContextManagerV1
-        path: generated/google-identity-accesscontextmanager-v1
+        path: generated/swift-google-identity-accesscontextmanager-v1
         api_package: google.identity.accesscontextmanager.v1
       - name: GoogleLongRunning
-        path: generated/google-longrunning
+        path: generated/swift-google-longrunning
         api_package: google.longrunning
       - name: GoogleRpc
-        path: generated/google-rpc
+        path: generated/swift-google-rpc
         api_package: google.rpc
       - name: GoogleRpcContext
-        path: generated/google-rpc-context
+        path: generated/swift-google-rpc-context
         api_package: google.rpc.context
       - name: GoogleType
-        path: generated/google-type
+        path: generated/swift-google-type
         api_package: google.type
       - name: Logging
         url: https://github.com/apple/swift-log
@@ -477,7 +477,7 @@ libraries:
     copyright_year: "2026"
     keep:
       - Sources/GoogleCloudComputeV1/Operation+Additions.swift
-    output: generated/google-cloud-compute-v1
+    output: generated/swift-google-cloud-compute-v1
     roots:
       - discovery
       - googleapis
@@ -606,7 +606,7 @@ libraries:
     copyright_year: "2026"
     keep:
       - Sources/GoogleCloudDNSV1/Operation+Additions.swift
-    output: generated/google-cloud-dns-v1
+    output: generated/swift-google-cloud-dns-v1
     roots:
       - discovery
       - googleapis
@@ -701,19 +701,19 @@ libraries:
   - name: google-cloud-gkehub-v1-configmanagement
     version: 0.1.0-preview
     copyright_year: "2026"
-    output: generated/google-cloud-gkehub-configmanagement-v1
+    output: generated/swift-google-cloud-gkehub-configmanagement-v1
     swift:
       library_name_override: GoogleCloudGKEHubConfigManagementV1
   - name: google-cloud-gkehub-v1-multiclusteringress
     version: 0.1.0-preview
     copyright_year: "2026"
-    output: generated/google-cloud-gkehub-multiclusteringress-v1
+    output: generated/swift-google-cloud-gkehub-multiclusteringress-v1
     swift:
       library_name_override: GoogleCloudGKEHubMultiClusterIngressV1
   - name: google-cloud-gkehub-v1-rbacrolebindingactuation
     version: 0.1.0-preview
     copyright_year: "2026"
-    output: generated/google-cloud-gkehub-rbacrolebindingactuation-v1
+    output: generated/swift-google-cloud-gkehub-rbacrolebindingactuation-v1
     swift:
       library_name_override: GoogleCloudGKEHubRBACRoleBindingActuationV1
   - name: google-cloud-gkemulticloud-v1
@@ -1381,7 +1381,7 @@ libraries:
     apis:
       - path: schema/google/showcase/v1beta1
     copyright_year: "2026"
-    output: generated/google-showcase-v1beta1
+    output: generated/swift-google-showcase-v1beta1
     roots:
       - showcase
       - googleapis
