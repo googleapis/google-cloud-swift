@@ -15,7 +15,7 @@
 #if GlobalOperations || GlobalOrganizationOperations || RegionOperations || ZoneOperations
 
   import GoogleCloudGax
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleRpc
 
   extension Operation {
@@ -36,7 +36,7 @@
           GoogleCloudGax.ServiceError(
             code: GoogleRpc.Code(intValue: Int(self.httpErrorStatusCode ?? 0)),
             message: self.httpErrorMessage ?? "Operation failed",
-            details: self.error?.errors.compactMap { try? GoogleCloudWkt.Any(fromMessage: $0) }.map
+            details: self.error?.errors.compactMap { try? GoogleCloudWKT.Any(fromMessage: $0) }.map
             {
               .other($0)
             } ?? []
@@ -51,7 +51,7 @@
           GoogleCloudGax.ServiceError(
             code: .unknown,
             message: "Instances bulk insert operation failed",
-            details: [.other(try! GoogleCloudWkt.Any(fromMessage: metadata))]
+            details: [.other(try! GoogleCloudWKT.Any(fromMessage: metadata))]
           )
         )
       }
@@ -63,7 +63,7 @@
           GoogleCloudGax.ServiceError(
             code: .unknown,
             message: "Set common instance metadata operation failed",
-            details: [.other(try! GoogleCloudWkt.Any(fromMessage: metadata))]
+            details: [.other(try! GoogleCloudWKT.Any(fromMessage: metadata))]
           )
         )
       }
